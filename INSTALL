@@ -1,0 +1,44 @@
+Requirements:
+1.  Qt 4.3.3 or later.
+    Qt may be downloaded from
+    http://trolltech.com/developer/downloads/qt/index.
+2.  MySQL 5.0.33 or later, or PostgreSQL 7.4.16 or later.
+    MySQL may be downloaded from http://dev.mysql.com/downloads/mysql/5.0.html
+    and PostgreSQL from http://www.postgresql.org/download.
+3.  YAZ 2.1.53 or later.
+    YAZ may be downloaded from http://www.indexdata.dk/yaz.
+4.  A C++ compiler.
+
+Qt 4.3.3 Preparation (Unix):
+1.  Please build Qt with the mysql or postgresql driver, for example:
+    ./configure -v -qt-sql-mysql -I /usr/local/include/mysql \
+    -L /usr/local/lib/mysql -qt-sql-psql -I /usr/local/include/postgresql \
+    -L /usr/local/lib/postgresql
+2.  You may also build the drivers as plugins.
+
+MySQL Preparation:
+1.  Log into MySQL as an administrator and run the mysql_create_tables.sql
+    script.
+2.  Create additional users.
+
+PostgreSQL Preparation:
+1.  Log into PostgreSQL and run the postgresql_create_tables.sql script.
+2.  Create additional users.
+
+Building (Unix):
+1.  Set the environment variables LD_LIBRARY_PATH, PATH, QMAKESPEC, and QTDIR
+    accordingly.
+2.  Update the appropriate project file, if necessary.
+3.  Run qmake -o Makefile file.pro.
+4.  Run make.
+
+Installing (Unix):
+1.  Create the directory /usr/local/biblioteq (/Applications/BiblioteQ.d on
+    OS X).
+2.  Modify biblioteq.conf and copy it to /usr/local/biblioteq
+    (/Applications/BiblioteQ.d on OS X).
+3.  Copy BiblioteQ (BiblioteQ.app on OS X) to /usr/local/biblioteq
+    (/Applications/BiblioteQ.d on OS X).
+4.  Copy icons.d to /usr/local/biblioteq/icons.d
+    (/Applications/BiblioteQ.d/icons.d on OS X).
+5.  Set the appropriate permissions on the aforementioned files.

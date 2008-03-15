@@ -1,0 +1,21 @@
+/* Release 3.22. */
+
+ALTER TABLE book ADD type VARCHAR(16);
+UPDATE book SET type = 'Book';
+ALTER TABLE book ALTER type SET DEFAULT 'Book';
+ALTER TABLE book ALTER type SET NOT NULL;
+
+ALTER TABLE cd ADD type VARCHAR(16);
+UPDATE cd SET type = 'CD';
+ALTER TABLE cd ALTER type SET DEFAULT 'CD';
+ALTER TABLE cd ALTER type SET NOT NULL;
+
+ALTER TABLE dvd ADD type VARCHAR(16);
+UPDATE dvd SET type = 'DVD';
+ALTER TABLE dvd ALTER type SET DEFAULT 'DVD';
+ALTER TABLE dvd ALTER type SET NOT NULL;
+
+ALTER TABLE videogame ADD type VARCHAR(16);
+UPDATE videogame SET type = 'Video Game';
+ALTER TABLE videogame ALTER type SET DEFAULT 'Video Game';
+ALTER TABLE videogame ALTER type SET NOT NULL;
