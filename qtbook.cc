@@ -678,7 +678,7 @@ void qtbook::slotAbout(void)
 {
   QMessageBox::information
     (this, "BiblioteQ: About",
-     "BiblioteQ Version 3.22.\n"
+     "BiblioteQ Version 3.23.\n"
      "Copyright (c) 2006, 2007, 2008 "
      "Diana Megas.\n"
      "Icons copyright (c) Everaldo.\n\n"
@@ -3521,7 +3521,7 @@ void qtbook::readGlobalSetup(void)
 #ifdef Q_OS_WIN
   filename.append("C:/Program Files/BiblioteQ.d/biblioteq.conf");
 #else
-  filename.append(UNIXCONFIGFILE);
+  filename.append(CONFIGFILE);
 #endif
   al.language->clear();
   al.monetary_units->clear();
@@ -4779,7 +4779,7 @@ void qtbook::updateMembersBrowser(void)
 
   if(!errorstr.isEmpty())
     addError(QString("Database Error"),
-	     QString("Unable to determine the number of items reserved "
+	     QString("Unable to determine the number of reserved items "
 		     "for the selected member."),
 	     errorstr, __FILE__, __LINE__);
   else
@@ -4817,7 +4817,7 @@ void qtbook::updateMembersBrowser(const QString &memberid)
 
   if(!errorstr.isEmpty())
     addError(QString("Database Error"),
-	     QString("Unable to retrieve the number of items reserved "
+	     QString("Unable to retrieve the number of reserved items "
 		     "by the selected member."),
 	     errorstr, __FILE__, __LINE__);
   else
@@ -6398,7 +6398,7 @@ void qtbook::slotPrintReserved(void)
     {
       QMessageBox::critical(members_diag, "BiblioteQ: User Error",
 			    "The member that you selected does not have "
-			    "any items reserved.");
+			    "any reserved items.");
       return;
     }
 

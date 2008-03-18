@@ -1227,6 +1227,7 @@ void qtbook_book::slotQuery(void)
   QString etype = "";
   QString errorstr = "";
   QString searchstr = "";
+  QPalette pal;
   QStringList list;
   QStringList tmplist;
   QStringList removeList;
@@ -1287,6 +1288,8 @@ void qtbook_book::slotQuery(void)
 		      str = str.remove(" $b").remove(" $z").remove(" $8").
 			trimmed();
 		      id.lcnum->setText(str);
+		      misc_functions::highlightWidget
+			(id.lcnum, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("050"))
 		    {
@@ -1294,6 +1297,8 @@ void qtbook_book::slotQuery(void)
 		      str = str.remove(" $b").remove(" $3").remove(" $6").
 			remove(" $8").trimmed();
 		      id.callnum->setText(str);
+		      misc_functions::highlightWidget
+			(id.callnum, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("082"))
 		    {
@@ -1301,6 +1306,8 @@ void qtbook_book::slotQuery(void)
 		      str = str.remove(" $b").remove(" $2").remove(" $6").
 			remove(" $8").trimmed();
 		      id.deweynum->setText(str);
+		      misc_functions::highlightWidget
+			(id.deweynum, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("100"))
 		    {
@@ -1328,6 +1335,8 @@ void qtbook_book::slotQuery(void)
 			str = str.remove(removeList.takeFirst()).trimmed();
 
 		      id.author->setPlainText(str);
+		      misc_functions::highlightWidget
+			(id.author->viewport(), QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("245"))
 		    {
@@ -1382,6 +1391,8 @@ void qtbook_book::slotQuery(void)
 		      tmplist.clear();
 		      str = str.trimmed();
 		      id.title->setText(str);
+		      misc_functions::highlightWidget
+			(id.title, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("250"))
 		    {
@@ -1417,6 +1428,9 @@ void qtbook_book::slotQuery(void)
 			    str.mid(str.indexOf("$c") + 3, 4),
 			    "MM/dd/yyyy"));
 
+		      misc_functions::highlightWidget
+			(id.publication_date,
+			 QColor(162, 205, 90));
 		      str = str.mid(str.indexOf("$b") + 2).trimmed();
 		      str = str.mid(0, str.indexOf("$c")).trimmed();
 
@@ -1424,6 +1438,8 @@ void qtbook_book::slotQuery(void)
 			str = str.mid(0, str.length() - 1);
 
 		      id.publisher->setText(str);
+		      misc_functions::highlightWidget
+			(id.publisher, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("300"))
 		    {
@@ -1437,11 +1453,20 @@ void qtbook_book::slotQuery(void)
 		      str = str.remove(" $6").trimmed();
 		      str = str.remove(" $8").trimmed();
 		      id.description->setPlainText(str);
+		      misc_functions::highlightWidget
+			(id.description->viewport(), QColor(162, 205, 90));
 		    }
 		}
 
 	      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 		textfield->setCursorPosition(0);
+
+	      QMessageBox::information(this, "BiblioteQ: Information",
+				       "The highlighted fields have been "
+				       "modified with values obtained from "
+				       "the Library of Congress. "
+				       "Please update the remaining "
+				       "fields accordingly.");
 	    }
 	}
       else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())

@@ -777,3 +777,17 @@ QString misc_functions::getMemberName(const QSqlDatabase &db,
 
   return str;
 }
+
+/*
+** -- highlightWidget() --
+*/
+
+void misc_functions::highlightWidget(QWidget *widget,
+				     const QColor &color)
+{
+  QPalette pal;
+
+  pal = widget->palette();
+  pal.setColor(widget->backgroundRole(), color);
+  widget->setPalette(pal);
+}

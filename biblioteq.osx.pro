@@ -4,14 +4,14 @@ TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql
 CONFIG		+= qt release thread warn_on
-DEFINES		+= UNIXCONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
+DEFINES		+= CONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
-QMAKE_EXTRA_UNIX_TARGETS = purge
+QMAKE_EXTRA_OSX_TARGETS = purge
 INCPATH		+= include.d /usr/local/include
 ICON		= icons.d/book.icns
 LIBS		+= -L/usr/local/lib -lyaz

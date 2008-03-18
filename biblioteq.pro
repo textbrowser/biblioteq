@@ -4,7 +4,7 @@ TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql
 CONFIG		+= qt release thread warn_on x11
-DEFINES		+= UNIXCONFIGFILE="'\"/usr/local/share/biblioteq.conf\"'"
+DEFINES		+= CONFIGFILE="'\"/usr/local/share/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE -= -O2

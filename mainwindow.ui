@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>791</width>
-    <height>603</height>
+    <width>765</width>
+    <height>825</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>765</width>
-    <height>500</height>
+    <height>825</height>
    </size>
   </property>
   <property name="font" >
@@ -33,12 +33,9 @@
    <string>BiblioteQ</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
+   <layout class="QHBoxLayout" >
     <item>
-     <layout class="QHBoxLayout" >
-      <property name="spacing" >
-       <number>5</number>
-      </property>
+     <layout class="QVBoxLayout" >
       <item>
        <widget class="QToolButton" name="connectTool" >
         <property name="font" >
@@ -124,13 +121,6 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_7" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="detailsTool" >
         <property name="font" >
          <font>
@@ -172,9 +162,6 @@
         <property name="toolTip" >
          <string>Add Item</string>
         </property>
-        <property name="autoFillBackground" >
-         <bool>false</bool>
-        </property>
         <property name="text" >
          <string/>
         </property>
@@ -188,7 +175,7 @@
          </size>
         </property>
         <property name="popupMode" >
-         <enum>QToolButton::MenuButtonPopup</enum>
+         <enum>QToolButton::DelayedPopup</enum>
         </property>
         <property name="toolButtonStyle" >
          <enum>Qt::ToolButtonIconOnly</enum>
@@ -280,13 +267,6 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_4" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="reserveTool" >
         <property name="font" >
          <font>
@@ -346,13 +326,6 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="searchTool" >
         <property name="font" >
          <font>
@@ -376,7 +349,7 @@
          </size>
         </property>
         <property name="popupMode" >
-         <enum>QToolButton::MenuButtonPopup</enum>
+         <enum>QToolButton::DelayedPopup</enum>
         </property>
         <property name="autoRaise" >
          <bool>true</bool>
@@ -440,13 +413,6 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_2" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QToolButton" name="errorLogTool" >
         <property name="font" >
          <font>
@@ -498,25 +464,12 @@
          </size>
         </property>
         <property name="popupMode" >
-         <enum>QToolButton::MenuButtonPopup</enum>
+         <enum>QToolButton::DelayedPopup</enum>
         </property>
         <property name="autoRaise" >
          <bool>true</bool>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QToolButton" name="exitTool" >
@@ -545,6 +498,19 @@
          <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
@@ -797,7 +763,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>791</width>
+     <width>765</width>
      <height>28</height>
     </rect>
    </property>
