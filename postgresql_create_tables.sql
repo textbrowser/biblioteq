@@ -266,6 +266,20 @@ CREATE TABLE member
 
 GRANT DELETE, SELECT, UPDATE ON member TO xbook_admin;
 
+CREATE TABLE member_history
+(
+	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
+	item_oid	 INTEGER NOT NULL,
+	copyid		 VARCHAR(64) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
+	returned_date	 VARCHAR(32) NOT NULL,
+	myoid		 SERIAL PRIMARY KEY,
+	reserved_by	 VARCHAR(128) NOT NULL
+);
+
+GRANT DELETE, SELECT, UPDATE ON member_history TO xbook_admin;
+
 CREATE TABLE admin
 (
 	username	 VARCHAR(128) NOT NULL PRIMARY KEY,

@@ -3269,6 +3269,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
   userinfo.prevTool->setVisible(false);
   userinfo.nextTool->setVisible(false);
+  userinfo_diag->updateGeometry();
+  userinfo_diag->resize(userinfo_diag->sizeHint());
   userinfo_diag->show();
 }
 
@@ -4160,7 +4162,6 @@ void qtbook::slotShowAuthenticate(void)
 {
   au.userid->setFocus();
   auth_diag->updateGeometry();
-  auth_diag->resize(auth_diag->sizeHint());
   auth_diag->show();
 }
 
@@ -4341,7 +4342,6 @@ void qtbook::slotShowConnectionDB(void)
 {
   br.userid->setFocus();
   branch_diag->updateGeometry();
-  branch_diag->resize(branch_diag->sizeHint());
   branch_diag->show();
 }
 
@@ -4949,6 +4949,8 @@ void qtbook::slotModifyBorrower(void)
   userinfo_diag->setWindowTitle("BiblioteQ: Modify Member");
   userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo.membersince->setFocus();
+  userinfo_diag->updateGeometry();
+  userinfo_diag->resize(userinfo_diag->sizeHint());
   userinfo_diag->show();
 }
 

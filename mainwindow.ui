@@ -500,11 +500,17 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_5" >
+       <spacer>
         <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Vertical</enum>
         </property>
-       </widget>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QToolButton" name="exitTool" >
@@ -533,19 +539,6 @@
          <bool>true</bool>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -799,7 +792,7 @@
      <x>0</x>
      <y>0</y>
      <width>765</width>
-     <height>28</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font" >

@@ -265,6 +265,18 @@ CREATE TABLE member
 	zip		 VARCHAR(16) NOT NULL
 ) engine = InnoDB;
 
+CREATE TABLE member_history
+(
+	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
+	item_oid	 INTEGER NOT NULL,
+	copyid		 VARCHAR(64) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
+	returned_date	 VARCHAR(32) NOT NULL,
+	myoid		 INTEGER PRIMARY KEY AUTO_INCREMENT,
+	reserved_by	 VARCHAR(128) NOT NULL
+);
+
 CREATE TABLE admin
 (
 	username	 VARCHAR(128) NOT NULL PRIMARY KEY,

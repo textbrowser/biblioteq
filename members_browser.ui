@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>705</width>
-    <height>514</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -363,6 +363,13 @@
       </widget>
      </item>
      <item>
+      <widget class="Line" name="line_3" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="overdueButton" >
        <property name="font" >
         <font>
@@ -384,13 +391,6 @@
        </property>
        <property name="autoRaise" >
         <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
