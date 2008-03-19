@@ -112,6 +112,17 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parent,
   if(ma.location->count() == 0)
     ma.location->addItem("UNKNOWN");
 
+  /*
+  ** Save some palettes.
+  */
+
+  dt_orig_pal = ma.publication_date->palette();
+  te_orig_pal = ma.description->viewport()->palette();
+
+  /*
+  ** Prepare the form.
+  */
+
   resize(baseSize());
   p = parent->mapToGlobal(p);
   move(p.x() + parent->width() / 2  - width() / 2,
@@ -412,6 +423,11 @@ void qtbook_magazine::slotGo(void)
 		}
 	    }
 
+	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	    textfield->setPalette(ma.id->palette());
+
+	  ma.publication_date->setPalette(dt_orig_pal);
+	  ma.description->viewport()->setPalette(te_orig_pal);
 	  qapp->restoreOverrideCursor();
 	  oldq = ma.quantity->value();
 
@@ -971,6 +987,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains("Title"))
 	{
 	  ma.title->clear();
+	  ma.title->setPalette(ma.id->palette());
 	  ma.title->setFocus();
 	}
       else if(name.contains("Volume"))
@@ -992,11 +1009,13 @@ void qtbook_magazine::slotReset(void)
 	    ma.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
+	  ma.publication_date->setPalette(dt_orig_pal);
 	  ma.publication_date->setFocus();
 	}
       else if(name.contains("Publisher"))
 	{
 	  ma.publisher->clear();
+	  ma.publisher->setPalette(ma.id->palette());
 	  ma.publisher->setFocus();
 	}
       else if(name.contains("Category"))
@@ -1022,6 +1041,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains("Abstract"))
 	{
 	  ma.description->clear();
+	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.description->setFocus();
 	}
       else if(name.contains("Copies"))
@@ -1037,16 +1057,19 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains("LC Control Number"))
 	{
 	  ma.lcnum->clear();
+	  ma.lcnum->setPalette(ma.id->palette());
 	  ma.lcnum->setFocus();
 	}
       else if(name.contains("Call Number"))
 	{
 	  ma.callnum->clear();
+	  ma.callnum->setPalette(ma.id->palette());
 	  ma.callnum->setFocus();
 	}
       else if(name.contains("Dewey Number"))
 	{
 	  ma.deweynum->clear();
+	  ma.deweynum->setPalette(ma.id->palette());
 	  ma.deweynum->setFocus();
 	}
     }
@@ -1080,6 +1103,12 @@ void qtbook_magazine::slotReset(void)
       ma.lcnum->clear();
       ma.callnum->clear();
       ma.deweynum->clear();
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	textfield->setPalette(ma.id->palette());
+
+      ma.publication_date->setPalette(dt_orig_pal);
+      ma.description->viewport()->setPalette(te_orig_pal);
       ma.id->setFocus();
     }
 }
@@ -1310,18 +1339,24 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	{
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  ma.lcnum->setText(str);
+	  misc_functions::highlightWidget
+	    (ma.lcnum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("050"))
 	{
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $b").trimmed();
 	  ma.callnum->setText(str);
+	  misc_functions::highlightWidget
+	    (ma.callnum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("082"))
 	{
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $2").trimmed();
 	  ma.deweynum->setText(str);
+	  misc_functions::highlightWidget
+	    (ma.deweynum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("245"))
 	{
@@ -1360,6 +1395,8 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 
 	  tmplist.clear();
 	  ma.title->setText(str);
+	  misc_functions::highlightWidget
+	    (ma.title, QColor(162, 205, 90));
 	}
       else if(str.startsWith("260"))
 	{
@@ -1367,9 +1404,13 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	    (QDate::fromString("01/01/" +
 			       str.mid(str.trimmed().length() - 5, 4),
 			       "MM/dd/yyyy"));
+	  ma.publication_date->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
 	  str = str.mid(str.indexOf("$b") + 2).trimmed();
 	  str = str.mid(0, str.indexOf(",")).trimmed();
 	  ma.publisher->setText(str);
+	  misc_functions::highlightWidget
+	    (ma.publisher, QColor(162, 205, 90));
 	}
       else if(str.startsWith("300"))
 	{
@@ -1377,11 +1418,20 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	  str = str.remove(" $b").trimmed();
 	  str = str.remove(" $c").trimmed();
 	  ma.description->setPlainText(str);
+	  misc_functions::highlightWidget
+	    (ma.description->viewport(), QColor(162, 205, 90));
 	}
     }
 
   foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
     textfield->setCursorPosition(0);
+
+  QMessageBox::information(this, "BiblioteQ: Information",
+			   "The highlighted fields have been "
+			   "modified with values obtained from "
+			   "the Library of Congress. "
+			   "Please update the remaining "
+			   "fields accordingly.");
 }
 
 /*

@@ -44,6 +44,9 @@ class qtbook_book: public QMainWindow, public qtbook_item
   virtual void closeEvent(QCloseEvent *);
 
  private:
+  QPalette cb_orig_pal;
+  QPalette dt_orig_pal;
+  QPalette te_orig_pal;
   generic_thread *thread;
   Ui_informationDialog id;
 

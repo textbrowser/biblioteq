@@ -116,6 +116,18 @@ qtbook_book::qtbook_book(QMainWindow *parent, const QStringList &categories,
   if(id.location->count() == 0)
     id.location->addItem("UNKNOWN");
 
+  /*
+  ** Save some palettes.
+  */
+
+  cb_orig_pal = id.edition->palette();
+  dt_orig_pal = id.publication_date->palette();
+  te_orig_pal = id.author->viewport()->palette();
+
+  /*
+  ** Prepare the form.
+  */
+
   resize(baseSize());
   p = parent->mapToGlobal(p);
   move(p.x() + parent->width() / 2  - width() / 2,
@@ -433,6 +445,13 @@ void qtbook_book::slotGo(void)
 		}
 	    }
 
+	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	    textfield->setPalette(id.id->palette());
+
+	  id.edition->setPalette(cb_orig_pal);
+	  id.publication_date->setPalette(dt_orig_pal);
+	  id.author->viewport()->setPalette(te_orig_pal);
+	  id.description->viewport()->setPalette(te_orig_pal);
 	  qapp->restoreOverrideCursor();
 	  oldq = id.quantity->value();
 
@@ -1002,16 +1021,19 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Title"))
 	{
 	  id.title->clear();
+	  id.title->setPalette(id.id->palette());
 	  id.title->setFocus();
 	}
       else if(name.contains("Edition"))
 	{
 	  id.edition->setCurrentIndex(0);
+	  id.edition->setPalette(cb_orig_pal);
 	  id.edition->setFocus();
 	}
       else if(name.contains("Author(s)"))
 	{
 	  id.author->clear();
+	  id.author->viewport()->setPalette(id.id->palette());
 	  id.author->setFocus();
 	}
       else if(name.contains("Publication Date"))
@@ -1023,11 +1045,13 @@ void qtbook_book::slotReset(void)
 	    id.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
+	  id.publication_date->setPalette(dt_orig_pal);
 	  id.publication_date->setFocus();
 	}
       else if(name.contains("Publisher"))
 	{
 	  id.publisher->clear();
+	  id.publisher->setPalette(id.id->palette());
 	  id.publisher->setFocus();
 	}
       else if(name.contains("Category"))
@@ -1058,6 +1082,7 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Abstract"))
 	{
 	  id.description->clear();
+	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
       else if(name.contains("Copies"))
@@ -1078,16 +1103,19 @@ void qtbook_book::slotReset(void)
       else if(name.contains("LC Control Number"))
 	{
 	  id.lcnum->clear();
+	  id.lcnum->setPalette(id.id->palette());
 	  id.lcnum->setFocus();
 	}
       else if(name.contains("Call Number"))
 	{
 	  id.callnum->clear();
+	  id.callnum->setPalette(id.id->palette());
 	  id.callnum->setFocus();
 	}
       else if(name.contains("Dewey Class Number"))
 	{
 	  id.deweynum->clear();
+	  id.deweynum->setPalette(id.id->palette());
 	  id.deweynum->setFocus();
 	}
     }
@@ -1122,6 +1150,14 @@ void qtbook_book::slotReset(void)
       id.language->setCurrentIndex(0);
       id.monetary_units->setCurrentIndex(0);
       id.binding->setCurrentIndex(0);
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	textfield->setPalette(id.id->palette());
+
+      id.edition->setPalette(cb_orig_pal);
+      id.publication_date->setPalette(dt_orig_pal);
+      id.author->viewport()->setPalette(te_orig_pal);
+      id.description->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
     }
 }
@@ -1277,6 +1313,7 @@ void qtbook_book::slotQuery(void)
 	    {
 	      list = QString(thread->getLOCResults()[0]).split("\n");
 	      id.edition->setCurrentIndex(0);
+	      id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
 
 	      for(i = 0; i < list.size(); i++)
 		{
@@ -1428,9 +1465,8 @@ void qtbook_book::slotQuery(void)
 			    str.mid(str.indexOf("$c") + 3, 4),
 			    "MM/dd/yyyy"));
 
-		      misc_functions::highlightWidget
-			(id.publication_date,
-			 QColor(162, 205, 90));
+		      id.publication_date->setStyleSheet
+			("background-color: rgb(162, 205, 90)");
 		      str = str.mid(str.indexOf("$b") + 2).trimmed();
 		      str = str.mid(0, str.indexOf("$c")).trimmed();
 

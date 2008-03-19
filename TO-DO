@@ -200,3 +200,4 @@
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
 105. Prepare the application for translations. (TBD)
+106. Provide a graphical representation of the database layout.

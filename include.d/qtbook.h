@@ -73,7 +73,7 @@ class qtbook: public QMainWindow
   static const int POPULATE_ALL = 1;
   static const int POPULATE_SEARCH = 2;
   static const int MAINWINDOW_MINWIDTH = 900;
-  static const int MAINWINDOW_MINHEIGHT = 825;
+  static const int MAINWINDOW_MINHEIGHT = 900;
 
   qtbook(void);
   ~qtbook();
