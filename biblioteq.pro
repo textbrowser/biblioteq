@@ -20,6 +20,7 @@ FORMS           += cdinfo.ui \
 		   tracks.ui \
 		   allinfo.ui \
 		   dvdinfo.ui \
+		   history.ui \
 		   maginfo.ui \
 		   bookinfo.ui \
 		   branch_s.ui \

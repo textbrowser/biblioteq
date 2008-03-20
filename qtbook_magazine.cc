@@ -1148,7 +1148,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        ma.quantity->value(), oid,
        ma.id->text(),
        ma.quantity, font(), "magazine",
-       ma.title->text().trimmed())) != NULL)
+       ma.title->text().trimmed(), subType)) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

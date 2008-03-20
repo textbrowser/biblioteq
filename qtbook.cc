@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2006, 2007, 2008 Diana Megas
+** Copyright (c) 2006, 2007, 2008 Alexis Megas, Diana Megas
 ** All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -274,6 +274,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotModifyBorrower(void)));
   connect(bb.modifyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyBorrower(void)));
+  connect(bb.historyButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotShowHistory(void)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
   connect(ui.exitTool, SIGNAL(clicked(void)), this, SLOT(slotExit(void)));
   connect(ui.actionExit, SIGNAL(triggered(void)), this,
@@ -3270,7 +3272,6 @@ void qtbook::slotAddBorrower(void)
   userinfo.prevTool->setVisible(false);
   userinfo.nextTool->setVisible(false);
   userinfo_diag->updateGeometry();
-  userinfo_diag->resize(userinfo_diag->sizeHint());
   userinfo_diag->show();
 }
 
@@ -4950,7 +4951,6 @@ void qtbook::slotModifyBorrower(void)
   userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo.membersince->setFocus();
   userinfo_diag->updateGeometry();
-  userinfo_diag->resize(userinfo_diag->sizeHint());
   userinfo_diag->show();
 }
 
@@ -4979,6 +4979,7 @@ void qtbook::slotCheckout(void)
   QString itemid = "";
   QString errorstr = "";
   QString itemTitle = "";
+  QString realItemType = "";
   copy_editor *copyeditor = NULL;
   qtbook_item *item = NULL;
 
@@ -5025,6 +5026,7 @@ void qtbook::slotCheckout(void)
     {
       if((item = new qtbook_item(row2)) != NULL)
 	{
+	  realItemType = type;
 	  quantity = misc_functions::getColumnString(ui.table, row2,
 						     "Quantity").toInt();
 	  itemTitle = misc_functions::getColumnString(ui.table, row2,
@@ -5061,7 +5063,8 @@ void qtbook::slotCheckout(void)
 						quantity, oid, itemid,
 						(QSpinBox *) NULL,
 						font(), type,
-						itemTitle)) != NULL)
+						itemTitle,
+						realItemType)) != NULL)
 	    copyeditor->populateCopiesEditor();
 	}
     }
@@ -6488,4 +6491,21 @@ void qtbook::slotCopyError(void)
 
   list.clear();
   qapp->restoreOverrideCursor();
+}
+
+/*
+** -- slotShowHistory() --
+*/
+
+void qtbook::slotShowHistory(void)
+{
+  int row = bb.table->currentRow();
+
+  if(row < 0)
+    {
+      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
+			    "In order to display a member's reservation "
+			    "history, you must first select the member.");
+      return;
+    }
 }

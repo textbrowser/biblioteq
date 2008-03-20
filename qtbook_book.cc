@@ -1226,7 +1226,8 @@ void qtbook_book::slotPopulateCopiesEditor(void)
 				   id.quantity->value(), oid,
 				   id.id->text(),
 				   id.quantity, font(), "book",
-				   id.title->text().trimmed())) != NULL)
+				   id.title->text().trimmed(),
+				   "Book")) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

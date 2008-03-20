@@ -1628,7 +1628,8 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
 				   cd.quantity->value(), oid,
 				   cd.id->text(),
 				   cd.quantity, font(), "cd",
-				   cd.title->text().trimmed())) != NULL)
+				   cd.title->text().trimmed(),
+				   "CD")) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

@@ -213,6 +213,7 @@ class qtbook: public QMainWindow
   void slotViewDetails(void);
   void slotReserveCopy(void);
   void slotShowColumns(void);
+  void slotShowHistory(void);
   void slotInsertJourn(void);
   void slotAuthenticate(void);
   void slotRemoveMember(void);

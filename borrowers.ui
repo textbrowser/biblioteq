@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
+    <width>845</width>
     <height>300</height>
    </rect>
   </property>
@@ -155,7 +155,7 @@
         </font>
        </property>
        <property name="text" >
-        <string>&amp;Erase</string>
+        <string>&amp;Return</string>
        </property>
        <property name="icon" >
         <iconset>icons.d/16x16/eraser.png</iconset>

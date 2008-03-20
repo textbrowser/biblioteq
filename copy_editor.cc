@@ -18,8 +18,8 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 QSpinBox *spinboxArg,
 			 const QFont &font,
 			 const QString &itemTypeArg,
-			 const QString &itemTitleArg):
-  QDialog(parent)
+			 const QString &itemTitleArg,
+			 const QString &realItemTypeArg): QDialog(parent)
 {
   (void) itemTitleArg;
   setWindowModality(Qt::WindowModal);
@@ -30,6 +30,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   uniqueid = uniqueidArg;
   spinbox = spinboxArg;
   itemType = itemTypeArg.toLower().remove(" ");
+  realItemType = realItemTypeArg;
   showForLending = showForLendingArg;
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 
@@ -420,6 +421,34 @@ void copy_editor::slotCheckoutCopy(void)
 			    "Unable to create a reserve record.");
       return;
     }
+
+  /*
+  ** Record the transaction.
+  */
+
+  query.prepare(QString("INSERT INTO member_history "
+			"(memberid, "
+			"item_oid, "
+			"copyid, "
+			"reserved_date, "
+			"duedate, "
+			"returned_date, "
+			"reserved_by, "
+			"type) "
+			"VALUES(?, ?, ?, ?, ?, ?, ?, ?)"));
+  query.bindValue(0, memberid);
+  query.bindValue(1, ioid);
+  query.bindValue(2, copyid);
+  query.bindValue(3, checkedout);
+  query.bindValue(4, duedate);
+  query.bindValue(5, QString("N/A"));
+  query.bindValue(6, qmain->getAdminID());
+  query.bindValue(7, realItemType);
+
+  if(!query.exec())
+    qmain->addError(QString("Database Error"),
+		    QString("Unable to create a history record."),
+		    query.lastError().text(), __FILE__, __LINE__);
 
   /*
   ** Update the Reserved Items count on the Members Browser.

@@ -201,3 +201,6 @@
 104. The database searches should be case-insensitive. (DONE)
 105. Prepare the application for translations. (TBD)
 106. Provide a graphical representation of the database layout.
+107. Create a history of a member's reserved items.
+108. Update the Returned Date in the member_history table after an item
+     has been returned.
