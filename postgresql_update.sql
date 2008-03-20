@@ -32,7 +32,8 @@ CREATE TABLE member_history
 	returned_date	 VARCHAR(32) NOT NULL,
 	myoid		 SERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;

@@ -157,6 +157,9 @@ qtbook::qtbook(void):QMainWindow()
   if((members_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((history_diag = new QDialog(this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((customquery_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
@@ -242,12 +245,14 @@ qtbook::qtbook(void):QMainWindow()
   ui.setupUi(this);
   bb.setupUi(members_diag);
   userinfo.setupUi(userinfo_diag);
+  history.setupUi(history_diag);
   au.setupUi(auth_diag);
   br.setupUi(branch_diag);
   al.setupUi(all_diag);
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
   userinfo_diag->setModal(true);
+  history_diag->setModal(true);
   auth_diag->setModal(true);
   branch_diag->setModal(true);
   members_diag->setModal(false);
@@ -275,6 +280,8 @@ qtbook::qtbook(void):QMainWindow()
   connect(bb.modifyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyBorrower(void)));
   connect(bb.historyButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotShowHistory(void)));
+  connect(history.reloadButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowHistory(void)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
   connect(ui.exitTool, SIGNAL(clicked(void)), this, SLOT(slotExit(void)));
@@ -733,6 +740,8 @@ void qtbook::slotSearch(void)
       all_diag->resize(all_diag->sizeHint());
     }
 
+  all_diag->move(x() + width() / 2  - all_diag->width() / 2,
+		 y() + height() / 2 - all_diag->height() / 2);
   all_diag->raise();
   all_diag->show();
 }
@@ -4495,6 +4504,7 @@ void qtbook::slotDisconnect(void)
 
   all_diag->hide();
   members_diag->hide();
+  history_diag->hide();
   customquery_diag->hide();
   resetMembersBrowser();
   supportsTransactions = false;
@@ -4614,6 +4624,8 @@ void qtbook::resetMembersBrowser(void)
 
 void qtbook::slotShowMembersBrowser(void)
 {
+  QPoint p(0, 0);
+
   bb.filter->clear();
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
@@ -4626,6 +4638,9 @@ void qtbook::slotShowMembersBrowser(void)
       members_diag->resize(members_diag->sizeHint());
     }
 
+  p = mapToGlobal(p);
+  members_diag->move(p.x() + width() / 2  - members_diag->width() / 2,
+		     p.y() + height() / 2 - members_diag->height() / 2);
   members_diag->raise();
   members_diag->show();
 }
@@ -5633,8 +5648,8 @@ void qtbook::slotInsertCD(void)
     }
   else
     {
+      cd->insert();
       cd->raise();
-      cd->show();
     }
 }
 
@@ -5659,8 +5674,8 @@ void qtbook::slotInsertDVD(void)
     }
   else
     {
+      dvd->insert();
       dvd->raise();
-      dvd->show();
     }
 }
 
@@ -5684,8 +5699,8 @@ void qtbook::slotInsertBook(void)
     }
   else
     {
+      book->insert();
       book->raise();
-      book->show();
     }
 }
 
@@ -5710,8 +5725,8 @@ void qtbook::slotInsertJourn(void)
     }
   else
     {
+      journal->insert();
       journal->raise();
-      journal->show();
     }
 }
 
@@ -5736,8 +5751,8 @@ void qtbook::slotInsertMag(void)
     }
   else
     {
+      magazine->insert();
       magazine->raise();
-      magazine->show();
     }
 }
 
@@ -5762,8 +5777,8 @@ void qtbook::slotInsertVideoGame(void)
     }
   else
     {
+      video_game->insert();
       video_game->raise();
-      video_game->show();
     }
 }
 
@@ -6499,7 +6514,14 @@ void qtbook::slotCopyError(void)
 
 void qtbook::slotShowHistory(void)
 {
+  int i = -1;
+  int j = 0;
   int row = bb.table->currentRow();
+  QString str = "";
+  QSqlQuery query(db);
+  QStringList list;
+  QProgressDialog progress(history_diag);
+  QTableWidgetItem *item = NULL;
 
   if(row < 0)
     {
@@ -6508,4 +6530,113 @@ void qtbook::slotShowHistory(void)
 			    "history, you must first select the member.");
       return;
     }
+
+  list << "cd" << "dvd" << "book" << "magazine" << "videogame";
+
+  for(i = 0; i < list.size(); i++)
+    {
+      str += QString("SELECT "
+		     "history.memberid, "
+		     "member.first_name, "
+		     "member.last_name, "
+		     "%1.title, "
+		     "%1.id, "
+		     "history.copyid, "
+		     "%1.type, "
+		     "history.reserved_date, "
+		     "history.duedate, "
+		     "history.returned_date, "
+		     "history.reserved_by "
+		     "FROM member_history history, "
+		     "%1 %1, "
+		     "member member "
+		     "WHERE history.memberid = member.memberid AND "
+		     "%1.myoid = history.item_oid AND "
+		     "member.memberid = '%2'").arg(list[i]).arg
+	(misc_functions::getColumnString(bb.table, row, "Member ID"));
+
+      if(i != list.size() - 1)
+	str += "UNION ";
+    }
+
+  str.append("ORDER BY 1");
+  list.clear();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec(str))
+    {
+      qapp->restoreOverrideCursor();
+      addError(QString("Database Error"),
+	       QString("Unable to retrieve history data for table "
+		       "populating."),
+	       query.lastError().text(),
+	       __FILE__, __LINE__);
+
+      if(history_diag->isVisible())
+	QMessageBox::critical(history_diag, "BiblioteQ: Database Error",
+			      "Unable to retrieve history data for "
+			      "table populating.");
+      else
+	QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
+			      "Unable to retrieve history data for "
+			      "table populating.");
+
+      return;
+    }
+
+  qapp->restoreOverrideCursor();
+  history.table->clear();
+  list.append("Member ID");
+  list.append("First Name");
+  list.append("Last Name");
+  list.append("Item Title");
+  list.append("Item ID");
+  list.append("Barcode");
+  list.append("Item Type");
+  list.append("Reservation Date");
+  list.append("Due Date");
+  list.append("Returned Date");
+  list.append("Lender");
+  history.table->setHorizontalHeaderLabels(list);
+  history.table->setColumnCount(list.size());
+  list.clear();
+  history.table->setRowCount(query.size());
+  history.table->scrollToTop();
+  history.table->horizontalScrollBar()->setValue(0);
+  progress.setModal(true);
+  progress.setWindowTitle("BiblioteQ: Progress Dialog");
+  progress.setLabelText("Populating the table...");
+  progress.setMaximum(query.size());
+  progress.show();
+  progress.update();
+  i = -1;
+
+  while(i++, !progress.wasCanceled() && query.next())
+    {
+      if(query.isValid())
+	for(j = 0; j < query.record().count(); j++)
+	  {
+	    str = query.value(j).toString();
+
+	    if((item = new QTableWidgetItem(str)) != NULL)
+	      history.table->setItem(i, j, item);
+	    else
+	      addError(QString("Memory Error"),
+		       QString("Unable to allocate memory for the "
+			       "\"item\" object. "
+			       "This is a serious problem!"),
+		       QString(""), __FILE__, __LINE__);
+	  }
+
+      progress.setValue(i + 1);
+      progress.update();
+      qapp->processEvents();
+    }
+
+  query.clear();
+  history.table->setRowCount(i);
+  history.table->horizontalHeader()->resizeSections
+    (QHeaderView::ResizeToContents);
+  history_diag->raise();
+  history_diag->show();
 }

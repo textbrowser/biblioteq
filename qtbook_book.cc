@@ -20,7 +20,7 @@ qtbook_book::qtbook_book(QMainWindow *parent, const QStringList &categories,
 			 const QStringList &monetary_units,
 			 const QStringList &locations, const QString &oidArg,
 			 const int rowArg):
-  QMainWindow()
+  QMainWindow(parent)
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -711,6 +711,8 @@ void qtbook_book::slotGo(void)
 
 void qtbook_book::search(void)
 {
+  QPoint p(0, 0);
+
   id.id->clear();
   id.isbn13->clear();
   id.author->clear();
@@ -761,6 +763,9 @@ void qtbook_book::search(void)
   id.binding->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Database Book Search");
   id.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -970,6 +975,8 @@ void qtbook_book::modify(const int state)
 
 void qtbook_book::insert(void)
 {
+  QPoint p(0, 0);
+
   id.id->clear();
   id.isbn13->clear();
   id.author->clear();
@@ -997,6 +1004,9 @@ void qtbook_book::insert(void)
   id.binding->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 

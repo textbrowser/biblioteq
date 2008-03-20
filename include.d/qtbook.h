@@ -41,6 +41,7 @@ using namespace std;
 #include "qtbook_cd.h"
 #include "qtbook_dvd.h"
 #include "ui_allinfo.h"
+#include "ui_history.h"
 #include "qtbook_book.h"
 #include "ui_branch_s.h"
 #include "ui_userinfo.h"
@@ -133,6 +134,7 @@ class qtbook: public QMainWindow
   QDialog *error_diag;
   QDialog *branch_diag;
   QDialog *members_diag;
+  QDialog *history_diag;
   QDialog *userinfo_diag;
   QDialog *customquery_diag;
   QMainWindow *all_diag;
@@ -163,6 +165,7 @@ class qtbook: public QMainWindow
   Ui_customquery cq;
   Ui_errordialog er;
   Ui_branchSelect br;
+  Ui_historyDialog history;
   Ui_membersBrowser bb;
   Ui_userAuthenticate au;
   bool isItemBusy(const QString &, const QString &);

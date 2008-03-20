@@ -23,7 +23,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parent,
 		     const QStringList &formats,
 		     const QString &oidArg,
 		     const int rowArg):
-  QMainWindow()
+  QMainWindow(parent)
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -718,6 +718,8 @@ void qtbook_cd::slotGo(void)
 
 void qtbook_cd::search(void)
 {
+  QPoint p(0, 0);
+
   cd.id->clear();
   cd.artist->clear();
   cd.title->clear();
@@ -770,6 +772,9 @@ void qtbook_cd::search(void)
   cd.format->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: CD Database Search");
   cd.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -1014,6 +1019,8 @@ void qtbook_cd::modify(const int state)
 
 void qtbook_cd::insert(void)
 {
+  QPoint p(0, 0);
+
   cd.id->clear();
   cd.artist->clear();
   cd.title->clear();
@@ -1044,6 +1051,9 @@ void qtbook_cd::insert(void)
   cd.format->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -1091,8 +1101,6 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
     comboBoxList.append(QString::number(i));
 
   trd.table->clear();
-  trd.table->scrollToTop();
-  trd.table->horizontalScrollBar()->setValue(0);
   list.append("Album Number");
   list.append("Track Number");
   list.append("Track Title");

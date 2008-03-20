@@ -275,7 +275,8 @@ CREATE TABLE member_history
 	returned_date	 VARCHAR(32) NOT NULL,
 	myoid		 INTEGER PRIMARY KEY AUTO_INCREMENT,
 	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE admin

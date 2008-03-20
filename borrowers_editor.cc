@@ -76,8 +76,6 @@ void borrowers_editor::showUsers(void)
 
   str = ioid;
   bd.table->clear();
-  bd.table->scrollToTop();
-  bd.table->horizontalScrollBar()->setValue(0);
 
   if(state == qtbook::EDITABLE)
     {
@@ -269,6 +267,7 @@ void borrowers_editor::slotEraseBorrower(void)
 {
   int row = bd.table->currentRow();
   QString oid = "";
+  QString copyid = "";
   QString errorstr = "";
   QString memberid = "";
   QString availability = "";
@@ -316,9 +315,29 @@ void borrowers_editor::slotEraseBorrower(void)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      /*
+      ** Record the return in the history table.
+      */
+
+      copyid = misc_functions::getColumnString(bd.table, row,
+					       "Barcode");
       memberid = misc_functions::getColumnString(bd.table, row,
 						 "Member ID");
+      query.prepare(QString("UPDATE member_history SET returned_date = ? "
+			    "WHERE item_oid = ? AND copyid = ? AND "
+			    "memberid = ?"));
+      query.bindValue(0, QDateTime::currentDateTime().toString("MM/dd/yyyy"));
+      query.bindValue(1, ioid);
+      query.bindValue(2, copyid);
+      query.bindValue(3, memberid);
+
+      if(!query.exec())
+	qmain->addError(QString("Database Error"),
+			QString("Unable to modify the returned date of "
+				"the selected copy."),
+			query.lastError().text(), __FILE__, __LINE__);
+
+      qapp->restoreOverrideCursor();
       qmain->updateMembersBrowser(memberid);
       qapp->setOverrideCursor(Qt::WaitCursor);
       availability = misc_functions::getAvailability(ioid, qmain->getDB(),

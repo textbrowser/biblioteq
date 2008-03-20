@@ -27,7 +27,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parent,
 				 const QStringList &locations,
 				 const QString &oidArg,
 				 const int rowArg):
-  QMainWindow()
+  QMainWindow(parent)
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -692,6 +692,8 @@ void qtbook_magazine::slotGo(void)
 
 void qtbook_magazine::search(void)
 {
+  QPoint p(0, 0);
+
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -737,6 +739,9 @@ void qtbook_magazine::search(void)
   ma.monetary_units->setCurrentIndex(0);
   setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
   ma.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -934,6 +939,8 @@ void qtbook_magazine::modify(const int state)
 
 void qtbook_magazine::insert(void)
 {
+  QPoint p(0, 0);
+
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -962,6 +969,9 @@ void qtbook_magazine::insert(void)
   ma.monetary_units->setCurrentIndex(0);
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 

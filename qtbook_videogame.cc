@@ -24,7 +24,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parent,
 				   const QStringList &locations,
 				   const QString &oidArg,
 				   const int rowArg):
-  QMainWindow()
+  QMainWindow(parent)
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -649,6 +649,8 @@ void qtbook_videogame::slotGo(void)
 
 void qtbook_videogame::search(void)
 {
+  QPoint p(0, 0);
+
   vg.id->clear();
   vg.developer->clear();
   vg.title->clear();
@@ -699,6 +701,9 @@ void qtbook_videogame::search(void)
   vg.mode->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Database Video Game Search");
   vg.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -912,6 +917,8 @@ void qtbook_videogame::modify(const int state)
 
 void qtbook_videogame::insert(void)
 {
+  QPoint p(0, 0);
+
   vg.copiesButton->setEnabled(false);
   vg.queryButton->setEnabled(true);
   vg.okButton->setText("&Save");
@@ -930,6 +937,9 @@ void qtbook_videogame::insert(void)
   vg.rating->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 

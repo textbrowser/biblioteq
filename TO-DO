@@ -148,8 +148,9 @@
      beyond the current date. (DONE)
 74.  Allow the user to set a global font. (DONE)
 75.  Change the font for the Borrowers Browser, Copy Editor, Custom Query
-     Dialog, Error Log, Library of Congress Query Results, and the
-     Tracks Editor after a global font change. (DONE)
+     Dialog, Error Log, Library of Congress Query Results, Member's
+     Reservation History, and the Tracks Editor after a global font
+     change. (DONE)
 76.  Save the selected global font to the user's configuration file. (DONE)
 77.  Create as many initial copies as necessary when a new item is created.
      The number of copies to create is to be determined by the quantity.
@@ -201,6 +202,7 @@
 104. The database searches should be case-insensitive. (DONE)
 105. Prepare the application for translations. (TBD)
 106. Provide a graphical representation of the database layout.
-107. Create a history of a member's reserved items.
+107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item
-     has been returned.
+     has been returned. (DONE)
+109. Provide print support for the Member's Reservation History.

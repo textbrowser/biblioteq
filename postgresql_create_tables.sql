@@ -30,10 +30,10 @@ CREATE TABLE book
 CREATE TABLE book_copy_info
 (
 	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 SERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	UNIQUE(item_oid, copyid, copy_number),
+	PRIMARY KEY(item_oid, copyid),
 	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE
 );
 
@@ -274,7 +274,8 @@ CREATE TABLE member_history
 	returned_date	 VARCHAR(32) NOT NULL,
 	myoid		 SERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE admin

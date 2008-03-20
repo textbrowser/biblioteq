@@ -94,12 +94,17 @@
         </column>
         <column>
          <property name="text" >
-          <string>Item Type</string>
+          <string>Item ID</string>
          </property>
         </column>
         <column>
          <property name="text" >
           <string>Barcode</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Item Type</string>
          </property>
         </column>
         <column>
@@ -144,6 +149,22 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="reloadButton" >
+       <property name="minimumSize" >
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string>&amp;Reload</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/16x16/reload.png</iconset>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="printButton" >
@@ -208,9 +229,27 @@
  </widget>
  <tabstops>
   <tabstop>table</tabstop>
+  <tabstop>reloadButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>historyDialog</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>577</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>522</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

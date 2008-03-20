@@ -25,7 +25,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parent,
 		       const QStringList &regions,
 		       const QString &oidArg,
 		       const int rowArg):
-  QMainWindow()
+  QMainWindow(parent)
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -749,6 +749,8 @@ void qtbook_dvd::slotGo(void)
 
 void qtbook_dvd::search(void)
 {
+  QPoint p(0, 0);
+
   dvd.id->clear();
   dvd.actors->clear();
   dvd.directors->clear();
@@ -801,6 +803,9 @@ void qtbook_dvd::search(void)
   dvd.aspectratio->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Database DVD Search");
   dvd.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 
@@ -1034,6 +1039,8 @@ void qtbook_dvd::modify(const int state)
 
 void qtbook_dvd::insert(void)
 {
+  QPoint p(0, 0);
+
   dvd.id->clear();
   dvd.actors->clear();
   dvd.directors->clear();
@@ -1064,6 +1071,9 @@ void qtbook_dvd::insert(void)
   dvd.aspectratio->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
+  p = parentWidget()->mapToGlobal(p);
+  move(p.x() + parentWidget()->width() / 2  - width() / 2,
+       p.y() + parentWidget()->height() / 2 - height() / 2);
   show();
 }
 

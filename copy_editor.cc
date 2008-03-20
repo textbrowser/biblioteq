@@ -156,8 +156,6 @@ void copy_editor::populateCopiesEditor(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
   cb.table->clear();
-  cb.table->scrollToTop();
-  cb.table->horizontalScrollBar()->setValue(0);
   list.append("Barcode");
   list.append("Availability");
   list.append("OID");
