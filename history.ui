@@ -1,0 +1,216 @@
+<ui version="4.0" >
+ <class>historyDialog</class>
+ <widget class="QDialog" name="historyDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1045</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>650</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Times</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle" >
+   <string>BiblioteQ: Member's Reservation History</string>
+  </property>
+  <property name="sizeGripEnabled" >
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QFrame" name="frame" >
+     <property name="frameShape" >
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QTableWidget" name="table" >
+        <property name="focusPolicy" >
+         <enum>Qt::StrongFocus</enum>
+        </property>
+        <property name="editTriggers" >
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors" >
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode" >
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior" >
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="verticalScrollMode" >
+         <enum>QAbstractItemView::ScrollPerItem</enum>
+        </property>
+        <property name="horizontalScrollMode" >
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="sortingEnabled" >
+         <bool>false</bool>
+        </property>
+        <property name="cornerButtonEnabled" >
+         <bool>false</bool>
+        </property>
+        <column>
+         <property name="text" >
+          <string>Member ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>First Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Last Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Item Title</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Item Type</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Barcode</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Reservation Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Due Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Returned Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
+          <string>Lender</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>5</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>39</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="printButton" >
+       <property name="minimumSize" >
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font" >
+        <font>
+         <family>Times</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text" >
+        <string>&amp;Print</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/16x16/fileprint.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="minimumSize" >
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font" >
+        <font>
+         <family>Times</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text" >
+        <string>&amp;Close</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/16x16/cancel.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>table</tabstop>
+  <tabstop>printButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
