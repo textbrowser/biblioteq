@@ -15,7 +15,7 @@ extern QApplication *qapp;
 ** -- qtbook_videogame() --
 */
 
-qtbook_videogame::qtbook_videogame(QMainWindow *parent,
+qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 				   const QStringList &ratings,
 				   const QStringList &platforms,
 				   const QStringList &genres,
@@ -24,7 +24,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parent,
 				   const QStringList &locations,
 				   const QString &oidArg,
 				   const int rowArg):
-  QMainWindow(parent)
+  QMainWindow()
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -41,6 +41,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parent,
   oid = oidArg;
   row = rowArg;
   isQueryEnabled = false;
+  parentWid = parentArg;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   vg.setupUi(this);
@@ -116,9 +117,9 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parent,
     vg.location->addItem("UNKNOWN");
 
   resize(baseSize());
-  p = parent->mapToGlobal(p);
-  move(p.x() + parent->width() / 2  - width() / 2,
-       p.y() + parent->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
 }
 
 /*
@@ -701,9 +702,9 @@ void qtbook_videogame::search(void)
   vg.mode->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Database Video Game Search");
   vg.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 
@@ -937,9 +938,9 @@ void qtbook_videogame::insert(void)
   vg.rating->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 

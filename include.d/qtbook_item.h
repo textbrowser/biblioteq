@@ -31,6 +31,7 @@ class qtbook_item
   bool isQueryEnabled;
   QString oid;
   QString html;
+  QMainWindow *parentWid;
   void print(QWidget *);
 };
 

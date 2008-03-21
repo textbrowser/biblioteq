@@ -15,7 +15,7 @@ extern QApplication *qapp;
 ** -- qtbook_cd() --
 */
 
-qtbook_cd::qtbook_cd(QMainWindow *parent,
+qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 		     const QStringList &categories,
 		     const QStringList &languages,
 		     const QStringList &monetary_units,
@@ -23,7 +23,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parent,
 		     const QStringList &formats,
 		     const QString &oidArg,
 		     const int rowArg):
-  QMainWindow(parent)
+  QMainWindow()
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -42,6 +42,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parent,
   oid = oidArg;
   row = rowArg;
   isQueryEnabled = false;
+  parentWid = parentArg;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   cd.setupUi(this);
@@ -135,9 +136,9 @@ qtbook_cd::qtbook_cd(QMainWindow *parent,
     cd.format->addItem("UNKNOWN");
 
   resize(baseSize());
-  p = parent->mapToGlobal(p);
-  move(p.x() + parent->width() / 2  - width() / 2,
-       p.y() + parent->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
 }
 
 /*
@@ -772,9 +773,9 @@ void qtbook_cd::search(void)
   cd.format->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: CD Database Search");
   cd.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 
@@ -1051,9 +1052,9 @@ void qtbook_cd::insert(void)
   cd.format->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 

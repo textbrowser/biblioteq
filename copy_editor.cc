@@ -22,7 +22,12 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const QString &realItemTypeArg): QDialog(parent)
 {
   (void) itemTitleArg;
-  setWindowModality(Qt::WindowModal);
+
+  if(parent == qmain->getMembersBrowser())
+    setWindowModality(Qt::ApplicationModal);
+  else
+    setWindowModality(Qt::WindowModal);
+
   cb.setupUi(this);
   bitem = bitemArg;
   ioid = ioidArg;

@@ -15,12 +15,13 @@ extern QApplication *qapp;
 ** -- qtbook_book() --
 */
 
-qtbook_book::qtbook_book(QMainWindow *parent, const QStringList &categories,
+qtbook_book::qtbook_book(QMainWindow *parentArg,
+			 const QStringList &categories,
 			 const QStringList &languages,
 			 const QStringList &monetary_units,
 			 const QStringList &locations, const QString &oidArg,
 			 const int rowArg):
-  QMainWindow(parent)
+  QMainWindow()
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -40,6 +41,7 @@ qtbook_book::qtbook_book(QMainWindow *parent, const QStringList &categories,
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = NULL;
+  parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
   oldq = misc_functions::getColumnString
@@ -129,9 +131,9 @@ qtbook_book::qtbook_book(QMainWindow *parent, const QStringList &categories,
   */
 
   resize(baseSize());
-  p = parent->mapToGlobal(p);
-  move(p.x() + parent->width() / 2  - width() / 2,
-       p.y() + parent->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
 }
 
 /*
@@ -763,9 +765,9 @@ void qtbook_book::search(void)
   id.binding->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Database Book Search");
   id.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 
@@ -1004,9 +1006,9 @@ void qtbook_book::insert(void)
   id.binding->setCurrentIndex(0);
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 

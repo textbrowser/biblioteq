@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1045</width>
-    <height>300</height>
+    <width>650</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>650</width>
-    <height>300</height>
+    <height>450</height>
    </size>
   </property>
   <property name="maximumSize" >
@@ -67,7 +67,7 @@
          <enum>QAbstractItemView::ScrollPerPixel</enum>
         </property>
         <property name="sortingEnabled" >
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="cornerButtonEnabled" >
          <bool>false</bool>

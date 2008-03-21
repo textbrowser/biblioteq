@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>150</height>
+    <height>149</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -42,8 +42,8 @@
      <property name="frameShadow" >
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" >
-      <item>
+     <layout class="QGridLayout" >
+      <item rowspan="2" row="0" column="0" >
        <widget class="QLabel" name="label_2" >
         <property name="font" >
          <font>
@@ -59,52 +59,48 @@
         </property>
        </widget>
       </item>
-      <item>
-       <layout class="QGridLayout" >
-        <item row="0" column="1" >
-         <widget class="QLineEdit" name="userid" >
-          <property name="maxLength" >
-           <number>128</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_4" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Database Password</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Database Userid</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QLineEdit" name="password" >
-          <property name="maxLength" >
-           <number>128</number>
-          </property>
-          <property name="echoMode" >
-           <enum>QLineEdit::Password</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <item row="0" column="1" >
+       <widget class="QLabel" name="label" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Database Userid</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <widget class="QLineEdit" name="userid" >
+        <property name="maxLength" >
+         <number>128</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLabel" name="label_4" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Database Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <widget class="QLineEdit" name="password" >
+        <property name="maxLength" >
+         <number>128</number>
+        </property>
+        <property name="echoMode" >
+         <enum>QLineEdit::Password</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -116,8 +112,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>382</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>

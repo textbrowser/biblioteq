@@ -154,10 +154,10 @@ qtbook::qtbook(void):QMainWindow()
   if((branch_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((members_diag = new QDialog(this)) == NULL)
+  if((members_diag = new QMainWindow()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((history_diag = new QDialog(this)) == NULL)
+  if((history_diag = new QDialog(members_diag)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((customquery_diag = new QDialog(this)) == NULL)
@@ -252,10 +252,9 @@ qtbook::qtbook(void):QMainWindow()
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
   userinfo_diag->setModal(true);
-  history_diag->setModal(true);
+  history_diag->setWindowModality(Qt::WindowModal);
   auth_diag->setModal(true);
   branch_diag->setModal(true);
-  members_diag->setModal(false);
   error_diag->setModal(false);
   customquery_diag->setModal(false);
 
@@ -272,6 +271,8 @@ qtbook::qtbook(void):QMainWindow()
   connect(er.copyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCopyError(void)));
   connect(bb.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
+	  this, SLOT(slotResizeColumnsAfterSort(void)));
+  connect(history.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table, SIGNAL(itemSelectionChanged(void)), this,
 	  SLOT(slotUpdateStatusLabel(void)));
@@ -389,6 +390,7 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotExecuteCustomQuery(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+  history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   w = qapp->desktop()->width();
   h = qapp->desktop()->height();
   setGeometry(qapp->desktop()->x() + (w - MAINWINDOW_MINWIDTH) / 2,
@@ -685,14 +687,18 @@ void qtbook::slotExit(void)
 
 void qtbook::slotAbout(void)
 {
-  QMessageBox::information
-    (this, "BiblioteQ: About",
-     "BiblioteQ Version 3.23.\n"
-     "Copyright (c) 2006, 2007, 2008 "
-     "Diana Megas.\n"
-     "Icons copyright (c) Everaldo.\n\n"
-     "Please visit http://biblioteq.sourceforge.net "
-     "for more information.");
+  QMessageBox mb(this);
+
+  mb.setWindowTitle("BiblioteQ: About");
+  mb.setText("BiblioteQ Version 3.23.1.\n"
+	     "Copyright (c) 2006, 2007, 2008 "
+	     "Diana Megas.\n"
+	     "Icons copyright (c) Everaldo.\n\n"
+	     "Please visit http://biblioteq.sourceforge.net for "
+	     "additional information.");
+  mb.setStandardButtons(QMessageBox::Ok);
+  mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
+  mb.exec();
 }
 
 /*
@@ -4813,6 +4819,9 @@ void qtbook::updateMembersBrowser(void)
       misc_functions::updateColumn(bb.table, row, "Video Games Reserved",
 				   counts["numvideogames"]);
       counts.clear();
+
+      if(history_diag->isVisible())
+	slotShowHistory();
     }
 }
 
@@ -6600,6 +6609,7 @@ void qtbook::slotShowHistory(void)
   history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnCount(list.size());
   list.clear();
+  history.table->setSortingEnabled(false);
   history.table->setRowCount(query.size());
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
@@ -6635,8 +6645,19 @@ void qtbook::slotShowHistory(void)
 
   query.clear();
   history.table->setRowCount(i);
+  history.table->setSortingEnabled(true);
+  history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
   history_diag->raise();
   history_diag->show();
+}
+
+/*
+** -- getMembersBrowser() --
+*/
+
+QMainWindow *qtbook::getMembersBrowser(void)
+{
+  return members_diag;
 }

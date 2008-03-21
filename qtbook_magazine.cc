@@ -20,14 +20,14 @@ extern QApplication *qapp;
 ** -- qtbook_magazine() --
 */
 
-qtbook_magazine::qtbook_magazine(QMainWindow *parent,
+qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 				 const QStringList &categories,
 				 const QStringList &languages,
 				 const QStringList &monetary_units,
 				 const QStringList &locations,
 				 const QString &oidArg,
 				 const int rowArg):
-  QMainWindow(parent)
+  QMainWindow()
 {
   QMenu *menu = NULL;
   QPoint p(0, 0);
@@ -44,6 +44,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parent,
   oid = oidArg;
   row = rowArg;
   subType = "Magazine";
+  parentWid = parentArg;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   ma.setupUi(this);
@@ -124,9 +125,9 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parent,
   */
 
   resize(baseSize());
-  p = parent->mapToGlobal(p);
-  move(p.x() + parent->width() / 2  - width() / 2,
-       p.y() + parent->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
 }
 
 /*
@@ -739,9 +740,9 @@ void qtbook_magazine::search(void)
   ma.monetary_units->setCurrentIndex(0);
   setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
   ma.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 
@@ -969,9 +970,9 @@ void qtbook_magazine::insert(void)
   ma.monetary_units->setCurrentIndex(0);
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
-  p = parentWidget()->mapToGlobal(p);
-  move(p.x() + parentWidget()->width() / 2  - width() / 2,
-       p.y() + parentWidget()->height() / 2 - height() / 2);
+  p = parentWid->mapToGlobal(p);
+  move(p.x() + parentWid->width() / 2  - width() / 2,
+       p.y() + parentWid->height() / 2 - height() / 2);
   show();
 }
 

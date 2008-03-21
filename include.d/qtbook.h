@@ -102,6 +102,7 @@ class qtbook: public QMainWindow
   QString getRoles(void);
   QString getAdminID(void);
   QString getGeometryString(void);
+  QMainWindow *getMembersBrowser(void);
   QSqlDatabase getDB(void);
   Ui_mainWindow getUI(void);
   Ui_membersBrowser getBB(void);
@@ -133,11 +134,11 @@ class qtbook: public QMainWindow
   QDialog *auth_diag;
   QDialog *error_diag;
   QDialog *branch_diag;
-  QDialog *members_diag;
   QDialog *history_diag;
   QDialog *userinfo_diag;
   QDialog *customquery_diag;
   QMainWindow *all_diag;
+  QMainWindow *members_diag;
   QStringList languages;
   QStringList vg_genres;
   QStringList cd_formats;

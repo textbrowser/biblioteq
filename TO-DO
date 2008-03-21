@@ -205,4 +205,5 @@
 107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item
      has been returned. (DONE)
-109. Provide print support for the Member's Reservation History.
+109. Provide print support for the Member's Reservation History. (DONE)
+110. Display the application icon in the About dialog. (DONE)
