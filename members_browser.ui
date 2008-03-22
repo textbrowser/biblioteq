@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>631</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>800</width>
-    <height>0</height>
+    <height>600</height>
    </size>
   </property>
   <property name="font" >
@@ -286,6 +286,31 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="listButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>List Selected Member's Reserved Items</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/stamp.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="printButton" >
         <property name="font" >
          <font>
@@ -314,40 +339,9 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_2" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
+       <widget class="Line" name="line" >
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="listButton" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>List Selected Member's Reserved Items</string>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/stamp.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -477,6 +471,22 @@
   </widget>
   <widget class="QStatusBar" name="statusbar" />
  </widget>
+ <tabstops>
+  <tabstop>filtertype</tabstop>
+  <tabstop>filter</tabstop>
+  <tabstop>filterBox</tabstop>
+  <tabstop>table</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>modifyButton</tabstop>
+  <tabstop>historyButton</tabstop>
+  <tabstop>listButton</tabstop>
+  <tabstop>printButton</tabstop>
+  <tabstop>checkoutButton</tabstop>
+  <tabstop>overdueButton</tabstop>
+  <tabstop>reloadButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

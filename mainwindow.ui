@@ -378,6 +378,28 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="overdueButton" >
+        <property name="toolTip" >
+         <string>List All Overdue Items</string>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/date.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="customQueryTool" >
         <property name="font" >
          <font>
@@ -792,7 +814,7 @@
      <x>0</x>
      <y>0</y>
      <width>765</width>
-     <height>26</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="font" >
@@ -1337,6 +1359,7 @@
   <tabstop>reserveTool</tabstop>
   <tabstop>userTool</tabstop>
   <tabstop>searchTool</tabstop>
+  <tabstop>overdueButton</tabstop>
   <tabstop>customQueryTool</tabstop>
   <tabstop>refreshTool</tabstop>
   <tabstop>errorLogTool</tabstop>

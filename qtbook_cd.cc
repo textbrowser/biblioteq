@@ -1112,6 +1112,8 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   trd.table->scrollToTop();
   trd.table->horizontalScrollBar()->setValue(0);
   tracks_diag->updateGeometry();
+  tracks_diag->setWindowTitle
+    (QString("BiblioteQ: Album Tracks Browser (%1)").arg(cd.id->text()));
   tracks_diag->resize(tracks_diag->sizeHint());
   tracks_diag->show();
   trd.table->setSortingEnabled(false);

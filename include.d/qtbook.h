@@ -242,6 +242,7 @@ class qtbook: public QMainWindow
   void slotPopulateMembersBrowser(void);
   void slotResizeColumnsAfterSort(void);
   void slotUpdateIndicesAfterSort(int);
+  void slotPrintReservationHistory(void);
 };
 
 #endif

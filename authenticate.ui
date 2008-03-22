@@ -98,7 +98,7 @@
          <number>128</number>
         </property>
         <property name="echoMode" >
-         <enum>QLineEdit::Password</enum>
+         <enum>QLineEdit::NoEcho</enum>
         </property>
        </widget>
       </item>

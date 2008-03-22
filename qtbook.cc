@@ -284,6 +284,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowHistory(void)));
   connect(history.reloadButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowHistory(void)));
+  connect(history.printButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotPrintReservationHistory(void)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
   connect(ui.exitTool, SIGNAL(clicked(void)), this, SLOT(slotExit(void)));
   connect(ui.actionExit, SIGNAL(triggered(void)), this,
@@ -362,6 +364,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotListReservedItems(void)));
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
+  connect(ui.overdueButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
   connect(ui.searchTool, SIGNAL(clicked(void)), this,
@@ -400,6 +404,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
   al.resetButton->setMenu(menu4);
+  ui.overdueButton->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
@@ -587,6 +592,7 @@ void qtbook::slotAuthenticate(void)
       }
 
     ui.deleteTool->setEnabled(authdb.isOpen());
+    ui.overdueButton->setEnabled(authdb.isOpen());
     ui.actionDeleteEntry->setEnabled(authdb.isOpen());
     ui.createTool->setEnabled(authdb.isOpen());
     ui.modifyTool->setEnabled(authdb.isOpen() && supportsTransactions);
@@ -4114,7 +4120,7 @@ void qtbook::slotRemoveMember(void)
 	       QString("Unable to determine the number of items that "
 		       "are reserved by the selected member."),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: Database Error",
+      QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
 			    "Unable to determine the number of items that "
 			    "are reserved by the selected member.");
       return;
@@ -4127,7 +4133,7 @@ void qtbook::slotRemoveMember(void)
 
   if(totalReserved != 0)
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
+      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
 			    "You may not remove a member that has reserved "
 			    "items.");
       return;
@@ -4516,6 +4522,7 @@ void qtbook::slotDisconnect(void)
   supportsTransactions = false;
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
+  ui.overdueButton->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
   ui.modifyTool->setEnabled(false);
@@ -6055,8 +6062,12 @@ void qtbook::slotListOverdueItems(void)
   int row = bb.table->currentRow();
   QString memberid = "";
 
-  members_diag->hide();
-  memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+  if(members_diag->isVisible())
+    {
+      members_diag->hide();
+      memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+    }
+
   (void) populateTable(POPULATE_ALL, -2, memberid);
 }
 
@@ -6093,6 +6104,9 @@ void qtbook::slotReserveCopy(void)
 	       QString("Unable to determine the availability of "
 		       "the selected item."),
 	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(this, "BiblioteQ: Database Error",
+			    "Unable to determine the availability of "
+			    "the selected item.");
       return;
     }
 
@@ -6576,19 +6590,19 @@ void qtbook::slotShowHistory(void)
     {
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
-	       QString("Unable to retrieve history data for table "
+	       QString("Unable to retrieve reservation history data for table "
 		       "populating."),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
 
       if(history_diag->isVisible())
 	QMessageBox::critical(history_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve history data for "
-			      "table populating.");
+			      "Unable to retrieve reservation "
+			      "history data for table populating.");
       else
 	QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve history data for "
-			      "table populating.");
+			      "Unable to retrieve reservation "
+			      "history data for table populating.");
 
       return;
     }
@@ -6660,4 +6674,52 @@ void qtbook::slotShowHistory(void)
 QMainWindow *qtbook::getMembersBrowser(void)
 {
   return members_diag;
+}
+
+/*
+** -- slotPrintReservationHistory() --
+*/
+
+void qtbook::slotPrintReservationHistory(void)
+{
+  int i = 0;
+  int j = 0;
+  QString html = "<html>";
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+  if(history.table->rowCount() == 0)
+    {
+      QMessageBox::critical(history_diag, "BiblioteQ: User Error",
+			    "The selected user does not yet have a "
+			    "reservation history to print.");
+      return;
+    }
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  html = "Reservation History<br><br>";
+
+  for(i = 0; i < history.table->rowCount(); i++)
+    {
+      for(j = 0; j < ui.table->columnCount(); j++)
+	if(!history.table->isColumnHidden(j))
+	  html += "<b>" + history.table->horizontalHeaderItem(j)->text() +
+	    ":</b> " + history.table->item(i, j)->text() + "<br>";
+
+      html = html.trimmed();
+      html += "<br>";
+    }
+
+  html = html.trimmed();
+  html += "</html>";
+  qapp->restoreOverrideCursor();
+  printer.setPageSize(QPrinter::Letter);
+  printer.setColorMode(QPrinter::GrayScale);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
 }
