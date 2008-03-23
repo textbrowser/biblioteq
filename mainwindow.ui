@@ -6,13 +6,13 @@
     <x>0</x>
     <y>0</y>
     <width>765</width>
-    <height>900</height>
+    <height>715</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
-    <width>765</width>
-    <height>900</height>
+    <width>500</width>
+    <height>500</height>
    </size>
   </property>
   <property name="font" >
@@ -33,537 +33,7 @@
    <string>BiblioteQ</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" >
-    <item>
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QToolButton" name="connectTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Connect</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/connect_established.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="authenticateTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Administrator Mode</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/identity.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="disconnectTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Disconnect</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/connect_no.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="detailsTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>View Selected Item(s)</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/details.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="createTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="mouseTracking" >
-         <bool>false</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Add Item</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/add.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="popupMode" >
-         <enum>QToolButton::DelayedPopup</enum>
-        </property>
-        <property name="toolButtonStyle" >
-         <enum>Qt::ToolButtonIconOnly</enum>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-        <property name="arrowType" >
-         <enum>Qt::NoArrow</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="deleteTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Delete Selected Item(s)</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/remove.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="modifyTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Modify Selected Item(s)</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/edit.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="printTool" >
-        <property name="toolTip" >
-         <string>Print Selected Item(s)</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/print.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line_2" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="reserveTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Reserve Selected Item</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/checkout.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="userTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Display Members Browser</string>
-        </property>
-        <property name="statusTip" >
-         <string/>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/members.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line_3" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="searchTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Search Database</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/find.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="popupMode" >
-         <enum>QToolButton::DelayedPopup</enum>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="overdueButton" >
-        <property name="toolTip" >
-         <string>List All Overdue Items</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/date.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="customQueryTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Custom Database Query</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/customquery.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="refreshTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Refresh Table</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/reload.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="Line" name="line_4" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="errorLogTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>View Error Log</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/log.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="configTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Columns Selection</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/configure.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="popupMode" >
-         <enum>QToolButton::DelayedPopup</enum>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QToolButton" name="exitTool" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="toolTip" >
-         <string>Exit BiblioteQ</string>
-        </property>
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="icon" >
-         <iconset>icons.d/32x32/exit.png</iconset>
-        </property>
-        <property name="iconSize" >
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="autoRaise" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
+   <layout class="QVBoxLayout" >
     <item>
      <widget class="QFrame" name="frame" >
       <property name="frameShape" >
@@ -922,6 +392,125 @@
    <addaction name="menuHelp" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="windowTitle" >
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="connectTool" />
+   <addaction name="authenticateTool" />
+   <addaction name="disconnectTool" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_2" >
+   <property name="windowTitle" >
+    <string>toolBar_2</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="detailsTool" />
+   <addaction name="createTool" />
+   <addaction name="deleteTool" />
+   <addaction name="modifyTool" />
+   <addaction name="printTool" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_3" >
+   <property name="windowTitle" >
+    <string>toolBar_3</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="reserveTool" />
+   <addaction name="userTool" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_4" >
+   <property name="windowTitle" >
+    <string>toolBar_4</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="searchTool" />
+   <addaction name="overdueButton" />
+   <addaction name="customQueryTool" />
+   <addaction name="refreshTool" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_5" >
+   <property name="windowTitle" >
+    <string>toolBar_5</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="errorLogTool" />
+   <addaction name="configTool" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_6" >
+   <property name="windowTitle" >
+    <string>toolBar_6</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="exitTool" />
+  </widget>
   <action name="actionAbout" >
    <property name="icon" >
     <iconset>icons.d/16x16/info.png</iconset>
@@ -1339,6 +928,247 @@
     <string>&amp;Remember Geometry</string>
    </property>
   </action>
+  <action name="connectTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/connect_established.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Connect</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="authenticateTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/identity.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Administrator Mode</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="disconnectTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/connect_no.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Disconnect</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="detailsTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/details.png</iconset>
+   </property>
+   <property name="text" >
+    <string>View Selected Item(s)</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="createTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/add.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Add Item</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="menuRole" >
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="deleteTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/remove.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Delete Selected Item(s)</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="modifyTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/edit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Modify Selected Item(s)</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="printTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/print.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Print Selected Item(s)</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="reserveTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/checkout.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Reserve Selected Item</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="userTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/members.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Display Members Browser</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="searchTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/find.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Database Search</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="overdueButton" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/date.png</iconset>
+   </property>
+   <property name="text" >
+    <string>List All Overdue Items</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="customQueryTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/customquery.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Custom Database Query</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="refreshTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/reload.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Refresh Table</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="errorLogTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/log.png</iconset>
+   </property>
+   <property name="text" >
+    <string>View Error Log</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="configTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/configure.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Select Viewable Columns</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="exitTool" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Exit BiblioteQ</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1348,25 +1178,8 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>connectTool</tabstop>
-  <tabstop>authenticateTool</tabstop>
-  <tabstop>disconnectTool</tabstop>
-  <tabstop>detailsTool</tabstop>
-  <tabstop>createTool</tabstop>
-  <tabstop>deleteTool</tabstop>
-  <tabstop>modifyTool</tabstop>
-  <tabstop>printTool</tabstop>
-  <tabstop>reserveTool</tabstop>
-  <tabstop>userTool</tabstop>
-  <tabstop>searchTool</tabstop>
-  <tabstop>overdueButton</tabstop>
-  <tabstop>customQueryTool</tabstop>
-  <tabstop>refreshTool</tabstop>
-  <tabstop>errorLogTool</tabstop>
-  <tabstop>configTool</tabstop>
   <tabstop>typefilter</tabstop>
   <tabstop>table</tabstop>
-  <tabstop>exitTool</tabstop>
  </tabstops>
  <resources/>
  <connections/>

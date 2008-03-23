@@ -275,6 +275,7 @@ CREATE TABLE member_history
 	myoid		 SERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
+	item_id		 VARCHAR(32) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 

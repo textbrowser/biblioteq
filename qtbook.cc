@@ -287,28 +287,28 @@ qtbook::qtbook(void):QMainWindow()
   connect(history.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrintReservationHistory(void)));
   connect(al.okButton, SIGNAL(clicked(void)), this, SLOT(slotAllGo(void)));
-  connect(ui.exitTool, SIGNAL(clicked(void)), this, SLOT(slotExit(void)));
+  connect(ui.exitTool, SIGNAL(triggered(void)), this, SLOT(slotExit(void)));
   connect(ui.actionExit, SIGNAL(triggered(void)), this,
 	  SLOT(slotExit(void)));
   connect(ui.actionSetGlobalFonts, SIGNAL(triggered(void)), this,
 	  SLOT(slotSetFonts(void)));
-  connect(ui.authenticateTool, SIGNAL(clicked(void)), this,
+  connect(ui.authenticateTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowAuthenticate(void)));
   connect(ui.actionAdministratorMode, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowAuthenticate(void)));
-  connect(ui.deleteTool, SIGNAL(clicked(void)), this,
+  connect(ui.deleteTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
   connect(ui.actionDeleteEntry, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
-  connect(ui.refreshTool, SIGNAL(clicked(void)), this,
+  connect(ui.refreshTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotRefresh(void)));
   connect(ui.actionRefreshTable, SIGNAL(triggered(void)), this,
 	  SLOT(slotRefresh(void)));
   connect(ui.typefilter, SIGNAL(activated(int)), this,
 	  SLOT(slotAutoPopOnFilter(void)));
-  connect(ui.modifyTool, SIGNAL(clicked(void)), this,
+  connect(ui.modifyTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
-  connect(ui.errorLogTool, SIGNAL(clicked(void)), this,
+  connect(ui.errorLogTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowErrorDialog(void)));
   connect(ui.actionModifyEntry, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
@@ -320,9 +320,9 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowGrid(void)));
   connect(ui.actionResizeColumns, SIGNAL(triggered(void)), this,
 	  SLOT(slotResizeColumns(void)));
-  connect(ui.userTool, SIGNAL(clicked(void)), this,
+  connect(ui.userTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMembersBrowser(void)));
-  connect(ui.reserveTool, SIGNAL(clicked(void)), this,
+  connect(ui.reserveTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotReserveCopy(void)));
   connect(ui.actionMembersBrowser, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMembersBrowser(void)));
@@ -332,11 +332,11 @@ qtbook::qtbook(void):QMainWindow()
 	  this, SLOT(slotAuthenticate(void)));
   connect(ui.actionSaveSettings, SIGNAL(triggered(void)), this,
 	  SLOT(slotSaveConfig()));
-  connect(ui.connectTool, SIGNAL(clicked(void)), this,
+  connect(ui.connectTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowConnectionDB(void)));
   connect(ui.actionConnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowConnectionDB(void)));
-  connect(ui.disconnectTool, SIGNAL(clicked(void)), this,
+  connect(ui.disconnectTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
   connect(ui.actionDisconnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
@@ -364,29 +364,29 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotListReservedItems(void)));
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
-  connect(ui.overdueButton, SIGNAL(clicked(void)), this,
+  connect(ui.overdueButton, SIGNAL(triggered(void)), this,
 	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
-  connect(ui.searchTool, SIGNAL(clicked(void)), this,
+  connect(ui.searchTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
-  connect(ui.customQueryTool, SIGNAL(clicked(void)), this,
+  connect(ui.customQueryTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowCustomQuery(void)));
   connect(ui.actionDatabaseSearch, SIGNAL(triggered(void)), this,
 	  SLOT(slotSearch(void)));
   connect(ui.actionViewDetails, SIGNAL(triggered(void)), this,
 	  SLOT(slotViewDetails(void)));
-  connect(ui.detailsTool, SIGNAL(clicked(void)), this,
+  connect(ui.detailsTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotViewDetails(void)));
-  connect(ui.createTool, SIGNAL(clicked(void)), this,
+  connect(ui.createTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(er.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetErrorLog(void)));
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
-  connect(ui.configTool, SIGNAL(clicked(void)), this,
+  connect(ui.configTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
-  connect(ui.printTool, SIGNAL(clicked(void)), this,
+  connect(ui.printTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotPrintSelected(void)));
   connect(cq.close_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCustomQueryDialog(void)));
@@ -667,7 +667,7 @@ void qtbook::showMain(void)
   */
 
   initialUpdate();
-  ui.connectTool->setFocus();
+  // ui.connectTool->setFocus();
 }
 
 /*
@@ -6170,9 +6170,9 @@ bool qtbook::isItemBusy(const QString &oid, const QString &itemType)
 
 void qtbook::slotShowMenu(void)
 {
-  QToolButton *menu = qobject_cast<QToolButton *>(sender());
+  QAction *action = qobject_cast<QAction *>(sender());
 
-  menu->showMenu();
+  action->menu()->exec(QCursor::pos());
 }
 
 /*
@@ -6563,7 +6563,7 @@ void qtbook::slotShowHistory(void)
 		     "member.first_name, "
 		     "member.last_name, "
 		     "%1.title, "
-		     "%1.id, "
+		     "history.item_id, "
 		     "history.copyid, "
 		     "%1.type, "
 		     "history.reserved_date, "
@@ -6574,6 +6574,7 @@ void qtbook::slotShowHistory(void)
 		     "%1 %1, "
 		     "member member "
 		     "WHERE history.memberid = member.memberid AND "
+		     "%1.id = history.item_id AND "
 		     "%1.myoid = history.item_oid AND "
 		     "member.memberid = '%2'").arg(list[i]).arg
 	(misc_functions::getColumnString(bb.table, row, "Member ID"));
@@ -6686,7 +6687,7 @@ void qtbook::slotPrintReservationHistory(void)
   int j = 0;
   QString html = "<html>";
   QPrinter printer;
-  QPrintDialog dialog(&printer, this);
+  QPrintDialog dialog(&printer, members_diag);
   QTextDocument document;
 
   if(history.table->rowCount() == 0)
@@ -6702,7 +6703,7 @@ void qtbook::slotPrintReservationHistory(void)
 
   for(i = 0; i < history.table->rowCount(); i++)
     {
-      for(j = 0; j < ui.table->columnCount(); j++)
+      for(j = 0; j < history.table->columnCount(); j++)
 	if(!history.table->isColumnHidden(j))
 	  html += "<b>" + history.table->horizontalHeaderItem(j)->text() +
 	    ":</b> " + history.table->item(i, j)->text() + "<br>";

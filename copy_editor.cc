@@ -437,8 +437,9 @@ void copy_editor::slotCheckoutCopy(void)
 			"duedate, "
 			"returned_date, "
 			"reserved_by, "
-			"type) "
-			"VALUES(?, ?, ?, ?, ?, ?, ?, ?)"));
+			"type, "
+			"item_id) "
+			"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"));
   query.bindValue(0, memberid);
   query.bindValue(1, ioid);
   query.bindValue(2, copyid);
@@ -447,6 +448,7 @@ void copy_editor::slotCheckoutCopy(void)
   query.bindValue(5, QString("N/A"));
   query.bindValue(6, qmain->getAdminID());
   query.bindValue(7, realItemType);
+  query.bindValue(8, uniqueid);
 
   if(!query.exec())
     qmain->addError(QString("Database Error"),
