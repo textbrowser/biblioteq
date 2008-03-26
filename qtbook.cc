@@ -344,6 +344,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowNext(void)));
   connect(userinfo.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
+  connect(history.nextTool, SIGNAL(clicked(void)), this,
+	  SLOT(slotShowNext(void)));
+  connect(history.prevTool, SIGNAL(clicked(void)), this,
+	  SLOT(slotShowPrev(void)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotConnectDB(void)));
   connect(br.branch_name, SIGNAL(activated(int)), this,
@@ -3850,16 +3854,16 @@ void qtbook::readGlobalSetup(void)
 			  tmphash["database_port"] = str;
 			else if(!tmphash.contains("ssl_enabled"))
 			  tmphash["ssl_enabled"] = str;
-			else if(!tmphash.contains("anonymous_userid"))
+			else if(!tmphash.contains("default_userid"))
 			  {
-			    tmphash["anonymous_userid"] = str;
+			    tmphash["default_userid"] = str;
 
 			    if(br.userid->text().isEmpty())
 			      br.userid->setText(str);
 			  }
-			else if(!tmphash.contains("anonymous_password"))
+			else if(!tmphash.contains("default_password"))
 			  {
-			    tmphash["anonymous_password"] = str;
+			    tmphash["default_password"] = str;
 
 			    if(br.password->text().isEmpty())
 			      br.password->setText(str);
@@ -4339,7 +4343,11 @@ void qtbook::slotShowNext(void)
 
   table->clearSelection();
   table->selectRow(row);
-  slotModifyBorrower();
+
+  if(history_diag->isVisible())
+    slotShowHistory();
+  else
+    slotModifyBorrower();
 }
 
 /*
@@ -4361,7 +4369,11 @@ void qtbook::slotShowPrev(void)
 
   table->clearSelection();
   table->selectRow(row);
-  slotModifyBorrower();
+
+  if(history_diag->isVisible())
+    slotShowHistory();
+  else
+    slotModifyBorrower();
 }
 
 /*
@@ -6745,8 +6757,8 @@ void qtbook::slotBranchChanged(void)
   QHash<QString, QString> tmphash;
 
   tmphash = branches[br.branch_name->currentText()];
-  br.userid->setText(tmphash["anonymous_userid"]);
-  br.password->setText(tmphash["anonymous_password"]);
+  br.userid->setText(tmphash["default_userid"]);
+  br.password->setText(tmphash["default_password"]);
 }
 
 /*

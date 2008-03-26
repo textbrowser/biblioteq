@@ -773,7 +773,7 @@
         </font>
        </property>
        <property name="toolTip" >
-        <string>Previous Entry</string>
+        <string>Previous Member</string>
        </property>
        <property name="text" >
         <string/>
@@ -881,7 +881,7 @@
         </font>
        </property>
        <property name="toolTip" >
-        <string>Next Entry</string>
+        <string>Next Member</string>
        </property>
        <property name="text" >
         <string/>

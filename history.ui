@@ -139,9 +139,25 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>5</number>
-     </property>
+     <item>
+      <widget class="QToolButton" name="prevTool" >
+       <property name="toolTip" >
+        <string>Previous Member</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/32x32/previous.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="autoRaise" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer>
        <property name="orientation" >
@@ -149,8 +165,8 @@
        </property>
        <property name="sizeHint" >
         <size>
-         <width>39</width>
-         <height>20</height>
+         <width>51</width>
+         <height>26</height>
         </size>
        </property>
       </spacer>
@@ -222,11 +238,30 @@
        </property>
        <property name="sizeHint" >
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>21</width>
+         <height>26</height>
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="nextTool" >
+       <property name="toolTip" >
+        <string>Next Member</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/32x32/next.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="autoRaise" >
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -234,9 +269,11 @@
  </widget>
  <tabstops>
   <tabstop>table</tabstop>
+  <tabstop>prevTool</tabstop>
   <tabstop>reloadButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
+  <tabstop>nextTool</tabstop>
  </tabstops>
  <resources/>
  <connections>
