@@ -335,12 +335,13 @@ void copy_editor::slotCheckoutCopy(void)
   int copyrow = cb.table->currentRow();
   int memberrow = qmain->getBB().table->currentRow();
   bool available = false;
+  QDate now = QDate::currentDate();
   QString name = "";
   QString copyid = "";
   QString duedate = cb.dueDate->date().toString("MM/dd/yyyy");
   QString errorstr = "";
   QString memberid = "";
-  QString checkedout = QDate::currentDate().toString("MM/dd/yyyy");
+  QString checkedout = now.toString("MM/dd/yyyy");
   QString copynumber = "";
   QString availability = "";
   QSqlQuery query(qmain->getDB());
@@ -358,7 +359,7 @@ void copy_editor::slotCheckoutCopy(void)
 			    "is either unavailable or does not exist.");
       return;
     }
-  else if(cb.dueDate->date() <= QDate::currentDate())
+  else if(cb.dueDate->date() <= now)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "Please select a Due Date that follows "

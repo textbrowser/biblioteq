@@ -271,6 +271,7 @@ void borrowers_editor::slotEraseBorrower(void)
   QString errorstr = "";
   QString memberid = "";
   QString availability = "";
+  QString returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");
   QSqlQuery query(qmain->getDB());
 
   if(row < 0)
@@ -326,7 +327,7 @@ void borrowers_editor::slotEraseBorrower(void)
       query.prepare(QString("UPDATE member_history SET returned_date = ? "
 			    "WHERE item_oid = ? AND copyid = ? AND "
 			    "memberid = ?"));
-      query.bindValue(0, QDateTime::currentDateTime().toString("MM/dd/yyyy"));
+      query.bindValue(0, returnedDate);
       query.bindValue(1, ioid);
       query.bindValue(2, copyid);
       query.bindValue(3, memberid);
@@ -353,6 +354,13 @@ void borrowers_editor::slotEraseBorrower(void)
 				   "Availability", availability);
       misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
 				   "Due Date", "Returned");
+
+      /*
+      ** Update the Reservation History panel, if necessary.
+      */
+
+      qmain->updateReservationHistoryBrowser(memberid, ioid, copyid,
+					     itemType, returnedDate);
       showUsers();
     }
 }
@@ -374,6 +382,7 @@ void borrowers_editor::slotSave(void)
 {
   int i = 0;
   bool error = false;
+  QDate now = QDate::currentDate();
   QString oid = "";
   QDateEdit *dueDate = NULL;
   QSqlQuery query(qmain->getDB());
@@ -394,7 +403,7 @@ void borrowers_editor::slotSave(void)
 	{
 	  dueDate = qobject_cast<QDateEdit *>(bd.table->cellWidget(i, 6));
 
-	  if(dueDate->date() <= QDate::currentDate())
+	  if(dueDate->date() <= now)
 	    error = true;
 	  else
 	    {

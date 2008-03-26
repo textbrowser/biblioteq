@@ -20,7 +20,7 @@ UPDATE videogame SET type = 'Video Game';
 ALTER TABLE videogame ALTER type SET DEFAULT 'Video Game';
 ALTER TABLE videogame ALTER type SET NOT NULL;
 
-/* Release 3.23 */
+/* Releases 3.23, 3.23.1 */
 
 CREATE TABLE member_history
 (

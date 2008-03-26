@@ -346,6 +346,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowPrev(void)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotConnectDB(void)));
+  connect(br.branch_name, SIGNAL(activated(int)), this,
+	  SLOT(slotBranchChanged(void)));
   connect(bb.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrintReserved(void)));
   connect(bb.addButton, SIGNAL(clicked(void)), this,
@@ -696,7 +698,7 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setWindowTitle("BiblioteQ: About");
-  mb.setText("BiblioteQ Version 3.23.1.\n"
+  mb.setText("BiblioteQ Version 3.24.\n"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.\n"
 	     "Icons copyright (c) Everaldo.\n\n"
@@ -1268,6 +1270,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 {
   int i = -1;
   int j = 0;
+  QDate now = QDate::currentDate();
   QString str = "";
   QString type = "";
   QString itemType = "";
@@ -1549,7 +1552,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("book_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("book_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY book.myoid) ");
@@ -1583,7 +1586,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("cd_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("cd_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY cd.myoid) ");
@@ -1617,7 +1620,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("dvd_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("dvd_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY dvd.myoid) ");
@@ -1651,7 +1654,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("magazine_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("magazine_borrower.memberid = "
 				 "member.memberid ");
@@ -1687,7 +1690,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("videogame_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("videogame_borrower.memberid = "
 				 "member.memberid ");
@@ -1726,7 +1729,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("book_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("book_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -1775,7 +1778,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("cd_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("cd_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -1824,7 +1827,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("dvd_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("dvd_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -1873,7 +1876,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("magazine_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("magazine_borrower.memberid = "
 				 "member.memberid ");
@@ -1924,7 +1927,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
 		searchstr.append("videogame_borrower.duedate < '");
-		searchstr.append(QDate::currentDate().toString("MM/dd/yyyy"));
+		searchstr.append(now.toString("MM/dd/yyyy"));
 		searchstr.append("' AND ");
 		searchstr.append("videogame_borrower.memberid = "
 				 "member.memberid ");
@@ -3273,16 +3276,17 @@ void qtbook::slotQuery(void)
 
 void qtbook::slotAddBorrower(void)
 {
-  QDateTime now = QDateTime::currentDateTime();
+  QDate now = QDate::currentDate();
+  QDateTime nowTime = QDateTime::currentDateTime();
 
-  userinfo.memberid->setText(now.toString("yyyyMMddhhmmss"));
+  userinfo.memberid->setText(nowTime.toString("yyyyMMddhhmmss"));
   userinfo.membersince->setFocus();
-  userinfo.membersince->setDate(QDate::currentDate());
-  userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo.membersince->setDate(now);
+  userinfo.membersince->setMaximumDate(now);
   userinfo.firstName->clear();
   userinfo.lastName->clear();
   userinfo.middle->clear();
-  userinfo.dob->setDate(QDate::currentDate().addYears(-25));
+  userinfo.dob->setDate(now.addYears(-25));
   userinfo.sex->setCurrentIndex(0);
   userinfo.street->clear();
   userinfo.city->clear();
@@ -3849,12 +3853,16 @@ void qtbook::readGlobalSetup(void)
 			else if(!tmphash.contains("anonymous_userid"))
 			  {
 			    tmphash["anonymous_userid"] = str;
-			    br.userid->setText(str);
+
+			    if(br.userid->text().isEmpty())
+			      br.userid->setText(str);
 			  }
 			else if(!tmphash.contains("anonymous_password"))
 			  {
 			    tmphash["anonymous_password"] = str;
-			    br.password->setText(str);
+
+			    if(br.password->text().isEmpty())
+			      br.password->setText(str);
 
 			    if(!branches.contains(tmphash["branch_name"]))
 			      branches[tmphash["branch_name"]] = tmphash;
@@ -6569,7 +6577,8 @@ void qtbook::slotShowHistory(void)
 		     "history.reserved_date, "
 		     "history.duedate, "
 		     "history.returned_date, "
-		     "history.reserved_by "
+		     "history.reserved_by, "
+		     "%1.myoid "
 		     "FROM member_history history, "
 		     "%1 %1, "
 		     "member member "
@@ -6621,8 +6630,10 @@ void qtbook::slotShowHistory(void)
   list.append("Due Date");
   list.append("Returned Date");
   list.append("Lender");
+  list.append("OID");
   history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnCount(list.size());
+  history.table->setColumnHidden(history.table->columnCount() - 1, true);
   list.clear();
   history.table->setSortingEnabled(false);
   history.table->setRowCount(query.size());
@@ -6723,4 +6734,60 @@ void qtbook::slotPrintReservationHistory(void)
       document.setHtml(html);
       document.print(&printer);
     }
+}
+
+/*
+** -- slotBranchChanged() --
+*/
+
+void qtbook::slotBranchChanged(void)
+{
+  QHash<QString, QString> tmphash;
+
+  tmphash = branches[br.branch_name->currentText()];
+  br.userid->setText(tmphash["anonymous_userid"]);
+  br.password->setText(tmphash["anonymous_password"]);
+}
+
+/*
+** -- updateReservationHistoryBrowser() --
+*/
+
+void qtbook::updateReservationHistoryBrowser(const QString &memberid,
+					     const QString &ioid,
+					     const QString &copyid,
+					     const QString &itemType,
+					     const QString &returnedDate)
+{
+  int i = 0;
+  QString value1 = "";
+  QString value2 = "";
+  QString value3 = "";
+
+  if(history_diag->isVisible())
+    if(history.table->rowCount() > 0 &&
+       misc_functions::getColumnString(history.table, 0, "Member ID") ==
+       memberid)
+      {
+	qapp->setOverrideCursor(Qt::WaitCursor);
+
+	for(i = 0; i < history.table->rowCount(); i++)
+	  {
+	    value1 = misc_functions::getColumnString
+	      (history.table, i, "OID");
+	    value2 = misc_functions::getColumnString
+	      (history.table, i, "Barcode");
+	    value3 = misc_functions::getColumnString
+	      (history.table, i, "Item Type").toLower().remove(" ");
+
+	    if(value1 == ioid && value2 == copyid && value3 == itemType)
+	      {
+		misc_functions::updateColumn(history.table, i,
+					     "Returned Date", returnedDate);
+		break;
+	      }
+	  }
+
+	qapp->restoreOverrideCursor();
+      }
 }

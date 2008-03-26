@@ -99,6 +99,9 @@ class qtbook: public QMainWindow
   void updateItemWindows(void);
   void updateMembersBrowser(void);
   void updateMembersBrowser(const QString &);
+  void updateReservationHistoryBrowser(const QString &, const QString &,
+				       const QString &, const QString &,
+				       const QString &);
   QString getRoles(void);
   QString getAdminID(void);
   QString getGeometryString(void);
@@ -222,6 +225,7 @@ class qtbook: public QMainWindow
   void slotAuthenticate(void);
   void slotRemoveMember(void);
   void slotCancelAddUser(void);
+  void slotBranchChanged(void);
   void slotPrintReserved(void);
   void slotPrintSelected(void);
   void slotResetErrorLog(void);

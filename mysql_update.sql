@@ -5,7 +5,7 @@ ALTER TABLE cd ADD type VARCHAR(16) NOT NULL DEFAULT 'CD';
 ALTER TABLE dvd ADD type VARCHAR(16) NOT NULL DEFAULT 'DVD';
 ALTER TABLE videogame ADD type VARCHAR(16) NOT NULL DEFAULT 'Video Game';
 
-/* Release 3.23 */
+/* Releases 3.23, 3.23.1 */
 
 CREATE TABLE member_history
 (
