@@ -641,13 +641,13 @@ void qtbook_dvd::slotGo(void)
 	"dvd.dvdregion, "
 	"dvd.dvdaspectratio, "
 	"dvd.quantity - "
-	"COUNT(dvd_borrower.item_oid) "
+	"COUNT(dvd_borrower_vw.item_oid) "
 	"AS availability, "
 	"dvd.type, "
 	"dvd.myoid "
 	"FROM "
-	"dvd LEFT JOIN dvd_borrower ON "
-	"dvd.myoid = dvd_borrower.item_oid WHERE ";
+	"dvd LEFT JOIN dvd_borrower_vw ON "
+	"dvd.myoid = dvd_borrower_vw.item_oid WHERE ";
       searchstr.append("id LIKE '%").append
 	(dvd.id->text()).append("%' AND ");
       searchstr.append("LOWER(dvdformat) LIKE '%").append

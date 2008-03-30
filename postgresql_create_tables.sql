@@ -1,5 +1,4 @@
-CREATE USER xbook PASSWORD 'xbook';
-CREATE USER xbook_admin PASSWORD 'xbook_admin';
+CREATE USER xbook_admin PASSWORD 'xbook_admin' createuser;
 
 CREATE TABLE book
 (
@@ -285,69 +284,78 @@ CREATE TABLE admin
 	roles		 TEXT NOT NULL
 );
 
-GRANT SELECT ON admin TO xbook;
+CREATE VIEW cd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 cd_borrower;
+
+CREATE VIEW dvd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 dvd_borrower;
+
+
+CREATE VIEW book_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 book_borrower;
+
+CREATE VIEW magazine_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 magazine_borrower;
+
+CREATE VIEW videogame_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 videogame_borrower;
+
+GRANT SELECT ON cd_borrower_vw TO xbook_admin;
+GRANT SELECT ON dvd_borrower_vw TO xbook_admin;
+GRANT SELECT ON book_borrower_vw TO xbook_admin;
+GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
+GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO xbook_admin;
-GRANT SELECT ON book TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO xbook_admin;
-GRANT SELECT ON public.book_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_myoid_seq TO xbook_admin;
-GRANT SELECT ON book_copy_info TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO xbook_admin;
-GRANT SELECT ON public.book_copy_info_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_copy_info_myoid_seq TO xbook_admin;
-GRANT SELECT ON cd TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO xbook_admin;
-GRANT SELECT ON public.cd_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.cd_myoid_seq TO xbook_admin;
-GRANT SELECT ON cd_songs TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_songs TO xbook_admin;
-GRANT SELECT ON cd_copy_info TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO xbook_admin;
-GRANT SELECT ON public.cd_copy_info_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.cd_copy_info_myoid_seq TO xbook_admin;
-GRANT SELECT ON dvd TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd TO xbook_admin;
-GRANT SELECT ON public.dvd_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.dvd_myoid_seq TO xbook_admin;
-GRANT SELECT ON dvd_copy_info TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO xbook_admin;
-GRANT SELECT ON public.dvd_copy_info_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.dvd_copy_info_myoid_seq TO xbook_admin;
-GRANT SELECT ON magazine TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO xbook_admin;
-GRANT SELECT ON public.magazine_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.magazine_myoid_seq TO xbook_admin;
-GRANT SELECT ON magazine_copy_info TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO xbook_admin;
-GRANT SELECT ON public.magazine_copy_info_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.magazine_copy_info_myoid_seq TO xbook_admin;
-GRANT SELECT ON videogame TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO xbook_admin;
-GRANT SELECT ON public.videogame_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_myoid_seq TO xbook_admin;
-GRANT SELECT ON videogame_copy_info TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO xbook_admin;
-GRANT SELECT ON public.videogame_copy_info_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_copy_info_myoid_seq TO xbook_admin;
-GRANT SELECT ON book_borrower TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_borrower TO xbook_admin;
-GRANT SELECT ON public.book_borrower_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_borrower_myoid_seq TO xbook_admin;
-GRANT SELECT ON cd_borrower TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_borrower TO xbook_admin;
-GRANT SELECT ON public.cd_borrower_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.cd_borrower_myoid_seq TO xbook_admin;
-GRANT SELECT ON dvd_borrower TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_borrower TO xbook_admin;
-GRANT SELECT ON public.dvd_borrower_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.dvd_borrower_myoid_seq TO xbook_admin;
-GRANT SELECT ON magazine_borrower TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_borrower TO xbook_admin;
-GRANT SELECT ON public.magazine_borrower_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.magazine_borrower_myoid_seq TO xbook_admin;
-GRANT SELECT ON videogame_borrower TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_borrower TO xbook_admin;
-GRANT SELECT ON public.videogame_borrower_myoid_seq TO xbook;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_borrower_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;

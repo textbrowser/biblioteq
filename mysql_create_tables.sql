@@ -1,5 +1,4 @@
 CREATE DATABASE xbook_db; USE xbook_db;
-CREATE USER xbook@localhost IDENTIFIED BY 'xbook';
 CREATE USER xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
 
 CREATE TABLE book
@@ -286,23 +285,42 @@ CREATE TABLE admin
 	roles		 LONGTEXT NOT NULL
 ) engine = InnoDB;
 
-GRANT SELECT ON admin TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON book TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON book_copy_info TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON book_borrower TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON cd TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON cd_copy_info TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON cd_songs TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON cd_borrower TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON dvd TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON dvd_copy_info TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON dvd_borrower TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON magazine TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON magazine_copy_info TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON magazine_borrower TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON videogame TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON videogame_copy_info TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT SELECT ON videogame_borrower TO xbook@localhost IDENTIFIED BY 'xbook';
-GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY "xbook_admin";
+CREATE VIEW cd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 cd_borrower;
+
+CREATE VIEW dvd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 dvd_borrower;
+
+
+CREATE VIEW book_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 book_borrower;
+
+CREATE VIEW magazine_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 magazine_borrower;
+
+CREATE VIEW videogame_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 videogame_borrower;
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
 
 INSERT INTO admin VALUES ('xbook_admin', 'all');

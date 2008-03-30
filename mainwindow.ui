@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>765</width>
-    <height>715</height>
+    <width>885</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -283,7 +283,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>765</width>
+     <width>885</width>
      <height>28</height>
     </rect>
    </property>
@@ -334,7 +334,6 @@
     <addaction name="actionConnect" />
     <addaction name="actionDisconnect" />
     <addaction name="separator" />
-    <addaction name="actionAdministratorMode" />
     <addaction name="separator" />
     <addaction name="actionExit" />
    </widget>
@@ -409,8 +408,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="connectTool" />
-   <addaction name="authenticateTool" />
    <addaction name="disconnectTool" />
+   <addaction name="actionChangePassword" />
   </widget>
   <widget class="QToolBar" name="toolBar_2" >
    <property name="windowTitle" >
@@ -450,6 +449,7 @@
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
+   <addaction name="actionReservationHistory" />
    <addaction name="reserveTool" />
    <addaction name="userTool" />
   </widget>
@@ -708,23 +708,6 @@
     <string>Ctrl+C</string>
    </property>
   </action>
-  <action name="actionAdministratorMode" >
-   <property name="icon" >
-    <iconset>icons.d/16x16/identity.png</iconset>
-   </property>
-   <property name="text" >
-    <string>&amp;Administrator Mode</string>
-   </property>
-   <property name="font" >
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+A</string>
-   </property>
-  </action>
   <action name="actionDisconnect" >
    <property name="icon" >
     <iconset>icons.d/16x16/disconnected.png</iconset>
@@ -942,20 +925,6 @@
     </font>
    </property>
   </action>
-  <action name="authenticateTool" >
-   <property name="icon" >
-    <iconset>icons.d/32x32/identity.png</iconset>
-   </property>
-   <property name="text" >
-    <string>Administrator Mode</string>
-   </property>
-   <property name="font" >
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
   <action name="disconnectTool" >
    <property name="icon" >
     <iconset>icons.d/32x32/connect_no.png</iconset>
@@ -1161,6 +1130,34 @@
    </property>
    <property name="text" >
     <string>Exit BiblioteQ</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionReservationHistory" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/history.png</iconset>
+   </property>
+   <property name="text" >
+    <string>View Member's Reservation History</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChangePassword" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/unlock.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Change Password</string>
    </property>
    <property name="font" >
     <font>

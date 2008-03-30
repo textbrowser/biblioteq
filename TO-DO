@@ -158,7 +158,8 @@
 78.  Read the saved global font from the user's configuration file during
      program initialization. (DONE)
 79.  Set focus on the widget that caused a completion-requirement error. (DONE)
-80.  Create a view of a restricted version of the borrower tables. (TBD)
+80.  Create a view of a restricted version of the borrower tables. (DONE)
+     See #114.
 81.  Create an administrator table. (DONE)
 82.  Provide a mechanism for granting administrator privileges. (TBD)
 83.  Verify that all failed database queries are logged and, if necessary,
@@ -211,5 +212,8 @@
      whenever an item has been returned. (DONE)
 112. Verify the member's age prior to reserving an age-restricted item.
 113. Implement OFFSYSTEM's Off-Link-URL.
-114. Create a mechanism that allows members to log in and view their
-     reservation history.
+114. Create a mechanism that allows members to log in. Members should
+     also be allowed to view their reservation histories. (DONE)
+115. Create compact views for the borrower tables. (DONE)
+     See #80.
+116. Drop the member's database account during member removal. (DONE)

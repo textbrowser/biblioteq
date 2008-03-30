@@ -22,4 +22,44 @@ CREATE TABLE member_history
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
-GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY "xbook_admin";
+GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+
+/* Release 4.00 */
+
+CREATE VIEW cd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 cd_borrower;
+
+CREATE VIEW dvd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 dvd_borrower;
+
+CREATE VIEW book_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 book_borrower;
+
+CREATE VIEW magazine_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 magazine_borrower;
+
+CREATE VIEW videogame_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 videogame_borrower;
+
+GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+DROP USER xbook@localhost;

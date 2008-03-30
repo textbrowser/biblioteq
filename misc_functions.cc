@@ -5,6 +5,139 @@
 #include "misc_functions.h"
 
 /*
+** -- createOrDeleteDBAccount() --
+*/
+
+void misc_functions::createOrDeleteDBAccount(const QString &memberid,
+					     const QSqlDatabase &db,
+					     const int action,
+					     QString &errorstr)
+{
+  int i = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+  QStringList objectllist;
+
+  errorstr = "";
+
+  if(action == CREATE_USER)
+    {
+      if(db.driverName() == "QMYSQL")
+	querystr = QString
+	  ("CREATE USER %1 IDENTIFIED BY 'tempPass'").arg(memberid);
+      else
+	querystr = QString
+	  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(memberid);
+
+      (void) query.exec(querystr);
+    }
+
+  if(!query.lastError().isValid())
+    {
+      objectllist << "admin"
+		  << "book"
+		  << "public.book_myoid_seq"
+		  << "book_copy_info"
+		  << "public.book_copy_info_myoid_seq"
+		  << "cd"
+		  << "public.cd_myoid_seq"
+		  << "cd_songs"
+		  << "cd_copy_info"
+		  << "public.cd_copy_info_myoid_seq"
+		  << "dvd"
+		  << "public.dvd_myoid_seq"
+		  << "dvd_copy_info"
+		  << "public.dvd_copy_info_myoid_seq"
+		  << "magazine"
+		  << "public.magazine_myoid_seq"
+		  << "magazine_copy_info"
+		  << "public.magazine_copy_info_myoid_seq"
+		  << "videogame"
+		  << "public.videogame_myoid_seq"
+		  << "videogame_copy_info"
+		  << "public.videogame_copy_info_myoid_seq"
+		  << "book_borrower_vw"
+		  << "cd_borrower_vw"
+		  << "dvd_borrower_vw"
+		  << "magazine_borrower_vw"
+		  << "videogame_borrower_vw"
+		  << "member_history";
+
+      for(i = 0; i < objectllist.size(); i++)
+	{
+	  if(action == CREATE_USER)
+	    {
+	      if(db.driverName() == "QMYSQL")
+		querystr = QString
+		  ("GRANT SELECT ON %1 TO %2 ").arg
+		  (objectllist[i]).arg(memberid);
+	      else
+		querystr = QString
+		  ("GRANT SELECT ON %1 TO %2").arg
+		  (objectllist[i]).arg(memberid);
+	    }
+	  else
+	    {
+	      if(db.driverName() == "QMYSQL")
+		querystr = QString
+		  ("REVOKE ALL ON %1 FROM %2").arg
+		  (objectllist[i]).arg(memberid);
+	      else
+		querystr = QString
+		  ("REVOKE ALL ON %1 FROM %2").arg
+		  (objectllist[i]).arg(memberid);
+	    }
+
+	  if(!query.exec(querystr))
+	    break;
+	}
+
+      objectllist.clear();
+    }
+
+  if(action == DELETE_USER)
+    if(!query.lastError().isValid())
+      {
+	if(db.driverName() == "QMYSQL")
+	  query.prepare(QString("DROP USER %1").arg(memberid));
+	else
+	  query.prepare(QString("DROP USER %1").arg(memberid));
+
+	(void) query.exec();
+      }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+}
+
+/*
+** -- savePassword() --
+*/
+
+void misc_functions::savePassword(const QString &memberid,
+				  const QSqlDatabase &db,
+				  const QString &password, QString &errorstr)
+{
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  errorstr = "";
+  querystr = "";
+
+  if(db.driverName() == "QMYSQL")
+    querystr = QString("SET PASSWORD FOR %1 = PASSWORD('%2') ").arg
+      (memberid).arg(password);
+  else
+    querystr = QString("ALTER USER %1 ENCRYPTED "
+		       "PASSWORD '%2'").arg(memberid).arg(password);
+
+  (void) query.exec(querystr);
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+}
+
+/*
 ** -- getReservedItems() --
 */
 
@@ -182,18 +315,18 @@ QString misc_functions::getAvailability(const QString &oid,
 
   if(db.driverName() == "QMYSQL")
     querystr = QString("SELECT %1.quantity - "
-		       "COUNT(%1_borrower.item_oid) "
+		       "COUNT(%1_borrower_vw.item_oid) "
 		       "FROM "
-		       "%1 LEFT JOIN %1_borrower ON "
-		       "%1.myoid = %1_borrower.item_oid WHERE "
+		       "%1 LEFT JOIN %1_borrower_vw ON "
+		       "%1.myoid = %1_borrower_vw.item_oid WHERE "
 		       "%1.myoid = ? "
 		       "GROUP BY %1.myoid").arg(itemType);
   else
     querystr = QString("SELECT %1.quantity - "
-		       "COUNT(%1_borrower.item_oid) "
+		       "COUNT(%1_borrower_vw.item_oid) "
 		       "FROM "
-		       "%1 LEFT JOIN %1_borrower ON "
-		       "%1.myoid = %1_borrower.item_oid WHERE "
+		       "%1 LEFT JOIN %1_borrower_vw ON "
+		       "%1.myoid = %1_borrower_vw.item_oid WHERE "
 		       "%1.myoid = ? "
 		       "GROUP BY %1.quantity, "
 		       "%1.myoid").arg(itemType);

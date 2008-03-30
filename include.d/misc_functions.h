@@ -16,6 +16,8 @@
 class misc_functions
 {
  public:
+  static const int CREATE_USER = 100;
+  static const int DELETE_USER = 200;
   static int getColumnNumber(const QTableWidget *, const QString &);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
@@ -27,6 +29,8 @@ class misc_functions
 			      const QString &, const QString &, QString &);
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
+  static void savePassword(const QString &, const QSqlDatabase &,
+			   const QString &, QString &);
   static void saveQuantity(const QSqlDatabase &, const QString &,
 			   const int, const QString &, QString &);
   static void updateColumn(QTableWidget *, const int, const QString &,
@@ -35,6 +39,8 @@ class misc_functions
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,
 				  const QString &, QString &);
+  static void createOrDeleteDBAccount(const QString &, const QSqlDatabase &,
+				      const int, QString &);
   static QString getOID(const QString &, const QString &,
 			const QSqlDatabase &, QString &);
   static QString getRoles(const QSqlDatabase &, const QString &, QString &);

@@ -553,13 +553,13 @@ void qtbook_videogame::slotGo(void)
 	"videogame.price, videogame.monetary_units, "
 	"videogame.quantity, "
 	"videogame.location, "
-	"videogame.quantity - COUNT(videogame_borrower.item_oid) "
+	"videogame.quantity - COUNT(videogame_borrower_vw.item_oid) "
 	"AS availability, "
 	"videogame.type, "
 	"videogame.myoid "
 	"FROM "
-	"videogame LEFT JOIN videogame_borrower ON "
-	"videogame.myoid = videogame_borrower.item_oid "
+	"videogame LEFT JOIN videogame_borrower_vw ON "
+	"videogame.myoid = videogame_borrower_vw.item_oid "
 	"WHERE ";
       searchstr.append("id LIKE '%" + vg.id->text() + "%' AND ");
       searchstr.append("LOWER(title) LIKE '%" +

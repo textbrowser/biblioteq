@@ -24,6 +24,7 @@ FORMS           += cdinfo.ui \
 		   maginfo.ui \
 		   bookinfo.ui \
 		   branch_s.ui \
+		   password.ui \
 		   userinfo.ui \
                    borrowers.ui \
 		   errordiag.ui \
@@ -31,7 +32,6 @@ FORMS           += cdinfo.ui \
                    mainwindow.ui \
 		   copybrowser.ui \
 		   customquery.ui \
-		   authenticate.ui \
 		   videogameinfo.ui \
 		   members_browser.ui
 

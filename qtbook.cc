@@ -148,10 +148,10 @@ qtbook::qtbook(void):QMainWindow()
   if((all_diag = new QMainWindow(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((auth_diag = new QDialog(this)) == NULL)
+  if((branch_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((branch_diag = new QDialog(this)) == NULL)
+  if((pass_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((members_diag = new QMainWindow()) == NULL)
@@ -246,14 +246,14 @@ qtbook::qtbook(void):QMainWindow()
   bb.setupUi(members_diag);
   userinfo.setupUi(userinfo_diag);
   history.setupUi(history_diag);
-  au.setupUi(auth_diag);
   br.setupUi(branch_diag);
+  pass.setupUi(pass_diag);
   al.setupUi(all_diag);
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
+  pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   history_diag->setWindowModality(Qt::WindowModal);
-  auth_diag->setModal(true);
   branch_diag->setModal(true);
   error_diag->setModal(false);
   customquery_diag->setModal(false);
@@ -292,10 +292,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotExit(void)));
   connect(ui.actionSetGlobalFonts, SIGNAL(triggered(void)), this,
 	  SLOT(slotSetFonts(void)));
-  connect(ui.authenticateTool, SIGNAL(triggered(void)), this,
-	  SLOT(slotShowAuthenticate(void)));
-  connect(ui.actionAdministratorMode, SIGNAL(triggered(void)), this,
-	  SLOT(slotShowAuthenticate(void)));
   connect(ui.deleteTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
   connect(ui.actionDeleteEntry, SIGNAL(triggered(void)), this,
@@ -328,8 +324,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowMembersBrowser(void)));
   connect(userinfo.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveUser(void)));
-  connect(au.okButton, SIGNAL(clicked(void)),
-	  this, SLOT(slotAuthenticate(void)));
+  connect(ui.actionChangePassword, SIGNAL(triggered(void)), this,
+	  SLOT(slotShowChangePassword(void)));
   connect(ui.actionSaveSettings, SIGNAL(triggered(void)), this,
 	  SLOT(slotSaveConfig()));
   connect(ui.connectTool, SIGNAL(triggered(void)), this,
@@ -374,6 +370,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
+  connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
+	  SLOT(slotShowHistory(void)));
   connect(ui.searchTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.customQueryTool, SIGNAL(triggered(void)), this,
@@ -398,6 +396,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotCloseCustomQueryDialog(void)));
   connect(cq.execute_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotExecuteCustomQuery(void)));
+  connect(pass.okButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotSavePassword(void)));
+  connect(br.resetButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotResetLoginDialog(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -410,6 +412,8 @@ qtbook::qtbook(void):QMainWindow()
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
   al.resetButton->setMenu(menu4);
+  ui.actionReservationHistory->setEnabled(false);
+  ui.actionChangePassword->setEnabled(false);
   ui.overdueButton->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
@@ -424,8 +428,6 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionViewDetails->setEnabled(false);
   ui.refreshTool->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
-  ui.authenticateTool->setEnabled(false);
-  ui.actionAdministratorMode->setEnabled(false);
   ui.disconnectTool->setEnabled(false);
   ui.actionDisconnect->setEnabled(false);
   ui.userTool->setEnabled(false);
@@ -509,127 +511,39 @@ QString qtbook::getRoles(void)
 }
 
 /*
-** -- slotAuthenticate() --
+** -- adminSetup() --
 */
 
-void qtbook::slotAuthenticate(void)
+void qtbook::adminSetup(void)
 {
-  bool isAuthOpen = false;
-  QString str = "";
-  QString errorstr = "";
-
-  roles = misc_functions::getRoles(getDB(), au.userid->text(), errorstr);
-
-  if(roles.isEmpty())
+  if(status_bar_label != NULL)
     {
-      QMessageBox::critical
-	(this, "BiblioteQ: User Error",
-	 QString("It appears that the user %1 does not have "
-		 "administrator privileges.").arg(au.userid->text()));
-      return;
+      status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
+      status_bar_label->setToolTip("Administrator Mode");
     }
 
-  {
-    QSqlDatabase authdb;
+  if(db.isOpen() && supportsTransactions)
+    {
+      ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotModify(void)));
+      updateItemWindows();
+    }   
 
-    if(au.userid->text() == br.userid->text())
-      /*
-      ** Identical user? If so, use the default database connection.
-      */
-
-      authdb = QSqlDatabase::database("Default");
-    else
-      {
-	/*
-	** Connect to the database.
-	*/
-
-	if(selectedBranch["database_type"] == "mysql")
-	  str = "QMYSQL";
-	else
-	  str = "QPSQL";
-
-	authdb = QSqlDatabase::addDatabase(str, "Authenticate");
-	authdb.setHostName(selectedBranch["hostname"]);
-	authdb.setDatabaseName(br.branch_name->currentText());
-	authdb.setUserName(au.userid->text());
-	authdb.setPassword(au.password->text());
-	authdb.setPort(selectedBranch["database_port"].toInt());
-
-	if(selectedBranch["ssl_enabled"] == "true")
-	  if(selectedBranch["database_type"] == "mysql")
-	    authdb.setConnectOptions("CLIENT_SSL");
-	  else
-	    authdb.setConnectOptions("requiressl=1");
-
-	qapp->setOverrideCursor(Qt::WaitCursor);
-	isAuthOpen = authdb.open();
-	qapp->restoreOverrideCursor();
-      }
-
-    if(authdb.isOpen())
-      {
-	if(status_bar_label != NULL)
-	  {
-	    status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
-	    status_bar_label->setToolTip("Administrator Mode");
-	  }
-
-	auth_diag->hide();
-      }
-    else
-      {
-	addError(QString("Database Error"),
-		 QString("Unable to authenticate administrator using "
-			 "the provided credentials."),
-		 authdb.lastError().text(), __FILE__, __LINE__);
-	QMessageBox::critical(auth_diag, "BiblioteQ: Database Error",
-			      "Unable to authenticate administrator "
-			      "using the provided credentials.");
-	au.userid->setFocus();
-      }
-
-    if(authdb.isOpen() && supportsTransactions)
-      {
-	ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
-	connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		this, SLOT(slotModify(void)));
-	updateItemWindows();
-      }
-
-    ui.deleteTool->setEnabled(authdb.isOpen());
-    ui.overdueButton->setEnabled(authdb.isOpen());
-    ui.actionDeleteEntry->setEnabled(authdb.isOpen());
-    ui.createTool->setEnabled(authdb.isOpen());
-    ui.modifyTool->setEnabled(authdb.isOpen() && supportsTransactions);
-    ui.detailsTool->setEnabled(!(authdb.isOpen() && supportsTransactions));
-    ui.actionViewDetails->setEnabled
-      (!(authdb.isOpen() && supportsTransactions));
-    ui.actionModifyEntry->setEnabled
-      (authdb.isOpen() && supportsTransactions);
-    ui.authenticateTool->setEnabled(!authdb.isOpen());
-    ui.actionAdministratorMode->setEnabled(!authdb.isOpen());
-    ui.userTool->setEnabled(authdb.isOpen());
-    ui.reserveTool->setEnabled(authdb.isOpen());
-    ui.actionMembersBrowser->setEnabled(authdb.isOpen());
-    ui.actionAutoPopulateOnCreation->setEnabled(authdb.isOpen());
-
-    if(au.userid->text() != br.userid->text())
-      if(authdb.isOpen())
-	{
-	  qapp->setOverrideCursor(Qt::WaitCursor);
-	  db.close();
-	  qapp->restoreOverrideCursor();
-	  db = QSqlDatabase();
-	  QSqlDatabase::removeDatabase("Default");
-	  db = QSqlDatabase::database("Authenticate");
-	}
-  }
-
-  if(au.userid->text() != br.userid->text())
-    if(!isAuthOpen)
-      if(QSqlDatabase::contains("Authenticate"))
-	QSqlDatabase::removeDatabase("Authenticate");
+  ui.deleteTool->setEnabled(db.isOpen());
+  ui.overdueButton->setEnabled(db.isOpen());
+  ui.actionDeleteEntry->setEnabled(db.isOpen());
+  ui.createTool->setEnabled(db.isOpen());
+  ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions);
+  ui.detailsTool->setEnabled(!(db.isOpen() && supportsTransactions));
+  ui.actionViewDetails->setEnabled
+    (!(db.isOpen() && supportsTransactions));
+  ui.actionModifyEntry->setEnabled
+    (db.isOpen() && supportsTransactions);
+  ui.userTool->setEnabled(db.isOpen());
+  ui.reserveTool->setEnabled(db.isOpen());
+  ui.actionMembersBrowser->setEnabled(db.isOpen());
+  ui.actionAutoPopulateOnCreation->setEnabled(db.isOpen());
 }
 
 /*
@@ -702,7 +616,7 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setWindowTitle("BiblioteQ: About");
-  mb.setText("BiblioteQ Version 3.24.\n"
+  mb.setText("BiblioteQ Version 4.00.\n"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.\n"
 	     "Icons copyright (c) Everaldo.\n\n"
@@ -1318,13 +1232,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"book.price, book.monetary_units, "
 		"book.quantity, "
 		"book.location, "
-		"book.quantity - COUNT(book_borrower.item_oid) "
+		"book.quantity - COUNT(book_borrower_vw.item_oid) "
 		"AS availability, "
 		"book.type, "
 		"book.myoid "
 		"FROM "
-		"book LEFT JOIN book_borrower ON "
-		"book.myoid = book_borrower.item_oid "
+		"book LEFT JOIN book_borrower_vw ON "
+		"book.myoid = book_borrower_vw.item_oid "
 		"GROUP BY book.myoid) "
 		"UNION "
 		"(SELECT DISTINCT cd.title, "
@@ -1335,12 +1249,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"cd.price, cd.monetary_units, "
 		"cd.quantity, "
 		"cd.location, "
-		"cd.quantity - COUNT(cd_borrower.item_oid) AS availability, "
+		"cd.quantity - COUNT(cd_borrower_vw.item_oid) "
+		"AS availability, "
 		"cd.type, "
 		"cd.myoid "
 		"FROM "
-		"cd LEFT JOIN cd_borrower ON "
-		"cd.myoid = cd_borrower.item_oid "
+		"cd LEFT JOIN cd_borrower_vw ON "
+		"cd.myoid = cd_borrower_vw.item_oid "
 		"GROUP BY cd.myoid) "
 		"UNION "
 		"(SELECT DISTINCT dvd.title, "
@@ -1351,12 +1266,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"dvd.price, dvd.monetary_units, "
 		"dvd.quantity, "
 		"dvd.location, "
-		"dvd.quantity - COUNT(dvd_borrower.item_oid) AS availability, "
+		"dvd.quantity - COUNT(dvd_borrower_vw.item_oid) "
+		"AS availability, "
 		"dvd.type, "
 		"dvd.myoid "
 		"FROM "
-		"dvd LEFT JOIN dvd_borrower ON "
-		"dvd.myoid = dvd_borrower.item_oid "
+		"dvd LEFT JOIN dvd_borrower_vw ON "
+		"dvd.myoid = dvd_borrower_vw.item_oid "
 		"GROUP BY dvd.myoid) "
 		"UNION "
 		"(SELECT DISTINCT magazine.title, "
@@ -1367,13 +1283,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"magazine.price, magazine.monetary_units, "
 		"magazine.quantity, "
 		"magazine.location, "
-		"magazine.quantity - COUNT(magazine_borrower.item_oid) "
+		"magazine.quantity - COUNT(magazine_borrower_vw.item_oid) "
 		"AS availability, "
 		"magazine.type, "
 		"magazine.myoid "
 		"FROM "
-		"magazine LEFT JOIN magazine_borrower ON "
-		"magazine.myoid = magazine_borrower.item_oid "
+		"magazine LEFT JOIN magazine_borrower_vw ON "
+		"magazine.myoid = magazine_borrower_vw.item_oid "
 		"GROUP BY magazine.myoid) "
 		"UNION "
 		"(SELECT DISTINCT videogame.title, "
@@ -1384,13 +1300,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"videogame.price, videogame.monetary_units, "
 		"videogame.quantity, "
 		"videogame.location, "
-		"videogame.quantity - COUNT(videogame_borrower.item_oid) "
+		"videogame.quantity - COUNT(videogame_borrower_vw.item_oid) "
 		"AS availability, "
 		"videogame.type, "
 		"videogame.myoid "
 		"FROM "
-		"videogame LEFT JOIN videogame_borrower ON "
-		"videogame.myoid = videogame_borrower.item_oid "
+		"videogame LEFT JOIN videogame_borrower_vw ON "
+		"videogame.myoid = videogame_borrower_vw.item_oid "
 		"GROUP BY videogame.myoid) "
 		"ORDER BY 1";
 	    else
@@ -1402,13 +1318,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"book.price, book.monetary_units, "
 		"book.quantity, "
 		"book.location, "
-		"book.quantity - COUNT(book_borrower.item_oid) "
+		"book.quantity - COUNT(book_borrower_vw.item_oid) "
 		"AS availability, "
 		"book.type, "
 		"book.myoid "
 		"FROM "
-		"book LEFT JOIN book_borrower ON "
-		"book.myoid = book_borrower.item_oid "
+		"book LEFT JOIN book_borrower_vw ON "
+		"book.myoid = book_borrower_vw.item_oid "
 		"GROUP BY book.title, "
 		"book.id, "
 		"book.publisher, book.pdate, "
@@ -1428,12 +1344,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"cd.price, cd.monetary_units, "
 		"cd.quantity, "
 		"cd.location, "
-		"cd.quantity - COUNT(cd_borrower.item_oid) AS availability, "
+		"cd.quantity - COUNT(cd_borrower_vw.item_oid) "
+		"AS availability, "
 		"cd.type, "
 		"cd.myoid "
 		"FROM "
-		"cd LEFT JOIN cd_borrower ON "
-		"cd.myoid = cd_borrower.item_oid "
+		"cd LEFT JOIN cd_borrower_vw ON "
+		"cd.myoid = cd_borrower_vw.item_oid "
 		"GROUP BY cd.title, "
 		"cd.id, "
 		"cd.recording_label, cd.rdate, "
@@ -1453,12 +1370,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"dvd.price, dvd.monetary_units, "
 		"dvd.quantity, "
 		"dvd.location, "
-		"dvd.quantity - COUNT(dvd_borrower.item_oid) AS availability, "
+		"dvd.quantity - COUNT(dvd_borrower_vw.item_oid) AS "
+		"availability, "
 		"dvd.type, "
 		"dvd.myoid "
 		"FROM "
-		"dvd LEFT JOIN dvd_borrower ON "
-		"dvd.myoid = dvd_borrower.item_oid "
+		"dvd LEFT JOIN dvd_borrower_vw ON "
+		"dvd.myoid = dvd_borrower_vw.item_oid "
 		"GROUP BY dvd.title, "
 		"dvd.id, "
 		"dvd.studio, dvd.rdate, "
@@ -1478,13 +1396,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"magazine.price, magazine.monetary_units, "
 		"magazine.quantity, "
 		"magazine.location, "
-		"magazine.quantity - COUNT(magazine_borrower.item_oid) AS "
+		"magazine.quantity - COUNT(magazine_borrower_vw.item_oid) AS "
 		"availability, "
 		"magazine.type, "
 		"magazine.myoid "
 		"FROM "
-		"magazine LEFT JOIN magazine_borrower ON "
-		"magazine.myoid = magazine_borrower.item_oid "
+		"magazine LEFT JOIN magazine_borrower_vw ON "
+		"magazine.myoid = magazine_borrower_vw.item_oid "
 		"GROUP BY magazine.title, "
 		"magazine.id, "
 		"magazine.publisher, magazine.pdate, "
@@ -1504,13 +1422,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"videogame.price, videogame.monetary_units, "
 		"videogame.quantity, "
 		"videogame.location, "
-		"videogame.quantity - COUNT(videogame_borrower.item_oid) AS "
+		"videogame.quantity - COUNT(videogame_borrower_vw.item_oid) "
+		"AS "
 		"availability, "
 		"videogame.type, "
 		"videogame.myoid "
 		"FROM "
-		"videogame LEFT JOIN videogame_borrower ON "
-		"videogame.myoid = videogame_borrower.item_oid "
+		"videogame LEFT JOIN videogame_borrower_vw ON "
+		"videogame.myoid = videogame_borrower_vw.item_oid "
 		"GROUP BY videogame.title, "
 		"videogame.id, "
 		"videogame.publisher, videogame.rdate, "
@@ -2377,13 +2296,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"videogame.quantity, "
 		"videogame.location, "
 		"videogame.quantity - "
-		"COUNT(videogame_borrower.item_oid) "
+		"COUNT(videogame_borrower_vw.item_oid) "
 		"AS availability, "
 		"videogame.type, "
 		"videogame.myoid "
 		"FROM "
-		"videogame LEFT JOIN videogame_borrower ON "
-		"videogame.myoid = videogame_borrower.item_oid "
+		"videogame LEFT JOIN videogame_borrower_vw ON "
+		"videogame.myoid = videogame_borrower_vw.item_oid "
 		"GROUP BY videogame.myoid ORDER BY "
 		"videogame.title";
 	    else
@@ -2401,13 +2320,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"videogame.quantity, "
 		"videogame.location, "
 		"videogame.quantity - "
-		"COUNT(videogame_borrower.item_oid) "
+		"COUNT(videogame_borrower_vw.item_oid) "
 		"AS availability, "
 		"videogame.type, "
 		"videogame.myoid "
 		"FROM "
-		"videogame LEFT JOIN videogame_borrower ON "
-		"videogame.myoid = videogame_borrower.item_oid "
+		"videogame LEFT JOIN videogame_borrower_vw ON "
+		"videogame.myoid = videogame_borrower_vw.item_oid "
 		"GROUP BY "
 		"videogame.title, "
 		"videogame.vgrating, "
@@ -2444,13 +2363,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"book.callnumber, "
 		"book.deweynumber, "
 		"book.quantity - "
-		"COUNT(book_borrower.item_oid) "
+		"COUNT(book_borrower_vw.item_oid) "
 		"AS availability, "
 		"book.type, "
 		"book.myoid "
 		"FROM "
-		"book LEFT JOIN book_borrower ON "
-		"book.myoid = book_borrower.item_oid "
+		"book LEFT JOIN book_borrower_vw ON "
+		"book.myoid = book_borrower_vw.item_oid "
 		"GROUP BY book.myoid ORDER BY "
 		"book.title";
 	    else
@@ -2469,13 +2388,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"book.callnumber, "
 		"book.deweynumber, "
 		"book.quantity - "
-		"COUNT(book_borrower.item_oid) "
+		"COUNT(book_borrower_vw.item_oid) "
 		"AS availability, "
 		"book.type, "
 		"book.myoid "
 		"FROM "
-		"book LEFT JOIN book_borrower ON "
-		"book.myoid = book_borrower.item_oid "
+		"book LEFT JOIN book_borrower_vw ON "
+		"book.myoid = book_borrower_vw.item_oid "
 		"GROUP BY "
 		"book.title, "
 		"book.author, "
@@ -2515,13 +2434,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"dvd.dvdregion, "
 		"dvd.dvdaspectratio, "
 		"dvd.quantity - "
-		"COUNT(dvd_borrower.item_oid) "
+		"COUNT(dvd_borrower_vw.item_oid) "
 		"AS availability, "
 		"dvd.type, "
 		"dvd.myoid "
 		"FROM "
-		"dvd LEFT JOIN dvd_borrower ON "
-		"dvd.myoid = dvd_borrower.item_oid "
+		"dvd LEFT JOIN dvd_borrower_vw ON "
+		"dvd.myoid = dvd_borrower_vw.item_oid "
 		"GROUP BY dvd.myoid ORDER BY "
 		"dvd.title";
 	    else
@@ -2542,13 +2461,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"dvd.dvdregion, "
 		"dvd.dvdaspectratio, "
 		"dvd.quantity - "
-		"COUNT(dvd_borrower.item_oid) "
+		"COUNT(dvd_borrower_vw.item_oid) "
 		"AS availability, "
 		"dvd.type, "
 		"dvd.myoid "
 		"FROM "
-		"dvd LEFT JOIN dvd_borrower ON "
-		"dvd.myoid = dvd_borrower.item_oid "
+		"dvd LEFT JOIN dvd_borrower_vw ON "
+		"dvd.myoid = dvd_borrower_vw.item_oid "
 		"GROUP BY "
 		"dvd.title, "
 		"dvd.dvdformat, "
@@ -2591,13 +2510,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"cd.cdaudio, "
 		"cd.cdrecording, "
 		"cd.quantity - "
-		"COUNT(cd_borrower.item_oid) "
+		"COUNT(cd_borrower_vw.item_oid) "
 		"AS availability, "
 		"cd.type, "
 		"cd.myoid "
 		"FROM "
-		"cd LEFT JOIN cd_borrower ON "
-		"cd.myoid = cd_borrower.item_oid "
+		"cd LEFT JOIN cd_borrower_vw ON "
+		"cd.myoid = cd_borrower_vw.item_oid "
 		"GROUP BY cd.myoid ORDER BY "
 		"cd.title";
 	    else
@@ -2617,12 +2536,13 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"cd.location, "
 		"cd.cdaudio, "
 		"cd.cdrecording, "
-		"cd.quantity - COUNT(cd_borrower.item_oid) AS availability, "
+		"cd.quantity - COUNT(cd_borrower_vw.item_oid) AS "
+		"availability, "
 		"cd.type, "
 		"cd.myoid "
 		"FROM "
-		"cd LEFT JOIN cd_borrower ON "
-		"cd.myoid = cd_borrower.item_oid "
+		"cd LEFT JOIN cd_borrower_vw ON "
+		"cd.myoid = cd_borrower_vw.item_oid "
 		"GROUP BY "
 		"cd.title, "
 		"cd.artist, "
@@ -2665,14 +2585,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 				  "magazine.callnumber, "
 				  "magazine.deweynumber, "
 				  "magazine.quantity - "
-				  "COUNT(magazine_borrower.item_oid) "
+				  "COUNT(magazine_borrower_vw.item_oid) "
 				  "AS availability, "
 				  "magazine.type, "
 				  "magazine.myoid "
 				  "FROM "
-				  "magazine LEFT JOIN magazine_borrower ON "
+				  "magazine LEFT JOIN magazine_borrower_vw ON "
 				  "magazine.myoid = "
-				  "magazine_borrower.item_oid WHERE "
+				  "magazine_borrower_vw.item_oid WHERE "
 				  "magazine.type = '%1' "
 				  "GROUP BY magazine.myoid ORDER BY "
 				  "magazine.title").arg(type);
@@ -2689,14 +2609,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 				  "magazine.callnumber, "
 				  "magazine.deweynumber, "
 				  "magazine.quantity - "
-				  "COUNT(magazine_borrower.item_oid) AS "
+				  "COUNT(magazine_borrower_vw.item_oid) AS "
 				  "availability, "
 				  "magazine.type, "
 				  "magazine.myoid "
 				  "FROM "
-				  "magazine LEFT JOIN magazine_borrower ON "
+				  "magazine LEFT JOIN magazine_borrower_vw ON "
 				  "magazine.myoid = "
-				  "magazine_borrower.item_oid WHERE "
+				  "magazine_borrower_vw.item_oid WHERE "
 				  "magazine.type = '%1' "
 				  "GROUP BY "
 				  "magazine.title, "
@@ -2744,7 +2664,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		     "%1.quantity, "
 		     "%1.location, "
 		     "%1.quantity - "
-		     "COUNT(%1_borrower.item_oid) AS availability, "
+		     "COUNT(%1_borrower_vw.item_oid) AS availability, "
 		     "%1.type, ").arg("magazine");
 		else
 		  str = QString
@@ -2757,23 +2677,23 @@ int qtbook::populateTable(const int search_type, const int filter,
 		     "%1.quantity, "
 		     "%1.location, "
 		     "%1.quantity - "
-		     "COUNT(%1_borrower.item_oid) AS availability, "
+		     "COUNT(%1_borrower_vw.item_oid) AS availability, "
 		     "%1.type, ").
 		    arg(type.toLower().remove(" "));
 
 		if(type == "Journal")
 		  str += QString("%1.myoid "
 				 "FROM "
-				 "%1 LEFT JOIN %1_borrower ON "
+				 "%1 LEFT JOIN %1_borrower_vw ON "
 				 "%1.myoid = "
-				 "%1_borrower.item_oid "
+				 "%1_borrower_vw.item_oid "
 				 "WHERE ").arg("magazine");
 		else
 		  str += QString("%1.myoid "
 				 "FROM "
-				 "%1 LEFT JOIN %1_borrower ON "
+				 "%1 LEFT JOIN %1_borrower_vw ON "
 				 "%1.myoid = "
-				 "%1_borrower.item_oid "
+				 "%1_borrower_vw.item_oid "
 				 "WHERE ").arg(type.toLower().remove(" "));
 
 		str.append("(LOWER(id) LIKE '%" +
@@ -3166,17 +3086,14 @@ int qtbook::populateTable(const int search_type, const int filter,
       if(search_type == CUSTOM_QUERY)
 	{
 	  if(tmplist.isEmpty())
-	    {
-	      for(i = 0; i < query.record().count(); i++)
-		if(!tmplist.contains(query.record().fieldName(i)))
-		  {
-		    tmplist.append(query.record().fieldName(i));
-		    ui.table->setColumnCount(tmplist.size());
+	    for(i = 0; i < query.record().count(); i++)
+	      if(!tmplist.contains(query.record().fieldName(i)))
+		{
+		  tmplist.append(query.record().fieldName(i));
+		  ui.table->setColumnCount(tmplist.size());
 		}
 
-	      i = 0;
-	    }
-
+	  ui.table->setColumnCount(tmplist.size());
 	  ui.table->setHorizontalHeaderLabels(tmplist);
 	  tmplist.clear();
 	  addConfigOptions();
@@ -3283,7 +3200,7 @@ void qtbook::slotAddBorrower(void)
   QDate now = QDate::currentDate();
   QDateTime nowTime = QDateTime::currentDateTime();
 
-  userinfo.memberid->setText(nowTime.toString("yyyyMMddhhmmss"));
+  userinfo.memberid->setText("m" + nowTime.toString("yyyyMMddhhmmss"));
   userinfo.membersince->setFocus();
   userinfo.membersince->setDate(now);
   userinfo.membersince->setMaximumDate(now);
@@ -3417,6 +3334,22 @@ void qtbook::slotSaveUser(void)
 
   if(userinfo_diag->windowTitle().contains("New"))
     {
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      if(!getDB().transaction())
+	{
+	  qapp->restoreOverrideCursor();
+	  addError
+	    (QString("Database Error"),
+	     QString("Unable to create a database transaction."),
+	     getDB().lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (userinfo_diag, "BiblioteQ: Database Error",
+	     "Unable to create a database transaction.");
+	  return;
+	}
+
+      qapp->restoreOverrideCursor();
       query.prepare(QString("INSERT INTO member "
 			    "(memberid, membersince, dob, sex, "
 			    "first_name, middle_init, last_name, "
@@ -3471,6 +3404,12 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
+      if(userinfo_diag->windowTitle().contains("New"))
+	if(!getDB().rollback())
+	  addError
+	    (QString("Database Error"), QString("Rollback failure."),
+	     getDB().lastError().text(), __FILE__, __LINE__);
+
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
 	       QString("Unable to save the member's information."),
@@ -3480,6 +3419,54 @@ void qtbook::slotSaveUser(void)
     }
   else
     {
+      if(userinfo_diag->windowTitle().contains("New"))
+	{
+	  /*
+	  ** Create a database account for the new member.
+	  */
+
+	  misc_functions::createOrDeleteDBAccount(userinfo.memberid->text(),
+						  db,
+						  misc_functions::CREATE_USER,
+						  errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      if(!getDB().rollback())
+		addError
+		  (QString("Database Error"), QString("Rollback failure."),
+		   getDB().lastError().text(), __FILE__, __LINE__);
+
+	      qapp->restoreOverrideCursor();
+	      addError
+		  (QString("Database Error"),
+		   QString("Unable to create a database account "
+			   "for the new member."),
+		   errorstr, __FILE__, __LINE__);
+	      QMessageBox::critical(userinfo_diag,
+				    "BiblioteQ: Database Error",
+				    "Unable to create a database account "
+				    "for the new member.");
+	      return;
+	    }
+	  else
+	    if(!getDB().commit())
+	      {
+		qapp->restoreOverrideCursor();
+		addError
+		  (QString("Database Error"),
+		   QString("Unable to commit the current database "
+			   "transaction."),
+		   getDB().lastError().text(), __FILE__,
+		   __LINE__);
+		QMessageBox::critical(userinfo_diag,
+				      "BiblioteQ: Database Error",
+				      "Unable to commit the current "
+				      "database transaction.");
+		return;
+	      }
+	}
+
       qapp->restoreOverrideCursor();
 
       if(userinfo_diag->windowTitle().contains("Modify"))
@@ -3853,20 +3840,8 @@ void qtbook::readGlobalSetup(void)
 			else if(!tmphash.contains("database_port"))
 			  tmphash["database_port"] = str;
 			else if(!tmphash.contains("ssl_enabled"))
-			  tmphash["ssl_enabled"] = str;
-			else if(!tmphash.contains("default_userid"))
 			  {
-			    tmphash["default_userid"] = str;
-
-			    if(br.userid->text().isEmpty())
-			      br.userid->setText(str);
-			  }
-			else if(!tmphash.contains("default_password"))
-			  {
-			    tmphash["default_password"] = str;
-
-			    if(br.password->text().isEmpty())
-			      br.password->setText(str);
+			    tmphash["ssl_enabled"] = str;
 
 			    if(!branches.contains(tmphash["branch_name"]))
 			      branches[tmphash["branch_name"]] = tmphash;
@@ -4158,6 +4133,22 @@ void qtbook::slotRemoveMember(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!getDB().transaction())
+    {
+      qapp->restoreOverrideCursor();
+      addError
+	(QString("Database Error"),
+	 QString("Unable to create a database transaction."),
+	 getDB().lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, "BiblioteQ: Database Error",
+	 "Unable to create a database transaction.");
+      return;
+    }
+
+  qapp->restoreOverrideCursor();
   query.prepare(QString("DELETE FROM member WHERE "
 			"memberid = ?"));
   query.bindValue(0, memberid);
@@ -4165,6 +4156,11 @@ void qtbook::slotRemoveMember(void)
 
   if(!query.exec())
     {
+      if(!getDB().rollback())
+	addError
+	  (QString("Database Error"), QString("Rollback failure."),
+	   getDB().lastError().text(), __FILE__, __LINE__);
+
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
 	       QString("Unable to remove the selected member."),
@@ -4174,29 +4170,37 @@ void qtbook::slotRemoveMember(void)
     }
   else
     {
+      misc_functions::createOrDeleteDBAccount(memberid, db,
+					      misc_functions::DELETE_USER,
+					      errorstr);
+
+      if(!query.exec())
+	{
+	  if(!getDB().rollback())
+	    addError
+	      (QString("Database Error"), QString("Rollback failure."),
+	       getDB().lastError().text(), __FILE__, __LINE__);
+	}
+      else
+	if(!getDB().commit())
+	  {
+	    qapp->restoreOverrideCursor();
+	    addError
+	      (QString("Database Error"),
+	       QString("Unable to commit the current database "
+		       "transaction."),
+	       getDB().lastError().text(), __FILE__,
+	       __LINE__);
+	    QMessageBox::critical(this,
+				  "BiblioteQ: Database Error",
+				  "Unable to commit the current "
+				  "database transaction.");
+	    return;
+	  }
+
       qapp->restoreOverrideCursor();
       slotPopulateMembersBrowser();
     }
-}
-
-/*
-** -- authenticate() --
-*/
-
-void qtbook::authenticate(void)
-{
-  slotAuthenticate();
-}
-
-/*
-** -- slotShowAuthenticate() --
-*/
-
-void qtbook::slotShowAuthenticate(void)
-{
-  au.userid->setFocus();
-  auth_diag->updateGeometry();
-  auth_diag->show();
 }
 
 /*
@@ -4396,6 +4400,7 @@ void qtbook::slotConnectDB(void)
   bool error = false;
   QString drivers = "";
   QString plugins = "";
+  QString errorstr = "";
 
   /*
   ** Configure some database attributes.
@@ -4479,6 +4484,23 @@ void qtbook::slotConnectDB(void)
 	else
 	  supportsTransactions = true;
       }
+
+    if(!error)
+      if(br.adminCheck->isChecked())
+	{
+	  roles = misc_functions::getRoles
+	    (defdb, br.userid->text(), errorstr);
+
+	  if(roles.isEmpty())
+	    {
+	      error = true;
+	      QMessageBox::critical
+		(branch_diag, "BiblioteQ: User Error",
+		 QString("It appears that the user %1 does not have "
+			 "administrator privileges.").arg
+		 (br.userid->text()));
+	    }
+	}
   }
 
   if(error)
@@ -4490,8 +4512,6 @@ void qtbook::slotConnectDB(void)
     db = QSqlDatabase::database("Default");
 
   branch_diag->hide();
-  au.userid->setText(br.userid->text());
-  au.password->setText(br.password->text());
 
   if(connected_bar_label != NULL)
     {
@@ -4499,6 +4519,7 @@ void qtbook::slotConnectDB(void)
       connected_bar_label->setToolTip("Connected");
     }
 
+  ui.actionChangePassword->setEnabled(true);
   ui.printTool->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.searchTool->setEnabled(true);
@@ -4507,8 +4528,6 @@ void qtbook::slotConnectDB(void)
   ui.actionViewDetails->setEnabled(true);
   ui.refreshTool->setEnabled(true);
   ui.actionRefreshTable->setEnabled(true);
-  ui.authenticateTool->setEnabled(true);
-  ui.actionAdministratorMode->setEnabled(true);
   ui.disconnectTool->setEnabled(true);
   ui.actionDisconnect->setEnabled(true);
   ui.configTool->setEnabled(true);
@@ -4516,6 +4535,11 @@ void qtbook::slotConnectDB(void)
   ui.actionConnect->setEnabled(false);
   connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	  SLOT(slotViewDetails(void)));
+
+  if(br.adminCheck->isChecked())
+    adminSetup();
+  else
+    ui.actionReservationHistory->setEnabled(true);
 
   if(ui.actionPopulateOnStart->isChecked())
     (void) populateTable(POPULATE_ALL, ui.typefilter->currentIndex(),
@@ -4540,7 +4564,9 @@ void qtbook::slotDisconnect(void)
   customquery_diag->hide();
   resetMembersBrowser();
   supportsTransactions = false;
+  ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
+  ui.actionChangePassword->setEnabled(false);
   ui.deleteTool->setEnabled(false);
   ui.overdueButton->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
@@ -4554,8 +4580,6 @@ void qtbook::slotDisconnect(void)
   ui.actionViewDetails->setEnabled(false);
   ui.refreshTool->setEnabled(false);
   ui.actionRefreshTable->setEnabled(false);
-  ui.authenticateTool->setEnabled(false);
-  ui.actionAdministratorMode->setEnabled(false);
   ui.disconnectTool->setEnabled(false);
   ui.actionDisconnect->setEnabled(false);
   ui.userTool->setEnabled(false);
@@ -4599,9 +4623,6 @@ void qtbook::slotDisconnect(void)
 
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
-
-  if(QSqlDatabase::contains("Authenticate"))
-    QSqlDatabase::removeDatabase("Authenticate");
 }
 
 /*
@@ -4632,6 +4653,7 @@ void qtbook::resetMembersBrowser(void)
   QStringList list;
 
   bb.table->clear();
+  bb.table->setColumnCount(0);
   bb.table->setRowCount(0);
   bb.table->scrollToTop();
   bb.table->horizontalScrollBar()->setValue(0);
@@ -4645,6 +4667,7 @@ void qtbook::resetMembersBrowser(void)
   list.append("Journals Reserved");
   list.append("Magazines Reserved");
   list.append("Video Games Reserved");
+  bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -5295,6 +5318,7 @@ void qtbook::slotResetErrorLog(void)
   list.append("File");
   list.append("Line Number");
   er.table->clear();
+  er.table->setColumnCount(0);
   er.table->setRowCount(0);
   er.table->setColumnCount(0);
   er.table->scrollToTop();
@@ -5661,7 +5685,7 @@ void qtbook::emptyContainers(void)
 
 QString qtbook::getAdminID(void)
 {
-  return au.userid->text();
+  return br.userid->text();
 }
 
 /*
@@ -6247,20 +6271,15 @@ void qtbook::slotShowCustomQuery(void)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
       list << "book"
-	   << "book_borrower"
 	   << "book_copy_info"
 	   << "cd"
-	   << "cd_borrower"
 	   << "cd_songs"
 	   << "cd_copy_info"
 	   << "dvd"
-	   << "dvd_borrower"
 	   << "dvd_copy_info"
 	   << "magazine"
-	   << "magazine_borrower"
 	   << "magazine_copy_info"
 	   << "videogame"
-	   << "videogame_borrower"
 	   << "videogame_copy_info";
       list.sort();
       cq.tables_t->setColumnCount(3);
@@ -6566,46 +6585,71 @@ void qtbook::slotShowHistory(void)
   QProgressDialog progress(history_diag);
   QTableWidgetItem *item = NULL;
 
-  if(row < 0)
-    {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "In order to display a member's reservation "
-			    "history, you must first select the member.");
-      return;
-    }
+  if(members_diag->isVisible())
+    if(row < 0)
+      {
+	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
+			      "In order to display a member's reservation "
+			      "history, you must first select the member.");
+	return;
+      }
 
   list << "cd" << "dvd" << "book" << "magazine" << "videogame";
 
-  for(i = 0; i < list.size(); i++)
-    {
-      str += QString("SELECT "
-		     "history.memberid, "
-		     "member.first_name, "
-		     "member.last_name, "
-		     "%1.title, "
-		     "history.item_id, "
-		     "history.copyid, "
-		     "%1.type, "
-		     "history.reserved_date, "
-		     "history.duedate, "
-		     "history.returned_date, "
-		     "history.reserved_by, "
-		     "%1.myoid "
-		     "FROM member_history history, "
-		     "%1 %1, "
-		     "member member "
-		     "WHERE history.memberid = member.memberid AND "
-		     "%1.id = history.item_id AND "
-		     "%1.myoid = history.item_oid AND "
-		     "member.memberid = '%2'").arg(list[i]).arg
-	(misc_functions::getColumnString(bb.table, row, "Member ID"));
+  if(members_diag->isVisible())
+    for(i = 0; i < list.size(); i++)
+      {
+	str += QString("SELECT "
+		       "history.memberid, "
+		       "member.first_name, "
+		       "member.last_name, "
+		       "%1.title, "
+		       "history.item_id, "
+		       "history.copyid, "
+		       "%1.type, "
+		       "history.reserved_date, "
+		       "history.duedate, "
+		       "history.returned_date, "
+		       "history.reserved_by, "
+		       "%1.myoid "
+		       "FROM member_history history, "
+		       "%1 %1, "
+		       "member member "
+		       "WHERE history.memberid = member.memberid AND "
+		       "%1.id = history.item_id AND "
+		       "%1.myoid = history.item_oid AND "
+		       "member.memberid = '%2'").arg(list[i]).arg
+	  (misc_functions::getColumnString(bb.table, row, "Member ID"));
 
-      if(i != list.size() - 1)
-	str += "UNION ";
-    }
+	if(i != list.size() - 1)
+	  str += "UNION ";
+      }
+  else
+    for(i = 0; i < list.size(); i++)
+      {
+	str += QString("SELECT "
+		       "history.memberid, "
+		       "%1.title, "
+		       "history.item_id, "
+		       "history.copyid, "
+		       "%1.type, "
+		       "history.reserved_date, "
+		       "history.duedate, "
+		       "history.returned_date, "
+		       "history.reserved_by, "
+		       "%1.myoid "
+		       "FROM member_history history, "
+		       "%1 %1 "
+		       "WHERE history.memberid = '%2' AND "
+		       "%1.id = history.item_id AND "
+		       "%1.myoid = history.item_oid ").arg(list[i]).arg
+	  (br.userid->text());
+
+	if(i != list.size() - 1)
+	  str += "UNION ";
+      }
 
   str.append("ORDER BY 1");
-  list.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(str))
@@ -6621,8 +6665,12 @@ void qtbook::slotShowHistory(void)
 	QMessageBox::critical(history_diag, "BiblioteQ: Database Error",
 			      "Unable to retrieve reservation "
 			      "history data for table populating.");
-      else
+      else if(members_diag->isVisible())
 	QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
+			      "Unable to retrieve reservation "
+			      "history data for table populating.");
+      else
+	QMessageBox::critical(this, "BiblioteQ: Database Error",
 			      "Unable to retrieve reservation "
 			      "history data for table populating.");
 
@@ -6631,9 +6679,17 @@ void qtbook::slotShowHistory(void)
 
   qapp->restoreOverrideCursor();
   history.table->clear();
+  history.table->setColumnCount(0);
+  history.table->setRowCount(0);
+  list.clear();
   list.append("Member ID");
-  list.append("First Name");
-  list.append("Last Name");
+
+  if(members_diag->isVisible())
+    {
+      list.append("First Name");
+      list.append("Last Name");
+    }
+
   list.append("Item Title");
   list.append("Item ID");
   list.append("Barcode");
@@ -6643,8 +6699,8 @@ void qtbook::slotShowHistory(void)
   list.append("Returned Date");
   list.append("Lender");
   list.append("OID");
-  history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnCount(list.size());
+  history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
   list.clear();
   history.table->setSortingEnabled(false);
@@ -6687,6 +6743,8 @@ void qtbook::slotShowHistory(void)
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
+  history.nextTool->setVisible(members_diag->isVisible());
+  history.prevTool->setVisible(members_diag->isVisible());
   history_diag->raise();
   history_diag->show();
 }
@@ -6754,11 +6812,9 @@ void qtbook::slotPrintReservationHistory(void)
 
 void qtbook::slotBranchChanged(void)
 {
-  QHash<QString, QString> tmphash;
-
-  tmphash = branches[br.branch_name->currentText()];
-  br.userid->setText(tmphash["default_userid"]);
-  br.password->setText(tmphash["default_password"]);
+  /*
+  ** Do nothing for now.
+  */
 }
 
 /*
@@ -6802,4 +6858,69 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
 	qapp->restoreOverrideCursor();
       }
+}
+
+/*
+** -- slotShowChangePassword() --
+*/
+
+void qtbook::slotShowChangePassword(void)
+{
+  pass.userid->setText(br.userid->text());
+  pass.password->clear();
+  pass.passwordAgain->clear();
+  pass.password->setFocus();
+  pass_diag->show();
+}
+
+/*
+** -- slotSavePassword() --
+*/
+
+void qtbook::slotSavePassword(void)
+{
+  QString errorstr = "";
+
+  if(pass.password->text().length() < 8)
+    {
+      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
+			    "The password must be at least eight characters "
+			    "long.");
+      return;
+    }
+  else if(pass.password->text() != pass.passwordAgain->text())
+    {
+      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
+			    "The passwords do not match. Please try again.");
+      return;
+    }
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  misc_functions::savePassword(pass.userid->text(), getDB(),
+			       pass.password->text(), errorstr);
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    {
+      addError(QString("Database Error"),
+	       QString("Unable to save the new password."),
+	       errorstr, __FILE__, __LINE__);
+      QMessageBox::critical(pass_diag, "BiblioteQ: Database Error",
+			    "Unable to save the new password.");
+    }
+  else
+    pass_diag->hide();
+}
+
+/*
+** -- slotResetLoginDialog() --
+*/
+
+void qtbook::slotResetLoginDialog(void)
+{
+  br.userid->clear();
+  br.password->clear();
+  br.adminCheck->setChecked(false);
+  br.branch_name->setCurrentIndex(0);
+  br.userid->setFocus();
 }

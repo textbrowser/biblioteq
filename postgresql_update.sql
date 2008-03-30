@@ -39,3 +39,48 @@ CREATE TABLE member_history
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;
+
+/* Release 4.00 */
+
+CREATE VIEW cd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 cd_borrower;
+
+CREATE VIEW dvd_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 dvd_borrower;
+
+CREATE VIEW book_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 book_borrower;
+
+CREATE VIEW magazine_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 magazine_borrower;
+
+CREATE VIEW videogame_borrower_vw AS
+SELECT	 item_oid,
+	 copy_number,
+	 reserved_date,
+	 duedate
+FROM	 videogame_borrower;
+
+GRANT SELECT ON cd_borrower_vw TO xbook_admin;
+GRANT SELECT ON dvd_borrower_vw TO xbook_admin;
+GRANT SELECT ON book_borrower_vw TO xbook_admin;
+GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
+GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
+DROP USER xbook;
+ALTER USER xbook_admin CREATEUSER;

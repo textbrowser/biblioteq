@@ -76,6 +76,8 @@ void borrowers_editor::showUsers(void)
 
   str = ioid;
   bd.table->clear();
+  bd.table->setColumnCount(0);
+  bd.table->setRowCount(0);
 
   if(state == qtbook::EDITABLE)
     {
@@ -95,11 +97,10 @@ void borrowers_editor::showUsers(void)
       list.append("Barcode");
       list.append("Reservation Date");
       list.append("Copy Due Date");
-      list.append("OID");
     }
 
-  bd.table->setHorizontalHeaderLabels(list);
   bd.table->setColumnCount(list.size());
+  bd.table->setHorizontalHeaderLabels(list);
   list.clear();
   bd.table->setRowCount(quantity);
   bd.table->scrollToTop();
@@ -109,7 +110,8 @@ void borrowers_editor::showUsers(void)
   ** Hide the OID column.
   */
 
-  bd.table->setColumnHidden(bd.table->columnCount() - 1, true);
+  if(state == qtbook::EDITABLE)
+    bd.table->setColumnHidden(bd.table->columnCount() - 1, true);
 
   if(!isVisible())
     {
@@ -192,11 +194,10 @@ void borrowers_editor::showUsers(void)
     query.prepare(QString("SELECT borrowers.copy_number, "
 			  "copy.copyid, "
 			  "borrowers.reserved_date, "
-			  "borrowers.duedate, "
-			  "borrowers.myoid "
+			  "borrowers.duedate "
 			  "FROM "
 			  "%1_copy_info copy "
-			  "LEFT JOIN %1_borrower borrowers "
+			  "LEFT JOIN %1_borrower_vw borrowers "
 			  "ON copy.item_oid = borrowers.item_oid "
 			  "WHERE copy.item_oid = ? "
 			  "ORDER BY borrowers.copy_number").arg(itemType));

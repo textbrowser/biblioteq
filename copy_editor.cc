@@ -161,10 +161,13 @@ void copy_editor::populateCopiesEditor(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
   cb.table->clear();
+  cb.table->setColumnCount(0);
+  cb.table->setRowCount(0);
   list.append("Barcode");
   list.append("Availability");
   list.append("OID");
   list.append("Copy Number");
+  cb.table->setColumnCount(list.size());
   cb.table->setHorizontalHeaderLabels(list);
   list.clear();
   cb.table->setRowCount(quantity);

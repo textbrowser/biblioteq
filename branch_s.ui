@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>150</height>
+    <height>160</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -48,80 +48,105 @@
      <property name="frameShadow" >
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_6" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
+     <layout class="QHBoxLayout" >
+      <item>
+       <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Userid</string>
+         <string/>
+        </property>
+        <property name="pixmap" >
+         <pixmap>icons.d/32x32/database.png</pixmap>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="userid" />
-      </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_5" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <widget class="QLineEdit" name="password" >
-        <property name="echoMode" >
-         <enum>QLineEdit::NoEcho</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="label_4" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Branch Name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" >
-       <layout class="QHBoxLayout" >
-        <item>
-         <widget class="QComboBox" name="branch_name" >
-          <property name="editable" >
-           <bool>false</bool>
+      <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="label_6" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
           </property>
-          <property name="sizeAdjustPolicy" >
-           <enum>QComboBox::AdjustToContents</enum>
+          <property name="text" >
+           <string>Userid</string>
           </property>
          </widget>
         </item>
-        <item>
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
+        <item row="0" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QLineEdit" name="userid" />
+          </item>
+          <item>
+           <widget class="QCheckBox" name="adminCheck" >
+            <property name="text" >
+             <string>Administrator</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_5" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
           </property>
-          <property name="sizeHint" >
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
+          <property name="text" >
+           <string>Password</string>
           </property>
-         </spacer>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QLineEdit" name="password" >
+          <property name="echoMode" >
+           <enum>QLineEdit::Password</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="label_4" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Branch Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="branch_name" >
+            <property name="editable" >
+             <bool>false</bool>
+            </property>
+            <property name="sizeAdjustPolicy" >
+             <enum>QComboBox::AdjustToContents</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -135,8 +160,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>382</width>
+       <height>71</height>
       </size>
      </property>
     </spacer>
@@ -181,7 +206,23 @@
         <string>&amp;Connect</string>
        </property>
        <property name="icon" >
-        <iconset>../.designer/backup/icons.d/16x16/ok.png</iconset>
+        <iconset>icons.d/16x16/ok.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="resetButton" >
+       <property name="minimumSize" >
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string>&amp;Reset</string>
+       </property>
+       <property name="icon" >
+        <iconset>icons.d/16x16/reset.png</iconset>
        </property>
       </widget>
      </item>
@@ -206,7 +247,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon" >
-        <iconset>../.designer/backup/icons.d/16x16/cancel.png</iconset>
+        <iconset>icons.d/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -229,9 +270,11 @@
  </widget>
  <tabstops>
   <tabstop>userid</tabstop>
+  <tabstop>adminCheck</tabstop>
   <tabstop>password</tabstop>
   <tabstop>branch_name</tabstop>
   <tabstop>okButton</tabstop>
+  <tabstop>resetButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources/>

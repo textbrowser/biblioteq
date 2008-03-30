@@ -590,14 +590,14 @@ void qtbook_magazine::slotGo(void)
 			  "magazine.lccontrolnumber, "
 			  "magazine.callnumber, "
 			  "magazine.deweynumber, "
-			  "magazine.quantity - COUNT(magazine_borrower."
+			  "magazine.quantity - COUNT(magazine_borrower_vw."
 			  "item_oid) "
 			  "AS availability, "
 			  "magazine.type, "
 			  "magazine.myoid "
 			  "FROM "
-			  "magazine LEFT JOIN magazine_borrower ON "
-			  "magazine.myoid = magazine_borrower.item_oid "
+			  "magazine LEFT JOIN magazine_borrower_vw ON "
+			  "magazine.myoid = magazine_borrower_vw.item_oid "
 			  "WHERE magazine.type = '%1' AND ").arg(subType);
       searchstr.append("id LIKE '%" + ma.id->text() + "%' AND ");
       searchstr.append("LOWER(lccontrolnumber) LIKE '%" +

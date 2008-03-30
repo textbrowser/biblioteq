@@ -611,13 +611,13 @@ void qtbook_book::slotGo(void)
 	"book.lccontrolnumber, "
 	"book.callnumber, "
 	"book.deweynumber, "
-	"book.quantity - COUNT(book_borrower.item_oid) "
+	"book.quantity - COUNT(book_borrower_vw.item_oid) "
 	"AS availability, "
 	"book.type, "
 	"book.myoid "
 	"FROM "
-	"book LEFT JOIN book_borrower ON "
-	"book.myoid = book_borrower.item_oid "
+	"book LEFT JOIN book_borrower_vw ON "
+	"book.myoid = book_borrower_vw.item_oid "
 	"WHERE ";
       searchstr.append("LOWER(id) LIKE '%" + id.id->text().toLower() +
 		       "%' AND ");

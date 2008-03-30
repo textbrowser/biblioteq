@@ -619,12 +619,12 @@ void qtbook_cd::slotGo(void)
 	"cd.location, "
 	"cd.cdaudio, "
 	"cd.cdrecording, "
-	"cd.quantity - COUNT(cd_borrower.item_oid) AS availability, "
+	"cd.quantity - COUNT(cd_borrower_vw.item_oid) AS availability, "
 	"cd.type, "
 	"cd.myoid "
 	"FROM "
-	"cd LEFT JOIN cd_borrower ON "
-	"cd.myoid = cd_borrower.item_oid WHERE ";
+	"cd LEFT JOIN cd_borrower_vw ON "
+	"cd.myoid = cd_borrower_vw.item_oid WHERE ";
       searchstr.append("id LIKE '%").append(cd.id->text()).append("%' AND ");
 
       if(cd.format->currentText() != "Any")
@@ -771,7 +771,7 @@ void qtbook_cd::search(void)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
-  setWindowTitle("BiblioteQ: CD Database Search");
+  setWindowTitle("BiblioteQ: Database CD Search");
   cd.id->setFocus();
   p = parentWid->mapToGlobal(p);
   move(p.x() + parentWid->width() / 2  - width() / 2,
@@ -1102,10 +1102,13 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
     comboBoxList.append(QString::number(i));
 
   trd.table->clear();
+  trd.table->setColumnCount(0);
+  trd.table->setRowCount(0);
   list.append("Album Number");
   list.append("Track Number");
   list.append("Track Title");
   list.append("Track Runtime");
+  trd.table->setColumnCount(list.size());
   trd.table->setHorizontalHeaderLabels(list);
   list.clear();
   trd.table->setRowCount(0);

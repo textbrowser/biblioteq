@@ -44,6 +44,7 @@ using namespace std;
 #include "ui_history.h"
 #include "qtbook_book.h"
 #include "ui_branch_s.h"
+#include "ui_password.h"
 #include "ui_userinfo.h"
 #include "ui_errordiag.h"
 #include "ui_mainwindow.h"
@@ -51,7 +52,6 @@ using namespace std;
 #include "misc_functions.h"
 #include "ui_customquery.h"
 #include "qtbook_magazine.h"
-#include "ui_authenticate.h"
 #include "qtbook_videogame.h"
 #include "numeric_table_item.h"
 #include "ui_members_browser.h"
@@ -134,7 +134,7 @@ class qtbook: public QMainWindow
   QLabel *error_bar_label;
   QLabel *status_bar_label;
   QLabel *connected_bar_label;
-  QDialog *auth_diag;
+  QDialog *pass_diag;
   QDialog *error_diag;
   QDialog *branch_diag;
   QDialog *history_diag;
@@ -166,18 +166,18 @@ class qtbook: public QMainWindow
   QSqlDatabase db;
   Ui_allDialog al;
   Ui_mainWindow ui;
+  Ui_passSelect pass;
   Ui_customquery cq;
   Ui_errordialog er;
   Ui_branchSelect br;
   Ui_historyDialog history;
   Ui_membersBrowser bb;
-  Ui_userAuthenticate au;
   bool isItemBusy(const QString &, const QString &);
   void cleanup(void);
   void lockApp(const bool);
   void cdModify(const int);
+  void adminSetup(void);
   void readConfig(void);
-  void authenticate(void);
   void deleteItem(const QString &, const QString &);
   void initialUpdate(void);
   void emptyContainers(void);
@@ -222,8 +222,8 @@ class qtbook: public QMainWindow
   void slotShowColumns(void);
   void slotShowHistory(void);
   void slotInsertJourn(void);
-  void slotAuthenticate(void);
   void slotRemoveMember(void);
+  void slotSavePassword(void);
   void slotCancelAddUser(void);
   void slotBranchChanged(void);
   void slotPrintReserved(void);
@@ -236,11 +236,12 @@ class qtbook: public QMainWindow
   void slotShowErrorDialog(void);
   void slotVideoGameSearch(void);
   void slotListOverdueItems(void);
-  void slotShowAuthenticate(void);
+  void slotResetLoginDialog(void);
   void slotShowConnectionDB(void);
   void slotListReservedItems(void);
   void slotUpdateStatusLabel(void);
   void slotExecuteCustomQuery(void);
+  void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);
   void slotCloseCustomQueryDialog(void);
   void slotPopulateMembersBrowser(void);
