@@ -1,5 +1,5 @@
 CREATE DATABASE xbook_db; USE xbook_db;
-CREATE USER xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+CREATE USER xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
 
 CREATE TABLE book
 (
@@ -233,7 +233,7 @@ CREATE TABLE magazine_borrower
 	myoid		 INTEGER PRIMARY KEY AUTO_INCREMENT,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL,
+	reserved_by	 VARCHAR(128) NOT NULL
 ) engine = InnoDB;
 
 CREATE TABLE videogame_borrower
@@ -277,7 +277,7 @@ CREATE TABLE member_history
 	type		 VARCHAR(16) NOT NULL,
 	item_id		 VARCHAR(32) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
-);
+) engine = InnoDB;
 
 CREATE TABLE admin
 (
@@ -321,6 +321,7 @@ SELECT	 item_oid,
 	 duedate
 FROM	 videogame_borrower;
 
-GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
 
 INSERT INTO admin VALUES ('xbook_admin', 'all');

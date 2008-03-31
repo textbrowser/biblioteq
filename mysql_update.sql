@@ -20,7 +20,7 @@ CREATE TABLE member_history
 	type		 VARCHAR(16) NOT NULL,
 	item_id		 VARCHAR(32) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
-);
+) engine = InnoDB;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
 
@@ -61,5 +61,8 @@ SELECT	 item_oid,
 	 duedate
 FROM	 videogame_borrower;
 
-GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+DROP USER xbook_admin@localhost;
+CREATE USER xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
 DROP USER xbook@localhost;
