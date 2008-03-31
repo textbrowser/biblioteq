@@ -335,9 +335,7 @@ void qtbook_magazine::slotGo(void)
 	    (this, "BiblioteQ: Database Error",
 	     "Unable to create or update the entry. "
 	     "Please verify that "
-	     "the entry does not already exist and "
-	     "that you "
-	     "have completed all of the required fields.");
+	     "the entry does not already exist.");
 	  goto db_rollback;
 	}
       else

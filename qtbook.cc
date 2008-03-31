@@ -616,7 +616,7 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setWindowTitle("BiblioteQ: About");
-  mb.setText("BiblioteQ Version 4.00.\n"
+  mb.setText("BiblioteQ Version 4.00.1.\n"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.\n"
 	     "Icons copyright (c) Everaldo.\n\n"
@@ -4486,21 +4486,27 @@ void qtbook::slotConnectDB(void)
       }
 
     if(!error)
-      if(br.adminCheck->isChecked())
-	{
-	  roles = misc_functions::getRoles
-	    (defdb, br.userid->text(), errorstr);
+      {
+	qapp->setOverrideCursor(Qt::WaitCursor);
+	roles = misc_functions::getRoles
+	  (defdb, br.userid->text(), errorstr);
+	qapp->restoreOverrideCursor();
 
-	  if(roles.isEmpty())
-	    {
-	      error = true;
-	      QMessageBox::critical
-		(branch_diag, "BiblioteQ: User Error",
-		 QString("It appears that the user %1 does not have "
-			 "administrator privileges.").arg
-		 (br.userid->text()));
-	    }
-	}
+	if(br.adminCheck->isChecked() && roles.isEmpty())
+	  {
+	    error = true;
+	    QMessageBox::critical
+	      (branch_diag, "BiblioteQ: User Error",
+	       QString("It appears that the user %1 does not have "
+		       "administrator privileges.").arg
+	       (br.userid->text()));
+	  }
+	else if(!br.adminCheck->isChecked() && !roles.isEmpty())
+	  QMessageBox::warning
+	    (branch_diag, "BiblioteQ: Warning",
+	     "It appears that you are attempting to use an "
+	     "administrator login in a non-administrator mode.");
+      }
   }
 
   if(error)

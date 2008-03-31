@@ -255,7 +255,7 @@ void qtbook_dvd::slotGo(void)
       if(dvd.runtime->text() == "00:00:00")
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please provide a valid runtime.");
+				"Please provide a valid Runtime.");
 	  dvd.runtime->setFocus();
 	  goto db_rollback;
 	}
@@ -391,9 +391,7 @@ void qtbook_dvd::slotGo(void)
 	  QMessageBox::critical(this, "BiblioteQ: Database Error",
 				"Unable to create or update the entry. "
 				"Please verify that "
-				"the entry does not already exist and "
-				"that you "
-				"have completed all of the required fields.");
+				"the entry does not already exist.");
 	  goto db_rollback;
 	}
       else

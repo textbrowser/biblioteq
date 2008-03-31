@@ -216,4 +216,5 @@
      also be allowed to view their reservation histories. (DONE)
 115. Create compact views for the borrower tables. (DONE)
      See #80.
-116. Drop the member's database account during member removal. (DONE)
+116. Drop the member's database account during member removal.
+     Must first revoke all privileges. (DONE)

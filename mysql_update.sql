@@ -24,7 +24,7 @@ CREATE TABLE member_history
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
 
-/* Release 4.00 */
+/* Releases 4.00, 4.00.1 */
 
 CREATE VIEW cd_borrower_vw AS
 SELECT	 item_oid,

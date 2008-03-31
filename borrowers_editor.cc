@@ -436,12 +436,12 @@ void borrowers_editor::slotSave(void)
 
   if(error)
     QMessageBox::critical(this, "BiblioteQ: User Error",
-			  "Some or all of the dates were not updated "
+			  "Some or all of the Due Dates were not updated "
 			  "due to invalid dates.");
 
   if(query.lastError().isValid())
     QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Some or all of the dates were not updated "
+			  "Some or all of the Due Dates were not updated "
 			  "due to database errors.");
 }
 
