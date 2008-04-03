@@ -6,7 +6,9 @@
 */
 
 #include <QMenu>
+#include <QBuffer>
 #include <QDialog>
+#include <QFileDialog>
 #include <QMainWindow>
 #include <QStringList>
 
@@ -44,6 +46,10 @@ class qtbook_book: public QMainWindow, public qtbook_item
   virtual void closeEvent(QCloseEvent *);
 
  private:
+  QPixmap backPixmap;
+  QPixmap frontPixmap;
+  QString backPixmapFormat;
+  QString frontPixmapFormat;
   QPalette cb_orig_pal;
   QPalette dt_orig_pal;
   QPalette te_orig_pal;
@@ -57,6 +63,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotReset(void);
   void slotCancel(void);
   void slotShowUsers(void);
+  void slotSelectImage(void);
   void slotConvertISBN10to13(void);
   void slotPopulateCopiesEditor(void);
 };

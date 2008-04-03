@@ -84,3 +84,28 @@ GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
 GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
 DROP USER xbook;
 ALTER USER xbook_admin CREATEUSER;
+
+/* Release 4.01 */
+
+ALTER TABLE book DROP front_cover;
+ALTER TABLE book DROP back_cover;
+ALTER TABLE book ADD front_cover BYTEA;
+ALTER TABLE book ADD back_cover BYTEA;
+ALTER TABLE book ADD front_cover_fmt VARCHAR(8);
+ALTER TABLE book ADD back_cover_fmt VARCHAR(8);
+ALTER TABLE cd DROP front_cover;
+ALTER TABLE cd DROP back_cover;
+ALTER TABLE cd ADD front_cover BYTEA;
+ALTER TABLE cd ADD back_cover BYTEA;
+ALTER TABLE dvd DROP front_cover;
+ALTER TABLE dvd DROP back_cover;
+ALTER TABLE dvd ADD front_cover BYTEA;
+ALTER TABLE dvd ADD back_cover BYTEA;
+ALTER TABLE magazine DROP front_cover;
+ALTER TABLE magazine DROP back_cover;
+ALTER TABLE magazine ADD front_cover BYTEA;
+ALTER TABLE magazine ADD back_cover BYTEA;
+ALTER TABLE videogame DROP front_cover;
+ALTER TABLE videogame DROP back_cover;
+ALTER TABLE videogame ADD front_cover BYTEA;
+ALTER TABLE videogame ADD back_cover BYTEA;

@@ -180,7 +180,7 @@
      value. (DONE)
 93.  Allow SSL connections to the database server. (DONE)
 94.  Do not allow runtimes of 00:00:00. (DONE)
-95.  Implement roles: (TBD)
+95.  Implement roles: (DONE)
 	Role		Abilities
 	Administrator	Full
 	Circulation	Reservation, Returns

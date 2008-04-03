@@ -98,6 +98,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(id.frontButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+  connect(id.backButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
@@ -307,7 +311,11 @@ void qtbook_book::slotGo(void)
 			      "isbn13 = ?, "
 			      "lccontrolnumber = ?, "
 			      "callnumber = ?, "
-			      "deweynumber = ? "
+			      "deweynumber = ?, "
+			      "front_cover = ?, "
+			      "back_cover = ?, "
+			      "front_cover_fmt = ?, "
+			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else
@@ -317,12 +325,14 @@ void qtbook_book::slotGo(void)
 			      "monetary_units, quantity, "
 			      "binding_type, location, "
 			      "isbn13, lccontrolnumber, callnumber, "
-			      "deweynumber) "
+			      "deweynumber, front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, id.id->text());
       query.bindValue(1, id.title->text());
@@ -343,8 +353,33 @@ void qtbook_book::slotGo(void)
       query.bindValue(16, id.callnum->text());
       query.bindValue(17, id.deweynum->text());
 
+      if(id.frontCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  frontPixmap.save(&buffer, frontPixmapFormat.toAscii());
+	  query.bindValue(18, bytes);
+	}
+      else
+	query.bindValue(18, QVariant());
+
+      if(id.backCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  backPixmap.save(&buffer, backPixmapFormat.toAscii());
+	  query.bindValue(19, bytes);
+	}
+      else
+	query.bindValue(19, QVariant());
+
+      query.bindValue(20, frontPixmapFormat);
+      query.bindValue(21, backPixmapFormat);
+
       if(windowTitle().contains("Modify"))
-	query.bindValue(18, oid);
+	query.bindValue(22, oid);
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -454,6 +489,20 @@ void qtbook_book::slotGo(void)
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  qapp->restoreOverrideCursor();
 	  oldq = id.quantity->value();
+
+	  if(!id.frontCheck->isChecked())
+	    {
+	      frontPixmap = QPixmap();
+	      frontPixmapFormat = "";
+	      id.front_image->clear();
+	    }
+
+	  if(!id.backCheck->isChecked())
+	    {
+	      backPixmap = QPixmap();
+	      backPixmapFormat = "";
+	      id.back_image->clear();
+	    }
 
 	  if(windowTitle().contains("Modify"))
 	    {
@@ -713,6 +762,7 @@ void qtbook_book::search(void)
 {
   QPoint p(0, 0);
 
+  id.coverImages->setVisible(false);
   id.id->clear();
   id.isbn13->clear();
   id.author->clear();
@@ -784,6 +834,8 @@ void qtbook_book::updateWindow(const int state)
       id.okButton->setVisible(true);
       id.queryButton->setVisible(true);
       id.resetButton->setVisible(true);
+      id.frontButton->setEnabled(true);
+      id.backButton->setEnabled(true);
       str = QString("BiblioteQ: Modify Book Entry (%1)").arg(id.id->text());
     }
   else
@@ -793,9 +845,12 @@ void qtbook_book::updateWindow(const int state)
       id.okButton->setVisible(false);
       id.queryButton->setVisible(false);
       id.resetButton->setVisible(false);
+      id.frontButton->setEnabled(false);
+      id.backButton->setEnabled(false);
       str = QString("BiblioteQ: View Book Details (%1)").arg(id.id->text());
     }
 
+  id.coverImages->setVisible(true);
   setWindowTitle(str);
 }
 
@@ -820,6 +875,8 @@ void qtbook_book::modify(const int state)
       id.okButton->setVisible(true);
       id.queryButton->setVisible(true);
       id.resetButton->setVisible(true);
+      id.frontButton->setEnabled(true);
+      id.backButton->setEnabled(true);
     }
   else
     {
@@ -829,8 +886,12 @@ void qtbook_book::modify(const int state)
       id.okButton->setVisible(false);
       id.queryButton->setVisible(false);
       id.resetButton->setVisible(false);
+      id.frontButton->setEnabled(false);
+      id.backButton->setEnabled(false);
     }
 
+  id.frontCheck->setChecked(false);
+  id.backCheck->setChecked(false);
   id.quantity->setMinimum(1);
   id.queryButton->setEnabled(true);
   id.price->setMinimum(0.01);
@@ -847,7 +908,11 @@ void qtbook_book::modify(const int state)
     "lccontrolnumber, "
     "callnumber, "
     "deweynumber, "
-    "description "
+    "description, "
+    "front_cover_fmt, "
+    "back_cover_fmt, "
+    "front_cover, "
+    "back_cover "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -958,6 +1023,30 @@ void qtbook_book::modify(const int state)
 	    id.callnum->setText(var.toString());
 	  else if(fieldname == "deweynumber")
 	    id.deweynum->setText(var.toString());
+	  else if(fieldname == "front_cover_fmt")
+	    frontPixmapFormat = var.toString();
+	  else if(fieldname == "back_cover_fmt")
+	    backPixmapFormat = var.toString();
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  frontPixmap.loadFromData(var.toByteArray(),
+					   frontPixmapFormat.toAscii());
+		  id.front_image->setPixmap(frontPixmap);
+		  id.frontCheck->setChecked(true);
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  backPixmap.loadFromData(var.toByteArray(),
+					  backPixmapFormat.toAscii());
+		  id.back_image->setPixmap(backPixmap);
+		  id.backCheck->setChecked(true);
+		}
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1588,4 +1677,44 @@ bool qtbook_book::isBusy(void)
     return true;
   else
     return false;
+}
+
+/*
+** -- slotSelectImage() --
+*/
+
+void qtbook_book::slotSelectImage(void)
+{
+  QFileDialog dialog(this);
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
+
+  if(button == id.frontButton)
+    dialog.setWindowTitle("Front Cover Image Selection");
+  else
+    dialog.setWindowTitle("Back Cover Image Selection");
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    if(button == id.frontButton)
+      {
+	frontPixmap = QPixmap(dialog.selectedFiles().at(0));
+	frontPixmapFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	frontPixmapFormat = frontPixmapFormat.toUpper();
+	id.front_image->setPixmap(frontPixmap);
+	id.frontCheck->setChecked(true);
+      }
+    else
+      {
+	backPixmap = QPixmap(dialog.selectedFiles().at(0));
+	backPixmapFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	backPixmapFormat = backPixmapFormat.toUpper();
+	id.back_image->setPixmap(backPixmap);
+	id.backCheck->setChecked(true);
+      }
 }

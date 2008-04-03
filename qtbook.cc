@@ -587,7 +587,6 @@ void qtbook::showMain(void)
   */
 
   initialUpdate();
-  // ui.connectTool->setFocus();
 }
 
 /*
@@ -616,7 +615,7 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setWindowTitle("BiblioteQ: About");
-  mb.setText("BiblioteQ Version 4.00.1.\n"
+  mb.setText("BiblioteQ Version 4.01.\n"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.\n"
 	     "Icons copyright (c) Everaldo.\n\n"
@@ -4309,23 +4308,58 @@ void qtbook::slotShowColumns(void)
 void qtbook::slotUpdateStatusLabel(void)
 {
   int i = 0;
-  int ct = 0;
   QString str = "";
-  QList<QTableWidgetSelectionRange> list = ui.table->selectedRanges();
-
-  for(i = 0, ct = 0; i < list.size(); i++)
-    ct += list.at(i).rowCount();
+  QString type = "";
+  QString summary = "";
+  QModelIndex index;
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
   if(ui.table->rowCount() == 1)
     str = QString("%1 Item / %2 Selected")
       .arg(ui.table->rowCount())
-      .arg(ct);
+      .arg(list.size());
   else
     str = QString("%1 Items / %2 Selected")
       .arg(ui.table->rowCount())
-      .arg(ct);
+      .arg(list.size());
+
+  /*
+  ** Display a preview.
+  */
+
+  if(list.size() > 0)
+    {
+      foreach(index, list)
+	{
+	  i = index.row();
+	  break;
+	}
+
+      type = misc_functions::getColumnString(ui.table, i, "Type");
+
+      if(type == "Book")
+	{
+	  summary += misc_functions::getColumnString(ui.table, i, "Title");
+	  summary += "\n";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     "Publication Date");
+	  summary += "\n";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     "Publisher");
+	  summary += "\n";
+	}
+
+      ui.summary->setText(summary);
+    }
+  else
+    {
+      ui.summary->clear();
+      ui.front_image->clear();
+      ui.back_image->clear();
+    }
 
   ui.information_label->setText(str);
+  list.clear();
 }
 
 /*
