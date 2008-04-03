@@ -46,10 +46,10 @@ class qtbook_book: public QMainWindow, public qtbook_item
   virtual void closeEvent(QCloseEvent *);
 
  private:
-  QPixmap backPixmap;
-  QPixmap frontPixmap;
-  QString backPixmapFormat;
-  QString frontPixmapFormat;
+  QImage backImage;
+  QImage frontImage;
+  QString backImageFormat;
+  QString frontImageFormat;
   QPalette cb_orig_pal;
   QPalette dt_orig_pal;
   QPalette te_orig_pal;

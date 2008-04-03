@@ -47,24 +47,9 @@
         </property>
         <layout class="QVBoxLayout" >
          <item>
-          <widget class="QLabel" name="front_image" >
-           <property name="maximumSize" >
-            <size>
-             <width>135</width>
-             <height>16777215</height>
-            </size>
-           </property>
+          <widget class="QGraphicsView" name="front_image" >
            <property name="toolTip" >
-            <string>Front Image</string>
-           </property>
-           <property name="frameShape" >
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignCenter</set>
+            <string>Front Cover Image</string>
            </property>
           </widget>
          </item>
@@ -87,24 +72,9 @@
           </layout>
          </item>
          <item>
-          <widget class="QLabel" name="back_image" >
-           <property name="maximumSize" >
-            <size>
-             <width>135</width>
-             <height>16777215</height>
-            </size>
-           </property>
+          <widget class="QGraphicsView" name="back_image" >
            <property name="toolTip" >
-            <string>Back Image</string>
-           </property>
-           <property name="frameShape" >
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignCenter</set>
+            <string>Back Cover Image</string>
            </property>
           </widget>
          </item>
@@ -158,12 +128,6 @@
            </item>
            <item row="0" column="1" >
             <widget class="QLineEdit" name="id" >
-             <property name="maximumSize" >
-              <size>
-               <width>125</width>
-               <height>16777215</height>
-              </size>
-             </property>
              <property name="maxLength" >
               <number>32</number>
              </property>
@@ -186,10 +150,10 @@
             <layout class="QHBoxLayout" >
              <item>
               <widget class="QLineEdit" name="isbn13" >
-               <property name="maximumSize" >
+               <property name="minimumSize" >
                 <size>
                  <width>125</width>
-                 <height>16777215</height>
+                 <height>0</height>
                 </size>
                </property>
                <property name="maxLength" >
@@ -212,19 +176,6 @@
                 <iconset>icons.d/16x16/convert.png</iconset>
                </property>
               </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </item>
@@ -1072,8 +1023,10 @@
   </widget>
  </widget>
  <tabstops>
+  <tabstop>front_image</tabstop>
   <tabstop>frontButton</tabstop>
   <tabstop>frontCheck</tabstop>
+  <tabstop>back_image</tabstop>
   <tabstop>backButton</tabstop>
   <tabstop>backCheck</tabstop>
   <tabstop>id</tabstop>

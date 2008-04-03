@@ -23,6 +23,8 @@ CREATE TABLE book
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
+	front_cover_fmt	 VARCHAR(8),
+	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
 );
 
@@ -141,8 +143,6 @@ CREATE TABLE magazine
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
-	front_cover_fmt	 VARCHAR(8),
-	back_cover_fmt	 VARCHAR(8),
 	PRIMARY KEY(id, mag_volume, mag_no)
 );
 

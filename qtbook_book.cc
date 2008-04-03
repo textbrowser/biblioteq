@@ -30,6 +30,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	      "[0-9][0-9][0-9]");
   QValidator *validator1 = NULL;
   QValidator *validator2 = NULL;
+  QGraphicsScene *scene1 = NULL;
+  QGraphicsScene *scene2 = NULL;
 
   if((menu = new QMenu()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -38,6 +40,12 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((validator2 = new QRegExpValidator(rx2, this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene1 = new QGraphicsScene()) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene2 = new QGraphicsScene()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = NULL;
@@ -109,6 +117,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.language->addItems(languages);
   id.monetary_units->addItems(monetary_units);
   id.location->addItems(locations);
+  id.front_image->setScene(scene1);
+  id.back_image->setScene(scene2);
 
   if(id.category->count() == 0)
     id.category->addItem("UNKNOWN");
@@ -358,7 +368,7 @@ void qtbook_book::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  frontPixmap.save(&buffer, frontPixmapFormat.toAscii());
+	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
 	  query.bindValue(18, bytes);
 	}
       else
@@ -369,14 +379,14 @@ void qtbook_book::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  backPixmap.save(&buffer, backPixmapFormat.toAscii());
+	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
 	  query.bindValue(19, bytes);
 	}
       else
 	query.bindValue(19, QVariant());
 
-      query.bindValue(20, frontPixmapFormat);
-      query.bindValue(21, backPixmapFormat);
+      query.bindValue(20, frontImageFormat);
+      query.bindValue(21, backImageFormat);
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(22, oid);
@@ -492,17 +502,28 @@ void qtbook_book::slotGo(void)
 
 	  if(!id.frontCheck->isChecked())
 	    {
-	      frontPixmap = QPixmap();
-	      frontPixmapFormat = "";
-	      id.front_image->clear();
+	      frontImage = QImage();
+	      frontImageFormat = "";
+
+	      if(id.front_image->scene()->items().size() > 0)
+		id.front_image->scene()->removeItem
+		  (id.front_image->scene()->items().at(0));
 	    }
 
 	  if(!id.backCheck->isChecked())
 	    {
-	      backPixmap = QPixmap();
-	      backPixmapFormat = "";
-	      id.back_image->clear();
+	      backImage = QImage();
+	      backImageFormat = "";
+
+	      if(id.back_image->scene()->items().size() > 0)
+		id.back_image->scene()->removeItem
+		  (id.back_image->scene()->items().at(0));
 	    }
+
+	  id.frontCheck->setChecked
+	    (id.front_image->scene()->items().size() > 0);
+	  id.backCheck->setChecked
+	    (id.back_image->scene()->items().size() > 0);
 
 	  if(windowTitle().contains("Modify"))
 	    {
@@ -1024,16 +1045,17 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "deweynumber")
 	    id.deweynum->setText(var.toString());
 	  else if(fieldname == "front_cover_fmt")
-	    frontPixmapFormat = var.toString();
+	    frontImageFormat = var.toString();
 	  else if(fieldname == "back_cover_fmt")
-	    backPixmapFormat = var.toString();
+	    backImageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  frontPixmap.loadFromData(var.toByteArray(),
-					   frontPixmapFormat.toAscii());
-		  id.front_image->setPixmap(frontPixmap);
+		  frontImage.loadFromData(var.toByteArray(),
+					  frontImageFormat.toAscii());
+		  id.front_image->scene()->addPixmap
+		    (QPixmap().fromImage(frontImage));
 		  id.frontCheck->setChecked(true);
 		}
 	    }
@@ -1041,9 +1063,10 @@ void qtbook_book::modify(const int state)
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  backPixmap.loadFromData(var.toByteArray(),
-					  backPixmapFormat.toAscii());
-		  id.back_image->setPixmap(backPixmap);
+		  backImage.loadFromData(var.toByteArray(),
+					 backImageFormat.toAscii());
+		  id.back_image->scene()->addPixmap
+		    (QPixmap().fromImage(backImage));
 		  id.backCheck->setChecked(true);
 		}
 	    }
@@ -1701,20 +1724,20 @@ void qtbook_book::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == id.frontButton)
       {
-	frontPixmap = QPixmap(dialog.selectedFiles().at(0));
-	frontPixmapFormat = dialog.selectedFiles().at(0).mid
+	frontImage = QImage(dialog.selectedFiles().at(0));
+	frontImageFormat = dialog.selectedFiles().at(0).mid
 	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	frontPixmapFormat = frontPixmapFormat.toUpper();
-	id.front_image->setPixmap(frontPixmap);
+	frontImageFormat = frontImageFormat.toUpper();
+	id.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
 	id.frontCheck->setChecked(true);
       }
     else
       {
-	backPixmap = QPixmap(dialog.selectedFiles().at(0));
-	backPixmapFormat = dialog.selectedFiles().at(0).mid
+	backImage = QImage(dialog.selectedFiles().at(0));
+	backImageFormat = dialog.selectedFiles().at(0).mid
 	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	backPixmapFormat = backPixmapFormat.toUpper();
-	id.back_image->setPixmap(backPixmap);
+	backImageFormat = backImageFormat.toUpper();
+	id.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
 	id.backCheck->setChecked(true);
       }
 }

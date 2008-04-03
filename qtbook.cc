@@ -141,6 +141,7 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu3 = NULL;
   QMenu *menu4 = NULL;
   QMenu *menu5 = NULL;
+  QGraphicsScene *scene = NULL;
 
   typefilter = "All";
   previousTypeFilter = -1;
@@ -182,6 +183,9 @@ qtbook::qtbook(void):QMainWindow()
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu5 = new QMenu()) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene = new QGraphicsScene()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(menu1->addAction("Insert &Book"),
@@ -408,6 +412,7 @@ qtbook::qtbook(void):QMainWindow()
   setGeometry(qapp->desktop()->x() + (w - MAINWINDOW_MINWIDTH) / 2,
 	      qapp->desktop()->y() + (h - MAINWINDOW_MINHEIGHT) / 2,
 	      MAINWINDOW_MINWIDTH, MAINWINDOW_MINHEIGHT);
+  ui.item_summary->setScene(scene);
   ui.createTool->setMenu(menu1);
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
@@ -4349,13 +4354,13 @@ void qtbook::slotUpdateStatusLabel(void)
 	  summary += "\n";
 	}
 
-      ui.summary->setText(summary);
+      ui.item_summary->scene()->addSimpleText(summary);
     }
   else
     {
-      ui.summary->clear();
-      ui.front_image->clear();
-      ui.back_image->clear();
+      /*
+      ** Clear the scene.
+      */
     }
 
   ui.information_label->setText(str);
