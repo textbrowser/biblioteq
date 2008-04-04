@@ -1724,6 +1724,10 @@ void qtbook_book::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == id.frontButton)
       {
+	if(id.front_image->scene()->items().size() > 0)
+	  id.front_image->scene()->removeItem
+	    (id.front_image->scene()->items().at(0));
+
 	frontImage = QImage(dialog.selectedFiles().at(0));
 	frontImageFormat = dialog.selectedFiles().at(0).mid
 	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
@@ -1733,6 +1737,10 @@ void qtbook_book::slotSelectImage(void)
       }
     else
       {
+	if(id.back_image->scene()->items().size() > 0)
+	  id.back_image->scene()->removeItem
+	    (id.back_image->scene()->items().at(0));
+
 	backImage = QImage(dialog.selectedFiles().at(0));
 	backImageFormat = dialog.selectedFiles().at(0).mid
 	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);

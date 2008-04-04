@@ -5,6 +5,31 @@
 #include "misc_functions.h"
 
 /*
+** -- getImage() --
+*/
+
+QImage misc_functions::getImage(const QString &oid,
+				const QString &which,
+				const QString &typeArg,
+				const QSqlDatabase &db)
+{
+  QImage image = QImage();
+  QString type = typeArg.toLower().remove(" ");
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
+    (which).arg(type).arg(oid);
+
+  if(query.exec(querystr))
+    if(query.next())
+      image.loadFromData(query.value(0).toByteArray(),
+			 query.value(1).toString().toAscii());
+
+  return image;
+}
+
+/*
 ** -- createOrDeleteDBAccount() --
 */
 

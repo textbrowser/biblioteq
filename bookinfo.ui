@@ -37,7 +37,7 @@
       <item>
        <widget class="QGroupBox" name="coverImages" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -48,8 +48,20 @@
         <layout class="QVBoxLayout" >
          <item>
           <widget class="QGraphicsView" name="front_image" >
+           <property name="maximumSize" >
+            <size>
+             <width>135</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="toolTip" >
             <string>Front Cover Image</string>
+           </property>
+           <property name="verticalScrollBarPolicy" >
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy" >
+            <enum>Qt::ScrollBarAsNeeded</enum>
            </property>
           </widget>
          </item>
@@ -73,8 +85,23 @@
          </item>
          <item>
           <widget class="QGraphicsView" name="back_image" >
+           <property name="maximumSize" >
+            <size>
+             <width>135</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="toolTip" >
             <string>Back Cover Image</string>
+           </property>
+           <property name="frameShadow" >
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="verticalScrollBarPolicy" >
+            <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="horizontalScrollBarPolicy" >
+            <enum>Qt::ScrollBarAsNeeded</enum>
            </property>
           </widget>
          </item>

@@ -141,7 +141,6 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu3 = NULL;
   QMenu *menu4 = NULL;
   QMenu *menu5 = NULL;
-  QGraphicsScene *scene = NULL;
 
   typefilter = "All";
   previousTypeFilter = -1;
@@ -183,9 +182,6 @@ qtbook::qtbook(void):QMainWindow()
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu5 = new QMenu()) == NULL)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((scene = new QGraphicsScene()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(menu1->addAction("Insert &Book"),
@@ -412,7 +408,6 @@ qtbook::qtbook(void):QMainWindow()
   setGeometry(qapp->desktop()->x() + (w - MAINWINDOW_MINWIDTH) / 2,
 	      qapp->desktop()->y() + (h - MAINWINDOW_MINHEIGHT) / 2,
 	      MAINWINDOW_MINWIDTH, MAINWINDOW_MINHEIGHT);
-  ui.item_summary->setScene(scene);
   ui.createTool->setMenu(menu1);
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
@@ -4313,6 +4308,9 @@ void qtbook::slotShowColumns(void)
 void qtbook::slotUpdateStatusLabel(void)
 {
   int i = 0;
+  QImage backImage;
+  QImage frontImage;
+  QString oid = "";
   QString str = "";
   QString type = "";
   QString summary = "";
@@ -4340,6 +4338,7 @@ void qtbook::slotUpdateStatusLabel(void)
 	  break;
 	}
 
+      oid = misc_functions::getColumnString(ui.table, i, "OID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
 
       if(type == "Book")
@@ -4354,13 +4353,22 @@ void qtbook::slotUpdateStatusLabel(void)
 	  summary += "\n";
 	}
 
-      ui.item_summary->scene()->addSimpleText(summary);
+      ui.summary->setText(summary);
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      frontImage = misc_functions::getImage(oid, "front_cover", type,
+					    getDB());
+      qapp->restoreOverrideCursor();
+      ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
     }
   else
     {
       /*
       ** Clear the scene.
       */
+
+      ui.summary->clear();
+      ui.frontImage->clear();
+      ui.backImage->clear();
     }
 
   ui.information_label->setText(str);

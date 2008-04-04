@@ -1,7 +1,7 @@
 1.   Allow the user to hide the main table's columns. (DONE)
 2.   Save major settings to a configuration file. (DONE)
 3.   Implement the Library of Congress query. (DONE)
-4.   Allow for image storage of front and back covers. (TBD)
+4.   Allow for image storage of front and back covers. (DONE)
 5.   Port to Windows XP. Test on FreeBSD (DONE), Linux, OS X (DONE),
      and Solaris (DONE).
 6.   Allow searching of library members. This feature should only be
@@ -218,3 +218,4 @@
      See #80.
 116. Drop the member's database account during member removal.
      Must first revoke all privileges. (DONE)
+117. Reload the image summary after an item has been updated.

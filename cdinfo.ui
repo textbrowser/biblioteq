@@ -32,7 +32,7 @@
        <widget class="QGroupBox" name="groupBox" >
         <property name="minimumSize" >
          <size>
-          <width>485</width>
+          <width>400</width>
           <height>0</height>
          </size>
         </property>
@@ -384,18 +384,114 @@
            </item>
           </layout>
          </item>
+         <item row="8" column="1" >
+          <layout class="QHBoxLayout" >
+           <item>
+            <layout class="QVBoxLayout" >
+             <item>
+              <widget class="QGraphicsView" name="front_image" >
+               <property name="maximumSize" >
+                <size>
+                 <width>135</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip" >
+                <string>Front Cover Image</string>
+               </property>
+               <property name="frameShadow" >
+                <enum>QFrame::Sunken</enum>
+               </property>
+               <property name="verticalScrollBarPolicy" >
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy" >
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" >
+               <item>
+                <widget class="QPushButton" name="frontButton" >
+                 <property name="text" >
+                  <string>&amp;Select</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="frontCheck" >
+                 <property name="text" >
+                  <string>Save</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" >
+             <item>
+              <widget class="QGraphicsView" name="back_image" >
+               <property name="maximumSize" >
+                <size>
+                 <width>135</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip" >
+                <string>Back Cover Image</string>
+               </property>
+               <property name="verticalScrollBarPolicy" >
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy" >
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" >
+               <item>
+                <widget class="QPushButton" name="backButton" >
+                 <property name="text" >
+                  <string>&amp;Select</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="backCheck" >
+                 <property name="text" >
+                  <string>Save</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
          <item row="8" column="0" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Vertical</enum>
+          <widget class="QLabel" name="label_19" >
+           <property name="text" >
+            <string>Cover Images</string>
            </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -405,7 +501,7 @@
         <property name="minimumSize" >
          <size>
           <width>0</width>
-          <height>485</height>
+          <height>400</height>
          </size>
         </property>
         <property name="title" >
@@ -1108,6 +1204,12 @@
   <tabstop>audio</tabstop>
   <tabstop>recording_type</tabstop>
   <tabstop>tracksButton</tabstop>
+  <tabstop>front_image</tabstop>
+  <tabstop>frontButton</tabstop>
+  <tabstop>frontCheck</tabstop>
+  <tabstop>back_image</tabstop>
+  <tabstop>backButton</tabstop>
+  <tabstop>backCheck</tabstop>
   <tabstop>title</tabstop>
   <tabstop>release_date</tabstop>
   <tabstop>recording_label</tabstop>

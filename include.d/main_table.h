@@ -18,7 +18,7 @@ class main_table: public QTableWidget
   Q_OBJECT
 
  public:
-  main_table(QFrame *);
+  main_table(QWidget *);
   void resetTable(const QString &);
   void recordColumnHidden(const QString &, const int, const bool);
   void clearHiddenColumnsRecord(void);

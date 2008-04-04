@@ -41,6 +41,8 @@ class misc_functions
 				  const QString &, QString &);
   static void createOrDeleteDBAccount(const QString &, const QSqlDatabase &,
 				      const int, QString &);
+  static QImage getImage(const QString &, const QString &, const QString &,
+			 const QSqlDatabase &);
   static QString getOID(const QString &, const QString &,
 			const QSqlDatabase &, QString &);
   static QString getRoles(const QSqlDatabase &, const QString &, QString &);
