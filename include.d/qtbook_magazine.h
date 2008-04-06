@@ -59,6 +59,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void slotReset(void);
   void slotCancel(void);
   void slotShowUsers(void);
+  void slotSelectImage(void);
   void slotPopulateCopiesEditor(void);
 };
 

@@ -30,7 +30,7 @@ locresults::locresults(QWidget *parent, QStringList &list,
 	  SLOT(slotClose(void)));
   ui.list->setCurrentRow(0);
   setGlobalFonts(font);
-  show();
+  exec();
 }
 
 /*
@@ -51,6 +51,7 @@ void locresults::slotSelectRecord(void)
   QStringList list;
 
   list = ui.textarea->toPlainText().split("\n");
+  hide();
   magazine->populateDisplayAfterLOC(list);
   list.clear();
   deleteLater();
@@ -81,6 +82,7 @@ void locresults::closeEvent(QCloseEvent *e)
 
 void locresults::slotClose(void)
 {
+  hide();
   deleteLater();
 }
 

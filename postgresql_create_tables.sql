@@ -60,6 +60,8 @@ CREATE TABLE cd
 	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
+	front_cover_fmt	 VARCHAR(8),
+	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
 );
 
@@ -108,6 +110,8 @@ CREATE TABLE dvd
 	dvdaspectratio	 VARCHAR(64) NOT NULL,
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
+	front_cover_fmt	 VARCHAR(8),
+	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'
 );
 
@@ -143,6 +147,8 @@ CREATE TABLE magazine
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
+	front_cover_fmt	 VARCHAR(8),
+	back_cover_fmt	 VARCHAR(8),
 	PRIMARY KEY(id, mag_volume, mag_no)
 );
 
@@ -176,6 +182,8 @@ CREATE TABLE videogame
 	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',
 	front_cover	 BYTEA, /* Future use. */
 	back_cover	 BYTEA, /* Future use. */
+	front_cover_fmt	 VARCHAR(8),
+	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'
 );
 

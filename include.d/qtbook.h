@@ -116,6 +116,7 @@ class qtbook: public QMainWindow
 
  public slots:
   void slotResizeColumns(void);
+  void slotUpdateStatusLabel(void);
 
  private:
   int previousTypeFilter;
@@ -239,7 +240,6 @@ class qtbook: public QMainWindow
   void slotResetLoginDialog(void);
   void slotShowConnectionDB(void);
   void slotListReservedItems(void);
-  void slotUpdateStatusLabel(void);
   void slotExecuteCustomQuery(void);
   void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);

@@ -412,6 +412,7 @@ void qtbook_videogame::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
+	      qmain->slotUpdateStatusLabel();
 	      str = QString("BiblioteQ: Modify Video Game Entry (%1)").arg
 		(vg.id->text());
 	      setWindowTitle(str);

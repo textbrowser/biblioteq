@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>500</height>
+    <width>898</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>500</width>
-    <height>500</height>
+    <height>650</height>
    </size>
   </property>
   <property name="font" >
@@ -37,9 +37,21 @@
     <item>
      <layout class="QHBoxLayout" >
       <item>
-       <layout class="QVBoxLayout" >
-        <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
          <widget class="QGroupBox" name="groupBox" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>225</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="title" >
            <string>Categories</string>
           </property>
@@ -49,7 +61,20 @@
           <property name="flat" >
            <bool>true</bool>
           </property>
-          <layout class="QVBoxLayout" >
+          <layout class="QHBoxLayout" >
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item>
             <widget class="QComboBox" name="typefilter" >
              <property name="sizeAdjustPolicy" >
@@ -92,16 +117,35 @@
              </item>
             </widget>
            </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </widget>
         </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2" >
+        <item row="1" column="0" >
+         <widget class="QGroupBox" name="itemSummary" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>225</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="title" >
            <string>Item Summary</string>
@@ -115,6 +159,15 @@
           <layout class="QVBoxLayout" >
            <item>
             <widget class="QLabel" name="summary" >
+             <property name="maximumSize" >
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape" >
+              <enum>QFrame::StyledPanel</enum>
+             </property>
              <property name="text" >
               <string/>
              </property>
@@ -125,39 +178,39 @@
            </item>
            <item>
             <widget class="QLabel" name="frontImage" >
-             <property name="toolTip" >
-              <string>Front Cover Image</string>
-             </property>
              <property name="text" >
               <string/>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLabel" name="backImage" >
-             <property name="toolTip" >
-              <string>Back Cover Image</string>
-             </property>
              <property name="text" >
               <string/>
              </property>
+             <property name="alignment" >
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>47</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
-        </item>
-        <item>
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -328,7 +381,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>898</width>
      <height>28</height>
     </rect>
    </property>

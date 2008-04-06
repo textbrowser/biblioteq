@@ -276,8 +276,6 @@ qtbook::qtbook(void):QMainWindow()
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table, SIGNAL(itemSelectionChanged(void)), this,
 	  SLOT(slotUpdateStatusLabel(void)));
-  connect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
-	  SLOT(slotModifyBorrower(void)));
   connect(bb.modifyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyBorrower(void)));
   connect(bb.historyButton, SIGNAL(clicked(void)), this,
@@ -436,6 +434,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.configTool->setEnabled(false);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.table->resetTable("All");
+  ui.summary->setVisible(false);
   addConfigOptions();
   setUpdatesEnabled(true);
   setMinimumWidth(MAINWINDOW_MINWIDTH);
@@ -523,27 +522,57 @@ void qtbook::adminSetup(void)
     }
 
   if(db.isOpen() && supportsTransactions)
-    {
-      ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
-      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotModify(void)));
-      updateItemWindows();
-    }   
+    if(roles.contains("all"))
+      {
+	ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+	connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		this, SLOT(slotModify(void)));
+	updateItemWindows();
+      }
 
-  ui.deleteTool->setEnabled(db.isOpen());
+  ui.deleteTool->setEnabled(db.isOpen() && roles.contains("all"));
   ui.overdueButton->setEnabled(db.isOpen());
-  ui.actionDeleteEntry->setEnabled(db.isOpen());
-  ui.createTool->setEnabled(db.isOpen());
-  ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions);
-  ui.detailsTool->setEnabled(!(db.isOpen() && supportsTransactions));
-  ui.actionViewDetails->setEnabled
-    (!(db.isOpen() && supportsTransactions));
+  ui.actionDeleteEntry->setEnabled(db.isOpen() && roles.contains("all"));
+  ui.createTool->setEnabled(db.isOpen() && roles.contains("all"));
+  ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions &&
+			    roles.contains("all"));
+
+  if(roles.contains("all"))
+    ui.detailsTool->setEnabled(false);
+  else
+    ui.detailsTool->setEnabled(db.isOpen() && supportsTransactions);
+
+  if(roles.contains("all"))
+    ui.actionViewDetails->setEnabled(false);
+  else
+    ui.actionViewDetails->setEnabled(db.isOpen() && supportsTransactions);
+
   ui.actionModifyEntry->setEnabled
-    (db.isOpen() && supportsTransactions);
+    (db.isOpen() && supportsTransactions && roles.contains("all"));
   ui.userTool->setEnabled(db.isOpen());
   ui.reserveTool->setEnabled(db.isOpen());
   ui.actionMembersBrowser->setEnabled(db.isOpen());
   ui.actionAutoPopulateOnCreation->setEnabled(db.isOpen());
+
+  /*
+  ** Hide certain fields in the Member's Browser if the roles
+  ** do not contain "all."
+  */
+
+  if(!roles.contains("all"))
+    {
+      bb.addButton->setEnabled(false);
+      bb.deleteButton->setEnabled(false);
+      bb.modifyButton->setEnabled(false);
+    }
+  else
+    {
+      connect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+	      SLOT(slotModifyBorrower(void)));
+      bb.addButton->setEnabled(true);
+      bb.deleteButton->setEnabled(true);
+      bb.modifyButton->setEnabled(true);
+    }
 }
 
 /*
@@ -4313,6 +4342,7 @@ void qtbook::slotUpdateStatusLabel(void)
   QString oid = "";
   QString str = "";
   QString type = "";
+  QString tmpstr = "";
   QString summary = "";
   QModelIndex index;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
@@ -4340,25 +4370,131 @@ void qtbook::slotUpdateStatusLabel(void)
 
       oid = misc_functions::getColumnString(ui.table, i, "OID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
+      summary = "<html>";
 
       if(type == "Book")
 	{
-	  summary += misc_functions::getColumnString(ui.table, i, "Title");
-	  summary += "\n";
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i, "ISBN-10");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+
+	  summary += tmpstr;
+	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
 						     "Publication Date");
-	  summary += "\n";
+	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
 						     "Publisher");
-	  summary += "\n";
+	  summary += "<br>";
+	}
+      else if(type == "CD")
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Catalog Number");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Publication Date");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     "Release Date");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Publisher");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     "Recording Label");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "DVD")
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "UPC");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Publication Date");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     "Release Date");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Publisher");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     "Studio");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == "Magazine")
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i, "ISSN");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     "Publication Date");
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     "Publisher");
+	  summary += "<br>";
 	}
 
+      summary += misc_functions::getColumnString(ui.table, i, "Location");
+      summary += "</html>";
+      ui.summary->setVisible(true);
       ui.summary->setText(summary);
       qapp->setOverrideCursor(Qt::WaitCursor);
       frontImage = misc_functions::getImage(oid, "front_cover", type,
 					    getDB());
+      backImage = misc_functions::getImage(oid, "back_cover", type,
+					   getDB());
       qapp->restoreOverrideCursor();
-      ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+
+      if(!frontImage.isNull())
+	ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+
+      if(!backImage.isNull())
+	ui.backImage->setPixmap(QPixmap().fromImage(backImage));
     }
   else
     {
@@ -4366,6 +4502,7 @@ void qtbook::slotUpdateStatusLabel(void)
       ** Clear the scene.
       */
 
+      ui.summary->setVisible(false);
       ui.summary->clear();
       ui.frontImage->clear();
       ui.backImage->clear();
@@ -4642,6 +4779,7 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
   if(connected_bar_label != NULL)
@@ -5590,6 +5728,10 @@ void qtbook::replaceVideoGame(const QString &id, qtbook_videogame *video_game)
 
 void qtbook::updateItemWindows(void)
 {
+  /*
+  ** This method is no longer needed.
+  */
+
   QHash<QString, qtbook_cd *>::const_iterator cdit;
   QHash<QString, qtbook_dvd *>::const_iterator dvdit;
   QHash<QString, qtbook_book *>::const_iterator bookit;

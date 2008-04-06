@@ -9,6 +9,7 @@
 #include <QDialog>
 #include <QMainWindow>
 #include <QStringList>
+#include <QGraphicsScene>
 
 /*
 ** -- Local Includes --
@@ -55,6 +56,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   void slotSaveTracks(void);
   void slotDeleteTrack(void);
   void slotInsertTrack(void);
+  void slotSelectImage(void);
   void slotComputeRuntime(void);
   void slotCloseTracksBrowser(void);
   void slotPopulateCopiesEditor(void);

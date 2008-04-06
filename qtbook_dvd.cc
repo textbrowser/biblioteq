@@ -31,11 +31,19 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   QPoint p(0, 0);
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = NULL;
+  QGraphicsScene *scene1 = NULL;
+  QGraphicsScene *scene2 = NULL;
 
   if((menu = new QMenu()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((validator1 = new QRegExpValidator(rx1, this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene1 = new QGraphicsScene()) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene2 = new QGraphicsScene()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   oid = oidArg;
@@ -58,6 +66,10 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 	  SLOT(slotPopulateCopiesEditor(void)));
   connect(dvd.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &Front Cover Image"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &Back Cover Image"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &UPC"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Rating"),
@@ -96,6 +108,10 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(dvd.frontButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+  connect(dvd.backButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   dvd.queryButton->setVisible(isQueryEnabled);
   dvd.resetButton->setMenu(menu);
   dvd.id->setValidator(validator1);
@@ -106,6 +122,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.rating->addItems(ratings);
   dvd.aspectratio->addItems(aspectratios);
   dvd.region->addItems(regions);
+  dvd.front_image->setScene(scene1);
+  dvd.back_image->setScene(scene2);
 
   if(dvd.category->count() == 0)
     dvd.category->addItem("UNKNOWN");
@@ -325,7 +343,11 @@ void qtbook_dvd::slotGo(void)
 			      "monetary_units = ?, "
 			      "quantity = ?, "
 			      "location = ?, "
-			      "description = ? "
+			      "description = ?, "
+			      "front_cover = ?, "
+			      "back_cover = ?, "
+			      "front_cover_fmt = ?, "
+			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else
@@ -348,14 +370,16 @@ void qtbook_dvd::slotGo(void)
 			      "monetary_units, "
 			      "quantity, "
 			      "location, "
-			      "description) "
+			      "description, front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt) "
 			      "VALUES "
 			      "(?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, dvd.id->text());
       query.bindValue(1, dvd.rating->currentText().trimmed());
@@ -377,8 +401,39 @@ void qtbook_dvd::slotGo(void)
       query.bindValue(17, dvd.location->currentText().trimmed());
       query.bindValue(18, dvd.description->toPlainText());
 
+      if(dvd.frontCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  query.bindValue(19, bytes);
+	}
+      else
+	{
+	  frontImageFormat = "";
+	  query.bindValue(19, QVariant());
+	}
+
+      if(dvd.backCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  query.bindValue(20, bytes);
+	}
+      else
+	{
+	  backImageFormat = "";
+	  query.bindValue(20, QVariant());
+	}
+
+      query.bindValue(21, frontImageFormat);
+      query.bindValue(22, backImageFormat);
+
       if(windowTitle().contains("Modify"))
-	query.bindValue(19, oid);
+	query.bindValue(23, oid);
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -479,11 +534,38 @@ void qtbook_dvd::slotGo(void)
 		}
 	    }
 
+	  oldq = dvd.quantity->value();	  
+
+	  if(!dvd.frontCheck->isChecked())
+	    {
+	      frontImage = QImage();
+	      frontImageFormat = "";
+
+	      if(dvd.front_image->items().size() > 0)
+		dvd.front_image->scene()->removeItem
+		  (dvd.front_image->items().at(0));
+	    }
+
+	  if(!dvd.backCheck->isChecked())
+	    {
+	      backImage = QImage();
+	      backImageFormat = "";
+
+	      if(dvd.back_image->items().size() > 0)
+		dvd.back_image->scene()->removeItem
+		  (dvd.back_image->items().at(0));
+	    }
+
+	  dvd.frontCheck->setChecked
+	    (dvd.front_image->items().size() > 0);
+	  dvd.backCheck->setChecked
+	    (dvd.back_image->items().size() > 0);
+
 	  qapp->restoreOverrideCursor();
-	  oldq = dvd.quantity->value();
 
 	  if(windowTitle().contains("Modify"))
 	    {
+	      qmain->slotUpdateStatusLabel();
 	      str = QString("BiblioteQ: Modify DVD Entry (%1)").arg
 		(dvd.id->text());
 	      setWindowTitle(str);
@@ -750,6 +832,7 @@ void qtbook_dvd::search(void)
 {
   QPoint p(0, 0);
 
+  dvd.coverImages->setVisible(false);
   dvd.id->clear();
   dvd.actors->clear();
   dvd.directors->clear();
@@ -800,6 +883,11 @@ void qtbook_dvd::search(void)
   dvd.rating->setCurrentIndex(0);
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
+
+  foreach(QAction *action, dvd.resetButton->menu()->findChildren<QAction *>())
+    if(action->text().contains("Cover Image"))
+      action->setVisible(false);
+
   setWindowTitle("BiblioteQ: Database DVD Search");
   dvd.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -823,6 +911,10 @@ void qtbook_dvd::updateWindow(const int state)
       dvd.okButton->setVisible(true);
       dvd.queryButton->setVisible(isQueryEnabled);
       dvd.resetButton->setVisible(true);
+      dvd.frontButton->setVisible(true);
+      dvd.backButton->setVisible(true);
+      dvd.frontCheck->setVisible(true);
+      dvd.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify DVD Entry (%1)").arg(dvd.id->text());
     }
   else
@@ -832,9 +924,14 @@ void qtbook_dvd::updateWindow(const int state)
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);
       dvd.resetButton->setVisible(false);
+      dvd.frontButton->setVisible(false);
+      dvd.backButton->setVisible(false);
+      dvd.frontCheck->setVisible(false);
+      dvd.backCheck->setVisible(false);
       str = QString("BiblioteQ: View DVD Details (%1)").arg(dvd.id->text());
     }
 
+  dvd.coverImages->setVisible(true);
   setWindowTitle(str);
 }
 
@@ -859,6 +956,10 @@ void qtbook_dvd::modify(const int state)
       dvd.okButton->setVisible(true);
       dvd.queryButton->setVisible(isQueryEnabled);
       dvd.resetButton->setVisible(true);
+      dvd.frontButton->setVisible(true);
+      dvd.backButton->setVisible(true);
+      dvd.frontCheck->setVisible(true);
+      dvd.backCheck->setVisible(true);
     }
   else
     {
@@ -868,8 +969,19 @@ void qtbook_dvd::modify(const int state)
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);
       dvd.resetButton->setVisible(false);
+      dvd.frontButton->setVisible(false);
+      dvd.backButton->setVisible(false);
+      dvd.frontCheck->setVisible(false);
+      dvd.backCheck->setVisible(false);
+
+      foreach(QAction *action,
+	      dvd.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
     }
 
+  dvd.frontCheck->setChecked(false);
+  dvd.backCheck->setChecked(false);
   dvd.queryButton->setEnabled(true);
   dvd.okButton->setText("&Save");
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
@@ -898,7 +1010,11 @@ void qtbook_dvd::modify(const int state)
     "dvdrating, "
     "dvdregion, "
     "dvdaspectratio, "
-    "location "
+    "location, "
+    "front_cover_fmt, "
+    "back_cover_fmt, "
+    "front_cover, "
+    "back_cover "
     "FROM "
     "dvd "
     "WHERE myoid = ";
@@ -1021,6 +1137,32 @@ void qtbook_dvd::modify(const int state)
 	      else
 		dvd.aspectratio->setCurrentIndex(0);
 	    }
+	  else if(fieldname == "front_cover_fmt")
+	    frontImageFormat = var.toString();
+	  else if(fieldname == "back_cover_fmt")
+	    backImageFormat = var.toString();
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  frontImage.loadFromData(var.toByteArray(),
+					  frontImageFormat.toAscii());
+		  dvd.front_image->scene()->addPixmap
+		    (QPixmap().fromImage(frontImage));
+		  dvd.frontCheck->setChecked(true);
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  backImage.loadFromData(var.toByteArray(),
+					 backImageFormat.toAscii());
+		  dvd.back_image->scene()->addPixmap
+		    (QPixmap().fromImage(backImage));
+		  dvd.backCheck->setChecked(true);
+		}
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1089,7 +1231,23 @@ void qtbook_dvd::slotReset(void)
     {
       name = action->text();
 
-      if(name.contains("UPC"))
+      if(name.contains("Front Cover Image"))
+	{
+	  if(dvd.front_image->items().size() > 0)
+	    dvd.front_image->scene()->removeItem
+	      (dvd.front_image->items().at(0));
+
+	  dvd.frontCheck->setChecked(false);
+	}
+      else if(name.contains("Back Cover Image"))
+	{
+	  if(dvd.back_image->items().size() > 0)
+	    dvd.back_image->scene()->removeItem
+	      (dvd.back_image->items().at(0));
+
+	  dvd.backCheck->setChecked(false);
+	}
+      else if(name.contains("UPC"))
 	{
 	  dvd.id->clear();
 	  dvd.id->setFocus();
@@ -1230,6 +1388,17 @@ void qtbook_dvd::slotReset(void)
       dvd.rating->setCurrentIndex(0);
       dvd.region->setCurrentIndex(0);
       dvd.aspectratio->setCurrentIndex(0);
+
+      if(dvd.front_image->items().size() > 0)
+	dvd.front_image->scene()->removeItem
+	  (dvd.front_image->items().at(0));
+
+      if(dvd.back_image->items().size() > 0)
+	dvd.back_image->scene()->removeItem
+	  (dvd.back_image->items().at(0));
+
+      dvd.frontCheck->setChecked(false);
+      dvd.backCheck->setChecked(false);
       dvd.format->clear();
       dvd.directors->clear();
       dvd.id->setFocus();
@@ -1338,4 +1507,52 @@ void qtbook_dvd::slotPrint(void)
   html += "<b>Location:</b> " + dvd.location->currentText() + "<br>";
   html += "<b>Abstract:</b> " + dvd.description->toPlainText();
   print(this);
+}
+
+/*
+** -- slotSelectImage() --
+*/
+
+void qtbook_dvd::slotSelectImage(void)
+{
+  QFileDialog dialog(this);
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
+
+  if(button == dvd.frontButton)
+    dialog.setWindowTitle("Front Cover Image Selection");
+  else
+    dialog.setWindowTitle("Back Cover Image Selection");
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    if(button == dvd.frontButton)
+      {
+	if(dvd.front_image->items().size() > 0)
+	  dvd.front_image->scene()->removeItem
+	    (dvd.front_image->items().at(0));
+
+	frontImage = QImage(dialog.selectedFiles().at(0));
+	frontImageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	frontImageFormat = frontImageFormat.toUpper();
+	dvd.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
+	dvd.frontCheck->setChecked(true);
+      }
+    else
+      {
+	if(dvd.back_image->items().size() > 0)
+	  dvd.back_image->scene()->removeItem
+	    (dvd.back_image->items().at(0));
+
+	backImage = QImage(dialog.selectedFiles().at(0));
+	backImageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	backImageFormat = backImageFormat.toUpper();
+	dvd.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
+	dvd.backCheck->setChecked(true);
+      }
 }

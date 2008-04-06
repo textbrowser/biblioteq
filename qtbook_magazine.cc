@@ -33,11 +33,19 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   QPoint p(0, 0);
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
   QValidator *validator1 = NULL;
+  QGraphicsScene *scene1 = NULL;
+  QGraphicsScene *scene2 = NULL;
 
   if((menu = new QMenu()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((validator1 = new QRegExpValidator(rx, this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene1 = new QGraphicsScene()) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene2 = new QGraphicsScene()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = NULL;
@@ -61,6 +69,10 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   connect(ma.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(ma.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(menu->addAction("Reset &Front Cover Image"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &Back Cover Image"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &ISSN"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Volume"),
@@ -93,6 +105,10 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(ma.frontButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+  connect(ma.backButton,
+	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   ma.id->setCursorPosition(0);
   ma.id->setValidator(validator1);
   ma.resetButton->setMenu(menu);
@@ -100,6 +116,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ma.language->addItems(languages);
   ma.monetary_units->addItems(monetary_units);
   ma.location->addItems(locations);
+  ma.front_image->setScene(scene1);
+  ma.back_image->setScene(scene2);
 
   if(ma.category->count() == 0)
     ma.category->addItem("UNKNOWN");
@@ -282,7 +300,11 @@ void qtbook_magazine::slotGo(void)
 			      "mag_no = ?, "
 			      "lccontrolnumber = ?, "
 			      "callnumber = ?, "
-			      "deweynumber = ? "
+			      "deweynumber = ?, "
+			      "front_cover = ?, "
+			      "back_cover = ?, "
+			      "front_cover_fmt = ?, "
+			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else
@@ -294,12 +316,14 @@ void qtbook_magazine::slotGo(void)
 			      "monetary_units, quantity, "
 			      "location, mag_volume, mag_no, "
 			      "lccontrolnumber, callnumber, deweynumber, "
-			      "type) "
+			      "front_cover, back_cover, "
+			      "front_cover_fmt, "
+			      "back_cover_fmt, type) "
 			      "VALUES (?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, ma.id->text());
       query.bindValue(1, ma.title->text());
@@ -318,10 +342,41 @@ void qtbook_magazine::slotGo(void)
       query.bindValue(14, ma.callnum->text());
       query.bindValue(15, ma.deweynum->text());
 
-      if(windowTitle().contains("Modify"))
-	query.bindValue(16, oid);
+      if(ma.frontCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  query.bindValue(16, bytes);
+	}
       else
-	query.bindValue(16, subType);
+	{
+	  frontImageFormat = "";
+	  query.bindValue(16, QVariant());
+	}
+
+      if(ma.backCheck->isChecked())
+	{
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+	  buffer.open(QIODevice::WriteOnly);
+	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  query.bindValue(17, bytes);
+	}
+      else
+	{
+	  backImageFormat = "";
+	  query.bindValue(17, QVariant());
+	}
+
+      query.bindValue(18, frontImageFormat);
+      query.bindValue(19, backImageFormat);
+
+      if(windowTitle().contains("Modify"))
+	query.bindValue(20, oid);
+      else
+	query.bindValue(20, subType);
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -427,11 +482,38 @@ void qtbook_magazine::slotGo(void)
 
 	  ma.publication_date->setPalette(dt_orig_pal);
 	  ma.description->viewport()->setPalette(te_orig_pal);
-	  qapp->restoreOverrideCursor();
 	  oldq = ma.quantity->value();
+
+	  if(!ma.frontCheck->isChecked())
+	    {
+	      frontImage = QImage();
+	      frontImageFormat = "";
+
+	      if(ma.front_image->items().size() > 0)
+		ma.front_image->scene()->removeItem
+		  (ma.front_image->items().at(0));
+	    }
+
+	  if(!ma.backCheck->isChecked())
+	    {
+	      backImage = QImage();
+	      backImageFormat = "";
+
+	      if(ma.back_image->items().size() > 0)
+		ma.back_image->scene()->removeItem
+		  (ma.back_image->items().at(0));
+	    }
+
+	  ma.frontCheck->setChecked
+	    (ma.front_image->items().size() > 0);
+	  ma.backCheck->setChecked
+	    (ma.back_image->items().size() > 0);
+
+	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))
 	    {
+	      qmain->slotUpdateStatusLabel();
 	      str = QString("BiblioteQ: Modify %1 Entry (%2)").arg
 		(subType).arg(ma.id->text());
 	      setWindowTitle(str);
@@ -693,6 +775,7 @@ void qtbook_magazine::search(void)
 {
   QPoint p(0, 0);
 
+  ma.coverImages->setVisible(false);
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -736,6 +819,11 @@ void qtbook_magazine::search(void)
   ma.category->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+
+  foreach(QAction *action, ma.resetButton->menu()->findChildren<QAction *>())
+    if(action->text().contains("Cover Image"))
+      action->setVisible(false);
+
   setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
   ma.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -759,6 +847,10 @@ void qtbook_magazine::updateWindow(const int state)
       ma.queryButton->setVisible(true);
       ma.okButton->setVisible(true);
       ma.resetButton->setVisible(true);
+      ma.frontButton->setVisible(true);
+      ma.backButton->setVisible(true);
+      ma.frontCheck->setVisible(true);
+      ma.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify %1 Entry "
 		    "(%2)").arg(subType).arg(ma.id->text());
     }
@@ -769,10 +861,15 @@ void qtbook_magazine::updateWindow(const int state)
       ma.queryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);
+      ma.frontButton->setVisible(false);
+      ma.backButton->setVisible(false);
+      ma.frontCheck->setVisible(false);
+      ma.backCheck->setVisible(false);
       str = QString("BiblioteQ: View %1 Details "
 		    "(%2)").arg(subType).arg(ma.id->text());
     }
 
+  ma.coverImages->setVisible(true);
   setWindowTitle(str);
 }
 
@@ -797,6 +894,10 @@ void qtbook_magazine::modify(const int state)
       ma.queryButton->setVisible(true);
       ma.okButton->setVisible(true);
       ma.resetButton->setVisible(true);
+      ma.frontButton->setVisible(true);
+      ma.backButton->setVisible(true);
+      ma.frontCheck->setVisible(true);
+      ma.backCheck->setVisible(true);
     }
   else
     {
@@ -806,8 +907,19 @@ void qtbook_magazine::modify(const int state)
       ma.queryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);
+      ma.frontButton->setVisible(false);
+      ma.backButton->setVisible(false);
+      ma.frontCheck->setVisible(false);
+      ma.backCheck->setVisible(false);
+
+      foreach(QAction *action,
+	      ma.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
     }
 
+  ma.frontCheck->setChecked(false);
+  ma.backCheck->setChecked(false);
   ma.quantity->setMinimum(1);
   ma.queryButton->setEnabled(true);
   ma.price->setMinimum(0.01);
@@ -820,7 +932,11 @@ void qtbook_magazine::modify(const int state)
     "category, language, id, "
     "price, monetary_units, quantity, "
     "mag_no, "
-    "location, lccontrolnumber, callnumber, deweynumber, description "
+    "location, lccontrolnumber, callnumber, deweynumber, description, "
+    "front_cover_fmt, "
+    "back_cover_fmt, "
+    "front_cover, "
+    "back_cover "
     "FROM "
     "magazine "
     "WHERE myoid = ";
@@ -921,6 +1037,32 @@ void qtbook_magazine::modify(const int state)
 	    ma.callnum->setText(var.toString());
 	  else if(fieldname == "deweynumber")
 	    ma.deweynum->setText(var.toString());
+	  else if(fieldname == "front_cover_fmt")
+	    frontImageFormat = var.toString();
+	  else if(fieldname == "back_cover_fmt")
+	    backImageFormat = var.toString();
+	  else if(fieldname == "front_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  frontImage.loadFromData(var.toByteArray(),
+					  frontImageFormat.toAscii());
+		  ma.front_image->scene()->addPixmap
+		    (QPixmap().fromImage(frontImage));
+		  ma.frontCheck->setChecked(true);
+		}
+	    }
+	  else if(fieldname == "back_cover")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  backImage.loadFromData(var.toByteArray(),
+					 backImageFormat.toAscii());
+		  ma.back_image->scene()->addPixmap
+		    (QPixmap().fromImage(backImage));
+		  ma.backCheck->setChecked(true);
+		}
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -987,7 +1129,23 @@ void qtbook_magazine::slotReset(void)
     {
       name = action->text();
 
-      if(name.contains("ISSN"))
+      if(name.contains("Front Cover Image"))
+	{
+	  if(ma.front_image->items().size() > 0)
+	    ma.front_image->scene()->removeItem
+	      (ma.front_image->items().at(0));
+
+	  ma.frontCheck->setChecked(false);
+	}
+      else if(name.contains("Back Cover Image"))
+	{
+	  if(ma.back_image->items().size() > 0)
+	    ma.back_image->scene()->removeItem
+	      (ma.back_image->items().at(0));
+
+	  ma.backCheck->setChecked(false);
+	}
+      else if(name.contains("ISSN"))
 	{
 	  ma.id->clear();
 	  ma.id->setCursorPosition(0);
@@ -1112,6 +1270,17 @@ void qtbook_magazine::slotReset(void)
       ma.lcnum->clear();
       ma.callnum->clear();
       ma.deweynum->clear();
+
+      if(ma.front_image->items().size() > 0)
+	ma.front_image->scene()->removeItem
+	  (ma.front_image->items().at(0));
+
+      if(ma.back_image->items().size() > 0)
+	ma.back_image->scene()->removeItem
+	  (ma.back_image->items().at(0));
+
+      ma.frontCheck->setChecked(false);
+      ma.backCheck->setChecked(false);
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setPalette(ma.id->palette());
@@ -1453,4 +1622,52 @@ bool qtbook_magazine::isBusy(void)
     return true;
   else
     return false;
+}
+
+/*
+** -- slotSelectImage() --
+*/
+
+void qtbook_magazine::slotSelectImage(void)
+{
+  QFileDialog dialog(this);
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
+
+  if(button == ma.frontButton)
+    dialog.setWindowTitle("Front Cover Image Selection");
+  else
+    dialog.setWindowTitle("Back Cover Image Selection");
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    if(button == ma.frontButton)
+      {
+	if(ma.front_image->items().size() > 0)
+	  ma.front_image->scene()->removeItem
+	    (ma.front_image->items().at(0));
+
+	frontImage = QImage(dialog.selectedFiles().at(0));
+	frontImageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	frontImageFormat = frontImageFormat.toUpper();
+	ma.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
+	ma.frontCheck->setChecked(true);
+      }
+    else
+      {
+	if(ma.back_image->items().size() > 0)
+	  ma.back_image->scene()->removeItem
+	    (ma.back_image->items().at(0));
+
+	backImage = QImage(dialog.selectedFiles().at(0));
+	backImageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
+	backImageFormat = backImageFormat.toUpper();
+	ma.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
+	ma.backCheck->setChecked(true);
+      }
 }

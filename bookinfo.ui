@@ -47,11 +47,30 @@
         </property>
         <layout class="QVBoxLayout" >
          <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QGraphicsView" name="front_image" >
+           <property name="minimumSize" >
+            <size>
+             <width>150</width>
+             <height>200</height>
+            </size>
+           </property>
            <property name="maximumSize" >
             <size>
-             <width>135</width>
-             <height>16777215</height>
+             <width>150</width>
+             <height>200</height>
             </size>
            </property>
            <property name="toolTip" >
@@ -62,6 +81,9 @@
            </property>
            <property name="horizontalScrollBarPolicy" >
             <enum>Qt::ScrollBarAsNeeded</enum>
+           </property>
+           <property name="viewportUpdateMode" >
+            <enum>QGraphicsView::FullViewportUpdate</enum>
            </property>
           </widget>
          </item>
@@ -85,17 +107,20 @@
          </item>
          <item>
           <widget class="QGraphicsView" name="back_image" >
+           <property name="minimumSize" >
+            <size>
+             <width>150</width>
+             <height>200</height>
+            </size>
+           </property>
            <property name="maximumSize" >
             <size>
-             <width>135</width>
-             <height>16777215</height>
+             <width>150</width>
+             <height>200</height>
             </size>
            </property>
            <property name="toolTip" >
             <string>Back Cover Image</string>
-           </property>
-           <property name="frameShadow" >
-            <enum>QFrame::Sunken</enum>
            </property>
            <property name="verticalScrollBarPolicy" >
             <enum>Qt::ScrollBarAsNeeded</enum>
@@ -122,6 +147,19 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

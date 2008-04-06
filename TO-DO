@@ -182,7 +182,7 @@
 94.  Do not allow runtimes of 00:00:00. (DONE)
 95.  Implement roles: (DONE)
 	Role		Abilities
-	Administrator	Full
+	Administrator	All
 	Circulation	Reservation, Returns
 	Standard	Browse
 96.  Provide a mechanism that allows the user to print information
@@ -214,8 +214,7 @@
 113. Implement OFFSYSTEM's Off-Link-URL.
 114. Create a mechanism that allows members to log in. Members should
      also be allowed to view their reservation histories. (DONE)
-115. Create compact views for the borrower tables. (DONE)
-     See #80.
+115. Create compact views for the borrower tables. See #80. (DONE)
 116. Drop the member's database account during member removal.
      Must first revoke all privileges. (DONE)
-117. Reload the image summary after an item has been updated.
+117. Reload the image summary after an item has been updated. (DONE)
