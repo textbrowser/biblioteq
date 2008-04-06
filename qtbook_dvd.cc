@@ -560,7 +560,6 @@ void qtbook_dvd::slotGo(void)
 	    (dvd.front_image->items().size() > 0);
 	  dvd.backCheck->setChecked
 	    (dvd.back_image->items().size() > 0);
-
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))

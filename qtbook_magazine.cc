@@ -508,7 +508,6 @@ void qtbook_magazine::slotGo(void)
 	    (ma.front_image->items().size() > 0);
 	  ma.backCheck->setChecked
 	    (ma.back_image->items().size() > 0);
-
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))

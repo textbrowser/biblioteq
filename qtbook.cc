@@ -4458,7 +4458,7 @@ void qtbook::slotUpdateStatusLabel(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	}
-      else if(type == "Magazine")
+      else if(type == "Journal" || type == "Magazine")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i, "Title") +
@@ -4478,6 +4478,32 @@ void qtbook::slotUpdateStatusLabel(void)
 						     "Publisher");
 	  summary += "<br>";
 	}
+      else if(type == "Video Game")
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i, "UPC");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   "Publication Date");
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     "Release Date");
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     "Publisher");
+	  summary += "<br>";
+	}
 
       summary += misc_functions::getColumnString(ui.table, i, "Location");
       summary += "</html>";
@@ -4492,9 +4518,13 @@ void qtbook::slotUpdateStatusLabel(void)
 
       if(!frontImage.isNull())
 	ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+      else
+	ui.frontImage->clear();
 
       if(!backImage.isNull())
 	ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+      else
+	ui.backImage->clear();
     }
   else
     {
