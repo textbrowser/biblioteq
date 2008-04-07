@@ -30,38 +30,13 @@
      <layout class="QHBoxLayout" >
       <item>
        <widget class="QGroupBox" name="coverImages" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="title" >
          <string>Cover Images</string>
         </property>
         <layout class="QVBoxLayout" >
          <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
           <widget class="QGraphicsView" name="front_image" >
            <property name="minimumSize" >
-            <size>
-             <width>150</width>
-             <height>200</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
             <size>
              <width>150</width>
              <height>200</height>
@@ -97,17 +72,24 @@
              </property>
             </widget>
            </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </item>
          <item>
           <widget class="QGraphicsView" name="back_image" >
            <property name="minimumSize" >
-            <size>
-             <width>150</width>
-             <height>200</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
             <size>
              <width>150</width>
              <height>200</height>
@@ -140,20 +122,20 @@
              </property>
             </widget>
            </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
