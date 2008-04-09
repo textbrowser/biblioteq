@@ -1,5 +1,5 @@
 Requirements:
-1.  Qt 4.3.3 or later.
+1.  Qt 4.x or later.
     Qt may be downloaded from
     http://trolltech.com/developer/downloads/qt/index.
 2.  MySQL 5.0.33 or later, or PostgreSQL 7.4.16 or later.
@@ -9,7 +9,7 @@ Requirements:
     YAZ may be downloaded from http://www.indexdata.dk/yaz.
 4.  A C++ compiler.
 
-Qt 4.3.3 Preparation (Unix):
+Qt 4.x Preparation (Unix):
 1.  Please build Qt with the mysql or postgresql driver, for example:
     ./configure -v -qt-sql-mysql -I /usr/local/include/mysql \
     -L /usr/local/lib/mysql -qt-sql-psql -I /usr/local/include/postgresql \
