@@ -56,10 +56,10 @@
            <string>Categories</string>
           </property>
           <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="flat" >
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <layout class="QHBoxLayout" >
            <item>
@@ -151,10 +151,10 @@
            <string>Item Summary</string>
           </property>
           <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
+           <set>Qt::AlignCenter</set>
           </property>
           <property name="flat" >
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <layout class="QVBoxLayout" >
            <item>
@@ -382,7 +382,7 @@
      <x>0</x>
      <y>0</y>
      <width>898</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="font" >
