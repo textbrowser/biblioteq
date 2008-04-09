@@ -198,7 +198,7 @@
 101. Create a Journal category. The new class should inherit from the
      Magazine class. (DONE)
 102. Store information regarding anonymous connections in the
-     biblioteq.conf file . (DONE)
+     biblioteq.conf file . This is no longer applicable. (DONE)
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
 105. Prepare the application for translations. (TBD)

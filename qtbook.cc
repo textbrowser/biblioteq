@@ -441,6 +441,8 @@ qtbook::qtbook(void):QMainWindow()
   setMinimumHeight(MAINWINDOW_MINHEIGHT);
   userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo.zip->setInputMask("99999");
+  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
+  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.table),  1);
 }
 
 /*
