@@ -59,9 +59,6 @@
           <property name="horizontalScrollBarPolicy" >
            <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
-          <property name="viewportUpdateMode" >
-           <enum>QGraphicsView::FullViewportUpdate</enum>
-          </property>
          </widget>
         </item>
         <item>
