@@ -27,884 +27,844 @@
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>
-     <layout class="QHBoxLayout" >
-      <item>
-       <widget class="QGroupBox" name="coverImages" >
-        <property name="title" >
-         <string>Cover Images</string>
-        </property>
-        <layout class="QVBoxLayout" >
-         <item>
-          <widget class="QGraphicsView" name="front_image" >
-           <property name="minimumSize" >
-            <size>
-             <width>150</width>
-             <height>200</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Front Cover Image</string>
-           </property>
-           <property name="verticalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <item>
-            <widget class="QPushButton" name="frontButton" >
-             <property name="text" >
-              <string>&amp;Select</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="frontCheck" >
-             <property name="text" >
-              <string>Save</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QGraphicsView" name="back_image" >
-           <property name="minimumSize" >
-            <size>
-             <width>150</width>
-             <height>200</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Back Cover Image</string>
-           </property>
-           <property name="verticalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <item>
-            <widget class="QPushButton" name="backButton" >
-             <property name="text" >
-              <string>&amp;Select</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="backCheck" >
-             <property name="text" >
-              <string>Save</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" >
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" >
+     <widget class="QSplitter" name="splitter" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QGroupBox" name="coverImages" >
+       <property name="title" >
+        <string>Cover Images</string>
+       </property>
+       <layout class="QVBoxLayout" >
         <item>
-         <widget class="QGroupBox" name="groupBox_2" >
+         <widget class="QGraphicsView" name="front_image" >
           <property name="minimumSize" >
            <size>
-            <width>400</width>
-            <height>0</height>
+            <width>150</width>
+            <height>200</height>
            </size>
           </property>
-          <property name="title" >
-           <string>Specific Information</string>
+          <property name="toolTip" >
+           <string>Front Cover Image</string>
           </property>
-          <layout class="QGridLayout" >
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>UPC</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QLineEdit" name="id" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="maxLength" >
-              <number>32</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_5" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Game Rating</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="rating" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0" >
-            <widget class="QLabel" name="label_6" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Developer(s)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1" >
-            <widget class="QTextEdit" name="developer" >
-             <property name="verticalScrollBarPolicy" >
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" >
-            <widget class="QLabel" name="label_9" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Platform</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="platform" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="4" column="0" >
-            <widget class="QLabel" name="label_11" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Mode</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="mode" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-               <item>
-                <property name="text" >
-                 <string>Multiplayer</string>
-                </property>
-               </item>
-               <item>
-                <property name="text" >
-                 <string>Single Player</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-          </layout>
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QPushButton" name="frontButton" >
+            <property name="text" >
+             <string>&amp;Select</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="frontCheck" >
+            <property name="text" >
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGraphicsView" name="back_image" >
           <property name="minimumSize" >
            <size>
-            <width>400</width>
-            <height>0</height>
+            <width>150</width>
+            <height>200</height>
            </size>
           </property>
-          <property name="title" >
-           <string>General Information</string>
+          <property name="toolTip" >
+           <string>Back Cover Image</string>
           </property>
-          <layout class="QGridLayout" >
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label_2" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QPushButton" name="backButton" >
+            <property name="text" >
+             <string>&amp;Select</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="backCheck" >
+            <property name="text" >
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_2" >
+       <property name="title" >
+        <string>Specific Information</string>
+       </property>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="label" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>UPC</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="id" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="maxLength" >
+           <number>32</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_5" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Game Rating</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="rating" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="label_6" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Developer(s)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="QTextEdit" name="developer" >
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QLabel" name="label_9" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Platform</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="platform" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QLabel" name="label_11" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="mode" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+             </font>
+            </property>
+            <item>
              <property name="text" >
-              <string>Title</string>
+              <string>Multiplayer</string>
              </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QLineEdit" name="title" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_13" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
+            </item>
+            <item>
              <property name="text" >
-              <string>Release Date</string>
+              <string>Single Player</string>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QDateEdit" name="release_date" >
-               <property name="font" >
-                <font>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="displayFormat" >
-                <string>MM/dd/yyyy</string>
-               </property>
-               <property name="calendarPopup" >
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0" >
-            <widget class="QLabel" name="label_14" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Publisher</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1" >
-            <widget class="QLineEdit" name="publisher" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" >
-            <widget class="QLabel" name="label_15" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Genre</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="genre" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="4" column="0" >
-            <widget class="QLabel" name="label_16" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Price</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QDoubleSpinBox" name="price" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="minimum" >
-                <double>0.010000000000000</double>
-               </property>
-               <property name="maximum" >
-                <double>10000.000000000000000</double>
-               </property>
-               <property name="singleStep" >
-                <double>0.010000000000000</double>
-               </property>
-               <property name="value" >
-                <double>0.010000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="5" column="0" >
-            <widget class="QLabel" name="label_3" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Language</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="language" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="6" column="0" >
-            <widget class="QLabel" name="label_4" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Monetary Units</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="monetary_units" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="7" column="0" >
-            <widget class="QLabel" name="label_8" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Copies</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QSpinBox" name="quantity" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                 <underline>false</underline>
-                 <strikeout>false</strikeout>
-                </font>
-               </property>
-               <property name="minimum" >
-                <number>1</number>
-               </property>
-               <property name="maximum" >
-                <number>5000</number>
-               </property>
-               <property name="value" >
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QGridLayout" >
-               <item row="0" column="0" >
-                <widget class="QPushButton" name="copiesButton" >
-                 <property name="font" >
-                  <font>
-                   <family>Times</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text" >
-                  <string>&amp;Show Copies</string>
-                 </property>
-                 <property name="icon" >
-                  <iconset>icons.d/16x16/editcopy.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0" >
-                <widget class="QPushButton" name="showUserButton" >
-                 <property name="font" >
-                  <font>
-                   <family>Times</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
-                 <property name="text" >
-                  <string>&amp;Show Reservation Status</string>
-                 </property>
-                 <property name="icon" >
-                  <iconset>icons.d/16x16/members.png</iconset>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="8" column="0" >
-            <widget class="QLabel" name="label_10" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Location</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1" >
-            <layout class="QHBoxLayout" >
-             <item>
-              <widget class="QComboBox" name="location" >
-               <property name="font" >
-                <font>
-                 <family>Times</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="sizeAdjustPolicy" >
-                <enum>QComboBox::AdjustToContents</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" >
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item row="9" column="0" >
-            <widget class="QLabel" name="label_7" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="text" >
-              <string>Abstract</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="1" >
-            <widget class="QTextEdit" name="description" >
-             <property name="font" >
-              <font>
-               <family>Times</family>
-               <pointsize>10</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-               <underline>false</underline>
-               <strikeout>false</strikeout>
-              </font>
-             </property>
-             <property name="verticalScrollBarPolicy" >
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-             <property name="acceptRichText" >
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox" >
+       <property name="title" >
+        <string>General Information</string>
+       </property>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="label_2" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Title</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="title" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_13" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Release Date</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QDateEdit" name="release_date" >
+            <property name="font" >
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="displayFormat" >
+             <string>MM/dd/yyyy</string>
+            </property>
+            <property name="calendarPopup" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="label_14" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Publisher</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="QLineEdit" name="publisher" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QLabel" name="label_15" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Genre</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="genre" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QLabel" name="label_16" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Price</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QDoubleSpinBox" name="price" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="minimum" >
+             <double>0.010000000000000</double>
+            </property>
+            <property name="maximum" >
+             <double>10000.000000000000000</double>
+            </property>
+            <property name="singleStep" >
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value" >
+             <double>0.010000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="5" column="0" >
+         <widget class="QLabel" name="label_3" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Language</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="language" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="6" column="0" >
+         <widget class="QLabel" name="label_4" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Monetary Units</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="monetary_units" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="7" column="0" >
+         <widget class="QLabel" name="label_8" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Copies</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QSpinBox" name="quantity" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+            <property name="maximum" >
+             <number>5000</number>
+            </property>
+            <property name="value" >
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" >
+            <item row="0" column="0" >
+             <widget class="QPushButton" name="copiesButton" >
+              <property name="font" >
+               <font>
+                <family>Times</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text" >
+               <string>&amp;Show Copies</string>
+              </property>
+              <property name="icon" >
+               <iconset>icons.d/16x16/editcopy.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QPushButton" name="showUserButton" >
+              <property name="font" >
+               <font>
+                <family>Times</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text" >
+               <string>&amp;Show Reservation Status</string>
+              </property>
+              <property name="icon" >
+               <iconset>icons.d/16x16/members.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="8" column="0" >
+         <widget class="QLabel" name="label_10" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Location</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" >
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QComboBox" name="location" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="9" column="0" >
+         <widget class="QLabel" name="label_7" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text" >
+           <string>Abstract</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1" >
+         <widget class="QTextEdit" name="description" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="acceptRichText" >
+           <bool>false</bool>
+          </property>
          </widget>
         </item>
        </layout>
-      </item>
-     </layout>
+      </widget>
+     </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" >

@@ -54,9 +54,6 @@
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="sizeAdjustPolicy" >
-             <enum>QComboBox::AdjustToContents</enum>
-            </property>
             <item>
              <property name="text" >
               <string>AK</string>
@@ -630,9 +627,6 @@
              <font>
               <pointsize>10</pointsize>
              </font>
-            </property>
-            <property name="sizeAdjustPolicy" >
-             <enum>QComboBox::AdjustToContents</enum>
             </property>
             <item>
              <property name="text" >

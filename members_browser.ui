@@ -52,9 +52,6 @@
          </item>
          <item>
           <widget class="QComboBox" name="filtertype" >
-           <property name="sizeAdjustPolicy" >
-            <enum>QComboBox::AdjustToContents</enum>
-           </property>
            <item>
             <property name="text" >
              <string>Member ID</string>

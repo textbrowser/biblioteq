@@ -43,12 +43,6 @@
        <layout class="QGridLayout" >
         <item row="0" column="0" >
          <widget class="QGroupBox" name="groupBox" >
-          <property name="minimumSize" >
-           <size>
-            <width>225</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="title" >
            <string>Categories</string>
           </property>
@@ -74,9 +68,6 @@
            </item>
            <item>
             <widget class="QComboBox" name="typefilter" >
-             <property name="sizeAdjustPolicy" >
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
              <item>
               <property name="text" >
                <string>All</string>
@@ -132,12 +123,6 @@
         </item>
         <item row="1" column="0" >
          <widget class="QGroupBox" name="itemSummary" >
-          <property name="minimumSize" >
-           <size>
-            <width>225</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="title" >
            <string>Item Summary</string>
           </property>
@@ -200,9 +185,6 @@
        </layout>
       </widget>
       <widget class="main_table" name="table" >
-       <property name="acceptDrops" >
-        <bool>false</bool>
-       </property>
        <property name="editTriggers" >
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
@@ -371,7 +353,7 @@
      <x>0</x>
      <y>0</y>
      <width>898</width>
-     <height>28</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font" >
