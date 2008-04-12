@@ -275,7 +275,7 @@ qtbook::qtbook(void):QMainWindow()
   connect(history.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table, SIGNAL(itemSelectionChanged(void)), this,
-	  SLOT(slotUpdateStatusLabel(void)));
+	  SLOT(slotDisplaySummary(void)));
   connect(bb.modifyButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyBorrower(void)));
   connect(bb.historyButton, SIGNAL(clicked(void)), this,
@@ -646,12 +646,17 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setWindowTitle("BiblioteQ: About");
-  mb.setText("BiblioteQ Version 4.01.\n"
+  mb.setTextFormat(Qt::RichText);
+  mb.setText("BiblioteQ Version 4.01.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
-	     "Diana Megas.\n"
-	     "Icons copyright (c) Everaldo.\n\n"
-	     "Please visit http://biblioteq.sourceforge.net for "
-	     "additional information.");
+	     "Diana Megas.<br>"
+	     "Icons copyright (c) Everaldo.<br><br>"
+	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
+	     "http://biblioteq.sourceforge.net</a> for "
+	     "additional information.<br><br>"
+	     "The program is provided AS IS with NO WARRANTY OF ANY KIND, "
+	     "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND "
+	     "FITNESS FOR A PARTICULAR PURPOSE.");
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
   mb.exec();
@@ -3132,7 +3137,7 @@ int qtbook::populateTable(const int search_type, const int filter,
       query.clear();
       ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
       ui.table->setRowCount(i);
-      slotUpdateStatusLabel();
+      slotDisplaySummary();
 
       if(ui.actionAutoResizeColumns->isChecked())
 	slotResizeColumns();
@@ -4333,43 +4338,26 @@ void qtbook::slotShowColumns(void)
 }
 
 /*
-** -- slotUpdateStatusLabel() --
+** -- slotDisplaySummary() --
 */
 
-void qtbook::slotUpdateStatusLabel(void)
+void qtbook::slotDisplaySummary(void)
 {
   int i = 0;
   QImage backImage;
   QImage frontImage;
   QString oid = "";
-  QString str = "";
   QString type = "";
   QString tmpstr = "";
   QString summary = "";
-  QModelIndex index;
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
-
-  if(ui.table->rowCount() == 1)
-    str = QString("%1 Item / %2 Selected")
-      .arg(ui.table->rowCount())
-      .arg(list.size());
-  else
-    str = QString("%1 Items / %2 Selected")
-      .arg(ui.table->rowCount())
-      .arg(list.size());
 
   /*
   ** Display a preview.
   */
 
-  if(list.size() > 0)
+  if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
     {
-      foreach(index, list)
-	{
-	  i = index.row();
-	  break;
-	}
-
+      i = ui.table->currentRow();
       oid = misc_functions::getColumnString(ui.table, i, "OID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
       summary = "<html>";
@@ -4539,9 +4527,6 @@ void qtbook::slotUpdateStatusLabel(void)
       ui.frontImage->clear();
       ui.backImage->clear();
     }
-
-  ui.information_label->setText(str);
-  list.clear();
 }
 
 /*
@@ -4834,7 +4819,7 @@ void qtbook::slotDisconnect(void)
   ui.table->clearHiddenColumnsRecord();
   addConfigOptions();
   ui.typefilter->setCurrentIndex(0);
-  slotUpdateStatusLabel();
+  slotDisplaySummary();
   emptyContainers();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -4876,6 +4861,7 @@ void qtbook::resetMembersBrowser(void)
   QStringList list;
 
   bb.table->clear();
+  bb.table->setCurrentItem(NULL);
   bb.table->setColumnCount(0);
   bb.table->setRowCount(0);
   bb.table->scrollToTop();
@@ -5541,6 +5527,7 @@ void qtbook::slotResetErrorLog(void)
   list.append("File");
   list.append("Line Number");
   er.table->clear();
+  er.table->setCurrentItem(NULL);
   er.table->setColumnCount(0);
   er.table->setRowCount(0);
   er.table->setColumnCount(0);
@@ -5745,7 +5732,8 @@ void qtbook::removeVideoGame(qtbook_videogame *video_game)
 ** -- replaceVideoGame() --
 */
 
-void qtbook::replaceVideoGame(const QString &id, qtbook_videogame *video_game)
+void qtbook::replaceVideoGame(const QString &id,
+			      qtbook_videogame *video_game)
 {
   if(video_games.contains(id))
     video_games.remove(id);
@@ -6772,8 +6760,8 @@ void qtbook::slotCopyError(void)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "To copy the contents of the Error Dialog into "
-			    "the clipboard buffer, you must select at least "
-			    "one row.");
+			    "the clipboard buffer, you must first "
+			    "select at least one row.");
       return;
     }
 
@@ -6906,6 +6894,7 @@ void qtbook::slotShowHistory(void)
 
   qapp->restoreOverrideCursor();
   history.table->clear();
+  history.table->setCurrentItem(NULL);
   history.table->setColumnCount(0);
   history.table->setRowCount(0);
   list.clear();
@@ -7000,9 +6989,15 @@ void qtbook::slotPrintReservationHistory(void)
 
   if(history.table->rowCount() == 0)
     {
-      QMessageBox::critical(history_diag, "BiblioteQ: User Error",
-			    "The selected user does not yet have a "
-			    "reservation history to print.");
+      if(members_diag->isVisible())
+	QMessageBox::critical(history_diag, "BiblioteQ: User Error",
+			      "The selected member does not yet have a "
+			      "reservation history to print.");
+      else
+	QMessageBox::critical(history_diag, "BiblioteQ: User Error",
+			      "You do not yet have a reservation history "
+			      "to print.");
+
       return;
     }
 
@@ -7094,9 +7089,10 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 void qtbook::slotShowChangePassword(void)
 {
   pass.userid->setText(br.userid->text());
+  pass.currentpassword->clear();
   pass.password->clear();
   pass.passwordAgain->clear();
-  pass.password->setFocus();
+  pass.currentpassword->setFocus();
   pass_diag->show();
 }
 
@@ -7108,7 +7104,13 @@ void qtbook::slotSavePassword(void)
 {
   QString errorstr = "";
 
-  if(pass.password->text().length() < 8)
+  if(pass.currentpassword->text() != br.password->text())
+    {
+      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
+			    "The current password is incorrect.");
+      return;
+    }
+  else if(pass.password->text().length() < 8)
     {
       QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
 			    "The password must be at least eight characters "
@@ -7136,7 +7138,10 @@ void qtbook::slotSavePassword(void)
 			    "Unable to save the new password.");
     }
   else
-    pass_diag->hide();
+    {
+      br.password->setText(pass.password->text()); // Store the new password.
+      pass_diag->hide();
+    }
 }
 
 /*

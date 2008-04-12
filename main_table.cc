@@ -196,6 +196,7 @@ void main_table::resetTable(const QString &type)
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   resizeColumnsToContents();
+  setCurrentItem(NULL);
 }
 
 /*

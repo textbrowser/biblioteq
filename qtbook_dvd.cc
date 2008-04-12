@@ -564,7 +564,7 @@ void qtbook_dvd::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotUpdateStatusLabel();
+	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify DVD Entry (%1)").arg
 		(dvd.id->text());
 	      setWindowTitle(str);

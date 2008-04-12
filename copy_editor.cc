@@ -127,7 +127,7 @@ void copy_editor::populateCopiesEditor(void)
   int i = 0;
   int j = 0;
   int row = 0;
-  QDate duedate = QDate::currentDate().addDays(15);
+  QDate duedate = QDate::currentDate().addDays(21);
   QString str = "";
   QSqlQuery query(qmain->getDB());
   QStringList list;

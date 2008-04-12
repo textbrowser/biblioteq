@@ -543,7 +543,7 @@ void qtbook_cd::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotUpdateStatusLabel();
+	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify CD Entry (%1)").arg
 		(cd.id->text());
 	      setWindowTitle(str);
@@ -1235,6 +1235,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
     comboBoxList.append(QString::number(i));
 
   trd.table->clear();
+  trd.table->setCurrentItem(NULL);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
   list.append("Album Number");
@@ -1350,6 +1351,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 void qtbook_cd::slotCloseTracksBrowser(void)
 {
   trd.table->clear();
+  trd.table->setCurrentItem(NULL);
   trd.table->setRowCount(0);
   tracks_diag->hide();
 }

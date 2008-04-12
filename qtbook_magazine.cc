@@ -512,7 +512,7 @@ void qtbook_magazine::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotUpdateStatusLabel();
+	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify %1 Entry (%2)").arg
 		(subType).arg(ma.id->text());
 	      setWindowTitle(str);

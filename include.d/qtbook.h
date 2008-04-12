@@ -116,7 +116,7 @@ class qtbook: public QMainWindow
 
  public slots:
   void slotResizeColumns(void);
-  void slotUpdateStatusLabel(void);
+  void slotDisplaySummary(void);
 
  private:
   int previousTypeFilter;

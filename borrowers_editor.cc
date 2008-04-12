@@ -76,6 +76,7 @@ void borrowers_editor::showUsers(void)
 
   str = ioid;
   bd.table->clear();
+  bd.table->setCurrentItem(NULL);
   bd.table->setColumnCount(0);
   bd.table->setRowCount(0);
 
@@ -244,7 +245,7 @@ void borrowers_editor::showUsers(void)
 		    qobject_cast<QDateEdit *>(bd.table->cellWidget
 					      (row, j))->setMinimumDate
 		      (QDate::fromString(bd.table->item(row, 5)->text(),
-					 "MM/dd/yyyy").addDays(15));
+					 "MM/dd/yyyy").addDays(21));
 		  }
 	      }
 	    else if(bd.table->item(row, j) != NULL)
