@@ -1254,7 +1254,10 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   tracks_diag->resize(tracks_diag->sizeHint());
   tracks_diag->show();
   trd.table->setSortingEnabled(false);
-  trd.table->setRowCount(query.size());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    trd.table->setRowCount(query.size());
+
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
@@ -1269,6 +1272,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	for(j = 0; j < query.record().count(); j++)
 	  {
 	    str = query.value(j).toString();
+
+	    if(qmain->getDB().driverName() == "QSQLITE")
+	      trd.table->setRowCount(i + 1);
 
 	    if(j == 0)
 	      {
@@ -1315,8 +1321,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 					  "This is a serious problem!"),
 				  QString(""), __FILE__, __LINE__);
 	      }
-	    else if((item = new QTableWidgetItem(str)) != NULL)
+	    else if((item = new QTableWidgetItem()) != NULL)
 	      {
+		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			       Qt::ItemIsEditable);
 		trd.table->setItem(i, j, item);
@@ -1432,8 +1439,9 @@ void qtbook_cd::slotInsertTrack(void)
 				    "This is a serious problem!"),
 			    QString(""), __FILE__, __LINE__);
 	}
-      else if((item = new QTableWidgetItem(str)) != NULL)
+      else if((item = new QTableWidgetItem()) != NULL)
 	{
+	  item->setText(str);
 	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			 Qt::ItemIsEditable);
 	  trd.table->setItem(trow, i, item);

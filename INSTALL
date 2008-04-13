@@ -2,9 +2,11 @@ Requirements:
 1.  Qt 4.x or later.
     Qt may be downloaded from
     http://trolltech.com/developer/downloads/qt/index.
-2.  MySQL 5.0.33 or later, or PostgreSQL 7.4.16 or later.
-    MySQL may be downloaded from http://dev.mysql.com/downloads/mysql/5.0.html
-    and PostgreSQL from http://www.postgresql.org/download.
+2.  MySQL 5.0.33 or later, or PostgreSQL 7.4.16 or later,
+    SQLite 3.5.6 or later.
+    MySQL may be downloaded from http://dev.mysql.com/downloads/mysql/5.0.html,
+    PostgreSQL from http://www.postgresql.org/download, and
+    SQLite from http://www.sqlite.org/download.html.
 3.  YAZ 2.1.53 or later.
     YAZ may be downloaded from http://www.indexdata.dk/yaz.
 4.  A C++ compiler.
@@ -24,6 +26,9 @@ MySQL Preparation:
 PostgreSQL Preparation:
 1.  Log into PostgreSQL and run the postgresql_create_tables.sql script.
 2.  Create additional users.
+
+SQLite Preparation:
+1.  Run sqlite3 -init sqlite_create_tables.sql mydatabase.db.
 
 Building (Unix):
 1.  Set the environment variables LD_LIBRARY_PATH, PATH, QMAKESPEC, and QTDIR

@@ -45,6 +45,9 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
 
   errorstr = "";
 
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
   if(action == CREATE_USER)
     {
       if(db.driverName() == "QMYSQL")

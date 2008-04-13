@@ -99,6 +99,7 @@ void generic_thread::run(void)
 	qts << outputListBool.takeFirst() << endl;
 	qts << "main_window_geometry=" << qmain->getGeometryString() << endl;
 	qts << "global_font=" << qmain->font().toString() << endl;
+	qts << "sqlite_db=" << qmain->sqlitefile() << endl;
 	qf.close();
 	break;
       }

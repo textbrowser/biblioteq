@@ -218,3 +218,4 @@
 116. Drop the member's database account during member removal.
      Must first revoke all privileges. (DONE)
 117. Reload the image summary after an item has been updated. (DONE)
+118. Provide support for SQLite.

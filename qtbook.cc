@@ -398,6 +398,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotSavePassword(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetLoginDialog(void)));
+  connect(br.fileButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotSelectDatabaseFile(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -647,7 +649,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("BiblioteQ Version 4.01.<br>"
+  mb.setText("<html>BiblioteQ Version 4.02.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -656,7 +658,7 @@ void qtbook::slotAbout(void)
 	     "additional information.<br><br>"
 	     "The program is provided AS IS with NO WARRANTY OF ANY KIND, "
 	     "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND "
-	     "FITNESS FOR A PARTICULAR PURPOSE.");
+	     "FITNESS FOR A PARTICULAR PURPOSE.</html>");
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
   mb.exec();
@@ -1345,7 +1347,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"GROUP BY videogame.myoid) "
 		"ORDER BY 1";
 	    else
-	      searchstr = "(SELECT DISTINCT book.title, "
+	      searchstr = "SELECT DISTINCT book.title, "
 		"book.id, "
 		"book.publisher, book.pdate, "
 		"book.category, "
@@ -1369,9 +1371,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"book.quantity, "
 		"book.location, "
 		"book.type, "
-		"book.myoid) "
+		"book.myoid "
 		"UNION "
-		"(SELECT DISTINCT cd.title, "
+		"SELECT DISTINCT cd.title, "
 		"cd.id, "
 		"cd.recording_label, cd.rdate, "
 		"cd.category, "
@@ -1395,9 +1397,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"cd.quantity, "
 		"cd.location, "
 		"cd.type, "
-		"cd.myoid) "
+		"cd.myoid "
 		"UNION "
-		"(SELECT DISTINCT dvd.title, "
+		"SELECT DISTINCT dvd.title, "
 		"dvd.id, "
 		"dvd.studio, dvd.rdate, "
 		"dvd.category, "
@@ -1421,9 +1423,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"dvd.quantity, "
 		"dvd.location, "
 		"dvd.type, "
-		"dvd.myoid) "
+		"dvd.myoid "
 		"UNION "
-		"(SELECT DISTINCT magazine.title, "
+		"SELECT DISTINCT magazine.title, "
 		"magazine.id, "
 		"magazine.publisher, magazine.pdate, "
 		"magazine.category, "
@@ -1447,9 +1449,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"magazine.quantity, "
 		"magazine.location, "
 		"magazine.type, "
-		"magazine.myoid) "
+		"magazine.myoid "
 		"UNION "
-		"(SELECT DISTINCT videogame.title, "
+		"SELECT DISTINCT videogame.title, "
 		"videogame.id, "
 		"videogame.publisher, videogame.rdate, "
 		"videogame.genre, "
@@ -1474,7 +1476,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		"videogame.quantity, "
 		"videogame.location, "
 		"videogame.type, "
-		"videogame.myoid) "
+		"videogame.myoid "
 		"ORDER BY 1";
 	  }
 	else if(typefilter == "Overdue")
@@ -1658,7 +1660,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 	    else
 	      {
 		searchstr = "";
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -1705,9 +1707,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid) ");
+				 "book.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -1754,9 +1756,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid) ");
+				 "cd.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -1803,9 +1805,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid) ");
+				 "dvd.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -1853,9 +1855,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid) ");
+				 "magazine.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -1904,7 +1906,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid) ");
+				 "videogame.myoid ");
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
@@ -2075,7 +2077,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 	    else
 	      {
 		searchstr = "";
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -2120,9 +2122,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid) ");
+				 "book.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -2167,9 +2169,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid) ");
+				 "cd.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -2214,9 +2216,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid) ");
+				 "dvd.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -2262,9 +2264,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid) ");
+				 "magazine.myoid ");
 		searchstr.append("UNION ");
-		searchstr.append("(SELECT DISTINCT "
+		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
 				 "member.first_name AS name, "
 				 "member.memberid, "
@@ -2310,7 +2312,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid) ");
+				 "videogame.myoid ");
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
@@ -2690,7 +2692,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 
 		if(type == "Journal")
 		  str = QString
-		    ("(SELECT DISTINCT %1.title, "
+		    ("SELECT DISTINCT %1.title, "
 		     "%1.id, "
 		     "%1.publisher, %1.pdate, "
 		     "%1.category, "
@@ -2703,7 +2705,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		     "%1.type, ").arg("magazine");
 		else
 		  str = QString
-		    ("(SELECT DISTINCT %1.title, "
+		    ("SELECT DISTINCT %1.title, "
 		     "%1.id, "
 		     "%1.publisher, %1.pdate, "
 		     "%1.category, "
@@ -2802,9 +2804,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 		if(selectedBranch["database_type"] == "mysql")
 		  {
 		    if(type == "Journal")
-		      str += QString("GROUP BY magazine.myoid) ");
+		      str += QString("GROUP BY magazine.myoid ");
 		    else
-		      str += QString("GROUP BY %1.myoid) ").arg
+		      str += QString("GROUP BY %1.myoid ").arg
 			(type.toLower().remove(" "));
 		  }
 		else
@@ -2821,7 +2823,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				     "%1.quantity, "
 				     "%1.location, "
 				     "type, "
-				     "%1.myoid) ").arg("magazine");
+				     "%1.myoid ").arg("magazine");
 		    else
 		      str += QString("GROUP BY "
 				     "%1.title, "
@@ -2834,7 +2836,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				     "%1.quantity, "
 				     "%1.location, "
 				     "type, "
-				     "%1.myoid) ").arg
+				     "%1.myoid ").arg
 			(type.toLower().remove(" "));
 		  }
 
@@ -3052,7 +3054,9 @@ int qtbook::populateTable(const int search_type, const int filter,
       else
 	ui.table->resetTable("");
 
-      ui.table->setRowCount(query.size());
+      if(selectedBranch["database_type"] != "sqlite")
+	ui.table->setRowCount(query.size());
+
       progress.setModal(true);
       progress.setWindowTitle("BiblioteQ: Progress Dialog");
       progress.setLabelText("Populating the table...");
@@ -3092,6 +3096,10 @@ int qtbook::populateTable(const int search_type, const int filter,
 		  {
 		    item->setText(str);
 		    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+		    if(selectedBranch["database_type"] == "sqlite")
+		      ui.table->setRowCount(i + 1);
+
 		    ui.table->setItem(i, j, item);
 
 		    if(query.record().fieldName(j) == "type")
@@ -3896,6 +3904,7 @@ void qtbook::readGlobalSetup(void)
 		}
 	  }
 
+      tmphash.clear();
       locations.sort();
       categories.sort();
 
@@ -4072,6 +4081,12 @@ void qtbook::readConfig(void)
 
 	  if(str.startsWith("global_font"))
 	    font.fromString(str.remove("global_font="));
+
+	  if(str.startsWith("sqlite_db"))
+	    {
+	      br.filename->setText(str.remove("sqlite_db="));
+	      br.filename->setCursorPosition(0);
+	    }
 	}
 
       if(statusBar() != NULL)
@@ -4587,8 +4602,7 @@ void qtbook::slotShowPrev(void)
 
 void qtbook::slotShowConnectionDB(void)
 {
-  br.userid->setFocus();
-  branch_diag->updateGeometry();
+  slotBranchChanged();
   branch_diag->show();
 }
 
@@ -4599,126 +4613,144 @@ void qtbook::slotShowConnectionDB(void)
 void qtbook::slotConnectDB(void)
 {
   bool error = false;
+  QString str = "";
   QString drivers = "";
   QString plugins = "";
   QString errorstr = "";
+  QHash<QString, QString> tmphash;
 
   /*
   ** Configure some database attributes.
   */
 
-  {
-    QString str = "";
-    QSqlDatabase defdb;
-    br.userid->setFocus();
-    selectedBranch = branches[br.branch_name->currentText()];
+  br.userid->setFocus();
+  tmphash = branches[br.branch_name->currentText()];
 
-    if(selectedBranch["database_type"] == "mysql")
-      str = "QMYSQL";
-    else
-      str = "QPSQL";
+  if(tmphash["database_type"] == "mysql")
+    str = "QMYSQL";
+  else if(tmphash["database_type"] == "postgresql")
+    str = "QPSQL";
+  else if(tmphash["database_type"] == "sqlite")
+    str = "QSQLITE";
+  else
+    str = "QODBC";
 
-    foreach(QString driver, QSqlDatabase::drivers())
-      drivers += driver + ", ";
+  foreach(QString driver, QSqlDatabase::drivers())
+    drivers += driver + ", ";
 
-    if(drivers.endsWith(", "))
-      drivers = drivers.mid(0, drivers.length() - 2);
+  if(drivers.endsWith(", "))
+    drivers = drivers.mid(0, drivers.length() - 2);
 
-    foreach(QString path, qapp->libraryPaths())
-      if(path.contains("plugin"))
-	{
-	  plugins = path;
-	  break;
-	}
-
-    if(!QSqlDatabase::isDriverAvailable(str))
+  foreach(QString path, qapp->libraryPaths())
+    if(path.contains("plugin"))
       {
-	QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
-			      "The selected Branch's database type does not "
-			      "have a driver associated with it.\n"
-			      "The following drivers are available: " +
-			      drivers + ".\n"
-			      "In addition, Qt expects plugins to exist "
-			      "in " + plugins + ".\n"
-			      "Please contact your administrator.");
-	return;
+	plugins = path;
+	break;
       }
 
-    defdb = QSqlDatabase::addDatabase(str, "Default");
-    defdb.setHostName(selectedBranch["hostname"]);
-    defdb.setDatabaseName(br.branch_name->currentText());
-    defdb.setUserName(br.userid->text());
-    defdb.setPassword(br.password->text());
-    defdb.setPort(selectedBranch["database_port"].toInt());
+  if(!QSqlDatabase::isDriverAvailable(str))
+    {
+      tmphash.clear();
+      QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
+			    "The selected Branch's database type does not "
+			    "have a driver associated with it.\n"
+			    "The following drivers are available: " +
+			    drivers + ".\n"
+			    "In addition, Qt expects plugins to exist "
+			    "in " + plugins + ".\n"
+			    "Please contact your administrator.");
+      return;
+    }
 
-    if(selectedBranch["ssl_enabled"] == "true")
-      if(selectedBranch["database_type"] == "mysql")
-	defdb.setConnectOptions("CLIENT_SSL");
+  db = QSqlDatabase::addDatabase(str, "Default");
+
+  if(tmphash["database_type"] == "sqlite")
+    db.setDatabaseName(br.filename->text());
+  else
+    {
+      db.setHostName(tmphash["hostname"]);
+      db.setDatabaseName(br.branch_name->currentText());
+      db.setUserName(br.userid->text());
+      db.setPassword(br.password->text());
+      db.setPort(tmphash["database_port"].toInt());
+    }
+
+  if(tmphash["database_type"] != "sqlite")
+    if(tmphash["ssl_enabled"] == "true")
+      if(tmphash["database_type"] == "mysql")
+	db.setConnectOptions("CLIENT_SSL");
       else
-	defdb.setConnectOptions("requiressl=1");
+	db.setConnectOptions("requiressl=1");
 
-    qapp->setOverrideCursor(Qt::WaitCursor);
-    (void) defdb.open();
-    qapp->restoreOverrideCursor();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  (void) db.open();
+  qapp->restoreOverrideCursor();
 
-    if(!defdb.isOpen())
-      {
-	error = true;
-	addError(QString("Database Error"),
-		 QString("Unable to open a database connection "
-			 "with the provided information."),
-		 defdb.lastError().text(),
-		 __FILE__, __LINE__);
-	QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
-			      "Unable to open a database "
-			      "connection with the provided information.");
-      }
-    else
-      {
-	if(!defdb.driver()->hasFeature(QSqlDriver::Transactions))
-	  QMessageBox::warning
-	    (branch_diag, "BiblioteQ: Database Warning",
-	     "The current database driver that you're using "
-	     "does not support transactions. As a result, "
-	     "some options will be "
-	     "unavailable. Please upgrade your database and/or driver.");
-	else
-	  supportsTransactions = true;
-      }
+  if(!db.isOpen())
+    {
+      error = true;
+      addError(QString("Database Error"),
+	       QString("Unable to open a database connection "
+		       "with the provided information."),
+	       db.lastError().text(),
+	       __FILE__, __LINE__);
+      QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
+			    "Unable to open a database "
+			    "connection with the provided information.");
+    }
+  else
+    {
+      if(!db.driver()->hasFeature(QSqlDriver::Transactions))
+	QMessageBox::warning
+	  (branch_diag, "BiblioteQ: Database Warning",
+	   "The current database driver that you're using "
+	   "does not support transactions. As a result, "
+	   "some options will be "
+	   "unavailable. Please upgrade your database and/or driver.");
+      else
+	supportsTransactions = true;
+    }
 
-    if(!error)
-      {
-	qapp->setOverrideCursor(Qt::WaitCursor);
-	roles = misc_functions::getRoles
-	  (defdb, br.userid->text(), errorstr);
-	qapp->restoreOverrideCursor();
+  if(tmphash["database_type"] != "sqlite")
+    {
+      if(!error)
+	{
+	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  roles = misc_functions::getRoles
+	    (db, br.userid->text(), errorstr);
+	  qapp->restoreOverrideCursor();
 
-	if(br.adminCheck->isChecked() && roles.isEmpty())
-	  {
-	    error = true;
-	    QMessageBox::critical
-	      (branch_diag, "BiblioteQ: User Error",
-	       QString("It appears that the user %1 does not have "
-		       "administrator privileges.").arg
-	       (br.userid->text()));
-	  }
-	else if(!br.adminCheck->isChecked() && !roles.isEmpty())
-	  QMessageBox::warning
-	    (branch_diag, "BiblioteQ: Warning",
-	     "It appears that you are attempting to use an "
-	     "administrator login in a non-administrator mode.");
-      }
-  }
+	  if(br.adminCheck->isChecked() && roles.isEmpty())
+	    {
+	      error = true;
+	      QMessageBox::critical
+		(branch_diag, "BiblioteQ: User Error",
+		 QString("It appears that the user %1 does not have "
+			 "administrator privileges.").arg
+		 (br.userid->text()));
+	    }
+	  else if(!br.adminCheck->isChecked() && !roles.isEmpty())
+	    QMessageBox::warning
+	      (branch_diag, "BiblioteQ: Warning",
+	       "It appears that you are attempting to use an "
+	       "administrator login in a non-administrator mode.");
+	}
+    }
+  else
+    roles = "all";
+
+  tmphash.clear();
 
   if(error)
     {
+      db = QSqlDatabase();
       QSqlDatabase::removeDatabase("Default");
       return;
     }
   else
-    db = QSqlDatabase::database("Default");
+    branch_diag->hide();
 
-  branch_diag->hide();
+  selectedBranch = branches[br.branch_name->currentText()];
 
   if(connected_bar_label != NULL)
     {
@@ -4740,10 +4772,17 @@ void qtbook::slotConnectDB(void)
   ui.configTool->setEnabled(true);
   ui.connectTool->setEnabled(false);
   ui.actionConnect->setEnabled(false);
-  connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
-	  SLOT(slotViewDetails(void)));
 
-  if(br.adminCheck->isChecked())
+  if(selectedBranch["database_type"] == "sqlite")
+    ui.actionChangePassword->setVisible(false);
+  else
+    {
+      ui.actionChangePassword->setVisible(true);
+      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
+	      SLOT(slotViewDetails(void)));
+    }
+
+  if(br.adminCheck->isChecked() || selectedBranch["database_type"] == "sqlite")
     adminSetup();
   else
     ui.actionReservationHistory->setEnabled(true);
@@ -4796,6 +4835,7 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.actionChangePassword->setVisible(true);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
@@ -4974,8 +5014,9 @@ void qtbook::slotPopulateMembersBrowser(void)
 
   str.append("ORDER BY member.memberid");
   qapp->setOverrideCursor(Qt::WaitCursor);
+  query.prepare(str);
 
-  if(!query.exec(str))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
@@ -4992,7 +5033,10 @@ void qtbook::slotPopulateMembersBrowser(void)
   qapp->restoreOverrideCursor();
   resetMembersBrowser();
   bb.table->setSortingEnabled(false);
-  bb.table->setRowCount(query.size());
+
+  if(selectedBranch["database_type"] != "sqlite")
+    bb.table->setRowCount(query.size());
+
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
@@ -5011,9 +5055,14 @@ void qtbook::slotPopulateMembersBrowser(void)
 	    if(str == "0")
 	      str = "";
 
-	    if((item = new QTableWidgetItem(str)) != NULL)
+	    if((item = new QTableWidgetItem()) != NULL)
 	      {
+		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+		if(selectedBranch["database_type"] == "sqlite")
+		  bb.table->setRowCount(i + 1);
+
 		bb.table->setItem(i, j, item);
 	      }
 	    else
@@ -5900,7 +5949,10 @@ void qtbook::emptyContainers(void)
 
 QString qtbook::getAdminID(void)
 {
-  return br.userid->text();
+  if(selectedBranch["database_type"] != "sqlite")
+    return br.userid->text();
+  else
+    return "N/A";
 }
 
 /*
@@ -6866,8 +6918,9 @@ void qtbook::slotShowHistory(void)
 
   str.append("ORDER BY 1");
   qapp->setOverrideCursor(Qt::WaitCursor);
+  query.prepare(str);
 
-  if(!query.exec(str))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
@@ -6920,7 +6973,10 @@ void qtbook::slotShowHistory(void)
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
   list.clear();
   history.table->setSortingEnabled(false);
-  history.table->setRowCount(query.size());
+
+  if(selectedBranch["database_type"] != "sqlite")
+    history.table->setRowCount(query.size());
+
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
   progress.setModal(true);
@@ -6938,8 +6994,15 @@ void qtbook::slotShowHistory(void)
 	  {
 	    str = query.value(j).toString();
 
-	    if((item = new QTableWidgetItem(str)) != NULL)
-	      history.table->setItem(i, j, item);
+	    if((item = new QTableWidgetItem()) != NULL)
+	      {
+		item->setText(str);
+
+		if(selectedBranch["database_type"] == "sqlite")
+		  history.table->setRowCount(i + 1);
+
+		history.table->setItem(i, j, item);
+	      }
 	    else
 	      addError(QString("Memory Error"),
 		       QString("Unable to allocate memory for the "
@@ -7034,9 +7097,28 @@ void qtbook::slotPrintReservationHistory(void)
 
 void qtbook::slotBranchChanged(void)
 {
-  /*
-  ** Do nothing for now.
-  */
+  QHash<QString, QString> tmphash;
+
+  branch_diag->hide();
+  tmphash = branches[br.branch_name->currentText()];
+
+  if(tmphash["database_type"] == "sqlite")
+    {
+      br.file_frame->setVisible(true);
+      br.db_frame->setVisible(false);
+      br.fileButton->setFocus();
+    }
+  else
+    {
+      br.file_frame->setVisible(false);
+      br.db_frame->setVisible(true);
+      br.userid->setFocus();
+    }
+
+  tmphash.clear();
+  branch_diag->updateGeometry();
+  branch_diag->resize(branch_diag->sizeHint());
+  branch_diag->show();
 }
 
 /*
@@ -7152,7 +7234,37 @@ void qtbook::slotResetLoginDialog(void)
 {
   br.userid->clear();
   br.password->clear();
+  br.filename->clear();
   br.adminCheck->setChecked(false);
   br.branch_name->setCurrentIndex(0);
-  br.userid->setFocus();
+  slotBranchChanged();
+}
+
+/*
+** -- slotSelectDatabaseFile() --
+*/
+
+void qtbook::slotSelectDatabaseFile(void)
+{
+  QFileDialog dialog(branch_diag);
+
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setFilter("Database Files (*.db)");
+  dialog.setWindowTitle("Database File Selection");
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    br.filename->setText(dialog.selectedFiles().at(0));
+}
+
+/*
+** -- sqlitefile() --
+*/
+
+QString qtbook::sqlitefile(void)
+{
+  if(br.remember->isChecked())
+    return br.filename->text();
+  else
+    return "";
 }

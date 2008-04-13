@@ -6,20 +6,8 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>160</height>
+    <height>270</height>
    </rect>
-  </property>
-  <property name="minimumSize" >
-   <size>
-    <width>400</width>
-    <height>0</height>
-   </size>
-  </property>
-  <property name="maximumSize" >
-   <size>
-    <width>16777215</width>
-    <height>16777215</height>
-   </size>
   </property>
   <property name="font" >
    <font>
@@ -30,12 +18,96 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Branch Selection</string>
   </property>
-  <property name="sizeGripEnabled" >
-   <bool>false</bool>
-  </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="QFrame" name="frame" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="label_4" >
+       <property name="font" >
+        <font>
+         <family>Times</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text" >
+        <string>Branch Name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QComboBox" name="branch_name" >
+         <property name="editable" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QFrame" name="file_frame" >
+     <property name="frameShape" >
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" >
+      <item>
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="pixmap" >
+         <pixmap>icons.d/32x32/database.png</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="fileButton" >
+        <property name="text" >
+         <string>&amp;Select File</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="filename" >
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="remember" >
+        <property name="text" >
+         <string>Remember</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="db_frame" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
        <horstretch>0</horstretch>
@@ -48,8 +120,8 @@
      <property name="frameShadow" >
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" >
-      <item>
+     <layout class="QGridLayout" >
+      <item rowspan="2" row="0" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
          <string/>
@@ -59,93 +131,52 @@
         </property>
        </widget>
       </item>
-      <item>
-       <layout class="QGridLayout" >
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label_6" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
+      <item row="0" column="1" >
+       <widget class="QLabel" name="label_6" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Userid</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLineEdit" name="userid" />
+        </item>
+        <item>
+         <widget class="QCheckBox" name="adminCheck" >
           <property name="text" >
-           <string>Userid</string>
+           <string>Administrator</string>
           </property>
          </widget>
-        </item>
-        <item row="0" column="1" >
-         <layout class="QHBoxLayout" >
-          <item>
-           <widget class="QLineEdit" name="userid" />
-          </item>
-          <item>
-           <widget class="QCheckBox" name="adminCheck" >
-            <property name="text" >
-             <string>Administrator</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_5" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Password</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QLineEdit" name="password" >
-          <property name="echoMode" >
-           <enum>QLineEdit::Password</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" >
-         <widget class="QLabel" name="label_4" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Branch Name</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <layout class="QHBoxLayout" >
-          <item>
-           <widget class="QComboBox" name="branch_name" >
-            <property name="editable" >
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
         </item>
        </layout>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLabel" name="label_5" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <widget class="QLineEdit" name="password" >
+        <property name="echoMode" >
+         <enum>QLineEdit::Password</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -158,7 +189,7 @@
      <property name="sizeHint" >
       <size>
        <width>382</width>
-       <height>71</height>
+       <height>21</height>
       </size>
      </property>
     </spacer>
@@ -266,10 +297,13 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>branch_name</tabstop>
+  <tabstop>fileButton</tabstop>
+  <tabstop>filename</tabstop>
+  <tabstop>remember</tabstop>
   <tabstop>userid</tabstop>
   <tabstop>adminCheck</tabstop>
   <tabstop>password</tabstop>
-  <tabstop>branch_name</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>cancelButton</tabstop>

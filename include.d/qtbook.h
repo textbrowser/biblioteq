@@ -104,6 +104,7 @@ class qtbook: public QMainWindow
 				       const QString &);
   QString getRoles(void);
   QString getAdminID(void);
+  QString sqlitefile(void);
   QString getGeometryString(void);
   QMainWindow *getMembersBrowser(void);
   QSqlDatabase getDB(void);
@@ -241,6 +242,7 @@ class qtbook: public QMainWindow
   void slotShowConnectionDB(void);
   void slotListReservedItems(void);
   void slotExecuteCustomQuery(void);
+  void slotSelectDatabaseFile(void);
   void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);
   void slotCloseCustomQueryDialog(void);
