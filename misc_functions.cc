@@ -4,6 +4,8 @@
 
 #include "misc_functions.h"
 
+extern qtbook *qmain;
+
 /*
 ** -- getImage() --
 */
@@ -151,6 +153,9 @@ void misc_functions::savePassword(const QString &memberid,
 
   errorstr = "";
   querystr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
 
   if(db.driverName() == "QMYSQL")
     querystr = QString("SET PASSWORD FOR %1 = PASSWORD('%2') ").arg
@@ -951,4 +956,38 @@ void misc_functions::highlightWidget(QWidget *widget,
   pal = widget->palette();
   pal.setColor(widget->backgroundRole(), color);
   widget->setPalette(pal);
+}
+
+/*
+** -- sqliteQuerySize() --
+*/
+
+int misc_functions::sqliteQuerySize(const QString &qstr,
+				    const QSqlDatabase &db,
+				    const char *file, const int line)
+{
+  int count = -1;
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  if(db.driverName() != "QSQLITE")
+    return count; // SQLite only.
+
+  querystr = "SELECT COUNT(*) " + qstr.mid(qstr.indexOf("FROM"));
+
+  if(query.exec(querystr))
+    {
+      (void) query.next();
+      count = query.value(0).toInt();
+    }
+
+  if(query.lastError().isValid())
+    {
+      count = -1;
+      qmain->addError(QString("Database Error"),
+		      QString("Unable to determine the query size."),
+		      query.lastError().text(), file, line);
+    }
+
+  return count;
 }

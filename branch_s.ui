@@ -93,16 +93,6 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QCheckBox" name="remember" >
-        <property name="text" >
-         <string>Remember</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -300,7 +290,6 @@
   <tabstop>branch_name</tabstop>
   <tabstop>fileButton</tabstop>
   <tabstop>filename</tabstop>
-  <tabstop>remember</tabstop>
   <tabstop>userid</tabstop>
   <tabstop>adminCheck</tabstop>
   <tabstop>password</tabstop>

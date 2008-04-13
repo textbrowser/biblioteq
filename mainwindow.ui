@@ -11,7 +11,7 @@
   </property>
   <property name="minimumSize" >
    <size>
-    <width>500</width>
+    <width>900</width>
     <height>650</height>
    </size>
   </property>
@@ -25,9 +25,6 @@
     <underline>false</underline>
     <strikeout>false</strikeout>
    </font>
-  </property>
-  <property name="acceptDrops" >
-   <bool>false</bool>
   </property>
   <property name="windowTitle" >
    <string>BiblioteQ</string>
@@ -403,6 +400,8 @@
     <addaction name="actionAutoResizeColumns" />
     <addaction name="actionShowGrid" />
     <addaction name="actionPopulateOnStart" />
+    <addaction name="actionPreserveGeometry" />
+    <addaction name="actionRememberSQLiteFilename" />
     <addaction name="actionResetErrorLogOnDisconnect" />
     <addaction name="separator" />
     <addaction name="actionSaveSettings" />
@@ -874,7 +873,7 @@
     <iconset>icons.d/16x16/fonts.png</iconset>
    </property>
    <property name="text" >
-    <string>Set Global Fonts</string>
+    <string>Set Global &amp;Fonts</string>
    </property>
    <property name="font" >
     <font>
@@ -1183,6 +1182,40 @@
    </property>
    <property name="text" >
     <string>Change Password</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionRememberSQLiteFilename" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Remember S&amp;QLite Filename</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionPreserveGeometry" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Preserve Main Window's &amp;Geometry</string>
    </property>
    <property name="font" >
     <font>

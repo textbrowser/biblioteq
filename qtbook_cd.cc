@@ -1200,6 +1200,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   int i = -1;
   int j = 0;
   QString str = "";
+  QString querystr = "";
   QSpinBox *trackEdit = NULL;
   QComboBox *comboBox = NULL;
   QSqlQuery query(qmain->getDB());
@@ -1209,13 +1210,13 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   QProgressDialog progress(tracks_diag);
   QTableWidgetItem *item = NULL;
 
-  str = "SELECT albumnum, songnum, songtitle, runtime "
+  querystr = "SELECT albumnum, songnum, songtitle, runtime "
     "FROM cd_songs WHERE item_oid = ";
-  str.append(oid);
-  str.append(" ORDER BY albumnum, songnum, songtitle, runtime");
+  querystr.append(oid);
+  querystr.append(" ORDER BY albumnum, songnum, songtitle, runtime");
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(str))
+  if(!query.exec(querystr))
     {
       qapp->restoreOverrideCursor();
       qmain->addError(QString("Database Error"),
@@ -1261,7 +1262,14 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
-  progress.setMaximum(query.size());
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    progress.setMaximum(misc_functions::sqliteQuerySize(querystr,
+							qmain->getDB(),
+							__FILE__, __LINE__));
+  else
+    progress.setMaximum(query.size());
+
   progress.show();
   progress.update();
   i = -1;

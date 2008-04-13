@@ -129,6 +129,7 @@ void copy_editor::populateCopiesEditor(void)
   int row = 0;
   QDate duedate = QDate::currentDate().addDays(21);
   QString str = "";
+  QString querystr = "";
   QSqlQuery query(qmain->getDB());
   QStringList list;
   QTableWidgetItem *item = NULL;
@@ -243,40 +244,41 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->setRowCount(i);
 
   if(qmain->getDB().driverName() == "QMYSQL")
-    query.prepare(QString("SELECT %1_copy_info.copyid, "
-			  "(1 - COUNT(%1_borrower.copyid)), "
-			  "%1_copy_info.item_oid, "
-			  "%1_copy_info.copy_number "
-			  "FROM "
-			  "%1_copy_info LEFT JOIN %1_borrower ON "
-			  "%1_copy_info.item_oid = "
-			  "%1_borrower.item_oid AND "
-			  "%1_copy_info.item_oid = "
-			  "%1_borrower.item_oid "
-			  "WHERE %1_copy_info.item_oid = ? "
-			  "GROUP BY %1_copy_info.copyid "
-			  "ORDER BY %1_copy_info.copy_number").arg(itemType));
+    querystr = QString
+      ("SELECT %1_copy_info.copyid, "
+       "(1 - COUNT(%1_borrower.copyid)), "
+       "%1_copy_info.item_oid, "
+       "%1_copy_info.copy_number "
+       "FROM "
+       "%1_copy_info LEFT JOIN %1_borrower ON "
+       "%1_copy_info.item_oid = "
+       "%1_borrower.item_oid AND "
+       "%1_copy_info.item_oid = "
+       "%1_borrower.item_oid "
+       "WHERE %1_copy_info.item_oid = %2 "
+       "GROUP BY %1_copy_info.copyid "
+       "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
   else
-    query.prepare(QString("SELECT %1_copy_info.copyid, "
-			  "(1 - COUNT(%1_borrower.copyid)), "
-			  "%1_copy_info.item_oid, "
-			  "%1_copy_info.copy_number "
-			  "FROM "
-			  "%1_copy_info LEFT JOIN %1_borrower ON "
-			  "%1_copy_info.copyid = "
-			  "%1_borrower.copyid AND "
-			  "%1_copy_info.item_oid = "
-			  "%1_borrower.item_oid "
-			  "WHERE %1_copy_info.item_oid = ? "
-			  "GROUP BY %1_copy_info.copyid, "
-			  "%1_copy_info.item_oid, "
-			  "%1_copy_info.copy_number "
-			  "ORDER BY %1_copy_info.copy_number").arg(itemType));
+    querystr = QString
+      ("SELECT %1_copy_info.copyid, "
+       "(1 - COUNT(%1_borrower.copyid)), "
+       "%1_copy_info.item_oid, "
+       "%1_copy_info.copy_number "
+       "FROM "
+       "%1_copy_info LEFT JOIN %1_borrower ON "
+       "%1_copy_info.copyid = "
+       "%1_borrower.copyid AND "
+       "%1_copy_info.item_oid = "
+       "%1_borrower.item_oid "
+       "WHERE %1_copy_info.item_oid = %2 "
+       "GROUP BY %1_copy_info.copyid, "
+       "%1_copy_info.item_oid, "
+       "%1_copy_info.copy_number "
+       "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
 
-  query.bindValue(0, ioid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec())
+  if(!query.exec(querystr))
     qmain->addError(QString("Database Error"),
 		    QString("Unable to retrieve copy data."),
 		    query.lastError().text(), __FILE__, __LINE__);
@@ -285,7 +287,18 @@ void copy_editor::populateCopiesEditor(void)
   progress2.setModal(true);
   progress2.setWindowTitle("BiblioteQ: Progress Dialog");
   progress2.setLabelText("Retrieving copy information...");
-  progress2.setMaximum(query.size());
+
+  /*
+  ** SQLite does not support query.size().
+  */
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    progress2.setMaximum(misc_functions::sqliteQuerySize(querystr,
+							 qmain->getDB(),
+							 __FILE__, __LINE__));
+  else
+    progress2.setMaximum(query.size());
+
   progress2.show();
   progress2.update();
   i = -1;

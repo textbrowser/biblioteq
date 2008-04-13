@@ -405,9 +405,9 @@ qtbook::qtbook(void):QMainWindow()
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   w = qapp->desktop()->width();
   h = qapp->desktop()->height();
-  setGeometry(qapp->desktop()->x() + (w - MAINWINDOW_MINWIDTH) / 2,
-	      qapp->desktop()->y() + (h - MAINWINDOW_MINHEIGHT) / 2,
-	      MAINWINDOW_MINWIDTH, MAINWINDOW_MINHEIGHT);
+  setGeometry(qapp->desktop()->x() + (w - minimumSize().width()) / 2,
+	      qapp->desktop()->y() + (h - minimumSize().height()) / 2,
+	      minimumSize().width(), minimumSize().height());
   ui.createTool->setMenu(menu1);
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
@@ -437,10 +437,9 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.table->resetTable("All");
   ui.summary->setVisible(false);
+  ui.actionRememberSQLiteFilename->setVisible(false);
   addConfigOptions();
   setUpdatesEnabled(true);
-  setMinimumWidth(MAINWINDOW_MINWIDTH);
-  setMinimumHeight(MAINWINDOW_MINHEIGHT);
   userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo.zip->setInputMask("99999");
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
@@ -649,7 +648,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 4.02.<br>"
+  mb.setText("<html>BiblioteQ Version 4.02.1.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -3060,7 +3059,14 @@ int qtbook::populateTable(const int search_type, const int filter,
       progress.setModal(true);
       progress.setWindowTitle("BiblioteQ: Progress Dialog");
       progress.setLabelText("Populating the table...");
-      progress.setMaximum(query.size());
+
+      if(selectedBranch["database_type"] == "sqlite")
+	progress.setMaximum
+	  (misc_functions::sqliteQuerySize(searchstr, getDB(),
+					   __FILE__, __LINE__));
+      else
+	progress.setMaximum(query.size());
+
       progress.show();
       progress.update();
       i = -1;
@@ -4071,11 +4077,20 @@ void qtbook::readConfig(void)
 
 	  if(str.startsWith("main_window_geometry"))
 	    {
-	      tmplist = str.remove("main_window_geometry=").split("x");
-	      setGeometry(tmplist[0].toInt(),
-			  tmplist[1].toInt(),
-			  tmplist[2].toInt(),
-			  tmplist[3].toInt());
+	      if(str.contains("x"))
+		tmplist = str.remove("main_window_geometry=").split("x");
+
+	      if(!tmplist.isEmpty() && tmplist.size() == 4)
+		{
+		  ui.actionPreserveGeometry->setChecked(true);
+		  setGeometry(tmplist[0].toInt(),
+			      tmplist[1].toInt(),
+			      tmplist[2].toInt(),
+			      tmplist[3].toInt());
+		}
+	      else
+		ui.actionPreserveGeometry->setChecked(false);
+
 	      tmplist.clear();
 	    }
 
@@ -4086,6 +4101,8 @@ void qtbook::readConfig(void)
 	    {
 	      br.filename->setText(str.remove("sqlite_db="));
 	      br.filename->setCursorPosition(0);
+	      ui.actionRememberSQLiteFilename->setChecked
+		(!br.filename->text().isEmpty());
 	    }
 	}
 
@@ -4119,10 +4136,12 @@ QString qtbook::getGeometryString(void)
 {
   QString str = "";
 
-  str = QString("%1x%2x%3x%4").arg(geometry().x()).
-    arg(geometry().y()).
-    arg(geometry().width()).
-    arg(geometry().height());
+  if(ui.actionPreserveGeometry->isChecked())
+    str = QString("%1x%2x%3x%4").arg(geometry().x()).
+      arg(geometry().y()).
+      arg(geometry().width()).
+      arg(geometry().height());
+
   return str;
 }
 
@@ -4774,10 +4793,14 @@ void qtbook::slotConnectDB(void)
   ui.actionConnect->setEnabled(false);
 
   if(selectedBranch["database_type"] == "sqlite")
-    ui.actionChangePassword->setVisible(false);
+    {
+      ui.actionChangePassword->setVisible(false);
+      ui.actionRememberSQLiteFilename->setVisible(true);
+    }
   else
     {
       ui.actionChangePassword->setVisible(true);
+      ui.actionRememberSQLiteFilename->setVisible(false);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
     }
@@ -4836,6 +4859,7 @@ void qtbook::slotDisconnect(void)
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionChangePassword->setVisible(true);
+  ui.actionRememberSQLiteFilename->setVisible(false);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
@@ -5014,9 +5038,8 @@ void qtbook::slotPopulateMembersBrowser(void)
 
   str.append("ORDER BY member.memberid");
   qapp->setOverrideCursor(Qt::WaitCursor);
-  query.prepare(str);
 
-  if(!query.exec())
+  if(!query.exec(str))
     {
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
@@ -5040,7 +5063,13 @@ void qtbook::slotPopulateMembersBrowser(void)
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
-  progress.setMaximum(query.size());
+
+  if(selectedBranch["database_type"] == "sqlite")
+    progress.setMaximum
+      (misc_functions::sqliteQuerySize(str, getDB(), __FILE__, __LINE__));
+  else
+    progress.setMaximum(query.size());
+
   progress.show();
   progress.update();
   i = -1;
@@ -6847,6 +6876,7 @@ void qtbook::slotShowHistory(void)
   int j = 0;
   int row = bb.table->currentRow();
   QString str = "";
+  QString querystr = "";
   QSqlQuery query(db);
   QStringList list;
   QProgressDialog progress(history_diag);
@@ -6866,61 +6896,62 @@ void qtbook::slotShowHistory(void)
   if(members_diag->isVisible())
     for(i = 0; i < list.size(); i++)
       {
-	str += QString("SELECT "
-		       "history.memberid, "
-		       "member.first_name, "
-		       "member.last_name, "
-		       "%1.title, "
-		       "history.item_id, "
-		       "history.copyid, "
-		       "%1.type, "
-		       "history.reserved_date, "
-		       "history.duedate, "
-		       "history.returned_date, "
-		       "history.reserved_by, "
-		       "%1.myoid "
-		       "FROM member_history history, "
-		       "%1 %1, "
-		       "member member "
-		       "WHERE history.memberid = member.memberid AND "
-		       "%1.id = history.item_id AND "
-		       "%1.myoid = history.item_oid AND "
-		       "member.memberid = '%2'").arg(list[i]).arg
+	querystr += QString("SELECT "
+			    "history.memberid, "
+			    "member.first_name, "
+			    "member.last_name, "
+			    "%1.title, "
+			    "history.item_id, "
+			    "history.copyid, "
+			    "%1.type, "
+			    "history.reserved_date, "
+			    "history.duedate, "
+			    "history.returned_date, "
+			    "history.reserved_by, "
+			    "%1.myoid "
+			    "FROM member_history history, "
+			    "%1 %1, "
+			    "member member "
+			    "WHERE history.memberid = member.memberid AND "
+			    "%1.id = history.item_id AND "
+			    "%1.myoid = history.item_oid AND "
+			    "member.memberid = '%2' AND %1.type = "
+			    "history.type ").arg(list[i]).arg
 	  (misc_functions::getColumnString(bb.table, row, "Member ID"));
 
 	if(i != list.size() - 1)
-	  str += "UNION ";
+	  querystr += "UNION ";
       }
   else
     for(i = 0; i < list.size(); i++)
       {
-	str += QString("SELECT "
-		       "history.memberid, "
-		       "%1.title, "
-		       "history.item_id, "
-		       "history.copyid, "
-		       "%1.type, "
-		       "history.reserved_date, "
-		       "history.duedate, "
-		       "history.returned_date, "
-		       "history.reserved_by, "
-		       "%1.myoid "
-		       "FROM member_history history, "
-		       "%1 %1 "
-		       "WHERE history.memberid = '%2' AND "
-		       "%1.id = history.item_id AND "
-		       "%1.myoid = history.item_oid ").arg(list[i]).arg
+	querystr += QString("SELECT "
+			    "history.memberid, "
+			    "%1.title, "
+			    "history.item_id, "
+			    "history.copyid, "
+			    "%1.type, "
+			    "history.reserved_date, "
+			    "history.duedate, "
+			    "history.returned_date, "
+			    "history.reserved_by, "
+			    "%1.myoid "
+			    "FROM member_history history, "
+			    "%1 %1 "
+			    "WHERE history.memberid = '%2' AND "
+			    "%1.id = history.item_id AND "
+			    "%1.myoid = history.item_oid AND %1.type = "
+			    "history.type ").arg(list[i]).arg
 	  (br.userid->text());
 
 	if(i != list.size() - 1)
-	  str += "UNION ";
+	  querystr += "UNION ";
       }
 
-  str.append("ORDER BY 1");
+  querystr.append("ORDER BY 1");
   qapp->setOverrideCursor(Qt::WaitCursor);
-  query.prepare(str);
 
-  if(!query.exec())
+  if(!query.exec(querystr))
     {
       qapp->restoreOverrideCursor();
       addError(QString("Database Error"),
@@ -6982,7 +7013,14 @@ void qtbook::slotShowHistory(void)
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
-  progress.setMaximum(query.size());
+
+  if(selectedBranch["database_type"] == "sqlite")
+    progress.setMaximum
+      (misc_functions::sqliteQuerySize(querystr, getDB(),
+				       __FILE__, __LINE__));
+  else
+    progress.setMaximum(query.size());
+
   progress.show();
   progress.update();
   i = -1;
@@ -7263,7 +7301,7 @@ void qtbook::slotSelectDatabaseFile(void)
 
 QString qtbook::sqlitefile(void)
 {
-  if(br.remember->isChecked())
+  if(ui.actionRememberSQLiteFilename->isChecked())
     return br.filename->text();
   else
     return "";

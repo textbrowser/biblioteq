@@ -2,6 +2,13 @@
 #define _MISC_FUNCTIONS_H_
 
 /*
+** -- C++ Includes --
+*/
+
+#include <iostream>
+using namespace std;
+
+/*
 ** -- Qt Includes --
 */
 
@@ -13,12 +20,20 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 
+/*
+** -- Local Includes --
+*/
+
+#include "qtbook.h"
+
 class misc_functions
 {
  public:
   static const int CREATE_USER = 100;
   static const int DELETE_USER = 200;
   static int getColumnNumber(const QTableWidget *, const QString &);
+  static int sqliteQuerySize(const QString &, const QSqlDatabase &,
+			     const char *, const int);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
   static int getMemberMatchCount(const QString &, const QString &,

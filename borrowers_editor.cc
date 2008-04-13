@@ -67,6 +67,7 @@ void borrowers_editor::showUsers(void)
   int row = 0;
   QString str = "";
   QString tmpStr = "";
+  QString querystr = "";
   QDateEdit *dateEdit = NULL;
   QSqlQuery query(qmain->getDB());
   QStringList list;
@@ -74,7 +75,6 @@ void borrowers_editor::showUsers(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
-  str = ioid;
   bd.table->clear();
   bd.table->setCurrentItem(NULL);
   bd.table->setColumnCount(0);
@@ -177,36 +177,37 @@ void borrowers_editor::showUsers(void)
   bd.table->setRowCount(i);
 
   if(state == qtbook::EDITABLE)
-    query.prepare(QString("SELECT borrowers.copy_number, "
-			  "borrowers.copyid, "
-			  "member.memberid, "
-			  "member.first_name, "
-			  "member.last_name, "
-			  "borrowers.reserved_date, "
-			  "borrowers.duedate, "
-			  "borrowers.reserved_by, "
-			  "borrowers.myoid "
-			  "FROM member member, "
-			  "%1_borrower borrowers "
-			  "WHERE borrowers.item_oid = ? AND "
-			  "borrowers.memberid = member.memberid "
-			  "ORDER BY borrowers.copy_number").arg(itemType));
+    querystr = QString
+      ("SELECT borrowers.copy_number, "
+       "borrowers.copyid, "
+       "member.memberid, "
+       "member.first_name, "
+       "member.last_name, "
+       "borrowers.reserved_date, "
+       "borrowers.duedate, "
+       "borrowers.reserved_by, "
+       "borrowers.myoid "
+       "FROM member member, "
+       "%1_borrower borrowers "
+       "WHERE borrowers.item_oid = %2 AND "
+       "borrowers.memberid = member.memberid "
+       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
   else
-    query.prepare(QString("SELECT borrowers.copy_number, "
-			  "copy.copyid, "
-			  "borrowers.reserved_date, "
-			  "borrowers.duedate "
-			  "FROM "
-			  "%1_copy_info copy "
-			  "LEFT JOIN %1_borrower_vw borrowers "
-			  "ON copy.item_oid = borrowers.item_oid "
-			  "WHERE copy.item_oid = ? "
-			  "ORDER BY borrowers.copy_number").arg(itemType));
+    querystr = QString
+      ("SELECT borrowers.copy_number, "
+       "copy.copyid, "
+       "borrowers.reserved_date, "
+       "borrowers.duedate "
+       "FROM "
+       "%1_copy_info copy "
+       "LEFT JOIN %1_borrower_vw borrowers "
+       "ON copy.item_oid = borrowers.item_oid "
+       "WHERE copy.item_oid = %2 "
+       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
 
-  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec())
+  if(!query.exec(querystr))
     qmain->addError(QString("Database Error"),
 		    QString("Unable to retrieve borrower data."),
 		    query.lastError().text(), __FILE__, __LINE__);
@@ -215,7 +216,19 @@ void borrowers_editor::showUsers(void)
   progress2.setModal(true);
   progress2.setWindowTitle("BiblioteQ: Progress Dialog");
   progress2.setLabelText("Retrieving borrower data...");
-  progress2.setMaximum(query.size());
+
+  /*
+  ** SQLite does not support query.size().
+  */
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    progress2.setMaximum(misc_functions::sqliteQuerySize(querystr,
+							 qmain->getDB(),
+							 __FILE__,
+							 __LINE__));
+  else
+    progress2.setMaximum(query.size());
+
   progress2.show();
   progress2.update();
   i = -1;
