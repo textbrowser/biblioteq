@@ -962,32 +962,24 @@ void misc_functions::highlightWidget(QWidget *widget,
 ** -- sqliteQuerySize() --
 */
 
-int misc_functions::sqliteQuerySize(const QString &qstr,
+int misc_functions::sqliteQuerySize(const QString &querystr,
 				    const QSqlDatabase &db,
 				    const char *file, const int line)
 {
-  int count = -1;
-  QString querystr = "";
+  int count = 0;
   QSqlQuery query(db);
 
   if(db.driverName() != "QSQLITE")
     return count; // SQLite only.
 
-  querystr = "SELECT COUNT(*) " + qstr.mid(qstr.indexOf("FROM"));
-
   if(query.exec(querystr))
-    {
-      (void) query.next();
-      count = query.value(0).toInt();
-    }
+    while(query.next())
+      count += 1;
 
   if(query.lastError().isValid())
-    {
-      count = -1;
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to determine the query size."),
-		      query.lastError().text(), file, line);
-    }
+    qmain->addError(QString("Database Error"),
+		    QString("Unable to determine the query size."),
+		    query.lastError().text(), file, line);
 
   return count;
 }
