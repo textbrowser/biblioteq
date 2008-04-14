@@ -40,12 +40,6 @@
        <layout class="QGridLayout" >
         <item row="0" column="0" >
          <widget class="QGroupBox" name="groupBox" >
-          <property name="title" >
-           <string>Categories</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
           <property name="flat" >
            <bool>false</bool>
           </property>
@@ -120,12 +114,6 @@
         </item>
         <item row="1" column="0" >
          <widget class="QGroupBox" name="itemSummary" >
-          <property name="title" >
-           <string>Item Summary</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
           <property name="flat" >
            <bool>false</bool>
           </property>
@@ -306,7 +294,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font" >
