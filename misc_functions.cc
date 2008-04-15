@@ -895,14 +895,25 @@ void misc_functions::createInitialCopies(const QString &idArg,
   if(!itemoid.isEmpty())
     for(i = 0; i < numCopies; i++)
       {
-	query.prepare(QString("INSERT INTO %1_copy_info "
-			      "(item_oid, copy_number, "
-			      "copyid) "
-			      "VALUES (?, "
-			      "?, ?)").arg(itemType));
+	if(db.driverName() != "QSQLITE")
+	  query.prepare(QString("INSERT INTO %1_copy_info "
+				"(item_oid, copy_number, "
+				"copyid) "
+				"VALUES (?, "
+				"?, ?)").arg(itemType));
+	else
+	  query.prepare(QString("INSERT INTO %1_copy_info "
+				"(item_oid, copy_number, "
+				"copyid, myoid) "
+				"VALUES (?, "
+				"?, ?, ?)").arg(itemType));
+
 	query.bindValue(0, itemoid);
 	query.bindValue(1, i + 1);
 	query.bindValue(2, id + "-" + QString::number(i + 1));
+
+	if(db.driverName() == "QSQLITE")
+	  query.bindValue(3, itemoid.toInt() + i + 1);
 
 	if(!query.exec())
 	  {

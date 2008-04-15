@@ -299,7 +299,7 @@ void qtbook_videogame::slotGo(void)
 			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
-      else
+      else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO videogame (id, title, "
 			      "vgrating, developer, rdate, publisher, "
 			      "genre, price, description, language, "
@@ -313,6 +313,20 @@ void qtbook_videogame::slotGo(void)
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?)"));
+      else
+	query.prepare(QString("INSERT INTO videogame (id, title, "
+			      "vgrating, developer, rdate, publisher, "
+			      "genre, price, description, language, "
+			      "monetary_units, quantity, "
+			      "vgplatform, location, vgmode, "
+			      "front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt, myoid) "
+			      "VALUES (?, ?, "
+			      "?, ?, ?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, vg.id->text());
       query.bindValue(1, vg.title->text());
@@ -363,6 +377,8 @@ void qtbook_videogame::slotGo(void)
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(19, oid);
+      else if(qmain->getDB().driverName() == "QSQLITE")
+	query.bindValue(19, vg.id->text().toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

@@ -707,14 +707,25 @@ QString copy_editor::saveCopies(void)
 	{
 	  copy = copies.at(i);
 
-	  query.prepare(QString("INSERT INTO %1_copy_info "
-				"(item_oid, copy_number, "
-				"copyid) "
-				"VALUES (?, "
-				"?, ?)").arg(itemType));
+	  if(qmain->getDB().driverName() != "QSQLITE")
+	    query.prepare(QString("INSERT INTO %1_copy_info "
+				  "(item_oid, copy_number, "
+				  "copyid) "
+				  "VALUES (?, "
+				  "?, ?)").arg(itemType));
+	  else
+	    query.prepare(QString("INSERT INTO %1_copy_info "
+				  "(item_oid, copy_number, "
+				  "copyid, myoid) "
+				  "VALUES (?, "
+				  "?, ?, ?)").arg(itemType));
+
 	  query.bindValue(0, copy->itemoid);
 	  query.bindValue(1, i + 1);
 	  query.bindValue(2, copy->copyid);
+
+	  if(qmain->getDB().driverName() == "QSQLITE")
+	    query.bindValue(3, copy->itemoid.toInt() + i + 1);
 
 	  if(!query.exec())
 	    {

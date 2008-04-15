@@ -350,7 +350,7 @@ void qtbook_dvd::slotGo(void)
 			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
-      else
+      else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO dvd "
 			      "(id, "
 			      "dvdrating, "
@@ -380,6 +380,36 @@ void qtbook_dvd::slotGo(void)
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+      else
+	query.prepare(QString("INSERT INTO dvd "
+			      "(id, "
+			      "dvdrating, "
+			      "dvdactor, "
+			      "dvddirector, "
+			      "dvddiskcount, "
+			      "dvdruntime, "
+			      "dvdformat, "
+			      "dvdregion, "
+			      "dvdaspectratio, "
+			      "title, "
+			      "rdate, "
+			      "studio, "
+			      "category, "
+			      "price, "
+			      "language, "
+			      "monetary_units, "
+			      "quantity, "
+			      "location, "
+			      "description, front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt, myoid) "
+			      "VALUES "
+			      "(?, ?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, dvd.id->text());
       query.bindValue(1, dvd.rating->currentText().trimmed());
@@ -434,6 +464,8 @@ void qtbook_dvd::slotGo(void)
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(23, oid);
+      else if(qmain->getDB().driverName() == "QSQLITE")
+	query.bindValue(23, dvd.id->text().toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

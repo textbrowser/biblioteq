@@ -332,7 +332,7 @@ void qtbook_book::slotGo(void)
 			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
-      else
+      else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO book (id, title, "
 			      "edition, author, pdate, publisher, "
 			      "category, price, description, language, "
@@ -347,6 +347,22 @@ void qtbook_book::slotGo(void)
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+      else
+	query.prepare(QString("INSERT INTO book (id, title, "
+			      "edition, author, pdate, publisher, "
+			      "category, price, description, language, "
+			      "monetary_units, quantity, "
+			      "binding_type, location, "
+			      "isbn13, lccontrolnumber, callnumber, "
+			      "deweynumber, front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt, myoid) "
+			      "VALUES (?, ?, "
+			      "?, ?, ?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+			      "?)"));
 
       query.bindValue(0, id.id->text());
       query.bindValue(1, id.title->text());
@@ -400,6 +416,8 @@ void qtbook_book::slotGo(void)
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(22, oid);
+      else if(qmain->getDB().driverName() == "QSQLITE")
+	query.bindValue(22, id.id->text().replace("X", "10").toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

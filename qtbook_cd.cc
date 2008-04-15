@@ -333,7 +333,7 @@ void qtbook_cd::slotGo(void)
 			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
-      else
+      else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO cd "
 			      "(id, "
 			      "title, "
@@ -361,6 +361,34 @@ void qtbook_cd::slotGo(void)
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+      else
+	query.prepare(QString("INSERT INTO cd "
+			      "(id, "
+			      "title, "
+			      "cdformat, "
+			      "artist, "
+			      "cddiskcount, "
+			      "cdruntime, "
+			      "rdate, "
+			      "recording_label, "
+			      "category, "
+			      "price, "
+			      "language, "
+			      "monetary_units, "
+			      "description, "
+			      "quantity, "
+			      "location, "
+			      "cdrecording, "
+			      "cdaudio, front_cover, "
+			      "back_cover, front_cover_fmt, "
+			      "back_cover_fmt, myoid) "
+			      "VALUES "
+			      "(?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, cd.id->text());
       query.bindValue(1, cd.title->text());
@@ -413,6 +441,8 @@ void qtbook_cd::slotGo(void)
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(21, oid);
+      else if(qmain->getDB().driverName() == "QSQLITE")
+	query.bindValue(21, cd.id->text().toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

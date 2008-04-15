@@ -47,3 +47,9 @@ Installing (Unix):
 4.  Copy icons.d to /usr/local/biblioteq/icons.d
     (/Applications/BiblioteQ.d/icons.d on OS X).
 5.  Set the appropriate permissions on the aforementioned files.
+
+Installing (Windows):
+1.  Create the folder C:/Program Files/BiblioteQ.d.
+2.  Copy biblioteq.conf into the aforementioned folder.
+3.  Copy the "release" folder to a desired location. You may
+    wish to rename the folder.

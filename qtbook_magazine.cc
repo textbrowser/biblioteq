@@ -307,7 +307,7 @@ void qtbook_magazine::slotGo(void)
 			      "back_cover_fmt = ? "
 			      "WHERE "
 			      "myoid = ?"));
-      else
+      else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO magazine "
 			      "(id, "
 			      "title, "
@@ -324,6 +324,23 @@ void qtbook_magazine::slotGo(void)
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+      else
+	query.prepare(QString("INSERT INTO magazine "
+			      "(id, "
+			      "title, "
+			      "pdate, publisher, "
+			      "category, price, description, language, "
+			      "monetary_units, quantity, "
+			      "location, mag_volume, mag_no, "
+			      "lccontrolnumber, callnumber, deweynumber, "
+			      "front_cover, back_cover, "
+			      "front_cover_fmt, "
+			      "back_cover_fmt, type, myoid) "
+			      "VALUES (?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, "
+			      "?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, ma.id->text());
       query.bindValue(1, ma.title->text());
@@ -377,6 +394,10 @@ void qtbook_magazine::slotGo(void)
 	query.bindValue(20, oid);
       else
 	query.bindValue(20, subType);
+
+      if(qmain->getDB().driverName() == "QSQLITE")
+	query.bindValue(21, (ma.id->text().remove("-") +
+			     ma.volume->text() + ma.issue->text()).toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
