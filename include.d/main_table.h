@@ -6,7 +6,6 @@
 */
 
 #include <QHash>
-#include <QFrame>
 #include <QScrollBar>
 #include <QHeaderView>
 #include <QApplication>

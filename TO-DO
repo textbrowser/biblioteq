@@ -194,7 +194,7 @@
  	Branch Name
 98.  Allow editing of copy information during item creation. (DONE)
 99.  Create a statistics panel. (TBD)
-100. Release a version for Windows XP.
+100. Release a version for Windows XP. (TBD)
 101. Create a Journal category. The new class should inherit from the
      Magazine class. (DONE)
 102. Store information regarding anonymous connections in the
@@ -219,3 +219,6 @@
      Must first revoke all privileges. (DONE)
 117. Reload the image summary after an item has been updated. (DONE)
 118. Provide support for SQLite. (DONE)
+119. Allow for dropping of images.
+120. Remove "green" informational dialogs. (DONE)
+121. Provide hyperlinks in textfields for searches.

@@ -648,7 +648,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 4.02.2.<br>"
+  mb.setText("<html>BiblioteQ Version 4.03.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -759,7 +759,6 @@ void qtbook::slotModify(void)
 	return;
       }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
   qStableSort(list.begin(), list.end());
 
   foreach(index, list)
@@ -873,7 +872,6 @@ void qtbook::slotModify(void)
     }
 
   list.clear();
-  qapp->restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, "BiblioteQ: User Error",
@@ -917,7 +915,6 @@ void qtbook::slotViewDetails(void)
 	return;
       }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
   qStableSort(list.begin(), list.end());
 
   foreach(index, list)
@@ -1031,7 +1028,6 @@ void qtbook::slotViewDetails(void)
     }
 
   list.clear();
-  qapp->restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, "BiblioteQ: User Error",

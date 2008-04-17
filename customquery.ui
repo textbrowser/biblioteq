@@ -42,74 +42,49 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="tables_gb" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+    <widget class="QSplitter" name="splitter" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
      </property>
-     <property name="title" >
-      <string>Tables</string>
+     <property name="childrenCollapsible" >
+      <bool>false</bool>
      </property>
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QTreeWidget" name="tables_t" >
-        <property name="alternatingRowColors" >
-         <bool>true</bool>
-        </property>
-        <property name="selectionMode" >
-         <enum>QAbstractItemView::NoSelection</enum>
-        </property>
-        <property name="uniformRowHeights" >
-         <bool>true</bool>
-        </property>
-        <property name="animated" >
-         <bool>true</bool>
-        </property>
-        <property name="columnCount" >
-         <number>0</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="query_gb" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize" >
-      <size>
-       <width>16777215</width>
-       <height>100</height>
-      </size>
-     </property>
-     <property name="baseSize" >
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="title" >
-      <string>Query Statement</string>
-     </property>
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QTextEdit" name="query_te" >
-        <property name="maximumSize" >
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="tables_gb" >
+      <property name="title" >
+       <string>Database Tables</string>
+      </property>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTreeWidget" name="tables_t" >
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="uniformRowHeights" >
+          <bool>true</bool>
+         </property>
+         <property name="animated" >
+          <bool>true</bool>
+         </property>
+         <property name="columnCount" >
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="query_gb" >
+      <property name="title" >
+       <string>Query Statement</string>
+      </property>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTextEdit" name="query_te" />
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

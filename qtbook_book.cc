@@ -1693,13 +1693,6 @@ void qtbook_book::slotQuery(void)
 
 	      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 		textfield->setCursorPosition(0);
-
-	      QMessageBox::information(this, "BiblioteQ: Information",
-				       "The highlighted fields have been "
-				       "modified with values obtained from "
-				       "the Library of Congress. "
-				       "Please update the remaining "
-				       "fields accordingly.");
 	    }
 	}
       else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())

@@ -9,12 +9,6 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="minimumSize" >
    <size>
     <width>1000</width>
@@ -43,7 +37,7 @@
        </property>
        <layout class="QVBoxLayout" >
         <item>
-         <widget class="QGraphicsView" name="front_image" >
+         <widget class="image_drop_site" name="front_image" >
           <property name="minimumSize" >
            <size>
             <width>150</width>
@@ -209,7 +203,7 @@
              <string>&amp;Convert</string>
             </property>
             <property name="icon" >
-             <iconset>icons.d/16x16/convert.png</iconset>
+             <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/convert.png</iconset>
             </property>
            </widget>
           </item>
@@ -774,7 +768,7 @@
                <string>&amp;Show Copies</string>
               </property>
               <property name="icon" >
-               <iconset>icons.d/16x16/editcopy.png</iconset>
+               <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/editcopy.png</iconset>
               </property>
              </widget>
             </item>
@@ -790,7 +784,7 @@
                <string>&amp;Show Reservation Status</string>
               </property>
               <property name="icon" >
-               <iconset>icons.d/16x16/members.png</iconset>
+               <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/members.png</iconset>
               </property>
              </widget>
             </item>
@@ -916,7 +910,7 @@
          <string>&amp;OK</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/ok.png</iconset>
+         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -938,7 +932,7 @@
          <string>&amp;Query Libray of Congress</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/down.png</iconset>
+         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/down.png</iconset>
         </property>
        </widget>
       </item>
@@ -982,7 +976,7 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/fileprint.png</iconset>
+         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -1004,7 +998,7 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/cancel.png</iconset>
+         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -1026,6 +1020,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>image_drop_site</class>
+   <extends>QGraphicsView</extends>
+   <header>image_drop_site.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>front_image</tabstop>
   <tabstop>frontButton</tabstop>
