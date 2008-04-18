@@ -383,36 +383,38 @@ void qtbook_book::slotGo(void)
       query.bindValue(16, id.callnum->text());
       query.bindValue(17, id.deweynum->text());
 
-      if(id.frontCheck->isChecked())
+      if(!id.front_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  id.front_image->image.save
+	    (&buffer, id.front_image->imageFormat.toAscii(), 100);
 	  query.bindValue(18, bytes);
 	}
       else
 	{
-	  frontImageFormat = "";
+	  id.front_image->imageFormat = "";
 	  query.bindValue(18, QVariant());
 	}
 
-      if(id.backCheck->isChecked())
+      if(!id.back_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  id.back_image->image.save
+	    (&buffer, id.back_image->imageFormat.toAscii(), 100);
 	  query.bindValue(19, bytes);
 	}
       else
 	{
-	  backImageFormat = "";
+	  id.back_image->imageFormat = "";
 	  query.bindValue(19, QVariant());
 	}
 
-      query.bindValue(20, frontImageFormat);
-      query.bindValue(21, backImageFormat);
+      query.bindValue(20, id.front_image->imageFormat);
+      query.bindValue(21, id.back_image->imageFormat);
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(22, oid);
@@ -527,30 +529,12 @@ void qtbook_book::slotGo(void)
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  oldq = id.quantity->value();
 
-	  if(!id.frontCheck->isChecked())
-	    {
-	      frontImage = QImage();
-	      frontImageFormat = "";
+	  if(id.front_image->image.isNull())
+	    id.front_image->imageFormat = "";
 
-	      if(id.front_image->items().size() > 0)
-		id.front_image->scene()->removeItem
-		  (id.front_image->items().at(0));
-	    }
+	  if(id.back_image->image.isNull())
+	    id.back_image->imageFormat = "";
 
-	  if(!id.backCheck->isChecked())
-	    {
-	      backImage = QImage();
-	      backImageFormat = "";
-
-	      if(id.back_image->items().size() > 0)
-		id.back_image->scene()->removeItem
-		  (id.back_image->items().at(0));
-	    }
-
-	  id.frontCheck->setChecked
-	    (id.front_image->items().size() > 0);
-	  id.backCheck->setChecked
-	    (id.back_image->items().size() > 0);
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))
@@ -891,8 +875,6 @@ void qtbook_book::updateWindow(const int state)
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
-      id.frontCheck->setVisible(true);
-      id.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify Book Entry (%1)").arg(id.id->text());
     }
   else
@@ -904,8 +886,6 @@ void qtbook_book::updateWindow(const int state)
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
-      id.frontCheck->setVisible(false);
-      id.backCheck->setVisible(false);
       str = QString("BiblioteQ: View Book Details (%1)").arg(id.id->text());
     }
 
@@ -936,8 +916,6 @@ void qtbook_book::modify(const int state)
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
-      id.frontCheck->setVisible(true);
-      id.backCheck->setVisible(true);
     }
   else
     {
@@ -949,8 +927,6 @@ void qtbook_book::modify(const int state)
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
-      id.frontCheck->setVisible(false);
-      id.backCheck->setVisible(false);
 
       foreach(QAction *action,
 	      id.resetButton->menu()->findChildren<QAction *>())
@@ -958,8 +934,6 @@ void qtbook_book::modify(const int state)
 	  action->setVisible(false);
     }
 
-  id.frontCheck->setChecked(false);
-  id.backCheck->setChecked(false);
   id.quantity->setMinimum(1);
   id.queryButton->setEnabled(true);
   id.price->setMinimum(0.01);
@@ -1092,29 +1066,33 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "deweynumber")
 	    id.deweynum->setText(var.toString());
 	  else if(fieldname == "front_cover_fmt")
-	    frontImageFormat = var.toString();
+	    id.front_image->imageFormat = var.toString();
 	  else if(fieldname == "back_cover_fmt")
-	    backImageFormat = var.toString();
+	    id.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  frontImage.loadFromData(var.toByteArray(),
-					  frontImageFormat.toAscii());
+		  id.front_image->image.loadFromData
+		    (var.toByteArray(),
+		     id.front_image->imageFormat.toAscii());
 		  id.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(frontImage));
-		  id.frontCheck->setChecked(true);
+		    (QPixmap().fromImage(id.front_image->image));
+		  id.front_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  backImage.loadFromData(var.toByteArray(),
-					 backImageFormat.toAscii());
+		  id.back_image->image.loadFromData
+		    (var.toByteArray(),
+		     id.back_image->imageFormat.toAscii());
 		  id.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(backImage));
-		  id.backCheck->setChecked(true);
+		    (QPixmap().fromImage(id.back_image->image));
+		  id.back_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	}
@@ -1183,21 +1161,9 @@ void qtbook_book::slotReset(void)
       name = action->text();
 
       if(name.contains("Front Cover Image"))
-	{
-	  if(id.front_image->items().size() > 0)
-	    id.front_image->scene()->removeItem
-	      (id.front_image->items().at(0));
-
-	  id.frontCheck->setChecked(false);
-	}
+	id.front_image->clear();
       else if(name.contains("Back Cover Image"))
-	{
-	  if(id.back_image->items().size() > 0)
-	    id.back_image->scene()->removeItem
-	      (id.back_image->items().at(0));
-
-	  id.backCheck->setChecked(false);
-	}
+	id.back_image->clear();
       else if(name.contains("ISBN-10"))
 	{
 	  id.id->clear();
@@ -1335,17 +1301,8 @@ void qtbook_book::slotReset(void)
       id.language->setCurrentIndex(0);
       id.monetary_units->setCurrentIndex(0);
       id.binding->setCurrentIndex(0);
-
-      if(id.front_image->items().size() > 0)
-	id.front_image->scene()->removeItem
-	  (id.front_image->items().at(0));
-
-      if(id.back_image->items().size() > 0)
-	id.back_image->scene()->removeItem
-	  (id.back_image->items().at(0));
-
-      id.frontCheck->setChecked(false);
-      id.backCheck->setChecked(false);
+      id.front_image->clear();
+      id.back_image->clear();
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setPalette(id.id->palette());
@@ -1791,28 +1748,24 @@ void qtbook_book::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == id.frontButton)
       {
-	if(id.front_image->items().size() > 0)
-	  id.front_image->scene()->removeItem
-	    (id.front_image->items().at(0));
-
-	frontImage = QImage(dialog.selectedFiles().at(0));
-	frontImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	frontImageFormat = frontImageFormat.toUpper();
-	id.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
-	id.frontCheck->setChecked(true);
+	id.front_image->clear();
+	id.front_image->image = QImage(dialog.selectedFiles().at(0));
+	id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	id.front_image->scene()->addPixmap
+	  (QPixmap().fromImage(id.front_image->image));
+	id.front_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
     else
       {
-	if(id.back_image->items().size() > 0)
-	  id.back_image->scene()->removeItem
-	    (id.back_image->items().at(0));
-
-	backImage = QImage(dialog.selectedFiles().at(0));
-	backImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	backImageFormat = backImageFormat.toUpper();
-	id.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
-	id.backCheck->setChecked(true);
+	id.back_image->clear();
+	id.back_image->image = QImage(dialog.selectedFiles().at(0));
+	id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	id.back_image->scene()->addPixmap
+	  (QPixmap().fromImage(id.back_image->image));
+	id.back_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
 }

@@ -344,36 +344,38 @@ void qtbook_videogame::slotGo(void)
       query.bindValue(13, vg.location->currentText().trimmed());
       query.bindValue(14, vg.mode->currentText().trimmed());
 
-      if(vg.frontCheck->isChecked())
+      if(!vg.front_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  vg.front_image->image.save
+	    (&buffer, vg.front_image->imageFormat.toAscii(), 100);
 	  query.bindValue(15, bytes);
 	}
       else
 	{
-	  frontImageFormat = "";
+	  vg.front_image->imageFormat = "";
 	  query.bindValue(15, QVariant());
 	}
 
-      if(vg.backCheck->isChecked())
+      if(!vg.back_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  vg.back_image->image.save
+	    (&buffer, vg.back_image->imageFormat.toAscii(), 100);
 	  query.bindValue(16, bytes);
 	}
       else
 	{
-	  backImageFormat = "";
+	  vg.back_image->imageFormat = "";
 	  query.bindValue(16, QVariant());
 	}
 
-      query.bindValue(17, frontImageFormat);
-      query.bindValue(18, backImageFormat);
+      query.bindValue(17, vg.front_image->imageFormat);
+      query.bindValue(18, vg.back_image->imageFormat);
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(19, oid);
@@ -482,30 +484,12 @@ void qtbook_videogame::slotGo(void)
 
 	  oldq = vg.quantity->value();
 
-	  if(!vg.frontCheck->isChecked())
-	    {
-	      frontImage = QImage();
-	      frontImageFormat = "";
+	  if(vg.front_image->image.isNull())
+	    vg.front_image->imageFormat = "";
 
-	      if(vg.front_image->items().size() > 0)
-		vg.front_image->scene()->removeItem
-		  (vg.front_image->items().at(0));
-	    }
+	  if(vg.back_image->image.isNull())
+	    vg.back_image->imageFormat = "";
 
-	  if(!vg.backCheck->isChecked())
-	    {
-	      backImage = QImage();
-	      backImageFormat = "";
-
-	      if(vg.back_image->items().size() > 0)
-		vg.back_image->scene()->removeItem
-		  (vg.back_image->items().at(0));
-	    }
-
-	  vg.frontCheck->setChecked
-	    (vg.front_image->items().size() > 0);
-	  vg.backCheck->setChecked
-	    (vg.back_image->items().size() > 0);
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))
@@ -828,8 +812,6 @@ void qtbook_videogame::updateWindow(const int state)
       vg.resetButton->setVisible(true);
       vg.frontButton->setVisible(true);
       vg.backButton->setVisible(true);
-      vg.frontCheck->setVisible(true);
-      vg.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify Video Game Entry (%1)").arg
 	(vg.id->text());
     }
@@ -842,8 +824,6 @@ void qtbook_videogame::updateWindow(const int state)
       vg.resetButton->setVisible(false);
       vg.frontButton->setVisible(false);
       vg.backButton->setVisible(false);
-      vg.frontCheck->setVisible(false);
-      vg.backCheck->setVisible(false);
       str = QString("BiblioteQ: View Video Game Details (%1)").arg
 	(vg.id->text());
     }
@@ -875,8 +855,6 @@ void qtbook_videogame::modify(const int state)
       vg.resetButton->setVisible(true);
       vg.frontButton->setVisible(true);
       vg.backButton->setVisible(true);
-      vg.frontCheck->setVisible(true);
-      vg.backCheck->setVisible(true);
     }
   else
     {
@@ -888,8 +866,6 @@ void qtbook_videogame::modify(const int state)
       vg.resetButton->setVisible(false);     
       vg.frontButton->setVisible(false);
       vg.backButton->setVisible(false);
-      vg.frontCheck->setVisible(false);
-      vg.backCheck->setVisible(false);
 
       foreach(QAction *action,
 	      vg.resetButton->menu()->findChildren<QAction *>())
@@ -897,8 +873,6 @@ void qtbook_videogame::modify(const int state)
 	  action->setVisible(false);
     }
 
-  vg.frontCheck->setChecked(false);
-  vg.backCheck->setChecked(false);
   vg.quantity->setMinimum(1);
   vg.queryButton->setEnabled(true);
   vg.price->setMinimum(0.01);
@@ -1033,29 +1007,33 @@ void qtbook_videogame::modify(const int state)
 		  (vg.mode->findText("UNKNOWN"));
 	    }
 	  else if(fieldname == "front_cover_fmt")
-	    frontImageFormat = var.toString();
+	    vg.front_image->imageFormat = var.toString();
 	  else if(fieldname == "back_cover_fmt")
-	    backImageFormat = var.toString();
+	    vg.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  frontImage.loadFromData(var.toByteArray(),
-					  frontImageFormat.toAscii());
+		  vg.front_image->image.loadFromData
+		    (var.toByteArray(),
+		     vg.front_image->imageFormat.toAscii());
 		  vg.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(frontImage));
-		  vg.frontCheck->setChecked(true);
+		    (QPixmap().fromImage(vg.front_image->image));
+		  vg.front_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  backImage.loadFromData(var.toByteArray(),
-					 backImageFormat.toAscii());
+		  vg.back_image->image.loadFromData
+		    (var.toByteArray(),
+		     vg.back_image->imageFormat.toAscii());
 		  vg.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(backImage));
-		  vg.backCheck->setChecked(true);
+		    (QPixmap().fromImage(vg.back_image->image));
+		  vg.back_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	}
@@ -1119,16 +1097,12 @@ void qtbook_videogame::slotReset(void)
 	  if(vg.front_image->items().size() > 0)
 	    vg.front_image->scene()->removeItem
 	      (vg.front_image->items().at(0));
-
-	  vg.frontCheck->setChecked(false);
 	}
       else if(name.contains("Back Cover Image"))
 	{
 	  if(vg.back_image->items().size() > 0)
 	    vg.back_image->scene()->removeItem
 	      (vg.back_image->items().at(0));
-
-	  vg.backCheck->setChecked(false);
 	}
       else if(name.contains("UPC"))
 	{
@@ -1254,8 +1228,6 @@ void qtbook_videogame::slotReset(void)
 	vg.back_image->scene()->removeItem
 	  (vg.back_image->items().at(0));
 
-      vg.frontCheck->setChecked(false);
-      vg.backCheck->setChecked(false);
       vg.id->setFocus();
     }
 }
@@ -1382,28 +1354,24 @@ void qtbook_videogame::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == vg.frontButton)
       {
-	if(vg.front_image->items().size() > 0)
-	  vg.front_image->scene()->removeItem
-	    (vg.front_image->items().at(0));
-
-	frontImage = QImage(dialog.selectedFiles().at(0));
-	frontImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	frontImageFormat = frontImageFormat.toUpper();
-	vg.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
-	vg.frontCheck->setChecked(true);
+	vg.front_image->clear();
+	vg.front_image->image = QImage(dialog.selectedFiles().at(0));
+	vg.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	vg.front_image->scene()->addPixmap
+	  (QPixmap().fromImage(vg.front_image->image));
+	vg.front_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
     else
       {
-	if(vg.back_image->items().size() > 0)
-	  vg.back_image->scene()->removeItem
-	    (vg.back_image->items().at(0));
-
-	backImage = QImage(dialog.selectedFiles().at(0));
-	backImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	backImageFormat = backImageFormat.toUpper();
-	vg.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
-	vg.backCheck->setChecked(true);
+	vg.back_image->clear();
+	vg.back_image->image = QImage(dialog.selectedFiles().at(0));
+	vg.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	vg.back_image->scene()->addPixmap
+	  (QPixmap().fromImage(vg.back_image->image));
+	vg.back_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
 }

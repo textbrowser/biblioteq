@@ -431,36 +431,38 @@ void qtbook_dvd::slotGo(void)
       query.bindValue(17, dvd.location->currentText().trimmed());
       query.bindValue(18, dvd.description->toPlainText());
 
-      if(dvd.frontCheck->isChecked())
+      if(!dvd.front_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  dvd.front_image->image.save
+	    (&buffer, dvd.front_image->imageFormat.toAscii(), 100);
 	  query.bindValue(19, bytes);
 	}
       else
 	{
-	  frontImageFormat = "";
+	  dvd.front_image->imageFormat = "";
 	  query.bindValue(19, QVariant());
 	}
 
-      if(dvd.backCheck->isChecked())
+      if(!dvd.back_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  dvd.back_image->image.save
+	    (&buffer, dvd.back_image->imageFormat.toAscii(), 100);
 	  query.bindValue(20, bytes);
 	}
       else
 	{
-	  backImageFormat = "";
+	  dvd.back_image->imageFormat = "";
 	  query.bindValue(20, QVariant());
 	}
 
-      query.bindValue(21, frontImageFormat);
-      query.bindValue(22, backImageFormat);
+      query.bindValue(21, dvd.front_image->imageFormat);
+      query.bindValue(22, dvd.back_image->imageFormat);
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(23, oid);
@@ -566,32 +568,14 @@ void qtbook_dvd::slotGo(void)
 		}
 	    }
 
-	  oldq = dvd.quantity->value();	  
+	  oldq = dvd.quantity->value();
 
-	  if(!dvd.frontCheck->isChecked())
-	    {
-	      frontImage = QImage();
-	      frontImageFormat = "";
+	  if(dvd.front_image->image.isNull())
+	    dvd.front_image->imageFormat = "";
 
-	      if(dvd.front_image->items().size() > 0)
-		dvd.front_image->scene()->removeItem
-		  (dvd.front_image->items().at(0));
-	    }
+	  if(dvd.back_image->image.isNull())
+	    dvd.back_image->imageFormat = "";
 
-	  if(!dvd.backCheck->isChecked())
-	    {
-	      backImage = QImage();
-	      backImageFormat = "";
-
-	      if(dvd.back_image->items().size() > 0)
-		dvd.back_image->scene()->removeItem
-		  (dvd.back_image->items().at(0));
-	    }
-
-	  dvd.frontCheck->setChecked
-	    (dvd.front_image->items().size() > 0);
-	  dvd.backCheck->setChecked
-	    (dvd.back_image->items().size() > 0);
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))
@@ -944,8 +928,6 @@ void qtbook_dvd::updateWindow(const int state)
       dvd.resetButton->setVisible(true);
       dvd.frontButton->setVisible(true);
       dvd.backButton->setVisible(true);
-      dvd.frontCheck->setVisible(true);
-      dvd.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify DVD Entry (%1)").arg(dvd.id->text());
     }
   else
@@ -957,8 +939,6 @@ void qtbook_dvd::updateWindow(const int state)
       dvd.resetButton->setVisible(false);
       dvd.frontButton->setVisible(false);
       dvd.backButton->setVisible(false);
-      dvd.frontCheck->setVisible(false);
-      dvd.backCheck->setVisible(false);
       str = QString("BiblioteQ: View DVD Details (%1)").arg(dvd.id->text());
     }
 
@@ -989,8 +969,6 @@ void qtbook_dvd::modify(const int state)
       dvd.resetButton->setVisible(true);
       dvd.frontButton->setVisible(true);
       dvd.backButton->setVisible(true);
-      dvd.frontCheck->setVisible(true);
-      dvd.backCheck->setVisible(true);
     }
   else
     {
@@ -1002,8 +980,6 @@ void qtbook_dvd::modify(const int state)
       dvd.resetButton->setVisible(false);
       dvd.frontButton->setVisible(false);
       dvd.backButton->setVisible(false);
-      dvd.frontCheck->setVisible(false);
-      dvd.backCheck->setVisible(false);
 
       foreach(QAction *action,
 	      dvd.resetButton->menu()->findChildren<QAction *>())
@@ -1011,8 +987,6 @@ void qtbook_dvd::modify(const int state)
 	  action->setVisible(false);
     }
 
-  dvd.frontCheck->setChecked(false);
-  dvd.backCheck->setChecked(false);
   dvd.queryButton->setEnabled(true);
   dvd.okButton->setText("&Save");
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
@@ -1169,29 +1143,33 @@ void qtbook_dvd::modify(const int state)
 		dvd.aspectratio->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "front_cover_fmt")
-	    frontImageFormat = var.toString();
+	    dvd.front_image->imageFormat = var.toString();
 	  else if(fieldname == "back_cover_fmt")
-	    backImageFormat = var.toString();
+	    dvd.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  frontImage.loadFromData(var.toByteArray(),
-					  frontImageFormat.toAscii());
+		  dvd.front_image->image.loadFromData
+		    (var.toByteArray(),
+		     dvd.front_image->imageFormat.toAscii());
 		  dvd.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(frontImage));
-		  dvd.frontCheck->setChecked(true);
+		    (QPixmap().fromImage(dvd.front_image->image));
+		  dvd.front_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  backImage.loadFromData(var.toByteArray(),
-					 backImageFormat.toAscii());
+		  dvd.back_image->image.loadFromData
+		    (var.toByteArray(),
+		     dvd.back_image->imageFormat.toAscii());
 		  dvd.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(backImage));
-		  dvd.backCheck->setChecked(true);
+		    (QPixmap().fromImage(dvd.back_image->image));
+		  dvd.back_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	}
@@ -1263,21 +1241,9 @@ void qtbook_dvd::slotReset(void)
       name = action->text();
 
       if(name.contains("Front Cover Image"))
-	{
-	  if(dvd.front_image->items().size() > 0)
-	    dvd.front_image->scene()->removeItem
-	      (dvd.front_image->items().at(0));
-
-	  dvd.frontCheck->setChecked(false);
-	}
+	dvd.front_image->clear();
       else if(name.contains("Back Cover Image"))
-	{
-	  if(dvd.back_image->items().size() > 0)
-	    dvd.back_image->scene()->removeItem
-	      (dvd.back_image->items().at(0));
-
-	  dvd.backCheck->setChecked(false);
-	}
+	dvd.back_image->clear();
       else if(name.contains("UPC"))
 	{
 	  dvd.id->clear();
@@ -1419,17 +1385,8 @@ void qtbook_dvd::slotReset(void)
       dvd.rating->setCurrentIndex(0);
       dvd.region->setCurrentIndex(0);
       dvd.aspectratio->setCurrentIndex(0);
-
-      if(dvd.front_image->items().size() > 0)
-	dvd.front_image->scene()->removeItem
-	  (dvd.front_image->items().at(0));
-
-      if(dvd.back_image->items().size() > 0)
-	dvd.back_image->scene()->removeItem
-	  (dvd.back_image->items().at(0));
-
-      dvd.frontCheck->setChecked(false);
-      dvd.backCheck->setChecked(false);
+      dvd.front_image->clear();
+      dvd.back_image->clear();
       dvd.format->clear();
       dvd.directors->clear();
       dvd.id->setFocus();
@@ -1562,28 +1519,24 @@ void qtbook_dvd::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == dvd.frontButton)
       {
-	if(dvd.front_image->items().size() > 0)
-	  dvd.front_image->scene()->removeItem
-	    (dvd.front_image->items().at(0));
-
-	frontImage = QImage(dialog.selectedFiles().at(0));
-	frontImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	frontImageFormat = frontImageFormat.toUpper();
-	dvd.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
-	dvd.frontCheck->setChecked(true);
+	dvd.front_image->clear();
+	dvd.front_image->image = QImage(dialog.selectedFiles().at(0));
+	dvd.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	dvd.front_image->scene()->addPixmap
+	  (QPixmap().fromImage(dvd.front_image->image));
+	dvd.front_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
     else
       {
-	if(dvd.back_image->items().size() > 0)
-	  dvd.back_image->scene()->removeItem
-	    (dvd.back_image->items().at(0));
-
-	backImage = QImage(dialog.selectedFiles().at(0));
-	backImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	backImageFormat = backImageFormat.toUpper();
-	dvd.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
-	dvd.backCheck->setChecked(true);
+	dvd.back_image->clear();
+	dvd.back_image->image = QImage(dialog.selectedFiles().at(0));
+	dvd.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	dvd.back_image->scene()->addPixmap
+	  (QPixmap().fromImage(dvd.back_image->image));
+	dvd.back_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
 }

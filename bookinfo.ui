@@ -58,16 +58,22 @@
         <item>
          <layout class="QHBoxLayout" >
           <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QPushButton" name="frontButton" >
             <property name="text" >
              <string>&amp;Select</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="frontCheck" >
-            <property name="text" >
-             <string>Save</string>
             </property>
            </widget>
           </item>
@@ -87,7 +93,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QGraphicsView" name="back_image" >
+         <widget class="image_drop_site" name="back_image" >
           <property name="minimumSize" >
            <size>
             <width>150</width>
@@ -108,16 +114,22 @@
         <item>
          <layout class="QHBoxLayout" >
           <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
            <widget class="QPushButton" name="backButton" >
             <property name="text" >
              <string>&amp;Select</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="backCheck" >
-            <property name="text" >
-             <string>Save</string>
             </property>
            </widget>
           </item>
@@ -1030,10 +1042,8 @@
  <tabstops>
   <tabstop>front_image</tabstop>
   <tabstop>frontButton</tabstop>
-  <tabstop>frontCheck</tabstop>
   <tabstop>back_image</tabstop>
   <tabstop>backButton</tabstop>
-  <tabstop>backCheck</tabstop>
   <tabstop>id</tabstop>
   <tabstop>isbn13</tabstop>
   <tabstop>isbn10to13</tabstop>

@@ -408,36 +408,38 @@ void qtbook_cd::slotGo(void)
       query.bindValue(15, cd.recording_type->currentText().trimmed());
       query.bindValue(16, cd.audio->currentText().trimmed());
 
-      if(cd.frontCheck->isChecked())
+      if(!cd.front_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  frontImage.save(&buffer, frontImageFormat.toAscii(), 100);
+	  cd.front_image->image.save
+	    (&buffer, cd.front_image->imageFormat.toAscii(), 100);
 	  query.bindValue(17, bytes);
 	}
       else
 	{
-	  frontImageFormat = "";
+	  cd.front_image->imageFormat = "";
 	  query.bindValue(17, QVariant());
 	}
 
-      if(cd.backCheck->isChecked())
+      if(!cd.back_image->image.isNull())
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 	  buffer.open(QIODevice::WriteOnly);
-	  backImage.save(&buffer, backImageFormat.toAscii(), 100);
+	  cd.back_image->image.save
+	    (&buffer, cd.back_image->imageFormat.toAscii(), 100);
 	  query.bindValue(18, bytes);
 	}
       else
 	{
-	  backImageFormat = "";
+	  cd.back_image->imageFormat = "";
 	  query.bindValue(18, QVariant());
 	}
 
-      query.bindValue(19, frontImageFormat);
-      query.bindValue(20, backImageFormat);
+      query.bindValue(19, cd.front_image->imageFormat);
+      query.bindValue(20, cd.back_image->imageFormat);
 
       if(windowTitle().contains("Modify"))
 	query.bindValue(21, oid);
@@ -545,30 +547,12 @@ void qtbook_cd::slotGo(void)
 
 	  oldq = cd.quantity->value();
 
-	  if(!cd.frontCheck->isChecked())
-	    {
-	      frontImage = QImage();
-	      frontImageFormat = "";
+	  if(cd.front_image->image.isNull())
+	    cd.front_image->imageFormat = "";
 
-	      if(cd.front_image->items().size() > 0)
-		cd.front_image->scene()->removeItem
-		  (cd.front_image->items().at(0));
-	    }
+	  if(cd.back_image->image.isNull())
+	    cd.back_image->imageFormat = "";
 
-	  if(!cd.backCheck->isChecked())
-	    {
-	      backImage = QImage();
-	      backImageFormat = "";
-
-	      if(cd.back_image->items().size() > 0)
-		cd.back_image->scene()->removeItem
-		  (cd.back_image->items().at(0));
-	    }
-
-	  cd.frontCheck->setChecked
-	    (cd.front_image->items().size() > 0);
-	  cd.backCheck->setChecked
-	    (cd.back_image->items().size() > 0);
 	  qapp->restoreOverrideCursor();
 
 	  if(windowTitle().contains("Modify"))
@@ -910,8 +894,6 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(true);
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
-      cd.frontCheck->setVisible(true);
-      cd.backCheck->setVisible(true);
       str = QString("BiblioteQ: Modify CD Entry (%1)").arg(cd.id->text());
     }
   else
@@ -927,8 +909,6 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(false);      
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
-      cd.frontCheck->setVisible(false);
-      cd.backCheck->setVisible(false);
       str = QString("BiblioteQ: View CD Details (%1)").arg(cd.id->text());
     }
 
@@ -963,8 +943,6 @@ void qtbook_cd::modify(const int state)
       trd.deleteButton->setVisible(true);
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
-      cd.frontCheck->setVisible(true);
-      cd.backCheck->setVisible(true);
     }
   else
     {
@@ -980,8 +958,6 @@ void qtbook_cd::modify(const int state)
       trd.deleteButton->setVisible(false);      
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
-      cd.frontCheck->setVisible(false);
-      cd.backCheck->setVisible(false);
 
       foreach(QAction *action,
 	      cd.resetButton->menu()->findChildren<QAction *>())
@@ -989,8 +965,6 @@ void qtbook_cd::modify(const int state)
 	  action->setVisible(false);
     }
 
-  cd.frontCheck->setChecked(false);
-  cd.backCheck->setChecked(false);
   cd.tracksButton->setEnabled(true);
   cd.queryButton->setEnabled(true);
   cd.okButton->setText("&Save");
@@ -1141,29 +1115,33 @@ void qtbook_cd::modify(const int state)
 		cd.recording_type->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "front_cover_fmt")
-	    frontImageFormat = var.toString();
+	    cd.front_image->imageFormat = var.toString();
 	  else if(fieldname == "back_cover_fmt")
-	    backImageFormat = var.toString();
+	    cd.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  frontImage.loadFromData(var.toByteArray(),
-					  frontImageFormat.toAscii());
+		  cd.front_image->image.loadFromData
+		    (var.toByteArray(),
+		     cd.front_image->imageFormat.toAscii());
 		  cd.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(frontImage));
-		  cd.frontCheck->setChecked(true);
+		    (QPixmap().fromImage(cd.front_image->image));
+		  cd.front_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  backImage.loadFromData(var.toByteArray(),
-					 backImageFormat.toAscii());
+		  cd.back_image->image.loadFromData
+		    (var.toByteArray(),
+		     cd.back_image->imageFormat.toAscii());
 		  cd.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(backImage));
-		  cd.backCheck->setChecked(true);
+		    (QPixmap().fromImage(cd.back_image->image));
+		  cd.back_image->scene()->items().at(0)->setFlags
+		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	}
@@ -1655,21 +1633,9 @@ void qtbook_cd::slotReset(void)
       name = action->text();
 
       if(name.contains("Front Cover Image"))
-	{
-	  if(cd.front_image->items().size() > 0)
-	    cd.front_image->scene()->removeItem
-	      (cd.front_image->items().at(0));
-
-	  cd.frontCheck->setChecked(false);
-	}
+	cd.front_image->clear();
       else if(name.contains("Back Cover Image"))
-	{
-	  if(cd.back_image->items().size() > 0)
-	    cd.back_image->scene()->removeItem
-	      (cd.back_image->items().at(0));
-
-	  cd.backCheck->setChecked(false);
-	}
+	cd.back_image->clear();
       else if(name.contains("Catalog Number"))
 	{
 	  cd.id->clear();
@@ -1801,17 +1767,8 @@ void qtbook_cd::slotReset(void)
       cd.monetary_units->setCurrentIndex(0);
       cd.recording_type->setCurrentIndex(0);
       cd.format->setCurrentIndex(0);
-
-      if(cd.front_image->items().size() > 0)
-	cd.front_image->scene()->removeItem
-	  (cd.front_image->items().at(0));
-
-      if(cd.back_image->items().size() > 0)
-	cd.back_image->scene()->removeItem
-	  (cd.back_image->items().at(0));
-
-      cd.frontCheck->setChecked(false);
-      cd.backCheck->setChecked(false);
+      cd.front_image->clear();
+      cd.back_image->clear();
       cd.id->setFocus();
     }
 }
@@ -1976,28 +1933,24 @@ void qtbook_cd::slotSelectImage(void)
   if(dialog.result() == QDialog::Accepted)
     if(button == cd.frontButton)
       {
-	if(cd.front_image->items().size() > 0)
-	  cd.front_image->scene()->removeItem
-	    (cd.front_image->items().at(0));
-
-	frontImage = QImage(dialog.selectedFiles().at(0));
-	frontImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	frontImageFormat = frontImageFormat.toUpper();
-	cd.front_image->scene()->addPixmap(QPixmap().fromImage(frontImage));
-	cd.frontCheck->setChecked(true);
+	cd.front_image->clear();
+	cd.front_image->image = QImage(dialog.selectedFiles().at(0));
+	cd.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	cd.front_image->scene()->addPixmap
+	  (QPixmap().fromImage(cd.front_image->image));
+	cd.front_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
     else
       {
-	if(cd.back_image->items().size() > 0)
-	  cd.back_image->scene()->removeItem
-	    (cd.back_image->items().at(0));
-
-	backImage = QImage(dialog.selectedFiles().at(0));
-	backImageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1);
-	backImageFormat = backImageFormat.toUpper();
-	cd.back_image->scene()->addPixmap(QPixmap().fromImage(backImage));
-	cd.backCheck->setChecked(true);
+	cd.back_image->clear();
+	cd.back_image->image = QImage(dialog.selectedFiles().at(0));
+	cd.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	cd.back_image->scene()->addPixmap
+	  (QPixmap().fromImage(cd.back_image->image));
+	cd.back_image->scene()->items().at(0)->setFlags
+	  (QGraphicsItem::ItemIsSelectable);
       }
 }

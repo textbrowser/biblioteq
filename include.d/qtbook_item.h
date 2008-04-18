@@ -2,6 +2,12 @@
 #define _QTBOOK_ITEM_H_
 
 /*
+** -- Local Includes --
+*/
+
+#include "image_drop_site.h"
+
+/*
 ** -- Qt Includes --
 */
 
@@ -29,12 +35,8 @@ class qtbook_item
   int row;
   int oldq;
   bool isQueryEnabled;
-  QImage backImage;
-  QImage frontImage;
   QString oid;
   QString html;
-  QString backImageFormat;
-  QString frontImageFormat;
   QMainWindow *parentWid;
   void print(QWidget *);
 };

@@ -219,6 +219,6 @@
      Must first revoke all privileges. (DONE)
 117. Reload the image summary after an item has been updated. (DONE)
 118. Provide support for SQLite. (DONE)
-119. Allow for dropping of images.
+119. Allow for dropping of images from external applications. (DONE)
 120. Remove "green" informational dialogs. (DONE)
 121. Provide hyperlinks in textfields for searches.
