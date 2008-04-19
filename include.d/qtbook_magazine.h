@@ -40,7 +40,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   bool isBusy(void);
   void insert(void);
   void modify(const int);
-  void search(void);
+  void search(const QString & = "", const QString & = "");
   void updateWindow(const int);
   void populateDisplayAfterLOC(const QStringList &);
   virtual void closeEvent(QCloseEvent *);

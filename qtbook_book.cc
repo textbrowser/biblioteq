@@ -259,7 +259,7 @@ void qtbook_book::slotGo(void)
 	}
 
       str = id.author->toPlainText().trimmed();
-      id.author->setPlainText(str);
+      id.author->setMultipleLinks("book_search", "author", str);
 
       if(id.author->toPlainText().isEmpty())
 	{
@@ -280,10 +280,12 @@ void qtbook_book::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = id.publisher->text().trimmed();
-      id.publisher->setText(str);
+      str = id.publisher->toPlainText().trimmed();
+      id.publisher->setText
+	(QString("<a href=\"book_search?publisher?%1\">" + str + "</a>").arg
+	 (str));
 
-      if(id.publisher->text().isEmpty())
+      if(id.publisher->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Publisher field.");
@@ -369,7 +371,7 @@ void qtbook_book::slotGo(void)
       query.bindValue(2, id.edition->currentText().trimmed());
       query.bindValue(3, id.author->toPlainText());
       query.bindValue(4, id.publication_date->date().toString("MM/dd/yyyy"));
-      query.bindValue(5, id.publisher->text());
+      query.bindValue(5, id.publisher->toPlainText());
       query.bindValue(6, id.category->currentText().trimmed());
       query.bindValue(7, id.price->text());
       query.bindValue(8, id.description->toPlainText());
@@ -574,7 +576,7 @@ void qtbook_book::slotGo(void)
 			  (id.publication_date->date().toString("MM/dd/yyyy"));
 		      else if(column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
-			  (id.publisher->text());
+			  (id.publisher->toPlainText());
 		      else if(column->text() == "Category")
 			qmain->getUI().table->item(row, i)->setText
 			  (id.category->currentText().trimmed());
@@ -732,7 +734,8 @@ void qtbook_book::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(publisher) LIKE '%" +
-		       myqstring::escape(id.publisher->text().toLower()) +
+		       myqstring::escape
+		       (id.publisher->toPlainText().toLower()) +
 		       "%' AND ");
 
       if(id.category->currentText() != "Any")
@@ -792,7 +795,7 @@ void qtbook_book::slotGo(void)
 ** -- search() --
 */
 
-void qtbook_book::search(void)
+void qtbook_book::search(const QString &field, const QString &value)
 {
   QPoint p(0, 0);
 
@@ -846,16 +849,29 @@ void qtbook_book::search(void)
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
 
-  foreach(QAction *action, id.resetButton->menu()->findChildren<QAction *>())
-    if(action->text().contains("Cover Image"))
-      action->setVisible(false);
+  if(field.isEmpty() && value.isEmpty())
+    {
+      foreach(QAction *action,
+	      id.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
 
-  setWindowTitle("BiblioteQ: Database Book Search");
-  id.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
-  show();
+      setWindowTitle("BiblioteQ: Database Book Search");
+      id.id->setFocus();
+      p = parentWid->mapToGlobal(p);
+      move(p.x() + parentWid->width() / 2  - width() / 2,
+	   p.y() + parentWid->height() / 2 - height() / 2);
+      show();
+    }
+  else
+    {
+      if(field == "publisher")
+	id.publisher->setPlainText(value);
+      else if(field == "author")
+	id.author->setPlainText(value);
+
+      slotGo();
+    }
 }
 
 /*
@@ -981,9 +997,13 @@ void qtbook_book::modify(const int state)
 	  if(fieldname == "title")
 	    id.title->setText(var.toString());
 	  else if(fieldname == "author")
-	    id.author->setPlainText(var.toString());
+	    id.author->setMultipleLinks("book_search", "author",
+					var.toString());
 	  else if(fieldname == "publisher")
-	    id.publisher->setText(var.toString());
+	    id.publisher->setText
+	      (QString
+	       ("<a href=\"book_search?publisher?%1\">" +
+		var.toString() + "</a>").arg(var.toString()));
 	  else if(fieldname == "pdate")
 	    id.publication_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1525,7 +1545,8 @@ void qtbook_book::slotQuery(void)
 		      while(!removeList.isEmpty())
 			str = str.remove(removeList.takeFirst()).trimmed();
 
-		      id.author->setPlainText(str);
+		      id.author->setMultipleLinks("book_search", "author",
+						  str);
 		      misc_functions::highlightWidget
 			(id.author->viewport(), QColor(162, 205, 90));
 		    }
@@ -1627,9 +1648,11 @@ void qtbook_book::slotQuery(void)
 		      if(str.endsWith(","))
 			str = str.mid(0, str.length() - 1);
 
-		      id.publisher->setText(str);
+		      id.publisher->setText
+			(QString("<a href=\"book_search?publisher?%1\">" +
+				 str + "</a>").arg(str));
 		      misc_functions::highlightWidget
-			(id.publisher, QColor(162, 205, 90));
+			(id.publisher->viewport(), QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("300"))
 		    {
@@ -1702,7 +1725,7 @@ void qtbook_book::slotPrint(void)
   html += "<b>Title:</b> " + id.title->text() + "<br>";
   html += "<b>Publication Date:</b> " + id.publication_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + id.publisher->text() + "<br>";
+  html += "<b>Publisher:</b> " + id.publisher->toPlainText() + "<br>";
   html += "<b>Category:</b> " + id.category->currentText() + "<br>";
   html += "<b>Price:</b> " + id.price->text() + "<br>";
   html += "<b>Language:</b> " + id.language->currentText() + "<br>";

@@ -255,10 +255,18 @@ void qtbook_magazine::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = ma.publisher->text().trimmed();
-      ma.publisher->setText(str);
+      str = ma.publisher->toPlainText().trimmed();
 
-      if(ma.publisher->text().isEmpty())
+      if(subType == "Journal")
+	ma.publisher->setText
+	  (QString("<a href=\"journal_search?publisher?%1\">" +
+		   str + "</a>").arg(str));
+      else
+	ma.publisher->setText
+	  (QString("<a href=\"magazine_search?publisher?%1\">" +
+		   str + "</a>").arg(str));
+
+      if(ma.publisher->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Publisher field.");
@@ -345,7 +353,7 @@ void qtbook_magazine::slotGo(void)
       query.bindValue(0, ma.id->text());
       query.bindValue(1, ma.title->text());
       query.bindValue(2, ma.publication_date->date().toString("MM/dd/yyyy"));
-      query.bindValue(3, ma.publisher->text());
+      query.bindValue(3, ma.publisher->toPlainText());
       query.bindValue(4, ma.category->currentText().trimmed());
       query.bindValue(5, ma.price->text());
       query.bindValue(6, ma.description->toPlainText());
@@ -547,7 +555,7 @@ void qtbook_magazine::slotGo(void)
 			  (ma.publication_date->date().toString("MM/dd/yyyy"));
 		      else if(column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
-			  (ma.publisher->text());
+			  (ma.publisher->toPlainText());
 		      else if(column->text() == "Category")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.category->currentText().trimmed());
@@ -714,7 +722,8 @@ void qtbook_magazine::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(publisher) LIKE '%" +
-		       myqstring::escape(ma.publisher->text().toLower()) +
+		       myqstring::escape
+		       (ma.publisher->toPlainText().toLower()) +
 		       "%' AND ");
 
       if(ma.category->currentText() != "Any")
@@ -775,7 +784,7 @@ void qtbook_magazine::slotGo(void)
 ** -- search() --
 */
 
-void qtbook_magazine::search(void)
+void qtbook_magazine::search(const QString &field, const QString &value)
 {
   QPoint p(0, 0);
 
@@ -824,16 +833,27 @@ void qtbook_magazine::search(void)
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
 
-  foreach(QAction *action, ma.resetButton->menu()->findChildren<QAction *>())
-    if(action->text().contains("Cover Image"))
-      action->setVisible(false);
+  if(field.isEmpty() && value.isEmpty())
+    {
+      foreach(QAction *action,
+	      ma.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
 
-  setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
-  ma.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
-  show();
+      setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
+      ma.id->setFocus();
+      p = parentWid->mapToGlobal(p);
+      move(p.x() + parentWid->width() / 2  - width() / 2,
+	   p.y() + parentWid->height() / 2 - height() / 2);
+      show();
+    }
+  else
+    {
+      if(field == "publisher")
+	ma.publisher->setPlainText(value);
+
+      slotGo();
+    }
 }
 
 /*
@@ -963,7 +983,16 @@ void qtbook_magazine::modify(const int state)
 	  if(fieldname == "title")
 	    ma.title->setText(var.toString());
 	  else if(fieldname == "publisher")
-	    ma.publisher->setText(var.toString());
+	    {
+	      if(subType == "Journal")
+		ma.publisher->setText
+		  (QString("<a href=\"journal_search?publisher?%1\">" +
+			   var.toString() + "</a>").arg(var.toString()));
+	      else
+		ma.publisher->setText
+		  (QString("<a href=\"magazine_search?publisher?%1\">" +
+			   var.toString() + "</a>").arg(var.toString()));
+	    }
 	  else if(fieldname == "pdate")
 	    ma.publication_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1463,7 +1492,7 @@ void qtbook_magazine::slotPrint(void)
   html += "<b>Title:</b> " + ma.title->text() + "<br>";
   html += "<b>Publication Date:</b> " + ma.publication_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + ma.publisher->text() + "<br>";
+  html += "<b>Publisher:</b> " + ma.publisher->toPlainText() + "<br>";
   html += "<b>Category:</b> " + ma.category->currentText() + "<br>";
   html += "<b>Price:</b> " + ma.price->text() + "<br>";
   html += "<b>Language:</b> " + ma.language->currentText() + "<br>";
@@ -1563,9 +1592,18 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	    ("background-color: rgb(162, 205, 90)");
 	  str = str.mid(str.indexOf("$b") + 2).trimmed();
 	  str = str.mid(0, str.indexOf(",")).trimmed();
-	  ma.publisher->setText(str);
+
+	  if(subType == "Journal")
+	    ma.publisher->setText
+	      (QString("<a href=\"journal_search?publisher?%1\">" +
+		       str + "</a>").arg(str));
+	  else
+	    ma.publisher->setText
+	      (QString("<a href=\"magazine_search?publisher?%1\">" +
+		       str + "</a>").arg(str));
+
 	  misc_functions::highlightWidget
-	    (ma.publisher, QColor(162, 205, 90));
+	    (ma.publisher->viewport(), QColor(162, 205, 90));
 	}
       else if(str.startsWith("300"))
 	{

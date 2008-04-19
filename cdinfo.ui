@@ -244,13 +244,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QLineEdit" name="artist" >
-          <property name="maxLength" >
-           <number>32767</number>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0" >
          <widget class="QLabel" name="label_5" >
           <property name="font" >
@@ -512,6 +505,25 @@
           </property>
          </spacer>
         </item>
+        <item row="2" column="1" >
+         <widget class="hyperlinked_text_edit" name="artist" >
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QGroupBox" name="groupBox_2" >
@@ -617,21 +629,6 @@
           </property>
           <property name="text" >
            <string>Recording Label</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QLineEdit" name="recording_label" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
           </property>
          </widget>
         </item>
@@ -1027,6 +1024,25 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1" >
+         <widget class="hyperlinked_text_edit" name="recording_label" >
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -1203,6 +1219,11 @@
    <class>image_drop_site</class>
    <extends>QGraphicsView</extends>
    <header>image_drop_site.h</header>
+  </customwidget>
+  <customwidget>
+   <class>hyperlinked_text_edit</class>
+   <extends>QTextBrowser</extends>
+   <header>hyperlinked_text_edit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -20,8 +20,12 @@ QImage misc_functions::getImage(const QString &oid,
   QString querystr = "";
   QSqlQuery query(db);
 
-  querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
-    (which).arg(type).arg(oid);
+  if(type.toLower() == "journal")
+    querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
+      (which).arg("magazine").arg(oid);
+  else
+    querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
+      (which).arg(type).arg(oid);
 
   if(query.exec(querystr))
     if(query.next())

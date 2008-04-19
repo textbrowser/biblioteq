@@ -249,7 +249,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.actors->toPlainText().trimmed();
-      dvd.actors->setPlainText(str);
+      dvd.actors->setMultipleLinks("dvd_search", "actors", str);
 
       if(dvd.actors->toPlainText().isEmpty())
 	{
@@ -260,7 +260,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.directors->toPlainText().trimmed();
-      dvd.directors->setPlainText(str);
+      dvd.directors->setMultipleLinks("dvd_search", "directors", str);
 
       if(dvd.directors->toPlainText().isEmpty())
 	{
@@ -301,10 +301,12 @@ void qtbook_dvd::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = dvd.studio->text().trimmed();
-      dvd.studio->setText(str);
+      str = dvd.studio->toPlainText().trimmed();
+      dvd.studio->setText
+	(QString("<a href=\"dvd_search?studio?%1\">" + str + "</a>").arg
+	 (str));
 
-      if(dvd.studio->text().isEmpty())
+      if(dvd.studio->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Studio field.");
@@ -422,7 +424,7 @@ void qtbook_dvd::slotGo(void)
       query.bindValue(8, dvd.aspectratio->currentText().trimmed());
       query.bindValue(9, dvd.title->text());
       query.bindValue(10, dvd.release_date->date().toString("MM/dd/yyyy"));
-      query.bindValue(11, dvd.studio->text());
+      query.bindValue(11, dvd.studio->toPlainText());
       query.bindValue(12, dvd.category->currentText().trimmed());
       query.bindValue(13, dvd.price->text());
       query.bindValue(14, dvd.language->currentText().trimmed());
@@ -629,7 +631,7 @@ void qtbook_dvd::slotGo(void)
 		      else if(column->text() == "Studio" ||
 			      column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
-			  (dvd.studio->text());
+			  (dvd.studio->toPlainText());
 		      else if(column->text() == "Category")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.category->currentText().trimmed());
@@ -789,7 +791,8 @@ void qtbook_dvd::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(studio) LIKE '%" +
-		       myqstring::escape(dvd.studio->text().toLower()) +
+		       myqstring::escape
+		       (dvd.studio->toPlainText().toLower()) +
 		       "%' AND ");
 
       if(dvd.category->currentText() != "Any")
@@ -843,7 +846,7 @@ void qtbook_dvd::slotGo(void)
 ** -- search() --
 */
 
-void qtbook_dvd::search(void)
+void qtbook_dvd::search(const QString &field, const QString &value)
 {
   QPoint p(0, 0);
 
@@ -899,16 +902,31 @@ void qtbook_dvd::search(void)
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
 
-  foreach(QAction *action, dvd.resetButton->menu()->findChildren<QAction *>())
-    if(action->text().contains("Cover Image"))
-      action->setVisible(false);
+  if(field.isEmpty() && value.isEmpty())
+    {
+      foreach(QAction *action,
+	      dvd.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
 
-  setWindowTitle("BiblioteQ: Database DVD Search");
-  dvd.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
-  show();
+      setWindowTitle("BiblioteQ: Database DVD Search");
+      dvd.id->setFocus();
+      p = parentWid->mapToGlobal(p);
+      move(p.x() + parentWid->width() / 2  - width() / 2,
+	   p.y() + parentWid->height() / 2 - height() / 2);
+      show();
+    }
+  else
+    {
+      if(field == "actors")
+	dvd.actors->setPlainText(value);
+      else if(field == "directors")
+	dvd.directors->setPlainText(value);
+      else if(field == "studio")
+	dvd.studio->setPlainText(value);
+
+      slotGo();
+    }
 }
 
 /*
@@ -1049,7 +1067,10 @@ void qtbook_dvd::modify(const int state)
 	  if(fieldname == "title")
 	    dvd.title->setText(var.toString());
 	  else if(fieldname == "studio")
-	    dvd.studio->setText(var.toString());
+	    dvd.studio->setText
+	      (QString("<a href=\"dvd_search?studio?%1\">" +
+		       var.toString() + "</a>").arg
+	       (var.toString()));
 	  else if(fieldname == "rdate")
 	    dvd.release_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1115,9 +1136,11 @@ void qtbook_dvd::modify(const int state)
 	  else if(fieldname == "dvdformat")
 	    dvd.format->setText(var.toString());
 	  else if(fieldname == "dvdactor")
-	    dvd.actors->setPlainText(var.toString());
+	    dvd.actors->setMultipleLinks("dvd_search", "actors",
+					 var.toString());
 	  else if(fieldname == "dvddirector")
-	    dvd.directors->setPlainText(var.toString());
+	    dvd.directors->setMultipleLinks("dvd_search", "directors",
+					    var.toString());
 	  else if(fieldname == "dvdrating")
 	    {
 	      if(dvd.rating->findText(var.toString()) > -1)
@@ -1485,7 +1508,7 @@ void qtbook_dvd::slotPrint(void)
   html += "<b>Title:</b> " + dvd.title->text() + "<br>";
   html += "<b>Release Date:</b> " + dvd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Studio:</b> " + dvd.studio->text() + "<br>";
+  html += "<b>Studio:</b> " + dvd.studio->toPlainText() + "<br>";
   html += "<b>Category:</b> " + dvd.category->currentText() + "<br>";
   html += "<b>Price:</b> " + dvd.price->text() + "<br>";
   html += "<b>Language:</b> " + dvd.language->currentText() + "<br>";

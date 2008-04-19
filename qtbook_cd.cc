@@ -255,10 +255,12 @@ void qtbook_cd::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = cd.artist->text().trimmed();
-      cd.artist->setText(str);
+      str = cd.artist->toPlainText().trimmed();
+      cd.artist->setText
+	(QString("<a href=\"cd_search?artist?%1\">" + str + "</a>").arg
+	 (str));
 
-      if(cd.artist->text().isEmpty())
+      if(cd.artist->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Artist field.");
@@ -285,10 +287,12 @@ void qtbook_cd::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = cd.recording_label->text().trimmed();
-      cd.recording_label->setText(str);
+      str = cd.recording_label->toPlainText().trimmed();
+      cd.recording_label->setText
+	(QString("<a href=\"cd_search?recording_label?%1\">" +
+		 str + "</a>").arg(str));
 
-      if(cd.recording_label->text().isEmpty())
+      if(cd.recording_label->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Recording Label "
@@ -393,11 +397,11 @@ void qtbook_cd::slotGo(void)
       query.bindValue(0, cd.id->text());
       query.bindValue(1, cd.title->text());
       query.bindValue(2, cd.format->currentText().trimmed());
-      query.bindValue(3, cd.artist->text());
+      query.bindValue(3, cd.artist->toPlainText());
       query.bindValue(4, cd.no_of_discs->text());
       query.bindValue(5, cd.runtime->text());
       query.bindValue(6, cd.release_date->date().toString("MM/dd/yyyy"));
-      query.bindValue(7, cd.recording_label->text());
+      query.bindValue(7, cd.recording_label->toPlainText());
       query.bindValue(8, cd.category->currentText().trimmed());
       query.bindValue(9, cd.price->text());
       query.bindValue(10, cd.language->currentText().trimmed());
@@ -586,7 +590,7 @@ void qtbook_cd::slotGo(void)
 			  (cd.format->currentText().trimmed());
 		      else if(column->text() == "Artist")
 			qmain->getUI().table->item(row, i)->setText
-			  (cd.artist->text());
+			  (cd.artist->toPlainText());
 		      else if(column->text() == "Number of Discs")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.no_of_discs->text());
@@ -600,7 +604,7 @@ void qtbook_cd::slotGo(void)
 		      else if(column->text() == "Recording Label" ||
 			      column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
-			  (cd.recording_label->text());
+			  (cd.recording_label->toPlainText());
 		      else if(column->text() == "Category")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.category->currentText().trimmed());
@@ -726,7 +730,8 @@ void qtbook_cd::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(artist) LIKE '%").append
-	(myqstring::escape(cd.artist->text().toLower())).append("%' AND ");
+	(myqstring::escape(cd.artist->toPlainText().toLower())).append
+	("%' AND ");
 
       if(cd.no_of_discs->value() > 0)
 	searchstr.append("cddiskcount = ").append
@@ -756,7 +761,7 @@ void qtbook_cd::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(recording_label) LIKE '%" +
-		       myqstring::escape(cd.recording_label->text().
+		       myqstring::escape(cd.recording_label->toPlainText().
 					 toLower()) + "%' AND ");
 
       if(cd.category->currentText() != "Any")
@@ -810,7 +815,7 @@ void qtbook_cd::slotGo(void)
 ** -- search() --
 */
 
-void qtbook_cd::search(void)
+void qtbook_cd::search(const QString &field, const QString &value)
 {
   QPoint p(0, 0);
 
@@ -864,13 +869,26 @@ void qtbook_cd::search(void)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
-  cd.coverImages->setVisible(false);
-  setWindowTitle("BiblioteQ: Database CD Search");
-  cd.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
-  show();
+
+  if(field.isEmpty() && value.isEmpty())
+    {
+      cd.coverImages->setVisible(false);
+      setWindowTitle("BiblioteQ: Database CD Search");
+      cd.id->setFocus();
+      p = parentWid->mapToGlobal(p);
+      move(p.x() + parentWid->width() / 2  - width() / 2,
+	   p.y() + parentWid->height() / 2 - height() / 2);
+      show();
+    }
+  else
+    {
+      if(field == "artist")
+	cd.artist->setPlainText(value);
+      else if(field == "recording_label")
+	cd.recording_label->setPlainText(value);
+
+      slotGo();
+    }
 }
 
 /*
@@ -1026,7 +1044,10 @@ void qtbook_cd::modify(const int state)
 	  if(fieldname == "title")
 	    cd.title->setText(var.toString());
 	  else if(fieldname == "recording_label")
-	    cd.recording_label->setText(var.toString());
+	    cd.recording_label->setText
+	      (QString("<a href=\"cd_search?recording_label?%1\">" +
+		       var.toString() + "</a>").arg
+	       (var.toString()));
 	  else if(fieldname == "rdate")
 	    cd.release_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1097,7 +1118,10 @@ void qtbook_cd::modify(const int state)
 		cd.format->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "artist")
-	    cd.artist->setText(var.toString());
+	    cd.artist->setText
+	      (QString("<a href=\"cd_search?artist?%1\">" +
+		       var.toString() + "</a>").arg
+	       (var.toString()));
 	  else if(fieldname == "cdaudio")
 	    {
 	      if(cd.audio->findText(var.toString()) > -1)
@@ -1885,7 +1909,7 @@ void qtbook_cd::slotPrint(void)
   html = "";
   html += "<b>Catalog Number:</b> " + cd.id->text() + "<br>";
   html += "<b>Format:</b> " + cd.format->currentText() + "<br>";
-  html += "<b>Artist:</b> " + cd.artist->text() + "<br>";
+  html += "<b>Artist:</b> " + cd.artist->toPlainText() + "<br>";
   html += "<b>Number of Discs:</b> " + cd.no_of_discs->text() + "<br>";
   html += "<b>Runtime:</b> " + cd.runtime->text() + "<br>";
   html += "<b>Audio:</b> " + cd.audio->currentText() + "<br>";
@@ -1899,7 +1923,8 @@ void qtbook_cd::slotPrint(void)
   html += "<b>Title:</b> " + cd.title->text() + "<br>";
   html += "<b>Release Date:</b> " + cd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Recording Label:</b> " + cd.recording_label->text() + "<br>";
+  html += "<b>Recording Label:</b> " + cd.recording_label->toPlainText() +
+    "<br>";
   html += "<b>Category:</b> " + cd.category->currentText() + "<br>";
   html += "<b>Price:</b> " + cd.price->text() + "<br>";
   html += "<b>Language:</b> " + cd.language->currentText() + "<br>";

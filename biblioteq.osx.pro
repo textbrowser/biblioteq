@@ -49,7 +49,8 @@ HEADERS		= include.d/qtbook.h \
 		  include.d/image_drop_site.h \
 		  include.d/qtbook_magazine.h \
 		  include.d/borrowers_editor.h \
-		  include.d/qtbook_videogame.h
+		  include.d/qtbook_videogame.h \
+		  include.d/hyperlinked_text_edit.h
 
 SOURCES		= qtbook.cc \
                   myqstring.cc \
@@ -67,7 +68,8 @@ SOURCES		= qtbook.cc \
 		  qtbook_magazine.cc \
 		  borrowers_editor.cc \
 		  qtbook_videogame.cc \
-		  numeric_table_item.cc
+		  numeric_table_item.cc \
+		  hyperlinked_text_edit.cc
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ

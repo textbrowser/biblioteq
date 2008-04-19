@@ -241,13 +241,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QTextEdit" name="actors" >
-          <property name="verticalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAlwaysOn</enum>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0" >
          <widget class="QLabel" name="label_11" >
           <property name="font" >
@@ -258,13 +251,6 @@
           </property>
           <property name="text" >
            <string>Director(s)</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" >
-         <widget class="QTextEdit" name="directors" >
-          <property name="verticalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAlwaysOn</enum>
           </property>
          </widget>
         </item>
@@ -442,6 +428,32 @@
           </item>
          </layout>
         </item>
+        <item row="2" column="1" >
+         <widget class="hyperlinked_text_edit" name="actors" >
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <widget class="hyperlinked_text_edit" name="directors" >
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QGroupBox" name="groupBox_2" >
@@ -547,21 +559,6 @@
           </property>
           <property name="text" >
            <string>Studio</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QLineEdit" name="studio" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
           </property>
          </widget>
         </item>
@@ -951,6 +948,25 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1" >
+         <widget class="hyperlinked_text_edit" name="studio" >
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -1127,6 +1143,11 @@
    <class>image_drop_site</class>
    <extends>QGraphicsView</extends>
    <header>image_drop_site.h</header>
+  </customwidget>
+  <customwidget>
+   <class>hyperlinked_text_edit</class>
+   <extends>QTextBrowser</extends>
+   <header>hyperlinked_text_edit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

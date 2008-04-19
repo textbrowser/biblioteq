@@ -37,7 +37,7 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   ~qtbook_videogame();
   void insert(void);
   void modify(const int);
-  void search(void);
+  void search(const QString & = "", const QString & = "");
   void updateWindow(const int);
   virtual void closeEvent(QCloseEvent *);
 

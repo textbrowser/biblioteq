@@ -6175,6 +6175,28 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
 }
 
 /*
+** -- bookSearch() --
+*/
+
+void qtbook::bookSearch(const QString &field, const QString &value)
+{
+  qtbook_book *book = NULL;
+
+  if((book = books.value("search")) == NULL)
+    {
+      if((book = new qtbook_book(this, book_categories, languages,
+				 monetary_units, book_locations,
+				 "search", -1)) != NULL)
+	books.insert("search", book);
+
+      if(book != NULL)
+	book->search(field, value);
+    }
+  else
+    book->search(field, value);
+}
+
+/*
 ** -- slotBookSearch() --
 */
 
@@ -6200,6 +6222,28 @@ void qtbook::slotBookSearch(void)
 }
 
 /*
+** -- cdSearch() --
+*/
+
+void qtbook::cdSearch(const QString &field, const QString &value)
+{
+  qtbook_cd *cd = NULL;
+
+  if((cd = cds.value("search")) == NULL)
+    {
+      if((cd = new qtbook_cd(this, cd_categories, languages,
+			     monetary_units, cd_locations, cd_formats,
+			     "search", -1)) != NULL)
+	cds.insert("search", cd);
+
+      if(cd != NULL)
+	cd->search(field, value);
+    }
+  else
+    cd->search(field, value);
+}
+
+/*
 ** -- slotCDSearch() --
 */
 
@@ -6222,6 +6266,29 @@ void qtbook::slotCDSearch(void)
       cd->raise();
       cd->search();
     }
+}
+
+/*
+** -- dvdSearch() --
+*/
+
+void qtbook::dvdSearch(const QString &field, const QString &value)
+{
+  qtbook_dvd *dvd = NULL;
+
+  if((dvd = dvds.value("search")) == NULL)
+    {
+      if((dvd = new qtbook_dvd(this, dvd_categories, languages,
+			       monetary_units, dvd_locations, dvd_ratings,
+			       dvd_aspectratios, dvd_regions,
+			       "search", -1)) != NULL)
+	dvds.insert("search", dvd);
+
+      if(dvd != NULL)
+	dvd->search(field, value);
+    }
+  else
+    dvd->search(field, value);
 }
 
 /*
@@ -6251,6 +6318,28 @@ void qtbook::slotDVDSearch(void)
 }
 
 /*
+** -- journSearch() --
+*/
+
+void qtbook::journSearch(const QString &field, const QString &value)
+{
+  qtbook_journal *journal = NULL;
+
+  if((journal = journals.value("search")) == NULL)
+    {
+      if((journal = new qtbook_journal(this, journal_categories, languages,
+				       monetary_units, journal_locations,
+				       "search", -1)) != NULL)
+	journals.insert("search", journal);
+
+      if(journal != NULL)
+	journal->search(field, value);
+    }
+  else
+    journal->search(field, value);
+}
+
+/*
 ** -- slotJournSearch() --
 */
 
@@ -6276,6 +6365,28 @@ void qtbook::slotJournSearch(void)
 }
 
 /*
+** -- magSearch() --
+*/
+
+void qtbook::magSearch(const QString &field, const QString &value)
+{
+  qtbook_magazine *magazine = NULL;
+
+  if((magazine = magazines.value("search")) == NULL)
+    {
+      if((magazine = new qtbook_magazine(this, magazine_categories, languages,
+					 monetary_units, magazine_locations,
+					 "search", -1)) != NULL)
+	magazines.insert("search", magazine);
+
+      if(magazine != NULL)
+	magazine->search(field, value);
+    }
+  else
+    magazine->search(field, value);
+}
+
+/*
 ** -- slotMagSearch() --
 */
 
@@ -6298,6 +6409,29 @@ void qtbook::slotMagSearch(void)
       magazine->raise();
       magazine->search();
     }
+}
+
+/*
+** -- vgSearch() --
+*/
+
+void qtbook::vgSearch(const QString &field, const QString &value)
+{
+  qtbook_videogame *video_game = NULL;
+
+  if((video_game = video_games.value("search")) == NULL)
+    {
+      if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
+					    vg_genres, languages,
+					    monetary_units, vg_locations,
+					    "search", -1)) != NULL)
+	video_games.insert("search", video_game);
+
+      if(video_game != NULL)
+	video_game->search(field, value);
+    }
+  else
+    video_game->search(field, value);
 }
 
 /*

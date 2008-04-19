@@ -236,7 +236,7 @@ void qtbook_videogame::slotGo(void)
 	}
 
       str = vg.developer->toPlainText().trimmed();
-      vg.developer->setPlainText(str);
+      vg.developer->setMultipleLinks("videogame_search", "developer", str);
 
       if(vg.developer->toPlainText().isEmpty())
 	{
@@ -257,10 +257,12 @@ void qtbook_videogame::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = vg.publisher->text().trimmed();
-      vg.publisher->setText(str);
+      str = vg.publisher->toPlainText().trimmed();
+      vg.publisher->setText
+	  (QString("<a href=\"videogame_search?publisher?%1\">" +
+		   str + "</a>").arg(str));
 
-      if(vg.publisher->text().isEmpty())
+      if(vg.publisher->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete the Publisher field.");
@@ -333,7 +335,7 @@ void qtbook_videogame::slotGo(void)
       query.bindValue(2, vg.rating->currentText().trimmed());
       query.bindValue(3, vg.developer->toPlainText());
       query.bindValue(4, vg.release_date->date().toString("MM/dd/yyyy"));
-      query.bindValue(5, vg.publisher->text());
+      query.bindValue(5, vg.publisher->toPlainText());
       query.bindValue(6, vg.genre->currentText().trimmed());
       query.bindValue(7, vg.price->text());
       query.bindValue(8, vg.description->toPlainText());
@@ -527,7 +529,7 @@ void qtbook_videogame::slotGo(void)
 			  (vg.release_date->date().toString("MM/dd/yyyy"));
 		      else if(column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
-			  (vg.publisher->text());
+			  (vg.publisher->toPlainText());
 		      else if(column->text() == "Genre" ||
 			      column->text() == "Category")
 			qmain->getUI().table->item(row, i)->setText
@@ -665,7 +667,8 @@ void qtbook_videogame::slotGo(void)
 			 "' AND ");
 
       searchstr.append("LOWER(publisher) LIKE '%" +
-		       myqstring::escape(vg.publisher->text().toLower()) +
+		       myqstring::escape
+		       (vg.publisher->toPlainText().toLower()) +
 		       "%' AND ");
 
       if(vg.genre->currentText() != "Any")
@@ -729,7 +732,7 @@ void qtbook_videogame::slotGo(void)
 ** -- search() --
 */
 
-void qtbook_videogame::search(void)
+void qtbook_videogame::search(const QString &field, const QString &value)
 {
   QPoint p(0, 0);
 
@@ -783,16 +786,29 @@ void qtbook_videogame::search(void)
   vg.platform->setCurrentIndex(0);
   vg.mode->setCurrentIndex(0);
 
-  foreach(QAction *action, vg.resetButton->menu()->findChildren<QAction *>())
-    if(action->text().contains("Cover Image"))
-      action->setVisible(false);
+  if(field.isEmpty() && value.isEmpty())
+    {
+      foreach(QAction *action,
+	      vg.resetButton->menu()->findChildren<QAction *>())
+	if(action->text().contains("Cover Image"))
+	  action->setVisible(false);
 
-  setWindowTitle("BiblioteQ: Database Video Game Search");
-  vg.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
-  show();
+      setWindowTitle("BiblioteQ: Database Video Game Search");
+      vg.id->setFocus();
+      p = parentWid->mapToGlobal(p);
+      move(p.x() + parentWid->width() / 2  - width() / 2,
+	   p.y() + parentWid->height() / 2 - height() / 2);
+      show();
+    }
+  else
+    {
+      if(field == "developer")
+	vg.developer->setPlainText(value);
+      else if(field == "publisher")
+	vg.publisher->setPlainText(value);
+
+      slotGo();
+    }
 }
 
 /*
@@ -921,9 +937,12 @@ void qtbook_videogame::modify(const int state)
 	  if(fieldname == "title")
 	    vg.title->setText(var.toString());
 	  else if(fieldname == "developer")
-	    vg.developer->setPlainText(var.toString());
+	    vg.developer->setMultipleLinks("videogame_search", "developer",
+					   var.toString());
 	  else if(fieldname == "publisher")
-	    vg.publisher->setText(var.toString());
+	    vg.publisher->setText
+	      (QString("<a href=\"videogame_search?publisher?%1\">" +
+		       var.toString() + "</a>").arg(var.toString()));
 	  else if(fieldname == "rdate")
 	    vg.release_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1320,7 +1339,7 @@ void qtbook_videogame::slotPrint(void)
   html += "<b>Title:</b> " + vg.title->text() + "<br>";
   html += "<b>Release Date:</b> " + vg.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + vg.publisher->text() + "<br>";
+  html += "<b>Publisher:</b> " + vg.publisher->toPlainText() + "<br>";
   html += "<b>Genre:</b> " + vg.genre->currentText() + "<br>";
   html += "<b>Price:</b> " + vg.price->text() + "<br>";
   html += "<b>Language:</b> " + vg.language->currentText() + "<br>";

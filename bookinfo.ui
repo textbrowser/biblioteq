@@ -396,9 +396,6 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
-         <widget class="QTextEdit" name="author" />
-        </item>
         <item row="4" column="0" >
          <widget class="QLabel" name="label_9" >
           <property name="font" >
@@ -509,6 +506,19 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="1" >
+         <widget class="hyperlinked_text_edit" name="author" >
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QGroupBox" name="generalGroup" >
@@ -589,9 +599,6 @@
            <string>Publisher</string>
           </property>
          </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QLineEdit" name="publisher" />
         </item>
         <item row="3" column="0" >
          <widget class="QLabel" name="label_15" >
@@ -879,6 +886,25 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1" >
+         <widget class="hyperlinked_text_edit" name="publisher" >
+          <property name="verticalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy" >
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -1037,6 +1063,11 @@
    <class>image_drop_site</class>
    <extends>QGraphicsView</extends>
    <header>image_drop_site.h</header>
+  </customwidget>
+  <customwidget>
+   <class>hyperlinked_text_edit</class>
+   <extends>QTextBrowser</extends>
+   <header>hyperlinked_text_edit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

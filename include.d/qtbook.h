@@ -81,11 +81,17 @@ class qtbook: public QMainWindow
 		const char * = "", const int = 0);
   void removeCD(qtbook_cd *);
   void showMain(void);
+  void cdSearch(const QString &, const QString &);
+  void vgSearch(const QString &, const QString &);
+  void dvdSearch(const QString &, const QString &);
+  void magSearch(const QString &, const QString &);
   void removeDVD(qtbook_dvd *);
   void replaceCD(const QString &, qtbook_cd *);
   void removeBook(qtbook_book *);
   void replaceDVD(const QString &, qtbook_dvd *);
+  void bookSearch(const QString &, const QString &);
   void updateRows(const QString &, const int, const QString &);
+  void journSearch(const QString &, const QString &);
   void replaceBook(const QString &, qtbook_book *);
   void removeJournal(qtbook_journal *);
   void removeMagazine(qtbook_magazine *);

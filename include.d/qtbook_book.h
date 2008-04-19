@@ -41,7 +41,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   bool isBusy(void);
   void insert(void);
   void modify(const int);
-  void search(void);
+  void search(const QString & = "", const QString & = "");
   void updateWindow(const int);
   virtual void closeEvent(QCloseEvent *);
 

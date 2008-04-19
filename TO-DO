@@ -2,7 +2,7 @@
 2.   Save major settings to a configuration file. (DONE)
 3.   Implement the Library of Congress query. (DONE)
 4.   Allow for image storage of front and back covers. (DONE)
-5.   Port to Windows XP. Test on FreeBSD (DONE), Linux, OS X (DONE),
+5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux, OS X (DONE),
      and Solaris (DONE).
 6.   Allow searching of library members. This feature should only be
      available to administrators. (DONE)
@@ -194,7 +194,7 @@
  	Branch Name
 98.  Allow editing of copy information during item creation. (DONE)
 99.  Create a statistics panel. (TBD)
-100. Release a version for Windows XP. (TBD)
+100. Release a version for Windows XP. (DONE)
 101. Create a Journal category. The new class should inherit from the
      Magazine class. (DONE)
 102. Store information regarding anonymous connections in the
@@ -221,4 +221,6 @@
 118. Provide support for SQLite. (DONE)
 119. Allow for dropping of images from external applications. (DONE)
 120. Remove "green" informational dialogs. (DONE)
-121. Provide hyperlinks in textfields for searches.
+121. Provide hyperlinks in text browsers. Once a link is clicked,
+     the application should perform a query using the text's referenced
+     in the hyperlink. (DONE)
