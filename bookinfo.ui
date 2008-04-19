@@ -215,7 +215,7 @@
              <string>&amp;Convert</string>
             </property>
             <property name="icon" >
-             <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/convert.png</iconset>
+             <iconset>icons.d/16x16/convert.png</iconset>
             </property>
            </widget>
           </item>
