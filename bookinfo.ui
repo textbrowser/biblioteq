@@ -787,7 +787,7 @@
                <string>&amp;Show Copies</string>
               </property>
               <property name="icon" >
-               <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/editcopy.png</iconset>
+               <iconset>icons.d/16x16/editcopy.png</iconset>
               </property>
              </widget>
             </item>
@@ -803,7 +803,7 @@
                <string>&amp;Show Reservation Status</string>
               </property>
               <property name="icon" >
-               <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/members.png</iconset>
+               <iconset>icons.d/16x16/members.png</iconset>
               </property>
              </widget>
             </item>
@@ -948,7 +948,7 @@
          <string>&amp;OK</string>
         </property>
         <property name="icon" >
-         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/ok.png</iconset>
+         <iconset>icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -970,7 +970,7 @@
          <string>&amp;Query Libray of Congress</string>
         </property>
         <property name="icon" >
-         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/down.png</iconset>
+         <iconset>icons.d/16x16/down.png</iconset>
         </property>
        </widget>
       </item>
@@ -1014,7 +1014,7 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon" >
-         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/fileprint.png</iconset>
+         <iconset>icons.d/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -1036,7 +1036,7 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon" >
-         <iconset>../../../../home/monster/.designer/backup/icons.d/16x16/cancel.png</iconset>
+         <iconset>icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
