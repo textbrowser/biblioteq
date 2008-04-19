@@ -529,6 +529,7 @@ void qtbook_book::slotGo(void)
 	  id.publication_date->setPalette(dt_orig_pal);
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
+	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  oldq = id.quantity->value();
 
 	  if(id.front_image->image.isNull())
@@ -1204,7 +1205,7 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Author(s)"))
 	{
 	  id.author->clear();
-	  id.author->viewport()->setPalette(id.id->palette());
+	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
 	}
       else if(name.contains("Publication Date"))
@@ -1222,7 +1223,7 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Publisher"))
 	{
 	  id.publisher->clear();
-	  id.publisher->setPalette(id.id->palette());
+	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
 	}
       else if(name.contains("Category"))
@@ -1331,6 +1332,7 @@ void qtbook_book::slotReset(void)
       id.publication_date->setPalette(dt_orig_pal);
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
+      id.publisher->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
     }
 }
