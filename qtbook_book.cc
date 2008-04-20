@@ -573,7 +573,6 @@ void qtbook_book::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify Book Entry (%1)").arg
 		(id.id->text());
 	      setWindowTitle(str);
@@ -662,6 +661,8 @@ void qtbook_book::slotGo(void)
 
 		  if(qmain->getUI().actionAutoResizeColumns->isChecked())
 		    qmain->slotResizeColumns();
+
+		  qmain->slotDisplaySummary();
 		}
 	    }
 	  else

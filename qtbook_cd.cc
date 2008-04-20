@@ -581,7 +581,6 @@ void qtbook_cd::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify CD Entry (%1)").arg
 		(cd.id->text());
 	      setWindowTitle(str);
@@ -668,6 +667,8 @@ void qtbook_cd::slotGo(void)
 
 		  if(qmain->getUI().actionAutoResizeColumns->isChecked())
 		    qmain->slotResizeColumns();
+
+		  qmain->slotDisplaySummary();
 		}
 	    }
 	  else

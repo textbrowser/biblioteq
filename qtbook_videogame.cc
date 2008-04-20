@@ -516,7 +516,6 @@ void qtbook_videogame::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      qmain->slotDisplaySummary();
 	      str = QString("BiblioteQ: Modify Video Game Entry (%1)").arg
 		(vg.id->text());
 	      setWindowTitle(str);
@@ -595,6 +594,8 @@ void qtbook_videogame::slotGo(void)
 
 		  if(qmain->getUI().actionAutoResizeColumns->isChecked())
 		    qmain->slotResizeColumns();
+
+		  qmain->slotDisplaySummary();
 		}
 	    }
 	  else
