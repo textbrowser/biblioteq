@@ -1246,7 +1246,7 @@ void qtbook_videogame::slotReset(void)
       else if(name.contains("OFFSYSTEM URL"))
 	{
 	  vg.url->clear();
-	  vg.setFocus();
+	  vg.url->setFocus();
 	}
     }
   else
