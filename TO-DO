@@ -202,7 +202,7 @@
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
 105. Prepare the application for translations. (TBD)
-106. Provide a graphical representation of the database layout.
+106. Provide a graphical representation of the database layout. (TBD)
 107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item
      has been returned. (DONE)
@@ -211,7 +211,7 @@
 111. If necessary, update the Member's Reservation History panel
      whenever an item has been returned. (DONE)
 112. Verify the member's age prior to reserving an age-restricted item.
-113. Implement OFFSYSTEM's Off-Link-URL. (TBD)
+113. Implement OFFSYSTEM's Off-Link-URL. (DONE)
 114. Create a mechanism that allows members to log in. Members should
      also be allowed to view their reservation histories. (DONE)
 115. Create compact views for the borrower tables. See #80. (DONE)
@@ -222,5 +222,6 @@
 119. Allow for dropping of images from external applications. (DONE)
 120. Remove "green" informational dialogs. (DONE)
 121. Provide hyperlinks in text browsers. Once a link is clicked,
-     the application should perform a query using the text's referenced
+     the application should perform a query using the text that's referenced
      in the hyperlink. (DONE)
+122. Fix NULL QVariant bind values. (DONE)

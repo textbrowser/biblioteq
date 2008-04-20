@@ -15,12 +15,6 @@
     <height>300</height>
    </size>
   </property>
-  <property name="maximumSize" >
-   <size>
-    <width>16777215</width>
-    <height>16777215</height>
-   </size>
-  </property>
   <property name="font" >
    <font>
     <family>Times</family>
@@ -29,9 +23,6 @@
   </property>
   <property name="windowTitle" >
    <string>BiblioteQ: Library of Congress Query Results</string>
-  </property>
-  <property name="sizeGripEnabled" >
-   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" >
    <item>
@@ -42,61 +33,49 @@
      <property name="frameShadow" >
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" >
+     <layout class="QVBoxLayout" >
       <item>
-       <widget class="QGroupBox" name="groupBox" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       <widget class="QSplitter" name="splitter" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="maximumSize" >
-         <size>
-          <width>150</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="title" >
-         <string>&amp;Records Retrieved</string>
-        </property>
-        <property name="flat" >
-         <bool>false</bool>
-        </property>
-        <layout class="QVBoxLayout" >
-         <item>
-          <widget class="QListWidget" name="list" >
-           <property name="font" >
-            <font>
-             <family>Times</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="verticalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy" >
-            <enum>Qt::ScrollBarAsNeeded</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="groupBox_2" >
-        <property name="title" >
-         <string>Record &amp;Contents</string>
-        </property>
-        <layout class="QVBoxLayout" >
-         <item>
-          <widget class="QTextEdit" name="textarea" >
-           <property name="readOnly" >
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QGroupBox" name="recRet" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title" >
+          <string>&amp;Records Retrieved</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QListWidget" name="list" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QGroupBox" name="recCont" >
+         <property name="title" >
+          <string>Record &amp;Contents</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTextEdit" name="textarea" >
+            <property name="readOnly" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
      </layout>

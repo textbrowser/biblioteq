@@ -762,7 +762,7 @@
                </font>
               </property>
               <property name="text" >
-               <string>&amp;Show Reservation Status</string>
+               <string>&amp;Reservation Status</string>
               </property>
               <property name="icon" >
                <iconset>icons.d/16x16/members.png</iconset>
@@ -857,9 +857,6 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="verticalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAlwaysOn</enum>
-          </property>
           <property name="acceptRichText" >
            <bool>false</bool>
           </property>
@@ -881,6 +878,27 @@
           </property>
           <property name="openLinks" >
            <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1" >
+         <widget class="QTextBrowser" name="url" >
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openExternalLinks" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" >
+         <widget class="QLabel" name="label_12" >
+          <property name="text" >
+           <string>OFFSYSTEM
+URL</string>
           </property>
          </widget>
         </item>
@@ -1086,6 +1104,7 @@
   <tabstop>showUserButton</tabstop>
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
+  <tabstop>url</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>

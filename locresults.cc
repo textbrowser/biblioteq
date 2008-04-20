@@ -29,6 +29,8 @@ locresults::locresults(QWidget *parent, QStringList &list,
   connect(ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
   ui.list->setCurrentRow(0);
+  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recRet),  0);
+  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recCont),  1);
   setGlobalFonts(font);
   exec();
 }

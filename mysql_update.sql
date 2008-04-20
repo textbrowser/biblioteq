@@ -99,3 +99,12 @@ ALTER TABLE videogame ADD back_cover VARBINARY(1024);
 ALTER TABLE videogame ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE videogame ADD back_cover_fmt VARCHAR(8);
 GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+
+/* Release 4.04 */
+
+ALTER TABLE book ADD offsystem_url LONGTEXT;
+ALTER TABLE cd ADD offsystem_url LONGTEXT;
+ALTER TABLE dvd ADD offsystem_url LONGTEXT;
+ALTER TABLE magazine ADD offsystem_url LONGTEXT;
+ALTER TABLE videogame ADD offsystem_url LONGTEXT;
+GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';

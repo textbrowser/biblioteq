@@ -100,6 +100,8 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(vg.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(vg.backButton,
@@ -281,6 +283,11 @@ void qtbook_videogame::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = vg.url->toPlainText().trimmed();
+
+      if(!str.isEmpty())
+	vg.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE videogame SET id = ?, "
 			      "title = ?, "
@@ -298,7 +305,8 @@ void qtbook_videogame::slotGo(void)
 			      "front_cover = ?, "
 			      "back_cover = ?, "
 			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ? "
+			      "back_cover_fmt = ?, "
+			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -309,12 +317,12 @@ void qtbook_videogame::slotGo(void)
 			      "vgplatform, location, vgmode, "
 			      "front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt) "
+			      "back_cover_fmt, offsystem_url) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO videogame (id, title, "
 			      "vgrating, developer, rdate, publisher, "
@@ -323,12 +331,12 @@ void qtbook_videogame::slotGo(void)
 			      "vgplatform, location, vgmode, "
 			      "front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, myoid) "
+			      "back_cover_fmt, offsystem_url, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, vg.id->text());
       query.bindValue(1, vg.title->text());
@@ -376,13 +384,25 @@ void qtbook_videogame::slotGo(void)
 	  query.bindValue(16, QVariant());
 	}
 
-      query.bindValue(17, vg.front_image->imageFormat);
-      query.bindValue(18, vg.back_image->imageFormat);
+      if(!vg.front_image->imageFormat.isEmpty())
+	query.bindValue(17, vg.front_image->imageFormat);
+      else
+	query.bindValue(17, QVariant(QVariant::String));
+
+      if(!vg.back_image->imageFormat.isEmpty())
+	query.bindValue(18, vg.back_image->imageFormat);
+      else
+	query.bindValue(18, QVariant(QVariant::String));
+
+      if(!vg.url->toPlainText().isEmpty())
+	query.bindValue(19, vg.url->toPlainText());
+      else
+	query.bindValue(19, QVariant(QVariant::String));
 
       if(windowTitle().contains("Modify"))
-	query.bindValue(19, oid);
+	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(19, vg.id->text().toInt());
+	query.bindValue(20, vg.id->text().toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -714,7 +734,12 @@ void qtbook_videogame::slotGo(void)
       if(vg.mode->currentText() != "Any")
 	searchstr.append("AND vgmode = '" +
 			 myqstring::escape
-			 (vg.mode->currentText()) + "'");
+			 (vg.mode->currentText()) + "' ");
+
+      if(!vg.url->toPlainText().isEmpty())
+	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+			 myqstring::escape
+			 (vg.url->toPlainText()) + "%' ");
 
       slotCancel();
 
@@ -785,6 +810,7 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.monetary_units->setCurrentIndex(0);
   vg.platform->setCurrentIndex(0);
   vg.mode->setCurrentIndex(0);
+  vg.url->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -906,7 +932,8 @@ void qtbook_videogame::modify(const int state)
     "front_cover_fmt, "
     "back_cover_fmt, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "offsystem_url "
     "FROM "
     "videogame "
     "WHERE myoid = ";
@@ -1055,6 +1082,12 @@ void qtbook_videogame::modify(const int state)
 		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
+	  else if(fieldname == "offsystem_url")
+	    {
+	      if(!query.record().field(i).isNull())
+		vg.url->setText(QString("<a href=\"%1\">%1</a>").arg
+				(var.toString()));
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1090,6 +1123,7 @@ void qtbook_videogame::insert(void)
   vg.language->setCurrentIndex(0);
   vg.monetary_units->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
+  vg.url->clear();
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1209,6 +1243,11 @@ void qtbook_videogame::slotReset(void)
 	  vg.mode->setCurrentIndex(0);
 	  vg.mode->setFocus();
 	}
+      else if(name.contains("OFFSYSTEM URL"))
+	{
+	  vg.url->clear();
+	  vg.setFocus();
+	}
     }
   else
     {
@@ -1238,6 +1277,7 @@ void qtbook_videogame::slotReset(void)
       vg.monetary_units->setCurrentIndex(0);
       vg.platform->setCurrentIndex(0);
       vg.mode->setCurrentIndex(0);
+      vg.url->clear();
 
       if(vg.front_image->items().size() > 0)
 	vg.front_image->scene()->removeItem
@@ -1347,7 +1387,8 @@ void qtbook_videogame::slotPrint(void)
     "<br>";
   html += "<b>Copies:</b> " + vg.quantity->text() + "<br>";
   html += "<b>Location:</b> " + vg.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + vg.description->toPlainText();
+  html += "<b>Abstract:</b> " + vg.description->toPlainText() + "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + vg.url->toPlainText();
   print(this);
 }
 

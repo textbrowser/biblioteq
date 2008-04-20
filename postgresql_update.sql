@@ -117,3 +117,11 @@ ALTER TABLE videogame ADD front_cover BYTEA;
 ALTER TABLE videogame ADD back_cover BYTEA;
 ALTER TABLE videogame ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE videogame ADD back_cover_fmt VARCHAR(8);
+
+/* Release 4.04 */
+
+ALTER TABLE book ADD offsystem_url TEXT;
+ALTER TABLE cd ADD offsystem_url TEXT;
+ALTER TABLE dvd ADD offsystem_url TEXT;
+ALTER TABLE magazine ADD offsystem_url TEXT;
+ALTER TABLE videogame ADD offsystem_url TEXT;

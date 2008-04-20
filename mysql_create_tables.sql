@@ -26,7 +26,8 @@ CREATE TABLE book
 	back_cover	 VARBINARY(1024),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Book',
+	offsystem_url	 LONGTEXT
 ) engine = InnoDB;
 
 CREATE TABLE book_copy_info
@@ -63,7 +64,8 @@ CREATE TABLE cd
 	back_cover	 VARBINARY(1024),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'CD',
+	offsystem_url    LONGTEXT
 ) engine = InnoDB;
 
 CREATE TABLE cd_songs
@@ -113,7 +115,8 @@ CREATE TABLE dvd
 	back_cover	 VARBINARY(1024),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD',
+	offsystem_url	 LONGTEXT
 ) engine = InnoDB;
 
 CREATE TABLE dvd_copy_info
@@ -150,6 +153,7 @@ CREATE TABLE magazine
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	offsystem_url	 LONGTEXT,
 	PRIMARY KEY(id, mag_volume, mag_no)
 ) engine = InnoDB;
 
@@ -185,7 +189,8 @@ CREATE TABLE videogame
 	back_cover	 VARBINARY(1024),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game',
+	offsystem_url	 LONGTEXT
 ) engine = InnoDB;
 
 CREATE TABLE videogame_copy_info

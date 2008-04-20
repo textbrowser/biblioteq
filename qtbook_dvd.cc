@@ -108,6 +108,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(dvd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(dvd.backButton,
@@ -325,6 +327,11 @@ void qtbook_dvd::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = dvd.url->toPlainText().trimmed();
+
+      if(!str.isEmpty())
+	dvd.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE dvd SET "
 			      "id = ?, "
@@ -349,7 +356,8 @@ void qtbook_dvd::slotGo(void)
 			      "front_cover = ?, "
 			      "back_cover = ?, "
 			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ? "
+			      "back_cover_fmt = ?, "
+			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -374,14 +382,14 @@ void qtbook_dvd::slotGo(void)
 			      "location, "
 			      "description, front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt) "
+			      "back_cover_fmt, offsystem_url) "
 			      "VALUES "
 			      "(?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO dvd "
 			      "(id, "
@@ -404,14 +412,14 @@ void qtbook_dvd::slotGo(void)
 			      "location, "
 			      "description, front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, myoid) "
+			      "back_cover_fmt, offsystem_url, myoid) "
 			      "VALUES "
 			      "(?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, dvd.id->text());
       query.bindValue(1, dvd.rating->currentText().trimmed());
@@ -463,13 +471,25 @@ void qtbook_dvd::slotGo(void)
 	  query.bindValue(20, QVariant());
 	}
 
-      query.bindValue(21, dvd.front_image->imageFormat);
-      query.bindValue(22, dvd.back_image->imageFormat);
+      if(!dvd.front_image->imageFormat.isEmpty())
+	query.bindValue(21, dvd.front_image->imageFormat);
+      else
+	query.bindValue(21, QVariant(QVariant::String));
+
+      if(!dvd.back_image->imageFormat.isEmpty())
+	query.bindValue(22, dvd.back_image->imageFormat);
+      else
+	query.bindValue(22, QVariant(QVariant::String));
+
+      if(!dvd.url->toPlainText().isEmpty())
+	query.bindValue(23, dvd.url->toPlainText());
+      else
+	query.bindValue(23, QVariant(QVariant::String));
 
       if(windowTitle().contains("Modify"))
-	query.bindValue(23, oid);
+	query.bindValue(24, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(23, dvd.id->text().toInt());
+	query.bindValue(24, dvd.id->text().toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -830,6 +850,11 @@ void qtbook_dvd::slotGo(void)
 			 myqstring::escape
 			 (dvd.location->currentText()) + "' ");
 
+      if(!dvd.url->toPlainText().isEmpty())
+	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+			 myqstring::escape
+			 (dvd.url->toPlainText()) + "%' ");
+
       slotCancel();
 
       /*
@@ -901,6 +926,7 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.rating->setCurrentIndex(0);
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
+  dvd.url->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1037,7 +1063,8 @@ void qtbook_dvd::modify(const int state)
     "front_cover_fmt, "
     "back_cover_fmt, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "offsystem_url "
     "FROM "
     "dvd "
     "WHERE myoid = ";
@@ -1195,6 +1222,12 @@ void qtbook_dvd::modify(const int state)
 		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
+	  else if(fieldname == "offsystem_url")
+	    {
+	      if(!query.record().field(i).isNull())
+		dvd.url->setText(QString("<a href=\"%1\">%1</a>").arg
+				 (var.toString()));
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1242,6 +1275,7 @@ void qtbook_dvd::insert(void)
   dvd.rating->setCurrentIndex(0);
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
+  dvd.url->clear();
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1372,6 +1406,11 @@ void qtbook_dvd::slotReset(void)
 	  dvd.aspectratio->setCurrentIndex(0);
 	  dvd.aspectratio->setFocus();
 	}
+      else if(name.contains("OFFSYSTEM URL"))
+	{
+	  dvd.url->clear();
+	  dvd.url->setFocus();
+	}
     }
   else
     {
@@ -1412,6 +1451,7 @@ void qtbook_dvd::slotReset(void)
       dvd.back_image->clear();
       dvd.format->clear();
       dvd.directors->clear();
+      dvd.url->clear();
       dvd.id->setFocus();
     }
 }
@@ -1516,7 +1556,8 @@ void qtbook_dvd::slotPrint(void)
     "<br>";
   html += "<b>Copies:</b> " + dvd.quantity->text() + "<br>";
   html += "<b>Location:</b> " + dvd.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + dvd.description->toPlainText();
+  html += "<b>Abstract:</b> " + dvd.description->toPlainText() + "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + dvd.url->toPlainText();
   print(this);
 }
 

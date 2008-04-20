@@ -648,7 +648,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 4.03.<br>"
+  mb.setText("<html>BiblioteQ Version 4.04.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -4656,6 +4656,9 @@ void qtbook::slotConnectDB(void)
   if(drivers.endsWith(", "))
     drivers = drivers.mid(0, drivers.length() - 2);
 
+  if(drivers.isEmpty())
+    drivers = "N/A";
+
   foreach(QString path, qapp->libraryPaths())
     if(path.contains("plugin"))
       {
@@ -4663,16 +4666,19 @@ void qtbook::slotConnectDB(void)
 	break;
       }
 
+  if(plugins.isEmpty())
+    plugins = "N/A";
+
   if(!QSqlDatabase::isDriverAvailable(str))
     {
       tmphash.clear();
       QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
-			    "The selected Branch's database type does not "
+			    "The selected branch's database type does not "
 			    "have a driver associated with it.\n"
 			    "The following drivers are available: " +
 			    drivers + ".\n"
 			    "In addition, Qt expects plugins to exist "
-			    "in " + plugins + ".\n"
+			    "in: " + plugins + ".\n"
 			    "Please contact your administrator.");
       return;
     }

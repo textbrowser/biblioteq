@@ -110,6 +110,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -310,6 +312,10 @@ void qtbook_book::slotGo(void)
       id.callnum->setText(str);
       str = id.deweynum->text().trimmed();
       id.deweynum->setText(str);
+      str = id.url->toPlainText().trimmed();
+
+      if(!str.isEmpty())
+	id.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE book SET id = ?, "
@@ -331,7 +337,8 @@ void qtbook_book::slotGo(void)
 			      "front_cover = ?, "
 			      "back_cover = ?, "
 			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ? "
+			      "back_cover_fmt = ?, "
+			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -343,12 +350,12 @@ void qtbook_book::slotGo(void)
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt) "
+			      "back_cover_fmt, offsystem_url) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO book (id, title, "
 			      "edition, author, pdate, publisher, "
@@ -358,13 +365,13 @@ void qtbook_book::slotGo(void)
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
 			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, myoid) "
+			      "back_cover_fmt, offsystem_url, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
-			      "?)"));
+			      "?, ?)"));
 
       query.bindValue(0, id.id->text());
       query.bindValue(1, id.title->text());
@@ -381,9 +388,21 @@ void qtbook_book::slotGo(void)
       query.bindValue(12, id.binding->currentText().trimmed());
       query.bindValue(13, id.location->currentText().trimmed());
       query.bindValue(14, id.isbn13->text());
-      query.bindValue(15, id.lcnum->text());
-      query.bindValue(16, id.callnum->text());
-      query.bindValue(17, id.deweynum->text());
+
+      if(!id.lcnum->text().isEmpty())
+	query.bindValue(15, id.lcnum->text());
+      else
+	query.bindValue(15, QVariant(QVariant::String));
+
+      if(!id.callnum->text().isEmpty())
+	query.bindValue(16, id.callnum->text());
+      else
+	query.bindValue(16, QVariant(QVariant::String));
+
+      if(!id.deweynum->text().isEmpty())
+	query.bindValue(17, id.deweynum->text());
+      else
+	query.bindValue(17, QVariant(QVariant::String));
 
       if(!id.front_image->image.isNull())
 	{
@@ -415,13 +434,25 @@ void qtbook_book::slotGo(void)
 	  query.bindValue(19, QVariant());
 	}
 
-      query.bindValue(20, id.front_image->imageFormat);
-      query.bindValue(21, id.back_image->imageFormat);
+      if(!id.front_image->imageFormat.isEmpty())
+	query.bindValue(20, id.front_image->imageFormat);
+      else
+	query.bindValue(20, QVariant(QVariant::String));
+
+      if(!id.back_image->imageFormat.isEmpty())
+	query.bindValue(21, id.back_image->imageFormat);
+      else
+	query.bindValue(21, QVariant(QVariant::String));
+
+      if(!id.url->toPlainText().isEmpty())
+	query.bindValue(22, id.url->toPlainText().trimmed());
+      else
+	query.bindValue(22, QVariant(QVariant::String));
 
       if(windowTitle().contains("Modify"))
-	query.bindValue(22, oid);
+	query.bindValue(23, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(22, id.id->text().replace("X", "10").toInt());
+	query.bindValue(23, id.id->text().replace("X", "10").toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -523,7 +554,7 @@ void qtbook_book::slotGo(void)
 	    }
 
 	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	    textfield->setPalette(id.id->palette());
+	    textfield->setPalette(id.isbn13->palette());
 
 	  id.edition->setPalette(cb_orig_pal);
 	  id.publication_date->setPalette(dt_orig_pal);
@@ -780,6 +811,11 @@ void qtbook_book::slotGo(void)
 			 myqstring::escape
 			 (id.location->currentText()) + "' ");
 
+      if(!id.url->toPlainText().isEmpty())
+	searchstr.append("AND LOWER(offsystem_url) LIKE '%" +
+			 myqstring::escape
+			 (id.url->toPlainText().toLower()) + "%' ");
+
       slotCancel();
 
       /*
@@ -849,6 +885,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.url->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -971,7 +1008,8 @@ void qtbook_book::modify(const int state)
     "front_cover_fmt, "
     "back_cover_fmt, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "offsystem_url "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -1116,6 +1154,12 @@ void qtbook_book::modify(const int state)
 		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
+	  else if(fieldname == "offsystem_url")
+	    {
+	      if(!query.record().field(i).isNull())
+		id.url->setText(QString("<a href=\"%1\">%1</a>").arg
+				(var.toString()));
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1160,6 +1204,7 @@ void qtbook_book::insert(void)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.url->clear();
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1188,12 +1233,13 @@ void qtbook_book::slotReset(void)
       else if(name.contains("ISBN-10"))
 	{
 	  id.id->clear();
+	  id.id->setPalette(id.isbn13->palette());
 	  id.id->setFocus();
 	}
       else if(name.contains("Title"))
 	{
 	  id.title->clear();
-	  id.title->setPalette(id.id->palette());
+	  id.title->setPalette(id.isbn13->palette());
 	  id.title->setFocus();
 	}
       else if(name.contains("Edition"))
@@ -1275,20 +1321,25 @@ void qtbook_book::slotReset(void)
       else if(name.contains("LC Control Number"))
 	{
 	  id.lcnum->clear();
-	  id.lcnum->setPalette(id.id->palette());
+	  id.lcnum->setPalette(id.isbn13->palette());
 	  id.lcnum->setFocus();
 	}
       else if(name.contains("Call Number"))
 	{
 	  id.callnum->clear();
-	  id.callnum->setPalette(id.id->palette());
+	  id.callnum->setPalette(id.isbn13->palette());
 	  id.callnum->setFocus();
 	}
       else if(name.contains("Dewey Class Number"))
 	{
 	  id.deweynum->clear();
-	  id.deweynum->setPalette(id.id->palette());
+	  id.deweynum->setPalette(id.isbn13->palette());
 	  id.deweynum->setFocus();
+	}
+      else if(name.contains("OFFSYSTEM URL"))
+	{
+	  id.url->clear();
+	  id.url->setFocus();
 	}
     }
   else
@@ -1324,9 +1375,10 @@ void qtbook_book::slotReset(void)
       id.binding->setCurrentIndex(0);
       id.front_image->clear();
       id.back_image->clear();
+      id.url->clear();
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	textfield->setPalette(id.id->palette());
+	textfield->setPalette(id.isbn13->palette());
 
       id.edition->setPalette(cb_orig_pal);
       id.publication_date->setPalette(dt_orig_pal);
@@ -1452,18 +1504,23 @@ void qtbook_book::slotQuery(void)
       return;
     }
 
-  if(id.id->text().trimmed().isEmpty())
+  if(id.id->text().trimmed().isEmpty() &&
+     id.isbn13->text().trimmed().isEmpty())
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error", 
-	 "In order to query the Library of Congress, the ISBN-10 "
-	 "must be provided.");
+	 "In order to query the Library of Congress, either the ISBN-10 "
+	 "or ISBN-13 must be provided.");
       return;
     }
 
   if((thread = new generic_thread()) != NULL)
     {
-      searchstr = QString("@attr 1=7 %1").arg(id.id->text());
+      if(!id.id->text().isEmpty())
+	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
+      else
+	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
+
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
       thread->setLOCSearchString(searchstr);
       thread->start();
@@ -1503,6 +1560,18 @@ void qtbook_book::slotQuery(void)
 		      id.lcnum->setText(str);
 		      misc_functions::highlightWidget
 			(id.lcnum, QColor(162, 205, 90));
+		    }
+		  else if(str.startsWith("020"))
+		    {
+		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      str = str.mid(0, 10);
+
+		      if(id.id->text().isEmpty())
+			{
+			  id.id->setText(str);
+			  misc_functions::highlightWidget
+			    (id.id, QColor(162, 205, 90));
+			}
 		    }
 		  else if(str.startsWith("050"))
 		    {
@@ -1735,7 +1804,8 @@ void qtbook_book::slotPrint(void)
     "<br>";
   html += "<b>Copies:</b> " + id.quantity->text() + "<br>";
   html += "<b>Location:</b> " + id.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + id.description->toPlainText();
+  html += "<b>Abstract:</b> " + id.description->toPlainText() + "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + id.url->toPlainText();
   print(this);
 }
 

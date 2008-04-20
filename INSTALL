@@ -30,7 +30,7 @@ PostgreSQL Preparation:
 SQLite Preparation:
 1.  Run sqlite3 -init sqlite_create_tables.sql mydatabase.db.
 
-Building (Unix):
+Building:
 1.  Set the environment variables LD_LIBRARY_PATH, PATH, QMAKESPEC, and QTDIR
     accordingly.
 2.  Update the appropriate project file, if necessary.

@@ -23,7 +23,8 @@ CREATE TABLE book
 	back_cover	 BYTEA,
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Book',
+	offsystem_url	 TEXT
 	
 );
 
@@ -66,7 +67,8 @@ CREATE TABLE cd
 	back_cover	 BYTEA,
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'CD',
+	offsystem_url    TEXT
 );
 
 CREATE TABLE cd_songs
@@ -121,7 +123,8 @@ CREATE TABLE dvd
 	back_cover	 BYTEA,
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD',
+	offsystem_url	 TEXT
 );
 
 CREATE TABLE dvd_copy_info
@@ -163,6 +166,7 @@ CREATE TABLE magazine
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	offsystem_url	 TEXT,
 	PRIMARY KEY(id, mag_volume, mag_no)
 );
 
@@ -203,7 +207,8 @@ CREATE TABLE videogame
 	back_cover	 BYTEA,
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game',
+	offsystem_url	 TEXT
 );
 
 CREATE TABLE videogame_copy_info

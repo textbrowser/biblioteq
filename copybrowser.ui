@@ -30,9 +30,6 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Copies Browser</string>
   </property>
-  <property name="sizeGripEnabled" >
-   <bool>false</bool>
-  </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QFrame" name="frame" >
@@ -141,9 +138,6 @@
         </property>
         <property name="horizontalScrollMode" >
          <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="sortingEnabled" >
-         <bool>false</bool>
         </property>
         <property name="cornerButtonEnabled" >
          <bool>false</bool>

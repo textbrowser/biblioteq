@@ -105,6 +105,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Abstract"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(ma.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(ma.backButton,
@@ -291,6 +293,10 @@ void qtbook_magazine::slotGo(void)
       ma.callnum->setText(str);
       str = ma.deweynum->text().trimmed();
       ma.deweynum->setText(str);
+      str = ma.url->toPlainText().trimmed();
+
+      if(!str.isEmpty())
+	ma.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE magazine SET "
@@ -312,7 +318,8 @@ void qtbook_magazine::slotGo(void)
 			      "front_cover = ?, "
 			      "back_cover = ?, "
 			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ? "
+			      "back_cover_fmt = ?, "
+			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -326,12 +333,12 @@ void qtbook_magazine::slotGo(void)
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
 			      "front_cover_fmt, "
-			      "back_cover_fmt, type) "
+			      "back_cover_fmt, offsystem_url, type) "
 			      "VALUES (?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO magazine "
 			      "(id, "
@@ -343,12 +350,12 @@ void qtbook_magazine::slotGo(void)
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
 			      "front_cover_fmt, "
-			      "back_cover_fmt, type, myoid) "
+			      "back_cover_fmt, type, offsystem_url, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, ma.id->text());
       query.bindValue(1, ma.title->text());
@@ -363,9 +370,21 @@ void qtbook_magazine::slotGo(void)
       query.bindValue(10, ma.location->currentText().trimmed());
       query.bindValue(11, ma.volume->text());
       query.bindValue(12, ma.issue->text());
-      query.bindValue(13, ma.lcnum->text());
-      query.bindValue(14, ma.callnum->text());
-      query.bindValue(15, ma.deweynum->text());
+
+      if(!ma.lcnum->text().isEmpty())
+	query.bindValue(13, ma.lcnum->text());
+      else
+	query.bindValue(13, QVariant(QVariant::String));
+
+      if(!ma.callnum->text().isEmpty())
+	query.bindValue(14, ma.callnum->text());
+      else
+	query.bindValue(14, QVariant(QVariant::String));
+
+      if(!ma.deweynum->text().isEmpty())
+	query.bindValue(15, ma.deweynum->text());
+      else
+	query.bindValue(15, QVariant(QVariant::String));
 
       if(!ma.front_image->image.isNull())
 	{
@@ -397,16 +416,28 @@ void qtbook_magazine::slotGo(void)
 	  query.bindValue(17, QVariant());
 	}
 
-      query.bindValue(18, ma.front_image->imageFormat);
-      query.bindValue(19, ma.back_image->imageFormat);
+      if(!ma.front_image->imageFormat.isEmpty())
+	query.bindValue(18, ma.front_image->imageFormat);
+      else
+	query.bindValue(18, QVariant(QVariant::String));
+
+      if(!ma.back_image->imageFormat.isEmpty())
+	query.bindValue(19, ma.back_image->imageFormat);
+      else
+	query.bindValue(19, QVariant(QVariant::String));
+
+      if(!ma.url->toPlainText().isEmpty())
+	query.bindValue(20, ma.url->toPlainText());
+      else
+	query.bindValue(20, QVariant(QVariant::String));
 
       if(windowTitle().contains("Modify"))
-	query.bindValue(20, oid);
+	query.bindValue(21, oid);
       else
-	query.bindValue(20, subType);
+	query.bindValue(21, subType);
 
       if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(21, (ma.id->text().remove("-") +
+	query.bindValue(22, (ma.id->text().remove("-") +
 			     ma.volume->text() + ma.issue->text()).toInt());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
@@ -762,6 +793,11 @@ void qtbook_magazine::slotGo(void)
 			 myqstring::escape
 			 (ma.location->currentText()) + "' ");
 
+      if(!ma.url->toPlainText().isEmpty())
+	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+			 myqstring::escape
+			 (ma.url->toPlainText()) + "%' ");
+
       if(subType == "Journal")
 	{
 	  hide();
@@ -833,6 +869,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.category->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+  ma.url->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -951,7 +988,8 @@ void qtbook_magazine::modify(const int state)
     "front_cover_fmt, "
     "back_cover_fmt, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "offsystem_url "
     "FROM "
     "magazine "
     "WHERE myoid = ";
@@ -1091,6 +1129,12 @@ void qtbook_magazine::modify(const int state)
 		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
+	  else if(fieldname == "offsystem_url")
+	    {
+	      if(!query.record().field(i).isNull())
+		ma.url->setText(QString("<a href=\"%1\">%1</a>").arg
+				(var.toString()));
+	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1136,6 +1180,7 @@ void qtbook_magazine::insert(void)
   ma.category->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+  ma.url->clear();
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1255,6 +1300,11 @@ void qtbook_magazine::slotReset(void)
 	  ma.deweynum->setPalette(ma.id->palette());
 	  ma.deweynum->setFocus();
 	}
+      else if(name.contains("OFFSYSTEM URL"))
+	{
+	  ma.url->clear();
+	  ma.url->setFocus();
+	}
     }
   else
     {
@@ -1288,6 +1338,7 @@ void qtbook_magazine::slotReset(void)
       ma.deweynum->clear();
       ma.front_image->clear();
       ma.back_image->clear();
+      ma.url->clear();
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setPalette(ma.id->palette());
@@ -1502,7 +1553,8 @@ void qtbook_magazine::slotPrint(void)
     "<br>";
   html += "<b>Copies:</b> " + ma.quantity->text() + "<br>";
   html += "<b>Location:</b> " + ma.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + ma.description->toPlainText();
+  html += "<b>Abstract:</b> " + ma.description->toPlainText() + "<br>";
+  html += "<b>OFFSYSTEM URL:</b>" + ma.url->toPlainText();
   print(this);
 }
 
