@@ -725,7 +725,7 @@ QString copy_editor::saveCopies(void)
 	  query.bindValue(2, copy->copyid);
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
-	    query.bindValue(3, copy->itemoid.toInt() + i + 1);
+	    query.bindValue(3, copy->itemoid + QString::number(i + 1));
 
 	  if(!query.exec())
 	    {

@@ -2887,8 +2887,6 @@ int qtbook::populateTable(const int search_type, const int filter,
 			       "type, "
 			       "book.myoid "
 			       "ORDER BY book.title");
-
-	    cout << searchstr.toStdString() << endl;
 	  }
 	else if(typefilter == "Video Games")
 	  {

@@ -437,8 +437,9 @@ void qtbook_magazine::slotGo(void)
 	query.bindValue(21, subType);
 
       if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(22, (ma.id->text().remove("-") +
-			     ma.volume->text() + ma.issue->text()).toInt());
+	query.bindValue(22,
+			ma.id->text().remove("-") +
+			ma.volume->text() + ma.issue->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

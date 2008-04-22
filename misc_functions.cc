@@ -917,7 +917,7 @@ void misc_functions::createInitialCopies(const QString &idArg,
 	query.bindValue(2, id + "-" + QString::number(i + 1));
 
 	if(db.driverName() == "QSQLITE")
-	  query.bindValue(3, itemoid.toInt() + i + 1);
+	  query.bindValue(3, itemoid + QString::number(i + 1));
 
 	if(!query.exec())
 	  {

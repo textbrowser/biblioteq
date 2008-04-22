@@ -489,7 +489,7 @@ void qtbook_dvd::slotGo(void)
       if(windowTitle().contains("Modify"))
 	query.bindValue(24, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(24, dvd.id->text().toInt());
+	query.bindValue(24, dvd.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

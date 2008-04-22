@@ -452,7 +452,7 @@ void qtbook_book::slotGo(void)
       if(windowTitle().contains("Modify"))
 	query.bindValue(23, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(23, id.id->text().replace("X", "10").toInt());
+	query.bindValue(23, id.id->text().replace("X", "10"));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

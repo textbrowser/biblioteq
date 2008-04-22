@@ -402,7 +402,7 @@ void qtbook_videogame::slotGo(void)
       if(windowTitle().contains("Modify"))
 	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(20, vg.id->text().toInt());
+	query.bindValue(20, vg.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
