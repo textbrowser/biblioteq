@@ -4815,12 +4815,12 @@ void qtbook::slotConnectDB(void)
 
   if(selectedBranch["database_type"] == "sqlite")
     {
-      ui.actionChangePassword->setVisible(false);
+      ui.actionChangePassword->setEnabled(false);
       ui.actionRememberSQLiteFilename->setVisible(true);
     }
   else
     {
-      ui.actionChangePassword->setVisible(true);
+      ui.actionChangePassword->setEnabled(true);
       ui.actionRememberSQLiteFilename->setVisible(false);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
@@ -4879,7 +4879,6 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
-  ui.actionChangePassword->setVisible(true);
   ui.actionRememberSQLiteFilename->setVisible(false);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
