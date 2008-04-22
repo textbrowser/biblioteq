@@ -648,7 +648,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 4.05.<br>"
+  mb.setText("<html>BiblioteQ Version 4.05.1.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -2887,6 +2887,8 @@ int qtbook::populateTable(const int search_type, const int filter,
 			       "type, "
 			       "book.myoid "
 			       "ORDER BY book.title");
+
+	    cout << searchstr.toStdString() << endl;
 	  }
 	else if(typefilter == "Video Games")
 	  {
@@ -3538,10 +3540,13 @@ void qtbook::slotSaveUser(void)
       else
 	{
 	  userinfo_diag->hide();
-	  QMessageBox::information(members_diag, "BiblioteQ: Information",
-				   "Please notify the new member that their "
-				   "default password has been set "
-				   "to tempPass.");
+
+	  if(selectedBranch["database_type"] != "sqlite")
+	    QMessageBox::information(members_diag, "BiblioteQ: Information",
+				     "Please notify the new member that their "
+				     "default password has been set "
+				     "to tempPass.");
+
 	  slotPopulateMembersBrowser();
 	}
     }
