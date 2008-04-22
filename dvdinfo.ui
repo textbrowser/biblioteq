@@ -6,13 +6,13 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>600</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>1000</width>
-    <height>600</height>
+    <height>700</height>
    </size>
   </property>
   <property name="font" >
@@ -46,12 +46,6 @@
           </property>
           <property name="toolTip" >
            <string>Front Cover Image</string>
-          </property>
-          <property name="verticalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
          </widget>
         </item>
@@ -102,12 +96,6 @@
           </property>
           <property name="toolTip" >
            <string>Back Cover Image</string>
-          </property>
-          <property name="verticalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAsNeeded</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy" >
-           <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
          </widget>
         </item>
@@ -829,7 +817,7 @@
                </font>
               </property>
               <property name="text" >
-               <string>&amp;Show Copies</string>
+               <string>&amp;Copies</string>
               </property>
               <property name="icon" >
                <iconset>icons.d/16x16/editcopy.png</iconset>

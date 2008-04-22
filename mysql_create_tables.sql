@@ -1,5 +1,5 @@
-CREATE DATABASE xbook_db; USE xbook_db;
-CREATE USER xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+CREATE DATABASE mysql_db; USE mysql_db;
+CREATE USER 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 
 CREATE TABLE book
 (
@@ -22,8 +22,8 @@ CREATE TABLE book
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
-	front_cover	 VARBINARY(1024),
-	back_cover	 VARBINARY(1024),
+	front_cover	 VARBINARY(65536),
+	back_cover	 VARBINARY(65536),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book',
@@ -60,8 +60,8 @@ CREATE TABLE cd
 	cddiskcount	 INTEGER NOT NULL DEFAULT 1,
 	cdaudio		 VARCHAR(32) NOT NULL DEFAULT 'Mono',
 	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
-	front_cover	 VARBINARY(1024),
-	back_cover	 VARBINARY(1024),
+	front_cover	 VARBINARY(65536),
+	back_cover	 VARBINARY(65536),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'CD',
@@ -111,8 +111,8 @@ CREATE TABLE dvd
 	dvddiskcount	 INTEGER NOT NULL DEFAULT 1,
 	dvddirector	 LONGTEXT NOT NULL,
 	dvdaspectratio	 VARCHAR(64) NOT NULL,
-	front_cover	 VARBINARY(1024),
-	back_cover	 VARBINARY(1024),
+	front_cover	 VARBINARY(65536),
+	back_cover	 VARBINARY(65536),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD',
@@ -148,8 +148,8 @@ CREATE TABLE magazine
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
-	front_cover	 VARBINARY(1024),
-	back_cover	 VARBINARY(1024),
+	front_cover	 VARBINARY(65536),
+	back_cover	 VARBINARY(65536),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
@@ -185,8 +185,8 @@ CREATE TABLE videogame
 	vgrating	 VARCHAR(64) NOT NULL,
 	vgplatform	 VARCHAR(64) NOT NULL,
 	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',
-	front_cover	 VARBINARY(1024),
-	back_cover	 VARBINARY(1024),
+	front_cover	 VARBINARY(65536),
+	back_cover	 VARBINARY(65536),
 	front_cover_fmt	 VARCHAR(8),
 	back_cover_fmt	 VARCHAR(8),
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game',
@@ -336,6 +336,6 @@ SELECT	 item_oid,
 	 duedate
 FROM	 videogame_borrower;
 
-GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
-
+GRANT DELETE, INSERT, SELECT, UPDATE ON mysql_db.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 INSERT INTO admin VALUES ('xbook_admin', 'all');

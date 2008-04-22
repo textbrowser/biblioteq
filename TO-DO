@@ -225,3 +225,7 @@
      the application should perform a query using the text that's referenced
      in the hyperlink. (DONE)
 122. Fix NULL QVariant bind values. (DONE)
+123. Notify the administrator to remind a new member of the default
+     password. (DONE)
+124. Use the COALESCE function when injecting NULL values in WHERE clauses.
+     (DONE)

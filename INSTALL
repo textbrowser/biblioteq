@@ -22,6 +22,8 @@ MySQL Preparation:
 1.  Log into MySQL as an administrator and run the mysql_create_tables.sql
     script.
 2.  Create additional users.
+3.  You may need to comment the line "bind-address = 127.0.0.1" in the my.cnf
+    file if you wish to connect to the database from remote clients.
 
 PostgreSQL Preparation:
 1.  Log into PostgreSQL and run the postgresql_create_tables.sql script.

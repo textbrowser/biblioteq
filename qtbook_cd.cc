@@ -821,7 +821,7 @@ void qtbook_cd::slotGo(void)
 			 (cd.location->currentText()) + "' ");
 
       if(!cd.url->toPlainText().isEmpty())
-	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape(cd.url->toPlainText().toLower()) +
 			 "%' ");
 

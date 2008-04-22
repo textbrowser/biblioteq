@@ -725,13 +725,13 @@ void qtbook_magazine::slotGo(void)
 			  "magazine.myoid = magazine_borrower_vw.item_oid "
 			  "WHERE magazine.type = '%1' AND ").arg(subType);
       searchstr.append("id LIKE '%" + ma.id->text() + "%' AND ");
-      searchstr.append("LOWER(lccontrolnumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
 		       myqstring::escape(ma.lcnum->text().toLower()) +
 		       "%' AND ");
-      searchstr.append("LOWER(callnumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(callnumber, '')) LIKE '%" +
 		       myqstring::escape(ma.callnum->text().toLower()) +
 		       "%' AND ");
-      searchstr.append("LOWER(deweynumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(deweynumber, '')) LIKE '%" +
 		       myqstring::escape(ma.deweynum->text().toLower()) +
 		       "%' AND ");
 
@@ -795,7 +795,7 @@ void qtbook_magazine::slotGo(void)
 			 (ma.location->currentText()) + "' ");
 
       if(!ma.url->toPlainText().isEmpty())
-	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
 			 (ma.url->toPlainText()) + "%' ");
 

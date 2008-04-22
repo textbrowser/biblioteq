@@ -852,7 +852,7 @@ void qtbook_dvd::slotGo(void)
 			 (dvd.location->currentText()) + "' ");
 
       if(!dvd.url->toPlainText().isEmpty())
-	searchstr.append(" AND LOWER(offsystem_url) LIKE '%" +
+	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
 			 (dvd.url->toPlainText()) + "%' ");
 

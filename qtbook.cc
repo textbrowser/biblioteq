@@ -648,7 +648,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 4.04.<br>"
+  mb.setText("<html>BiblioteQ Version 4.05.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -3538,6 +3538,10 @@ void qtbook::slotSaveUser(void)
       else
 	{
 	  userinfo_diag->hide();
+	  QMessageBox::information(members_diag, "BiblioteQ: Information",
+				   "Please notify the new member that their "
+				   "default password has been set "
+				   "to tempPass.");
 	  slotPopulateMembersBrowser();
 	}
     }
@@ -3583,7 +3587,7 @@ void qtbook::readGlobalSetup(void)
   QHash<QString, QString> tmphash;
 
 #ifdef Q_OS_WIN
-  filename.append("C:/Program Files/BiblioteQ.d/biblioteq.conf");
+  filename.append("C:/BiblioteQ.d/biblioteq.conf");
 #else
   filename.append(CONFIGFILE);
 #endif
@@ -4283,7 +4287,9 @@ void qtbook::slotSaveConfig(void)
 
   if((thread = new generic_thread()) != NULL)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      if(isVisible())
+	qapp->setOverrideCursor(Qt::WaitCursor);
+
       thread->setFilename(filename);
       ui.actionSaveSettings->setEnabled(false);
       list.append(ui.actionShowGrid->isChecked());
@@ -4299,7 +4305,7 @@ void qtbook::slotSaveConfig(void)
 
       while(thread->isRunning())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != NULL && isVisible())
 	    statusBar()->showMessage("Saving the user's configuration file.");
 
 	  qapp->processEvents();
@@ -4308,28 +4314,36 @@ void qtbook::slotSaveConfig(void)
 
       if(!thread->getErrorStr().isEmpty())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != NULL && isVisible())
 	    statusBar()->clearMessage();
 
-	  ui.actionSaveSettings->setEnabled(true);
-	  addError(QString("File Error"),
-		   thread->getErrorStr(),
-		   thread->getErrorStr(), __FILE__, __LINE__);
-	  qapp->restoreOverrideCursor();
-	  QMessageBox::critical(this, "BiblioteQ: File Error",
-				thread->getErrorStr());
+	  if(isVisible())
+	    {
+	      ui.actionSaveSettings->setEnabled(true);
+	      addError(QString("File Error"),
+		       thread->getErrorStr(),
+		       thread->getErrorStr(), __FILE__, __LINE__);
+	      qapp->restoreOverrideCursor();
+	      QMessageBox::critical(this, "BiblioteQ: File Error",
+				    thread->getErrorStr());
+	    }
+
 	  delete thread;
 	  return;
 	}
 
-      if(statusBar() != NULL)
+      if(statusBar() != NULL && isVisible())
 	statusBar()->clearMessage();
 
       delete thread;
-      ui.actionSaveSettings->setEnabled(true);
-      qapp->restoreOverrideCursor();
+
+      if(isVisible())
+	{
+	  ui.actionSaveSettings->setEnabled(true);
+	  qapp->restoreOverrideCursor();
+	}
     }
-  else
+  else if(isVisible())
     {
       addError(QString("File Error"),
 	       QString("Unable to save ") + filename +

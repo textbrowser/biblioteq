@@ -742,13 +742,13 @@ void qtbook_book::slotGo(void)
 		       "%' AND ");
       searchstr.append("LOWER(isbn13) LIKE '%" +
 		       id.isbn13->text().toLower() + "%' AND ");
-      searchstr.append("LOWER(lccontrolnumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
 		       myqstring::escape(id.lcnum->text().toLower()) +
 		       "%' AND ");
-      searchstr.append("LOWER(callnumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(callnumber, '')) LIKE '%" +
 		       myqstring::escape(id.callnum->text().toLower()) +
 		       "%' AND ");
-      searchstr.append("LOWER(deweynumber) LIKE '%" +
+      searchstr.append("LOWER(COALESCE(deweynumber, '')) LIKE '%" +
 		       myqstring::escape(id.deweynum->text().toLower()) +
 		       "%' AND ");
 
@@ -813,7 +813,7 @@ void qtbook_book::slotGo(void)
 			 (id.location->currentText()) + "' ");
 
       if(!id.url->toPlainText().isEmpty())
-	searchstr.append("AND LOWER(offsystem_url) LIKE '%" +
+	searchstr.append("AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
 			 (id.url->toPlainText().toLower()) + "%' ");
 

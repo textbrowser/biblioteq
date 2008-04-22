@@ -13,6 +13,7 @@ image_drop_site::image_drop_site(QWidget *parent)
 {
   (void) parent;
   setAcceptDrops(true);
+
 }
 
 /*
@@ -133,8 +134,8 @@ void image_drop_site::clear(void)
   image = QImage();
   imageFormat = "";
 
-  if(scene()->items().size() > 0)
-    scene()->removeItem(scene()->items().at(0));
+  while(!scene()->items().isEmpty())
+    scene()->removeItem(scene()->items().first());
 
   scene()->clearSelection();
 }

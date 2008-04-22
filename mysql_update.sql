@@ -23,6 +23,7 @@ CREATE TABLE member_history
 ) engine = InnoDB;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON xbook_db.* TO xbook_admin@localhost IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 
 /* Releases 4.00, 4.00.1 */
 
@@ -62,49 +63,52 @@ SELECT	 item_oid,
 FROM	 videogame_borrower;
 
 DROP USER xbook_admin@localhost;
-CREATE USER xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
-GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+CREATE USER 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 DROP USER xbook@localhost;
 
 /* Release 4.01 */
 
 ALTER TABLE book DROP front_cover;
 ALTER TABLE book DROP back_cover;
-ALTER TABLE book ADD front_cover VARBINARY(1024);
-ALTER TABLE book ADD back_cover VARBINARY(1024);
+ALTER TABLE book ADD front_cover VARBINARY(65536);
+ALTER TABLE book ADD back_cover VARBINARY(65536);
 ALTER TABLE book ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE book ADD back_cover_fmt VARCHAR(8);
 ALTER TABLE cd DROP front_cover;
 ALTER TABLE cd DROP back_cover;
-ALTER TABLE cd ADD front_cover VARBINARY(1024);
-ALTER TABLE cd ADD back_cover VARBINARY(1024);
+ALTER TABLE cd ADD front_cover VARBINARY(65536);
+ALTER TABLE cd ADD back_cover VARBINARY(65536);
 ALTER TABLE cd ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE cd ADD back_cover_fmt VARCHAR(8);
 ALTER TABLE dvd DROP front_cover;
 ALTER TABLE dvd DROP back_cover;
-ALTER TABLE dvd ADD front_cover VARBINARY(1024);
-ALTER TABLE dvd ADD back_cover VARBINARY(1024);
+ALTER TABLE dvd ADD front_cover VARBINARY(65536);
+ALTER TABLE dvd ADD back_cover VARBINARY(65536);
 ALTER TABLE dvd ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE dvd ADD back_cover_fmt VARCHAR(8);
 ALTER TABLE magazine DROP front_cover;
 ALTER TABLE magazine DROP back_cover;
-ALTER TABLE magazine ADD front_cover VARBINARY(1024);
-ALTER TABLE magazine ADD back_cover VARBINARY(1024);
+ALTER TABLE magazine ADD front_cover VARBINARY(65536);
+ALTER TABLE magazine ADD back_cover VARBINARY(65536);
 ALTER TABLE magazine ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE magazine ADD back_cover_fmt VARCHAR(8);
 ALTER TABLE videogame DROP front_cover;
 ALTER TABLE videogame DROP back_cover;
-ALTER TABLE videogame ADD front_cover VARBINARY(1024);
-ALTER TABLE videogame ADD back_cover VARBINARY(1024);
+ALTER TABLE videogame ADD front_cover VARBINARY(65536);
+ALTER TABLE videogame ADD back_cover VARBINARY(65536);
 ALTER TABLE videogame ADD front_cover_fmt VARCHAR(8);
 ALTER TABLE videogame ADD back_cover_fmt VARCHAR(8);
-GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 
-/* Release 4.04 */
+/* Releases 4.04, 4.05 */
 
 ALTER TABLE book ADD offsystem_url LONGTEXT;
 ALTER TABLE cd ADD offsystem_url LONGTEXT;
 ALTER TABLE dvd ADD offsystem_url LONGTEXT;
 ALTER TABLE magazine ADD offsystem_url LONGTEXT;
 ALTER TABLE videogame ADD offsystem_url LONGTEXT;
-GRANT DELETE, SELECT, UPDATE ON xbook_db.* TO xbook_admin@'%' IDENTIFIED BY 'xbook_admin';
+GRANT DELETE, SELECT, UPDATE ON mysql_db.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
