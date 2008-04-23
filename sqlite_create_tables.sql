@@ -38,7 +38,7 @@ CREATE TABLE book_copy_info
 );
 
 CREATE TRIGGER book_copy_info_trigger BEFORE DELETE ON book
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM book_copy_info WHERE item_oid = old.myoid;
 END;
@@ -91,7 +91,7 @@ CREATE TABLE cd_copy_info
 );
 
 CREATE TRIGGER cd_copy_info_trigger BEFORE DELETE ON cd
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM cd_copy_info WHERE item_oid = old.myoid;
    DELETE FROM cd_songs WHERE item_oid = old.myoid;
@@ -137,7 +137,7 @@ CREATE TABLE dvd_copy_info
 );
 
 CREATE TRIGGER dvd_copy_info_trigger BEFORE DELETE ON dvd
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;
 END;
@@ -180,7 +180,7 @@ CREATE TABLE magazine_copy_info
 );
 
 CREATE TRIGGER magazine_copy_info_trigger BEFORE DELETE ON magazine
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;
 END;
@@ -221,7 +221,7 @@ CREATE TABLE videogame_copy_info
 );
 
 CREATE TRIGGER videogame_copy_info_trigger BEFORE DELETE ON videogame
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;
 END;
@@ -317,7 +317,7 @@ CREATE TABLE member_history
 );
 
 CREATE TRIGGER member_history_trigger BEFORE DELETE ON member
-FOR EACH row 
+FOR EACH row
 BEGIN
    DELETE FROM member_history WHERE memberid = old.memberid;
 END;

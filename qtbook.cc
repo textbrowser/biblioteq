@@ -6539,7 +6539,7 @@ void qtbook::slotShowHistory(void)
   list.append("Barcode");
   list.append("Item Type");
   list.append("Reservation Date");
-  list.append("Due Date");
+  list.append("Original Due Date");
   list.append("Returned Date");
   list.append("Lender");
   list.append("OID");

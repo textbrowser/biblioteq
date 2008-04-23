@@ -293,6 +293,46 @@ CREATE TABLE member_history
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
+CREATE FUNCTION delete_book_history() RETURNS trigger AS '
+BEGIN
+	DELETE FROM member_history WHERE item_oid = old.myoid;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER book_trigger BEFORE DELETE ON book
+FOR EACH row EXECUTE PROCEDURE delete_book_history();
+
+CREATE FUNCTION delete_cd_history() RETURNS trigger AS '
+BEGIN
+	DELETE FROM member_history WHERE item_oid = old.myoid;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER cd_trigger BEFORE DELETE ON cd
+FOR EACH row EXECUTE PROCEDURE delete_cd_history();
+
+CREATE FUNCTION delete_dvd_history() RETURNS trigger AS '
+BEGIN
+	DELETE FROM member_history WHERE item_oid = old.myoid;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER dvd_trigger BEFORE DELETE ON dvd
+FOR EACH row EXECUTE PROCEDURE delete_dvd_history();
+
+CREATE FUNCTION delete_magazine_history() RETURNS trigger AS '
+BEGIN
+	DELETE FROM member_history WHERE item_oid = old.myoid;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER magazine_trigger BEFORE DELETE ON magazine
+FOR EACH row EXECUTE PROCEDURE delete_magazine_history();
+
+CREATE FUNCTION delete_videogame_history() RETURNS trigger AS '
+BEGIN
+	DELETE FROM member_history WHERE item_oid = old.myoid;
+END;
+' LANGUAGE 'plpgsql';
+CREATE TRIGGER videogame_trigger BEFORE DELETE ON videogame
+FOR EACH row EXECUTE PROCEDURE delete_videogame_history();
+
 CREATE TABLE admin
 (
 	username	 VARCHAR(128) NOT NULL PRIMARY KEY,

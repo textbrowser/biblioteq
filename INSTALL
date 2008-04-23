@@ -17,7 +17,9 @@ Qt 4.x Preparation (Unix):
 
 PostgreSQL Preparation:
 1.  Log into PostgreSQL and run the postgresql_create_tables.sql script.
+    (\i postgresql_create_tables.sql)
 2.  Create additional users.
+3.  Run createlang plpgsql -d xbook_db.
 
 SQLite Preparation:
 1.  Run sqlite3 -init sqlite_create_tables.sql biblioteq.db.
