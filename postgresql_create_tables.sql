@@ -3,7 +3,7 @@ CREATE USER xbook_admin PASSWORD 'xbook_admin' createuser;
 CREATE TABLE book
 (
 	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
-	myoid		 SERIAL UNIQUE,
+	myoid		 BIGSERIAL UNIQUE,
 	title		 TEXT NOT NULL,
 	edition		 VARCHAR(8) NOT NULL,
 	author		 TEXT NOT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE book
 
 CREATE TABLE book_copy_info
 (
-	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	PRIMARY KEY(item_oid, copyid),
@@ -42,7 +42,7 @@ CREATE TABLE book_copy_info
 CREATE TABLE cd
 (
 	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
-	myoid		 SERIAL UNIQUE,
+	myoid		 BIGSERIAL UNIQUE,
 	title		 TEXT NOT NULL,
 	artist		 TEXT NOT NULL,
 	recording_label	 TEXT NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE cd
 
 CREATE TABLE cd_songs
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	albumnum	 INTEGER NOT NULL DEFAULT 1,
 	songnum		 INTEGER NOT NULL DEFAULT 1,
 	songtitle	 VARCHAR(256) NOT NULL,
@@ -80,8 +80,8 @@ CREATE TABLE cd_songs
 
 CREATE TABLE cd_copy_info
 (
-	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	PRIMARY KEY(item_oid, copyid),
@@ -91,7 +91,7 @@ CREATE TABLE cd_copy_info
 CREATE TABLE dvd
 (
 	id		 VARCHAR(32) PRIMARY KEY NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	myoid		 BIGSERIAL UNIQUE,
 	title		 TEXT NOT NULL,
 	studio		 TEXT NOT NULL,
 	rdate		 VARCHAR(32) NOT NULL,
@@ -120,8 +120,8 @@ CREATE TABLE dvd
 
 CREATE TABLE dvd_copy_info
 (
-	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	PRIMARY KEY(item_oid, copyid),
@@ -131,7 +131,7 @@ CREATE TABLE dvd_copy_info
 CREATE TABLE magazine
 (
 	id		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	myoid		 BIGSERIAL UNIQUE,
 	title		 TEXT NOT NULL,
 	pdate		 VARCHAR(32) NOT NULL,
 	publisher	 TEXT NOT NULL,
@@ -158,8 +158,8 @@ CREATE TABLE magazine
 
 CREATE TABLE magazine_copy_info
 (
-	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	PRIMARY KEY(item_oid, copyid),
@@ -169,7 +169,7 @@ CREATE TABLE magazine_copy_info
 CREATE TABLE videogame
 (
 	id		 VARCHAR(32) PRIMARY KEY NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	myoid		 BIGSERIAL UNIQUE,
 	title		 TEXT NOT NULL,
 	developer	 TEXT NOT NULL,
 	genre		 VARCHAR(64) NOT NULL,
@@ -194,8 +194,8 @@ CREATE TABLE videogame
 
 CREATE TABLE videogame_copy_info
 (
-	item_oid	 INTEGER NOT NULL,
-	myoid		 SERIAL UNIQUE,
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	PRIMARY KEY(item_oid, copyid),
@@ -204,11 +204,11 @@ CREATE TABLE videogame_copy_info
 
 CREATE TABLE book_borrower
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL
@@ -216,11 +216,11 @@ CREATE TABLE book_borrower
 
 CREATE TABLE cd_borrower
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL
@@ -228,11 +228,11 @@ CREATE TABLE cd_borrower
 
 CREATE TABLE dvd_borrower
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL
@@ -240,11 +240,11 @@ CREATE TABLE dvd_borrower
 
 CREATE TABLE magazine_borrower
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL
@@ -252,11 +252,11 @@ CREATE TABLE magazine_borrower
 
 CREATE TABLE videogame_borrower
 (
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL
@@ -281,12 +281,12 @@ CREATE TABLE member
 CREATE TABLE member_history
 (
 	memberid	 VARCHAR(16) NOT NULL,
-	item_oid	 INTEGER NOT NULL,
+	item_oid	 BIGINT NOT NULL,
 	copyid		 VARCHAR(64) NOT NULL,
 	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
 	returned_date	 VARCHAR(32) NOT NULL,
-	myoid		 SERIAL PRIMARY KEY,
+	myoid		 BIGSERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	item_id		 VARCHAR(32) NOT NULL,

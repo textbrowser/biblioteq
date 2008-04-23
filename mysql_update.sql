@@ -112,3 +112,6 @@ ALTER TABLE magazine ADD offsystem_url LONGTEXT;
 ALTER TABLE videogame ADD offsystem_url LONGTEXT;
 GRANT DELETE, SELECT, UPDATE ON mysql_db.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
 GRANT CREATE USER ON *.* TO 'xbook_admin'@'%' IDENTIFIED BY 'xbook_admin';
+
+/* Release 5.00 */
+/* Please recreate the database. */
