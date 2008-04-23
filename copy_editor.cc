@@ -242,40 +242,22 @@ void copy_editor::populateCopiesEditor(void)
     }
 
   cb.table->setRowCount(i);
-
-  if(qmain->getDB().driverName() == "QMYSQL")
-    querystr = QString
-      ("SELECT %1_copy_info.copyid, "
-       "(1 - COUNT(%1_borrower.copyid)), "
-       "%1_copy_info.item_oid, "
-       "%1_copy_info.copy_number "
-       "FROM "
-       "%1_copy_info LEFT JOIN %1_borrower ON "
-       "%1_copy_info.item_oid = "
-       "%1_borrower.item_oid AND "
-       "%1_copy_info.item_oid = "
-       "%1_borrower.item_oid "
-       "WHERE %1_copy_info.item_oid = %2 "
-       "GROUP BY %1_copy_info.copyid "
-       "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
-  else
-    querystr = QString
-      ("SELECT %1_copy_info.copyid, "
-       "(1 - COUNT(%1_borrower.copyid)), "
-       "%1_copy_info.item_oid, "
-       "%1_copy_info.copy_number "
-       "FROM "
-       "%1_copy_info LEFT JOIN %1_borrower ON "
-       "%1_copy_info.copyid = "
-       "%1_borrower.copyid AND "
-       "%1_copy_info.item_oid = "
-       "%1_borrower.item_oid "
-       "WHERE %1_copy_info.item_oid = %2 "
-       "GROUP BY %1_copy_info.copyid, "
-       "%1_copy_info.item_oid, "
-       "%1_copy_info.copy_number "
-       "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
-
+  querystr = QString
+    ("SELECT %1_copy_info.copyid, "
+     "(1 - COUNT(%1_borrower.copyid)), "
+     "%1_copy_info.item_oid, "
+     "%1_copy_info.copy_number "
+     "FROM "
+     "%1_copy_info LEFT JOIN %1_borrower ON "
+     "%1_copy_info.copyid = "
+     "%1_borrower.copyid AND "
+     "%1_copy_info.item_oid = "
+     "%1_borrower.item_oid "
+     "WHERE %1_copy_info.item_oid = %2 "
+     "GROUP BY %1_copy_info.copyid, "
+     "%1_copy_info.item_oid, "
+     "%1_copy_info.copy_number "
+     "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))

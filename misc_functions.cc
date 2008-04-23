@@ -56,13 +56,8 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
 
   if(action == CREATE_USER)
     {
-      if(db.driverName() == "QMYSQL")
-	querystr = QString
-	  ("CREATE USER %1 IDENTIFIED BY 'tempPass'").arg(memberid);
-      else
-	querystr = QString
-	  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(memberid);
-
+      querystr = QString
+	("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(memberid);
       (void) query.exec(querystr);
     }
 
@@ -100,27 +95,13 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
       for(i = 0; i < objectllist.size(); i++)
 	{
 	  if(action == CREATE_USER)
-	    {
-	      if(db.driverName() == "QMYSQL")
-		querystr = QString
-		  ("GRANT SELECT ON %1 TO %2 ").arg
-		  (objectllist[i]).arg(memberid);
-	      else
-		querystr = QString
-		  ("GRANT SELECT ON %1 TO %2").arg
-		  (objectllist[i]).arg(memberid);
-	    }
+	    querystr = QString
+	      ("GRANT SELECT ON %1 TO %2").arg
+	      (objectllist[i]).arg(memberid);
 	  else
-	    {
-	      if(db.driverName() == "QMYSQL")
-		querystr = QString
-		  ("REVOKE ALL ON %1 FROM %2").arg
-		  (objectllist[i]).arg(memberid);
-	      else
-		querystr = QString
-		  ("REVOKE ALL ON %1 FROM %2").arg
-		  (objectllist[i]).arg(memberid);
-	    }
+	    querystr = QString
+	      ("REVOKE ALL ON %1 FROM %2").arg
+	      (objectllist[i]).arg(memberid);
 
 	  if(!query.exec(querystr))
 	    break;
@@ -132,11 +113,7 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
   if(action == DELETE_USER)
     if(!query.lastError().isValid())
       {
-	if(db.driverName() == "QMYSQL")
-	  query.prepare(QString("DROP USER %1").arg(memberid));
-	else
-	  query.prepare(QString("DROP USER %1").arg(memberid));
-
+	query.prepare(QString("DROP USER %1").arg(memberid));
 	(void) query.exec();
       }
 
@@ -161,13 +138,8 @@ void misc_functions::savePassword(const QString &memberid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  if(db.driverName() == "QMYSQL")
-    querystr = QString("SET PASSWORD FOR %1 = PASSWORD('%2') ").arg
-      (memberid).arg(password);
-  else
-    querystr = QString("ALTER USER %1 ENCRYPTED "
-		       "PASSWORD '%2'").arg(memberid).arg(password);
-
+  querystr = QString("ALTER USER %1 ENCRYPTED "
+		     "PASSWORD '%2'").arg(memberid).arg(password);
   (void) query.exec(querystr);
 
   if(query.lastError().isValid())
@@ -295,22 +267,12 @@ int misc_functions::getMemberMatchCount(const QString &checksum,
   QSqlQuery query(db);
 
   errorstr = "";
-
-  if(db.driverName() == "QMYSQL")
-    querystr = "SELECT COUNT(memberid) FROM member "
-      "WHERE "
-      "LOWER(CONCAT(dob, sex, first_name, "
-      "middle_init, "
-      "last_name, street, city, state_abbr, zip)) = ? "
-      "AND memberid != ?";
-  else
-    querystr = "SELECT COUNT(memberid) FROM member "
-      "WHERE "
-      "LOWER(dob || sex || first_name || "
-      "middle_init || "
-      "last_name || street || city || state_abbr || zip) = ? "
-      "AND memberid != ?";
-
+  querystr = "SELECT COUNT(memberid) FROM member "
+    "WHERE "
+    "LOWER(dob || sex || first_name || "
+    "middle_init || "
+    "last_name || street || city || state_abbr || zip) = ? "
+    "AND memberid != ?";
   query.prepare(querystr);
   query.bindValue(0, checksum.toLower());
   query.bindValue(1, memberid);
@@ -350,24 +312,14 @@ QString misc_functions::getAvailability(const QString &oid,
   if(itemType == "journal")
     itemType = "magazine";
 
-  if(db.driverName() == "QMYSQL")
-    querystr = QString("SELECT %1.quantity - "
-		       "COUNT(%1_borrower_vw.item_oid) "
-		       "FROM "
-		       "%1 LEFT JOIN %1_borrower_vw ON "
-		       "%1.myoid = %1_borrower_vw.item_oid WHERE "
-		       "%1.myoid = ? "
-		       "GROUP BY %1.myoid").arg(itemType);
-  else
-    querystr = QString("SELECT %1.quantity - "
-		       "COUNT(%1_borrower_vw.item_oid) "
-		       "FROM "
-		       "%1 LEFT JOIN %1_borrower_vw ON "
-		       "%1.myoid = %1_borrower_vw.item_oid WHERE "
-		       "%1.myoid = ? "
-		       "GROUP BY %1.quantity, "
-		       "%1.myoid").arg(itemType);
-
+  querystr = QString("SELECT %1.quantity - "
+		     "COUNT(%1_borrower_vw.item_oid) "
+		     "FROM "
+		     "%1 LEFT JOIN %1_borrower_vw ON "
+		     "%1.myoid = %1_borrower_vw.item_oid WHERE "
+		     "%1.myoid = ? "
+		     "GROUP BY %1.quantity, "
+		     "%1.myoid").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
