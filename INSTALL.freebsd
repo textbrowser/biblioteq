@@ -11,10 +11,11 @@ PostgreSQL Installation:
 6.  As yourself, execute createdb xbook_db.
 7.  Log into PostgreSQL, psql -d xbook_db.
 8.  Execute \i postgresql_create_tables.sql. Exit PostgreSQL.
-9.  As root, modify /usr/local/pgsql/data/pg_hba.conf. Add:
+9.  Run createlang plpgsql -d xbook_db.
+10. As root, modify /usr/local/pgsql/data/pg_hba.conf. Add:
     host   xbook_db    all  IP-ADDRESS         IP-MASK   md5
-10. As root, modify /usr/local/pgsql/data/postgresql.conf. Verify
+11. As root, modify /usr/local/pgsql/data/postgresql.conf. Verify
     that tcpip_socket = true is set. This step is mandatory
     if you want to allow non-local connections.
-11. Restart PostgreSQL via sudo /usr/local/etc/rc.d/010.pgsql.sh restart.
+12. Restart PostgreSQL via sudo /usr/local/etc/rc.d/010.pgsql.sh restart.
     (You may have postgresql.sh instead of 010.pgsql.sh.)

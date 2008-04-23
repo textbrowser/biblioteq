@@ -1,6 +1,5 @@
 Requirements:
-1.  Qt 4.x or later.
-    Qt may be downloaded from
+1.  Qt 4.x or later. Qt may be downloaded from
     http://trolltech.com/developer/downloads/qt/index.
 2.  PostgreSQL 7.4.16 or later, or SQLite 3.5.6 or later.
     PostgreSQL may be downloaded from http://www.postgresql.org/download and
@@ -10,16 +9,15 @@ Requirements:
 4.  A C++ compiler.
 
 Qt 4.x Preparation (Unix):
-1.  Please build Qt with the postgresql driver, for example:
+1.  Please build Qt with the PostgreSQL driver, for example:
     ./configure -v -qt-sql-psql -I /usr/local/include/postgresql \
     -L /usr/local/lib/postgresql
-2.  You may also build the drivers as plugins.
+2.  You may also build the driver as a plugin.
 
 PostgreSQL Preparation:
-1.  Log into PostgreSQL and run the postgresql_create_tables.sql script.
+1.  Log into PostgreSQL and execute the postgresql_create_tables.sql script.
     (\i postgresql_create_tables.sql)
-2.  Create additional users.
-3.  Run createlang plpgsql -d xbook_db.
+2.  Run createlang plpgsql -d xbook_db.
 
 SQLite Preparation:
 1.  Run sqlite3 -init sqlite_create_tables.sql biblioteq.db.

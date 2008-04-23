@@ -37,10 +37,11 @@ CREATE TABLE book_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
-CREATE TRIGGER book_copy_info_trigger BEFORE DELETE ON book
+CREATE TRIGGER book_purge_trigger AFTER DELETE ON book
 FOR EACH row
 BEGIN
-   DELETE FROM book_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM book_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
 CREATE TABLE cd
@@ -90,11 +91,12 @@ CREATE TABLE cd_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
-CREATE TRIGGER cd_copy_info_trigger BEFORE DELETE ON cd
+CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd
 FOR EACH row
 BEGIN
-   DELETE FROM cd_copy_info WHERE item_oid = old.myoid;
-   DELETE FROM cd_songs WHERE item_oid = old.myoid;
+	DELETE FROM cd_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM cd_songs WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
 CREATE TABLE dvd
@@ -136,10 +138,11 @@ CREATE TABLE dvd_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
-CREATE TRIGGER dvd_copy_info_trigger BEFORE DELETE ON dvd
+CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd
 FOR EACH row
 BEGIN
-   DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
 CREATE TABLE magazine
@@ -179,10 +182,11 @@ CREATE TABLE magazine_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
-CREATE TRIGGER magazine_copy_info_trigger BEFORE DELETE ON magazine
+CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine
 FOR EACH row
 BEGIN
-   DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
 CREATE TABLE videogame
@@ -220,10 +224,11 @@ CREATE TABLE videogame_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
-CREATE TRIGGER videogame_copy_info_trigger BEFORE DELETE ON videogame
+CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame
 FOR EACH row
 BEGIN
-   DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
 CREATE TABLE book_borrower
@@ -316,7 +321,7 @@ CREATE TABLE member_history
 	item_id		 VARCHAR(32) NOT NULL
 );
 
-CREATE TRIGGER member_history_trigger BEFORE DELETE ON member
+CREATE TRIGGER member_history_trigger AFTER DELETE ON member
 FOR EACH row
 BEGIN
    DELETE FROM member_history WHERE memberid = old.memberid;

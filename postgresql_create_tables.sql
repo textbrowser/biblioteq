@@ -293,44 +293,49 @@ CREATE TABLE member_history
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
-CREATE FUNCTION delete_book_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_book_history() RETURNS trigger AS '
 BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
+	RETURN NULL;
 END;
-' LANGUAGE 'plpgsql';
-CREATE TRIGGER book_trigger BEFORE DELETE ON book
+' LANGUAGE plpgsql;
+CREATE TRIGGER book_trigger AFTER DELETE ON book
 FOR EACH row EXECUTE PROCEDURE delete_book_history();
 
-CREATE FUNCTION delete_cd_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_cd_history() RETURNS trigger AS '
 BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
+	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
-CREATE TRIGGER cd_trigger BEFORE DELETE ON cd
+CREATE TRIGGER cd_trigger AFTER DELETE ON cd
 FOR EACH row EXECUTE PROCEDURE delete_cd_history();
 
-CREATE FUNCTION delete_dvd_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_dvd_history() RETURNS trigger AS '
 BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
+	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
-CREATE TRIGGER dvd_trigger BEFORE DELETE ON dvd
+CREATE TRIGGER dvd_trigger AFTER DELETE ON dvd
 FOR EACH row EXECUTE PROCEDURE delete_dvd_history();
 
-CREATE FUNCTION delete_magazine_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_magazine_history() RETURNS trigger AS '
 BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
+	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
-CREATE TRIGGER magazine_trigger BEFORE DELETE ON magazine
+CREATE TRIGGER magazine_trigger AFTER DELETE ON magazine
 FOR EACH row EXECUTE PROCEDURE delete_magazine_history();
 
-CREATE FUNCTION delete_videogame_history() RETURNS trigger AS '
+CREATE OR REPLACE FUNCTION delete_videogame_history() RETURNS trigger AS '
 BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
+	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
-CREATE TRIGGER videogame_trigger BEFORE DELETE ON videogame
+CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
 FOR EACH row EXECUTE PROCEDURE delete_videogame_history();
 
 CREATE TABLE admin

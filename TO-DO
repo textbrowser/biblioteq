@@ -229,3 +229,5 @@
      password. (DONE)
 124. Use the COALESCE function when injecting NULL values in WHERE clauses.
      (DONE)
+125. If an item has been deleted, remove its entry from the member history
+     table. (DONE)
