@@ -847,8 +847,8 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.title->clear();
   id.publisher->clear();
   id.description->clear();
-  id.copiesButton->setEnabled(false);
-  id.showUserButton->setEnabled(false);
+  id.copiesButton->setVisible(false);
+  id.showUserButton->setVisible(false);
   id.queryButton->setEnabled(false);
   id.okButton->setText("&Search");
   id.publication_date->setDate(QDate::fromString("01/01/7999",

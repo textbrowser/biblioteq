@@ -835,9 +835,9 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.title->clear();
   ma.publisher->clear();
   ma.description->clear();
-  ma.copiesButton->setEnabled(false);
-  ma.showUserButton->setEnabled(false);
-  ma.queryButton->setEnabled(false);
+  ma.copiesButton->setVisible(false);
+  ma.showUserButton->setVisible(false);
+  ma.queryButton->setVisible(false);
   ma.okButton->setText("&Search");
   ma.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
@@ -1634,7 +1634,7 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	      str += tmplist[j].mid(0, 1).toUpper() + tmplist[j].mid(1) + " ";
 
 	  tmplist.clear();
-	  ma.title->setText(str);
+	  ma.title->setText(str.trimmed());
 	  misc_functions::highlightWidget
 	    (ma.title, QColor(162, 205, 90));
 	}

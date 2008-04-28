@@ -15,12 +15,6 @@
     <height>0</height>
    </size>
   </property>
-  <property name="maximumSize" >
-   <size>
-    <width>16777215</width>
-    <height>16777215</height>
-   </size>
-  </property>
   <property name="font" >
    <font>
     <family>Times</family>
@@ -29,9 +23,6 @@
   </property>
   <property name="windowTitle" >
    <string>BiblioteQ: Borrower Information</string>
-  </property>
-  <property name="sizeGripEnabled" >
-   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" >
    <item>

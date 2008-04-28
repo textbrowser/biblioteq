@@ -420,4 +420,4 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_borrower_myoid_seq TO x
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
 
-INSERT INTO admin VALUES ('xbook_admin', 'all');
+INSERT INTO admin VALUES ('xbook_admin', 'administrator');

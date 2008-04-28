@@ -44,6 +44,8 @@ class misc_functions
 			      const QString &, const QString &, QString &);
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
+  static void revokeAll(const QString &, const QSqlDatabase &,
+			QString &);
   static void savePassword(const QString &, const QSqlDatabase &,
 			   const QString &, QString &);
   static void saveQuantity(const QSqlDatabase &, const QString &,
@@ -55,7 +57,8 @@ class misc_functions
 				  const QSqlDatabase &,
 				  const QString &, QString &);
   static void createOrDeleteDBAccount(const QString &, const QSqlDatabase &,
-				      const int, QString &);
+				      const int, QString &,
+				      const QString & = "");
   static QImage getImage(const QString &, const QString &, const QString &,
 			 const QSqlDatabase &);
   static QString getOID(const QString &, const QString &,

@@ -85,7 +85,12 @@ int main(int argc, char *argv[])
 void qtbook::quit(void)
 {
   if(qmain != NULL)
-    qmain->cleanup();
+    {
+      qmain->cleanup();
+
+      if(qmain->ui.actionAutomaticallySaveSettingsOnExit->isChecked())
+	qmain->slotSaveConfig();
+    }
 
   if(qapp != NULL)
     qapp->quit();
@@ -145,28 +150,31 @@ qtbook::qtbook(void):QMainWindow()
   typefilter = "All";
   previousTypeFilter = -1;
 
-  if((all_diag = new QMainWindow(this)) == NULL)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
   if((branch_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((pass_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((all_diag = new QMainWindow(this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((admin_diag = new QMainWindow(this)) == NULL)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((members_diag = new QMainWindow()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((history_diag = new QDialog(members_diag)) == NULL)
+  if((history_diag = new QMainWindow()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((customquery_diag = new QDialog(this)) == NULL)
+  if((customquery_diag = new QMainWindow(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((userinfo_diag = new QDialog(members_diag)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((error_diag = new QDialog(this)) == NULL)
+  if((error_diag = new QMainWindow(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu1 = new QMenu()) == NULL)
@@ -251,12 +259,11 @@ qtbook::qtbook(void):QMainWindow()
   al.setupUi(all_diag);
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
+  ab.setupUi(admin_diag);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   history_diag->setWindowModality(Qt::WindowModal);
   branch_diag->setModal(true);
-  error_diag->setModal(false);
-  customquery_diag->setModal(false);
 
   /*
   ** Connect additional actions.
@@ -400,6 +407,15 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotResetLoginDialog(void)));
   connect(br.fileButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectDatabaseFile(void)));
+  connect(ui.actionConfigureAdministratorPrivileges,
+	  SIGNAL(triggered(void)), this, SLOT(slotShowAdminDialog(void)));
+  connect(ab.reloadButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotRefreshAdminList(void)));
+  connect(ab.addButton, SIGNAL(clicked(void)), this, SLOT(slotAddAdmin(void)));
+  connect(ab.deleteButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotDeleteAdmin(void)));
+  connect(ab.saveButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotSaveAdministrators(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -438,6 +454,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.table->resetTable("All");
   ui.summary->setVisible(false);
   ui.actionRememberSQLiteFilename->setVisible(false);
+  ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   addConfigOptions();
   setUpdatesEnabled(true);
   userinfo.telephoneNumber->setInputMask("999-999-9999");
@@ -525,7 +542,7 @@ void qtbook::adminSetup(void)
     }
 
   if(db.isOpen() && supportsTransactions)
-    if(roles.contains("all"))
+    if(roles.contains("administrator") || roles.contains("librarian"))
       {
 	ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 	connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
@@ -533,36 +550,64 @@ void qtbook::adminSetup(void)
 	updateItemWindows();
       }
 
-  ui.deleteTool->setEnabled(db.isOpen() && roles.contains("all"));
-  ui.overdueButton->setEnabled(db.isOpen());
-  ui.actionDeleteEntry->setEnabled(db.isOpen() && roles.contains("all"));
-  ui.createTool->setEnabled(db.isOpen() && roles.contains("all"));
-  ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions &&
-			    roles.contains("all"));
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    ui.deleteTool->setEnabled(db.isOpen());
 
-  if(roles.contains("all"))
-    ui.detailsTool->setEnabled(false);
+  if(roles.contains("administrator") || roles.contains("circulation"))
+    ui.overdueButton->setEnabled(db.isOpen());
+
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    {
+      ui.actionDeleteEntry->setEnabled(db.isOpen());
+      ui.createTool->setEnabled(db.isOpen());
+      ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions);
+    }
+
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    {
+      ui.detailsTool->setEnabled(false);
+      ui.actionViewDetails->setEnabled(false);
+    }
   else
-    ui.detailsTool->setEnabled(db.isOpen() && supportsTransactions);
+    {
+      ui.detailsTool->setEnabled(db.isOpen());
+      ui.actionViewDetails->setEnabled(db.isOpen());
+    }
 
-  if(roles.contains("all"))
-    ui.actionViewDetails->setEnabled(false);
-  else
-    ui.actionViewDetails->setEnabled(db.isOpen() && supportsTransactions);
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    ui.actionModifyEntry->setEnabled(db.isOpen() && supportsTransactions);
 
-  ui.actionModifyEntry->setEnabled
-    (db.isOpen() && supportsTransactions && roles.contains("all"));
-  ui.userTool->setEnabled(db.isOpen());
-  ui.reserveTool->setEnabled(db.isOpen());
-  ui.actionMembersBrowser->setEnabled(db.isOpen());
-  ui.actionAutoPopulateOnCreation->setEnabled(db.isOpen());
+  if(roles.contains("administrator") || roles.contains("circulation") ||
+     roles.contains("membership"))
+    {
+      ui.userTool->setEnabled(db.isOpen());
+      ui.actionMembersBrowser->setEnabled(db.isOpen());
+    }
+
+  if(roles.contains("administrator") || roles.contains("circulation"))
+    ui.reserveTool->setEnabled(db.isOpen());
+
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    ui.actionAutoPopulateOnCreation->setEnabled(db.isOpen());
+
+  if(selectedBranch["database_type"] != "sqlite")
+    ui.actionConfigureAdministratorPrivileges->setEnabled
+      (db.isOpen() && roles.contains("administrator"));
 
   /*
-  ** Hide certain fields in the Member's Browser if the roles
-  ** do not contain "all."
+  ** Hide certain fields in the Member's Browser.
   */
 
-  if(!roles.contains("all"))
+  if(roles.contains("membership"))
+    {
+      bb.historyButton->setEnabled(false);
+      bb.listButton->setEnabled(false);
+      bb.printButton->setEnabled(false);
+      bb.checkoutButton->setEnabled(false);
+      bb.overdueButton->setEnabled(false);
+    }
+
+  if(roles.contains("circulation") || roles.contains("librarian"))
     {
       bb.addButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
@@ -648,7 +693,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 5.00.<br>"
+  mb.setText("<html>BiblioteQ Version 5.01.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -3508,6 +3553,12 @@ void qtbook::readConfig(void)
 	      ui.actionRememberSQLiteFilename->setChecked
 		(!br.filename->text().isEmpty());
 	    }
+
+	  if(str.startsWith("save_settings_on_exit"))
+	    if(str.endsWith("1"))
+	      ui.actionAutomaticallySaveSettingsOnExit->setChecked(true);
+	    else
+	      ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
 	}
 
       if(statusBar() != NULL)
@@ -3616,7 +3667,7 @@ void qtbook::slotRemoveMember(void)
 	 QString("Unable to create a database transaction."),
 	 getDB().lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
-	(this, "BiblioteQ: Database Error",
+	(members_diag, "BiblioteQ: Database Error",
 	 "Unable to create a database transaction.");
       return;
     }
@@ -3664,7 +3715,7 @@ void qtbook::slotRemoveMember(void)
 		       "transaction."),
 	       getDB().lastError().text(), __FILE__,
 	       __LINE__);
-	    QMessageBox::critical(this,
+	    QMessageBox::critical(members_diag,
 				  "BiblioteQ: Database Error",
 				  "Unable to commit the current "
 				  "database transaction.");
@@ -3702,6 +3753,7 @@ void qtbook::slotSaveConfig(void)
       list.append(ui.actionAutoPopulateOnFilter->isChecked());
       list.append(ui.actionResetErrorLogOnDisconnect->isChecked());
       list.append(ui.actionAutoPopulateOnCreation->isChecked());
+      list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
       thread->setType(generic_thread::WRITE_USER_CONFIG_FILE);
       thread->setOutputList(list);
       list.clear();
@@ -4076,7 +4128,7 @@ void qtbook::slotConnectDB(void)
     drivers = "N/A";
 
   foreach(QString path, qapp->libraryPaths())
-    if(path.contains("plugin"))
+    if(path.toLower().contains("plugin"))
       {
 	plugins = path;
 	break;
@@ -4151,7 +4203,7 @@ void qtbook::slotConnectDB(void)
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  roles = misc_functions::getRoles
-	    (db, br.userid->text(), errorstr);
+	    (db, br.userid->text(), errorstr).toLower();
 	  qapp->restoreOverrideCursor();
 
 	  if(br.adminCheck->isChecked() && roles.isEmpty())
@@ -4171,7 +4223,7 @@ void qtbook::slotConnectDB(void)
 	}
     }
   else
-    roles = "all";
+    roles = "administrator";
 
   tmphash.clear();
 
@@ -4274,6 +4326,7 @@ void qtbook::slotDisconnect(void)
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionRememberSQLiteFilename->setVisible(false);
+  ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
@@ -4299,6 +4352,7 @@ void qtbook::slotDisconnect(void)
   ui.typefilter->setCurrentIndex(0);
   slotDisplaySummary();
   emptyContainers();
+  deletedAdmins.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(db.isOpen())
@@ -4939,6 +4993,8 @@ void qtbook::slotShowErrorDialog(void)
 {
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   er.table->resizeColumnsToContents();
+  error_diag->move(x() + width() / 2  - error_diag->width() / 2,
+		   y() + height() / 2 - error_diag->height() / 2);
   error_diag->raise();
   error_diag->show();
 }
@@ -5969,9 +6025,15 @@ void qtbook::slotReserveCopy(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "In order to reserve an item, you must "
-			    "first select it.");
+      if(members_diag->isVisible())
+	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
+			      "In order to reserve an item, you must "
+			      "first select it.");
+      else
+	QMessageBox::critical(this, "BiblioteQ: User Error",
+			      "In order to reserve an item, you must "
+			      "first select it.");
+
       return;
     }
 
@@ -5996,9 +6058,15 @@ void qtbook::slotReserveCopy(void)
 
   if(availability < 1)
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "It appears that the item you selected "
-			    "is no longer available for reservation.");
+      if(members_diag->isVisible())
+	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
+			      "It appears that the item you selected "
+			      "is no longer available for reservation.");
+      else
+	QMessageBox::critical(this, "BiblioteQ: User Error",
+			      "It appears that the item you selected "
+			      "is no longer available for reservation.");
+
       return;
     }
 
@@ -6173,6 +6241,8 @@ void qtbook::slotShowCustomQuery(void)
       qapp->restoreOverrideCursor();
     }
 
+  customquery_diag->move(x() + width() / 2  - customquery_diag->width() / 2,
+			 y() + height() / 2 - customquery_diag->height() / 2);
   customquery_diag->raise();
   customquery_diag->show();
 }
@@ -6220,6 +6290,9 @@ void qtbook::slotExecuteCustomQuery(void)
     customquery_diag->hide();
   else
     {
+      customquery_diag->move
+	(x() + width() / 2  - customquery_diag->width() / 2,
+	 y() + height() / 2 - customquery_diag->height() / 2);
       customquery_diag->raise();
       customquery_diag->show();
     }
@@ -6383,7 +6456,7 @@ void qtbook::slotCopyError(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
+      QMessageBox::critical(error_diag, "BiblioteQ: User Error",
 			    "To copy the contents of the Error Dialog into "
 			    "the clipboard buffer, you must first "
 			    "select at least one row.");
@@ -6606,6 +6679,8 @@ void qtbook::slotShowHistory(void)
     (QHeaderView::ResizeToContents);
   history.nextTool->setVisible(members_diag->isVisible());
   history.prevTool->setVisible(members_diag->isVisible());
+  history_diag->move(x() + width() / 2  - history_diag->width() / 2,
+		     y() + height() / 2 - history_diag->height() / 2);
   history_diag->raise();
   history_diag->show();
 }
@@ -6849,4 +6924,501 @@ QString qtbook::sqlitefile(void)
     return br.filename->text();
   else
     return "";
+}
+
+/*
+** -- slotShowAdminDialog() --
+*/
+
+void qtbook::slotShowAdminDialog(void)
+{
+  if(roles.contains("administrator"))
+    {
+      ab.addButton->setEnabled(true);
+      ab.deleteButton->setEnabled(true);
+      ab.saveButton->setEnabled(true);
+    }
+  else
+    {
+      ab.addButton->setEnabled(false);
+      ab.deleteButton->setEnabled(false);
+      ab.saveButton->setEnabled(false);
+    }
+
+  admin_diag->move(x() + width() / 2  - admin_diag->width() / 2,
+		   y() + height() / 2 - admin_diag->height() / 2);
+  admin_diag->raise();
+  admin_diag->show();
+}
+
+/*
+** -- slotAddAdmin() --
+*/
+
+void qtbook::slotAddAdmin(void)
+{
+  int i = 0;
+  QCheckBox *checkBox = NULL;
+  QTableWidgetItem *item = NULL;
+
+  ab.table->setRowCount(ab.table->rowCount() + 1);
+
+  for(i = 0; i < ab.table->columnCount(); i++)
+    if(i == 0)
+      {
+	if((item = new QTableWidgetItem()) != NULL)
+	  {
+	    item->setFlags(item->flags() | Qt::ItemIsEditable);
+	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
+	  }
+	else
+	  addError(QString("Memory Error"),
+		   QString("Unable to allocate memory for the "
+			   "\"item\" object. "
+			   "This is a serious problem!"),
+		   QString(""), __FILE__, __LINE__);
+      }
+    else
+      {
+	if((checkBox = new QCheckBox()) == NULL)
+	  addError(QString("Memory Error"),
+		   QString("Unable to allocate memory for the "
+			   "\"checkBox\" object. "
+			   "This is a serious problem!"),
+		   QString(""), __FILE__, __LINE__);
+	else
+	  {
+	    ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
+
+	    if(i == 1)
+	      connect(checkBox, SIGNAL(stateChanged(int)), this,
+		      SLOT(slotAdminCheckBoxClicked(int)));
+	  }
+      }
+      
+}
+
+/*
+** -- slotDeleteAdmin() --
+*/
+
+void qtbook::slotDeleteAdmin(void)
+{
+  int row = ab.table->currentRow();
+  QString str = "";
+
+  if(row < 0)
+    {
+      QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
+			    "Please select an administrator or empty entry "
+			    "to delete.");
+      return;
+    }
+
+  str = ab.table->item(row, 0)->text().trimmed();
+
+  if(str == getAdminID())
+    {
+      QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
+			    "As an administrator, you may not remove "
+			    "yourself.");
+      return;
+    }
+  else
+    {
+      if(!str.isEmpty() && !deletedAdmins.contains(str))
+	deletedAdmins.append(str);
+
+      ab.table->removeRow(row);
+    }
+}
+
+/*
+** -- slotAdminCheckBoxClicked() --
+*/
+
+void qtbook::slotAdminCheckBoxClicked(int state)
+{
+  int i = 0;
+  int row = -1;
+  QCheckBox *box = qobject_cast<QCheckBox *> (sender());
+
+  (void) state;
+  (void) box;
+
+  for(i = 0; i < ab.table->rowCount(); i++)
+    if(ab.table->cellWidget(i, 1) == box)
+      {
+	row = i;
+	break;
+      }
+
+  if(row > -1)
+    for(i = 2; i < ab.table->columnCount(); i++)
+      if(box->isChecked())
+	{
+	  ((QCheckBox *) ab.table->cellWidget(row, i))->setChecked(false);
+	  ((QCheckBox *) ab.table->cellWidget(row, i))->setEnabled(false);
+	}
+      else
+	((QCheckBox *) ab.table->cellWidget(row, i))->setEnabled(true);
+}
+
+/*
+** -- slotRefreshAdminList() --
+*/
+
+void qtbook::slotRefreshAdminList(void)
+{
+  int i = -1;
+  int j = 0;
+  QString str = "";
+  QString querystr = "";
+  QString columnname = "";
+  QCheckBox *checkBox = NULL;
+  QSqlQuery query(db);
+  QStringList list;
+  QProgressDialog progress(admin_diag);
+  QTableWidgetItem *item = NULL;
+
+  querystr = "SELECT username, roles FROM admin ORDER BY username";
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec(querystr))
+    {
+      qapp->restoreOverrideCursor();
+      addError(QString("Database Error"),
+	       QString("Unable to retrieve administrator data for table "
+		       "populating."),
+	       query.lastError().text(),
+	       __FILE__, __LINE__);
+      QMessageBox::critical(admin_diag, "BiblioteQ: Database Error",
+			    "Unable to retrieve administrator "
+			    "data for table populating.");
+
+      return;
+    }
+
+  qapp->restoreOverrideCursor();
+  deletedAdmins.clear();
+  ab.table->clear();
+  ab.table->setCurrentItem(NULL);
+  ab.table->setColumnCount(0);
+  ab.table->setRowCount(0);
+  list.clear();
+  list.append("ID");
+  list.append("Administrator");
+  list.append("Circulation");
+  list.append("Librarian");
+  list.append("Membership");
+  ab.table->setColumnCount(list.size());
+  ab.table->setHorizontalHeaderLabels(list);
+  list.clear();
+  ab.table->setSortingEnabled(false);
+
+  if(selectedBranch["database_type"] != "sqlite")
+    ab.table->setRowCount(query.size());
+
+  ab.table->scrollToTop();
+  ab.table->horizontalScrollBar()->setValue(0);
+  progress.setModal(true);
+  progress.setWindowTitle("BiblioteQ: Progress Dialog");
+  progress.setLabelText("Populating the table...");
+
+  if(selectedBranch["database_type"] == "sqlite")
+    progress.setMaximum
+      (misc_functions::sqliteQuerySize(querystr, getDB(),
+				       __FILE__, __LINE__));
+  else
+    progress.setMaximum(query.size());
+
+  progress.show();
+  progress.update();
+  i = -1;
+
+  while(i++, !progress.wasCanceled() && query.next())
+    {
+      if(query.isValid())
+	if((item = new QTableWidgetItem()) != NULL)
+	  {
+	    str = query.value(0).toString();
+	    item->setText(str);
+
+	    if(str != getAdminID())
+	      item->setFlags(item->flags() | Qt::ItemIsEditable);
+	    else
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
+	    str = query.value(1).toString();
+
+	    if(selectedBranch["database_type"] == "sqlite")
+	      ab.table->setRowCount(i + 1);
+
+	    ab.table->setItem(i, 0, item);
+
+	    for(j = 1; j < ab.table->columnCount(); j++)
+	      if(query.value(0).toString() == getAdminID() && j > 1)
+		{
+		  if((item = new QTableWidgetItem()) != NULL)
+		    {
+		      item->setFlags(Qt::ItemIsEnabled |
+				     Qt::ItemIsSelectable);
+		      ab.table->setItem(i, j, item);
+		    }
+		  else
+		    addError(QString("Memory Error"),
+			     QString("Unable to allocate memory for the "
+				     "\"item\" object. "
+				     "This is a serious problem!"),
+			     QString(""), __FILE__, __LINE__);
+		}
+	      else if((checkBox = new QCheckBox()) != NULL)
+		{
+		  columnname = ab.table->horizontalHeaderItem(j)->
+		    text().toLower();
+		  checkBox->setChecked(false);
+		  checkBox->setEnabled(false);
+
+		  if(roles.contains("administrator") &&
+		     query.value(0).toString() != getAdminID())
+		    checkBox->setEnabled(true);
+
+		  if(query.value(1).toString().toLower().contains
+		     ("administrator") && j > 1)
+		    checkBox->setEnabled(false);
+
+		  if(str.toLower().contains(columnname))
+		    checkBox->setChecked(true);
+
+		  if(j == 1 && checkBox->isEnabled())
+		    connect(checkBox, SIGNAL(stateChanged(int)), this,
+			    SLOT(slotAdminCheckBoxClicked(int)));
+
+		  ab.table->setCellWidget(i, j, checkBox);
+		}
+	      else
+		addError(QString("Memory Error"),
+			 QString("Unable to allocate memory for the "
+				 "\"checkBox\" object. "
+				 "This is a serious problem!"),
+			 QString(""), __FILE__, __LINE__);
+	  }
+	else
+	  addError(QString("Memory Error"),
+		   QString("Unable to allocate memory for the "
+			   "\"item\" object. "
+			   "This is a serious problem!"),
+		   QString(""), __FILE__, __LINE__);
+
+      progress.setValue(i + 1);
+      progress.update();
+      qapp->processEvents();
+    }
+
+  query.clear();
+  ab.table->setRowCount(i);
+  ab.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+}
+
+/*
+** -- slotSaveAdministrators() --
+*/
+
+void qtbook::slotSaveAdministrators(void)
+{
+  int i = 0;
+  int j = 0;
+  QString str = "";
+  QString adminStr = "";
+  QString errorstr = "";
+  QString querystr = "";
+  QCheckBox *checkBox = NULL;
+  QSqlQuery query(qmain->getDB());
+  QProgressDialog progress(admin_diag);
+
+  /*
+  ** 1. Create a database transaction.
+  ** 2. Delete all entries from the admin table.
+  ** 3. Remove all deleted database accounts.
+  ** 4. Create new entries in the admin table.
+  ** 5. Create new database accounts with correct privileges.
+  ** 6. Commit or rollback the current database transaction.
+  */
+
+  /*
+  ** Prepare a database transaction.
+  */
+
+  ab.saveButton->setFocus();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!getDB().transaction())
+    {
+      qapp->restoreOverrideCursor();
+      addError
+	(QString("Database Error"),
+	 QString("Unable to create a database transaction."),
+	 getDB().lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(admin_diag, "BiblioteQ: Database Error",
+	 "Unable to create a database transaction.");
+      return;
+    }
+
+  /*
+  ** Delete entries from the admin table.
+  */
+
+  querystr = QString("DELETE FROM admin");
+
+  if(!query.exec(querystr))
+    {
+      qapp->restoreOverrideCursor();
+      addError(QString("Database Error"),
+	       QString("Unable to purge the administrator table."),
+	       query.lastError().text(), __FILE__, __LINE__);
+      goto db_rollback;
+    }
+
+  /*
+  ** Remove database accounts.
+  */
+
+  for(i = 0; i < deletedAdmins.size(); i++)
+    {
+      misc_functions::createOrDeleteDBAccount(deletedAdmins[i],
+					      getDB(),
+					      misc_functions::DELETE_USER,
+					      errorstr);
+
+      if(!errorstr.isEmpty())
+	{
+	  qapp->restoreOverrideCursor();
+	  addError
+	    (QString("Database Error"),
+	     QString("An error occurred while attempting to "
+		     "remove the database account %1.").arg
+	     (deletedAdmins[i]),
+	     errorstr, __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+    }
+
+  qapp->restoreOverrideCursor();
+  progress.setModal(true);
+  progress.setWindowTitle("BiblioteQ: Progress Dialog");
+  progress.setLabelText("Saving administrator information...");
+  progress.setMaximum(ab.table->rowCount());
+  progress.show();
+  progress.update();
+
+  /*
+  ** Add or modify administrators.
+  */
+
+  for(i = 0; i < ab.table->rowCount(); i++)
+    {
+      str = "";
+      adminStr = ab.table->item(i, 0)->text().trimmed();
+
+      if(adminStr.isEmpty())
+	continue;
+
+      querystr = "INSERT INTO admin (username, roles) VALUES (?, ?)";
+      query.prepare(querystr);
+      query.bindValue(0, adminStr);
+
+      if(((QCheckBox *) ab.table->cellWidget(i, 1))->isChecked())
+	str = "administrator";
+      else
+	for(j = 2; j < ab.table->columnCount(); j++)
+	  {
+	    checkBox = (QCheckBox *) ab.table->cellWidget(i, j);
+
+	    if(checkBox->isChecked())
+	      str += ab.table->horizontalHeaderItem(j)->text().toLower() +
+		" ";
+	  }
+
+      str = str.trimmed();
+      query.bindValue(1, str);
+
+      if(!query.exec())
+	{
+	  progress.hide();
+	  addError
+	    (QString("Database Error"),
+	     QString("Unable to create an administrator entry for %1.").arg
+	     (adminStr), query.lastError().text(), __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+
+      misc_functions::revokeAll(adminStr, db, errorstr);
+
+      if(!errorstr.isEmpty())
+	{
+	  progress.hide();
+	  addError
+	    (QString("Database Error"),
+	     QString("An error occurred while attempting to "
+		     "revoke privileges for %1.").arg
+	     (adminStr), errorstr, __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+
+      misc_functions::createOrDeleteDBAccount
+	(adminStr, db, misc_functions::CREATE_USER, errorstr, str);
+
+      if(!errorstr.isEmpty())
+	{
+	  progress.hide();
+	  addError
+	    (QString("Database Error"),
+	     QString("An error occurred while attempting to "
+		     "create a database account for %1.").arg
+	     (adminStr), errorstr, __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+
+      progress.setValue(i + 1);
+      progress.update();
+      qapp->processEvents();
+    }
+
+  progress.hide();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!getDB().commit())
+    {
+      qapp->restoreOverrideCursor();
+      addError
+	(QString("Database Error"),
+	 QString("Unable to commit the current database "
+		 "transaction."),
+	 getDB().lastError().text(), __FILE__,
+	 __LINE__);
+      QMessageBox::critical(admin_diag,
+			    "BiblioteQ: Database Error",
+			    "Unable to commit the current "
+			    "database transaction.");
+      return;
+    }
+
+  qapp->restoreOverrideCursor();
+  deletedAdmins.clear();
+  slotRefreshAdminList();
+  return;
+
+ db_rollback:
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!getDB().rollback())
+    addError(QString("Database Error"), QString("Rollback failure."),
+	     getDB().lastError().text(), __FILE__, __LINE__);
+
+  qapp->restoreOverrideCursor();
+  QMessageBox::critical(admin_diag, "BiblioteQ: Database Error",
+			"An error occurred while attempting to save "
+			"the administrator information.");
 }

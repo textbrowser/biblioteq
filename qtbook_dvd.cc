@@ -884,9 +884,9 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.title->clear();
   dvd.studio->clear();
   dvd.description->clear();
-  dvd.copiesButton->setEnabled(false);
-  dvd.queryButton->setEnabled(false);
-  dvd.showUserButton->setEnabled(false);
+  dvd.copiesButton->setVisible(false);
+  dvd.queryButton->setVisible(false);
+  dvd.showUserButton->setVisible(false);
   dvd.okButton->setText("&Search");
   dvd.release_date->setDate(QDate::fromString("01/01/7999",
 					     "MM/dd/yyyy"));

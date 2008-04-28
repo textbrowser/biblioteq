@@ -128,3 +128,7 @@ ALTER TABLE videogame ADD offsystem_url TEXT;
 
 /* Release 5.00 */
 /* Please recreate the database. */
+
+/* Release 5.01 */
+
+UPDATE admin SET roles = 'administrator' WHERE roles = 'all';

@@ -23,6 +23,7 @@ generic_thread::~generic_thread()
 {
   list.clear();
   LOCResults.clear();
+  outputListBool.clear();
 }
 
 /*
@@ -100,6 +101,7 @@ void generic_thread::run(void)
 	qts << "main_window_geometry=" << qmain->getGeometryString() << endl;
 	qts << "global_font=" << qmain->font().toString() << endl;
 	qts << "sqlite_db=" << qmain->sqlitefile() << endl;
+	qts << "save_settings_on_exit=" << outputListBool.takeFirst() << endl;
 	qf.close();
 	break;
       }

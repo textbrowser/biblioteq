@@ -2,8 +2,8 @@
 2.   Save major settings to a configuration file. (DONE)
 3.   Implement the Library of Congress query. (DONE)
 4.   Allow for image storage of front and back covers. (DONE)
-5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux, OS X (DONE),
-     and Solaris (DONE).
+5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux (TBD),
+     OS X (DONE), and Solaris (DONE).
 6.   Allow searching of library members. This feature should only be
      available to administrators. (DONE)
 7.   Perform the database queries in threads. (TBD)
@@ -161,7 +161,7 @@
 80.  Create a view of a restricted version of the borrower tables. (DONE)
      See #114.
 81.  Create an administrator table. (DONE)
-82.  Provide a mechanism for granting administrator privileges. (TBD)
+82.  Provide a mechanism for granting administrator privileges. (DONE)
 83.  Verify that all failed database queries are logged and, if necessary,
      the user is notified. (DONE)
 84.  Each type should have its own table. (DONE)

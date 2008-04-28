@@ -28,6 +28,7 @@ FORMS           += cdinfo.ui \
 		   userinfo.ui \
                    borrowers.ui \
 		   errordiag.ui \
+		   adminsetup.ui \
 		   locresults.ui \
                    mainwindow.ui \
 		   copybrowser.ui \

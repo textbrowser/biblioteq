@@ -47,6 +47,7 @@ using namespace std;
 #include "ui_password.h"
 #include "ui_userinfo.h"
 #include "ui_errordiag.h"
+#include "ui_adminsetup.h"
 #include "ui_mainwindow.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
@@ -128,6 +129,7 @@ class qtbook: public QMainWindow
   bool supportsTransactions;
   QString roles;
   QString typefilter;
+  QStringList deletedAdmins;
   QHash<QString, QString> LOCHash;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;
@@ -141,13 +143,14 @@ class qtbook: public QMainWindow
   QLabel *status_bar_label;
   QLabel *connected_bar_label;
   QDialog *pass_diag;
-  QDialog *error_diag;
   QDialog *branch_diag;
-  QDialog *history_diag;
   QDialog *userinfo_diag;
-  QDialog *customquery_diag;
   QMainWindow *all_diag;
+  QMainWindow *admin_diag;
+  QMainWindow *error_diag;
+  QMainWindow *history_diag;
   QMainWindow *members_diag;
+  QMainWindow *customquery_diag;
   QStringList languages;
   QStringList vg_genres;
   QStringList cd_formats;
@@ -175,6 +178,7 @@ class qtbook: public QMainWindow
   Ui_passSelect pass;
   Ui_customquery cq;
   Ui_errordialog er;
+  Ui_adminBrowser ab;
   Ui_branchSelect br;
   Ui_historyDialog history;
   Ui_membersBrowser bb;
@@ -201,6 +205,7 @@ class qtbook: public QMainWindow
   void slotModify(void);
   void slotSearch(void);
   void slotRefresh(void);
+  void slotAddAdmin(void);
   void slotCheckout(void);
   void slotCDSearch(void);
   void slotInsertCD(void);
@@ -222,6 +227,7 @@ class qtbook: public QMainWindow
   void slotSaveConfig(void);
   void slotSetColumns(void);
   void slotAddBorrower(void);
+  void slotDeleteAdmin(void);
   void slotJournSearch(void);
   void slotViewDetails(void);
   void slotReserveCopy(void);
@@ -239,16 +245,20 @@ class qtbook: public QMainWindow
   void slotAutoPopOnFilter(void);
   void slotShowCustomQuery(void);
   void slotInsertVideoGame(void);
+  void slotShowAdminDialog(void);
   void slotShowErrorDialog(void);
   void slotVideoGameSearch(void);
   void slotListOverdueItems(void);
+  void slotRefreshAdminList(void);
   void slotResetLoginDialog(void);
   void slotShowConnectionDB(void);
   void slotListReservedItems(void);
   void slotExecuteCustomQuery(void);
+  void slotSaveAdministrators(void);
   void slotSelectDatabaseFile(void);
   void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);
+  void slotAdminCheckBoxClicked(int);
   void slotCloseCustomQueryDialog(void);
   void slotPopulateMembersBrowser(void);
   void slotResizeColumnsAfterSort(void);

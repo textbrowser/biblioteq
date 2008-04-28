@@ -6,7 +6,7 @@ QT		+= sql
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 QMAKE_CXXFLAGS	+= -Wall -Werror
-QMAKE_CLEAN	+= BiblioteQ
+QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CFLAGS_RELEASE += -Werror
@@ -28,6 +28,7 @@ FORMS           += cdinfo.ui \
 		   userinfo.ui \
                    borrowers.ui \
 		   errordiag.ui \
+		   adminsetup.ui \
 		   locresults.ui \
                    mainwindow.ui \
 		   copybrowser.ui \

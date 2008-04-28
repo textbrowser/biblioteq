@@ -36,18 +36,102 @@ QImage misc_functions::getImage(const QString &oid,
 }
 
 /*
-** -- createOrDeleteDBAccount() --
+** -- revokeAll() --
 */
 
-void misc_functions::createOrDeleteDBAccount(const QString &memberid,
-					     const QSqlDatabase &db,
-					     const int action,
-					     QString &errorstr)
+void misc_functions::revokeAll(const QString &userid,
+			       const QSqlDatabase &db,
+			       QString &errorstr)
 {
   int i = 0;
   QString querystr = "";
   QSqlQuery query(db);
-  QStringList objectllist;
+  QStringList objectlist;
+
+  querystr = QString("SELECT usename FROM pg_user WHERE "
+		     "usename = '%1'").arg(userid);
+
+  if(query.exec(querystr))
+    {
+      if(query.next())
+	i += 1;
+
+      if(i > 0)
+	{
+	  objectlist << "admin"
+		     << "book"
+		     << "book_borrower"
+		     << "book_borrower_myoid_seq"
+		     << "book_borrower_vw"
+		     << "book_copy_info"
+		     << "book_copy_info_myoid_seq"
+		     << "book_myoid_seq"
+		     << "cd"
+		     << "cd_borrower"
+		     << "cd_borrower_myoid_seq"
+		     << "cd_borrower_vw"
+		     << "cd_copy_info"
+		     << "cd_copy_info_myoid_seq"
+		     << "cd_myoid_seq"
+		     << "cd_songs"
+		     << "dvd"
+		     << "dvd_borrower"
+		     << "dvd_borrower_myoid_seq"
+		     << "dvd_borrower_vw"
+		     << "dvd_copy_info"
+		     << "dvd_copy_info_myoid_seq"
+		     << "dvd_myoid_seq"
+		     << "magazine"
+		     << "magazine_borrower"
+		     << "magazine_borrower_myoid_seq"
+		     << "magazine_borrower_vw"
+		     << "magazine_copy_info"
+		     << "magazine_copy_info_myoid_seq"
+		     << "magazine_myoid_seq"
+		     << "member"
+		     << "member_history"
+		     << "member_history_myoid_seq"
+		     << "videogame"
+		     << "videogame_borrower"
+		     << "videogame_borrower_myoid_seq"
+		     << "videogame_borrower_vw"
+		     << "videogame_copy_info"
+		     << "videogame_copy_info_myoid_seq"
+		     << "videogame_myoid_seq";
+
+	  for(i = 0; i < objectlist.size(); i++)
+	    {
+	      querystr = QString
+		("REVOKE ALL ON %1 FROM %2").arg
+		(objectlist[i]).arg(userid);
+
+	      if(!query.exec(querystr))
+		break;
+	    }
+
+	  objectlist.clear();
+	}
+    }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+}
+
+/*
+** -- createOrDeleteDBAccount() --
+*/
+
+void misc_functions::createOrDeleteDBAccount(const QString &userid,
+					     const QSqlDatabase &db,
+					     const int action,
+					     QString &errorstr,
+					     const QString &roles)
+{
+  int i = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+  QStringList privlist;
+  QStringList objectlist;
 
   errorstr = "";
 
@@ -56,64 +140,213 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
 
   if(action == CREATE_USER)
     {
-      querystr = QString
-	("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(memberid);
-      (void) query.exec(querystr);
+      /*
+      ** Does the user exist?
+      */
+
+      querystr = QString("SELECT usename FROM pg_user WHERE "
+			 "usename = '%1'").arg(userid);
+
+      if(query.exec(querystr))
+	{
+	  if(query.next())
+	    i += 1;
+
+	  if(i == 0)
+	    {
+	      if(roles.contains("administrator"))
+		querystr = QString
+		  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
+		   "createuser").arg(userid);
+	      else
+		querystr = QString
+		  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg
+		  (userid);
+
+	      (void) query.exec(querystr);
+	    }
+	}
     }
 
   if(!query.lastError().isValid())
     {
-      objectllist << "admin"
-		  << "book"
-		  << "public.book_myoid_seq"
-		  << "book_copy_info"
-		  << "public.book_copy_info_myoid_seq"
-		  << "cd"
-		  << "public.cd_myoid_seq"
-		  << "cd_songs"
-		  << "cd_copy_info"
-		  << "public.cd_copy_info_myoid_seq"
-		  << "dvd"
-		  << "public.dvd_myoid_seq"
-		  << "dvd_copy_info"
-		  << "public.dvd_copy_info_myoid_seq"
-		  << "magazine"
-		  << "public.magazine_myoid_seq"
-		  << "magazine_copy_info"
-		  << "public.magazine_copy_info_myoid_seq"
-		  << "videogame"
-		  << "public.videogame_myoid_seq"
-		  << "videogame_copy_info"
-		  << "public.videogame_copy_info_myoid_seq"
-		  << "book_borrower_vw"
-		  << "cd_borrower_vw"
-		  << "dvd_borrower_vw"
-		  << "magazine_borrower_vw"
-		  << "videogame_borrower_vw"
-		  << "member_history";
+      if(action == CREATE_USER)
+	{
+	  if(roles.contains("administrator"))
+	    objectlist << "admin"
+		       << "book"
+		       << "book_borrower"
+		       << "book_borrower_myoid_seq"
+		       << "book_borrower_vw"
+		       << "book_copy_info"
+		       << "book_copy_info_myoid_seq"
+		       << "book_myoid_seq"
+		       << "cd"
+		       << "cd_borrower"
+		       << "cd_borrower_myoid_seq"
+		       << "cd_borrower_vw"
+		       << "cd_copy_info"
+		       << "cd_copy_info_myoid_seq"
+		       << "cd_myoid_seq"
+		       << "cd_songs"
+		       << "dvd"
+		       << "dvd_borrower"
+		       << "dvd_borrower_myoid_seq"
+		       << "dvd_borrower_vw"
+		       << "dvd_copy_info"
+		       << "dvd_copy_info_myoid_seq"
+		       << "dvd_myoid_seq"
+		       << "magazine"
+		       << "magazine_borrower"
+		       << "magazine_borrower_myoid_seq"
+		       << "magazine_borrower_vw"
+		       << "magazine_copy_info"
+		       << "magazine_copy_info_myoid_seq"
+		       << "magazine_myoid_seq"
+		       << "member"
+		       << "member_history"
+		       << "member_history_myoid_seq"
+		       << "videogame"
+		       << "videogame_borrower"
+		       << "videogame_borrower_myoid_seq"
+		       << "videogame_borrower_vw"
+		       << "videogame_copy_info"
+		       << "videogame_copy_info_myoid_seq"
+		       << "videogame_myoid_seq";
+	  else if(roles.contains("circulation") ||
+		  roles.contains("librarian") ||
+		  roles.contains("membership"))
+	    {
+	      objectlist << "admin";
+	      privlist << "SELECT";
 
-      for(i = 0; i < objectllist.size(); i++)
+	      if(roles.contains("circulation"))
+		{
+		}
+
+	      if(roles.contains("librarian"))
+		{
+		}
+
+	      if(roles.contains("membership"))
+		{
+		}
+	    }
+	  else
+	    objectlist << "admin"
+		       << "book"
+		       << "public.book_myoid_seq"
+		       << "book_copy_info"
+		       << "public.book_copy_info_myoid_seq"
+		       << "cd"
+		       << "public.cd_myoid_seq"
+		       << "cd_songs"
+		       << "cd_copy_info"
+		       << "public.cd_copy_info_myoid_seq"
+		       << "dvd"
+		       << "public.dvd_myoid_seq"
+		       << "dvd_copy_info"
+		       << "public.dvd_copy_info_myoid_seq"
+		       << "magazine"
+		       << "public.magazine_myoid_seq"
+		       << "magazine_copy_info"
+		       << "public.magazine_copy_info_myoid_seq"
+		       << "videogame"
+		       << "public.videogame_myoid_seq"
+		       << "videogame_copy_info"
+		       << "public.videogame_copy_info_myoid_seq"
+		       << "book_borrower_vw"
+		       << "cd_borrower_vw"
+		       << "dvd_borrower_vw"
+		       << "magazine_borrower_vw"
+		       << "videogame_borrower_vw"
+		       << "member_history";
+	}
+      else
+	objectlist << "admin"
+		   << "book"
+		   << "book_borrower"
+		   << "book_borrower_myoid_seq"
+		   << "book_borrower_vw"
+		   << "book_copy_info"
+		   << "book_copy_info_myoid_seq"
+		   << "book_myoid_seq"
+		   << "cd"
+		   << "cd_borrower"
+		   << "cd_borrower_myoid_seq"
+		   << "cd_borrower_vw"
+		   << "cd_copy_info"
+		   << "cd_copy_info_myoid_seq"
+		   << "cd_myoid_seq"
+		   << "cd_songs"
+		   << "dvd"
+		   << "dvd_borrower"
+		   << "dvd_borrower_myoid_seq"
+		   << "dvd_borrower_vw"
+		   << "dvd_copy_info"
+		   << "dvd_copy_info_myoid_seq"
+		   << "dvd_myoid_seq"
+		   << "magazine"
+		   << "magazine_borrower"
+		   << "magazine_borrower_myoid_seq"
+		   << "magazine_borrower_vw"
+		   << "magazine_copy_info"
+		   << "magazine_copy_info_myoid_seq"
+		   << "magazine_myoid_seq"
+		   << "member"
+		   << "member_history"
+		   << "member_history_myoid_seq"
+		   << "videogame"
+		   << "videogame_borrower"
+		   << "videogame_borrower_myoid_seq"
+		   << "videogame_borrower_vw"
+		   << "videogame_copy_info"
+		   << "videogame_copy_info_myoid_seq"
+		   << "videogame_myoid_seq";
+
+      for(i = 0; i < objectlist.size(); i++)
 	{
 	  if(action == CREATE_USER)
-	    querystr = QString
-	      ("GRANT SELECT ON %1 TO %2").arg
-	      (objectllist[i]).arg(memberid);
+	    {
+	      if(roles.contains("administrator"))
+		{
+		  if(objectlist[i].endsWith("_vw"))
+		    querystr = QString
+		      ("GRANT SELECT ON %1 TO %2").arg
+		      (objectlist[i]).arg(userid);
+		  else
+		    querystr = QString
+		      ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
+		      (objectlist[i]).arg(userid);
+		}
+	      else if(roles.contains("circulation") ||
+		      roles.contains("librarian") ||
+		      roles.contains("membership"))
+		querystr = QString
+		  ("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
+		  (objectlist[i]).arg(userid);
+	      else
+		querystr = QString
+		  ("GRANT SELECT ON %1 TO %2").arg
+		  (objectlist[i]).arg(userid);
+	    }
 	  else
 	    querystr = QString
 	      ("REVOKE ALL ON %1 FROM %2").arg
-	      (objectllist[i]).arg(memberid);
+	      (objectlist[i]).arg(userid);
 
 	  if(!query.exec(querystr))
 	    break;
 	}
 
-      objectllist.clear();
+      privlist.clear();
+      objectlist.clear();
     }
 
   if(action == DELETE_USER)
     if(!query.lastError().isValid())
       {
-	query.prepare(QString("DROP USER %1").arg(memberid));
+	query.prepare(QString("DROP USER %1").arg(userid));
 	(void) query.exec();
       }
 
@@ -125,7 +358,7 @@ void misc_functions::createOrDeleteDBAccount(const QString &memberid,
 ** -- savePassword() --
 */
 
-void misc_functions::savePassword(const QString &memberid,
+void misc_functions::savePassword(const QString &userid,
 				  const QSqlDatabase &db,
 				  const QString &password, QString &errorstr)
 {
@@ -139,7 +372,7 @@ void misc_functions::savePassword(const QString &memberid,
     return; // Users are not supported.
 
   querystr = QString("ALTER USER %1 ENCRYPTED "
-		     "PASSWORD '%2'").arg(memberid).arg(password);
+		     "PASSWORD '%2'").arg(userid).arg(password);
   (void) query.exec(querystr);
 
   if(query.lastError().isValid())

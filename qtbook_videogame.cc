@@ -768,9 +768,9 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.title->clear();
   vg.publisher->clear();
   vg.description->clear();
-  vg.copiesButton->setEnabled(false);
-  vg.showUserButton->setEnabled(false);
-  vg.queryButton->setEnabled(false);
+  vg.copiesButton->setVisible(false);
+  vg.showUserButton->setVisible(false);
+  vg.queryButton->setVisible(false);
   vg.okButton->setText("&Search");
   vg.release_date->setDate(QDate::fromString("01/01/7999",
 					     "MM/dd/yyyy"));

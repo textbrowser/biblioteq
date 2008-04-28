@@ -104,9 +104,6 @@
          <property name="focusPolicy" >
           <enum>Qt::StrongFocus</enum>
          </property>
-         <property name="editTriggers" >
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
          <property name="alternatingRowColors" >
           <bool>true</bool>
          </property>

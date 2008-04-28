@@ -386,6 +386,7 @@
     <addaction name="actionAutoPopulateOnFilter" />
     <addaction name="actionAutoPopulateOnCreation" />
     <addaction name="actionAutoResizeColumns" />
+    <addaction name="actionAutomaticallySaveSettingsOnExit" />
     <addaction name="actionShowGrid" />
     <addaction name="actionPopulateOnStart" />
     <addaction name="actionPreserveGeometry" />
@@ -422,6 +423,7 @@
    <addaction name="connectTool" />
    <addaction name="disconnectTool" />
    <addaction name="actionChangePassword" />
+   <addaction name="actionConfigureAdministratorPrivileges" />
   </widget>
   <widget class="QToolBar" name="toolBar_2" >
    <property name="windowTitle" >
@@ -1210,6 +1212,31 @@
      <family>Times</family>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionAutomaticallySaveSettingsOnExit" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Automatically Save Settings on E&amp;xit</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionConfigureAdministratorPrivileges" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/identity.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Configure Administrator Privileges</string>
    </property>
   </action>
  </widget>

@@ -1,24 +1,18 @@
 <ui version="4.0" >
  <class>errordialog</class>
- <widget class="QDialog" name="errordialog" >
+ <widget class="QMainWindow" name="errordialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>644</width>
-    <height>370</height>
+    <width>531</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>350</width>
     <height>370</height>
-   </size>
-  </property>
-  <property name="maximumSize" >
-   <size>
-    <width>16777215</width>
-    <height>16777215</height>
    </size>
   </property>
   <property name="font" >
@@ -30,21 +24,165 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Error Log</string>
   </property>
-  <property name="sizeGripEnabled" >
-   <bool>false</bool>
-  </property>
-  <layout class="QVBoxLayout" >
-   <item>
-    <widget class="QFrame" name="frame" >
-     <property name="frameShape" >
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow" >
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" >
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QVBoxLayout" >
+    <item>
+     <widget class="QFrame" name="frame" >
+      <property name="frameShape" >
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTableWidget" name="table" >
+         <property name="font" >
+          <font>
+           <family>Times</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy" >
+          <enum>Qt::StrongFocus</enum>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="dragEnabled" >
+          <bool>false</bool>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="selectionBehavior" >
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="sortingEnabled" >
+          <bool>true</bool>
+         </property>
+         <property name="cornerButtonEnabled" >
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Event Time</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Event Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Summary</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Full Description</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>File</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Line Number</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" >
+      <property name="spacing" >
+       <number>5</number>
+      </property>
       <item>
-       <widget class="QTableWidget" name="table" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>39</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="copyButton" >
+        <property name="minimumSize" >
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>&amp;To Clipboard</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/16x16/ok.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="resetButton" >
+        <property name="minimumSize" >
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>&amp;Reset</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/16x16/reset.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cancelButton" >
+        <property name="minimumSize" >
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="font" >
          <font>
           <family>Times</family>
@@ -56,186 +194,33 @@
           <strikeout>false</strikeout>
          </font>
         </property>
-        <property name="focusPolicy" >
-         <enum>Qt::StrongFocus</enum>
+        <property name="text" >
+         <string>&amp;Close</string>
         </property>
-        <property name="editTriggers" >
-         <set>QAbstractItemView::NoEditTriggers</set>
+        <property name="icon" >
+         <iconset>icons.d/16x16/cancel.png</iconset>
         </property>
-        <property name="dragEnabled" >
-         <bool>false</bool>
-        </property>
-        <property name="alternatingRowColors" >
-         <bool>true</bool>
-        </property>
-        <property name="selectionMode" >
-         <enum>QAbstractItemView::ExtendedSelection</enum>
-        </property>
-        <property name="selectionBehavior" >
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <property name="verticalScrollMode" >
-         <enum>QAbstractItemView::ScrollPerItem</enum>
-        </property>
-        <property name="horizontalScrollMode" >
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="sortingEnabled" >
-         <bool>true</bool>
-        </property>
-        <property name="cornerButtonEnabled" >
-         <bool>true</bool>
-        </property>
-        <column>
-         <property name="text" >
-          <string>Event Time</string>
-         </property>
-        </column>
-        <column>
-         <property name="text" >
-          <string>Event Type</string>
-         </property>
-        </column>
-        <column>
-         <property name="text" >
-          <string>Summary</string>
-         </property>
-        </column>
-        <column>
-         <property name="text" >
-          <string>Full Description</string>
-         </property>
-        </column>
-        <column>
-         <property name="text" >
-          <string>File</string>
-         </property>
-        </column>
-        <column>
-         <property name="text" >
-          <string>Line Number</string>
-         </property>
-        </column>
        </widget>
       </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>39</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>5</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType" >
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>39</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="copyButton" >
-       <property name="minimumSize" >
-        <size>
-         <width>105</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font" >
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text" >
-        <string>&amp;To Clipboard</string>
-       </property>
-       <property name="icon" >
-        <iconset>icons.d/16x16/ok.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="resetButton" >
-       <property name="minimumSize" >
-        <size>
-         <width>105</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font" >
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text" >
-        <string>&amp;Reset</string>
-       </property>
-       <property name="icon" >
-        <iconset>icons.d/16x16/reset.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="minimumSize" >
-        <size>
-         <width>105</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font" >
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="text" >
-        <string>&amp;Close</string>
-       </property>
-       <property name="icon" >
-        <iconset>icons.d/16x16/cancel.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>39</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-  </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
  </widget>
- <tabstops>
-  <tabstop>table</tabstop>
-  <tabstop>copyButton</tabstop>
-  <tabstop>resetButton</tabstop>
-  <tabstop>cancelButton</tabstop>
- </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -245,12 +230,12 @@
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>369</x>
-     <y>253</y>
+     <x>375</x>
+     <y>335</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>179</x>
-     <y>282</y>
+     <x>265</x>
+     <y>189</y>
     </hint>
    </hints>
   </connection>

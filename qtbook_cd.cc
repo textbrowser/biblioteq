@@ -850,11 +850,12 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.title->clear();
   cd.recording_label->clear();
   cd.description->clear();
-  cd.copiesButton->setEnabled(false);
-  cd.tracksButton->setEnabled(false);
-  cd.queryButton->setEnabled(false);
-  cd.showUserButton->setEnabled(false);
-  cd.computeButton->setEnabled(false);
+  cd.copiesButton->setVisible(false);
+  cd.tracksButton->setVisible(false);
+  cd.queryButton->setVisible(false);
+  cd.showUserButton->setVisible(false);
+  cd.computeButton->setVisible(false);
+  cd.tracks_lbl->setVisible(false);
   cd.okButton->setText("&Search");
   cd.release_date->setDate(QDate::fromString("01/01/7999",
 					     "MM/dd/yyyy"));
@@ -1291,7 +1292,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 			      "populating."),
 		      query.lastError().text(),
 		      __FILE__, __LINE__);
-      QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
+      QMessageBox::critical(this, "BiblioteQ: Database Error",
 			    "Unable to retrieve track data for "
 			    "table populating.");
       return;
@@ -1563,7 +1564,7 @@ void qtbook_cd::slotSaveTracks(void)
       {
 	errormsg = QString("Row number %1 contains an empty Song Title.").arg
 	  (i + 1);
-	QMessageBox::critical(this, "BiblioteQ: User Error", errormsg);
+	QMessageBox::critical(tracks_diag, "BiblioteQ: User Error", errormsg);
 	return;
       }
 
@@ -1575,7 +1576,7 @@ void qtbook_cd::slotSaveTracks(void)
       qmain->addError(QString("Database Error"),
 		      QString("Unable to create a database transaction."),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
+      QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
 			    "Unable to create a database transaction.");
       return;
     }
@@ -1657,7 +1658,7 @@ void qtbook_cd::slotSaveTracks(void)
       progress.hide();
 
       if(!lastError.isEmpty())
-	QMessageBox::critical(this, "BiblioteQ: Database Error",
+	QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
 			      "Some or all of the track data has not "
 			      "been saved. Please review the Error Log.");
 
@@ -1670,7 +1671,7 @@ void qtbook_cd::slotSaveTracks(void)
 			  QString("Commit failure."),
 			  qmain->getDB().lastError().text(), __FILE__,
 			  __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Database Error",
+	  QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
 				"Unable to commit the track data.");
 	}
 
