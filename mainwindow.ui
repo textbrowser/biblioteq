@@ -294,7 +294,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="font" >
@@ -1237,6 +1237,12 @@
    </property>
    <property name="text" >
     <string>Configure Administrator Privileges</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>

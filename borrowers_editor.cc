@@ -25,6 +25,16 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   state = stateArg;
   itemType = itemTypeArg.toLower().remove(" ");
 
+  /*
+  ** Override the state, if necessary.
+  */
+
+  if(qmain->getRoles().contains("administrator") ||
+     qmain->getRoles().contains("circulation"))
+    state = qtbook::EDITABLE;
+  else if(qmain->getRoles().contains("librarian"))
+    state = qtbook::VIEW_ONLY;
+
   if(state == qtbook::EDITABLE)
     {
       connect(bd.saveButton, SIGNAL(clicked(void)), this,
@@ -45,7 +55,7 @@ borrowers_editor::borrowers_editor(QWidget *parent,
 
   if(!uniqueidArg.isEmpty())
     setWindowTitle(QString("BiblioteQ: Item Reservation Status (%1)").arg
-		       (uniqueidArg));
+		   (uniqueidArg));
 }
 
 /*

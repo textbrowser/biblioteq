@@ -7228,6 +7228,7 @@ void qtbook::slotSaveAdministrators(void)
 {
   int i = 0;
   int j = 0;
+  int ucount = 0;
   QString str = "";
   QString adminStr = "";
   QString errorstr = "";
@@ -7238,7 +7239,7 @@ void qtbook::slotSaveAdministrators(void)
 
   /*
   ** 1. Create a database transaction.
-  ** 2. Delete all entries from the admin table.
+  ** 2. Delete required entries from the admin table.
   ** 3. Remove all deleted database accounts.
   ** 4. Create new entries in the admin table.
   ** 5. Create new database accounts with correct privileges.
@@ -7266,26 +7267,24 @@ void qtbook::slotSaveAdministrators(void)
     }
 
   /*
-  ** Delete entries from the admin table.
-  */
-
-  querystr = QString("DELETE FROM admin");
-
-  if(!query.exec(querystr))
-    {
-      qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to purge the administrator table."),
-	       query.lastError().text(), __FILE__, __LINE__);
-      goto db_rollback;
-    }
-
-  /*
   ** Remove database accounts.
   */
 
   for(i = 0; i < deletedAdmins.size(); i++)
     {
+      querystr = QString("DELETE FROM admin WHERE username = '%1'").arg
+	(deletedAdmins[i]);
+
+      if(!query.exec(querystr))
+	{
+	  qapp->restoreOverrideCursor();
+	  addError(QString("Database Error"),
+		   QString("An error occurred while attempting to remove "
+			   "%1.").arg(deletedAdmins[i]),
+		   query.lastError().text(), __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+
       misc_functions::createOrDeleteDBAccount(deletedAdmins[i],
 					      getDB(),
 					      misc_functions::DELETE_USER,
@@ -7322,11 +7321,9 @@ void qtbook::slotSaveAdministrators(void)
       adminStr = ab.table->item(i, 0)->text().trimmed();
 
       if(adminStr.isEmpty())
-	continue;
-
-      querystr = "INSERT INTO admin (username, roles) VALUES (?, ?)";
-      query.prepare(querystr);
-      query.bindValue(0, adminStr);
+	continue; // Ignore emtpy administrator ids.
+      else if(adminStr == getAdminID())
+	continue; // Ignore current administrator.
 
       if(((QCheckBox *) ab.table->cellWidget(i, 1))->isChecked())
 	str = "administrator";
@@ -7341,43 +7338,64 @@ void qtbook::slotSaveAdministrators(void)
 	  }
 
       str = str.trimmed();
-      query.bindValue(1, str);
+      ucount = misc_functions::userCount(adminStr, getDB(), errorstr);
+
+      if(ucount == 0)
+	{
+	  querystr = "INSERT INTO admin (username, roles) VALUES (?, ?)";
+	  query.prepare(querystr);
+	  query.bindValue(0, adminStr);
+	  query.bindValue(1, str);
+	}
+      else
+	{
+	  querystr = "UPDATE admin SET roles = ? WHERE username = ?";
+	  query.prepare(querystr);
+	  query.bindValue(0, str);
+	  query.bindValue(1, adminStr);
+	}
 
       if(!query.exec())
 	{
 	  progress.hide();
 	  addError
 	    (QString("Database Error"),
-	     QString("Unable to create an administrator entry for %1.").arg
-	     (adminStr), query.lastError().text(), __FILE__, __LINE__);
+	     QString("Unable to create or update the administrator entry "
+		     "for %1.").arg(adminStr), query.lastError().text(),
+	     __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
-      misc_functions::revokeAll(adminStr, db, errorstr);
-
-      if(!errorstr.isEmpty())
+      if(ucount == 0)
 	{
-	  progress.hide();
-	  addError
-	    (QString("Database Error"),
-	     QString("An error occurred while attempting to "
-		     "revoke privileges for %1.").arg
-	     (adminStr), errorstr, __FILE__, __LINE__);
-	  goto db_rollback;
+	  misc_functions::createOrDeleteDBAccount
+	    (adminStr, db, misc_functions::CREATE_USER, errorstr, str);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      progress.hide();
+	      addError
+		(QString("Database Error"),
+		 QString("An error occurred while attempting to "
+			 "create a database account for %1.").arg
+		 (adminStr), errorstr, __FILE__, __LINE__);
+	      goto db_rollback;
+	    }
 	}
-
-      misc_functions::createOrDeleteDBAccount
-	(adminStr, db, misc_functions::CREATE_USER, errorstr, str);
-
-      if(!errorstr.isEmpty())
+      else
 	{
-	  progress.hide();
-	  addError
-	    (QString("Database Error"),
-	     QString("An error occurred while attempting to "
-		     "create a database account for %1.").arg
-	     (adminStr), errorstr, __FILE__, __LINE__);
-	  goto db_rollback;
+	  misc_functions::revokeAll(adminStr, db, errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      progress.hide();
+	      addError
+		(QString("Database Error"),
+		 QString("An error occurred while attempting to "
+			 "revoke privileges for %1.").arg
+		 (adminStr), errorstr, __FILE__, __LINE__);
+	      goto db_rollback;
+	    }
 	}
 
       progress.setValue(i + 1);

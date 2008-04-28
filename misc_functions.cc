@@ -7,6 +7,34 @@
 extern qtbook *qmain;
 
 /*
+** -- userCount() --
+*/
+
+int misc_functions::userCount(const QString &userid,
+			      const QSqlDatabase &db,
+			      QString &errorstr)
+{
+  int count = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  querystr = QString("SELECT COUNT(usename) FROM pg_user WHERE "
+		     "usename = '%1'").arg(userid);
+
+  if(query.exec(querystr))
+    if(query.next())
+      count = query.value(0).toInt();
+
+  if(query.lastError().isValid())
+    {
+      count = -1;
+      errorstr = query.lastError().text();
+    }
+
+  return count;
+}
+
+/*
 ** -- getImage() --
 */
 
@@ -44,73 +72,68 @@ void misc_functions::revokeAll(const QString &userid,
 			       QString &errorstr)
 {
   int i = 0;
+  int count = 0;
   QString querystr = "";
   QSqlQuery query(db);
   QStringList objectlist;
 
-  querystr = QString("SELECT usename FROM pg_user WHERE "
-		     "usename = '%1'").arg(userid);
+  errorstr = "";
+  count = misc_functions::userCount(userid, db, errorstr);
 
-  if(query.exec(querystr))
+  if(count > 0)
     {
-      if(query.next())
-	i += 1;
+      objectlist << "admin"
+		 << "book"
+		 << "book_borrower"
+		 << "book_borrower_myoid_seq"
+		 << "book_borrower_vw"
+		 << "book_copy_info"
+		 << "book_copy_info_myoid_seq"
+		 << "book_myoid_seq"
+		 << "cd"
+		 << "cd_borrower"
+		 << "cd_borrower_myoid_seq"
+		 << "cd_borrower_vw"
+		 << "cd_copy_info"
+		 << "cd_copy_info_myoid_seq"
+		 << "cd_myoid_seq"
+		 << "cd_songs"
+		 << "dvd"
+		 << "dvd_borrower"
+		 << "dvd_borrower_myoid_seq"
+		 << "dvd_borrower_vw"
+		 << "dvd_copy_info"
+		 << "dvd_copy_info_myoid_seq"
+		 << "dvd_myoid_seq"
+		 << "magazine"
+		 << "magazine_borrower"
+		 << "magazine_borrower_myoid_seq"
+		 << "magazine_borrower_vw"
+		 << "magazine_copy_info"
+		 << "magazine_copy_info_myoid_seq"
+		 << "magazine_myoid_seq"
+		 << "member"
+		 << "member_history"
+		 << "member_history_myoid_seq"
+		 << "videogame"
+		 << "videogame_borrower"
+		 << "videogame_borrower_myoid_seq"
+		 << "videogame_borrower_vw"
+		 << "videogame_copy_info"
+		 << "videogame_copy_info_myoid_seq"
+		 << "videogame_myoid_seq";
 
-      if(i > 0)
+      for(i = 0; i < objectlist.size(); i++)
 	{
-	  objectlist << "admin"
-		     << "book"
-		     << "book_borrower"
-		     << "book_borrower_myoid_seq"
-		     << "book_borrower_vw"
-		     << "book_copy_info"
-		     << "book_copy_info_myoid_seq"
-		     << "book_myoid_seq"
-		     << "cd"
-		     << "cd_borrower"
-		     << "cd_borrower_myoid_seq"
-		     << "cd_borrower_vw"
-		     << "cd_copy_info"
-		     << "cd_copy_info_myoid_seq"
-		     << "cd_myoid_seq"
-		     << "cd_songs"
-		     << "dvd"
-		     << "dvd_borrower"
-		     << "dvd_borrower_myoid_seq"
-		     << "dvd_borrower_vw"
-		     << "dvd_copy_info"
-		     << "dvd_copy_info_myoid_seq"
-		     << "dvd_myoid_seq"
-		     << "magazine"
-		     << "magazine_borrower"
-		     << "magazine_borrower_myoid_seq"
-		     << "magazine_borrower_vw"
-		     << "magazine_copy_info"
-		     << "magazine_copy_info_myoid_seq"
-		     << "magazine_myoid_seq"
-		     << "member"
-		     << "member_history"
-		     << "member_history_myoid_seq"
-		     << "videogame"
-		     << "videogame_borrower"
-		     << "videogame_borrower_myoid_seq"
-		     << "videogame_borrower_vw"
-		     << "videogame_copy_info"
-		     << "videogame_copy_info_myoid_seq"
-		     << "videogame_myoid_seq";
+	  querystr = QString
+	    ("REVOKE ALL ON %1 FROM %2").arg
+	    (objectlist[i]).arg(userid);
 
-	  for(i = 0; i < objectlist.size(); i++)
-	    {
-	      querystr = QString
-		("REVOKE ALL ON %1 FROM %2").arg
-		(objectlist[i]).arg(userid);
-
-	      if(!query.exec(querystr))
-		break;
-	    }
-
-	  objectlist.clear();
+	  if(!query.exec(querystr))
+	    break;
 	}
+
+      objectlist.clear();
     }
 
   if(query.lastError().isValid())
@@ -128,6 +151,7 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 					     const QString &roles)
 {
   int i = 0;
+  int count = 0;
   QString querystr = "";
   QSqlQuery query(db);
   QStringList privlist;
@@ -144,27 +168,20 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
       ** Does the user exist?
       */
 
-      querystr = QString("SELECT usename FROM pg_user WHERE "
-			 "usename = '%1'").arg(userid);
+      count = misc_functions::userCount(userid, db, errorstr);
 
-      if(query.exec(querystr))
+      if(count == 0)
 	{
-	  if(query.next())
-	    i += 1;
+	  if(roles.contains("administrator"))
+	    querystr = QString
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
+	       "createuser").arg(userid);
+	  else
+	    querystr = QString
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg
+	      (userid);
 
-	  if(i == 0)
-	    {
-	      if(roles.contains("administrator"))
-		querystr = QString
-		  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
-		   "createuser").arg(userid);
-	      else
-		querystr = QString
-		  ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg
-		  (userid);
-
-	      (void) query.exec(querystr);
-	    }
+	  (void) query.exec(querystr);
 	}
     }
 
