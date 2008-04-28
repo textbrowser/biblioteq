@@ -1,0 +1,272 @@
+<ui version="4.0" >
+ <class>adminBrowser</class>
+ <widget class="QMainWindow" name="adminBrowser" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>600</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Times</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle" >
+   <string>BiblioteQ: Administrator Browser</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <item>
+     <widget class="QFrame" name="frame" >
+      <property name="frameShape" >
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QTableWidget" name="table" >
+         <property name="font" >
+          <font>
+           <family>Times</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy" >
+          <enum>Qt::StrongFocus</enum>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::DoubleClicked</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior" >
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="cornerButtonEnabled" >
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text" >
+           <string>ID</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Administrator</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Circulation</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Librarian</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Membership</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QToolButton" name="addButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Add Administrator</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/add.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="deleteButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Delete Selected Administrator</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/remove.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="saveButton" >
+        <property name="toolTip" >
+         <string>Save Changes</string>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/save.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="reloadButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Refresh List</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/reload.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="cancelButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Close Browser</string>
+        </property>
+        <property name="icon" >
+         <iconset>icons.d/32x32/cancel.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+ </widget>
+ <tabstops>
+  <tabstop>table</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>reloadButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>adminBrowser</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>856</x>
+     <y>579</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>443</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
