@@ -18,6 +18,11 @@ int misc_functions::userCount(const QString &userid,
   QString querystr = "";
   QSqlQuery query(db);
 
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return 0; // Users are not supported.
+
   querystr = QString("SELECT COUNT(usename) FROM pg_user WHERE "
 		     "usename = '%1'").arg(userid);
 
@@ -64,6 +69,64 @@ QImage misc_functions::getImage(const QString &oid,
 }
 
 /*
+** -- grantPrivs() --
+*/
+
+void misc_functions::grantPrivs(const QString &userid,
+				const QString &roles,
+				const QSqlDatabase &db,
+				QString &errorstr)
+{
+  int i = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+  QStringList privlist;
+  QStringList objectlist;
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
+  privlist << "SELECT"
+	   << "SELECT"
+	   << "SELECT"
+	   << "SELECT"
+	   << "SELECT"
+	   << "SELECT";
+  objectlist << "admin"
+	     << "cd_borrower_vw"
+	     << "dvd_borrower_vw"
+	     << "book_borrower_vw"
+	     << "magazine_borrower_vw"
+	     << "videogame_borrower_vw";
+
+  if(roles.contains("circulation"))
+    {
+    }
+
+  if(roles.contains("librarian"))
+    {
+    }
+
+  if(roles.contains("membership"))
+    {
+    }
+
+  for(i = 0; i < objectlist.size(); i++)
+    {
+      querystr = QString("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
+	(objectlist[i]).arg(userid);
+
+      if(!query.exec(querystr))
+	break;
+    }
+
+  privlist.clear();
+  objectlist.clear();
+}
+
+/*
 ** -- revokeAll() --
 */
 
@@ -78,6 +141,10 @@ void misc_functions::revokeAll(const QString &userid,
   QStringList objectlist;
 
   errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
   count = misc_functions::userCount(userid, db, errorstr);
 
   if(count > 0)
@@ -154,7 +221,6 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
   int count = 0;
   QString querystr = "";
   QSqlQuery query(db);
-  QStringList privlist;
   QStringList objectlist;
 
   errorstr = "";
@@ -234,20 +300,9 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 		  roles.contains("librarian") ||
 		  roles.contains("membership"))
 	    {
-	      objectlist << "admin";
-	      privlist << "SELECT";
-
-	      if(roles.contains("circulation"))
-		{
-		}
-
-	      if(roles.contains("librarian"))
-		{
-		}
-
-	      if(roles.contains("membership"))
-		{
-		}
+	      /*
+	      ** The method grantPrivs() grants the necessary privileges.
+	      */	      
 	    }
 	  else
 	    objectlist << "admin"
@@ -339,9 +394,11 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 	      else if(roles.contains("circulation") ||
 		      roles.contains("librarian") ||
 		      roles.contains("membership"))
-		querystr = QString
-		  ("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
-		  (objectlist[i]).arg(userid);
+		{
+		  /*
+		  ** The method grantPrivs() grants the necessary privileges.
+		  */
+		}
 	      else
 		querystr = QString
 		  ("GRANT SELECT ON %1 TO %2").arg
@@ -356,8 +413,12 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 	    break;
 	}
 
-      privlist.clear();
       objectlist.clear();
+
+      if(action == CREATE_USER && !query.lastError().isValid())
+	if(roles.contains("circulation") || roles.contains("librarian") ||
+	   roles.contains("membership"))
+	  grantPrivs(userid, roles, db, errorstr);
     }
 
   if(action == DELETE_USER)

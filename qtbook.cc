@@ -7392,7 +7392,20 @@ void qtbook::slotSaveAdministrators(void)
 	      addError
 		(QString("Database Error"),
 		 QString("An error occurred while attempting to "
-			 "revoke privileges for %1.").arg
+			 "revoke privileges from %1.").arg
+		 (adminStr), errorstr, __FILE__, __LINE__);
+	      goto db_rollback;
+	    }
+
+	  misc_functions::grantPrivs(adminStr, str, db, errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      progress.hide();
+	      addError
+		(QString("Database Error"),
+		 QString("An error occurred while attempting to "
+			 "grant privileges to %1.").arg
 		 (adminStr), errorstr, __FILE__, __LINE__);
 	      goto db_rollback;
 	    }

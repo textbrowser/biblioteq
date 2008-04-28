@@ -47,6 +47,8 @@ class misc_functions
 			       const QString &, const QString &, QString &);
   static void revokeAll(const QString &, const QSqlDatabase &,
 			QString &);
+  static void grantPrivs(const QString &, const QString &,
+			 const QSqlDatabase &, QString &);
   static void savePassword(const QString &, const QSqlDatabase &,
 			   const QString &, QString &);
   static void saveQuantity(const QSqlDatabase &, const QString &,
