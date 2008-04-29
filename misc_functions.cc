@@ -166,6 +166,9 @@ void misc_functions::grantPrivs(const QString &userid,
 
   privlist.clear();
   objectlist.clear();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
 }
 
 /*
@@ -346,7 +349,7 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 	      ** The method grantPrivs() grants the necessary privileges.
 	      */	      
 	    }
-	  else
+	  else // Member.
 	    objectlist << "admin"
 		       << "book"
 		       << "public.book_myoid_seq"
@@ -441,7 +444,7 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 		  ** The method grantPrivs() grants the necessary privileges.
 		  */
 		}
-	      else
+	      else // Member.
 		querystr = QString
 		  ("GRANT SELECT ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
@@ -486,7 +489,6 @@ void misc_functions::savePassword(const QString &userid,
   QSqlQuery query(db);
 
   errorstr = "";
-  querystr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.

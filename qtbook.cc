@@ -6989,10 +6989,8 @@ void qtbook::slotAddAdmin(void)
 	else
 	  {
 	    ab.table->setCellWidget(ab.table->rowCount() - 1, i, checkBox);
-
-	    if(i == 1)
-	      connect(checkBox, SIGNAL(stateChanged(int)), this,
-		      SLOT(slotAdminCheckBoxClicked(int)));
+	    connect(checkBox, SIGNAL(stateChanged(int)), this,
+		    SLOT(slotAdminCheckBoxClicked(int)));
 	  }
       }
       
@@ -7040,28 +7038,32 @@ void qtbook::slotDeleteAdmin(void)
 void qtbook::slotAdminCheckBoxClicked(int state)
 {
   int i = 0;
+  int j = 0;
   int row = -1;
+  int column = -1;
   QCheckBox *box = qobject_cast<QCheckBox *> (sender());
 
   (void) state;
-  (void) box;
 
   for(i = 0; i < ab.table->rowCount(); i++)
-    if(ab.table->cellWidget(i, 1) == box)
-      {
-	row = i;
-	break;
-      }
+    for(j = 1; j < ab.table->columnCount(); j++)
+      if(ab.table->cellWidget(i, j) == box)
+	{
+	  row = i;
+	  column = j;
+	  break;
+	}
 
   if(row > -1)
-    for(i = 2; i < ab.table->columnCount(); i++)
+    if(column == 1)
+      {
+	for(i = 2; i < ab.table->columnCount(); i++)
+	  if(box->isChecked())
+	    ((QCheckBox *) ab.table->cellWidget(row, i))->setChecked(false);
+      }
+    else
       if(box->isChecked())
-	{
-	  ((QCheckBox *) ab.table->cellWidget(row, i))->setChecked(false);
-	  ((QCheckBox *) ab.table->cellWidget(row, i))->setEnabled(false);
-	}
-      else
-	((QCheckBox *) ab.table->cellWidget(row, i))->setEnabled(true);
+	((QCheckBox *) ab.table->cellWidget(row, 1))->setChecked(false);
 }
 
 /*
@@ -7143,12 +7145,7 @@ void qtbook::slotRefreshAdminList(void)
 	  {
 	    str = query.value(0).toString();
 	    item->setText(str);
-
-	    if(str != getAdminID())
-	      item->setFlags(item->flags() | Qt::ItemIsEditable);
-	    else
-	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	    str = query.value(1).toString();
 
 	    if(selectedBranch["database_type"] == "sqlite")
@@ -7174,23 +7171,15 @@ void qtbook::slotRefreshAdminList(void)
 		}
 	      else if((checkBox = new QCheckBox()) != NULL)
 		{
-		  columnname = ab.table->horizontalHeaderItem(j)->
-		    text().toLower();
-		  checkBox->setChecked(false);
-		  checkBox->setEnabled(false);
-
-		  if(roles.contains("administrator") &&
-		     query.value(0).toString() != getAdminID())
-		    checkBox->setEnabled(true);
-
-		  if(query.value(1).toString().toLower().contains
-		     ("administrator") && j > 1)
-		    checkBox->setEnabled(false);
+		  columnname = ab.table->horizontalHeaderItem
+		    (j)->text().toLower();
 
 		  if(str.toLower().contains(columnname))
 		    checkBox->setChecked(true);
 
-		  if(j == 1 && checkBox->isEnabled())
+		  if(query.value(0).toString() == getAdminID())
+		    checkBox->setEnabled(false);
+		  else
 		    connect(checkBox, SIGNAL(stateChanged(int)), this,
 			    SLOT(slotAdminCheckBoxClicked(int)));
 
@@ -7338,6 +7327,10 @@ void qtbook::slotSaveAdministrators(void)
 	  }
 
       str = str.trimmed();
+
+      if(str.isEmpty())
+	str = "none";
+
       ucount = misc_functions::userCount(adminStr, getDB(), errorstr);
 
       if(ucount == 0)

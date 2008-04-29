@@ -11,8 +11,6 @@ ALTER TABLE videogame ADD offsystem_url TEXT;
 
 /* Release 5.01 */
 
-UPDATE admin SET roles = 'administrator' WHERE roles = 'all';
-
 DROP VIEW cd_borrower_vw;
 DROP VIEW dvd_borrower_vw;
 DROP VIEW book_borrower_vw;
