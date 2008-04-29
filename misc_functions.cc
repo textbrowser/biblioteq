@@ -107,6 +107,48 @@ void misc_functions::grantPrivs(const QString &userid,
 
   if(roles.contains("librarian"))
     {
+      privlist << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE";
+      objectlist << "book"
+		 << "book_copy_info"
+		 << "book_copy_info_myoid_seq"
+		 << "book_myoid_seq"
+		 << "cd"
+		 << "cd_copy_info"
+		 << "cd_copy_info_myoid_seq"
+		 << "cd_myoid_seq"
+		 << "cd_songs"
+		 << "dvd"
+		 << "dvd_copy_info"
+		 << "dvd_copy_info_myoid_seq"
+		 << "dvd_myoid_seq"
+		 << "magazine"
+		 << "magazine_copy_info"
+		 << "magazine_copy_info_myoid_seq"
+		 << "magazine_myoid_seq"
+		 << "videogame"
+		 << "videogame_copy_info"
+		 << "videogame_copy_info_myoid_seq"
+		 << "videogame_myoid_seq";
     }
 
   if(roles.contains("membership"))
@@ -785,7 +827,7 @@ bool misc_functions::isCheckedOut(const QSqlDatabase &db,
   if(itemType == "journal")
     itemType = "magazine";
 
-  querystr = QString("SELECT COUNT(myoid) FROM %1_borrower "
+  querystr = QString("SELECT COUNT(myoid) FROM %1_borrower_vw "
 		     "WHERE item_oid = ?").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
@@ -832,7 +874,7 @@ bool misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   if(itemType == "journal")
     itemType = "magazine";
 
-  querystr = QString("SELECT count(copyid) FROM %1_borrower WHERE "
+  querystr = QString("SELECT count(copyid) FROM %1_borrower_vw WHERE "
 		     "copyid = ? AND item_oid = ?").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, copyid);
@@ -908,7 +950,7 @@ int misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
   if(itemType == "journal")
     itemType = "magazine";
 
-  querystr = QString("SELECT MAX(copy_number) FROM %1_borrower "
+  querystr = QString("SELECT MAX(copy_number) FROM %1_borrower_vw "
 		     "WHERE item_oid = ?").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
@@ -951,7 +993,7 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
 		     "WHERE copyid = ? AND item_oid = ? "
-		     "AND copyid NOT IN (SELECT copyid FROM %1_borrower "
+		     "AND copyid NOT IN (SELECT copyid FROM %1_borrower_vw "
 		     "WHERE item_oid = ?)").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, copyid);

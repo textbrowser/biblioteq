@@ -346,6 +346,8 @@ CREATE TABLE admin
 
 CREATE VIEW cd_borrower_vw AS
 SELECT	 item_oid,
+	 myoid,
+	 copyid,
 	 copy_number,
 	 reserved_date,
 	 duedate
@@ -353,14 +355,17 @@ FROM	 cd_borrower;
 
 CREATE VIEW dvd_borrower_vw AS
 SELECT	 item_oid,
+	 myoid,
+	 copyid,
 	 copy_number,
 	 reserved_date,
 	 duedate
 FROM	 dvd_borrower;
 
-
 CREATE VIEW book_borrower_vw AS
 SELECT	 item_oid,
+	 myoid,
+	 copyid,
 	 copy_number,
 	 reserved_date,
 	 duedate
@@ -368,6 +373,8 @@ FROM	 book_borrower;
 
 CREATE VIEW magazine_borrower_vw AS
 SELECT	 item_oid,
+	 myoid,
+	 copyid,
 	 copy_number,
 	 reserved_date,
 	 duedate
@@ -375,6 +382,8 @@ FROM	 magazine_borrower;
 
 CREATE VIEW videogame_borrower_vw AS
 SELECT	 item_oid,
+	 myoid,
+	 copyid,
 	 copy_number,
 	 reserved_date,
 	 duedate
