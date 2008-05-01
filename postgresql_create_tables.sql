@@ -428,5 +428,6 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_borrower TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_borrower_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;
 
 INSERT INTO admin VALUES ('xbook_admin', 'administrator');

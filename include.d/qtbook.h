@@ -126,7 +126,6 @@ class qtbook: public QMainWindow
 
  private:
   int previousTypeFilter;
-  bool supportsTransactions;
   QString roles;
   QString typefilter;
   QStringList deletedAdmins;

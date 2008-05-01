@@ -971,6 +971,18 @@ void qtbook_book::modify(const int state)
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
+      misc_functions::highlightWidget
+	(id.id, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(id.isbn13, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(id.title, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(id.publisher->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(id.author->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(id.description->viewport(), QColor(238, 216, 174));
     }
   else
     {
@@ -1206,6 +1218,18 @@ void qtbook_book::insert(void)
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
   id.url->clear();
+  misc_functions::highlightWidget
+    (id.id, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (id.isbn13, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (id.title, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (id.publisher->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (id.author->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (id.description->viewport(), QColor(238, 216, 174));
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
   p = parentWid->mapToGlobal(p);

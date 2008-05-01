@@ -956,6 +956,14 @@ void qtbook_magazine::modify(const int state)
       ma.resetButton->setVisible(true);
       ma.frontButton->setVisible(true);
       ma.backButton->setVisible(true);
+      misc_functions::highlightWidget
+	(ma.id, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(ma.title, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(ma.publisher->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(ma.description->viewport(), QColor(238, 216, 174));
     }
   else
     {
@@ -1183,6 +1191,14 @@ void qtbook_magazine::insert(void)
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
   ma.url->clear();
+  misc_functions::highlightWidget
+    (ma.id, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (ma.title, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (ma.publisher->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (ma.description->viewport(), QColor(238, 216, 174));
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
   p = parentWid->mapToGlobal(p);

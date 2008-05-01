@@ -231,4 +231,5 @@
      (DONE)
 125. If an item has been deleted, remove its entry from the member history
      table. (DONE)
-126. Do not allow duplicate administrators.
+126. Do not allow duplicate administrator ids. (DONE)
+127. Highlight required fields.

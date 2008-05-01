@@ -898,6 +898,16 @@ void qtbook_videogame::modify(const int state)
       vg.resetButton->setVisible(true);
       vg.frontButton->setVisible(true);
       vg.backButton->setVisible(true);
+      misc_functions::highlightWidget
+	(vg.id, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(vg.title, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(vg.publisher->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(vg.developer->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(vg.description->viewport(), QColor(238, 216, 174));
     }
   else
     {
@@ -1125,6 +1135,16 @@ void qtbook_videogame::insert(void)
   vg.monetary_units->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
   vg.url->clear();
+  misc_functions::highlightWidget
+    (vg.id, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (vg.title, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (vg.publisher->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (vg.developer->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (vg.description->viewport(), QColor(238, 216, 174));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
   p = parentWid->mapToGlobal(p);

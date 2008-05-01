@@ -249,7 +249,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction("Reset &Location"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  supportsTransactions = false;
   ui.setupUi(this);
   bb.setupUi(members_diag);
   userinfo.setupUi(userinfo_diag);
@@ -538,29 +537,38 @@ void qtbook::adminSetup(void)
   if(status_bar_label != NULL)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
-      status_bar_label->setToolTip("Administrator Mode");
+
+      if(roles.contains("administrator"))
+	status_bar_label->setToolTip("Administrator Mode");
+      else if(roles == "circulation")
+	status_bar_label->setToolTip("Circulation Mode");
+      else if(roles == "librarian")
+	status_bar_label->setToolTip("Librarian Mode");
+      else if(roles == "membership")
+	status_bar_label->setToolTip("Membership Mode");
+      else
+	status_bar_label->setToolTip("Privileged Mode");
     }
-
-  if(db.isOpen() && supportsTransactions)
-    if(roles.contains("administrator") || roles.contains("librarian"))
-      {
-	ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
-	connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-		this, SLOT(slotModify(void)));
-	updateItemWindows();
-      }
-
-  if(roles.contains("administrator") || roles.contains("librarian"))
-    ui.deleteTool->setEnabled(db.isOpen());
-
-  if(roles.contains("administrator") || roles.contains("circulation"))
-    ui.overdueButton->setEnabled(db.isOpen());
 
   if(roles.contains("administrator") || roles.contains("librarian"))
     {
-      ui.actionDeleteEntry->setEnabled(db.isOpen());
-      ui.createTool->setEnabled(db.isOpen());
-      ui.modifyTool->setEnabled(db.isOpen() && supportsTransactions);
+      ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+      connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotModify(void)));
+      updateItemWindows();
+    }
+
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    ui.deleteTool->setEnabled(true);
+
+  if(roles.contains("administrator") || roles.contains("circulation"))
+    ui.overdueButton->setEnabled(true);
+
+  if(roles.contains("administrator") || roles.contains("librarian"))
+    {
+      ui.actionDeleteEntry->setEnabled(true);
+      ui.createTool->setEnabled(true);
+      ui.modifyTool->setEnabled(true);
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
@@ -570,35 +578,35 @@ void qtbook::adminSetup(void)
     }
   else
     {
-      ui.detailsTool->setEnabled(db.isOpen());
-      ui.actionViewDetails->setEnabled(db.isOpen());
+      ui.detailsTool->setEnabled(true);
+      ui.actionViewDetails->setEnabled(true);
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
-    ui.actionModifyEntry->setEnabled(db.isOpen() && supportsTransactions);
+    ui.actionModifyEntry->setEnabled(true);
 
   if(roles.contains("administrator") || roles.contains("circulation") ||
      roles.contains("membership"))
     {
-      ui.userTool->setEnabled(db.isOpen());
-      ui.actionMembersBrowser->setEnabled(db.isOpen());
+      ui.userTool->setEnabled(true);
+      ui.actionMembersBrowser->setEnabled(true);
     }
 
   if(roles.contains("administrator") || roles.contains("circulation"))
-    ui.reserveTool->setEnabled(db.isOpen());
+    ui.reserveTool->setEnabled(true);
 
   if(roles.contains("administrator") || roles.contains("librarian"))
-    ui.actionAutoPopulateOnCreation->setEnabled(db.isOpen());
+    ui.actionAutoPopulateOnCreation->setEnabled(true);
 
   if(selectedBranch["database_type"] != "sqlite")
     ui.actionConfigureAdministratorPrivileges->setEnabled
-      (db.isOpen() && roles.contains("administrator"));
+      (roles.contains("administrator"));
 
   /*
   ** Hide certain fields in the Member's Browser.
   */
 
-  if(roles.contains("membership"))
+  if(roles == "membership")
     {
       bb.historyButton->setEnabled(false);
       bb.listButton->setEnabled(false);
@@ -607,7 +615,7 @@ void qtbook::adminSetup(void)
       bb.overdueButton->setEnabled(false);
     }
 
-  if(roles.contains("circulation") || roles.contains("librarian"))
+  if(roles == "circulation" || roles == "librarian")
     {
       bb.addButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
@@ -4187,14 +4195,20 @@ void qtbook::slotConnectDB(void)
   else
     {
       if(!db.driver()->hasFeature(QSqlDriver::Transactions))
-	QMessageBox::warning
-	  (branch_diag, "BiblioteQ: Database Warning",
-	   "The current database driver that you're using "
-	   "does not support transactions. As a result, "
-	   "some options will be "
-	   "unavailable. Please upgrade your database and/or driver.");
-      else
-	supportsTransactions = true;
+	{
+	  error = true;
+	  addError(QString("Database Error"),
+		   QString("The current database driver that you're using "
+			   "does not support transactions. "
+			   "Please upgrade your database and/or driver."),
+		   db.lastError().text(),
+		   __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (branch_diag, "BiblioteQ: Database Error",
+	     "The current database driver that you're using "
+	     "does not support transactions. "
+	     "Please upgrade your database and/or driver.");
+	}
     }
 
   if(tmphash["database_type"] != "sqlite")
@@ -4222,7 +4236,7 @@ void qtbook::slotConnectDB(void)
 	       "administrator login in a non-administrator mode.");
 	}
     }
-  else
+  else if(!error)
     roles = "administrator";
 
   tmphash.clear();
@@ -4299,7 +4313,6 @@ void qtbook::slotDisconnect(void)
   history_diag->hide();
   customquery_diag->hide();
   resetMembersBrowser();
-  supportsTransactions = false;
   ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
@@ -4421,8 +4434,6 @@ void qtbook::resetMembersBrowser(void)
 
 void qtbook::slotShowMembersBrowser(void)
 {
-  QPoint p(0, 0);
-
   bb.filter->clear();
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
@@ -4435,9 +4446,8 @@ void qtbook::slotShowMembersBrowser(void)
       members_diag->resize(members_diag->sizeHint());
     }
 
-  p = mapToGlobal(p);
-  members_diag->move(p.x() + width() / 2  - members_diag->width() / 2,
-		     p.y() + height() / 2 - members_diag->height() / 2);
+  members_diag->move(x() + width() / 2  - members_diag->width() / 2,
+		     y() + height() / 2 - members_diag->height() / 2);
   members_diag->raise();
   members_diag->show();
 }
@@ -6679,8 +6689,16 @@ void qtbook::slotShowHistory(void)
     (QHeaderView::ResizeToContents);
   history.nextTool->setVisible(members_diag->isVisible());
   history.prevTool->setVisible(members_diag->isVisible());
-  history_diag->move(x() + width() / 2  - history_diag->width() / 2,
-		     y() + height() / 2 - history_diag->height() / 2);
+
+  if(members_diag->isVisible())
+    history_diag->move(members_diag->x() + width() / 2  -
+		       history_diag->width() / 2,
+		       members_diag->y() + height() / 2 -
+		       history_diag->height() / 2);
+  else
+    history_diag->move(x() + width() / 2  - history_diag->width() / 2,
+		       y() + height() / 2 - history_diag->height() / 2);
+
   history_diag->raise();
   history_diag->show();
 }
@@ -6932,23 +6950,11 @@ QString qtbook::sqlitefile(void)
 
 void qtbook::slotShowAdminDialog(void)
 {
-  if(roles.contains("administrator"))
-    {
-      ab.addButton->setEnabled(true);
-      ab.deleteButton->setEnabled(true);
-      ab.saveButton->setEnabled(true);
-    }
-  else
-    {
-      ab.addButton->setEnabled(false);
-      ab.deleteButton->setEnabled(false);
-      ab.saveButton->setEnabled(false);
-    }
-
   admin_diag->move(x() + width() / 2  - admin_diag->width() / 2,
 		   y() + height() / 2 - admin_diag->height() / 2);
   admin_diag->raise();
   admin_diag->show();
+  slotRefreshAdminList();
 }
 
 /*
@@ -7015,7 +7021,8 @@ void qtbook::slotDeleteAdmin(void)
 
   str = ab.table->item(row, 0)->text().trimmed();
 
-  if(str == getAdminID())
+  if((ab.table->item(row, 0)->flags() & Qt::ItemIsEditable) == 0 &&
+     str == getAdminID())
     {
       QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
 			    "As an administrator, you may not remove "
@@ -7224,15 +7231,17 @@ void qtbook::slotSaveAdministrators(void)
   QString querystr = "";
   QCheckBox *checkBox = NULL;
   QSqlQuery query(qmain->getDB());
+  QStringList tmplist;
   QProgressDialog progress(admin_diag);
 
   /*
-  ** 1. Create a database transaction.
-  ** 2. Delete required entries from the admin table.
-  ** 3. Remove all deleted database accounts.
-  ** 4. Create new entries in the admin table.
-  ** 5. Create new database accounts with correct privileges.
-  ** 6. Commit or rollback the current database transaction.
+  ** 1. Prohibit duplicate administrator ids.
+  ** 2. Create a database transaction.
+  ** 3. Delete required entries from the admin table.
+  ** 4. Remove all deleted database accounts.
+  ** 5. Create new entries in the admin table.
+  ** 6. Create new database accounts with correct privileges.
+  ** 7. Commit or rollback the current database transaction.
   */
 
   /*
@@ -7240,6 +7249,24 @@ void qtbook::slotSaveAdministrators(void)
   */
 
   ab.saveButton->setFocus();
+
+  for(i = 0; i < ab.table->rowCount(); i++)
+    if(ab.table->item(i, 0)->text().trimmed().isEmpty())
+      continue;
+    else if(!tmplist.contains(ab.table->item(i, 0)->text().trimmed()))
+      tmplist.append(ab.table->item(i, 0)->text().trimmed());
+    else
+      {
+	tmplist.clear();
+	ab.table->selectRow(i);
+	ab.table->horizontalScrollBar()->setValue(i);
+	QMessageBox::critical
+	  (admin_diag, "BiblioteQ: User Error",
+	   "Duplicate administrator ids are not allowed.");
+	return;
+      }
+
+  tmplist.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!getDB().transaction())

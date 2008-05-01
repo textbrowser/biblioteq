@@ -989,6 +989,16 @@ void qtbook_cd::modify(const int state)
       trd.deleteButton->setVisible(true);
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
+      misc_functions::highlightWidget
+	(cd.id, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(cd.title, QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(cd.recording_label->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(cd.artist->viewport(), QColor(238, 216, 174));
+      misc_functions::highlightWidget
+	(cd.description->viewport(), QColor(238, 216, 174));
     }
   else
     {
@@ -1250,7 +1260,17 @@ void qtbook_cd::insert(void)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
-  cd.url->clear();
+  cd.url->clear();      
+  misc_functions::highlightWidget
+    (cd.id, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (cd.title, QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (cd.recording_label->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (cd.artist->viewport(), QColor(238, 216, 174));
+  misc_functions::highlightWidget
+    (cd.description->viewport(), QColor(238, 216, 174));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
   p = parentWid->mapToGlobal(p);
