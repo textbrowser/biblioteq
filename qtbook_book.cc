@@ -261,7 +261,7 @@ void qtbook_book::slotGo(void)
 	}
 
       str = id.author->toPlainText().trimmed();
-      id.author->setMultipleLinks("book_search", "author", str);
+      id.author->setPlainText(str);
 
       if(id.author->toPlainText().isEmpty())
 	{
@@ -283,9 +283,7 @@ void qtbook_book::slotGo(void)
 	}
 
       str = id.publisher->toPlainText().trimmed();
-      id.publisher->setText
-	(QString("<a href=\"book_search?publisher?%1\">" + str + "</a>").arg
-	 (str));
+      id.publisher->setPlainText(str);
 
       if(id.publisher->toPlainText().isEmpty())
 	{
@@ -313,9 +311,7 @@ void qtbook_book::slotGo(void)
       str = id.deweynum->text().trimmed();
       id.deweynum->setText(str);
       str = id.url->toPlainText().trimmed();
-
-      if(!str.isEmpty())
-	id.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+      id.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE book SET id = ?, "
@@ -553,14 +549,17 @@ void qtbook_book::slotGo(void)
 		}
 	    }
 
-	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	    textfield->setPalette(id.isbn13->palette());
-
+	  id.id->setPalette(te_orig_pal);
+	  id.isbn13->setPalette(te_orig_pal);
 	  id.edition->setPalette(cb_orig_pal);
 	  id.publication_date->setPalette(dt_orig_pal);
 	  id.author->viewport()->setPalette(te_orig_pal);
+	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.publisher->viewport()->setPalette(te_orig_pal);
+	  id.lcnum->setPalette(id.url->viewport()->palette());
+	  id.callnum->setPalette(id.url->viewport()->palette());
+	  id.deweynum->setPalette(id.url->viewport()->palette());
 	  oldq = id.quantity->value();
 
 	  if(id.front_image->image.isNull())
@@ -568,6 +567,17 @@ void qtbook_book::slotGo(void)
 
 	  if(id.back_image->image.isNull())
 	    id.back_image->imageFormat = "";
+
+	  id.author->setMultipleLinks("book_search", "author",
+				      id.author->toPlainText());
+	  id.publisher->setText
+	    (QString("<a href=\"book_search?publisher?%1\">" +
+		     id.publisher->toPlainText() + "</a>").arg
+	     (id.publisher->toPlainText()));
+
+	  if(!id.url->toPlainText().isEmpty())
+	    id.url->setText(QString("<a href=\"%1\">%1</a>").arg
+			    (id.url->toPlainText()));
 
 	  qapp->restoreOverrideCursor();
 
@@ -972,17 +982,18 @@ void qtbook_book::modify(const int state)
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
       misc_functions::highlightWidget
-	(id.id, QColor(238, 216, 174));
+	(id.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.isbn13, QColor(238, 216, 174));
+	(id.isbn13, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.title, QColor(238, 216, 174));
+	(id.title, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.publisher->viewport(), QColor(238, 216, 174));
+	(id.publisher->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.author->viewport(), QColor(238, 216, 174));
+	(id.author->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.description->viewport(), QColor(238, 216, 174));
+	(id.description->viewport(), QColor(255, 248, 220));
+      te_orig_pal = id.id->palette();
     }
   else
     {
@@ -1219,17 +1230,18 @@ void qtbook_book::insert(void)
   id.binding->setCurrentIndex(0);
   id.url->clear();
   misc_functions::highlightWidget
-    (id.id, QColor(238, 216, 174));
+    (id.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (id.isbn13, QColor(238, 216, 174));
+    (id.isbn13, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (id.title, QColor(238, 216, 174));
+    (id.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (id.publisher->viewport(), QColor(238, 216, 174));
+    (id.publisher->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (id.author->viewport(), QColor(238, 216, 174));
+    (id.author->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (id.description->viewport(), QColor(238, 216, 174));
+    (id.description->viewport(), QColor(255, 248, 220));
+  te_orig_pal = id.id->palette();
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1258,13 +1270,13 @@ void qtbook_book::slotReset(void)
       else if(name.contains("ISBN-10"))
 	{
 	  id.id->clear();
-	  id.id->setPalette(id.isbn13->palette());
+	  id.id->setPalette(te_orig_pal);
 	  id.id->setFocus();
 	}
       else if(name.contains("Title"))
 	{
 	  id.title->clear();
-	  id.title->setPalette(id.isbn13->palette());
+	  id.title->setPalette(te_orig_pal);
 	  id.title->setFocus();
 	}
       else if(name.contains("Edition"))
@@ -1341,24 +1353,25 @@ void qtbook_book::slotReset(void)
       else if(name.contains("ISBN-13"))
 	{
 	  id.isbn13->clear();
+	  id.isbn13->setPalette(te_orig_pal);
 	  id.isbn13->setFocus();
 	}
       else if(name.contains("LC Control Number"))
 	{
 	  id.lcnum->clear();
-	  id.lcnum->setPalette(id.isbn13->palette());
+	  id.lcnum->setPalette(id.url->viewport()->palette());
 	  id.lcnum->setFocus();
 	}
       else if(name.contains("Call Number"))
 	{
 	  id.callnum->clear();
-	  id.callnum->setPalette(id.isbn13->palette());
+	  id.callnum->setPalette(id.url->viewport()->palette());
 	  id.callnum->setFocus();
 	}
       else if(name.contains("Dewey Class Number"))
 	{
 	  id.deweynum->clear();
-	  id.deweynum->setPalette(id.isbn13->palette());
+	  id.deweynum->setPalette(id.url->viewport()->palette());
 	  id.deweynum->setFocus();
 	}
       else if(name.contains("OFFSYSTEM URL"))
@@ -1401,10 +1414,12 @@ void qtbook_book::slotReset(void)
       id.front_image->clear();
       id.back_image->clear();
       id.url->clear();
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	textfield->setPalette(id.isbn13->palette());
-
+      id.title->setPalette(te_orig_pal);
+      id.lcnum->setPalette(id.url->viewport()->palette());
+      id.deweynum->setPalette(id.url->viewport()->palette());
+      id.callnum->setPalette(id.url->viewport()->palette());
+      id.id->setPalette(te_orig_pal);
+      id.isbn13->setPalette(te_orig_pal);
       id.edition->setPalette(cb_orig_pal);
       id.publication_date->setPalette(dt_orig_pal);
       id.author->viewport()->setPalette(te_orig_pal);
@@ -1516,7 +1531,6 @@ void qtbook_book::slotQuery(void)
   QString etype = "";
   QString errorstr = "";
   QString searchstr = "";
-  QPalette pal;
   QStringList list;
   QStringList tmplist;
   QStringList removeList;
@@ -1641,8 +1655,7 @@ void qtbook_book::slotQuery(void)
 		      while(!removeList.isEmpty())
 			str = str.remove(removeList.takeFirst()).trimmed();
 
-		      id.author->setMultipleLinks("book_search", "author",
-						  str);
+		      id.author->setPlainText(str);
 		      misc_functions::highlightWidget
 			(id.author->viewport(), QColor(162, 205, 90));
 		    }
@@ -1744,9 +1757,7 @@ void qtbook_book::slotQuery(void)
 		      if(str.endsWith(","))
 			str = str.mid(0, str.length() - 1);
 
-		      id.publisher->setText
-			(QString("<a href=\"book_search?publisher?%1\">" +
-				 str + "</a>").arg(str));
+		      id.publisher->setPlainText(str);
 		      misc_functions::highlightWidget
 			(id.publisher->viewport(), QColor(162, 205, 90));
 		    }

@@ -258,9 +258,6 @@ void qtbook_cd::slotGo(void)
 	}
 
       str = cd.artist->toPlainText().trimmed();
-      cd.artist->setText
-	(QString("<a href=\"cd_search?artist?%1\">" + str + "</a>").arg
-	 (str));
 
       if(cd.artist->toPlainText().isEmpty())
 	{
@@ -290,9 +287,6 @@ void qtbook_cd::slotGo(void)
 	}
 
       str = cd.recording_label->toPlainText().trimmed();
-      cd.recording_label->setText
-	(QString("<a href=\"cd_search?recording_label?%1\">" +
-		 str + "</a>").arg(str));
 
       if(cd.recording_label->toPlainText().isEmpty())
 	{
@@ -315,9 +309,7 @@ void qtbook_cd::slotGo(void)
 	}
 
       str = cd.url->toPlainText().trimmed();
-
-      if(!str.isEmpty())
-	cd.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+      cd.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE cd SET "
@@ -576,6 +568,19 @@ void qtbook_cd::slotGo(void)
 
 	  if(cd.back_image->image.isNull())
 	    cd.back_image->imageFormat = "";
+
+	  cd.artist->setText
+	    (QString("<a href=\"cd_search?artist?%1\">" +
+		     cd.artist->toPlainText() + "</a>").arg
+	     (cd.artist->toPlainText()));
+	  cd.recording_label->setText
+	    (QString("<a href=\"cd_search?recording_label?%1\">" +
+		     cd.recording_label->toPlainText() + "</a>").arg
+	     (cd.recording_label->toPlainText()));
+
+	  if(!cd.url->toPlainText().isEmpty())
+	    cd.url->setText(QString("<a href=\"%1\">%1</a>").arg
+			    (cd.url->toPlainText()));
 
 	  qapp->restoreOverrideCursor();
 
@@ -990,15 +995,15 @@ void qtbook_cd::modify(const int state)
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
       misc_functions::highlightWidget
-	(cd.id, QColor(238, 216, 174));
+	(cd.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(cd.title, QColor(238, 216, 174));
+	(cd.title, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(cd.recording_label->viewport(), QColor(238, 216, 174));
+	(cd.recording_label->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(cd.artist->viewport(), QColor(238, 216, 174));
+	(cd.artist->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(cd.description->viewport(), QColor(238, 216, 174));
+	(cd.description->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -1262,15 +1267,15 @@ void qtbook_cd::insert(void)
   cd.format->setCurrentIndex(0);
   cd.url->clear();      
   misc_functions::highlightWidget
-    (cd.id, QColor(238, 216, 174));
+    (cd.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (cd.title, QColor(238, 216, 174));
+    (cd.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (cd.recording_label->viewport(), QColor(238, 216, 174));
+    (cd.recording_label->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (cd.artist->viewport(), QColor(238, 216, 174));
+    (cd.artist->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (cd.description->viewport(), QColor(238, 216, 174));
+    (cd.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
   p = parentWid->mapToGlobal(p);

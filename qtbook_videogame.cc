@@ -260,9 +260,7 @@ void qtbook_videogame::slotGo(void)
 	}
 
       str = vg.publisher->toPlainText().trimmed();
-      vg.publisher->setText
-	  (QString("<a href=\"videogame_search?publisher?%1\">" +
-		   str + "</a>").arg(str));
+      vg.publisher->setPlainText(str);
 
       if(vg.publisher->toPlainText().isEmpty())
 	{
@@ -284,9 +282,7 @@ void qtbook_videogame::slotGo(void)
 	}
 
       str = vg.url->toPlainText().trimmed();
-
-      if(!str.isEmpty())
-	vg.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+      vg.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE videogame SET id = ?, "
@@ -511,6 +507,15 @@ void qtbook_videogame::slotGo(void)
 
 	  if(vg.back_image->image.isNull())
 	    vg.back_image->imageFormat = "";
+
+	  vg.publisher->setText
+	    (QString("<a href=\"videogame_search?publisher?%1\">" +
+		     vg.publisher->toPlainText() + "</a>").arg
+	     (vg.publisher->toPlainText()));
+
+	  if(!vg.url->toPlainText().isEmpty())
+	    vg.url->setText(QString("<a href=\"%1\">%1</a>").arg
+			    (vg.url->toPlainText()));
 
 	  qapp->restoreOverrideCursor();
 
@@ -899,15 +904,15 @@ void qtbook_videogame::modify(const int state)
       vg.frontButton->setVisible(true);
       vg.backButton->setVisible(true);
       misc_functions::highlightWidget
-	(vg.id, QColor(238, 216, 174));
+	(vg.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(vg.title, QColor(238, 216, 174));
+	(vg.title, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(vg.publisher->viewport(), QColor(238, 216, 174));
+	(vg.publisher->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(vg.developer->viewport(), QColor(238, 216, 174));
+	(vg.developer->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(vg.description->viewport(), QColor(238, 216, 174));
+	(vg.description->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -1136,15 +1141,15 @@ void qtbook_videogame::insert(void)
   vg.rating->setCurrentIndex(0);
   vg.url->clear();
   misc_functions::highlightWidget
-    (vg.id, QColor(238, 216, 174));
+    (vg.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (vg.title, QColor(238, 216, 174));
+    (vg.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (vg.publisher->viewport(), QColor(238, 216, 174));
+    (vg.publisher->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (vg.developer->viewport(), QColor(238, 216, 174));
+    (vg.developer->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (vg.description->viewport(), QColor(238, 216, 174));
+    (vg.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
   p = parentWid->mapToGlobal(p);

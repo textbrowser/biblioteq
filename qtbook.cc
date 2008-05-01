@@ -465,11 +465,11 @@ qtbook::qtbook(void):QMainWindow()
   ** Highlight userinfo widgets.
   */
 
-  misc_functions::highlightWidget(userinfo.firstName, QColor(238, 216, 174));
-  misc_functions::highlightWidget(userinfo.lastName, QColor(238, 216, 174));
-  misc_functions::highlightWidget(userinfo.street, QColor(238, 216, 174));
-  misc_functions::highlightWidget(userinfo.city, QColor(238, 216, 174));
-  misc_functions::highlightWidget(userinfo.zip, QColor(238, 216, 174));
+  misc_functions::highlightWidget(userinfo.firstName, QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo.lastName, QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo.street, QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo.city, QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo.zip, QColor(255, 248, 220));
 }
 
 /*

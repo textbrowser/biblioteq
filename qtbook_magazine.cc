@@ -259,15 +259,6 @@ void qtbook_magazine::slotGo(void)
 
       str = ma.publisher->toPlainText().trimmed();
 
-      if(subType == "Journal")
-	ma.publisher->setText
-	  (QString("<a href=\"journal_search?publisher?%1\">" +
-		   str + "</a>").arg(str));
-      else
-	ma.publisher->setText
-	  (QString("<a href=\"magazine_search?publisher?%1\">" +
-		   str + "</a>").arg(str));
-
       if(ma.publisher->toPlainText().isEmpty())
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
@@ -294,9 +285,7 @@ void qtbook_magazine::slotGo(void)
       str = ma.deweynum->text().trimmed();
       ma.deweynum->setText(str);
       str = ma.url->toPlainText().trimmed();
-
-      if(!str.isEmpty())
-	ma.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+      ma.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE magazine SET "
@@ -540,9 +529,11 @@ void qtbook_magazine::slotGo(void)
 		}
 	    }
 
-	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	    textfield->setPalette(ma.id->palette());
-
+	  ma.id->setPalette(te_orig_pal);
+	  ma.lcnum->setPalette(ma.url->viewport()->palette());
+	  ma.callnum->setPalette(ma.url->viewport()->palette());
+	  ma.deweynum->setPalette(ma.url->viewport()->palette());
+	  ma.title->setPalette(te_orig_pal);
 	  ma.publication_date->setPalette(dt_orig_pal);
 	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
@@ -553,6 +544,21 @@ void qtbook_magazine::slotGo(void)
 
 	  if(ma.back_image->image.isNull())
 	    ma.back_image->imageFormat = "";
+
+	  if(subType == "Journal")
+	    ma.publisher->setText
+	      (QString("<a href=\"journal_search?publisher?%1\">" +
+		       ma.publisher->toPlainText() + "</a>").arg
+	       (ma.publisher->toPlainText()));
+	  else
+	    ma.publisher->setText
+	      (QString("<a href=\"magazine_search?publisher?%1\">" +
+		       ma.publisher->toPlainText() + "</a>").arg
+	       (ma.publisher->toPlainText()));
+
+	  if(!ma.url->toPlainText().isEmpty())
+	    ma.url->setText(QString("<a href=\"%1\">%1</a>").arg
+			    (ma.url->toPlainText()));
 
 	  qapp->restoreOverrideCursor();
 
@@ -957,13 +963,14 @@ void qtbook_magazine::modify(const int state)
       ma.frontButton->setVisible(true);
       ma.backButton->setVisible(true);
       misc_functions::highlightWidget
-	(ma.id, QColor(238, 216, 174));
+	(ma.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(ma.title, QColor(238, 216, 174));
+	(ma.title, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(ma.publisher->viewport(), QColor(238, 216, 174));
+	(ma.publisher->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(ma.description->viewport(), QColor(238, 216, 174));
+	(ma.description->viewport(), QColor(255, 248, 220));
+      te_orig_pal = ma.description->viewport()->palette();
     }
   else
     {
@@ -1192,13 +1199,14 @@ void qtbook_magazine::insert(void)
   ma.monetary_units->setCurrentIndex(0);
   ma.url->clear();
   misc_functions::highlightWidget
-    (ma.id, QColor(238, 216, 174));
+    (ma.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (ma.title, QColor(238, 216, 174));
+    (ma.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (ma.publisher->viewport(), QColor(238, 216, 174));
+    (ma.publisher->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (ma.description->viewport(), QColor(238, 216, 174));
+    (ma.description->viewport(), QColor(255, 248, 220));
+  te_orig_pal = ma.description->viewport()->palette();
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
   p = parentWid->mapToGlobal(p);
@@ -1228,12 +1236,13 @@ void qtbook_magazine::slotReset(void)
 	{
 	  ma.id->clear();
 	  ma.id->setCursorPosition(0);
+	  ma.id->setPalette(te_orig_pal);
 	  ma.id->setFocus();
 	}
       else if(name.contains("Title"))
 	{
 	  ma.title->clear();
-	  ma.title->setPalette(ma.id->palette());
+	  ma.title->setPalette(te_orig_pal);
 	  ma.title->setFocus();
 	}
       else if(name.contains("Volume"))
@@ -1303,19 +1312,19 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains("LC Control Number"))
 	{
 	  ma.lcnum->clear();
-	  ma.lcnum->setPalette(ma.id->palette());
+	  ma.lcnum->setPalette(ma.url->viewport()->palette());
 	  ma.lcnum->setFocus();
 	}
       else if(name.contains("Call Number"))
 	{
 	  ma.callnum->clear();
-	  ma.callnum->setPalette(ma.id->palette());
+	  ma.callnum->setPalette(ma.url->viewport()->palette());
 	  ma.callnum->setFocus();
 	}
       else if(name.contains("Dewey Number"))
 	{
 	  ma.deweynum->clear();
-	  ma.deweynum->setPalette(ma.id->palette());
+	  ma.deweynum->setPalette(ma.url->viewport()->palette());
 	  ma.deweynum->setFocus();
 	}
       else if(name.contains("OFFSYSTEM URL"))
@@ -1357,10 +1366,11 @@ void qtbook_magazine::slotReset(void)
       ma.front_image->clear();
       ma.back_image->clear();
       ma.url->clear();
-
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
-	textfield->setPalette(ma.id->palette());
-
+      ma.id->setPalette(te_orig_pal);
+      ma.lcnum->setPalette(ma.url->viewport()->palette());
+      ma.callnum->setPalette(ma.url->viewport()->palette());
+      ma.deweynum->setPalette(ma.url->viewport()->palette());
+      ma.title->setPalette(te_orig_pal);
       ma.publication_date->setPalette(dt_orig_pal);
       ma.description->viewport()->setPalette(te_orig_pal);
       ma.publisher->viewport()->setPalette(te_orig_pal);
@@ -1666,13 +1676,9 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	  str = str.mid(0, str.indexOf(",")).trimmed();
 
 	  if(subType == "Journal")
-	    ma.publisher->setText
-	      (QString("<a href=\"journal_search?publisher?%1\">" +
-		       str + "</a>").arg(str));
+	    ma.publisher->setText(str);
 	  else
-	    ma.publisher->setText
-	      (QString("<a href=\"magazine_search?publisher?%1\">" +
-		       str + "</a>").arg(str));
+	    ma.publisher->setText(str);
 
 	  misc_functions::highlightWidget
 	    (ma.publisher->viewport(), QColor(162, 205, 90));

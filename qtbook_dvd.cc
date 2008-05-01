@@ -304,9 +304,6 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.studio->toPlainText().trimmed();
-      dvd.studio->setText
-	(QString("<a href=\"dvd_search?studio?%1\">" + str + "</a>").arg
-	 (str));
 
       if(dvd.studio->toPlainText().isEmpty())
 	{
@@ -328,9 +325,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.url->toPlainText().trimmed();
-
-      if(!str.isEmpty())
-	dvd.url->setText(QString("<a href=\"%1\">%1</a>").arg(str));
+      dvd.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
 	query.prepare(QString("UPDATE dvd SET "
@@ -597,6 +592,15 @@ void qtbook_dvd::slotGo(void)
 
 	  if(dvd.back_image->image.isNull())
 	    dvd.back_image->imageFormat = "";
+
+	  dvd.studio->setText
+	    (QString("<a href=\"dvd_search?studio?%1\">" +
+		     dvd.studio->toPlainText() + "</a>").arg
+	     (dvd.studio->toPlainText()));
+
+	  if(!dvd.url->toPlainText().isEmpty())
+	    dvd.url->setText(QString("<a href=\"%1\">%1</a>").arg
+			     (dvd.url->toPlainText()));
 
 	  qapp->restoreOverrideCursor();
 
@@ -1015,19 +1019,19 @@ void qtbook_dvd::modify(const int state)
       dvd.frontButton->setVisible(true);
       dvd.backButton->setVisible(true);
       misc_functions::highlightWidget
-	(dvd.id, QColor(238, 216, 174));
+	(dvd.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.title, QColor(238, 216, 174));
+	(dvd.title, QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.actors->viewport(), QColor(238, 216, 174));
+	(dvd.actors->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.directors->viewport(), QColor(238, 216, 174));
+	(dvd.directors->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.description->viewport(), QColor(238, 216, 174));
+	(dvd.description->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.studio->viewport(), QColor(238, 216, 174));
+	(dvd.studio->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(dvd.format, QColor(238, 216, 174));
+	(dvd.format, QColor(255, 248, 220));
     }
   else
     {
@@ -1292,19 +1296,19 @@ void qtbook_dvd::insert(void)
   dvd.aspectratio->setCurrentIndex(0);
   dvd.url->clear();
   misc_functions::highlightWidget
-    (dvd.id, QColor(238, 216, 174));
+    (dvd.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.title, QColor(238, 216, 174));
+    (dvd.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.actors->viewport(), QColor(238, 216, 174));
+    (dvd.actors->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.directors->viewport(), QColor(238, 216, 174));
+    (dvd.directors->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.description->viewport(), QColor(238, 216, 174));
+    (dvd.description->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.studio->viewport(), QColor(238, 216, 174));
+    (dvd.studio->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
-    (dvd.format, QColor(238, 216, 174));
+    (dvd.format, QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
   p = parentWid->mapToGlobal(p);
