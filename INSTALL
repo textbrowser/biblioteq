@@ -15,9 +15,10 @@ Qt 4.x Preparation (Unix):
 2.  You may also build the driver as a plugin.
 
 PostgreSQL Preparation:
-1.  Log into PostgreSQL and execute the postgresql_create_tables.sql script.
-    (\i postgresql_create_tables.sql)
+1.  Create the xbook_db database via createdb xbook_db.
 2.  Run createlang plpgsql -d xbook_db.
+3.  Log into PostgreSQL and execute the postgresql_create_tables.sql script.
+    (\i postgresql_create_tables.sql)
 
 SQLite Preparation:
 1.  Run sqlite3 -init sqlite_create_tables.sql biblioteq.db.

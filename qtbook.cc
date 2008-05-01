@@ -460,6 +460,16 @@ qtbook::qtbook(void):QMainWindow()
   userinfo.zip->setInputMask("99999");
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.table),  1);
+
+  /*
+  ** Highlight userinfo widgets.
+  */
+
+  misc_functions::highlightWidget(userinfo.firstName, QColor(238, 216, 174));
+  misc_functions::highlightWidget(userinfo.lastName, QColor(238, 216, 174));
+  misc_functions::highlightWidget(userinfo.street, QColor(238, 216, 174));
+  misc_functions::highlightWidget(userinfo.city, QColor(238, 216, 174));
+  misc_functions::highlightWidget(userinfo.zip, QColor(238, 216, 174));
 }
 
 /*
@@ -4312,7 +4322,7 @@ void qtbook::slotDisconnect(void)
   members_diag->hide();
   history_diag->hide();
   customquery_diag->hide();
-  resetMembersBrowser();
+  admin_diag->hide();
   ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
@@ -7225,6 +7235,7 @@ void qtbook::slotSaveAdministrators(void)
   int i = 0;
   int j = 0;
   int ucount = 0;
+  bool adminCreated = false;
   QString str = "";
   QString adminStr = "";
   QString errorstr = "";
@@ -7401,6 +7412,8 @@ void qtbook::slotSaveAdministrators(void)
 		 (adminStr), errorstr, __FILE__, __LINE__);
 	      goto db_rollback;
 	    }
+
+	  adminCreated = true;
 	}
       else
 	{
@@ -7457,6 +7470,13 @@ void qtbook::slotSaveAdministrators(void)
 
   qapp->restoreOverrideCursor();
   deletedAdmins.clear();
+
+  if(adminCreated)
+    QMessageBox::information(admin_diag, "BiblioteQ: Information",
+			     "Please notify new administrators that their "
+			     "default password has been set "
+			     "to tempPass.");
+
   slotRefreshAdminList();
   return;
 

@@ -147,8 +147,8 @@
 73.  Do not allow the administrator to set a member's "Member Since" date
      beyond the current date. (DONE)
 74.  Allow the user to set a global font. (DONE)
-75.  Change the font for the Borrowers Browser, Copy Editor, Custom Query
-     Dialog, Error Log, Library of Congress Query Results, Member's
+75.  Change the font for the Administrator Browser, Borrowers Browser, Copy Editor,
+     Custom Query Dialog, Error Log, Library of Congress Query Results, Member's
      Reservation History, and the Tracks Editor after a global font
      change. (DONE)
 76.  Save the selected global font to the user's configuration file. (DONE)
@@ -232,4 +232,4 @@
 125. If an item has been deleted, remove its entry from the member history
      table. (DONE)
 126. Do not allow duplicate administrator ids. (DONE)
-127. Highlight required fields.
+127. Highlight required fields. (DONE)
