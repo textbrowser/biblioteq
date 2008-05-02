@@ -1266,6 +1266,7 @@ void qtbook_dvd::insert(void)
 {
   QPoint p(0, 0);
 
+  slotReset();
   dvd.id->clear();
   dvd.actors->clear();
   dvd.directors->clear();

@@ -859,7 +859,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.description->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
-  id.queryButton->setEnabled(false);
+  id.queryButton->setVisible(false);
   id.okButton->setText("&Search");
   id.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
@@ -1013,7 +1013,6 @@ void qtbook_book::modify(const int state)
     }
 
   id.quantity->setMinimum(1);
-  id.queryButton->setEnabled(true);
   id.price->setMinimum(0.01);
   id.okButton->setText("&Save");
   str = oid;
@@ -1203,6 +1202,7 @@ void qtbook_book::insert(void)
 {
   QPoint p(0, 0);
 
+  slotReset();
   id.id->clear();
   id.isbn13->clear();
   id.author->clear();
@@ -1213,7 +1213,7 @@ void qtbook_book::insert(void)
   id.publisher->clear();
   id.description->clear();
   id.copiesButton->setEnabled(false);
-  id.queryButton->setEnabled(true);
+  id.queryButton->setVisible(true);
   id.okButton->setText("&Save");
   id.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -1550,6 +1550,7 @@ void qtbook_book::slotQuery(void)
 	(this, "BiblioteQ: User Error", 
 	 "In order to query the Library of Congress, either the ISBN-10 "
 	 "or ISBN-13 must be provided.");
+      id.id->setFocus();
       return;
     }
 

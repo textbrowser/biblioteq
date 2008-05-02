@@ -1123,6 +1123,7 @@ void qtbook_videogame::insert(void)
 {
   QPoint p(0, 0);
 
+  slotReset();
   vg.copiesButton->setEnabled(false);
   vg.queryButton->setEnabled(true);
   vg.okButton->setText("&Save");
@@ -1172,17 +1173,9 @@ void qtbook_videogame::slotReset(void)
       name = action->text();
 
       if(name.contains("Front Cover Image"))
-	{
-	  if(vg.front_image->items().size() > 0)
-	    vg.front_image->scene()->removeItem
-	      (vg.front_image->items().at(0));
-	}
+	vg.front_image->clear();
       else if(name.contains("Back Cover Image"))
-	{
-	  if(vg.back_image->items().size() > 0)
-	    vg.back_image->scene()->removeItem
-	      (vg.back_image->items().at(0));
-	}
+	vg.back_image->clear();
       else if(name.contains("UPC"))
 	{
 	  vg.id->clear();
@@ -1304,15 +1297,8 @@ void qtbook_videogame::slotReset(void)
       vg.platform->setCurrentIndex(0);
       vg.mode->setCurrentIndex(0);
       vg.url->clear();
-
-      if(vg.front_image->items().size() > 0)
-	vg.front_image->scene()->removeItem
-	  (vg.front_image->items().at(0));
-
-      if(vg.back_image->items().size() > 0)
-	vg.back_image->scene()->removeItem
-	  (vg.back_image->items().at(0));
-
+      vg.front_image->clear();
+      vg.back_image->clear();
       vg.id->setFocus();
     }
 }

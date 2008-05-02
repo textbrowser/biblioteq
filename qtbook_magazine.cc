@@ -990,7 +990,6 @@ void qtbook_magazine::modify(const int state)
     }
 
   ma.quantity->setMinimum(1);
-  ma.queryButton->setEnabled(true);
   ma.price->setMinimum(0.01);
   ma.okButton->setText("&Save");
   ma.volume->setMinimum(0);
@@ -1171,6 +1170,7 @@ void qtbook_magazine::insert(void)
 {
   QPoint p(0, 0);
 
+  slotReset();
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -1179,7 +1179,7 @@ void qtbook_magazine::insert(void)
   ma.publisher->clear();
   ma.description->clear();
   ma.copiesButton->setEnabled(false);
-  ma.queryButton->setEnabled(true);
+  ma.queryButton->setVisible(true);
   ma.okButton->setText("&Save");
   ma.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -1465,6 +1465,7 @@ void qtbook_magazine::slotQuery(void)
 	(this, "BiblioteQ: User Error", 
 	 "In order to query the Library of Congress, the ISSN "
 	 "must be provided.");
+      ma.id->setFocus();
       return;
     }
 

@@ -1237,6 +1237,7 @@ void qtbook_cd::insert(void)
 {
   QPoint p(0, 0);
 
+  slotReset();
   cd.id->clear();
   cd.artist->clear();
   cd.title->clear();
