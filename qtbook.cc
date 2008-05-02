@@ -4323,6 +4323,7 @@ void qtbook::slotDisconnect(void)
   history_diag->hide();
   customquery_diag->hide();
   admin_diag->hide();
+  resetMembersBrowser();
   ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);

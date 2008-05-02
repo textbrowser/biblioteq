@@ -234,6 +234,6 @@
 126. Do not allow duplicate administrator ids. (DONE)
 127. Highlight required fields. (DONE)
 128. Properly reset highlighted fields to their original color
-     after a reset.
+     after a reset. (DONE)
 129. Fields should have their hyperlinks activated only after a successful
      save. (DONE)
