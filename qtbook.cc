@@ -6702,9 +6702,9 @@ void qtbook::slotShowHistory(void)
   history.prevTool->setVisible(members_diag->isVisible());
 
   if(members_diag->isVisible())
-    history_diag->move(members_diag->x() + width() / 2  -
+    history_diag->move(members_diag->x() + members_diag->width() / 2  -
 		       history_diag->width() / 2,
-		       members_diag->y() + height() / 2 -
+		       members_diag->y() + members_diag->height() / 2 -
 		       history_diag->height() / 2);
   else
     history_diag->move(x() + width() / 2  - history_diag->width() / 2,
