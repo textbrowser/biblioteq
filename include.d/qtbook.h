@@ -192,6 +192,7 @@ class qtbook: public QMainWindow
   void emptyContainers(void);
   void readGlobalSetup(void);
   void addConfigOptions(void);
+  void resetAdminBrowser(void);
   void resetMembersBrowser(void);
 
  private slots:

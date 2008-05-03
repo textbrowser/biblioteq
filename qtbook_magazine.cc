@@ -144,7 +144,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   */
 
   resize(baseSize());
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
 }
 
 /*
@@ -805,7 +805,7 @@ void qtbook_magazine::slotGo(void)
 
       if(subType == "Journal")
 	{
-	  hide();
+	  close();
 	  qmain->removeJournal(qobject_cast<qtbook_journal *>(this));
 	}
       else
@@ -883,7 +883,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
 
       setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
       ma.id->setFocus();
-      center(this, parentWid);
+      misc_functions::center(this, parentWid);
       show();
     }
   else
@@ -1200,7 +1200,7 @@ void qtbook_magazine::insert(void)
   te_orig_pal = ma.description->viewport()->palette();
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
   show();
 }
 
@@ -1383,7 +1383,7 @@ void qtbook_magazine::closeEvent(QCloseEvent *e)
 
 void qtbook_magazine::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeMagazine(this);
 }
 

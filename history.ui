@@ -267,7 +267,7 @@
    <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>historyDialog</receiver>
-   <slot>hide()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>440</x>

@@ -452,7 +452,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.table->resetTable("All");
   ui.summary->setVisible(false);
-  ui.actionRememberSQLiteFilename->setVisible(false);
+  ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   addConfigOptions();
   setUpdatesEnabled(true);
@@ -2500,7 +2500,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 	ui.typefilter->setCurrentIndex(0);
 
       if(search_type == POPULATE_SEARCH && all_diag->isVisible())
-	all_diag->hide();
+	all_diag->close();
 
       if(search_type != CUSTOM_QUERY)
 	{
@@ -3000,7 +3000,7 @@ void qtbook::slotSaveUser(void)
 	}
       else
 	{
-	  userinfo_diag->hide();
+	  userinfo_diag->close();
 
 	  if(selectedBranch["database_type"] != "sqlite")
 	    QMessageBox::information(members_diag, "BiblioteQ: Information",
@@ -4257,7 +4257,7 @@ void qtbook::slotConnectDB(void)
       return;
     }
   else
-    branch_diag->hide();
+    branch_diag->close();
 
   selectedBranch = branches[br.branch_name->currentText()];
 
@@ -4285,12 +4285,12 @@ void qtbook::slotConnectDB(void)
   if(selectedBranch["database_type"] == "sqlite")
     {
       ui.actionChangePassword->setEnabled(false);
-      ui.actionRememberSQLiteFilename->setVisible(true);
+      ui.actionRememberSQLiteFilename->setEnabled(true);
     }
   else
     {
       ui.actionChangePassword->setEnabled(true);
-      ui.actionRememberSQLiteFilename->setVisible(false);
+      ui.actionRememberSQLiteFilename->setEnabled(false);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
     }
@@ -4317,11 +4317,12 @@ void qtbook::slotDisconnect(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
-  all_diag->hide();
-  members_diag->hide();
-  history_diag->hide();
-  customquery_diag->hide();
-  admin_diag->hide();
+  all_diag->close();
+  members_diag->close();
+  history_diag->close();
+  customquery_diag->close();
+  admin_diag->close();
+  resetAdminBrowser();
   resetMembersBrowser();
   ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
@@ -4348,7 +4349,7 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
-  ui.actionRememberSQLiteFilename->setVisible(false);
+  ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
@@ -4405,6 +4406,32 @@ void qtbook::initialUpdate(void)
   */
 
   slotShowGrid();
+}
+
+/*
+** -- resetAdminBrowser() --
+*/
+
+void qtbook::resetAdminBrowser(void)
+{
+  QStringList list;
+
+  ab.table->clear();
+  ab.table->setCurrentItem(NULL);
+  ab.table->setColumnCount(0);
+  ab.table->setRowCount(0);
+  ab.table->scrollToTop();
+  ab.table->horizontalScrollBar()->setValue(0);
+  ab.table->setSortingEnabled(false);
+  list.clear();
+  list.append("ID");
+  list.append("Administrator");
+  list.append("Circulation");
+  list.append("Librarian");
+  list.append("Membership");
+  ab.table->setColumnCount(list.size());
+  ab.table->setHorizontalHeaderLabels(list);
+  list.clear();
 }
 
 /*
@@ -4805,7 +4832,7 @@ void qtbook::slotModifyBorrower(void)
 void qtbook::slotCancelAddUser(void)
 {
   if(userinfo_diag->isVisible())
-    userinfo_diag->hide();
+    userinfo_diag->close();
 }
 
 /*
@@ -6006,7 +6033,7 @@ void qtbook::slotListReservedItems(void)
       return;
     }
 
-  members_diag->hide();
+  members_diag->close();
   memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
   (void) populateTable(POPULATE_ALL, -1, memberid);
 }
@@ -6022,7 +6049,7 @@ void qtbook::slotListOverdueItems(void)
 
   if(members_diag->isVisible())
     {
-      members_diag->hide();
+      members_diag->close();
       memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
     }
 
@@ -6270,7 +6297,7 @@ void qtbook::slotShowCustomQuery(void)
 
 void qtbook::slotCloseCustomQueryDialog(void)
 {
-  customquery_diag->hide();
+  customquery_diag->close();
 }
 
 /*
@@ -6304,7 +6331,7 @@ void qtbook::slotExecuteCustomQuery(void)
     }
 
   if(populateTable(CUSTOM_QUERY, 0, querystr) == 0)
-    customquery_diag->hide();
+    customquery_diag->close();
   else
     {
       misc_functions::center(customquery_diag, this);
@@ -6775,7 +6802,7 @@ void qtbook::slotBranchChanged(void)
 {
   QHash<QString, QString> tmphash;
 
-  branch_diag->hide();
+  branch_diag->close();
   tmphash = branches[br.branch_name->currentText()];
 
   if(tmphash["database_type"] == "sqlite")
@@ -6898,7 +6925,7 @@ void qtbook::slotSavePassword(void)
   else
     {
       br.password->setText(pass.password->text()); // Store the new password.
-      pass_diag->hide();
+      pass_diag->close();
     }
 }
 
@@ -6954,7 +6981,6 @@ void qtbook::slotShowAdminDialog(void)
   misc_functions::center(admin_diag, this);
   admin_diag->raise();
   admin_diag->show();
-  slotRefreshAdminList();
 }
 
 /*
@@ -7109,27 +7135,11 @@ void qtbook::slotRefreshAdminList(void)
     }
 
   qapp->restoreOverrideCursor();
-  deletedAdmins.clear();
-  ab.table->clear();
-  ab.table->setCurrentItem(NULL);
-  ab.table->setColumnCount(0);
-  ab.table->setRowCount(0);
-  list.clear();
-  list.append("ID");
-  list.append("Administrator");
-  list.append("Circulation");
-  list.append("Librarian");
-  list.append("Membership");
-  ab.table->setColumnCount(list.size());
-  ab.table->setHorizontalHeaderLabels(list);
-  list.clear();
-  ab.table->setSortingEnabled(false);
+  resetAdminBrowser();
 
   if(selectedBranch["database_type"] != "sqlite")
     ab.table->setRowCount(query.size());
 
-  ab.table->scrollToTop();
-  ab.table->horizontalScrollBar()->setValue(0);
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");

@@ -53,7 +53,7 @@ void locresults::slotSelectRecord(void)
   QStringList list;
 
   list = ui.textarea->toPlainText().split("\n");
-  hide();
+  close();
   magazine->populateDisplayAfterLOC(list);
   list.clear();
   deleteLater();
@@ -84,7 +84,7 @@ void locresults::closeEvent(QCloseEvent *e)
 
 void locresults::slotClose(void)
 {
-  hide();
+  close();
   deleteLater();
 }
 

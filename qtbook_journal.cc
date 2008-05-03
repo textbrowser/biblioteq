@@ -54,7 +54,7 @@ qtbook_journal::~qtbook_journal()
 
 void qtbook_journal::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeJournal(this);
 }
 

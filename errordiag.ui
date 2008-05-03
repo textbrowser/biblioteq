@@ -227,7 +227,7 @@
    <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>errordialog</receiver>
-   <slot>hide()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>375</x>

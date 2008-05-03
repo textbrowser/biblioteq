@@ -150,7 +150,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   */
 
   resize(baseSize());
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
 }
 
 /*
@@ -902,7 +902,7 @@ void qtbook_book::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database Book Search");
       id.id->setFocus();
-      center(this, parentWid);
+      misc_functions::center(this, parentWid);
       show();
     }
   else
@@ -1235,7 +1235,7 @@ void qtbook_book::insert(void)
   te_orig_pal = id.id->palette();
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
   show();
 }
 
@@ -1464,7 +1464,7 @@ void qtbook_book::closeEvent(QCloseEvent *e)
 
 void qtbook_book::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeBook(this);
 }
 

@@ -39,7 +39,6 @@ class qtbook_item
   QString html;
   QMainWindow *parentWid;
   void print(QWidget *);
-  void center(QMainWindow *, QMainWindow *);
 };
 
 #endif

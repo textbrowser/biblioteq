@@ -487,7 +487,7 @@
    <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>allDialog</receiver>
-   <slot>hide()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>473</x>

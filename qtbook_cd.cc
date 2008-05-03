@@ -155,7 +155,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
     cd.format->addItem("UNKNOWN");
 
   resize(baseSize());
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
 }
 
 /*
@@ -903,7 +903,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
       cd.coverImages->setVisible(false);
       setWindowTitle("BiblioteQ: Database CD Search");
       cd.id->setFocus();
-      center(this, parentWid);
+      misc_functions::center(this, parentWid);
       show();
     }
   else
@@ -1270,7 +1270,7 @@ void qtbook_cd::insert(void)
     (cd.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
   show();
 }
 
@@ -1450,7 +1450,7 @@ void qtbook_cd::slotCloseTracksBrowser(void)
   trd.table->clear();
   trd.table->setCurrentItem(NULL);
   trd.table->setRowCount(0);
-  tracks_diag->hide();
+  tracks_diag->close();
 }
 
 /*
@@ -1869,7 +1869,7 @@ void qtbook_cd::closeEvent(QCloseEvent *e)
 
 void qtbook_cd::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeCD(this);
 }
 

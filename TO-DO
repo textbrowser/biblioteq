@@ -147,10 +147,10 @@
 73.  Do not allow the administrator to set a member's "Member Since" date
      beyond the current date. (DONE)
 74.  Allow the user to set a global font. (DONE)
-75.  Change the font for the Administrator Browser, Borrowers Browser, Copy Editor,
-     Custom Query Dialog, Error Log, Library of Congress Query Results, Member's
-     Reservation History, and the Tracks Editor after a global font
-     change. (DONE)
+75.  Change the font for the Administrator Browser, Borrowers Browser,
+     Copy Editor, Custom Query Dialog, Error Log,
+     Library of Congress Query Results, Member's Reservation History,
+     and the Tracks Editor after a global font change. (DONE)
 76.  Save the selected global font to the user's configuration file. (DONE)
 77.  Create as many initial copies as necessary when a new item is created.
      The number of copies to create is to be determined by the quantity.
@@ -238,3 +238,4 @@
 129. Fields should have their hyperlinks activated only after a successful
      save. (DONE)
 130. Devise an intelligent widget-centering algorithm. (DONE)
+131. Reset the Administrator Browser after a database disconnect. (DONE)

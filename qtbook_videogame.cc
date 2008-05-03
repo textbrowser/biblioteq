@@ -136,7 +136,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
     vg.location->addItem("UNKNOWN");
 
   resize(baseSize());
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
 }
 
 /*
@@ -822,7 +822,7 @@ void qtbook_videogame::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database Video Game Search");
       vg.id->setFocus();
-      center(this, parentWid);
+      misc_functions::center(this, parentWid);
       show();
     }
   else
@@ -1144,7 +1144,7 @@ void qtbook_videogame::insert(void)
     (vg.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
   show();
 }
 
@@ -1308,7 +1308,7 @@ void qtbook_videogame::closeEvent(QCloseEvent *e)
 
 void qtbook_videogame::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeVideoGame(this);
 }
 

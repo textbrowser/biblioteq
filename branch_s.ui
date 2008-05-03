@@ -303,7 +303,7 @@
    <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>branchSelect</receiver>
-   <slot>hide()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>369</x>

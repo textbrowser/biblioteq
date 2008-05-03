@@ -148,7 +148,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
     dvd.region->addItem("UNKNOWN");
 
   resize(baseSize());
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
 }
 
 /*
@@ -937,7 +937,7 @@ void qtbook_dvd::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database DVD Search");
       dvd.id->setFocus();
-      center(this, parentWid);
+      misc_functions::center(this, parentWid);
       show();
     }
   else
@@ -1303,7 +1303,7 @@ void qtbook_dvd::insert(void)
     (dvd.format, QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
-  center(this, parentWid);
+  misc_functions::center(this, parentWid);
   show();
 }
 
@@ -1495,7 +1495,7 @@ void qtbook_dvd::closeEvent(QCloseEvent *e)
 
 void qtbook_dvd::slotCancel(void)
 {
-  hide();
+  close();
   qmain->removeDVD(this);
 }
 
