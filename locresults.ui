@@ -36,8 +36,8 @@
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QSplitter" name="splitter" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
+        <property name="childrenCollapsible" >
+         <bool>false</bool>
         </property>
         <widget class="QGroupBox" name="recRet" >
          <property name="sizePolicy" >

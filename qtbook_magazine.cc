@@ -30,7 +30,6 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = NULL;
-  QPoint p(0, 0);
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
   QValidator *validator1 = NULL;
   QGraphicsScene *scene1 = NULL;
@@ -145,9 +144,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   */
 
   resize(baseSize());
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
 }
 
 /*
@@ -831,8 +828,6 @@ void qtbook_magazine::slotGo(void)
 
 void qtbook_magazine::search(const QString &field, const QString &value)
 {
-  QPoint p(0, 0);
-
   ma.coverImages->setVisible(false);
   ma.id->clear();
   ma.lcnum->clear();
@@ -888,9 +883,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
 
       setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
       ma.id->setFocus();
-      p = parentWid->mapToGlobal(p);
-      move(p.x() + parentWid->width() / 2  - width() / 2,
-	   p.y() + parentWid->height() / 2 - height() / 2);
+      center(this, parentWid);
       show();
     }
   else
@@ -1168,8 +1161,6 @@ void qtbook_magazine::modify(const int state)
 
 void qtbook_magazine::insert(void)
 {
-  QPoint p(0, 0);
-
   slotReset();
   ma.id->clear();
   ma.lcnum->clear();
@@ -1209,9 +1200,7 @@ void qtbook_magazine::insert(void)
   te_orig_pal = ma.description->viewport()->palette();
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
   show();
 }
 

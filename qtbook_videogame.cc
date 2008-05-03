@@ -27,7 +27,6 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = NULL;
-  QPoint p(0, 0);
   QRegExp rx("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
 	     "[0-9]");
   QValidator *validator1 = NULL;
@@ -137,9 +136,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
     vg.location->addItem("UNKNOWN");
 
   resize(baseSize());
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
 }
 
 /*
@@ -765,8 +762,6 @@ void qtbook_videogame::slotGo(void)
 
 void qtbook_videogame::search(const QString &field, const QString &value)
 {
-  QPoint p(0, 0);
-
   vg.coverImages->setVisible(false);
   vg.id->clear();
   vg.developer->clear();
@@ -827,9 +822,7 @@ void qtbook_videogame::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database Video Game Search");
       vg.id->setFocus();
-      p = parentWid->mapToGlobal(p);
-      move(p.x() + parentWid->width() / 2  - width() / 2,
-	   p.y() + parentWid->height() / 2 - height() / 2);
+      center(this, parentWid);
       show();
     }
   else
@@ -1121,8 +1114,6 @@ void qtbook_videogame::modify(const int state)
 
 void qtbook_videogame::insert(void)
 {
-  QPoint p(0, 0);
-
   slotReset();
   vg.copiesButton->setEnabled(false);
   vg.queryButton->setEnabled(true);
@@ -1153,9 +1144,7 @@ void qtbook_videogame::insert(void)
     (vg.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
   show();
 }
 

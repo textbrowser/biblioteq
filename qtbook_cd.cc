@@ -26,7 +26,6 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = NULL;
-  QPoint p(0, 0);
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = NULL;
   QGraphicsScene *scene1 = NULL;
@@ -156,9 +155,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
     cd.format->addItem("UNKNOWN");
 
   resize(baseSize());
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
 }
 
 /*
@@ -848,8 +845,6 @@ void qtbook_cd::slotGo(void)
 
 void qtbook_cd::search(const QString &field, const QString &value)
 {
-  QPoint p(0, 0);
-
   cd.id->clear();
   cd.artist->clear();
   cd.title->clear();
@@ -908,9 +903,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
       cd.coverImages->setVisible(false);
       setWindowTitle("BiblioteQ: Database CD Search");
       cd.id->setFocus();
-      p = parentWid->mapToGlobal(p);
-      move(p.x() + parentWid->width() / 2  - width() / 2,
-	   p.y() + parentWid->height() / 2 - height() / 2);
+      center(this, parentWid);
       show();
     }
   else
@@ -1235,8 +1228,6 @@ void qtbook_cd::modify(const int state)
 
 void qtbook_cd::insert(void)
 {
-  QPoint p(0, 0);
-
   slotReset();
   cd.id->clear();
   cd.artist->clear();
@@ -1279,9 +1270,7 @@ void qtbook_cd::insert(void)
     (cd.description->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
   show();
 }
 
@@ -1445,11 +1434,10 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
       qapp->processEvents();
     }
 
-  trd.table->setSortingEnabled(true);
+  trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   query.clear();
   trd.table->setRowCount(i);
-  trd.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   trd.table->resizeColumnsToContents();
 }
 
@@ -1559,7 +1547,7 @@ void qtbook_cd::slotInsertTrack(void)
     }
 
   list.clear();
-  trd.table->setSortingEnabled(true);
+  trd.table->setSortingEnabled(false);
   trd.table->resizeColumnsToContents();
 }
 

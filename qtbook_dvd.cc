@@ -28,7 +28,6 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = NULL;
-  QPoint p(0, 0);
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   QValidator *validator1 = NULL;
   QGraphicsScene *scene1 = NULL;
@@ -149,9 +148,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
     dvd.region->addItem("UNKNOWN");
 
   resize(baseSize());
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
 }
 
 /*
@@ -878,8 +875,6 @@ void qtbook_dvd::slotGo(void)
 
 void qtbook_dvd::search(const QString &field, const QString &value)
 {
-  QPoint p(0, 0);
-
   dvd.coverImages->setVisible(false);
   dvd.id->clear();
   dvd.actors->clear();
@@ -942,9 +937,7 @@ void qtbook_dvd::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database DVD Search");
       dvd.id->setFocus();
-      p = parentWid->mapToGlobal(p);
-      move(p.x() + parentWid->width() / 2  - width() / 2,
-	   p.y() + parentWid->height() / 2 - height() / 2);
+      center(this, parentWid);
       show();
     }
   else
@@ -1264,8 +1257,6 @@ void qtbook_dvd::modify(const int state)
 
 void qtbook_dvd::insert(void)
 {
-  QPoint p(0, 0);
-
   slotReset();
   dvd.id->clear();
   dvd.actors->clear();
@@ -1312,9 +1303,7 @@ void qtbook_dvd::insert(void)
     (dvd.format, QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
   show();
 }
 

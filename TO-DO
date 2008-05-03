@@ -237,3 +237,4 @@
      after a reset. (DONE)
 129. Fields should have their hyperlinks activated only after a successful
      save. (DONE)
+130. Devise an intelligent widget-centering algorithm. (DONE)

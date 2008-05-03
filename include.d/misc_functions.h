@@ -45,6 +45,7 @@ class misc_functions
 			      const QString &, const QString &, QString &);
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
+  static void center(QMainWindow *, QMainWindow *);
   static void revokeAll(const QString &, const QSqlDatabase &,
 			QString &);
   static void grantPrivs(const QString &, const QString &,

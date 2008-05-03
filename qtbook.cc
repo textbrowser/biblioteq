@@ -711,7 +711,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 5.01.<br>"
+  mb.setText("<html>BiblioteQ Version 5.02.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -771,8 +771,7 @@ void qtbook::slotSearch(void)
       all_diag->resize(all_diag->sizeHint());
     }
 
-  all_diag->move(x() + width() / 2  - all_diag->width() / 2,
-		 y() + height() / 2 - all_diag->height() / 2);
+  misc_functions::center(all_diag, this);
   all_diag->raise();
   all_diag->show();
 }
@@ -4457,8 +4456,7 @@ void qtbook::slotShowMembersBrowser(void)
       members_diag->resize(members_diag->sizeHint());
     }
 
-  members_diag->move(x() + width() / 2  - members_diag->width() / 2,
-		     y() + height() / 2 - members_diag->height() / 2);
+  misc_functions::center(members_diag, this);
   members_diag->raise();
   members_diag->show();
 }
@@ -5014,8 +5012,7 @@ void qtbook::slotShowErrorDialog(void)
 {
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   er.table->resizeColumnsToContents();
-  error_diag->move(x() + width() / 2  - error_diag->width() / 2,
-		   y() + height() / 2 - error_diag->height() / 2);
+  misc_functions::center(error_diag, this);
   error_diag->raise();
   error_diag->show();
 }
@@ -6262,8 +6259,7 @@ void qtbook::slotShowCustomQuery(void)
       qapp->restoreOverrideCursor();
     }
 
-  customquery_diag->move(x() + width() / 2  - customquery_diag->width() / 2,
-			 y() + height() / 2 - customquery_diag->height() / 2);
+  misc_functions::center(customquery_diag, this);
   customquery_diag->raise();
   customquery_diag->show();
 }
@@ -6311,9 +6307,7 @@ void qtbook::slotExecuteCustomQuery(void)
     customquery_diag->hide();
   else
     {
-      customquery_diag->move
-	(x() + width() / 2  - customquery_diag->width() / 2,
-	 y() + height() / 2 - customquery_diag->height() / 2);
+      misc_functions::center(customquery_diag, this);
       customquery_diag->raise();
       customquery_diag->show();
     }
@@ -6702,13 +6696,9 @@ void qtbook::slotShowHistory(void)
   history.prevTool->setVisible(members_diag->isVisible());
 
   if(members_diag->isVisible())
-    history_diag->move(members_diag->x() + members_diag->width() / 2  -
-		       history_diag->width() / 2,
-		       members_diag->y() + members_diag->height() / 2 -
-		       history_diag->height() / 2);
+    misc_functions::center(history_diag, members_diag);
   else
-    history_diag->move(x() + width() / 2  - history_diag->width() / 2,
-		       y() + height() / 2 - history_diag->height() / 2);
+    misc_functions::center(history_diag, this);
 
   history_diag->raise();
   history_diag->show();
@@ -6961,8 +6951,7 @@ QString qtbook::sqlitefile(void)
 
 void qtbook::slotShowAdminDialog(void)
 {
-  admin_diag->move(x() + width() / 2  - admin_diag->width() / 2,
-		   y() + height() / 2 - admin_diag->height() / 2);
+  misc_functions::center(admin_diag, this);
   admin_diag->raise();
   admin_diag->show();
   slotRefreshAdminList();

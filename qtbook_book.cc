@@ -24,7 +24,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = NULL;
-  QPoint p(0, 0);
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9X]");
   QRegExp rx2("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
 	      "[0-9][0-9][0-9]");
@@ -151,9 +150,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   */
 
   resize(baseSize());
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
 }
 
 /*
@@ -845,8 +842,6 @@ void qtbook_book::slotGo(void)
 
 void qtbook_book::search(const QString &field, const QString &value)
 {
-  QPoint p(0, 0);
-
   id.coverImages->setVisible(false);
   id.id->clear();
   id.isbn13->clear();
@@ -907,9 +902,7 @@ void qtbook_book::search(const QString &field, const QString &value)
 
       setWindowTitle("BiblioteQ: Database Book Search");
       id.id->setFocus();
-      p = parentWid->mapToGlobal(p);
-      move(p.x() + parentWid->width() / 2  - width() / 2,
-	   p.y() + parentWid->height() / 2 - height() / 2);
+      center(this, parentWid);
       show();
     }
   else
@@ -1200,8 +1193,6 @@ void qtbook_book::modify(const int state)
 
 void qtbook_book::insert(void)
 {
-  QPoint p(0, 0);
-
   slotReset();
   id.id->clear();
   id.isbn13->clear();
@@ -1244,9 +1235,7 @@ void qtbook_book::insert(void)
   te_orig_pal = id.id->palette();
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
-  p = parentWid->mapToGlobal(p);
-  move(p.x() + parentWid->width() / 2  - width() / 2,
-       p.y() + parentWid->height() / 2 - height() / 2);
+  center(this, parentWid);
   show();
 }
 
