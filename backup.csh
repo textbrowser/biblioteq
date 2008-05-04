@@ -42,3 +42,4 @@ cp -p *.sql $BACKUP_DIR/.
 cp -p INSTALL $BACKUP_DIR/.
 cp -p INSTALL.freebsd $BACKUP_DIR/.
 cp -p TO-DO $BACKUP_DIR/.
+find $BACKUP_DIR -name .svn -exec rm -fr {} \;
