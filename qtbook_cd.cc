@@ -255,6 +255,7 @@ void qtbook_cd::slotGo(void)
 	}
 
       str = cd.artist->toPlainText().trimmed();
+      cd.artist->setPlainText(str);
 
       if(cd.artist->toPlainText().isEmpty())
 	{
@@ -284,6 +285,7 @@ void qtbook_cd::slotGo(void)
 	}
 
       str = cd.recording_label->toPlainText().trimmed();
+      cd.recording_label->setPlainText(str);
 
       if(cd.recording_label->toPlainText().isEmpty())
 	{

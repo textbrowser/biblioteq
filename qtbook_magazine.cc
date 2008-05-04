@@ -255,6 +255,7 @@ void qtbook_magazine::slotGo(void)
 	}
 
       str = ma.publisher->toPlainText().trimmed();
+      ma.publisher->setPlainText(str);
 
       if(ma.publisher->toPlainText().isEmpty())
 	{
@@ -336,7 +337,7 @@ void qtbook_magazine::slotGo(void)
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
 			      "front_cover_fmt, "
-			      "back_cover_fmt, type, offsystem_url, myoid) "
+			      "back_cover_fmt, offsystem_url, type, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
@@ -422,10 +423,11 @@ void qtbook_magazine::slotGo(void)
       else
 	query.bindValue(21, subType);
 
-      if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(22,
-			ma.id->text().remove("-") +
-			ma.volume->text() + ma.issue->text());
+      if(windowTitle().contains("Create"))
+	if(qmain->getDB().driverName() == "QSQLITE")
+	  query.bindValue(22,
+			  ma.id->text().remove("-") +
+			  ma.volume->text() + ma.issue->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1666,9 +1668,9 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	  str = str.mid(0, str.indexOf(",")).trimmed();
 
 	  if(subType == "Journal")
-	    ma.publisher->setText(str);
+	    ma.publisher->setPlainText(str);
 	  else
-	    ma.publisher->setText(str);
+	    ma.publisher->setPlainText(str);
 
 	  misc_functions::highlightWidget
 	    (ma.publisher->viewport(), QColor(162, 205, 90));

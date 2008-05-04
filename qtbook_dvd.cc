@@ -301,6 +301,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.studio->toPlainText().trimmed();
+      dvd.studio->setPlainText(str);
 
       if(dvd.studio->toPlainText().isEmpty())
 	{
