@@ -711,7 +711,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 5.02.<br>"
+  mb.setText("<html>BiblioteQ Version 5.03.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -3053,7 +3053,7 @@ void qtbook::readGlobalSetup(void)
   QHash<QString, QString> tmphash;
 
 #ifdef Q_OS_WIN
-  filename.append("C:/BiblioteQ.d/biblioteq.conf");
+  filename = "biblioteq.conf";
 #else
   filename.append(CONFIGFILE);
 #endif

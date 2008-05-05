@@ -239,3 +239,4 @@
      save. (DONE)
 130. Devise an intelligent widget-centering algorithm. (DONE)
 131. Reset the Administrator Browser after a database disconnect. (DONE)
+132. Key fields should have non-empty default values.

@@ -1,4 +1,7 @@
+#include "qtbook.h"
 #include "myqstring.h"
+
+extern qtbook *qmain;
 
 /*
 ** -- myqstring() --
@@ -42,7 +45,21 @@ QString myqstring::escape(const QString &str)
 {
   QString mystr = "";
 
-  mystr = QRegExp::escape(str);
-  mystr = mystr.replace('\'', QString("\\'"));
+  if(str.contains("'"))
+    {
+      if(qmain->getDB().driverName() == "QSQLITE")
+	{
+	  mystr = str;
+	  mystr = mystr.replace("'", "''");
+	}
+      else
+	{
+	  mystr = QRegExp::escape(str);
+	  mystr = mystr.replace("'", QString("\\'"));
+	}
+    }
+  else
+    mystr = str;
+
   return mystr;
 }

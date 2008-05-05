@@ -1196,13 +1196,13 @@ void qtbook_book::insert(void)
   slotReset();
   id.id->clear();
   id.isbn13->clear();
-  id.author->clear();
+  id.author->setPlainText("N/A");
   id.lcnum->clear();
   id.callnum->clear();
   id.deweynum->clear();
   id.title->clear();
-  id.publisher->clear();
-  id.description->clear();
+  id.publisher->setPlainText("N/A");
+  id.description->setPlainText("N/A");
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
   id.okButton->setText("&Save");
@@ -1276,7 +1276,11 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Author(s)"))
 	{
-	  id.author->clear();
+	  if(!windowTitle().contains("Search"))
+	    id.author->setPlainText("N/A");
+	  else
+	    id.author->clear();
+
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
 	}
@@ -1294,7 +1298,11 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Publisher"))
 	{
-	  id.publisher->clear();
+	  if(!windowTitle().contains("Search"))
+	    id.publisher->setPlainText("N/A");
+	  else
+	    id.publisher->clear();
+
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
 	}
@@ -1325,7 +1333,11 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Abstract"))
 	{
-	  id.description->clear();
+	  if(!windowTitle().contains("Search"))
+	    id.description->setPlainText("N/A");
+	  else
+	    id.description->clear();
+
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
@@ -1377,8 +1389,16 @@ void qtbook_book::slotReset(void)
 
       id.id->clear();
       id.title->clear();
-      id.author->clear();
-      id.publisher->clear();
+
+      if(!windowTitle().contains("Search"))
+	id.author->setPlainText("N/A");
+      else
+	id.author->clear();
+
+      if(!windowTitle().contains("Search"))
+	id.publisher->setPlainText("N/A");
+      else
+	id.publisher->clear();
 
       if(windowTitle().contains("Search"))
 	id.publication_date->setDate(QDate::fromString("01/01/7999",
@@ -1388,7 +1408,12 @@ void qtbook_book::slotReset(void)
 						       "MM/dd/yyyy"));
 
       id.quantity->setValue(id.quantity->minimum());
-      id.description->clear();
+
+      if(!windowTitle().contains("Search"))
+	id.description->setPlainText("N/A");
+      else
+	id.description->clear();
+
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();
