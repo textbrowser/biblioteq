@@ -117,8 +117,13 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
 
   if(qmain->getDB().driverName() == "QSQLITE")
-    connect(id.generate, SIGNAL(clicked(void)), this,
-	    SLOT(slotGenerateISBN(void)));
+    {
+      id.generate->setVisible(true);
+      connect(id.generate, SIGNAL(clicked(void)), this,
+	      SLOT(slotGenerateISBN(void)));
+    }
+  else
+    id.generate->setVisible(false);
 
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
