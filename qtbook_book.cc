@@ -606,7 +606,7 @@ void qtbook_book::slotGo(void)
 		      if(column == NULL)
 			continue;
 
-		      if(column->text() == "ISBN" ||
+		      if(column->text() == "ISBN-10" ||
 			 column->text() == "ID Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (id.id->text());
