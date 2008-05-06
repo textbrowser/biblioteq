@@ -60,6 +60,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotCancel(void);
   void slotShowUsers(void);
   void slotSelectImage(void);
+  void slotGenerateISBN(void);
   void slotConvertISBN10to13(void);
   void slotPopulateCopiesEditor(void);
 };

@@ -156,29 +156,26 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1" >
-         <widget class="QLineEdit" name="id" >
-          <property name="maxLength" >
-           <number>32</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_11" >
-          <property name="font" >
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text" >
-           <string>ISBN-13</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <layout class="QHBoxLayout" >
-          <item>
+        <item rowspan="2" row="0" column="1" >
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLineEdit" name="id" >
+            <property name="maxLength" >
+             <number>32</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QPushButton" name="generate" >
+            <property name="text" >
+             <string>&amp;Generate</string>
+            </property>
+            <property name="icon" >
+             <iconset>icons.d/16x16/gear.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
            <widget class="QLineEdit" name="isbn13" >
             <property name="minimumSize" >
              <size>
@@ -191,7 +188,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="1" >
            <widget class="QPushButton" name="isbn10to13" >
             <property name="font" >
              <font>
@@ -208,6 +205,19 @@
            </widget>
           </item>
          </layout>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="label_11" >
+          <property name="font" >
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text" >
+           <string>ISBN-13</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0" >
          <widget class="QLabel" name="label_5" >
@@ -384,6 +394,19 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="1" >
+         <widget class="hyperlinked_text_edit" name="author" >
+          <property name="readOnly" >
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="0" >
          <widget class="QLabel" name="label_9" >
           <property name="font" >
@@ -491,19 +514,6 @@
          <widget class="QLineEdit" name="deweynum" >
           <property name="maxLength" >
            <number>64</number>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" >
-         <widget class="hyperlinked_text_edit" name="author" >
-          <property name="readOnly" >
-           <bool>false</bool>
-          </property>
-          <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
-          <property name="openLinks" >
-           <bool>false</bool>
           </property>
          </widget>
         </item>
@@ -1082,6 +1092,7 @@ URL</string>
   <tabstop>back_image</tabstop>
   <tabstop>backButton</tabstop>
   <tabstop>id</tabstop>
+  <tabstop>generate</tabstop>
   <tabstop>isbn13</tabstop>
   <tabstop>isbn10to13</tabstop>
   <tabstop>edition</tabstop>

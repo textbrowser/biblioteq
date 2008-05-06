@@ -115,6 +115,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+  connect(id.generate, SIGNAL(clicked(void)), this,
+	  SLOT(slotGenerateISBN(void)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
@@ -843,6 +845,7 @@ void qtbook_book::slotGo(void)
 void qtbook_book::search(const QString &field, const QString &value)
 {
   id.coverImages->setVisible(false);
+  id.generate->setVisible(false);
   id.id->clear();
   id.isbn13->clear();
   id.author->clear();
@@ -1276,10 +1279,10 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Author(s)"))
 	{
+	  id.author->clear();
+
 	  if(!windowTitle().contains("Search"))
 	    id.author->setPlainText("N/A");
-	  else
-	    id.author->clear();
 
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
@@ -1298,10 +1301,10 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Publisher"))
 	{
+	  id.publisher->clear();
+
 	  if(!windowTitle().contains("Search"))
 	    id.publisher->setPlainText("N/A");
-	  else
-	    id.publisher->clear();
 
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
@@ -1333,10 +1336,10 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains("Abstract"))
 	{
+	  id.description->clear();
+
 	  if(!windowTitle().contains("Search"))
 	    id.description->setPlainText("N/A");
-	  else
-	    id.description->clear();
 
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
@@ -1389,16 +1392,15 @@ void qtbook_book::slotReset(void)
 
       id.id->clear();
       id.title->clear();
+      id.author->clear();
+      id.publisher->clear();
+      id.description->clear();
 
       if(!windowTitle().contains("Search"))
 	id.author->setPlainText("N/A");
-      else
-	id.author->clear();
 
       if(!windowTitle().contains("Search"))
 	id.publisher->setPlainText("N/A");
-      else
-	id.publisher->clear();
 
       if(windowTitle().contains("Search"))
 	id.publication_date->setDate(QDate::fromString("01/01/7999",
@@ -1411,8 +1413,6 @@ void qtbook_book::slotReset(void)
 
       if(!windowTitle().contains("Search"))
 	id.description->setPlainText("N/A");
-      else
-	id.description->clear();
 
       id.isbn13->clear();
       id.lcnum->clear();
@@ -1914,4 +1914,13 @@ void qtbook_book::slotSelectImage(void)
 	id.back_image->scene()->items().at(0)->setFlags
 	  (QGraphicsItem::ItemIsSelectable);
       }
+}
+
+/*
+** -- slotGenerateISBN() --
+*/
+
+void qtbook_book::slotGenerateISBN(void)
+{
+  id.id->setText(QString::number(QDateTime::currentDateTime().toTime_t()));
 }
