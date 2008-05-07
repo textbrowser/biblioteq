@@ -27,7 +27,7 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
   if(event == NULL)
     return;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
   for(int i = 0; i < event->mimeData()->formats().size(); i++)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
@@ -35,6 +35,8 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	  (event->mimeData()->data(event->mimeData()->formats()[i])).toLower();
 	break;
       }
+#elif defined(Q_OS_MAC)
+  filename = event->mimeData()->urls()[0].toLocalFile().toLower().trimmed();
 #else
   filename = event->mimeData()->text().toLower().trimmed();
 #endif
@@ -55,7 +57,7 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
   if(event == NULL)
     return;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
   for(int i = 0; i < event->mimeData()->formats().size(); i++)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
@@ -63,6 +65,8 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 	  (event->mimeData()->data(event->mimeData()->formats()[i])).toLower();
 	break;
       }
+#elif defined(Q_OS_MAC)
+  filename = event->mimeData()->urls()[0].toLocalFile().toLower().trimmed();
 #else
   filename = event->mimeData()->text().toLower().trimmed();
 #endif
@@ -81,7 +85,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
   if(event == NULL)
     return;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
   QString filename = "";
 
   for(int i = 0; i < event->mimeData()->formats().size(); i++)
@@ -91,6 +95,8 @@ void image_drop_site::dropEvent(QDropEvent *event)
 	  (event->mimeData()->data(event->mimeData()->formats()[i]));
 	break;
       }
+#elif defined(Q_OS_MAC)
+  QString filename = event->mimeData()->urls()[0].toLocalFile();
 #else
   QUrl url(event->mimeData()->text());
   QString filename = url.toLocalFile();
