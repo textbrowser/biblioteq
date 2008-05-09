@@ -190,3 +190,5 @@ GRANT SELECT ON book_borrower_vw TO xbook_admin;
 GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
 GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;
+
+/* Release 5.04 */

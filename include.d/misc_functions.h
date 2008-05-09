@@ -56,6 +56,7 @@ class misc_functions
 			   const int, const QString &, QString &);
   static void updateColumn(QTableWidget *, const int, const QString &,
 			   const QString &);
+  static void hideAdminFields(QMainWindow *, const QString &);
   static void highlightWidget(QWidget *, const QColor &);
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,

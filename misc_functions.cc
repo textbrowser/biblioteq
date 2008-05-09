@@ -1464,3 +1464,42 @@ void misc_functions::center(QMainWindow *child, QMainWindow *parent)
 
   child->move(X, Y);
 }
+
+/*
+** -- hideAdminFields() --
+*/
+
+void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
+{
+  bool hide = true;
+  QString str = "";
+
+  if(roles.isEmpty())
+    hide = false;
+
+  foreach(QWidget *widget, window->findChildren<QWidget *>())
+    {
+      str = ((QObject *) widget)->objectName().toLower();
+
+      if(str.contains("price") || str.contains("monetary"))
+	widget->setVisible(hide);
+    }
+
+  foreach(QLabel *widget, window->findChildren<QLabel *>())
+    {
+      str = widget->text().toLower();
+
+      if(str.contains("price") || str.contains("monetary"))
+	widget->setVisible(hide);
+    }
+
+  foreach(QToolButton *button, window->findChildren<QToolButton *>())
+    foreach(QAction *action, button->menu()->findChildren<QAction *>())
+      {
+	str = action->text().toLower();
+
+	if(str.contains("price") || str.contains("monetary"))
+	  action->setVisible(hide);
+      }
+}
+

@@ -303,7 +303,7 @@ CREATE TABLE member
 	telephone_num	 VARCHAR(32),
 	street		 VARCHAR(256) NOT NULL,
 	city		 VARCHAR(256) NOT NULL,
-	state_abbr	 VARCHAR(2) NOT NULL DEFAULT 'AK',
+	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
 	zip		 VARCHAR(16) NOT NULL
 );
 

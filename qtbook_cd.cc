@@ -156,6 +156,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 
   resize(baseSize());
   misc_functions::center(this, parentWid);
+  misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
 /*

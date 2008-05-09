@@ -61,3 +61,5 @@ SELECT	 item_oid,
 	 reserved_date,
 	 duedate
 FROM	 videogame_borrower;
+
+/* Release 5.04 */

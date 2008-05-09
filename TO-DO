@@ -242,3 +242,6 @@
 132. Key fields should have non-empty default values. This currently applies
      to the Book category. (DONE)
 133. Provide a mechanism for generating unique ISBNs. (DONE)
+134. Non-administrators should not be presented with price and monetary
+     units information. (DONE)
+135. Must support reservation requests.

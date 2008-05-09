@@ -47,6 +47,11 @@
             </property>
             <item>
              <property name="text" >
+              <string>N/A</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
               <string>AK</string>
              </property>
             </item>

@@ -711,7 +711,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 5.03.2.<br>"
+  mb.setText("<html>BiblioteQ Version 5.04.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -732,6 +732,11 @@ void qtbook::slotAbout(void)
 
 void qtbook::slotSearch(void)
 {
+  /*
+  ** Hide certain fields if we're a regular user.
+  */
+
+  misc_functions::hideAdminFields(all_diag, roles);
   al.idnumber->clear();
   al.title->clear();
   al.publisher->clear();
@@ -2718,7 +2723,8 @@ void qtbook::slotAddBorrower(void)
   userinfo.street->clear();
   userinfo.city->clear();
   userinfo.state->setCurrentIndex(0);
-  userinfo.zip->clear();
+  userinfo.zip->setText("00000");
+  userinfo.zip->setCursorPosition(0);
   userinfo.telephoneNumber->clear();
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
   userinfo.prevTool->setVisible(false);
@@ -4239,10 +4245,13 @@ void qtbook::slotConnectDB(void)
 		 (br.userid->text()));
 	    }
 	  else if(!br.adminCheck->isChecked() && !roles.isEmpty())
-	    QMessageBox::warning
-	      (branch_diag, "BiblioteQ: Warning",
-	       "It appears that you are attempting to use an "
-	       "administrator login in a non-administrator mode.");
+	    {
+	      roles = ""; // Reset roles.
+	      QMessageBox::warning
+		(branch_diag, "BiblioteQ: Warning",
+		 "It appears that you are attempting to use an "
+		 "administrator login in a non-administrator mode.");
+	    }
 	}
     }
   else if(!error)

@@ -137,6 +137,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 
   resize(baseSize());
   misc_functions::center(this, parentWid);
+  misc_functions::hideAdminFields(this, qmain->getRoles());
 }
 
 /*
