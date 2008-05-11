@@ -329,14 +329,14 @@ void misc_functions::revokeAll(const QString &userid,
 }
 
 /*
-** -- createOrDeleteDBAccount() --
+** -- DBAccount() --
 */
 
-void misc_functions::createOrDeleteDBAccount(const QString &userid,
-					     const QSqlDatabase &db,
-					     const int action,
-					     QString &errorstr,
-					     const QString &roles)
+void misc_functions::DBAccount(const QString &userid,
+			       const QSqlDatabase &db,
+			       const int action,
+			       QString &errorstr,
+			       const QString &roles)
 {
   int i = 0;
   int count = 0;

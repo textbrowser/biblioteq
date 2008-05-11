@@ -2969,10 +2969,9 @@ void qtbook::slotSaveUser(void)
 	  ** Create a database account for the new member.
 	  */
 
-	  misc_functions::createOrDeleteDBAccount(userinfo.memberid->text(),
-						  db,
-						  misc_functions::CREATE_USER,
-						  errorstr);
+	  misc_functions::DBAccount(userinfo.memberid->text(),
+				    db, misc_functions::CREATE_USER,
+				    errorstr);
 
 	  if(!errorstr.isEmpty())
 	    {
@@ -3014,18 +3013,20 @@ void qtbook::slotSaveUser(void)
 	}
       else
 	{
-	  misc_functions::createOrDeleteDBAccount(userinfo.memberid->text(),
-						  db,
-						  misc_functions::UPDATE_USER,
-						  errorstr);
+	  /*
+	  ** Update privileges.
+	  */
+
+	  misc_functions::DBAccount(userinfo.memberid->text(),
+				    db, misc_functions::UPDATE_USER,
+				    errorstr);
 
 	  if(!errorstr.isEmpty())
-	    addError
-	      (QString("Database Error"),
-	       QString("An error occurred while attempting to "
-		       "update the database account "
-		       "for the existing member."),
-	       errorstr, __FILE__, __LINE__);
+	    addError(QString("Database Error"),
+		     QString("An error occurred while attempting to "
+			     "update the database account "
+			     "for %1.").arg(userinfo.memberid->text()),
+		     errorstr, __FILE__, __LINE__);
 	}
 
       qapp->restoreOverrideCursor();
@@ -3764,9 +3765,8 @@ void qtbook::slotRemoveMember(void)
     }
   else
     {
-      misc_functions::createOrDeleteDBAccount(memberid, db,
-					      misc_functions::DELETE_USER,
-					      errorstr);
+      misc_functions::DBAccount(memberid, db, misc_functions::DELETE_USER,
+				errorstr);
 
       if(!query.exec())
 	{
@@ -7370,10 +7370,8 @@ void qtbook::slotSaveAdministrators(void)
 	  goto db_rollback;
 	}
 
-      misc_functions::createOrDeleteDBAccount(deletedAdmins[i],
-					      getDB(),
-					      misc_functions::DELETE_USER,
-					      errorstr);
+      misc_functions::DBAccount(deletedAdmins[i], getDB(),
+				misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -7457,8 +7455,8 @@ void qtbook::slotSaveAdministrators(void)
 
       if(ucount == 0)
 	{
-	  misc_functions::createOrDeleteDBAccount
-	    (adminStr, db, misc_functions::CREATE_USER, errorstr, str);
+	  misc_functions::DBAccount(adminStr, db, misc_functions::CREATE_USER,
+				    errorstr, str);
 
 	  if(!errorstr.isEmpty())
 	    {

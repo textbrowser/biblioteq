@@ -47,6 +47,9 @@ class misc_functions
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
   static void center(QMainWindow *, QMainWindow *);
+  static void DBAccount(const QString &, const QSqlDatabase &,
+			const int, QString &,
+			const QString & = "");
   static void revokeAll(const QString &, const QSqlDatabase &,
 			QString &);
   static void grantPrivs(const QString &, const QString &,
@@ -62,9 +65,6 @@ class misc_functions
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,
 				  const QString &, QString &);
-  static void createOrDeleteDBAccount(const QString &, const QSqlDatabase &,
-				      const int, QString &,
-				      const QString & = "");
   static QImage getImage(const QString &, const QString &, const QString &,
 			 const QSqlDatabase &);
   static QString getOID(const QString &, const QString &,
