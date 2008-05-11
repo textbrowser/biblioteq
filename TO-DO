@@ -245,3 +245,5 @@
 134. Non-administrators should not be presented with price and monetary
      units information. (DONE)
 135. Must support reservation requests.
+136. Replace all "borrower" tables with one table that contains item
+     types. (DONE)

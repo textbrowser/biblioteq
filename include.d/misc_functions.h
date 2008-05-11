@@ -31,6 +31,7 @@ class misc_functions
  public:
   static const int CREATE_USER = 100;
   static const int DELETE_USER = 200;
+  static const int UPDATE_USER = 300;
   static int userCount(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
   static int sqliteQuerySize(const QString &, const QSqlDatabase &,

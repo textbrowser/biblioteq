@@ -23,7 +23,7 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   quantity = quantityArg;
   bitem = bitemArg;
   state = stateArg;
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg; // .toLower().remove(" ");
 
   /*
   ** Override the state, if necessary.
@@ -198,8 +198,8 @@ void borrowers_editor::showUsers(void)
        "borrowers.reserved_by, "
        "borrowers.myoid "
        "FROM member member, "
-       "%1_borrower borrowers "
-       "WHERE borrowers.item_oid = %2 AND "
+       "item_borrower borrowers "
+       "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 AND "
        "borrowers.memberid = member.memberid "
        "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
   else
@@ -210,10 +210,12 @@ void borrowers_editor::showUsers(void)
        "borrowers.duedate "
        "FROM "
        "%1_copy_info copy "
-       "LEFT JOIN %1_borrower_vw borrowers "
-       "ON copy.item_oid = borrowers.item_oid "
-       "WHERE copy.item_oid = %2 "
-       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
+       "LEFT JOIN item_borrower_vw borrowers "
+       "ON copy.item_oid = borrowers.item_oid AND "
+       "borrowers.type = '%2' "
+       "WHERE copy.item_oid = %3 "
+       "ORDER BY borrowers.copy_number").arg(itemType.toLower().remove(" "))
+      .arg(itemType).arg(ioid);
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -322,8 +324,8 @@ void borrowers_editor::slotEraseBorrower(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
-  query.prepare(QString("DELETE FROM %1_borrower WHERE "
-			"myoid = ?").arg(itemType));
+  query.prepare(QString("DELETE FROM item_borrower WHERE "
+			"myoid = ? AND type = '%1'").arg(itemType));
   query.bindValue(0, oid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -432,9 +434,10 @@ void borrowers_editor::slotSave(void)
 	    error = true;
 	  else
 	    {
-	      query.prepare(QString("UPDATE %1_borrower "
+	      query.prepare(QString("UPDATE item_borrower "
 				    "SET duedate = ? "
-				    "WHERE myoid = ?").arg(itemType));
+				    "WHERE myoid = ? AND "
+				    "type = '%1'").arg(itemType));
 	      query.bindValue(0, dueDate->date().toString("MM/dd/yyyy"));
 	      query.bindValue(1, oid);
 

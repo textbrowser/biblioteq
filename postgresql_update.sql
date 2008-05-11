@@ -191,4 +191,62 @@ GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
 GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;
 
-/* Release 5.04 */
+/* Release 6.00 */
+
+ALTER TABLE member ADD COLUMN new_col VARCHAR(16);
+ALTER TABLE member ALTER COLUMN new_col SET DEFAULT 'N/A';
+UPDATE member SET new_col = CAST(state_abbr AS VARCHAR(16));
+ALTER TABLE member DROP COLUMN state_abbr;
+ALTER TABLE member RENAME new_col TO state_abbr;
+ALTER TABLE member ALTER COLUMN state_abbr SET NOT NULL;
+
+DROP VIEW cd_borrower_vw;
+DROP VIEW dvd_borrower_vw;
+DROP VIEW book_borrower_vw;
+DROP VIEW magazine_borrower_vw;
+DROP VIEW videogame_borrower_vw;
+
+CREATE TABLE item_borrower
+(
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL PRIMARY KEY,
+	copyid		 VARCHAR(64) NOT NULL,
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	reserved_by	 VARCHAR(128) NOT NULL,
+	type		 VARCHAR(16) NOT NULL
+);
+
+CREATE VIEW item_borrower_vw AS
+SELECT	 item_oid,
+	 myoid,
+	 copyid,
+	 copy_number,
+	 reserved_date,
+	 duedate,
+	 type
+FROM	 item_borrower;
+
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'CD' FROM cd_borrower;
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'DVD' FROM dvd_borrower;
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'Book' FROM book_borrower;
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'Journal' FROM magazine_borrower WHERE item_oid IN (SELECT myoid FROM magazine WHERE type = 'Journal');
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'Magazine' FROM magazine_borrower WHERE item_oid IN (SELECT myoid FROM magazine WHERE type = 'Magazine');
+INSERT INTO item_borrower SELECT item_oid, memberid, reserved_date, duedate, myoid, copyid, copy_number, reserved_date, 'Video Game' FROM videogame_borrower;
+
+GRANT SELECT ON item_borrower_vw TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON public.item_borrower_myoid_seq TO xbook_admin;
+
+DROP TABLE cd_borrower CASCADE;
+DROP TABLE dvd_borrower CASCADE;
+DROP TABLE book_borrower CASCADE;
+DROP TABLE magazine_borrower CASCADE;
+DROP TABLE videogame_borrower CASCADE;
+
+/* Please execute the "Save Changes" function from within the Administrator
+   Browser as this will grant the correct privileges to existing administrator
+   accounts. */
+/* Please also "Save" each member's information through the Members Browser. */

@@ -22,6 +22,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const QString &realItemTypeArg): QDialog(parent)
 {
   (void) itemTitleArg;
+  (void) realItemTypeArg;
 
   if(parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
@@ -34,8 +35,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   quantity = quantityArg;
   uniqueid = uniqueidArg;
   spinbox = spinboxArg;
-  itemType = itemTypeArg.toLower().remove(" ");
-  realItemType = realItemTypeArg;
+  itemType = itemTypeArg; // .toLower().remove(" ");
   showForLending = showForLendingArg;
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 
@@ -244,20 +244,22 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->setRowCount(i);
   querystr = QString
     ("SELECT %1_copy_info.copyid, "
-     "(1 - COUNT(%1_borrower_vw.copyid)), "
+     "(1 - COUNT(item_borrower_vw.copyid)), "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
      "FROM "
-     "%1_copy_info LEFT JOIN %1_borrower_vw ON "
+     "%1_copy_info LEFT JOIN item_borrower_vw ON "
      "%1_copy_info.copyid = "
-     "%1_borrower_vw.copyid AND "
+     "item_borrower_vw.copyid AND "
      "%1_copy_info.item_oid = "
-     "%1_borrower_vw.item_oid "
+     "item_borrower_vw.item_oid AND "
+     "item_borrower_vw.type = '%3' "
      "WHERE %1_copy_info.item_oid = %2 "
      "GROUP BY %1_copy_info.copyid, "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
-     "ORDER BY %1_copy_info.copy_number").arg(itemType).arg(ioid);
+     "ORDER BY %1_copy_info.copy_number").arg
+    (itemType.toLower().remove(" ")).arg(ioid).arg(itemType);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))
@@ -395,15 +397,16 @@ void copy_editor::slotCheckoutCopy(void)
       return;
     }
 
-  query.prepare(QString("INSERT INTO %1_borrower "
+  query.prepare(QString("INSERT INTO item_borrower "
 			"(item_oid, "
 			"memberid, "
 			"reserved_date, "
 			"duedate, "
 			"copyid, "
 			"copy_number, "
-			"reserved_by) "
-			"VALUES(?, ?, ?, ?, ?, ?, ?)").arg(itemType));
+			"reserved_by, "
+			"type) "
+			"VALUES(?, ?, ?, ?, ?, ?, ?, ?)"));
   query.bindValue(0, ioid);
   query.bindValue(1, memberid);
   query.bindValue(2, checkedout);
@@ -411,6 +414,7 @@ void copy_editor::slotCheckoutCopy(void)
   query.bindValue(4, copyid);
   query.bindValue(5, copynumber);
   query.bindValue(6, qmain->getAdminID());
+  query.bindValue(7, itemType);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -446,7 +450,7 @@ void copy_editor::slotCheckoutCopy(void)
   query.bindValue(4, duedate);
   query.bindValue(5, QString("N/A"));
   query.bindValue(6, qmain->getAdminID());
-  query.bindValue(7, realItemType);
+  query.bindValue(7, itemType);
   query.bindValue(8, uniqueid);
 
   if(!query.exec())
@@ -663,7 +667,7 @@ QString copy_editor::saveCopies(void)
   QProgressDialog progress(this);
 
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
-			"item_oid = ?").arg(itemType));
+			"item_oid = ?").arg(itemType.toLower().remove(" ")));
   query.bindValue(0, ioid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -694,13 +698,15 @@ QString copy_editor::saveCopies(void)
 				  "(item_oid, copy_number, "
 				  "copyid) "
 				  "VALUES (?, "
-				  "?, ?)").arg(itemType));
+				  "?, ?)").arg
+			  (itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, copy_number, "
 				  "copyid, myoid) "
 				  "VALUES (?, "
-				  "?, ?, ?)").arg(itemType));
+				  "?, ?, ?)").arg
+			  (itemType.toLower().remove(" ")));
 
 	  query.bindValue(0, copy->itemoid);
 	  query.bindValue(1, i + 1);

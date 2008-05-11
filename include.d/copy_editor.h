@@ -53,7 +53,6 @@ class copy_editor: QDialog
   QString ioid;
   QString itemType;
   QString uniqueid;
-  QString realItemType;
   QWidget *parent;
   QSpinBox *spinbox;
   qtbook_item *bitem;

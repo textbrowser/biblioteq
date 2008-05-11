@@ -231,7 +231,7 @@ BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid;
 END;
 
-CREATE TABLE book_borrower
+CREATE TABLE item_borrower
 (
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
@@ -240,55 +240,8 @@ CREATE TABLE book_borrower
 	myoid		 INTEGER PRIMARY KEY AUTOINCREMENT,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE cd_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE dvd_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE magazine_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE videogame_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
+	reserved_by	 VARCHAR(128) NOT NULL,
+	type		 VARCHAR(16) NOT NULL
 );
 
 CREATE TABLE member
@@ -327,47 +280,12 @@ BEGIN
    DELETE FROM member_history WHERE memberid = old.memberid;
 END;
 
-CREATE VIEW cd_borrower_vw AS
+CREATE VIEW item_borrower_vw AS
 SELECT	 item_oid,
 	 myoid,
 	 copyid,
 	 copy_number,
 	 reserved_date,
-	 duedate
-FROM	 cd_borrower;
-
-CREATE VIEW dvd_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 dvd_borrower;
-
-CREATE VIEW book_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 book_borrower;
-
-CREATE VIEW magazine_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 magazine_borrower;
-
-CREATE VIEW videogame_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 videogame_borrower;
+	 duedate,
+	 type
+FROM	 item_borrower;

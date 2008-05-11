@@ -179,7 +179,7 @@ void qtbook_magazine::slotGo(void)
 	  newq = ma.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "magazine", errorstr);
+	    (qmain->getDB(), oid, "Magazine", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -498,7 +498,7 @@ void qtbook_magazine::slotGo(void)
 	      misc_functions::createInitialCopies
 		(ma.id->text() + "," + ma.volume->text() + "," +
 		 ma.issue->text(), ma.quantity->value(),
-		 qmain->getDB(), "magazine", errorstr);
+		 qmain->getDB(), "Magazine", errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -631,7 +631,7 @@ void qtbook_magazine::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "magazine",
+			     (oid, qmain->getDB(), "Magazine",
 			      errorstr));
 
 			  if(!errorstr.isEmpty())
@@ -657,7 +657,7 @@ void qtbook_magazine::slotGo(void)
 	      oid = misc_functions::getOID(ma.id->text() + "," +
 					   ma.volume->text() + "," +
 					   ma.issue->text(),
-					   "magazine",
+					   "Magazine",
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -722,14 +722,15 @@ void qtbook_magazine::slotGo(void)
 			  "magazine.lccontrolnumber, "
 			  "magazine.callnumber, "
 			  "magazine.deweynumber, "
-			  "magazine.quantity - COUNT(magazine_borrower_vw."
+			  "magazine.quantity - COUNT(item_borrower_vw."
 			  "item_oid) "
 			  "AS availability, "
 			  "magazine.type, "
 			  "magazine.myoid "
 			  "FROM "
-			  "magazine LEFT JOIN magazine_borrower_vw ON "
-			  "magazine.myoid = magazine_borrower_vw.item_oid "
+			  "magazine LEFT JOIN item_borrower_vw ON "
+			  "magazine.myoid = item_borrower_vw.item_oid "
+			  "AND item_borrower_vw.type = '%1' "
 			  "WHERE magazine.type = '%1' AND ").arg(subType);
       searchstr.append("id LIKE '%" + ma.id->text() + "%' AND ");
       searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
@@ -1404,7 +1405,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        false,
        ma.quantity->value(), oid,
        ma.id->text(),
-       ma.quantity, font(), "magazine",
+       ma.quantity, font(), "Magazine",
        ma.title->text().trimmed(), subType)) != NULL)
     copyeditor->populateCopiesEditor();
 }
@@ -1425,7 +1426,7 @@ void qtbook_magazine::slotShowUsers(void)
 
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
-       ma.quantity->value(), oid, ma.id->text(), font(), "magazine",
+       ma.quantity->value(), oid, ma.id->text(), font(), "Magazine",
        state)) != NULL)
     borrowerseditor->showUsers();
 }

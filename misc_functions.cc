@@ -89,17 +89,9 @@ void misc_functions::grantPrivs(const QString &userid,
     return; // Users are not supported.
 
   privlist << "SELECT"
-	   << "SELECT"
-	   << "SELECT"
-	   << "SELECT"
-	   << "SELECT"
 	   << "SELECT";
   objectlist << "admin"
-	     << "cd_borrower_vw"
-	     << "dvd_borrower_vw"
-	     << "book_borrower_vw"
-	     << "magazine_borrower_vw"
-	     << "videogame_borrower_vw";
+	     << "item_borrower_vw";
 
   if(roles.contains("circulation"))
     {
@@ -127,14 +119,6 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "INSERT, SELECT, UPDATE"
 	       << "INSERT, SELECT, UPDATE";
       objectlist << "book"
@@ -159,16 +143,8 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq"
 		 << "member"
-		 << "book_borrower"
-		 << "public.book_borrower_myoid_seq"
-		 << "cd_borrower"
-		 << "public.cd_borrower_myoid_seq"
-		 << "dvd_borrower"
-		 << "public.dvd_borrower_myoid_seq"
-		 << "magazine_borrower"
-		 << "public.magazine_borrower_myoid_seq" 
-		 << "videogame_borrower"
-		 << "public.videogame_borrower_myoid_seq"
+		 << "item_borrower"
+		 << "public.item_borrower_myoid_seq"
 		 << "member_history"
 		 << "public.member_history_myoid_seq";
     }
@@ -242,17 +218,7 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT";
+	       << "DELETE, INSERT, SELECT, UPDATE";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -274,17 +240,7 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq"
-		 << "member"
-		 << "book_borrower"
-		 << "public.book_borrower_myoid_seq"
-		 << "cd_borrower"
-		 << "public.cd_borrower_myoid_seq"
-		 << "dvd_borrower"
-		 << "public.dvd_borrower_myoid_seq"
-		 << "magazine_borrower"
-		 << "public.magazine_borrower_myoid_seq" 
-		 << "videogame_borrower"
-		 << "public.videogame_borrower_myoid_seq";
+		 << "member";
     }
 
   for(i = 0; i < objectlist.size(); i++)
@@ -328,31 +284,22 @@ void misc_functions::revokeAll(const QString &userid,
     {
       objectlist << "admin"
 		 << "book"
-		 << "book_borrower"
-		 << "book_borrower_myoid_seq"
-		 << "book_borrower_vw"
+		 << "item_borrower"
+		 << "item_borrower_myoid_seq"
+		 << "item_borrower_vw"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
 		 << "book_myoid_seq"
 		 << "cd"
-		 << "cd_borrower"
-		 << "cd_borrower_myoid_seq"
-		 << "cd_borrower_vw"
 		 << "cd_copy_info"
 		 << "cd_copy_info_myoid_seq"
 		 << "cd_myoid_seq"
 		 << "cd_songs"
 		 << "dvd"
-		 << "dvd_borrower"
-		 << "dvd_borrower_myoid_seq"
-		 << "dvd_borrower_vw"
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
 		 << "magazine"
-		 << "magazine_borrower"
-		 << "magazine_borrower_myoid_seq"
-		 << "magazine_borrower_vw"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
 		 << "magazine_myoid_seq"
@@ -360,9 +307,6 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "member_history"
 		 << "member_history_myoid_seq"
 		 << "videogame"
-		 << "videogame_borrower"
-		 << "videogame_borrower_myoid_seq"
-		 << "videogame_borrower_vw"
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq";
@@ -431,36 +375,27 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 
   if(!query.lastError().isValid())
     {
-      if(action == CREATE_USER)
+      if(action == CREATE_USER || action == UPDATE_USER)
 	{
 	  if(roles.contains("administrator"))
 	    objectlist << "admin"
 		       << "book"
-		       << "book_borrower"
-		       << "book_borrower_myoid_seq"
-		       << "book_borrower_vw"
+		       << "item_borrower"
+		       << "item_borrower_myoid_seq"
+		       << "item_borrower_vw"
 		       << "book_copy_info"
 		       << "book_copy_info_myoid_seq"
 		       << "book_myoid_seq"
 		       << "cd"
-		       << "cd_borrower"
-		       << "cd_borrower_myoid_seq"
-		       << "cd_borrower_vw"
 		       << "cd_copy_info"
 		       << "cd_copy_info_myoid_seq"
 		       << "cd_myoid_seq"
 		       << "cd_songs"
 		       << "dvd"
-		       << "dvd_borrower"
-		       << "dvd_borrower_myoid_seq"
-		       << "dvd_borrower_vw"
 		       << "dvd_copy_info"
 		       << "dvd_copy_info_myoid_seq"
 		       << "dvd_myoid_seq"
 		       << "magazine"
-		       << "magazine_borrower"
-		       << "magazine_borrower_myoid_seq"
-		       << "magazine_borrower_vw"
 		       << "magazine_copy_info"
 		       << "magazine_copy_info_myoid_seq"
 		       << "magazine_myoid_seq"
@@ -468,9 +403,6 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 		       << "member_history"
 		       << "member_history_myoid_seq"
 		       << "videogame"
-		       << "videogame_borrower"
-		       << "videogame_borrower_myoid_seq"
-		       << "videogame_borrower_vw"
 		       << "videogame_copy_info"
 		       << "videogame_copy_info_myoid_seq"
 		       << "videogame_myoid_seq";
@@ -505,42 +437,29 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 		       << "public.videogame_myoid_seq"
 		       << "videogame_copy_info"
 		       << "public.videogame_copy_info_myoid_seq"
-		       << "book_borrower_vw"
-		       << "cd_borrower_vw"
-		       << "dvd_borrower_vw"
-		       << "magazine_borrower_vw"
-		       << "videogame_borrower_vw"
+		       << "item_borrower_vw"
 		       << "member_history"
 		       << "public.member_history_myoid_seq";
 	}
       else
 	objectlist << "admin"
 		   << "book"
-		   << "book_borrower"
-		   << "book_borrower_myoid_seq"
-		   << "book_borrower_vw"
+		   << "item_borrower"
+		   << "item_borrower_myoid_seq"
+		   << "item_borrower_vw"
 		   << "book_copy_info"
 		   << "book_copy_info_myoid_seq"
 		   << "book_myoid_seq"
 		   << "cd"
-		   << "cd_borrower"
-		   << "cd_borrower_myoid_seq"
-		   << "cd_borrower_vw"
 		   << "cd_copy_info"
 		   << "cd_copy_info_myoid_seq"
 		   << "cd_myoid_seq"
 		   << "cd_songs"
 		   << "dvd"
-		   << "dvd_borrower"
-		   << "dvd_borrower_myoid_seq"
-		   << "dvd_borrower_vw"
 		   << "dvd_copy_info"
 		   << "dvd_copy_info_myoid_seq"
 		   << "dvd_myoid_seq"
 		   << "magazine"
-		   << "magazine_borrower"
-		   << "magazine_borrower_myoid_seq"
-		   << "magazine_borrower_vw"
 		   << "magazine_copy_info"
 		   << "magazine_copy_info_myoid_seq"
 		   << "magazine_myoid_seq"
@@ -548,16 +467,13 @@ void misc_functions::createOrDeleteDBAccount(const QString &userid,
 		   << "member_history"
 		   << "member_history_myoid_seq"
 		   << "videogame"
-		   << "videogame_borrower"
-		   << "videogame_borrower_myoid_seq"
-		   << "videogame_borrower_vw"
 		   << "videogame_copy_info"
 		   << "videogame_copy_info_myoid_seq"
 		   << "videogame_myoid_seq";
 
       for(i = 0; i < objectlist.size(); i++)
 	{
-	  if(action == CREATE_USER)
+	  if(action == CREATE_USER || action == UPDATE_USER)
 	    {
 	      if(roles.contains("administrator"))
 		{
@@ -651,69 +567,74 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
   errorstr = "";
   querystr =
     "SELECT "
-    "book_borrower.copyid, "
+    "item_borrower.copyid, "
     "book.location, "
     "book.type, "
     "book.title, "
-    "book_borrower.duedate "
+    "item_borrower.duedate "
     "FROM "
     "book, "
-    "book_borrower "
+    "item_borrower "
     "WHERE "
-    "book_borrower.item_oid = book.myoid AND "
-    "book_borrower.memberid = ? "
+    "item_borrower.item_oid = book.myoid AND "
+    "item_borrower.type = 'Book' AND "
+    "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
-    "cd_borrower.copyid, "
+    "item_borrower.copyid, "
     "cd.location, "
     "cd.type, "
     "cd.title, "
-    "cd_borrower.duedate "
+    "item_borrower.duedate "
     "FROM "
     "cd, "
-    "cd_borrower "
+    "item_borrower "
     "WHERE "
-    "cd_borrower.item_oid = cd.myoid AND "
-    "cd_borrower.memberid = ? "
+    "item_borrower.item_oid = cd.myoid AND "
+    "item_borrower.type = 'CD' AND "
+    "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
-    "dvd_borrower.copyid, "
+    "item_borrower.copyid, "
     "dvd.location, "
     "dvd.type, "
     "dvd.title, "
-    "dvd_borrower.duedate "
+    "item_borrower.duedate "
     "FROM "
     "dvd, "
-    "dvd_borrower "
+    "item_borrower "
     "WHERE "
-    "dvd_borrower.item_oid = dvd.myoid AND "
-    "dvd_borrower.memberid = ? "
+    "item_borrower.item_oid = dvd.myoid AND "
+    "item_borrower.type = 'DVD' AND "
+    "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
-    "magazine_borrower.copyid, "
+    "item_borrower.copyid, "
     "magazine.location, "
     "magazine.type, "
     "magazine.title, "
-    "magazine_borrower.duedate "
+    "item_borrower.duedate "
     "FROM "
     "magazine, "
-    "magazine_borrower "
+    "item_borrower "
     "WHERE "
-    "magazine_borrower.item_oid = magazine.myoid AND "
-    "magazine_borrower.memberid = ? "
+    "item_borrower.item_oid = magazine.myoid AND "
+    "item_borrower.type IN ('Journal', 'Magazine') AND "
+    "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
-    "videogame_borrower.copyid, "
+    "item_borrower.copyid, "
     "videogame.location, "
     "videogame.type, "
     "videogame.title, "
-    "videogame_borrower.duedate "
+    "item_borrower.duedate "
     "FROM "
     "videogame, "
-    "videogame_borrower "
+    "item_borrower "
     "WHERE "
-    "videogame_borrower.item_oid = videogame.myoid AND "
-    "videogame_borrower.memberid = ? ";
+    "item_borrower.item_oid = videogame.myoid AND "
+    "item_borrower.type = 'Video Game' AND "
+    "item_borrower.memberid = ? ";
   query.prepare(querystr);
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
@@ -796,19 +717,22 @@ QString misc_functions::getAvailability(const QString &oid,
   QSqlQuery query(db);
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg;
 
-  if(itemType == "journal")
-    itemType = "magazine";
+  if(itemType == "Journal")
+    itemType = "Magazine";
 
   querystr = QString("SELECT %1.quantity - "
-		     "COUNT(%1_borrower_vw.item_oid) "
+		     "COUNT(item_borrower_vw.item_oid) "
 		     "FROM "
-		     "%1 LEFT JOIN %1_borrower_vw ON "
-		     "%1.myoid = %1_borrower_vw.item_oid WHERE "
+		     "%1 LEFT JOIN item_borrower_vw ON "
+		     "%1.myoid = item_borrower_vw.item_oid AND "
+		     "item_borrower_vw.type = '%2' "
+		     "WHERE "
 		     "%1.myoid = ? "
 		     "GROUP BY %1.quantity, "
-		     "%1.myoid").arg(itemType);
+		     "%1.myoid").arg(itemType.toLower().remove(" ")).arg
+    (itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -958,13 +882,13 @@ bool misc_functions::isCheckedOut(const QSqlDatabase &db,
   QSqlQuery query(db);
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg;
 
-  if(itemType == "journal")
-    itemType = "magazine";
+  if(itemType == "Journal")
+    itemType = "Magazine";
 
-  querystr = QString("SELECT COUNT(myoid) FROM %1_borrower_vw "
-		     "WHERE item_oid = ?").arg(itemType);
+  querystr = QString("SELECT COUNT(myoid) FROM item_borrower_vw "
+		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -1005,13 +929,14 @@ bool misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   QSqlQuery query(db);
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg;
 
-  if(itemType == "journal")
-    itemType = "magazine";
+  if(itemType == "Journal")
+    itemType = "Magazine";
 
-  querystr = QString("SELECT count(copyid) FROM %1_borrower_vw WHERE "
-		     "copyid = ? AND item_oid = ?").arg(itemType);
+  querystr = QString("SELECT count(copyid) FROM item_borrower_vw WHERE "
+		     "copyid = ? AND item_oid = ? AND "
+		     "type = '%1'").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
@@ -1081,13 +1006,13 @@ int misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
   QSqlQuery query(db);
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg;
 
-  if(itemType == "journal")
-    itemType = "magazine";
+  if(itemType == "Journal")
+    itemType = "Magazine";
 
-  querystr = QString("SELECT MAX(copy_number) FROM %1_borrower_vw "
-		     "WHERE item_oid = ?").arg(itemType);
+  querystr = QString("SELECT MAX(copy_number) FROM item_borrower_vw "
+		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -1122,15 +1047,16 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
   QSqlQuery query(db);
 
   errorstr = "";
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg;
 
-  if(itemType == "journal")
-    itemType = "magazine";
+  if(itemType == "Journal")
+    itemType = "Magazine";
 
   querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
 		     "WHERE copyid = ? AND item_oid = ? "
-		     "AND copyid NOT IN (SELECT copyid FROM %1_borrower_vw "
-		     "WHERE item_oid = ?)").arg(itemType);
+		     "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
+		     "WHERE item_oid = ? AND type = '%2')").arg
+    (itemType.toLower().remove(" ")).arg(itemType);
   query.prepare(querystr);
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
@@ -1166,22 +1092,23 @@ QMap<QString, QString> misc_functions::getItemsReservedCounts
 
   errorstr = "";
   querystr =
-    "SELECT COUNT(myoid) AS numbooks FROM book_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numbooks FROM item_borrower WHERE memberid = ? "
+    "AND type = 'Book' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numcds FROM cd_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numcds FROM item_borrower WHERE memberid = ? "
+    "AND type = 'CD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numdvds FROM dvd_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numdvds FROM item_borrower WHERE memberid = ? "
+    "AND type = 'DVD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numjournals FROM magazine_borrower WHERE "
-    "memberid = ? AND "
-    "item_oid IN (SELECT myoid FROM magazine WHERE type = 'Journal') "
+    "SELECT COUNT(myoid) AS numjournals FROM item_borrower WHERE "
+    "memberid = ? AND type = 'Journal' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS nummagazines FROM magazine_borrower WHERE "
-    "memberid = ? AND "
-    "item_oid IN (SELECT myoid FROM magazine WHERE type = 'Magazine') "
+    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower WHERE "
+    "memberid = ? AND type = 'Magazine' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numvideogames FROM videogame_borrower WHERE "
-    "memberid = ?";
+    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower WHERE "
+    "memberid = ? AND type = 'Video Game'";
   query.prepare(querystr);
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
@@ -1471,18 +1398,23 @@ void misc_functions::center(QMainWindow *child, QMainWindow *parent)
 
 void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
 {
-  bool hide = true;
+  bool showWidgets = true;
   QString str = "";
 
   if(roles.isEmpty())
-    hide = false;
+    showWidgets = false;
+  else if(roles.contains("administrator") ||
+	  roles.contains("librarian"))
+    showWidgets = true;
+  else
+    showWidgets = false;
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
     {
       str = ((QObject *) widget)->objectName().toLower();
 
       if(str.contains("price") || str.contains("monetary"))
-	widget->setVisible(hide);
+	widget->setVisible(showWidgets);
     }
 
   foreach(QLabel *widget, window->findChildren<QLabel *>())
@@ -1490,7 +1422,7 @@ void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
       str = widget->text().toLower();
 
       if(str.contains("price") || str.contains("monetary"))
-	widget->setVisible(hide);
+	widget->setVisible(showWidgets);
     }
 
   foreach(QToolButton *button, window->findChildren<QToolButton *>())
@@ -1499,7 +1431,6 @@ void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
 	str = action->text().toLower();
 
 	if(str.contains("price") || str.contains("monetary"))
-	  action->setVisible(hide);
+	  action->setVisible(showWidgets);
       }
 }
-

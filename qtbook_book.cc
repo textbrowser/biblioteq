@@ -195,7 +195,7 @@ void qtbook_book::slotGo(void)
 	  newq = id.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "book", errorstr);
+	    (qmain->getDB(), oid, "Book", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -526,7 +526,7 @@ void qtbook_book::slotGo(void)
 	      misc_functions::createInitialCopies(id.id->text(),
 						  id.quantity->value(),
 						  qmain->getDB(),
-						  "book", errorstr);
+						  "Book", errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -663,7 +663,7 @@ void qtbook_book::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "book",
+			     (oid, qmain->getDB(), "Book",
 			      errorstr));
 
 			  if(!errorstr.isEmpty())
@@ -687,7 +687,7 @@ void qtbook_book::slotGo(void)
 	    {
 	      qapp->setOverrideCursor(Qt::WaitCursor);
 	      oid = misc_functions::getOID(id.id->text(),
-					   "book",
+					   "Book",
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -745,13 +745,14 @@ void qtbook_book::slotGo(void)
 	"book.lccontrolnumber, "
 	"book.callnumber, "
 	"book.deweynumber, "
-	"book.quantity - COUNT(book_borrower_vw.item_oid) "
+	"book.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"book.type, "
 	"book.myoid "
 	"FROM "
-	"book LEFT JOIN book_borrower_vw ON "
-	"book.myoid = book_borrower_vw.item_oid "
+	"book LEFT JOIN item_borrower_vw ON "
+	"book.myoid = item_borrower_vw.item_oid "
+	"AND item_borrower_vw.type = 'Book' "
 	"WHERE ";
       searchstr.append("LOWER(id) LIKE '%" + id.id->text().toLower() +
 		       "%' AND ");
@@ -1515,7 +1516,7 @@ void qtbook_book::slotPopulateCopiesEditor(void)
 				   false,
 				   id.quantity->value(), oid,
 				   id.id->text(),
-				   id.quantity, font(), "book",
+				   id.quantity, font(), "Book",
 				   id.title->text().trimmed(),
 				   "Book")) != NULL)
     copyeditor->populateCopiesEditor();

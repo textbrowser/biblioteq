@@ -202,7 +202,7 @@ CREATE TABLE videogame_copy_info
 	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE
 );
 
-CREATE TABLE book_borrower
+CREATE TABLE item_borrower
 (
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
@@ -211,55 +211,8 @@ CREATE TABLE book_borrower
 	myoid		 BIGSERIAL PRIMARY KEY,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE cd_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE dvd_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE magazine_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE videogame_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL
+	reserved_by	 VARCHAR(128) NOT NULL,
+	type		 VARCHAR(16) NOT NULL
 );
 
 CREATE TABLE member
@@ -344,56 +297,17 @@ CREATE TABLE admin
 	roles		 TEXT NOT NULL
 );
 
-CREATE VIEW cd_borrower_vw AS
+CREATE VIEW item_borrower_vw AS
 SELECT	 item_oid,
 	 myoid,
 	 copyid,
 	 copy_number,
 	 reserved_date,
-	 duedate
-FROM	 cd_borrower;
+	 duedate,
+	 type
+FROM	 item_borrower;
 
-CREATE VIEW dvd_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 dvd_borrower;
-
-CREATE VIEW book_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 book_borrower;
-
-CREATE VIEW magazine_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 magazine_borrower;
-
-CREATE VIEW videogame_borrower_vw AS
-SELECT	 item_oid,
-	 myoid,
-	 copyid,
-	 copy_number,
-	 reserved_date,
-	 duedate
-FROM	 videogame_borrower;
-
-GRANT SELECT ON cd_borrower_vw TO xbook_admin;
-GRANT SELECT ON dvd_borrower_vw TO xbook_admin;
-GRANT SELECT ON book_borrower_vw TO xbook_admin;
-GRANT SELECT ON magazine_borrower_vw TO xbook_admin;
-GRANT SELECT ON videogame_borrower_vw TO xbook_admin;
+GRANT SELECT ON item_borrower_vw TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_myoid_seq TO xbook_admin;
@@ -416,16 +330,8 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_copy_info_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_borrower TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_borrower_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON cd_borrower TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.cd_borrower_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_borrower TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.dvd_borrower_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_borrower TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.magazine_borrower_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_borrower TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_borrower_myoid_seq TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON public.item_borrower_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;

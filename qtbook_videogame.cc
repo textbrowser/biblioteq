@@ -171,7 +171,7 @@ void qtbook_videogame::slotGo(void)
 	  newq = vg.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "videogame", errorstr);
+	    (qmain->getDB(), oid, "Video Game", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -581,7 +581,7 @@ void qtbook_videogame::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "videogame",
+			     (oid, qmain->getDB(), "Video Game",
 			      errorstr));
 
 			  if(!errorstr.isEmpty())
@@ -605,7 +605,7 @@ void qtbook_videogame::slotGo(void)
 	    {
 	      qapp->setOverrideCursor(Qt::WaitCursor);
 	      oid = misc_functions::getOID(vg.id->text(),
-					   "videogame",
+					   "Video Game",
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -660,13 +660,14 @@ void qtbook_videogame::slotGo(void)
 	"videogame.price, videogame.monetary_units, "
 	"videogame.quantity, "
 	"videogame.location, "
-	"videogame.quantity - COUNT(videogame_borrower_vw.item_oid) "
+	"videogame.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"videogame.type, "
 	"videogame.myoid "
 	"FROM "
-	"videogame LEFT JOIN videogame_borrower_vw ON "
-	"videogame.myoid = videogame_borrower_vw.item_oid "
+	"videogame LEFT JOIN item_borrower_vw ON "
+	"videogame.myoid = item_borrower_vw.item_oid "
+	"AND item_borrower_vw.type = 'Video Game' "
 	"WHERE ";
       searchstr.append("id LIKE '%" + vg.id->text() + "%' AND ");
       searchstr.append("LOWER(title) LIKE '%" +
@@ -1326,7 +1327,7 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
 				   false,
 				   vg.quantity->value(), oid,
 				   vg.id->text(),
-				   vg.quantity, font(), "videogame",
+				   vg.quantity, font(), "Video Game",
 				   vg.title->text().trimmed(),
 				   "Video Game")) != NULL)
     copyeditor->populateCopiesEditor();

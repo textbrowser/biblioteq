@@ -62,4 +62,5 @@ SELECT	 item_oid,
 	 duedate
 FROM	 videogame_borrower;
 
-/* Release 5.04 */
+/* Release 6.00 */
+/* Please recreate the database. */

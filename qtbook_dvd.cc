@@ -183,7 +183,7 @@ void qtbook_dvd::slotGo(void)
 	  newq = dvd.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "dvd", errorstr);
+	    (qmain->getDB(), oid, "DVD", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -552,7 +552,7 @@ void qtbook_dvd::slotGo(void)
 
 	      misc_functions::createInitialCopies(dvd.id->text(),
 						  dvd.quantity->value(),
-						  qmain->getDB(), "dvd",
+						  qmain->getDB(), "DVD",
 						  errorstr);
 
 	      if(!errorstr.isEmpty())
@@ -676,7 +676,7 @@ void qtbook_dvd::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "dvd", errorstr));
+			     (oid, qmain->getDB(), "DVD", errorstr));
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
@@ -699,7 +699,7 @@ void qtbook_dvd::slotGo(void)
 	    {
 	      qapp->setOverrideCursor(Qt::WaitCursor);
 	      oid = misc_functions::getOID(dvd.id->text(),
-					   "dvd",
+					   "DVD",
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -762,13 +762,15 @@ void qtbook_dvd::slotGo(void)
 	"dvd.dvdregion, "
 	"dvd.dvdaspectratio, "
 	"dvd.quantity - "
-	"COUNT(dvd_borrower_vw.item_oid) "
+	"COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"dvd.type, "
 	"dvd.myoid "
 	"FROM "
-	"dvd LEFT JOIN dvd_borrower_vw ON "
-	"dvd.myoid = dvd_borrower_vw.item_oid WHERE ";
+	"dvd LEFT JOIN item_borrower_vw ON "
+	"dvd.myoid = item_borrower_vw.item_oid "
+	"AND item_borrower_vw.type = 'DVD' "
+	"WHERE ";
       searchstr.append("id LIKE '%").append
 	(dvd.id->text()).append("%' AND ");
       searchstr.append("LOWER(dvdformat) LIKE '%").append
@@ -1514,7 +1516,7 @@ void qtbook_dvd::slotPopulateCopiesEditor(void)
 				   false,
 				   dvd.quantity->value(), oid,
 				   dvd.id->text(),
-				   dvd.quantity, font(), "dvd",
+				   dvd.quantity, font(), "DVD",
 				   dvd.title->text().trimmed(),
 				   "DVD")) != NULL)
     copyeditor->populateCopiesEditor();

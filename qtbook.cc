@@ -544,6 +544,17 @@ QString qtbook::getRoles(void)
 
 void qtbook::adminSetup(void)
 {
+  bb.addButton->setEnabled(true);
+  bb.deleteButton->setEnabled(true);
+  bb.modifyButton->setEnabled(true);
+  bb.historyButton->setEnabled(true);
+  bb.listButton->setEnabled(true);
+  bb.printButton->setEnabled(true);
+  bb.checkoutButton->setEnabled(true);
+  bb.overdueButton->setEnabled(true);
+  ui.detailsTool->setEnabled(true);
+  ui.actionViewDetails->setEnabled(true);
+
   if(status_bar_label != NULL)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
@@ -585,11 +596,6 @@ void qtbook::adminSetup(void)
     {
       ui.detailsTool->setEnabled(false);
       ui.actionViewDetails->setEnabled(false);
-    }
-  else
-    {
-      ui.detailsTool->setEnabled(true);
-      ui.actionViewDetails->setEnabled(true);
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
@@ -711,7 +717,7 @@ void qtbook::slotAbout(void)
 
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 5.04.<br>"
+  mb.setText("<html>BiblioteQ Version 6.00.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -1329,13 +1335,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "book.price, book.monetary_units, "
 	      "book.quantity, "
 	      "book.location, "
-	      "book.quantity - COUNT(book_borrower_vw.item_oid) "
+	      "book.quantity - COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "book.type, "
 	      "book.myoid "
 	      "FROM "
-	      "book LEFT JOIN book_borrower_vw ON "
-	      "book.myoid = book_borrower_vw.item_oid "
+	      "book LEFT JOIN item_borrower_vw ON "
+	      "book.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'Book' "
 	      "GROUP BY book.title, "
 	      "book.id, "
 	      "book.publisher, book.pdate, "
@@ -1355,13 +1362,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "cd.price, cd.monetary_units, "
 	      "cd.quantity, "
 	      "cd.location, "
-	      "cd.quantity - COUNT(cd_borrower_vw.item_oid) "
+	      "cd.quantity - COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "cd.type, "
 	      "cd.myoid "
 	      "FROM "
-	      "cd LEFT JOIN cd_borrower_vw ON "
-	      "cd.myoid = cd_borrower_vw.item_oid "
+	      "cd LEFT JOIN item_borrower_vw ON "
+	      "cd.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'CD' "
 	      "GROUP BY cd.title, "
 	      "cd.id, "
 	      "cd.recording_label, cd.rdate, "
@@ -1381,13 +1389,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "dvd.price, dvd.monetary_units, "
 	      "dvd.quantity, "
 	      "dvd.location, "
-	      "dvd.quantity - COUNT(dvd_borrower_vw.item_oid) AS "
+	      "dvd.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "dvd.type, "
 	      "dvd.myoid "
 	      "FROM "
-	      "dvd LEFT JOIN dvd_borrower_vw ON "
-	      "dvd.myoid = dvd_borrower_vw.item_oid "
+	      "dvd LEFT JOIN item_borrower_vw ON "
+	      "dvd.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'DVD' "
 	      "GROUP BY dvd.title, "
 	      "dvd.id, "
 	      "dvd.studio, dvd.rdate, "
@@ -1407,13 +1416,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "magazine.price, magazine.monetary_units, "
 	      "magazine.quantity, "
 	      "magazine.location, "
-	      "magazine.quantity - COUNT(magazine_borrower_vw.item_oid) AS "
+	      "magazine.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "magazine.type, "
 	      "magazine.myoid "
 	      "FROM "
-	      "magazine LEFT JOIN magazine_borrower_vw ON "
-	      "magazine.myoid = magazine_borrower_vw.item_oid "
+	      "magazine LEFT JOIN item_borrower_vw ON "
+	      "magazine.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = magazine.type "
 	      "GROUP BY magazine.title, "
 	      "magazine.id, "
 	      "magazine.publisher, magazine.pdate, "
@@ -1433,14 +1443,15 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "videogame.price, videogame.monetary_units, "
 	      "videogame.quantity, "
 	      "videogame.location, "
-	      "videogame.quantity - COUNT(videogame_borrower_vw.item_oid) "
+	      "videogame.quantity - COUNT(item_borrower_vw.item_oid) "
 	      "AS "
 	      "availability, "
 	      "videogame.type, "
 	      "videogame.myoid "
 	      "FROM "
-	      "videogame LEFT JOIN videogame_borrower_vw ON "
-	      "videogame.myoid = videogame_borrower_vw.item_oid "
+	      "videogame LEFT JOIN item_borrower_vw ON "
+	      "videogame.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'Video Game' "
 	      "GROUP BY videogame.title, "
 	      "videogame.id, "
 	      "videogame.publisher, videogame.rdate, "
@@ -1460,9 +1471,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "book_borrower.copyid, "
-			     "book_borrower.reserved_date, "
-			     "book_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "book.title, "
 			     "book.id, "
 			     "book.publisher, book.pdate, "
@@ -1472,28 +1483,29 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "book.quantity, "
 			     "book.location, "
 			     "book.quantity - "
-			     "COUNT(book_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "book.type, "
 			     "book.myoid "
 			     "FROM "
 			     "member, "
-			     "book LEFT JOIN book_borrower ON "
-			     "book.myoid = book_borrower.item_oid "
+			     "book LEFT JOIN item_borrower ON "
+			     "book.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'Book' "
 			     "WHERE "
 			     "member.memberid LIKE '%");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("%' AND ");
-	    searchstr.append("book_borrower.duedate < '");
+	    searchstr.append("item_borrower.duedate < '");
 	    searchstr.append(now.toString("MM/dd/yyyy"));
 	    searchstr.append("' AND ");
-	    searchstr.append("book_borrower.memberid = member.memberid ");
+	    searchstr.append("item_borrower.memberid = member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "book_borrower.copyid, "
-			     "book_borrower.reserved_date, "
-			     "book_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "book.title, "
 			     "book.id, "
 			     "book.publisher, book.pdate, "
@@ -1509,9 +1521,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "cd_borrower.copyid, "
-			     "cd_borrower.reserved_date, "
-			     "cd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "cd.title, "
 			     "cd.id, "
 			     "cd.recording_label, cd.rdate, "
@@ -1521,28 +1533,29 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "cd.quantity, "
 			     "cd.location, "
 			     "cd.quantity - "
-			     "COUNT(cd_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "cd.type, "
 			     "cd.myoid "
 			     "FROM "
 			     "member, "
-			     "cd LEFT JOIN cd_borrower ON "
-			     "cd.myoid = cd_borrower.item_oid "
+			     "cd LEFT JOIN item_borrower ON "
+			     "cd.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'CD' "
 			     "WHERE "
 			     "member.memberid LIKE '%");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("%' AND ");
-	    searchstr.append("cd_borrower.duedate < '");
+	    searchstr.append("item_borrower.duedate < '");
 	    searchstr.append(now.toString("MM/dd/yyyy"));
 	    searchstr.append("' AND ");
-	    searchstr.append("cd_borrower.memberid = member.memberid ");
+	    searchstr.append("item_borrower.memberid = member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "cd_borrower.copyid, "
-			     "cd_borrower.reserved_date, "
-			     "cd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "cd.title, "
 			     "cd.id, "
 			     "cd.recording_label, cd.rdate, "
@@ -1558,9 +1571,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "dvd_borrower.copyid, "
-			     "dvd_borrower.reserved_date, "
-			     "dvd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "dvd.title, "
 			     "dvd.id, "
 			     "dvd.studio, dvd.rdate, "
@@ -1570,28 +1583,29 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "dvd.quantity, "
 			     "dvd.location, "
 			     "dvd.quantity - "
-			     "COUNT(dvd_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "dvd.type, "
 			     "dvd.myoid "
 			     "FROM "
 			     "member, "
-			     "dvd LEFT JOIN dvd_borrower ON "
-			     "dvd.myoid = dvd_borrower.item_oid "
+			     "dvd LEFT JOIN item_borrower ON "
+			     "dvd.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'DVD' "
 			     "WHERE "
 			     "member.memberid LIKE '%");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("%' AND ");
-	    searchstr.append("dvd_borrower.duedate < '");
+	    searchstr.append("item_borrower.duedate < '");
 	    searchstr.append(now.toString("MM/dd/yyyy"));
 	    searchstr.append("' AND ");
-	    searchstr.append("dvd_borrower.memberid = member.memberid ");
+	    searchstr.append("item_borrower.memberid = member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "dvd_borrower.copyid, "
-			     "dvd_borrower.reserved_date, "
-			     "dvd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "dvd.title, "
 			     "dvd.id, "
 			     "dvd.studio, dvd.rdate, "
@@ -1607,9 +1621,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "magazine_borrower.copyid, "
-			     "magazine_borrower.reserved_date, "
-			     "magazine_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "magazine.title, "
 			     "magazine.id, "
 			     "magazine.publisher, magazine.pdate, "
@@ -1619,29 +1633,30 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "magazine.quantity, "
 			     "magazine.location, "
 			     "magazine.quantity - "
-			     "COUNT(magazine_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "magazine.type, "
 			     "magazine.myoid "
 			     "FROM "
 			     "member, "
-			     "magazine LEFT JOIN magazine_borrower ON "
-			     "magazine.myoid = magazine_borrower.item_oid "
+			     "magazine LEFT JOIN item_borrower ON "
+			     "magazine.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = magazine.type "
 			     "WHERE "
 			     "member.memberid LIKE '%");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("%' AND ");
-	    searchstr.append("magazine_borrower.duedate < '");
+	    searchstr.append("item_borrower.duedate < '");
 	    searchstr.append(now.toString("MM/dd/yyyy"));
 	    searchstr.append("' AND ");
-	    searchstr.append("magazine_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "magazine_borrower.copyid, "
-			     "magazine_borrower.reserved_date, "
-			     "magazine_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "magazine.title, "
 			     "magazine.id, "
 			     "magazine.publisher, magazine.pdate, "
@@ -1657,9 +1672,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "videogame_borrower.copyid, "
-			     "videogame_borrower.reserved_date, "
-			     "videogame_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "videogame.title, "
 			     "videogame.id, "
 			     "videogame.publisher, videogame.rdate, "
@@ -1669,30 +1684,31 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "videogame.quantity, "
 			     "videogame.location, "
 			     "videogame.quantity - "
-			     "COUNT(videogame_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "videogame.type, "
 			     "videogame.myoid "
 			     "FROM "
 			     "member, "
-			     "videogame LEFT JOIN videogame_borrower ON "
+			     "videogame LEFT JOIN item_borrower ON "
 			     "videogame.myoid = "
-			     "videogame_borrower.item_oid "
+			     "item_borrower.item_oid "
+			     "AND item_borrower.type = 'Video Game' "
 			     "WHERE "
 			     "member.memberid LIKE '%");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("%' AND ");
-	    searchstr.append("videogame_borrower.duedate < '");
+	    searchstr.append("item_borrower.duedate < '");
 	    searchstr.append(now.toString("MM/dd/yyyy"));
 	    searchstr.append("' AND ");
-	    searchstr.append("videogame_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "videogame_borrower.copyid, "
-			     "videogame_borrower.reserved_date, "
-			     "videogame_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "videogame.title, "
 			     "videogame.id, "
 			     "videogame.publisher, videogame.rdate, "
@@ -1712,9 +1728,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "book_borrower.copyid, "
-			     "book_borrower.reserved_date, "
-			     "book_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "book.title, "
 			     "book.id, "
 			     "book.publisher, book.pdate, "
@@ -1724,26 +1740,27 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "book.quantity, "
 			     "book.location, "
 			     "book.quantity - "
-			     "COUNT(book_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "book.type, "
 			     "book.myoid "
 			     "FROM "
 			     "member, "
-			     "book LEFT JOIN book_borrower ON "
-			     "book.myoid = book_borrower.item_oid "
+			     "book LEFT JOIN item_borrower ON "
+			     "book.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'Book' "
 			     "WHERE "
 			     "member.memberid = '");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("' AND ");
-	    searchstr.append("book_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "book_borrower.copyid, "
-			     "book_borrower.reserved_date, "
-			     "book_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "book.title, "
 			     "book.id, "
 			     "book.publisher, book.pdate, "
@@ -1759,9 +1776,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "cd_borrower.copyid, "
-			     "cd_borrower.reserved_date, "
-			     "cd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "cd.title, "
 			     "cd.id, "
 			     "cd.recording_label, cd.rdate, "
@@ -1771,26 +1788,27 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "cd.quantity, "
 			     "cd.location, "
 			     "cd.quantity - "
-			     "COUNT(cd_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "cd.type, "
 			     "cd.myoid "
 			     "FROM "
 			     "member, "
-			     "cd LEFT JOIN cd_borrower ON "
-			     "cd.myoid = cd_borrower.item_oid "
+			     "cd LEFT JOIN item_borrower ON "
+			     "cd.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'CD' "
 			     "WHERE "
 			     "member.memberid = '");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("' AND ");
-	    searchstr.append("cd_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "cd_borrower.copyid, "
-			     "cd_borrower.reserved_date, "
-			     "cd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "cd.title, "
 			     "cd.id, "
 			     "cd.recording_label, cd.rdate, "
@@ -1806,9 +1824,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "dvd_borrower.copyid, "
-			     "dvd_borrower.reserved_date, "
-			     "dvd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "dvd.title, "
 			     "dvd.id, "
 			     "dvd.studio, dvd.rdate, "
@@ -1818,26 +1836,27 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "dvd.quantity, "
 			     "dvd.location, "
 			     "dvd.quantity - "
-			     "COUNT(dvd_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "dvd.type, "
 			     "dvd.myoid "
 			     "FROM "
 			     "member, "
-			     "dvd LEFT JOIN dvd_borrower ON "
-			     "dvd.myoid = dvd_borrower.item_oid "
+			     "dvd LEFT JOIN item_borrower ON "
+			     "dvd.myoid = item_borrower.item_oid "
+			     "AND item_borrower.type = 'DVD' "
 			     "WHERE "
 			     "member.memberid = '");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("' AND ");
-	    searchstr.append("dvd_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "dvd_borrower.copyid, "
-			     "dvd_borrower.reserved_date, "
-			     "dvd_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "dvd.title, "
 			     "dvd.id, "
 			     "dvd.studio, dvd.rdate, "
@@ -1853,9 +1872,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "magazine_borrower.copyid, "
-			     "magazine_borrower.reserved_date, "
-			     "magazine_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "magazine.title, "
 			     "magazine.id, "
 			     "magazine.publisher, magazine.pdate, "
@@ -1865,27 +1884,28 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "magazine.quantity, "
 			     "magazine.location, "
 			     "magazine.quantity - "
-			     "COUNT(magazine_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "magazine.type, "
 			     "magazine.myoid "
 			     "FROM "
 			     "member, "
-			     "magazine LEFT JOIN magazine_borrower ON "
+			     "magazine LEFT JOIN item_borrower ON "
 			     "magazine.myoid = "
-			     "magazine_borrower.item_oid "
+			     "item_borrower.item_oid "
+			     "AND item_borrower.type = magazine.type "
 			     "WHERE "
 			     "member.memberid = '");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("' AND ");
-	    searchstr.append("magazine_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "magazine_borrower.copyid, "
-			     "magazine_borrower.reserved_date, "
-			     "magazine_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "magazine.title, "
 			     "magazine.id, "
 			     "magazine.publisher, magazine.pdate, "
@@ -1901,9 +1921,9 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "member.last_name || ', ' || "
 			     "member.first_name AS name, "
 			     "member.memberid, "
-			     "videogame_borrower.copyid, "
-			     "videogame_borrower.reserved_date, "
-			     "videogame_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "videogame.title, "
 			     "videogame.id, "
 			     "videogame.publisher, videogame.rdate, "
@@ -1913,27 +1933,28 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "videogame.quantity, "
 			     "videogame.location, "
 			     "videogame.quantity - "
-			     "COUNT(videogame_borrower.item_oid) "
+			     "COUNT(item_borrower.item_oid) "
 			     "AS availability, "
 			     "videogame.type, "
 			     "videogame.myoid "
 			     "FROM "
 			     "member, "
-			     "videogame LEFT JOIN videogame_borrower ON "
+			     "videogame LEFT JOIN item_borrower ON "
 			     "videogame.myoid = "
-			     "videogame_borrower.item_oid "
+			     "item_borrower.item_oid "
+			     "AND item_borrower.type = 'Video Game' "
 			     "WHERE "
 			     "member.memberid = '");
 	    searchstr.append(searchstrArg);
 	    searchstr.append("' AND ");
-	    searchstr.append("videogame_borrower.memberid = "
+	    searchstr.append("item_borrower.memberid = "
 			     "member.memberid ");
 	    searchstr.append("GROUP BY "
 			     "name, "
 			     "member.memberid, "
-			     "videogame_borrower.copyid, "
-			     "videogame_borrower.reserved_date, "
-			     "videogame_borrower.duedate, "
+			     "item_borrower.copyid, "
+			     "item_borrower.reserved_date, "
+			     "item_borrower.duedate, "
 			     "videogame.title, "
 			     "videogame.id, "
 			     "videogame.publisher, videogame.rdate, "
@@ -1962,13 +1983,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "videogame.quantity, "
 	      "videogame.location, "
 	      "videogame.quantity - "
-	      "COUNT(videogame_borrower_vw.item_oid) "
+	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "videogame.type, "
 	      "videogame.myoid "
 	      "FROM "
-	      "videogame LEFT JOIN videogame_borrower_vw ON "
-	      "videogame.myoid = videogame_borrower_vw.item_oid "
+	      "videogame LEFT JOIN item_borrower_vw ON "
+	      "videogame.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'Video Game' "
 	      "GROUP BY "
 	      "videogame.title, "
 	      "videogame.vgrating, "
@@ -2004,13 +2026,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "book.callnumber, "
 	      "book.deweynumber, "
 	      "book.quantity - "
-	      "COUNT(book_borrower_vw.item_oid) "
+	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "book.type, "
 	      "book.myoid "
 	      "FROM "
-	      "book LEFT JOIN book_borrower_vw ON "
-	      "book.myoid = book_borrower_vw.item_oid "
+	      "book LEFT JOIN item_borrower_vw ON "
+	      "book.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'Book' "
 	      "GROUP BY "
 	      "book.title, "
 	      "book.author, "
@@ -2049,13 +2072,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "dvd.dvdregion, "
 	      "dvd.dvdaspectratio, "
 	      "dvd.quantity - "
-	      "COUNT(dvd_borrower_vw.item_oid) "
+	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "dvd.type, "
 	      "dvd.myoid "
 	      "FROM "
-	      "dvd LEFT JOIN dvd_borrower_vw ON "
-	      "dvd.myoid = dvd_borrower_vw.item_oid "
+	      "dvd LEFT JOIN item_borrower_vw ON "
+	      "dvd.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'DVD' "
 	      "GROUP BY "
 	      "dvd.title, "
 	      "dvd.dvdformat, "
@@ -2096,13 +2120,14 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "cd.location, "
 	      "cd.cdaudio, "
 	      "cd.cdrecording, "
-	      "cd.quantity - COUNT(cd_borrower_vw.item_oid) AS "
+	      "cd.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "cd.type, "
 	      "cd.myoid "
 	      "FROM "
-	      "cd LEFT JOIN cd_borrower_vw ON "
-	      "cd.myoid = cd_borrower_vw.item_oid "
+	      "cd LEFT JOIN item_borrower_vw ON "
+	      "cd.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = 'CD' "
 	      "GROUP BY "
 	      "cd.title, "
 	      "cd.artist, "
@@ -2144,14 +2169,16 @@ int qtbook::populateTable(const int search_type, const int filter,
 				"magazine.callnumber, "
 				"magazine.deweynumber, "
 				"magazine.quantity - "
-				"COUNT(magazine_borrower_vw.item_oid) AS "
+				"COUNT(item_borrower_vw.item_oid) AS "
 				"availability, "
 				"magazine.type, "
 				"magazine.myoid "
 				"FROM "
-				"magazine LEFT JOIN magazine_borrower_vw ON "
+				"magazine LEFT JOIN item_borrower_vw ON "
 				"magazine.myoid = "
-				"magazine_borrower_vw.item_oid WHERE "
+				"item_borrower_vw.item_oid "
+				"AND item_borrower_vw.type = magazine.type "
+				"WHERE "
 				"magazine.type = '%1' "
 				"GROUP BY "
 				"magazine.title, "
@@ -2199,7 +2226,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 		     "%1.quantity, "
 		     "%1.location, "
 		     "%1.quantity - "
-		     "COUNT(%1_borrower_vw.item_oid) AS availability, "
+		     "COUNT(item_borrower_vw.item_oid) AS availability, "
 		     "%1.type, ").arg("magazine");
 		else
 		  str = QString
@@ -2212,24 +2239,27 @@ int qtbook::populateTable(const int search_type, const int filter,
 		     "%1.quantity, "
 		     "%1.location, "
 		     "%1.quantity - "
-		     "COUNT(%1_borrower_vw.item_oid) AS availability, "
+		     "COUNT(item_borrower_vw.item_oid) AS availability, "
 		     "%1.type, ").
 		    arg(type.toLower().remove(" "));
 
 		if(type == "Journal")
 		  str += QString("%1.myoid "
 				 "FROM "
-				 "%1 LEFT JOIN %1_borrower_vw ON "
+				 "%1 LEFT JOIN item_borrower_vw ON "
 				 "%1.myoid = "
-				 "%1_borrower_vw.item_oid "
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'Journal' "
 				 "WHERE ").arg("magazine");
 		else
 		  str += QString("%1.myoid "
 				 "FROM "
-				 "%1 LEFT JOIN %1_borrower_vw ON "
+				 "%1 LEFT JOIN item_borrower_vw ON "
 				 "%1.myoid = "
-				 "%1_borrower_vw.item_oid "
-				 "WHERE ").arg(type.toLower().remove(" "));
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = '%2' "
+				 "WHERE ").arg(type.toLower().remove(" ")).
+		    arg(type);
 
 		str.append("(LOWER(id) LIKE '%" +
 			   myqstring::escape(al.idnumber->text().toLower()) +
@@ -2295,9 +2325,11 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     (al.location->currentText()) + "' ");
 
 		if(type == "Journal")
-		  str.append("AND type = 'Journal' ");
+		  str.append(QString("AND %1.type = 'Journal' ").
+			     arg("magazine"));
 		else if(type == "Magazine")
-		  str.append("AND type = 'Magazine' ");
+		  str.append(QString("AND %1.type = 'Magazine' ").
+			     arg(type.toLower().remove(" ")));
 
 		if(type == "Journal")
 		  str += QString("GROUP BY "
@@ -2310,7 +2342,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "%1.monetary_units, "
 				 "%1.quantity, "
 				 "%1.location, "
-				 "type, "
+				 "%1.type, "
 				 "%1.myoid ").arg("magazine");
 		else
 		  str += QString("GROUP BY "
@@ -2323,7 +2355,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 				 "%1.monetary_units, "
 				 "%1.quantity, "
 				 "%1.location, "
-				 "type, "
+				 "%1.type, "
 				 "%1.myoid ").arg
 		    (type.toLower().remove(" "));
 
@@ -2371,7 +2403,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "book.lccontrolnumber, "
 			     "book.callnumber, "
 			     "book.deweynumber, "
-			     "type, "
+			     "book.type, "
 			     "book.myoid "
 			     "ORDER BY book.title");
 	  }
@@ -2392,7 +2424,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "videogame.monetary_units, "
 			     "videogame.quantity, "
 			     "videogame.location, "
-			     "type, "
+			     "videogame.type, "
 			     "videogame.myoid ORDER BY "
 			     "videogame.title");
 	  }
@@ -2416,7 +2448,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "cd.location, "
 			     "cd.cdaudio, "
 			     "cd.cdrecording, "
-			     "type, "
+			     "cd.type, "
 			     "cd.myoid "
 			     "ORDER BY "
 			     "cd.title");
@@ -2441,7 +2473,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "dvd.dvdrating, "
 			     "dvd.dvdregion, "
 			     "dvd.dvdaspectratio, "
-			     "type, "
+			     "dvd.type, "
 			     "dvd.myoid "
 			     "ORDER BY "
 			     "dvd.title");
@@ -2462,7 +2494,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "magazine.lccontrolnumber, "
 			     "magazine.callnumber, "
 			     "magazine.deweynumber, "
-			     "type, "
+			     "magazine.type, "
 			     "magazine.myoid "
 			     "ORDER BY magazine.title, "
 			     "magazine.mag_volume, magazine.mag_no");
@@ -2979,6 +3011,21 @@ void qtbook::slotSaveUser(void)
 				      "database transaction.");
 		return;
 	      }
+	}
+      else
+	{
+	  misc_functions::createOrDeleteDBAccount(userinfo.memberid->text(),
+						  db,
+						  misc_functions::UPDATE_USER,
+						  errorstr);
+
+	  if(!errorstr.isEmpty())
+	    addError
+	      (QString("Database Error"),
+	       QString("An error occurred while attempting to "
+		       "update the database account "
+		       "for the existing member."),
+	       errorstr, __FILE__, __LINE__);
 	}
 
       qapp->restoreOverrideCursor();
@@ -4514,28 +4561,25 @@ void qtbook::slotPopulateMembersBrowser(void)
     "member.first_name, "
     "member.last_name, "
     "member.membersince, "
-    "COUNT(DISTINCT book_borrower.item_oid) AS numbooks, "
-    "COUNT(DISTINCT cd_borrower.item_oid) AS numcds, "
-    "COUNT(DISTINCT dvd_borrower.item_oid) AS numdvds, "
-    "COUNT(DISTINCT mb1.item_oid) AS numjournals, "
-    "COUNT(DISTINCT mb2.item_oid) AS nummagazines, "
-    "COUNT(DISTINCT videogame_borrower.item_oid) AS numvideogames "
-    "FROM member LEFT JOIN book_borrower ON "
-    "member.memberid = book_borrower.memberid "
-    "LEFT JOIN cd_borrower ON "
-    "member.memberid = cd_borrower.memberid "
-    "LEFT JOIN dvd_borrower ON "
-    "member.memberid = dvd_borrower.memberid "
-    "LEFT JOIN magazine_borrower mb1 ON "
-    "member.memberid = mb1.memberid AND "
-    "mb1.item_oid IN "
-    "(SELECT myoid FROM magazine WHERE type = 'Journal') "
-    "LEFT JOIN magazine_borrower mb2 ON "
-    "member.memberid = mb2.memberid AND "
-    "mb2.item_oid IN "
-    "(SELECT myoid FROM magazine WHERE type = 'Magazine') "
-    "LEFT JOIN videogame_borrower ON "
-    "member.memberid = videogame_borrower.memberid ";
+    "COUNT(DISTINCT ib1.item_oid) AS numbooks, "
+    "COUNT(DISTINCT ib2.item_oid) AS numcds, "
+    "COUNT(DISTINCT ib3.item_oid) AS numdvds, "
+    "COUNT(DISTINCT ib4.item_oid) AS numjournals, "
+    "COUNT(DISTINCT ib5.item_oid) AS nummagazines, "
+    "COUNT(DISTINCT ib6.item_oid) AS numvideogames "
+    "FROM member "
+    "LEFT JOIN item_borrower ib1 ON "
+    "member.memberid = ib1.memberid AND ib1.type = 'Book' "
+    "LEFT JOIN item_borrower ib2 ON "
+    "member.memberid = ib2.memberid AND ib2.type = 'CD' "
+    "LEFT JOIN item_borrower ib3 ON "
+    "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
+    "LEFT JOIN item_borrower ib4 ON "
+    "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
+    "LEFT JOIN item_borrower ib5 ON "
+    "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
+    "LEFT JOIN item_borrower ib6 ON "
+    "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
 
   if(bb.filterBox->isChecked())
     {
@@ -4814,8 +4858,13 @@ void qtbook::slotModifyBorrower(void)
 	  else if(fieldname == "city")
 	    userinfo.city->setText(var.toString());
 	  else if(fieldname == "state_abbr")
-	    userinfo.state->setCurrentIndex
-	      (userinfo.state->findText(var.toString()));
+	    {
+	      if(userinfo.state->findText(var.toString()) == -1)
+		userinfo.state->setCurrentIndex(0);
+	      else
+		userinfo.state->setCurrentIndex
+		  (userinfo.state->findText(var.toString()));
+	    }
 	  else if(fieldname == "zip")
 	    userinfo.zip->setText(var.toString());
 	}

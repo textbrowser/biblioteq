@@ -190,7 +190,7 @@ void qtbook_cd::slotGo(void)
 	  newq = cd.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "cd", errorstr);
+	    (qmain->getDB(), oid, "CD", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -530,7 +530,7 @@ void qtbook_cd::slotGo(void)
 	      misc_functions::createInitialCopies(cd.id->text(),
 						  cd.quantity->value(),
 						  qmain->getDB(),
-						  "cd", errorstr);
+						  "CD", errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -657,7 +657,7 @@ void qtbook_cd::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "cd", errorstr));
+			     (oid, qmain->getDB(), "CD", errorstr));
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
@@ -680,7 +680,7 @@ void qtbook_cd::slotGo(void)
 	    {
 	      qapp->setOverrideCursor(Qt::WaitCursor);
 	      oid = misc_functions::getOID(cd.id->text(),
-					   "cd",
+					   "CD",
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -742,12 +742,14 @@ void qtbook_cd::slotGo(void)
 	"cd.location, "
 	"cd.cdaudio, "
 	"cd.cdrecording, "
-	"cd.quantity - COUNT(cd_borrower_vw.item_oid) AS availability, "
+	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
 	"cd.type, "
 	"cd.myoid "
 	"FROM "
-	"cd LEFT JOIN cd_borrower_vw ON "
-	"cd.myoid = cd_borrower_vw.item_oid WHERE ";
+	"cd LEFT JOIN item_borrower_vw ON "
+	"cd.myoid = item_borrower_vw.item_oid "
+	"AND item_borrower_vw.type = 'CD' "
+	"WHERE ";
       searchstr.append("id LIKE '%").append(cd.id->text()).append("%' AND ");
 
       if(cd.format->currentText() != "Any")
@@ -1889,7 +1891,7 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
 				   false,
 				   cd.quantity->value(), oid,
 				   cd.id->text(),
-				   cd.quantity, font(), "cd",
+				   cd.quantity, font(), "CD",
 				   cd.title->text().trimmed(),
 				   "CD")) != NULL)
     copyeditor->populateCopiesEditor();
