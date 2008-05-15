@@ -98,3 +98,12 @@ void qtbook_item::updateFont(const QFont &font, QWidget *window)
 
   window->resize(window->sizeHint());
 }
+
+/*
+** -- setOldQ() --
+*/
+
+void qtbook_item::setOldQ(const int q)
+{
+  oldq = q;
+}

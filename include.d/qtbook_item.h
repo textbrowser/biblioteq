@@ -27,6 +27,7 @@ class qtbook_item
   ~qtbook_item();
   int getRow(void);
   int getOldQ(void);
+  void setOldQ(const int);
   void updateRow(const int);
   void updateFont(const QFont &, QWidget *);
   QString getID(void);

@@ -715,9 +715,10 @@ void qtbook::slotAbout(void)
 {
   QMessageBox mb(this);
 
+  mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.00.<br>"
+  mb.setText("<html>BiblioteQ Version 6.01.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -6982,7 +6983,11 @@ void qtbook::slotSavePassword(void)
     }
   else
     {
-      br.password->setText(pass.password->text()); // Store the new password.
+      /*
+      ** Update the password field with the new password.
+      */
+
+      br.password->setText(pass.password->text());
       pass_diag->close();
     }
 }
@@ -7010,8 +7015,8 @@ void qtbook::slotSelectDatabaseFile(void)
   QFileDialog dialog(branch_diag);
 
   dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setFilter("Database Files (*.db)");
-  dialog.setWindowTitle("Database File Selection");
+  dialog.setFilter("SQLite Databases (*.db)");
+  dialog.setWindowTitle("SQLite Database Selection");
   dialog.exec();
 
   if(dialog.result() == QDialog::Accepted)

@@ -244,6 +244,8 @@
 133. Provide a mechanism for generating unique ISBNs. (DONE)
 134. Non-administrators should not be presented with price and monetary
      units information. (DONE)
-135. Must support reservation requests.
-136. Replace all borrower tables with one table that contains item
+135. Must support reservation requests. (TBD)
+136. Replace all borrower tables with one table that also contains item
      types. (DONE)
+137. Update an item's oldq variable whenever the copy data has been saved.
+     (DONE)

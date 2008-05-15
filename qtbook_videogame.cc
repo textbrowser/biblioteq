@@ -193,7 +193,8 @@ void qtbook_videogame::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical(this, "BiblioteQ: User Error",
-				    "It appears that you are decreasing the "
+				    "It appears that you are attempting to "
+				    "decrease the "
 				    "number of copies while there are copies "
 				    "that have been reserved.");
 	      vg.quantity->setValue(oldq);

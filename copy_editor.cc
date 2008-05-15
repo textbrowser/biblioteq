@@ -89,13 +89,13 @@ void copy_editor::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(cb.table->item(row, 0) != NULL)
-	cb.table->item(row, 0)->setFlags(0);
-
       if(cb.table->item(row, 1) != NULL)
+	cb.table->item(row, 1)->setFlags(0);
+
+      if(cb.table->item(row, 2) != NULL)
 	{
-	  cb.table->item(row, 1)->setFlags(0);
-	  cb.table->item(row, 1)->setText("0");
+	  cb.table->item(row, 2)->setFlags(0);
+	  cb.table->item(row, 2)->setText("0");
 	}
 
       QMessageBox::critical(this, "BiblioteQ: User Error",
@@ -127,6 +127,7 @@ void copy_editor::populateCopiesEditor(void)
   int i = 0;
   int j = 0;
   int row = 0;
+  bool terminate = false;
   QDate duedate = QDate::currentDate().addDays(21);
   QString str = "";
   QString querystr = "";
@@ -164,6 +165,7 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->clear();
   cb.table->setColumnCount(0);
   cb.table->setRowCount(0);
+  list.append("Title");
   list.append("Barcode");
   list.append("Availability");
   list.append("OID");
@@ -188,24 +190,23 @@ void copy_editor::populateCopiesEditor(void)
   progress1.setWindowTitle("BiblioteQ: Progress Dialog");
   progress1.setLabelText("Constructing objects...");
   progress1.setMaximum(quantity);
-  progress1.setCancelButton(NULL);
   progress1.show();
   progress1.update();
 
-  for(i = 0; i < quantity; i++)
+  for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < cb.table->columnCount(); j++)
 	if((item = new QTableWidgetItem()) != NULL)
 	  {
 	    if(showForLending)
 	      item->setFlags(0);
-	    else if(j == 0)
+	    else if(j == 1)
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 			     Qt::ItemIsEditable);
 	    else
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
-	    if(j == 0)
+	    if(j == 1)
 	      {
 		if(!uniqueid.isEmpty())
 		  str = QString("%1-%2").arg(uniqueid).arg(i + 1);
@@ -214,14 +215,14 @@ void copy_editor::populateCopiesEditor(void)
 
 		item->setText(str);
 	      }
-	    else if(j == 1)
+	    else if(j == 2)
 	      {
 		if(showForLending)
 		  item->setText("0");
 		else
 		  item->setText("1");
 	      }
-	    else if(j == 2)
+	    else if(j == 3)
 	      item->setText(ioid);
 	    else
 	      item->setText("");
@@ -243,18 +244,21 @@ void copy_editor::populateCopiesEditor(void)
 
   cb.table->setRowCount(i);
   querystr = QString
-    ("SELECT %1_copy_info.copyid, "
+    ("SELECT %1.title, "
+     "%1_copy_info.copyid, "
      "(1 - COUNT(item_borrower_vw.copyid)), "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
      "FROM "
+     "%1, "
      "%1_copy_info LEFT JOIN item_borrower_vw ON "
      "%1_copy_info.copyid = "
      "item_borrower_vw.copyid AND "
      "%1_copy_info.item_oid = "
      "item_borrower_vw.item_oid AND "
      "item_borrower_vw.type = '%3' "
-     "WHERE %1_copy_info.item_oid = %2 "
+     "WHERE %1_copy_info.item_oid = %2 AND "
+     "%1.myoid = %2 "
      "GROUP BY %1_copy_info.copyid, "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
@@ -291,35 +295,45 @@ void copy_editor::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(3).toInt() - 1;
+	  row = query.value(4).toInt() - 1;
 
 	  for(j = 0; j < cb.table->columnCount(); j++)
 	    if(cb.table->item(row, j) != NULL)
 	      {
 		str = query.value(j).toString();
 
-		if(query.value(1).toString() == "0")
+		if(query.value(2).toString() == "0")
 		  cb.table->item(row, j)->setFlags(0);
 		else if(showForLending)
 		  cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		else if(j == 0)
-		  cb.table->item(row, 0)->setFlags
+		else if(j == 1)
+		  cb.table->item(row, 1)->setFlags
 		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
 		     Qt::ItemIsEditable);
 
-		if(j == 1)
-		  cb.table->item(row, 1)->setText(query.value(1).toString());
+		if(j == 2)
+		  cb.table->item(row, 2)->setText(query.value(2).toString());
 		else
-		  cb.table->item(row, j)->setText(str);
+		  {
+		    if(i == 0 && j == 0)
+		      cb.table->item(row, j)->setText(str);
+		    else if(j != 0)
+		      cb.table->item(row, j)->setText(str);
+		  }
 
 		cb.table->resizeColumnToContents(j);
 	      }
+	    else
+	      terminate = true;
 	}
 
       progress2.setValue(i + 1);
       progress2.update();
       qapp->processEvents();
+
+      if(terminate)
+	break; // Out of resources?
     }
 
   query.clear();
@@ -346,13 +360,13 @@ void copy_editor::slotCheckoutCopy(void)
   QString availability = "";
   QSqlQuery query(qmain->getDB());
 
-  if(copyrow < 0 || cb.table->item(copyrow, 0) == NULL)
+  if(copyrow < 0 || cb.table->item(copyrow, 1) == NULL)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "Please select a copy to reserve.");
       return;
     }
-  else if((cb.table->item(copyrow, 0)->flags() & Qt::ItemIsEnabled) == 0)
+  else if((cb.table->item(copyrow, 1)->flags() & Qt::ItemIsEnabled) == 0)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "It appears that the copy you've selected "
@@ -531,8 +545,8 @@ void copy_editor::slotSaveCopies(void)
   cb.table->setFocus();
 
   for(i = 0; i < cb.table->rowCount(); i++)
-    if(cb.table->item(i, 0) != NULL &&
-       cb.table->item(i, 0)->text().trimmed().isEmpty())
+    if(cb.table->item(i, 1) != NULL &&
+       cb.table->item(i, 1)->text().trimmed().isEmpty())
       {
 	errormsg = QString("Row number %1 contains an empty Barcode.").arg
 	  (i + 1);
@@ -540,9 +554,9 @@ void copy_editor::slotSaveCopies(void)
 	duplicates.clear();
 	return;
       }
-    else if(cb.table->item(i, 0) != NULL)
+    else if(cb.table->item(i, 1) != NULL)
       {
-	if(duplicates.contains(cb.table->item(i, 0)->text()))
+	if(duplicates.contains(cb.table->item(i, 1)->text()))
 	  {
 	    errormsg = QString("Row number %1 contains a duplicate "
 			       "Barcode.").arg(i + 1);
@@ -551,7 +565,7 @@ void copy_editor::slotSaveCopies(void)
 	    return;
 	  }
 	else
-	  duplicates.append(cb.table->item(i, 0)->text());
+	  duplicates.append(cb.table->item(i, 1)->text());
       }
 
   duplicates.clear();
@@ -576,8 +590,8 @@ void copy_editor::slotSaveCopies(void)
 
   for(i = 0; i < cb.table->rowCount(); i++)
     {
-      item1 = cb.table->item(i, 0);
-      item2 = cb.table->item(i, 2);
+      item1 = cb.table->item(i, 1);
+      item2 = cb.table->item(i, 3);
 
       if(item1 == NULL || item2 == NULL)
 	continue;
@@ -651,7 +665,9 @@ void copy_editor::slotSaveCopies(void)
   str.setNum(copies.size());
   misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
 			       "Quantity", str);
+  bitem->setOldQ(copies.size());
   copies.clear();
+  
 }
 
 /*

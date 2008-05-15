@@ -59,6 +59,12 @@
            </item>
            <item>
             <widget class="QComboBox" name="typefilter" >
+             <property name="sizePolicy" >
+              <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
               <property name="text" >
                <string>All</string>
@@ -294,7 +300,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>26</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="font" >

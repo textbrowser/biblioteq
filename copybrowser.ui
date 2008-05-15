@@ -144,6 +144,11 @@
         </property>
         <column>
          <property name="text" >
+          <string>Title</string>
+         </property>
+        </column>
+        <column>
+         <property name="text" >
           <string>Barcode</string>
          </property>
         </column>

@@ -202,7 +202,7 @@ void qtbook_magazine::slotGo(void)
 	    {
 	      QMessageBox::critical
 		(this, "BiblioteQ: User Error",
-		 "It appears that you are decreasing the "
+		 "It appears that you are attempting to decrease the "
 		 "number of copies while there are copies "
 		 "that have been reserved.");
 	      ma.quantity->setValue(oldq);

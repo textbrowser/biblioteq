@@ -75,6 +75,7 @@ void borrowers_editor::showUsers(void)
   int i = 0;
   int j = 0;
   int row = 0;
+  bool terminate = false;
   QString str = "";
   QString tmpStr = "";
   QString querystr = "";
@@ -135,11 +136,10 @@ void borrowers_editor::showUsers(void)
   progress1.setWindowTitle("BiblioteQ: Progress Dialog");
   progress1.setLabelText("Constructing objects...");
   progress1.setMaximum(quantity);
-  progress1.setCancelButton(NULL);
   progress1.show();
   progress1.update();
 
-  for(i = 0; i < quantity; i++)
+  for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < bd.table->columnCount(); j++)
 	if(j == 6 && state == qtbook::EDITABLE)
@@ -275,11 +275,16 @@ void borrowers_editor::showUsers(void)
 	      }
 	    else if(bd.table->item(row, j) != NULL)
 	      bd.table->item(row, j)->setText(str);
+	    else
+	      terminate = true;
 	  }
 
       progress2.setValue(i + 1);
       progress2.update();
       qapp->processEvents();
+
+      if(terminate)
+	break; // Out of resources?
     }
 
   query.clear();
