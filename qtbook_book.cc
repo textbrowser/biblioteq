@@ -170,6 +170,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
 qtbook_book::~qtbook_book()
 {
+  if(thread != NULL && thread->isRunning())
+    qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1600,7 +1602,7 @@ void qtbook_book::slotQuery(void)
       qapp->restoreOverrideCursor();
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
-	 !thread->getLOCResults().isEmpty())
+	 !thread->getLOCResults().isEmpty() && isVisible())
 	{
 	  if(QMessageBox::question
 	     (this, "BiblioteQ: Question",
@@ -1808,7 +1810,8 @@ void qtbook_book::slotQuery(void)
 		textfield->setCursorPosition(0);
 	    }
 	}
-      else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())
+      else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty() &&
+	      isVisible())
 	QMessageBox::critical
 	  (this, "BiblioteQ: Z39.50 Query Error",
 	   "A Library of Congress entry may not yet exist for " +
@@ -1825,7 +1828,7 @@ void qtbook_book::slotQuery(void)
       errorstr = "Unable to create a thread due to insufficient resources.";
     }
 
-  if(!errorstr.isEmpty())
+  if(!errorstr.isEmpty() && isVisible())
     {
       qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
 		      __FILE__, __LINE__);

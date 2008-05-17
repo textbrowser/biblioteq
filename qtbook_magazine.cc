@@ -154,6 +154,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 
 qtbook_magazine::~qtbook_magazine()
 {
+  if(thread != NULL && thread->isRunning())
+    qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1478,7 +1480,7 @@ void qtbook_magazine::slotQuery(void)
 
       qapp->restoreOverrideCursor();
 
-      if((errorstr = thread->getErrorStr()).isEmpty())
+      if((errorstr = thread->getErrorStr()).isEmpty() && isVisible())
 	{
 	  if(thread->getLOCResults().size() == 1)
 	    {
@@ -1536,7 +1538,7 @@ void qtbook_magazine::slotQuery(void)
       errorstr = "Unable to create a thread due to insufficient resources.";
     }
 
-  if(!errorstr.isEmpty())
+  if(!errorstr.isEmpty() && isVisible())
     {
       qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
 		      __FILE__, __LINE__);
