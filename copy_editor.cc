@@ -259,7 +259,8 @@ void copy_editor::populateCopiesEditor(void)
      "item_borrower_vw.type = '%3' "
      "WHERE %1_copy_info.item_oid = %2 AND "
      "%1.myoid = %2 "
-     "GROUP BY %1_copy_info.copyid, "
+     "GROUP BY %1.title, "
+     "%1_copy_info.copyid, "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
      "ORDER BY %1_copy_info.copy_number").arg
