@@ -4592,7 +4592,7 @@ void qtbook::slotPopulateMembersBrowser(void)
       else
 	str.append("LOWER(member.last_name) LIKE '%");
 
-      str.append(bb.filter->text().trimmed());
+      str.append(myqstring::escape(bb.filter->text().trimmed()));
       str.append("%' ");
     }
 
