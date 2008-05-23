@@ -249,3 +249,5 @@
      types. (DONE)
 137. Update an item's oldq variable whenever the copy data has been saved.
      (DONE)
+138. Remove the database disconnect confirmation question. (DONE)
+139. Allow generation of random ISBNs for PostgreSQL databases. (DONE)

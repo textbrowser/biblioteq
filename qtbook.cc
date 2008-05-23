@@ -718,7 +718,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.01.<br>"
+  mb.setText("<html>BiblioteQ Version 6.02.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -4369,12 +4369,6 @@ void qtbook::slotConnectDB(void)
 
 void qtbook::slotDisconnect(void)
 {
-  if(QMessageBox::question(this, "BiblioteQ: Question",
-			   "Are you sure that you wish to disconnect?",
-			   QMessageBox::Yes | QMessageBox::No,
-			   QMessageBox::No) == QMessageBox::No)
-    return;
-
   all_diag->close();
   members_diag->close();
   history_diag->close();
