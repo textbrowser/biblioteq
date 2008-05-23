@@ -17,11 +17,11 @@ Qt 4.x Preparation (Unix):
 PostgreSQL Preparation:
 1.  Create the xbook_db database via createdb xbook_db.
 2.  Run createlang plpgsql -d xbook_db.
-3.  Log into PostgreSQL and execute the postgresql_create_tables.sql script.
-    (\i postgresql_create_tables.sql)
+3.  Log into PostgreSQL and execute the postgresql_create_schema.sql script.
+    (\i postgresql_create_schema.sql)
 
 SQLite Preparation:
-1.  Run sqlite3 -init sqlite_create_tables.sql biblioteq.db.
+1.  Run sqlite3 -init sqlite_create_schema.sql biblioteq.db.
 
 Building:
 1.  Set the environment variables LD_LIBRARY_PATH, PATH, QMAKESPEC, and QTDIR
