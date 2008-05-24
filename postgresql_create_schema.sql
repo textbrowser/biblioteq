@@ -215,6 +215,15 @@ CREATE TABLE item_borrower
 	type		 VARCHAR(16) NOT NULL
 );
 
+CREATE TABLE item_request
+(
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
+	requestdate	 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL PRIMARY KEY,
+	type		 VARCHAR(16) NOT NULL
+);
+
 CREATE TABLE member
 (
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,

@@ -6947,6 +6947,7 @@ void qtbook::slotSavePassword(void)
     {
       QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
 			    "The current password is incorrect.");
+      pass.currentpassword->setFocus();
       return;
     }
   else if(pass.password->text().length() < 8)
@@ -6954,12 +6955,14 @@ void qtbook::slotSavePassword(void)
       QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
 			    "The password must be at least eight characters "
 			    "long.");
+      pass.password->setFocus();
       return;
     }
   else if(pass.password->text() != pass.passwordAgain->text())
     {
       QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
 			    "The passwords do not match. Please try again.");
+      pass.password->setFocus();
       return;
     }
 
