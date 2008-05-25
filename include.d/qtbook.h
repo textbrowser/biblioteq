@@ -77,7 +77,7 @@ class qtbook: public QMainWindow
 
   qtbook(void);
   ~qtbook();
-  int populateTable(const int, const int, const QString &);
+  int populateTable(const int, const QString &, const QString &);
   void addError(const QString &, const QString &, const QString & = "",
 		const char * = "", const int = 0);
   void removeCD(qtbook_cd *);
@@ -125,9 +125,8 @@ class qtbook: public QMainWindow
   void slotDisplaySummary(void);
 
  private:
-  int previousTypeFilter;
   QString roles;
-  QString typefilter;
+  QString previousTypeFilter;
   QStringList deletedAdmins;
   QHash<QString, QString> LOCHash;
   QHash<QString, QString> selectedBranch;
@@ -191,7 +190,7 @@ class qtbook: public QMainWindow
   void initialUpdate(void);
   void emptyContainers(void);
   void readGlobalSetup(void);
-  void addConfigOptions(void);
+  void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
 

@@ -341,6 +341,8 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_copy_info_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.item_borrower_myoid_seq TO xbook_admin;
+GRANT DELETE, SELECT ON item_request TO xbook_admin;
+GRANT DELETE, SELECT ON public.item_request_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON public.member_history_myoid_seq TO xbook_admin;

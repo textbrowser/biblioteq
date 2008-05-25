@@ -145,10 +145,8 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu2 = NULL;
   QMenu *menu3 = NULL;
   QMenu *menu4 = NULL;
-  QMenu *menu5 = NULL;
 
-  typefilter = "All";
-  previousTypeFilter = -1;
+  previousTypeFilter = "";
 
   if((branch_diag = new QDialog(this)) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -187,9 +185,6 @@ qtbook::qtbook(void):QMainWindow()
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu4 = new QMenu()) == NULL)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu5 = new QMenu()) == NULL)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(menu1->addAction("Insert &Book"),
@@ -263,11 +258,6 @@ qtbook::qtbook(void):QMainWindow()
   userinfo_diag->setModal(true);
   history_diag->setWindowModality(Qt::WindowModal);
   branch_diag->setModal(true);
-
-  /*
-  ** Connect additional actions.
-  */
-
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
@@ -427,6 +417,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
   al.resetButton->setMenu(menu4);
+  ui.actionRequests->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.overdueButton->setEnabled(false);
@@ -454,7 +445,8 @@ qtbook::qtbook(void):QMainWindow()
   ui.summary->setVisible(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
-  addConfigOptions();
+  previousTypeFilter = "All";
+  addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
   userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo.zip->setInputMask("99999");
@@ -476,7 +468,7 @@ qtbook::qtbook(void):QMainWindow()
 ** -- addConfigOptions() --
 */
 
-void qtbook::addConfigOptions(void)
+void qtbook::addConfigOptions(const QString &typefilter)
 {
   int i = 0;
   QAction *action = NULL;
@@ -490,8 +482,8 @@ void qtbook::addConfigOptions(void)
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
-      if(typefilter != "All" && typefilter != "Overdue" &&
-	 typefilter != "Reserved")
+      if(typefilter != "All" && typefilter != "All Overdue" &&
+	 typefilter != "All Requested" && typefilter != "All Reserved")
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == "Type")
@@ -519,6 +511,7 @@ void qtbook::addConfigOptions(void)
 void qtbook::slotSetColumns(void)
 {
   int i = 0;
+  QString typefilter = ui.typefilter->currentText();
 
   for(i = 0; i < ui.configTool->menu()->actions().size(); i++)
     {
@@ -554,6 +547,7 @@ void qtbook::adminSetup(void)
   bb.overdueButton->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
+  ui.actionRequests->setEnabled(true);
 
   if(status_bar_label != NULL)
     {
@@ -617,6 +611,14 @@ void qtbook::adminSetup(void)
   if(selectedBranch["database_type"] != "sqlite")
     ui.actionConfigureAdministratorPrivileges->setEnabled
       (roles.contains("administrator"));
+
+  if(!(roles.contains("administrator") || roles.contains("circulation")))
+    {
+      ui.actionRequests->setEnabled(false);
+      ui.actionRequests->setToolTip("Item Requests");
+    }
+  else
+    ui.actionRequests->setToolTip("Remove Selected Request(s)");
 
   /*
   ** Hide certain fields in the Member's Browser.
@@ -1259,7 +1261,7 @@ void qtbook::slotDelete(void)
 			  "items.");
 
   if(numdeleted > 0)
-    (void) populateTable(POPULATE_ALL, ui.typefilter->currentIndex(),
+    (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
 			 QString(""));
 
   list.clear();
@@ -1281,7 +1283,7 @@ void qtbook::closeEvent(QCloseEvent *e)
 
 void qtbook::slotRefresh(void)
 {
-  (void) populateTable(POPULATE_ALL, ui.typefilter->currentIndex(),
+  (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
 		       QString(""));
 }
 
@@ -1289,7 +1291,7 @@ void qtbook::slotRefresh(void)
 ** -- populateTable() --
 */
 
-int qtbook::populateTable(const int search_type, const int filter,
+int qtbook::populateTable(const int search_type, const QString &typefilter,
 			  const QString &searchstrArg)
 {
   int i = -1;
@@ -1309,13 +1311,6 @@ int qtbook::populateTable(const int search_type, const int filter,
   ** The order of the fields in the select statements should match
   ** the original column order.
   */
-
-  if(filter > -1)
-    typefilter = ui.typefilter->itemText(filter);
-  else if(filter == -1)
-    typefilter = "Reserved";
-  else if(filter == -2)
-    typefilter = "Overdue";
 
   switch(search_type)
     {
@@ -1465,7 +1460,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 	      "videogame.myoid "
 	      "ORDER BY 1";
 	  }
-	else if(typefilter == "Overdue")
+	else if(typefilter == "All Overdue")
 	  {
 	    searchstr = "";
 	    searchstr.append("SELECT DISTINCT "
@@ -1722,7 +1717,218 @@ int qtbook::populateTable(const int search_type, const int filter,
 			     "videogame.myoid ");
 	    searchstr.append("ORDER BY 1");
 	  }
-	else if(typefilter == "Reserved")
+	else if(typefilter == "All Requested")
+	  {
+	    searchstr = "";
+	    searchstr.append("SELECT DISTINCT "
+			     "member.last_name || ', ' || "
+			     "member.first_name AS name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "book.title, "
+			     "book.id, "
+			     "book.publisher, book.pdate, "
+			     "book.category, "
+			     "book.language, "
+			     "book.price, book.monetary_units, "
+			     "book.quantity, "
+			     "book.location, "
+			     "book.type, "
+			     "book.myoid "
+			     "FROM "
+			     "member, "
+			     "book LEFT JOIN item_request ON "
+			     "book.myoid = item_request.item_oid "
+			     "AND item_request.type = 'Book' "
+			     "WHERE "
+			     "member.memberid LIKE '");
+	    searchstr.append(searchstrArg);
+	    searchstr.append("' AND ");
+	    searchstr.append("item_request.memberid = "
+			     "member.memberid ");
+	    searchstr.append("GROUP BY "
+			     "name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "book.title, "
+			     "book.id, "
+			     "book.publisher, book.pdate, "
+			     "book.category, "
+			     "book.language, "
+			     "book.price, book.monetary_units, "
+			     "book.quantity, "
+			     "book.location, "
+			     "book.type, "
+			     "book.myoid ");
+	    searchstr.append("UNION ");
+	    searchstr.append("SELECT DISTINCT "
+			     "member.last_name || ', ' || "
+			     "member.first_name AS name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "cd.title, "
+			     "cd.id, "
+			     "cd.recording_label, cd.rdate, "
+			     "cd.category, "
+			     "cd.language, "
+			     "cd.price, cd.monetary_units, "
+			     "cd.quantity, "
+			     "cd.location, "
+			     "cd.type, "
+			     "cd.myoid "
+			     "FROM "
+			     "member, "
+			     "cd LEFT JOIN item_request ON "
+			     "cd.myoid = item_request.item_oid "
+			     "AND item_request.type = 'CD' "
+			     "WHERE "
+			     "member.memberid LIKE '");
+	    searchstr.append(searchstrArg);
+	    searchstr.append("' AND ");
+	    searchstr.append("item_request.memberid = "
+			     "member.memberid ");
+	    searchstr.append("GROUP BY "
+			     "name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "cd.title, "
+			     "cd.id, "
+			     "cd.recording_label, cd.rdate, "
+			     "cd.category, "
+			     "cd.language, "
+			     "cd.price, cd.monetary_units, "
+			     "cd.quantity, "
+			     "cd.location, "
+			     "cd.type, "
+			     "cd.myoid ");
+	    searchstr.append("UNION ");
+	    searchstr.append("SELECT DISTINCT "
+			     "member.last_name || ', ' || "
+			     "member.first_name AS name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "dvd.title, "
+			     "dvd.id, "
+			     "dvd.studio, dvd.rdate, "
+			     "dvd.category, "
+			     "dvd.language, "
+			     "dvd.price, dvd.monetary_units, "
+			     "dvd.quantity, "
+			     "dvd.location, "
+			     "dvd.type, "
+			     "dvd.myoid "
+			     "FROM "
+			     "member, "
+			     "dvd LEFT JOIN item_request ON "
+			     "dvd.myoid = item_request.item_oid "
+			     "AND item_request.type = 'DVD' "
+			     "WHERE "
+			     "member.memberid LIKE '");
+	    searchstr.append(searchstrArg);
+	    searchstr.append("' AND ");
+	    searchstr.append("item_request.memberid = "
+			     "member.memberid ");
+	    searchstr.append("GROUP BY "
+			     "name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "dvd.title, "
+			     "dvd.id, "
+			     "dvd.studio, dvd.rdate, "
+			     "dvd.category, "
+			     "dvd.language, "
+			     "dvd.price, dvd.monetary_units, "
+			     "dvd.quantity, "
+			     "dvd.location, "
+			     "dvd.type, "
+			     "dvd.myoid ");
+	    searchstr.append("UNION ");
+	    searchstr.append("SELECT DISTINCT "
+			     "member.last_name || ', ' || "
+			     "member.first_name AS name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "magazine.title, "
+			     "magazine.id, "
+			     "magazine.publisher, magazine.pdate, "
+			     "magazine.category, "
+			     "magazine.language, "
+			     "magazine.price, magazine.monetary_units, "
+			     "magazine.quantity, "
+			     "magazine.location, "
+			     "magazine.type, "
+			     "magazine.myoid "
+			     "FROM "
+			     "member, "
+			     "magazine LEFT JOIN item_request ON "
+			     "magazine.myoid = "
+			     "item_request.item_oid "
+			     "AND item_request.type = magazine.type "
+			     "WHERE "
+			     "member.memberid LIKE '");
+	    searchstr.append(searchstrArg);
+	    searchstr.append("' AND ");
+	    searchstr.append("item_request.memberid = "
+			     "member.memberid ");
+	    searchstr.append("GROUP BY "
+			     "name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "magazine.title, "
+			     "magazine.id, "
+			     "magazine.publisher, magazine.pdate, "
+			     "magazine.category, "
+			     "magazine.language, "
+			     "magazine.price, magazine.monetary_units, "
+			     "magazine.quantity, "
+			     "magazine.location, "
+			     "magazine.type, "
+			     "magazine.myoid ");
+	    searchstr.append("UNION ");
+	    searchstr.append("SELECT DISTINCT "
+			     "member.last_name || ', ' || "
+			     "member.first_name AS name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "videogame.title, "
+			     "videogame.id, "
+			     "videogame.publisher, videogame.rdate, "
+			     "videogame.genre, "
+			     "videogame.language, "
+			     "videogame.price, videogame.monetary_units, "
+			     "videogame.quantity, "
+			     "videogame.location, "
+			     "videogame.type, "
+			     "videogame.myoid "
+			     "FROM "
+			     "member, "
+			     "videogame LEFT JOIN item_request ON "
+			     "videogame.myoid = "
+			     "item_request.item_oid "
+			     "AND item_request.type = 'Video Game' "
+			     "WHERE "
+			     "member.memberid LIKE '");
+	    searchstr.append(searchstrArg);
+	    searchstr.append("' AND ");
+	    searchstr.append("item_request.memberid = "
+			     "member.memberid ");
+	    searchstr.append("GROUP BY "
+			     "name, "
+			     "member.memberid, "
+			     "item_request.requestdate, "
+			     "videogame.title, "
+			     "videogame.id, "
+			     "videogame.publisher, videogame.rdate, "
+			     "videogame.genre, "
+			     "videogame.language, "
+			     "videogame.price, videogame.monetary_units, "
+			     "videogame.quantity, "
+			     "videogame.location, "
+			     "videogame.type, "
+			     "videogame.myoid ");
+	    searchstr.append("ORDER BY 1");
+	  }
+	else if(typefilter == "All Reserved")
 	  {
 	    searchstr = "";
 	    searchstr.append("SELECT DISTINCT "
@@ -2511,8 +2717,9 @@ int qtbook::populateTable(const int search_type, const int filter,
     {
       qapp->restoreOverrideCursor();
 
-      if(previousTypeFilter >= 0)
-	ui.typefilter->setCurrentIndex(previousTypeFilter);
+      if(!previousTypeFilter.isEmpty())
+	ui.typefilter->setCurrentIndex
+	  (ui.typefilter->findText(previousTypeFilter));
 
       addError(QString("Database Error"),
 	       QString("Unable to retrieve the data required for "
@@ -2527,13 +2734,13 @@ int qtbook::populateTable(const int search_type, const int filter,
     {
       qapp->restoreOverrideCursor();
 
-      if(filter > -1)
-	previousTypeFilter = filter;
-      else
-	previousTypeFilter = 0;
+      if(ui.typefilter->findText(typefilter) > -1)
+	previousTypeFilter = typefilter;
 
-      if(filter > -1)
-	ui.typefilter->setCurrentIndex(filter);
+      if(typefilter.isEmpty())
+	ui.typefilter->setCurrentIndex(0);
+      else if(ui.typefilter->findText(typefilter) > -1)
+	ui.typefilter->setCurrentIndex(ui.typefilter->findText(typefilter));
       else
 	ui.typefilter->setCurrentIndex(0);
 
@@ -2543,7 +2750,7 @@ int qtbook::populateTable(const int search_type, const int filter,
       if(search_type != CUSTOM_QUERY)
 	{
 	  ui.table->resetTable(typefilter);
-	  addConfigOptions();
+	  addConfigOptions(typefilter);
 	}
       else
 	ui.table->resetTable("");
@@ -2640,7 +2847,7 @@ int qtbook::populateTable(const int search_type, const int filter,
 	  ui.table->setColumnCount(tmplist.size());
 	  ui.table->setHorizontalHeaderLabels(tmplist);
 	  tmplist.clear();
-	  addConfigOptions();
+	  addConfigOptions("Custom");
 	}
 
       query.clear();
@@ -2723,8 +2930,7 @@ void qtbook::slotResizeColumns(void)
 
 void qtbook::slotAllGo(void)
 {
-  (void) populateTable(POPULATE_SEARCH, ui.typefilter->findText("All"),
-		       QString(""));
+  (void) populateTable(POPULATE_SEARCH, "All", QString(""));
 }
 
 /*
@@ -4325,7 +4531,6 @@ void qtbook::slotConnectDB(void)
       connected_bar_label->setToolTip("Connected");
     }
 
-  ui.actionChangePassword->setEnabled(true);
   ui.printTool->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.searchTool->setEnabled(true);
@@ -4356,10 +4561,14 @@ void qtbook::slotConnectDB(void)
   if(br.adminCheck->isChecked() || selectedBranch["database_type"] == "sqlite")
     adminSetup();
   else
-    ui.actionReservationHistory->setEnabled(true);
+    {
+      ui.actionRequests->setEnabled(true);
+      ui.actionRequests->setToolTip("Request Selected Item(s)");
+      ui.actionReservationHistory->setEnabled(true);
+    }
 
   if(ui.actionPopulateOnStart->isChecked())
-    (void) populateTable(POPULATE_ALL, ui.typefilter->currentIndex(),
+    (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
 			 QString(""));
 }
 
@@ -4403,6 +4612,8 @@ void qtbook::slotDisconnect(void)
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.actionRequests->setEnabled(false);
+  ui.actionRequests->setToolTip("Item Requests");
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
@@ -4422,9 +4633,10 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
+  previousTypeFilter = "All";
   ui.table->resetTable("All");
   ui.table->clearHiddenColumnsRecord();
-  addConfigOptions();
+  addConfigOptions("All");
   ui.typefilter->setCurrentIndex(0);
   slotDisplaySummary();
   emptyContainers();
@@ -5002,12 +5214,17 @@ void qtbook::slotCheckout(void)
 void qtbook::slotAutoPopOnFilter(void)
 {
   /*
-  ** Perform only if we're connected.
+  ** Populate the main table only if we're connected to a database.
   */
 
   if(db.isOpen() && ui.actionAutoPopulateOnFilter->isChecked())
-    (void) populateTable(POPULATE_ALL, ui.typefilter->currentIndex(),
-			 QString(""));
+    if(ui.typefilter->currentText() == "All Requested" && roles.isEmpty())
+      (void) populateTable(POPULATE_ALL, "All Requested", br.userid->text());
+    else if(ui.typefilter->currentText() == "All Requested")
+      (void) populateTable(POPULATE_ALL, "All Requested", "%");
+    else
+      (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
+			   QString(""));
 }
 
 /*
@@ -6089,7 +6306,7 @@ void qtbook::slotListReservedItems(void)
 
   members_diag->close();
   memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
-  (void) populateTable(POPULATE_ALL, -1, memberid);
+  (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
 }
 
 /*
@@ -6107,7 +6324,7 @@ void qtbook::slotListOverdueItems(void)
       memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
     }
 
-  (void) populateTable(POPULATE_ALL, -2, memberid);
+  (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
 }
 
 /*
@@ -6384,7 +6601,7 @@ void qtbook::slotExecuteCustomQuery(void)
       return;
     }
 
-  if(populateTable(CUSTOM_QUERY, 0, querystr) == 0)
+  if(populateTable(CUSTOM_QUERY, "Custom", querystr) == 0)
     customquery_diag->close();
   else
     {

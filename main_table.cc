@@ -28,15 +28,23 @@ void main_table::setColumns(const QString &type)
   int i = 0;
   QStringList list;
 
-  if(type == "All" || type == "Overdue" || type == "Reserved")
+  if(type == "All" || type == "All Overdue" || type == "All Requested" ||
+     type == "All Reserved")
     {
-      if(type == "Overdue" || type == "Reserved")
+      if(type == "All Overdue" || type == "All Reserved")
 	{
 	  list.append("Borrower");
 	  list.append("Member ID");
 	  list.append("Barcode");
 	  list.append("Reservation Date");
 	  list.append("Due Date");
+	}
+      else if(type == "All Requested")
+	{
+	  list.append("Borrower");
+	  list.append("Member ID");
+	  list.append("Barcode");
+	  list.append("Request Date");
 	}
 
       list.append("Title");
@@ -49,7 +57,10 @@ void main_table::setColumns(const QString &type)
       list.append("Monetary Units");
       list.append("Quantity");
       list.append("Location");
-      list.append("Availability");
+
+      if(type != "All Requested")
+	list.append("Availability");
+
       list.append("Type");
       list.append("OID");
     }
@@ -164,7 +175,8 @@ void main_table::setColumns(const QString &type)
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
 
-  if(type != "All" && type != "Overdue" && type != "Reserved")
+  if(type != "All" && type != "All Overdue" && type != "All Requested" &&
+     type != "All Reserved")
     {
       setColumnHidden(list.size() - 1, true);
       setColumnHidden(list.size() - 2, true);

@@ -703,9 +703,7 @@ void qtbook_cd::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL,
-		   qmain->getUI().typefilter->findText("Music CDs"),
-		   QString(""));
+		  (qtbook::POPULATE_ALL, "Music CDs", QString(""));
 
 	      raise();
 	    }
@@ -839,8 +837,7 @@ void qtbook_cd::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH,
-	 qmain->getUI().typefilter->findText("Music CDs"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Music CDs", searchstr);
     }
 }
 

@@ -705,9 +705,7 @@ void qtbook_book::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL,
-		   qmain->getUI().typefilter->findText("Books"),
-		   QString(""));
+		  (qtbook::POPULATE_ALL, "Books", QString(""));
 
 	      raise();
 	    }
@@ -838,8 +836,7 @@ void qtbook_book::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH,
-	 qmain->getUI().typefilter->findText("Books"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Books", searchstr);
     }
 }
 

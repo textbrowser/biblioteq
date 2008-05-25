@@ -120,7 +120,9 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "INSERT, SELECT, UPDATE"
-	       << "INSERT, SELECT, UPDATE";
+	       << "INSERT, SELECT, UPDATE"
+	       << "DELETE, SELECT"
+	       << "DELETE, SELECT";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -146,7 +148,9 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "item_borrower"
 		 << "public.item_borrower_myoid_seq"
 		 << "member_history"
-		 << "public.member_history_myoid_seq";
+		 << "public.member_history_myoid_seq"
+		 << "item_request"
+		 << "public.item_request_myoid_seq";
     }
 
   if(roles.contains("librarian"))
@@ -287,6 +291,8 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "item_borrower"
 		 << "item_borrower_myoid_seq"
 		 << "item_borrower_vw"
+		 << "item_request"
+		 << "item_request_myoid_seq"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
 		 << "book_myoid_seq"
@@ -383,6 +389,8 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "item_borrower"
 		       << "item_borrower_myoid_seq"
 		       << "item_borrower_vw"
+		       << "item_request"
+		       << "item_request_myoid_seq"
 		       << "book_copy_info"
 		       << "book_copy_info_myoid_seq"
 		       << "book_myoid_seq"
@@ -439,7 +447,9 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "public.videogame_copy_info_myoid_seq"
 		       << "item_borrower_vw"
 		       << "member_history"
-		       << "public.member_history_myoid_seq";
+		       << "public.member_history_myoid_seq"
+		       << "item_request"
+		       << "item_request_myoid_seq";
 	}
       else
 	objectlist << "admin"
@@ -447,6 +457,8 @@ void misc_functions::DBAccount(const QString &userid,
 		   << "item_borrower"
 		   << "item_borrower_myoid_seq"
 		   << "item_borrower_vw"
+		   << "item_request"
+		   << "item_request_myoid_seq"
 		   << "book_copy_info"
 		   << "book_copy_info_myoid_seq"
 		   << "book_myoid_seq"
@@ -481,6 +493,10 @@ void misc_functions::DBAccount(const QString &userid,
 		    querystr = QString
 		      ("GRANT SELECT ON %1 TO %2").arg
 		      (objectlist[i]).arg(userid);
+		  else if(objectlist[i].startsWith("item_request"))
+		    querystr = QString
+		      ("GRANT DELETE, SELECT ON %1 TO %2").arg
+		      (objectlist[i]).arg(userid);
 		  else
 		    querystr = QString
 		      ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
@@ -495,6 +511,11 @@ void misc_functions::DBAccount(const QString &userid,
 		  */
 		}
 	      else // Member.
+		if(objectlist[i].startsWith("item_request"))
+		  querystr = QString
+		    ("GRANT INSERT, SELECT ON %1 TO %2").arg
+		    (objectlist[i]).arg(userid);
+	      else
 		querystr = QString
 		  ("GRANT SELECT ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);

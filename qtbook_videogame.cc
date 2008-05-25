@@ -629,9 +629,7 @@ void qtbook_videogame::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL,
-		   qmain->getUI().typefilter->findText("Video Games"),
-		   QString(""));
+		  (qtbook::POPULATE_ALL, "Video Games", QString(""));
 
 	      raise();
 	    }
@@ -754,8 +752,7 @@ void qtbook_videogame::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH,
-	 qmain->getUI().typefilter->findText("Video Games"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Video Games", searchstr);
     }
 }
 

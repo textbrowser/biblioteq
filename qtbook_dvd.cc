@@ -722,9 +722,7 @@ void qtbook_dvd::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL,
-		   qmain->getUI().typefilter->findText("DVDs"),
-		   QString(""));
+		  (qtbook::POPULATE_ALL, "DVDs", QString(""));
 
 	      raise();
 	    }
@@ -868,8 +866,7 @@ void qtbook_dvd::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH,
-	 qmain->getUI().typefilter->findText("DVDs"), searchstr);
+	(qtbook::POPULATE_SEARCH, "DVDs", searchstr);
     }
 }
 

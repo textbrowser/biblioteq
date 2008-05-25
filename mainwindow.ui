@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>985</width>
     <height>650</height>
    </rect>
   </property>
@@ -68,6 +68,21 @@
              <item>
               <property name="text" >
                <string>All</string>
+              </property>
+             </item>
+             <item>
+              <property name="text" >
+               <string>All Overdue</string>
+              </property>
+             </item>
+             <item>
+              <property name="text" >
+               <string>All Requested</string>
+              </property>
+             </item>
+             <item>
+              <property name="text" >
+               <string>All Reserved</string>
               </property>
              </item>
              <item>
@@ -299,7 +314,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>985</width>
      <height>28</height>
     </rect>
    </property>
@@ -470,6 +485,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionReservationHistory" />
+   <addaction name="actionRequests" />
    <addaction name="reserveTool" />
    <addaction name="userTool" />
   </widget>
@@ -643,7 +659,7 @@
     <bool>true</bool>
    </property>
    <property name="checked" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text" >
     <string>Automatically &amp;Resize Columns to Contents</string>
@@ -1190,9 +1206,6 @@
    <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
    <property name="text" >
     <string>Remember S&amp;QLite Filename</string>
    </property>
@@ -1243,6 +1256,20 @@
    </property>
    <property name="text" >
     <string>Configure Administrator Privileges</string>
+   </property>
+   <property name="font" >
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionRequests" >
+   <property name="icon" >
+    <iconset>icons.d/32x32/request.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Item Requests</string>
    </property>
    <property name="font" >
     <font>

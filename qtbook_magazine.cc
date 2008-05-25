@@ -687,9 +687,7 @@ void qtbook_magazine::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL,
-		   qmain->getUI().typefilter->findText
-		   (QString("%1s").arg(subType)),
+		  (qtbook::POPULATE_ALL, QString("%1s").arg(subType),
 		   QString(""));
 
 	      raise();
@@ -822,9 +820,7 @@ void qtbook_magazine::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH,
-	 qmain->getUI().typefilter->findText
-	 (QString("%1s").arg(subType)), searchstr);
+	(qtbook::POPULATE_SEARCH, QString("%1s").arg(subType), searchstr);
     }
 }
 

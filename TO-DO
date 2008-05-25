@@ -254,4 +254,7 @@
 140. Do not allow requested items to be deleted.
 141. Only members should me able to request items. Administrators
      should be able to view all requested items while members should only
-     be allowed to view the items they have requested.
+     be allowed to view the items that they have requested.
+142. SQLite databases do not require request systems. (DONE)
+143. Enable new selection options if permissions allow.
+144. A request should be removed once it has been reserved.

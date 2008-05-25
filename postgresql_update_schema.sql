@@ -250,3 +250,22 @@ DROP TABLE videogame_borrower CASCADE;
    Browser as this will grant the correct privileges to existing administrator
    accounts. */
 /* Please also "Save" each member's information through the Members Browser. */
+
+/* Release 6.02 */
+
+CREATE TABLE item_request
+(
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
+	requestdate	 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL PRIMARY KEY,
+	type		 VARCHAR(16) NOT NULL
+);
+
+GRANT DELETE, SELECT ON item_request TO xbook_admin;
+GRANT DELETE, SELECT ON public.item_request_myoid_seq TO xbook_admin;
+
+/* Please execute the "Save Changes" function from within the Administrator
+   Browser as this will grant the correct privileges to existing administrator
+   accounts. */
+/* Please also "Save" each member's information through the Members Browser. */
