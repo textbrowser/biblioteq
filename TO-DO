@@ -256,14 +256,8 @@
      should be able to view all requested items while members should only
      be allowed to view the items that they have requested. (DONE)
 142. SQLite databases do not require request systems. (DONE)
-143. Enable selection options based on privileges:
-	Administrator / Member
-		All
-		All Overdue
-		All Requested
-		All Reserved
-		Items
-	Circulation
+143. Enable selection options based on privileges: (DONE)
+	Administrator / Circulation / Member
 		All
 		All Overdue
 		All Requested
@@ -276,9 +270,10 @@
 		All
 		Items
 144. A request should be removed once it has been approved (reserved). (DONE)
-145. Notify administrators of requests? No.
+145. Notify administrators of requests? No. (DONE)
 146. Do not allow multiple requests of identical items. (DONE)
 147. Allow members to view their overdue items, requests, and reservations.
      (DONE)
 148. Canceling a custom query that references images is difficult.
      Must resolve.
+149. Remove requested items after a member has been deleted. (DONE)

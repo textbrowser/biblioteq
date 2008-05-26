@@ -175,7 +175,9 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE";
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "SELECT"
+	       << "SELECT";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -196,7 +198,9 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame"
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq";
+		 << "videogame_myoid_seq"
+		 << "item_request"
+		 << "item_request_myoid_seq";
     }
 
   if(roles.contains("membership"))

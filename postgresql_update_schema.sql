@@ -275,7 +275,8 @@ CREATE TABLE item_request
 	requestdate	 VARCHAR(32) NOT NULL,
 	myoid		 BIGSERIAL NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
-	PRIMARY KEY(item_oid, type)
+	PRIMARY KEY(item_oid, type),
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 GRANT DELETE, SELECT ON item_request TO xbook_admin;

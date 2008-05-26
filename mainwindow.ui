@@ -65,56 +65,6 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <item>
-              <property name="text" >
-               <string>All</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>All Overdue</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>All Requested</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>All Reserved</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Books</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>DVDs</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Journals</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Magazines</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Music CDs</string>
-              </property>
-             </item>
-             <item>
-              <property name="text" >
-               <string>Video Games</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -507,7 +457,6 @@
    </attribute>
    <addaction name="searchTool" />
    <addaction name="customQueryTool" />
-   <addaction name="overdueButton" />
    <addaction name="refreshTool" />
   </widget>
   <widget class="QToolBar" name="toolBar_5" >
@@ -1082,20 +1031,6 @@
    </property>
    <property name="text" >
     <string>Database Search</string>
-   </property>
-   <property name="font" >
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
-  <action name="overdueButton" >
-   <property name="icon" >
-    <iconset>icons.d/32x32/date.png</iconset>
-   </property>
-   <property name="text" >
-    <string>List All Overdue Items</string>
    </property>
    <property name="font" >
     <font>

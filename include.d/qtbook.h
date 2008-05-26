@@ -188,6 +188,7 @@ class qtbook: public QMainWindow
   void readConfig(void);
   void deleteItem(const QString &, const QString &);
   void initialUpdate(void);
+  void prepareFilter(void);
   void emptyContainers(void);
   void readGlobalSetup(void);
   void addConfigOptions(const QString &);

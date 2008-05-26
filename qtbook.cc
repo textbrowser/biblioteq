@@ -362,8 +362,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotListReservedItems(void)));
   connect(bb.overdueButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotListOverdueItems(void)));
-  connect(ui.overdueButton, SIGNAL(triggered(void)), this,
-	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
@@ -422,7 +420,6 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionRequests->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
-  ui.overdueButton->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
@@ -448,6 +445,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = "All";
+  prepareFilter();
   addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
   userinfo.telephoneNumber->setInputMask("999-999-9999");
@@ -488,11 +486,11 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	 typefilter != "All Requested" && typefilter != "All Reserved")
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
-	     ui.table->horizontalHeaderItem(i)->text() == "ROID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == "Type")
 	    continue;
 	}
-      else if(ui.table->horizontalHeaderItem(i)->text() == "OID")
+      else if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
+	      ui.table->horizontalHeaderItem(i)->text() == "ROID")
 	continue;
 
       if((action = new QAction(ui.table->horizontalHeaderItem(i)->text(),
@@ -550,7 +548,6 @@ void qtbook::adminSetup(void)
   bb.overdueButton->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
-  ui.actionRequests->setEnabled(true);
 
   if(status_bar_label != NULL)
     {
@@ -578,9 +575,6 @@ void qtbook::adminSetup(void)
 
   if(roles.contains("administrator") || roles.contains("librarian"))
     ui.deleteTool->setEnabled(true);
-
-  if(roles.contains("administrator") || roles.contains("circulation"))
-    ui.overdueButton->setEnabled(true);
 
   if(roles.contains("administrator") || roles.contains("librarian"))
     {
@@ -615,13 +609,15 @@ void qtbook::adminSetup(void)
     ui.actionConfigureAdministratorPrivileges->setEnabled
       (roles.contains("administrator"));
 
-  if(!(roles.contains("administrator") || roles.contains("circulation")))
+  if(selectedBranch["database_type"] != "sqlite")
     {
-      ui.actionRequests->setEnabled(false);
-      ui.actionRequests->setToolTip("Item Requests");
+      if(!(roles.contains("administrator") || roles.contains("circulation")))
+	ui.actionRequests->setToolTip("Item Requests");
+      else
+	ui.actionRequests->setToolTip("Remove Selected Request(s)");
     }
   else
-    ui.actionRequests->setToolTip("Remove Selected Request(s)");
+    ui.actionRequests->setToolTip("Item Requests");
 
   /*
   ** Hide certain fields in the Member's Browser.
@@ -5207,13 +5203,14 @@ void qtbook::slotConnectDB(void)
 	      SLOT(slotViewDetails(void)));
     }
 
+  prepareFilter();
+
   if(br.adminCheck->isChecked() || selectedBranch["database_type"] == "sqlite")
     adminSetup();
   else
     {
-      ui.overdueButton->setEnabled(true);
-      ui.actionRequests->setEnabled(true);
       ui.actionRequests->setToolTip("Request Selected Item(s)");
+      ui.actionRequests->setEnabled(true);
       ui.actionReservationHistory->setEnabled(true);
     }
 
@@ -5227,6 +5224,7 @@ void qtbook::slotConnectDB(void)
 
 void qtbook::slotDisconnect(void)
 {
+  roles = "";
   all_diag->close();
   members_diag->close();
   history_diag->close();
@@ -5238,7 +5236,6 @@ void qtbook::slotDisconnect(void)
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.deleteTool->setEnabled(false);
-  ui.overdueButton->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
   ui.modifyTool->setEnabled(false);
@@ -5285,6 +5282,7 @@ void qtbook::slotDisconnect(void)
   previousTypeFilter = "All";
   ui.table->resetTable("All", roles);
   ui.table->clearHiddenColumnsRecord();
+  prepareFilter();
   addConfigOptions("All");
   ui.typefilter->setCurrentIndex(0);
   slotDisplaySummary();
@@ -5867,7 +5865,23 @@ void qtbook::slotAutoPopOnFilter(void)
   */
 
   if(db.isOpen() && ui.actionAutoPopulateOnFilter->isChecked())
-    slotRefresh();
+    {
+      if(!roles.isEmpty() && ui.typefilter->currentText() == "All Requested")
+	ui.actionRequests->setEnabled(true);
+      else if(roles.isEmpty() && 
+	      (ui.typefilter->currentText() == "All" ||
+	       ui.typefilter->currentText() == "Books" ||
+	       ui.typefilter->currentText() == "DVDs" ||
+	       ui.typefilter->currentText() == "Journals" ||
+	       ui.typefilter->currentText() == "Magazines" ||
+	       ui.typefilter->currentText() == "Music CDs" ||
+	       ui.typefilter->currentText() == "Video Games"))
+	ui.actionRequests->setEnabled(true);
+      else
+	ui.actionRequests->setEnabled(false);
+
+      slotRefresh();
+    }
 }
 
 /*
@@ -8556,4 +8570,50 @@ void qtbook::slotRequest(void)
     slotRefresh();
 
   list.clear();
+}
+
+/*
+** -- prepareFilter() --
+*/
+
+void qtbook::prepareFilter(void)
+{
+  QStringList tmplist;
+
+  if(selectedBranch["database_type"] == "sqlite")
+    tmplist << "All"
+	    << "All Overdue"
+	    << "All Reserved"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
+  else if(roles.isEmpty() || roles.contains("administrator") ||
+	  roles.contains("circulation"))
+    tmplist << "All"
+	    << "All Overdue"
+	    << "All Requested"
+	    << "All Reserved"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
+  else
+    tmplist << "All"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
+
+  while(ui.typefilter->count() > 0)
+    ui.typefilter->removeItem(0);
+
+  ui.typefilter->addItems(tmplist);
+  tmplist.clear();
 }
