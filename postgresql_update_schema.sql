@@ -253,17 +253,43 @@ DROP TABLE videogame_borrower CASCADE;
 
 /* Release 6.02 */
 
+DROP VIEW item_borrower_vw;
+
+CREATE VIEW item_borrower_vw AS
+SELECT	 item_oid,
+	 memberid,
+	 myoid,
+	 copyid,
+	 copy_number,
+	 reserved_date,
+	 duedate,
+	 type
+FROM	 item_borrower;
+
+GRANT SELECT ON item_borrower_vw TO xbook_admin;
+
 CREATE TABLE item_request
 (
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	requestdate	 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	type		 VARCHAR(16) NOT NULL
+	myoid		 BIGSERIAL NOT NULL,
+	type		 VARCHAR(16) NOT NULL,
+	PRIMARY KEY(item_oid, type)
 );
 
 GRANT DELETE, SELECT ON item_request TO xbook_admin;
 GRANT DELETE, SELECT ON public.item_request_myoid_seq TO xbook_admin;
+
+CREATE OR REPLACE FUNCTION delete_request() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_request WHERE item_oid = new.item_oid AND
+	type = new.type;
+	RETURN NULL;
+END;
+' LANGUAGE plpgsql;
+CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
+FOR EACH row EXECUTE PROCEDURE delete_request();
 
 /* Please execute the "Save Changes" function from within the Administrator
    Browser as this will grant the correct privileges to existing administrator

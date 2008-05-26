@@ -204,6 +204,7 @@ class qtbook: public QMainWindow
   void slotModify(void);
   void slotSearch(void);
   void slotRefresh(void);
+  void slotRequest(void);
   void slotAddAdmin(void);
   void slotCheckout(void);
   void slotCDSearch(void);

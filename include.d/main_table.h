@@ -18,13 +18,13 @@ class main_table: public QTableWidget
 
  public:
   main_table(QWidget *);
-  void resetTable(const QString &);
+  void resetTable(const QString &, const QString &);
   void recordColumnHidden(const QString &, const int, const bool);
   void clearHiddenColumnsRecord(void);
 
  private:
   QHash<QString, QList<int> > hiddenColumns;
-  void setColumns(const QString &);
+  void setColumns(const QString &, const QString &);
 };
 
 #endif

@@ -146,11 +146,11 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame_myoid_seq"
 		 << "member"
 		 << "item_borrower"
-		 << "public.item_borrower_myoid_seq"
+		 << "item_borrower_myoid_seq"
 		 << "member_history"
-		 << "public.member_history_myoid_seq"
+		 << "member_history_myoid_seq"
 		 << "item_request"
-		 << "public.item_request_myoid_seq";
+		 << "item_request_myoid_seq";
     }
 
   if(roles.contains("librarian"))
@@ -425,29 +425,29 @@ void misc_functions::DBAccount(const QString &userid,
 	  else // Member.
 	    objectlist << "admin"
 		       << "book"
-		       << "public.book_myoid_seq"
+		       << "book_myoid_seq"
 		       << "book_copy_info"
-		       << "public.book_copy_info_myoid_seq"
+		       << "book_copy_info_myoid_seq"
 		       << "cd"
-		       << "public.cd_myoid_seq"
+		       << "cd_myoid_seq"
 		       << "cd_songs"
 		       << "cd_copy_info"
-		       << "public.cd_copy_info_myoid_seq"
+		       << "cd_copy_info_myoid_seq"
 		       << "dvd"
-		       << "public.dvd_myoid_seq"
+		       << "dvd_myoid_seq"
 		       << "dvd_copy_info"
-		       << "public.dvd_copy_info_myoid_seq"
+		       << "dvd_copy_info_myoid_seq"
 		       << "magazine"
-		       << "public.magazine_myoid_seq"
+		       << "magazine_myoid_seq"
 		       << "magazine_copy_info"
-		       << "public.magazine_copy_info_myoid_seq"
+		       << "magazine_copy_info_myoid_seq"
 		       << "videogame"
-		       << "public.videogame_myoid_seq"
+		       << "videogame_myoid_seq"
 		       << "videogame_copy_info"
-		       << "public.videogame_copy_info_myoid_seq"
+		       << "videogame_copy_info_myoid_seq"
 		       << "item_borrower_vw"
 		       << "member_history"
-		       << "public.member_history_myoid_seq"
+		       << "member_history_myoid_seq"
 		       << "item_request"
 		       << "item_request_myoid_seq";
 	}
@@ -510,11 +510,14 @@ void misc_functions::DBAccount(const QString &userid,
 		  ** The method grantPrivs() grants the necessary privileges.
 		  */
 		}
-	      else // Member.
-		if(objectlist[i].startsWith("item_request"))
-		  querystr = QString
-		    ("GRANT INSERT, SELECT ON %1 TO %2").arg
-		    (objectlist[i]).arg(userid);
+	      else if(objectlist[i] == "item_request")
+		querystr = QString
+		  ("GRANT INSERT, SELECT ON %1 TO %2").arg
+		  (objectlist[i]).arg(userid);
+	      else if(objectlist[i] == "item_request_myoid_seq")
+		querystr = QString
+		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
+		  (objectlist[i]).arg(userid);
 	      else
 		querystr = QString
 		  ("GRANT SELECT ON %1 TO %2").arg
@@ -1454,4 +1457,54 @@ void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
 	if(str.contains("price") || str.contains("monetary"))
 	  action->setVisible(showWidgets);
       }
+}
+
+/*
+** -- isRequested() --
+*/
+
+bool misc_functions::isRequested(const QSqlDatabase &db,
+				 const QString &oid,
+				 const QString &itemTypeArg,
+				 QString &errorstr)
+{
+  bool isRequested = false;
+  QString str = "";
+  QString itemType = "";
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return isRequested; // Requests are not supported.
+
+  itemType = itemTypeArg;
+
+  if(itemType == "Journal")
+    itemType = "Magazine";
+
+  querystr = QString("SELECT COUNT(myoid) FROM item_request "
+		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
+  query.prepare(querystr);
+  query.bindValue(0, oid);
+
+  if(query.exec())
+    {
+      (void) query.next();
+      str = query.value(0).toString();
+
+      if(str == "0")
+	isRequested = false;
+      else
+	isRequested = true;
+    }
+
+  if(query.lastError().isValid())
+    {
+      errorstr = query.lastError().text();
+      isRequested = false;
+    }
+
+  return isRequested;
 }

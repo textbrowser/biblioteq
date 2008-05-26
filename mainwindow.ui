@@ -506,8 +506,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="searchTool" />
-   <addaction name="overdueButton" />
    <addaction name="customQueryTool" />
+   <addaction name="overdueButton" />
    <addaction name="refreshTool" />
   </widget>
   <widget class="QToolBar" name="toolBar_5" >

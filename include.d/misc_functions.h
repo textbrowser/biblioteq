@@ -40,6 +40,8 @@ class misc_functions
 			      const QString &, QString &);
   static int getMemberMatchCount(const QString &, const QString &,
 				 const QSqlDatabase &, QString &);
+  static bool isRequested(const QSqlDatabase &, const QString &,
+			  const QString &, QString &);
   static bool isCheckedOut(const QSqlDatabase &, const QString &,
 			   const QString &, QString &);
   static bool isCopyAvailable(const QSqlDatabase &, const QString &,

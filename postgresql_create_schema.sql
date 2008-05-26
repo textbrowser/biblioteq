@@ -220,8 +220,9 @@ CREATE TABLE item_request
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
 	requestdate	 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	type		 VARCHAR(16) NOT NULL
+	myoid		 BIGSERIAL NOT NULL,
+	type		 VARCHAR(16) NOT NULL,
+	PRIMARY KEY(item_oid, type)
 );
 
 CREATE TABLE member
@@ -300,6 +301,16 @@ END;
 CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
 FOR EACH row EXECUTE PROCEDURE delete_videogame_history();
 
+CREATE OR REPLACE FUNCTION delete_request() RETURNS trigger AS '
+BEGIN
+	DELETE FROM item_request WHERE item_oid = new.item_oid AND
+	type = new.type;
+	RETURN NULL;
+END;
+' LANGUAGE plpgsql;
+CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
+FOR EACH row EXECUTE PROCEDURE delete_request();
+
 CREATE TABLE admin
 (
 	username	 VARCHAR(128) NOT NULL PRIMARY KEY,
@@ -308,6 +319,7 @@ CREATE TABLE admin
 
 CREATE VIEW item_borrower_vw AS
 SELECT	 item_oid,
+	 memberid,
 	 myoid,
 	 copyid,
 	 copy_number,

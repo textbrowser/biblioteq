@@ -23,7 +23,7 @@ main_table::main_table(QWidget *parent)
 ** -- setColumns() --
 */
 
-void main_table::setColumns(const QString &type)
+void main_table::setColumns(const QString &type, const QString &roles)
 {
   int i = 0;
   QStringList list;
@@ -33,17 +33,24 @@ void main_table::setColumns(const QString &type)
     {
       if(type == "All Overdue" || type == "All Reserved")
 	{
-	  list.append("Borrower");
-	  list.append("Member ID");
+	  if(!roles.isEmpty())
+	    {
+	      list.append("Borrower");
+	      list.append("Member ID");
+	    }
+
 	  list.append("Barcode");
 	  list.append("Reservation Date");
 	  list.append("Due Date");
 	}
       else if(type == "All Requested")
 	{
-	  list.append("Borrower");
-	  list.append("Member ID");
-	  list.append("Barcode");
+	  if(!roles.isEmpty())
+	    {
+	      list.append("Borrower");
+	      list.append("Member ID");
+	    }
+
 	  list.append("Request Date");
 	}
 
@@ -63,6 +70,9 @@ void main_table::setColumns(const QString &type)
 
       list.append("Type");
       list.append("OID");
+
+      if(type == "All Requested")
+	list.append("ROID");
     }
   else if(type == "Books")
     {
@@ -182,7 +192,12 @@ void main_table::setColumns(const QString &type)
       setColumnHidden(list.size() - 2, true);
     }
   else
-    setColumnHidden(list.size() - 1, true);
+    {
+      setColumnHidden(list.size() - 1, true);
+
+      if(type == "All Requested")
+	setColumnHidden(list.size() - 2, true);
+    }
 
   for(i = 0; i < hiddenColumns[type].size(); i++)
     setColumnHidden(hiddenColumns[type][i], true);
@@ -194,7 +209,7 @@ void main_table::setColumns(const QString &type)
 ** -- resetTable() --
 */
 
-void main_table::resetTable(const QString &type)
+void main_table::resetTable(const QString &type, const QString &roles)
 {
   clear();
   setRowCount(0);
@@ -203,7 +218,7 @@ void main_table::resetTable(const QString &type)
   horizontalScrollBar()->setValue(0);
 
   if(!type.isEmpty())
-    setColumns(type);
+    setColumns(type, roles);
 
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);

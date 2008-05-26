@@ -322,6 +322,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowChangePassword(void)));
   connect(ui.actionSaveSettings, SIGNAL(triggered(void)), this,
 	  SLOT(slotSaveConfig()));
+  connect(ui.actionRequests, SIGNAL(triggered(void)), this,
+	  SLOT(slotRequest(void)));
   connect(ui.connectTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowConnectionDB(void)));
   connect(ui.actionConnect, SIGNAL(triggered(void)), this,
@@ -441,7 +443,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionMembersBrowser->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
-  ui.table->resetTable("All");
+  ui.table->resetTable("All", roles);
   ui.summary->setVisible(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
@@ -486,6 +488,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	 typefilter != "All Requested" && typefilter != "All Reserved")
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
+	     ui.table->horizontalHeaderItem(i)->text() == "ROID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == "Type")
 	    continue;
 	}
@@ -1121,6 +1124,7 @@ void qtbook::slotDelete(void)
   int col = -1;
   int numdeleted = 0;
   bool error = false;
+  bool isRequested = false;
   bool isCheckedOut = false;
   QString oid = "";
   QString str = "";
@@ -1187,6 +1191,31 @@ void qtbook::slotDelete(void)
 	{
 	  QMessageBox::critical(this, "BiblioteQ: Error",
 				"Reserved items may not be deleted.");
+	  list.clear();
+	  return;
+	}
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      isRequested = misc_functions::isRequested(db, oid, itemType, errorstr);
+      qapp->restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	{
+	  addError(QString("Database Error"),
+		   QString("Unable to determine if the item has been "
+			   "requested."),
+		   errorstr, __FILE__, __LINE__);
+	  QMessageBox::critical(this, "BiblioteQ: Error",
+				"Unable to determine if the item has "
+				"been requested.");
+	  list.clear();
+	  return;
+	}
+
+      if(isRequested)
+	{
+	  QMessageBox::critical(this, "BiblioteQ: Error",
+				"Requested items may not be deleted.");
 	  list.clear();
 	  return;
 	}
@@ -1261,8 +1290,7 @@ void qtbook::slotDelete(void)
 			  "items.");
 
   if(numdeleted > 0)
-    (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
-			 QString(""));
+    slotRefresh();
 
   list.clear();
 }
@@ -1283,8 +1311,18 @@ void qtbook::closeEvent(QCloseEvent *e)
 
 void qtbook::slotRefresh(void)
 {
-  (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
-		       QString(""));
+  QString str = "";
+
+  if(ui.typefilter->currentText() == "All Overdue" && roles.isEmpty())
+    str = br.userid->text();
+  else if(ui.typefilter->currentText() == "All Requested" && roles.isEmpty())
+    str = br.userid->text();
+  else if(ui.typefilter->currentText() == "All Reserved" && roles.isEmpty())
+    str = br.userid->text();
+  else if(ui.typefilter->currentText() == "All Reserved")
+    str = "%";
+
+  (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(), str);
 }
 
 /*
@@ -1463,716 +1501,1327 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	else if(typefilter == "All Overdue")
 	  {
 	    searchstr = "";
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "book.type, "
-			     "book.myoid "
-			     "FROM "
-			     "member, "
-			     "book LEFT JOIN item_borrower ON "
-			     "book.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'Book' "
-			     "WHERE "
-			     "member.memberid LIKE '%");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("%' AND ");
-	    searchstr.append("item_borrower.duedate < '");
-	    searchstr.append(now.toString("MM/dd/yyyy"));
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.type, "
-			     "book.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "cd.type, "
-			     "cd.myoid "
-			     "FROM "
-			     "member, "
-			     "cd LEFT JOIN item_borrower ON "
-			     "cd.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'CD' "
-			     "WHERE "
-			     "member.memberid LIKE '%");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("%' AND ");
-	    searchstr.append("item_borrower.duedate < '");
-	    searchstr.append(now.toString("MM/dd/yyyy"));
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.type, "
-			     "cd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "dvd.type, "
-			     "dvd.myoid "
-			     "FROM "
-			     "member, "
-			     "dvd LEFT JOIN item_borrower ON "
-			     "dvd.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'DVD' "
-			     "WHERE "
-			     "member.memberid LIKE '%");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("%' AND ");
-	    searchstr.append("item_borrower.duedate < '");
-	    searchstr.append(now.toString("MM/dd/yyyy"));
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.type, "
-			     "dvd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "magazine.type, "
-			     "magazine.myoid "
-			     "FROM "
-			     "member, "
-			     "magazine LEFT JOIN item_borrower ON "
-			     "magazine.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = magazine.type "
-			     "WHERE "
-			     "member.memberid LIKE '%");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("%' AND ");
-	    searchstr.append("item_borrower.duedate < '");
-	    searchstr.append(now.toString("MM/dd/yyyy"));
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.type, "
-			     "magazine.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "videogame.type, "
-			     "videogame.myoid "
-			     "FROM "
-			     "member, "
-			     "videogame LEFT JOIN item_borrower ON "
-			     "videogame.myoid = "
-			     "item_borrower.item_oid "
-			     "AND item_borrower.type = 'Video Game' "
-			     "WHERE "
-			     "member.memberid LIKE '%");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("%' AND ");
-	    searchstr.append("item_borrower.duedate < '");
-	    searchstr.append(now.toString("MM/dd/yyyy"));
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.type, "
-			     "videogame.myoid ");
-	    searchstr.append("ORDER BY 1");
+
+	    if(roles.isEmpty())
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "book.type, "
+				 "book.myoid "
+				 "FROM "
+				 "book LEFT JOIN item_borrower_vw ON "
+				 "book.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'Book' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "cd.type, "
+				 "cd.myoid "
+				 "FROM "
+				 "cd LEFT JOIN item_borrower_vw ON "
+				 "cd.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'CD' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "dvd.type, "
+				 "dvd.myoid "
+				 "FROM "
+				 "dvd LEFT JOIN item_borrower_vw ON "
+				 "dvd.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'DVD' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "magazine.type, "
+				 "magazine.myoid "
+				 "FROM "
+				 "magazine LEFT JOIN item_borrower_vw ON "
+				 "magazine.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = magazine.type "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "videogame.type, "
+				 "videogame.myoid "
+				 "FROM "
+				 "videogame LEFT JOIN item_borrower_vw ON "
+				 "videogame.myoid = "
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'Video Game' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
+	    else
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "book.type, "
+				 "book.myoid "
+				 "FROM "
+				 "member, "
+				 "book LEFT JOIN item_borrower ON "
+				 "book.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'Book' "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "cd.type, "
+				 "cd.myoid "
+				 "FROM "
+				 "member, "
+				 "cd LEFT JOIN item_borrower ON "
+				 "cd.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'CD' "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "dvd.type, "
+				 "dvd.myoid "
+				 "FROM "
+				 "member, "
+				 "dvd LEFT JOIN item_borrower ON "
+				 "dvd.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'DVD' "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "magazine.type, "
+				 "magazine.myoid "
+				 "FROM "
+				 "member, "
+				 "magazine LEFT JOIN item_borrower ON "
+				 "magazine.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = magazine.type "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "videogame.type, "
+				 "videogame.myoid "
+				 "FROM "
+				 "member, "
+				 "videogame LEFT JOIN item_borrower ON "
+				 "videogame.myoid = "
+				 "item_borrower.item_oid "
+				 "AND item_borrower.type = 'Video Game' "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
 	  }
 	else if(typefilter == "All Requested")
 	  {
 	    searchstr = "";
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.type, "
-			     "book.myoid "
-			     "FROM "
-			     "member, "
-			     "book LEFT JOIN item_request ON "
-			     "book.myoid = item_request.item_oid "
-			     "AND item_request.type = 'Book' "
-			     "WHERE "
-			     "member.memberid LIKE '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_request.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.type, "
-			     "book.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.type, "
-			     "cd.myoid "
-			     "FROM "
-			     "member, "
-			     "cd LEFT JOIN item_request ON "
-			     "cd.myoid = item_request.item_oid "
-			     "AND item_request.type = 'CD' "
-			     "WHERE "
-			     "member.memberid LIKE '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_request.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.type, "
-			     "cd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.type, "
-			     "dvd.myoid "
-			     "FROM "
-			     "member, "
-			     "dvd LEFT JOIN item_request ON "
-			     "dvd.myoid = item_request.item_oid "
-			     "AND item_request.type = 'DVD' "
-			     "WHERE "
-			     "member.memberid LIKE '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_request.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.type, "
-			     "dvd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.type, "
-			     "magazine.myoid "
-			     "FROM "
-			     "member, "
-			     "magazine LEFT JOIN item_request ON "
-			     "magazine.myoid = "
-			     "item_request.item_oid "
-			     "AND item_request.type = magazine.type "
-			     "WHERE "
-			     "member.memberid LIKE '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_request.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.type, "
-			     "magazine.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.type, "
-			     "videogame.myoid "
-			     "FROM "
-			     "member, "
-			     "videogame LEFT JOIN item_request ON "
-			     "videogame.myoid = "
-			     "item_request.item_oid "
-			     "AND item_request.type = 'Video Game' "
-			     "WHERE "
-			     "member.memberid LIKE '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_request.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_request.requestdate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.type, "
-			     "videogame.myoid ");
-	    searchstr.append("ORDER BY 1");
+
+	    if(roles.isEmpty())
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "book LEFT JOIN item_request ON "
+				 "book.myoid = item_request.item_oid "
+				 "AND item_request.type = 'Book' "
+				 "WHERE "
+				 "item_request.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "cd LEFT JOIN item_request ON "
+				 "cd.myoid = item_request.item_oid "
+				 "AND item_request.type = 'CD' "
+				 "WHERE "
+				 "item_request.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "dvd LEFT JOIN item_request ON "
+				 "dvd.myoid = item_request.item_oid "
+				 "AND item_request.type = 'DVD' "
+				 "WHERE "
+				 "item_request.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "magazine LEFT JOIN item_request ON "
+				 "magazine.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = magazine.type "
+				 "WHERE "
+				 "item_request.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "videogame LEFT JOIN item_request ON "
+				 "videogame.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = 'Video Game' "
+				 "WHERE "
+				 "item_request.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
+	    else
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "book LEFT JOIN item_request ON "
+				 "book.myoid = item_request.item_oid "
+				 "AND item_request.type = 'Book' "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "cd LEFT JOIN item_request ON "
+				 "cd.myoid = item_request.item_oid "
+				 "AND item_request.type = 'CD' "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "dvd LEFT JOIN item_request ON "
+				 "dvd.myoid = item_request.item_oid "
+				 "AND item_request.type = 'DVD' "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "magazine LEFT JOIN item_request ON "
+				 "magazine.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = magazine.type "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "videogame LEFT JOIN item_request ON "
+				 "videogame.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = 'Video Game' "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
 	  }
 	else if(typefilter == "All Reserved")
 	  {
 	    searchstr = "";
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "book.type, "
-			     "book.myoid "
-			     "FROM "
-			     "member, "
-			     "book LEFT JOIN item_borrower ON "
-			     "book.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'Book' "
-			     "WHERE "
-			     "member.memberid = '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "book.title, "
-			     "book.id, "
-			     "book.publisher, book.pdate, "
-			     "book.category, "
-			     "book.language, "
-			     "book.price, book.monetary_units, "
-			     "book.quantity, "
-			     "book.location, "
-			     "book.type, "
-			     "book.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "cd.type, "
-			     "cd.myoid "
-			     "FROM "
-			     "member, "
-			     "cd LEFT JOIN item_borrower ON "
-			     "cd.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'CD' "
-			     "WHERE "
-			     "member.memberid = '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "cd.title, "
-			     "cd.id, "
-			     "cd.recording_label, cd.rdate, "
-			     "cd.category, "
-			     "cd.language, "
-			     "cd.price, cd.monetary_units, "
-			     "cd.quantity, "
-			     "cd.location, "
-			     "cd.type, "
-			     "cd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "dvd.type, "
-			     "dvd.myoid "
-			     "FROM "
-			     "member, "
-			     "dvd LEFT JOIN item_borrower ON "
-			     "dvd.myoid = item_borrower.item_oid "
-			     "AND item_borrower.type = 'DVD' "
-			     "WHERE "
-			     "member.memberid = '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "dvd.title, "
-			     "dvd.id, "
-			     "dvd.studio, dvd.rdate, "
-			     "dvd.category, "
-			     "dvd.language, "
-			     "dvd.price, dvd.monetary_units, "
-			     "dvd.quantity, "
-			     "dvd.location, "
-			     "dvd.type, "
-			     "dvd.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "magazine.type, "
-			     "magazine.myoid "
-			     "FROM "
-			     "member, "
-			     "magazine LEFT JOIN item_borrower ON "
-			     "magazine.myoid = "
-			     "item_borrower.item_oid "
-			     "AND item_borrower.type = magazine.type "
-			     "WHERE "
-			     "member.memberid = '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "magazine.title, "
-			     "magazine.id, "
-			     "magazine.publisher, magazine.pdate, "
-			     "magazine.category, "
-			     "magazine.language, "
-			     "magazine.price, magazine.monetary_units, "
-			     "magazine.quantity, "
-			     "magazine.location, "
-			     "magazine.type, "
-			     "magazine.myoid ");
-	    searchstr.append("UNION ");
-	    searchstr.append("SELECT DISTINCT "
-			     "member.last_name || ', ' || "
-			     "member.first_name AS name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.quantity - "
-			     "COUNT(item_borrower.item_oid) "
-			     "AS availability, "
-			     "videogame.type, "
-			     "videogame.myoid "
-			     "FROM "
-			     "member, "
-			     "videogame LEFT JOIN item_borrower ON "
-			     "videogame.myoid = "
-			     "item_borrower.item_oid "
-			     "AND item_borrower.type = 'Video Game' "
-			     "WHERE "
-			     "member.memberid = '");
-	    searchstr.append(searchstrArg);
-	    searchstr.append("' AND ");
-	    searchstr.append("item_borrower.memberid = "
-			     "member.memberid ");
-	    searchstr.append("GROUP BY "
-			     "name, "
-			     "member.memberid, "
-			     "item_borrower.copyid, "
-			     "item_borrower.reserved_date, "
-			     "item_borrower.duedate, "
-			     "videogame.title, "
-			     "videogame.id, "
-			     "videogame.publisher, videogame.rdate, "
-			     "videogame.genre, "
-			     "videogame.language, "
-			     "videogame.price, videogame.monetary_units, "
-			     "videogame.quantity, "
-			     "videogame.location, "
-			     "videogame.type, "
-			     "videogame.myoid ");
-	    searchstr.append("ORDER BY 1");
+
+	    if(roles.isEmpty())
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "book.type, "
+				 "book.myoid "
+				 "FROM "
+				 "book LEFT JOIN item_borrower_vw ON "
+				 "book.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'Book' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "cd.type, "
+				 "cd.myoid "
+				 "FROM "
+				 "cd LEFT JOIN item_borrower_vw ON "
+				 "cd.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'CD' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "dvd.type, "
+				 "dvd.myoid "
+				 "FROM "
+				 "dvd LEFT JOIN item_borrower_vw ON "
+				 "dvd.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'DVD' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "magazine.type, "
+				 "magazine.myoid "
+				 "FROM "
+				 "magazine LEFT JOIN item_borrower_vw ON "
+				 "magazine.myoid = "
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = magazine.type "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "videogame.type, "
+				 "videogame.myoid "
+				 "FROM "
+				 "videogame LEFT JOIN item_borrower_vw ON "
+				 "videogame.myoid = "
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = 'Video Game' "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
+	    else
+	      {
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "book.type, "
+				 "book.myoid "
+				 "FROM "
+				 "member, "
+				 "book LEFT JOIN item_borrower ON "
+				 "book.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'Book' "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "book.title, "
+				 "book.id, "
+				 "book.publisher, book.pdate, "
+				 "book.category, "
+				 "book.language, "
+				 "book.price, book.monetary_units, "
+				 "book.quantity, "
+				 "book.location, "
+				 "book.type, "
+				 "book.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "cd.type, "
+				 "cd.myoid "
+				 "FROM "
+				 "member, "
+				 "cd LEFT JOIN item_borrower ON "
+				 "cd.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'CD' "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "cd.title, "
+				 "cd.id, "
+				 "cd.recording_label, cd.rdate, "
+				 "cd.category, "
+				 "cd.language, "
+				 "cd.price, cd.monetary_units, "
+				 "cd.quantity, "
+				 "cd.location, "
+				 "cd.type, "
+				 "cd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "dvd.type, "
+				 "dvd.myoid "
+				 "FROM "
+				 "member, "
+				 "dvd LEFT JOIN item_borrower ON "
+				 "dvd.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = 'DVD' "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "dvd.title, "
+				 "dvd.id, "
+				 "dvd.studio, dvd.rdate, "
+				 "dvd.category, "
+				 "dvd.language, "
+				 "dvd.price, dvd.monetary_units, "
+				 "dvd.quantity, "
+				 "dvd.location, "
+				 "dvd.type, "
+				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "magazine.type, "
+				 "magazine.myoid "
+				 "FROM "
+				 "member, "
+				 "magazine LEFT JOIN item_borrower ON "
+				 "magazine.myoid = "
+				 "item_borrower.item_oid "
+				 "AND item_borrower.type = magazine.type "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "magazine.title, "
+				 "magazine.id, "
+				 "magazine.publisher, magazine.pdate, "
+				 "magazine.category, "
+				 "magazine.language, "
+				 "magazine.price, magazine.monetary_units, "
+				 "magazine.quantity, "
+				 "magazine.location, "
+				 "magazine.type, "
+				 "magazine.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "videogame.type, "
+				 "videogame.myoid "
+				 "FROM "
+				 "member, "
+				 "videogame LEFT JOIN item_borrower ON "
+				 "videogame.myoid = "
+				 "item_borrower.item_oid "
+				 "AND item_borrower.type = 'Video Game' "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "videogame.title, "
+				 "videogame.id, "
+				 "videogame.publisher, videogame.rdate, "
+				 "videogame.genre, "
+				 "videogame.language, "
+				 "videogame.price, videogame.monetary_units, "
+				 "videogame.quantity, "
+				 "videogame.location, "
+				 "videogame.type, "
+				 "videogame.myoid ");
+		searchstr.append("ORDER BY 1");
+	      }
 	  }
 	else if(typefilter == "Video Games")
 	  {
@@ -2749,11 +3398,11 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
       if(search_type != CUSTOM_QUERY)
 	{
-	  ui.table->resetTable(typefilter);
+	  ui.table->resetTable(typefilter, roles);
 	  addConfigOptions(typefilter);
 	}
       else
-	ui.table->resetTable("");
+	ui.table->resetTable("", roles);
 
       if(selectedBranch["database_type"] != "sqlite")
 	ui.table->setRowCount(query.size());
@@ -4501,9 +5150,9 @@ void qtbook::slotConnectDB(void)
 	    }
 	  else if(!br.adminCheck->isChecked() && !roles.isEmpty())
 	    {
-	      roles = ""; // Reset roles.
-	      QMessageBox::warning
-		(branch_diag, "BiblioteQ: Warning",
+	      error = true;
+	      QMessageBox::critical
+		(branch_diag, "BiblioteQ: User Error",
 		 "It appears that you are attempting to use an "
 		 "administrator login in a non-administrator mode.");
 	    }
@@ -4562,14 +5211,14 @@ void qtbook::slotConnectDB(void)
     adminSetup();
   else
     {
+      ui.overdueButton->setEnabled(true);
       ui.actionRequests->setEnabled(true);
       ui.actionRequests->setToolTip("Request Selected Item(s)");
       ui.actionReservationHistory->setEnabled(true);
     }
 
   if(ui.actionPopulateOnStart->isChecked())
-    (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
-			 QString(""));
+    slotRefresh();
 }
 
 /*
@@ -4634,7 +5283,7 @@ void qtbook::slotDisconnect(void)
     slotResetErrorLog();
 
   previousTypeFilter = "All";
-  ui.table->resetTable("All");
+  ui.table->resetTable("All", roles);
   ui.table->clearHiddenColumnsRecord();
   addConfigOptions("All");
   ui.typefilter->setCurrentIndex(0);
@@ -5218,13 +5867,7 @@ void qtbook::slotAutoPopOnFilter(void)
   */
 
   if(db.isOpen() && ui.actionAutoPopulateOnFilter->isChecked())
-    if(ui.typefilter->currentText() == "All Requested" && roles.isEmpty())
-      (void) populateTable(POPULATE_ALL, "All Requested", br.userid->text());
-    else if(ui.typefilter->currentText() == "All Requested")
-      (void) populateTable(POPULATE_ALL, "All Requested", "%");
-    else
-      (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(),
-			   QString(""));
+    slotRefresh();
 }
 
 /*
@@ -6323,6 +6966,8 @@ void qtbook::slotListOverdueItems(void)
       members_diag->close();
       memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
     }
+  else if(roles.isEmpty())
+    memberid = br.userid->text();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
 }
@@ -7768,4 +8413,147 @@ void qtbook::slotSaveAdministrators(void)
   QMessageBox::critical(admin_diag, "BiblioteQ: Database Error",
 			"An error occurred while attempting to save "
 			"the administrator information.");
+}
+
+/*
+** -- slotRequest --
+*/
+
+void qtbook::slotRequest(void)
+{
+  int i = 0;
+  int numcompleted = 0;
+  bool error = false;
+  QDate now = QDate::currentDate();
+  QString oid = "";
+  QString itemType = "";
+  QString querystr = "";
+  QSqlQuery query(db);
+  QModelIndex index;
+  QProgressDialog progress(this);
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+
+  if(roles.isEmpty())
+    {
+      if(list.isEmpty())
+	{
+	  QMessageBox::critical(this, "BiblioteQ: User Error",
+				"Please select at least one item to place "
+				"on request.");
+	  return;
+	}
+
+      if(list.size() > 0)
+	if(QMessageBox::question(this, "BiblioteQ: Question",
+				 "Are you sure that you wish to request "
+				 "the selected item(s)? Once an item is "
+				 "requested, only "
+				 "an administrator may cancel it.",
+				 QMessageBox::Yes | QMessageBox::No,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    list.clear();
+	    return;
+	  }
+    }
+  else
+    {
+      if(list.isEmpty())
+	{
+	  QMessageBox::critical(this, "BiblioteQ: User Error",
+				"Please select at least one request to "
+				"cancel.");
+	  return;
+	}
+
+      if(list.size() > 0)
+	if(QMessageBox::question(this, "BiblioteQ: Question",
+				 "Are you sure that you wish to "
+				 "cancel the selected request(s)?",
+				 QMessageBox::Yes | QMessageBox::No,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    list.clear();
+	    return;
+	  }
+    }
+
+  progress.setModal(true);
+  progress.setWindowTitle("BiblioteQ: Progress Dialog");
+  progress.setLabelText("Requesting the selected item(s)...");
+  progress.setMaximum(list.size());
+  progress.show();
+  progress.update();
+
+  foreach(index, list)
+    {
+      i = index.row();
+
+      if(roles.isEmpty())
+	oid = misc_functions::getColumnString(ui.table, i, "OID");
+      else
+	oid = misc_functions::getColumnString(ui.table, i, "ROID");
+
+      if(roles.isEmpty())
+	{
+	  itemType = misc_functions::getColumnString(ui.table, i, "Type");
+	  querystr = "INSERT INTO item_request (item_oid, memberid, "
+	    "requestdate, type) VALUES(?, ?, ?, ?)";
+	  query.prepare(querystr);
+	  query.bindValue(0, oid);
+	  query.bindValue(1, br.userid->text());
+	  query.bindValue(2, now.toString("MM/dd/yyyy"));
+	  query.bindValue(3, itemType);
+	}
+      else
+	{
+	  querystr = "DELETE FROM item_request WHERE myoid = ?";
+	  query.prepare(querystr);
+	  query.bindValue(0, oid);
+	}
+
+      if(!query.exec())
+	{
+	  error = true;
+
+	  if(roles.isEmpty())
+	    addError(QString("Database Error"),
+		     QString("Unable to request the item."),
+		     query.lastError().text(), __FILE__, __LINE__);
+	  else
+	    addError(QString("Database Error"),
+		     QString("Unable to cancel the request."),
+		     query.lastError().text(), __FILE__, __LINE__);
+	}
+      else
+	{
+	  numcompleted += 1;
+
+	  if(!roles.isEmpty())
+	    deleteItem(oid, itemType);
+	}
+
+      progress.setValue(list.size() + 1);
+      progress.update();
+      qapp->processEvents();
+    }
+
+  progress.hide();
+
+  /*
+  ** Provide some fancy messages.
+  */
+
+  if(error && roles.isEmpty())
+    QMessageBox::critical(this, "BiblioteQ: Database Error",
+			  "Unable to request all of the selected items.");
+  else if(error)
+    QMessageBox::critical(this, "BiblioteQ: Database Error",
+			  "Unable to cancel some or all of the selected "
+			  "requests.");
+
+  if(!roles.isEmpty() && numcompleted > 0)
+    slotRefresh();
+
+  list.clear();
 }
