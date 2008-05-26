@@ -275,5 +275,5 @@
 147. Allow members to view their overdue items, requests, and reservations.
      (DONE)
 148. Canceling a custom query that references images is difficult.
-     Must resolve.
+     Must resolve. (DONE) Inform the user of potential issue.
 149. Remove requested items after a member has been deleted. (DONE)
