@@ -38,7 +38,7 @@
        <item>
         <widget class="QLabel" name="label" >
          <property name="text" >
-          <string>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please notice that retrieving image information may burden the query.</string>
+          <string>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</string>
          </property>
          <property name="wordWrap" >
           <bool>true</bool>
