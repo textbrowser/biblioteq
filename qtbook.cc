@@ -614,7 +614,7 @@ void qtbook::adminSetup(void)
       if(!(roles.contains("administrator") || roles.contains("circulation")))
 	ui.actionRequests->setToolTip("Item Requests");
       else
-	ui.actionRequests->setToolTip("Remove Selected Request(s)");
+	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
     }
   else
     ui.actionRequests->setToolTip("Item Requests");
@@ -1340,6 +1340,19 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   QStringList tmplist;
   QProgressDialog progress(this);
   QTableWidgetItem *item = NULL;
+
+  if(!roles.isEmpty() && typefilter == "All Requested")
+    ui.actionRequests->setEnabled(true);
+  else if(roles.isEmpty() && (typefilter == "All" ||
+			      typefilter == "Books" ||
+			      typefilter == "DVDs" ||
+			      typefilter == "Journals" ||
+			      typefilter == "Magazines" ||
+			      typefilter == "Music CDs" ||
+			      typefilter == "Video Games"))
+    ui.actionRequests->setEnabled(true);
+  else
+    ui.actionRequests->setEnabled(false);
 
   /*
   ** The order of the fields in the select statements should match
@@ -5865,23 +5878,7 @@ void qtbook::slotAutoPopOnFilter(void)
   */
 
   if(db.isOpen() && ui.actionAutoPopulateOnFilter->isChecked())
-    {
-      if(!roles.isEmpty() && ui.typefilter->currentText() == "All Requested")
-	ui.actionRequests->setEnabled(true);
-      else if(roles.isEmpty() && 
-	      (ui.typefilter->currentText() == "All" ||
-	       ui.typefilter->currentText() == "Books" ||
-	       ui.typefilter->currentText() == "DVDs" ||
-	       ui.typefilter->currentText() == "Journals" ||
-	       ui.typefilter->currentText() == "Magazines" ||
-	       ui.typefilter->currentText() == "Music CDs" ||
-	       ui.typefilter->currentText() == "Video Games"))
-	ui.actionRequests->setEnabled(true);
-      else
-	ui.actionRequests->setEnabled(false);
-
-      slotRefresh();
-    }
+    slotRefresh();
 }
 
 /*
@@ -8436,6 +8433,7 @@ void qtbook::slotSaveAdministrators(void)
 void qtbook::slotRequest(void)
 {
   int i = 0;
+  int ct = 0;
   int numcompleted = 0;
   bool error = false;
   QDate now = QDate::currentDate();
@@ -8502,6 +8500,7 @@ void qtbook::slotRequest(void)
   foreach(index, list)
     {
       i = index.row();
+      ct += 1;
 
       if(roles.isEmpty())
 	oid = misc_functions::getColumnString(ui.table, i, "OID");
@@ -8547,7 +8546,7 @@ void qtbook::slotRequest(void)
 	    deleteItem(oid, itemType);
 	}
 
-      progress.setValue(list.size() + 1);
+      progress.setValue(ct);
       progress.update();
       qapp->processEvents();
     }
