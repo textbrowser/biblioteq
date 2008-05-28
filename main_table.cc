@@ -72,7 +72,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("OID");
 
       if(type == "All Requested")
-	list.append("ROID");
+	list.append("REQUESTOID");
     }
   else if(type == "Books")
     {

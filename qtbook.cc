@@ -490,7 +490,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	    continue;
 	}
       else if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
-	      ui.table->horizontalHeaderItem(i)->text() == "ROID")
+	      ui.table->horizontalHeaderItem(i)->text() == "REQUESTOID")
 	continue;
 
       if((action = new QAction(ui.table->horizontalHeaderItem(i)->text(),
@@ -719,7 +719,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.02.<br>"
+  mb.setText("<html>BiblioteQ Version 6.03.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -8280,7 +8280,7 @@ void qtbook::slotSaveAdministrators(void)
       adminStr = ab.table->item(i, 0)->text().trimmed();
 
       if(adminStr.isEmpty())
-	continue; // Ignore emtpy administrator ids.
+	continue; // Ignore empty administrator ids.
       else if(adminStr == getAdminID())
 	continue; // Ignore current administrator.
 
@@ -8505,7 +8505,7 @@ void qtbook::slotRequest(void)
       if(roles.isEmpty())
 	oid = misc_functions::getColumnString(ui.table, i, "OID");
       else
-	oid = misc_functions::getColumnString(ui.table, i, "ROID");
+	oid = misc_functions::getColumnString(ui.table, i, "REQUESTOID");
 
       if(roles.isEmpty())
 	{
@@ -8579,7 +8579,8 @@ void qtbook::prepareFilter(void)
 {
   QStringList tmplist;
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(selectedBranch.contains("database_type") &&
+     selectedBranch["database_type"] == "sqlite")
     tmplist << "All"
 	    << "All Overdue"
 	    << "All Reserved"
