@@ -13,7 +13,6 @@ image_drop_site::image_drop_site(QWidget *parent)
 {
   (void) parent;
   setAcceptDrops(true);
-
 }
 
 /*
