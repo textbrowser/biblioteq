@@ -53,17 +53,12 @@ QImage misc_functions::getImage(const QString &oid,
   QString querystr = "";
   QSqlQuery query(db);
 
-  if(type.toLower() == "journal")
-    querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
-      (which).arg("magazine").arg(oid);
-  else
-    querystr = QString("SELECT %1, %1_fmt FROM %2 WHERE myoid = %3").arg
-      (which).arg(type).arg(oid);
+  querystr = QString("SELECT %1 FROM %2 WHERE myoid = %3").arg
+    (which).arg(type).arg(oid);
 
   if(query.exec(querystr))
     if(query.next())
-      image.loadFromData(query.value(0).toByteArray(),
-			 query.value(1).toString().toAscii());
+      image.loadFromData(query.value(0).toByteArray());
 
   return image;
 }
@@ -136,6 +131,10 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
+		 << "journal"
+		 << "journal_copy_info"
+		 << "journal_copy_info_myoid_seq"
+		 << "journal_myoid_seq"
 		 << "magazine"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
@@ -191,6 +190,10 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
+		 << "journal"
+		 << "journal_copy_info"
+		 << "journal_copy_info_myoid_seq"
+		 << "journal_myoid_seq"
 		 << "magazine"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
@@ -240,6 +243,10 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
+		 << "journal"
+		 << "journal_copy_info"
+		 << "journal_copy_info_myoid_seq"
+		 << "journal_myoid_seq"
 		 << "magazine"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
@@ -309,6 +316,10 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
+		 << "journal"
+		 << "journal_copy_info"
+		 << "journal_copy_info_myoid_seq"
+		 << "journal_myoid_seq"
 		 << "magazine"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
@@ -407,6 +418,10 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "dvd_copy_info"
 		       << "dvd_copy_info_myoid_seq"
 		       << "dvd_myoid_seq"
+		       << "journal"
+		       << "journal_copy_info"
+		       << "journal_copy_info_myoid_seq"
+		       << "journal_myoid_seq"
 		       << "magazine"
 		       << "magazine_copy_info"
 		       << "magazine_copy_info_myoid_seq"
@@ -441,6 +456,10 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "dvd_myoid_seq"
 		       << "dvd_copy_info"
 		       << "dvd_copy_info_myoid_seq"
+		       << "journal"
+		       << "journal_copy_info"
+		       << "journal_copy_info_myoid_seq"
+		       << "journal_myoid_seq"
 		       << "magazine"
 		       << "magazine_myoid_seq"
 		       << "magazine_copy_info"
@@ -475,6 +494,10 @@ void misc_functions::DBAccount(const QString &userid,
 		   << "dvd_copy_info"
 		   << "dvd_copy_info_myoid_seq"
 		   << "dvd_myoid_seq"
+		   << "journal"
+		   << "journal_copy_info"
+		   << "journal_copy_info_myoid_seq"
+		   << "journal_myoid_seq"
 		   << "magazine"
 		   << "magazine_copy_info"
 		   << "magazine_copy_info_myoid_seq"
@@ -635,6 +658,20 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
     "item_borrower.item_oid = dvd.myoid AND "
     "item_borrower.type = 'DVD' AND "
     "item_borrower.memberid = ? "
+    "UNION ALL "    
+    "SELECT "
+    "item_borrower.copyid, "
+    "journal.location, "
+    "journal.type, "
+    "journal.title, "
+    "item_borrower.duedate "
+    "FROM "
+    "journal, "
+    "item_borrower "
+    "WHERE "
+    "item_borrower.item_oid = journal.myoid AND "
+    "item_borrower.type = 'Journal' AND "
+    "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
     "item_borrower.copyid, "
@@ -647,7 +684,7 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
     "item_borrower "
     "WHERE "
     "item_borrower.item_oid = magazine.myoid AND "
-    "item_borrower.type IN ('Journal', 'Magazine') AND "
+    "item_borrower.type = 'Magazine' AND "
     "item_borrower.memberid = ? "
     "UNION ALL "
     "SELECT "
@@ -669,6 +706,7 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
   query.bindValue(2, memberid);
   query.bindValue(3, memberid);
   query.bindValue(4, memberid);
+  query.bindValue(5, memberid);
 
   if(query.exec())
     while(query.next())
@@ -746,10 +784,6 @@ QString misc_functions::getAvailability(const QString &oid,
 
   errorstr = "";
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT %1.quantity - "
 		     "COUNT(item_borrower_vw.item_oid) "
 		     "FROM "
@@ -911,10 +945,6 @@ bool misc_functions::isCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT COUNT(myoid) FROM item_borrower_vw "
 		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
   query.prepare(querystr);
@@ -958,10 +988,6 @@ bool misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT count(copyid) FROM item_borrower_vw WHERE "
 		     "copyid = ? AND item_oid = ? AND "
 		     "type = '%1'").arg(itemType);
@@ -1004,10 +1030,6 @@ void misc_functions::saveQuantity(const QSqlDatabase &db, const QString &oid,
 
   errorstr = "";
   itemType = itemTypeArg.toLower().remove(" ");
-
-  if(itemType == "journal")
-    itemType = "magazine";
-
   querystr = QString("UPDATE %1 SET quantity = ? WHERE "
 		     "myoid = ?").arg(itemType);
   query.prepare(querystr);
@@ -1035,10 +1057,6 @@ int misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT MAX(copy_number) FROM item_borrower_vw "
 		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
   query.prepare(querystr);
@@ -1076,10 +1094,6 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
 		     "WHERE copyid = ? AND item_oid = ? "
 		     "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
@@ -1228,8 +1242,8 @@ QString misc_functions::getOID(const QString &idArg,
   itemType = itemTypeArg.toLower().remove(" ");
 
   if(itemType == "journal" || itemType == "magazine")
-    querystr = "SELECT myoid FROM magazine WHERE id = ? AND "
-      "mag_volume = ? AND mag_no = ?";
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+		       "mag_volume = ? AND mag_no = ?").arg(itemType);
   else
     querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
 
@@ -1283,13 +1297,9 @@ void misc_functions::createInitialCopies(const QString &idArg,
   errorstr = "";
   id = idArg;
   itemType = itemTypeArg.toLower().remove(" ");
-
-  if(itemType == "journal")
-    itemType = "magazine";
-
   itemoid = getOID(id, itemType, db, errorstr);
 
-  if(itemType == "magazine")
+  if(itemType == "journal" || itemType == "magazine")
     id = id.split(",")[0];
 
   if(!itemoid.isEmpty())
@@ -1484,10 +1494,6 @@ bool misc_functions::isRequested(const QSqlDatabase &db,
     return isRequested; // Requests are not supported.
 
   itemType = itemTypeArg;
-
-  if(itemType == "Journal")
-    itemType = "Magazine";
-
   querystr = QString("SELECT COUNT(myoid) FROM item_request "
 		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
   query.prepare(querystr);

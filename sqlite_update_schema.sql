@@ -125,3 +125,95 @@ DROP TABLE dvd_borrower;
 DROP TABLE book_borrower;
 DROP TABLE magazine_borrower;
 DROP TABLE videogame_borrower;
+
+/* Release 6.03 */
+
+DROP TRIGGER book_purge_trigger;
+DROP TRIGGER cd_purge_trigger;
+DROP TRIGGER dvd_purge_trigger;
+DROP TRIGGER magazine_purge_trigger;
+DROP TRIGGER videogame_purge_trigger;
+
+CREATE TRIGGER book_purge_trigger AFTER DELETE ON book
+FOR EACH row
+BEGIN
+	DELETE FROM book_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;
+
+CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd
+FOR EACH row
+BEGIN
+	DELETE FROM cd_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM cd_songs WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;
+
+CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd
+FOR EACH row
+BEGIN
+	DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;
+
+CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine
+FOR EACH row
+BEGIN
+	DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;
+
+CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame
+FOR EACH row
+BEGIN
+	DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;
+
+CREATE TABLE journal
+(
+	id		 VARCHAR(32) NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	pdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	category	 VARCHAR(64) NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	mag_volume	 INTEGER NOT NULL DEFAULT 0,
+	mag_no		 INTEGER NOT NULL DEFAULT 0,
+	lccontrolnumber	 VARCHAR(64),
+	callnumber	 VARCHAR(64),
+	deweynumber	 VARCHAR(64),
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	offsystem_url	 TEXT,
+	PRIMARY KEY(id, mag_volume, mag_no)
+);
+
+CREATE TABLE journal_copy_info
+(
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	copyid		 VARCHAR(64) NOT NULL,
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	PRIMARY KEY(item_oid, copyid)
+);
+
+CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal
+FOR EACH row
+BEGIN
+	DELETE FROM journal_copy_info WHERE item_oid = old.myoid;
+	DELETE FROM member_history WHERE item_oid = old.myoid AND
+		type = old.type;
+END;

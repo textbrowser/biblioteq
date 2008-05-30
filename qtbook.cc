@@ -614,7 +614,11 @@ void qtbook::adminSetup(void)
       if(!(roles.contains("administrator") || roles.contains("circulation")))
 	ui.actionRequests->setToolTip("Item Requests");
       else
-	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	{
+	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	  ui.actionRequests->setIcon
+	    (QIcon("icons.d/32x32/remove_request.png"));
+	}
     }
   else
     ui.actionRequests->setToolTip("Item Requests");
@@ -1249,11 +1253,7 @@ void qtbook::slotDelete(void)
       if(isItemBusy(str, itemType))
 	continue;
 
-      if(itemType == "journal")
-	query.prepare("DELETE FROM magazine WHERE myoid = ?");
-      else
-	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
-
+      query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
       query.bindValue(0, str);
 
       if(!query.exec())
@@ -1451,6 +1451,33 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "dvd.type, "
 	      "dvd.myoid "
 	      "UNION "
+	      "SELECT DISTINCT journal.title, "
+	      "journal.id, "
+	      "journal.publisher, journal.pdate, "
+	      "journal.category, "
+	      "journal.language, "
+	      "journal.price, journal.monetary_units, "
+	      "journal.quantity, "
+	      "journal.location, "
+	      "journal.quantity - COUNT(item_borrower_vw.item_oid) AS "
+	      "availability, "
+	      "journal.type, "
+	      "journal.myoid "
+	      "FROM "
+	      "journal LEFT JOIN item_borrower_vw ON "
+	      "journal.myoid = item_borrower_vw.item_oid "
+	      "AND item_borrower_vw.type = journal.type "
+	      "GROUP BY journal.title, "
+	      "journal.id, "
+	      "journal.publisher, journal.pdate, "
+	      "journal.category, "
+	      "journal.language, "
+	      "journal.price, journal.monetary_units, "
+	      "journal.quantity, "
+	      "journal.location, "
+	      "journal.type, "
+	      "journal.myoid "
+	      "UNION "
 	      "SELECT DISTINCT magazine.title, "
 	      "magazine.id, "
 	      "magazine.publisher, magazine.pdate, "
@@ -1641,6 +1668,49 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "journal.type, "
+				 "journal.myoid "
+				 "FROM "
+				 "journal LEFT JOIN item_borrower_vw ON "
+				 "journal.myoid = item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = journal.type "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower_vw.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1889,6 +1959,57 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				 "item_borrower.copyid, "
 				 "item_borrower.reserved_date, "
 				 "item_borrower.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "journal.type, "
+				 "journal.myoid "
+				 "FROM "
+				 "member, "
+				 "journal LEFT JOIN item_borrower ON "
+				 "journal.myoid = item_borrower.item_oid "
+				 "AND item_borrower.type = journal.type "
+				 "WHERE "
+				 "member.memberid LIKE '%");
+		searchstr.append(searchstrArg);
+		searchstr.append("%' AND ");
+		searchstr.append("item_borrower.duedate < '");
+		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
 				 "magazine.title, "
 				 "magazine.id, "
 				 "magazine.publisher, magazine.pdate, "
@@ -2100,6 +2221,42 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "journal LEFT JOIN item_request ON "
+				 "journal.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = journal.type "
+				 "WHERE "
+				 "item_request.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_request.requestdate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_request.requestdate, "
 				 "magazine.title, "
 				 "magazine.id, "
 				 "magazine.publisher, magazine.pdate, "
@@ -2291,6 +2448,47 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid, "
+				 "item_request.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid, "
+				 "item_request.myoid "
+				 "FROM "
+				 "member, "
+				 "journal LEFT JOIN item_request ON "
+				 "journal.myoid = "
+				 "item_request.item_oid "
+				 "AND item_request.type = journal.type "
+				 "WHERE ");
+		searchstr.append("item_request.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_request.requestdate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid, "
 				 "item_request.myoid ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
@@ -2502,6 +2700,47 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.quantity - "
+				 "COUNT(item_borrower_vw.item_oid) "
+				 "AS availability, "
+				 "journal.type, "
+				 "journal.myoid "
+				 "FROM "
+				 "journal LEFT JOIN item_borrower_vw ON "
+				 "journal.myoid = "
+				 "item_borrower_vw.item_oid "
+				 "AND item_borrower_vw.type = journal.type "
+				 "WHERE "
+				 "item_borrower_vw.memberid = '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' ");
+		searchstr.append("GROUP BY "
+				 "item_borrower_vw.copyid, "
+				 "item_borrower_vw.reserved_date, "
+				 "item_borrower_vw.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -2731,6 +2970,55 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid ");
+		searchstr.append("UNION ");
+		searchstr.append("SELECT DISTINCT "
+				 "member.last_name || ', ' || "
+				 "member.first_name AS name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.quantity - "
+				 "COUNT(item_borrower.item_oid) "
+				 "AS availability, "
+				 "journal.type, "
+				 "journal.myoid "
+				 "FROM "
+				 "member, "
+				 "journal LEFT JOIN item_borrower ON "
+				 "journal.myoid = "
+				 "item_borrower.item_oid "
+				 "AND item_borrower.type = journal.type "
+				 "WHERE "
+				 "member.memberid LIKE '");
+		searchstr.append(searchstrArg);
+		searchstr.append("' AND ");
+		searchstr.append("item_borrower.memberid = "
+				 "member.memberid ");
+		searchstr.append("GROUP BY "
+				 "name, "
+				 "member.memberid, "
+				 "item_borrower.copyid, "
+				 "item_borrower.reserved_date, "
+				 "item_borrower.duedate, "
+				 "journal.title, "
+				 "journal.id, "
+				 "journal.publisher, journal.pdate, "
+				 "journal.category, "
+				 "journal.language, "
+				 "journal.price, journal.monetary_units, "
+				 "journal.quantity, "
+				 "journal.location, "
+				 "journal.type, "
+				 "journal.myoid ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -3022,44 +3310,44 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    else
 	      type = "Magazine";
 
-	    searchstr = QString("SELECT magazine.title, "
-				"magazine.publisher, magazine.pdate, "
-				"magazine.mag_volume, magazine.mag_no, "
-				"magazine.category, magazine.language, "
-				"magazine.id, "
-				"magazine.price, magazine.monetary_units, "
-				"magazine.quantity, "
-				"magazine.location, "
-				"magazine.lccontrolnumber, "
-				"magazine.callnumber, "
-				"magazine.deweynumber, "
-				"magazine.quantity - "
+	    searchstr = QString("SELECT %1.title, "
+				"%1.publisher, %1.pdate, "
+				"%1.mag_volume, %1.mag_no, "
+				"%1.category, %1.language, "
+				"%1.id, "
+				"%1.price, %1.monetary_units, "
+				"%1.quantity, "
+				"%1.location, "
+				"%1.lccontrolnumber, "
+				"%1.callnumber, "
+				"%1.deweynumber, "
+				"%1.quantity - "
 				"COUNT(item_borrower_vw.item_oid) AS "
 				"availability, "
-				"magazine.type, "
-				"magazine.myoid "
+				"%1.type, "
+				"%1.myoid "
 				"FROM "
-				"magazine LEFT JOIN item_borrower_vw ON "
-				"magazine.myoid = "
+				"%1 LEFT JOIN item_borrower_vw ON "
+				"%1.myoid = "
 				"item_borrower_vw.item_oid "
-				"AND item_borrower_vw.type = magazine.type "
+				"AND item_borrower_vw.type = %1.type "
 				"WHERE "
-				"magazine.type = '%1' "
+				"%1.type = '%1' "
 				"GROUP BY "
-				"magazine.title, "
-				"magazine.publisher, magazine.pdate, "
-				"magazine.mag_volume, magazine.mag_no, "
-				"magazine.category, magazine.language, "
-				"magazine.id, "
-				"magazine.price, magazine.monetary_units, "
-				"magazine.quantity, "
-				"magazine.location, "
-				"magazine.lccontrolnumber, "
-				"magazine.callnumber, "
-				"magazine.deweynumber, "
-				"magazine.type, "
-				"magazine.myoid ORDER BY "
-				"magazine.title").arg(type);
+				"%1.title, "
+				"%1.publisher, %1.pdate, "
+				"%1.mag_volume, %1.mag_no, "
+				"%1.category, %1.language, "
+				"%1.id, "
+				"%1.price, %1.monetary_units, "
+				"%1.quantity, "
+				"%1.location, "
+				"%1.lccontrolnumber, "
+				"%1.callnumber, "
+				"%1.deweynumber, "
+				"%1.type, "
+				"%1.myoid ORDER BY "
+				"%1.title").arg(type);
 	  }
 
 	break;
@@ -3079,52 +3367,27 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    while(!types.isEmpty())
 	      {
 		type = types.takeFirst();
-
-		if(type == "Journal")
-		  str = QString
-		    ("SELECT DISTINCT %1.title, "
-		     "%1.id, "
-		     "%1.publisher, %1.pdate, "
-		     "%1.category, "
-		     "%1.language, "
-		     "%1.price, %1.monetary_units, "
-		     "%1.quantity, "
-		     "%1.location, "
-		     "%1.quantity - "
-		     "COUNT(item_borrower_vw.item_oid) AS availability, "
-		     "%1.type, ").arg("magazine");
-		else
-		  str = QString
-		    ("SELECT DISTINCT %1.title, "
-		     "%1.id, "
-		     "%1.publisher, %1.pdate, "
-		     "%1.category, "
-		     "%1.language, "
-		     "%1.price, %1.monetary_units, "
-		     "%1.quantity, "
-		     "%1.location, "
-		     "%1.quantity - "
-		     "COUNT(item_borrower_vw.item_oid) AS availability, "
-		     "%1.type, ").
-		    arg(type.toLower().remove(" "));
-
-		if(type == "Journal")
-		  str += QString("%1.myoid "
-				 "FROM "
-				 "%1 LEFT JOIN item_borrower_vw ON "
-				 "%1.myoid = "
-				 "item_borrower_vw.item_oid "
-				 "AND item_borrower_vw.type = 'Journal' "
-				 "WHERE ").arg("magazine");
-		else
-		  str += QString("%1.myoid "
-				 "FROM "
-				 "%1 LEFT JOIN item_borrower_vw ON "
-				 "%1.myoid = "
-				 "item_borrower_vw.item_oid "
-				 "AND item_borrower_vw.type = '%2' "
-				 "WHERE ").arg(type.toLower().remove(" ")).
-		    arg(type);
+		str = QString
+		  ("SELECT DISTINCT %1.title, "
+		   "%1.id, "
+		   "%1.publisher, %1.pdate, "
+		   "%1.category, "
+		   "%1.language, "
+		   "%1.price, %1.monetary_units, "
+		   "%1.quantity, "
+		   "%1.location, "
+		   "%1.quantity - "
+		   "COUNT(item_borrower_vw.item_oid) AS availability, "
+		   "%1.type, ").
+		  arg(type.toLower().remove(" "));
+		str += QString("%1.myoid "
+			       "FROM "
+			       "%1 LEFT JOIN item_borrower_vw ON "
+			       "%1.myoid = "
+			       "item_borrower_vw.item_oid "
+			       "AND item_borrower_vw.type = '%2' "
+			       "WHERE ").arg(type.toLower().remove(" ")).
+		  arg(type);
 
 		str.append("(LOWER(id) LIKE '%" +
 			   myqstring::escape(al.idnumber->text().toLower()) +
@@ -3189,40 +3452,19 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     myqstring::escape
 			     (al.location->currentText()) + "' ");
 
-		if(type == "Journal")
-		  str.append(QString("AND %1.type = 'Journal' ").
-			     arg("magazine"));
-		else if(type == "Magazine")
-		  str.append(QString("AND %1.type = 'Magazine' ").
-			     arg(type.toLower().remove(" ")));
-
-		if(type == "Journal")
-		  str += QString("GROUP BY "
-				 "%1.title, "
-				 "%1.id, "
-				 "%1.publisher, %1.pdate, "
-				 "%1.category, "
-				 "%1.language, "
-				 "%1.price, "
-				 "%1.monetary_units, "
-				 "%1.quantity, "
-				 "%1.location, "
-				 "%1.type, "
-				 "%1.myoid ").arg("magazine");
-		else
-		  str += QString("GROUP BY "
-				 "%1.title, "
-				 "%1.id, "
-				 "%1.publisher, %1.pdate, "
-				 "%1.category, "
-				 "%1.language, "
-				 "%1.price, "
-				 "%1.monetary_units, "
-				 "%1.quantity, "
-				 "%1.location, "
-				 "%1.type, "
-				 "%1.myoid ").arg
-		    (type.toLower().remove(" "));
+		str += QString("GROUP BY "
+			       "%1.title, "
+			       "%1.id, "
+			       "%1.publisher, %1.pdate, "
+			       "%1.category, "
+			       "%1.language, "
+			       "%1.price, "
+			       "%1.monetary_units, "
+			       "%1.quantity, "
+			       "%1.location, "
+			       "%1.type, "
+			       "%1.myoid ").arg
+		  (type.toLower().remove(" "));
 
 		if(type == "CD")
 		  {
@@ -3343,7 +3585,28 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "ORDER BY "
 			     "dvd.title");
 	  }
-	else if(typefilter == "Journals" || typefilter == "Magazines")
+	else if(typefilter == "Journals")
+	  {
+	    searchstr.append(searchstrArg);
+	    searchstr.append("GROUP BY journal.title, "
+			     "journal.publisher, journal.pdate, "
+			     "journal.mag_volume, "
+			     "journal.mag_no, "
+			     "journal.category, journal.language, "
+			     "journal.id, "
+			     "journal.price, "
+			     "journal.monetary_units, "
+			     "journal.quantity, "
+			     "journal.location, "
+			     "journal.lccontrolnumber, "
+			     "journal.callnumber, "
+			     "journal.deweynumber, "
+			     "journal.type, "
+			     "journal.myoid "
+			     "ORDER BY journal.title, "
+			     "journal.mag_volume, journal.mag_no");
+	  }
+	else if(typefilter == "Magazines")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY magazine.title, "
@@ -5273,6 +5536,7 @@ void qtbook::slotDisconnect(void)
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setToolTip("Item Requests");
+  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
@@ -5848,9 +6112,6 @@ void qtbook::slotCheckout(void)
 
 	  if(itemid.isEmpty())
 	    itemid = misc_functions::getColumnString(ui.table, row2, "id");
-
-	  if(type.toLower() == "journal")
-	    type = "Magazine";
 
 	  if(itemid.isEmpty())
 	    QMessageBox::critical(members_diag, "BiblioteQ: User Error",
@@ -6958,6 +7219,7 @@ void qtbook::slotListReservedItems(void)
       return;
     }
 
+  history_diag->close();
   members_diag->close();
   memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
@@ -6974,6 +7236,7 @@ void qtbook::slotListOverdueItems(void)
 
   if(members_diag->isVisible())
     {
+      history_diag->close();
       members_diag->close();
       memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
     }
@@ -7157,6 +7420,8 @@ void qtbook::slotShowCustomQuery(void)
 	   << "cd_copy_info"
 	   << "dvd"
 	   << "dvd_copy_info"
+	   << "journal"
+	   << "journal_copy_info"
 	   << "magazine"
 	   << "magazine_copy_info"
 	   << "videogame"
@@ -7477,7 +7742,7 @@ void qtbook::slotShowHistory(void)
 	return;
       }
 
-  list << "cd" << "dvd" << "book" << "magazine" << "videogame";
+  list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
 
   if(members_diag->isVisible())
     for(i = 0; i < list.size(); i++)
@@ -8559,7 +8824,10 @@ void qtbook::slotRequest(void)
 
   if(error && roles.isEmpty())
     QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Unable to request all of the selected items.");
+			  "Unable to request some or all of the selected "
+			  "items. "
+			  "Please verify that you are not attempting to "
+			  "request duplicate items.");
   else if(error)
     QMessageBox::critical(this, "BiblioteQ: Database Error",
 			  "Unable to cancel some or all of the selected "

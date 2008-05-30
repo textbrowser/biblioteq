@@ -244,7 +244,7 @@
 133. Provide a mechanism for generating unique ISBNs. (DONE)
 134. Non-administrators should not be presented with price and monetary
      units information. (DONE)
-135. Must support reservation requests. (TBD)
+135. Must support reservation requests. (DONE)
 136. Replace all borrower tables with one table that also contains item
      types. (DONE)
 137. Update an item's oldq variable whenever the copy data has been saved.
@@ -277,3 +277,8 @@
 148. Canceling a custom query that references images is difficult.
      Must resolve. (DONE) Inform the user of potential issue.
 149. Remove requested items after a member has been deleted. (DONE)
+150. Drop image format columns from the various item tables. (DONE)
+151. The program should display a different icon for the request action
+     when an administrator is logged on. (DONE)
+152. Create an OS X installation package. (DONE)
+153. Create a Journal table. (DONE)

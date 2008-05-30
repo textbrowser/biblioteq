@@ -299,8 +299,6 @@ void qtbook_videogame::slotGo(void)
 			      "vgmode = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ?, "
 			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
@@ -311,12 +309,11 @@ void qtbook_videogame::slotGo(void)
 			      "monetary_units, quantity, "
 			      "vgplatform, location, vgmode, "
 			      "front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url) "
+			      "back_cover, "
+			      "offsystem_url) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO videogame (id, title, "
@@ -325,12 +322,11 @@ void qtbook_videogame::slotGo(void)
 			      "monetary_units, quantity, "
 			      "vgplatform, location, vgmode, "
 			      "front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, myoid) "
+			      "back_cover, "
+			      "offsystem_url, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, vg.id->text());
@@ -379,25 +375,15 @@ void qtbook_videogame::slotGo(void)
 	  query.bindValue(16, QVariant());
 	}
 
-      if(!vg.front_image->imageFormat.isEmpty())
-	query.bindValue(17, vg.front_image->imageFormat);
+      if(!vg.url->toPlainText().isEmpty())
+	query.bindValue(17, vg.url->toPlainText());
       else
 	query.bindValue(17, QVariant(QVariant::String));
 
-      if(!vg.back_image->imageFormat.isEmpty())
-	query.bindValue(18, vg.back_image->imageFormat);
-      else
-	query.bindValue(18, QVariant(QVariant::String));
-
-      if(!vg.url->toPlainText().isEmpty())
-	query.bindValue(19, vg.url->toPlainText());
-      else
-	query.bindValue(19, QVariant(QVariant::String));
-
       if(windowTitle().contains("Modify"))
-	query.bindValue(20, oid);
+	query.bindValue(18, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(20, vg.id->text());
+	query.bindValue(18, vg.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -938,8 +924,6 @@ void qtbook_videogame::modify(const int state)
     "genre, language, id, "
     "price, monetary_units, quantity, "
     "location, description, "
-    "front_cover_fmt, "
-    "back_cover_fmt, "
     "front_cover, "
     "back_cover, "
     "offsystem_url "
@@ -1061,17 +1045,13 @@ void qtbook_videogame::modify(const int state)
 		vg.mode->setCurrentIndex
 		  (vg.mode->findText("UNKNOWN"));
 	    }
-	  else if(fieldname == "front_cover_fmt")
-	    vg.front_image->imageFormat = var.toString();
-	  else if(fieldname == "back_cover_fmt")
-	    vg.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
 		  vg.front_image->image.loadFromData
-		    (var.toByteArray(),
-		     vg.front_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  vg.front_image->determineFormat(var.toByteArray());
 		  vg.front_image->scene()->addPixmap
 		    (QPixmap().fromImage(vg.front_image->image));
 		  vg.front_image->scene()->items().at(0)->setFlags
@@ -1083,8 +1063,8 @@ void qtbook_videogame::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		{
 		  vg.back_image->image.loadFromData
-		    (var.toByteArray(),
-		     vg.back_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  vg.back_image->determineFormat(var.toByteArray());
 		  vg.back_image->scene()->addPixmap
 		    (QPixmap().fromImage(vg.back_image->image));
 		  vg.back_image->scene()->items().at(0)->setFlags

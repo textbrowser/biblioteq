@@ -335,8 +335,6 @@ void qtbook_book::slotGo(void)
 			      "deweynumber = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ?, "
 			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
@@ -348,13 +346,13 @@ void qtbook_book::slotGo(void)
 			      "binding_type, location, "
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url) "
+			      "back_cover, "
+			      "offsystem_url) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO book (id, title, "
 			      "edition, author, pdate, publisher, "
@@ -363,13 +361,13 @@ void qtbook_book::slotGo(void)
 			      "binding_type, location, "
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, myoid) "
+			      "back_cover, "
+			      "offsystem_url, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
 			      "?, ?)"));
 
       query.bindValue(0, id.id->text());
@@ -433,25 +431,15 @@ void qtbook_book::slotGo(void)
 	  query.bindValue(19, QVariant());
 	}
 
-      if(!id.front_image->imageFormat.isEmpty())
-	query.bindValue(20, id.front_image->imageFormat);
+      if(!id.url->toPlainText().isEmpty())
+	query.bindValue(20, id.url->toPlainText().trimmed());
       else
 	query.bindValue(20, QVariant(QVariant::String));
 
-      if(!id.back_image->imageFormat.isEmpty())
-	query.bindValue(21, id.back_image->imageFormat);
-      else
-	query.bindValue(21, QVariant(QVariant::String));
-
-      if(!id.url->toPlainText().isEmpty())
-	query.bindValue(22, id.url->toPlainText().trimmed());
-      else
-	query.bindValue(22, QVariant(QVariant::String));
-
       if(windowTitle().contains("Modify"))
-	query.bindValue(23, oid);
+	query.bindValue(21, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(23, id.id->text().replace("X", "10"));
+	query.bindValue(21, id.id->text().replace("X", "10"));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1026,8 +1014,6 @@ void qtbook_book::modify(const int state)
     "callnumber, "
     "deweynumber, "
     "description, "
-    "front_cover_fmt, "
-    "back_cover_fmt, "
     "front_cover, "
     "back_cover, "
     "offsystem_url "
@@ -1145,17 +1131,13 @@ void qtbook_book::modify(const int state)
 	    id.callnum->setText(var.toString());
 	  else if(fieldname == "deweynumber")
 	    id.deweynum->setText(var.toString());
-	  else if(fieldname == "front_cover_fmt")
-	    id.front_image->imageFormat = var.toString();
-	  else if(fieldname == "back_cover_fmt")
-	    id.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
 		  id.front_image->image.loadFromData
-		    (var.toByteArray(),
-		     id.front_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  id.front_image->determineFormat(var.toByteArray());
 		  id.front_image->scene()->addPixmap
 		    (QPixmap().fromImage(id.front_image->image));
 		  id.front_image->scene()->items().at(0)->setFlags
@@ -1167,8 +1149,8 @@ void qtbook_book::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		{
 		  id.back_image->image.loadFromData
-		    (var.toByteArray(),
-		     id.back_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  id.back_image->determineFormat(var.toByteArray());
 		  id.back_image->scene()->addPixmap
 		    (QPixmap().fromImage(id.back_image->image));
 		  id.back_image->scene()->items().at(0)->setFlags

@@ -28,6 +28,7 @@ class image_drop_site: public QGraphicsView
   QImage image;
   QString imageFormat;
   void clear(void);
+  void determineFormat(const QByteArray &);
   image_drop_site(QWidget *);
 
  private:

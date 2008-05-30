@@ -181,7 +181,7 @@ void qtbook_magazine::slotGo(void)
 	  newq = ma.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = misc_functions::getMaxCopyNumber
-	    (qmain->getDB(), oid, "Magazine", errorstr);
+	    (qmain->getDB(), oid, subType, errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
@@ -289,7 +289,7 @@ void qtbook_magazine::slotGo(void)
       ma.url->setPlainText(str);
 
       if(windowTitle().contains("Modify"))
-	query.prepare(QString("UPDATE magazine SET "
+	query.prepare(QString("UPDATE %1 SET "
 			      "id = ?, "
 			      "title = ?, "
 			      "pdate = ?, "
@@ -307,13 +307,11 @@ void qtbook_magazine::slotGo(void)
 			      "deweynumber = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ?, "
 			      "offsystem_url = ? "
 			      "WHERE "
-			      "myoid = ?"));
+			      "myoid = ?").arg(subType));
       else if(qmain->getDB().driverName() != "QSQLITE")
-	query.prepare(QString("INSERT INTO magazine "
+	query.prepare(QString("INSERT INTO %1 "
 			      "(id, "
 			      "title, "
 			      "pdate, publisher, "
@@ -322,15 +320,14 @@ void qtbook_magazine::slotGo(void)
 			      "location, mag_volume, mag_no, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, type) "
+			      "offsystem_url, type) "
 			      "VALUES (?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
+		      (subType));
       else
-	query.prepare(QString("INSERT INTO magazine "
+	query.prepare(QString("INSERT INTO %1 "
 			      "(id, "
 			      "title, "
 			      "pdate, publisher, "
@@ -339,13 +336,12 @@ void qtbook_magazine::slotGo(void)
 			      "location, mag_volume, mag_no, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, type, myoid) "
+			      "offsystem_url, type, myoid) "
 			      "VALUES (?, ?, "
-			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
+		      (subType));
 
       query.bindValue(0, ma.id->text());
       query.bindValue(1, ma.title->text());
@@ -406,29 +402,19 @@ void qtbook_magazine::slotGo(void)
 	  query.bindValue(17, QVariant());
 	}
 
-      if(!ma.front_image->imageFormat.isEmpty())
-	query.bindValue(18, ma.front_image->imageFormat);
+      if(!ma.url->toPlainText().isEmpty())
+	query.bindValue(18, ma.url->toPlainText());
       else
 	query.bindValue(18, QVariant(QVariant::String));
 
-      if(!ma.back_image->imageFormat.isEmpty())
-	query.bindValue(19, ma.back_image->imageFormat);
-      else
-	query.bindValue(19, QVariant(QVariant::String));
-
-      if(!ma.url->toPlainText().isEmpty())
-	query.bindValue(20, ma.url->toPlainText());
-      else
-	query.bindValue(20, QVariant(QVariant::String));
-
       if(windowTitle().contains("Modify"))
-	query.bindValue(21, oid);
+	query.bindValue(20, oid);
       else
-	query.bindValue(21, subType);
+	query.bindValue(20, subType);
 
       if(windowTitle().contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
-	  query.bindValue(22,
+	  query.bindValue(21,
 			  ma.id->text().remove("-") +
 			  ma.volume->text() + ma.issue->text());
 
@@ -455,10 +441,10 @@ void qtbook_magazine::slotGo(void)
 
 	  if(windowTitle().contains("Modify"))
 	    {
-	      query.prepare(QString("DELETE FROM magazine_copy_info WHERE "
+	      query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 				    "copy_number > ? AND "
 				    "item_oid = "
-				    "?"));
+				    "?").arg(subType));
 	      query.bindValue(0, ma.quantity->text());
 	      query.bindValue(1, oid);
 
@@ -500,7 +486,7 @@ void qtbook_magazine::slotGo(void)
 	      misc_functions::createInitialCopies
 		(ma.id->text() + "," + ma.volume->text() + "," +
 		 ma.issue->text(), ma.quantity->value(),
-		 qmain->getDB(), "Magazine", errorstr);
+		 qmain->getDB(), subType, errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -571,8 +557,8 @@ void qtbook_magazine::slotGo(void)
 	      setWindowTitle(str);
 
 	      if((qmain->getUI().typefilter->currentText() == "All" ||
-		  qmain->getUI().typefilter->currentText() == "Journals" ||
-		  qmain->getUI().typefilter->currentText() == "Magazines") &&
+		  qmain->getUI().typefilter->currentText() ==
+		  (subType + "s")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "OID"))
 		{
@@ -633,7 +619,7 @@ void qtbook_magazine::slotGo(void)
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
-			     (oid, qmain->getDB(), "Magazine",
+			     (oid, qmain->getDB(), subType,
 			      errorstr));
 
 			  if(!errorstr.isEmpty())
@@ -659,7 +645,7 @@ void qtbook_magazine::slotGo(void)
 	      oid = misc_functions::getOID(ma.id->text() + "," +
 					   ma.volume->text() + "," +
 					   ma.issue->text(),
-					   "Magazine",
+					   subType,
 					   qmain->getDB(),
 					   errorstr);
 	      qapp->restoreOverrideCursor();
@@ -710,28 +696,28 @@ void qtbook_magazine::slotGo(void)
     }
   else
     {
-      searchstr = QString("SELECT magazine.title, "
-			  "magazine.publisher, magazine.pdate, "
-			  "magazine.mag_volume, "
-			  "magazine.mag_no, "
-			  "magazine.category, magazine.language, "
-			  "magazine.id, "
-			  "magazine.price, magazine.monetary_units, "
-			  "magazine.quantity, "
-			  "magazine.location, "
-			  "magazine.lccontrolnumber, "
-			  "magazine.callnumber, "
-			  "magazine.deweynumber, "
-			  "magazine.quantity - COUNT(item_borrower_vw."
+      searchstr = QString("SELECT %1.title, "
+			  "%1.publisher, %1.pdate, "
+			  "%1.mag_volume, "
+			  "%1.mag_no, "
+			  "%1.category, %1.language, "
+			  "%1.id, "
+			  "%1.price, %1.monetary_units, "
+			  "%1.quantity, "
+			  "%1.location, "
+			  "%1.lccontrolnumber, "
+			  "%1.callnumber, "
+			  "%1.deweynumber, "
+			  "%1.quantity - COUNT(item_borrower_vw."
 			  "item_oid) "
 			  "AS availability, "
-			  "magazine.type, "
-			  "magazine.myoid "
+			  "%1.type, "
+			  "%1.myoid "
 			  "FROM "
-			  "magazine LEFT JOIN item_borrower_vw ON "
-			  "magazine.myoid = item_borrower_vw.item_oid "
+			  "%1 LEFT JOIN item_borrower_vw ON "
+			  "%1.myoid = item_borrower_vw.item_oid "
 			  "AND item_borrower_vw.type = '%1' "
-			  "WHERE magazine.type = '%1' AND ").arg(subType);
+			  "WHERE %1.type = '%1' AND ").arg(subType);
       searchstr.append("id LIKE '%" + ma.id->text() + "%' AND ");
       searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
 		       myqstring::escape(ma.lcnum->text().toLower()) +
@@ -990,20 +976,19 @@ void qtbook_magazine::modify(const int state)
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = oid;
-  searchstr = "SELECT title, "
-    "publisher, pdate, mag_volume, "
-    "category, language, id, "
-    "price, monetary_units, quantity, "
-    "mag_no, "
-    "location, lccontrolnumber, callnumber, deweynumber, description, "
-    "front_cover_fmt, "
-    "back_cover_fmt, "
-    "front_cover, "
-    "back_cover, "
-    "offsystem_url "
-    "FROM "
-    "magazine "
-    "WHERE myoid = ";
+  searchstr = QString("SELECT title, "
+		      "publisher, pdate, mag_volume, "
+		      "category, language, id, "
+		      "price, monetary_units, quantity, "
+		      "mag_no, "
+		      "location, lccontrolnumber, callnumber, "
+		      "deweynumber, description, "
+		      "front_cover, "
+		      "back_cover, "
+		      "offsystem_url "
+		      "FROM "
+		      "%1 "
+		      "WHERE myoid = ").arg(subType);
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1110,17 +1095,13 @@ void qtbook_magazine::modify(const int state)
 	    ma.callnum->setText(var.toString());
 	  else if(fieldname == "deweynumber")
 	    ma.deweynum->setText(var.toString());
-	  else if(fieldname == "front_cover_fmt")
-	    ma.front_image->imageFormat = var.toString();
-	  else if(fieldname == "back_cover_fmt")
-	    ma.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
 		  ma.front_image->image.loadFromData
-		    (var.toByteArray(),
-		     ma.front_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  ma.front_image->determineFormat(var.toByteArray());
 		  ma.front_image->scene()->addPixmap
 		    (QPixmap().fromImage(ma.front_image->image));
 		  ma.front_image->scene()->items().at(0)->setFlags
@@ -1132,8 +1113,8 @@ void qtbook_magazine::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		{
 		  ma.back_image->image.loadFromData
-		    (var.toByteArray(),
-		     ma.back_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  ma.back_image->determineFormat(var.toByteArray());
 		  ma.back_image->scene()->addPixmap
 		    (QPixmap().fromImage(ma.back_image->image));
 		  ma.back_image->scene()->items().at(0)->setFlags
@@ -1403,7 +1384,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        false,
        ma.quantity->value(), oid,
        ma.id->text(),
-       ma.quantity, font(), "Magazine",
+       ma.quantity, font(), subType,
        ma.title->text().trimmed(), subType)) != NULL)
     copyeditor->populateCopiesEditor();
 }
@@ -1424,7 +1405,7 @@ void qtbook_magazine::slotShowUsers(void)
 
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
-       ma.quantity->value(), oid, ma.id->text(), font(), "Magazine",
+       ma.quantity->value(), oid, ma.id->text(), font(), subType,
        state)) != NULL)
     borrowerseditor->showUsers();
 }
@@ -1666,12 +1647,7 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	    ("background-color: rgb(162, 205, 90)");
 	  str = str.mid(str.indexOf("$b") + 2).trimmed();
 	  str = str.mid(0, str.indexOf(",")).trimmed();
-
-	  if(subType == "Journal")
-	    ma.publisher->setPlainText(str);
-	  else
-	    ma.publisher->setPlainText(str);
-
+	  ma.publisher->setPlainText(str);
 	  misc_functions::highlightWidget
 	    (ma.publisher->viewport(), QColor(162, 205, 90));
 	}

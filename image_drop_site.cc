@@ -144,3 +144,19 @@ void image_drop_site::clear(void)
 
   scene()->clearSelection();
 }
+
+/*
+** -- determineFormat() --
+*/
+
+void image_drop_site::determineFormat(const QByteArray &bytes)
+{
+  if(bytes.size() >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
+     bytes[3] == 'G')
+    imageFormat = "PNG";
+  else if(bytes.size() >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
+	  bytes[8] == 'I' && bytes[9] == 'F')
+    imageFormat = "JPG";
+  else if(bytes.size() >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
+    imageFormat = "BMP";
+}

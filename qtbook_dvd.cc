@@ -349,8 +349,6 @@ void qtbook_dvd::slotGo(void)
 			      "description = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ?, "
 			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
@@ -375,15 +373,15 @@ void qtbook_dvd::slotGo(void)
 			      "quantity, "
 			      "location, "
 			      "description, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url) "
+			      "back_cover, "
+			      "offsystem_url) "
 			      "VALUES "
 			      "(?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO dvd "
 			      "(id, "
@@ -405,15 +403,15 @@ void qtbook_dvd::slotGo(void)
 			      "quantity, "
 			      "location, "
 			      "description, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, myoid) "
+			      "back_cover, "
+			      "offsystem_url, myoid) "
 			      "VALUES "
 			      "(?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, dvd.id->text());
       query.bindValue(1, dvd.rating->currentText().trimmed());
@@ -465,25 +463,15 @@ void qtbook_dvd::slotGo(void)
 	  query.bindValue(20, QVariant());
 	}
 
-      if(!dvd.front_image->imageFormat.isEmpty())
-	query.bindValue(21, dvd.front_image->imageFormat);
+      if(!dvd.url->toPlainText().isEmpty())
+	query.bindValue(21, dvd.url->toPlainText());
       else
 	query.bindValue(21, QVariant(QVariant::String));
 
-      if(!dvd.back_image->imageFormat.isEmpty())
-	query.bindValue(22, dvd.back_image->imageFormat);
-      else
-	query.bindValue(22, QVariant(QVariant::String));
-
-      if(!dvd.url->toPlainText().isEmpty())
-	query.bindValue(23, dvd.url->toPlainText());
-      else
-	query.bindValue(23, QVariant(QVariant::String));
-
       if(windowTitle().contains("Modify"))
-	query.bindValue(24, oid);
+	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(24, dvd.id->text());
+	query.bindValue(22, dvd.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1073,8 +1061,6 @@ void qtbook_dvd::modify(const int state)
     "dvdregion, "
     "dvdaspectratio, "
     "location, "
-    "front_cover_fmt, "
-    "back_cover_fmt, "
     "front_cover, "
     "back_cover, "
     "offsystem_url "
@@ -1205,17 +1191,13 @@ void qtbook_dvd::modify(const int state)
 	      else
 		dvd.aspectratio->setCurrentIndex(0);
 	    }
-	  else if(fieldname == "front_cover_fmt")
-	    dvd.front_image->imageFormat = var.toString();
-	  else if(fieldname == "back_cover_fmt")
-	    dvd.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
 		  dvd.front_image->image.loadFromData
-		    (var.toByteArray(),
-		     dvd.front_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  dvd.front_image->determineFormat(var.toByteArray());
 		  dvd.front_image->scene()->addPixmap
 		    (QPixmap().fromImage(dvd.front_image->image));
 		  dvd.front_image->scene()->items().at(0)->setFlags
@@ -1227,8 +1209,8 @@ void qtbook_dvd::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		{
 		  dvd.back_image->image.loadFromData
-		    (var.toByteArray(),
-		     dvd.back_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  dvd.back_image->determineFormat(var.toByteArray());
 		  dvd.back_image->scene()->addPixmap
 		    (QPixmap().fromImage(dvd.back_image->image));
 		  dvd.back_image->scene()->items().at(0)->setFlags

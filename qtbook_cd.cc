@@ -332,8 +332,6 @@ void qtbook_cd::slotGo(void)
 			      "cdaudio = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "front_cover_fmt = ?, "
-			      "back_cover_fmt = ?, "
 			      "offsystem_url = ? "
 			      "WHERE "
 			      "myoid = ?"));
@@ -356,15 +354,15 @@ void qtbook_cd::slotGo(void)
 			      "location, "
 			      "cdrecording, "
 			      "cdaudio, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url) "
+			      "back_cover, "
+			      "offsystem_url) "
 			      "VALUES "
 			      "(?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO cd "
 			      "(id, "
@@ -384,15 +382,15 @@ void qtbook_cd::slotGo(void)
 			      "location, "
 			      "cdrecording, "
 			      "cdaudio, front_cover, "
-			      "back_cover, front_cover_fmt, "
-			      "back_cover_fmt, offsystem_url, myoid) "
+			      "back_cover, "
+			      "offsystem_url, myoid) "
 			      "VALUES "
 			      "(?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 
       query.bindValue(0, cd.id->text());
       query.bindValue(1, cd.title->text());
@@ -442,25 +440,15 @@ void qtbook_cd::slotGo(void)
 	  query.bindValue(18, QVariant());
 	}
 
-      if(!cd.front_image->imageFormat.isEmpty())
-	query.bindValue(19, cd.front_image->imageFormat);
+      if(!cd.url->toPlainText().isEmpty())
+	query.bindValue(19, cd.url->toPlainText());
       else
 	query.bindValue(19, QVariant(QVariant::String));
 
-      if(!cd.back_image->imageFormat.isEmpty())
-	query.bindValue(20, cd.back_image->imageFormat);
-      else
-	query.bindValue(20, QVariant(QVariant::String));
-
-      if(!cd.url->toPlainText().isEmpty())
-	query.bindValue(21, cd.url->toPlainText());
-      else
-	query.bindValue(21, QVariant(QVariant::String));
-
       if(windowTitle().contains("Modify"))
-	query.bindValue(22, oid);
+	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(22, cd.id->text());
+	query.bindValue(20, cd.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1049,8 +1037,6 @@ void qtbook_cd::modify(const int state)
     "cdaudio, "
     "cdrecording, "
     "location, "
-    "front_cover_fmt, "
-    "back_cover_fmt, "
     "front_cover, "
     "back_cover, "
     "offsystem_url "
@@ -1177,17 +1163,13 @@ void qtbook_cd::modify(const int state)
 	      else
 		cd.recording_type->setCurrentIndex(0);
 	    }
-	  else if(fieldname == "front_cover_fmt")
-	    cd.front_image->imageFormat = var.toString();
-	  else if(fieldname == "back_cover_fmt")
-	    cd.back_image->imageFormat = var.toString();
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
 		  cd.front_image->image.loadFromData
-		    (var.toByteArray(),
-		     cd.front_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  cd.front_image->determineFormat(var.toByteArray());
 		  cd.front_image->scene()->addPixmap
 		    (QPixmap().fromImage(cd.front_image->image));
 		  cd.front_image->scene()->items().at(0)->setFlags
@@ -1199,8 +1181,8 @@ void qtbook_cd::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		{
 		  cd.back_image->image.loadFromData
-		    (var.toByteArray(),
-		     cd.back_image->imageFormat.toAscii());
+		    (var.toByteArray());
+		  cd.back_image->determineFormat(var.toByteArray());
 		  cd.back_image->scene()->addPixmap
 		    (QPixmap().fromImage(cd.back_image->image));
 		  cd.back_image->scene()->items().at(0)->setFlags
