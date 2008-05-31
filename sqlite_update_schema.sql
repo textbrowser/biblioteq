@@ -244,11 +244,11 @@ CREATE TABLE magazine_tmp
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
 	offsystem_url	 TEXT,
 	PRIMARY KEY(id, issuevolume, issueno)
 );
 
-INSERT INTO magazine_tmp SELECT * FROM magazine;
+INSERT INTO magazine_tmp SELECT id, myoid, title, pdate, publisher, category, price, description, language, monetary_units, quantity, location, issuevolume, issueno, lccontrolnumber, callnumber, deweynumber, front_cover, back_cover, type, offsystem_url FROM magazine;
 DROP TABLE magazine;
 ALTER TABLE magazine_tmp RENAME TO magazine;

@@ -301,6 +301,7 @@ FOR EACH row EXECUTE PROCEDURE delete_request();
 
 ALTER TABLE magazine RENAME mag_volume TO issuevolume;
 ALTER TABLE magazine RENAME mag_no TO issueno;
+ALTER TABLE magazine MODIFY type SET DEFAULT 'Magazine';
 
 CREATE TABLE journal
 (
