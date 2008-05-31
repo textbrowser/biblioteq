@@ -1305,9 +1305,7 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
 				   false,
 				   vg.quantity->value(), oid,
 				   vg.id->text(),
-				   vg.quantity, font(), "Video Game",
-				   vg.title->text().trimmed(),
-				   "Video Game")) != NULL)
+				   vg.quantity, font(), "Video Game")) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

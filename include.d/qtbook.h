@@ -259,6 +259,7 @@ class qtbook: public QMainWindow
   void slotSelectDatabaseFile(void);
   void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);
+  void slotCloseMembersBrowser(void);
   void slotAdminCheckBoxClicked(int);
   void slotCloseCustomQueryDialog(void);
   void slotPopulateMembersBrowser(void);

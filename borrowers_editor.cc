@@ -23,7 +23,7 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   quantity = quantityArg;
   bitem = bitemArg;
   state = stateArg;
-  itemType = itemTypeArg; // .toLower().remove(" ");
+  itemType = itemTypeArg;
 
   /*
   ** Override the state, if necessary.

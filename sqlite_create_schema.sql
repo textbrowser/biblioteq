@@ -156,8 +156,8 @@ CREATE TABLE journal
 	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	location	 TEXT NOT NULL,
-	mag_volume	 INTEGER NOT NULL DEFAULT 0,
-	mag_no		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
@@ -165,7 +165,7 @@ CREATE TABLE journal
 	back_cover	 BYTEA,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	offsystem_url	 TEXT,
-	PRIMARY KEY(id, mag_volume, mag_no)
+	PRIMARY KEY(id, issuevolume, issueno)
 );
 
 CREATE TABLE journal_copy_info
@@ -199,8 +199,8 @@ CREATE TABLE magazine
 	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	location	 TEXT NOT NULL,
-	mag_volume	 INTEGER NOT NULL DEFAULT 0,
-	mag_no		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
@@ -208,7 +208,7 @@ CREATE TABLE magazine
 	back_cover	 BYTEA,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
 	offsystem_url	 TEXT,
-	PRIMARY KEY(id, mag_volume, mag_no)
+	PRIMARY KEY(id, issuevolume, issueno)
 );
 
 CREATE TABLE magazine_copy_info

@@ -1495,9 +1495,7 @@ void qtbook_dvd::slotPopulateCopiesEditor(void)
 				   false,
 				   dvd.quantity->value(), oid,
 				   dvd.id->text(),
-				   dvd.quantity, font(), "DVD",
-				   dvd.title->text().trimmed(),
-				   "DVD")) != NULL)
+				   dvd.quantity, font(), "DVD")) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

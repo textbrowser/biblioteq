@@ -299,6 +299,9 @@ FOR EACH row EXECUTE PROCEDURE delete_request();
 
 /* Release 6.03 */
 
+ALTER TABLE magazine RENAME mag_volume TO issuevolume;
+ALTER TABLE magazine RENAME mag_no TO issueno;
+
 CREATE TABLE journal
 (
 	id		 VARCHAR(32) NOT NULL,
@@ -313,8 +316,8 @@ CREATE TABLE journal
 	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	location	 TEXT NOT NULL,
-	mag_volume	 INTEGER NOT NULL DEFAULT 0,
-	mag_no		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
@@ -322,7 +325,7 @@ CREATE TABLE journal
 	back_cover	 BYTEA,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	offsystem_url    TEXT,
-	PRIMARY KEY(id, mag_volume, mag_no)
+	PRIMARY KEY(id, issuevolume, issueno)
 );
 
 CREATE TABLE journal_copy_info
@@ -350,17 +353,6 @@ ALTER TABLE magazine DROP COLUMN front_cover_fmt;
 ALTER TABLE magazine DROP COLUMN back_cover_fmt;
 ALTER TABLE videogame DROP COLUMN front_cover_fmt;
 ALTER TABLE videogame DROP COLUMN back_cover_fmt;
-
-GRANT DELETE, INSERT, SELECT, UPDATE ON book TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.book_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.cd_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON dvd TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.dvd_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.magazine_myoid_seq TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO xbook_admin;
-GRANT DELETE, INSERT, SELECT, UPDATE ON public.videogame_myoid_seq TO xbook_admin;
 
 DROP TRIGGER book_trigger ON book;
 DROP TRIGGER cd_trigger ON cd;

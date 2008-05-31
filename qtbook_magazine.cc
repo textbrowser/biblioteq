@@ -300,8 +300,8 @@ void qtbook_magazine::slotGo(void)
 			      "monetary_units = ?, "
 			      "quantity = ?, "
 			      "location = ?, "
-			      "mag_volume = ?, "
-			      "mag_no = ?, "
+			      "issuevolume = ?, "
+			      "issueno = ?, "
 			      "lccontrolnumber = ?, "
 			      "callnumber = ?, "
 			      "deweynumber = ?, "
@@ -317,7 +317,7 @@ void qtbook_magazine::slotGo(void)
 			      "pdate, publisher, "
 			      "category, price, description, language, "
 			      "monetary_units, quantity, "
-			      "location, mag_volume, mag_no, "
+			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
 			      "offsystem_url, type) "
@@ -333,7 +333,7 @@ void qtbook_magazine::slotGo(void)
 			      "pdate, publisher, "
 			      "category, price, description, language, "
 			      "monetary_units, quantity, "
-			      "location, mag_volume, mag_no, "
+			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
 			      "offsystem_url, type, myoid) "
@@ -408,13 +408,13 @@ void qtbook_magazine::slotGo(void)
 	query.bindValue(18, QVariant(QVariant::String));
 
       if(windowTitle().contains("Modify"))
-	query.bindValue(20, oid);
+	query.bindValue(19, oid);
       else
-	query.bindValue(20, subType);
+	query.bindValue(19, subType);
 
       if(windowTitle().contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
-	  query.bindValue(21,
+	  query.bindValue(20,
 			  ma.id->text().remove("-") +
 			  ma.volume->text() + ma.issue->text());
 
@@ -698,8 +698,8 @@ void qtbook_magazine::slotGo(void)
     {
       searchstr = QString("SELECT %1.title, "
 			  "%1.publisher, %1.pdate, "
-			  "%1.mag_volume, "
-			  "%1.mag_no, "
+			  "%1.issuevolume, "
+			  "%1.issueno, "
 			  "%1.category, %1.language, "
 			  "%1.id, "
 			  "%1.price, %1.monetary_units, "
@@ -730,11 +730,11 @@ void qtbook_magazine::slotGo(void)
 		       "%' AND ");
 
       if(ma.volume->value() != -1)
-	searchstr.append("mag_volume = " + ma.volume->text() +
+	searchstr.append("issuevolume = " + ma.volume->text() +
 			 " AND ");
 
       if(ma.issue->value() != -1)
-	searchstr.append("mag_no = " + ma.issue->text() +
+	searchstr.append("issueno = " + ma.issue->text() +
 			 " AND ");
 
       searchstr.append("LOWER(title) LIKE '%" +
@@ -977,10 +977,10 @@ void qtbook_magazine::modify(const int state)
   ma.issue->setMinimum(0);
   str = oid;
   searchstr = QString("SELECT title, "
-		      "publisher, pdate, mag_volume, "
+		      "publisher, pdate, issuevolume, "
 		      "category, language, id, "
 		      "price, monetary_units, quantity, "
-		      "mag_no, "
+		      "issueno, "
 		      "location, lccontrolnumber, callnumber, "
 		      "deweynumber, description, "
 		      "front_cover, "
@@ -1062,9 +1062,9 @@ void qtbook_magazine::modify(const int state)
 		ma.monetary_units->setCurrentIndex
 		  (ma.monetary_units->findText("UNKNOWN"));
 	    }
-	  else if(fieldname == "mag_volume")
+	  else if(fieldname == "issuevolume")
 	    ma.volume->setValue(var.toInt());
-	  else if(fieldname == "mag_no")
+	  else if(fieldname == "issueno")
 	    ma.issue->setValue(var.toInt());
 	  else if(fieldname == "location")
 	    {
@@ -1384,8 +1384,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        false,
        ma.quantity->value(), oid,
        ma.id->text(),
-       ma.quantity, font(), subType,
-       ma.title->text().trimmed(), subType)) != NULL)
+       ma.quantity, font(), subType)) != NULL)
     copyeditor->populateCopiesEditor();
 }
 

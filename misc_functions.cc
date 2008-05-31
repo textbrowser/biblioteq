@@ -1243,7 +1243,7 @@ QString misc_functions::getOID(const QString &idArg,
 
   if(itemType == "journal" || itemType == "magazine")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "mag_volume = ? AND mag_no = ?").arg(itemType);
+		       "issuevolume = ? AND issueno = ?").arg(itemType);
   else
     querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
 

@@ -354,6 +354,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotRemoveMember(void)));
   connect(userinfo.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancelAddUser(void)));
+  connect(bb.cancelButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotCloseMembersBrowser(void)));
   connect(userinfo_diag, SIGNAL(finished(int)), this,
 	  SLOT(slotCancelAddUser(void)));
   connect(bb.checkoutButton, SIGNAL(clicked(void)), this,
@@ -729,8 +731,12 @@ void qtbook::slotAbout(void)
 	     "Icons copyright (c) Everaldo.<br><br>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
-	     "additional information.<br><br>"
-	     "The program is provided AS IS with NO WARRANTY OF ANY KIND, "
+	     "project information and <br>"
+	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
+	     "http://biblioteq.sourceforge.net/news.html</a> for "
+	     "release notes."
+	     "<br><br>"
+	     "BiblioteQ is provided AS IS with NO WARRANTY OF ANY KIND, "
 	     "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND "
 	     "FITNESS FOR A PARTICULAR PURPOSE.</html>");
   mb.setStandardButtons(QMessageBox::Ok);
@@ -3312,7 +3318,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 	    searchstr = QString("SELECT %1.title, "
 				"%1.publisher, %1.pdate, "
-				"%1.mag_volume, %1.mag_no, "
+				"%1.issuevolume, %1.issueno, "
 				"%1.category, %1.language, "
 				"%1.id, "
 				"%1.price, %1.monetary_units, "
@@ -3336,7 +3342,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				"GROUP BY "
 				"%1.title, "
 				"%1.publisher, %1.pdate, "
-				"%1.mag_volume, %1.mag_no, "
+				"%1.issuevolume, %1.issueno, "
 				"%1.category, %1.language, "
 				"%1.id, "
 				"%1.price, %1.monetary_units, "
@@ -3590,8 +3596,8 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY journal.title, "
 			     "journal.publisher, journal.pdate, "
-			     "journal.mag_volume, "
-			     "journal.mag_no, "
+			     "journal.issuevolume, "
+			     "journal.issueno, "
 			     "journal.category, journal.language, "
 			     "journal.id, "
 			     "journal.price, "
@@ -3604,15 +3610,15 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "journal.type, "
 			     "journal.myoid "
 			     "ORDER BY journal.title, "
-			     "journal.mag_volume, journal.mag_no");
+			     "journal.issuevolume, journal.issueno");
 	  }
 	else if(typefilter == "Magazines")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY magazine.title, "
 			     "magazine.publisher, magazine.pdate, "
-			     "magazine.mag_volume, "
-			     "magazine.mag_no, "
+			     "magazine.issuevolume, "
+			     "magazine.issueno, "
 			     "magazine.category, magazine.language, "
 			     "magazine.id, "
 			     "magazine.price, "
@@ -3625,7 +3631,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "magazine.type, "
 			     "magazine.myoid "
 			     "ORDER BY magazine.title, "
-			     "magazine.mag_volume, magazine.mag_no");
+			     "magazine.issuevolume, magazine.issueno");
 	  }
 
 	break;
@@ -3712,8 +3718,8 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		   query.record().fieldName(j) == "price" ||
 		   query.record().fieldName(j) == "volume" ||
 		   query.record().fieldName(j) == "quantity" ||
-		   query.record().fieldName(j) == "mag_no" ||
-		   query.record().fieldName(j) == "mag_volume" ||
+		   query.record().fieldName(j) == "issueno" ||
+		   query.record().fieldName(j) == "issuevolume" ||
 		   query.record().fieldName(j) == "cddiskcount" ||
 		   query.record().fieldName(j) == "dvddiskcount" ||
 		   query.record().fieldName(j) == "availability")
@@ -6039,8 +6045,6 @@ void qtbook::slotCheckout(void)
   QString type = "";
   QString itemid = "";
   QString errorstr = "";
-  QString itemTitle = "";
-  QString realItemType = "";
   copy_editor *copyeditor = NULL;
   qtbook_item *item = NULL;
 
@@ -6087,11 +6091,8 @@ void qtbook::slotCheckout(void)
     {
       if((item = new qtbook_item(row2)) != NULL)
 	{
-	  realItemType = type;
 	  quantity = misc_functions::getColumnString(ui.table, row2,
 						     "Quantity").toInt();
-	  itemTitle = misc_functions::getColumnString(ui.table, row2,
-						      "Title");
 
 	  if(type.toLower() == "book")
 	    itemid = misc_functions::getColumnString(ui.table, row2,
@@ -6120,9 +6121,7 @@ void qtbook::slotCheckout(void)
 	  else if((copyeditor = new copy_editor(members_diag, item, true,
 						quantity, oid, itemid,
 						(QSpinBox *) NULL,
-						font(), type,
-						itemTitle,
-						realItemType)) != NULL)
+						font(), type)) != NULL)
 	    copyeditor->populateCopiesEditor();
 	}
     }
@@ -7203,6 +7202,16 @@ void qtbook::updateRows(const QString &oid, const int row,
 }
 
 /*
+** -- slotCloseMembersBrowser() --
+*/
+
+void qtbook::slotCloseMembersBrowser(void)
+{
+  history_diag->close();
+  members_diag->close();
+}
+
+/*
 ** -- slotListReservedItems() --
 */
 
@@ -7744,7 +7753,7 @@ void qtbook::slotShowHistory(void)
 
   list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
 
-  if(members_diag->isVisible())
+  if(!roles.isEmpty())
     for(i = 0; i < list.size(); i++)
       {
 	querystr += QString("SELECT "
@@ -7835,7 +7844,7 @@ void qtbook::slotShowHistory(void)
   list.clear();
   list.append("Member ID");
 
-  if(members_diag->isVisible())
+  if(!roles.isEmpty())
     {
       list.append("First Name");
       list.append("Last Name");
@@ -7911,8 +7920,8 @@ void qtbook::slotShowHistory(void)
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
-  history.nextTool->setVisible(members_diag->isVisible());
-  history.prevTool->setVisible(members_diag->isVisible());
+  history.nextTool->setVisible(!roles.isEmpty());
+  history.prevTool->setVisible(!roles.isEmpty());
 
   if(members_diag->isVisible())
     misc_functions::center(history_diag, members_diag);

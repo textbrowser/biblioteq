@@ -80,7 +80,7 @@ CREATE TABLE member_tmp
 	zip		 VARCHAR(16) NOT NULL
 );
 
-INSERT INTO member_tmp (SELECT * FROM member);
+INSERT INTO member_tmp SELECT * FROM member;
 DROP TABLE member;
 ALTER TABLE member_tmp RENAME TO member;
 
@@ -189,8 +189,8 @@ CREATE TABLE journal
 	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	location	 TEXT NOT NULL,
-	mag_volume	 INTEGER NOT NULL DEFAULT 0,
-	mag_no		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),
@@ -198,7 +198,7 @@ CREATE TABLE journal
 	back_cover	 BYTEA,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	offsystem_url	 TEXT,
-	PRIMARY KEY(id, mag_volume, mag_no)
+	PRIMARY KEY(id, issuevolume, issueno)
 );
 
 CREATE TABLE journal_copy_info
@@ -217,3 +217,38 @@ BEGIN
 	DELETE FROM member_history WHERE item_oid = old.myoid AND
 		type = old.type;
 END;
+
+INSERT INTO journal SELECT id, myoid, title, pdate, publisher, category, price, description, language, monetary_units, quantity, location, mag_volume, mag_no, lccontrolnumber, callnumber, deweynumber, front_cover, back_cover, type, offsystem_url FROM magazine WHERE type = 'Journal';
+INSERT INTO journal_copy_info SELECT * FROM magazine_copy_info WHERE item_oid IN (SELECT myoid FROM magazine WHERE type = 'Journal');
+DELETE FROM magazine WHERE type = 'Journal';
+DELETE FROM magazine_copy_info WHERE item_oid IN (SELECT myoid FROM magazine WHERE type = 'Journal');
+
+CREATE TABLE magazine_tmp
+(
+	id		 VARCHAR(32) NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	pdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	category	 VARCHAR(64) NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
+	lccontrolnumber	 VARCHAR(64),
+	callnumber	 VARCHAR(64),
+	deweynumber	 VARCHAR(64),
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	offsystem_url	 TEXT,
+	PRIMARY KEY(id, issuevolume, issueno)
+);
+
+INSERT INTO magazine_tmp SELECT * FROM magazine;
+DROP TABLE magazine;
+ALTER TABLE magazine_tmp RENAME TO magazine;

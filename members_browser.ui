@@ -482,22 +482,5 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>membersBrowser</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>856</x>
-     <y>579</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>443</x>
-     <y>315</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

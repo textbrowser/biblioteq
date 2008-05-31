@@ -17,13 +17,8 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const QString &uniqueidArg,
 			 QSpinBox *spinboxArg,
 			 const QFont &font,
-			 const QString &itemTypeArg,
-			 const QString &itemTitleArg,
-			 const QString &realItemTypeArg): QDialog(parent)
+			 const QString &itemTypeArg): QDialog(parent)
 {
-  (void) itemTitleArg;
-  (void) realItemTypeArg;
-
   if(parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
   else
@@ -35,7 +30,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   quantity = quantityArg;
   uniqueid = uniqueidArg;
   spinbox = spinboxArg;
-  itemType = itemTypeArg; // .toLower().remove(" ");
+  itemType = itemTypeArg;
   showForLending = showForLendingArg;
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 
