@@ -1529,7 +1529,6 @@ void qtbook_book::slotQuery(void)
   QString searchstr = "";
   QStringList list;
   QStringList tmplist;
-  QStringList removeList;
 
   if(thread != NULL)
     {
@@ -1627,35 +1626,6 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.deweynum, QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("100"))
-		    {
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(".").trimmed();
-		      removeList.append(" $b");
-		      removeList.append(" $c");
-		      removeList.append(" $d");
-		      removeList.append(" $e");
-		      removeList.append(" $f");
-		      removeList.append(" $g");
-		      removeList.append(" $j");
-		      removeList.append(" $k");
-		      removeList.append(" $l");
-		      removeList.append(" $n");
-		      removeList.append(" $p");
-		      removeList.append(" $q");
-		      removeList.append(" $t");
-		      removeList.append(" $u");
-		      removeList.append(" $4");
-		      removeList.append(" $6");
-		      removeList.append(" $8");
-
-		      while(!removeList.isEmpty())
-			str = str.remove(removeList.takeFirst()).trimmed();
-
-		      id.author->setPlainText(str);
-		      misc_functions::highlightWidget
-			(id.author->viewport(), QColor(162, 205, 90));
-		    }
 		  else if(str.startsWith("245"))
 		    {
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -1711,6 +1681,28 @@ void qtbook_book::slotQuery(void)
 		      id.title->setText(str);
 		      misc_functions::highlightWidget
 			(id.title, QColor(162, 205, 90));
+
+		      /*
+		      ** Author(s)
+		       */
+
+		      str = list[i];
+		      str = str.mid(str.indexOf("$c") + 2).trimmed();
+		      str = str.mid(0, str.lastIndexOf(".")).trimmed();
+		      tmplist = str.split(",");
+		      str = "";
+
+		      for(j = 0; j < tmplist.size(); j++)
+			{
+			  str += tmplist[j].trimmed();
+
+			  if(j < (tmplist.size() - 1))
+			    str += "\n";
+			}
+
+		      id.author->setPlainText(str);
+		      misc_functions::highlightWidget
+			(id.author->viewport(), QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("250"))
 		    {
