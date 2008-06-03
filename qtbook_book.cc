@@ -1653,6 +1653,9 @@ void qtbook_book::slotQuery(void)
 		      while(!removeList.isEmpty())
 			str = str.remove(removeList.takeFirst()).trimmed();
 
+		      if(str.count(",") > 1)
+			str = str.mid(0, str.lastIndexOf(","));
+
 		      if(list[i].startsWith("100"))
 			id.author->setPlainText(str);
 		      else if(!id.author->toPlainText().isEmpty())
