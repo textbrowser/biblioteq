@@ -136,6 +136,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ** Save some palettes.
   */
 
+  cb_orig_pal = ma.category->palette();
   dt_orig_pal = ma.publication_date->palette();
   te_orig_pal = ma.description->viewport()->palette();
 
@@ -518,6 +519,7 @@ void qtbook_magazine::slotGo(void)
 	    }
 
 	  ma.id->setPalette(te_orig_pal);
+	  ma.category->setPalette(cb_orig_pal);
 	  ma.lcnum->setPalette(ma.url->viewport()->palette());
 	  ma.callnum->setPalette(ma.url->viewport()->palette());
 	  ma.deweynum->setPalette(ma.url->viewport()->palette());
@@ -1248,6 +1250,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains("Category"))
 	{
 	  ma.category->setCurrentIndex(0);
+	  ma.category->setPalette(cb_orig_pal);
 	  ma.category->setFocus();
 	}
       else if(name.contains("Price"))
@@ -1339,6 +1342,7 @@ void qtbook_magazine::slotReset(void)
       ma.back_image->clear();
       ma.url->clear();
       ma.id->setPalette(te_orig_pal);
+      ma.category->setPalette(cb_orig_pal);
       ma.lcnum->setPalette(ma.url->viewport()->palette());
       ma.callnum->setPalette(ma.url->viewport()->palette());
       ma.deweynum->setPalette(ma.url->viewport()->palette());
@@ -1658,6 +1662,19 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	  ma.description->setPlainText(str);
 	  misc_functions::highlightWidget
 	    (ma.description->viewport(), QColor(162, 205, 90));
+	}
+      else if(str.startsWith("650"))
+	{
+	  str = str.trimmed().toLower();
+
+	  for(j = 0; j < ma.category->count(); j++)
+	    if(str.contains(ma.category->itemText(j).toLower()))
+	      {
+		ma.category->setCurrentIndex(j);
+		ma.category->setStyleSheet
+		  ("background-color: rgb(162, 205, 90)");
+		break;
+	      }
 	}
     }
 

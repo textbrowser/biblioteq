@@ -543,6 +543,7 @@ void qtbook_book::slotGo(void)
 	  id.id->setPalette(te_orig_pal);
 	  id.isbn13->setPalette(te_orig_pal);
 	  id.edition->setPalette(cb_orig_pal);
+	  id.category->setPalette(cb_orig_pal);
 	  id.publication_date->setPalette(dt_orig_pal);
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.title->setPalette(te_orig_pal);
@@ -1296,6 +1297,7 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Category"))
 	{
 	  id.category->setCurrentIndex(0);
+	  id.category->setPalette(cb_orig_pal);
 	  id.category->setFocus();
 	}
       else if(name.contains("Price"))
@@ -1419,6 +1421,7 @@ void qtbook_book::slotReset(void)
       id.id->setPalette(te_orig_pal);
       id.isbn13->setPalette(te_orig_pal);
       id.edition->setPalette(cb_orig_pal);
+      id.category->setPalette(cb_orig_pal);
       id.publication_date->setPalette(dt_orig_pal);
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
@@ -1523,6 +1526,7 @@ void qtbook_book::slotQuery(void)
 {
   int i = 0;
   int j = 0;
+  QRegExp reg("[A-Z]{1}");
   QString str = "";
   QString etype = "";
   QString errorstr = "";
@@ -1656,6 +1660,22 @@ void qtbook_book::slotQuery(void)
 		      if(str.count(",") > 1)
 			str = str.mid(0, str.lastIndexOf(","));
 
+		      /*
+		      ** Pure regular expressions would have worked just
+		      ** as elegantly.
+		      */
+
+		      tmplist = str.split(" ");
+		      str = "";
+
+		      for(j = 0; j < tmplist.size(); j++)
+			if(reg.exactMatch(tmplist[j]))
+			  str += tmplist[j] + ". ";
+			else
+			  str += tmplist[j] + " ";
+
+		      str = str.trimmed();
+
 		      if(list[i].startsWith("100"))
 			id.author->setPlainText(str);
 		      else if(!id.author->toPlainText().isEmpty())
@@ -1783,6 +1803,19 @@ void qtbook_book::slotQuery(void)
 		      id.description->setPlainText(str);
 		      misc_functions::highlightWidget
 			(id.description->viewport(), QColor(162, 205, 90));
+		    }
+		  else if(str.startsWith("650"))
+		    {
+		      str = str.trimmed().toLower();
+
+		      for(j = 0; j < id.category->count(); j++)
+			if(str.contains(id.category->itemText(j).toLower()))
+			  {
+			    id.category->setCurrentIndex(j);
+			    id.category->setStyleSheet
+			      ("background-color: rgb(162, 205, 90)");
+			    break;
+			  }
 		    }
 		}
 

@@ -47,6 +47,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
 
  protected:
   QString subType;
+  QPalette cb_orig_pal;
   QPalette dt_orig_pal;
   QPalette te_orig_pal;
   Ui_magDialog ma;
