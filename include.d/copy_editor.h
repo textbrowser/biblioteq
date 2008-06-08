@@ -29,8 +29,8 @@ class copy_editor: QDialog
 	      const QString &, const QString &, QSpinBox *,
 	      const QFont &, const QString &);
   ~copy_editor();
+  void closeEvent(QCloseEvent *);
   void populateCopiesEditor(void);
-  virtual void closeEvent(QCloseEvent *);
 
  private:
   class copy_class

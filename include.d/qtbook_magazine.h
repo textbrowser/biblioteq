@@ -41,9 +41,9 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
+  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
   void populateDisplayAfterLOC(const QStringList &);
-  virtual void closeEvent(QCloseEvent *);
 
  protected:
   QString subType;
@@ -73,7 +73,7 @@ class qtbook_journal: public qtbook_magazine
 		 const QStringList &, const QStringList &, const QString &,
 		 const int);
   ~qtbook_journal();
-  virtual void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotCancel(void);

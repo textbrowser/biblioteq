@@ -25,7 +25,7 @@ class locresults: QDialog
  public:
   locresults(QWidget *, QStringList &, qtbook_magazine *, const QFont &);
   ~locresults();
-  virtual void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *);
 
  private:
   QStringList records;

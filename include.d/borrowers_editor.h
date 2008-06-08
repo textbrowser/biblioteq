@@ -28,7 +28,7 @@ class borrowers_editor: QDialog
 		   const int);
   ~borrowers_editor();
   void showUsers(void);
-  virtual void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *);
 
  private:
   int state;

@@ -37,8 +37,8 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
+  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
-  virtual void closeEvent(QCloseEvent *);
 
  private:
   Ui_dvdDialog dvd;
