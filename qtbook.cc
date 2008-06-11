@@ -725,7 +725,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.04.<br>"
+  mb.setText("<html>BiblioteQ Version 6.05.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Diana Megas.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -7323,7 +7323,8 @@ void qtbook::slotReserveCopy(void)
 			   QMessageBox::No) == QMessageBox::Yes)
     slotPopulateMembersBrowser();
 
-  bb.table->selectRow(0);
+  if(bb.table->currentRow() < 0)
+    bb.table->selectRow(0);
 }
 
 /*

@@ -1660,6 +1660,9 @@ void qtbook_book::slotQuery(void)
 		      if(str.count(",") > 1)
 			str = str.mid(0, str.lastIndexOf(","));
 
+		      if(id.author->toPlainText() == "N/A")
+			id.author->clear();
+
 		      /*
 		      ** Pure regular expressions would have worked just
 		      ** as elegantly.
