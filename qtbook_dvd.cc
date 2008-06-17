@@ -714,6 +714,8 @@ void qtbook_dvd::slotGo(void)
 
 	      raise();
 	    }
+
+	  storeData(this);
 	}
 
       return;
@@ -1195,26 +1197,16 @@ void qtbook_dvd::modify(const int state)
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  dvd.front_image->image.loadFromData
-		    (var.toByteArray());
+		  dvd.front_image->loadFromData(var.toByteArray());
 		  dvd.front_image->determineFormat(var.toByteArray());
-		  dvd.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(dvd.front_image->image));
-		  dvd.front_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  dvd.back_image->image.loadFromData
-		    (var.toByteArray());
+		  dvd.back_image->loadFromData(var.toByteArray());
 		  dvd.back_image->determineFormat(var.toByteArray());
-		  dvd.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(dvd.back_image->image));
-		  dvd.back_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "offsystem_url")
@@ -1227,6 +1219,8 @@ void qtbook_dvd::modify(const int state)
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
+
+      storeData(this);
     }
 
   dvd.id->setFocus();
@@ -1468,7 +1462,16 @@ void qtbook_dvd::slotReset(void)
 
 void qtbook_dvd::closeEvent(QCloseEvent *e)
 {
-  (void) e;
+  if(isDataDifferent(this))
+    if(QMessageBox::question(this, "BiblioteQ: Question",
+			     "You have unsaved data. Continue closing?",
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	e->ignore();
+	return;
+      }
+
   qmain->removeDVD(this);
 }
 
@@ -1479,7 +1482,6 @@ void qtbook_dvd::closeEvent(QCloseEvent *e)
 void qtbook_dvd::slotCancel(void)
 {
   close();
-  qmain->removeDVD(this);
 }
 
 /*

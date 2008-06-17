@@ -81,6 +81,8 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 void image_drop_site::dropEvent(QDropEvent *event)
 {
+  QPixmap pixmap;
+
   if(event == NULL)
     return;
 
@@ -111,7 +113,9 @@ void image_drop_site::dropEvent(QDropEvent *event)
 	scene()->removeItem(scene()->items().at(0));
 
       imageFormat = filename.mid(filename.lastIndexOf(".") + 1).toUpper();
-      scene()->addPixmap(QPixmap().fromImage(image));
+      pixmap = QPixmap().fromImage(image).scaled
+	(size() - 0.05 * size(), Qt::KeepAspectRatio);
+      scene()->addPixmap(pixmap);
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
 }
@@ -159,4 +163,34 @@ void image_drop_site::determineFormat(const QByteArray &bytes)
     imageFormat = "JPG";
   else if(bytes.size() >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
     imageFormat = "BMP";
+}
+
+/*
+** -- loadFromData() --
+*/
+
+void image_drop_site::loadFromData(const QByteArray &bytes)
+{
+  QPixmap pixmap;
+
+  image.loadFromData(bytes);
+  pixmap = QPixmap().fromImage(image).scaled
+    (size() - 0.35 * size(), Qt::KeepAspectRatio);
+  scene()->addPixmap(pixmap);
+  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+}
+
+/*
+** -- mouseDoubleClickEvent() --
+*/
+
+void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
+{
+  (void) e;
+
+  while(!scene()->items().isEmpty())
+    scene()->removeItem(scene()->items().first());
+
+  scene()->addPixmap(QPixmap().fromImage(image));
+  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }

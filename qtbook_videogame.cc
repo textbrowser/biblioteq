@@ -619,6 +619,8 @@ void qtbook_videogame::slotGo(void)
 
 	      raise();
 	    }
+
+	  storeData(this);
 	}
 
       return;
@@ -1049,13 +1051,8 @@ void qtbook_videogame::modify(const int state)
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  vg.front_image->image.loadFromData
-		    (var.toByteArray());
+		  vg.front_image->loadFromData(var.toByteArray());
 		  vg.front_image->determineFormat(var.toByteArray());
-		  vg.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(vg.front_image->image));
-		  vg.front_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
@@ -1065,10 +1062,6 @@ void qtbook_videogame::modify(const int state)
 		  vg.back_image->image.loadFromData
 		    (var.toByteArray());
 		  vg.back_image->determineFormat(var.toByteArray());
-		  vg.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(vg.back_image->image));
-		  vg.back_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "offsystem_url")
@@ -1081,6 +1074,8 @@ void qtbook_videogame::modify(const int state)
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
+
+      storeData(this);
     }
 
   vg.id->setFocus();
@@ -1278,7 +1273,16 @@ void qtbook_videogame::slotReset(void)
 
 void qtbook_videogame::closeEvent(QCloseEvent *e)
 {
-  (void) e;
+  if(isDataDifferent(this))
+    if(QMessageBox::question(this, "BiblioteQ: Question",
+			     "You have unsaved data. Continue closing?",
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	e->ignore();
+	return;
+      }
+
   qmain->removeVideoGame(this);
 }
 
@@ -1289,7 +1293,6 @@ void qtbook_videogame::closeEvent(QCloseEvent *e)
 void qtbook_videogame::slotCancel(void)
 {
   close();
-  qmain->removeVideoGame(this);
 }
 
 /*

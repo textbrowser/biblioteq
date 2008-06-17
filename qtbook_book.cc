@@ -698,6 +698,8 @@ void qtbook_book::slotGo(void)
 
 	      raise();
 	    }
+
+	  storeData(this);
 	}
 
       return;
@@ -1136,26 +1138,16 @@ void qtbook_book::modify(const int state)
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  id.front_image->image.loadFromData
-		    (var.toByteArray());
+		  id.front_image->loadFromData(var.toByteArray());
 		  id.front_image->determineFormat(var.toByteArray());
-		  id.front_image->scene()->addPixmap
-		    (QPixmap().fromImage(id.front_image->image));
-		  id.front_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
 		{
-		  id.back_image->image.loadFromData
-		    (var.toByteArray());
+		  id.back_image->loadFromData(var.toByteArray());
 		  id.back_image->determineFormat(var.toByteArray());
-		  id.back_image->scene()->addPixmap
-		    (QPixmap().fromImage(id.back_image->image));
-		  id.back_image->scene()->items().at(0)->setFlags
-		    (QGraphicsItem::ItemIsSelectable);
 		}
 	    }
 	  else if(fieldname == "offsystem_url")
@@ -1168,6 +1160,8 @@ void qtbook_book::modify(const int state)
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
+
+      storeData(this);
     }
 
   id.id->setFocus();
@@ -1466,7 +1460,16 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  (void) e;
+  if(isDataDifferent(this))
+    if(QMessageBox::question(this, "BiblioteQ: Question",
+			     "You have unsaved data. Continue closing?",
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	e->ignore();
+	return;
+      }
+
   qmain->removeBook(this);
 }
 
@@ -1477,7 +1480,6 @@ void qtbook_book::closeEvent(QCloseEvent *e)
 void qtbook_book::slotCancel(void)
 {
   close();
-  qmain->removeBook(this);
 }
 
 /*

@@ -32,6 +32,9 @@ class qtbook_item
   void updateFont(const QFont &, QWidget *);
   QString getID(void);
 
+ private:
+  QMap<QString, QString> widgetValues;
+
  protected:
   int row;
   int oldq;
@@ -39,7 +42,9 @@ class qtbook_item
   QString oid;
   QString html;
   QMainWindow *parentWid;
+  bool isDataDifferent(QMainWindow *);
   void print(QWidget *);
+  void storeData(QMainWindow *);
 };
 
 #endif
