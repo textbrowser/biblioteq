@@ -1462,15 +1462,16 @@ void qtbook_dvd::slotReset(void)
 
 void qtbook_dvd::closeEvent(QCloseEvent *e)
 {
-  if(isDataDifferent(this))
-    if(QMessageBox::question(this, "BiblioteQ: Question",
-			     "You have unsaved data. Continue closing?",
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	e->ignore();
-	return;
-      }
+  if(windowTitle().contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::question(this, "BiblioteQ: Question",
+			       "You have unsaved data. Continue closing?",
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  e->ignore();
+	  return;
+	}
 
   qmain->removeDVD(this);
 }

@@ -43,7 +43,7 @@ class qtbook_item
   QString oid;
   QString html;
   QMainWindow *parentWid;
-  bool isDataDifferent(QMainWindow *);
+  bool hasDataChanged(QMainWindow *);
   void print(QWidget *);
   void storeData(QMainWindow *);
 };

@@ -1460,15 +1460,16 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(isDataDifferent(this))
-    if(QMessageBox::question(this, "BiblioteQ: Question",
-			     "You have unsaved data. Continue closing?",
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	e->ignore();
-	return;
-      }
+  if(windowTitle().contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::question(this, "BiblioteQ: Question",
+			       "You have unsaved data. Continue closing?",
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  e->ignore();
+	  return;
+	}
 
   qmain->removeBook(this);
 }

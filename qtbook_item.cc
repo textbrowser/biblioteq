@@ -166,13 +166,13 @@ void qtbook_item::storeData(QMainWindow *window)
 }
 
 /*
-** -- isDataDifferent() --
+** -- hasDataChanged() --
 */
 
-bool qtbook_item::isDataDifferent(QMainWindow *window)
+bool qtbook_item::hasDataChanged(QMainWindow *window)
 {
   int i = 0;
-  bool isDifferent = false;
+  bool hasChanged = false;
   QString classname = "";
   QString objectname = "";
   QMap<QString, QImage> newimg;
@@ -212,19 +212,19 @@ bool qtbook_item::isDataDifferent(QMainWindow *window)
   for(i = 0; i < widgetValues.size(); i++)
     if(widgetValues[widgetValues.keys()[i]] != newdata[widgetValues.keys()[i]])
       {
-	isDifferent = true;
+	hasChanged = true;
 	break;
       }
 
-  if(!isDifferent)
+  if(!hasChanged)
     for(i = 0; i < imageValues.size(); i++)
       if(imageValues[imageValues.keys()[i]] != newimg[imageValues.keys()[i]])
 	{
-	  isDifferent = true;
+	  hasChanged = true;
 	  break;
 	}
 
   newimg.clear();
   newdata.clear();
-  return isDifferent;
+  return hasChanged;
 }
