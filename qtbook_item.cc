@@ -7,6 +7,7 @@
 #include <QDateEdit>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QTimeEdit>
 
 /*
 ** -- Local Includes --
@@ -38,6 +39,7 @@ qtbook_item::qtbook_item(const int rowArg)
 
 qtbook_item::~qtbook_item()
 {
+  imageValues.clear();
   widgetValues.clear();
 }
 
@@ -144,7 +146,7 @@ void qtbook_item::storeData(QMainWindow *window)
 	widgetValues[objectname] = ((QComboBox *) widget)->currentText().
 	  trimmed();
       else if(classname == "QDateEdit")
-	widgetValues[objectname] = ((QDateTimeEdit *) widget)->date().toString
+	widgetValues[objectname] = ((QDateEdit *) widget)->date().toString
 	  ("MM/dd/yyyy");
       else if(classname == "QTextEdit")
 	widgetValues[objectname] = ((QTextEdit *) widget)->
@@ -152,9 +154,14 @@ void qtbook_item::storeData(QMainWindow *window)
       else if(classname == "QDoubleSpinBox")
 	widgetValues[objectname] = ((QDoubleSpinBox *) widget)->text().
 	  trimmed();
+      else if(classname == "QTimeEdit")
+	widgetValues[objectname] = ((QTimeEdit *) widget)->text().
+	  trimmed();
       else if(classname == "hyperlinked_text_edit")
 	widgetValues[objectname] = ((hyperlinked_text_edit *) widget)->
 	  toPlainText().trimmed();
+      else if(classname == "image_drop_site")
+	imageValues[objectname] = ((image_drop_site *) widget)->image;
     }
 }
 
@@ -168,6 +175,7 @@ bool qtbook_item::isDataDifferent(QMainWindow *window)
   bool isDifferent = false;
   QString classname = "";
   QString objectname = "";
+  QMap<QString, QImage> newimg;
   QMap<QString, QString> newdata;
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
@@ -183,7 +191,7 @@ bool qtbook_item::isDataDifferent(QMainWindow *window)
 	newdata[objectname] = ((QComboBox *) widget)->currentText().
 	  trimmed();
       else if(classname == "QDateEdit")
-	newdata[objectname] = ((QDateTimeEdit *) widget)->date().toString
+	newdata[objectname] = ((QDateEdit *) widget)->date().toString
 	  ("MM/dd/yyyy");
       else if(classname == "QTextEdit")
 	newdata[objectname] = ((QTextEdit *) widget)->
@@ -191,9 +199,14 @@ bool qtbook_item::isDataDifferent(QMainWindow *window)
       else if(classname == "QDoubleSpinBox")
 	newdata[objectname] = ((QDoubleSpinBox *) widget)->text().
 	  trimmed();
+      else if(classname == "QTimeEdit")
+	newdata[objectname] = ((QTimeEdit *) widget)->text().
+	  trimmed();
       else if(classname == "hyperlinked_text_edit")
 	newdata[objectname] = ((hyperlinked_text_edit *) widget)->
 	  toPlainText().trimmed();
+      else if(classname == "image_drop_site")
+	newimg[objectname] = ((image_drop_site *) widget)->image;
     }
 
   for(i = 0; i < widgetValues.size(); i++)
@@ -203,6 +216,15 @@ bool qtbook_item::isDataDifferent(QMainWindow *window)
 	break;
       }
 
+  if(!isDifferent)
+    for(i = 0; i < imageValues.size(); i++)
+      if(imageValues[imageValues.keys()[i]] != newimg[imageValues.keys()[i]])
+	{
+	  isDifferent = true;
+	  break;
+	}
+
+  newimg.clear();
   newdata.clear();
   return isDifferent;
 }

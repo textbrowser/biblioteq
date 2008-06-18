@@ -114,7 +114,8 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
       imageFormat = filename.mid(filename.lastIndexOf(".") + 1).toUpper();
       pixmap = QPixmap().fromImage(image).scaled
-	(size() - 0.05 * size(), Qt::KeepAspectRatio);
+	(size() - 0.05 * size(), Qt::KeepAspectRatio,
+	 Qt::SmoothTransformation);
       scene()->addPixmap(pixmap);
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
@@ -174,8 +175,9 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
   QPixmap pixmap;
 
   image.loadFromData(bytes);
+
   pixmap = QPixmap().fromImage(image).scaled
-    (size() - 0.35 * size(), Qt::KeepAspectRatio);
+    (size() - 0.35 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
   scene()->addPixmap(pixmap);
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }

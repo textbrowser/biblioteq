@@ -5205,10 +5205,17 @@ void qtbook::slotDisplaySummary(void)
       ui.summary->setVisible(true);
       ui.summary->setText(summary);
       qapp->setOverrideCursor(Qt::WaitCursor);
+
+      /*
+      ** 165 x 255
+      */
+
       frontImage = misc_functions::getImage(oid, "front_cover", type,
-					    getDB());
+					    getDB()).scaled
+	(165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
       backImage = misc_functions::getImage(oid, "back_cover", type,
-					   getDB());
+					   getDB()).scaled
+	(165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())

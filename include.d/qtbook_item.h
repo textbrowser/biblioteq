@@ -33,6 +33,7 @@ class qtbook_item
   QString getID(void);
 
  private:
+  QMap<QString, QImage> imageValues;
   QMap<QString, QString> widgetValues;
 
  protected:
