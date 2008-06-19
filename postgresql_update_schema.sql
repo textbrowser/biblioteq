@@ -430,3 +430,5 @@ DELETE FROM magazine_copy_info WHERE item_oid IN (SELECT myoid FROM magazine WHE
    Browser as this will grant the correct privileges to existing administrator
    accounts. */
 /* Please also "Save" each member's information through the Members Browser. */
+
+/* Release 6.06 */

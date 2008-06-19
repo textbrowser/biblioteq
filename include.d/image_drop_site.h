@@ -33,6 +33,7 @@ class image_drop_site: public QGraphicsView
   image_drop_site(QWidget *);
 
  private:
+  bool doubleclicked;
   void dropEvent(QDropEvent *);
   void dragMoveEvent(QDragMoveEvent *);
   void keyPressEvent(QKeyEvent *);

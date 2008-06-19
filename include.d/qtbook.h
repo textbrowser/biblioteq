@@ -163,7 +163,6 @@ class qtbook: public QMainWindow
   QStringList book_locations;
   QStringList dvd_categories;
   QStringList monetary_units;
-  QStringList book_categories;
   QStringList dvd_aspectratios;
   QStringList journal_locations;
   QStringList journal_categories;

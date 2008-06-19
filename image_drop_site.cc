@@ -12,6 +12,7 @@
 image_drop_site::image_drop_site(QWidget *parent)
 {
   (void) parent;
+  doubleclicked = false;
   setAcceptDrops(true);
 }
 
@@ -104,6 +105,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
 #endif
 
   image = QImage(filename);
+  doubleclicked = false;
 
   if(!image.isNull())
     {
@@ -113,9 +115,15 @@ void image_drop_site::dropEvent(QDropEvent *event)
 	scene()->removeItem(scene()->items().at(0));
 
       imageFormat = filename.mid(filename.lastIndexOf(".") + 1).toUpper();
-      pixmap = QPixmap().fromImage(image).scaled
-	(size() - 0.05 * size(), Qt::KeepAspectRatio,
-	 Qt::SmoothTransformation);
+
+      if(image.size().width() > width() ||
+	 image.size().height() > height())
+	pixmap = QPixmap().fromImage(image).scaled
+	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
+      else
+	pixmap = QPixmap().fromImage(image);
+
       scene()->addPixmap(pixmap);
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
@@ -143,6 +151,7 @@ void image_drop_site::clear(void)
 {
   image = QImage();
   imageFormat = "";
+  doubleclicked = false;
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
@@ -174,10 +183,16 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 {
   QPixmap pixmap;
 
+  doubleclicked = false;
   image.loadFromData(bytes);
 
-  pixmap = QPixmap().fromImage(image).scaled
-    (size() - 0.35 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  if(image.size().width() > width() ||
+     image.size().height() > height())
+    pixmap = QPixmap().fromImage(image).scaled
+      (size() - 0.35 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  else
+    pixmap = QPixmap().fromImage(image);
+
   scene()->addPixmap(pixmap);
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
@@ -188,11 +203,26 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
 void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 {
+  QPixmap pixmap;
+
   (void) e;
+
+  if(image.size().width() < width() && image.size().height() < height())
+    return;
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
 
-  scene()->addPixmap(QPixmap().fromImage(image));
+  if(!doubleclicked)
+    scene()->addPixmap(QPixmap().fromImage(image));
+  else
+    {
+      pixmap = QPixmap().fromImage(image).scaled
+	(size() - 0.05 * size(), Qt::KeepAspectRatio,
+	 Qt::SmoothTransformation);
+      scene()->addPixmap(pixmap);
+    }
+
+  doubleclicked = !doubleclicked;
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }

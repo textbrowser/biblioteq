@@ -889,7 +889,7 @@ void qtbook::slotModify(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new qtbook_book(this, book_categories, languages,
+	      if((book = new qtbook_book(this, languages,
 					 monetary_units, book_locations,
 					 oid, i)) != NULL)
 		books.insert(oid, book);
@@ -1045,7 +1045,7 @@ void qtbook::slotViewDetails(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new qtbook_book(this, book_categories, languages,
+	      if((book = new qtbook_book(this, languages,
 					 monetary_units, book_locations,
 					 oid, i)) != NULL)
 		books.insert(oid, book);
@@ -4209,8 +4209,7 @@ void qtbook::readGlobalSetup(void)
 {
   int i = 0;
   int j = 0;
-  enum enumtype {BOOK_CATEGORY,
-		 CD_CATEGORY,
+  enum enumtype {CD_CATEGORY,
 		 JOURNAL_CATEGORY,
 		 MAGAZINE_CATEGORY,
 		 LANGUAGE,
@@ -4286,8 +4285,6 @@ void qtbook::readGlobalSetup(void)
 	      type = CD_CATEGORY;
 	    else if(str == "[CD Format]")
 	      type = CD_FORMAT;
-	    else if(str == "[Book Category]")
-	      type = BOOK_CATEGORY;
 	    else if(str == "[Magazine Category]")
 	      type = MAGAZINE_CATEGORY;
 	    else if(str == "[Journal Category]")
@@ -4353,16 +4350,6 @@ void qtbook::readGlobalSetup(void)
 		      {
 			if(!cd_formats.contains(str))
 			  cd_formats.append(str);
-
-			break;
-		      }
-		    case BOOK_CATEGORY:
-		      {
-			if(!book_categories.contains(str))
-			  book_categories.append(str);
-
-			if(!categories.contains(str))
-			  categories.append(str);
 
 			break;
 		      }
@@ -5211,11 +5198,21 @@ void qtbook::slotDisplaySummary(void)
       */
 
       frontImage = misc_functions::getImage(oid, "front_cover", type,
-					    getDB()).scaled
-	(165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+					    getDB());
+
+      if(frontImage.size().width() > 165 ||
+	 frontImage.size().height() > 255)
+	frontImage = frontImage.scaled
+	  (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
       backImage = misc_functions::getImage(oid, "back_cover", type,
-					   getDB()).scaled
-	(165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+					   getDB());
+
+      if(backImage.size().width() > 165 ||
+	 backImage.size().height() > 255)
+	backImage = backImage.scaled
+	  (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())
@@ -6748,7 +6745,7 @@ void qtbook::slotInsertBook(void)
 
   if((book = books.value("insert")) == NULL)
     {
-      if((book = new qtbook_book(this, book_categories, languages,
+      if((book = new qtbook_book(this, languages,
 				 monetary_units, book_locations,
 				 "insert", -1)) != NULL)
 	books.insert("insert", book);
@@ -6891,7 +6888,7 @@ void qtbook::bookSearch(const QString &field, const QString &value)
 
   if((book = books.value("search")) == NULL)
     {
-      if((book = new qtbook_book(this, book_categories, languages,
+      if((book = new qtbook_book(this, languages,
 				 monetary_units, book_locations,
 				 "search", -1)) != NULL)
 	books.insert("search", book);
@@ -6913,7 +6910,7 @@ void qtbook::slotBookSearch(void)
 
   if((book = books.value("search")) == NULL)
     {
-      if((book = new qtbook_book(this, book_categories, languages,
+      if((book = new qtbook_book(this, languages,
 				 monetary_units, book_locations,
 				 "search", -1)) != NULL)
 	books.insert("search", book);

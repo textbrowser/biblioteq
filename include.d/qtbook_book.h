@@ -35,8 +35,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
 
  public:
   qtbook_book(QMainWindow *, const QStringList &, const QStringList &,
-	      const QStringList &, const QStringList &, const QString &,
-	      const int);
+	      const QStringList &, const QString &, const int);
   ~qtbook_book();
   bool isBusy(void);
   void insert(void);

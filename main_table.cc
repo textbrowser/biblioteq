@@ -58,7 +58,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("ID Number");
       list.append("Publisher");
       list.append("Publication Date");
-      list.append("Category");
+      list.append("Categories");
       list.append("Language");
       list.append("Price");
       list.append("Monetary Units");
@@ -81,7 +81,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Publisher");
       list.append("Publication Date");
       list.append("Edition");
-      list.append("Category");
+      list.append("Categories");
       list.append("Language");
       list.append("ISBN-10");
       list.append("Price");

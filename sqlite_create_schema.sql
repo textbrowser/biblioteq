@@ -7,7 +7,7 @@ CREATE TABLE book
 	author		 TEXT NOT NULL,
 	pdate		 VARCHAR(32) NOT NULL,
 	publisher	 TEXT NOT NULL,
-	category	 VARCHAR(64) NOT NULL,
+	category	 TEXT NOT NULL,
 	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
 	description	 TEXT NOT NULL,
 	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
