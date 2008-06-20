@@ -1680,18 +1680,22 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
       else if(str.startsWith("650"))
 	{
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  str = str.mid(0, str.indexOf("$v")).trimmed();
 
 	  if(ma.category->toPlainText() == "N/A")
 	    ma.category->clear();
 
-	  if(!ma.category->toPlainText().isEmpty())
-	    ma.category->setPlainText
-	      (ma.category->toPlainText() + "\n" + str);
-	  else
-	    ma.category->setPlainText(str);
+	  if(!ma.category->toPlainText().contains(str))
+	    {
+	      if(!ma.category->toPlainText().isEmpty())
+		ma.category->setPlainText
+		  (ma.category->toPlainText() + "\n" + str);
+	      else
+		ma.category->setPlainText(str);
 
-	  misc_functions::highlightWidget
-	    (ma.category->viewport(), QColor(162, 205, 90));
+	      misc_functions::highlightWidget
+		(ma.category->viewport(), QColor(162, 205, 90));
+	    }
 	}
     }
 

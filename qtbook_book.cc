@@ -1693,16 +1693,19 @@ void qtbook_book::slotQuery(void)
 
 		      str = str.trimmed();
 
-		      if(list[i].startsWith("100"))
-			id.author->setPlainText(str);
-		      else if(!id.author->toPlainText().isEmpty())
-			id.author->setPlainText
-			  (id.author->toPlainText() + "\n" + str);
-		      else
-			id.author->setPlainText(str);
+		      if(!id.author->toPlainText().contains(str))
+			{
+			  if(list[i].startsWith("100"))
+			    id.author->setPlainText(str);
+			  else if(!id.author->toPlainText().isEmpty())
+			    id.author->setPlainText
+			      (id.author->toPlainText() + "\n" + str);
+			  else
+			    id.author->setPlainText(str);
 
-		      misc_functions::highlightWidget
-			(id.author->viewport(), QColor(162, 205, 90));
+			  misc_functions::highlightWidget
+			    (id.author->viewport(), QColor(162, 205, 90));
+			}
 		    }
 		  else if(str.startsWith("245"))
 		    {
@@ -1824,18 +1827,22 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("650"))
 		    {
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      str = str.mid(0, str.indexOf("$x")).trimmed();
 
 		      if(id.category->toPlainText() == "N/A")
 			id.category->clear();
 
-		      if(!id.category->toPlainText().isEmpty())
-			id.category->setPlainText
-			  (id.category->toPlainText() + "\n" + str);
-		      else
-			id.category->setPlainText(str);
+		      if(!id.category->toPlainText().contains(str))
+			{
+			  if(!id.category->toPlainText().isEmpty())
+			    id.category->setPlainText
+			      (id.category->toPlainText() + "\n" + str);
+			  else
+			    id.category->setPlainText(str);
 
-		      misc_functions::highlightWidget
-			(id.category->viewport(), QColor(162, 205, 90));
+			  misc_functions::highlightWidget
+			    (id.category->viewport(), QColor(162, 205, 90));
+			}
 		    }
 		}
 

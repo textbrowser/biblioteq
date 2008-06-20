@@ -53,7 +53,6 @@ qtbook_journal::~qtbook_journal()
 void qtbook_journal::slotCancel(void)
 {
   close();
-  qmain->removeJournal(this);
 }
 
 /*
@@ -62,6 +61,16 @@ void qtbook_journal::slotCancel(void)
 
 void qtbook_journal::closeEvent(QCloseEvent *e)
 {
-  (void) e;
+  if(windowTitle().contains("Modify"))
+    if(hasDataChanged(this))
+      if(QMessageBox::question(this, "BiblioteQ: Question",
+			       "You have unsaved data. Continue closing?",
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	{
+	  e->ignore();
+	  return;
+	}
+
   qmain->removeJournal(this);
 }
