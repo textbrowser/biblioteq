@@ -16,7 +16,6 @@ extern QApplication *qapp;
 */
 
 qtbook_cd::qtbook_cd(QMainWindow *parentArg,
-		     const QStringList &categories,
 		     const QStringList &languages,
 		     const QStringList &monetary_units,
 		     const QStringList &locations,
@@ -108,7 +107,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Recording Label"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Category"),
+  connect(menu->addAction("Reset &Categories"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Price"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -131,16 +130,12 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   cd.queryButton->setVisible(isQueryEnabled);
   cd.resetButton->setMenu(menu);
   cd.id->setValidator(validator1);
-  cd.category->addItems(categories);
   cd.language->addItems(languages);
   cd.monetary_units->addItems(monetary_units);
   cd.location->addItems(locations);
   cd.format->addItems(formats);
   cd.front_image->setScene(scene1);
   cd.back_image->setScene(scene2);
-
-  if(cd.category->count() == 0)
-    cd.category->addItem("UNKNOWN");
 
   if(cd.language->count() == 0)
     cd.language->addItem("UNKNOWN");
@@ -297,6 +292,18 @@ void qtbook_cd::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = cd.category->toPlainText().trimmed();
+      cd.category->setPlainText(str);
+
+      if(cd.category->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, "BiblioteQ: User Error",
+				"Please complete the Categories "
+				"field.");
+	  cd.category->setFocus();
+	  goto db_rollback;
+	}
+
       str = cd.description->toPlainText().trimmed();
       cd.description->setPlainText(str);
 
@@ -400,7 +407,7 @@ void qtbook_cd::slotGo(void)
       query.bindValue(5, cd.runtime->text());
       query.bindValue(6, cd.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(7, cd.recording_label->toPlainText());
-      query.bindValue(8, cd.category->currentText().trimmed());
+      query.bindValue(8, cd.category->toPlainText());
       query.bindValue(9, cd.price->text());
       query.bindValue(10, cd.language->currentText().trimmed());
       query.bindValue(11, cd.monetary_units->currentText().trimmed());
@@ -617,9 +624,9 @@ void qtbook_cd::slotGo(void)
 			      column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.recording_label->toPlainText());
-		      else if(column->text() == "Category")
+		      else if(column->text() == "Categories")
 			qmain->getUI().table->item(row, i)->setText
-			  (cd.category->currentText().trimmed());
+			  (cd.category->toPlainText().trimmed());
 		      else if(column->text() == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.price->text());
@@ -779,11 +786,10 @@ void qtbook_cd::slotGo(void)
       searchstr.append("LOWER(recording_label) LIKE '%" +
 		       myqstring::escape(cd.recording_label->toPlainText().
 					 toLower()) + "%' AND ");
-
-      if(cd.category->currentText() != "Any")
-	searchstr.append("category = '" +
-			 myqstring::escape(cd.category->currentText()) +
-			 "' AND ");
+      searchstr.append("LOWER(category) LIKE '%" +
+		       myqstring::escape(cd.category->toPlainText().
+					 toLower()) +
+		       "%' AND ");
 
       if(cd.price->value() > 0)
 	{
@@ -842,6 +848,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.title->clear();
   cd.recording_label->clear();
   cd.description->clear();
+  cd.category->clear();
   cd.copiesButton->setVisible(false);
   cd.tracksButton->setVisible(false);
   cd.queryButton->setVisible(false);
@@ -869,9 +876,6 @@ void qtbook_cd::search(const QString &field, const QString &value)
   if(cd.format->findText("Any") == -1)
     cd.format->insertItem(0, "Any");
 
-  if(cd.category->findText("Any") == -1)
-    cd.category->insertItem(0, "Any");
-
   if(cd.language->findText("Any") == -1)
     cd.language->insertItem(0, "Any");
 
@@ -883,7 +887,6 @@ void qtbook_cd::search(const QString &field, const QString &value)
 
   cd.audio->setCurrentIndex(0);
   cd.location->setCurrentIndex(0);
-  cd.category->setCurrentIndex(0);
   cd.language->setCurrentIndex(0);
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
@@ -904,6 +907,8 @@ void qtbook_cd::search(const QString &field, const QString &value)
 	cd.artist->setPlainText(value);
       else if(field == "recording_label")
 	cd.recording_label->setPlainText(value);
+      else if(field == "category")
+	cd.category->setPlainText(value);
 
       slotGo();
     }
@@ -989,6 +994,8 @@ void qtbook_cd::modify(const int state)
 	(cd.artist->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(cd.description->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(cd.category->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -1081,14 +1088,8 @@ void qtbook_cd::modify(const int state)
 	  else if(fieldname == "price")
 	    cd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
-	    {
-	      if(cd.category->findText(var.toString()) > -1)
-		cd.category->setCurrentIndex
-		  (cd.category->findText(var.toString()));
-	      else
-		cd.category->setCurrentIndex
-		  (cd.category->findText("UNKNOWN"));
-	    }
+	    cd.category->setMultipleLinks("cd_search", "category",
+					  var.toString());
 	  else if(fieldname == "language")
 	    {
 	      if(cd.language->findText(var.toString()) > -1)
@@ -1212,6 +1213,7 @@ void qtbook_cd::insert(void)
   cd.title->clear();
   cd.recording_label->clear();
   cd.description->clear();
+  cd.category->clear();
   cd.copiesButton->setEnabled(false);
   cd.tracksButton->setEnabled(false);
   cd.showUserButton->setEnabled(false);
@@ -1230,7 +1232,6 @@ void qtbook_cd::insert(void)
   cd.no_of_discs->setValue(1);
   cd.audio->setCurrentIndex(0);
   cd.location->setCurrentIndex(0);
-  cd.category->setCurrentIndex(0);
   cd.language->setCurrentIndex(0);
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
@@ -1246,6 +1247,8 @@ void qtbook_cd::insert(void)
     (cd.artist->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (cd.description->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (cd.category->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
   misc_functions::center(this, parentWid);
@@ -1748,9 +1751,9 @@ void qtbook_cd::slotReset(void)
 	  cd.recording_label->clear();
 	  cd.recording_label->setFocus();
 	}
-      else if(name.contains("Category"))
+      else if(name.contains("Categories"))
 	{
-	  cd.category->setCurrentIndex(0);
+	  cd.category->clear();
 	  cd.category->setFocus();
 	}
       else if(name.contains("Price"))
@@ -1813,13 +1816,13 @@ void qtbook_cd::slotReset(void)
 
       cd.id->clear();
       cd.artist->clear();
+      cd.category->clear();
       cd.price->setValue(cd.price->minimum());
       cd.quantity->setValue(cd.quantity->minimum());
       cd.no_of_discs->setValue(cd.no_of_discs->minimum());
       cd.description->clear();
       cd.audio->setCurrentIndex(0);
       cd.location->setCurrentIndex(0);
-      cd.category->setCurrentIndex(0);
       cd.language->setCurrentIndex(0);
       cd.monetary_units->setCurrentIndex(0);
       cd.recording_type->setCurrentIndex(0);
@@ -1948,9 +1951,9 @@ void qtbook_cd::slotComputeRuntime(void)
 void qtbook_cd::slotPrint(void)
 {
   html = "";
-  html += "<b>Catalog Number:</b> " + cd.id->text() + "<br>";
+  html += "<b>Catalog Number:</b> " + cd.id->text().trimmed() + "<br>";
   html += "<b>Format:</b> " + cd.format->currentText() + "<br>";
-  html += "<b>Artist:</b> " + cd.artist->toPlainText() + "<br>";
+  html += "<b>Artist:</b> " + cd.artist->toPlainText().trimmed() + "<br>";
   html += "<b>Number of Discs:</b> " + cd.no_of_discs->text() + "<br>";
   html += "<b>Runtime:</b> " + cd.runtime->text() + "<br>";
   html += "<b>Audio:</b> " + cd.audio->currentText() + "<br>";
@@ -1961,20 +1964,22 @@ void qtbook_cd::slotPrint(void)
   ** General information.
   */
 
-  html += "<b>Title:</b> " + cd.title->text() + "<br>";
+  html += "<b>Title:</b> " + cd.title->text().trimmed() + "<br>";
   html += "<b>Release Date:</b> " + cd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Recording Label:</b> " + cd.recording_label->toPlainText() +
+  html += "<b>Recording Label:</b> " + cd.recording_label->
+    toPlainText().trimmed() + "<br>";
+  html += "<b>Categories:</b> " + cd.category->toPlainText().trimmed() +
     "<br>";
-  html += "<b>Category:</b> " + cd.category->currentText() + "<br>";
   html += "<b>Price:</b> " + cd.price->text() + "<br>";
   html += "<b>Language:</b> " + cd.language->currentText() + "<br>";
   html += "<b>Monetary Units:</b> " + cd.monetary_units->currentText() +
     "<br>";
   html += "<b>Copies:</b> " + cd.quantity->text() + "<br>";
   html += "<b>Location:</b> " + cd.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + cd.description->toPlainText() + "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + cd.url->toPlainText();
+  html += "<b>Abstract:</b> " + cd.description->toPlainText().trimmed() +
+    "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + cd.url->toPlainText().trimmed();
   print(this);
 }
 

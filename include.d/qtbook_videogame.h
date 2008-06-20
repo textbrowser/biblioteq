@@ -30,7 +30,7 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_videogame(QMainWindow *, const QStringList &, const QStringList &,
+  qtbook_videogame(QMainWindow *, const QStringList &,
 		   const QStringList &, const QStringList &,
 		   const QStringList &, const QStringList &, const QString &,
 		   const int);

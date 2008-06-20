@@ -1878,8 +1878,8 @@ void qtbook_book::slotQuery(void)
 void qtbook_book::slotPrint(void)
 {
   html = "";
-  html += "<b>ISBN-10:</b> " + id.id->text() + "<br>";
-  html += "<b>ISBN-13:</b> " + id.isbn13->text() + "<br>";
+  html += "<b>ISBN-10:</b> " + id.id->text().trimmed() + "<br>";
+  html += "<b>ISBN-13:</b> " + id.isbn13->text().trimmed() + "<br>";
   html += "<b>Edition:</b> " + id.edition->currentText() + "<br>";
   html += "<b>Author(s):</b> " + id.author->toPlainText().trimmed() + "<br>";
   html += "<b>Book Binding Type:</b> " + id.binding->currentText() + "<br>";

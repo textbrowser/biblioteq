@@ -432,3 +432,39 @@ DELETE FROM magazine_copy_info WHERE item_oid IN (SELECT myoid FROM magazine WHE
 /* Please also "Save" each member's information through the Members Browser. */
 
 /* Release 6.06 */
+
+ALTER TABLE book ADD COLUMN new_category TEXT;
+UPDATE book SET new_category = CAST(category AS TEXT);
+ALTER TABLE book DROP COLUMN category;
+ALTER TABLE book RENAME new_category TO category;
+ALTER TABLE book ALTER COLUMN category SET NOT NULL;
+
+ALTER TABLE cd ADD COLUMN new_category TEXT;
+UPDATE cd SET new_category = CAST(category AS TEXT);
+ALTER TABLE cd DROP COLUMN category;
+ALTER TABLE cd RENAME new_category TO category;
+ALTER TABLE cd ALTER COLUMN category SET NOT NULL;
+
+ALTER TABLE dvd ADD COLUMN new_category TEXT;
+UPDATE dvd SET new_category = CAST(category AS TEXT);
+ALTER TABLE dvd DROP COLUMN category;
+ALTER TABLE dvd RENAME new_category TO category;
+ALTER TABLE dvd ALTER COLUMN category SET NOT NULL;
+
+ALTER TABLE journal ADD COLUMN new_category TEXT;
+UPDATE journal SET new_category = CAST(category AS TEXT);
+ALTER TABLE journal DROP COLUMN category;
+ALTER TABLE journal RENAME new_category TO category;
+ALTER TABLE journal ALTER COLUMN category SET NOT NULL;
+
+ALTER TABLE magazine ADD COLUMN new_category TEXT;
+UPDATE magazine SET new_category = CAST(category AS TEXT);
+ALTER TABLE magazine DROP COLUMN category;
+ALTER TABLE magazine RENAME new_category TO category;
+ALTER TABLE magazine ALTER COLUMN category SET NOT NULL;
+
+ALTER TABLE videogame ADD COLUMN new_genre TEXT;
+UPDATE videogame SET new_genre = CAST(genre AS TEXT);
+ALTER TABLE videogame DROP COLUMN genre;
+ALTER TABLE videogame RENAME new_genre TO genre;
+ALTER TABLE videogame ALTER COLUMN genre SET NOT NULL;

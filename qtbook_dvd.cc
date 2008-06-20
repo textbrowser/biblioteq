@@ -16,7 +16,6 @@ extern QApplication *qapp;
 */
 
 qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
-		       const QStringList &categories,
 		       const QStringList &languages,
 		       const QStringList &monetary_units,
 		       const QStringList &locations,
@@ -93,7 +92,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Studio"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Category"),
+  connect(menu->addAction("Reset &Categories"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Price"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -116,7 +115,6 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.queryButton->setVisible(isQueryEnabled);
   dvd.resetButton->setMenu(menu);
   dvd.id->setValidator(validator1);
-  dvd.category->addItems(categories);
   dvd.language->addItems(languages);
   dvd.monetary_units->addItems(monetary_units);
   dvd.location->addItems(locations);
@@ -125,9 +123,6 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.region->addItems(regions);
   dvd.front_image->setScene(scene1);
   dvd.back_image->setScene(scene2);
-
-  if(dvd.category->count() == 0)
-    dvd.category->addItem("UNKNOWN");
 
   if(dvd.language->count() == 0)
     dvd.language->addItem("UNKNOWN");
@@ -312,6 +307,17 @@ void qtbook_dvd::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = dvd.category->toPlainText().trimmed();
+      dvd.category->setPlainText(str);
+
+      if(dvd.category->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, "BiblioteQ: User Error",
+				"Please complete the Categories field.");
+	  dvd.category->setFocus();
+	  goto db_rollback;
+	}
+
       str = dvd.description->toPlainText().trimmed();
       dvd.description->setPlainText(str);
 
@@ -425,7 +431,7 @@ void qtbook_dvd::slotGo(void)
       query.bindValue(9, dvd.title->text());
       query.bindValue(10, dvd.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(11, dvd.studio->toPlainText());
-      query.bindValue(12, dvd.category->currentText().trimmed());
+      query.bindValue(12, dvd.category->toPlainText());
       query.bindValue(13, dvd.price->text());
       query.bindValue(14, dvd.language->currentText().trimmed());
       query.bindValue(15, dvd.monetary_units->currentText().trimmed());
@@ -642,9 +648,9 @@ void qtbook_dvd::slotGo(void)
 			      column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.studio->toPlainText());
-		      else if(column->text() == "Category")
+		      else if(column->text() == "Categories")
 			qmain->getUI().table->item(row, i)->setText
-			  (dvd.category->currentText().trimmed());
+			  (dvd.category->toPlainText().trimmed());
 		      else if(column->text() == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.price->text());
@@ -808,11 +814,10 @@ void qtbook_dvd::slotGo(void)
 		       myqstring::escape
 		       (dvd.studio->toPlainText().toLower()) +
 		       "%' AND ");
-
-      if(dvd.category->currentText() != "Any")
-	searchstr.append("category = '" +
-			 myqstring::escape(dvd.category->currentText()) +
-			 "' AND ");
+      searchstr.append
+	("LOWER(category) LIKE '%" +
+	 myqstring::escape(dvd.category->toPlainText().trimmed()) +
+	 "%' AND ");
 
       if(dvd.price->value() > 0)
 	{
@@ -873,6 +878,7 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.format->clear();
   dvd.title->clear();
   dvd.studio->clear();
+  dvd.category->clear();
   dvd.description->clear();
   dvd.copiesButton->setVisible(false);
   dvd.queryButton->setVisible(false);
@@ -888,9 +894,6 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.quantity->setValue(0);
   dvd.no_of_discs->setMinimum(0);
   dvd.no_of_discs->setValue(0);
-
-  if(dvd.category->findText("Any") == -1)
-    dvd.category->insertItem(0, "Any");
 
   if(dvd.language->findText("Any") == -1)
     dvd.language->insertItem(0, "Any");
@@ -911,7 +914,6 @@ void qtbook_dvd::search(const QString &field, const QString &value)
     dvd.aspectratio->insertItem(0, "Any");
 
   dvd.location->setCurrentIndex(0);
-  dvd.category->setCurrentIndex(0);
   dvd.language->setCurrentIndex(0);
   dvd.monetary_units->setCurrentIndex(0);
   dvd.rating->setCurrentIndex(0);
@@ -1016,6 +1018,8 @@ void qtbook_dvd::modify(const int state)
 	(dvd.studio->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(dvd.format, QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(dvd.category->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -1105,14 +1109,8 @@ void qtbook_dvd::modify(const int state)
 	  else if(fieldname == "price")
 	    dvd.price->setValue(var.toDouble());
 	  else if(fieldname == "category")
-	    {
-	      if(dvd.category->findText(var.toString()) > -1)
-		dvd.category->setCurrentIndex
-		  (dvd.category->findText(var.toString()));
-	      else
-		dvd.category->setCurrentIndex
-		  (dvd.category->findText("UNKNOWN"));
-	    }
+	    dvd.category->setMultipleLinks("dvd_search", "category",
+					   var.toString());
 	  else if(fieldname == "language")
 	    {
 	      if(dvd.language->findText(var.toString()) > -1)
@@ -1242,6 +1240,7 @@ void qtbook_dvd::insert(void)
   dvd.title->clear();
   dvd.studio->clear();
   dvd.description->clear();
+  dvd.category->clear();
   dvd.copiesButton->setEnabled(false);
   dvd.showUserButton->setEnabled(false);
   dvd.queryButton->setEnabled(true);
@@ -1257,7 +1256,6 @@ void qtbook_dvd::insert(void)
   dvd.no_of_discs->setMinimum(1);
   dvd.no_of_discs->setValue(1);
   dvd.location->setCurrentIndex(0);
-  dvd.category->setCurrentIndex(0);
   dvd.language->setCurrentIndex(0);
   dvd.monetary_units->setCurrentIndex(0);
   dvd.rating->setCurrentIndex(0);
@@ -1278,6 +1276,8 @@ void qtbook_dvd::insert(void)
     (dvd.studio->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (dvd.format, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (dvd.category->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
   misc_functions::center(this, parentWid);
@@ -1353,7 +1353,7 @@ void qtbook_dvd::slotReset(void)
 	}
       else if(name.contains("Category"))
 	{
-	  dvd.category->setCurrentIndex(0);
+	  dvd.category->clear();
 	  dvd.category->setFocus();
 	}
       else if(name.contains("Price"))
@@ -1436,12 +1436,12 @@ void qtbook_dvd::slotReset(void)
 
       dvd.id->clear();
       dvd.actors->clear();
+      dvd.category->clear();
       dvd.price->setValue(dvd.price->minimum());
       dvd.quantity->setValue(dvd.quantity->minimum());
       dvd.no_of_discs->setValue(dvd.no_of_discs->minimum());
       dvd.description->clear();
       dvd.location->setCurrentIndex(0);
-      dvd.category->setCurrentIndex(0);
       dvd.language->setCurrentIndex(0);
       dvd.monetary_units->setCurrentIndex(0);
       dvd.rating->setCurrentIndex(0);
@@ -1538,13 +1538,14 @@ void qtbook_dvd::slotQuery(void)
 void qtbook_dvd::slotPrint(void)
 {
   html = "";
-  html += "<b>UPC:</b> " + dvd.id->text() + "<br>";
+  html += "<b>UPC:</b> " + dvd.id->text().trimmed() + "<br>";
   html += "<b>Rating:</b> " + dvd.rating->currentText() + "<br>";
-  html += "<b>Actor(s):</b> " + dvd.actors->toPlainText() + "<br>";
-  html += "<b>Director(s):</b> " + dvd.directors->toPlainText() + "<br>";
+  html += "<b>Actor(s):</b> " + dvd.actors->toPlainText().trimmed() + "<br>";
+  html += "<b>Director(s):</b> " + dvd.directors->toPlainText().trimmed() +
+    "<br>";
   html += "<b>Number of Discs:</b> " + dvd.no_of_discs->text() + "<br>";
   html += "<b>Runtime:</b> " + dvd.runtime->text() + "<br>";
-  html += "<b>Format:</b> " + dvd.format->text() + "<br>";
+  html += "<b>Format:</b> " + dvd.format->text().trimmed() + "<br>";
   html += "<b>Region:</b> " + dvd.region->currentText() + "<br>";
   html += "<b>Aspect Ratio:</b> " + dvd.aspectratio->currentText() + "<br>";
 
@@ -1552,19 +1553,20 @@ void qtbook_dvd::slotPrint(void)
   ** General information.
   */
 
-  html += "<b>Title:</b> " + dvd.title->text() + "<br>";
+  html += "<b>Title:</b> " + dvd.title->text().trimmed() + "<br>";
   html += "<b>Release Date:</b> " + dvd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Studio:</b> " + dvd.studio->toPlainText() + "<br>";
-  html += "<b>Category:</b> " + dvd.category->currentText() + "<br>";
+  html += "<b>Studio:</b> " + dvd.studio->toPlainText().trimmed() + "<br>";
+  html += "<b>Category:</b> " + dvd.category->toPlainText().trimmed() + "<br>";
   html += "<b>Price:</b> " + dvd.price->text() + "<br>";
   html += "<b>Language:</b> " + dvd.language->currentText() + "<br>";
   html += "<b>Monetary Units:</b> " + dvd.monetary_units->currentText() +
     "<br>";
   html += "<b>Copies:</b> " + dvd.quantity->text() + "<br>";
   html += "<b>Location:</b> " + dvd.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + dvd.description->toPlainText() + "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + dvd.url->toPlainText();
+  html += "<b>Abstract:</b> " + dvd.description->toPlainText().trimmed() +
+    "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + dvd.url->toPlainText().trimmed();
   print(this);
 }
 

@@ -19,14 +19,12 @@ extern qtbook *qmain;
 */
 
 qtbook_journal::qtbook_journal(QMainWindow *parent,
-			       const QStringList &categories,
 			       const QStringList &languages,
 			       const QStringList &monetary_units,
 			       const QStringList &locations,
 			       const QString &oidArg,
 			       const int rowArg):
   qtbook_magazine(parent,
-		  categories,
 		  languages,
 		  monetary_units,
 		  locations,

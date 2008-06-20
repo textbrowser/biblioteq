@@ -33,7 +33,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_magazine(QMainWindow *, const QStringList &, const QStringList &,
+  qtbook_magazine(QMainWindow *, const QStringList &,
 		  const QStringList &, const QStringList &, const QString &,
 		  const int);
   ~qtbook_magazine();
@@ -69,7 +69,7 @@ class qtbook_journal: public qtbook_magazine
   Q_OBJECT
 
  public:
-  qtbook_journal(QMainWindow *, const QStringList &, const QStringList &,
+  qtbook_journal(QMainWindow *, const QStringList &,
 		 const QStringList &, const QStringList &, const QString &,
 		 const int);
   ~qtbook_journal();

@@ -105,7 +105,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Mode");
       list.append("Publisher");
       list.append("Release Date");
-      list.append("Genre");
+      list.append("Genres");
       list.append("Language");
       list.append("UPC");
       list.append("Price");
@@ -125,7 +125,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Release Date");
       list.append("Number of Discs");
       list.append("Runtime");
-      list.append("Category");
+      list.append("Categories");
       list.append("Language");
       list.append("Catalog Number");
       list.append("Price");
@@ -146,7 +146,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Release Date");
       list.append("Number of Discs");
       list.append("Runtime");
-      list.append("Category");
+      list.append("Categories");
       list.append("Language");
       list.append("UPC");
       list.append("Price");
@@ -167,7 +167,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Publication Date");
       list.append("Volume");
       list.append("Issue");
-      list.append("Category");
+      list.append("Categories");
       list.append("Language");
       list.append("ISSN");
       list.append("Price");

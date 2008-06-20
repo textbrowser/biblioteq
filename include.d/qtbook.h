@@ -150,7 +150,6 @@ class qtbook: public QMainWindow
   QMainWindow *members_diag;
   QMainWindow *customquery_diag;
   QStringList languages;
-  QStringList vg_genres;
   QStringList cd_formats;
   QStringList vg_ratings;
   QStringList dvd_ratings;
@@ -158,16 +157,12 @@ class qtbook: public QMainWindow
   QStringList cd_locations;
   QStringList vg_locations;
   QStringList vg_platforms;
-  QStringList cd_categories;
   QStringList dvd_locations;
   QStringList book_locations;
-  QStringList dvd_categories;
   QStringList monetary_units;
   QStringList dvd_aspectratios;
   QStringList journal_locations;
-  QStringList journal_categories;
   QStringList magazine_locations;
-  QStringList magazine_categories;
   Ui_UserInfo userinfo;
   QSqlDatabase db;
   Ui_allDialog al;

@@ -29,7 +29,7 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_dvd(QMainWindow *, const QStringList &, const QStringList &,
+  qtbook_dvd(QMainWindow *, const QStringList &,
 	     const QStringList &, const QStringList &, const QStringList &,
 	     const QStringList &, const QStringList &,
 	     const QString &, const int);

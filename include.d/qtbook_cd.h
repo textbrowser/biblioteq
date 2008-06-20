@@ -31,7 +31,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_cd(QMainWindow *, const QStringList &, const QStringList &,
+  qtbook_cd(QMainWindow *, const QStringList &,
 	    const QStringList &, const QStringList &, const QStringList &,
 	    const QString &, const int);
   ~qtbook_cd();

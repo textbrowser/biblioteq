@@ -18,7 +18,6 @@ extern QApplication *qapp;
 qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 				   const QStringList &ratings,
 				   const QStringList &platforms,
-				   const QStringList &genres,
 				   const QStringList &languages,
 				   const QStringList &monetary_units,
 				   const QStringList &locations,
@@ -85,7 +84,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Publisher"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Genre"),
+  connect(menu->addAction("Reset &Genres"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Price"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -108,7 +107,6 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   vg.id->setValidator(validator1);
   vg.resetButton->setMenu(menu);
   vg.rating->addItems(ratings);
-  vg.genre->addItems(genres);
   vg.platform->addItems(platforms);
   vg.language->addItems(languages);
   vg.monetary_units->addItems(monetary_units);
@@ -122,9 +120,6 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 
   if(vg.rating->count() == 0)
     vg.rating->addItem("UNKNOWN");
-
-  if(vg.genre->count() == 0)
-    vg.genre->addItem("UNKNOWN");
 
   if(vg.language->count() == 0)
     vg.language->addItem("UNKNOWN");
@@ -269,6 +264,17 @@ void qtbook_videogame::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = vg.genre->toPlainText().trimmed();
+      vg.genre->setPlainText(str);
+
+      if(vg.genre->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, "BiblioteQ: User Error",
+				"Please complete the Genres field.");
+	  vg.genre->setFocus();
+	  goto db_rollback;
+	}
+
       str = vg.description->toPlainText().trimmed();
       vg.description->setPlainText(str);
 
@@ -335,7 +341,7 @@ void qtbook_videogame::slotGo(void)
       query.bindValue(3, vg.developer->toPlainText());
       query.bindValue(4, vg.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(5, vg.publisher->toPlainText());
-      query.bindValue(6, vg.genre->currentText().trimmed());
+      query.bindValue(6, vg.genre->toPlainText().trimmed());
       query.bindValue(7, vg.price->text());
       query.bindValue(8, vg.description->toPlainText());
       query.bindValue(9, vg.language->currentText().trimmed());
@@ -539,10 +545,10 @@ void qtbook_videogame::slotGo(void)
 		      else if(column->text() == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.publisher->toPlainText());
-		      else if(column->text() == "Genre" ||
-			      column->text() == "Category")
+		      else if(column->text() == "Genres" ||
+			      column->text() == "Categories")
 			qmain->getUI().table->item(row, i)->setText
-			  (vg.genre->currentText().trimmed());
+			  (vg.genre->toPlainText().trimmed());
 		      else if(column->text() == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.price->text());
@@ -682,11 +688,9 @@ void qtbook_videogame::slotGo(void)
 		       myqstring::escape
 		       (vg.publisher->toPlainText().toLower()) +
 		       "%' AND ");
-
-      if(vg.genre->currentText() != "Any")
-	searchstr.append("genre = '" +
-			 myqstring::escape(vg.genre->currentText()) +
-			 "' AND ");
+      searchstr.append("LOWER(genre) LIKE '%" +
+		       myqstring::escape(vg.genre->toPlainText().toLower()) +
+		       "%' AND ");
 
       if(vg.price->value() > 0)
 	{
@@ -756,6 +760,7 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.title->clear();
   vg.publisher->clear();
   vg.description->clear();
+  vg.genre->clear();
   vg.copiesButton->setVisible(false);
   vg.showUserButton->setVisible(false);
   vg.queryButton->setVisible(false);
@@ -777,9 +782,6 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   if(vg.language->findText("Any") == -1)
     vg.language->insertItem(0, "Any");
 
-  if(vg.genre->findText("Any") == -1)
-    vg.genre->insertItem(0, "Any");
-
   if(vg.monetary_units->findText("Any") == -1)
     vg.monetary_units->insertItem(0, "Any");
 
@@ -794,7 +796,6 @@ void qtbook_videogame::search(const QString &field, const QString &value)
 
   vg.location->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
-  vg.genre->setCurrentIndex(0);
   vg.language->setCurrentIndex(0);
   vg.monetary_units->setCurrentIndex(0);
   vg.platform->setCurrentIndex(0);
@@ -894,6 +895,8 @@ void qtbook_videogame::modify(const int state)
 	(vg.developer->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(vg.description->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(vg.genre->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -979,14 +982,8 @@ void qtbook_videogame::modify(const int state)
 	  else if(fieldname == "price")
 	    vg.price->setValue(var.toDouble());
 	  else if(fieldname == "genre")
-	    {
-	      if(vg.genre->findText(var.toString()) > -1)
-		vg.genre->setCurrentIndex
-		  (vg.genre->findText(var.toString()));
-	      else
-		vg.genre->setCurrentIndex
-		  (vg.genre->findText("UNKNOWN"));
-	    }
+	    vg.genre->setMultipleLinks("videogame_search", "genre",
+				       var.toString());
 	  else if(fieldname == "language")
 	    {
 	      if(vg.language->findText(var.toString()) > -1)
@@ -1099,10 +1096,10 @@ void qtbook_videogame::insert(void)
   vg.price->setValue(0.01);
   vg.quantity->setMinimum(1);
   vg.quantity->setValue(1);
+  vg.genre->clear();
   vg.showUserButton->setEnabled(false);
   vg.location->setCurrentIndex(0);
   vg.mode->setCurrentIndex(0);
-  vg.genre->setCurrentIndex(0);
   vg.language->setCurrentIndex(0);
   vg.monetary_units->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
@@ -1117,6 +1114,8 @@ void qtbook_videogame::insert(void)
     (vg.developer->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (vg.description->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (vg.genre->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
   misc_functions::center(this, parentWid);
@@ -1178,7 +1177,7 @@ void qtbook_videogame::slotReset(void)
 	}
       else if(name.contains("Genre"))
 	{
-	  vg.genre->setCurrentIndex(0);
+	  vg.genre->clear();
 	  vg.genre->setFocus();
 	}
       else if(name.contains("Price"))
@@ -1242,6 +1241,7 @@ void qtbook_videogame::slotReset(void)
       vg.title->clear();
       vg.developer->clear();
       vg.publisher->clear();
+      vg.genre->clear();
 
       if(windowTitle().contains("Search"))
 	vg.release_date->setDate(QDate::fromString("01/01/7999",
@@ -1254,7 +1254,6 @@ void qtbook_videogame::slotReset(void)
       vg.description->clear();
       vg.location->setCurrentIndex(0);
       vg.rating->setCurrentIndex(0);
-      vg.genre->setCurrentIndex(0);
       vg.price->setValue(vg.price->minimum());
       vg.language->setCurrentIndex(0);
       vg.monetary_units->setCurrentIndex(0);
@@ -1349,9 +1348,10 @@ void qtbook_videogame::slotQuery(void)
 void qtbook_videogame::slotPrint(void)
 {
   html = "";
-  html += "<b>UPC:</b> " + vg.id->text() + "<br>";
+  html += "<b>UPC:</b> " + vg.id->text().trimmed() + "<br>";
   html += "<b>Game Rating:</b> " + vg.rating->currentText() + "<br>";
-  html += "<b>Developer(s):</b> " + vg.developer->toPlainText() + "<br>";
+  html += "<b>Developer(s):</b> " + vg.developer->toPlainText().trimmed() +
+    "<br>";
   html += "<b>Platform:</b> " + vg.platform->currentText() + "<br>";
   html += "<b>Mode:</b> " + vg.mode->currentText() + "<br>";
 
@@ -1359,19 +1359,21 @@ void qtbook_videogame::slotPrint(void)
   ** General information.
   */
 
-  html += "<b>Title:</b> " + vg.title->text() + "<br>";
+  html += "<b>Title:</b> " + vg.title->text().trimmed() + "<br>";
   html += "<b>Release Date:</b> " + vg.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + vg.publisher->toPlainText() + "<br>";
-  html += "<b>Genre:</b> " + vg.genre->currentText() + "<br>";
+  html += "<b>Publisher:</b> " + vg.publisher->toPlainText().trimmed() +
+    "<br>";
+  html += "<b>Genre:</b> " + vg.genre->toPlainText().trimmed() + "<br>";
   html += "<b>Price:</b> " + vg.price->text() + "<br>";
   html += "<b>Language:</b> " + vg.language->currentText() + "<br>";
   html += "<b>Monetary Units:</b> " + vg.monetary_units->currentText() +
     "<br>";
   html += "<b>Copies:</b> " + vg.quantity->text() + "<br>";
   html += "<b>Location:</b> " + vg.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + vg.description->toPlainText() + "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + vg.url->toPlainText();
+  html += "<b>Abstract:</b> " + vg.description->toPlainText().trimmed() +
+    "<br>";
+  html += "<b>OFFSYSTEM URL:</b> " + vg.url->toPlainText().trimmed();
   print(this);
 }
 

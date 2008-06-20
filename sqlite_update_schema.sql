@@ -252,3 +252,6 @@ CREATE TABLE magazine_tmp
 INSERT INTO magazine_tmp SELECT id, myoid, title, pdate, publisher, category, price, description, language, monetary_units, quantity, location, issuevolume, issueno, lccontrolnumber, callnumber, deweynumber, front_cover, back_cover, type, offsystem_url FROM magazine;
 DROP TABLE magazine;
 ALTER TABLE magazine_tmp RENAME TO magazine;
+
+/* Release 6.06 */
+/* Please recreate the database. */
