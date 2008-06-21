@@ -788,7 +788,7 @@ void qtbook::slotSearch(void)
   if(!all_diag->isVisible())
     {
       all_diag->updateGeometry();
-      all_diag->resize(all_diag->sizeHint());
+      all_diag->resize(all_diag->baseSize());
     }
 
   misc_functions::center(all_diag, this);
