@@ -105,19 +105,19 @@ void image_drop_site::dropEvent(QDropEvent *event)
 #endif
 
   image = QImage(filename);
-  doubleclicked = false;
 
   if(!image.isNull())
     {
       event->acceptProposedAction();
+      doubleclicked = false;
 
       if(scene()->items().size() > 0)
 	scene()->removeItem(scene()->items().at(0));
 
       imageFormat = filename.mid(filename.lastIndexOf(".") + 1).toUpper();
 
-      if(image.size().width() > width() ||
-	 image.size().height() > height())
+      if(image.width() > width() ||
+	 image.height() > height())
 	pixmap = QPixmap().fromImage(image).scaled
 	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
 	   Qt::SmoothTransformation);
@@ -184,12 +184,13 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
   QPixmap pixmap;
 
   doubleclicked = false;
-  image.loadFromData(bytes);
+  determineFormat(bytes);
+  image.loadFromData(bytes, imageFormat.toAscii().data());
 
-  if(image.size().width() > width() ||
-     image.size().height() > height())
+  if(image.width() > width() ||
+     image.height() > height())
     pixmap = QPixmap().fromImage(image).scaled
-      (size() - 0.35 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      (size() - 0.05 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
   else
     pixmap = QPixmap().fromImage(image);
 
@@ -207,7 +208,7 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 
   (void) e;
 
-  if(image.size().width() < width() && image.size().height() < height())
+  if(image.width() < width() && image.height() < height())
     return;
 
   while(!scene()->items().isEmpty())

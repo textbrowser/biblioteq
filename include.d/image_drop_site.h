@@ -29,7 +29,6 @@ class image_drop_site: public QGraphicsView
   QString imageFormat;
   void clear(void);
   void loadFromData(const QByteArray &);
-  void determineFormat(const QByteArray &);
   image_drop_site(QWidget *);
 
  private:
@@ -38,6 +37,7 @@ class image_drop_site: public QGraphicsView
   void dragMoveEvent(QDragMoveEvent *);
   void keyPressEvent(QKeyEvent *);
   void dragEnterEvent(QDragEnterEvent *);
+  void determineFormat(const QByteArray &);
   void mouseDoubleClickEvent(QMouseEvent *);
 };
 

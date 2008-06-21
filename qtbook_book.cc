@@ -1045,6 +1045,7 @@ void qtbook_book::modify(const int state)
   else
     {
       qapp->restoreOverrideCursor();
+      showNormal();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -1139,18 +1140,12 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  id.front_image->loadFromData(var.toByteArray());
-		  id.front_image->determineFormat(var.toByteArray());
-		}
+		id.front_image->loadFromData(var.toByteArray());
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  id.back_image->loadFromData(var.toByteArray());
-		  id.back_image->determineFormat(var.toByteArray());
-		}
+		id.back_image->loadFromData(var.toByteArray());
 	    }
 	  else if(fieldname == "offsystem_url")
 	    {
@@ -1167,7 +1162,6 @@ void qtbook_book::modify(const int state)
     }
 
   id.id->setFocus();
-  showNormal();
   raise();
 }
 

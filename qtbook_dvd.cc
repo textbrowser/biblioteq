@@ -1090,6 +1090,7 @@ void qtbook_dvd::modify(const int state)
   else
     {
       qapp->restoreOverrideCursor();
+      showNormal();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -1194,18 +1195,12 @@ void qtbook_dvd::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  dvd.front_image->loadFromData(var.toByteArray());
-		  dvd.front_image->determineFormat(var.toByteArray());
-		}
+		dvd.front_image->loadFromData(var.toByteArray());
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  dvd.back_image->loadFromData(var.toByteArray());
-		  dvd.back_image->determineFormat(var.toByteArray());
-		}
+		dvd.back_image->loadFromData(var.toByteArray());
 	    }
 	  else if(fieldname == "offsystem_url")
 	    {
@@ -1222,7 +1217,6 @@ void qtbook_dvd::modify(const int state)
     }
 
   dvd.id->setFocus();
-  showNormal();
   raise();
 }
 
@@ -1351,7 +1345,7 @@ void qtbook_dvd::slotReset(void)
 	  dvd.studio->clear();
 	  dvd.studio->setFocus();
 	}
-      else if(name.contains("Category"))
+      else if(name.contains("Categories"))
 	{
 	  dvd.category->clear();
 	  dvd.category->setFocus();

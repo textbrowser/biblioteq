@@ -254,4 +254,185 @@ DROP TABLE magazine;
 ALTER TABLE magazine_tmp RENAME TO magazine;
 
 /* Release 6.06 */
-/* Please recreate the database. */
+
+CREATE TABLE book_tmp
+(
+	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	edition		 VARCHAR(8) NOT NULL,
+	author		 TEXT NOT NULL,
+	pdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	category	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	binding_type	 VARCHAR(32) NOT NULL,
+	location	 TEXT NOT NULL,
+	isbn13		 VARCHAR(16) NOT NULL,
+	lccontrolnumber	 VARCHAR(64),
+	callnumber	 VARCHAR(64),
+	deweynumber	 VARCHAR(64),
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Book',
+	offsystem_url	 TEXT
+	
+);
+
+INSERT INTO book_tmp SELECT * FROM book;
+DROP TABLE book;
+ALTER TABLE book_tmp RENAME TO book;
+
+CREATE TABLE cd_tmp
+(
+	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	artist		 TEXT NOT NULL,
+	recording_label	 TEXT NOT NULL,
+	rdate		 VARCHAR(32) NOT NULL,
+	category	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	cdruntime	 VARCHAR(32) NOT NULL,
+	cdformat	 VARCHAR(128) NOT NULL,
+	cddiskcount	 INTEGER NOT NULL DEFAULT 1,
+	cdaudio		 VARCHAR(32) NOT NULL DEFAULT 'Mono',
+	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'CD',
+	offsystem_url    TEXT
+);
+
+INSERT INTO cd_tmp SELECT * FROM cd;
+DROP TABLE cd;
+ALTER TABLE cd_tmp RENAME TO cd;
+
+CREATE TABLE dvd_tmp
+(
+	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	studio		 TEXT NOT NULL,
+	rdate		 VARCHAR(32) NOT NULL,
+	category	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	dvdactor	 TEXT NOT NULL,
+	dvdformat	 TEXT NOT NULL,
+	dvdruntime	 VARCHAR(32) NOT NULL,
+	dvdrating	 VARCHAR(64) NOT NULL,
+	dvdregion	 VARCHAR(64) NOT NULL,
+	dvddiskcount	 INTEGER NOT NULL DEFAULT 1,
+	dvddirector	 TEXT NOT NULL,
+	dvdaspectratio	 VARCHAR(64) NOT NULL,
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD',
+	offsystem_url	 TEXT
+);
+
+INSERT INTO dvd_tmp SELECT * FROM dvd;
+DROP TABLE dvd;
+ALTER TABLE dvd_tmp RENAME TO dvd;
+
+CREATE TABLE journal_tmp
+(
+	id		 VARCHAR(32) NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	pdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	category	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
+	lccontrolnumber	 VARCHAR(64),
+	callnumber	 VARCHAR(64),
+	deweynumber	 VARCHAR(64),
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
+	offsystem_url	 TEXT,
+	PRIMARY KEY(id, issuevolume, issueno)
+);
+
+INSERT INTO journal_tmp SELECT * from journal;
+DROP TABLE journal;
+ALTER TABLE journal_tmp RENAME TO journal;
+
+CREATE TABLE magazine_tmp
+(
+	id		 VARCHAR(32) NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	pdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	category	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
+	issueno		 INTEGER NOT NULL DEFAULT 0,
+	lccontrolnumber	 VARCHAR(64),
+	callnumber	 VARCHAR(64),
+	deweynumber	 VARCHAR(64),
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
+	offsystem_url	 TEXT,
+	PRIMARY KEY(id, issuevolume, issueno)
+);
+
+INSERT INTO magazine_tmp SELECT * FROM magazine;
+DROP TABLE magazine;
+ALTER TABLE magazine_tmp RENAME TO magazine;
+
+CREATE TABLE videogame_tmp
+(
+	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	developer	 TEXT NOT NULL,
+	genre		 TEXT NOT NULL,
+	rdate		 VARCHAR(32) NOT NULL,
+	publisher	 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	description	 TEXT NOT NULL,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	location	 TEXT NOT NULL,
+	vgrating	 VARCHAR(64) NOT NULL,
+	vgplatform	 VARCHAR(64) NOT NULL,
+	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',
+	front_cover	 BYTEA,
+	back_cover	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game',
+	offsystem_url	 TEXT
+);
+
+INSERT INTO videogame_tmp SELECT * FROM videogame;
+DROP TABLE videogame;
+ALTER TABLE videogame_tmp RENAME TO videogame;

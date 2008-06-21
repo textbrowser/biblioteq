@@ -953,6 +953,7 @@ void qtbook_videogame::modify(const int state)
   else
     {
       qapp->restoreOverrideCursor();
+      showNormal();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -1047,19 +1048,13 @@ void qtbook_videogame::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  vg.front_image->loadFromData(var.toByteArray());
-		  vg.front_image->determineFormat(var.toByteArray());
-		}
+		vg.front_image->loadFromData(var.toByteArray());
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		{
-		  vg.back_image->image.loadFromData
-		    (var.toByteArray());
-		  vg.back_image->determineFormat(var.toByteArray());
-		}
+		vg.back_image->image.loadFromData
+		  (var.toByteArray());
 	    }
 	  else if(fieldname == "offsystem_url")
 	    {
@@ -1076,7 +1071,6 @@ void qtbook_videogame::modify(const int state)
     }
 
   vg.id->setFocus();
-  showNormal();
   raise();
 }
 

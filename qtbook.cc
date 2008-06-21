@@ -736,9 +736,9 @@ void qtbook::slotAbout(void)
 	     "http://biblioteq.sourceforge.net/news.html</a> for "
 	     "release notes."
 	     "<br><br>"
-	     "BiblioteQ is provided AS IS with NO WARRANTY OF ANY KIND, "
-	     "INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND "
-	     "FITNESS FOR A PARTICULAR PURPOSE.</html>");
+	     "BiblioteQ is provided as is with no warranty of any kind, "
+	     "including the warranty of design, merchantability and "
+	     "fitness for a particular purpose.</html>");
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
   mb.exec();
@@ -5102,39 +5102,43 @@ void qtbook::slotDisplaySummary(void)
       summary = summary.remove("<br><br>");
       summary += misc_functions::getColumnString(ui.table, i, "Location");
       summary += "</html>";
-      ui.summary->setVisible(true);
       ui.summary->setText(summary);
+      ui.summary->setVisible(true);
       qapp->setOverrideCursor(Qt::WaitCursor);
+      frontImage = misc_functions::getImage(oid, "front_cover", type,
+					    getDB());
+      backImage = misc_functions::getImage(oid, "back_cover", type,
+					   getDB());
 
       /*
       ** 165 x 255
       */
 
-      frontImage = misc_functions::getImage(oid, "front_cover", type,
-					    getDB());
-
-      if(frontImage.size().width() > 165 ||
-	 frontImage.size().height() > 255)
+      if(frontImage.width() > 165 ||
+	 frontImage.height() > 255)
 	frontImage = frontImage.scaled
 	  (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-      backImage = misc_functions::getImage(oid, "back_cover", type,
-					   getDB());
-
-      if(backImage.size().width() > 165 ||
-	 backImage.size().height() > 255)
+      if(backImage.width() > 165 ||
+	 backImage.height() > 255)
 	backImage = backImage.scaled
 	  (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())
-	ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+	{
+	  ui.frontImage->setVisible(true);
+	  ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+	}
       else
 	ui.frontImage->clear();
 
       if(!backImage.isNull())
-	ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	{
+	  ui.backImage->setVisible(true);
+	  ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	}
       else
 	ui.backImage->clear();
     }
@@ -5146,7 +5150,9 @@ void qtbook::slotDisplaySummary(void)
 
       ui.summary->setVisible(false);
       ui.summary->clear();
+      ui.frontImage->setVisible(false);
       ui.frontImage->clear();
+      ui.backImage->setVisible(false);
       ui.backImage->clear();
     }
 }
@@ -7620,7 +7626,7 @@ void qtbook::slotCopyError(void)
       QMessageBox::critical(error_diag, "BiblioteQ: User Error",
 			    "To copy the contents of the Error Dialog into "
 			    "the clipboard buffer, you must first "
-			    "select at least one row.");
+			    "select at least one event.");
       return;
     }
 
