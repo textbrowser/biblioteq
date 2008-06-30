@@ -1,4 +1,4 @@
-purge.commands = del *~ && del -f include.d/*~
+purge.commands = del *~ && del include.d/*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
