@@ -31,19 +31,19 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == 0)
+  if((menu = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx1, this)) == 0)
+  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator2 = new QRegExpValidator(rx2, this)) == 0)
+  if((validator2 = new(std::nothrow) QRegExpValidator(rx2, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == 0)
+  if((scene1 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == 0)
+  if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = 0;
@@ -1496,12 +1496,13 @@ void qtbook_book::slotPopulateCopiesEditor(void)
 {
   copy_editor *copyeditor = 0;
 
-  if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
-				   (qtbook_item *) this,
-				   false,
-				   id.quantity->value(), oid,
-				   id.id->text(),
-				   id.quantity, font(), "Book")) != 0)
+  if((copyeditor = new(std::nothrow) copy_editor(qobject_cast<QWidget *>(this),
+						 (qtbook_item *) this,
+						 false,
+						 id.quantity->value(), oid,
+						 id.id->text(),
+						 id.quantity, font(),
+						 "Book")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1519,7 +1520,7 @@ void qtbook_book::slotShowUsers(void)
   else
     state = qtbook::VIEW_ONLY;
 
-  if((borrowerseditor = new borrowers_editor
+  if((borrowerseditor = new(std::nothrow) borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        id.quantity->value(), oid, id.id->text(), font(), "Book",
        state)) != 0)
@@ -1562,7 +1563,7 @@ void qtbook_book::slotQuery(void)
       return;
     }
 
-  if((thread = new generic_thread()) != 0)
+  if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       if(!id.id->text().isEmpty())
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());

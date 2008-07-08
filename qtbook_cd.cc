@@ -30,19 +30,19 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == 0)
+  if((menu = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((tracks_diag = new QDialog(this)) == 0)
+  if((tracks_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx1, this)) == 0)
+  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == 0)
+  if((scene1 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == 0)
+  if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   oid = oidArg;
@@ -1344,7 +1344,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 
 	    if(j == 0)
 	      {
-		if((comboBox = new QComboBox()) != 0)
+		if((comboBox = new(std::nothrow) QComboBox()) != 0)
 		  {
 		    comboBox->addItems(comboBoxList);
 		    comboBox->setCurrentIndex(comboBox->findText(str));
@@ -1359,7 +1359,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      }
 	    else if(j == 1)
 	      {
-		if((trackEdit = new QSpinBox()) != 0)
+		if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
 		  {
 		    trackEdit->setMinimum(1);
 		    trackEdit->setValue(str.toInt());
@@ -1374,7 +1374,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      }
 	    else if(j == 3)
 	      {
-		if((timeEdit = new QTimeEdit()) != 0)
+		if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
 		  {
 		    timeEdit->setDisplayFormat("hh:mm:ss");
 		    timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
@@ -1387,7 +1387,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 					  "This is a serious problem!"),
 				  QString(""), __FILE__, __LINE__);
 	      }
-	    else if((item = new QTableWidgetItem()) != 0)
+	    else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
@@ -1463,7 +1463,7 @@ void qtbook_cd::slotInsertTrack(void)
 
       if(i == 0)
 	{
-	  if((comboBox = new QComboBox()) != 0)
+	  if((comboBox = new(std::nothrow) QComboBox()) != 0)
 	    {
 	      comboBox->addItems(list);
 	      trd.table->setCellWidget(trow, i, comboBox);
@@ -1477,7 +1477,7 @@ void qtbook_cd::slotInsertTrack(void)
 	}
       else if(i == 1)
 	{
-	  if((trackEdit = new QSpinBox()) != 0)
+	  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
 	    {
 	      trackEdit->setMinimum(1);
 	      trackEdit->setValue(1);
@@ -1492,7 +1492,7 @@ void qtbook_cd::slotInsertTrack(void)
 	}
       else if(i == 3)
 	{
-	  if((timeEdit = new QTimeEdit()) != 0)
+	  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
 	    {
 	      timeEdit->setDisplayFormat("hh:mm:ss");
 	      trd.table->setCellWidget(trow, i, timeEdit);
@@ -1504,7 +1504,7 @@ void qtbook_cd::slotInsertTrack(void)
 				    "This is a serious problem!"),
 			    QString(""), __FILE__, __LINE__);
 	}
-      else if((item = new QTableWidgetItem()) != 0)
+      else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	{
 	  item->setText(str);
 	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
@@ -1865,12 +1865,13 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
 {
   copy_editor *copyeditor = 0;
 
-  if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
-				   (qtbook_item *) this,
-				   false,
-				   cd.quantity->value(), oid,
-				   cd.id->text(),
-				   cd.quantity, font(), "CD")) != 0)
+  if((copyeditor = new(std::nothrow) copy_editor
+      (qobject_cast<QWidget *>(this),
+       (qtbook_item *) this,
+       false,
+       cd.quantity->value(), oid,
+       cd.id->text(),
+       cd.quantity, font(), "CD")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1888,7 +1889,7 @@ void qtbook_cd::slotShowUsers(void)
   else
     state = qtbook::VIEW_ONLY;
 
-  if((borrowerseditor = new borrowers_editor
+  if((borrowerseditor = new(std::nothrow) borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        cd.quantity->value(), oid, cd.id->text(), font(), "CD",
        state)) != 0)

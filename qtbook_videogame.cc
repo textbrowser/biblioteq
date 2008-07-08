@@ -32,16 +32,16 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == 0)
+  if((menu = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx, this)) == 0)
+  if((validator1 = new(std::nothrow) QRegExpValidator(rx, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == 0)
+  if((scene1 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == 0)
+  if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   oid = oidArg;
@@ -1297,12 +1297,13 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
 {
   copy_editor *copyeditor = 0;
 
-  if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
-				   (qtbook_item *) this,
-				   false,
-				   vg.quantity->value(), oid,
-				   vg.id->text(),
-				   vg.quantity, font(), "Video Game")) != 0)
+  if((copyeditor = new(std::nothrow) copy_editor
+      (qobject_cast<QWidget *>(this),
+       (qtbook_item *) this,
+       false,
+       vg.quantity->value(), oid,
+       vg.id->text(),
+       vg.quantity, font(), "Video Game")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1320,7 +1321,7 @@ void qtbook_videogame::slotShowUsers(void)
   else
     state = qtbook::VIEW_ONLY;
 
-  if((borrowerseditor = new borrowers_editor
+  if((borrowerseditor = new(std::nothrow) borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        vg.quantity->value(), oid, vg.id->text(), font(),
        "Video Game", state)) != 0)

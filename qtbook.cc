@@ -6826,9 +6826,9 @@ void qtbook::bookSearch(const QString &field, const QString &value)
 
   if((book = books.value("search")) == 0)
     {
-      if((book = new qtbook_book(this, languages,
-				 monetary_units, book_locations,
-				 "search", -1)) != 0)
+      if((book = new(std::nothrow) qtbook_book(this, languages,
+					       monetary_units, book_locations,
+					       "search", -1)) != 0)
 	books.insert("search", book);
 
       if(book != 0)
@@ -6848,9 +6848,9 @@ void qtbook::slotBookSearch(void)
 
   if((book = books.value("search")) == 0)
     {
-      if((book = new qtbook_book(this, languages,
-				 monetary_units, book_locations,
-				 "search", -1)) != 0)
+      if((book = new(std::nothrow) qtbook_book(this, languages,
+					       monetary_units, book_locations,
+					       "search", -1)) != 0)
 	books.insert("search", book);
 
       if(book != 0)
@@ -6873,9 +6873,10 @@ void qtbook::cdSearch(const QString &field, const QString &value)
 
   if((cd = cds.value("search")) == 0)
     {
-      if((cd = new qtbook_cd(this, languages,
-			     monetary_units, cd_locations, cd_formats,
-			     "search", -1)) != 0)
+      if((cd = new(std::nothrow) qtbook_cd(this, languages,
+					   monetary_units, cd_locations,
+					   cd_formats,
+					   "search", -1)) != 0)
 	cds.insert("search", cd);
 
       if(cd != 0)
@@ -6895,9 +6896,10 @@ void qtbook::slotCDSearch(void)
 
   if((cd = cds.value("search")) == 0)
     {
-      if((cd = new qtbook_cd(this, languages,
-			     monetary_units, cd_locations, cd_formats,
-			     "search", -1)) != 0)
+      if((cd = new(std::nothrow) qtbook_cd(this, languages,
+					   monetary_units, cd_locations,
+					   cd_formats,
+					   "search", -1)) != 0)
 	cds.insert("search", cd);
 
       if(cd != 0)
@@ -6920,10 +6922,11 @@ void qtbook::dvdSearch(const QString &field, const QString &value)
 
   if((dvd = dvds.value("search")) == 0)
     {
-      if((dvd = new qtbook_dvd(this, languages,
-			       monetary_units, dvd_locations, dvd_ratings,
-			       dvd_aspectratios, dvd_regions,
-			       "search", -1)) != 0)
+      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
+					     monetary_units,
+					     dvd_locations, dvd_ratings,
+					     dvd_aspectratios, dvd_regions,
+					     "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
       if(dvd != 0)
@@ -6943,10 +6946,11 @@ void qtbook::slotDVDSearch(void)
 
   if((dvd = dvds.value("search")) == 0)
     {
-      if((dvd = new qtbook_dvd(this, languages,
-			       monetary_units, dvd_locations, dvd_ratings,
-			       dvd_aspectratios, dvd_regions,
-			       "search", -1)) != 0)
+      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
+					     monetary_units,
+					     dvd_locations, dvd_ratings,
+					     dvd_aspectratios, dvd_regions,
+					     "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
       if(dvd != 0)
@@ -6969,9 +6973,10 @@ void qtbook::journSearch(const QString &field, const QString &value)
 
   if((journal = journals.value("search")) == 0)
     {
-      if((journal = new qtbook_journal(this, languages,
-				       monetary_units, journal_locations,
-				       "search", -1)) != 0)
+      if((journal = new(std::nothrow) qtbook_journal(this, languages,
+						     monetary_units,
+						     journal_locations,
+						     "search", -1)) != 0)
 	journals.insert("search", journal);
 
       if(journal != 0)
@@ -6991,9 +6996,10 @@ void qtbook::slotJournSearch(void)
 
   if((journal = journals.value("search")) == 0)
     {
-      if((journal = new qtbook_journal(this, languages,
-				       monetary_units, journal_locations,
-				       "search", -1)) != 0)
+      if((journal = new(std::nothrow) qtbook_journal(this, languages,
+						     monetary_units,
+						     journal_locations,
+						     "search", -1)) != 0)
 	journals.insert("search", journal);
 
       if(journal != 0)
@@ -7016,9 +7022,10 @@ void qtbook::magSearch(const QString &field, const QString &value)
 
   if((magazine = magazines.value("search")) == 0)
     {
-      if((magazine = new qtbook_magazine(this, languages,
-					 monetary_units, magazine_locations,
-					 "search", -1)) != 0)
+      if((magazine = new(std::nothrow) qtbook_magazine(this, languages,
+						       monetary_units,
+						       magazine_locations,
+						       "search", -1)) != 0)
 	magazines.insert("search", magazine);
 
       if(magazine != 0)
@@ -7038,9 +7045,10 @@ void qtbook::slotMagSearch(void)
 
   if((magazine = magazines.value("search")) == 0)
     {
-      if((magazine = new qtbook_magazine(this, languages,
-					 monetary_units, magazine_locations,
-					 "search", -1)) != 0)
+      if((magazine = new(std::nothrow) qtbook_magazine(this, languages,
+						       monetary_units,
+						       magazine_locations,
+						       "search", -1)) != 0)
 	magazines.insert("search", magazine);
 
       if(magazine != 0)
@@ -7063,10 +7071,13 @@ void qtbook::vgSearch(const QString &field, const QString &value)
 
   if((video_game = video_games.value("search")) == 0)
     {
-      if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
-					    languages,
-					    monetary_units, vg_locations,
-					    "search", -1)) != 0)
+      if((video_game = new(std::nothrow) qtbook_videogame(this,
+							  vg_ratings,
+							  vg_platforms,
+							  languages,
+							  monetary_units,
+							  vg_locations,
+							  "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
       if(video_game != 0)
@@ -7086,10 +7097,11 @@ void qtbook::slotVideoGameSearch(void)
 
   if((video_game = video_games.value("search")) == 0)
     {
-      if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
-					    languages,
-					    monetary_units, vg_locations,
-					    "search", -1)) != 0)
+      if((video_game = new(std::nothrow) qtbook_videogame
+	  (this, vg_ratings, vg_platforms,
+	   languages,
+	   monetary_units, vg_locations,
+	   "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
       if(video_game != 0)
@@ -7387,14 +7399,14 @@ void qtbook::slotShowCustomQuery(void)
 
 
       for(i = 0; i < list.size(); i++)
-	if((item1 = new QTreeWidgetItem(cq.tables_t)) != 0)
+	if((item1 = new(std::nothrow) QTreeWidgetItem(cq.tables_t)) != 0)
 	  {
 	    item1->setText(0, list[i]);
 	    rec = getDB().record(list[i]);
 
 	    for(j = 0; j < rec.count(); j++)
 	      {
-		if((item2 = new QTreeWidgetItem(item1)) == 0)
+		if((item2 = new(std::nothrow) QTreeWidgetItem(item1)) == 0)
 		  {
 		    addError(QString("Memory Error"),
 			     QString("Unable to allocate "
@@ -7835,7 +7847,7 @@ void qtbook::slotShowHistory(void)
 	  {
 	    str = query.value(j).toString();
 
-	    if((item = new QTableWidgetItem()) != 0)
+	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
 
@@ -8149,7 +8161,7 @@ void qtbook::slotAddAdmin(void)
   for(i = 0; i < ab.table->columnCount(); i++)
     if(i == 0)
       {
-	if((item = new QTableWidgetItem()) != 0)
+	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
 	    item->setFlags(item->flags() | Qt::ItemIsEditable);
 	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
@@ -8163,7 +8175,7 @@ void qtbook::slotAddAdmin(void)
       }
     else
       {
-	if((checkBox = new QCheckBox()) == 0)
+	if((checkBox = new(std::nothrow) QCheckBox()) == 0)
 	  addError(QString("Memory Error"),
 		   QString("Unable to allocate memory for the "
 			   "\"checkBox\" object. "
@@ -8309,7 +8321,7 @@ void qtbook::slotRefreshAdminList(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	if((item = new QTableWidgetItem()) != 0)
+	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
 	    str = query.value(0).toString();
 	    item->setText(str);
@@ -8324,7 +8336,7 @@ void qtbook::slotRefreshAdminList(void)
 	    for(j = 1; j < ab.table->columnCount(); j++)
 	      if(query.value(0).toString() == getAdminID() && j > 1)
 		{
-		  if((item = new QTableWidgetItem()) != 0)
+		  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 		    {
 		      item->setFlags(Qt::ItemIsEnabled |
 				     Qt::ItemIsSelectable);
@@ -8337,7 +8349,7 @@ void qtbook::slotRefreshAdminList(void)
 				     "This is a serious problem!"),
 			     QString(""), __FILE__, __LINE__);
 		}
-	      else if((checkBox = new QCheckBox()) != 0)
+	      else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
 		{
 		  columnname = ab.table->horizontalHeaderItem
 		    (j)->text().toLower();
