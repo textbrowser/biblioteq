@@ -32,7 +32,8 @@ qtbook_journal::qtbook_journal(QMainWindow *parent,
 		  rowArg)
 {
   subType = "Journal";
-  disconnect(ma.cancelButton, SIGNAL(clicked(void)), (qtbook_magazine *) this,
+  disconnect(ma.cancelButton, SIGNAL(clicked(void)),
+	     static_cast<qtbook_magazine *> (this),
 	     SLOT(slotCancel(void)));
   connect(ma.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));

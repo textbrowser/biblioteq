@@ -53,7 +53,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   id.setupUi(this);
-  updateFont(qapp->font(), (QWidget *) this);
+  updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1225,7 +1225,7 @@ void qtbook_book::insert(void)
 
 void qtbook_book::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1496,13 +1496,14 @@ void qtbook_book::slotPopulateCopiesEditor(void)
 {
   copy_editor *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) copy_editor(qobject_cast<QWidget *>(this),
-						 (qtbook_item *) this,
-						 false,
-						 id.quantity->value(), oid,
-						 id.id->text(),
-						 id.quantity, font(),
-						 "Book")) != 0)
+  if((copyeditor = new(std::nothrow) copy_editor
+      (static_cast<QWidget *> (this),
+       static_cast<qtbook_item *> (this),
+       false,
+       id.quantity->value(), oid,
+       id.id->text(),
+       id.quantity, font(),
+       "Book")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1521,7 +1522,7 @@ void qtbook_book::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (qobject_cast<QWidget *>(this), (qtbook_item *) this,
+      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        id.quantity->value(), oid, id.id->text(), font(), "Book",
        state)) != 0)
     borrowerseditor->showUsers();
@@ -1932,7 +1933,7 @@ bool qtbook_book::isBusy(void)
 void qtbook_book::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  QPushButton *button = static_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

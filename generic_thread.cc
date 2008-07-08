@@ -138,14 +138,15 @@ void generic_thread::run(void)
 	const char *rec = 0;
 	ZOOM_resultset r;
 	ZOOM_connection z = ZOOM_connection_new
-	  ((const char *) (qmain->getLOCHash().value("Address") + ":" +
-			   qmain->getLOCHash().value("Port") + "/" +
-			   qmain->getLOCHash().value("Database")).
-	   toStdString().data(), 0);
+	  (static_cast<const char *>
+	   ((qmain->getLOCHash().value("Address") + ":" +
+	     qmain->getLOCHash().value("Port") + "/" +
+	     qmain->getLOCHash().value("Database")).toStdString().data()),
+	   0);
 
 	ZOOM_connection_option_set(z, "preferredRecordSyntax", "USMARC");
 	r = ZOOM_connection_search_pqf
-	  (z, (const char *) LOCSearchStr.toStdString().data());
+	  (z, static_cast<const char *> (LOCSearchStr.toStdString().data()));
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(r, i),
 				     "render", 0)) != 0)

@@ -3802,7 +3802,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 void qtbook::slotResizeColumnsAfterSort(void)
 {
-  QObject *object = qobject_cast<QObject *>(sender());
+  QObject *object = static_cast<QObject *> (sender());
   QObject *parent = 0;
 
   if(ui.actionAutoResizeColumns->isChecked())
@@ -3810,7 +3810,7 @@ void qtbook::slotResizeColumnsAfterSort(void)
       {
 	qapp->setOverrideCursor(Qt::WaitCursor);
 	parent = object->parent();
-	(qobject_cast<QTableWidget *>(parent))->resizeColumnsToContents();
+	(static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
 	qapp->restoreOverrideCursor();
       }
 }
@@ -6059,7 +6059,7 @@ void qtbook::slotCheckout(void)
 	  else if((copyeditor = new(std::nothrow) copy_editor
 		   (members_diag, item, true,
 		    quantity, oid, itemid,
-		    (QSpinBox *) 0,
+		    static_cast<QSpinBox *> (0),
 		    font(), type)) != 0)
 	    copyeditor->populateCopiesEditor();
 	}
@@ -6086,7 +6086,7 @@ void qtbook::slotAutoPopOnFilter(void)
 
 void qtbook::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -6787,32 +6787,32 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
   if(itemType == "cd")
     {
       if((item = cds.value(oid)) != 0)
-	removeCD(qobject_cast<qtbook_cd *>(item));
+	removeCD(static_cast<qtbook_cd *> (item));
     }
   else if(itemType == "dvd")
     {
       if((item = dvds.value(oid)) != 0)
-	removeDVD(qobject_cast<qtbook_dvd *>(item));
+	removeDVD(static_cast<qtbook_dvd *> (item));
     }
   else if(itemType == "book")
     {
       if((item = books.value(oid)) != 0)
-	removeBook(qobject_cast<qtbook_book *>(item));
+	removeBook(static_cast<qtbook_book *> (item));
     }
   else if(itemType == "journal")
     {
       if((item = journals.value(oid)) != 0)
-	removeJournal(qobject_cast<qtbook_journal *>(item));
+	removeJournal(static_cast<qtbook_journal *> (item));
     }
   else if(itemType == "magazine")
     {
       if((item = magazines.value(oid)) != 0)
-	removeMagazine(qobject_cast<qtbook_magazine *>(item));
+	removeMagazine(static_cast<qtbook_magazine *> (item));
     }
   else if(itemType == "videogame")
     {
       if((item = video_games.value(oid)) != 0)
-	removeVideoGame(qobject_cast<qtbook_videogame *>(item));
+	removeVideoGame(static_cast<qtbook_videogame *> (item));
     }
 }
 
@@ -7126,32 +7126,32 @@ void qtbook::updateRows(const QString &oid, const int row,
   if(itemType == "cd")
     {
       if((item = cds.value(oid)) != 0)
-	(qobject_cast<qtbook_cd *>(item))->updateRow(row);
+	(static_cast<qtbook_cd *> (item))->updateRow(row);
     }
   else if(itemType == "dvd")
     {
       if((item = dvds.value(oid)) != 0)
-	(qobject_cast<qtbook_dvd *>(item))->updateRow(row);
+	(static_cast<qtbook_dvd *> (item))->updateRow(row);
     }
   else if(itemType == "book")
     {
       if((item = books.value(oid)) != 0)
-	(qobject_cast<qtbook_book *>(item))->updateRow(row);
+	(static_cast<qtbook_book *> (item))->updateRow(row);
     }
   else if(itemType == "journal")
     {
       if((item = journals.value(oid)) != 0)
-	(qobject_cast<qtbook_journal *>(item))->updateRow(row);
+	(static_cast<qtbook_journal *> (item))->updateRow(row);
     }
   else if(itemType == "magazine")
     {
       if((item = magazines.value(oid)) != 0)
-	(qobject_cast<qtbook_magazine *>(item))->updateRow(row);
+	(static_cast<qtbook_magazine *> (item))->updateRow(row);
     }
   else if(itemType == "videogame")
     {
       if((item = video_games.value(oid)) != 0)
-	(qobject_cast<qtbook_videogame *>(item))->updateRow(row);
+	(static_cast<qtbook_videogame *> (item))->updateRow(row);
     }
 }
 
@@ -7321,7 +7321,7 @@ bool qtbook::isItemBusy(const QString &oid, const QString &itemType)
 
 void qtbook::slotShowMenu(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
 
   action->menu()->exec(QCursor::pos());
 }
@@ -8237,7 +8237,7 @@ void qtbook::slotAdminCheckBoxClicked(int state)
   int j = 0;
   int row = -1;
   int column = -1;
-  QCheckBox *box = qobject_cast<QCheckBox *> (sender());
+  QCheckBox *box = static_cast<QCheckBox *> (sender());
 
   (void) state;
 
@@ -8255,11 +8255,13 @@ void qtbook::slotAdminCheckBoxClicked(int state)
       {
 	for(i = 2; i < ab.table->columnCount(); i++)
 	  if(box->isChecked())
-	    ((QCheckBox *) ab.table->cellWidget(row, i))->setChecked(false);
+	    (static_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
+	      setChecked(false);
       }
     else
       if(box->isChecked())
-	((QCheckBox *) ab.table->cellWidget(row, 1))->setChecked(false);
+	(static_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
+	  setChecked(false);
 }
 
 /*
@@ -8513,12 +8515,12 @@ void qtbook::slotSaveAdministrators(void)
       else if(adminStr == getAdminID())
 	continue; // Ignore current administrator.
 
-      if(((QCheckBox *) ab.table->cellWidget(i, 1))->isChecked())
+      if((static_cast<QCheckBox *> (ab.table->cellWidget(i, 1)))->isChecked())
 	str = "administrator";
       else
 	for(j = 2; j < ab.table->columnCount(); j++)
 	  {
-	    checkBox = (QCheckBox *) ab.table->cellWidget(i, j);
+	    checkBox = static_cast<QCheckBox *> (ab.table->cellWidget(i, j));
 
 	    if(checkBox->isChecked())
 	      str += ab.table->horizontalHeaderItem(j)->text().toLower() +

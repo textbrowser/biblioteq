@@ -54,7 +54,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   ma.setupUi(this);
-  updateFont(qapp->font(), (QWidget *) this);
+  updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -673,7 +673,7 @@ void qtbook_magazine::slotGo(void)
 		}
 	      else if(subType == "Journal")
 		qmain->replaceJournal
-		  ("insert", (qobject_cast<qtbook_journal *>)(this));
+		  ("insert", static_cast<qtbook_journal *> (this));
 	      else if(subType == "Magazine")
 		qmain->replaceMagazine("insert", this);
 
@@ -805,7 +805,7 @@ void qtbook_magazine::slotGo(void)
       if(subType == "Journal")
 	{
 	  close();
-	  qmain->removeJournal(qobject_cast<qtbook_journal *>(this));
+	  qmain->removeJournal(static_cast<qtbook_journal *> (this));
 	}
       else
 	slotCancel();
@@ -1191,7 +1191,7 @@ void qtbook_magazine::insert(void)
 
 void qtbook_magazine::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1388,8 +1388,8 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (qobject_cast<QWidget *>(this),
-       (qtbook_item *) this,
+      (static_cast<QWidget *> (this),
+       static_cast<qtbook_item *> (this),
        false,
        ma.quantity->value(), oid,
        ma.id->text(),
@@ -1412,7 +1412,7 @@ void qtbook_magazine::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (qobject_cast<QWidget *>(this), (qtbook_item *) this,
+      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        ma.quantity->value(), oid, ma.id->text(), font(), subType,
        state)) != 0)
     borrowerseditor->showUsers();
@@ -1490,8 +1490,9 @@ void qtbook_magazine::slotQuery(void)
 	      ** Display a selection dialog.
 	      */
 
-	      if((dialog = new(std::nothrow) locresults((QWidget *) this, list,
-							this, font())) == 0)
+	      if((dialog = new(std::nothrow) locresults
+		  (static_cast<QWidget *> (this), list,
+		   this, font())) == 0)
 		{
 		  qmain->addError
 		    (QString("Memory Error"),
@@ -1716,7 +1717,7 @@ bool qtbook_magazine::isBusy(void)
 void qtbook_magazine::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  QPushButton *button = static_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

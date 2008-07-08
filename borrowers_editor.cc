@@ -264,10 +264,10 @@ void borrowers_editor::showUsers(void)
 	      {
 		if(bd.table->cellWidget(row, j) != 0)
 		  {
-		    qobject_cast<QDateEdit *>(bd.table->cellWidget
+		    static_cast<QDateEdit *> (bd.table->cellWidget
 					      (row, j))->setDate
 		      (QDate::fromString(str, "MM/dd/yyyy"));
-		    qobject_cast<QDateEdit *>(bd.table->cellWidget
+		    static_cast<QDateEdit *> (bd.table->cellWidget
 					      (row, j))->setMinimumDate
 		      (QDate::fromString(bd.table->item(row, 5)->text(),
 					 "MM/dd/yyyy").addDays(21));
@@ -433,7 +433,7 @@ void borrowers_editor::slotSave(void)
 
       if(!oid.isEmpty())
 	{
-	  dueDate = qobject_cast<QDateEdit *>(bd.table->cellWidget(i, 6));
+	  dueDate = static_cast<QDateEdit *> (bd.table->cellWidget(i, 6));
 
 	  if(dueDate->date() <= now)
 	    error = true;

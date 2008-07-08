@@ -51,7 +51,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   vg.setupUi(this);
-  updateFont(qapp->font(), (QWidget *) this);
+  updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1122,7 +1122,7 @@ void qtbook_videogame::insert(void)
 
 void qtbook_videogame::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1298,8 +1298,8 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (qobject_cast<QWidget *>(this),
-       (qtbook_item *) this,
+      (static_cast<QWidget *> (this),
+       static_cast<qtbook_item *> (this),
        false,
        vg.quantity->value(), oid,
        vg.id->text(),
@@ -1322,7 +1322,7 @@ void qtbook_videogame::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (qobject_cast<QWidget *>(this), (qtbook_item *) this,
+      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        vg.quantity->value(), oid, vg.id->text(), font(),
        "Video Game", state)) != 0)
     borrowerseditor->showUsers();
@@ -1379,7 +1379,7 @@ void qtbook_videogame::slotPrint(void)
 void qtbook_videogame::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  QPushButton *button = static_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

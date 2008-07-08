@@ -139,29 +139,33 @@ void qtbook_item::storeData(QMainWindow *window)
       objectname = widget->objectName();
 
       if(classname == "QSpinBox")
-	widgetValues[objectname] = ((QSpinBox *) widget)->text().trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QSpinBox *> (widget))->text().trimmed();
       else if(classname == "QLineEdit")
-	widgetValues[objectname] = ((QLineEdit *) widget)->text().trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QComboBox")
-	widgetValues[objectname] = ((QComboBox *) widget)->currentText().
-	  trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QDateEdit")
-	widgetValues[objectname] = ((QDateEdit *) widget)->date().toString
-	  ("MM/dd/yyyy");
+	widgetValues[objectname] =
+	  (static_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
       else if(classname == "QTextEdit")
-	widgetValues[objectname] = ((QTextEdit *) widget)->
-	  toPlainText().trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QDoubleSpinBox")
-	widgetValues[objectname] = ((QDoubleSpinBox *) widget)->text().
-	  trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QDoubleSpinBox *> (widget))->text().trimmed();
       else if(classname == "QTimeEdit")
-	widgetValues[objectname] = ((QTimeEdit *) widget)->text().
-	  trimmed();
+	widgetValues[objectname] =
+	  (static_cast<QTimeEdit *> (widget))->text().trimmed();
       else if(classname == "hyperlinked_text_edit")
-	widgetValues[objectname] = ((hyperlinked_text_edit *) widget)->
-	  toPlainText().trimmed();
+	widgetValues[objectname] =
+	  (static_cast<hyperlinked_text_edit *> (widget))->toPlainText().
+	  trimmed();
       else if(classname == "image_drop_site")
-	imageValues[objectname] = ((image_drop_site *) widget)->image;
+	imageValues[objectname] =
+	  (static_cast<image_drop_site *> (widget))->image;
     }
 }
 
@@ -184,29 +188,35 @@ bool qtbook_item::hasDataChanged(QMainWindow *window)
       objectname = widget->objectName();
 
       if(classname == "QSpinBox")
-	newdata[objectname] = ((QSpinBox *) widget)->text().trimmed();
+	newdata[objectname] =
+	  (static_cast<QSpinBox *> (widget))->text().trimmed();
       else if(classname == "QLineEdit")
-	newdata[objectname] = ((QLineEdit *) widget)->text().trimmed();
+	newdata[objectname] =
+	  (static_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QComboBox")
-	newdata[objectname] = ((QComboBox *) widget)->currentText().
+	newdata[objectname] =
+	  (static_cast<QComboBox *> (widget))->currentText().
 	  trimmed();
       else if(classname == "QDateEdit")
-	newdata[objectname] = ((QDateEdit *) widget)->date().toString
+	newdata[objectname] =
+	  (static_cast<QDateEdit *> (widget))->date().toString
 	  ("MM/dd/yyyy");
       else if(classname == "QTextEdit")
-	newdata[objectname] = ((QTextEdit *) widget)->
-	  toPlainText().trimmed();
+	newdata[objectname] =
+	  (static_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QDoubleSpinBox")
-	newdata[objectname] = ((QDoubleSpinBox *) widget)->text().
-	  trimmed();
+	newdata[objectname] =
+	  (static_cast<QDoubleSpinBox *> (widget))->text().trimmed();
       else if(classname == "QTimeEdit")
-	newdata[objectname] = ((QTimeEdit *) widget)->text().
-	  trimmed();
+	newdata[objectname] =
+	  (static_cast<QTimeEdit *> (widget))->text().trimmed();
       else if(classname == "hyperlinked_text_edit")
-	newdata[objectname] = ((hyperlinked_text_edit *) widget)->
+	newdata[objectname] =
+	  (static_cast<hyperlinked_text_edit *> (widget))->
 	  toPlainText().trimmed();
       else if(classname == "image_drop_site")
-	newimg[objectname] = ((image_drop_site *) widget)->image;
+	newimg[objectname] =
+	  (static_cast<image_drop_site *> (widget))->image;
     }
 
   for(i = 0; i < widgetValues.size(); i++)

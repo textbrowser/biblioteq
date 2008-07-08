@@ -52,11 +52,11 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   cd.setupUi(this);
-  updateFont(qapp->font(), (QWidget *) this);
+  updateFont(qapp->font(), static_cast<QWidget *> (this));
   tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(tracks_diag);
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  updateFont(qapp->font(), (QWidget *) tracks_diag);
+  updateFont(qapp->font(), static_cast<QWidget *> (tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
   connect(cd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -1616,18 +1616,18 @@ void qtbook_cd::slotSaveTracks(void)
 	  query.bindValue(0, oid);
 
 	  if(trd.table->cellWidget(i, 0) != 0)
-	    query.bindValue(1, qobject_cast<QComboBox *>
+	    query.bindValue(1, static_cast<QComboBox *>
 			    (trd.table->cellWidget(i, 0))->currentText());
 
 	  if(trd.table->cellWidget(i, 1) != 0)
-	    query.bindValue(2, qobject_cast<QSpinBox *>
+	    query.bindValue(2, static_cast<QSpinBox *>
 			    (trd.table->cellWidget(i, 1))->value());
 
 	  if(trd.table->item(i, 2) != 0)
 	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
 
 	  if(trd.table->cellWidget(i, 3) != 0)
-	    query.bindValue(4, qobject_cast<QTimeEdit *>
+	    query.bindValue(4, static_cast<QTimeEdit *>
 			    (trd.table->cellWidget(i, 3))->time().toString
 			    ("hh:mm:ss"));
 
@@ -1674,7 +1674,7 @@ void qtbook_cd::slotSaveTracks(void)
 
 void qtbook_cd::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1866,8 +1866,8 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (qobject_cast<QWidget *>(this),
-       (qtbook_item *) this,
+      (static_cast<QWidget *> (this),
+       static_cast<qtbook_item *> (this),
        false,
        cd.quantity->value(), oid,
        cd.id->text(),
@@ -1890,7 +1890,7 @@ void qtbook_cd::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (qobject_cast<QWidget *>(this), (qtbook_item *) this,
+      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        cd.quantity->value(), oid, cd.id->text(), font(), "CD",
        state)) != 0)
     borrowerseditor->showUsers();
@@ -1985,7 +1985,7 @@ void qtbook_cd::slotPrint(void)
 void qtbook_cd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  QPushButton *button = static_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

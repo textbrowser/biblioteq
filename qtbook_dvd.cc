@@ -51,7 +51,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   dvd.setupUi(this);
-  updateFont(qapp->font(), (QWidget *) this);
+  updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
   connect(dvd.showUserButton, SIGNAL(clicked(void)), this,
@@ -1284,7 +1284,7 @@ void qtbook_dvd::insert(void)
 
 void qtbook_dvd::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *>(sender());
+  QAction *action = static_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1488,8 +1488,8 @@ void qtbook_dvd::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (qobject_cast<QWidget *>(this),
-       (qtbook_item *) this,
+      (static_cast<QWidget *> (this),
+       static_cast<qtbook_item *> (this),
        false,
        dvd.quantity->value(), oid,
        dvd.id->text(),
@@ -1512,7 +1512,7 @@ void qtbook_dvd::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (qobject_cast<QWidget *>(this), (qtbook_item *) this,
+      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        dvd.quantity->value(), oid, dvd.id->text(), font(), "DVD",
        state)) != 0)
     borrowerseditor->showUsers();
@@ -1572,7 +1572,7 @@ void qtbook_dvd::slotPrint(void)
 void qtbook_dvd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = qobject_cast<QPushButton *> (sender());
+  QPushButton *button = static_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
