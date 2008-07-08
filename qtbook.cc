@@ -35,13 +35,13 @@
 ** -- Local Variables --
 */
 
-qtbook *qmain = NULL;
+qtbook *qmain = 0;
 
 /*
 ** -- Global Variables --
 */
 
-QApplication *qapp = NULL;
+QApplication *qapp = 0;
 
 /*
 ** -- main() --
@@ -55,12 +55,12 @@ int main(int argc, char *argv[])
   ** Create the user interface.
   */
 
-  if((qapp = new QApplication(argc, argv)) == NULL)
+  if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   qapp->connect(qapp, SIGNAL(lastWindowClosed()), qapp, SLOT(quit(void)));
 
-  if((qmain = new qtbook()) == NULL)
+  if((qmain = new(std::nothrow) qtbook()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   qmain->showMain();
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
 void qtbook::quit(void)
 {
-  if(qmain != NULL)
+  if(qmain != 0)
     {
       qmain->cleanup();
 
@@ -92,7 +92,7 @@ void qtbook::quit(void)
 	qmain->slotSaveConfig();
     }
 
-  if(qapp != NULL)
+  if(qapp != 0)
     qapp->quit();
 
   cout << "BiblioteQ has exited." << endl;
@@ -105,13 +105,13 @@ void qtbook::quit(void)
 
 void qtbook::cleanup(void)
 {
-  if(qapp != NULL && qmain != NULL && qmain->isVisible())
+  if(qapp != 0 && qmain != 0 && qmain->isVisible())
     qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(db.isOpen())
     db.close();
 
-  if(qapp != NULL && qmain != NULL && qmain->isVisible())
+  if(qapp != 0 && qmain != 0 && qmain->isVisible())
     qapp->restoreOverrideCursor();
 }
 
@@ -121,13 +121,13 @@ void qtbook::cleanup(void)
 
 void qtbook::quit(const char *msg, const char *file, const int line)
 {
-  if(msg != NULL && strlen(msg) > 0)
+  if(msg != 0 && strlen(msg) > 0)
     cerr << msg << " in file " << file << ", line " << line << "." << endl;
   else
     cerr << "An unknown error occurred in file " << file << ", line "
 	 << line << "." << endl;
 
-  if(qmain != NULL)
+  if(qmain != 0)
     qmain->cleanup();
 
   exit(EXIT_SUCCESS);
@@ -141,50 +141,50 @@ qtbook::qtbook(void):QMainWindow()
 {
   int h = 0;
   int w = 0;
-  QMenu *menu1 = NULL;
-  QMenu *menu2 = NULL;
-  QMenu *menu3 = NULL;
-  QMenu *menu4 = NULL;
+  QMenu *menu1 = 0;
+  QMenu *menu2 = 0;
+  QMenu *menu3 = 0;
+  QMenu *menu4 = 0;
 
   previousTypeFilter = "";
 
-  if((branch_diag = new QDialog(this)) == NULL)
+  if((branch_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((pass_diag = new QDialog(this)) == NULL)
+  if((pass_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((all_diag = new QMainWindow(this)) == NULL)
+  if((all_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((admin_diag = new QMainWindow(this)) == NULL)
+  if((admin_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((members_diag = new QMainWindow()) == NULL)
+  if((members_diag = new(std::nothrow) QMainWindow()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((history_diag = new QMainWindow()) == NULL)
+  if((history_diag = new(std::nothrow) QMainWindow()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((customquery_diag = new QMainWindow(this)) == NULL)
+  if((customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((userinfo_diag = new QDialog(members_diag)) == NULL)
+  if((userinfo_diag = new(std::nothrow) QDialog(members_diag)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((error_diag = new QMainWindow(this)) == NULL)
+  if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu1 = new QMenu()) == NULL)
+  if((menu1 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu2 = new QMenu()) == NULL)
+  if((menu2 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu3 = new QMenu()) == NULL)
+  if((menu3 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu4 = new QMenu()) == NULL)
+  if((menu4 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(menu1->addAction("Insert &Book"),
@@ -473,7 +473,7 @@ qtbook::qtbook(void):QMainWindow()
 void qtbook::addConfigOptions(const QString &typefilter)
 {
   int i = 0;
-  QAction *action = NULL;
+  QAction *action = 0;
 
   /*
   ** Delete existing actions, if any.
@@ -495,8 +495,9 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	      ui.table->horizontalHeaderItem(i)->text() == "REQUESTOID")
 	continue;
 
-      if((action = new QAction(ui.table->horizontalHeaderItem(i)->text(),
-			       ui.configTool)) == NULL)
+      if((action = new(std::nothrow) QAction
+	  (ui.table->horizontalHeaderItem(i)->text(),
+	   ui.configTool)) == 0)
 	continue;
 
       action->setCheckable(true);
@@ -551,7 +552,7 @@ void qtbook::adminSetup(void)
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
 
-  if(status_bar_label != NULL)
+  if(status_bar_label != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
 
@@ -660,7 +661,7 @@ void qtbook::adminSetup(void)
 
 void qtbook::showMain(void)
 {
-  if((connected_bar_label = new QLabel()) != NULL)
+  if((connected_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       connected_bar_label->setPixmap
 	(QPixmap("icons.d/16x16/disconnected.png"));
@@ -668,14 +669,14 @@ void qtbook::showMain(void)
       qmain->statusBar()->addPermanentWidget(connected_bar_label);
     }
 
-  if((status_bar_label = new QLabel()) != NULL)
+  if((status_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
       status_bar_label->setToolTip("Standard User Mode");
       qmain->statusBar()->addPermanentWidget(status_bar_label);
     }
 
-  if((error_bar_label = new QLabel()) != NULL)
+  if((error_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
       error_bar_label->setToolTip("Empty Error Log");
@@ -727,7 +728,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText("<html>BiblioteQ Version 6.06.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
-	     "Diana Megas.<br>"
+	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
@@ -815,13 +816,13 @@ void qtbook::slotModify(void)
   bool error = false;
   QString oid = "";
   QString type = "";
-  qtbook_cd *cd = NULL;
-  qtbook_dvd *dvd = NULL;
+  qtbook_cd *cd = 0;
+  qtbook_dvd *dvd = 0;
   QModelIndex index;
-  qtbook_book *book = NULL;
-  qtbook_journal *journal = NULL;
-  qtbook_magazine *magazine = NULL;
-  qtbook_videogame *video_game = NULL;
+  qtbook_book *book = 0;
+  qtbook_journal *journal = 0;
+  qtbook_magazine *magazine = 0;
+  qtbook_videogame *video_game = 0;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
@@ -855,13 +856,14 @@ void qtbook::slotModify(void)
 	    cd = cds.value(oid);
 	  else
 	    {
-	      if((cd = new qtbook_cd(this, languages,
-				     monetary_units, cd_locations,
-				     cd_formats, oid, i)) != NULL)
+	      if((cd = new(std::nothrow) qtbook_cd(this, languages,
+						   monetary_units,
+						   cd_locations,
+						   cd_formats, oid, i)) != 0)
 		cds.insert(oid, cd);
 	    }
 
-	  if(cd != NULL)
+	  if(cd != 0)
 	    cd->modify(EDITABLE);
 	}
       else if(type.toLower() == "dvd")
@@ -870,14 +872,17 @@ void qtbook::slotModify(void)
 	    dvd = dvds.value(oid);
 	  else
 	    {
-	      if((dvd = new qtbook_dvd(this, languages,
-					 monetary_units, dvd_locations,
-				       dvd_ratings, dvd_aspectratios,
-				       dvd_regions, oid, i)) != NULL)
+	      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
+						     monetary_units,
+						     dvd_locations,
+						     dvd_ratings,
+						     dvd_aspectratios,
+						     dvd_regions,
+						     oid, i)) != 0)
 		dvds.insert(oid, dvd);
 	    }
 
-	  if(dvd != NULL)
+	  if(dvd != 0)
 	    dvd->modify(EDITABLE);
 	}
       else if(type.toLower() == "book")
@@ -886,13 +891,14 @@ void qtbook::slotModify(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new qtbook_book(this, languages,
-					 monetary_units, book_locations,
-					 oid, i)) != NULL)
+	      if((book = new(std::nothrow) qtbook_book(this, languages,
+						       monetary_units,
+						       book_locations,
+						       oid, i)) != 0)
 		books.insert(oid, book);
 	    }
 
-	  if(book != NULL)
+	  if(book != 0)
 	    book->modify(EDITABLE);
 	}
       else if(type.toLower() == "journal")
@@ -901,13 +907,14 @@ void qtbook::slotModify(void)
 	    journal = journals.value(oid);
 	  else
 	    {
-	      if((journal = new qtbook_journal(this, languages, monetary_units,
-					       journal_locations,
-					       oid, i)) != NULL)
+	      if((journal = new(std::nothrow) qtbook_journal
+		  (this, languages, monetary_units,
+		   journal_locations,
+		   oid, i)) != 0)
 		journals.insert(oid, journal);
 	    }
 
-	  if(journal != NULL)
+	  if(journal != 0)
 	    journal->modify(EDITABLE);
 	}
       else if(type.toLower() == "magazine")
@@ -916,14 +923,15 @@ void qtbook::slotModify(void)
 	    magazine = magazines.value(oid);
 	  else
 	    {
-	      if((magazine = new qtbook_magazine(this, languages,
-						 monetary_units,
-						 magazine_locations,
-						 oid, i)) != NULL)
+	      if((magazine = new(std::nothrow) qtbook_magazine
+		  (this, languages,
+		   monetary_units,
+		   magazine_locations,
+		   oid, i)) != 0)
 		magazines.insert(oid, magazine);
 	      }
 
-	  if(magazine != NULL)
+	  if(magazine != 0)
 	    magazine->modify(EDITABLE);
 	}
       else if(type.toLower() == "video game")
@@ -932,16 +940,17 @@ void qtbook::slotModify(void)
 	    video_game = video_games.value(oid);
 	  else
 	    {
-	      if((video_game = new qtbook_videogame(this, vg_ratings,
-						    vg_platforms,
-						    languages,
-						    monetary_units,
-						    vg_locations,
-						    oid, i)) != NULL)
+	      if((video_game = new(std::nothrow) qtbook_videogame
+		  (this, vg_ratings,
+		   vg_platforms,
+		   languages,
+		   monetary_units,
+		   vg_locations,
+		   oid, i)) != 0)
 		video_games.insert(oid, video_game);
 	    }
 
-	  if(video_game != NULL)
+	  if(video_game != 0)
 	    video_game->modify(EDITABLE);
 	}
       else
@@ -969,14 +978,14 @@ void qtbook::slotViewDetails(void)
   bool error = false;
   QString oid = "";
   QString type = "";
-  qtbook_cd *cd = NULL;
-  qtbook_dvd *dvd = NULL;
+  qtbook_cd *cd = 0;
+  qtbook_dvd *dvd = 0;
   QModelIndex index;
-  qtbook_book *book = NULL;
-  qtbook_journal *journal = NULL;
-  qtbook_magazine *magazine = NULL;
+  qtbook_book *book = 0;
+  qtbook_journal *journal = 0;
+  qtbook_magazine *magazine = 0;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
-  qtbook_videogame *video_game = NULL;
+  qtbook_videogame *video_game = 0;
 
   if(list.isEmpty())
     {
@@ -1009,13 +1018,14 @@ void qtbook::slotViewDetails(void)
 	    cd = cds.value(oid);
 	  else
 	    {
-	      if((cd = new qtbook_cd(this, languages,
-				     monetary_units, cd_locations,
-				     cd_formats, oid, i)) != NULL)
+	      if((cd = new(std::nothrow) qtbook_cd(this, languages,
+						   monetary_units,
+						   cd_locations,
+						   cd_formats, oid, i)) != 0)
 		cds.insert(oid, cd);
 	    }
 
-	  if(cd != NULL)
+	  if(cd != 0)
 	    cd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "dvd")
@@ -1024,14 +1034,15 @@ void qtbook::slotViewDetails(void)
 	    dvd = dvds.value(oid);
 	  else
 	    {
-	      if((dvd = new qtbook_dvd(this, languages,
-				       monetary_units, dvd_locations,
-				       dvd_ratings, dvd_aspectratios,
-				       dvd_regions, oid, i)) != NULL)
+	      if((dvd = new(std::nothrow) qtbook_dvd
+		  (this, languages,
+		   monetary_units, dvd_locations,
+		   dvd_ratings, dvd_aspectratios,
+		   dvd_regions, oid, i)) != 0)
 		dvds.insert(oid, dvd);
 	    }
 
-	  if(dvd != NULL)
+	  if(dvd != 0)
 	    dvd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "book")
@@ -1040,13 +1051,14 @@ void qtbook::slotViewDetails(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new qtbook_book(this, languages,
-					 monetary_units, book_locations,
-					 oid, i)) != NULL)
+	      if((book = new(std::nothrow) qtbook_book(this, languages,
+						       monetary_units,
+						       book_locations,
+						       oid, i)) != 0)
 		books.insert(oid, book);
 	    }
 
-	  if(book != NULL)
+	  if(book != 0)
 	    book->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "journal")
@@ -1055,14 +1067,15 @@ void qtbook::slotViewDetails(void)
 	    journal = journals.value(oid);
 	  else
 	    {
-	      if((journal = new qtbook_journal(this,
-					       languages, monetary_units,
-					       journal_locations,
-					       oid, i)) != NULL)
+	      if((journal = new(std::nothrow) qtbook_journal(this,
+							     languages,
+							     monetary_units,
+							     journal_locations,
+							     oid, i)) != 0)
 		journals.insert(oid, journal);
 	    }
 
-	  if(journal != NULL)
+	  if(journal != 0)
 	    journal->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "magazine")
@@ -1071,14 +1084,15 @@ void qtbook::slotViewDetails(void)
 	    magazine = magazines.value(oid);
 	  else
 	    {
-	      if((magazine = new qtbook_magazine(this,
-						 languages, monetary_units,
-						 magazine_locations,
-						 oid, i)) != NULL)
+	      if((magazine = new(std::nothrow) qtbook_magazine
+		  (this,
+		   languages, monetary_units,
+		   magazine_locations,
+		   oid, i)) != 0)
 		magazines.insert(oid, magazine);
 	    }
 
-	  if(magazine != NULL)
+	  if(magazine != 0)
 	    magazine->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "video game")
@@ -1087,16 +1101,17 @@ void qtbook::slotViewDetails(void)
 	    video_game = video_games.value(oid);
 	  else
 	    {
-	      if((video_game = new qtbook_videogame(this, vg_ratings,
-						    vg_platforms,
-						    languages,
-						    monetary_units,
-						    vg_locations,
-						    oid, i)) != NULL)
+	      if((video_game = new(std::nothrow) qtbook_videogame
+		  (this, vg_ratings,
+		   vg_platforms,
+		   languages,
+		   monetary_units,
+		   vg_locations,
+		   oid, i)) != 0)
 		video_games.insert(oid, video_game);
 	    }
 
-	  if(video_game != NULL)
+	  if(video_game != 0)
 	    video_game->modify(VIEW_ONLY);
 	}
       else
@@ -1149,7 +1164,7 @@ void qtbook::slotDelete(void)
     {
       i = index.row();
 
-      if(ui.table->item(i, col) == NULL)
+      if(ui.table->item(i, col) == 0)
 	continue;
 
       oid = misc_functions::getColumnString(ui.table, i, "OID");
@@ -1243,7 +1258,7 @@ void qtbook::slotDelete(void)
     {
       i = index.row();
 
-      if(ui.table->item(i, col) == NULL)
+      if(ui.table->item(i, col) == 0)
 	continue;
 
       str = ui.table->item(i, col)->text();
@@ -1339,7 +1354,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   QStringList types;
   QStringList tmplist;
   QProgressDialog progress(this);
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   if(!roles.isEmpty() && typefilter == "All Requested")
     ui.actionRequests->setEnabled(true);
@@ -3715,11 +3730,11 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		   query.record().fieldName(j) == "cddiskcount" ||
 		   query.record().fieldName(j) == "dvddiskcount" ||
 		   query.record().fieldName(j) == "availability")
-		  item = new numeric_table_item(str.toDouble());
+		  item = new(std::nothrow) numeric_table_item(str.toDouble());
 		else
-		  item = new QTableWidgetItem();
+		  item = new(std::nothrow) QTableWidgetItem();
 
-		if(item != NULL)
+		if(item != 0)
 		  {
 		    item->setText(str);
 		    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -3788,10 +3803,10 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 void qtbook::slotResizeColumnsAfterSort(void)
 {
   QObject *object = qobject_cast<QObject *>(sender());
-  QObject *parent = NULL;
+  QObject *parent = 0;
 
   if(ui.actionAutoResizeColumns->isChecked())
-    if(object != NULL && object->parent() != NULL)
+    if(object != 0 && object->parent() != 0)
       {
 	qapp->setOverrideCursor(Qt::WaitCursor);
 	parent = object->parent();
@@ -3910,7 +3925,7 @@ void qtbook::slotSaveUser(void)
   QString checksum = "";
   QString errorstr = "";
   QSqlQuery query(db);
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   str1 = userinfo.firstName->text().trimmed();
   userinfo.firstName->setText(str1);
@@ -4165,7 +4180,7 @@ void qtbook::slotSaveUser(void)
 	    {
 	      column = bb.table->horizontalHeaderItem(i);
 
-	      if(column == NULL)
+	      if(column == 0)
 		continue;
 
 	      if(column->text() == "First Name")
@@ -4222,7 +4237,7 @@ void qtbook::readGlobalSetup(void)
   QString filename = "";
   enumtype type = UNKNOWN;
   QStringList locations;
-  generic_thread *thread = NULL;
+  generic_thread *thread = 0;
   QHash<QString, QString> tmphash;
 
 #ifdef Q_OS_WIN
@@ -4234,7 +4249,7 @@ void qtbook::readGlobalSetup(void)
   al.monetary_units->clear();
   al.location->clear();
 
-  if((thread = new generic_thread()) != NULL)
+  if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
       thread->setFilename(filename);
@@ -4244,7 +4259,7 @@ void qtbook::readGlobalSetup(void)
 
       while(thread->isRunning())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != 0)
 	    statusBar()->showMessage("Processing the global "
 				     "configuration file.");
 
@@ -4254,7 +4269,7 @@ void qtbook::readGlobalSetup(void)
 
       if(!thread->getErrorStr().isEmpty())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != 0)
 	    statusBar()->clearMessage();
 
 	  addError(QString("File Error"),
@@ -4503,7 +4518,7 @@ void qtbook::readGlobalSetup(void)
       if(!LOCHash.contains("Database"))
 	LOCHash["Database"] = "Voyager";
 
-      if(statusBar() != NULL)
+      if(statusBar() != 0)
 	statusBar()->clearMessage();
 
       lockApp(false);
@@ -4550,12 +4565,12 @@ void qtbook::readConfig(void)
   QString str = "";
   QString filename = "";
   QStringList tmplist;
-  generic_thread *thread = NULL;
+  generic_thread *thread = 0;
 
   filename.append(QDir::homePath());
   filename.append("/.biblioteq.dat");
 
-  if((thread = new generic_thread()) != NULL)
+  if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
       thread->setFilename(filename);
@@ -4565,7 +4580,7 @@ void qtbook::readConfig(void)
 
       while(thread->isRunning())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != 0)
 	    statusBar()->showMessage("Processing the user's "
 				     "configuration file.");
 
@@ -4575,7 +4590,7 @@ void qtbook::readConfig(void)
 
       if(!thread->getErrorStr().isEmpty())
 	{
-	  if(statusBar() != NULL)
+	  if(statusBar() != 0)
 	    statusBar()->clearMessage();
 
 	  lockApp(false);
@@ -4666,7 +4681,7 @@ void qtbook::readConfig(void)
 	      ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
 	}
 
-      if(statusBar() != NULL)
+      if(statusBar() != 0)
 	statusBar()->clearMessage();
 
       delete thread;
@@ -4839,12 +4854,12 @@ void qtbook::slotSaveConfig(void)
 {
   QString filename = "";
   QList<bool> list;
-  generic_thread *thread = NULL;
+  generic_thread *thread = 0;
 
   filename.append(QDir::homePath());
   filename.append("/.biblioteq.dat");
 
-  if((thread = new generic_thread()) != NULL)
+  if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       if(isVisible())
 	qapp->setOverrideCursor(Qt::WaitCursor);
@@ -4865,7 +4880,7 @@ void qtbook::slotSaveConfig(void)
 
       while(thread->isRunning())
 	{
-	  if(statusBar() != NULL && isVisible())
+	  if(statusBar() != 0 && isVisible())
 	    statusBar()->showMessage("Saving the user's configuration file.");
 
 	  qapp->processEvents();
@@ -4874,7 +4889,7 @@ void qtbook::slotSaveConfig(void)
 
       if(!thread->getErrorStr().isEmpty())
 	{
-	  if(statusBar() != NULL && isVisible())
+	  if(statusBar() != 0 && isVisible())
 	    statusBar()->clearMessage();
 
 	  if(isVisible())
@@ -4892,7 +4907,7 @@ void qtbook::slotSaveConfig(void)
 	  return;
 	}
 
-      if(statusBar() != NULL && isVisible())
+      if(statusBar() != 0 && isVisible())
 	statusBar()->clearMessage();
 
       delete thread;
@@ -4923,7 +4938,7 @@ void qtbook::slotSaveConfig(void)
 void qtbook::slotShowColumns(void)
 {
   int i = 0;
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -4931,7 +4946,7 @@ void qtbook::slotShowColumns(void)
     {
       column = ui.table->horizontalHeaderItem(i);
 
-      if(column == NULL)
+      if(column == 0)
 	continue;
 
       if(column->text() == "Publisher")
@@ -5164,7 +5179,7 @@ void qtbook::slotDisplaySummary(void)
 void qtbook::slotShowNext(void)
 {
   int row = -1;
-  QTableWidget *table = NULL;
+  QTableWidget *table = 0;
 
   table = bb.table;
   row = table->currentRow();
@@ -5190,7 +5205,7 @@ void qtbook::slotShowNext(void)
 void qtbook::slotShowPrev(void)
 {
   int row = -1;
-  QTableWidget *table = NULL;
+  QTableWidget *table = 0;
 
   table = bb.table;
   row = table->currentRow();
@@ -5375,7 +5390,7 @@ void qtbook::slotConnectDB(void)
 
   selectedBranch = branches[br.branch_name->currentText()];
 
-  if(connected_bar_label != NULL)
+  if(connected_bar_label != 0)
     {
       connected_bar_label->setPixmap(QPixmap("icons.d/16x16/connected.png"));
       connected_bar_label->setToolTip("Connected");
@@ -5469,14 +5484,14 @@ void qtbook::slotDisconnect(void)
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
 
-  if(connected_bar_label != NULL)
+  if(connected_bar_label != 0)
     {
       connected_bar_label->setPixmap
 	(QPixmap("icons.d/16x16/disconnected.png"));
       connected_bar_label->setToolTip("Disconnected");
     }
 
-  if(status_bar_label != NULL)
+  if(status_bar_label != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
       status_bar_label->setToolTip("Standard User Mode");
@@ -5534,7 +5549,7 @@ void qtbook::resetAdminBrowser(void)
   QStringList list;
 
   ab.table->clear();
-  ab.table->setCurrentItem(NULL);
+  ab.table->setCurrentItem(0);
   ab.table->setColumnCount(0);
   ab.table->setRowCount(0);
   ab.table->scrollToTop();
@@ -5560,7 +5575,7 @@ void qtbook::resetMembersBrowser(void)
   QStringList list;
 
   bb.table->clear();
-  bb.table->setCurrentItem(NULL);
+  bb.table->setCurrentItem(0);
   bb.table->setColumnCount(0);
   bb.table->setRowCount(0);
   bb.table->scrollToTop();
@@ -5616,7 +5631,7 @@ void qtbook::slotPopulateMembersBrowser(void)
   QString str = "";
   QSqlQuery query(db);
   QProgressDialog progress(members_diag);
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   str = "SELECT member.memberid, "
     "member.first_name, "
@@ -5708,7 +5723,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 	    if(str == "0")
 	      str = "";
 
-	    if((item = new QTableWidgetItem()) != NULL)
+	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -5968,8 +5983,8 @@ void qtbook::slotCheckout(void)
   QString type = "";
   QString itemid = "";
   QString errorstr = "";
-  copy_editor *copyeditor = NULL;
-  qtbook_item *item = NULL;
+  copy_editor *copyeditor = 0;
+  qtbook_item *item = 0;
 
   if(row2 > -1)
     {
@@ -6012,7 +6027,7 @@ void qtbook::slotCheckout(void)
     }
   else
     {
-      if((item = new qtbook_item(row2)) != NULL)
+      if((item = new(std::nothrow) qtbook_item(row2)) != 0)
 	{
 	  quantity = misc_functions::getColumnString(ui.table, row2,
 						     "Quantity").toInt();
@@ -6041,10 +6056,11 @@ void qtbook::slotCheckout(void)
 	    QMessageBox::critical(members_diag, "BiblioteQ: User Error",
 				  "Unable to determine the selected item's "
 				  "type.");
-	  else if((copyeditor = new copy_editor(members_diag, item, true,
-						quantity, oid, itemid,
-						(QSpinBox *) NULL,
-						font(), type)) != NULL)
+	  else if((copyeditor = new(std::nothrow) copy_editor
+		   (members_diag, item, true,
+		    quantity, oid, itemid,
+		    (QSpinBox *) 0,
+		    font(), type)) != 0)
 	    copyeditor->populateCopiesEditor();
 	}
     }
@@ -6073,7 +6089,7 @@ void qtbook::slotReset(void)
   QAction *action = qobject_cast<QAction *>(sender());
   QString name = "";
 
-  if(action != NULL)
+  if(action != 0)
     {
       name = action->text();
 
@@ -6163,9 +6179,9 @@ void qtbook::addError(const QString &type, const QString &summary,
   int i = 0;
   QString str = "";
   QDateTime now = QDateTime::currentDateTime();
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
-  if(error_bar_label != NULL)
+  if(error_bar_label != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/log.png"));
       error_bar_label->setToolTip("Error Log Active");
@@ -6175,7 +6191,7 @@ void qtbook::addError(const QString &type, const QString &summary,
   er.table->setRowCount(er.table->rowCount() + 1);
 
   for(i = 0; i < 6; i++)
-    if((item = new QTableWidgetItem()) != NULL)
+    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
       {
 	if(i == 0)
 	  item->setText(now.toString("yyyy/MM/dd hh:mm:ss"));
@@ -6224,7 +6240,7 @@ void qtbook::slotResetErrorLog(void)
   list.append("File");
   list.append("Line Number");
   er.table->clear();
-  er.table->setCurrentItem(NULL);
+  er.table->setCurrentItem(0);
   er.table->setColumnCount(0);
   er.table->setRowCount(0);
   er.table->setColumnCount(0);
@@ -6236,7 +6252,7 @@ void qtbook::slotResetErrorLog(void)
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   er.table->resizeColumnsToContents();
 
-  if(error_bar_label != NULL)
+  if(error_bar_label != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
       error_bar_label->setToolTip("Empty Error Log");
@@ -6276,7 +6292,7 @@ QSqlDatabase qtbook::getDB(void)
 
 void qtbook::removeCD(qtbook_cd *cd)
 {
-  if(cd != NULL)
+  if(cd != 0)
     {
       if(cds.contains(cd->getID()))
 	cds.remove(cd->getID());
@@ -6294,7 +6310,7 @@ void qtbook::replaceCD(const QString &id, qtbook_cd *cd)
   if(cds.contains(id))
     cds.remove(id);
 
-  if(cd != NULL)
+  if(cd != 0)
     cds.insert(cd->getID(), cd);
 }
 
@@ -6304,7 +6320,7 @@ void qtbook::replaceCD(const QString &id, qtbook_cd *cd)
 
 void qtbook::removeDVD(qtbook_dvd *dvd)
 {
-  if(dvd != NULL)
+  if(dvd != 0)
     {
       if(dvds.contains(dvd->getID()))
 	dvds.remove(dvd->getID());
@@ -6322,7 +6338,7 @@ void qtbook::replaceDVD(const QString &id, qtbook_dvd *dvd)
   if(dvds.contains(id))
     dvds.remove(id);
 
-  if(dvd != NULL)
+  if(dvd != 0)
     dvds.insert(dvd->getID(), dvd);
 }
 
@@ -6332,7 +6348,7 @@ void qtbook::replaceDVD(const QString &id, qtbook_dvd *dvd)
 
 void qtbook::removeBook(qtbook_book *book)
 {
-  if(book != NULL)
+  if(book != 0)
     {
       if(books.contains(book->getID()))
 	books.remove(book->getID());
@@ -6350,7 +6366,7 @@ void qtbook::replaceBook(const QString &id, qtbook_book *book)
   if(books.contains(id))
     books.remove(id);
 
-  if(book != NULL)
+  if(book != 0)
     books.insert(book->getID(), book);
 }
 
@@ -6360,7 +6376,7 @@ void qtbook::replaceBook(const QString &id, qtbook_book *book)
 
 void qtbook::removeJournal(qtbook_journal *journal)
 {
-  if(journal != NULL)
+  if(journal != 0)
     {
       if(journals.contains(journal->getID()))
 	journals.remove(journal->getID());
@@ -6375,7 +6391,7 @@ void qtbook::removeJournal(qtbook_journal *journal)
 
 void qtbook::removeMagazine(qtbook_magazine *magazine)
 {
-  if(magazine != NULL)
+  if(magazine != 0)
     {
       if(magazines.contains(magazine->getID()))
 	magazines.remove(magazine->getID());
@@ -6393,7 +6409,7 @@ void qtbook::replaceJournal(const QString &id, qtbook_journal *journal)
   if(journals.contains(id))
     journals.remove(id);
 
-  if(journal != NULL)
+  if(journal != 0)
     journals.insert(journal->getID(), journal);
 }
 
@@ -6406,7 +6422,7 @@ void qtbook::replaceMagazine(const QString &id, qtbook_magazine *magazine)
   if(magazines.contains(id))
     magazines.remove(id);
 
-  if(magazine != NULL)
+  if(magazine != 0)
     magazines.insert(magazine->getID(), magazine);
 }
 
@@ -6416,7 +6432,7 @@ void qtbook::replaceMagazine(const QString &id, qtbook_magazine *magazine)
 
 void qtbook::removeVideoGame(qtbook_videogame *video_game)
 {
-  if(video_game != NULL)
+  if(video_game != 0)
     {
       if(video_games.contains(video_game->getID()))
 	video_games.remove(video_game->getID());
@@ -6435,7 +6451,7 @@ void qtbook::replaceVideoGame(const QString &id,
   if(video_games.contains(id))
     video_games.remove(id);
 
-  if(video_game != NULL)
+  if(video_game != 0)
     video_games.insert(video_game->getID(), video_game);
 }
 
@@ -6609,16 +6625,16 @@ QString qtbook::getAdminID(void)
 
 void qtbook::slotInsertCD(void)
 {
-  qtbook_cd *cd = NULL;
+  qtbook_cd *cd = 0;
 
-  if((cd = cds.value("insert")) == NULL)
+  if((cd = cds.value("insert")) == 0)
     {
-      if((cd = new qtbook_cd(this, languages,
-			     monetary_units, cd_locations,
-			     cd_formats, "insert", -1)) != NULL)
+      if((cd = new(std::nothrow) qtbook_cd(this, languages,
+					   monetary_units, cd_locations,
+					   cd_formats, "insert", -1)) != 0)
 	cds.insert("insert", cd);
 
-      if(cd != NULL)
+      if(cd != 0)
 	cd->insert();
     }
   else
@@ -6634,17 +6650,17 @@ void qtbook::slotInsertCD(void)
 
 void qtbook::slotInsertDVD(void)
 {
-  qtbook_dvd *dvd = NULL;
+  qtbook_dvd *dvd = 0;
 
-  if((dvd = dvds.value("insert")) == NULL)
+  if((dvd = dvds.value("insert")) == 0)
     {
-      if((dvd = new qtbook_dvd(this, languages,
-			       monetary_units, dvd_locations,
-			       dvd_ratings, dvd_aspectratios,
-			       dvd_regions, "insert", -1)) != NULL)
+      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
+					     monetary_units, dvd_locations,
+					     dvd_ratings, dvd_aspectratios,
+					     dvd_regions, "insert", -1)) != 0)
 	dvds.insert("insert", dvd);
 
-      if(dvd != NULL)
+      if(dvd != 0)
 	dvd->insert();
     }
   else
@@ -6660,16 +6676,16 @@ void qtbook::slotInsertDVD(void)
 
 void qtbook::slotInsertBook(void)
 {
-  qtbook_book *book = NULL;
+  qtbook_book *book = 0;
 
-  if((book = books.value("insert")) == NULL)
+  if((book = books.value("insert")) == 0)
     {
-      if((book = new qtbook_book(this, languages,
-				 monetary_units, book_locations,
-				 "insert", -1)) != NULL)
+      if((book = new(std::nothrow) qtbook_book(this, languages,
+					       monetary_units, book_locations,
+					       "insert", -1)) != 0)
 	books.insert("insert", book);
 
-      if(book != NULL)
+      if(book != 0)
 	book->insert();
     }
   else
@@ -6685,17 +6701,18 @@ void qtbook::slotInsertBook(void)
 
 void qtbook::slotInsertJourn(void)
 {
-  qtbook_journal *journal = NULL;
+  qtbook_journal *journal = 0;
 
-  if((journal = journals.value("insert")) == NULL)
+  if((journal = journals.value("insert")) == 0)
     {
-      if((journal = new qtbook_journal(this,
-				       languages,
-				       monetary_units, journal_locations,
-				       "insert", -1)) != NULL)
+      if((journal = new(std::nothrow) qtbook_journal
+	  (this,
+	   languages,
+	   monetary_units, journal_locations,
+	   "insert", -1)) != 0)
 	journals.insert("insert", journal);
 
-      if(journal != NULL)
+      if(journal != 0)
 	journal->insert();
     }
   else
@@ -6711,17 +6728,18 @@ void qtbook::slotInsertJourn(void)
 
 void qtbook::slotInsertMag(void)
 {
-  qtbook_magazine *magazine = NULL;
+  qtbook_magazine *magazine = 0;
 
-  if((magazine = magazines.value("insert")) == NULL)
+  if((magazine = magazines.value("insert")) == 0)
     {
-      if((magazine = new qtbook_magazine(this,
-					 languages,
-					 monetary_units, magazine_locations,
-					 "insert", -1)) != NULL)
+      if((magazine = new(std::nothrow) qtbook_magazine(this,
+						       languages,
+						       monetary_units,
+						       magazine_locations,
+						       "insert", -1)) != 0)
 	magazines.insert("insert", magazine);
 
-      if(magazine != NULL)
+      if(magazine != 0)
 	magazine->insert();
     }
   else
@@ -6737,17 +6755,18 @@ void qtbook::slotInsertMag(void)
 
 void qtbook::slotInsertVideoGame(void)
 {
-  qtbook_videogame *video_game = NULL;
+  qtbook_videogame *video_game = 0;
 
-  if((video_game = video_games.value("insert")) == NULL)
+  if((video_game = video_games.value("insert")) == 0)
     {
-      if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
-					    languages,
-					    monetary_units, vg_locations,
-					    "insert", -1)) != NULL)
+      if((video_game = new(std::nothrow) qtbook_videogame
+	  (this, vg_ratings, vg_platforms,
+	   languages,
+	   monetary_units, vg_locations,
+	   "insert", -1)) != 0)
 	video_games.insert("insert", video_game);
 
-      if(video_game != NULL)
+      if(video_game != 0)
 	video_game->insert();
     }
   else
@@ -6763,36 +6782,36 @@ void qtbook::slotInsertVideoGame(void)
 
 void qtbook::deleteItem(const QString &oid, const QString &itemType)
 {
-  QObject *item = NULL;
+  QObject *item = 0;
 
   if(itemType == "cd")
     {
-      if((item = cds.value(oid)) != NULL)
+      if((item = cds.value(oid)) != 0)
 	removeCD(qobject_cast<qtbook_cd *>(item));
     }
   else if(itemType == "dvd")
     {
-      if((item = dvds.value(oid)) != NULL)
+      if((item = dvds.value(oid)) != 0)
 	removeDVD(qobject_cast<qtbook_dvd *>(item));
     }
   else if(itemType == "book")
     {
-      if((item = books.value(oid)) != NULL)
+      if((item = books.value(oid)) != 0)
 	removeBook(qobject_cast<qtbook_book *>(item));
     }
   else if(itemType == "journal")
     {
-      if((item = journals.value(oid)) != NULL)
+      if((item = journals.value(oid)) != 0)
 	removeJournal(qobject_cast<qtbook_journal *>(item));
     }
   else if(itemType == "magazine")
     {
-      if((item = magazines.value(oid)) != NULL)
+      if((item = magazines.value(oid)) != 0)
 	removeMagazine(qobject_cast<qtbook_magazine *>(item));
     }
   else if(itemType == "videogame")
     {
-      if((item = video_games.value(oid)) != NULL)
+      if((item = video_games.value(oid)) != 0)
 	removeVideoGame(qobject_cast<qtbook_videogame *>(item));
     }
 }
@@ -6803,16 +6822,16 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
 
 void qtbook::bookSearch(const QString &field, const QString &value)
 {
-  qtbook_book *book = NULL;
+  qtbook_book *book = 0;
 
-  if((book = books.value("search")) == NULL)
+  if((book = books.value("search")) == 0)
     {
       if((book = new qtbook_book(this, languages,
 				 monetary_units, book_locations,
-				 "search", -1)) != NULL)
+				 "search", -1)) != 0)
 	books.insert("search", book);
 
-      if(book != NULL)
+      if(book != 0)
 	book->search(field, value);
     }
   else
@@ -6825,16 +6844,16 @@ void qtbook::bookSearch(const QString &field, const QString &value)
 
 void qtbook::slotBookSearch(void)
 {
-  qtbook_book *book = NULL;
+  qtbook_book *book = 0;
 
-  if((book = books.value("search")) == NULL)
+  if((book = books.value("search")) == 0)
     {
       if((book = new qtbook_book(this, languages,
 				 monetary_units, book_locations,
-				 "search", -1)) != NULL)
+				 "search", -1)) != 0)
 	books.insert("search", book);
 
-      if(book != NULL)
+      if(book != 0)
 	book->search();
     }
   else
@@ -6850,16 +6869,16 @@ void qtbook::slotBookSearch(void)
 
 void qtbook::cdSearch(const QString &field, const QString &value)
 {
-  qtbook_cd *cd = NULL;
+  qtbook_cd *cd = 0;
 
-  if((cd = cds.value("search")) == NULL)
+  if((cd = cds.value("search")) == 0)
     {
       if((cd = new qtbook_cd(this, languages,
 			     monetary_units, cd_locations, cd_formats,
-			     "search", -1)) != NULL)
+			     "search", -1)) != 0)
 	cds.insert("search", cd);
 
-      if(cd != NULL)
+      if(cd != 0)
 	cd->search(field, value);
     }
   else
@@ -6872,16 +6891,16 @@ void qtbook::cdSearch(const QString &field, const QString &value)
 
 void qtbook::slotCDSearch(void)
 {
-  qtbook_cd *cd = NULL;
+  qtbook_cd *cd = 0;
 
-  if((cd = cds.value("search")) == NULL)
+  if((cd = cds.value("search")) == 0)
     {
       if((cd = new qtbook_cd(this, languages,
 			     monetary_units, cd_locations, cd_formats,
-			     "search", -1)) != NULL)
+			     "search", -1)) != 0)
 	cds.insert("search", cd);
 
-      if(cd != NULL)
+      if(cd != 0)
 	cd->search();
     }
   else
@@ -6897,17 +6916,17 @@ void qtbook::slotCDSearch(void)
 
 void qtbook::dvdSearch(const QString &field, const QString &value)
 {
-  qtbook_dvd *dvd = NULL;
+  qtbook_dvd *dvd = 0;
 
-  if((dvd = dvds.value("search")) == NULL)
+  if((dvd = dvds.value("search")) == 0)
     {
       if((dvd = new qtbook_dvd(this, languages,
 			       monetary_units, dvd_locations, dvd_ratings,
 			       dvd_aspectratios, dvd_regions,
-			       "search", -1)) != NULL)
+			       "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
-      if(dvd != NULL)
+      if(dvd != 0)
 	dvd->search(field, value);
     }
   else
@@ -6920,17 +6939,17 @@ void qtbook::dvdSearch(const QString &field, const QString &value)
 
 void qtbook::slotDVDSearch(void)
 {
-  qtbook_dvd *dvd = NULL;
+  qtbook_dvd *dvd = 0;
 
-  if((dvd = dvds.value("search")) == NULL)
+  if((dvd = dvds.value("search")) == 0)
     {
       if((dvd = new qtbook_dvd(this, languages,
 			       monetary_units, dvd_locations, dvd_ratings,
 			       dvd_aspectratios, dvd_regions,
-			       "search", -1)) != NULL)
+			       "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
-      if(dvd != NULL)
+      if(dvd != 0)
 	dvd->search();
     }
   else
@@ -6946,16 +6965,16 @@ void qtbook::slotDVDSearch(void)
 
 void qtbook::journSearch(const QString &field, const QString &value)
 {
-  qtbook_journal *journal = NULL;
+  qtbook_journal *journal = 0;
 
-  if((journal = journals.value("search")) == NULL)
+  if((journal = journals.value("search")) == 0)
     {
       if((journal = new qtbook_journal(this, languages,
 				       monetary_units, journal_locations,
-				       "search", -1)) != NULL)
+				       "search", -1)) != 0)
 	journals.insert("search", journal);
 
-      if(journal != NULL)
+      if(journal != 0)
 	journal->search(field, value);
     }
   else
@@ -6968,16 +6987,16 @@ void qtbook::journSearch(const QString &field, const QString &value)
 
 void qtbook::slotJournSearch(void)
 {
-  qtbook_journal *journal = NULL;
+  qtbook_journal *journal = 0;
 
-  if((journal = journals.value("search")) == NULL)
+  if((journal = journals.value("search")) == 0)
     {
       if((journal = new qtbook_journal(this, languages,
 				       monetary_units, journal_locations,
-				       "search", -1)) != NULL)
+				       "search", -1)) != 0)
 	journals.insert("search", journal);
 
-      if(journal != NULL)
+      if(journal != 0)
 	journal->search();
     }
   else
@@ -6993,16 +7012,16 @@ void qtbook::slotJournSearch(void)
 
 void qtbook::magSearch(const QString &field, const QString &value)
 {
-  qtbook_magazine *magazine = NULL;
+  qtbook_magazine *magazine = 0;
 
-  if((magazine = magazines.value("search")) == NULL)
+  if((magazine = magazines.value("search")) == 0)
     {
       if((magazine = new qtbook_magazine(this, languages,
 					 monetary_units, magazine_locations,
-					 "search", -1)) != NULL)
+					 "search", -1)) != 0)
 	magazines.insert("search", magazine);
 
-      if(magazine != NULL)
+      if(magazine != 0)
 	magazine->search(field, value);
     }
   else
@@ -7015,16 +7034,16 @@ void qtbook::magSearch(const QString &field, const QString &value)
 
 void qtbook::slotMagSearch(void)
 {
-  qtbook_magazine *magazine = NULL;
+  qtbook_magazine *magazine = 0;
 
-  if((magazine = magazines.value("search")) == NULL)
+  if((magazine = magazines.value("search")) == 0)
     {
       if((magazine = new qtbook_magazine(this, languages,
 					 monetary_units, magazine_locations,
-					 "search", -1)) != NULL)
+					 "search", -1)) != 0)
 	magazines.insert("search", magazine);
 
-      if(magazine != NULL)
+      if(magazine != 0)
 	magazine->search();
     }
   else
@@ -7040,17 +7059,17 @@ void qtbook::slotMagSearch(void)
 
 void qtbook::vgSearch(const QString &field, const QString &value)
 {
-  qtbook_videogame *video_game = NULL;
+  qtbook_videogame *video_game = 0;
 
-  if((video_game = video_games.value("search")) == NULL)
+  if((video_game = video_games.value("search")) == 0)
     {
       if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
 					    languages,
 					    monetary_units, vg_locations,
-					    "search", -1)) != NULL)
+					    "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
-      if(video_game != NULL)
+      if(video_game != 0)
 	video_game->search(field, value);
     }
   else
@@ -7063,17 +7082,17 @@ void qtbook::vgSearch(const QString &field, const QString &value)
 
 void qtbook::slotVideoGameSearch(void)
 {
-  qtbook_videogame *video_game = NULL;
+  qtbook_videogame *video_game = 0;
 
-  if((video_game = video_games.value("search")) == NULL)
+  if((video_game = video_games.value("search")) == 0)
     {
       if((video_game = new qtbook_videogame(this, vg_ratings, vg_platforms,
 					    languages,
 					    monetary_units, vg_locations,
-					    "search", -1)) != NULL)
+					    "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
-      if(video_game != NULL)
+      if(video_game != 0)
 	video_game->search();
     }
   else
@@ -7090,36 +7109,36 @@ void qtbook::slotVideoGameSearch(void)
 void qtbook::updateRows(const QString &oid, const int row,
 			const QString &itemType)
 {
-  QObject *item = NULL;
+  QObject *item = 0;
 
   if(itemType == "cd")
     {
-      if((item = cds.value(oid)) != NULL)
+      if((item = cds.value(oid)) != 0)
 	(qobject_cast<qtbook_cd *>(item))->updateRow(row);
     }
   else if(itemType == "dvd")
     {
-      if((item = dvds.value(oid)) != NULL)
+      if((item = dvds.value(oid)) != 0)
 	(qobject_cast<qtbook_dvd *>(item))->updateRow(row);
     }
   else if(itemType == "book")
     {
-      if((item = books.value(oid)) != NULL)
+      if((item = books.value(oid)) != 0)
 	(qobject_cast<qtbook_book *>(item))->updateRow(row);
     }
   else if(itemType == "journal")
     {
-      if((item = journals.value(oid)) != NULL)
+      if((item = journals.value(oid)) != 0)
 	(qobject_cast<qtbook_journal *>(item))->updateRow(row);
     }
   else if(itemType == "magazine")
     {
-      if((item = magazines.value(oid)) != NULL)
+      if((item = magazines.value(oid)) != 0)
 	(qobject_cast<qtbook_magazine *>(item))->updateRow(row);
     }
   else if(itemType == "videogame")
     {
-      if((item = video_games.value(oid)) != NULL)
+      if((item = video_games.value(oid)) != 0)
 	(qobject_cast<qtbook_videogame *>(item))->updateRow(row);
     }
 }
@@ -7340,8 +7359,8 @@ void qtbook::slotShowCustomQuery(void)
   QSqlField field;
   QSqlRecord rec;
   QStringList list;
-  QTreeWidgetItem *item1 = NULL;
-  QTreeWidgetItem *item2 = NULL;
+  QTreeWidgetItem *item1 = 0;
+  QTreeWidgetItem *item2 = 0;
 
   if(cq.tables_t->columnCount() == 0)
     {
@@ -7368,14 +7387,14 @@ void qtbook::slotShowCustomQuery(void)
 
 
       for(i = 0; i < list.size(); i++)
-	if((item1 = new QTreeWidgetItem(cq.tables_t)) != NULL)
+	if((item1 = new QTreeWidgetItem(cq.tables_t)) != 0)
 	  {
 	    item1->setText(0, list[i]);
 	    rec = getDB().record(list[i]);
 
 	    for(j = 0; j < rec.count(); j++)
 	      {
-		if((item2 = new QTreeWidgetItem(item1)) == NULL)
+		if((item2 = new QTreeWidgetItem(item1)) == 0)
 		  {
 		    addError(QString("Memory Error"),
 			     QString("Unable to allocate "
@@ -7664,7 +7683,7 @@ void qtbook::slotShowHistory(void)
   QSqlQuery query(db);
   QStringList list;
   QProgressDialog progress(history_diag);
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   if(members_diag->isVisible())
     if(row < 0)
@@ -7762,7 +7781,7 @@ void qtbook::slotShowHistory(void)
 
   qapp->restoreOverrideCursor();
   history.table->clear();
-  history.table->setCurrentItem(NULL);
+  history.table->setCurrentItem(0);
   history.table->setColumnCount(0);
   history.table->setRowCount(0);
   list.clear();
@@ -7816,7 +7835,7 @@ void qtbook::slotShowHistory(void)
 	  {
 	    str = query.value(j).toString();
 
-	    if((item = new QTableWidgetItem()) != NULL)
+	    if((item = new QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
 
@@ -8122,15 +8141,15 @@ void qtbook::slotShowAdminDialog(void)
 void qtbook::slotAddAdmin(void)
 {
   int i = 0;
-  QCheckBox *checkBox = NULL;
-  QTableWidgetItem *item = NULL;
+  QCheckBox *checkBox = 0;
+  QTableWidgetItem *item = 0;
 
   ab.table->setRowCount(ab.table->rowCount() + 1);
 
   for(i = 0; i < ab.table->columnCount(); i++)
     if(i == 0)
       {
-	if((item = new QTableWidgetItem()) != NULL)
+	if((item = new QTableWidgetItem()) != 0)
 	  {
 	    item->setFlags(item->flags() | Qt::ItemIsEditable);
 	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
@@ -8144,7 +8163,7 @@ void qtbook::slotAddAdmin(void)
       }
     else
       {
-	if((checkBox = new QCheckBox()) == NULL)
+	if((checkBox = new QCheckBox()) == 0)
 	  addError(QString("Memory Error"),
 		   QString("Unable to allocate memory for the "
 			   "\"checkBox\" object. "
@@ -8242,11 +8261,11 @@ void qtbook::slotRefreshAdminList(void)
   QString str = "";
   QString querystr = "";
   QString columnname = "";
-  QCheckBox *checkBox = NULL;
+  QCheckBox *checkBox = 0;
   QSqlQuery query(db);
   QStringList list;
   QProgressDialog progress(admin_diag);
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   querystr = "SELECT username, roles FROM admin ORDER BY username";
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -8290,7 +8309,7 @@ void qtbook::slotRefreshAdminList(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	if((item = new QTableWidgetItem()) != NULL)
+	if((item = new QTableWidgetItem()) != 0)
 	  {
 	    str = query.value(0).toString();
 	    item->setText(str);
@@ -8305,7 +8324,7 @@ void qtbook::slotRefreshAdminList(void)
 	    for(j = 1; j < ab.table->columnCount(); j++)
 	      if(query.value(0).toString() == getAdminID() && j > 1)
 		{
-		  if((item = new QTableWidgetItem()) != NULL)
+		  if((item = new QTableWidgetItem()) != 0)
 		    {
 		      item->setFlags(Qt::ItemIsEnabled |
 				     Qt::ItemIsSelectable);
@@ -8318,7 +8337,7 @@ void qtbook::slotRefreshAdminList(void)
 				     "This is a serious problem!"),
 			     QString(""), __FILE__, __LINE__);
 		}
-	      else if((checkBox = new QCheckBox()) != NULL)
+	      else if((checkBox = new QCheckBox()) != 0)
 		{
 		  columnname = ab.table->horizontalHeaderItem
 		    (j)->text().toLower();
@@ -8372,7 +8391,7 @@ void qtbook::slotSaveAdministrators(void)
   QString adminStr = "";
   QString errorstr = "";
   QString querystr = "";
-  QCheckBox *checkBox = NULL;
+  QCheckBox *checkBox = 0;
   QSqlQuery query(qmain->getDB());
   QStringList tmplist;
   QProgressDialog progress(admin_diag);

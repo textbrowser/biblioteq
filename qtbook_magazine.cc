@@ -28,25 +28,25 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 				 const int rowArg):
   QMainWindow()
 {
-  QMenu *menu = NULL;
+  QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
-  QValidator *validator1 = NULL;
-  QGraphicsScene *scene1 = NULL;
-  QGraphicsScene *scene2 = NULL;
+  QValidator *validator1 = 0;
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == NULL)
+  if((menu = new QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx, this)) == NULL)
+  if((validator1 = new QRegExpValidator(rx, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == NULL)
+  if((scene1 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == NULL)
+  if((scene2 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  thread = NULL;
+  thread = 0;
   oid = oidArg;
   row = rowArg;
   subType = "Magazine";
@@ -150,7 +150,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 
 qtbook_magazine::~qtbook_magazine()
 {
-  if(thread != NULL && thread->isRunning())
+  if(thread != 0 && thread->isRunning())
     qapp->restoreOverrideCursor();
 }
 
@@ -167,7 +167,7 @@ void qtbook_magazine::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(windowTitle().contains("Create") ||
      windowTitle().contains("Modify"))
@@ -574,7 +574,7 @@ void qtbook_magazine::slotGo(void)
 		    {
 		      column = qmain->getUI().table->horizontalHeaderItem(i);
 
-		      if(column == NULL)
+		      if(column == 0)
 			continue;
 
 		      if(column->text() == "ISSN" ||
@@ -1194,7 +1194,7 @@ void qtbook_magazine::slotReset(void)
   QAction *action = qobject_cast<QAction *>(sender());
   QString name = "";
 
-  if(action != NULL)
+  if(action != 0)
     {
       name = action->text();
 
@@ -1385,7 +1385,7 @@ void qtbook_magazine::slotCancel(void)
 
 void qtbook_magazine::slotPopulateCopiesEditor(void)
 {
-  copy_editor *copyeditor = NULL;
+  copy_editor *copyeditor = 0;
 
   if((copyeditor = new copy_editor
       (qobject_cast<QWidget *>(this),
@@ -1393,7 +1393,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        false,
        ma.quantity->value(), oid,
        ma.id->text(),
-       ma.quantity, font(), subType)) != NULL)
+       ma.quantity, font(), subType)) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1404,7 +1404,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
 void qtbook_magazine::slotShowUsers(void)
 {
   int state = 0;
-  borrowers_editor *borrowerseditor = NULL;
+  borrowers_editor *borrowerseditor = 0;
 
   if(!ma.okButton->isHidden())
     state = qtbook::EDITABLE;
@@ -1414,7 +1414,7 @@ void qtbook_magazine::slotShowUsers(void)
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        ma.quantity->value(), oid, ma.id->text(), font(), subType,
-       state)) != NULL)
+       state)) != 0)
     borrowerseditor->showUsers();
 }
 
@@ -1428,10 +1428,10 @@ void qtbook_magazine::slotQuery(void)
   QString etype = "";
   QString errorstr = "";
   QString searchstr = "";
-  locresults *dialog = NULL;
+  locresults *dialog = 0;
   QStringList list;
 
-  if(thread != NULL)
+  if(thread != 0)
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error", 
@@ -1449,7 +1449,7 @@ void qtbook_magazine::slotQuery(void)
       return;
     }
 
-  if((thread = new generic_thread()) != NULL)
+  if((thread = new generic_thread()) != 0)
     {
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
@@ -1491,7 +1491,7 @@ void qtbook_magazine::slotQuery(void)
 	      */
 
 	      if((dialog = new locresults((QWidget *) this, list,
-					  this, font())) == NULL)
+					  this, font())) == 0)
 		{
 		  qmain->addError
 		    (QString("Memory Error"),
@@ -1515,7 +1515,7 @@ void qtbook_magazine::slotQuery(void)
 	etype = thread->getEType();
 
       delete thread;
-      thread = NULL;
+      thread = 0;
     }
   else
     {
@@ -1703,7 +1703,7 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 
 bool qtbook_magazine::isBusy(void)
 {
-  if(thread != NULL)
+  if(thread != 0)
     return true;
   else
     return false;

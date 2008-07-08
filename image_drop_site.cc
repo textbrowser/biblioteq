@@ -24,7 +24,7 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
   QString filename = "";
 
-  if(event == NULL)
+  if(event == 0)
     return;
 
 #if defined(Q_OS_WIN)
@@ -54,7 +54,7 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
   QString filename = "";
 
-  if(event == NULL)
+  if(event == 0)
     return;
 
 #if defined(Q_OS_WIN)
@@ -84,7 +84,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
 {
   QPixmap pixmap;
 
-  if(event == NULL)
+  if(event == 0)
     return;
 
 #if defined(Q_OS_WIN)
@@ -135,7 +135,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
 void image_drop_site::keyPressEvent(QKeyEvent *event)
 {
-  if(event == NULL)
+  if(event == 0)
     return;
 
   if((event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) &&

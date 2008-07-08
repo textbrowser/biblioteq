@@ -828,14 +828,14 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 {
   int i = 0;
   QString str = "";
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(row >= 0 && row < table->rowCount())
     for(i = 0; i < table->columnCount(); i++)
       {
 	column = table->horizontalHeaderItem(i);
 
-	if(column == NULL || table->item(row, i) == NULL)
+	if(column == 0 || table->item(row, i) == 0)
 	  continue;
 
 	if(column->text().toLower() == columnName.toLower())
@@ -863,13 +863,13 @@ int misc_functions::getColumnNumber(const QTableWidget *table,
 {
   int i = 0;
   int num = -1;
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   for(i = 0; i < table->columnCount(); i++)
     {
       column = table->horizontalHeaderItem(i);
 
-      if(column == NULL)
+      if(column == 0)
 	continue;
 
       if(column->text().toLower() == columnName.toLower())
@@ -898,7 +898,7 @@ void misc_functions::updateColumn(QTableWidget *table,
 {
   int i = 0;
   bool sortingEnabled = false;
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(row >= 0 && row < table->rowCount())
     {
@@ -909,7 +909,7 @@ void misc_functions::updateColumn(QTableWidget *table,
 	{
 	  column = table->horizontalHeaderItem(i);
 
-	  if(column == NULL)
+	  if(column == 0)
 	    continue;
 
 	  if(column->text().toLower() == columnName.toLower())

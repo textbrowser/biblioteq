@@ -25,23 +25,23 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 				   const int rowArg):
   QMainWindow()
 {
-  QMenu *menu = NULL;
+  QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
 	     "[0-9]");
-  QValidator *validator1 = NULL;
-  QGraphicsScene *scene1 = NULL;
-  QGraphicsScene *scene2 = NULL;
+  QValidator *validator1 = 0;
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == NULL)
+  if((menu = new QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx, this)) == NULL)
+  if((validator1 = new QRegExpValidator(rx, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == NULL)
+  if((scene1 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == NULL)
+  if((scene2 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   oid = oidArg;
@@ -156,7 +156,7 @@ void qtbook_videogame::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(windowTitle().contains("Create") ||
      windowTitle().contains("Modify"))
@@ -525,7 +525,7 @@ void qtbook_videogame::slotGo(void)
 		    {
 		      column = qmain->getUI().table->horizontalHeaderItem(i);
 
-		      if(column == NULL)
+		      if(column == 0)
 			continue;
 
 		      if(column->text() == "UPC" ||
@@ -1125,7 +1125,7 @@ void qtbook_videogame::slotReset(void)
   QAction *action = qobject_cast<QAction *>(sender());
   QString name = "";
 
-  if(action != NULL)
+  if(action != 0)
     {
       name = action->text();
 
@@ -1295,14 +1295,14 @@ void qtbook_videogame::slotCancel(void)
 
 void qtbook_videogame::slotPopulateCopiesEditor(void)
 {
-  copy_editor *copyeditor = NULL;
+  copy_editor *copyeditor = 0;
 
   if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
 				   (qtbook_item *) this,
 				   false,
 				   vg.quantity->value(), oid,
 				   vg.id->text(),
-				   vg.quantity, font(), "Video Game")) != NULL)
+				   vg.quantity, font(), "Video Game")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1313,7 +1313,7 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
 void qtbook_videogame::slotShowUsers(void)
 {
   int state = 0;
-  borrowers_editor *borrowerseditor = NULL;
+  borrowers_editor *borrowerseditor = 0;
 
   if(!vg.okButton->isHidden())
     state = qtbook::EDITABLE;
@@ -1323,7 +1323,7 @@ void qtbook_videogame::slotShowUsers(void)
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        vg.quantity->value(), oid, vg.id->text(), font(),
-       "Video Game", state)) != NULL)
+       "Video Game", state)) != 0)
     borrowerseditor->showUsers();
 }
 

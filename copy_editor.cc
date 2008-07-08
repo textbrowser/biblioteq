@@ -84,10 +84,10 @@ void copy_editor::slotDeleteCopy(void)
 
   if(isCheckedOut)
     {
-      if(cb.table->item(row, 1) != NULL)
+      if(cb.table->item(row, 1) != 0)
 	cb.table->item(row, 1)->setFlags(0);
 
-      if(cb.table->item(row, 2) != NULL)
+      if(cb.table->item(row, 2) != 0)
 	{
 	  cb.table->item(row, 2)->setFlags(0);
 	  cb.table->item(row, 2)->setText("0");
@@ -128,7 +128,7 @@ void copy_editor::populateCopiesEditor(void)
   QString querystr = "";
   QSqlQuery query(qmain->getDB());
   QStringList list;
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   cb.dueDateFrame->setVisible(showForLending);
   cb.deleteButton->setVisible(!showForLending);
@@ -191,7 +191,7 @@ void copy_editor::populateCopiesEditor(void)
   for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < cb.table->columnCount(); j++)
-	if((item = new QTableWidgetItem()) != NULL)
+	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
 	    if(showForLending)
 	      item->setFlags(0);
@@ -294,7 +294,7 @@ void copy_editor::populateCopiesEditor(void)
 	  row = query.value(4).toInt() - 1;
 
 	  for(j = 0; j < cb.table->columnCount(); j++)
-	    if(cb.table->item(row, j) != NULL)
+	    if(cb.table->item(row, j) != 0)
 	      {
 		str = query.value(j).toString();
 
@@ -356,7 +356,7 @@ void copy_editor::slotCheckoutCopy(void)
   QString availability = "";
   QSqlQuery query(qmain->getDB());
 
-  if(copyrow < 0 || cb.table->item(copyrow, 1) == NULL)
+  if(copyrow < 0 || cb.table->item(copyrow, 1) == 0)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "Please select a copy to reserve.");
@@ -533,15 +533,15 @@ void copy_editor::slotSaveCopies(void)
   QString errormsg = "";
   QString errorstr = "";
   QString availability = "";
-  copy_class *copy = NULL;
+  copy_class *copy = 0;
   QStringList duplicates;
-  QTableWidgetItem *item1 = NULL;
-  QTableWidgetItem *item2 = NULL;
+  QTableWidgetItem *item1 = 0;
+  QTableWidgetItem *item2 = 0;
 
   cb.table->setFocus();
 
   for(i = 0; i < cb.table->rowCount(); i++)
-    if(cb.table->item(i, 1) != NULL &&
+    if(cb.table->item(i, 1) != 0 &&
        cb.table->item(i, 1)->text().trimmed().isEmpty())
       {
 	errormsg = QString("Row number %1 contains an empty Barcode.").arg
@@ -550,7 +550,7 @@ void copy_editor::slotSaveCopies(void)
 	duplicates.clear();
 	return;
       }
-    else if(cb.table->item(i, 1) != NULL)
+    else if(cb.table->item(i, 1) != 0)
       {
 	if(duplicates.contains(cb.table->item(i, 1)->text()))
 	  {
@@ -589,11 +589,11 @@ void copy_editor::slotSaveCopies(void)
       item1 = cb.table->item(i, 1);
       item2 = cb.table->item(i, 3);
 
-      if(item1 == NULL || item2 == NULL)
+      if(item1 == 0 || item2 == 0)
 	continue;
 
-      if((copy = new copy_class(item1->text().trimmed(),
-				item2->text())) != NULL)
+      if((copy = new(std::nothrow) copy_class(item1->text().trimmed(),
+					      item2->text())) != 0)
 	copies.append(copy);
       else
 	qmain->addError
@@ -675,7 +675,7 @@ QString copy_editor::saveCopies(void)
   int i = 0;
   QString lastError = "";
   QSqlQuery query(qmain->getDB());
-  copy_class *copy = NULL;
+  copy_class *copy = 0;
   QProgressDialog progress(this);
 
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "

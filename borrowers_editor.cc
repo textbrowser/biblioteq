@@ -79,15 +79,15 @@ void borrowers_editor::showUsers(void)
   QString str = "";
   QString tmpStr = "";
   QString querystr = "";
-  QDateEdit *dateEdit = NULL;
+  QDateEdit *dateEdit = 0;
   QSqlQuery query(qmain->getDB());
   QStringList list;
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
   bd.table->clear();
-  bd.table->setCurrentItem(NULL);
+  bd.table->setCurrentItem(0);
   bd.table->setColumnCount(0);
   bd.table->setRowCount(0);
 
@@ -144,7 +144,7 @@ void borrowers_editor::showUsers(void)
       for(j = 0; j < bd.table->columnCount(); j++)
 	if(j == 6 && state == qtbook::EDITABLE)
 	  {
-	    if((dateEdit = new QDateEdit()) != NULL)
+	    if((dateEdit = new(std::nothrow) QDateEdit()) != 0)
 	      {
 		dateEdit->setDisplayFormat("MM/dd/yyyy");
 		dateEdit->setDate
@@ -159,7 +159,7 @@ void borrowers_editor::showUsers(void)
 				      "This is a serious problem!"),
 			      QString(""), __FILE__, __LINE__);
 	  }
-	else if((item = new QTableWidgetItem()) != NULL)
+	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
 	    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
@@ -262,7 +262,7 @@ void borrowers_editor::showUsers(void)
 
 	    if(j == 6 && state == qtbook::EDITABLE)
 	      {
-		if(bd.table->cellWidget(row, j) != NULL)
+		if(bd.table->cellWidget(row, j) != 0)
 		  {
 		    qobject_cast<QDateEdit *>(bd.table->cellWidget
 					      (row, j))->setDate
@@ -273,7 +273,7 @@ void borrowers_editor::showUsers(void)
 					 "MM/dd/yyyy").addDays(21));
 		  }
 	      }
-	    else if(bd.table->item(row, j) != NULL)
+	    else if(bd.table->item(row, j) != 0)
 	      bd.table->item(row, j)->setText(str);
 	    else
 	      terminate = true;
@@ -416,7 +416,7 @@ void borrowers_editor::slotSave(void)
   bool error = false;
   QDate now = QDate::currentDate();
   QString oid = "";
-  QDateEdit *dueDate = NULL;
+  QDateEdit *dueDate = 0;
   QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
 

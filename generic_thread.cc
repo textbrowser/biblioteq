@@ -135,7 +135,7 @@ void generic_thread::run(void)
     case QUERY_LIBRARY_OF_CONGRESS:
       {
 	size_t i = 0;
-	const char *rec = NULL;
+	const char *rec = 0;
 	ZOOM_resultset r;
 	ZOOM_connection z = ZOOM_connection_new
 	  ((const char *) (qmain->getLOCHash().value("Address") + ":" +
@@ -148,7 +148,7 @@ void generic_thread::run(void)
 	  (z, (const char *) LOCSearchStr.toStdString().data());
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(r, i),
-				     "render", NULL)) != NULL)
+				     "render", 0)) != 0)
 	  {
 	    i += 1;
 	    LOCResults.append(rec);

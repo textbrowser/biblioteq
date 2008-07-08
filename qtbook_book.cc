@@ -22,31 +22,31 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 			 const int rowArg):
   QMainWindow()
 {
-  QMenu *menu = NULL;
+  QMenu *menu = 0;
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9X]");
   QRegExp rx2("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
 	      "[0-9][0-9][0-9]");
-  QValidator *validator1 = NULL;
-  QValidator *validator2 = NULL;
-  QGraphicsScene *scene1 = NULL;
-  QGraphicsScene *scene2 = NULL;
+  QValidator *validator1 = 0;
+  QValidator *validator2 = 0;
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == NULL)
+  if((menu = new QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx1, this)) == NULL)
+  if((validator1 = new QRegExpValidator(rx1, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator2 = new QRegExpValidator(rx2, this)) == NULL)
+  if((validator2 = new QRegExpValidator(rx2, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == NULL)
+  if((scene1 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == NULL)
+  if((scene2 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  thread = NULL;
+  thread = 0;
   parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
@@ -157,7 +157,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
 qtbook_book::~qtbook_book()
 {
-  if(thread != NULL && thread->isRunning())
+  if(thread != 0 && thread->isRunning())
     qapp->restoreOverrideCursor();
 }
 
@@ -174,7 +174,7 @@ void qtbook_book::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(windowTitle().contains("Create") ||
      windowTitle().contains("Modify"))
@@ -596,7 +596,7 @@ void qtbook_book::slotGo(void)
 		    {
 		      column = qmain->getUI().table->horizontalHeaderItem(i);
 
-		      if(column == NULL)
+		      if(column == 0)
 			continue;
 
 		      if(column->text() == "ISBN-10" ||
@@ -1228,7 +1228,7 @@ void qtbook_book::slotReset(void)
   QAction *action = qobject_cast<QAction *>(sender());
   QString name = "";
 
-  if(action != NULL)
+  if(action != 0)
     {
       name = action->text();
 
@@ -1494,14 +1494,14 @@ void qtbook_book::slotCancel(void)
 
 void qtbook_book::slotPopulateCopiesEditor(void)
 {
-  copy_editor *copyeditor = NULL;
+  copy_editor *copyeditor = 0;
 
   if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
 				   (qtbook_item *) this,
 				   false,
 				   id.quantity->value(), oid,
 				   id.id->text(),
-				   id.quantity, font(), "Book")) != NULL)
+				   id.quantity, font(), "Book")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1512,7 +1512,7 @@ void qtbook_book::slotPopulateCopiesEditor(void)
 void qtbook_book::slotShowUsers(void)
 {
   int state = 0;
-  borrowers_editor *borrowerseditor = NULL;
+  borrowers_editor *borrowerseditor = 0;
 
   if(!id.okButton->isHidden())
     state = qtbook::EDITABLE;
@@ -1522,7 +1522,7 @@ void qtbook_book::slotShowUsers(void)
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        id.quantity->value(), oid, id.id->text(), font(), "Book",
-       state)) != NULL)
+       state)) != 0)
     borrowerseditor->showUsers();
 }
 
@@ -1543,7 +1543,7 @@ void qtbook_book::slotQuery(void)
   QStringList tmplist;
   QStringList removeList;
 
-  if(thread != NULL)
+  if(thread != 0)
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error", 
@@ -1562,7 +1562,7 @@ void qtbook_book::slotQuery(void)
       return;
     }
 
-  if((thread = new generic_thread()) != NULL)
+  if((thread = new generic_thread()) != 0)
     {
       if(!id.id->text().isEmpty())
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
@@ -1854,7 +1854,7 @@ void qtbook_book::slotQuery(void)
 	etype = thread->getEType();
 
       delete thread;
-      thread = NULL;
+      thread = 0;
     }
   else
     {
@@ -1918,7 +1918,7 @@ void qtbook_book::slotPrint(void)
 
 bool qtbook_book::isBusy(void)
 {
-  if(thread != NULL)
+  if(thread != 0)
     return true;
   else
     return false;

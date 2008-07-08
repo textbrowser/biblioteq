@@ -223,7 +223,7 @@ void main_table::resetTable(const QString &type, const QString &roles)
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   resizeColumnsToContents();
-  setCurrentItem(NULL);
+  setCurrentItem(0);
 }
 
 /*

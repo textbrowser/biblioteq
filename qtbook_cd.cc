@@ -24,25 +24,25 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 		     const int rowArg):
   QMainWindow()
 {
-  QMenu *menu = NULL;
+  QMenu *menu = 0;
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
-  QValidator *validator1 = NULL;
-  QGraphicsScene *scene1 = NULL;
-  QGraphicsScene *scene2 = NULL;
+  QValidator *validator1 = 0;
+  QGraphicsScene *scene1 = 0;
+  QGraphicsScene *scene2 = 0;
 
-  if((menu = new QMenu()) == NULL)
+  if((menu = new QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((tracks_diag = new QDialog(this)) == NULL)
+  if((tracks_diag = new QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((validator1 = new QRegExpValidator(rx1, this)) == NULL)
+  if((validator1 = new QRegExpValidator(rx1, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new QGraphicsScene()) == NULL)
+  if((scene1 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new QGraphicsScene()) == NULL)
+  if((scene2 = new QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   oid = oidArg;
@@ -175,7 +175,7 @@ void qtbook_cd::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = NULL;
+  QTableWidgetItem *column = 0;
 
   if(windowTitle().contains("Create") ||
      windowTitle().contains("Modify"))
@@ -594,7 +594,7 @@ void qtbook_cd::slotGo(void)
 		    {
 		      column = qmain->getUI().table->horizontalHeaderItem(i);
 
-		      if(column == NULL)
+		      if(column == 0)
 			continue;
 
 		      if(column->text() == "Catalog Number" ||
@@ -1259,14 +1259,14 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   int j = 0;
   QString str = "";
   QString querystr = "";
-  QSpinBox *trackEdit = NULL;
-  QComboBox *comboBox = NULL;
+  QSpinBox *trackEdit = 0;
+  QComboBox *comboBox = 0;
   QSqlQuery query(qmain->getDB());
-  QTimeEdit * timeEdit = NULL;
+  QTimeEdit * timeEdit = 0;
   QStringList list;
   QStringList comboBoxList;
   QProgressDialog progress(tracks_diag);
-  QTableWidgetItem *item = NULL;
+  QTableWidgetItem *item = 0;
 
   querystr = "SELECT albumnum, songnum, songtitle, runtime "
     "FROM cd_songs WHERE item_oid = ";
@@ -1294,7 +1294,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
     comboBoxList.append(QString::number(i));
 
   trd.table->clear();
-  trd.table->setCurrentItem(NULL);
+  trd.table->setCurrentItem(0);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
   list.append("Album Number");
@@ -1344,7 +1344,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 
 	    if(j == 0)
 	      {
-		if((comboBox = new QComboBox()) != NULL)
+		if((comboBox = new QComboBox()) != 0)
 		  {
 		    comboBox->addItems(comboBoxList);
 		    comboBox->setCurrentIndex(comboBox->findText(str));
@@ -1359,7 +1359,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      }
 	    else if(j == 1)
 	      {
-		if((trackEdit = new QSpinBox()) != NULL)
+		if((trackEdit = new QSpinBox()) != 0)
 		  {
 		    trackEdit->setMinimum(1);
 		    trackEdit->setValue(str.toInt());
@@ -1374,7 +1374,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      }
 	    else if(j == 3)
 	      {
-		if((timeEdit = new QTimeEdit()) != NULL)
+		if((timeEdit = new QTimeEdit()) != 0)
 		  {
 		    timeEdit->setDisplayFormat("hh:mm:ss");
 		    timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
@@ -1387,7 +1387,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 					  "This is a serious problem!"),
 				  QString(""), __FILE__, __LINE__);
 	      }
-	    else if((item = new QTableWidgetItem()) != NULL)
+	    else if((item = new QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
@@ -1423,7 +1423,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 void qtbook_cd::slotCloseTracksBrowser(void)
 {
   trd.table->clear();
-  trd.table->setCurrentItem(NULL);
+  trd.table->setCurrentItem(0);
   trd.table->setRowCount(0);
   tracks_diag->close();
 }
@@ -1437,11 +1437,11 @@ void qtbook_cd::slotInsertTrack(void)
   int i = 0;
   int trow = trd.table->currentRow();
   QString str = "";
-  QSpinBox *trackEdit = NULL;
+  QSpinBox *trackEdit = 0;
   QStringList list;
-  QComboBox *comboBox = NULL;
-  QTimeEdit *timeEdit = NULL;
-  QTableWidgetItem *item = NULL;
+  QComboBox *comboBox = 0;
+  QTimeEdit *timeEdit = 0;
+  QTableWidgetItem *item = 0;
 
   if(trow < 0)
     trow = trd.table->rowCount();
@@ -1463,7 +1463,7 @@ void qtbook_cd::slotInsertTrack(void)
 
       if(i == 0)
 	{
-	  if((comboBox = new QComboBox()) != NULL)
+	  if((comboBox = new QComboBox()) != 0)
 	    {
 	      comboBox->addItems(list);
 	      trd.table->setCellWidget(trow, i, comboBox);
@@ -1477,7 +1477,7 @@ void qtbook_cd::slotInsertTrack(void)
 	}
       else if(i == 1)
 	{
-	  if((trackEdit = new QSpinBox()) != NULL)
+	  if((trackEdit = new QSpinBox()) != 0)
 	    {
 	      trackEdit->setMinimum(1);
 	      trackEdit->setValue(1);
@@ -1492,7 +1492,7 @@ void qtbook_cd::slotInsertTrack(void)
 	}
       else if(i == 3)
 	{
-	  if((timeEdit = new QTimeEdit()) != NULL)
+	  if((timeEdit = new QTimeEdit()) != 0)
 	    {
 	      timeEdit->setDisplayFormat("hh:mm:ss");
 	      trd.table->setCellWidget(trow, i, timeEdit);
@@ -1504,7 +1504,7 @@ void qtbook_cd::slotInsertTrack(void)
 				    "This is a serious problem!"),
 			    QString(""), __FILE__, __LINE__);
 	}
-      else if((item = new QTableWidgetItem()) != NULL)
+      else if((item = new QTableWidgetItem()) != 0)
 	{
 	  item->setText(str);
 	  item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
@@ -1548,7 +1548,7 @@ void qtbook_cd::slotSaveTracks(void)
   QProgressDialog progress(this);
 
   for(i = 0; i < trd.table->rowCount(); i++)
-    if(trd.table->item(i, 2) != NULL &&
+    if(trd.table->item(i, 2) != 0 &&
        trd.table->item(i, 2)->text().trimmed().isEmpty())
       {
 	errormsg = QString("Row number %1 contains an empty Song Title.").arg
@@ -1615,18 +1615,18 @@ void qtbook_cd::slotSaveTracks(void)
 				"?, ?, ?, ?)"));
 	  query.bindValue(0, oid);
 
-	  if(trd.table->cellWidget(i, 0) != NULL)
+	  if(trd.table->cellWidget(i, 0) != 0)
 	    query.bindValue(1, qobject_cast<QComboBox *>
 			    (trd.table->cellWidget(i, 0))->currentText());
 
-	  if(trd.table->cellWidget(i, 1) != NULL)
+	  if(trd.table->cellWidget(i, 1) != 0)
 	    query.bindValue(2, qobject_cast<QSpinBox *>
 			    (trd.table->cellWidget(i, 1))->value());
 
-	  if(trd.table->item(i, 2) != NULL)
+	  if(trd.table->item(i, 2) != 0)
 	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
 
-	  if(trd.table->cellWidget(i, 3) != NULL)
+	  if(trd.table->cellWidget(i, 3) != 0)
 	    query.bindValue(4, qobject_cast<QTimeEdit *>
 			    (trd.table->cellWidget(i, 3))->time().toString
 			    ("hh:mm:ss"));
@@ -1677,7 +1677,7 @@ void qtbook_cd::slotReset(void)
   QAction *action = qobject_cast<QAction *>(sender());
   QString name = "";
 
-  if(action != NULL)
+  if(action != 0)
     {
       name = action->text();
 
@@ -1863,14 +1863,14 @@ void qtbook_cd::slotCancel(void)
 
 void qtbook_cd::slotPopulateCopiesEditor(void)
 {
-  copy_editor *copyeditor = NULL;
+  copy_editor *copyeditor = 0;
 
   if((copyeditor = new copy_editor(qobject_cast<QWidget *>(this),
 				   (qtbook_item *) this,
 				   false,
 				   cd.quantity->value(), oid,
 				   cd.id->text(),
-				   cd.quantity, font(), "CD")) != NULL)
+				   cd.quantity, font(), "CD")) != 0)
     copyeditor->populateCopiesEditor();
 }
 
@@ -1881,7 +1881,7 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
 void qtbook_cd::slotShowUsers(void)
 {
   int state = 0;
-  borrowers_editor *borrowerseditor = NULL;
+  borrowers_editor *borrowerseditor = 0;
 
   if(!cd.okButton->isHidden())
     state = qtbook::EDITABLE;
@@ -1891,7 +1891,7 @@ void qtbook_cd::slotShowUsers(void)
   if((borrowerseditor = new borrowers_editor
       (qobject_cast<QWidget *>(this), (qtbook_item *) this,
        cd.quantity->value(), oid, cd.id->text(), font(), "CD",
-       state)) != NULL)
+       state)) != 0)
     borrowerseditor->showUsers();
 }
 
