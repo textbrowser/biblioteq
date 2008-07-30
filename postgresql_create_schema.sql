@@ -241,17 +241,6 @@ CREATE TABLE item_borrower
 	type		 VARCHAR(16) NOT NULL
 );
 
-CREATE TABLE item_request
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	requestdate	 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
-	PRIMARY KEY(item_oid, type),
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
-);
-
 CREATE TABLE member
 (
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,
@@ -280,6 +269,17 @@ CREATE TABLE member_history
 	reserved_by	 VARCHAR(128) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	item_id		 VARCHAR(32) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+);
+
+CREATE TABLE item_request
+(
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
+	requestdate	 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL NOT NULL,
+	type		 VARCHAR(16) NOT NULL,
+	PRIMARY KEY(item_oid, type),
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
