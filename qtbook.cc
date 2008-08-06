@@ -49,8 +49,6 @@ QApplication *qapp = 0;
 
 int main(int argc, char *argv[])
 {
-  QApplication::setColorSpec(QApplication::NormalColor);
-
   /*
   ** Create the user interface.
   */
@@ -726,7 +724,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.06.<br>"
+  mb.setText("<html>BiblioteQ Version 6.07.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"

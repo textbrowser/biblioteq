@@ -2,15 +2,15 @@
 
 set BACKUP_DIR = /love/scsi/backup.d/biblioteq.d
 
-if (! -d $BACKUP_DIR ) then
+if ( ! -d $BACKUP_DIR ) then
     mkdir $BACKUP_DIR
 endif
 
-if (! -d $BACKUP_DIR/include.d ) then
+if ( ! -d $BACKUP_DIR/include.d ) then
     mkdir $BACKUP_DIR/include.d
 endif
 
-if (! -d $BACKUP_DIR/icons.d ) them
+if ( ! -d $BACKUP_DIR/icons.d ) them
     mkdir $BACKUP_DIR/icons.d
 endif
 
