@@ -7,8 +7,6 @@ CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 QMAKE_CXXFLAGS	+= -Wall -Werror
 QMAKE_CLEAN	+= BiblioteQ.exe
-QMAKE_CFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_WINDOWS_TARGETS = purge
@@ -16,25 +14,25 @@ INCPATH		+= include.d "C:\Program Files\YAZ\include"
 ICON		= icons.d\book.gif
 LIBS		+= -L"C:\Program Files\YAZ\lib" -lyaz3
 
-FORMS           += cdinfo.ui \
-		   tracks.ui \
-		   allinfo.ui \
-		   dvdinfo.ui \
-		   history.ui \
-		   maginfo.ui \
-		   bookinfo.ui \
-		   branch_s.ui \
-		   password.ui \
-		   userinfo.ui \
-                   borrowers.ui \
-		   errordiag.ui \
-		   adminsetup.ui \
-		   locresults.ui \
-                   mainwindow.ui \
-		   copybrowser.ui \
-		   customquery.ui \
-		   videogameinfo.ui \
-		   members_browser.ui
+FORMS           = cdinfo.ui \
+		  tracks.ui \
+		  allinfo.ui \
+		  dvdinfo.ui \
+		  history.ui \
+		  maginfo.ui \
+		  bookinfo.ui \
+		  branch_s.ui \
+		  password.ui \
+		  userinfo.ui \
+                  borrowers.ui \
+		  errordiag.ui \
+		  adminsetup.ui \
+		  locresults.ui \
+                  mainwindow.ui \
+		  copybrowser.ui \
+		  customquery.ui \
+		  videogameinfo.ui \
+		  members_browser.ui
 
 UI_HEADERS_DIR  = include.d
 

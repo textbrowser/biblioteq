@@ -7,8 +7,6 @@ CONFIG		+= qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_UNIX_TARGETS = purge
@@ -16,25 +14,25 @@ INCPATH		+= include.d /usr/local/include
 ICON		= icons.d/book.icns
 LIBS		+= -L/usr/local/lib -lyaz
 
-FORMS           += cdinfo.ui \
-		   tracks.ui \
-		   allinfo.ui \
-		   dvdinfo.ui \
-		   history.ui \
-		   maginfo.ui \
-		   bookinfo.ui \
-		   branch_s.ui \
-		   password.ui \
-		   userinfo.ui \
-                   borrowers.ui \
-		   errordiag.ui \
-		   adminsetup.ui \
-		   locresults.ui \
-                   mainwindow.ui \
-		   copybrowser.ui \
-		   customquery.ui \
-		   videogameinfo.ui \
-		   members_browser.ui
+FORMS           = cdinfo.ui \
+		  tracks.ui \
+		  allinfo.ui \
+		  dvdinfo.ui \
+		  history.ui \
+		  maginfo.ui \
+		  bookinfo.ui \
+		  branch_s.ui \
+		  password.ui \
+		  userinfo.ui \
+                  borrowers.ui \
+		  errordiag.ui \
+		  adminsetup.ui \
+		  locresults.ui \
+                  mainwindow.ui \
+		  copybrowser.ui \
+		  customquery.ui \
+		  videogameinfo.ui \
+		  members_browser.ui
 
 UI_HEADERS_DIR  = include.d
 
