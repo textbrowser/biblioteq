@@ -173,6 +173,8 @@ void image_drop_site::determineFormat(const QByteArray &bytes)
     imageFormat = "JPG";
   else if(bytes.size() >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
     imageFormat = "BMP";
+  else // Guess!
+    imageFormat = "JPG";
 }
 
 /*

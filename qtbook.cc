@@ -4230,6 +4230,7 @@ void qtbook::readGlobalSetup(void)
 		 DVD_ASPECT_RATIO,
 		 DVD_REGION,
 		 BRANCHES,
+		 AMAZON_FRONT_COVER_IMAGES,
 		 UNKNOWN};
   QString str = "";
   QString filename = "";
@@ -4311,6 +4312,8 @@ void qtbook::readGlobalSetup(void)
 	      type = DVD_REGION;
 	    else if(str == "[Branches]")
 	      type = BRANCHES;
+	    else if(str == "[Amazon Front Cover Images]")
+	      type = AMAZON_FRONT_COVER_IMAGES;
 	    else
 	      type = UNKNOWN;
 
@@ -4480,6 +4483,15 @@ void qtbook::readGlobalSetup(void)
 
 			    tmphash.clear();
 			  }
+
+			break;
+		      }
+		    case AMAZON_FRONT_COVER_IMAGES:
+		      {
+			if(!AmazonImages.contains("front_cover_host"))
+			  AmazonImages["front_cover_host"] = str;
+			else if(!AmazonImages.contains("front_cover_path"))
+			  AmazonImages["front_cover_path"] = str;
 
 			break;
 		      }
@@ -7289,6 +7301,15 @@ QHash<QString, QString> qtbook::getLOCHash(void)
 }
 
 /*
+** -- getAmazonHash() --
+*/
+
+QHash<QString, QString> qtbook::getAmazonHash(void)
+{
+  return AmazonImages;
+}
+
+/*
 ** -- isItemBusy() --
 */
 
@@ -8811,8 +8832,7 @@ void qtbook::prepareFilter(void)
 {
   QStringList tmplist;
 
-  if(selectedBranch.contains("database_type") &&
-     selectedBranch["database_type"] == "sqlite")
+  if(selectedBranch["database_type"] == "sqlite")
     tmplist << "All"
 	    << "All Overdue"
 	    << "All Reserved"

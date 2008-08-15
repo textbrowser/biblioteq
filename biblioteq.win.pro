@@ -2,7 +2,7 @@ purge.commands = del *~ && del include.d/*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
-QT		+= sql
+QT		+= sql network
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 QMAKE_CXXFLAGS	+= -Wall -Werror

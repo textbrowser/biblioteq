@@ -117,6 +117,7 @@ class qtbook: public QMainWindow
   Ui_mainWindow getUI(void);
   Ui_membersBrowser getBB(void);
   QHash<QString, QString> getLOCHash(void);
+  QHash<QString, QString> getAmazonHash(void);
   static void quit(void);
   static void quit(const char *, const char *, const int);
 
@@ -129,6 +130,7 @@ class qtbook: public QMainWindow
   QString previousTypeFilter;
   QStringList deletedAdmins;
   QHash<QString, QString> LOCHash;
+  QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;
   QHash<QString, qtbook_dvd *> dvds;

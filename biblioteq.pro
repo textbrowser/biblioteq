@@ -2,7 +2,7 @@ purge.commands = rm -f *~ && rm -f include.d/*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
-QT		+= sql
+QT		+= sql network
 CONFIG		+= qt release thread warn_on x11
 DEFINES		+= CONFIGFILE="'\"/usr/local/share/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror

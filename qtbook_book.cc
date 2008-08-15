@@ -46,6 +46,12 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((http = new(std::nothrow) QHttp(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((imgbuffer = new(std::nothrow) QBuffer(&imgbytes)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   thread = 0;
   parentWid = parentArg;
   oid = oidArg;
@@ -116,6 +122,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.generate, SIGNAL(clicked(void)), this,
 	  SLOT(slotGenerateISBN(void)));
+  connect(id.dwnldFront, SIGNAL(clicked(void)), this,
+	  SLOT(slotDownloadImage(void)));
+  connect(http, SIGNAL(requestFinished(int, bool)),
+	  this, SLOT(slotHttpRequestFinished(int, bool)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
@@ -157,6 +167,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
 qtbook_book::~qtbook_book()
 {
+  http->abort();
+  imgbuffer->close();
+  delete imgbuffer;
+
   if(thread != 0 && thread->isRunning())
     qapp->restoreOverrideCursor();
 }
@@ -1922,6 +1936,8 @@ bool qtbook_book::isBusy(void)
 {
   if(thread != 0)
     return true;
+  else if(imgbuffer->isOpen())
+    return true;
   else
     return false;
 }
@@ -1977,4 +1993,63 @@ void qtbook_book::slotSelectImage(void)
 void qtbook_book::slotGenerateISBN(void)
 {
   id.id->setText(QString::number(QDateTime::currentDateTime().toTime_t()));
+}
+
+/*
+** -- slotDownloadImage() --
+*/
+
+void qtbook_book::slotDownloadImage(void)
+{
+  QString url = "";
+  QPushButton *pb = static_cast<QPushButton *> (sender());
+
+  if(id.id->text().trimmed().isEmpty())
+    {
+      QMessageBox::critical
+	(this, "BiblioteQ: User Error",
+	 "In order to download a cover image from Amazon, the ISBN-10 "
+	 "must be provided.");
+      return;
+    }
+  else if(imgbuffer->isOpen())
+    {
+      QMessageBox::critical
+	(this, "BiblioteQ: User Error",
+	 "An Amazon download is already in progress.");
+      return;
+    }
+
+  if(pb == id.dwnldFront)
+    {
+      http->setHost(qmain->getAmazonHash()["front_cover_host"]);
+      url = qmain->getAmazonHash()["front_cover_path"].replace
+	("%", id.id->text().trimmed());
+    }
+
+  imgbuffer->open(QIODevice::WriteOnly);
+  QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
+  (void) http->get(path, imgbuffer);
+}
+
+/*
+** -- slotHttpRequestFinished() --
+*/
+
+void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
+{
+  (void) rqid;
+
+  if(!error && imgbytes.size() > 0)
+    {
+      id.front_image->clear();
+      id.front_image->loadFromData(imgbytes);
+    }
+
+  imgbuffer->close();
+
+  if(error)
+    QMessageBox::critical
+      (this, "BiblioteQ: HTTP Error",
+       QString("Image download failed: %1.").arg(http->errorString()));
 }

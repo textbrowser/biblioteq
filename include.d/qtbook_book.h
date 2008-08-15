@@ -5,6 +5,7 @@
 ** -- Qt Includes --
 */
 
+#include <QHttp>
 #include <QMenu>
 #include <QBuffer>
 #include <QDialog>
@@ -45,9 +46,12 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QHttp *http;
+  QBuffer *imgbuffer;
   QPalette cb_orig_pal;
   QPalette dt_orig_pal;
   QPalette te_orig_pal;
+  QByteArray imgbytes;
   generic_thread *thread;
   Ui_informationDialog id;
 
@@ -60,7 +64,9 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotShowUsers(void);
   void slotSelectImage(void);
   void slotGenerateISBN(void);
+  void slotDownloadImage(void);
   void slotConvertISBN10to13(void);
+  void slotHttpRequestFinished(int, bool);
   void slotPopulateCopiesEditor(void);
 };
 
