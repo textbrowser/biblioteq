@@ -1122,7 +1122,7 @@ void qtbook_videogame::insert(void)
 
 void qtbook_videogame::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)

@@ -46,13 +46,19 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
-  QHttp *http;
-  QBuffer *imgbuffer;
-  QPalette cb_orig_pal;
-  QPalette dt_orig_pal;
+  int requestid1; // Front Cover HTTP Get ID
+  int requestid2; // Back Cover HTTP Get ID
+  QHttp *http1; // Front Cover
+  QHttp *http2; // Back Cover
+  QBuffer *imgbuffer1; // Front Cover Buffer
+  QBuffer *imgbuffer2; // Back Cover Buffer
+  QString cb_orig_ss;
+  QString dt_orig_ss;
   QPalette te_orig_pal;
-  QByteArray imgbytes;
+  QByteArray imgbytes1; // Front Cover Byte Array
+  QByteArray imgbytes2; // Back Cover Byte Array
   generic_thread *thread;
+  QProgressDialog *httpprogress;
   Ui_informationDialog id;
 
  private slots:
@@ -68,6 +74,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotConvertISBN10to13(void);
   void slotHttpRequestFinished(int, bool);
   void slotPopulateCopiesEditor(void);
+  void slotUpdateDataReadProgress(int, int);
 };
 
 #endif

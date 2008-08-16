@@ -1284,7 +1284,7 @@ void qtbook_dvd::insert(void)
 
 void qtbook_dvd::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)

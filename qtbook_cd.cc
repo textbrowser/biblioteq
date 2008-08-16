@@ -1346,9 +1346,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      {
 		if((comboBox = new(std::nothrow) QComboBox()) != 0)
 		  {
+		    trd.table->setCellWidget(i, j, comboBox);
 		    comboBox->addItems(comboBoxList);
 		    comboBox->setCurrentIndex(comboBox->findText(str));
-		    trd.table->setCellWidget(i, j, comboBox);
 		  }
 		else
 		  qmain->addError(QString("Memory Error"),
@@ -1361,9 +1361,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      {
 		if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
 		  {
+		    trd.table->setCellWidget(i, j, trackEdit);
 		    trackEdit->setMinimum(1);
 		    trackEdit->setValue(str.toInt());
-		    trd.table->setCellWidget(i, j, trackEdit);
 		  }
 		else
 		  qmain->addError(QString("Memory Error"),
@@ -1376,9 +1376,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	      {
 		if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
 		  {
+		    trd.table->setCellWidget(i, j, timeEdit);
 		    timeEdit->setDisplayFormat("hh:mm:ss");
 		    timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
-		    trd.table->setCellWidget(i, j, timeEdit);
 		  }
 		else
 		  qmain->addError(QString("Memory Error"),
@@ -1465,8 +1465,8 @@ void qtbook_cd::slotInsertTrack(void)
 	{
 	  if((comboBox = new(std::nothrow) QComboBox()) != 0)
 	    {
-	      comboBox->addItems(list);
 	      trd.table->setCellWidget(trow, i, comboBox);
+	      comboBox->addItems(list);
 	    }
 	  else
 	    qmain->addError(QString("Memory Error"),
@@ -1479,9 +1479,9 @@ void qtbook_cd::slotInsertTrack(void)
 	{
 	  if((trackEdit = new(std::nothrow) QSpinBox()) != 0)
 	    {
+	      trd.table->setCellWidget(trow, i, trackEdit);
 	      trackEdit->setMinimum(1);
 	      trackEdit->setValue(1);
-	      trd.table->setCellWidget(trow, i, trackEdit);
 	    }
 	  else
 	    qmain->addError(QString("Memory Error"),
@@ -1494,8 +1494,8 @@ void qtbook_cd::slotInsertTrack(void)
 	{
 	  if((timeEdit = new(std::nothrow) QTimeEdit()) != 0)
 	    {
-	      timeEdit->setDisplayFormat("hh:mm:ss");
 	      trd.table->setCellWidget(trow, i, timeEdit);
+	      timeEdit->setDisplayFormat("hh:mm:ss");
 	    }
 	  else
 	    qmain->addError(QString("Memory Error"),
@@ -1674,7 +1674,7 @@ void qtbook_cd::slotSaveTracks(void)
 
 void qtbook_cd::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)

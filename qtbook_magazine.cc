@@ -128,11 +128,11 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
     ma.location->addItem("UNKNOWN");
 
   /*
-  ** Save some palettes.
+  ** Save some palettes and style sheets.
   */
 
+  dt_orig_ss = ma.publication_date->styleSheet();
   cb_orig_pal = ma.language->palette();
-  dt_orig_pal = ma.publication_date->palette();
   te_orig_pal = ma.description->viewport()->palette();
 
   /*
@@ -530,7 +530,7 @@ void qtbook_magazine::slotGo(void)
 	  ma.callnum->setPalette(ma.url->viewport()->palette());
 	  ma.deweynum->setPalette(ma.url->viewport()->palette());
 	  ma.title->setPalette(te_orig_pal);
-	  ma.publication_date->setPalette(dt_orig_pal);
+	  ma.publication_date->setStyleSheet(dt_orig_ss);
 	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
 	  oldq = ma.quantity->value();
@@ -1191,7 +1191,7 @@ void qtbook_magazine::insert(void)
 
 void qtbook_magazine::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -1234,7 +1234,7 @@ void qtbook_magazine::slotReset(void)
 	    ma.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
-	  ma.publication_date->setPalette(dt_orig_pal);
+	  ma.publication_date->setStyleSheet(dt_orig_ss);
 	  ma.publication_date->setFocus();
 	}
       else if(name.contains("Publisher"))
@@ -1343,7 +1343,7 @@ void qtbook_magazine::slotReset(void)
       ma.callnum->setPalette(ma.url->viewport()->palette());
       ma.deweynum->setPalette(ma.url->viewport()->palette());
       ma.title->setPalette(te_orig_pal);
-      ma.publication_date->setPalette(dt_orig_pal);
+      ma.publication_date->setStyleSheet(dt_orig_ss);
       ma.description->viewport()->setPalette(te_orig_pal);
       ma.publisher->viewport()->setPalette(te_orig_pal);
       ma.id->setFocus();

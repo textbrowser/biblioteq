@@ -3800,7 +3800,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 void qtbook::slotResizeColumnsAfterSort(void)
 {
-  QObject *object = static_cast<QObject *> (sender());
+  QObject *object = qobject_cast<QObject *> (sender());
   QObject *parent = 0;
 
   if(ui.actionAutoResizeColumns->isChecked())
@@ -4492,6 +4492,10 @@ void qtbook::readGlobalSetup(void)
 			  AmazonImages["front_cover_host"] = str;
 			else if(!AmazonImages.contains("front_cover_path"))
 			  AmazonImages["front_cover_path"] = str;
+			else if(!AmazonImages.contains("back_cover_host"))
+			  AmazonImages["back_cover_host"] = str;
+			else if(!AmazonImages.contains("back_cover_path"))
+			  AmazonImages["back_cover_path"] = str;
 
 			break;
 		      }
@@ -6096,7 +6100,7 @@ void qtbook::slotAutoPopOnFilter(void)
 
 void qtbook::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
@@ -7340,7 +7344,7 @@ bool qtbook::isItemBusy(const QString &oid, const QString &itemType)
 
 void qtbook::slotShowMenu(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
 
   action->menu()->exec(QCursor::pos());
 }
@@ -8256,7 +8260,7 @@ void qtbook::slotAdminCheckBoxClicked(int state)
   int j = 0;
   int row = -1;
   int column = -1;
-  QCheckBox *box = static_cast<QCheckBox *> (sender());
+  QCheckBox *box = qobject_cast<QCheckBox *> (sender());
 
   (void) state;
 
@@ -8372,6 +8376,8 @@ void qtbook::slotRefreshAdminList(void)
 		}
 	      else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
 		{
+		  ab.table->setCellWidget(i, j, checkBox);
+
 		  columnname = ab.table->horizontalHeaderItem
 		    (j)->text().toLower();
 
@@ -8383,8 +8389,6 @@ void qtbook::slotRefreshAdminList(void)
 		  else
 		    connect(checkBox, SIGNAL(stateChanged(int)), this,
 			    SLOT(slotAdminCheckBoxClicked(int)));
-
-		  ab.table->setCellWidget(i, j, checkBox);
 		}
 	      else
 		addError(QString("Memory Error"),

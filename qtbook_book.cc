@@ -46,10 +46,19 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((http = new(std::nothrow) QHttp(this)) == 0)
+  if((http1 = new(std::nothrow) QHttp(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((imgbuffer = new(std::nothrow) QBuffer(&imgbytes)) == 0)
+  if((http2 = new(std::nothrow) QHttp(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((imgbuffer1 = new(std::nothrow) QBuffer(&imgbytes1)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((imgbuffer2 = new(std::nothrow) QBuffer(&imgbytes2)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((httpprogress = new(std::nothrow) QProgressDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = 0;
@@ -58,7 +67,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   row = rowArg;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
+  http1->setHost(qmain->getAmazonHash()["front_cover_host"]);
+  http2->setHost(qmain->getAmazonHash()["back_cover_host"]);
   id.setupUi(this);
+  httpprogress->setCancelButton(0);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
@@ -124,8 +136,14 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(slotGenerateISBN(void)));
   connect(id.dwnldFront, SIGNAL(clicked(void)), this,
 	  SLOT(slotDownloadImage(void)));
-  connect(http, SIGNAL(requestFinished(int, bool)),
+  connect(http1, SIGNAL(requestFinished(int, bool)),
 	  this, SLOT(slotHttpRequestFinished(int, bool)));
+  connect(http2, SIGNAL(requestFinished(int, bool)),
+	  this, SLOT(slotHttpRequestFinished(int, bool)));
+  connect(http1, SIGNAL(dataReadProgress(int, int)),
+	  this, SLOT(slotUpdateDataReadProgress(int, int)));
+  connect(http2, SIGNAL(dataReadProgress(int, int)),
+	  this, SLOT(slotUpdateDataReadProgress(int, int)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
@@ -145,11 +163,11 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     id.location->addItem("UNKNOWN");
 
   /*
-  ** Save some palettes.
+  ** Save some palettes and style sheets.
   */
 
-  cb_orig_pal = id.edition->palette();
-  dt_orig_pal = id.publication_date->palette();
+  cb_orig_ss = id.edition->styleSheet();
+  dt_orig_ss = id.publication_date->styleSheet();
   te_orig_pal = id.author->viewport()->palette();
 
   /*
@@ -167,9 +185,12 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
 qtbook_book::~qtbook_book()
 {
-  http->abort();
-  imgbuffer->close();
-  delete imgbuffer;
+  http1->abort();
+  http2->abort();
+  imgbuffer1->close();
+  imgbuffer2->close();
+  delete imgbuffer1;
+  delete imgbuffer2;
 
   if(thread != 0 && thread->isRunning())
     qapp->restoreOverrideCursor();
@@ -562,9 +583,9 @@ void qtbook_book::slotGo(void)
 
 	  id.id->setPalette(te_orig_pal);
 	  id.isbn13->setPalette(te_orig_pal);
-	  id.edition->setPalette(cb_orig_pal);
+	  id.edition->setStyleSheet(cb_orig_ss);
 	  id.category->viewport()->setPalette(te_orig_pal);
-	  id.publication_date->setPalette(dt_orig_pal);
+	  id.publication_date->setStyleSheet(dt_orig_ss);
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
@@ -949,6 +970,7 @@ void qtbook_book::updateWindow(const int state)
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
       str = QString("BiblioteQ: Modify Book Entry (%1)").arg(id.id->text());
     }
   else
@@ -960,6 +982,7 @@ void qtbook_book::updateWindow(const int state)
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
       str = QString("BiblioteQ: View Book Details (%1)").arg(id.id->text());
     }
 
@@ -990,6 +1013,7 @@ void qtbook_book::modify(const int state)
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
+      id.dwnldFront->setVisible(true);
       misc_functions::highlightWidget
 	(id.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
@@ -1016,6 +1040,7 @@ void qtbook_book::modify(const int state)
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
+      id.dwnldFront->setVisible(false);
 
       foreach(QAction *action,
 	      id.resetButton->menu()->findChildren<QAction *>())
@@ -1239,12 +1264,15 @@ void qtbook_book::insert(void)
 
 void qtbook_book::slotReset(void)
 {
-  QAction *action = static_cast<QAction *> (sender());
+  QAction *action = qobject_cast<QAction *> (sender());
   QString name = "";
 
   if(action != 0)
     {
       name = action->text();
+
+      if(name.isNull())
+	name = "";
 
       if(name.contains("Front Cover Image"))
 	id.front_image->clear();
@@ -1265,7 +1293,7 @@ void qtbook_book::slotReset(void)
       else if(name.contains("Edition"))
 	{
 	  id.edition->setCurrentIndex(0);
-	  id.edition->setPalette(cb_orig_pal);
+	  id.edition->setStyleSheet(cb_orig_ss);
 	  id.edition->setFocus();
 	}
       else if(name.contains("Author(s)"))
@@ -1287,7 +1315,7 @@ void qtbook_book::slotReset(void)
 	    id.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
-	  id.publication_date->setPalette(dt_orig_pal);
+	  id.publication_date->setStyleSheet(dt_orig_ss);
 	  id.publication_date->setFocus();
 	}
       else if(name.contains("Publisher"))
@@ -1433,9 +1461,9 @@ void qtbook_book::slotReset(void)
       id.callnum->setPalette(id.url->viewport()->palette());
       id.id->setPalette(te_orig_pal);
       id.isbn13->setPalette(te_orig_pal);
-      id.edition->setPalette(cb_orig_pal);
+      id.edition->setStyleSheet(cb_orig_ss);
       id.category->viewport()->setPalette(te_orig_pal);
-      id.publication_date->setPalette(dt_orig_pal);
+      id.publication_date->setStyleSheet(dt_orig_ss);
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
       id.publisher->viewport()->setPalette(te_orig_pal);
@@ -1936,7 +1964,7 @@ bool qtbook_book::isBusy(void)
 {
   if(thread != 0)
     return true;
-  else if(imgbuffer->isOpen())
+  else if(imgbuffer1->isOpen() || imgbuffer2->isOpen())
     return true;
   else
     return false;
@@ -2012,24 +2040,47 @@ void qtbook_book::slotDownloadImage(void)
 	 "must be provided.");
       return;
     }
-  else if(imgbuffer->isOpen())
+  else if(imgbuffer1->isOpen())
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error",
-	 "An Amazon download is already in progress.");
+	 "BiblioteQ is currently processing a download request for the "
+	 "front cover image. Please wait until this request has been "
+	 "completed.");
+      return;
+    }
+  else if(imgbuffer2->isOpen())
+    {
+      QMessageBox::critical
+	(this, "BiblioteQ: User Error",
+	 "BiblioteQ is currently processing a download request for the "
+	 "back cover image. Please until this request has been completed.");
       return;
     }
 
   if(pb == id.dwnldFront)
     {
-      http->setHost(qmain->getAmazonHash()["front_cover_host"]);
+      httpprogress->setWindowTitle("BiblioteQ: Progress Dialog");
+      httpprogress->setLabelText("Downloading the front cover image...");
       url = qmain->getAmazonHash()["front_cover_path"].replace
 	("%", id.id->text().trimmed());
+      imgbuffer1->open(QIODevice::WriteOnly);
+    }
+  else
+    {
+      httpprogress->setWindowTitle("BiblioteQ: Progress Dialog");
+      httpprogress->setLabelText("Downloading the back cover image...");
+      url = qmain->getAmazonHash()["back_cover_path"].replace
+	("%", id.id->text().trimmed());
+      imgbuffer2->open(QIODevice::WriteOnly);
     }
 
-  imgbuffer->open(QIODevice::WriteOnly);
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
-  (void) http->get(path, imgbuffer);
+
+  if(pb == id.dwnldFront)
+    requestid1 = http1->get(path, imgbuffer1);
+  else
+    requestid2 = http2->get(path, imgbuffer2);
 }
 
 /*
@@ -2038,18 +2089,50 @@ void qtbook_book::slotDownloadImage(void)
 
 void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
-  (void) rqid;
+  if(!error)
+    if(rqid == requestid1)
+      {
+	if(imgbytes1.size() > 0)
+	  {
+	    id.front_image->clear();
+	    id.front_image->loadFromData(imgbytes1);
+	  }
 
-  if(!error && imgbytes.size() > 0)
-    {
-      id.front_image->clear();
-      id.front_image->loadFromData(imgbytes);
-    }
+	imgbuffer2->close();
+      }
+    else if(rqid == requestid2)
+      {
+	if(imgbytes2.size() > 0)
+	  {
+	    id.back_image->clear();
+	    id.back_image->loadFromData(imgbytes2);
+	  }
 
-  imgbuffer->close();
+	imgbuffer2->close();
+      }
+
+  httpprogress->hide();
 
   if(error)
-    QMessageBox::critical
-      (this, "BiblioteQ: HTTP Error",
-       QString("Image download failed: %1.").arg(http->errorString()));
+    if(rqid == requestid1)
+      QMessageBox::critical
+	(this, "BiblioteQ: HTTP Error",
+	 QString("Front cover image download failed: %1.").arg
+	 (http1->errorString()));
+    else if(rqid == requestid2)
+      QMessageBox::critical
+	(this, "BiblioteQ: HTTP Error",
+	 QString("Back cover image download failed: %1.").arg
+	 (http1->errorString()));
+}
+
+/*
+** -- slotUpdateDataReadProgress() --
+*/
+
+void qtbook_book::slotUpdateDataReadProgress(int bytesread, int tbytes)
+{
+  httpprogress->setMaximum(tbytes);
+  httpprogress->setValue(bytesread);
+  httpprogress->update();
 }

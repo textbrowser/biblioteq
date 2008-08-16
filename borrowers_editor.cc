@@ -146,11 +146,11 @@ void borrowers_editor::showUsers(void)
 	  {
 	    if((dateEdit = new(std::nothrow) QDateEdit()) != 0)
 	      {
+		bd.table->setCellWidget(i, j, dateEdit);
 		dateEdit->setDisplayFormat("MM/dd/yyyy");
 		dateEdit->setDate
 		  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 		dateEdit->setCalendarPopup(true);
-		bd.table->setCellWidget(i, j, dateEdit);
 	      }
 	    else
 	      qmain->addError(QString("Memory Error"),

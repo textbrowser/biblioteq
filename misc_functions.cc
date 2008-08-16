@@ -112,6 +112,10 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "INSERT, SELECT, UPDATE"
@@ -155,6 +159,10 @@ void misc_functions::grantPrivs(const QString &userid,
   if(roles.contains("librarian"))
     {
       privlist << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
@@ -229,6 +237,10 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
 	       << "DELETE, INSERT, SELECT, UPDATE";
       objectlist << "book"
 		 << "book_copy_info"
@@ -258,14 +270,17 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "member";
     }
 
-  for(i = 0; i < objectlist.size(); i++)
-    {
-      querystr = QString("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
-	(objectlist[i]).arg(userid);
+  if(objectlist.size() != privlist.size())
+    errorstr = "Program error: objectlist.size() != privlist.size().";
+  else
+    for(i = 0; i < objectlist.size(); i++)
+      {
+	querystr = QString("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
+	  (objectlist[i]).arg(userid);
 
-      if(!query.exec(querystr))
-	break;
-    }
+	if(!query.exec(querystr))
+	  break;
+      }
 
   privlist.clear();
   objectlist.clear();
