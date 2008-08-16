@@ -2098,7 +2098,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	    id.front_image->loadFromData(imgbytes1);
 	  }
 
-	imgbuffer2->close();
+	imgbuffer1->close();
       }
     else if(rqid == requestid2)
       {
