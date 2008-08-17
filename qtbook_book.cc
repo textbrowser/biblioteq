@@ -2099,6 +2099,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	  }
 
 	imgbuffer1->close();
+	(void) http1->close();
       }
     else if(rqid == requestid2)
       {
@@ -2109,6 +2110,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	  }
 
 	imgbuffer2->close();
+	(void) http2->close();
       }
 
   httpprogress->hide();

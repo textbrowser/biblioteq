@@ -724,7 +724,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.07.<br>"
+  mb.setText("<html>BiblioteQ Version 6.08.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -8324,21 +8324,11 @@ void qtbook::slotRefreshAdminList(void)
 
   qapp->restoreOverrideCursor();
   resetAdminBrowser();
-
-  if(selectedBranch["database_type"] != "sqlite")
-    ab.table->setRowCount(query.size());
-
+  ab.table->setRowCount(query.size());
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
   progress.setLabelText("Populating the table...");
-
-  if(selectedBranch["database_type"] == "sqlite")
-    progress.setMaximum
-      (misc_functions::sqliteQuerySize(querystr, getDB(),
-				       __FILE__, __LINE__));
-  else
-    progress.setMaximum(query.size());
-
+  progress.setMaximum(query.size());
   progress.show();
   progress.update();
   i = -1;
@@ -8352,10 +8342,6 @@ void qtbook::slotRefreshAdminList(void)
 	    item->setText(str);
 	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	    str = query.value(1).toString();
-
-	    if(selectedBranch["database_type"] == "sqlite")
-	      ab.table->setRowCount(i + 1);
-
 	    ab.table->setItem(i, 0, item);
 
 	    for(j = 1; j < ab.table->columnCount(); j++)
