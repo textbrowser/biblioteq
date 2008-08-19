@@ -2092,7 +2092,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
   if(!error)
     if(rqid == requestid1)
       {
-	if(imgbytes1.size() > 0)
+	if(imgbytes1.size() > 100)
 	  {
 	    id.front_image->clear();
 	    id.front_image->loadFromData(imgbytes1);
@@ -2100,10 +2100,15 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 
 	imgbuffer1->close();
 	(void) http1->close();
+
+	if(id.front_image->image.numBytes() < 100)
+	  QMessageBox::warning
+	    (this, "BiblioteQ: HTTP Warning",
+	     "The front cover image for the specified ISBN may not exist.");
       }
     else if(rqid == requestid2)
       {
-	if(imgbytes2.size() > 0)
+	if(imgbytes2.size() > 100)
 	  {
 	    id.back_image->clear();
 	    id.back_image->loadFromData(imgbytes2);
@@ -2111,6 +2116,11 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 
 	imgbuffer2->close();
 	(void) http2->close();
+
+	if(id.back_image->image.numBytes() < 100)
+	  QMessageBox::warning
+	    (this, "BiblioteQ: HTTP Warning",
+	     "The back cover image for the specified ISBN may not exist.");
       }
 
   httpprogress->hide();
