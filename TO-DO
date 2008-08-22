@@ -285,5 +285,5 @@
 154. Allow for multiple categories (labels). (DONE)
 155. Download front cover images from Amazon. (DONE)
 156. Close HTTP sockets after an Amazon query. (DONE)
-157. Style sheets are not properly functioning in OS X (Edition,
+157. Style sheets are not fully supported in OS X (Edition,
      Publication Date).
