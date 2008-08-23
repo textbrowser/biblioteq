@@ -1971,9 +1971,7 @@ void qtbook_book::slotPrint(void)
 
 bool qtbook_book::isBusy(void)
 {
-  if(thread != 0 ||
-     http1->state() != QHttp::Unconnected ||
-     http2->state() != QHttp::Unconnected)
+  if(thread != 0 || requestid1 > 0 || requestid2 > 0)
     return true;
   else
     return false;
@@ -2135,7 +2133,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
       QMessageBox::critical
 	(this, "BiblioteQ: HTTP Error",
 	 QString("Back cover image download failed: %1.").arg
-	 (http1->errorString()));
+	 (http2->errorString()));
 
   requestid1 = requestid2 = 0;
 }
