@@ -5458,6 +5458,17 @@ void qtbook::slotConnectDB(void)
 
 void qtbook::slotDisconnect(void)
 {
+  /*
+  ** Do we have any threads that need attention?
+  */
+
+  if(areItemsBusy())
+    {
+      statusBar()->showMessage("Please wait until background processing "
+			       "has completed.", 5000);
+      return;
+    }
+
   roles = "";
   all_diag->close();
   members_diag->close();
@@ -7311,6 +7322,49 @@ QHash<QString, QString> qtbook::getLOCHash(void)
 QHash<QString, QString> qtbook::getAmazonHash(void)
 {
   return AmazonImages;
+}
+
+/*
+** -- areItemsBusy() --
+*/
+
+bool qtbook::areItemsBusy(void)
+{
+  QHash<QString, qtbook_book *>::const_iterator bookit;
+  QHash<QString, qtbook_journal *>::const_iterator journalit;
+  QHash<QString, qtbook_magazine *>::const_iterator magazineit;
+
+  bookit = books.constBegin();
+
+  while(bookit != books.constEnd())
+    {
+      if(bookit.value()->isBusy())
+	return true;
+
+      ++bookit;
+    }
+
+  journalit = journals.constBegin();
+
+  while(journalit != journals.constEnd())
+    {
+      if(journalit.value()->isBusy())
+	return true;
+
+      ++journalit;
+    }
+
+  magazineit = magazines.constBegin();
+
+  while(magazineit != magazines.constEnd())
+    {
+      if(magazineit.value()->isBusy())
+	return true;
+
+      ++magazineit;
+    }
+
+  return false;
 }
 
 /*

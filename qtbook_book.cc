@@ -283,7 +283,8 @@ void qtbook_book::slotGo(void)
       str = id.isbn13->text().trimmed();
       id.isbn13->setText(str);
 
-      if(id.id->text().isEmpty() || id.isbn13->text().isEmpty())
+      if(id.id->text().length() != 10 ||
+	 id.isbn13->text().length() != 13)
 	{
 	  QMessageBox::critical(this, "BiblioteQ: User Error",
 				"Please complete both the "
@@ -1511,9 +1512,7 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(thread != 0 ||
-     http1->state() != QHttp::Unconnected ||
-     http2->state() != QHttp::Unconnected)
+  if(isBusy())
     {
       e->ignore();
       return;
@@ -1602,8 +1601,8 @@ void qtbook_book::slotQuery(void)
   if(thread != 0)
     return;
 
-  if(id.id->text().trimmed().isEmpty() &&
-     id.isbn13->text().trimmed().isEmpty())
+  if(!(id.id->text().trimmed().length() == 10 ||
+       id.isbn13->text().trimmed().length() == 13))
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error", 
@@ -1972,9 +1971,9 @@ void qtbook_book::slotPrint(void)
 
 bool qtbook_book::isBusy(void)
 {
-  if(thread)
-    return true;
-  else if(imgbuffer1->isOpen() || imgbuffer2->isOpen())
+  if(thread != 0 ||
+     http1->state() != QHttp::Unconnected ||
+     http2->state() != QHttp::Unconnected)
     return true;
   else
     return false;
@@ -2042,7 +2041,7 @@ void qtbook_book::slotDownloadImage(void)
   QString url = "";
   QPushButton *pb = static_cast<QPushButton *> (sender());
 
-  if(id.id->text().trimmed().isEmpty())
+  if(id.id->text().trimmed().length() != 10)
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error",
@@ -2076,7 +2075,6 @@ void qtbook_book::slotDownloadImage(void)
       imgbuffer2->open(QIODevice::WriteOnly);
     }
 
-  requestid1 = requestid2 = 0;
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
 
   if(pb == id.dwnldFront)
