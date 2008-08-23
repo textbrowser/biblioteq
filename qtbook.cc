@@ -4542,7 +4542,7 @@ void qtbook::readGlobalSetup(void)
 	QMessageBox::critical(this, "BiblioteQ: File Error",
 			      thread->getErrorStr());
 
-      delete thread;
+      thread->deleteLater();
     }
   else
     {
@@ -4614,7 +4614,7 @@ void qtbook::readConfig(void)
 	  qapp->restoreOverrideCursor();
 	  QMessageBox::warning(this, "BiblioteQ: File Warning",
 			       thread->getErrorStr());
-	  delete thread;
+	  thread->deleteLater();
 	  return;
 	}
 
@@ -4698,7 +4698,7 @@ void qtbook::readConfig(void)
       if(statusBar() != 0)
 	statusBar()->clearMessage();
 
-      delete thread;
+      thread->deleteLater();
       setGlobalFonts(font);
       slotResizeColumns();
       lockApp(false);
@@ -4917,14 +4917,14 @@ void qtbook::slotSaveConfig(void)
 				    thread->getErrorStr());
 	    }
 
-	  delete thread;
+	  thread->deleteLater();
 	  return;
 	}
 
       if(statusBar() != 0 && isVisible())
 	statusBar()->clearMessage();
 
-      delete thread;
+      thread->deleteLater();
 
       if(isVisible())
 	{
@@ -6568,7 +6568,7 @@ void qtbook::emptyContainers(void)
 
   while(cdit != cds.constEnd())
     {
-      delete cdit.value();
+      cdit.value()->deleteLater();
       ++cdit;
     }
 
@@ -6577,7 +6577,7 @@ void qtbook::emptyContainers(void)
 
   while(dvdit != dvds.constEnd())
     {
-      delete dvdit.value();
+      dvdit.value()->deleteLater();
       ++dvdit;
     }
 
@@ -6586,7 +6586,7 @@ void qtbook::emptyContainers(void)
 
   while(bookit != books.constEnd())
     {
-      delete bookit.value();
+      bookit.value()->deleteLater();
       ++bookit;
     }
 
@@ -6595,7 +6595,7 @@ void qtbook::emptyContainers(void)
 
   while(journalit != journals.constEnd())
     {
-      delete journalit.value();
+      journalit.value()->deleteLater();
       ++journalit;
     }
 
@@ -6604,7 +6604,7 @@ void qtbook::emptyContainers(void)
 
   while(magazineit != magazines.constEnd())
     {
-      delete magazineit.value();
+      magazineit.value()->deleteLater();
       ++magazineit;
     }
 
@@ -6613,7 +6613,7 @@ void qtbook::emptyContainers(void)
 
   while(videogameit != video_games.constEnd())
     {
-      delete videogameit.value();
+      videogameit.value()->deleteLater();
       ++videogameit;
     }
 

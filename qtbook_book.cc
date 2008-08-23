@@ -71,6 +71,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   http2->setHost(qmain->getAmazonHash()["back_cover_host"]);
   id.setupUi(this);
   httpprogress->setCancelButton(0);
+  httpprogress->setModal(true);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
@@ -1507,6 +1508,14 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
+  if((thread && thread->isRunning()) ||
+     http1->state() != QHttp::Unconnected ||
+     http2->state() != QHttp::Unconnected)
+    {
+      e->ignore();
+      return;
+    }
+
   if(windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
@@ -1627,7 +1636,7 @@ void qtbook_book::slotQuery(void)
       qapp->restoreOverrideCursor();
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
-	 !thread->getLOCResults().isEmpty() && isVisible())
+	 !thread->getLOCResults().isEmpty())
 	{
 	  if(QMessageBox::question
 	     (this, "BiblioteQ: Question",
@@ -1888,8 +1897,7 @@ void qtbook_book::slotQuery(void)
 		textfield->setCursorPosition(0);
 	    }
 	}
-      else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty() &&
-	      isVisible())
+      else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())
 	QMessageBox::critical
 	  (this, "BiblioteQ: Z39.50 Query Error",
 	   "A Library of Congress entry may not yet exist for " +
@@ -1906,7 +1914,7 @@ void qtbook_book::slotQuery(void)
       errorstr = "Unable to create a thread due to insufficient resources.";
     }
 
-  if(!errorstr.isEmpty() && isVisible())
+  if(!errorstr.isEmpty())
     {
       qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
 		      __FILE__, __LINE__);
@@ -2092,7 +2100,7 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
   if(!error)
     if(rqid == requestid1)
       {
-	if(imgbytes1.size() > 100)
+	if(imgbytes1.size() > 1000)
 	  {
 	    id.front_image->clear();
 	    id.front_image->loadFromData(imgbytes1);
@@ -2101,14 +2109,14 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	imgbuffer1->close();
 	(void) http1->close();
 
-	if(id.front_image->image.numBytes() < 100)
+	if(imgbytes1.size() < 1000)
 	  QMessageBox::warning
 	    (this, "BiblioteQ: HTTP Warning",
 	     "The front cover image for the specified ISBN may not exist.");
       }
     else if(rqid == requestid2)
       {
-	if(imgbytes2.size() > 100)
+	if(imgbytes2.size() > 1000)
 	  {
 	    id.back_image->clear();
 	    id.back_image->loadFromData(imgbytes2);
@@ -2117,13 +2125,11 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	imgbuffer2->close();
 	(void) http2->close();
 
-	if(id.back_image->image.numBytes() < 100)
+	if(imgbytes2.size() < 1000)
 	  QMessageBox::warning
 	    (this, "BiblioteQ: HTTP Warning",
 	     "The back cover image for the specified ISBN may not exist.");
       }
-
-  httpprogress->hide();
 
   if(error)
     if(rqid == requestid1)

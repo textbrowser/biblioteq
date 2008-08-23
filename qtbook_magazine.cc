@@ -1356,6 +1356,12 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
+  if(thread && thread->isRunning())
+    {
+      e->ignore();
+      return;
+    }
+
   if(windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
@@ -1465,7 +1471,7 @@ void qtbook_magazine::slotQuery(void)
 
       qapp->restoreOverrideCursor();
 
-      if((errorstr = thread->getErrorStr()).isEmpty() && isVisible())
+      if((errorstr = thread->getErrorStr()).isEmpty())
 	{
 	  if(thread->getLOCResults().size() == 1)
 	    {
@@ -1524,7 +1530,7 @@ void qtbook_magazine::slotQuery(void)
       errorstr = "Unable to create a thread due to insufficient resources.";
     }
 
-  if(!errorstr.isEmpty() && isVisible())
+  if(!errorstr.isEmpty())
     {
       qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
 		      __FILE__, __LINE__);
