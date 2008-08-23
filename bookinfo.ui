@@ -56,7 +56,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -66,6 +66,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="dwnldFront" >
+            <property name="minimumSize" >
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text" >
              <string>&amp;Download</string>
             </property>
@@ -73,6 +79,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="frontButton" >
+            <property name="minimumSize" >
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text" >
              <string>&amp;Select</string>
             </property>
@@ -83,7 +95,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -113,7 +125,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -122,7 +134,26 @@
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="dwnldBack" >
+            <property name="minimumSize" >
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text" >
+             <string>&amp;Download</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="backButton" >
+            <property name="minimumSize" >
+             <size>
+              <width>105</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text" >
              <string>&amp;Select</string>
             </property>
@@ -133,7 +164,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -178,8 +209,7 @@
              <string>&amp;Generate</string>
             </property>
             <property name="icon" >
-             <iconset>
-              <normaloff>icons.d/16x16/gear.png</normaloff>icons.d/16x16/gear.png</iconset>
+             <iconset>icons.d/16x16/gear.png</iconset>
             </property>
            </widget>
           </item>
@@ -208,8 +238,7 @@
              <string>&amp;Convert</string>
             </property>
             <property name="icon" >
-             <iconset>
-              <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+             <iconset>icons.d/16x16/convert.png</iconset>
             </property>
            </widget>
           </item>
@@ -380,7 +409,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -409,7 +438,7 @@
            <bool>false</bool>
           </property>
           <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
           <property name="openLinks" >
            <bool>false</bool>
@@ -456,7 +485,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -584,7 +613,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -619,7 +648,7 @@
            <bool>false</bool>
           </property>
           <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
           <property name="openLinks" >
            <bool>false</bool>
@@ -697,7 +726,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -772,8 +801,7 @@
                <string>&amp;Copies</string>
               </property>
               <property name="icon" >
-               <iconset>
-                <normaloff>icons.d/16x16/editcopy.png</normaloff>icons.d/16x16/editcopy.png</iconset>
+               <iconset>icons.d/16x16/editcopy.png</iconset>
               </property>
              </widget>
             </item>
@@ -789,8 +817,7 @@
                <string>&amp;Reservation Status</string>
               </property>
               <property name="icon" >
-               <iconset>
-                <normaloff>icons.d/16x16/members.png</normaloff>icons.d/16x16/members.png</iconset>
+               <iconset>icons.d/16x16/members.png</iconset>
               </property>
              </widget>
             </item>
@@ -801,7 +828,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -840,7 +867,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -884,7 +911,7 @@ URL</string>
            <bool>false</bool>
           </property>
           <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
           <property name="openExternalLinks" >
            <bool>true</bool>
@@ -897,7 +924,7 @@ URL</string>
            <bool>false</bool>
           </property>
           <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::NoTextInteraction|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
           <property name="openLinks" >
            <bool>false</bool>
@@ -915,7 +942,7 @@ URL</string>
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" >
          <size>
           <width>40</width>
           <height>20</height>
@@ -947,8 +974,7 @@ URL</string>
          <string>&amp;OK</string>
         </property>
         <property name="icon" >
-         <iconset>
-          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+         <iconset>icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -970,8 +996,7 @@ URL</string>
          <string>&amp;Query Libray of Congress</string>
         </property>
         <property name="icon" >
-         <iconset>
-          <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+         <iconset>icons.d/16x16/down.png</iconset>
         </property>
        </widget>
       </item>
@@ -1015,8 +1040,7 @@ URL</string>
          <string>&amp;Print</string>
         </property>
         <property name="icon" >
-         <iconset>
-          <normaloff>icons.d/16x16/fileprint.png</normaloff>icons.d/16x16/fileprint.png</iconset>
+         <iconset>icons.d/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -1038,8 +1062,7 @@ URL</string>
          <string>&amp;Close</string>
         </property>
         <property name="icon" >
-         <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+         <iconset>icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -1048,7 +1071,7 @@ URL</string>
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" >
          <size>
           <width>40</width>
           <height>20</height>
@@ -1079,6 +1102,7 @@ URL</string>
   <tabstop>dwnldFront</tabstop>
   <tabstop>frontButton</tabstop>
   <tabstop>back_image</tabstop>
+  <tabstop>dwnldBack</tabstop>
   <tabstop>backButton</tabstop>
   <tabstop>id</tabstop>
   <tabstop>generate</tabstop>

@@ -62,6 +62,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = 0;
+  requestid1 = requestid2 = 0;
   parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
@@ -137,6 +138,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(slotGenerateISBN(void)));
   connect(id.dwnldFront, SIGNAL(clicked(void)), this,
 	  SLOT(slotDownloadImage(void)));
+  connect(id.dwnldBack, SIGNAL(clicked(void)), this,
+	  SLOT(slotDownloadImage(void)));
   connect(http1, SIGNAL(requestFinished(int, bool)),
 	  this, SLOT(slotHttpRequestFinished(int, bool)));
   connect(http2, SIGNAL(requestFinished(int, bool)),
@@ -193,7 +196,7 @@ qtbook_book::~qtbook_book()
   delete imgbuffer1;
   delete imgbuffer2;
 
-  if(thread != 0 && thread->isRunning())
+  if(thread == 0)
     qapp->restoreOverrideCursor();
 }
 
@@ -1508,7 +1511,7 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if((thread && thread->isRunning()) ||
+  if(thread != 0 ||
      http1->state() != QHttp::Unconnected ||
      http2->state() != QHttp::Unconnected)
     {
@@ -1597,12 +1600,7 @@ void qtbook_book::slotQuery(void)
   QStringList removeList;
 
   if(thread != 0)
-    {
-      QMessageBox::critical
-	(this, "BiblioteQ: User Error", 
-	 "A query is already in progress. Please allow it to complete.");
-      return;
-    }
+    return;
 
   if(id.id->text().trimmed().isEmpty() &&
      id.isbn13->text().trimmed().isEmpty())
@@ -1617,6 +1615,9 @@ void qtbook_book::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
+      statusBar()->showMessage("Downloading information from the Library "
+			       "of Congress. Please be patient.");
+
       if(!id.id->text().isEmpty())
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
       else
@@ -1633,6 +1634,7 @@ void qtbook_book::slotQuery(void)
 	  thread->wait(100);
 	}
 
+      statusBar()->clearMessage();
       qapp->restoreOverrideCursor();
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
@@ -1970,7 +1972,7 @@ void qtbook_book::slotPrint(void)
 
 bool qtbook_book::isBusy(void)
 {
-  if(thread != 0)
+  if(thread)
     return true;
   else if(imgbuffer1->isOpen() || imgbuffer2->isOpen())
     return true;
@@ -2048,23 +2050,14 @@ void qtbook_book::slotDownloadImage(void)
 	 "must be provided.");
       return;
     }
-  else if(imgbuffer1->isOpen())
-    {
-      QMessageBox::critical
-	(this, "BiblioteQ: User Error",
-	 "BiblioteQ is currently processing a download request for the "
-	 "front cover image. Please wait until this request has been "
-	 "completed.");
-      return;
-    }
-  else if(imgbuffer2->isOpen())
-    {
-      QMessageBox::critical
-	(this, "BiblioteQ: User Error",
-	 "BiblioteQ is currently processing a download request for the "
-	 "back cover image. Please until this request has been completed.");
-      return;
-    }
+
+  if(requestid1 > 0 && pb == id.dwnldFront)
+    return;
+
+  if(requestid2 > 0 && pb == id.dwnldBack)
+    return;
+
+  statusBar()->showMessage("Downloading the cover image. Please be patient.");
 
   if(pb == id.dwnldFront)
     {
@@ -2083,6 +2076,7 @@ void qtbook_book::slotDownloadImage(void)
       imgbuffer2->open(QIODevice::WriteOnly);
     }
 
+  requestid1 = requestid2 = 0;
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
 
   if(pb == id.dwnldFront)
@@ -2097,6 +2091,8 @@ void qtbook_book::slotDownloadImage(void)
 
 void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
+  statusBar()->clearMessage();
+
   if(!error)
     if(rqid == requestid1)
       {
@@ -2142,6 +2138,8 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	(this, "BiblioteQ: HTTP Error",
 	 QString("Back cover image download failed: %1.").arg
 	 (http1->errorString()));
+
+  requestid1 = requestid2 = 0;
 }
 
 /*

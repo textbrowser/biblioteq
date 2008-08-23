@@ -150,7 +150,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 
 qtbook_magazine::~qtbook_magazine()
 {
-  if(thread != 0 && thread->isRunning())
+  if(thread == 0)
     qapp->restoreOverrideCursor();
 }
 
@@ -1356,7 +1356,7 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
-  if(thread && thread->isRunning())
+  if(thread != 0)
     {
       e->ignore();
       return;
@@ -1438,12 +1438,7 @@ void qtbook_magazine::slotQuery(void)
   QStringList list;
 
   if(thread != 0)
-    {
-      QMessageBox::critical
-	(this, "BiblioteQ: User Error", 
-	 "A query is already in progress. Please allow it to complete.");
-      return;
-    }
+    return;
 
   if(ma.id->text().trimmed().length() != 9)
     {
@@ -1457,6 +1452,8 @@ void qtbook_magazine::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
+      statusBar()->showMessage("Downloading information from the Library "
+			       "of Congress. Please be patient.");
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
       thread->setLOCSearchString(searchstr);
@@ -1469,6 +1466,7 @@ void qtbook_magazine::slotQuery(void)
 	  thread->wait(100);
 	}
 
+      statusBar()->clearMessage();
       qapp->restoreOverrideCursor();
 
       if((errorstr = thread->getErrorStr()).isEmpty())
