@@ -58,9 +58,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((imgbuffer2 = new(std::nothrow) QBuffer(&imgbytes2)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((httpprogress = new(std::nothrow) QProgressDialog(this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
   thread = 0;
   requestid1 = requestid2 = 0;
   parentWid = parentArg;
@@ -71,8 +68,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   http1->setHost(qmain->getAmazonHash()["front_cover_host"]);
   http2->setHost(qmain->getAmazonHash()["back_cover_host"]);
   id.setupUi(this);
-  httpprogress->setCancelButton(0);
-  httpprogress->setModal(true);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
@@ -290,7 +285,7 @@ void qtbook_book::slotGo(void)
 				"Please complete both the "
 				"ISBN-10 and ISBN-13 fields.");
 
-	  if(id.id->text().isEmpty())
+	  if(id.id->text().length() != 10)
 	    id.id->setFocus();
 	  else
 	    id.isbn13->setFocus();
@@ -1629,6 +1624,8 @@ void qtbook_book::slotQuery(void)
 
       while(thread->isRunning())
 	{
+	  statusBar()->showMessage("Downloading information from the "
+				   "Library of Congress. Please be patient.");
 	  qapp->processEvents();
 	  thread->wait(100);
 	}
@@ -2039,6 +2036,12 @@ void qtbook_book::slotDownloadImage(void)
   QString url = "";
   QPushButton *pb = static_cast<QPushButton *> (sender());
 
+  if(requestid1 > 0 && pb == id.dwnldFront)
+    return;
+
+  if(requestid2 > 0 && pb == id.dwnldBack)
+    return;
+
   if(id.id->text().trimmed().length() != 10)
     {
       QMessageBox::critical
@@ -2048,26 +2051,17 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  if(requestid1 > 0 && pb == id.dwnldFront)
-    return;
-
-  if(requestid2 > 0 && pb == id.dwnldBack)
-    return;
-
-  statusBar()->showMessage("Downloading the cover image. Please be patient.");
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  statusBar()->showMessage("Downloading cover image data. Please be patient.");
 
   if(pb == id.dwnldFront)
     {
-      httpprogress->setWindowTitle("BiblioteQ: Progress Dialog");
-      httpprogress->setLabelText("Downloading the front cover image...");
       url = qmain->getAmazonHash()["front_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer1->open(QIODevice::WriteOnly);
     }
   else
     {
-      httpprogress->setWindowTitle("BiblioteQ: Progress Dialog");
-      httpprogress->setLabelText("Downloading the back cover image...");
       url = qmain->getAmazonHash()["back_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer2->open(QIODevice::WriteOnly);
@@ -2088,6 +2082,7 @@ void qtbook_book::slotDownloadImage(void)
 void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
   statusBar()->clearMessage();
+  qapp->restoreOverrideCursor();
 
   if(!error)
     if(rqid == requestid1)
@@ -2142,9 +2137,9 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 ** -- slotUpdateDataReadProgress() --
 */
 
-void qtbook_book::slotUpdateDataReadProgress(int bytesread, int tbytes)
+void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 {
-  httpprogress->setMaximum(tbytes);
-  httpprogress->setValue(bytesread);
-  httpprogress->update();
+  (void) bytesread;
+  (void) totalbytes;
+  statusBar()->showMessage("Downloading cover image data. Please be patient.");
 }

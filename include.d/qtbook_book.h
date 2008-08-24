@@ -58,7 +58,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QByteArray imgbytes1; // Front Cover Byte Array
   QByteArray imgbytes2; // Back Cover Byte Array
   generic_thread *thread;
-  QProgressDialog *httpprogress;
   Ui_informationDialog id;
 
  private slots:
