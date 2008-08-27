@@ -2048,6 +2048,7 @@ void qtbook_book::slotDownloadImage(void)
 	(this, "BiblioteQ: User Error",
 	 "In order to download a cover image from Amazon, the ISBN-10 "
 	 "must be provided.");
+      id.id->setFocus();
       return;
     }
 
