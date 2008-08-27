@@ -52,7 +52,7 @@ void generic_thread::run(void)
 	    errorStr.append(filename);
 	    errorStr.append(". This file may not yet exist. If you wish to "
 			    "create it, "
-			    "please choose the Save Options selection that "
+			    "please choose the Save Settings selection that "
 			    "is located in the Options menu.");
 	    return;
 	  }
