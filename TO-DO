@@ -2,7 +2,7 @@
 2.   Save major settings to a configuration file. (DONE)
 3.   Implement the Library of Congress query. (DONE)
 4.   Allow for image storage of front and back covers. (DONE)
-5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux (TBD),
+5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux (DONE),
      OS X (DONE), and Solaris (DONE).
 6.   Allow searching of library members. This feature should only be
      available to administrators. (DONE)
@@ -41,7 +41,7 @@
 15.  Implement the lending of items. (DONE)
 16.  Implement the Copy Editor. (DONE)
 17.  Sort numeric columns. (DONE)
-18.  If configured, automatically resize column headers after sorting. (DONE)
+18.  If selected, automatically resize column headers after sorting. (DONE)
 19.  Provide improved reset mechanisms. (DONE)
 20.  Set focus on appropriate widget after a widget reset. (DONE)
 21.  SQL queries must be compatible with PostgreSQL. (DONE)
@@ -233,7 +233,7 @@
      table. (DONE)
 126. Do not allow duplicate administrator ids. (DONE)
 127. Highlight required fields. (DONE)
-128. Properly reset highlighted fields to their original color
+128. Properly reset highlighted fields to their original colors
      after a reset. (DONE)
 129. Fields should have their hyperlinks activated only after a successful
      save. (DONE)
@@ -288,3 +288,4 @@
 157. Style sheets are not fully supported in OS X (Edition,
      Publication Date).
 158. Resolve resource competition for Amazon and LoC queries. (DONE)
+159. Provide documentation for administrator privileges.
