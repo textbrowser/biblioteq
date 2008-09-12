@@ -42,5 +42,6 @@ cp -p *.sql $BACKUP_DIR/.
 cp -p INSTALL $BACKUP_DIR/.
 cp -p INSTALL.freebsd $BACKUP_DIR/.
 cp -p TO-DO $BACKUP_DIR/.
+cp -p ROLES $BACKUP_DIR/.
 rm -rf $BACKUP_DIR/icons.d/16x16/.svn
 rm -rf $BACKUP_DIR/icons.d/32x32/.svn
