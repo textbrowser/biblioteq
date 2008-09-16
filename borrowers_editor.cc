@@ -394,6 +394,14 @@ void borrowers_editor::slotEraseBorrower(void)
       qmain->updateReservationHistoryBrowser(memberid, ioid, copyid,
 					     itemType, returnedDate);
       showUsers();
+
+      /*
+      ** Update the main window's summary panel, if necessary.
+      */
+
+      if(ioid == misc_functions::getColumnString(qmain->getUI().table,
+						 bitem->getRow(), "MYOID"))
+	qmain->slotDisplaySummary();
     }
 }
 

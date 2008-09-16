@@ -520,6 +520,14 @@ void copy_editor::slotCheckoutCopy(void)
     }
 
   slotCloseCopyEditor();
+
+  /*
+  ** Update the main window's summary panel, if necessary.
+  */
+
+  if(ioid == misc_functions::getColumnString(qmain->getUI().table,
+					     bitem->getRow(), "MYOID"))
+    qmain->slotDisplaySummary();
 }
 
 /*
