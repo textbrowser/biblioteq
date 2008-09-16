@@ -101,7 +101,7 @@ void borrowers_editor::showUsers(void)
       list.append("Reservation Date");
       list.append("Copy Due Date");
       list.append("Lender");
-      list.append("OID");
+      list.append("MYOID");
     }
   else
     {
@@ -313,7 +313,7 @@ void borrowers_editor::slotEraseBorrower(void)
       return;
     }
 
-  oid = misc_functions::getColumnString(bd.table, row, "OID");
+  oid = misc_functions::getColumnString(bd.table, row, "MYOID");
 
   if(oid.isEmpty())
     {
@@ -429,7 +429,7 @@ void borrowers_editor::slotSave(void)
 
   for(i = 0; i < bd.table->rowCount(); i++)
     {
-      oid = misc_functions::getColumnString(bd.table, i, "OID");
+      oid = misc_functions::getColumnString(bd.table, i, "MYOID");
 
       if(!oid.isEmpty())
 	{

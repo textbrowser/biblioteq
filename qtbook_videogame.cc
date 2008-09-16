@@ -519,7 +519,7 @@ void qtbook_videogame::slotGo(void)
 	      if((qmain->getUI().typefilter->currentText() == "All" ||
 		  qmain->getUI().typefilter->currentText() == "Video Games") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "OID"))
+							row, "MYOID"))
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {

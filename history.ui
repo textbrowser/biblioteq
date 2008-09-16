@@ -121,7 +121,7 @@
          </column>
          <column>
           <property name="text" >
-           <string>OID</string>
+           <string>MYOID</string>
           </property>
          </column>
         </widget>
@@ -137,7 +137,8 @@
          <string>Previous Member</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/previous.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/previous.png</normaloff>icons.d/32x32/previous.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -155,7 +156,7 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>51</width>
           <height>26</height>
@@ -175,7 +176,8 @@
          <string>&amp;Reload</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/reload.png</iconset>
+         <iconset>
+          <normaloff>icons.d/16x16/reload.png</normaloff>icons.d/16x16/reload.png</iconset>
         </property>
        </widget>
       </item>
@@ -197,7 +199,8 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/fileprint.png</iconset>
+         <iconset>
+          <normaloff>icons.d/16x16/fileprint.png</normaloff>icons.d/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -219,7 +222,8 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/cancel.png</iconset>
+         <iconset>
+          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -228,7 +232,7 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>21</width>
           <height>26</height>
@@ -242,7 +246,8 @@
          <string>Next Member</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/next.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/next.png</normaloff>icons.d/32x32/next.png</iconset>
         </property>
         <property name="iconSize" >
          <size>

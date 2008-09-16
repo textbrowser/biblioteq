@@ -485,11 +485,11 @@ void qtbook::addConfigOptions(const QString &typefilter)
       if(typefilter != "All" && typefilter != "All Overdue" &&
 	 typefilter != "All Requested" && typefilter != "All Reserved")
 	{
-	  if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
+	  if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == "Type")
 	    continue;
 	}
-      else if(ui.table->horizontalHeaderItem(i)->text() == "OID" ||
+      else if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
 	      ui.table->horizontalHeaderItem(i)->text() == "REQUESTOID")
 	continue;
 
@@ -724,7 +724,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.10.<br>"
+  mb.setText("<html>BiblioteQ Version 6.11.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) Everaldo.<br><br>"
@@ -845,7 +845,7 @@ void qtbook::slotModify(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(ui.table, i, "OID");
+      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
 
       if(type.toLower() == "cd")
@@ -1007,7 +1007,7 @@ void qtbook::slotViewDetails(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(ui.table,i, "OID");
+      oid = misc_functions::getColumnString(ui.table,i, "MYOID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
 
       if(type.toLower() == "cd")
@@ -1156,7 +1156,7 @@ void qtbook::slotDelete(void)
       return;
     }
 
-  col = misc_functions::getColumnNumber(ui.table, "OID");
+  col = misc_functions::getColumnNumber(ui.table, "MYOID");
 
   foreach(index, list)
     {
@@ -1165,7 +1165,7 @@ void qtbook::slotDelete(void)
       if(ui.table->item(i, col) == 0)
 	continue;
 
-      oid = misc_functions::getColumnString(ui.table, i, "OID");
+      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       itemType = misc_functions::getColumnString(ui.table, i, "Type");
 
       if(oid.isEmpty() || itemType.isEmpty())
@@ -3836,7 +3836,7 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
 
   for(i = 0; i < ui.table->rowCount(); i++)
     {
-      oid = misc_functions::getColumnString(ui.table, i, "OID");
+      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       itemType = misc_functions::getColumnString(ui.table, i, "Type");
       itemType = itemType.toLower().remove(" ");
       updateRows(oid, i, itemType);
@@ -4991,7 +4991,7 @@ void qtbook::slotDisplaySummary(void)
   if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
     {
       i = ui.table->currentRow();
-      oid = misc_functions::getColumnString(ui.table, i, "OID");
+      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       type = misc_functions::getColumnString(ui.table, i, "Type");
       summary = "<html>";
 
@@ -5129,6 +5129,15 @@ void qtbook::slotDisplaySummary(void)
 	}
 
       summary = summary.remove("<br><br>");
+
+      tmpstr = misc_functions::getColumnString(ui.table, i, "Availability");
+
+      if(!tmpstr.isEmpty())
+	if(tmpstr.toInt() > 0)
+	  summary += "Available<br>";
+	else
+	  summary += "Unavailable<br>";
+
       summary += misc_functions::getColumnString(ui.table, i, "Location");
       summary += "</html>";
       ui.summary->setText(summary);
@@ -6018,7 +6027,7 @@ void qtbook::slotCheckout(void)
       */
 
       oid = misc_functions::getColumnString
-	(ui.table, row2, "OID");
+	(ui.table, row2, "MYOID");
       type = misc_functions::getColumnString(ui.table, row2, "Type");
       qapp->setOverrideCursor(Qt::WaitCursor);
       availability = misc_functions::getAvailability
@@ -6080,7 +6089,8 @@ void qtbook::slotCheckout(void)
 	  if(itemid.isEmpty())
 	    QMessageBox::critical(members_diag, "BiblioteQ: User Error",
 				  "Unable to determine the selected item's "
-				  "type.");
+				  "ID. In order to reserve the item, its "
+				  "ID must be known.");
 	  else if((copyeditor = new(std::nothrow) copy_editor
 		   (members_diag, item, true,
 		    quantity, oid, itemid,
@@ -7186,6 +7196,10 @@ void qtbook::updateRows(const QString &oid, const int row,
 
 void qtbook::slotCloseMembersBrowser(void)
 {
+  /*
+  ** Also closes the Reservation History Browser.
+  */
+
   history_diag->close();
   members_diag->close();
 }
@@ -7207,10 +7221,9 @@ void qtbook::slotListReservedItems(void)
       return;
     }
 
-  history_diag->close();
-  members_diag->close();
   memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
+  members_diag->raise();
 }
 
 /*
@@ -7223,15 +7236,12 @@ void qtbook::slotListOverdueItems(void)
   QString memberid = "";
 
   if(members_diag->isVisible())
-    {
-      history_diag->close();
-      members_diag->close();
-      memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
-    }
+    memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
   else if(roles.isEmpty())
     memberid = br.userid->text();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+  members_diag->raise();
 }
 
 /*
@@ -7260,7 +7270,7 @@ void qtbook::slotReserveCopy(void)
       return;
     }
 
-  oid = misc_functions::getColumnString(ui.table, row, "OID");
+  oid = misc_functions::getColumnString(ui.table, row, "MYOID");
   type = misc_functions::getColumnString(ui.table, row, "Type");
   qapp->setOverrideCursor(Qt::WaitCursor);
   availability = misc_functions::getAvailability
@@ -7890,7 +7900,7 @@ void qtbook::slotShowHistory(void)
   list.append("Original Due Date");
   list.append("Returned Date");
   list.append("Lender");
-  list.append("OID");
+  list.append("MYOID");
   history.table->setColumnCount(list.size());
   history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
@@ -8082,7 +8092,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 	for(i = 0; i < history.table->rowCount(); i++)
 	  {
 	    value1 = misc_functions::getColumnString
-	      (history.table, i, "OID");
+	      (history.table, i, "MYOID");
 	    value2 = misc_functions::getColumnString
 	      (history.table, i, "Barcode");
 	    value3 = misc_functions::getColumnString
@@ -8797,7 +8807,7 @@ void qtbook::slotRequest(void)
       ct += 1;
 
       if(roles.isEmpty())
-	oid = misc_functions::getColumnString(ui.table, i, "OID");
+	oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       else
 	oid = misc_functions::getColumnString(ui.table, i, "REQUESTOID");
 

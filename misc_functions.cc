@@ -858,12 +858,6 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 	    str = table->item(row, i)->text();
 	    break;
 	  }
-	else if(columnName.toLower() == "oid" &&
-		column->text().toLower() == "myoid")
-	  {
-	    str = table->item(row, i)->text();
-	    break;
-	  }
       }
 
   return str;
@@ -888,12 +882,6 @@ int misc_functions::getColumnNumber(const QTableWidget *table,
 	continue;
 
       if(column->text().toLower() == columnName.toLower())
-	{
-	  num = i;
-	  break;
-	}
-      else if(columnName.toLower() == "oid" &&
-	      column->text().toLower() == "myoid")
 	{
 	  num = i;
 	  break;

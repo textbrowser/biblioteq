@@ -568,7 +568,7 @@ void qtbook_magazine::slotGo(void)
 		  qmain->getUI().typefilter->currentText() ==
 		  (subType + "s")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "OID"))
+							row, "MYOID"))
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {

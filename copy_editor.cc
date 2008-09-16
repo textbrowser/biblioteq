@@ -163,7 +163,7 @@ void copy_editor::populateCopiesEditor(void)
   list.append("Title");
   list.append("Barcode");
   list.append("Availability");
-  list.append("OID");
+  list.append("ITEM_OID");
   list.append("Copy Number");
   cb.table->setColumnCount(list.size());
   cb.table->setHorizontalHeaderLabels(list);
@@ -173,7 +173,7 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->horizontalScrollBar()->setValue(0);
 
   /*
-  ** Hide the Copy Number and OID columns.
+  ** Hide the Copy Number and ITEM_OID columns.
   */
 
   cb.table->setColumnHidden(cb.table->columnCount() - 1, true);

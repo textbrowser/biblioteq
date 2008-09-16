@@ -11,7 +11,7 @@
   </property>
   <property name="minimumSize" >
    <size>
-    <width>800</width>
+    <width>400</width>
     <height>600</height>
    </size>
   </property>
@@ -194,7 +194,8 @@
          <string>Add Member</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/add.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -219,7 +220,8 @@
          <string>Delete Selected Member</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/remove.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -244,7 +246,8 @@
          <string>Modify Selected Member</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/edit.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/edit.png</normaloff>icons.d/32x32/edit.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -266,7 +269,8 @@
          <string/>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/history.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/history.png</normaloff>icons.d/32x32/history.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -291,7 +295,8 @@
          <string>List Selected Member's Reserved Items</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/stamp.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/stamp.png</normaloff>icons.d/32x32/stamp.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -319,7 +324,8 @@
          <string/>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/print.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -351,7 +357,8 @@
          <string>Reserve Selected Item</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/checkout.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/checkout.png</normaloff>icons.d/32x32/checkout.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -383,7 +390,8 @@
          <string>List All Overdue Items</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/date.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/date.png</normaloff>icons.d/32x32/date.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -408,7 +416,8 @@
          <string>Refresh List</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/reload.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -426,7 +435,7 @@
         <property name="orientation" >
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>20</width>
           <height>40</height>
@@ -446,7 +455,8 @@
          <string>Close Browser</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/cancel.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
         </property>
         <property name="iconSize" >
          <size>

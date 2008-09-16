@@ -69,7 +69,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
 	list.append("Availability");
 
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
 
       if(type == "All Requested")
 	list.append("REQUESTOID");
@@ -95,7 +95,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Dewey Class Number");
       list.append("Availability");
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
     }
   else if(type == "Video Games")
     {
@@ -114,7 +114,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Location");
       list.append("Availability");
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
     }
   else if(type == "Music CDs")
     {
@@ -136,7 +136,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Recording Type");
       list.append("Availability");
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
     }
   else if(type == "DVDs")
     {
@@ -158,7 +158,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Aspect Ratio");
       list.append("Availability");
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
     }
   else if(type == "Journals" || type == "Magazines")
     {
@@ -179,7 +179,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append("Dewey Number");
       list.append("Availability");
       list.append("Type");
-      list.append("OID");
+      list.append("MYOID");
     }
 
   setColumnCount(list.size());
