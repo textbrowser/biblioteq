@@ -1508,12 +1508,6 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(isBusy())
-    {
-      e->ignore();
-      return;
-    }
-
   if(windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
@@ -1609,11 +1603,13 @@ void qtbook_book::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       progress.setModal(true);
+      
       progress.setWindowTitle("BiblioteQ: Working Dialog");
       progress.setLabelText("Downloading information from the Library "
 			    "of Congress. Please be patient.");
       progress.setMaximum(0);
       progress.setMinimum(0);
+      progress.setCancelButton(0);
       progress.show();
       progress.update();
 
@@ -1627,16 +1623,8 @@ void qtbook_book::slotQuery(void)
       thread->start();
 
       while(thread->isRunning())
-	{
-	  qapp->processEvents();
+	qapp->processEvents();
 
-	  if(progress.wasCanceled())
-	    statusBar()->showMessage
-	      ("The Library of Congress query was aborted. "
-	       "Please wait until resources have been deallocated.");
-	}
-
-      statusBar()->clearMessage();
       progress.hide();
 
       if(progress.wasCanceled())
@@ -1973,18 +1961,6 @@ void qtbook_book::slotPrint(void)
     "<br>";
   html += "<b>OFFSYSTEM URL:</b> " + id.url->toPlainText().trimmed();
   print(this);
-}
-
-/*
-** -- isBusy() --
-*/
-
-bool qtbook_book::isBusy(void)
-{
-  if(thread != 0 || requestid1 > 0 || requestid2 > 0)
-    return true;
-  else
-    return false;
 }
 
 /*

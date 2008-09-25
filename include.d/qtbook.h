@@ -176,8 +176,6 @@ class qtbook: public QMainWindow
   Ui_branchSelect br;
   Ui_historyDialog history;
   Ui_membersBrowser bb;
-  bool isItemBusy(const QString &, const QString &);
-  bool areItemsBusy(void);
   void cleanup(void);
   void lockApp(const bool);
   void cdModify(const int);

@@ -289,7 +289,11 @@
      Publication Date).
 158. Resolve resource competition for Amazon and LOC queries. (DONE)
 159. Provide documentation for administrator privileges. (DONE)
-160. Allow the user to cancel a LOC query.
+160. Provide a status dialog for the Library of Congress query. (DONE)
 161. Allow the user to cancel an image download.
-162. Integrate the privileges documentation into the application.
+162. Integrate the administrator privileges documentation into the
+     application.
 163. Provide an option for downloading OFFSYSTEM files.
+164. Warn the user of unsaved changes in the Members Browser.
+165. Reimplement the closeEvent for dialogs that should not be
+     dismissed.

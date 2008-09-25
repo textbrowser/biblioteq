@@ -1262,10 +1262,6 @@ void qtbook::slotDelete(void)
       str = ui.table->item(i, col)->text();
       itemType = misc_functions::getColumnString(ui.table, i, "Type");
       itemType = itemType.toLower().remove(" ");
-
-      if(isItemBusy(str, itemType))
-	continue;
-
       query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
       query.bindValue(0, str);
 
@@ -5467,17 +5463,6 @@ void qtbook::slotConnectDB(void)
 
 void qtbook::slotDisconnect(void)
 {
-  /*
-  ** Do we have any threads that need attention?
-  */
-
-  if(areItemsBusy())
-    {
-      statusBar()->showMessage("Please wait until background processing "
-			       "has completed.", 5000);
-      return;
-    }
-
   roles = "";
   all_diag->close();
   members_diag->close();
@@ -5642,13 +5627,6 @@ void qtbook::slotShowMembersBrowser(void)
   bb.filtertype->setCurrentIndex(0);
   bb.filter->setFocus();
   bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
-
-  if(!members_diag->isVisible())
-    {
-      members_diag->updateGeometry();
-      members_diag->resize(members_diag->sizeHint());
-    }
-
   misc_functions::center(members_diag, this);
   members_diag->raise();
   members_diag->show();
@@ -7332,74 +7310,6 @@ QHash<QString, QString> qtbook::getLOCHash(void)
 QHash<QString, QString> qtbook::getAmazonHash(void)
 {
   return AmazonImages;
-}
-
-/*
-** -- areItemsBusy() --
-*/
-
-bool qtbook::areItemsBusy(void)
-{
-  QHash<QString, qtbook_book *>::const_iterator bookit;
-  QHash<QString, qtbook_journal *>::const_iterator journalit;
-  QHash<QString, qtbook_magazine *>::const_iterator magazineit;
-
-  bookit = books.constBegin();
-
-  while(bookit != books.constEnd())
-    {
-      if(bookit.value()->isBusy())
-	return true;
-
-      ++bookit;
-    }
-
-  journalit = journals.constBegin();
-
-  while(journalit != journals.constEnd())
-    {
-      if(journalit.value()->isBusy())
-	return true;
-
-      ++journalit;
-    }
-
-  magazineit = magazines.constBegin();
-
-  while(magazineit != magazines.constEnd())
-    {
-      if(magazineit.value()->isBusy())
-	return true;
-
-      ++magazineit;
-    }
-
-  return false;
-}
-
-/*
-** -- isItemBusy() --
-*/
-
-bool qtbook::isItemBusy(const QString &oid, const QString &itemType)
-{
-  if(itemType == "book")
-    {
-      if(books.contains(oid))
-	return books.value(oid)->isBusy();
-    }
-  else if(itemType == "journal")
-    {
-      if(journals.contains(oid))
-	return journals.value(oid)->isBusy();
-    }
-  else if(itemType == "magazine")
-    {
-      if(magazines.contains(oid))
-	return magazines.value(oid)->isBusy();
-    }
-
-  return false;
 }
 
 /*

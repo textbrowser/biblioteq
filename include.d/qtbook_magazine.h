@@ -37,7 +37,6 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
 		  const QStringList &, const QStringList &, const QString &,
 		  const int);
   ~qtbook_magazine();
-  bool isBusy(void);
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");

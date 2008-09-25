@@ -1448,6 +1448,7 @@ void qtbook_magazine::slotQuery(void)
 			    "of Congress. Please be patient.");
       progress.setMaximum(0);
       progress.setMinimum(0);
+      progress.setCancelButton(0);
       progress.show();
       progress.update();
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
@@ -1455,11 +1456,8 @@ void qtbook_magazine::slotQuery(void)
       thread->setLOCSearchString(searchstr);
       thread->start();
 
-      while(thread->isRunning() && !progress.wasCanceled())
-	{
-	  qapp->processEvents();
-	  thread->wait(100);
-	}
+      while(thread->isRunning())
+	qapp->processEvents();
 
       progress.hide();
 
@@ -1701,18 +1699,6 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 
   foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
     textfield->setCursorPosition(0);
-}
-
-/*
-** -- isBusy() --
-*/
-
-bool qtbook_magazine::isBusy(void)
-{
-  if(thread != 0)
-    return true;
-  else
-    return false;
 }
 
 /*
