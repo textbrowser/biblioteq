@@ -150,8 +150,6 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 
 qtbook_magazine::~qtbook_magazine()
 {
-  if(thread == 0)
-    qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1356,12 +1354,6 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
-  if(thread != 0)
-    {
-      e->ignore();
-      return;
-    }
-
   if(windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
@@ -1436,9 +1428,7 @@ void qtbook_magazine::slotQuery(void)
   QString searchstr = "";
   locresults *dialog = 0;
   QStringList list;
-
-  if(thread != 0)
-    return;
+  QProgressDialog progress(this);
 
   if(ma.id->text().trimmed().length() != 9)
     {
@@ -1452,22 +1442,33 @@ void qtbook_magazine::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
-      statusBar()->showMessage("Downloading information from the Library "
-			       "of Congress. Please be patient.");
+      progress.setModal(true);
+      progress.setWindowTitle("BiblioteQ: Working Dialog");
+      progress.setLabelText("Downloading information from the Library "
+			    "of Congress. Please be patient.");
+      progress.setMaximum(0);
+      progress.setMinimum(0);
+      progress.show();
+      progress.update();
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
       thread->setLOCSearchString(searchstr);
       thread->start();
-      qapp->setOverrideCursor(Qt::WaitCursor);
 
-      while(thread->isRunning())
+      while(thread->isRunning() && !progress.wasCanceled())
 	{
 	  qapp->processEvents();
 	  thread->wait(100);
 	}
 
-      statusBar()->clearMessage();
-      qapp->restoreOverrideCursor();
+      progress.hide();
+
+      if(progress.wasCanceled())
+	{
+	  delete thread;
+	  thread = 0;
+	  return;
+	}
 
       if((errorstr = thread->getErrorStr()).isEmpty())
 	{

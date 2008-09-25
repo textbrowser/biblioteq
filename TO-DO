@@ -287,7 +287,7 @@
 156. Close HTTP sockets after an Amazon query. (DONE)
 157. Style sheets are not fully supported in OS X (Edition,
      Publication Date).
-158. Resolve resource competition for Amazon and LoC queries. (DONE)
+158. Resolve resource competition for Amazon and LOC queries. (DONE)
 159. Provide documentation for administrator privileges. (DONE)
 160. Allow the user to cancel a LOC query.
 161. Allow the user to cancel an image download.

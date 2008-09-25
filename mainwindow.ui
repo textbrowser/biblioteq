@@ -29,6 +29,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>../../../../home/monster/biblioteq.d/icons.d/book.gif</normaloff>../../../../home/monster/biblioteq.d/icons.d/book.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>
@@ -49,7 +53,7 @@
              <property name="orientation" >
               <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeHint" >
+             <property name="sizeHint" stdset="0" >
               <size>
                <width>40</width>
                <height>20</height>
@@ -72,7 +76,7 @@
              <property name="orientation" >
               <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeHint" >
+             <property name="sizeHint" stdset="0" >
               <size>
                <width>40</width>
                <height>20</height>
@@ -139,7 +143,7 @@
              <property name="orientation" >
               <enum>Qt::Vertical</enum>
              </property>
-             <property name="sizeHint" >
+             <property name="sizeHint" stdset="0" >
               <size>
                <width>20</width>
                <height>47</height>
@@ -510,7 +514,8 @@
   </widget>
   <action name="actionAbout" >
    <property name="icon" >
-    <iconset>icons.d/16x16/info.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/info.png</normaloff>icons.d/16x16/info.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;About</string>
@@ -551,7 +556,8 @@
   </action>
   <action name="actionResizeColumns" >
    <property name="icon" >
-    <iconset>icons.d/16x16/resizecol.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/resizecol.png</normaloff>icons.d/16x16/resizecol.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Resize Columns to Contents</string>
@@ -573,7 +579,8 @@
   </action>
   <action name="actionSaveSettings" >
    <property name="icon" >
-    <iconset>icons.d/16x16/filesave.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/filesave.png</normaloff>icons.d/16x16/filesave.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save Settings</string>
@@ -656,7 +663,8 @@
   </action>
   <action name="actionShowErrorDialog" >
    <property name="icon" >
-    <iconset>icons.d/16x16/log.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/log.png</normaloff>icons.d/16x16/log.png</iconset>
    </property>
    <property name="text" >
     <string>View Error &amp;Log</string>
@@ -690,7 +698,8 @@
   </action>
   <action name="actionConnect" >
    <property name="icon" >
-    <iconset>icons.d/16x16/connected.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/connected.png</normaloff>icons.d/16x16/connected.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Connect</string>
@@ -707,7 +716,8 @@
   </action>
   <action name="actionDisconnect" >
    <property name="icon" >
-    <iconset>icons.d/16x16/disconnected.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/disconnected.png</normaloff>icons.d/16x16/disconnected.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Disconnect</string>
@@ -724,7 +734,8 @@
   </action>
   <action name="actionExit" >
    <property name="icon" >
-    <iconset>icons.d/16x16/exit.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/exit.png</normaloff>icons.d/16x16/exit.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Exit BiblioteQ</string>
@@ -741,7 +752,8 @@
   </action>
   <action name="actionDeleteEntry" >
    <property name="icon" >
-    <iconset>icons.d/16x16/eraser.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Delete Selected Item(s)</string>
@@ -755,7 +767,8 @@
   </action>
   <action name="actionModifyEntry" >
    <property name="icon" >
-    <iconset>icons.d/16x16/edit.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/edit.png</normaloff>icons.d/16x16/edit.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Modify Selected Item(s)</string>
@@ -769,7 +782,8 @@
   </action>
   <action name="actionMembersBrowser" >
    <property name="icon" >
-    <iconset>icons.d/16x16/members.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/members.png</normaloff>icons.d/16x16/members.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Members Browser</string>
@@ -786,7 +800,8 @@
   </action>
   <action name="actionDatabaseSearch" >
    <property name="icon" >
-    <iconset>icons.d/16x16/find.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/find.png</normaloff>icons.d/16x16/find.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Database Search</string>
@@ -809,7 +824,8 @@
   </action>
   <action name="actionRefreshTable" >
    <property name="icon" >
-    <iconset>icons.d/16x16/reload.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/reload.png</normaloff>icons.d/16x16/reload.png</iconset>
    </property>
    <property name="text" >
     <string>Refresh &amp;Table</string>
@@ -826,7 +842,8 @@
   </action>
   <action name="actionViewDetails" >
    <property name="icon" >
-    <iconset>icons.d/16x16/details.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/details.png</normaloff>icons.d/16x16/details.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Selected Item(s)</string>
@@ -843,7 +860,8 @@
   </action>
   <action name="actionSetGlobalFonts" >
    <property name="icon" >
-    <iconset>icons.d/16x16/fonts.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/fonts.png</normaloff>icons.d/16x16/fonts.png</iconset>
    </property>
    <property name="text" >
     <string>Set Global &amp;Fonts</string>
@@ -860,7 +878,8 @@
   </action>
   <action name="actionLatestVersion" >
    <property name="icon" >
-    <iconset>icons.d/16x16/down.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Check for Updates</string>
@@ -868,7 +887,8 @@
   </action>
   <action name="actionUsersBrowser" >
    <property name="icon" >
-    <iconset>icons.d/16x16/users.png</iconset>
+    <iconset>
+     <normaloff>icons.d/16x16/users.png</normaloff>icons.d/16x16/users.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Users Browser</string>
@@ -910,7 +930,8 @@
   </action>
   <action name="connectTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/connect_established.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/connect_established.png</normaloff>icons.d/32x32/connect_established.png</iconset>
    </property>
    <property name="text" >
     <string>Connect</string>
@@ -924,7 +945,8 @@
   </action>
   <action name="disconnectTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/connect_no.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/connect_no.png</normaloff>icons.d/32x32/connect_no.png</iconset>
    </property>
    <property name="text" >
     <string>Disconnect</string>
@@ -938,7 +960,8 @@
   </action>
   <action name="detailsTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/details.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/details.png</normaloff>icons.d/32x32/details.png</iconset>
    </property>
    <property name="text" >
     <string>View Selected Item(s)</string>
@@ -952,7 +975,8 @@
   </action>
   <action name="createTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/add.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
    </property>
    <property name="text" >
     <string>Add Item</string>
@@ -969,7 +993,8 @@
   </action>
   <action name="deleteTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/remove.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
    </property>
    <property name="text" >
     <string>Delete Selected Item(s)</string>
@@ -983,7 +1008,8 @@
   </action>
   <action name="modifyTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/edit.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/edit.png</normaloff>icons.d/32x32/edit.png</iconset>
    </property>
    <property name="text" >
     <string>Modify Selected Item(s)</string>
@@ -997,7 +1023,8 @@
   </action>
   <action name="printTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/print.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
    </property>
    <property name="text" >
     <string>Print Selected Item(s)</string>
@@ -1011,7 +1038,8 @@
   </action>
   <action name="reserveTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/checkout.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/checkout.png</normaloff>icons.d/32x32/checkout.png</iconset>
    </property>
    <property name="text" >
     <string>Reserve Selected Item</string>
@@ -1025,7 +1053,8 @@
   </action>
   <action name="userTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/members.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/members.png</normaloff>icons.d/32x32/members.png</iconset>
    </property>
    <property name="text" >
     <string>Display Members Browser</string>
@@ -1039,7 +1068,8 @@
   </action>
   <action name="searchTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/find.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/find.png</normaloff>icons.d/32x32/find.png</iconset>
    </property>
    <property name="text" >
     <string>Database Search</string>
@@ -1053,7 +1083,8 @@
   </action>
   <action name="customQueryTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/customquery.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/customquery.png</normaloff>icons.d/32x32/customquery.png</iconset>
    </property>
    <property name="text" >
     <string>Custom Database Query</string>
@@ -1067,7 +1098,8 @@
   </action>
   <action name="refreshTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/reload.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
    </property>
    <property name="text" >
     <string>Refresh Table</string>
@@ -1081,7 +1113,8 @@
   </action>
   <action name="errorLogTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/log.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/log.png</normaloff>icons.d/32x32/log.png</iconset>
    </property>
    <property name="text" >
     <string>View Error Log</string>
@@ -1095,7 +1128,8 @@
   </action>
   <action name="configTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/configure.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/configure.png</normaloff>icons.d/32x32/configure.png</iconset>
    </property>
    <property name="text" >
     <string>Select Viewable Columns</string>
@@ -1109,7 +1143,8 @@
   </action>
   <action name="exitTool" >
    <property name="icon" >
-    <iconset>icons.d/32x32/exit.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/exit.png</normaloff>icons.d/32x32/exit.png</iconset>
    </property>
    <property name="text" >
     <string>Exit BiblioteQ</string>
@@ -1123,7 +1158,8 @@
   </action>
   <action name="actionReservationHistory" >
    <property name="icon" >
-    <iconset>icons.d/32x32/history.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/history.png</normaloff>icons.d/32x32/history.png</iconset>
    </property>
    <property name="text" >
     <string>View Member's Reservation History</string>
@@ -1137,7 +1173,8 @@
   </action>
   <action name="actionChangePassword" >
    <property name="icon" >
-    <iconset>icons.d/32x32/unlock.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/unlock.png</normaloff>icons.d/32x32/unlock.png</iconset>
    </property>
    <property name="text" >
     <string>Change Password</string>
@@ -1199,7 +1236,8 @@
   </action>
   <action name="actionConfigureAdministratorPrivileges" >
    <property name="icon" >
-    <iconset>icons.d/32x32/identity.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/identity.png</normaloff>icons.d/32x32/identity.png</iconset>
    </property>
    <property name="text" >
     <string>Configure Administrator Privileges</string>
@@ -1213,7 +1251,8 @@
   </action>
   <action name="actionRequests" >
    <property name="icon" >
-    <iconset>icons.d/32x32/request.png</iconset>
+    <iconset>
+     <normaloff>icons.d/32x32/request.png</normaloff>icons.d/32x32/request.png</iconset>
    </property>
    <property name="text" >
     <string>Item Requests</string>

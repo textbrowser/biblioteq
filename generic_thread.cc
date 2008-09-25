@@ -13,6 +13,7 @@ generic_thread::generic_thread(void)
   errorStr = "";
   list.clear();
   outputListBool.clear();
+  setTerminationEnabled(true);
 }
 
 /*
@@ -136,27 +137,29 @@ void generic_thread::run(void)
       {
 	size_t i = 0;
 	const char *rec = 0;
-	ZOOM_resultset r;
-	ZOOM_connection z = ZOOM_connection_new
+	ZOOM_resultset zoomResultSet = 0;
+	ZOOM_connection zoomConnection = ZOOM_connection_new
 	  (static_cast<const char *>
 	   ((qmain->getLOCHash().value("Address") + ":" +
 	     qmain->getLOCHash().value("Port") + "/" +
 	     qmain->getLOCHash().value("Database")).toStdString().data()),
 	   0);
 
-	ZOOM_connection_option_set(z, "preferredRecordSyntax", "USMARC");
-	r = ZOOM_connection_search_pqf
-	  (z, static_cast<const char *> (LOCSearchStr.toStdString().data()));
+	ZOOM_connection_option_set(zoomConnection,
+				   "preferredRecordSyntax", "USMARC");
+	zoomResultSet = ZOOM_connection_search_pqf
+	  (zoomConnection,
+	   static_cast<const char *> (LOCSearchStr.toStdString().data()));
 
-	while((rec = ZOOM_record_get(ZOOM_resultset_record(r, i),
+	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
 				     "render", 0)) != 0)
 	  {
 	    i += 1;
 	    LOCResults.append(rec);
 	  }
 
-	ZOOM_resultset_destroy(r);
-	ZOOM_connection_destroy(z);
+	ZOOM_resultset_destroy(zoomResultSet);
+	ZOOM_connection_destroy(zoomConnection);
 
 	if(LOCResults.isEmpty())
 	  {

@@ -190,9 +190,6 @@ qtbook_book::~qtbook_book()
   imgbuffer2->close();
   delete imgbuffer1;
   delete imgbuffer2;
-
-  if(thread == 0)
-    qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1596,9 +1593,7 @@ void qtbook_book::slotQuery(void)
   QStringList list;
   QStringList tmplist;
   QStringList removeList;
-
-  if(thread != 0)
-    return;
+  QProgressDialog progress(this);
 
   if(!(id.id->text().trimmed().length() == 10 ||
        id.isbn13->text().trimmed().length() == 13))
@@ -1613,8 +1608,14 @@ void qtbook_book::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
-      statusBar()->showMessage("Downloading information from the Library "
-			       "of Congress. Please be patient.");
+      progress.setModal(true);
+      progress.setWindowTitle("BiblioteQ: Working Dialog");
+      progress.setLabelText("Downloading information from the Library "
+			    "of Congress. Please be patient.");
+      progress.setMaximum(0);
+      progress.setMinimum(0);
+      progress.show();
+      progress.update();
 
       if(!id.id->text().isEmpty())
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
@@ -1624,18 +1625,26 @@ void qtbook_book::slotQuery(void)
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
       thread->setLOCSearchString(searchstr);
       thread->start();
-      qapp->setOverrideCursor(Qt::WaitCursor);
 
       while(thread->isRunning())
 	{
-	  statusBar()->showMessage("Downloading information from the "
-				   "Library of Congress. Please be patient.");
 	  qapp->processEvents();
-	  thread->wait(100);
+
+	  if(progress.wasCanceled())
+	    statusBar()->showMessage
+	      ("The Library of Congress query was aborted. "
+	       "Please wait until resources have been deallocated.");
 	}
 
       statusBar()->clearMessage();
-      qapp->restoreOverrideCursor();
+      progress.hide();
+
+      if(progress.wasCanceled())
+	{
+	  delete thread;
+	  thread = 0;
+	  return;
+	}
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
 	 !thread->getLOCResults().isEmpty())
