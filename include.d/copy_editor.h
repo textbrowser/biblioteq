@@ -29,7 +29,6 @@ class copy_editor: QDialog
 	      const QString &, const QString &, QSpinBox *,
 	      const QFont &, const QString &);
   ~copy_editor();
-  void closeEvent(QCloseEvent *);
   void populateCopiesEditor(void);
 
  private:
@@ -60,6 +59,9 @@ class copy_editor: QDialog
   void setGlobalFonts(const QFont &);
   void clearCopiesList(void);
   QString saveCopies(void);
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotDeleteCopy(void);

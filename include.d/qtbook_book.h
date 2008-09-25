@@ -41,7 +41,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
 
  private:
@@ -58,6 +57,9 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QByteArray imgbytes2; // Back Cover Byte Array
   generic_thread *thread;
   Ui_informationDialog id;
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotGo(void);

@@ -7175,6 +7175,10 @@ void qtbook::updateRows(const QString &oid, const int row,
 void qtbook::slotCloseMembersBrowser(void)
 {
   /*
+  ** Changes? If so, warn the user.
+  */
+
+  /*
   ** Also closes the Reservation History Browser.
   */
 

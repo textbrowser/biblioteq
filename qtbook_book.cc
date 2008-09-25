@@ -1587,7 +1587,7 @@ void qtbook_book::slotQuery(void)
   QStringList list;
   QStringList tmplist;
   QStringList removeList;
-  QProgressDialog progress(this);
+  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
 
   if(!(id.id->text().trimmed().length() == 10 ||
        id.isbn13->text().trimmed().length() == 13))
@@ -1602,16 +1602,16 @@ void qtbook_book::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
-      progress.setModal(true);
+      working.setModal(true);
       
-      progress.setWindowTitle("BiblioteQ: Working Dialog");
-      progress.setLabelText("Downloading information from the Library "
-			    "of Congress. Please be patient.");
-      progress.setMaximum(0);
-      progress.setMinimum(0);
-      progress.setCancelButton(0);
-      progress.show();
-      progress.update();
+      working.setWindowTitle("BiblioteQ: Working Dialog");
+      working.setLabelText("Downloading information from the Library "
+			   "of Congress. Please be patient.");
+      working.setMaximum(0);
+      working.setMinimum(0);
+      working.setCancelButton(0);
+      working.show();
+      working.update();
 
       if(!id.id->text().isEmpty())
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
@@ -1625,9 +1625,9 @@ void qtbook_book::slotQuery(void)
       while(thread->isRunning())
 	qapp->processEvents();
 
-      progress.hide();
+      working.hide();
 
-      if(progress.wasCanceled())
+      if(working.wasCanceled())
 	{
 	  delete thread;
 	  thread = 0;

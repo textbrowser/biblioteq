@@ -18,6 +18,25 @@
 #include <QMainWindow>
 #include <QPrintDialog>
 #include <QTextDocument>
+#include <QProgressDialog>
+
+class qtbook_item_working_dialog: public QProgressDialog
+{
+ public:
+  qtbook_item_working_dialog(QMainWindow *parent):QProgressDialog(parent)
+  {
+  }
+
+  ~qtbook_item_working_dialog()
+  {
+  }
+
+ protected:
+  void closeEvent(QCloseEvent *e)
+  {
+    e->ignore();
+  }
+};
 
 class qtbook_item
 {

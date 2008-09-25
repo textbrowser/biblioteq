@@ -40,7 +40,6 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
   void populateDisplayAfterLOC(const QStringList &);
 
@@ -51,6 +50,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   QPalette te_orig_pal;
   Ui_magDialog ma;
   generic_thread *thread;
+  void closeEvent(QCloseEvent *);
 
  protected slots:
   void slotGo(void);

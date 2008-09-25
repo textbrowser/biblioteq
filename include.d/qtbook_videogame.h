@@ -38,11 +38,13 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
 
  private:
   Ui_vgDialog vg;
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotGo(void);

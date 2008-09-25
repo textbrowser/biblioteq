@@ -88,7 +88,6 @@ class qtbook: public QMainWindow
   void magSearch(const QString &, const QString &);
   void removeDVD(qtbook_dvd *);
   void replaceCD(const QString &, qtbook_cd *);
-  void closeEvent(QCloseEvent *);
   void removeBook(qtbook_book *);
   void replaceDVD(const QString &, qtbook_dvd *);
   void bookSearch(const QString &, const QString &);
@@ -189,6 +188,9 @@ class qtbook: public QMainWindow
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotExit(void);

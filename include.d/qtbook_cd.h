@@ -38,13 +38,15 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void closeEvent(QCloseEvent *);
   void updateWindow(const int);
 
  private:
   QDialog *tracks_diag;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotGo(void);

@@ -296,4 +296,4 @@
 163. Provide an option for downloading OFFSYSTEM files.
 164. Warn the user of unsaved changes in the Members Browser.
 165. Reimplement the closeEvent for dialogs that should not be
-     dismissed.
+     dismissed. (DONE)

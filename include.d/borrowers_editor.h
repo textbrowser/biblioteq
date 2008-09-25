@@ -28,7 +28,6 @@ class borrowers_editor: QDialog
 		   const int);
   ~borrowers_editor();
   void showUsers(void);
-  void closeEvent(QCloseEvent *);
 
  private:
   int state;
@@ -38,6 +37,9 @@ class borrowers_editor: QDialog
   qtbook_item *bitem;
   Ui_checkedOutDialog bd;
   void setGlobalFonts(const QFont &);
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotSave(void);

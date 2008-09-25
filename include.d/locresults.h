@@ -25,13 +25,15 @@ class locresults: QDialog
  public:
   locresults(QWidget *, QStringList &, qtbook_magazine *, const QFont &);
   ~locresults();
-  void closeEvent(QCloseEvent *);
 
  private:
   QStringList records;
   qtbook_magazine *magazine;
   Ui_locResultsDialog ui;
   void setGlobalFonts(const QFont &);
+
+ protected:
+  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotClose(void);

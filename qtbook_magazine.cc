@@ -1428,7 +1428,7 @@ void qtbook_magazine::slotQuery(void)
   QString searchstr = "";
   locresults *dialog = 0;
   QStringList list;
-  QProgressDialog progress(this);
+  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
 
   if(ma.id->text().trimmed().length() != 9)
     {
@@ -1442,15 +1442,15 @@ void qtbook_magazine::slotQuery(void)
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
-      progress.setModal(true);
-      progress.setWindowTitle("BiblioteQ: Working Dialog");
-      progress.setLabelText("Downloading information from the Library "
-			    "of Congress. Please be patient.");
-      progress.setMaximum(0);
-      progress.setMinimum(0);
-      progress.setCancelButton(0);
-      progress.show();
-      progress.update();
+      working.setModal(true);
+      working.setWindowTitle("BiblioteQ: Working Dialog");
+      working.setLabelText("Downloading information from the Library "
+			   "of Congress. Please be patient.");
+      working.setMaximum(0);
+      working.setMinimum(0);
+      working.setCancelButton(0);
+      working.show();
+      working.update();
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
       thread->setLOCSearchString(searchstr);
@@ -1459,9 +1459,9 @@ void qtbook_magazine::slotQuery(void)
       while(thread->isRunning())
 	qapp->processEvents();
 
-      progress.hide();
+      working.hide();
 
-      if(progress.wasCanceled())
+      if(working.wasCanceled())
 	{
 	  delete thread;
 	  thread = 0;
