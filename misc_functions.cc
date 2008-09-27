@@ -271,7 +271,7 @@ void misc_functions::grantPrivs(const QString &userid,
     }
 
   if(objectlist.size() != privlist.size())
-    errorstr = "Program error: objectlist.size() != privlist.size().";
+    errorstr = "Application error: objectlist.size() != privlist.size().";
   else
     for(i = 0; i < objectlist.size(); i++)
       {
@@ -489,7 +489,7 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "item_request"
 		       << "item_request_myoid_seq";
 	}
-      else
+      else /* Delete the account. */
 	objectlist << "admin"
 		   << "book"
 		   << "item_borrower"
@@ -554,7 +554,7 @@ void misc_functions::DBAccount(const QString &userid,
 		}
 	      else if(objectlist[i] == "item_request")
 		querystr = QString
-		  ("GRANT INSERT, SELECT ON %1 TO %2").arg
+		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
 	      else if(objectlist[i] == "item_request_myoid_seq")
 		querystr = QString

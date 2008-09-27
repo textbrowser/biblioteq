@@ -296,8 +296,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotAutoPopOnFilter(void)));
   connect(ui.modifyTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
-  connect(ui.errorLogTool, SIGNAL(triggered(void)), this,
-	  SLOT(slotShowErrorDialog(void)));
   connect(ui.actionModifyEntry, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
   connect(ui.actionShowErrorDialog, SIGNAL(triggered(void)), this,
@@ -354,8 +352,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotCancelAddUser(void)));
   connect(bb.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseMembersBrowser(void)));
-  connect(userinfo_diag, SIGNAL(finished(int)), this,
-	  SLOT(slotCancelAddUser(void)));
   connect(bb.checkoutButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCheckout(void)));
   connect(bb.listButton, SIGNAL(clicked(void)), this,
@@ -1359,7 +1355,17 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			      typefilter == "Magazines" ||
 			      typefilter == "Music CDs" ||
 			      typefilter == "Video Games"))
-    ui.actionRequests->setEnabled(true);
+    {
+      ui.actionRequests->setToolTip("Request Selected Item(s)");
+      ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+      ui.actionRequests->setEnabled(true);
+    }
+  else if(roles.isEmpty() && typefilter == "All Requested")
+    {
+      ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+      ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
+      ui.actionRequests->setEnabled(true);
+    }
   else
     ui.actionRequests->setEnabled(false);
 
@@ -3878,6 +3884,7 @@ void qtbook::slotAddBorrower(void)
   QDate now = QDate::currentDate();
   QDateTime nowTime = QDateTime::currentDateTime();
 
+  memberProperties.clear();
   userinfo.memberid->setText("m" + nowTime.toString("yyyyMMddhhmmss"));
   userinfo.membersince->setFocus();
   userinfo.membersince->setDate(now);
@@ -5208,13 +5215,25 @@ void qtbook::slotShowNext(void)
   else
     row += 1;
 
-  table->clearSelection();
-  table->selectRow(row);
-
   if(history_diag->isVisible())
-    slotShowHistory();
+    {
+      table->clearSelection();
+      table->selectRow(row);
+      slotShowHistory();
+    }
   else
-    slotModifyBorrower();
+    {
+      if(haveMemberChanges())
+	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
+				 "You have unsaved data. Continue?",
+				 QMessageBox::Yes | QMessageBox::No,
+				 QMessageBox::No) == QMessageBox::No)
+	  return;
+
+      table->clearSelection();
+      table->selectRow(row);
+      slotModifyBorrower();
+    }
 }
 
 /*
@@ -5234,13 +5253,25 @@ void qtbook::slotShowPrev(void)
   else
     row -= 1;
 
-  table->clearSelection();
-  table->selectRow(row);
-
   if(history_diag->isVisible())
-    slotShowHistory();
+    {
+      table->clearSelection();
+      table->selectRow(row);
+      slotShowHistory();
+    }
   else
-    slotModifyBorrower();
+    {
+      if(haveMemberChanges())
+	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
+				 "You have unsaved data. Continue?",
+				 QMessageBox::Yes | QMessageBox::No,
+				 QMessageBox::No) == QMessageBox::No)
+	  return;
+
+      table->clearSelection();
+      table->selectRow(row);
+      slotModifyBorrower();
+    }
 }
 
 /*
@@ -5464,6 +5495,7 @@ void qtbook::slotConnectDB(void)
 void qtbook::slotDisconnect(void)
 {
   roles = "";
+  memberProperties.clear();
   all_diag->close();
   members_diag->close();
   history_diag->close();
@@ -5955,6 +5987,8 @@ void qtbook::slotModifyBorrower(void)
 	    }
 	  else if(fieldname == "zip")
 	    userinfo.zip->setText(var.toString());
+
+	  memberProperties[fieldname] = var.toString();
 	}
 
       foreach(QLineEdit *textfield,
@@ -5977,8 +6011,50 @@ void qtbook::slotModifyBorrower(void)
 
 void qtbook::slotCancelAddUser(void)
 {
+  if(haveMemberChanges())
+    if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
+			     "You have unsaved data. Continue closing?",
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      return;
+
   if(userinfo_diag->isVisible())
     userinfo_diag->close();
+}
+
+bool qtbook::haveMemberChanges(void)
+{
+  bool warnuser = false;
+
+  if(memberProperties["memberid"] != userinfo.memberid->text())
+    warnuser = true;
+  else if(memberProperties["membersince"] !=
+	  userinfo.membersince->date().toString("MM/dd/yyyy"))
+    warnuser = true;
+  else if(memberProperties["dob"] != 
+	  userinfo.dob->date().toString("MM/dd/yyyy"))
+    warnuser = true;
+  else if(memberProperties["sex"] != userinfo.sex->currentText())
+    warnuser = true;
+  else if(memberProperties["first_name"] != userinfo.firstName->text())
+    warnuser = true;
+  else if(memberProperties["middle_init"] != userinfo.middle->text())
+    warnuser = true;
+  else if(memberProperties["last_name"] != userinfo.lastName->text())
+    warnuser = true;
+  else if(memberProperties["telephone_num"] !=
+	  userinfo.telephoneNumber->text())
+    warnuser = true;
+  else if(memberProperties["street"] != userinfo.street->text())
+    warnuser = true;
+  else if(memberProperties["city"] != userinfo.city->text())
+    warnuser = true;
+  else if(memberProperties["state_abbr"] != userinfo.state->currentText())
+    warnuser = true;
+  else if(memberProperties["zip"] != userinfo.zip->text())
+    warnuser = true;
+
+  return warnuser;
 }
 
 /*
@@ -7907,7 +7983,7 @@ void qtbook::slotPrintReservationHistory(void)
   int j = 0;
   QString html = "<html>";
   QPrinter printer;
-  QPrintDialog dialog(&printer, members_diag);
+  QPrintDialog dialog(&printer, history_diag);
   QTextDocument document;
 
   if(history.table->rowCount() == 0)
@@ -8650,10 +8726,15 @@ void qtbook::slotSaveAdministrators(void)
 
 void qtbook::slotRequest(void)
 {
+  /*
+  ** This method is used to either request an item or cancel a request.
+  */
+
   int i = 0;
   int ct = 0;
   int numcompleted = 0;
   bool error = false;
+  bool isRequesting = true;
   QDate now = QDate::currentDate();
   QString oid = "";
   QString itemType = "";
@@ -8663,7 +8744,12 @@ void qtbook::slotRequest(void)
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
-  if(roles.isEmpty())
+  if(!roles.isEmpty())
+    isRequesting = false;
+  else if(ui.typefilter->currentText() == "All Requested")
+    isRequesting = false;
+
+  if(isRequesting)
     {
       if(list.isEmpty())
 	{
@@ -8672,19 +8758,6 @@ void qtbook::slotRequest(void)
 				"on request.");
 	  return;
 	}
-
-      if(list.size() > 0)
-	if(QMessageBox::question(this, "BiblioteQ: Question",
-				 "Are you sure that you wish to request "
-				 "the selected item(s)? Once an item is "
-				 "requested, only "
-				 "an administrator may cancel it.",
-				 QMessageBox::Yes | QMessageBox::No,
-				 QMessageBox::No) == QMessageBox::No)
-	  {
-	    list.clear();
-	    return;
-	  }
     }
   else
     {
@@ -8720,12 +8793,12 @@ void qtbook::slotRequest(void)
       i = index.row();
       ct += 1;
 
-      if(roles.isEmpty())
+      if(isRequesting)
 	oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       else
 	oid = misc_functions::getColumnString(ui.table, i, "REQUESTOID");
 
-      if(roles.isEmpty())
+      if(isRequesting)
 	{
 	  itemType = misc_functions::getColumnString(ui.table, i, "Type");
 	  querystr = "INSERT INTO item_request (item_oid, memberid, "
@@ -8747,7 +8820,7 @@ void qtbook::slotRequest(void)
 	{
 	  error = true;
 
-	  if(roles.isEmpty())
+	  if(isRequesting)
 	    addError(QString("Database Error"),
 		     QString("Unable to request the item."),
 		     query.lastError().text(), __FILE__, __LINE__);
@@ -8760,7 +8833,7 @@ void qtbook::slotRequest(void)
 	{
 	  numcompleted += 1;
 
-	  if(!roles.isEmpty())
+	  if(!isRequesting)
 	    deleteItem(oid, itemType);
 	}
 
@@ -8775,7 +8848,7 @@ void qtbook::slotRequest(void)
   ** Provide some fancy messages.
   */
 
-  if(error && roles.isEmpty())
+  if(error && isRequesting)
     QMessageBox::critical(this, "BiblioteQ: Database Error",
 			  "Unable to request some or all of the selected "
 			  "items. "
@@ -8786,7 +8859,7 @@ void qtbook::slotRequest(void)
 			  "Unable to cancel some or all of the selected "
 			  "requests.");
 
-  if(!roles.isEmpty() && numcompleted > 0)
+  if(!isRequesting && numcompleted > 0)
     slotRefresh();
 
   list.clear();

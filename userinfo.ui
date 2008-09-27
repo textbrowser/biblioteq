@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>375</height>
+    <height>431</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -502,7 +502,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -641,7 +641,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -679,7 +679,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -714,7 +714,7 @@
             <property name="orientation" >
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>40</width>
               <height>20</height>
@@ -734,7 +734,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>20</width>
        <height>40</height>
@@ -769,7 +769,8 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset>icons.d/32x32/previous.png</iconset>
+        <iconset>
+         <normaloff>icons.d/32x32/previous.png</normaloff>icons.d/32x32/previous.png</iconset>
        </property>
        <property name="iconSize" >
         <size>
@@ -787,7 +788,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>47</width>
          <height>41</height>
@@ -818,7 +819,8 @@
         <string>&amp;Save</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/ok.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
@@ -845,7 +847,8 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/cancel.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -854,7 +857,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>47</width>
          <height>41</height>
@@ -877,7 +880,8 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset>icons.d/32x32/next.png</iconset>
+        <iconset>
+         <normaloff>icons.d/32x32/next.png</normaloff>icons.d/32x32/next.png</iconset>
        </property>
        <property name="iconSize" >
         <size>
@@ -913,22 +917,5 @@
   <tabstop>nextTool</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>UserInfo</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>369</x>
-     <y>253</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>179</x>
-     <y>282</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

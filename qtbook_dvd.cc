@@ -1274,6 +1274,7 @@ void qtbook_dvd::insert(void)
     (dvd.category->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create DVD Entry");
   dvd.id->setFocus();
+  storeData(this);
   misc_functions::center(this, parentWid);
   show();
 }
@@ -1456,7 +1457,7 @@ void qtbook_dvd::slotReset(void)
 
 void qtbook_dvd::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",

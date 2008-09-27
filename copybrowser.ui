@@ -240,7 +240,7 @@
        </property>
        <property name="icon" >
         <iconset>
-         <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+         <normaloff>../../../../home/monster/biblioteq.d/icons.d/16x16/eraser.png</normaloff>../../../../home/monster/biblioteq.d/icons.d/16x16/eraser.png</iconset>
        </property>
       </widget>
      </item>

@@ -1183,7 +1183,6 @@ URL</string>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar" />
  </widget>
  <customwidgets>
   <customwidget>

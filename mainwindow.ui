@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>985</width>
+    <width>900</width>
     <height>650</height>
    </rect>
   </property>
@@ -280,7 +280,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>985</width>
+     <width>900</width>
      <height>28</height>
     </rect>
    </property>
@@ -402,7 +402,7 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak" >
     <bool>false</bool>
@@ -491,7 +491,6 @@
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
-   <addaction name="errorLogTool" />
    <addaction name="configTool" />
   </widget>
   <widget class="QToolBar" name="toolBar_6" >
@@ -505,7 +504,7 @@
     </size>
    </property>
    <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak" >
     <bool>false</bool>
@@ -876,33 +875,6 @@
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="actionLatestVersion" >
-   <property name="icon" >
-    <iconset>
-     <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
-   </property>
-   <property name="text" >
-    <string>&amp;Check for Updates</string>
-   </property>
-  </action>
-  <action name="actionUsersBrowser" >
-   <property name="icon" >
-    <iconset>
-     <normaloff>icons.d/16x16/users.png</normaloff>icons.d/16x16/users.png</iconset>
-   </property>
-   <property name="text" >
-    <string>&amp;Users Browser</string>
-   </property>
-   <property name="font" >
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+U</string>
-   </property>
-  </action>
   <action name="actionAutoPopulateOnCreation" >
    <property name="checkable" >
     <bool>true</bool>
@@ -915,17 +887,6 @@
      <family>Times</family>
      <pointsize>10</pointsize>
     </font>
-   </property>
-  </action>
-  <action name="actionRememberGeometry" >
-   <property name="checkable" >
-    <bool>true</bool>
-   </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
-   <property name="text" >
-    <string>&amp;Remember Geometry</string>
    </property>
   </action>
   <action name="connectTool" >
@@ -1103,21 +1064,6 @@
    </property>
    <property name="text" >
     <string>Refresh Table</string>
-   </property>
-   <property name="font" >
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
-  <action name="errorLogTool" >
-   <property name="icon" >
-    <iconset>
-     <normaloff>icons.d/32x32/log.png</normaloff>icons.d/32x32/log.png</iconset>
-   </property>
-   <property name="text" >
-    <string>View Error Log</string>
    </property>
    <property name="font" >
     <font>

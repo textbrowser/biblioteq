@@ -1112,6 +1112,7 @@ void qtbook_videogame::insert(void)
     (vg.genre->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create Video Game Entry");
   vg.id->setFocus();
+  storeData(this);
   misc_functions::center(this, parentWid);
   show();
 }
@@ -1266,7 +1267,7 @@ void qtbook_videogame::slotReset(void)
 
 void qtbook_videogame::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",

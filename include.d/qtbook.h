@@ -131,6 +131,7 @@ class qtbook: public QMainWindow
   QHash<QString, QString> LOCHash;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
+  QHash<QString, QString> memberProperties;
   QHash<QString, qtbook_cd *> cds;
   QHash<QString, qtbook_dvd *> dvds;
   QHash<QString, qtbook_book *> books;
@@ -175,6 +176,7 @@ class qtbook: public QMainWindow
   Ui_branchSelect br;
   Ui_historyDialog history;
   Ui_membersBrowser bb;
+  bool haveMemberChanges(void);
   void cleanup(void);
   void lockApp(const bool);
   void cdModify(const int);

@@ -1245,6 +1245,7 @@ void qtbook_cd::insert(void)
     (cd.category->viewport(), QColor(255, 248, 220));
   setWindowTitle("BiblioteQ: Create CD Entry");
   cd.id->setFocus();
+  storeData(this);
   misc_functions::center(this, parentWid);
   show();
 }
@@ -1834,7 +1835,7 @@ void qtbook_cd::slotReset(void)
 
 void qtbook_cd::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",

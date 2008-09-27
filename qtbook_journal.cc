@@ -62,7 +62,7 @@ void qtbook_journal::slotCancel(void)
 
 void qtbook_journal::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",

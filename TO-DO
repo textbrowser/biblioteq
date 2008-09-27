@@ -295,5 +295,7 @@
      application.
 163. Provide an option for downloading OFFSYSTEM files.
 164. Warn the user of unsaved changes in the Members Browser.
-165. Reimplement the closeEvent for dialogs that should not be
+165. Implement the closeEvent for progress dialogs that must not be
      dismissed. (DONE)
+166. Allow members to cancel reserved items. (DONE)
+167. Warn the user of unsaved changes for new items. (DONE)

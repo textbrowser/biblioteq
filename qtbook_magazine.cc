@@ -1179,6 +1179,7 @@ void qtbook_magazine::insert(void)
   te_orig_pal = ma.description->viewport()->palette();
   setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
   ma.id->setFocus();
+  storeData(this);
   misc_functions::center(this, parentWid);
   show();
 }
@@ -1354,7 +1355,7 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",

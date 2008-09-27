@@ -1255,6 +1255,7 @@ void qtbook_book::insert(void)
   te_orig_pal = id.id->palette();
   setWindowTitle("BiblioteQ: Create Book Entry");
   id.id->setFocus();
+  storeData(this);
   misc_functions::center(this, parentWid);
   show();
 }
@@ -1508,7 +1509,7 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Modify"))
+  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, "BiblioteQ: Question",
 			       "You have unsaved data. Continue closing?",
@@ -1603,7 +1604,6 @@ void qtbook_book::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       working.setModal(true);
-      
       working.setWindowTitle("BiblioteQ: Working Dialog");
       working.setLabelText("Downloading information from the Library "
 			   "of Congress. Please be patient.");
@@ -1626,13 +1626,6 @@ void qtbook_book::slotQuery(void)
 	qapp->processEvents();
 
       working.hide();
-
-      if(working.wasCanceled())
-	{
-	  delete thread;
-	  thread = 0;
-	  return;
-	}
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
 	 !thread->getLOCResults().isEmpty())
@@ -2041,8 +2034,15 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
-  statusBar()->showMessage("Downloading cover image data. Please be patient.");
+  QProgressDialog working(this);
+  working.setModal(true);
+  working.setWindowTitle("BiblioteQ: Working Dialog");
+  working.setLabelText("Downloading information from the Library "
+		       "of Congress. Please be patient.");
+  working.setMaximum(0);
+  working.setMinimum(0);
+  working.show();
+  working.update();
 
   if(pb == id.dwnldFront)
     {
@@ -2071,9 +2071,6 @@ void qtbook_book::slotDownloadImage(void)
 
 void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
-  statusBar()->clearMessage();
-  qapp->restoreOverrideCursor();
-
   if(!error)
     if(rqid == requestid1)
       {
@@ -2131,5 +2128,4 @@ void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 {
   (void) bytesread;
   (void) totalbytes;
-  statusBar()->showMessage("Downloading cover image data. Please be patient.");
 }
