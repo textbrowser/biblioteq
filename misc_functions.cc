@@ -40,6 +40,29 @@ int misc_functions::userCount(const QString &userid,
 }
 
 /*
+** -- getAbstractInfo() --
+*/
+
+QString misc_functions::getAbstractInfo(const QString &oid,
+					const QString &typeArg,
+					const QSqlDatabase &db)
+{
+  QString str = "";
+  QString type = typeArg.toLower().remove(" ");
+  QString querystr = "";
+  QSqlQuery query(db);
+
+  querystr = QString("SELECT description FROM %1 WHERE myoid = %2").arg
+    (type).arg(oid);
+
+  if(query.exec(querystr))
+    if(query.next())
+      str = query.value(0).toString();
+
+  return str;
+}
+
+/*
 ** -- getImage() --
 */
 
@@ -554,11 +577,11 @@ void misc_functions::DBAccount(const QString &userid,
 		}
 	      else if(objectlist[i] == "item_request")
 		querystr = QString
-		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
+		  ("GRANT DELETE, INSERT, SELECT ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
 	      else if(objectlist[i] == "item_request_myoid_seq")
 		querystr = QString
-		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
+		  ("GRANT DELETE, INSERT, SELECT ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
 	      else
 		querystr = QString

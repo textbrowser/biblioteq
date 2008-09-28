@@ -791,7 +791,7 @@ void qtbook_cd::slotGo(void)
 					 toLower()) +
 		       "%' AND ");
 
-      if(cd.price->value() > 0)
+      if(cd.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
 	  searchstr.append(cd.price->text());
@@ -860,8 +860,8 @@ void qtbook_cd::search(const QString &field, const QString &value)
 					     "MM/dd/yyyy"));
   cd.runtime->setTime(QTime(0, 0, 0));
   cd.runtime->setMinimumTime(QTime(0, 0, 0));
-  cd.price->setMinimum(0.00);
-  cd.price->setValue(0.00);
+  cd.price->setMinimum(-0.01);
+  cd.price->setValue(-0.01);
   cd.quantity->setMinimum(0);
   cd.quantity->setValue(0);
   cd.no_of_discs->setMinimum(0);
@@ -1022,8 +1022,7 @@ void qtbook_cd::modify(const int state)
   cd.queryButton->setEnabled(true);
   cd.okButton->setText("&Save");
   cd.runtime->setMinimumTime(QTime(0, 0, 1));
-  cd.price->setMinimum(0.01);
-  cd.price->setValue(0.01);
+  cd.price->setMinimum(0.00);
   cd.quantity->setMinimum(1);
   cd.quantity->setValue(1);
   cd.no_of_discs->setMinimum(1);
@@ -1218,8 +1217,8 @@ void qtbook_cd::insert(void)
 					     "MM/dd/yyyy"));
   cd.runtime->setTime(QTime(0, 0, 1));
   cd.runtime->setMinimumTime(QTime(0, 0, 1));
-  cd.price->setMinimum(0.01);
-  cd.price->setValue(0.01);
+  cd.price->setMinimum(0.00);
+  cd.price->setValue(0.00);
   cd.quantity->setMinimum(1);
   cd.quantity->setValue(1);
   cd.no_of_discs->setMinimum(1);

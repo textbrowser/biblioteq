@@ -436,3 +436,7 @@ CREATE TABLE videogame_tmp
 INSERT INTO videogame_tmp SELECT * FROM videogame;
 DROP TABLE videogame;
 ALTER TABLE videogame_tmp RENAME TO videogame;
+
+/* Release 6.12 */
+
+ALTER TABLE member ADD email VARCHAR(128);

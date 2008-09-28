@@ -299,3 +299,8 @@
      dismissed. (DONE)
 166. Allow members to cancel reserved items. (DONE)
 167. Warn the user of unsaved changes for new items. (DONE)
+168. Add the Abstract information to the summary panel. (DONE)
+169. Add e-mail addresses to patron accounts. (DONE)
+170. Allow prices of 0.00. Search methods require review. (DONE)
+171. The UPC should be a 13-digit number. (DONE)
+172. Remove "Library of Congress" references. (DONE)

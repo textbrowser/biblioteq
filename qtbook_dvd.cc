@@ -27,7 +27,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = 0;
-  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
+  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+	      "[0-9]");
   QValidator *validator1 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
@@ -819,7 +820,7 @@ void qtbook_dvd::slotGo(void)
 	 myqstring::escape(dvd.category->toPlainText().trimmed()) +
 	 "%' AND ");
 
-      if(dvd.price->value() > 0)
+      if(dvd.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
 	  searchstr.append(dvd.price->text());
@@ -888,8 +889,8 @@ void qtbook_dvd::search(const QString &field, const QString &value)
 					     "MM/dd/yyyy"));
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
-  dvd.price->setMinimum(0.00);
-  dvd.price->setValue(0.00);
+  dvd.price->setMinimum(-0.01);
+  dvd.price->setValue(-0.01);
   dvd.quantity->setMinimum(0);
   dvd.quantity->setValue(0);
   dvd.no_of_discs->setMinimum(0);
@@ -1041,8 +1042,7 @@ void qtbook_dvd::modify(const int state)
   dvd.queryButton->setEnabled(true);
   dvd.okButton->setText("&Save");
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
-  dvd.price->setMinimum(0.01);
-  dvd.price->setValue(0.01);
+  dvd.price->setMinimum(0.00);
   dvd.quantity->setMinimum(1);
   dvd.quantity->setValue(1);
   dvd.no_of_discs->setMinimum(1);
@@ -1243,8 +1243,8 @@ void qtbook_dvd::insert(void)
 					     "MM/dd/yyyy"));
   dvd.runtime->setTime(QTime(0, 0, 1));
   dvd.runtime->setMinimumTime(QTime(0, 0, 1));
-  dvd.price->setMinimum(0.01);
-  dvd.price->setValue(0.01);
+  dvd.price->setMinimum(0.00);
+  dvd.price->setValue(0.00);
   dvd.quantity->setMinimum(1);
   dvd.quantity->setValue(1);
   dvd.no_of_discs->setMinimum(1);

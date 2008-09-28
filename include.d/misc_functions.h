@@ -75,6 +75,9 @@ class misc_functions
   static QString getMemberName(const QSqlDatabase &,
 			       const QString &,
 			       QString &);
+  static QString getAbstractInfo(const QString &,
+				 const QString &,
+				 const QSqlDatabase &);
   static QString getColumnString(const QTableWidget *, const int,
 				 const QString &);
   static QString getAvailability(const QString &, const QSqlDatabase &,

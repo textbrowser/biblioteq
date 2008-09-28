@@ -468,3 +468,7 @@ UPDATE videogame SET new_genre = CAST(genre AS TEXT);
 ALTER TABLE videogame DROP COLUMN genre;
 ALTER TABLE videogame RENAME new_genre TO genre;
 ALTER TABLE videogame ALTER COLUMN genre SET NOT NULL;
+
+/* Release 6.12 */
+
+ALTER TABLE member ADD COLUMN email VARCHAR(128);

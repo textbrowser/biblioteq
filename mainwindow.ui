@@ -842,7 +842,7 @@
   <action name="actionViewDetails" >
    <property name="icon" >
     <iconset>
-     <normaloff>icons.d/16x16/details.png</normaloff>icons.d/16x16/details.png</iconset>
+     <normaloff>icons.d/16x16/info.png</normaloff>icons.d/16x16/info.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Selected Item(s)</string>

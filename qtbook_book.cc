@@ -818,7 +818,7 @@ void qtbook_book::slotGo(void)
 		       (id.category->toPlainText().toLower()) +
 		       "%' AND ");
 
-      if(id.price->value() > 0)
+      if(id.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
 	  searchstr.append(id.price->text());
@@ -894,8 +894,8 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.okButton->setText("&Search");
   id.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
-  id.price->setMinimum(0.00);
-  id.price->setValue(0.00);
+  id.price->setMinimum(-0.01);
+  id.price->setValue(-0.01);
   id.quantity->setMinimum(0);
   id.quantity->setValue(0);
 
@@ -1050,7 +1050,7 @@ void qtbook_book::modify(const int state)
     }
 
   id.quantity->setMinimum(1);
-  id.price->setMinimum(0.01);
+  id.price->setMinimum(0.00);
   id.okButton->setText("&Save");
   str = oid;
   searchstr = "SELECT title, "
@@ -1227,8 +1227,8 @@ void qtbook_book::insert(void)
   id.okButton->setText("&Save");
   id.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
-  id.price->setMinimum(0.01);
-  id.price->setValue(0.01);
+  id.price->setMinimum(0.00);
+  id.price->setValue(0.00);
   id.quantity->setMinimum(1);
   id.quantity->setValue(1);
   id.showUserButton->setEnabled(false);
@@ -1595,7 +1595,7 @@ void qtbook_book::slotQuery(void)
     {
       QMessageBox::critical
 	(this, "BiblioteQ: User Error", 
-	 "In order to query the Library of Congress, either the ISBN-10 "
+	 "In order to query a Z39.50 system, either the ISBN-10 "
 	 "or ISBN-13 must be provided.");
       id.id->setFocus();
       return;
@@ -1605,8 +1605,8 @@ void qtbook_book::slotQuery(void)
     {
       working.setModal(true);
       working.setWindowTitle("BiblioteQ: Working Dialog");
-      working.setLabelText("Downloading information from the Library "
-			   "of Congress. Please be patient.");
+      working.setLabelText("Downloading information from the Z39.50 "
+			   "system. Please be patient.");
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
@@ -1633,7 +1633,7 @@ void qtbook_book::slotQuery(void)
 	  if(QMessageBox::question
 	     (this, "BiblioteQ: Question",
 	      "Replace existing values with those retrieved "
-	      "from the Library of Congress?",
+	      "from the Z39.50 system?",
 	      QMessageBox::Yes | QMessageBox::No,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
@@ -1892,7 +1892,7 @@ void qtbook_book::slotQuery(void)
       else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())
 	QMessageBox::critical
 	  (this, "BiblioteQ: Z39.50 Query Error",
-	   "A Library of Congress entry may not yet exist for " +
+	   "A Z39.50 entry may not yet exist for " +
 	   id.id->text() + ".");
       else
 	etype = thread->getEType();
@@ -1912,7 +1912,7 @@ void qtbook_book::slotQuery(void)
 		      __FILE__, __LINE__);
       QMessageBox::critical
 	(this, "BiblioteQ: Z39.50 Query Error",
-	 "The Library of Congress entry could not be retrieved.");
+	 "The Z39.50 entry could not be retrieved.");
     }
 }
 
@@ -2037,8 +2037,8 @@ void qtbook_book::slotDownloadImage(void)
   QProgressDialog working(this);
   working.setModal(true);
   working.setWindowTitle("BiblioteQ: Working Dialog");
-  working.setLabelText("Downloading information from the Library "
-		       "of Congress. Please be patient.");
+  working.setLabelText("Downloading information from Z39.50 "
+		       "system. Please be patient.");
   working.setMaximum(0);
   working.setMinimum(0);
   working.show();

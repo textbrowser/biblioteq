@@ -295,7 +295,8 @@ CREATE TABLE member
 	street		 VARCHAR(256) NOT NULL,
 	city		 VARCHAR(256) NOT NULL,
 	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
-	zip		 VARCHAR(16) NOT NULL
+	zip		 VARCHAR(16) NOT NULL,
+	email		 VARCHAR(128)
 );
 
 CREATE TABLE member_history

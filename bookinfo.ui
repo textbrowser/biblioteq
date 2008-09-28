@@ -998,7 +998,7 @@ URL</string>
          </font>
         </property>
         <property name="text" >
-         <string>&amp;Query Libray of Congress</string>
+         <string>&amp;Z39.50 Query</string>
         </property>
         <property name="icon" >
          <iconset>

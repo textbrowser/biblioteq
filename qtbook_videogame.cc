@@ -27,7 +27,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 {
   QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-	     "[0-9]");
+	     "[0-9][0-9]");
   QValidator *validator1 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
@@ -692,7 +692,7 @@ void qtbook_videogame::slotGo(void)
 		       myqstring::escape(vg.genre->toPlainText().toLower()) +
 		       "%' AND ");
 
-      if(vg.price->value() > 0)
+      if(vg.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
 	  searchstr.append(vg.price->text());
@@ -767,8 +767,8 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.okButton->setText("&Search");
   vg.release_date->setDate(QDate::fromString("01/01/7999",
 					     "MM/dd/yyyy"));
-  vg.price->setMinimum(0.00);
-  vg.price->setValue(0.00);
+  vg.price->setMinimum(-0.01);
+  vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);
   vg.quantity->setValue(0);
 
@@ -917,7 +917,7 @@ void qtbook_videogame::modify(const int state)
 
   vg.quantity->setMinimum(1);
   vg.queryButton->setEnabled(true);
-  vg.price->setMinimum(0.01);
+  vg.price->setMinimum(0.00);
   vg.okButton->setText("&Save");
   str = oid;
   searchstr = "SELECT title, "
@@ -1086,8 +1086,8 @@ void qtbook_videogame::insert(void)
   vg.okButton->setText("&Save");
   vg.release_date->setDate(QDate::fromString("01/01/2000",
 					     "MM/dd/yyyy"));
-  vg.price->setMinimum(0.01);
-  vg.price->setValue(0.01);
+  vg.price->setMinimum(0.00);
+  vg.price->setValue(0.00);
   vg.quantity->setMinimum(1);
   vg.quantity->setValue(1);
   vg.genre->clear();

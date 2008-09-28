@@ -756,8 +756,8 @@ void qtbook::slotSearch(void)
   al.category->clear();
   al.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
-  al.price->setMinimum(0.00);
-  al.price->setValue(0.00);
+  al.price->setMinimum(-0.01);
+  al.price->setValue(-0.01);
   al.quantity->setMinimum(0);
   al.quantity->setValue(0);
   al.description->clear();
@@ -3434,7 +3434,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			   myqstring::escape(al.publisher->text().toLower()) +
 			   "%' AND ");
 
-		if(al.price->value() > 0)
+		if(al.price->value() > -0.01)
 		  {
 		    str.append("price = ");
 		    str.append(al.price->text());
@@ -3900,6 +3900,7 @@ void qtbook::slotAddBorrower(void)
   userinfo.zip->setText("00000");
   userinfo.zip->setCursorPosition(0);
   userinfo.telephoneNumber->clear();
+  userinfo.email->clear();
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
   userinfo.prevTool->setVisible(false);
   userinfo.nextTool->setVisible(false);
@@ -3923,6 +3924,7 @@ void qtbook::slotSaveUser(void)
   QString str5 = "";
   QString str6 = "";
   QString str7 = "";
+  QString str8 = "";
   QString checksum = "";
   QString errorstr = "";
   QSqlQuery query(db);
@@ -3942,6 +3944,8 @@ void qtbook::slotSaveUser(void)
   userinfo.zip->setText(str6);
   str7 = userinfo.telephoneNumber->text().trimmed();
   userinfo.telephoneNumber->setText(str7);
+  str8 = userinfo.email->text().trimmed();
+  userinfo.email->setText(str8);
 
   if(userinfo.firstName->text().isEmpty())
     {
@@ -4040,12 +4044,12 @@ void qtbook::slotSaveUser(void)
 			    "(memberid, membersince, dob, sex, "
 			    "first_name, middle_init, last_name, "
 			    "telephone_num, street, city, "
-			    "state_abbr, zip) "
+			    "state_abbr, zip, email) "
 			    "VALUES "
 			    "(?, ?, ?, ?, "
 			    "?, ?, ?, "
 			    "?, ?, ?, "
-			    "?, ?)"));
+			    "?, ?, ?)"));
       query.bindValue(0, userinfo.memberid->text());
       query.bindValue(1, userinfo.membersince->text());
       query.bindValue(2, userinfo.dob->text());
@@ -4058,6 +4062,7 @@ void qtbook::slotSaveUser(void)
       query.bindValue(9, userinfo.city->text());
       query.bindValue(10, userinfo.state->currentText());
       query.bindValue(11, userinfo.zip->text());
+      query.bindValue(12, userinfo.email->text());
     }
   else
     {
@@ -4070,7 +4075,7 @@ void qtbook::slotSaveUser(void)
 			    "telephone_num = ?, "
 			    "street = ?, "
 			    "city = ?, "
-			    "state_abbr = ?, zip = ? "
+			    "state_abbr = ?, zip = ?, email = ? "
 			    "WHERE memberid = ?"));
       query.bindValue(0, userinfo.membersince->text());
       query.bindValue(1, userinfo.dob->text());
@@ -4083,7 +4088,8 @@ void qtbook::slotSaveUser(void)
       query.bindValue(8, userinfo.city->text());
       query.bindValue(9, userinfo.state->currentText());
       query.bindValue(10, userinfo.zip->text());
-      query.bindValue(11, userinfo.memberid->text());
+      query.bindValue(11, userinfo.email->text());
+      query.bindValue(12, userinfo.memberid->text());
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -4303,7 +4309,7 @@ void qtbook::readGlobalSetup(void)
 	      type = VG_RATING;
 	    else if(str == "[Video Game Platform]")
 	      type = VG_PLATFORM;
-	    else if(str == "[Library of Congress Configuration]")
+	    else if(str == "[Z39.50 Configuration]")
 	      type = LIBRARY_OF_CONGRESS_CONFIGURATION;
 	    else if(str == "[DVD Location]")
 	      type = DVD_LOCATION;
@@ -5132,7 +5138,8 @@ void qtbook::slotDisplaySummary(void)
 	}
 
       summary = summary.remove("<br><br>");
-
+      summary += misc_functions::getAbstractInfo(oid, type, getDB());
+      summary += "<br>";
       tmpstr = misc_functions::getColumnString(ui.table, i, "Availability");
 
       if(!tmpstr.isEmpty())
@@ -5987,6 +5994,8 @@ void qtbook::slotModifyBorrower(void)
 	    }
 	  else if(fieldname == "zip")
 	    userinfo.zip->setText(var.toString());
+	  else if(fieldname == "email")
+	    userinfo.email->setText(var.toString());
 
 	  memberProperties[fieldname] = var.toString();
 	}
@@ -6052,6 +6061,8 @@ bool qtbook::haveMemberChanges(void)
   else if(memberProperties["state_abbr"] != userinfo.state->currentText())
     warnuser = true;
   else if(memberProperties["zip"] != userinfo.zip->text())
+    warnuser = true;
+  else if(memberProperties["email"] != userinfo.email->text())
     warnuser = true;
 
   return warnuser;
@@ -6212,7 +6223,7 @@ void qtbook::slotReset(void)
 	    }
 	  else if(name.contains("Price"))
 	    {
-	      al.price->setValue(0.00);
+	      al.price->setValue(-0.01);
 	      al.price->setFocus();
 	    }
 	  else if(name.contains("Language"))
