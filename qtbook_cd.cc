@@ -929,7 +929,7 @@ void qtbook_cd::updateWindow(const int state)
       cd.okButton->setVisible(true);
       cd.queryButton->setVisible(isQueryEnabled);
       cd.resetButton->setVisible(true);
-      cd.computeButton->setEnabled(true);
+      cd.computeButton->setVisible(true);
       trd.saveButton->setVisible(true);
       trd.insertButton->setVisible(true);
       trd.deleteButton->setVisible(true);
@@ -944,7 +944,7 @@ void qtbook_cd::updateWindow(const int state)
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
-      cd.computeButton->setEnabled(false);
+      cd.computeButton->setVisible(false);
       trd.saveButton->setVisible(false);
       trd.insertButton->setVisible(false);
       trd.deleteButton->setVisible(false);      
@@ -1005,7 +1005,7 @@ void qtbook_cd::modify(const int state)
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
-      cd.computeButton->setEnabled(false);
+      cd.computeButton->setVisible(false);
       trd.saveButton->setVisible(false);
       trd.insertButton->setVisible(false);
       trd.deleteButton->setVisible(false);      
@@ -1211,6 +1211,7 @@ void qtbook_cd::insert(void)
   cd.tracksButton->setEnabled(false);
   cd.showUserButton->setEnabled(false);
   cd.queryButton->setEnabled(true);
+  cd.computeButton->setVisible(true);
   cd.computeButton->setEnabled(false);
   cd.okButton->setText("&Save");
   cd.release_date->setDate(QDate::fromString("01/01/2000",

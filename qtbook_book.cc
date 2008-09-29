@@ -969,6 +969,8 @@ void qtbook_book::updateWindow(const int state)
       id.backButton->setVisible(true);
       id.dwnldFront->setVisible(true);
       id.dwnldBack->setVisible(true);
+      id.generate->setVisible(true);
+      id.isbn10to13->setVisible(true);
       str = QString("BiblioteQ: Modify Book Entry (%1)").arg(id.id->text());
     }
   else
@@ -982,6 +984,8 @@ void qtbook_book::updateWindow(const int state)
       id.backButton->setVisible(false);
       id.dwnldFront->setVisible(false);
       id.dwnldBack->setVisible(false);
+      id.generate->setVisible(false);
+      id.isbn10to13->setVisible(false);
       str = QString("BiblioteQ: View Book Details (%1)").arg(id.id->text());
     }
 
@@ -1014,6 +1018,8 @@ void qtbook_book::modify(const int state)
       id.backButton->setVisible(true);
       id.dwnldFront->setVisible(true);
       id.dwnldBack->setVisible(true);
+      id.generate->setVisible(true);
+      id.isbn10to13->setVisible(true);
       misc_functions::highlightWidget
 	(id.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
@@ -1042,6 +1048,8 @@ void qtbook_book::modify(const int state)
       id.backButton->setVisible(false);
       id.dwnldFront->setVisible(false);
       id.dwnldBack->setVisible(false);
+      id.generate->setVisible(false);
+      id.isbn10to13->setVisible(false);
 
       foreach(QAction *action,
 	      id.resetButton->menu()->findChildren<QAction *>())

@@ -1120,7 +1120,7 @@
   <action name="actionChangePassword" >
    <property name="icon" >
     <iconset>
-     <normaloff>icons.d/32x32/unlock.png</normaloff>icons.d/32x32/unlock.png</iconset>
+     <normaloff>icons.d/32x32/password.png</normaloff>icons.d/32x32/password.png</iconset>
    </property>
    <property name="text" >
     <string>Change Password</string>
