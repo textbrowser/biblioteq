@@ -1444,7 +1444,7 @@ void qtbook_magazine::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       working.setModal(true);
-      working.setWindowTitle("BiblioteQ: Working Dialog");
+      working.setWindowTitle("BiblioteQ: Z39.50 Data Retrieval");
       working.setLabelText("Downloading information from the Z39.50 "
 			   "system. Please be patient.");
       working.setMaximum(0);

@@ -12,6 +12,7 @@
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QStringList>
+#include <QProgressDialog>
 
 /*
 ** -- Local Includes --
@@ -46,6 +47,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
  private:
   int requestid1; // Front Cover HTTP Get ID
   int requestid2; // Back Cover HTTP Get ID
+  bool httpRequestAborted;
   QHttp *http1; // Front Cover
   QHttp *http2; // Back Cover
   QBuffer *imgbuffer1; // Front Cover Buffer
@@ -56,6 +58,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QByteArray imgbytes1; // Front Cover Byte Array
   QByteArray imgbytes2; // Back Cover Byte Array
   generic_thread *thread;
+  QProgressDialog *httpProgress;
   Ui_informationDialog id;
 
  protected:
@@ -72,6 +75,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotGenerateISBN(void);
   void slotDownloadImage(void);
   void slotConvertISBN10to13(void);
+  void slotCancelImageDownload(void);
   void slotHttpRequestFinished(int, bool);
   void slotPopulateCopiesEditor(void);
   void slotUpdateDataReadProgress(int, int);

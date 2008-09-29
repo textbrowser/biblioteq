@@ -305,7 +305,7 @@
 171. The UPC should be a 13-digit number. (DONE)
 172. Remove "Library of Congress" references. (DONE)
 173. The e-mail address format should be abc@def.xyz. (TBD)
-174. Investigate privileges in misc_functions.cc.
+174. Investigate the privileges in misc_functions.cc.
 175. Update the memberProperties container when a member's information
      has been saved. (DONE)
-176. Determine a consistent method of enabling and/or hiding widgets. (DONE)
+176. Be consistent when enabling and/or hiding widgets. (DONE)

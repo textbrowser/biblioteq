@@ -58,11 +58,15 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((imgbuffer2 = new(std::nothrow) QBuffer(&imgbytes2)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((httpProgress = new(std::nothrow) QProgressDialog(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   thread = 0;
   requestid1 = requestid2 = 0;
   parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
+  httpRequestAborted = false;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, "Quantity").toInt();
   http1->setHost(qmain->getAmazonHash()["front_cover_host"]);
@@ -143,6 +147,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  this, SLOT(slotUpdateDataReadProgress(int, int)));
   connect(http2, SIGNAL(dataReadProgress(int, int)),
 	  this, SLOT(slotUpdateDataReadProgress(int, int)));
+  connect(httpProgress, SIGNAL(canceled(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
@@ -151,6 +157,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.location->addItems(locations);
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
+  httpProgress->setModal(true);
 
   if(id.language->count() == 0)
     id.language->addItem("UNKNOWN");
@@ -1612,7 +1619,7 @@ void qtbook_book::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       working.setModal(true);
-      working.setWindowTitle("BiblioteQ: Working Dialog");
+      working.setWindowTitle("BiblioteQ: Z39.50 Data Retrieval");
       working.setLabelText("Downloading information from the Z39.50 "
 			   "system. Please be patient.");
       working.setMaximum(0);
@@ -2042,29 +2049,28 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  QProgressDialog working(this);
-  working.setModal(true);
-  working.setWindowTitle("BiblioteQ: Working Dialog");
-  working.setLabelText("Downloading information from Z39.50 "
-		       "system. Please be patient.");
-  working.setMaximum(0);
-  working.setMinimum(0);
-  working.show();
-  working.update();
+  httpRequestAborted = false;
 
   if(pb == id.dwnldFront)
     {
+      httpProgress->setWindowTitle("BiblioteQ: Front Cover Image Download");
+      httpProgress->setLabelText("Downloading the front cover image. "
+				 "Please be patient...");
       url = qmain->getAmazonHash()["front_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer1->open(QIODevice::WriteOnly);
     }
   else
     {
+      httpProgress->setWindowTitle("BiblioteQ: Back Cover Image Download");
+      httpProgress->setLabelText("Downloading the back cover image. "
+				 "Please be patient...");
       url = qmain->getAmazonHash()["back_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer2->open(QIODevice::WriteOnly);
     }
 
+  httpProgress->show();
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
 
   if(pb == id.dwnldFront)
@@ -2079,6 +2085,18 @@ void qtbook_book::slotDownloadImage(void)
 
 void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
+  if(httpRequestAborted)
+    {
+      imgbuffer1->close();
+      imgbuffer2->close();
+      (void) http1->close();
+      (void) http2->close();
+      httpProgress->hide();
+      return;
+    }
+
+  httpProgress->hide();
+
   if(!error)
     if(rqid == requestid1)
       {
@@ -2134,6 +2152,18 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 
 void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 {
-  (void) bytesread;
-  (void) totalbytes;
+  if(httpRequestAborted)
+    return;
+
+  httpProgress->setMaximum(totalbytes);
+  httpProgress->setValue(bytesread);
+}
+
+/*
+** -- slotCancelImageDownload() --
+*/
+
+void qtbook_book::slotCancelImageDownload(void)
+{
+  httpRequestAborted = true;
 }
