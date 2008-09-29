@@ -847,7 +847,7 @@ void qtbook_videogame::updateWindow(const int state)
     }
   else
     {
-      vg.copiesButton->setEnabled(false);
+      vg.copiesButton->setVisible(false);
       vg.showUserButton->setEnabled(true);
       vg.okButton->setVisible(false);
       vg.queryButton->setVisible(false);
@@ -901,7 +901,7 @@ void qtbook_videogame::modify(const int state)
   else
     {
       setWindowTitle("BiblioteQ: View Video Game Details");
-      vg.copiesButton->setEnabled(false);
+      vg.copiesButton->setVisible(false);
       vg.showUserButton->setEnabled(true);
       vg.okButton->setVisible(false);
       vg.queryButton->setVisible(false);

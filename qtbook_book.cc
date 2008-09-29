@@ -975,7 +975,7 @@ void qtbook_book::updateWindow(const int state)
     }
   else
     {
-      id.copiesButton->setEnabled(false);
+      id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
       id.queryButton->setVisible(false);
@@ -1039,7 +1039,7 @@ void qtbook_book::modify(const int state)
   else
     {
       setWindowTitle("BiblioteQ: View Book Details");
-      id.copiesButton->setEnabled(false);
+      id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
       id.queryButton->setVisible(false);

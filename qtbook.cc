@@ -4178,6 +4178,20 @@ void qtbook::slotSaveUser(void)
 	}
 
       qapp->restoreOverrideCursor();
+      memberProperties["memberid"] = userinfo.memberid->text();
+      memberProperties["membersince"] = userinfo.membersince->date().toString
+	("MM/dd/yyyy");
+      memberProperties["dob"] = userinfo.dob->date().toString("MM/dd/yyyy");
+      memberProperties["sex"] = userinfo.sex->currentText();
+      memberProperties["first_name"] = userinfo.firstName->text();
+      memberProperties["middle_init"] = userinfo.middle->text();
+      memberProperties["last_name"] = userinfo.lastName->text();
+      memberProperties["telephone_num"] = userinfo.telephoneNumber->text();
+      memberProperties["street"] = userinfo.street->text();
+      memberProperties["city"] = userinfo.city->text();
+      memberProperties["state_abbr"] = userinfo.state->currentText();
+      memberProperties["zip"] = userinfo.zip->text();
+      memberProperties["email"] = userinfo.email->text();
 
       if(userinfo_diag->windowTitle().contains("Modify"))
 	{

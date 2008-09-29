@@ -309,7 +309,7 @@ void borrowers_editor::slotEraseBorrower(void)
   if(row < 0)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select the copy that is being returned.");
+			    "Please select the copy that has been returned.");
       return;
     }
 
@@ -324,7 +324,7 @@ void borrowers_editor::slotEraseBorrower(void)
     }
 
   if(QMessageBox::question(this, "BiblioteQ: Question",
-			   "Are you sure that the copy is being returned?",
+			   "Are you sure that the copy has been returned?",
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     return;

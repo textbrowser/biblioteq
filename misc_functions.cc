@@ -572,7 +572,8 @@ void misc_functions::DBAccount(const QString &userid,
 		      roles.contains("membership"))
 		{
 		  /*
-		  ** The method grantPrivs() grants the necessary privileges.
+		  ** The method grantPrivs() grants the necessary privileges
+		  ** to circulation, librarian, and membership administrators.
 		  */
 		}
 	      else if(objectlist[i] == "item_request")
@@ -581,7 +582,7 @@ void misc_functions::DBAccount(const QString &userid,
 		  (objectlist[i]).arg(userid);
 	      else if(objectlist[i] == "item_request_myoid_seq")
 		querystr = QString
-		  ("GRANT DELETE, INSERT, SELECT ON %1 TO %2").arg
+		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
 	      else
 		querystr = QString

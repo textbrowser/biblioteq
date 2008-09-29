@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>275</height>
+    <height>305</height>
    </rect>
   </property>
   <property name="font" >
@@ -19,8 +19,20 @@
    <string>BiblioteQ: Branch Selection</string>
   </property>
   <layout class="QVBoxLayout" >
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <property name="margin" >
+    <number>9</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="margin" >
+      <number>0</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_4" >
        <property name="font" >
@@ -36,6 +48,12 @@
      </item>
      <item>
       <layout class="QHBoxLayout" >
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <property name="margin" >
+        <number>0</number>
+       </property>
        <item>
         <widget class="QComboBox" name="branch_name" >
          <property name="editable" >
@@ -48,7 +66,7 @@
          <property name="orientation" >
           <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>40</width>
            <height>20</height>
@@ -69,13 +87,19 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" >
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <property name="margin" >
+       <number>9</number>
+      </property>
       <item>
        <widget class="QLabel" name="label_2" >
         <property name="text" >
          <string/>
         </property>
         <property name="pixmap" >
-         <pixmap>icons.d/32x32/database.png</pixmap>
+         <pixmap>icons.d/32x32/fileopen.png</pixmap>
         </property>
        </widget>
       </item>
@@ -99,7 +123,7 @@
    <item>
     <widget class="QFrame" name="db_frame" >
      <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -111,6 +135,12 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
       <item rowspan="2" row="0" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
@@ -136,6 +166,12 @@
       </item>
       <item row="0" column="2" >
        <layout class="QHBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="margin" >
+         <number>0</number>
+        </property>
         <item>
          <widget class="QLineEdit" name="userid" />
         </item>
@@ -176,7 +212,7 @@
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0" >
       <size>
        <width>382</width>
        <height>21</height>
@@ -193,12 +229,18 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="margin" >
+      <number>0</number>
+     </property>
      <item>
       <spacer>
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>
@@ -224,7 +266,8 @@
         <string>&amp;Connect</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/ok.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
@@ -240,7 +283,8 @@
         <string>&amp;Reset</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/reset.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/reset.png</normaloff>icons.d/16x16/reset.png</iconset>
        </property>
       </widget>
      </item>
@@ -265,7 +309,8 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/cancel.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -274,7 +319,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>

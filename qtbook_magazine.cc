@@ -912,7 +912,7 @@ void qtbook_magazine::updateWindow(const int state)
   else
     {
       ma.showUserButton->setEnabled(true);
-      ma.copiesButton->setEnabled(false);
+      ma.copiesButton->setVisible(false);
       ma.queryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);
@@ -965,7 +965,7 @@ void qtbook_magazine::modify(const int state)
     {
       setWindowTitle(QString("BiblioteQ: View %1 Details").arg(subType));
       ma.showUserButton->setEnabled(true);
-      ma.copiesButton->setEnabled(false);
+      ma.copiesButton->setVisible(false);
       ma.queryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);

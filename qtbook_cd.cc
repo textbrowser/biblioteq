@@ -940,7 +940,7 @@ void qtbook_cd::updateWindow(const int state)
   else
     {
       cd.showUserButton->setEnabled(true);
-      cd.copiesButton->setEnabled(false);
+      cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
@@ -1001,7 +1001,7 @@ void qtbook_cd::modify(const int state)
     {
       setWindowTitle("BiblioteQ: View CD Details");
       cd.showUserButton->setEnabled(true);
-      cd.copiesButton->setEnabled(false);
+      cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
       cd.resetButton->setVisible(false);
@@ -1212,7 +1212,6 @@ void qtbook_cd::insert(void)
   cd.showUserButton->setEnabled(false);
   cd.queryButton->setEnabled(true);
   cd.computeButton->setVisible(true);
-  cd.computeButton->setEnabled(false);
   cd.okButton->setText("&Save");
   cd.release_date->setDate(QDate::fromString("01/01/2000",
 					     "MM/dd/yyyy"));

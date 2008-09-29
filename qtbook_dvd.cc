@@ -969,7 +969,7 @@ void qtbook_dvd::updateWindow(const int state)
   else
     {
       dvd.showUserButton->setEnabled(true);
-      dvd.copiesButton->setEnabled(false);
+      dvd.copiesButton->setVisible(false);
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);
       dvd.resetButton->setVisible(false);
@@ -1026,7 +1026,7 @@ void qtbook_dvd::modify(const int state)
     {
       setWindowTitle("BiblioteQ: View DVD Details");
       dvd.showUserButton->setEnabled(true);
-      dvd.copiesButton->setEnabled(false);
+      dvd.copiesButton->setVisible(false);
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);
       dvd.resetButton->setVisible(false);
