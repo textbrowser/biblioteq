@@ -2159,8 +2159,6 @@ void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 
   httpProgress->setMaximum(totalbytes);
   httpProgress->setValue(bytesread);
-  httpProgress->update();
-  qapp->processEvents();
 }
 
 /*
