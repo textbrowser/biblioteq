@@ -290,14 +290,14 @@
 158. Resolve resource competition for Amazon and LOC queries. (DONE)
 159. Provide documentation for administrator privileges. (DONE)
 160. Provide a status dialog for the Library of Congress query. (DONE)
-161. Allow the user to cancel an image download.
+161. Allow the user to cancel an image download. (DONE)
 162. Integrate the administrator privileges documentation into the
      application.
 163. Provide an option for downloading OFFSYSTEM files.
 164. Warn the user of unsaved changes in the Members Browser.
 165. Implement the closeEvent for progress dialogs that must not be
      dismissed. (DONE)
-166. Allow members to cancel reserved items. (DONE)
+166. Allow members to cancel their reserved items. (DONE)
 167. Warn the user of unsaved changes for new items. (DONE)
 168. Add the Abstract information to the summary panel. (DONE)
 169. Add e-mail addresses to patron accounts. (DONE)
@@ -309,3 +309,6 @@
 175. Update the memberProperties container when a member's information
      has been saved. (DONE)
 176. Be consistent when enabling and/or hiding widgets. (DONE)
+177. Resolve "do not delete object" warnings that appear after
+     various search dialogs are dismissed. (DONE)
+178. Investigate the widget-centering algorithm.

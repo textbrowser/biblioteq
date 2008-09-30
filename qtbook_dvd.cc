@@ -855,7 +855,7 @@ void qtbook_dvd::slotGo(void)
 			 myqstring::escape
 			 (dvd.url->toPlainText()) + "%' ");
 
-      slotCancel();
+      hide();
 
       /*
       ** Search the database.
@@ -863,6 +863,7 @@ void qtbook_dvd::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "DVDs", searchstr);
+      slotCancel();
     }
 }
 

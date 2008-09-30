@@ -737,7 +737,7 @@ void qtbook_videogame::slotGo(void)
 			 myqstring::escape
 			 (vg.url->toPlainText()) + "%' ");
 
-      slotCancel();
+      hide();
 
       /*
       ** Search the database.
@@ -745,6 +745,7 @@ void qtbook_videogame::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "Video Games", searchstr);
+      slotCancel();
     }
 }
 

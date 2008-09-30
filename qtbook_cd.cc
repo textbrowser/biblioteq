@@ -826,7 +826,7 @@ void qtbook_cd::slotGo(void)
 			 myqstring::escape(cd.url->toPlainText().toLower()) +
 			 "%' ");
 
-      slotCancel();
+      hide();
 
       /*
       ** Search the database.
@@ -834,6 +834,7 @@ void qtbook_cd::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "Music CDs", searchstr);
+      slotCancel();
     }
 }
 

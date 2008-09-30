@@ -800,13 +800,7 @@ void qtbook_magazine::slotGo(void)
 			 myqstring::escape
 			 (ma.url->toPlainText()) + "%' ");
 
-      if(subType == "Journal")
-	{
-	  close();
-	  qmain->removeJournal(static_cast<qtbook_journal *> (this));
-	}
-      else
-	slotCancel();
+      hide();
 
       /*
       ** Search the database.
@@ -814,6 +808,14 @@ void qtbook_magazine::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, QString("%1s").arg(subType), searchstr);
+
+      if(subType == "Journal")
+	{
+	  close();
+	  qmain->removeJournal(static_cast<qtbook_journal *> (this));
+	}
+      else
+	slotCancel();
     }
 }
 

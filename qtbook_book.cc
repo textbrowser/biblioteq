@@ -58,7 +58,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((imgbuffer2 = new(std::nothrow) QBuffer(&imgbytes2)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((httpProgress = new(std::nothrow) QProgressDialog(this)) == 0)
+  if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   thread = 0;
@@ -191,8 +191,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
 qtbook_book::~qtbook_book()
 {
-  http1->abort();
-  http2->abort();
+  (void) http1->close();
+  (void) http2->close();
   imgbuffer1->close();
   imgbuffer2->close();
   delete imgbuffer1;
@@ -866,7 +866,7 @@ void qtbook_book::slotGo(void)
 			 myqstring::escape
 			 (id.url->toPlainText().toLower()) + "%' ");
 
-      slotCancel();
+      hide();
 
       /*
       ** Search the database.
@@ -874,6 +874,7 @@ void qtbook_book::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "Books", searchstr);
+      slotCancel();
     }
 }
 
@@ -2033,6 +2034,9 @@ void qtbook_book::slotDownloadImage(void)
   QString url = "";
   QPushButton *pb = static_cast<QPushButton *> (sender());
 
+  if(httpProgress->isVisible())
+    return;
+
   if(requestid1 > 0 && pb == id.dwnldFront)
     return;
 
@@ -2050,6 +2054,8 @@ void qtbook_book::slotDownloadImage(void)
     }
 
   httpRequestAborted = false;
+  httpProgress->setMaximum(0);
+  httpProgress->setMinimum(0);
 
   if(pb == id.dwnldFront)
     {
@@ -2087,10 +2093,6 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 {
   if(httpRequestAborted)
     {
-      imgbuffer1->close();
-      imgbuffer2->close();
-      (void) http1->close();
-      (void) http2->close();
       httpProgress->hide();
       return;
     }
@@ -2157,6 +2159,8 @@ void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 
   httpProgress->setMaximum(totalbytes);
   httpProgress->setValue(bytesread);
+  httpProgress->update();
+  qapp->processEvents();
 }
 
 /*
@@ -2166,4 +2170,11 @@ void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 void qtbook_book::slotCancelImageDownload(void)
 {
   httpRequestAborted = true;
+  imgbuffer1->close();
+  imgbuffer2->close();
+  http1->abort();
+  http2->abort();
+  (void) http1->close();
+  (void) http2->close();
+  requestid1 = requestid2 = 0;
 }
