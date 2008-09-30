@@ -190,6 +190,7 @@ class qtbook: public QMainWindow
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
+  void prepareRequestToolbutton(const QString &);
 
  protected:
   void closeEvent(QCloseEvent *);

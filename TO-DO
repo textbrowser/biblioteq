@@ -311,4 +311,6 @@
 176. Be consistent when enabling and/or hiding widgets. (DONE)
 177. Resolve "do not delete object" warnings that appear after
      various search dialogs are dismissed. (DONE)
-178. Investigate the widget-centering algorithm.
+178. Investigate the widget-centering algorithm. (DONE)
+179. The "request" toolbutton's icon is not correct under some
+     circumstances. (DONE)

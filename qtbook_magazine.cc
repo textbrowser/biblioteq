@@ -810,11 +810,16 @@ void qtbook_magazine::slotGo(void)
 	(qtbook::POPULATE_SEARCH, QString("%1s").arg(subType), searchstr);
 
       if(subType == "Journal")
-	{
-	  close();
-	  qmain->removeJournal(static_cast<qtbook_journal *> (this));
-	}
+	/*
+	** Call qtbook_journal's closeEvent() method.
+	*/
+
+	close();
       else
+	/*
+	** Call qtbook_magazine's closeEvent() method.
+	*/
+
 	slotCancel();
     }
 }

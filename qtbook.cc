@@ -606,19 +606,7 @@ void qtbook::adminSetup(void)
     ui.actionConfigureAdministratorPrivileges->setEnabled
       (roles.contains("administrator"));
 
-  if(selectedBranch["database_type"] != "sqlite")
-    {
-      if(!(roles.contains("administrator") || roles.contains("circulation")))
-	ui.actionRequests->setToolTip("Item Requests");
-      else
-	{
-	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-	  ui.actionRequests->setIcon
-	    (QIcon("icons.d/32x32/remove_request.png"));
-	}
-    }
-  else
-    ui.actionRequests->setToolTip("Item Requests");
+  ui.actionRequests->setToolTip("Item Requests");
 
   /*
   ** Hide certain fields in the Member's Browser.
@@ -1346,28 +1334,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
 
-  if(!roles.isEmpty() && typefilter == "All Requested")
-    ui.actionRequests->setEnabled(true);
-  else if(roles.isEmpty() && (typefilter == "All" ||
-			      typefilter == "Books" ||
-			      typefilter == "DVDs" ||
-			      typefilter == "Journals" ||
-			      typefilter == "Magazines" ||
-			      typefilter == "Music CDs" ||
-			      typefilter == "Video Games"))
-    {
-      ui.actionRequests->setToolTip("Request Selected Item(s)");
-      ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
-      ui.actionRequests->setEnabled(true);
-    }
-  else if(roles.isEmpty() && typefilter == "All Requested")
-    {
-      ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-      ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
-      ui.actionRequests->setEnabled(true);
-    }
-  else
-    ui.actionRequests->setEnabled(false);
+  prepareRequestToolbutton(typefilter);
 
   /*
   ** The order of the fields in the select statements should match
@@ -5500,6 +5467,10 @@ void qtbook::slotConnectDB(void)
     adminSetup();
   else
     {
+      /*
+      ** Patron.
+      */
+
       ui.actionRequests->setToolTip("Request Selected Item(s)");
       ui.actionRequests->setEnabled(true);
       ui.actionReservationHistory->setEnabled(true);
@@ -6181,11 +6152,53 @@ void qtbook::slotCheckout(void)
 }
 
 /*
+** -- prepareRequestToolbutton() --
+*/
+
+void qtbook::prepareRequestToolbutton(const QString &typefilter)
+{
+  if(selectedBranch["database_type"] != "sqlite")
+    if((roles == "administrator" || roles == "circulation") &&
+       typefilter == "All Requested")
+      {
+	ui.actionRequests->setEnabled(true);
+	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
+      }
+    else if(roles.isEmpty() && (typefilter == "All" ||
+				typefilter == "Books" ||
+				typefilter == "DVDs" ||
+				typefilter == "Journals" ||
+				typefilter == "Magazines" ||
+				typefilter == "Music CDs" ||
+				typefilter == "Video Games"))
+      {
+	ui.actionRequests->setToolTip("Request Selected Item(s)");
+	ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	ui.actionRequests->setEnabled(true);
+      }
+    else if(roles.isEmpty() && typefilter == "All Requested")
+      {
+	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
+	ui.actionRequests->setEnabled(true);
+      }
+    else
+      {
+	ui.actionRequests->setToolTip("Item Requests");
+	ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	ui.actionRequests->setEnabled(false);
+      }
+}
+
+/*
 ** -- slotAutoPopOnFilter() --
 */
 
 void qtbook::slotAutoPopOnFilter(void)
 {
+  prepareRequestToolbutton(ui.typefilter->currentText());
+
   /*
   ** Populate the main table only if we're connected to a database.
   */
@@ -8808,7 +8821,12 @@ void qtbook::slotRequest(void)
 
   progress.setModal(true);
   progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Requesting the selected item(s)...");
+
+  if(isRequesting)
+    progress.setLabelText("Requesting the selected item(s)...");
+  else
+    progress.setLabelText("Cancelling the selected request(s)...");
+
   progress.setMaximum(list.size());
   progress.show();
   progress.update();
@@ -8821,7 +8839,12 @@ void qtbook::slotRequest(void)
       if(isRequesting)
 	oid = misc_functions::getColumnString(ui.table, i, "MYOID");
       else
-	oid = misc_functions::getColumnString(ui.table, i, "REQUESTOID");
+	{
+	  oid = misc_functions::getColumnString(ui.table, i, "REQUESTOID");
+
+	  if(oid.isEmpty())
+	    oid = "-1";
+	}
 
       if(isRequesting)
 	{
