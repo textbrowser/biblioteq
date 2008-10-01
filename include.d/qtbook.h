@@ -69,6 +69,74 @@ class qtbook: public QMainWindow
   Q_OBJECT
 
  public:
+  class userinfo_diag_class: public QDialog
+  {
+  public:
+    userinfo_diag_class(QMainWindow *parent):QDialog(parent)
+    {
+      userinfo.setupUi(this);
+    }
+
+    ~userinfo_diag_class()
+    {
+    }
+
+    Ui_UserInfo userinfo;
+    QHash<QString, QString> memberProperties;
+
+    bool haveMemberChanges(void)
+    {
+      bool warnuser = false;
+
+      if(memberProperties["memberid"] != userinfo.memberid->text())
+	warnuser = true;
+      else if(memberProperties["membersince"] !=
+	      userinfo.membersince->date().toString
+	      ("MM/dd/yyyy"))
+	warnuser = true;
+      else if(memberProperties["dob"] !=
+	      userinfo.dob->date().toString("MM/dd/yyyy"))
+	warnuser = true;
+      else if(memberProperties["sex"] != userinfo.sex->currentText())
+	warnuser = true;
+      else if(memberProperties["first_name"] != userinfo.firstName->text())
+	warnuser = true;
+      else if(memberProperties["middle_init"] != userinfo.middle->text())
+	warnuser = true;
+      else if(memberProperties["last_name"] != userinfo.lastName->text())
+	warnuser = true;
+      else if(memberProperties["telephone_num"] !=
+	      userinfo.telephoneNumber->text())
+	warnuser = true;
+      else if(memberProperties["street"] != userinfo.street->text())
+	warnuser = true;
+      else if(memberProperties["city"] != userinfo.city->text())
+	warnuser = true;
+      else if(memberProperties["state_abbr"] != userinfo.state->currentText())
+	warnuser = true;
+      else if(memberProperties["zip"] != userinfo.zip->text())
+	warnuser = true;
+      else if(memberProperties["email"] != userinfo.email->text())
+	warnuser = true;
+
+      return warnuser;
+    }
+
+  protected:
+    void closeEvent(QCloseEvent *e)
+    {
+      if(haveMemberChanges())
+	if(QMessageBox::question(this, "BiblioteQ: Question",
+				 "You have unsaved data. Continue closing?",
+				 QMessageBox::Yes | QMessageBox::No,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    e->ignore();
+	    return;
+	  }
+    }
+  };
+
   static const int EDITABLE = 0;
   static const int VIEW_ONLY = 1;
   static const int CUSTOM_QUERY = 0;
@@ -131,7 +199,6 @@ class qtbook: public QMainWindow
   QHash<QString, QString> LOCHash;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
-  QHash<QString, QString> memberProperties;
   QHash<QString, qtbook_cd *> cds;
   QHash<QString, qtbook_dvd *> dvds;
   QHash<QString, qtbook_book *> books;
@@ -144,7 +211,6 @@ class qtbook: public QMainWindow
   QLabel *connected_bar_label;
   QDialog *pass_diag;
   QDialog *branch_diag;
-  QDialog *userinfo_diag;
   QMainWindow *all_diag;
   QMainWindow *admin_diag;
   QMainWindow *error_diag;
@@ -165,7 +231,6 @@ class qtbook: public QMainWindow
   QStringList dvd_aspectratios;
   QStringList journal_locations;
   QStringList magazine_locations;
-  Ui_UserInfo userinfo;
   QSqlDatabase db;
   Ui_allDialog al;
   Ui_mainWindow ui;
@@ -176,7 +241,7 @@ class qtbook: public QMainWindow
   Ui_branchSelect br;
   Ui_historyDialog history;
   Ui_membersBrowser bb;
-  bool haveMemberChanges(void);
+  userinfo_diag_class *userinfo_diag;
   void cleanup(void);
   void lockApp(const bool);
   void cdModify(const int);

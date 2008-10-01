@@ -167,7 +167,8 @@ qtbook::qtbook(void):QMainWindow()
   if((customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((userinfo_diag = new(std::nothrow) QDialog(members_diag)) == 0)
+  if((userinfo_diag = new(std::nothrow) userinfo_diag_class
+      (members_diag)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
@@ -244,7 +245,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
   bb.setupUi(members_diag);
-  userinfo.setupUi(userinfo_diag);
   history.setupUi(history_diag);
   br.setupUi(branch_diag);
   pass.setupUi(pass_diag);
@@ -312,7 +312,7 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotReserveCopy(void)));
   connect(ui.actionMembersBrowser, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMembersBrowser(void)));
-  connect(userinfo.okButton, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->userinfo.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveUser(void)));
   connect(ui.actionChangePassword, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowChangePassword(void)));
@@ -328,9 +328,9 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotDisconnect(void)));
   connect(ui.actionDisconnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
-  connect(userinfo.nextTool, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->userinfo.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
-  connect(userinfo.prevTool, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->userinfo.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
   connect(history.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
@@ -348,7 +348,7 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotPopulateMembersBrowser(void)));
   connect(bb.deleteButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotRemoveMember(void)));
-  connect(userinfo.cancelButton, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->userinfo.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancelAddUser(void)));
   connect(bb.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseMembersBrowser(void)));
@@ -444,20 +444,25 @@ qtbook::qtbook(void):QMainWindow()
   prepareFilter();
   addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
-  userinfo.telephoneNumber->setInputMask("999-999-9999");
-  userinfo.zip->setInputMask("99999");
+  userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
+  userinfo_diag->userinfo.zip->setInputMask("99999");
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.table),  1);
 
   /*
-  ** Highlight userinfo widgets.
+  ** Highlight userinfo_diag->userinfo widgets.
   */
 
-  misc_functions::highlightWidget(userinfo.firstName, QColor(255, 248, 220));
-  misc_functions::highlightWidget(userinfo.lastName, QColor(255, 248, 220));
-  misc_functions::highlightWidget(userinfo.street, QColor(255, 248, 220));
-  misc_functions::highlightWidget(userinfo.city, QColor(255, 248, 220));
-  misc_functions::highlightWidget(userinfo.zip, QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo_diag->userinfo.firstName,
+				  QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo_diag->userinfo.lastName,
+				  QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo_diag->userinfo.street,
+				  QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo_diag->userinfo.city,
+				  QColor(255, 248, 220));
+  misc_functions::highlightWidget(userinfo_diag->userinfo.zip,
+				  QColor(255, 248, 220));
 }
 
 /*
@@ -3851,26 +3856,27 @@ void qtbook::slotAddBorrower(void)
   QDate now = QDate::currentDate();
   QDateTime nowTime = QDateTime::currentDateTime();
 
-  memberProperties.clear();
-  userinfo.memberid->setText("m" + nowTime.toString("yyyyMMddhhmmss"));
-  userinfo.membersince->setFocus();
-  userinfo.membersince->setDate(now);
-  userinfo.membersince->setMaximumDate(now);
-  userinfo.firstName->clear();
-  userinfo.lastName->clear();
-  userinfo.middle->clear();
-  userinfo.dob->setDate(now.addYears(-25));
-  userinfo.sex->setCurrentIndex(0);
-  userinfo.street->clear();
-  userinfo.city->clear();
-  userinfo.state->setCurrentIndex(0);
-  userinfo.zip->setText("00000");
-  userinfo.zip->setCursorPosition(0);
-  userinfo.telephoneNumber->clear();
-  userinfo.email->clear();
+  userinfo_diag->memberProperties.clear();
+  userinfo_diag->userinfo.memberid->setText
+    ("m" + nowTime.toString("yyyyMMddhhmmss"));
+  userinfo_diag->userinfo.membersince->setFocus();
+  userinfo_diag->userinfo.membersince->setDate(now);
+  userinfo_diag->userinfo.membersince->setMaximumDate(now);
+  userinfo_diag->userinfo.firstName->clear();
+  userinfo_diag->userinfo.lastName->clear();
+  userinfo_diag->userinfo.middle->clear();
+  userinfo_diag->userinfo.dob->setDate(now.addYears(-25));
+  userinfo_diag->userinfo.sex->setCurrentIndex(0);
+  userinfo_diag->userinfo.street->clear();
+  userinfo_diag->userinfo.city->clear();
+  userinfo_diag->userinfo.state->setCurrentIndex(0);
+  userinfo_diag->userinfo.zip->setText("00000");
+  userinfo_diag->userinfo.zip->setCursorPosition(0);
+  userinfo_diag->userinfo.telephoneNumber->clear();
+  userinfo_diag->userinfo.email->clear();
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
-  userinfo.prevTool->setVisible(false);
-  userinfo.nextTool->setVisible(false);
+  userinfo_diag->userinfo.prevTool->setVisible(false);
+  userinfo_diag->userinfo.nextTool->setVisible(false);
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
 }
@@ -3897,77 +3903,78 @@ void qtbook::slotSaveUser(void)
   QSqlQuery query(db);
   QTableWidgetItem *column = 0;
 
-  str1 = userinfo.firstName->text().trimmed();
-  userinfo.firstName->setText(str1);
-  str2 = userinfo.lastName->text().trimmed();
-  userinfo.lastName->setText(str2);
-  str3 = userinfo.middle->text().trimmed();
-  userinfo.middle->setText(str3);
-  str4 = userinfo.street->text().trimmed();
-  userinfo.street->setText(str4);
-  str5 = userinfo.city->text().trimmed();
-  userinfo.city->setText(str5);
-  str6 = userinfo.zip->text().trimmed();
-  userinfo.zip->setText(str6);
-  str7 = userinfo.telephoneNumber->text().trimmed();
-  userinfo.telephoneNumber->setText(str7);
-  str8 = userinfo.email->text().trimmed();
-  userinfo.email->setText(str8);
+  str1 = userinfo_diag->userinfo.firstName->text().trimmed();
+  userinfo_diag->userinfo.firstName->setText(str1);
+  str2 = userinfo_diag->userinfo.lastName->text().trimmed();
+  userinfo_diag->userinfo.lastName->setText(str2);
+  str3 = userinfo_diag->userinfo.middle->text().trimmed();
+  userinfo_diag->userinfo.middle->setText(str3);
+  str4 = userinfo_diag->userinfo.street->text().trimmed();
+  userinfo_diag->userinfo.street->setText(str4);
+  str5 = userinfo_diag->userinfo.city->text().trimmed();
+  userinfo_diag->userinfo.city->setText(str5);
+  str6 = userinfo_diag->userinfo.zip->text().trimmed();
+  userinfo_diag->userinfo.zip->setText(str6);
+  str7 = userinfo_diag->userinfo.telephoneNumber->text().trimmed();
+  userinfo_diag->userinfo.telephoneNumber->setText(str7);
+  str8 = userinfo_diag->userinfo.email->text().trimmed();
+  userinfo_diag->userinfo.email->setText(str8);
 
-  if(userinfo.firstName->text().isEmpty())
+  if(userinfo_diag->userinfo.firstName->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
 			    "Please provide a valid First Name.");
-      userinfo.firstName->setFocus();
+      userinfo_diag->userinfo.firstName->setFocus();
       return;
     }
 
-  if(userinfo.lastName->text().isEmpty())
+  if(userinfo_diag->userinfo.lastName->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
 			    "Please provide a valid Last Name.");
-      userinfo.lastName->setFocus();
+      userinfo_diag->userinfo.lastName->setFocus();
       return;
     }
 
-  if(userinfo.street->text().isEmpty())
+  if(userinfo_diag->userinfo.street->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
 			    "Please provide a valid Street.");
-      userinfo.street->setFocus();
+      userinfo_diag->userinfo.street->setFocus();
       return;
     }
 
-  if(userinfo.city->text().isEmpty())
+  if(userinfo_diag->userinfo.city->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
 			    "Please provide a valid City.");
-      userinfo.city->setFocus();
+      userinfo_diag->userinfo.city->setFocus();
       return;
     }
 
-  if(userinfo.zip->text().length() != 5)
+  if(userinfo_diag->userinfo.zip->text().length() != 5)
     {
       QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
 			    "Please provide a valid ZIP Code.");
-      userinfo.zip->setFocus();
+      userinfo_diag->userinfo.zip->setFocus();
       return;
     }
 
-  checksum.append(userinfo.dob->text());
-  checksum.append(userinfo.sex->currentText());
-  checksum.append(userinfo.firstName->text());
-  checksum.append(userinfo.middle->text());
-  checksum.append(userinfo.lastName->text());
-  checksum.append(userinfo.street->text());
-  checksum.append(userinfo.city->text());
-  checksum.append(userinfo.state->currentText());
-  checksum.append(userinfo.zip->text());
+  checksum.append(userinfo_diag->userinfo.dob->text());
+  checksum.append(userinfo_diag->userinfo.sex->currentText());
+  checksum.append(userinfo_diag->userinfo.firstName->text());
+  checksum.append(userinfo_diag->userinfo.middle->text());
+  checksum.append(userinfo_diag->userinfo.lastName->text());
+  checksum.append(userinfo_diag->userinfo.street->text());
+  checksum.append(userinfo_diag->userinfo.city->text());
+  checksum.append(userinfo_diag->userinfo.state->currentText());
+  checksum.append(userinfo_diag->userinfo.zip->text());
   qapp->setOverrideCursor(Qt::WaitCursor);
-  count = misc_functions::getMemberMatchCount(checksum.toLower(),
-					      userinfo.memberid->text(),
-					      db,
-					      errorstr);
+  count = misc_functions::getMemberMatchCount
+    (checksum.toLower(),
+     userinfo_diag->userinfo.memberid->text(),
+     db,
+     errorstr);
   qapp->restoreOverrideCursor();
 
   if(count < 0)
@@ -4017,19 +4024,19 @@ void qtbook::slotSaveUser(void)
 			    "?, ?, ?, "
 			    "?, ?, ?, "
 			    "?, ?, ?)"));
-      query.bindValue(0, userinfo.memberid->text());
-      query.bindValue(1, userinfo.membersince->text());
-      query.bindValue(2, userinfo.dob->text());
-      query.bindValue(3, userinfo.sex->currentText());
-      query.bindValue(4, userinfo.firstName->text());
-      query.bindValue(5, userinfo.middle->text());
-      query.bindValue(6, userinfo.lastName->text());
-      query.bindValue(7, userinfo.telephoneNumber->text());
-      query.bindValue(8, userinfo.street->text());
-      query.bindValue(9, userinfo.city->text());
-      query.bindValue(10, userinfo.state->currentText());
-      query.bindValue(11, userinfo.zip->text());
-      query.bindValue(12, userinfo.email->text());
+      query.bindValue(0, userinfo_diag->userinfo.memberid->text());
+      query.bindValue(1, userinfo_diag->userinfo.membersince->text());
+      query.bindValue(2, userinfo_diag->userinfo.dob->text());
+      query.bindValue(3, userinfo_diag->userinfo.sex->currentText());
+      query.bindValue(4, userinfo_diag->userinfo.firstName->text());
+      query.bindValue(5, userinfo_diag->userinfo.middle->text());
+      query.bindValue(6, userinfo_diag->userinfo.lastName->text());
+      query.bindValue(7, userinfo_diag->userinfo.telephoneNumber->text());
+      query.bindValue(8, userinfo_diag->userinfo.street->text());
+      query.bindValue(9, userinfo_diag->userinfo.city->text());
+      query.bindValue(10, userinfo_diag->userinfo.state->currentText());
+      query.bindValue(11, userinfo_diag->userinfo.zip->text());
+      query.bindValue(12, userinfo_diag->userinfo.email->text());
     }
   else
     {
@@ -4044,19 +4051,19 @@ void qtbook::slotSaveUser(void)
 			    "city = ?, "
 			    "state_abbr = ?, zip = ?, email = ? "
 			    "WHERE memberid = ?"));
-      query.bindValue(0, userinfo.membersince->text());
-      query.bindValue(1, userinfo.dob->text());
-      query.bindValue(2, userinfo.sex->currentText());
-      query.bindValue(3, userinfo.firstName->text());
-      query.bindValue(4, userinfo.middle->text());
-      query.bindValue(5, userinfo.lastName->text());
-      query.bindValue(6, userinfo.telephoneNumber->text());
-      query.bindValue(7, userinfo.street->text());
-      query.bindValue(8, userinfo.city->text());
-      query.bindValue(9, userinfo.state->currentText());
-      query.bindValue(10, userinfo.zip->text());
-      query.bindValue(11, userinfo.email->text());
-      query.bindValue(12, userinfo.memberid->text());
+      query.bindValue(0, userinfo_diag->userinfo.membersince->text());
+      query.bindValue(1, userinfo_diag->userinfo.dob->text());
+      query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
+      query.bindValue(3, userinfo_diag->userinfo.firstName->text());
+      query.bindValue(4, userinfo_diag->userinfo.middle->text());
+      query.bindValue(5, userinfo_diag->userinfo.lastName->text());
+      query.bindValue(6, userinfo_diag->userinfo.telephoneNumber->text());
+      query.bindValue(7, userinfo_diag->userinfo.street->text());
+      query.bindValue(8, userinfo_diag->userinfo.city->text());
+      query.bindValue(9, userinfo_diag->userinfo.state->currentText());
+      query.bindValue(10, userinfo_diag->userinfo.zip->text());
+      query.bindValue(11, userinfo_diag->userinfo.email->text());
+      query.bindValue(12, userinfo_diag->userinfo.memberid->text());
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -4084,7 +4091,7 @@ void qtbook::slotSaveUser(void)
 	  ** Create a database account for the new member.
 	  */
 
-	  misc_functions::DBAccount(userinfo.memberid->text(),
+	  misc_functions::DBAccount(userinfo_diag->userinfo.memberid->text(),
 				    db, misc_functions::CREATE_USER,
 				    errorstr);
 
@@ -4132,7 +4139,7 @@ void qtbook::slotSaveUser(void)
 	  ** Update privileges.
 	  */
 
-	  misc_functions::DBAccount(userinfo.memberid->text(),
+	  misc_functions::DBAccount(userinfo_diag->userinfo.memberid->text(),
 				    db, misc_functions::UPDATE_USER,
 				    errorstr);
 
@@ -4140,30 +4147,43 @@ void qtbook::slotSaveUser(void)
 	    addError(QString("Database Error"),
 		     QString("An error occurred while attempting to "
 			     "update the database account "
-			     "for %1.").arg(userinfo.memberid->text()),
+			     "for %1.").arg
+		     (userinfo_diag->userinfo.memberid->text()),
 		     errorstr, __FILE__, __LINE__);
 	}
 
-      qapp->restoreOverrideCursor();
-      memberProperties["memberid"] = userinfo.memberid->text();
-      memberProperties["membersince"] = userinfo.membersince->date().toString
+      qapp->restoreOverrideCursor(); 
+      userinfo_diag->memberProperties
+	["memberid"] = userinfo_diag->userinfo.memberid->text();
+      userinfo_diag->memberProperties["membersince"] =
+	userinfo_diag->userinfo.membersince->date().toString
 	("MM/dd/yyyy");
-      memberProperties["dob"] = userinfo.dob->date().toString("MM/dd/yyyy");
-      memberProperties["sex"] = userinfo.sex->currentText();
-      memberProperties["first_name"] = userinfo.firstName->text();
-      memberProperties["middle_init"] = userinfo.middle->text();
-      memberProperties["last_name"] = userinfo.lastName->text();
-      memberProperties["telephone_num"] = userinfo.telephoneNumber->text();
-      memberProperties["street"] = userinfo.street->text();
-      memberProperties["city"] = userinfo.city->text();
-      memberProperties["state_abbr"] = userinfo.state->currentText();
-      memberProperties["zip"] = userinfo.zip->text();
-      memberProperties["email"] = userinfo.email->text();
+      userinfo_diag->memberProperties["dob"] =
+	userinfo_diag->userinfo.dob->date().toString("MM/dd/yyyy");
+      userinfo_diag->memberProperties["sex"] =
+	userinfo_diag->userinfo.sex->currentText();
+      userinfo_diag->memberProperties["first_name"] =
+	userinfo_diag->userinfo.firstName->text();
+      userinfo_diag->memberProperties["middle_init"] =
+	userinfo_diag->userinfo.middle->text();
+      userinfo_diag->memberProperties["last_name"] =
+	userinfo_diag->userinfo.lastName->text();
+      userinfo_diag->memberProperties["telephone_num"] =
+	userinfo_diag->userinfo.telephoneNumber->text();
+      userinfo_diag->memberProperties["street"] =
+	userinfo_diag->userinfo.street->text();
+      userinfo_diag->memberProperties["city"] =
+	userinfo_diag->userinfo.city->text();
+      userinfo_diag->memberProperties["state_abbr"] =
+	userinfo_diag->userinfo.state->currentText();
+      userinfo_diag->memberProperties["zip"] =
+	userinfo_diag->userinfo.zip->text();
+      userinfo_diag->memberProperties["email"] =
+	userinfo_diag->userinfo.email->text();
+      bb.table->setSortingEnabled(false);
 
       if(userinfo_diag->windowTitle().contains("Modify"))
 	{
-	  bb.table->setSortingEnabled(false);
-
 	  for(i = 0; i < bb.table->columnCount(); i++)
 	    {
 	      column = bb.table->horizontalHeaderItem(i);
@@ -4172,11 +4192,14 @@ void qtbook::slotSaveUser(void)
 		continue;
 
 	      if(column->text() == "First Name")
-		bb.table->item(row, i)->setText(userinfo.firstName->text());
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->userinfo.firstName->text());
 	      else if(column->text() == "Last Name")
-		bb.table->item(row, i)->setText(userinfo.lastName->text());
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->userinfo.lastName->text());
 	      else if(column->text() == "Member Since")
-		bb.table->item(row, i)->setText(userinfo.membersince->text());
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->userinfo.membersince->text());
 	    }
 
 	  bb.table->setSortingEnabled(true);
@@ -5211,7 +5234,7 @@ void qtbook::slotShowNext(void)
     }
   else
     {
-      if(haveMemberChanges())
+      if(userinfo_diag->haveMemberChanges())
 	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
 				 "You have unsaved data. Continue?",
 				 QMessageBox::Yes | QMessageBox::No,
@@ -5249,7 +5272,7 @@ void qtbook::slotShowPrev(void)
     }
   else
     {
-      if(haveMemberChanges())
+      if(userinfo_diag->haveMemberChanges())
 	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
 				 "You have unsaved data. Continue?",
 				 QMessageBox::Yes | QMessageBox::No,
@@ -5487,7 +5510,7 @@ void qtbook::slotConnectDB(void)
 void qtbook::slotDisconnect(void)
 {
   roles = "";
-  memberProperties.clear();
+  userinfo_diag->memberProperties.clear();
   all_diag->close();
   members_diag->close();
   history_diag->close();
@@ -5947,42 +5970,42 @@ void qtbook::slotModifyBorrower(void)
 	  fieldname = query.record().fieldName(i);
 
 	  if(fieldname == "memberid")
-	    userinfo.memberid->setText(var.toString());
+	    userinfo_diag->userinfo.memberid->setText(var.toString());
 	  else if(fieldname == "membersince")
-	    userinfo.membersince->setDate
+	    userinfo_diag->userinfo.membersince->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "dob")
-	    userinfo.dob->setDate
+	    userinfo_diag->userinfo.dob->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "sex")
-	    userinfo.sex->setCurrentIndex
-	      (userinfo.sex->findText(var.toString()));
+	    userinfo_diag->userinfo.sex->setCurrentIndex
+	      (userinfo_diag->userinfo.sex->findText(var.toString()));
 	  else if(fieldname == "first_name")
-	    userinfo.firstName->setText(var.toString());
+	    userinfo_diag->userinfo.firstName->setText(var.toString());
 	  else if(fieldname == "middle_init")
-	    userinfo.middle->setText(var.toString());
+	    userinfo_diag->userinfo.middle->setText(var.toString());
 	  else if(fieldname == "last_name")
-	    userinfo.lastName->setText(var.toString());
+	    userinfo_diag->userinfo.lastName->setText(var.toString());
 	  else if(fieldname == "telephone_num")
-	    userinfo.telephoneNumber->setText(var.toString());
+	    userinfo_diag->userinfo.telephoneNumber->setText(var.toString());
 	  else if(fieldname == "street")
-	    userinfo.street->setText(var.toString());
+	    userinfo_diag->userinfo.street->setText(var.toString());
 	  else if(fieldname == "city")
-	    userinfo.city->setText(var.toString());
+	    userinfo_diag->userinfo.city->setText(var.toString());
 	  else if(fieldname == "state_abbr")
 	    {
-	      if(userinfo.state->findText(var.toString()) == -1)
-		userinfo.state->setCurrentIndex(0);
+	      if(userinfo_diag->userinfo.state->findText(var.toString()) == -1)
+		userinfo_diag->userinfo.state->setCurrentIndex(0);
 	      else
-		userinfo.state->setCurrentIndex
-		  (userinfo.state->findText(var.toString()));
+		userinfo_diag->userinfo.state->setCurrentIndex
+		  (userinfo_diag->userinfo.state->findText(var.toString()));
 	    }
 	  else if(fieldname == "zip")
-	    userinfo.zip->setText(var.toString());
+	    userinfo_diag->userinfo.zip->setText(var.toString());
 	  else if(fieldname == "email")
-	    userinfo.email->setText(var.toString());
+	    userinfo_diag->userinfo.email->setText(var.toString());
 
-	  memberProperties[fieldname] = var.toString();
+	  userinfo_diag->memberProperties[fieldname] = var.toString();
 	}
 
       foreach(QLineEdit *textfield,
@@ -5990,11 +6013,11 @@ void qtbook::slotModifyBorrower(void)
 	textfield->setCursorPosition(0);
     }
 
-  userinfo.prevTool->setVisible(true);
-  userinfo.nextTool->setVisible(true);
+  userinfo_diag->userinfo.prevTool->setVisible(true);
+  userinfo_diag->userinfo.nextTool->setVisible(true);
   userinfo_diag->setWindowTitle("BiblioteQ: Modify Member");
-  userinfo.membersince->setMaximumDate(QDate::currentDate());
-  userinfo.membersince->setFocus();
+  userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo_diag->userinfo.membersince->setFocus();
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
 }
@@ -6005,52 +6028,8 @@ void qtbook::slotModifyBorrower(void)
 
 void qtbook::slotCancelAddUser(void)
 {
-  if(haveMemberChanges())
-    if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
-			     "You have unsaved data. Continue closing?",
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      return;
-
   if(userinfo_diag->isVisible())
     userinfo_diag->close();
-}
-
-bool qtbook::haveMemberChanges(void)
-{
-  bool warnuser = false;
-
-  if(memberProperties["memberid"] != userinfo.memberid->text())
-    warnuser = true;
-  else if(memberProperties["membersince"] !=
-	  userinfo.membersince->date().toString("MM/dd/yyyy"))
-    warnuser = true;
-  else if(memberProperties["dob"] != 
-	  userinfo.dob->date().toString("MM/dd/yyyy"))
-    warnuser = true;
-  else if(memberProperties["sex"] != userinfo.sex->currentText())
-    warnuser = true;
-  else if(memberProperties["first_name"] != userinfo.firstName->text())
-    warnuser = true;
-  else if(memberProperties["middle_init"] != userinfo.middle->text())
-    warnuser = true;
-  else if(memberProperties["last_name"] != userinfo.lastName->text())
-    warnuser = true;
-  else if(memberProperties["telephone_num"] !=
-	  userinfo.telephoneNumber->text())
-    warnuser = true;
-  else if(memberProperties["street"] != userinfo.street->text())
-    warnuser = true;
-  else if(memberProperties["city"] != userinfo.city->text())
-    warnuser = true;
-  else if(memberProperties["state_abbr"] != userinfo.state->currentText())
-    warnuser = true;
-  else if(memberProperties["zip"] != userinfo.zip->text())
-    warnuser = true;
-  else if(memberProperties["email"] != userinfo.email->text())
-    warnuser = true;
-
-  return warnuser;
 }
 
 /*

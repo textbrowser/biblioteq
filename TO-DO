@@ -286,15 +286,15 @@
 155. Download front cover images from Amazon. (DONE)
 156. Close HTTP sockets after an Amazon query. (DONE)
 157. Style sheets are not fully supported in OS X (Edition,
-     Publication Date).
+     Publication Date). (TBD)
 158. Resolve resource competition for Amazon and LOC queries. (DONE)
 159. Provide documentation for administrator privileges. (DONE)
 160. Provide a status dialog for the Library of Congress query. (DONE)
 161. Allow the user to cancel an image download. (DONE)
 162. Integrate the administrator privileges documentation into the
-     application.
-163. Provide an option for downloading OFFSYSTEM files.
-164. Warn the user of unsaved changes in the Members Browser.
+     application. (TBD)
+163. Provide an option for downloading OFFSYSTEM files. (TBD)
+164. Warn the user of unsaved changes in the Members Browser. (DONE)
 165. Implement the closeEvent for progress dialogs that must not be
      dismissed. (DONE)
 166. Allow members to cancel their reserved items. (DONE)
@@ -305,12 +305,12 @@
 171. The UPC should be a 13-digit number. (DONE)
 172. Remove "Library of Congress" references. (DONE)
 173. The e-mail address format should be abc@def.xyz. (TBD)
-174. Investigate the privileges in misc_functions.cc.
+174. Investigate the privileges in misc_functions.cc. (DONE)
 175. Update the memberProperties container when a member's information
      has been saved. (DONE)
 176. Be consistent when enabling and/or hiding widgets. (DONE)
 177. Resolve "do not delete object" warnings that appear after
      various search dialogs are dismissed. (DONE)
 178. Investigate the widget-centering algorithm. (DONE)
-179. The "request" toolbutton's icon is not correct under some
+179. The "request" toolbutton's icon is incorrect under some
      circumstances. (DONE)
