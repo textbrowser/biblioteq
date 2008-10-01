@@ -716,7 +716,7 @@ void qtbook::slotAbout(void)
   mb.setText("<html>BiblioteQ Version 6.12.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
-	     "Icons copyright (c) Everaldo.<br><br>"
+	     "Icons copyright (c) David Vignoni.<br><br>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
 	     "project information and <br>"
