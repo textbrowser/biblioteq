@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="font" >
@@ -763,6 +763,9 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
+   </property>
   </action>
   <action name="actionModifyEntry" >
    <property name="icon" >
@@ -777,6 +780,9 @@
      <family>Times</family>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+V</string>
    </property>
   </action>
   <action name="actionMembersBrowser" >
@@ -842,7 +848,7 @@
   <action name="actionViewDetails" >
    <property name="icon" >
     <iconset>
-     <normaloff>icons.d/16x16/info.png</normaloff>icons.d/16x16/info.png</iconset>
+     <normaloff>icons.d/16x16/details.png</normaloff>icons.d/16x16/details.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Selected Item(s)</string>
@@ -872,7 +878,7 @@
     </font>
    </property>
    <property name="shortcut" >
-    <string>Ctrl+F</string>
+    <string>Ctrl+G</string>
    </property>
   </action>
   <action name="actionAutoPopulateOnCreation" >

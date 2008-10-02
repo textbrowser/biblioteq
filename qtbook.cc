@@ -713,7 +713,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.12.<br>"
+  mb.setText("<html>BiblioteQ Version 6.12.1.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
