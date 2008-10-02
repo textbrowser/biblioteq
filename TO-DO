@@ -140,9 +140,9 @@
 	g. 300 Abstract (Description)
 70.  The ISSN is not unique. Use the Issue and Volume Number as part of
      the uniqueness key. Refer to #85. (DONE)
-71.  Prevent an administrator from launching multiple LOC queries
+71.  Prevent an administrator from launching multiple Z39.50 queries
      from the same item. (DONE)
-72.  Should an administrator be allowed to delete an item during a LOC
+72.  Should an administrator be allowed to delete an item during a Z39.50
      query? No. (DONE)
 73.  Do not allow the administrator to set a member's "Member Since" date
      beyond the current date. (DONE)
@@ -287,7 +287,7 @@
 156. Close HTTP sockets after an Amazon query. (DONE)
 157. Style sheets are not fully supported in OS X (Edition,
      Publication Date). (TBD)
-158. Resolve resource competition for Amazon and LOC queries. (DONE)
+158. Resolve resource competition for Amazon and Z39.50 queries. (DONE)
 159. Provide documentation for administrator privileges. (DONE)
 160. Provide a status dialog for the Library of Congress query. (DONE)
 161. Allow the user to cancel an image download. (DONE)
