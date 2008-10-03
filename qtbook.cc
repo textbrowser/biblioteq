@@ -713,7 +713,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.12.1.<br>"
+  mb.setText("<html>BiblioteQ Version 6.12.2.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
@@ -4653,12 +4653,6 @@ void qtbook::readConfig(void)
 	    else
 	      ui.actionAutoResizeColumns->setChecked(false);
 
-	  if(str.startsWith("automatically_populate_on_filter"))
-	    if(str.endsWith("1"))
-	      ui.actionAutoPopulateOnFilter->setChecked(true);
-	    else
-	      ui.actionAutoPopulateOnFilter->setChecked(false);
-
 	  if(str.startsWith("reset_error_log_on_disconnect"))
 	    if(str.endsWith("1"))
 	      ui.actionResetErrorLogOnDisconnect->setChecked(true);
@@ -4896,7 +4890,6 @@ void qtbook::slotSaveConfig(void)
       list.append(ui.actionShowGrid->isChecked());
       list.append(ui.actionPopulateOnStart->isChecked());
       list.append(ui.actionAutoResizeColumns->isChecked());
-      list.append(ui.actionAutoPopulateOnFilter->isChecked());
       list.append(ui.actionResetErrorLogOnDisconnect->isChecked());
       list.append(ui.actionAutoPopulateOnCreation->isChecked());
       list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
@@ -6137,37 +6130,40 @@ void qtbook::slotCheckout(void)
 void qtbook::prepareRequestToolbutton(const QString &typefilter)
 {
   if(selectedBranch["database_type"] != "sqlite")
-    if((roles == "administrator" || roles == "circulation") &&
-       typefilter == "All Requested")
-      {
-	ui.actionRequests->setEnabled(true);
-	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-	ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
-      }
-    else if(roles.isEmpty() && (typefilter == "All" ||
-				typefilter == "Books" ||
-				typefilter == "DVDs" ||
-				typefilter == "Journals" ||
-				typefilter == "Magazines" ||
+    if(db.isOpen())
+      if((roles == "administrator" || roles == "circulation") &&
+	 typefilter == "All Requested")
+	{
+	  ui.actionRequests->setEnabled(true);
+	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	  ui.actionRequests->setIcon
+	    (QIcon("icons.d/32x32/remove_request.png"));
+	}
+      else if(roles.isEmpty() && (typefilter == "All" ||
+				  typefilter == "Books" ||
+				  typefilter == "DVDs" ||
+				  typefilter == "Journals" ||
+				  typefilter == "Magazines" ||
 				typefilter == "Music CDs" ||
-				typefilter == "Video Games"))
-      {
-	ui.actionRequests->setToolTip("Request Selected Item(s)");
-	ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
-	ui.actionRequests->setEnabled(true);
-      }
-    else if(roles.isEmpty() && typefilter == "All Requested")
-      {
-	ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-	ui.actionRequests->setIcon(QIcon("icons.d/32x32/remove_request.png"));
-	ui.actionRequests->setEnabled(true);
-      }
-    else
-      {
-	ui.actionRequests->setToolTip("Item Requests");
-	ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
-	ui.actionRequests->setEnabled(false);
-      }
+				  typefilter == "Video Games"))
+	{
+	  ui.actionRequests->setToolTip("Request Selected Item(s)");
+	  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	  ui.actionRequests->setEnabled(true);
+	}
+      else if(roles.isEmpty() && typefilter == "All Requested")
+	{
+	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	  ui.actionRequests->setIcon
+	    (QIcon("icons.d/32x32/remove_request.png"));
+	  ui.actionRequests->setEnabled(true);
+	}
+      else
+	{
+	  ui.actionRequests->setToolTip("Item Requests");
+	  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	  ui.actionRequests->setEnabled(false);
+	}
 }
 
 /*
@@ -6182,7 +6178,7 @@ void qtbook::slotAutoPopOnFilter(void)
   ** Populate the main table only if we're connected to a database.
   */
 
-  if(db.isOpen() && ui.actionAutoPopulateOnFilter->isChecked())
+  if(db.isOpen())
     slotRefresh();
 }
 

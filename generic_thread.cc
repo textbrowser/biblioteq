@@ -93,8 +93,6 @@ void generic_thread::run(void)
 	qts << outputListBool.takeFirst() << endl;
 	qts << "automatically_resize_columns=";
 	qts << outputListBool.takeFirst() << endl;
-	qts << "automatically_populate_on_filter=";
-	qts << outputListBool.takeFirst() << endl;
 	qts << "reset_error_log_on_disconnect=";
 	qts << outputListBool.takeFirst() << endl;
 	qts << "automatically_populate_on_create=";
