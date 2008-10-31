@@ -1992,28 +1992,30 @@ void qtbook_book::slotSelectImage(void)
   dialog.exec();
 
   if(dialog.result() == QDialog::Accepted)
-    if(button == id.frontButton)
-      {
-	id.front_image->clear();
-	id.front_image->image = QImage(dialog.selectedFiles().at(0));
-	id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
-	id.front_image->scene()->addPixmap
-	  (QPixmap().fromImage(id.front_image->image));
-	id.front_image->scene()->items().at(0)->setFlags
-	  (QGraphicsItem::ItemIsSelectable);
-      }
-    else
-      {
-	id.back_image->clear();
-	id.back_image->image = QImage(dialog.selectedFiles().at(0));
-	id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
-	id.back_image->scene()->addPixmap
-	  (QPixmap().fromImage(id.back_image->image));
-	id.back_image->scene()->items().at(0)->setFlags
-	  (QGraphicsItem::ItemIsSelectable);
-      }
+    {
+      if(button == id.frontButton)
+	{
+	  id.front_image->clear();
+	  id.front_image->image = QImage(dialog.selectedFiles().at(0));
+	  id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  id.front_image->scene()->addPixmap
+	    (QPixmap().fromImage(id.front_image->image));
+	  id.front_image->scene()->items().at(0)->setFlags
+	    (QGraphicsItem::ItemIsSelectable);
+	}
+      else
+	{
+	  id.back_image->clear();
+	  id.back_image->image = QImage(dialog.selectedFiles().at(0));
+	  id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  id.back_image->scene()->addPixmap
+	    (QPixmap().fromImage(id.back_image->image));
+	  id.back_image->scene()->items().at(0)->setFlags
+	    (QGraphicsItem::ItemIsSelectable);
+	}
+    }
 }
 
 /*
@@ -2100,50 +2102,54 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
   httpProgress->hide();
 
   if(!error)
-    if(rqid == requestid1)
-      {
-	if(imgbytes1.size() > 1000)
-	  {
-	    id.front_image->clear();
-	    id.front_image->loadFromData(imgbytes1);
-	  }
+    {
+      if(rqid == requestid1)
+	{
+	  if(imgbytes1.size() > 1000)
+	    {
+	      id.front_image->clear();
+	      id.front_image->loadFromData(imgbytes1);
+	    }
 
-	imgbuffer1->close();
-	(void) http1->close();
+	  imgbuffer1->close();
+	  (void) http1->close();
 
-	if(imgbytes1.size() < 1000)
-	  QMessageBox::warning
-	    (this, "BiblioteQ: HTTP Warning",
-	     "The front cover image for the specified ISBN may not exist.");
-      }
-    else if(rqid == requestid2)
-      {
-	if(imgbytes2.size() > 1000)
-	  {
-	    id.back_image->clear();
-	    id.back_image->loadFromData(imgbytes2);
-	  }
+	  if(imgbytes1.size() < 1000)
+	    QMessageBox::warning
+	      (this, "BiblioteQ: HTTP Warning",
+	       "The front cover image for the specified ISBN may not exist.");
+	}
+      else if(rqid == requestid2)
+	{
+	  if(imgbytes2.size() > 1000)
+	    {
+	      id.back_image->clear();
+	      id.back_image->loadFromData(imgbytes2);
+	    }
 
-	imgbuffer2->close();
-	(void) http2->close();
+	  imgbuffer2->close();
+	  (void) http2->close();
 
-	if(imgbytes2.size() < 1000)
-	  QMessageBox::warning
-	    (this, "BiblioteQ: HTTP Warning",
-	     "The back cover image for the specified ISBN may not exist.");
-      }
+	  if(imgbytes2.size() < 1000)
+	    QMessageBox::warning
+	      (this, "BiblioteQ: HTTP Warning",
+	       "The back cover image for the specified ISBN may not exist.");
+	}
+    }
 
   if(error)
-    if(rqid == requestid1)
-      QMessageBox::critical
-	(this, "BiblioteQ: HTTP Error",
-	 QString("Front cover image download failed: %1.").arg
-	 (http1->errorString()));
-    else if(rqid == requestid2)
-      QMessageBox::critical
-	(this, "BiblioteQ: HTTP Error",
-	 QString("Back cover image download failed: %1.").arg
-	 (http2->errorString()));
+    {
+      if(rqid == requestid1)
+	QMessageBox::critical
+	  (this, "BiblioteQ: HTTP Error",
+	   QString("Front cover image download failed: %1.").arg
+	   (http1->errorString()));
+      else if(rqid == requestid2)
+	QMessageBox::critical
+	  (this, "BiblioteQ: HTTP Error",
+	   QString("Back cover image download failed: %1.").arg
+	   (http2->errorString()));
+    }
 
   requestid1 = requestid2 = 0;
 }

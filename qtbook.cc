@@ -4636,34 +4636,44 @@ void qtbook::readConfig(void)
 	  str = thread->getList().at(i);
 
 	  if(str.startsWith("show_table_grid"))
-	    if(str.endsWith("1"))
-	      ui.actionShowGrid->setChecked(true);
-	    else
-	      ui.actionShowGrid->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionShowGrid->setChecked(true);
+	      else
+		ui.actionShowGrid->setChecked(false);
+	    }
 
 	  if(str.startsWith("populate_table_on_connect"))
-	    if(str.endsWith("1"))
-	      ui.actionPopulateOnStart->setChecked(true);
-	    else
-	      ui.actionPopulateOnStart->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionPopulateOnStart->setChecked(true);
+	      else
+		ui.actionPopulateOnStart->setChecked(false);
+	    }
 
 	  if(str.startsWith("automatically_resize_columns"))
-	    if(str.endsWith("1"))
-	      ui.actionAutoResizeColumns->setChecked(true);
-	    else
-	      ui.actionAutoResizeColumns->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionAutoResizeColumns->setChecked(true);
+	      else
+		ui.actionAutoResizeColumns->setChecked(false);
+	    }
 
 	  if(str.startsWith("reset_error_log_on_disconnect"))
-	    if(str.endsWith("1"))
-	      ui.actionResetErrorLogOnDisconnect->setChecked(true);
-	    else
-	      ui.actionResetErrorLogOnDisconnect->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionResetErrorLogOnDisconnect->setChecked(true);
+	      else
+		ui.actionResetErrorLogOnDisconnect->setChecked(false);
+	    }
 
 	  if(str.startsWith("automatically_populate_on_create"))
-	    if(str.endsWith("1"))
-	      ui.actionAutoPopulateOnCreation->setChecked(true);
-	    else
-	      ui.actionAutoPopulateOnCreation->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionAutoPopulateOnCreation->setChecked(true);
+	      else
+		ui.actionAutoPopulateOnCreation->setChecked(false);
+	    }
 
 	  if(str.startsWith("main_window_geometry"))
 	    {
@@ -4696,10 +4706,12 @@ void qtbook::readConfig(void)
 	    }
 
 	  if(str.startsWith("save_settings_on_exit"))
-	    if(str.endsWith("1"))
-	      ui.actionAutomaticallySaveSettingsOnExit->setChecked(true);
-	    else
-	      ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
+	    {
+	      if(str.endsWith("1"))
+		ui.actionAutomaticallySaveSettingsOnExit->setChecked(true);
+	      else
+		ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
+	    }
 	}
 
       if(statusBar() != 0)
@@ -5140,10 +5152,12 @@ void qtbook::slotDisplaySummary(void)
       tmpstr = misc_functions::getColumnString(ui.table, i, "Availability");
 
       if(!tmpstr.isEmpty())
-	if(tmpstr.toInt() > 0)
-	  summary += "Available<br>";
-	else
-	  summary += "Unavailable<br>";
+	{
+	  if(tmpstr.toInt() > 0)
+	    summary += "Available<br>";
+	  else
+	    summary += "Unavailable<br>";
+	}
 
       summary += misc_functions::getColumnString(ui.table, i, "Location");
       summary += "</html>";
@@ -6131,39 +6145,41 @@ void qtbook::prepareRequestToolbutton(const QString &typefilter)
 {
   if(selectedBranch["database_type"] != "sqlite")
     if(db.isOpen())
-      if((roles == "administrator" || roles == "circulation") &&
-	 typefilter == "All Requested")
-	{
-	  ui.actionRequests->setEnabled(true);
-	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-	  ui.actionRequests->setIcon
-	    (QIcon("icons.d/32x32/remove_request.png"));
-	}
-      else if(roles.isEmpty() && (typefilter == "All" ||
-				  typefilter == "Books" ||
-				  typefilter == "DVDs" ||
-				  typefilter == "Journals" ||
-				  typefilter == "Magazines" ||
-				typefilter == "Music CDs" ||
-				  typefilter == "Video Games"))
-	{
-	  ui.actionRequests->setToolTip("Request Selected Item(s)");
-	  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
-	  ui.actionRequests->setEnabled(true);
-	}
-      else if(roles.isEmpty() && typefilter == "All Requested")
-	{
-	  ui.actionRequests->setToolTip("Cancel Selected Request(s)");
-	  ui.actionRequests->setIcon
-	    (QIcon("icons.d/32x32/remove_request.png"));
-	  ui.actionRequests->setEnabled(true);
-	}
-      else
-	{
-	  ui.actionRequests->setToolTip("Item Requests");
-	  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
-	  ui.actionRequests->setEnabled(false);
-	}
+      {
+	if((roles == "administrator" || roles == "circulation") &&
+	   typefilter == "All Requested")
+	  {
+	    ui.actionRequests->setEnabled(true);
+	    ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	    ui.actionRequests->setIcon
+	      (QIcon("icons.d/32x32/remove_request.png"));
+	  }
+	else if(roles.isEmpty() && (typefilter == "All" ||
+				    typefilter == "Books" ||
+				    typefilter == "DVDs" ||
+				    typefilter == "Journals" ||
+				    typefilter == "Magazines" ||
+				    typefilter == "Music CDs" ||
+				    typefilter == "Video Games"))
+	  {
+	    ui.actionRequests->setToolTip("Request Selected Item(s)");
+	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	    ui.actionRequests->setEnabled(true);
+	  }
+	else if(roles.isEmpty() && typefilter == "All Requested")
+	  {
+	    ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	    ui.actionRequests->setIcon
+	      (QIcon("icons.d/32x32/remove_request.png"));
+	    ui.actionRequests->setEnabled(true);
+	  }
+	else
+	  {
+	    ui.actionRequests->setToolTip("Item Requests");
+	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	    ui.actionRequests->setEnabled(false);
+	  }
+      }
 }
 
 /*
@@ -8341,17 +8357,19 @@ void qtbook::slotAdminCheckBoxClicked(int state)
 	}
 
   if(row > -1)
-    if(column == 1)
-      {
-	for(i = 2; i < ab.table->columnCount(); i++)
-	  if(box->isChecked())
-	    (static_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
-	      setChecked(false);
-      }
-    else
-      if(box->isChecked())
-	(static_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
-	  setChecked(false);
+    {
+      if(column == 1)
+	{
+	  for(i = 2; i < ab.table->columnCount(); i++)
+	    if(box->isChecked())
+	      (static_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
+		setChecked(false);
+	}
+      else
+	if(box->isChecked())
+	  (static_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
+	    setChecked(false);
+    }
 }
 
 /*
@@ -8403,63 +8421,64 @@ void qtbook::slotRefreshAdminList(void)
   while(i++, !progress.wasCanceled() && query.next())
     {
       if(query.isValid())
-	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-	  {
-	    str = query.value(0).toString();
-	    item->setText(str);
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-	    str = query.value(1).toString();
-	    ab.table->setItem(i, 0, item);
+	{
+	  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	    {
+	      str = query.value(0).toString();
+	      item->setText(str);
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      str = query.value(1).toString();
+	      ab.table->setItem(i, 0, item);
 
-	    for(j = 1; j < ab.table->columnCount(); j++)
-	      if(query.value(0).toString() == getAdminID() && j > 1)
-		{
-		  if((item = new(std::nothrow) QTableWidgetItem()) != 0)
-		    {
-		      item->setFlags(Qt::ItemIsEnabled |
-				     Qt::ItemIsSelectable);
-		      ab.table->setItem(i, j, item);
-		    }
-		  else
-		    addError(QString("Memory Error"),
-			     QString("Unable to allocate memory for the "
-				     "\"item\" object. "
-				     "This is a serious problem!"),
-			     QString(""), __FILE__, __LINE__);
-		}
-	      else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
-		{
-		  ab.table->setCellWidget(i, j, checkBox);
+	      for(j = 1; j < ab.table->columnCount(); j++)
+		if(query.value(0).toString() == getAdminID() && j > 1)
+		  {
+		    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+		      {
+			item->setFlags(Qt::ItemIsEnabled |
+				       Qt::ItemIsSelectable);
+			ab.table->setItem(i, j, item);
+		      }
+		    else
+		      addError(QString("Memory Error"),
+			       QString("Unable to allocate memory for the "
+				       "\"item\" object. "
+				       "This is a serious problem!"),
+			       QString(""), __FILE__, __LINE__);
+		  }
+		else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
+		  {
+		    ab.table->setCellWidget(i, j, checkBox);
+		    columnname = ab.table->horizontalHeaderItem
+		      (j)->text().toLower();
 
-		  columnname = ab.table->horizontalHeaderItem
-		    (j)->text().toLower();
+		    if(str.toLower().contains(columnname))
+		      checkBox->setChecked(true);
 
-		  if(str.toLower().contains(columnname))
-		    checkBox->setChecked(true);
+		    if(query.value(0).toString() == getAdminID())
+		      checkBox->setEnabled(false);
+		    else
+		      connect(checkBox, SIGNAL(stateChanged(int)), this,
+			      SLOT(slotAdminCheckBoxClicked(int)));
+		  }
+		else
+		  addError(QString("Memory Error"),
+			   QString("Unable to allocate memory for the "
+				   "\"checkBox\" object. "
+				   "This is a serious problem!"),
+			   QString(""), __FILE__, __LINE__);
+	    }
+	  else
+	    addError(QString("Memory Error"),
+		     QString("Unable to allocate memory for the "
+			     "\"item\" object. "
+			     "This is a serious problem!"),
+		     QString(""), __FILE__, __LINE__);
 
-		  if(query.value(0).toString() == getAdminID())
-		    checkBox->setEnabled(false);
-		  else
-		    connect(checkBox, SIGNAL(stateChanged(int)), this,
-			    SLOT(slotAdminCheckBoxClicked(int)));
-		}
-	      else
-		addError(QString("Memory Error"),
-			 QString("Unable to allocate memory for the "
-				 "\"checkBox\" object. "
-				 "This is a serious problem!"),
-			 QString(""), __FILE__, __LINE__);
-	  }
-	else
-	  addError(QString("Memory Error"),
-		   QString("Unable to allocate memory for the "
-			   "\"item\" object. "
-			   "This is a serious problem!"),
-		   QString(""), __FILE__, __LINE__);
-
-      progress.setValue(i + 1);
-      progress.update();
-      qapp->processEvents();
+	  progress.setValue(i + 1);
+	  progress.update();
+	  qapp->processEvents();
+	}
     }
 
   query.clear();

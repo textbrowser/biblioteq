@@ -1394,26 +1394,28 @@ void qtbook_videogame::slotSelectImage(void)
   dialog.exec();
 
   if(dialog.result() == QDialog::Accepted)
-    if(button == vg.frontButton)
-      {
-	vg.front_image->clear();
-	vg.front_image->image = QImage(dialog.selectedFiles().at(0));
-	vg.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
-	vg.front_image->scene()->addPixmap
-	  (QPixmap().fromImage(vg.front_image->image));
-	vg.front_image->scene()->items().at(0)->setFlags
-	  (QGraphicsItem::ItemIsSelectable);
-      }
-    else
-      {
-	vg.back_image->clear();
-	vg.back_image->image = QImage(dialog.selectedFiles().at(0));
-	vg.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	  (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
-	vg.back_image->scene()->addPixmap
-	  (QPixmap().fromImage(vg.back_image->image));
-	vg.back_image->scene()->items().at(0)->setFlags
-	  (QGraphicsItem::ItemIsSelectable);
-      }
+    {
+      if(button == vg.frontButton)
+	{
+	  vg.front_image->clear();
+	  vg.front_image->image = QImage(dialog.selectedFiles().at(0));
+	  vg.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  vg.front_image->scene()->addPixmap
+	    (QPixmap().fromImage(vg.front_image->image));
+	  vg.front_image->scene()->items().at(0)->setFlags
+	    (QGraphicsItem::ItemIsSelectable);
+	}
+      else
+	{
+	  vg.back_image->clear();
+	  vg.back_image->image = QImage(dialog.selectedFiles().at(0));
+	  vg.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  vg.back_image->scene()->addPixmap
+	    (QPixmap().fromImage(vg.back_image->image));
+	  vg.back_image->scene()->items().at(0)->setFlags
+	    (QGraphicsItem::ItemIsSelectable);
+	}
+    }
 }
