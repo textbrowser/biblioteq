@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>400</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -25,7 +25,7 @@
    <string>BiblioteQ: Administrator Browser</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
     <item>
      <widget class="QFrame" name="frame" >
       <property name="frameShape" >
@@ -34,7 +34,31 @@
       <property name="frameShadow" >
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <item>
+        <widget class="QFrame" name="frame_2" >
+         <property name="frameShape" >
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
+          <item>
+           <widget class="QLabel" name="label" >
+            <property name="text" >
+             <string>Administrator: All
+Circulation: Item Returns, Item Reservations, Reservation Histories
+Librarian: Item Creation, Item Deletion, Item Updates
+Membership: Member Creation, Member Deletion, Member Updates</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+         <zorder>label</zorder>
+         <zorder>label</zorder>
+        </widget>
+       </item>
        <item>
         <widget class="QTableWidget" name="table" >
          <property name="font" >
@@ -97,6 +121,9 @@
         </widget>
        </item>
       </layout>
+      <zorder>table</zorder>
+      <zorder>label</zorder>
+      <zorder>frame_2</zorder>
      </widget>
     </item>
     <item>
@@ -113,7 +140,8 @@
          <string>Add Administrator</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/add.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -138,7 +166,8 @@
          <string>Delete Selected Administrator</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/remove.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -160,7 +189,8 @@
          <string/>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/save.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/save.png</normaloff>icons.d/32x32/save.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -185,7 +215,8 @@
          <string>Refresh List</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/reload.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
         </property>
         <property name="iconSize" >
          <size>
@@ -203,7 +234,7 @@
         <property name="orientation" >
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>20</width>
           <height>40</height>
@@ -223,7 +254,8 @@
          <string>Close Browser</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/32x32/cancel.png</iconset>
+         <iconset>
+          <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
         </property>
         <property name="iconSize" >
          <size>

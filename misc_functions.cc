@@ -584,6 +584,9 @@ void misc_functions::DBAccount(const QString &userid,
 		querystr = QString
 		  ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
+	      else if(objectlist[i] == "admin")
+		querystr = QString("REVOKE ALL ON %1 FROM %2").arg
+		  (objectlist[i]).arg(userid);
 	      else
 		querystr = QString
 		  ("GRANT SELECT ON %1 TO %2").arg

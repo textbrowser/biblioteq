@@ -474,3 +474,7 @@ ALTER TABLE videogame ALTER COLUMN genre SET NOT NULL;
 ALTER TABLE member ADD COLUMN email VARCHAR(128);
 
 /* Please also "Save" each member's information through the Members Browser. */
+
+/* Release 6.13 */
+
+/* Please "Save" each member's information through the Members Browser. */

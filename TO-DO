@@ -314,3 +314,6 @@
 178. Investigate the widget-centering algorithm. (DONE)
 179. The "request" toolbutton's icon is incorrect under some
      circumstances. (DONE)
+180. Fix the incorrect question regarding changes when attempting to
+     create a new member. (DONE)
+181. Regular member do not require access to the admin table. (DONE)

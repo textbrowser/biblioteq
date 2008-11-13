@@ -88,9 +88,7 @@ class qtbook: public QMainWindow
     {
       bool warnuser = false;
 
-      if(memberProperties["memberid"] != userinfo.memberid->text())
-	warnuser = true;
-      else if(memberProperties["membersince"] !=
+      if(memberProperties["membersince"] !=
 	      userinfo.membersince->date().toString
 	      ("MM/dd/yyyy"))
 	warnuser = true;

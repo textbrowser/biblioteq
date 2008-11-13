@@ -713,7 +713,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.12.2.<br>"
+  mb.setText("<html>BiblioteQ Version 6.13.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
@@ -3874,6 +3874,17 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.zip->setCursorPosition(0);
   userinfo_diag->userinfo.telephoneNumber->clear();
   userinfo_diag->userinfo.email->clear();
+  userinfo_diag->memberProperties["membersince"] =
+    userinfo_diag->userinfo.membersince->date().toString("MM/dd/yyyy");
+  userinfo_diag->memberProperties["dob"] =
+    userinfo_diag->userinfo.dob->date().toString("MM/dd/yyyy");
+  userinfo_diag->memberProperties["sex"] =
+    userinfo_diag->userinfo.sex->currentText();
+  userinfo_diag->memberProperties["state_abbr"] =
+    userinfo_diag->userinfo.state->currentText();
+  userinfo_diag->memberProperties["zip"] = userinfo_diag->userinfo.zip->text();
+  userinfo_diag->memberProperties["telephone_num"] =
+    userinfo_diag->userinfo.telephoneNumber->text();
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
   userinfo_diag->userinfo.prevTool->setVisible(false);
   userinfo_diag->userinfo.nextTool->setVisible(false);
@@ -4153,8 +4164,6 @@ void qtbook::slotSaveUser(void)
 	}
 
       qapp->restoreOverrideCursor(); 
-      userinfo_diag->memberProperties
-	["memberid"] = userinfo_diag->userinfo.memberid->text();
       userinfo_diag->memberProperties["membersince"] =
 	userinfo_diag->userinfo.membersince->date().toString
 	("MM/dd/yyyy");
@@ -8064,8 +8073,8 @@ void qtbook::slotBranchChanged(void)
 {
   QHash<QString, QString> tmphash;
 
-  branch_diag->close();
   tmphash = branches[br.branch_name->currentText()];
+  branch_diag->close();
 
   if(tmphash["database_type"] == "sqlite")
     {
