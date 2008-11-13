@@ -31,7 +31,7 @@
   </property>
   <property name="windowIcon" >
    <iconset>
-    <normaloff>../../../../home/monster/biblioteq.d/icons.d/book.gif</normaloff>../../../../home/monster/biblioteq.d/icons.d/book.gif</iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="font" >
