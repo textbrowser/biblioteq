@@ -4729,6 +4729,14 @@ void qtbook::readConfig(void)
 	      else
 		bb.action_Populate_Table_on_Display->setChecked(false);
 	    }
+
+	  if(str.startsWith("automatically_populate_admin_list_on_display"))
+	    {
+	      if(str.endsWith("1"))
+		ab.action_Populate_Table_on_Display->setChecked(true);
+	      else
+		ab.action_Populate_Table_on_Display->setChecked(false);
+	    }
 	}
 
       if(statusBar() != 0)
@@ -4923,6 +4931,7 @@ void qtbook::slotSaveConfig(void)
       list.append(ui.actionAutoPopulateOnCreation->isChecked());
       list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
       list.append(bb.action_Populate_Table_on_Display->isChecked());
+      list.append(ab.action_Populate_Table_on_Display->isChecked());
       thread->setType(generic_thread::WRITE_USER_CONFIG_FILE);
       thread->setOutputList(list);
       list.clear();
@@ -8271,6 +8280,9 @@ void qtbook::slotShowAdminDialog(void)
   misc_functions::center(admin_diag, this);
   admin_diag->raise();
   admin_diag->show();
+
+  if(ab.action_Populate_Table_on_Display->isChecked())
+    slotRefreshAdminList();
 }
 
 /*

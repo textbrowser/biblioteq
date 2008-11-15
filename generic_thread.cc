@@ -103,6 +103,8 @@ void generic_thread::run(void)
 	qts << "save_settings_on_exit=" << outputListBool.takeFirst() << endl;
 	qts << "automatically_populate_members_list_on_display=";
 	qts << outputListBool.takeFirst() << endl;
+	qts << "automatically_populate_admin_list_on_display=";
+	qts << outputListBool.takeFirst() << endl;
 	qf.close();
 	break;
       }
