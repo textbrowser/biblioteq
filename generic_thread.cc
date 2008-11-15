@@ -101,6 +101,8 @@ void generic_thread::run(void)
 	qts << "global_font=" << qmain->font().toString() << endl;
 	qts << "sqlite_db=" << qmain->sqlitefile() << endl;
 	qts << "save_settings_on_exit=" << outputListBool.takeFirst() << endl;
+	qts << "automatically_populate_members_list_on_display=";
+	qts << outputListBool.takeFirst() << endl;
 	qf.close();
 	break;
       }

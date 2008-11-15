@@ -713,7 +713,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.13.<br>"
+  mb.setText("<html>BiblioteQ Version 6.14.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
@@ -4721,6 +4721,14 @@ void qtbook::readConfig(void)
 	      else
 		ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
 	    }
+
+	  if(str.startsWith("automatically_populate_members_list_on_display"))
+	    {
+	      if(str.endsWith("1"))
+		bb.action_Populate_Table_on_Display->setChecked(true);
+	      else
+		bb.action_Populate_Table_on_Display->setChecked(false);
+	    }
 	}
 
       if(statusBar() != 0)
@@ -4914,6 +4922,7 @@ void qtbook::slotSaveConfig(void)
       list.append(ui.actionResetErrorLogOnDisconnect->isChecked());
       list.append(ui.actionAutoPopulateOnCreation->isChecked());
       list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
+      list.append(bb.action_Populate_Table_on_Display->isChecked());
       thread->setType(generic_thread::WRITE_USER_CONFIG_FILE);
       thread->setOutputList(list);
       list.clear();
@@ -5693,6 +5702,9 @@ void qtbook::slotShowMembersBrowser(void)
   misc_functions::center(members_diag, this);
   members_diag->raise();
   members_diag->show();
+
+  if(bb.action_Populate_Table_on_Display->isChecked())
+    slotPopulateMembersBrowser();
 }
 
 /*
@@ -7401,12 +7413,13 @@ void qtbook::slotReserveCopy(void)
 
   slotShowMembersBrowser();
 
-  if(QMessageBox::question(members_diag, "BiblioteQ: Question",
-			   "Would you like to retrieve the list of "
-			   "members?",
-			   QMessageBox::Yes | QMessageBox::No,
-			   QMessageBox::No) == QMessageBox::Yes)
-    slotPopulateMembersBrowser();
+  if(!bb.action_Populate_Table_on_Display->isChecked())
+    if(QMessageBox::question(members_diag, "BiblioteQ: Question",
+			     "Would you like to retrieve the list of "
+			     "members?",
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::Yes)
+      slotPopulateMembersBrowser();
 
   if(bb.table->currentRow() < 0)
     bb.table->selectRow(0);
@@ -8074,7 +8087,6 @@ void qtbook::slotBranchChanged(void)
   QHash<QString, QString> tmphash;
 
   tmphash = branches[br.branch_name->currentText()];
-  branch_diag->close();
 
   if(tmphash["database_type"] == "sqlite")
     {
