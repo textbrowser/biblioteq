@@ -81,12 +81,12 @@
          </column>
          <column>
           <property name="text" >
-           <string>Item Title</string>
+           <string>Title</string>
           </property>
          </column>
          <column>
           <property name="text" >
-           <string>Item ID</string>
+           <string>ID Number</string>
           </property>
          </column>
          <column>
@@ -96,7 +96,7 @@
          </column>
          <column>
           <property name="text" >
-           <string>Item Type</string>
+           <string>Type</string>
           </property>
          </column>
          <column>

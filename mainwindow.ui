@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>33</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="font" >
@@ -370,11 +370,13 @@
     <property name="title" >
      <string>&amp;Options</string>
     </property>
-    <addaction name="actionAutoPopulateOnCreation" />
     <addaction name="actionAutoResizeColumns" />
     <addaction name="actionAutomaticallySaveSettingsOnExit" />
     <addaction name="actionShowGrid" />
+    <addaction name="actionPopulate_Administrator_Browser_Table_on_Display" />
+    <addaction name="actionPopulate_Members_Browser_Table_on_Display" />
     <addaction name="actionPopulateOnStart" />
+    <addaction name="actionAutoPopulateOnCreation" />
     <addaction name="actionPreserveGeometry" />
     <addaction name="actionRememberSQLiteFilename" />
     <addaction name="actionResetErrorLogOnDisconnect" />
@@ -868,7 +870,7 @@
      <normaloff>icons.d/16x16/fonts.png</normaloff>icons.d/16x16/fonts.png</iconset>
    </property>
    <property name="text" >
-    <string>Set Global &amp;Fonts</string>
+    <string>Select Global &amp;Font</string>
    </property>
    <property name="font" >
     <font>
@@ -885,7 +887,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Automatically Populate Table on Item &amp;Creation</string>
+    <string>Populate Table on Item &amp;Creation</string>
    </property>
    <property name="font" >
     <font>
@@ -1213,6 +1215,28 @@
      <family>Times</family>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionPopulate_Members_Browser_Table_on_Display" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Populate &amp;Members Browser Table on Display</string>
+   </property>
+  </action>
+  <action name="actionPopulate_Administrator_Browser_Table_on_Display" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Populate &amp;Administrator Browser Table on Display</string>
    </property>
   </action>
  </widget>

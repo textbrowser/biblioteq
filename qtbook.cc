@@ -254,7 +254,7 @@ qtbook::qtbook(void):QMainWindow()
   ab.setupUi(admin_diag);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
-  history_diag->setWindowModality(Qt::WindowModal);
+  history_diag->setWindowModality(Qt::ApplicationModal);
   branch_diag->setModal(true);
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
@@ -436,6 +436,8 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionMembersBrowser->setEnabled(false);
   ui.configTool->setEnabled(false);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
+  ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.table->resetTable("All", roles);
   ui.summary->setVisible(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
@@ -606,6 +608,13 @@ void qtbook::adminSetup(void)
 
   if(roles.contains("administrator") || roles.contains("librarian"))
     ui.actionAutoPopulateOnCreation->setEnabled(true);
+
+  if(roles.contains("administrator"))
+    {
+      ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
+	(true);
+      ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(true);
+    }
 
   if(selectedBranch["database_type"] != "sqlite")
     ui.actionConfigureAdministratorPrivileges->setEnabled
@@ -806,11 +815,12 @@ void qtbook::slotModify(void)
   qtbook_cd *cd = 0;
   qtbook_dvd *dvd = 0;
   QModelIndex index;
+  QTableWidget *table = static_cast<QTableWidget *> (sender());
   qtbook_book *book = 0;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   qtbook_videogame *video_game = 0;
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  QModelIndexList list = table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
     {
@@ -834,8 +844,8 @@ void qtbook::slotModify(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      type = misc_functions::getColumnString(ui.table, i, "Type");
+      oid = misc_functions::getColumnString(table, i, "MYOID");
+      type = misc_functions::getColumnString(table, i, "Type");
 
       if(type.toLower() == "cd")
 	{
@@ -969,9 +979,10 @@ void qtbook::slotViewDetails(void)
   qtbook_dvd *dvd = 0;
   QModelIndex index;
   qtbook_book *book = 0;
+  QTableWidget *table = static_cast<QTableWidget *> (sender());
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
+  QModelIndexList list = table->selectionModel()->selectedRows();
   qtbook_videogame *video_game = 0;
 
   if(list.isEmpty())
@@ -996,8 +1007,8 @@ void qtbook::slotViewDetails(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(ui.table,i, "MYOID");
-      type = misc_functions::getColumnString(ui.table, i, "Type");
+      oid = misc_functions::getColumnString(table,i, "MYOID");
+      type = misc_functions::getColumnString(table, i, "Type");
 
       if(type.toLower() == "cd")
 	{
@@ -4725,17 +4736,21 @@ void qtbook::readConfig(void)
 	  if(str.startsWith("automatically_populate_members_list_on_display"))
 	    {
 	      if(str.endsWith("1"))
-		bb.action_Populate_Table_on_Display->setChecked(true);
+		ui.actionPopulate_Members_Browser_Table_on_Display->
+		  setChecked(true);
 	      else
-		bb.action_Populate_Table_on_Display->setChecked(false);
+		ui.actionPopulate_Members_Browser_Table_on_Display->
+		  setChecked(false);
 	    }
 
 	  if(str.startsWith("automatically_populate_admin_list_on_display"))
 	    {
 	      if(str.endsWith("1"))
-		ab.action_Populate_Table_on_Display->setChecked(true);
+		ui.actionPopulate_Administrator_Browser_Table_on_Display->
+		  setChecked(true);
 	      else
-		ab.action_Populate_Table_on_Display->setChecked(false);
+		ui.actionPopulate_Administrator_Browser_Table_on_Display->
+		  setChecked(false);
 	    }
 	}
 
@@ -4930,8 +4945,11 @@ void qtbook::slotSaveConfig(void)
       list.append(ui.actionResetErrorLogOnDisconnect->isChecked());
       list.append(ui.actionAutoPopulateOnCreation->isChecked());
       list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
-      list.append(bb.action_Populate_Table_on_Display->isChecked());
-      list.append(ab.action_Populate_Table_on_Display->isChecked());
+      list.append
+	(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
+      list.append
+	(ui.actionPopulate_Administrator_Browser_Table_on_Display->
+	 isChecked());
       thread->setType(generic_thread::WRITE_USER_CONFIG_FILE);
       thread->setOutputList(list);
       list.clear();
@@ -5576,6 +5594,8 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
+  ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionRequests->setEnabled(false);
@@ -5712,7 +5732,7 @@ void qtbook::slotShowMembersBrowser(void)
   members_diag->raise();
   members_diag->show();
 
-  if(bb.action_Populate_Table_on_Display->isChecked())
+  if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     slotPopulateMembersBrowser();
 }
 
@@ -7422,7 +7442,7 @@ void qtbook::slotReserveCopy(void)
 
   slotShowMembersBrowser();
 
-  if(!bb.action_Populate_Table_on_Display->isChecked())
+  if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     if(QMessageBox::question(members_diag, "BiblioteQ: Question",
 			     "Would you like to retrieve the list of "
 			     "members?",
@@ -7942,10 +7962,10 @@ void qtbook::slotShowHistory(void)
       list.append("Last Name");
     }
 
-  list.append("Item Title");
-  list.append("Item ID");
+  list.append("Title");
+  list.append("ID Number");
   list.append("Barcode");
-  list.append("Item Type");
+  list.append("Type");
   list.append("Reservation Date");
   list.append("Original Due Date");
   list.append("Returned Date");
@@ -8281,7 +8301,7 @@ void qtbook::slotShowAdminDialog(void)
   admin_diag->raise();
   admin_diag->show();
 
-  if(ab.action_Populate_Table_on_Display->isChecked())
+  if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
     slotRefreshAdminList();
 }
 
@@ -8516,7 +8536,7 @@ void qtbook::slotRefreshAdminList(void)
 
   query.clear();
   ab.table->setRowCount(i);
-  ab.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  ab.table->horizontalHeader()->resizeSections(QHeaderView::Stretch);
 }
 
 /*
