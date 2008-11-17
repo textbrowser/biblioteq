@@ -4902,6 +4902,7 @@ void qtbook::slotRemoveMember(void)
 	      (QString("Database Error"), QString("Rollback failure."),
 	       getDB().lastError().text(), __FILE__, __LINE__);
 
+	  qapp->restoreOverrideCursor();
 	  QMessageBox::critical
 	    (members_diag,
 	     "BiblioteQ: Database Error",
