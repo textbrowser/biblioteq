@@ -4892,10 +4892,20 @@ void qtbook::slotRemoveMember(void)
 
       if(!errorstr.isEmpty())
 	{
+	  addError
+	    (QString("Database Error"),
+	     QString("Unable to remove the patron account %1.").arg(memberid),
+	     errorstr, __FILE__, __LINE__);
+
 	  if(!getDB().rollback())
 	    addError
 	      (QString("Database Error"), QString("Rollback failure."),
 	       getDB().lastError().text(), __FILE__, __LINE__);
+
+	  QMessageBox::critical
+	    (members_diag,
+	     "BiblioteQ: Database Error",
+	     QString("Unable to remove the patron account %1.").arg(memberid));
 	}
       else if(!getDB().commit())
 	{
