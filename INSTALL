@@ -1,7 +1,7 @@
 Requirements:
 1.  Qt 4.x or later. Qt may be downloaded from
     http://trolltech.com/developer/downloads/qt/index.
-2.  PostgreSQL 7.4.x or 8.1.11; or SQLite 3.5.6 or later.
+2.  PostgreSQL 7.4.x or later, SQLite 3.5.6 or later.
     PostgreSQL may be downloaded from http://www.postgresql.org/download and
     SQLite from http://www.sqlite.org/download.html.
 3.  YAZ 2.1.53 or later.
