@@ -5770,17 +5770,17 @@ void qtbook::slotPopulateMembersBrowser(void)
     "COUNT(DISTINCT ib5.item_oid) AS nummagazines, "
     "COUNT(DISTINCT ib6.item_oid) AS numvideogames "
     "FROM member "
-    "LEFT JOIN item_borrower ib1 ON "
+    "LEFT JOIN item_borrower_vw ib1 ON "
     "member.memberid = ib1.memberid AND ib1.type = 'Book' "
-    "LEFT JOIN item_borrower ib2 ON "
+    "LEFT JOIN item_borrower_vw ib2 ON "
     "member.memberid = ib2.memberid AND ib2.type = 'CD' "
-    "LEFT JOIN item_borrower ib3 ON "
+    "LEFT JOIN item_borrower_vw ib3 ON "
     "member.memberid = ib3.memberid AND ib3.type = 'DVD' "
-    "LEFT JOIN item_borrower ib4 ON "
+    "LEFT JOIN item_borrower_vw ib4 ON "
     "member.memberid = ib4.memberid AND ib4.type = 'Journal' "
-    "LEFT JOIN item_borrower ib5 ON "
+    "LEFT JOIN item_borrower_vw ib5 ON "
     "member.memberid = ib5.memberid AND ib5.type = 'Magazine' "
-    "LEFT JOIN item_borrower ib6 ON "
+    "LEFT JOIN item_borrower_vw ib6 ON "
     "member.memberid = ib6.memberid AND ib6.type = 'Video Game' ";
 
   if(bb.filterBox->isChecked())

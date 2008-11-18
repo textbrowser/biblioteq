@@ -264,6 +264,8 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
 	       << "DELETE, INSERT, SELECT, UPDATE";
       objectlist << "book"
 		 << "book_copy_info"
@@ -1161,22 +1163,22 @@ QMap<QString, QString> misc_functions::getItemsReservedCounts
 
   errorstr = "";
   querystr =
-    "SELECT COUNT(myoid) AS numbooks FROM item_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numbooks FROM item_borrower_vw WHERE memberid = ? "
     "AND type = 'Book' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numcds FROM item_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numcds FROM item_borrower_vw WHERE memberid = ? "
     "AND type = 'CD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numdvds FROM item_borrower WHERE memberid = ? "
+    "SELECT COUNT(myoid) AS numdvds FROM item_borrower_vw WHERE memberid = ? "
     "AND type = 'DVD' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numjournals FROM item_borrower WHERE "
+    "SELECT COUNT(myoid) AS numjournals FROM item_borrower_vw WHERE "
     "memberid = ? AND type = 'Journal' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower WHERE "
+    "SELECT COUNT(myoid) AS nummagazines FROM item_borrower_vw WHERE "
     "memberid = ? AND type = 'Magazine' "
     "UNION ALL "
-    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower WHERE "
+    "SELECT COUNT(myoid) AS numvideogames FROM item_borrower_vw WHERE "
     "memberid = ? AND type = 'Video Game'";
   query.prepare(querystr);
   query.bindValue(0, memberid);
