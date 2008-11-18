@@ -611,10 +611,7 @@ void misc_functions::DBAccount(const QString &userid,
 
   if(action == DELETE_USER)
     if(!query.lastError().isValid())
-      {
-	query.prepare(QString("DROP ROLE %1").arg(userid));
-	(void) query.exec();
-      }
+      (void) query.exec(QString("DROP ROLE %1").arg(userid));
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
