@@ -213,7 +213,6 @@ void borrowers_editor::showUsers(void)
        "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 "
        "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
 
-  std::cout << querystr.toStdString() << std::endl;
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))

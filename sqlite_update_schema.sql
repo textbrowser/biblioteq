@@ -440,3 +440,18 @@ ALTER TABLE videogame_tmp RENAME TO videogame;
 /* Release 6.12 */
 
 ALTER TABLE member ADD email VARCHAR(128);
+
+/* Release 6.14.1 */
+
+DROP VIEW item_borrower_vw;
+
+CREATE VIEW item_borrower_vw AS
+SELECT	 item_oid,
+	 memberid,
+	 myoid,
+	 copyid,
+	 copy_number,
+	 reserved_date,
+	 duedate,
+	 type
+FROM	 item_borrower;

@@ -321,6 +321,7 @@ END;
 
 CREATE VIEW item_borrower_vw AS
 SELECT	 item_oid,
+	 memberid,
 	 myoid,
 	 copyid,
 	 copy_number,
