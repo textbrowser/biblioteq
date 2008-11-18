@@ -24,6 +24,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Z39.50 Query Results</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QFrame" name="frame" >

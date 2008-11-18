@@ -18,6 +18,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Branch Selection</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>6</number>

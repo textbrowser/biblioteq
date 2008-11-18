@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>460</height>
+    <height>527</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -23,6 +23,10 @@
   </property>
   <property name="windowTitle" >
    <string>BiblioteQ: Borrower Information</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <item>

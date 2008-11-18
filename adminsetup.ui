@@ -24,6 +24,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Administrator Browser</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" name="horizontalLayout" >
     <item>

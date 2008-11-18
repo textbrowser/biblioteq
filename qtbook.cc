@@ -8693,21 +8693,13 @@ void qtbook::slotSaveAdministrators(void)
       ucount = misc_functions::userCount(adminStr, getDB(), errorstr);
 
       if(ucount == 0)
-	{
-	  querystr = "INSERT INTO admin (username, roles) VALUES (?, ?)";
-	  query.prepare(querystr);
-	  query.bindValue(0, adminStr);
-	  query.bindValue(1, str);
-	}
+	querystr = QString("INSERT INTO admin (username, roles) "
+			   "VALUES ('%1', '%2')").arg(adminStr).arg(str);
       else
-	{
-	  querystr = "UPDATE admin SET roles = ? WHERE username = ?";
-	  query.prepare(querystr);
-	  query.bindValue(0, str);
-	  query.bindValue(1, adminStr);
-	}
+	querystr = QString("UPDATE admin SET roles = '%1' WHERE "
+			   "username = '%2'").arg(str).arg(adminStr);
 
-      if(!query.exec())
+      if(!query.exec(querystr))
 	{
 	  progress.hide();
 	  addError

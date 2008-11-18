@@ -24,6 +24,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Member's Reservation History</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>

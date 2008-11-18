@@ -30,6 +30,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Album Tracks Browser</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <property name="sizeGripEnabled" >
    <bool>false</bool>
   </property>
@@ -115,7 +119,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>39</width>
          <height>20</height>
@@ -141,7 +145,8 @@
         <string>&amp;Save</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/ok.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
@@ -163,7 +168,8 @@
         <string>&amp;Insert</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/add.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
        </property>
       </widget>
      </item>
@@ -185,7 +191,8 @@
         <string>&amp;Delete</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/eraser.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
        </property>
       </widget>
      </item>
@@ -212,7 +219,8 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon" >
-        <iconset>icons.d/16x16/cancel.png</iconset>
+        <iconset>
+         <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -221,7 +229,7 @@
        <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>39</width>
          <height>20</height>

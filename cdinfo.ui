@@ -24,6 +24,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>
@@ -1186,14 +1190,14 @@ URL</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>image_drop_site</class>
-   <extends>QGraphicsView</extends>
-   <header>image_drop_site.h</header>
-  </customwidget>
-  <customwidget>
    <class>hyperlinked_text_edit</class>
    <extends>QTextBrowser</extends>
    <header>hyperlinked_text_edit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>image_drop_site</class>
+   <extends>QGraphicsView</extends>
+   <header>image_drop_site.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

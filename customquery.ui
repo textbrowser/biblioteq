@@ -24,6 +24,10 @@
   <property name="windowTitle" >
    <string>BiblioteQ: Custom Query</string>
   </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>
@@ -101,7 +105,7 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>40</width>
           <height>20</height>
@@ -127,7 +131,8 @@
          <string>Execute</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/ok.png</iconset>
+         <iconset>
+          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -149,7 +154,8 @@
          <string>Close</string>
         </property>
         <property name="icon" >
-         <iconset>icons.d/16x16/cancel.png</iconset>
+         <iconset>
+          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -158,7 +164,7 @@
         <property name="orientation" >
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" >
+        <property name="sizeHint" stdset="0" >
          <size>
           <width>40</width>
           <height>20</height>
