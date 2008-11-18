@@ -3,7 +3,7 @@ Name "BiblioteQ Installer"
 outFile "BiblioteQ-Installer-6.14.1.exe"
 
 # Install directory.
-installDir C:\BiblioteQ.d
+installDir C:\BiblioteQ-6.14.1
 
 DirText "Please choose an installation directory for BiblioteQ."
 
