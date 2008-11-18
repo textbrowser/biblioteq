@@ -111,7 +111,7 @@ void misc_functions::grantPrivs(const QString &userid,
   objectlist << "admin"
 	     << "item_borrower_vw";
 
-  if(roles.contains("circulation"))
+  if(roles.contains("administrator") || roles.contains("circulation"))
     {
       privlist << "SELECT"
 	       << "SELECT"
@@ -179,7 +179,7 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "item_request_myoid_seq";
     }
 
-  if(roles.contains("librarian"))
+  if(roles.contains("administrator") || roles.contains("librarian"))
     {
       privlist << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
@@ -237,11 +237,9 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "item_request_myoid_seq";
     }
 
-  if(roles.contains("membership"))
+  if(roles.contains("administrator") || roles.contains("membership"))
     {
       privlist << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
@@ -309,6 +307,13 @@ void misc_functions::grantPrivs(const QString &userid,
 
   privlist.clear();
   objectlist.clear();
+
+  if(!query.lastError().isValid())
+    if(roles.contains("administrator") || roles.contains("membership"))
+      {
+	querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+	(void) query.exec(querystr);
+      }
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -383,6 +388,12 @@ void misc_functions::revokeAll(const QString &userid,
 	}
 
       objectlist.clear();
+
+      if(!query.lastError().isValid())
+	{
+	  querystr = QString("ALTER USER %1 NOCREATEUSER").arg(userid);
+	  (void) query.exec(querystr);
+	}
     }
 
   if(query.lastError().isValid())
@@ -479,7 +490,7 @@ void misc_functions::DBAccount(const QString &userid,
 	    {
 	      /*
 	      ** The method grantPrivs() grants the necessary privileges.
-	      */	      
+	      */
 	    }
 	  else // Member.
 	    objectlist << "admin"
@@ -1243,7 +1254,12 @@ QString misc_functions::getRoles(const QSqlDatabase &db,
 
   if(query.exec())
     if(query.next())
-      roles = query.value(0).toString();
+      {
+	roles = query.value(0).toString();
+
+	if(roles == "none")
+	  roles = "";
+      }
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();

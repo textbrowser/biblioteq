@@ -205,18 +205,15 @@ void borrowers_editor::showUsers(void)
   else
     querystr = QString
       ("SELECT borrowers.copy_number, "
-       "copy.copyid, "
+       "borrowers.copyid, "
        "borrowers.reserved_date, "
        "borrowers.duedate "
        "FROM "
-       "%1_copy_info copy "
-       "LEFT JOIN item_borrower_vw borrowers "
-       "ON copy.item_oid = borrowers.item_oid AND "
-       "borrowers.type = '%2' "
-       "WHERE copy.item_oid = %3 "
-       "ORDER BY borrowers.copy_number").arg(itemType.toLower().remove(" "))
-      .arg(itemType).arg(ioid);
+       "item_borrower borrowers "
+       "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 "
+       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
 
+  std::cout << querystr.toStdString() << std::endl;
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))

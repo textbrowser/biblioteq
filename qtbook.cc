@@ -815,7 +815,7 @@ void qtbook::slotModify(void)
   qtbook_cd *cd = 0;
   qtbook_dvd *dvd = 0;
   QModelIndex index;
-  QTableWidget *table = static_cast<QTableWidget *> (sender());
+  QTableWidget *table = ui.table;
   qtbook_book *book = 0;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
@@ -979,7 +979,7 @@ void qtbook::slotViewDetails(void)
   qtbook_dvd *dvd = 0;
   QModelIndex index;
   qtbook_book *book = 0;
-  QTableWidget *table = static_cast<QTableWidget *> (sender());
+  QTableWidget *table = ui.table;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
