@@ -368,20 +368,23 @@ void borrowers_editor::slotEraseBorrower(void)
 
       qapp->restoreOverrideCursor();
       qmain->updateMembersBrowser(memberid);
-      qapp->setOverrideCursor(Qt::WaitCursor);
-      availability = misc_functions::getAvailability(ioid, qmain->getDB(),
-						     itemType, errorstr);
-      qapp->restoreOverrideCursor();
 
-      if(!errorstr.isEmpty())
+      /*
+	qapp->setOverrideCursor(Qt::WaitCursor);
+	availability = misc_functions::getAvailability(ioid, qmain->getDB(),
+	itemType, errorstr);
+	qapp->restoreOverrideCursor();
+
+	if(!errorstr.isEmpty())
 	qmain->addError(QString("Database Error"),
-			QString("Retrieving availability."),
-			errorstr, __FILE__, __LINE__);
+	QString("Retrieving availability."),
+	errorstr, __FILE__, __LINE__);
 
-      misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-				   "Availability", availability);
-      misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-				   "Due Date", "Returned");
+	misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
+	"Availability", availability);
+	misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
+	"Due Date", "Returned");
+      */
 
       /*
       ** Update the Reservation History panel, if necessary.
@@ -456,10 +459,14 @@ void borrowers_editor::slotSave(void)
 				query.lastError().text(), __FILE__,
 				__LINE__);
 	      else
-		misc_functions::updateColumn
-		  (qmain->getUI().table,
-		   bitem->getRow(), "Due Date",
-		   dueDate->date().toString("MM/dd/yyyy"));
+		{
+		  /*
+		    misc_functions::updateColumn
+		    (qmain->getUI().table,
+		    bitem->getRow(), "Due Date",
+		    dueDate->date().toString("MM/dd/yyyy"));
+		  */
+		}
 	    }
 	}
 

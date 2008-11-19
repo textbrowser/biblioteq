@@ -479,45 +479,49 @@ void copy_editor::slotCheckoutCopy(void)
   ** Update the availability column.
   */
 
-  availability = misc_functions::getColumnString
+  /*
+    availability = misc_functions::getColumnString
     (qmain->getUI().table, bitem->getRow(), "Availability");
 
-  if(availability != "0")
+    if(availability != "0")
     availability.setNum(availability.toInt() - 1);
 
-  misc_functions::updateColumn
+    misc_functions::updateColumn
     (qmain->getUI().table, bitem->getRow(), "Availability", availability);
+  */
 
   /*
   ** Update some additional columns.
   */
 
-  if(misc_functions::getColumnString(qmain->getUI().table, bitem->getRow(),
-				     "Barcode") == copyid)
+  /*
+    if(misc_functions::getColumnString(qmain->getUI().table, bitem->getRow(),
+    "Barcode") == copyid)
     {
-      misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(), "Due Date",
-	 duedate);
-      misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(), "Reservation Date",
-	 checkedout);
-      misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(), "Member ID",
-	 memberid);
-      qapp->setOverrideCursor(Qt::WaitCursor);
-      name = misc_functions::getMemberName(qmain->getDB(), memberid,
-					   errorstr);
-      qapp->restoreOverrideCursor();
+    misc_functions::updateColumn
+    (qmain->getUI().table, bitem->getRow(), "Due Date",
+    duedate);
+    misc_functions::updateColumn
+    (qmain->getUI().table, bitem->getRow(), "Reservation Date",
+    checkedout);
+    misc_functions::updateColumn
+    (qmain->getUI().table, bitem->getRow(), "Member ID",
+    memberid);
+    qapp->setOverrideCursor(Qt::WaitCursor);
+    name = misc_functions::getMemberName(qmain->getDB(), memberid,
+    errorstr);
+    qapp->restoreOverrideCursor();
 
-      if(errorstr.length() > 0)
-	qmain->addError(QString("Database Error"),
-			QString("Unable to determine the selected copy's "
-				"availability."),
-			errorstr, __FILE__, __LINE__);
+    if(errorstr.length() > 0)
+    qmain->addError(QString("Database Error"),
+    QString("Unable to determine the selected copy's "
+    "availability."),
+    errorstr, __FILE__, __LINE__);
 
-      misc_functions::updateColumn
-	(qmain->getUI().table, bitem->getRow(), "Borrower", name);
+    misc_functions::updateColumn
+    (qmain->getUI().table, bitem->getRow(), "Borrower", name);
     }
+  */
 
   slotCloseCopyEditor();
 
@@ -654,21 +658,25 @@ void copy_editor::slotSaveCopies(void)
 
   qapp->restoreOverrideCursor();
   spinbox->setValue(copies.size());
-  qapp->setOverrideCursor(Qt::WaitCursor);
-  availability = misc_functions::getAvailability(ioid, qmain->getDB(),
-						 itemType, errorstr);
-  qapp->restoreOverrideCursor();
 
-  if(!errorstr.isEmpty())
+  /*
+    qapp->setOverrideCursor(Qt::WaitCursor);
+    availability = misc_functions::getAvailability(ioid, qmain->getDB(),
+    itemType, errorstr);
+    qapp->restoreOverrideCursor();
+
+    if(!errorstr.isEmpty())
     qmain->addError(QString("Database Error"),
-		    QString("Retrieving availability."),
-		    errorstr, __FILE__, __LINE__);
+    QString("Retrieving availability."),
+    errorstr, __FILE__, __LINE__);
 
-  misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-			       "Availability", availability);
-  str.setNum(copies.size());
-  misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-			       "Quantity", str);
+    misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
+    "Availability", availability);
+    str.setNum(copies.size());
+    misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
+    "Quantity", str);
+  */
+
   bitem->setOldQ(copies.size());
   copies.clear();
   

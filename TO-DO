@@ -321,3 +321,5 @@
 183. Grant the createuser privilege to the Membership account correctly.
      Remove the privilege accordingly. (DONE)
 184. Fix the administrator privileges functionality. (DONE)
+185. Improve the misc_functions::updateColumn method. It should locate
+     all appropriate matches.
