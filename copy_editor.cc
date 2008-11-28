@@ -63,7 +63,8 @@ void copy_editor::slotDeleteCopy(void)
   if(row < 0)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select a copy to delete.");
+			    "Please select the copy that you intend to "
+			    "delete.");
       return;
     }
   else if(cb.table->rowCount() == 1)
@@ -372,8 +373,7 @@ void copy_editor::slotCheckoutCopy(void)
   else if(cb.dueDate->date() <= now)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select a Due Date that follows "
-			    "today's date.");
+			    "Please select a future Due Date.");
       return;
     }
 

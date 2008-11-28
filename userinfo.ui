@@ -557,9 +557,6 @@
           <property name="maxLength" >
            <number>16</number>
           </property>
-          <property name="readOnly" >
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item row="1" column="0" >

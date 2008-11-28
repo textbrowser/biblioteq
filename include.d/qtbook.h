@@ -16,6 +16,7 @@ using namespace std;
 #include <QHash>
 #include <QCheckBox>
 #include <QDateTime>
+#include <QSettings>
 #include <QSqlError>
 #include <QSqlField>
 #include <QSqlQuery>

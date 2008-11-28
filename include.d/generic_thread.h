@@ -27,8 +27,6 @@
 class generic_thread: public QThread
 {
  public:
-  static const int READ_USER_CONFIG_FILE = 100;
-  static const int WRITE_USER_CONFIG_FILE = 101;
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int QUERY_LIBRARY_OF_CONGRESS = 300;
 

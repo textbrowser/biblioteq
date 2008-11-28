@@ -315,7 +315,7 @@ void borrowers_editor::slotEraseBorrower(void)
     {
       QMessageBox::critical(this, "BiblioteQ: User Error",
 			    "To modify a copy's reservation status, "
-			    "you must first select a reserved copy.");
+			    "you must first select it.");
       return;
     }
 

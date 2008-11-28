@@ -21,10 +21,11 @@ int misc_functions::userCount(const QString &userid,
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
-    return 0; // Users are not supported.
-
-  querystr = QString("SELECT COUNT(usename) FROM pg_user WHERE "
-		     "usename = '%1'").arg(userid);
+    querystr = QString("SELECT COUNT(memberid) FROM member WHERE "
+		       "memberid = '%1'").arg(userid);
+  else
+    querystr = QString("SELECT COUNT(usename) FROM pg_user WHERE "
+		       "usename = '%1'").arg(userid);
 
   if(query.exec(querystr))
     if(query.next())

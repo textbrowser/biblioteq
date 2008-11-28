@@ -49,6 +49,10 @@ QApplication *qapp = 0;
 
 int main(int argc, char *argv[])
 {
+  QCoreApplication::setOrganizationName("BiblioteQ");
+  QCoreApplication::setOrganizationDomain("biblioteq.sourceforge.net");
+  QCoreApplication::setApplicationName("BiblioteQ");
+
   /*
   ** Create the user interface.
   */
@@ -451,8 +455,16 @@ qtbook::qtbook(void):QMainWindow()
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.table),  1);
 
+  QRegExp rx1("\\w+");
+  QValidator *validator1 = 0;
+
+  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  userinfo_diag->userinfo.memberid->setValidator(validator1);
+
   /*
-  ** Highlight userinfo_diag->userinfo widgets.
+  ** Highlight userinfo_diag->userinfo required widgets.
   */
 
   misc_functions::highlightWidget(userinfo_diag->userinfo.firstName,
@@ -722,20 +734,16 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.14.1.<br>"
+  mb.setText("<html>BiblioteQ Version 6.15.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
-	     "project information and <br>"
+	     "project information.<br>"
+	     "For release notes, please visit "
 	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
-	     "http://biblioteq.sourceforge.net/news.html</a> for "
-	     "release notes."
-	     "<br><br>"
-	     "BiblioteQ is provided as is with no warranty of any kind, "
-	     "including the warranty of design, merchantability and "
-	     "fitness for a particular purpose.</html>");
+	     "http://biblioteq.sourceforge.net/news.html</a>.");
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
   mb.exec();
@@ -960,7 +968,7 @@ void qtbook::slotModify(void)
   list.clear();
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: User Error",
+    QMessageBox::critical(this, "BiblioteQ: Error",
 			  "Unable to determine the selected item's "
 			  "type.");
 }
@@ -1122,7 +1130,7 @@ void qtbook::slotViewDetails(void)
   list.clear();
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: User Error",
+    QMessageBox::critical(this, "BiblioteQ: Error",
 			  "Unable to determine the selected item's "
 			  "type.");
 }
@@ -1170,7 +1178,7 @@ void qtbook::slotDelete(void)
 
       if(oid.isEmpty() || itemType.isEmpty())
 	{
-	  addError(QString("User Error"),
+	  addError(QString("Error"),
 		   QString("The main table does not contain enough "
 			   "information for item deletion."),
 		   QString("The main table does not contain enough "
@@ -3867,10 +3875,12 @@ void qtbook::slotAddBorrower(void)
   QDate now = QDate::currentDate();
   QDateTime nowTime = QDateTime::currentDateTime();
 
+  misc_functions::highlightWidget(userinfo_diag->userinfo.memberid,
+				  QColor(255, 248, 220));
   userinfo_diag->memberProperties.clear();
+  userinfo_diag->userinfo.memberid->setReadOnly(false);
   userinfo_diag->userinfo.memberid->setText
     ("m" + nowTime.toString("yyyyMMddhhmmss"));
-  userinfo_diag->userinfo.membersince->setFocus();
   userinfo_diag->userinfo.membersince->setDate(now);
   userinfo_diag->userinfo.membersince->setMaximumDate(now);
   userinfo_diag->userinfo.firstName->clear();
@@ -3899,6 +3909,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
   userinfo_diag->userinfo.prevTool->setVisible(false);
   userinfo_diag->userinfo.nextTool->setVisible(false);
+  userinfo_diag->userinfo.memberid->selectAll();
+  userinfo_diag->userinfo.memberid->setFocus();
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
 }
@@ -3912,35 +3924,57 @@ void qtbook::slotSaveUser(void)
   int i = 0;
   int row = bb.table->currentRow();
   int count = -1;
-  QString str1 = "";
-  QString str2 = "";
-  QString str3 = "";
-  QString str4 = "";
-  QString str5 = "";
-  QString str6 = "";
-  QString str7 = "";
-  QString str8 = "";
+  QString str = "";
   QString checksum = "";
   QString errorstr = "";
   QSqlQuery query(db);
   QTableWidgetItem *column = 0;
 
-  str1 = userinfo_diag->userinfo.firstName->text().trimmed();
-  userinfo_diag->userinfo.firstName->setText(str1);
-  str2 = userinfo_diag->userinfo.lastName->text().trimmed();
-  userinfo_diag->userinfo.lastName->setText(str2);
-  str3 = userinfo_diag->userinfo.middle->text().trimmed();
-  userinfo_diag->userinfo.middle->setText(str3);
-  str4 = userinfo_diag->userinfo.street->text().trimmed();
-  userinfo_diag->userinfo.street->setText(str4);
-  str5 = userinfo_diag->userinfo.city->text().trimmed();
-  userinfo_diag->userinfo.city->setText(str5);
-  str6 = userinfo_diag->userinfo.zip->text().trimmed();
-  userinfo_diag->userinfo.zip->setText(str6);
-  str7 = userinfo_diag->userinfo.telephoneNumber->text().trimmed();
-  userinfo_diag->userinfo.telephoneNumber->setText(str7);
-  str8 = userinfo_diag->userinfo.email->text().trimmed();
-  userinfo_diag->userinfo.email->setText(str8);
+  str = userinfo_diag->userinfo.memberid->text().trimmed();
+  userinfo_diag->userinfo.memberid->setText(str);
+  str = userinfo_diag->userinfo.firstName->text().trimmed();
+  userinfo_diag->userinfo.firstName->setText(str);
+  str = userinfo_diag->userinfo.lastName->text().trimmed();
+  userinfo_diag->userinfo.lastName->setText(str);
+  str = userinfo_diag->userinfo.middle->text().trimmed();
+  userinfo_diag->userinfo.middle->setText(str);
+  str = userinfo_diag->userinfo.street->text().trimmed();
+  userinfo_diag->userinfo.street->setText(str);
+  str = userinfo_diag->userinfo.city->text().trimmed();
+  userinfo_diag->userinfo.city->setText(str);
+  str = userinfo_diag->userinfo.zip->text().trimmed();
+  userinfo_diag->userinfo.zip->setText(str);
+  str = userinfo_diag->userinfo.telephoneNumber->text().trimmed();
+  userinfo_diag->userinfo.telephoneNumber->setText(str);
+  str = userinfo_diag->userinfo.email->text().trimmed();
+  userinfo_diag->userinfo.email->setText(str);
+
+  if(userinfo_diag->windowTitle().contains("Create New Member"))
+    {
+      if(userinfo_diag->userinfo.memberid->text().length() < 7)
+	{
+	  QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
+				"The Member ID must be at least seven "
+				"characters long.");
+	  userinfo_diag->userinfo.memberid->setFocus();
+	  return;
+	}
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      int ucount = misc_functions::userCount
+	(userinfo_diag->userinfo.memberid->text(), getDB(), errorstr);
+      qapp->restoreOverrideCursor();
+
+      if(ucount > 0)
+	{
+	  QMessageBox::critical
+	    (userinfo_diag, "BiblioteQ: User Error",
+	     QString("The Member ID %1 already exists.").arg
+	     (userinfo_diag->userinfo.memberid->text()));
+	  userinfo_diag->userinfo.memberid->setFocus();
+	  return;
+	}
+    }
 
   if(userinfo_diag->userinfo.firstName->text().isEmpty())
     {
@@ -4607,173 +4641,48 @@ void qtbook::lockApp(const bool lock)
 
 void qtbook::readConfig(void)
 {
-  int i = 0;
   QFont font;
-  QString str = "";
-  QString filename = "";
-  QStringList tmplist;
-  generic_thread *thread = 0;
+  QSettings settings;
 
-  filename.append(QDir::homePath());
-  filename.append("/.biblioteq.dat");
+  ui.actionShowGrid->setChecked(settings.value("show_table_grid").toBool());
+  ui.actionPopulateOnStart->setChecked
+    (settings.value("populate_table_on_connect").toBool());
+  ui.actionAutoResizeColumns->setChecked
+    (settings.value("automatically_resize_columns").toBool());
+  ui.actionResetErrorLogOnDisconnect->setChecked
+    (settings.value("reset_error_log_on_disconnect").toBool());
+  ui.actionAutoPopulateOnCreation->setChecked
+    (settings.value("automatically_populate_on_create").toBool());
 
-  if((thread = new(std::nothrow) generic_thread()) != 0)
+  if(settings.contains("main_window_geometry"))
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
-      thread->setFilename(filename);
-      lockApp(true);
-      thread->setType(generic_thread::READ_USER_CONFIG_FILE);
-      thread->start();
-
-      while(thread->isRunning())
-	{
-	  if(statusBar() != 0)
-	    statusBar()->showMessage("Processing the user's "
-				     "configuration file.");
-
-	  qapp->processEvents();
-	  thread->wait(100);
-	}
-
-      if(!thread->getErrorStr().isEmpty())
-	{
-	  if(statusBar() != 0)
-	    statusBar()->clearMessage();
-
-	  lockApp(false);
-	  addError(QString("File Error"),
-		   thread->getErrorStr(),
-		   thread->getErrorStr(), __FILE__, __LINE__);
-	  qapp->restoreOverrideCursor();
-	  QMessageBox::warning(this, "BiblioteQ: File Warning",
-			       thread->getErrorStr());
-	  thread->deleteLater();
-	  return;
-	}
-
-      for(i = 0; i < thread->getList().size(); i++)
-	{
-	  str = thread->getList().at(i);
-
-	  if(str.startsWith("show_table_grid"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionShowGrid->setChecked(true);
-	      else
-		ui.actionShowGrid->setChecked(false);
-	    }
-
-	  if(str.startsWith("populate_table_on_connect"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionPopulateOnStart->setChecked(true);
-	      else
-		ui.actionPopulateOnStart->setChecked(false);
-	    }
-
-	  if(str.startsWith("automatically_resize_columns"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionAutoResizeColumns->setChecked(true);
-	      else
-		ui.actionAutoResizeColumns->setChecked(false);
-	    }
-
-	  if(str.startsWith("reset_error_log_on_disconnect"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionResetErrorLogOnDisconnect->setChecked(true);
-	      else
-		ui.actionResetErrorLogOnDisconnect->setChecked(false);
-	    }
-
-	  if(str.startsWith("automatically_populate_on_create"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionAutoPopulateOnCreation->setChecked(true);
-	      else
-		ui.actionAutoPopulateOnCreation->setChecked(false);
-	    }
-
-	  if(str.startsWith("main_window_geometry"))
-	    {
-	      if(str.contains("x"))
-		tmplist = str.remove("main_window_geometry=").split("x");
-
-	      if(!tmplist.isEmpty() && tmplist.size() == 4)
-		{
-		  ui.actionPreserveGeometry->setChecked(true);
-		  setGeometry(tmplist[0].toInt(),
-			      tmplist[1].toInt(),
-			      tmplist[2].toInt(),
-			      tmplist[3].toInt());
-		}
-	      else
-		ui.actionPreserveGeometry->setChecked(false);
-
-	      tmplist.clear();
-	    }
-
-	  if(str.startsWith("global_font"))
-	    font.fromString(str.remove("global_font="));
-
-	  if(str.startsWith("sqlite_db"))
-	    {
-	      br.filename->setText(str.remove("sqlite_db="));
-	      br.filename->setCursorPosition(0);
-	      ui.actionRememberSQLiteFilename->setChecked
-		(!br.filename->text().isEmpty());
-	    }
-
-	  if(str.startsWith("save_settings_on_exit"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionAutomaticallySaveSettingsOnExit->setChecked(true);
-	      else
-		ui.actionAutomaticallySaveSettingsOnExit->setChecked(false);
-	    }
-
-	  if(str.startsWith("automatically_populate_members_list_on_display"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionPopulate_Members_Browser_Table_on_Display->
-		  setChecked(true);
-	      else
-		ui.actionPopulate_Members_Browser_Table_on_Display->
-		  setChecked(false);
-	    }
-
-	  if(str.startsWith("automatically_populate_admin_list_on_display"))
-	    {
-	      if(str.endsWith("1"))
-		ui.actionPopulate_Administrator_Browser_Table_on_Display->
-		  setChecked(true);
-	      else
-		ui.actionPopulate_Administrator_Browser_Table_on_Display->
-		  setChecked(false);
-	    }
-	}
-
-      if(statusBar() != 0)
-	statusBar()->clearMessage();
-
-      thread->deleteLater();
-      setGlobalFonts(font);
-      slotResizeColumns();
-      lockApp(false);
-      qapp->restoreOverrideCursor();
+      ui.actionPreserveGeometry->setChecked(true);
+      setGeometry(settings.value("main_window_geometry").toRect());
     }
   else
+    ui.actionPreserveGeometry->setChecked(false);
+
+  if(settings.contains("global_font"))
+    font.fromString(settings.value("global_font").toString());
+
+  if(settings.contains("sqlite_db"))
     {
-      addError(QString("File Warning"),
-	       QString("Unable to read ") + filename +
-	       QString(" due to insufficient resources."),
-	       QString(""),
-	       __FILE__, __LINE__);
-      QMessageBox::warning(this, "BiblioteQ: File Warning",
-			   "Unable to read " + filename +
-			   " due to insufficient resources.");
+      br.filename->setText(settings.value("sqlite_db").toString());
+      br.filename->setCursorPosition(0);
+      ui.actionRememberSQLiteFilename->setChecked(true);
     }
+  else
+    ui.actionRememberSQLiteFilename->setChecked(false);
+
+  ui.actionAutomaticallySaveSettingsOnExit->setChecked
+    (settings.value("save_settings_on_exit").toBool());
+  ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
+    (settings.value("automatically_populate_members_"
+		    "list_on_display").toBool());
+  ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
+    (settings.value("automatically_populate_admin_list_on_display").toBool());
+  setGlobalFonts(font);
+  slotResizeColumns();
 }
 
 /*
@@ -4935,87 +4844,36 @@ void qtbook::slotRemoveMember(void)
 
 void qtbook::slotSaveConfig(void)
 {
-  QString filename = "";
-  QList<bool> list;
-  generic_thread *thread = 0;
+  QSettings settings;
 
-  filename.append(QDir::homePath());
-  filename.append("/.biblioteq.dat");
+  settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
+  settings.setValue("populate_table_on_connect",
+		    ui.actionPopulateOnStart->isChecked());
+  settings.setValue("automatically_resize_columns",
+		    ui.actionAutoResizeColumns->isChecked());
+  settings.setValue("reset_error_log_on_disconnect",
+		    ui.actionResetErrorLogOnDisconnect->isChecked());
+  settings.setValue("automatically_populate_on_create",
+		    ui.actionAutoPopulateOnCreation->isChecked());
+  settings.setValue("save_settings_on_exit",
+		    ui.actionAutomaticallySaveSettingsOnExit->isChecked());
+  settings.setValue
+    ("automatically_populate_members_list_on_display",
+     ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
+  settings.setValue
+    ("automatically_populate_admin_list_on_display",
+     ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked());
+  settings.setValue("global_font", font().toString());
 
-  if((thread = new(std::nothrow) generic_thread()) != 0)
-    {
-      if(isVisible())
-	qapp->setOverrideCursor(Qt::WaitCursor);
+  if(ui.actionPreserveGeometry->isChecked())
+    settings.setValue("main_window_geometry", geometry());
+  else
+    settings.remove("main_window_geometry");
 
-      thread->setFilename(filename);
-      ui.actionSaveSettings->setEnabled(false);
-      list.append(ui.actionShowGrid->isChecked());
-      list.append(ui.actionPopulateOnStart->isChecked());
-      list.append(ui.actionAutoResizeColumns->isChecked());
-      list.append(ui.actionResetErrorLogOnDisconnect->isChecked());
-      list.append(ui.actionAutoPopulateOnCreation->isChecked());
-      list.append(ui.actionAutomaticallySaveSettingsOnExit->isChecked());
-      list.append
-	(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
-      list.append
-	(ui.actionPopulate_Administrator_Browser_Table_on_Display->
-	 isChecked());
-      thread->setType(generic_thread::WRITE_USER_CONFIG_FILE);
-      thread->setOutputList(list);
-      list.clear();
-      thread->start();
-
-      while(thread->isRunning())
-	{
-	  if(statusBar() != 0 && isVisible())
-	    statusBar()->showMessage("Saving the user's configuration file.");
-
-	  qapp->processEvents();
-	  thread->wait(100);
-	}
-
-      if(!thread->getErrorStr().isEmpty())
-	{
-	  if(statusBar() != 0 && isVisible())
-	    statusBar()->clearMessage();
-
-	  if(isVisible())
-	    {
-	      ui.actionSaveSettings->setEnabled(true);
-	      addError(QString("File Error"),
-		       thread->getErrorStr(),
-		       thread->getErrorStr(), __FILE__, __LINE__);
-	      qapp->restoreOverrideCursor();
-	      QMessageBox::critical(this, "BiblioteQ: File Error",
-				    thread->getErrorStr());
-	    }
-
-	  thread->deleteLater();
-	  return;
-	}
-
-      if(statusBar() != 0 && isVisible())
-	statusBar()->clearMessage();
-
-      thread->deleteLater();
-
-      if(isVisible())
-	{
-	  ui.actionSaveSettings->setEnabled(true);
-	  qapp->restoreOverrideCursor();
-	}
-    }
-  else if(isVisible())
-    {
-      addError(QString("File Error"),
-	       QString("Unable to save ") + filename +
-	       QString(" due to insufficient resources."),
-	       QString(""),
-	       __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: File Error",
-			    "Unable to save " + filename +
-			    " due to insufficient resources.");
-    }
+  if(ui.actionRememberSQLiteFilename->isChecked())
+    settings.setValue("sqlite_db", sqlitefile());
+  else
+    settings.remove("sqlite_db");
 }
 
 /*
@@ -5492,8 +5350,8 @@ void qtbook::slotConnectDB(void)
 	      error = true;
 	      QMessageBox::critical
 		(branch_diag, "BiblioteQ: User Error",
-		 "It appears that you are attempting to use an "
-		 "administrator login in a non-administrator mode.");
+		 "It appears that you are attempting to assume an "
+		 "administrator role in a non-administrator mode.");
 	    }
 	}
     }
@@ -6080,11 +5938,14 @@ void qtbook::slotModifyBorrower(void)
 	textfield->setCursorPosition(0);
     }
 
+  userinfo_diag->userinfo.memberid->setReadOnly(true);
   userinfo_diag->userinfo.prevTool->setVisible(true);
   userinfo_diag->userinfo.nextTool->setVisible(true);
   userinfo_diag->setWindowTitle("BiblioteQ: Modify Member");
   userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo_diag->userinfo.membersince->setFocus();
+  userinfo_diag->userinfo.memberid->setPalette
+    (userinfo_diag->userinfo.telephoneNumber->palette());
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
 }
@@ -6152,7 +6013,7 @@ void qtbook::slotCheckout(void)
     {
       QMessageBox::critical(members_diag, "BiblioteQ: User Error",
 			    "Please select a member and an item "
-			    "to complete the reservation process.");
+			    "to continue with the reservation process.");
       return;
     }
   else
@@ -6183,7 +6044,7 @@ void qtbook::slotCheckout(void)
 	    itemid = misc_functions::getColumnString(ui.table, row2, "id");
 
 	  if(itemid.isEmpty())
-	    QMessageBox::critical(members_diag, "BiblioteQ: User Error",
+	    QMessageBox::critical(members_diag, "BiblioteQ: Error",
 				  "Unable to determine the selected item's "
 				  "ID. In order to reserve the item, its "
 				  "ID must be known.");
@@ -7824,7 +7685,7 @@ void qtbook::slotCopyError(void)
       QMessageBox::critical(error_diag, "BiblioteQ: User Error",
 			    "To copy the contents of the Error Dialog into "
 			    "the clipboard buffer, you must first "
-			    "select at least one event.");
+			    "select at least one entry.");
       return;
     }
 
@@ -8372,8 +8233,7 @@ void qtbook::slotDeleteAdmin(void)
   if(row < 0)
     {
       QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
-			    "Please select an administrator or empty entry "
-			    "to delete.");
+			    "To delete an entry, you must first select it.");
       return;
     }
 
@@ -8383,8 +8243,8 @@ void qtbook::slotDeleteAdmin(void)
      str == getAdminID())
     {
       QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
-			    "As an administrator, you may not remove "
-			    "yourself.");
+			    "As an administrator, you may not delete "
+			    "your account.");
       return;
     }
   else
@@ -8537,11 +8397,11 @@ void qtbook::slotRefreshAdminList(void)
 			     "\"item\" object. "
 			     "This is a serious problem!"),
 		     QString(""), __FILE__, __LINE__);
-
-	  progress.setValue(i + 1);
-	  progress.update();
-	  qapp->processEvents();
 	}
+
+      progress.setValue(i + 1);
+      progress.update();
+      qapp->processEvents();
     }
 
   query.clear();
