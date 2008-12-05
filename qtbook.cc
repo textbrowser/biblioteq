@@ -621,16 +621,16 @@ void qtbook::adminSetup(void)
   if(roles.contains("administrator") || roles.contains("librarian"))
     ui.actionAutoPopulateOnCreation->setEnabled(true);
 
-  if(roles.contains("administrator"))
-    {
-      ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
-	(true);
-      ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(true);
-    }
+  ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled
+    (roles.contains("administrator"));
 
   if(selectedBranch["database_type"] != "sqlite")
-    ui.actionConfigureAdministratorPrivileges->setEnabled
-      (roles.contains("administrator"));
+    {
+      ui.actionConfigureAdministratorPrivileges->setEnabled
+	(roles.contains("administrator"));
+      ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
+	(roles.contains("administrator"));
+    }
 
   ui.actionRequests->setToolTip("Item Requests");
 
@@ -734,7 +734,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle("BiblioteQ: About");
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.15.<br>"
+  mb.setText("<html>BiblioteQ Version 6.16.<br>"
 	     "Copyright (c) 2006, 2007, 2008 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
