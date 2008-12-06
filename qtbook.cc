@@ -8002,8 +8002,6 @@ void qtbook::slotBranchChanged(void)
     }
 
   tmphash.clear();
-  branch_diag->updateGeometry();
-  branch_diag->resize(branch_diag->sizeHint());
   branch_diag->show();
 }
 
