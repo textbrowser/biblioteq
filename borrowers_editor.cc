@@ -54,8 +54,9 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   setGlobalFonts(font);
 
   if(!uniqueidArg.isEmpty())
-    setWindowTitle(QString("BiblioteQ: Item Reservation Status (%1)").arg
-		   (uniqueidArg));
+    setWindowTitle
+      (QString(tr("BiblioteQ: Item Reservation Status (")) + uniqueidArg +
+       QString(tr(")")));
 }
 
 /*
@@ -93,22 +94,22 @@ void borrowers_editor::showUsers(void)
 
   if(state == qtbook::EDITABLE)
     {
-      list.append("Copy Number");
-      list.append("Barcode");
-      list.append("Member ID");
-      list.append("First Name");
-      list.append("Last Name");
-      list.append("Reservation Date");
-      list.append("Copy Due Date");
-      list.append("Lender");
-      list.append("MYOID");
+      list.append(tr("Copy Number"));
+      list.append(tr("Barcode"));
+      list.append(tr("Member ID"));
+      list.append(tr("First Name"));
+      list.append(tr("Last Name"));
+      list.append(tr("Reservation Date"));
+      list.append(tr("Copy Due Date"));
+      list.append(tr("Lender"));
+      list.append(tr("MYOID"));
     }
   else
     {
-      list.append("Copy Number");
-      list.append("Barcode");
-      list.append("Reservation Date");
-      list.append("Copy Due Date");
+      list.append(tr("Copy Number"));
+      list.append(tr("Barcode"));
+      list.append(tr("Reservation Date"));
+      list.append(tr("Copy Due Date"));
     }
 
   bd.table->setColumnCount(list.size());
@@ -133,8 +134,8 @@ void borrowers_editor::showUsers(void)
 
   show();
   progress1.setModal(true);
-  progress1.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress1.setLabelText("Constructing objects...");
+  progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(quantity);
   progress1.show();
   progress1.update();
@@ -153,10 +154,10 @@ void borrowers_editor::showUsers(void)
 		dateEdit->setCalendarPopup(true);
 	      }
 	    else
-	      qmain->addError(QString("Memory Error"),
-			      QString("Unable to allocate memory for the "
-				      "\"dateEdit\" object. "
-				      "This is a serious problem!"),
+	      qmain->addError(QString(tr("Memory Error")),
+			      QString(tr("Unable to allocate memory for the "
+					 "\"dateEdit\" object. "
+					 "This is a serious problem!")),
 			      QString(""), __FILE__, __LINE__);
 	  }
 	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
@@ -173,10 +174,10 @@ void borrowers_editor::showUsers(void)
 	  }
 	else
 	  qmain->addError
-	    (QString("Memory Error"),
-	     QString("Unable to allocate memory for the \"item\" "
-		     "object. "
-		     "This is a serious problem!"),
+	    (QString(tr("Memory Error")),
+	     QString(tr("Unable to allocate memory for the \"item\" "
+			"object. "
+			"This is a serious problem!")),
 	     QString(""), __FILE__, __LINE__);
 
       progress1.setValue(i + 1);
@@ -216,14 +217,14 @@ void borrowers_editor::showUsers(void)
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))
-    qmain->addError(QString("Database Error"),
-		    QString("Unable to retrieve borrower data."),
+    qmain->addError(QString(tr("Database Error")),
+		    QString(tr("Unable to retrieve borrower data.")),
 		    query.lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
   progress2.setModal(true);
-  progress2.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress2.setLabelText("Retrieving borrower data...");
+  progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress2.setLabelText(tr("Retrieving borrower data..."));
 
   /*
   ** SQLite does not support query.size().
@@ -304,8 +305,9 @@ void borrowers_editor::slotEraseBorrower(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select the copy that has been returned.");
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("Please select the copy that has been returned."));
       return;
     }
 
@@ -313,14 +315,14 @@ void borrowers_editor::slotEraseBorrower(void)
 
   if(oid.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "To modify a copy's reservation status, "
-			    "you must first select it.");
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("To modify a copy's reservation status, "
+			       "you must first select it."));
       return;
     }
 
-  if(QMessageBox::question(this, "BiblioteQ: Question",
-			   "Are you sure that the copy has been returned?",
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("Are you sure that the copy has been returned?"),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     return;
@@ -333,13 +335,13 @@ void borrowers_editor::slotEraseBorrower(void)
   if(!query.exec())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to modify the reservation status of "
-			      "the selected copy."),
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to modify the reservation status of "
+				 "the selected copy.")),
 		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to modify the reservation status of "
-			    "the selected copy.");
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to modify the reservation status of "
+			       "the selected copy."));
       return;
     }
   else
@@ -349,9 +351,9 @@ void borrowers_editor::slotEraseBorrower(void)
       */
 
       copyid = misc_functions::getColumnString(bd.table, row,
-					       "Barcode");
+					       tr("Barcode"));
       memberid = misc_functions::getColumnString(bd.table, row,
-						 "Member ID");
+						 tr("Member ID"));
       query.prepare(QString("UPDATE member_history SET returned_date = ? "
 			    "WHERE item_oid = ? AND copyid = ? AND "
 			    "memberid = ?"));
@@ -361,9 +363,9 @@ void borrowers_editor::slotEraseBorrower(void)
       query.bindValue(3, memberid);
 
       if(!query.exec())
-	qmain->addError(QString("Database Error"),
-			QString("Unable to modify the returned date of "
-				"the selected copy."),
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to modify the returned date of "
+				   "the selected copy.")),
 			query.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
@@ -376,14 +378,14 @@ void borrowers_editor::slotEraseBorrower(void)
 	qapp->restoreOverrideCursor();
 
 	if(!errorstr.isEmpty())
-	qmain->addError(QString("Database Error"),
-	QString("Retrieving availability."),
+	qmain->addError(QString(tr("Database Error")),
+	QString(tr("Retrieving availability.")),
 	errorstr, __FILE__, __LINE__);
 
 	misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-	"Availability", availability);
+	tr("Availability"), availability);
 	misc_functions::updateColumn(qmain->getUI().table, bitem->getRow(),
-	"Due Date", "Returned");
+	tr("Due Date"), "Returned");
       */
 
       /*
@@ -428,8 +430,8 @@ void borrowers_editor::slotSave(void)
   QProgressDialog progress(this);
 
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Updating the due date(s)...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Updating the due date(s)..."));
   progress.setMaximum(bd.table->rowCount());
   progress.show();
   progress.update();
@@ -454,8 +456,8 @@ void borrowers_editor::slotSave(void)
 	      query.bindValue(1, oid);
 
 	      if(!query.exec())
-		qmain->addError(QString("Database Error"),
-				QString("Unable to update the due date."),
+		qmain->addError(QString(tr("Database Error")),
+				QString(tr("Unable to update the due date.")),
 				query.lastError().text(), __FILE__,
 				__LINE__);
 	      else
@@ -463,7 +465,7 @@ void borrowers_editor::slotSave(void)
 		  /*
 		    misc_functions::updateColumn
 		    (qmain->getUI().table,
-		    bitem->getRow(), "Due Date",
+		    bitem->getRow(), tr("Due Date"),
 		    dueDate->date().toString("MM/dd/yyyy"));
 		  */
 		}
@@ -478,14 +480,14 @@ void borrowers_editor::slotSave(void)
   progress.hide();
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: User Error",
-			  "Some or all of the Due Dates were not updated "
-			  "due to invalid dates.");
+    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			  tr("Some or all of the Due Dates were not updated "
+			     "due to invalid dates."));
 
   if(query.lastError().isValid())
-    QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Some or all of the Due Dates were not updated "
-			  "due to database errors.");
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Some or all of the Due Dates were not updated "
+			     "due to database errors."));
 }
 
 /*

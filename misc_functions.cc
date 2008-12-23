@@ -295,7 +295,8 @@ void misc_functions::grantPrivs(const QString &userid,
     }
 
   if(objectlist.size() != privlist.size())
-    errorstr = "Application error: objectlist.size() != privlist.size().";
+    errorstr = QObject::tr
+      ("Application error: objectlist.size() != privlist.size().");
   else
     for(i = 0; i < objectlist.size(); i++)
       {
@@ -764,15 +765,14 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
   if(query.exec())
     while(query.next())
       {
-	str = QString("#%1<br>").arg(list.size() + 1);
-	str += QString("Barcode: %1 Location: %2<br>"
-		       "Type: %3<br>"
-		       "Title: %4<br>"
-		       "Due Date: %5").arg(query.value(0).toString()).
-	  arg(query.value(1).toString()).
-	  arg(query.value(2).toString()).
-	  arg(query.value(3).toString()).
-	  arg(query.value(4).toString());
+	str = QString(QObject::tr("#")) +
+	  QString::number(list.size() + 1) + "<br>";
+	str += QObject::tr("Barcode: ") +
+	  query.value(0).toString() + QObject::tr(" Location: ") +
+	  query.value(1).toString() + "<br>" +
+	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
+	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
+	  QObject::tr("Due Date: ") + query.value(4).toString();
 	list.append(str);
       }
 
@@ -865,7 +865,7 @@ QString misc_functions::getAvailability(const QString &oid,
   else if(str.isEmpty())
     {
       str = "0";
-      errorstr = "NULL availability value.";
+      errorstr = QObject::tr("NULL availability value.");
     }
 
   return str;
@@ -1444,9 +1444,10 @@ int misc_functions::sqliteQuerySize(const QString &querystr,
       count += 1;
 
   if(query.lastError().isValid())
-    qmain->addError(QString("Database Error"),
-		    QString("Unable to determine the query size."),
-		    query.lastError().text(), file, line);
+    qmain->addError
+      (QString(QObject::tr("Database Error")),
+       QString(QObject::tr("Unable to determine the query size.")),
+       query.lastError().text(), file, line);
 
   return count;
 }

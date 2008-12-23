@@ -17,7 +17,7 @@ locresults::locresults(QWidget *parent, QStringList &list,
 
   for(i = 0; i < list.count(); i++)
     {
-      ui.list->addItem(QString("Record #%1").arg(i + 1));
+      ui.list->addItem(QString(tr("Record #")) + QString::number(i + 1));
       records.append(list[i]);
     }
 

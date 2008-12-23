@@ -97,7 +97,7 @@ void qtbook::quit(void)
   if(qapp != 0)
     qapp->quit();
 
-  cout << "BiblioteQ has exited." << endl;
+  cout << tr("BiblioteQ has exited.").toStdString() << endl;
   exit(EXIT_SUCCESS);
 }
 
@@ -124,10 +124,14 @@ void qtbook::cleanup(void)
 void qtbook::quit(const char *msg, const char *file, const int line)
 {
   if(msg != 0 && strlen(msg) > 0)
-    cerr << msg << " in file " << file << ", line " << line << "." << endl;
+    cerr << tr(msg).toStdString()
+	 << tr(" in file ").toStdString()
+	 << file << tr(", line ").toStdString() << line
+	 << tr(".").toStdString() << endl;
   else
-    cerr << "An unknown error occurred in file " << file << ", line "
-	 << line << "." << endl;
+    cerr << tr("An unknown error occurred in file ").toStdString()
+	 << file << tr(", line ").toStdString()
+	 << line << tr(".").toStdString() << endl;
 
   if(qmain != 0)
     qmain->cleanup();
@@ -190,62 +194,62 @@ qtbook::qtbook(void):QMainWindow()
   if((menu4 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  connect(menu1->addAction("Insert &Book"),
+  connect(menu1->addAction(tr("Insert &Book")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
-  // menu1->addAction("Insert &Cassette Tape");
-  connect(menu1->addAction("Insert &CD"),
+  // menu1->addAction(tr("Insert &Cassette Tape"));
+  connect(menu1->addAction(tr("Insert &CD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
-  connect(menu1->addAction("Insert &DVD"),
+  connect(menu1->addAction(tr("Insert &DVD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
-  connect(menu1->addAction("Insert &Journal"),
+  connect(menu1->addAction(tr("Insert &Journal")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
-  connect(menu1->addAction("Insert &Magazine"),
+  connect(menu1->addAction(tr("Insert &Magazine")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
-  // menu1->addAction("Insert &Newspaper");
-  connect(menu1->addAction("Insert &Video Game"),
+  // menu1->addAction(tr("Insert &Newspaper"));
+  connect(menu1->addAction(tr("Insert &Video Game")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
-  // menu1->addAction("Insert &VHS");
-  // menu1->addAction("Insert &Vinyl Record");
-  connect(menu2->addAction("&General Search"),
+  // menu1->addAction(tr("Insert &VHS"));
+  // menu1->addAction(tr("Insert &Vinyl Record"));
+  connect(menu2->addAction(tr("&General Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
   menu2->addSeparator();
-  connect(menu2->addAction("&Book Search"),
+  connect(menu2->addAction(tr("&Book Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
-  connect(menu2->addAction("&CD Search"),
+  connect(menu2->addAction(tr("&CD Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
-  connect(menu2->addAction("&DVD Search"),
+  connect(menu2->addAction(tr("&DVD Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
-  connect(menu2->addAction("&Journal Search"),
+  connect(menu2->addAction(tr("&Journal Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
-  connect(menu2->addAction("&Magazine Search"),
+  connect(menu2->addAction(tr("&Magazine Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
-  connect(menu2->addAction("&Video Game Search"),
+  connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
-  menu3->setWindowTitle("BiblioteQ: Columns Selection");
-  connect(menu4->addAction("Reset &ID Number"),
+  menu3->setWindowTitle(tr("BiblioteQ: Columns Selection"));
+  connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Title"),
+  connect(menu4->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Release Date"),
+  connect(menu4->addAction(tr("Reset &Release Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Publisher"),
+  connect(menu4->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Categories"),
+  connect(menu4->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Type"),
+  connect(menu4->addAction(tr("Reset &Type")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Price"),
+  connect(menu4->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Language"),
+  connect(menu4->addAction(tr("Reset &Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Monetary Units"),
+  connect(menu4->addAction(tr("Reset &Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Abstract"),
+  connect(menu4->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Copies"),
+  connect(menu4->addAction(tr("Reset &Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction("Reset &Location"),
+  connect(menu4->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
   bb.setupUi(members_diag);
@@ -442,11 +446,11 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
-  ui.table->resetTable("All", roles);
+  ui.table->resetTable(tr("All"), roles);
   ui.summary->setVisible(false);
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
-  previousTypeFilter = "All";
+  previousTypeFilter = tr("All");
   prepareFilter();
   addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
@@ -497,8 +501,9 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
-      if(typefilter != "All" && typefilter != "All Overdue" &&
-	 typefilter != "All Requested" && typefilter != "All Reserved")
+      if(typefilter != tr("All") && typefilter != tr("All Overdue") &&
+	 typefilter != tr("All Requested") &&
+	 typefilter != tr("All Reserved"))
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == "Type")
@@ -570,15 +575,15 @@ void qtbook::adminSetup(void)
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
 
       if(roles.contains("administrator"))
-	status_bar_label->setToolTip("Administrator Mode");
+	status_bar_label->setToolTip(tr("Administrator Mode"));
       else if(roles == "circulation")
-	status_bar_label->setToolTip("Circulation Mode");
+	status_bar_label->setToolTip(tr("Circulation Mode"));
       else if(roles == "librarian")
-	status_bar_label->setToolTip("Librarian Mode");
+	status_bar_label->setToolTip(tr("Librarian Mode"));
       else if(roles == "membership")
-	status_bar_label->setToolTip("Membership Mode");
+	status_bar_label->setToolTip(tr("Membership Mode"));
       else
-	status_bar_label->setToolTip("Privileged Mode");
+	status_bar_label->setToolTip(tr("Privileged Mode"));
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
@@ -632,7 +637,7 @@ void qtbook::adminSetup(void)
 	(roles.contains("administrator"));
     }
 
-  ui.actionRequests->setToolTip("Item Requests");
+  ui.actionRequests->setToolTip(tr("Item Requests"));
 
   /*
   ** Hide certain fields in the Member's Browser.
@@ -673,21 +678,21 @@ void qtbook::showMain(void)
     {
       connected_bar_label->setPixmap
 	(QPixmap("icons.d/16x16/disconnected.png"));
-      connected_bar_label->setToolTip("Disconnected");
+      connected_bar_label->setToolTip(tr("Disconnected"));
       qmain->statusBar()->addPermanentWidget(connected_bar_label);
     }
 
   if((status_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
-      status_bar_label->setToolTip("Standard User Mode");
+      status_bar_label->setToolTip(tr("Standard User Mode"));
       qmain->statusBar()->addPermanentWidget(status_bar_label);
     }
 
   if((error_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
-      error_bar_label->setToolTip("Empty Error Log");
+      error_bar_label->setToolTip(tr("Empty Error Log"));
       qmain->statusBar()->addPermanentWidget(error_bar_label);
     }
 
@@ -732,10 +737,10 @@ void qtbook::slotAbout(void)
   QMessageBox mb(this);
 
   mb.setFont(qapp->font());
-  mb.setWindowTitle("BiblioteQ: About");
+  mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.16.<br>"
-	     "Copyright (c) 2006, 2007, 2008 "
+  mb.setText("<html>BiblioteQ Version 6.17.<br>"
+	     "Copyright (c) 2006, 2007, 2008, 2009 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br><br>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
@@ -776,14 +781,14 @@ void qtbook::slotSearch(void)
   ** Add "any".
   */
 
-  if(al.language->findText("Any") == -1)
-    al.language->insertItem(0, "Any");
+  if(al.language->findText(tr("Any")) == -1)
+    al.language->insertItem(0, tr("Any"));
 
-  if(al.monetary_units->findText("Any") == -1)
-    al.monetary_units->insertItem(0, "Any");
+  if(al.monetary_units->findText(tr("Any")) == -1)
+    al.monetary_units->insertItem(0, tr("Any"));
 
-  if(al.location->findText("Any") == -1)
-    al.location->insertItem(0, "Any");
+  if(al.location->findText(tr("Any")) == -1)
+    al.location->insertItem(0, tr("Any"));
 
   al.location->setCurrentIndex(0);
   al.language->setCurrentIndex(0);
@@ -832,14 +837,15 @@ void qtbook::slotModify(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select at least one item to modify.");
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select at least one item to modify."));
       return;
     }
   else if(list.size() >= 5)
-    if(QMessageBox::question(this, "BiblioteQ: Question",
-			     "Are you sure that you wish to modify the " +
-			     QString::number(list.size()) + " selected items?",
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to modify the ") +
+			     QString::number(list.size()) +
+			     tr(" selected items?"),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::No)
       {
@@ -968,9 +974,9 @@ void qtbook::slotModify(void)
   list.clear();
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: Error",
-			  "Unable to determine the selected item's "
-			  "type.");
+    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			  tr("Unable to determine the selected item's "
+			     "type."));
 }
 
 /*
@@ -995,14 +1001,15 @@ void qtbook::slotViewDetails(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select at least one item to view.");
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select at least one item to view."));
       return;
     }
   else if(list.size() >= 5)
-    if(QMessageBox::question(this, "BiblioteQ: Question",
-			     "Are you sure that you wish to view the " +
-			     QString::number(list.size()) + " selected items?",
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to view the ") +
+			     QString::number(list.size()) +
+			     tr(" selected items?"),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::No)
       {
@@ -1130,9 +1137,9 @@ void qtbook::slotViewDetails(void)
   list.clear();
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: Error",
-			  "Unable to determine the selected item's "
-			  "type.");
+    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			  tr("Unable to determine the selected item's "
+			     "type."));
 }
 
 /*
@@ -1159,8 +1166,8 @@ void qtbook::slotDelete(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select an item to delete.");
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select an item to delete."));
       return;
     }
 
@@ -1178,15 +1185,15 @@ void qtbook::slotDelete(void)
 
       if(oid.isEmpty() || itemType.isEmpty())
 	{
-	  addError(QString("Error"),
-		   QString("The main table does not contain enough "
-			   "information for item deletion."),
-		   QString("The main table does not contain enough "
-			   "information for item deletion."),
+	  addError(QString(tr("Error")),
+		   QString(tr("The main table does not contain enough "
+			      "information for item deletion.")),
+		   QString(tr("The main table does not contain enough "
+			      "information for item deletion.")),
 		   __FILE__, __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Error",
-				"The main table does not contain enough "
-				"information for item deletion.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("The main table does not contain enough "
+				   "information for item deletion."));
 	  list.clear();
 	  return;
 	}
@@ -1197,21 +1204,21 @@ void qtbook::slotDelete(void)
 
       if(!errorstr.isEmpty())
 	{
-	  addError(QString("Database Error"),
-		   QString("Unable to determine if the item has been "
-			   "reserved."),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to determine if the item has been "
+			      "reserved.")),
 		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Error",
-				"Unable to determine if the item has "
-				"been reserved.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("Unable to determine if the item has "
+				   "been reserved."));
 	  list.clear();
 	  return;
 	}
 
       if(isCheckedOut)
 	{
-	  QMessageBox::critical(this, "BiblioteQ: Error",
-				"Reserved items may not be deleted.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("Reserved items may not be deleted."));
 	  list.clear();
 	  return;
 	}
@@ -1222,30 +1229,30 @@ void qtbook::slotDelete(void)
 
       if(!errorstr.isEmpty())
 	{
-	  addError(QString("Database Error"),
-		   QString("Unable to determine if the item has been "
-			   "requested."),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to determine if the item has been "
+			      "requested.")),
 		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Error",
-				"Unable to determine if the item has "
-				"been requested.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("Unable to determine if the item has "
+				   "been requested."));
 	  list.clear();
 	  return;
 	}
 
       if(isRequested)
 	{
-	  QMessageBox::critical(this, "BiblioteQ: Error",
-				"Requested items may not be deleted.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+				tr("Requested items may not be deleted."));
 	  list.clear();
 	  return;
 	}
     }
 
   if(list.size() > 0)
-    if(QMessageBox::question(this, "BiblioteQ: Question",
-			     "Are you sure that you wish to permanently "
-			     "delete the selected item(s)?",
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to permanently "
+				"delete the selected item(s)?"),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::No)
       {
@@ -1254,8 +1261,8 @@ void qtbook::slotDelete(void)
       }
 
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Deleting the selected item(s)...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(list.size());
   progress.show();
   progress.update();
@@ -1276,8 +1283,8 @@ void qtbook::slotDelete(void)
       if(!query.exec())
 	{
 	  error = true;
-	  addError(QString("Database Error"),
-		   QString("Unable to delete the item."),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to delete the item.")),
 		   query.lastError().text(), __FILE__, __LINE__);
 	}
       else
@@ -1298,9 +1305,9 @@ void qtbook::slotDelete(void)
   */
 
   if(error)
-    QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Unable to delete all or some of the selected "
-			  "items.");
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Unable to delete all or some of the selected "
+			     "items."));
 
   if(numdeleted > 0)
     slotRefresh();
@@ -1326,13 +1333,15 @@ void qtbook::slotRefresh(void)
 {
   QString str = "";
 
-  if(ui.typefilter->currentText() == "All Overdue" && roles.isEmpty())
+  if(ui.typefilter->currentText() == tr("All Overdue") && roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == "All Requested" && roles.isEmpty())
+  else if(ui.typefilter->currentText() == tr("All Requested") &&
+	  roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == "All Reserved" && roles.isEmpty())
+  else if(ui.typefilter->currentText() == tr("All Reserved") &&
+	  roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == "All Reserved")
+  else if(ui.typefilter->currentText() == tr("All Reserved"))
     str = "%";
 
   (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(), str);
@@ -1374,7 +1383,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
       }
     case POPULATE_ALL:
       {
-	if(typefilter == "All")
+	if(typefilter == tr("All"))
 	  {
 	    searchstr = "SELECT DISTINCT book.title, "
 	      "book.id, "
@@ -1540,7 +1549,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "videogame.myoid "
 	      "ORDER BY 1";
 	  }
-	else if(typefilter == "All Overdue")
+	else if(typefilter == tr("All Overdue"))
 	  {
 	    searchstr = "";
 
@@ -2114,7 +2123,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == "All Requested")
+	else if(typefilter == tr("All Requested"))
 	  {
 	    searchstr = "";
 
@@ -2581,7 +2590,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == "All Reserved")
+	else if(typefilter == tr("All Reserved"))
 	  {
 	    searchstr = "";
 
@@ -3126,7 +3135,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == "Video Games")
+	else if(typefilter == tr("Video Games"))
 	  {
 	    searchstr = "SELECT videogame.title, "
 	      "videogame.vgrating, "
@@ -3168,7 +3177,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "videogame.myoid ORDER BY "
 	      "videogame.title";
 	  }
-	else if(typefilter == "Books")
+	else if(typefilter == tr("Books"))
 	  {
 	    searchstr = "SELECT book.title, "
 	      "book.author, "
@@ -3212,7 +3221,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "book.myoid ORDER BY "
 	      "book.title";
 	  }
-	else if(typefilter == "DVDs")
+	else if(typefilter == tr("DVDs"))
 	  {
 	    searchstr = "SELECT dvd.title, "
 	      "dvd.dvdformat, "
@@ -3261,7 +3270,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "ORDER BY "
 	      "dvd.title";
 	  }
-	else if(typefilter == "Music CDs")
+	else if(typefilter == tr("Music CDs"))
 	  {
 	    searchstr = "SELECT cd.title, "
 	      "cd.artist, "
@@ -3309,9 +3318,9 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "ORDER BY "
 	      "cd.title";
 	  }
-	else if(typefilter == "Journals" || typefilter == "Magazines")
+	else if(typefilter == tr("Journals") || typefilter == tr("Magazines"))
 	  {
-	    if(typefilter == "Journals")
+	    if(typefilter == tr("Journals"))
 	      type = "Journal";
 	    else
 	      type = "Magazine";
@@ -3360,7 +3369,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
       }
     case POPULATE_SEARCH: default:
       {
-	if(typefilter == "All")
+	if(typefilter == tr("All"))
 	  {
 	    types.append("Book");
 	    types.append("CD");
@@ -3496,7 +3505,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 	    searchstr += "ORDER BY 1";
 	  }
-	else if(typefilter == "Books")
+	else if(typefilter == tr("Books"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY book.title, "
@@ -3518,7 +3527,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "book.myoid "
 			     "ORDER BY book.title");
 	  }
-	else if(typefilter == "Video Games")
+	else if(typefilter == tr("Video Games"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3539,7 +3548,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "videogame.myoid ORDER BY "
 			     "videogame.title");
 	  }
-	else if(typefilter == "Music CDs")
+	else if(typefilter == tr("Music CDs"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3564,7 +3573,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "ORDER BY "
 			     "cd.title");
 	  }
-	else if(typefilter == "DVDs")
+	else if(typefilter == tr("DVDs"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3589,7 +3598,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "ORDER BY "
 			     "dvd.title");
 	  }
-	else if(typefilter == "Journals")
+	else if(typefilter == tr("Journals"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY journal.title, "
@@ -3610,7 +3619,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			     "ORDER BY journal.title, "
 			     "journal.issuevolume, journal.issueno");
 	  }
-	else if(typefilter == "Magazines")
+	else if(typefilter == tr("Magazines"))
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY magazine.title, "
@@ -3646,13 +3655,13 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	ui.typefilter->setCurrentIndex
 	  (ui.typefilter->findText(previousTypeFilter));
 
-      addError(QString("Database Error"),
-	       QString("Unable to retrieve the data required for "
-		       "populating the main table."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve the data required for "
+			  "populating the main table.")),
 	       query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to retrieve the data required for "
-			    "populating the main table.");
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the data required for "
+			       "populating the main table."));
       return 1;
     }
   else
@@ -3684,8 +3693,8 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	ui.table->setRowCount(query.size());
 
       progress.setModal(true);
-      progress.setWindowTitle("BiblioteQ: Progress Dialog");
-      progress.setLabelText("Populating the table...");
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.setLabelText(tr("Populating the table..."));
 
       if(selectedBranch["database_type"] == "sqlite")
 	progress.setMaximum
@@ -3745,12 +3754,12 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		      updateRows(str, i, itemType);
 		  }
 		else
-		  addError(QString("Memory Error"),
-			   QString("Unable to allocate "
-				   "memory for the \"item\" "
-				   "object. "
-				   "This is a serious "
-				   "problem!"), QString(""),
+		  addError(QString(tr("Memory Error")),
+			   QString(tr("Unable to allocate "
+				      "memory for the \"item\" "
+				      "object. "
+				      "This is a serious "
+				      "problem!")), QString(""),
 			   __FILE__, __LINE__);
 	      }
 
@@ -3762,17 +3771,17 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
       if(search_type == CUSTOM_QUERY)
 	{
 	  if(tmplist.isEmpty())
-	    for(i = 0; i < query.record().count(); i++)
-	      if(!tmplist.contains(query.record().fieldName(i)))
+	    for(int ii = 0; ii < query.record().count(); ii++)
+	      if(!tmplist.contains(query.record().fieldName(ii)))
 		{
-		  tmplist.append(query.record().fieldName(i));
+		  tmplist.append(query.record().fieldName(ii));
 		  ui.table->setColumnCount(tmplist.size());
 		}
 
 	  ui.table->setColumnCount(tmplist.size());
 	  ui.table->setHorizontalHeaderLabels(tmplist);
 	  tmplist.clear();
-	  addConfigOptions("Custom");
+	  addConfigOptions(tr("Custom"));
 	}
 
       query.clear();
@@ -3855,7 +3864,7 @@ void qtbook::slotResizeColumns(void)
 
 void qtbook::slotAllGo(void)
 {
-  (void) populateTable(POPULATE_SEARCH, "All", QString(""));
+  (void) populateTable(POPULATE_SEARCH, tr("All"), QString(""));
 }
 
 /*
@@ -3906,7 +3915,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->memberProperties["zip"] = userinfo_diag->userinfo.zip->text();
   userinfo_diag->memberProperties["telephone_num"] =
     userinfo_diag->userinfo.telephoneNumber->text();
-  userinfo_diag->setWindowTitle("BiblioteQ: Create New Member");
+  userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   userinfo_diag->userinfo.prevTool->setVisible(false);
   userinfo_diag->userinfo.nextTool->setVisible(false);
   userinfo_diag->userinfo.memberid->selectAll();
@@ -3949,13 +3958,13 @@ void qtbook::slotSaveUser(void)
   str = userinfo_diag->userinfo.email->text().trimmed();
   userinfo_diag->userinfo.email->setText(str);
 
-  if(userinfo_diag->windowTitle().contains("Create New Member"))
+  if(userinfo_diag->windowTitle().contains(tr("Create New Member")))
     {
       if(userinfo_diag->userinfo.memberid->text().length() < 7)
 	{
-	  QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-				"The Member ID must be at least seven "
-				"characters long.");
+	  QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+				tr("The Member ID must be at least seven "
+				   "characters long."));
 	  userinfo_diag->userinfo.memberid->setFocus();
 	  return;
 	}
@@ -3968,9 +3977,10 @@ void qtbook::slotSaveUser(void)
       if(ucount > 0)
 	{
 	  QMessageBox::critical
-	    (userinfo_diag, "BiblioteQ: User Error",
-	     QString("The Member ID %1 already exists.").arg
-	     (userinfo_diag->userinfo.memberid->text()));
+	    (userinfo_diag, tr("BiblioteQ: User Error"),
+	     QString(tr("The Member ID ")) +
+	     userinfo_diag->userinfo.memberid->text() +
+	     QString(tr(" already exists.")));
 	  userinfo_diag->userinfo.memberid->setFocus();
 	  return;
 	}
@@ -3978,40 +3988,40 @@ void qtbook::slotSaveUser(void)
 
   if(userinfo_diag->userinfo.firstName->text().isEmpty())
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "Please provide a valid First Name.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid First Name."));
       userinfo_diag->userinfo.firstName->setFocus();
       return;
     }
 
   if(userinfo_diag->userinfo.lastName->text().isEmpty())
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "Please provide a valid Last Name.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid Last Name."));
       userinfo_diag->userinfo.lastName->setFocus();
       return;
     }
 
   if(userinfo_diag->userinfo.street->text().isEmpty())
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "Please provide a valid Street.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid Street."));
       userinfo_diag->userinfo.street->setFocus();
       return;
     }
 
   if(userinfo_diag->userinfo.city->text().isEmpty())
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "Please provide a valid City.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid City."));
       userinfo_diag->userinfo.city->setFocus();
       return;
     }
 
   if(userinfo_diag->userinfo.zip->text().length() != 5)
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "Please provide a valid ZIP Code.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid ZIP Code."));
       userinfo_diag->userinfo.zip->setFocus();
       return;
     }
@@ -4035,24 +4045,24 @@ void qtbook::slotSaveUser(void)
 
   if(count < 0)
     {
-      addError(QString("Database Error"),
-	       QString("Unable to determine the uniqueness of the "
-		       "proposed member."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the uniqueness of the "
+			  "proposed member.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: Database Error",
-			    "Unable to determine the uniqueness of "
-			    "the proposed member.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the uniqueness of "
+			       "the proposed member."));
       return;
     }
 
   if(count != 0)
     {
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: User Error",
-			    "An identical member already exists.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
+			    tr("An identical member already exists."));
       return;
     }
 
-  if(userinfo_diag->windowTitle().contains("New"))
+  if(userinfo_diag->windowTitle().contains(tr("New")))
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -4060,12 +4070,12 @@ void qtbook::slotSaveUser(void)
 	{
 	  qapp->restoreOverrideCursor();
 	  addError
-	    (QString("Database Error"),
-	     QString("Unable to create a database transaction."),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create a database transaction.")),
 	     getDB().lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (userinfo_diag, "BiblioteQ: Database Error",
-	     "Unable to create a database transaction.");
+	    (userinfo_diag, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create a database transaction."));
 	  return;
 	}
 
@@ -4126,22 +4136,22 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
-      if(userinfo_diag->windowTitle().contains("New"))
+      if(userinfo_diag->windowTitle().contains(tr("New")))
 	if(!getDB().rollback())
 	  addError
-	    (QString("Database Error"), QString("Rollback failure."),
+	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	     getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to save the member's information."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to save the member's information.")),
 	       query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(userinfo_diag, "BiblioteQ: Database Error",
-			    "Unable to save the member's information.");
+      QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to save the member's information."));
     }
   else
     {
-      if(userinfo_diag->windowTitle().contains("New"))
+      if(userinfo_diag->windowTitle().contains(tr("New")))
 	{
 	  /*
 	  ** Create a database account for the new member.
@@ -4155,21 +4165,22 @@ void qtbook::slotSaveUser(void)
 	    {
 	      if(!getDB().rollback())
 		addError
-		  (QString("Database Error"), QString("Rollback failure."),
+		  (QString(tr("Database Error")),
+		   QString(tr("Rollback failure.")),
 		   getDB().lastError().text(), __FILE__, __LINE__);
 
 	      qapp->restoreOverrideCursor();
 	      addError
-		  (QString("Database Error"),
-		   QString("An error occurred while attempting to "
-			   "create a database account "
-			   "for the new member."),
-		   errorstr, __FILE__, __LINE__);
+		(QString(tr("Database Error")),
+		 QString(tr("An error occurred while attempting to "
+			    "create a database account "
+			    "for the new member.")),
+		 errorstr, __FILE__, __LINE__);
 	      QMessageBox::critical(userinfo_diag,
-				    "BiblioteQ: Database Error",
-				    "An error occurred while attempting to "
-				    "create a database account "
-				    "for the new member.");
+				    tr("BiblioteQ: Database Error"),
+				    tr("An error occurred while attempting to "
+				       "create a database account "
+				       "for the new member."));
 	      return;
 	    }
 	  else
@@ -4177,15 +4188,15 @@ void qtbook::slotSaveUser(void)
 	      {
 		qapp->restoreOverrideCursor();
 		addError
-		  (QString("Database Error"),
-		   QString("Unable to commit the current database "
-			   "transaction."),
+		  (QString(tr("Database Error")),
+		   QString(tr("Unable to commit the current database "
+			      "transaction.")),
 		   getDB().lastError().text(), __FILE__,
 		   __LINE__);
 		QMessageBox::critical(userinfo_diag,
-				      "BiblioteQ: Database Error",
-				      "Unable to commit the current "
-				      "database transaction.");
+				      tr("BiblioteQ: Database Error"),
+				      tr("Unable to commit the current "
+					 "database transaction."));
 		return;
 	      }
 	}
@@ -4200,11 +4211,12 @@ void qtbook::slotSaveUser(void)
 				    errorstr);
 
 	  if(!errorstr.isEmpty())
-	    addError(QString("Database Error"),
-		     QString("An error occurred while attempting to "
-			     "update the database account "
-			     "for %1.").arg
-		     (userinfo_diag->userinfo.memberid->text()),
+	    addError(QString(tr("Database Error")),
+		     QString(tr("An error occurred while attempting to "
+				"update the database account "
+				"for ")) +
+		     userinfo_diag->userinfo.memberid->text() +
+		     QString(tr(".")),
 		     errorstr, __FILE__, __LINE__);
 	}
 
@@ -4236,7 +4248,7 @@ void qtbook::slotSaveUser(void)
 	userinfo_diag->userinfo.email->text();
       bb.table->setSortingEnabled(false);
 
-      if(userinfo_diag->windowTitle().contains("Modify"))
+      if(userinfo_diag->windowTitle().contains(tr("Modify")))
 	{
 	  for(i = 0; i < bb.table->columnCount(); i++)
 	    {
@@ -4245,13 +4257,13 @@ void qtbook::slotSaveUser(void)
 	      if(column == 0)
 		continue;
 
-	      if(column->text() == "First Name")
+	      if(column->text() == tr("First Name"))
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.firstName->text());
-	      else if(column->text() == "Last Name")
+	      else if(column->text() == tr("Last Name"))
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.lastName->text());
-	      else if(column->text() == "Member Since")
+	      else if(column->text() == tr("Member Since"))
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.membersince->text());
 	    }
@@ -4263,10 +4275,12 @@ void qtbook::slotSaveUser(void)
 	  userinfo_diag->close();
 
 	  if(selectedBranch["database_type"] != "sqlite")
-	    QMessageBox::information(members_diag, "BiblioteQ: Information",
-				     "Please notify the new member that their "
-				     "default password has been set "
-				     "to tempPass.");
+	    QMessageBox::information
+	      (members_diag,
+	       tr("BiblioteQ: Information"),
+	       tr("Please notify the new member that their "
+		  "default password has been set "
+		  "to tempPass."));
 
 	  slotPopulateMembersBrowser();
 	}
@@ -4326,8 +4340,8 @@ void qtbook::readGlobalSetup(void)
       while(thread->isRunning())
 	{
 	  if(statusBar() != 0)
-	    statusBar()->showMessage("Processing the global "
-				     "configuration file.");
+	    statusBar()->showMessage(tr("Processing the global "
+					"configuration file."));
 
 	  qapp->processEvents();
 	  thread->wait(100);
@@ -4338,7 +4352,7 @@ void qtbook::readGlobalSetup(void)
 	  if(statusBar() != 0)
 	    statusBar()->clearMessage();
 
-	  addError(QString("File Error"),
+	  addError(QString(tr("File Error")),
 		   thread->getErrorStr(),
 		   thread->getErrorStr(), __FILE__, __LINE__);
 	}
@@ -4579,16 +4593,16 @@ void qtbook::readGlobalSetup(void)
 	al.location->addItem(locations.takeFirst());
 
       if(al.language->count() == 0)
-	al.language->addItem("UNKNOWN");
+	al.language->addItem(tr("UNKNOWN"));
 
       if(al.monetary_units->count() == 0)
-	al.monetary_units->addItem("UNKNOWN");
+	al.monetary_units->addItem(tr("UNKNOWN"));
 
       if(al.location->count() == 0)
-	al.location->addItem("UNKNOWN");
+	al.location->addItem(tr("UNKNOWN"));
 
       if(br.branch_name->count() == 0)
-	br.branch_name->addItem("UNKNOWN");
+	br.branch_name->addItem(tr("UNKNOWN"));
 
       if(!LOCHash.contains("Address"))
 	LOCHash["Address"] = "z3950.loc.gov";
@@ -4606,21 +4620,21 @@ void qtbook::readGlobalSetup(void)
       qapp->restoreOverrideCursor();
 
       if(!thread->getErrorStr().isEmpty())
-	QMessageBox::critical(this, "BiblioteQ: File Error",
+	QMessageBox::critical(this, tr("BiblioteQ: File Error"),
 			      thread->getErrorStr());
 
       thread->deleteLater();
     }
   else
     {
-      addError(QString("File Error"),
-	       QString("Unable to read ") + filename +
-	       QString(" due to insufficient resources."),
+      addError(QString(tr("File Error")),
+	       QString(tr("Unable to read ")) + filename +
+	       QString(tr(" due to insufficient resources.")),
 	       QString(""),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: File Error",
-			    "Unable to read " + filename +
-			    " due to insufficient resources.");
+      QMessageBox::critical(this, tr("BiblioteQ: File Error"),
+			    tr("Unable to read ") + filename +
+			    tr(" due to insufficient resources."));
     }
 }
 
@@ -4717,25 +4731,25 @@ void qtbook::slotRemoveMember(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "Please select a member to delete.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member to delete."));
       return;
     }
 
-  memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+  memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
   
   if(!errorstr.isEmpty())
     {
-      addError(QString("Database Error"),
-	       QString("Unable to determine the number of items that "
-		       "are reserved by the selected member."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the number of items that "
+			  "are reserved by the selected member.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			    "Unable to determine the number of items that "
-			    "are reserved by the selected member.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the number of items that "
+			       "are reserved by the selected member."));
       return;
     }
 
@@ -4746,15 +4760,15 @@ void qtbook::slotRemoveMember(void)
 
   if(totalReserved != 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "You may not remove a member that has reserved "
-			    "items.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("You may not remove a member that has reserved "
+			       "items."));
       return;
     }
 
-  if(QMessageBox::question(members_diag, "BiblioteQ: Question",
-			   "Are you sure that you wish to delete the "
-			   "selected member?",
+  if(QMessageBox::question(members_diag, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected member?"),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     return;
@@ -4765,12 +4779,12 @@ void qtbook::slotRemoveMember(void)
     {
       qapp->restoreOverrideCursor();
       addError
-	(QString("Database Error"),
-	 QString("Unable to create a database transaction."),
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
 	 getDB().lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
-	(members_diag, "BiblioteQ: Database Error",
-	 "Unable to create a database transaction.");
+	(members_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
       return;
     }
 
@@ -4784,15 +4798,15 @@ void qtbook::slotRemoveMember(void)
     {
       if(!getDB().rollback())
 	addError
-	  (QString("Database Error"), QString("Rollback failure."),
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to remove the selected member."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to remove the selected member.")),
 	       query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			    "Unable to remove the selected member.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to remove the selected member."));
     }
   else
     {
@@ -4802,34 +4816,36 @@ void qtbook::slotRemoveMember(void)
       if(!errorstr.isEmpty())
 	{
 	  addError
-	    (QString("Database Error"),
-	     QString("Unable to remove the patron account %1.").arg(memberid),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to remove the patron account ")) +
+	     memberid + tr("."),
 	     errorstr, __FILE__, __LINE__);
 
 	  if(!getDB().rollback())
 	    addError
-	      (QString("Database Error"), QString("Rollback failure."),
+	      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	       getDB().lastError().text(), __FILE__, __LINE__);
 
 	  qapp->restoreOverrideCursor();
 	  QMessageBox::critical
 	    (members_diag,
-	     "BiblioteQ: Database Error",
-	     QString("Unable to remove the patron account %1.").arg(memberid));
+	     tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to remove the patron account ")) +
+	     memberid + tr("."));
 	}
       else if(!getDB().commit())
 	{
 	  qapp->restoreOverrideCursor();
 	  addError
-	    (QString("Database Error"),
-	     QString("Unable to commit the current database "
-		     "transaction."),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to commit the current database "
+			"transaction.")),
 	     getDB().lastError().text(), __FILE__,
 	     __LINE__);
 	  QMessageBox::critical(members_diag,
-				"BiblioteQ: Database Error",
-				"Unable to commit the current "
-				"database transaction.");
+				tr("BiblioteQ: Database Error"),
+				tr("Unable to commit the current "
+				   "database transaction."));
 	  return;
 	}
 
@@ -4894,7 +4910,7 @@ void qtbook::slotShowColumns(void)
       if(column == 0)
 	continue;
 
-      if(column->text() == "Publisher")
+      if(column->text() == tr("Publisher"))
 	ui.table->setColumnHidden(i, false);
     }
 
@@ -4923,156 +4939,164 @@ void qtbook::slotDisplaySummary(void)
     {
       i = ui.table->currentRow();
       oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      type = misc_functions::getColumnString(ui.table, i, "Type");
+      type = misc_functions::getColumnString(ui.table, i, tr("Type"));
       summary = "<html>";
 
-      if(type == "Book")
+      if(type == tr("Book"))
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
 	    "</b>";
 	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i, "ISBN-10");
+	  tmpstr = misc_functions::getColumnString(ui.table, i, tr("ISBN-10"));
 
 	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("ID Number"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
-						     "Publication Date");
+						     tr("Publication Date"));
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
-						     "Publisher");
+						     tr("Publisher"));
 	  summary += "<br>";
 	}
-      else if(type == "CD")
+      else if(type == tr("CD"))
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Catalog Number");
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Publication Date");
+						   tr("Catalog Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     "Release Date");
+						     tr("ID Number"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Publisher");
+						   tr("Publication Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     "Recording Label");
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	}
-      else if(type == "DVD")
-	{
-	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, "Title") +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "UPC");
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+						     tr("Release Date"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Publication Date");
+						   tr("Publisher"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     "Release Date");
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Publisher");
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     "Studio");
+						     tr("Recording Label"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	}
-      else if(type == "Journal" || type == "Magazine")
+      else if(type == tr("DVD"))
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, "Title") +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
 	    "</b>";
 	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i, "ISSN");
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   tr("UPC"));
 
 	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  summary += misc_functions::getColumnString(ui.table, i,
-						     "Publication Date");
-	  summary += "<br>";
-	  summary += misc_functions::getColumnString(ui.table, i,
-						     "Publisher");
-	  summary += "<br>";
-	}
-      else if(type == "Video Game")
-	{
-	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, "Title") +
-	    "</b>";
-	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i, "UPC");
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i, "ID Number");
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("ID Number"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   "Publication Date");
+						   tr("Publication Date"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     "Release Date");
+						     tr("Release Date"));
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   tr("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("Studio"));
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
+      else if(type == tr("Journal") || type == tr("Magazine"))
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i, tr("ISSN"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("ID Number"));
 
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
-						     "Publisher");
+						     tr("Publication Date"));
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     tr("Publisher"));
+	  summary += "<br>";
+	}
+      else if(type == tr("Video Game"))
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i,
+					    tr("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   tr("UPC"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("ID Number"));
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i,
+						   tr("Publication Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("Release Date"));
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString(ui.table, i,
+						     tr("Publisher"));
 	  summary += "<br>";
 	}
 
       summary = summary.remove("<br><br>");
       summary += misc_functions::getAbstractInfo(oid, type, getDB());
       summary += "<br>";
-      tmpstr = misc_functions::getColumnString(ui.table, i, "Availability");
+      tmpstr = misc_functions::getColumnString(ui.table, i,
+					       tr("Availability"));
 
       if(!tmpstr.isEmpty())
 	{
 	  if(tmpstr.toInt() > 0)
-	    summary += "Available<br>";
+	    summary += tr("Available") + "<br>";
 	  else
-	    summary += "Unavailable<br>";
+	    summary += tr("Unavailable") + "<br>";
 	}
 
-      summary += misc_functions::getColumnString(ui.table, i, "Location");
+      summary += misc_functions::getColumnString(ui.table, i, tr("Location"));
       summary += "</html>";
       ui.summary->setText(summary);
       ui.summary->setVisible(true);
@@ -5155,8 +5179,8 @@ void qtbook::slotShowNext(void)
   else
     {
       if(userinfo_diag->haveMemberChanges())
-	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
-				 "You have unsaved data. Continue?",
+	if(QMessageBox::question(userinfo_diag, tr("BiblioteQ: Question"),
+				 tr("You have unsaved data. Continue?"),
 				 QMessageBox::Yes | QMessageBox::No,
 				 QMessageBox::No) == QMessageBox::No)
 	  return;
@@ -5193,8 +5217,8 @@ void qtbook::slotShowPrev(void)
   else
     {
       if(userinfo_diag->haveMemberChanges())
-	if(QMessageBox::question(userinfo_diag, "BiblioteQ: Question",
-				 "You have unsaved data. Continue?",
+	if(QMessageBox::question(userinfo_diag, tr("BiblioteQ: Question"),
+				 tr("You have unsaved data. Continue?"),
 				 QMessageBox::Yes | QMessageBox::No,
 				 QMessageBox::No) == QMessageBox::No)
 	  return;
@@ -5264,14 +5288,14 @@ void qtbook::slotConnectDB(void)
   if(!QSqlDatabase::isDriverAvailable(str))
     {
       tmphash.clear();
-      QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
-			    "The selected branch's database type does not "
-			    "have a driver associated with it.\n"
-			    "The following drivers are available: " +
-			    drivers + ".\n"
-			    "In addition, Qt expects plugins to exist "
-			    "in: " + plugins + ".\n"
-			    "Please contact your administrator.");
+      QMessageBox::critical(branch_diag, tr("BiblioteQ: Database Error"),
+			    tr("The selected branch's database type does not "
+			       "have a driver associated with it.\n"
+			       "The following drivers are available: ") +
+			    drivers + tr(".") + "\n" +
+			    tr("In addition, Qt expects plugins to exist "
+			       "in: ") + plugins + tr(".") + "\n" +
+			    tr("Please contact your administrator."));
       return;
     }
 
@@ -5299,31 +5323,31 @@ void qtbook::slotConnectDB(void)
   if(!db.isOpen())
     {
       error = true;
-      addError(QString("Database Error"),
-	       QString("Unable to open a database connection "
-		       "with the provided information."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to open a database connection "
+			  "with the provided information.")),
 	       db.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(branch_diag, "BiblioteQ: Database Error",
-			    "Unable to open a database "
-			    "connection with the provided information.");
+      QMessageBox::critical(branch_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to open a database "
+			       "connection with the provided information."));
     }
   else
     {
       if(!db.driver()->hasFeature(QSqlDriver::Transactions))
 	{
 	  error = true;
-	  addError(QString("Database Error"),
-		   QString("The current database driver that you're using "
-			   "does not support transactions. "
-			   "Please upgrade your database and/or driver."),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("The current database driver that you're using "
+			      "does not support transactions. "
+			      "Please upgrade your database and/or driver.")),
 		   db.lastError().text(),
 		   __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (branch_diag, "BiblioteQ: Database Error",
-	     "The current database driver that you're using "
-	     "does not support transactions. "
-	     "Please upgrade your database and/or driver.");
+	    (branch_diag, tr("BiblioteQ: Database Error"),
+	     tr("The current database driver that you're using "
+		"does not support transactions. "
+		"Please upgrade your database and/or driver."));
 	}
     }
 
@@ -5340,18 +5364,19 @@ void qtbook::slotConnectDB(void)
 	    {
 	      error = true;
 	      QMessageBox::critical
-		(branch_diag, "BiblioteQ: User Error",
-		 QString("It appears that the user %1 does not have "
-			 "administrator privileges.").arg
-		 (br.userid->text()));
+		(branch_diag, tr("BiblioteQ: User Error"),
+		 QString(tr("It appears that the user ")) +
+			 br.userid->text() +
+		 QString(tr(" does not have "
+			    "administrator privileges.")));
 	    }
 	  else if(!br.adminCheck->isChecked() && !roles.isEmpty())
 	    {
 	      error = true;
 	      QMessageBox::critical
-		(branch_diag, "BiblioteQ: User Error",
-		 "It appears that you are attempting to assume an "
-		 "administrator role in a non-administrator mode.");
+		(branch_diag, tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to assume an "
+		    "administrator role in a non-administrator mode."));
 	    }
 	}
     }
@@ -5374,7 +5399,7 @@ void qtbook::slotConnectDB(void)
   if(connected_bar_label != 0)
     {
       connected_bar_label->setPixmap(QPixmap("icons.d/16x16/connected.png"));
-      connected_bar_label->setToolTip("Connected");
+      connected_bar_label->setToolTip(tr("Connected"));
     }
 
   ui.printTool->setEnabled(true);
@@ -5414,7 +5439,7 @@ void qtbook::slotConnectDB(void)
       ** Patron.
       */
 
-      ui.actionRequests->setToolTip("Request Selected Item(s)");
+      ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
       ui.actionRequests->setEnabled(true);
       ui.actionReservationHistory->setEnabled(true);
     }
@@ -5467,7 +5492,7 @@ void qtbook::slotDisconnect(void)
   ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionRequests->setEnabled(false);
-  ui.actionRequests->setToolTip("Item Requests");
+  ui.actionRequests->setToolTip(tr("Item Requests"));
   ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
@@ -5476,23 +5501,23 @@ void qtbook::slotDisconnect(void)
     {
       connected_bar_label->setPixmap
 	(QPixmap("icons.d/16x16/disconnected.png"));
-      connected_bar_label->setToolTip("Disconnected");
+      connected_bar_label->setToolTip(tr("Disconnected"));
     }
 
   if(status_bar_label != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
-      status_bar_label->setToolTip("Standard User Mode");
+      status_bar_label->setToolTip(tr("Standard User Mode"));
     }
 
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
-  previousTypeFilter = "All";
-  ui.table->resetTable("All", roles);
+  previousTypeFilter = tr("All");
+  ui.table->resetTable(tr("All"), roles);
   ui.table->clearHiddenColumnsRecord();
   prepareFilter();
-  addConfigOptions("All");
+  addConfigOptions(tr("All"));
   ui.typefilter->setCurrentIndex(0);
   slotDisplaySummary();
   emptyContainers();
@@ -5544,11 +5569,11 @@ void qtbook::resetAdminBrowser(void)
   ab.table->horizontalScrollBar()->setValue(0);
   ab.table->setSortingEnabled(false);
   list.clear();
-  list.append("ID");
-  list.append("Administrator");
-  list.append("Circulation");
-  list.append("Librarian");
-  list.append("Membership");
+  list.append(tr("ID"));
+  list.append(tr("Administrator"));
+  list.append(tr("Circulation"));
+  list.append(tr("Librarian"));
+  list.append(tr("Membership"));
   ab.table->setColumnCount(list.size());
   ab.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -5568,16 +5593,16 @@ void qtbook::resetMembersBrowser(void)
   bb.table->setRowCount(0);
   bb.table->scrollToTop();
   bb.table->horizontalScrollBar()->setValue(0);
-  list.append("Member ID");
-  list.append("First Name");
-  list.append("Last Name");
-  list.append("Member Since");
-  list.append("Books Reserved");
-  list.append("CDs Reserved");
-  list.append("DVDs Reserved");
-  list.append("Journals Reserved");
-  list.append("Magazines Reserved");
-  list.append("Video Games Reserved");
+  list.append(tr("Member ID"));
+  list.append(tr("First Name"));
+  list.append(tr("Last Name"));
+  list.append(tr("Member Since"));
+  list.append(tr("Books Reserved"));
+  list.append(tr("CDs Reserved"));
+  list.append(tr("DVDs Reserved"));
+  list.append(tr("Journals Reserved"));
+  list.append(tr("Magazines Reserved"));
+  list.append(tr("Video Games Reserved"));
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -5665,14 +5690,14 @@ void qtbook::slotPopulateMembersBrowser(void)
   if(!query.exec(str))
     {
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to retrieve member data for table "
-		       "populating."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve member data for table "
+			  "populating.")),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			    "Unable to retrieve member data for "
-			    "table populating.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve member data for "
+			       "table populating."));
       return;
     }
 
@@ -5684,8 +5709,8 @@ void qtbook::slotPopulateMembersBrowser(void)
     bb.table->setRowCount(query.size());
 
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Populating the table...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Populating the table..."));
 
   if(selectedBranch["database_type"] == "sqlite")
     progress.setMaximum
@@ -5718,10 +5743,10 @@ void qtbook::slotPopulateMembersBrowser(void)
 		bb.table->setItem(i, j, item);
 	      }
 	    else
-	      addError(QString("Memory Error"),
-		       QString("Unable to allocate memory for the "
-			       "\"item\" object. "
-			       "This is a serious problem!"),
+	      addError(QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate memory for the "
+				  "\"item\" object. "
+				  "This is a serious problem!")),
 		       QString(""), __FILE__, __LINE__);
 	  }
 
@@ -5754,29 +5779,29 @@ void qtbook::updateMembersBrowser(void)
   if((row = bb.table->currentRow()) < 0)
     return;
 
-  memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+  memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString("Database Error"),
-	     QString("Unable to determine the number of reserved items "
-		     "for the selected member."),
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to determine the number of reserved items "
+			"for the selected member.")),
 	     errorstr, __FILE__, __LINE__);
   else
     {
-      misc_functions::updateColumn(bb.table, row, "Books Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("Books Reserved"),
 				   counts["numbooks"]);
-      misc_functions::updateColumn(bb.table, row, "CDs Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("CDs Reserved"),
 				   counts["numcds"]);
-      misc_functions::updateColumn(bb.table, row, "DVDs Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("DVDs Reserved"),
 				   counts["numdvds"]);
-      misc_functions::updateColumn(bb.table, row, "Journals Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("Journals Reserved"),
 				   counts["numjournals"]);
-      misc_functions::updateColumn(bb.table, row, "Magazines Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("Magazines Reserved"),
 				   counts["nummagazines"]);
-      misc_functions::updateColumn(bb.table, row, "Video Games Reserved",
+      misc_functions::updateColumn(bb.table, row, tr("Video Games Reserved"),
 				   counts["numvideogames"]);
       counts.clear();
 
@@ -5801,9 +5826,9 @@ void qtbook::updateMembersBrowser(const QString &memberid)
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
-    addError(QString("Database Error"),
-	     QString("Unable to retrieve the number of reserved items "
-		     "by the selected member."),
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the number of reserved items "
+			"by the selected member.")),
 	     errorstr, __FILE__, __LINE__);
   else
     {
@@ -5811,22 +5836,24 @@ void qtbook::updateMembersBrowser(const QString &memberid)
 
       for(i = 0; i < bb.table->rowCount(); i++)
 	{
-	  str = misc_functions::getColumnString(bb.table, i, "Member ID");
+	  str = misc_functions::getColumnString(bb.table, i, tr("Member ID"));
 
 	  if(str == memberid)
 	    {
-	      misc_functions::updateColumn(bb.table, i, "Books Reserved",
+	      misc_functions::updateColumn(bb.table, i, tr("Books Reserved"),
 					   counts["numbooks"]);
-	      misc_functions::updateColumn(bb.table, i, "CDs Reserved",
+	      misc_functions::updateColumn(bb.table, i, tr("CDs Reserved"),
 					   counts["numcds"]);
-	      misc_functions::updateColumn(bb.table, i, "DVDs Reserved",
+	      misc_functions::updateColumn(bb.table, i, tr("DVDs Reserved"),
 					   counts["numdvds"]);
-	      misc_functions::updateColumn(bb.table, i, "Journals Reserved",
+	      misc_functions::updateColumn(bb.table, i,
+					   tr("Journals Reserved"),
 					   counts["numjournals"]);
-	      misc_functions::updateColumn(bb.table, i, "Magazines Reserved",
+	      misc_functions::updateColumn(bb.table, i,
+					   tr("Magazines Reserved"),
 					   counts["nummagazines"]);
 	      misc_functions::updateColumn(bb.table, i,
-					   "Video Games Reserved",
+					   tr("Video Games Reserved"),
 					   counts["numvideogames"]);
 	      break;
 	    }
@@ -5853,12 +5880,12 @@ void qtbook::slotModifyBorrower(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "Please select a member to modify.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member to modify."));
       return;
     }
 
-  str = misc_functions::getColumnString(bb.table, row, "Member ID");
+  str = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   searchstr = "SELECT * FROM member WHERE memberid = '";
   searchstr.append(str);
   searchstr.append("'");
@@ -5867,20 +5894,20 @@ void qtbook::slotModifyBorrower(void)
   if(!query.exec(searchstr) || !query.next())
     {
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to retrieve the selected member's "
-		       "information."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve the selected member's "
+			  "information.")),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
 
       if(userinfo_diag->isVisible())
-	QMessageBox::critical(userinfo_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve the selected member's "
-			      "information.");
+	QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve the selected member's "
+				 "information."));
       else
-	QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve the selected member's "
-			      "information.");
+	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve the selected member's "
+				 "information."));
 
       return;
     }
@@ -5941,7 +5968,7 @@ void qtbook::slotModifyBorrower(void)
   userinfo_diag->userinfo.memberid->setReadOnly(true);
   userinfo_diag->userinfo.prevTool->setVisible(true);
   userinfo_diag->userinfo.nextTool->setVisible(true);
-  userinfo_diag->setWindowTitle("BiblioteQ: Modify Member");
+  userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo_diag->userinfo.membersince->setFocus();
   userinfo_diag->userinfo.memberid->setPalette
@@ -5985,7 +6012,7 @@ void qtbook::slotCheckout(void)
 
       oid = misc_functions::getColumnString
 	(ui.table, row2, "MYOID");
-      type = misc_functions::getColumnString(ui.table, row2, "Type");
+      type = misc_functions::getColumnString(ui.table, row2, tr("Type"));
       qapp->setOverrideCursor(Qt::WaitCursor);
       availability = misc_functions::getAvailability
 	(oid, db, type, errorstr).toInt();
@@ -5993,27 +6020,27 @@ void qtbook::slotCheckout(void)
 
       if(!errorstr.isEmpty())
 	{
-	  addError(QString("Database Error"),
-		   QString("Unable to determine the availability of "
-			   "the selected item."),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("Unable to determine the availability of "
+			      "the selected item.")),
 		   errorstr, __FILE__, __LINE__);
 	  return;
 	}
 
       if(availability < 1)
 	{
-	  QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-				"It appears that the item you selected "
-				"is no longer available for reservation.");
+	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+				tr("It appears that the item you selected "
+				   "is no longer available for reservation."));
 	  return;
 	}
     }
 
   if(row1 < 0 || row2 < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "Please select a member and an item "
-			    "to continue with the reservation process.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("Please select a member and an item "
+			       "to continue with the reservation process."));
       return;
     }
   else
@@ -6021,33 +6048,36 @@ void qtbook::slotCheckout(void)
       if((item = new(std::nothrow) qtbook_item(row2)) != 0)
 	{
 	  quantity = misc_functions::getColumnString(ui.table, row2,
-						     "Quantity").toInt();
+						     tr("Quantity")).toInt();
 
 	  if(type.toLower() == "book")
 	    itemid = misc_functions::getColumnString(ui.table, row2,
-						     "ISBN-10");
+						     tr("ISBN-10"));
 	  else if(type.toLower() == "dvd")
-	    itemid = misc_functions::getColumnString(ui.table, row2, "UPC");
+	    itemid = misc_functions::getColumnString(ui.table, row2,
+						     tr("UPC"));
 	  else if(type.toLower() == "journal" || type.toLower() == "magazine")
-	    itemid = misc_functions::getColumnString(ui.table, row2, "ISSN");
+	    itemid = misc_functions::getColumnString(ui.table, row2,
+						     tr("ISSN"));
 	  else if(type.toLower() == "cd")
 	    itemid = misc_functions::getColumnString(ui.table, row2,
-						     "Catalog Number");
+						     tr("Catalog Number"));
 	  else if(type.toLower() == "video game")
-	    itemid = misc_functions::getColumnString(ui.table, row2, "UPC");
+	    itemid = misc_functions::getColumnString(ui.table, row2,
+						     tr("UPC"));
 
 	  if(itemid.isEmpty())
 	    itemid = misc_functions::getColumnString(ui.table, row2,
-						     "ID Number");
+						     tr("ID Number"));
 
 	  if(itemid.isEmpty())
 	    itemid = misc_functions::getColumnString(ui.table, row2, "id");
 
 	  if(itemid.isEmpty())
-	    QMessageBox::critical(members_diag, "BiblioteQ: Error",
-				  "Unable to determine the selected item's "
-				  "ID. In order to reserve the item, its "
-				  "ID must be known.");
+	    QMessageBox::critical(members_diag, tr("BiblioteQ: Error"),
+				  tr("Unable to determine the selected item's "
+				     "ID. In order to reserve the item, its "
+				     "ID must be known."));
 	  else if((copyeditor = new(std::nothrow) copy_editor
 		   (members_diag, item, true,
 		    quantity, oid, itemid,
@@ -6068,35 +6098,35 @@ void qtbook::prepareRequestToolbutton(const QString &typefilter)
     if(db.isOpen())
       {
 	if((roles == "administrator" || roles == "circulation") &&
-	   typefilter == "All Requested")
+	   typefilter == tr("All Requested"))
 	  {
 	    ui.actionRequests->setEnabled(true);
-	    ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
 	      (QIcon("icons.d/32x32/remove_request.png"));
 	  }
-	else if(roles.isEmpty() && (typefilter == "All" ||
-				    typefilter == "Books" ||
-				    typefilter == "DVDs" ||
-				    typefilter == "Journals" ||
-				    typefilter == "Magazines" ||
-				    typefilter == "Music CDs" ||
-				    typefilter == "Video Games"))
+	else if(roles.isEmpty() && (typefilter == tr("All") ||
+				    typefilter == tr("Books") ||
+				    typefilter == tr("DVDs") ||
+				    typefilter == tr("Journals") ||
+				    typefilter == tr("Magazines") ||
+				    typefilter == tr("Music CDs") ||
+				    typefilter == tr("Video Games")))
 	  {
-	    ui.actionRequests->setToolTip("Request Selected Item(s)");
+	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
 	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
-	else if(roles.isEmpty() && typefilter == "All Requested")
+	else if(roles.isEmpty() && typefilter == tr("All Requested"))
 	  {
-	    ui.actionRequests->setToolTip("Cancel Selected Request(s)");
+	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
 	      (QIcon("icons.d/32x32/remove_request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
 	else
 	  {
-	    ui.actionRequests->setToolTip("Item Requests");
+	    ui.actionRequests->setToolTip(tr("Item Requests"));
 	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
 	    ui.actionRequests->setEnabled(false);
 	  }
@@ -6134,58 +6164,58 @@ void qtbook::slotReset(void)
 
       if(all_diag->isVisible())
 	{
-	  if(name.contains("ID Number"))
+	  if(name.contains(tr("ID Number")))
 	    {
 	      al.idnumber->clear();
 	      al.idnumber->setFocus();
 	    }
-	  else if(name.contains("Title"))
+	  else if(name.contains(tr("Title")))
 	    {
 	      al.title->clear();
 	      al.title->setFocus();
 	    }
-	  else if(name.contains("Release Date"))
+	  else if(name.contains(tr("Release Date")))
 	    {
 	      al.publication_date->setDate
 		(QDate::fromString("01/01/7999", "MM/dd/yyyy"));
 	      al.publication_date->setFocus();
 	    }
-	  else if(name.contains("Publisher"))
+	  else if(name.contains(tr("Publisher")))
 	    {
 	      al.publisher->clear();
 	      al.publisher->setFocus();
 	    }
-	  else if(name.contains("Categories"))
+	  else if(name.contains(tr("Categories")))
 	    {
 	      al.category->clear();
 	      al.category->setFocus();
 	    }
-	  else if(name.contains("Price"))
+	  else if(name.contains(tr("Price")))
 	    {
 	      al.price->setValue(-0.01);
 	      al.price->setFocus();
 	    }
-	  else if(name.contains("Language"))
+	  else if(name.contains(tr("Language")))
 	    {
 	      al.language->setCurrentIndex(0);
 	      al.language->setFocus();
 	    }
-	  else if(name.contains("Monetary Units"))
+	  else if(name.contains(tr("Monetary Units")))
 	    {
 	      al.monetary_units->setCurrentIndex(0);
 	      al.monetary_units->setFocus();
 	    }
-	  else if(name.contains("Abstract"))
+	  else if(name.contains(tr("Abstract")))
 	    {
 	      al.description->clear();
 	      al.description->setFocus();
 	    }
-	  else if(name.contains("Copies"))
+	  else if(name.contains(tr("Copies")))
 	    {
 	      al.quantity->setValue(0);
 	      al.quantity->setFocus();
 	    }
-	  else if(name.contains("Location"))
+	  else if(name.contains(tr("Location")))
 	    {
 	      al.location->setCurrentIndex(0);
 	      al.location->setFocus();
@@ -6223,7 +6253,7 @@ void qtbook::addError(const QString &type, const QString &summary,
   if(error_bar_label != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/log.png"));
-      error_bar_label->setToolTip("Error Log Active");
+      error_bar_label->setToolTip(tr("Error Log Active"));
     }
 
   er.table->setSortingEnabled(false);
@@ -6258,7 +6288,7 @@ void qtbook::addError(const QString &type, const QString &summary,
 	er.table->resizeColumnToContents(i);
       }
     else
-      cerr << "Memory failure in addError()!" << endl;
+      cerr << tr("Memory failure in addError()!").toStdString() << endl;
 
   er.table->resizeColumnsToContents();
   er.table->setSortingEnabled(true);
@@ -6272,12 +6302,12 @@ void qtbook::slotResetErrorLog(void)
 {
   QStringList list;
 
-  list.append("Event Time");
-  list.append("Event Type");
-  list.append("Summary");
-  list.append("Full Description");
-  list.append("File");
-  list.append("Line Number");
+  list.append(tr("Event Time"));
+  list.append(tr("Event Type"));
+  list.append(tr("Summary"));
+  list.append(tr("Full Description"));
+  list.append(tr("File"));
+  list.append(tr("Line Number"));
   er.table->clear();
   er.table->setCurrentItem(0);
   er.table->setColumnCount(0);
@@ -6294,7 +6324,7 @@ void qtbook::slotResetErrorLog(void)
   if(error_bar_label != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
-      error_bar_label->setToolTip("Empty Error Log");
+      error_bar_label->setToolTip(tr("Empty Error Log"));
     }
 }
 
@@ -7223,14 +7253,14 @@ void qtbook::slotListReservedItems(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "In order to list a member's reserved items, "
-			    "you must first select the member.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("In order to list a member's reserved items, "
+			       "you must first select the member."));
       return;
     }
 
-  memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
-  (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
+  memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
+  (void) populateTable(POPULATE_ALL, tr("All Reserved"), memberid);
   members_diag->raise();
 }
 
@@ -7244,11 +7274,11 @@ void qtbook::slotListOverdueItems(void)
   QString memberid = "";
 
   if(members_diag->isVisible())
-    memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+    memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   else if(roles.isEmpty())
     memberid = br.userid->text();
 
-  (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+  (void) populateTable(POPULATE_ALL, tr("All Overdue"), memberid);
   members_diag->raise();
 }
 
@@ -7267,19 +7297,19 @@ void qtbook::slotReserveCopy(void)
   if(row < 0)
     {
       if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			      "In order to reserve an item, you must "
-			      "first select it.");
+	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			      tr("In order to reserve an item, you must "
+				 "first select it."));
       else
-	QMessageBox::critical(this, "BiblioteQ: User Error",
-			      "In order to reserve an item, you must "
-			      "first select it.");
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("In order to reserve an item, you must "
+				 "first select it."));
 
       return;
     }
 
   oid = misc_functions::getColumnString(ui.table, row, "MYOID");
-  type = misc_functions::getColumnString(ui.table, row, "Type");
+  type = misc_functions::getColumnString(ui.table, row, tr("Type"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   availability = misc_functions::getAvailability
     (oid, db, type, errorstr).toInt();
@@ -7287,26 +7317,26 @@ void qtbook::slotReserveCopy(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString("Database Error"),
-	       QString("Unable to determine the availability of "
-		       "the selected item."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the availability of "
+			  "the selected item.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to determine the availability of "
-			    "the selected item.");
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the availability of "
+			       "the selected item."));
       return;
     }
 
   if(availability < 1)
     {
       if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			      "It appears that the item you selected "
-			      "is no longer available for reservation.");
+	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			      tr("It appears that the item you selected "
+				 "is no longer available for reservation."));
       else
-	QMessageBox::critical(this, "BiblioteQ: User Error",
-			      "It appears that the item you selected "
-			      "is no longer available for reservation.");
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("It appears that the item you selected "
+				 "is no longer available for reservation."));
 
       return;
     }
@@ -7314,9 +7344,9 @@ void qtbook::slotReserveCopy(void)
   slotShowMembersBrowser();
 
   if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
-    if(QMessageBox::question(members_diag, "BiblioteQ: Question",
-			     "Would you like to retrieve the list of "
-			     "members?",
+    if(QMessageBox::question(members_diag, tr("BiblioteQ: Question"),
+			     tr("Would you like to retrieve the list of "
+				"members?"),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::Yes)
       slotPopulateMembersBrowser();
@@ -7421,9 +7451,9 @@ void qtbook::slotShowCustomQuery(void)
       list.sort();
       cq.tables_t->setColumnCount(3);
       cq.tables_t->setHeaderLabels(QStringList()
-				   << "Table Name"
-				   << "Column"
-				   << "Column Type");
+				   << tr("Table Name")
+				   << tr("Column")
+				   << tr("Column Type"));
 
 
       for(i = 0; i < list.size(); i++)
@@ -7436,12 +7466,12 @@ void qtbook::slotShowCustomQuery(void)
 	      {
 		if((item2 = new(std::nothrow) QTreeWidgetItem(item1)) == 0)
 		  {
-		    addError(QString("Memory Error"),
-			     QString("Unable to allocate "
-				     "memory for the \"item2\" "
-				     "object. "
-				     "This is a serious "
-				     "problem!"), QString(""),
+		    addError(QString(tr("Memory Error")),
+			     QString(tr("Unable to allocate "
+					"memory for the \"item2\" "
+					"object. "
+					"This is a serious "
+					"problem!")), QString(""),
 			     __FILE__, __LINE__);
 		    continue;
 		  }
@@ -7452,12 +7482,12 @@ void qtbook::slotShowCustomQuery(void)
 	      }
 	  }
 	else
-	  addError(QString("Memory Error"),
-		   QString("Unable to allocate "
-			   "memory for the \"item1\" "
-			   "object. "
-			   "This is a serious "
-			   "problem!"), QString(""),
+	  addError(QString(tr("Memory Error")),
+		   QString(tr("Unable to allocate "
+			      "memory for the \"item1\" "
+			      "object. "
+			      "This is a serious "
+			      "problem!")), QString(""),
 		   __FILE__, __LINE__);
 
       for(i = 0; i < cq.tables_t->columnCount(); i++)
@@ -7496,8 +7526,8 @@ void qtbook::slotExecuteCustomQuery(void)
 
   if(querystr.isEmpty())
     {
-      QMessageBox::critical(customquery_diag, "BiblioteQ: User Error",
-			    "Please provide a valid SQL statement.");
+      QMessageBox::critical(customquery_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a valid SQL statement."));
       return;
     }
 
@@ -7508,13 +7538,13 @@ void qtbook::slotExecuteCustomQuery(void)
      querystr.toLower().contains("insert") ||
      querystr.toLower().contains("update"))
     {
-      QMessageBox::critical(customquery_diag, "BiblioteQ: User Error",
-			    "Please provide a non-destructive SQL "
-			    "statement.");
+      QMessageBox::critical(customquery_diag, tr("BiblioteQ: User Error"),
+			    tr("Please provide a non-destructive SQL "
+			       "statement."));
       return;
     }
 
-  if(populateTable(CUSTOM_QUERY, "Custom", querystr) == 0)
+  if(populateTable(CUSTOM_QUERY, tr("Custom"), querystr) == 0)
     customquery_diag->close();
   else
     {
@@ -7541,8 +7571,8 @@ void qtbook::slotPrintSelected(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(this, "BiblioteQ: User Error",
-			    "Please select at least one item to print.");
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select at least one item to print."));
       return;
     }
 
@@ -7594,40 +7624,40 @@ void qtbook::slotPrintReserved(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "In order to print a member's reserved items, "
-			    "you must first select the member.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("In order to print a member's reserved items, "
+			       "you must first select the member."));
       return;
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   itemsReserved = misc_functions::getColumnString
-    (bb.table, row, "Books Reserved").toInt() +
+    (bb.table, row, tr("Books Reserved")).toInt() +
     misc_functions::getColumnString
-    (bb.table, row, "CDs Reserved").toInt() +
+    (bb.table, row, tr("CDs Reserved")).toInt() +
     misc_functions::getColumnString
-    (bb.table, row, "DVDs Reserved").toInt() +
+    (bb.table, row, tr("DVDs Reserved")).toInt() +
     misc_functions::getColumnString
-    (bb.table, row, "Journals Reserved").toInt() +
+    (bb.table, row, tr("Journals Reserved")).toInt() +
     misc_functions::getColumnString
-    (bb.table, row, "Magazines Reserved").toInt() +
+    (bb.table, row, tr("Magazines Reserved")).toInt() +
     misc_functions::getColumnString
-    (bb.table, row, "Video Games Reserved").toInt();
+    (bb.table, row, tr("Video Games Reserved")).toInt();
   qapp->restoreOverrideCursor();
 
   if(itemsReserved < 1)
     {
-      QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			    "The member that you selected does not have "
-			    "any reserved items.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("The member that you selected does not have "
+			       "any reserved items."));
       return;
     }
 
-  memberid = misc_functions::getColumnString(bb.table, row, "Member ID");
+  memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   memberinfo["firstname"] = misc_functions::getColumnString(bb.table, row,
-							    "First Name");
+							    tr("First Name"));
   memberinfo["lastname"] = misc_functions::getColumnString(bb.table, row,
-							   "Last Name");
+							   tr("Last Name"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   itemsList = misc_functions::getReservedItems(memberid, getDB(), errorstr);
   qapp->restoreOverrideCursor();
@@ -7635,8 +7665,8 @@ void qtbook::slotPrintReserved(void)
   if(errorstr.isEmpty())
     {
       str = "<html>\n";
-      str += "Reserved Items for " + memberinfo["lastname"] +
-	", " + memberinfo["firstname"] + "<br><br>";
+      str += tr("Reserved Items for ") + memberinfo["lastname"] +
+	tr(", ") + memberinfo["firstname"] + "<br><br>";
 
       for(int i = 0; i < itemsList.size(); i++)
 	str += itemsList[i] + "<br><br>";
@@ -7654,13 +7684,13 @@ void qtbook::slotPrintReserved(void)
     }
   else
     {
-      addError(QString("Database Error"),
-	       QString("Unable to determine the reserved items for "
-		       "the selected member."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to determine the reserved items for "
+			  "the selected member.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			    "Unable to determine the reserved items for "
-			    "the selected member.");
+      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to determine the reserved items for "
+			       "the selected member."));
     }
 
   itemsList.clear();
@@ -7682,10 +7712,10 @@ void qtbook::slotCopyError(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(error_diag, "BiblioteQ: User Error",
-			    "To copy the contents of the Error Dialog into "
-			    "the clipboard buffer, you must first "
-			    "select at least one entry.");
+      QMessageBox::critical(error_diag, tr("BiblioteQ: User Error"),
+			    tr("To copy the contents of the Error Dialog into "
+			       "the clipboard buffer, you must first "
+			       "select at least one entry."));
       return;
     }
 
@@ -7728,9 +7758,10 @@ void qtbook::slotShowHistory(void)
   if(members_diag->isVisible())
     if(row < 0)
       {
-	QMessageBox::critical(members_diag, "BiblioteQ: User Error",
-			      "In order to display a member's reservation "
-			      "history, you must first select the member.");
+	QMessageBox::critical
+	  (members_diag, tr("BiblioteQ: User Error"),
+	   tr("In order to display a member's reservation "
+	      "history, you must first select the member."));
 	return;
       }
 
@@ -7760,7 +7791,7 @@ void qtbook::slotShowHistory(void)
 			    "%1.myoid = history.item_oid AND "
 			    "member.memberid = '%2' AND %1.type = "
 			    "history.type ").arg(list[i]).arg
-	  (misc_functions::getColumnString(bb.table, row, "Member ID"));
+	  (misc_functions::getColumnString(bb.table, row, tr("Member ID")));
 
 	if(i != list.size() - 1)
 	  querystr += "UNION ";
@@ -7797,24 +7828,25 @@ void qtbook::slotShowHistory(void)
   if(!query.exec(querystr))
     {
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to retrieve reservation history data for table "
-		       "populating."),
-	       query.lastError().text(),
-	       __FILE__, __LINE__);
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve reservation history data for table "
+		    "populating.")),
+	 query.lastError().text(),
+	 __FILE__, __LINE__);
 
       if(history_diag->isVisible())
-	QMessageBox::critical(history_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve reservation "
-			      "history data for table populating.");
+	QMessageBox::critical(history_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
       else if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, "BiblioteQ: Database Error",
-			      "Unable to retrieve reservation "
-			      "history data for table populating.");
+	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
       else
-	QMessageBox::critical(this, "BiblioteQ: Database Error",
-			      "Unable to retrieve reservation "
-			      "history data for table populating.");
+	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			      tr("Unable to retrieve reservation "
+				 "history data for table populating."));
 
       return;
     }
@@ -7825,22 +7857,22 @@ void qtbook::slotShowHistory(void)
   history.table->setColumnCount(0);
   history.table->setRowCount(0);
   list.clear();
-  list.append("Member ID");
+  list.append(tr("Member ID"));
 
   if(!roles.isEmpty())
     {
-      list.append("First Name");
-      list.append("Last Name");
+      list.append(tr("First Name"));
+      list.append(tr("Last Name"));
     }
 
-  list.append("Title");
-  list.append("ID Number");
-  list.append("Barcode");
-  list.append("Type");
-  list.append("Reservation Date");
-  list.append("Original Due Date");
-  list.append("Returned Date");
-  list.append("Lender");
+  list.append(tr("Title"));
+  list.append(tr("ID Number"));
+  list.append(tr("Barcode"));
+  list.append(tr("Type"));
+  list.append(tr("Reservation Date"));
+  list.append(tr("Original Due Date"));
+  list.append(tr("Returned Date"));
+  list.append(tr("Lender"));
   list.append("MYOID");
   history.table->setColumnCount(list.size());
   history.table->setHorizontalHeaderLabels(list);
@@ -7854,8 +7886,8 @@ void qtbook::slotShowHistory(void)
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Populating the table...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Populating the table..."));
 
   if(selectedBranch["database_type"] == "sqlite")
     progress.setMaximum
@@ -7885,10 +7917,10 @@ void qtbook::slotShowHistory(void)
 		history.table->setItem(i, j, item);
 	      }
 	    else
-	      addError(QString("Memory Error"),
-		       QString("Unable to allocate memory for the "
-			       "\"item\" object. "
-			       "This is a serious problem!"),
+	      addError(QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate memory for the "
+				  "\"item\" object. "
+				  "This is a serious problem!")),
 		       QString(""), __FILE__, __LINE__);
 	  }
 
@@ -7940,19 +7972,19 @@ void qtbook::slotPrintReservationHistory(void)
   if(history.table->rowCount() == 0)
     {
       if(members_diag->isVisible())
-	QMessageBox::critical(history_diag, "BiblioteQ: User Error",
-			      "The selected member does not yet have a "
-			      "reservation history to print.");
+	QMessageBox::critical(history_diag, tr("BiblioteQ: User Error"),
+			      tr("The selected member does not yet have a "
+				 "reservation history to print."));
       else
-	QMessageBox::critical(history_diag, "BiblioteQ: User Error",
-			      "You do not yet have a reservation history "
-			      "to print.");
+	QMessageBox::critical(history_diag, tr("BiblioteQ: User Error"),
+			      tr("You do not yet have a reservation history "
+				 "to print."));
 
       return;
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  html = "Reservation History<br><br>";
+  html = tr("Reservation History") + "<br><br>";
 
   for(i = 0; i < history.table->rowCount(); i++)
     {
@@ -8022,7 +8054,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
   if(history_diag->isVisible())
     if(history.table->rowCount() > 0 &&
-       misc_functions::getColumnString(history.table, 0, "Member ID") ==
+       misc_functions::getColumnString(history.table, 0, tr("Member ID")) ==
        memberid)
       {
 	qapp->setOverrideCursor(Qt::WaitCursor);
@@ -8034,12 +8066,13 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 	    value2 = misc_functions::getColumnString
 	      (history.table, i, "Barcode");
 	    value3 = misc_functions::getColumnString
-	      (history.table, i, "Item Type").toLower().remove(" ");
+	      (history.table, i, tr("Item Type")).toLower().remove(" ");
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
-		misc_functions::updateColumn(history.table, i,
-					     "Returned Date", returnedDate);
+		misc_functions::updateColumn
+		  (history.table, i,
+		   tr("Returned Date"), returnedDate);
 		break;
 	      }
 	  }
@@ -8072,23 +8105,25 @@ void qtbook::slotSavePassword(void)
 
   if(pass.currentpassword->text() != br.password->text())
     {
-      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
-			    "The current password is incorrect.");
+      QMessageBox::critical(pass_diag, tr("BiblioteQ: User Error"),
+			    tr("The current password is incorrect."));
       pass.currentpassword->setFocus();
       return;
     }
   else if(pass.password->text().length() < 8)
     {
-      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
-			    "The password must be at least eight characters "
-			    "long.");
+      QMessageBox::critical
+	(pass_diag, tr("BiblioteQ: User Error"),
+	 tr("The password must be at least eight characters "
+	    "long."));
       pass.password->setFocus();
       return;
     }
   else if(pass.password->text() != pass.passwordAgain->text())
     {
-      QMessageBox::critical(pass_diag, "BiblioteQ: User Error",
-			    "The passwords do not match. Please try again.");
+      QMessageBox::critical
+	(pass_diag, tr("BiblioteQ: User Error"),
+	 tr("The passwords do not match. Please try again."));
       pass.password->setFocus();
       return;
     }
@@ -8100,11 +8135,11 @@ void qtbook::slotSavePassword(void)
 
   if(!errorstr.isEmpty())
     {
-      addError(QString("Database Error"),
-	       QString("Unable to save the new password."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to save the new password.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(pass_diag, "BiblioteQ: Database Error",
-			    "Unable to save the new password.");
+      QMessageBox::critical(pass_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to save the new password."));
     }
   else
     {
@@ -8141,7 +8176,7 @@ void qtbook::slotSelectDatabaseFile(void)
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("SQLite Databases (*.db *.sqlite)");
-  dialog.setWindowTitle("BiblioteQ: SQLite Database Selection");
+  dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
 
   if(dialog.result() == QDialog::Accepted)
@@ -8195,19 +8230,19 @@ void qtbook::slotAddAdmin(void)
 	    ab.table->setItem(ab.table->rowCount() - 1, 0, item);
 	  }
 	else
-	  addError(QString("Memory Error"),
-		   QString("Unable to allocate memory for the "
-			   "\"item\" object. "
-			   "This is a serious problem!"),
+	  addError(QString(tr("Memory Error")),
+		   QString(tr("Unable to allocate memory for the "
+			      "\"item\" object. "
+			      "This is a serious problem!")),
 		   QString(""), __FILE__, __LINE__);
       }
     else
       {
 	if((checkBox = new(std::nothrow) QCheckBox()) == 0)
-	  addError(QString("Memory Error"),
-		   QString("Unable to allocate memory for the "
-			   "\"checkBox\" object. "
-			   "This is a serious problem!"),
+	  addError(QString(tr("Memory Error")),
+		   QString(tr("Unable to allocate memory for the "
+			      "\"checkBox\" object. "
+			      "This is a serious problem!")),
 		   QString(""), __FILE__, __LINE__);
 	else
 	  {
@@ -8230,8 +8265,9 @@ void qtbook::slotDeleteAdmin(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
-			    "To delete an entry, you must first select it.");
+      QMessageBox::critical
+	(admin_diag, tr("BiblioteQ: User Error"),
+	 tr("To delete an entry, you must first select it."));
       return;
     }
 
@@ -8240,9 +8276,9 @@ void qtbook::slotDeleteAdmin(void)
   if((ab.table->item(row, 0)->flags() & Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
     {
-      QMessageBox::critical(admin_diag, "BiblioteQ: User Error",
-			    "As an administrator, you may not delete "
-			    "your account.");
+      QMessageBox::critical(admin_diag, tr("BiblioteQ: User Error"),
+			    tr("As an administrator, you may not delete "
+			       "your account."));
       return;
     }
   else
@@ -8316,14 +8352,14 @@ void qtbook::slotRefreshAdminList(void)
   if(!query.exec(querystr))
     {
       qapp->restoreOverrideCursor();
-      addError(QString("Database Error"),
-	       QString("Unable to retrieve administrator data for table "
-		       "populating."),
+      addError(QString(tr("Database Error")),
+	       QString(tr("Unable to retrieve administrator data for table "
+			  "populating.")),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(admin_diag, "BiblioteQ: Database Error",
-			    "Unable to retrieve administrator "
-			    "data for table populating.");
+      QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve administrator "
+			       "data for table populating."));
 
       return;
     }
@@ -8332,8 +8368,8 @@ void qtbook::slotRefreshAdminList(void)
   resetAdminBrowser();
   ab.table->setRowCount(query.size());
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Populating the table...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Populating the table..."));
   progress.setMaximum(query.size());
   progress.show();
   progress.update();
@@ -8361,10 +8397,10 @@ void qtbook::slotRefreshAdminList(void)
 			ab.table->setItem(i, j, item);
 		      }
 		    else
-		      addError(QString("Memory Error"),
-			       QString("Unable to allocate memory for the "
-				       "\"item\" object. "
-				       "This is a serious problem!"),
+		      addError(QString(tr("Memory Error")),
+			       QString(tr("Unable to allocate memory for the "
+					  "\"item\" object. "
+					  "This is a serious problem!")),
 			       QString(""), __FILE__, __LINE__);
 		  }
 		else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
@@ -8383,17 +8419,17 @@ void qtbook::slotRefreshAdminList(void)
 			      SLOT(slotAdminCheckBoxClicked(int)));
 		  }
 		else
-		  addError(QString("Memory Error"),
-			   QString("Unable to allocate memory for the "
-				   "\"checkBox\" object. "
-				   "This is a serious problem!"),
+		  addError(QString(tr("Memory Error")),
+			   QString(tr("Unable to allocate memory for the "
+				      "\"checkBox\" object. "
+				      "This is a serious problem!")),
 			   QString(""), __FILE__, __LINE__);
 	    }
 	  else
-	    addError(QString("Memory Error"),
-		     QString("Unable to allocate memory for the "
-			     "\"item\" object. "
-			     "This is a serious problem!"),
+	    addError(QString(tr("Memory Error")),
+		     QString(tr("Unable to allocate memory for the "
+				"\"item\" object. "
+				"This is a serious problem!")),
 		     QString(""), __FILE__, __LINE__);
 	}
 
@@ -8453,8 +8489,8 @@ void qtbook::slotSaveAdministrators(void)
 	ab.table->selectRow(i);
 	ab.table->horizontalScrollBar()->setValue(i);
 	QMessageBox::critical
-	  (admin_diag, "BiblioteQ: User Error",
-	   "Duplicate administrator ids are not allowed.");
+	  (admin_diag, tr("BiblioteQ: User Error"),
+	   tr("Duplicate administrator ids are not allowed."));
 	return;
       }
 
@@ -8465,12 +8501,12 @@ void qtbook::slotSaveAdministrators(void)
     {
       qapp->restoreOverrideCursor();
       addError
-	(QString("Database Error"),
-	 QString("Unable to create a database transaction."),
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
 	 getDB().lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
-	(admin_diag, "BiblioteQ: Database Error",
-	 "Unable to create a database transaction.");
+	(admin_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
       return;
     }
 
@@ -8486,9 +8522,10 @@ void qtbook::slotSaveAdministrators(void)
       if(!query.exec(querystr))
 	{
 	  qapp->restoreOverrideCursor();
-	  addError(QString("Database Error"),
-		   QString("An error occurred while attempting to remove "
-			   "%1.").arg(deletedAdmins[i]),
+	  addError(QString(tr("Database Error")),
+		   QString(tr("An error occurred while attempting to "
+			      "remove ")) + deletedAdmins[i] +
+		   QString(tr(".")),
 		   query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
@@ -8500,10 +8537,10 @@ void qtbook::slotSaveAdministrators(void)
 	{
 	  qapp->restoreOverrideCursor();
 	  addError
-	    (QString("Database Error"),
-	     QString("An error occurred while attempting to "
-		     "remove the database account %1.").arg
-	     (deletedAdmins[i]),
+	    (QString(tr("Database Error")),
+	     QString(tr("An error occurred while attempting to "
+			"remove the database account ")) +
+	     deletedAdmins[i] + QString(tr(".")),
 	     errorstr, __FILE__, __LINE__);
 	  goto db_rollback;
 	}
@@ -8511,8 +8548,8 @@ void qtbook::slotSaveAdministrators(void)
 
   qapp->restoreOverrideCursor();
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Saving administrator information...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Saving administrator information..."));
   progress.setMaximum(ab.table->rowCount());
   progress.show();
   progress.update();
@@ -8561,10 +8598,10 @@ void qtbook::slotSaveAdministrators(void)
 	{
 	  progress.hide();
 	  addError
-	    (QString("Database Error"),
-	     QString("Unable to create or update the administrator entry "
-		     "for %1.").arg(adminStr), query.lastError().text(),
-	     __FILE__, __LINE__);
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create or update the administrator entry "
+			"for ")) + adminStr + QString(tr(".")),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
@@ -8577,10 +8614,11 @@ void qtbook::slotSaveAdministrators(void)
 	    {
 	      progress.hide();
 	      addError
-		(QString("Database Error"),
-		 QString("An error occurred while attempting to "
-			 "create a database account for %1.").arg
-		 (adminStr), errorstr, __FILE__, __LINE__);
+		(QString(tr("Database Error")),
+		 QString(tr("An error occurred while attempting to "
+			    "create a database account for ")) + adminStr +
+		 QString(tr(".")),
+		 errorstr, __FILE__, __LINE__);
 	      goto db_rollback;
 	    }
 
@@ -8594,10 +8632,11 @@ void qtbook::slotSaveAdministrators(void)
 	    {
 	      progress.hide();
 	      addError
-		(QString("Database Error"),
-		 QString("An error occurred while attempting to "
-			 "revoke privileges from %1.").arg
-		 (adminStr), errorstr, __FILE__, __LINE__);
+		(QString(tr("Database Error")),
+		 QString(tr("An error occurred while attempting to "
+			    "revoke privileges from ")) + adminStr +
+		 QString(tr(".")),
+		 errorstr, __FILE__, __LINE__);
 	      goto db_rollback;
 	    }
 
@@ -8607,10 +8646,11 @@ void qtbook::slotSaveAdministrators(void)
 	    {
 	      progress.hide();
 	      addError
-		(QString("Database Error"),
-		 QString("An error occurred while attempting to "
-			 "grant privileges to %1.").arg
-		 (adminStr), errorstr, __FILE__, __LINE__);
+		(QString(tr("Database Error")),
+		 QString(tr("An error occurred while attempting to "
+			    "grant privileges to ")) + adminStr +
+		 QString(tr(".")),
+		 errorstr, __FILE__, __LINE__);
 	      goto db_rollback;
 	    }
 	}
@@ -8627,15 +8667,15 @@ void qtbook::slotSaveAdministrators(void)
     {
       qapp->restoreOverrideCursor();
       addError
-	(QString("Database Error"),
-	 QString("Unable to commit the current database "
-		 "transaction."),
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to commit the current database "
+		    "transaction.")),
 	 getDB().lastError().text(), __FILE__,
 	 __LINE__);
       QMessageBox::critical(admin_diag,
-			    "BiblioteQ: Database Error",
-			    "Unable to commit the current "
-			    "database transaction.");
+			    tr("BiblioteQ: Database Error"),
+			    tr("Unable to commit the current "
+			       "database transaction."));
       return;
     }
 
@@ -8643,10 +8683,10 @@ void qtbook::slotSaveAdministrators(void)
   deletedAdmins.clear();
 
   if(adminCreated)
-    QMessageBox::information(admin_diag, "BiblioteQ: Information",
-			     "Please notify new administrators that their "
-			     "default password has been set "
-			     "to tempPass.");
+    QMessageBox::information(admin_diag, tr("BiblioteQ: Information"),
+			     tr("Please notify new administrators that their "
+				"default password has been set "
+				"to tempPass."));
 
   slotRefreshAdminList();
   return;
@@ -8656,13 +8696,13 @@ void qtbook::slotSaveAdministrators(void)
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!getDB().rollback())
-    addError(QString("Database Error"), QString("Rollback failure."),
+    addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	     getDB().lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
-  QMessageBox::critical(admin_diag, "BiblioteQ: Database Error",
-			"An error occurred while attempting to save "
-			"the administrator information.");
+  QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
+			tr("An error occurred while attempting to save "
+			   "the administrator information."));
 }
 
 /*
@@ -8691,16 +8731,16 @@ void qtbook::slotRequest(void)
 
   if(!roles.isEmpty())
     isRequesting = false;
-  else if(ui.typefilter->currentText() == "All Requested")
+  else if(ui.typefilter->currentText() == tr("All Requested"))
     isRequesting = false;
 
   if(isRequesting)
     {
       if(list.isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please select at least one item to place "
-				"on request.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please select at least one item to place "
+				   "on request."));
 	  return;
 	}
     }
@@ -8708,16 +8748,16 @@ void qtbook::slotRequest(void)
     {
       if(list.isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please select at least one request to "
-				"cancel.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please select at least one request to "
+				   "cancel."));
 	  return;
 	}
 
       if(list.size() > 0)
-	if(QMessageBox::question(this, "BiblioteQ: Question",
-				 "Are you sure that you wish to "
-				 "cancel the selected request(s)?",
+	if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+				 tr("Are you sure that you wish to "
+				    "cancel the selected request(s)?"),
 				 QMessageBox::Yes | QMessageBox::No,
 				 QMessageBox::No) == QMessageBox::No)
 	  {
@@ -8727,12 +8767,12 @@ void qtbook::slotRequest(void)
     }
 
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
   if(isRequesting)
-    progress.setLabelText("Requesting the selected item(s)...");
+    progress.setLabelText(tr("Requesting the selected item(s)..."));
   else
-    progress.setLabelText("Cancelling the selected request(s)...");
+    progress.setLabelText(tr("Cancelling the selected request(s)..."));
 
   progress.setMaximum(list.size());
   progress.show();
@@ -8755,7 +8795,7 @@ void qtbook::slotRequest(void)
 
       if(isRequesting)
 	{
-	  itemType = misc_functions::getColumnString(ui.table, i, "Type");
+	  itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
 	  querystr = "INSERT INTO item_request (item_oid, memberid, "
 	    "requestdate, type) VALUES(?, ?, ?, ?)";
 	  query.prepare(querystr);
@@ -8776,12 +8816,12 @@ void qtbook::slotRequest(void)
 	  error = true;
 
 	  if(isRequesting)
-	    addError(QString("Database Error"),
-		     QString("Unable to request the item."),
+	    addError(QString(tr("Database Error")),
+		     QString(tr("Unable to request the item.")),
 		     query.lastError().text(), __FILE__, __LINE__);
 	  else
-	    addError(QString("Database Error"),
-		     QString("Unable to cancel the request."),
+	    addError(QString(tr("Database Error")),
+		     QString(tr("Unable to cancel the request.")),
 		     query.lastError().text(), __FILE__, __LINE__);
 	}
       else
@@ -8804,15 +8844,15 @@ void qtbook::slotRequest(void)
   */
 
   if(error && isRequesting)
-    QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Unable to request some or all of the selected "
-			  "items. "
-			  "Please verify that you are not attempting to "
-			  "request duplicate items.");
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Unable to request some or all of the selected "
+			     "items. "
+			     "Please verify that you are not attempting to "
+			     "request duplicate items."));
   else if(error)
-    QMessageBox::critical(this, "BiblioteQ: Database Error",
-			  "Unable to cancel some or all of the selected "
-			  "requests.");
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Unable to cancel some or all of the selected "
+			     "requests."));
 
   if(!isRequesting && numcompleted > 0)
     slotRefresh();
@@ -8829,35 +8869,35 @@ void qtbook::prepareFilter(void)
   QStringList tmplist;
 
   if(selectedBranch["database_type"] == "sqlite")
-    tmplist << "All"
-	    << "All Overdue"
-	    << "All Reserved"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    tmplist << tr("All")
+	    << tr("All Overdue")
+	    << tr("All Reserved")
+	    << tr("Books")
+	    << tr("DVDs")
+	    << tr("Journals")
+	    << tr("Magazines")
+	    << tr("Music CDs")
+	    << tr("Video Games");
   else if(roles.isEmpty() || roles.contains("administrator") ||
 	  roles.contains("circulation"))
-    tmplist << "All"
-	    << "All Overdue"
-	    << "All Requested"
-	    << "All Reserved"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    tmplist << tr("All")
+	    << tr("All Overdue")
+	    << tr("All Requested")
+	    << tr("All Reserved")
+	    << tr("Books")
+	    << tr("DVDs")
+	    << tr("Journals")
+	    << tr("Magazines")
+	    << tr("Music CDs")
+	    << tr("Video Games");
   else
-    tmplist << "All"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    tmplist << tr("All")
+	    << tr("Books")
+	    << tr("DVDs")
+	    << tr("Journals")
+	    << tr("Magazines")
+	    << tr("Music CDs")
+	    << tr("Video Games");
 
   while(ui.typefilter->count() > 0)
     ui.typefilter->removeItem(0);

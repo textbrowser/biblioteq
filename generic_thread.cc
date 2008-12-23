@@ -49,9 +49,9 @@ void generic_thread::run(void)
 
 	if(!qf.open(QIODevice::ReadOnly))
 	  {
-	    errorStr = "Unable to read ";
+	    errorStr = tr("Unable to read ");
 	    errorStr.append(filename);
-	    errorStr.append(". This file is required by BiblioteQ.");
+	    errorStr.append(tr(". This file is required by BiblioteQ."));
 	    return;
 	  }
 
@@ -96,8 +96,8 @@ void generic_thread::run(void)
 
 	if(LOCResults.isEmpty())
 	  {
-	    eType = "Query Error";
-	    errorStr = "Query Error";
+	    eType = tr("Query Error");
+	    errorStr = tr("Query Error");
 	  }
 
 	/*
@@ -121,27 +121,27 @@ void generic_thread::run(void)
 	  }
 	  catch(ZOOM::systemException &e)
 	  {
-	  eType = "System Error";
+	  eType = tr("System Error");
 	  errorStr = QString::number(e.errcode()) +
 	  QString(" (%1)").arg(e.errmsg().data());
 	  }
 	  catch(ZOOM::bib1Exception &e)
 	  {
-	  eType = "BIB-1 Error";
+	  eType = tr("BIB-1 Error");
 	  errorStr = QString::number(e.errcode()) +
 	  QString(" (%1): %2").arg(e.errmsg().data()).arg
 	  (e.addinfo().data());
 	  }
 	  catch(ZOOM::queryException &e)
 	  {
-	  eType = "Query Error";
+	  eType = tr("Query Error");
 	  errorStr = QString::number(e.errcode()) +
 	  QString(" (%1): %2").arg(e.errmsg().data()).arg
 	  (e.addinfo().data());
 	  }
 	  catch(ZOOM::exception &e)
 	  {
-	  eType = "General Error";
+	  eType = tr("General Error");
 	  errorStr = QString::number(e.errcode()) +
 	  QString(" (%1)").arg(e.errmsg().data());
 	  }

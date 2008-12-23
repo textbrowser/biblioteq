@@ -201,7 +201,7 @@
      biblioteq.conf file . This is no longer applicable. (DONE)
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
-105. Prepare the application for translations. (TBD)
+105. Prepare the application for translations. (DONE)
 106. Provide a graphical representation of the database layout. (TBD)
 107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item
@@ -292,7 +292,7 @@
 160. Provide a status dialog for the Library of Congress query. (DONE)
 161. Allow the user to cancel an image download. (DONE)
 162. Integrate the administrator privileges documentation into the
-     application. (TBD)
+     application. (DONE)
 163. Provide an option for downloading OFFSYSTEM files. (TBD)
 164. Warn the user of unsaved changes in the Members Browser. (DONE)
 165. Implement the closeEvent for progress dialogs that must not be
@@ -322,4 +322,4 @@
      Remove the privilege accordingly. (DONE)
 184. Fix the administrator privileges functionality. (DONE)
 185. Improve the misc_functions::updateColumn method. It should locate
-     all appropriate matches.
+     all appropriate matches. (TBD)

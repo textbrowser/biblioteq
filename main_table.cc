@@ -28,165 +28,167 @@ void main_table::setColumns(const QString &type, const QString &roles)
   int i = 0;
   QStringList list;
 
-  if(type == "All" || type == "All Overdue" || type == "All Requested" ||
-     type == "All Reserved")
+  if(type == tr("All") || type == tr("All Overdue") ||
+     type == tr("All Requested") ||
+     type == tr("All Reserved"))
     {
-      if(type == "All Overdue" || type == "All Reserved")
+      if(type == tr("All Overdue") || type == ("All Reserved"))
 	{
 	  if(!roles.isEmpty())
 	    {
-	      list.append("Borrower");
-	      list.append("Member ID");
+	      list.append(tr("Borrower"));
+	      list.append(tr("Member ID"));
 	    }
 
-	  list.append("Barcode");
-	  list.append("Reservation Date");
-	  list.append("Due Date");
+	  list.append(tr("Barcode"));
+	  list.append(tr("Reservation Date"));
+	  list.append(tr("Due Date"));
 	}
-      else if(type == "All Requested")
+      else if(type == tr("All Requested"))
 	{
 	  if(!roles.isEmpty())
 	    {
-	      list.append("Borrower");
-	      list.append("Member ID");
+	      list.append(tr("Borrower"));
+	      list.append(tr("Member ID"));
 	    }
 
-	  list.append("Request Date");
+	  list.append(tr("Request Date"));
 	}
 
-      list.append("Title");
-      list.append("ID Number");
-      list.append("Publisher");
-      list.append("Publication Date");
-      list.append("Categories");
-      list.append("Language");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Location");
+      list.append(tr("Title"));
+      list.append(tr("ID Number"));
+      list.append(tr("Publisher"));
+      list.append(tr("Publication Date"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
 
-      if(type != "All Requested")
-	list.append("Availability");
+      if(type != tr("All Requested"))
+	list.append(tr("Availability"));
 
-      list.append("Type");
+      list.append(tr("Type"));
       list.append("MYOID");
 
-      if(type == "All Requested")
+      if(type == tr("All Requested"))
 	list.append("REQUESTOID");
     }
-  else if(type == "Books")
+  else if(type == tr("Books"))
     {
-      list.append("Title");
-      list.append("Author(s)");
-      list.append("Publisher");
-      list.append("Publication Date");
-      list.append("Edition");
-      list.append("Categories");
-      list.append("Language");
-      list.append("ISBN-10");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Book Binding Type");
-      list.append("Location");
-      list.append("ISBN-13");
-      list.append("LC Control Number");
-      list.append("Call Number");
-      list.append("Dewey Class Number");
-      list.append("Availability");
-      list.append("Type");
+      list.append(tr("Title"));
+      list.append(tr("Author(s)"));
+      list.append(tr("Publisher"));
+      list.append(tr("Publication Date"));
+      list.append(tr("Edition"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("ISBN-10"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Book Binding Type"));
+      list.append(tr("Location"));
+      list.append(tr("ISBN-13"));
+      list.append(tr("LC Control Number"));
+      list.append(tr("Call Number"));
+      list.append(tr("Dewey Class Number"));
+      list.append(tr("Availability"));
+      list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == "Video Games")
+  else if(type == tr("Video Games"))
     {
-      list.append("Title");
-      list.append("Game Rating");
-      list.append("Platform");
-      list.append("Mode");
-      list.append("Publisher");
-      list.append("Release Date");
-      list.append("Genres");
-      list.append("Language");
-      list.append("UPC");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Location");
-      list.append("Availability");
-      list.append("Type");
+      list.append(tr("Title"));
+      list.append(tr("Game Rating"));
+      list.append(tr("Platform"));
+      list.append(tr("Mode"));
+      list.append(tr("Publisher"));
+      list.append(tr("Release Date"));
+      list.append(tr("Genres"));
+      list.append(tr("Language"));
+      list.append(tr("UPC"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
+      list.append(tr("Availability"));
+      list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == "Music CDs")
+  else if(type == tr("Music CDs"))
     {
-      list.append("Title");
-      list.append("Artist");
-      list.append("Format");
-      list.append("Recording Label");
-      list.append("Release Date");
-      list.append("Number of Discs");
-      list.append("Runtime");
-      list.append("Categories");
-      list.append("Language");
-      list.append("Catalog Number");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Location");
-      list.append("Audio");
-      list.append("Recording Type");
-      list.append("Availability");
-      list.append("Type");
+      list.append(tr("Title"));
+      list.append(tr("Artist"));
+      list.append(tr("Format"));
+      list.append(tr("Recording Label"));
+      list.append(tr("Release Date"));
+      list.append(tr("Number of Discs"));
+      list.append(tr("Runtime"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("Catalog Number"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
+      list.append(tr("Audio"));
+      list.append(tr("Recording Type"));
+      list.append(tr("Availability"));
+      list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == "DVDs")
+  else if(type == tr("DVDs"))
     {
-      list.append("Title");
-      list.append("Format");
-      list.append("Studio");
-      list.append("Release Date");
-      list.append("Number of Discs");
-      list.append("Runtime");
-      list.append("Categories");
-      list.append("Language");
-      list.append("UPC");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Location");
-      list.append("Rating");
-      list.append("Region");
-      list.append("Aspect Ratio");
-      list.append("Availability");
-      list.append("Type");
+      list.append(tr("Title"));
+      list.append(tr("Format"));
+      list.append(tr("Studio"));
+      list.append(tr("Release Date"));
+      list.append(tr("Number of Discs"));
+      list.append(tr("Runtime"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("UPC"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
+      list.append(tr("Rating"));
+      list.append(tr("Region"));
+      list.append(tr("Aspect Ratio"));
+      list.append(tr("Availability"));
+      list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == "Journals" || type == "Magazines")
+  else if(type == tr("Journals") || type == tr("Magazines"))
     {
-      list.append("Title");
-      list.append("Publisher");
-      list.append("Publication Date");
-      list.append("Volume");
-      list.append("Issue");
-      list.append("Categories");
-      list.append("Language");
-      list.append("ISSN");
-      list.append("Price");
-      list.append("Monetary Units");
-      list.append("Quantity");
-      list.append("Location");
-      list.append("LC Control Number");
-      list.append("Call Number");
-      list.append("Dewey Number");
-      list.append("Availability");
-      list.append("Type");
+      list.append(tr("Title"));
+      list.append(tr("Publisher"));
+      list.append(tr("Publication Date"));
+      list.append(tr("Volume"));
+      list.append(tr("Issue"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("ISSN"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
+      list.append(tr("LC Control Number"));
+      list.append(tr("Call Number"));
+      list.append(tr("Dewey Number"));
+      list.append(tr("Availability"));
+      list.append(tr("Type"));
       list.append("MYOID");
     }
 
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
 
-  if(type != "All" && type != "All Overdue" && type != "All Requested" &&
-     type != "All Reserved")
+  if(type != tr("All") && type != tr("All Overdue") &&
+     type != tr("All Requested") &&
+     type != tr("All Reserved"))
     {
       setColumnHidden(list.size() - 1, true);
       setColumnHidden(list.size() - 2, true);
@@ -195,7 +197,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
     {
       setColumnHidden(list.size() - 1, true);
 
-      if(type == "All Requested")
+      if(type == tr("All Requested"))
 	setColumnHidden(list.size() - 2, true);
     }
 

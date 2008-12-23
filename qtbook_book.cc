@@ -68,7 +68,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   row = rowArg;
   httpRequestAborted = false;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, "Quantity").toInt();
+    (qmain->getUI().table, row, tr("Quantity")).toInt();
   http1->setHost(qmain->getAmazonHash()["front_cover_host"]);
   http2->setHost(qmain->getAmazonHash()["back_cover_host"]);
   id.setupUi(this);
@@ -87,47 +87,47 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   connect(id.isbn10to13, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN10to13(void)));
   connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(menu->addAction("Reset &Front Cover Image"),
+  connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Back Cover Image"),
+  connect(menu->addAction(tr("Reset &Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &ISBN-10"),
+  connect(menu->addAction(tr("Reset &ISBN-10")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &ISBN-13"),
+  connect(menu->addAction(tr("Reset &ISBN-13")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Edition"),
+  connect(menu->addAction(tr("Reset &Edition")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Author(s)"),
+  connect(menu->addAction(tr("Reset &Author(s)")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Book Binding Type"),
+  connect(menu->addAction(tr("Reset &Book Binding Type")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &LC Control Number"),
+  connect(menu->addAction(tr("Reset &LC Control Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Call Number"),
+  connect(menu->addAction(tr("Reset &Call Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Dewey Class Number"),
+  connect(menu->addAction(tr("Reset &Dewey Class Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Title"),
+  connect(menu->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Publication Date"),
+  connect(menu->addAction(tr("Reset &Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Publisher"),
+  connect(menu->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Categories"),
+  connect(menu->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Price"),
+  connect(menu->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Language"),
+  connect(menu->addAction(tr("Reset &Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Monetary Units"),
+  connect(menu->addAction(tr("Reset &Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Copies"),
+  connect(menu->addAction(tr("Reset &Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Location"),
+  connect(menu->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Abstract"),
+  connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+  connect(menu->addAction(tr("Reset &OFFSYSTEM URL")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
@@ -160,13 +160,13 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   httpProgress->setModal(true);
 
   if(id.language->count() == 0)
-    id.language->addItem("UNKNOWN");
+    id.language->addItem(tr("UNKNOWN"));
 
   if(id.monetary_units->count() == 0)
-    id.monetary_units->addItem("UNKNOWN");
+    id.monetary_units->addItem(tr("UNKNOWN"));
 
   if(id.location->count() == 0)
-    id.location->addItem("UNKNOWN");
+    id.location->addItem(tr("UNKNOWN"));
 
   /*
   ** Save some palettes and style sheets.
@@ -214,10 +214,10 @@ void qtbook_book::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains("Create") ||
-     windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     {
-      if(windowTitle().contains("Modify") && row > -1)
+      if(windowTitle().contains(tr("Modify")) && row > -1)
 	{
 	  newq = id.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -228,14 +228,14 @@ void qtbook_book::slotGo(void)
 	    {
 	      qapp->restoreOverrideCursor();
 	      qmain->addError
-		(QString("Database Error"),
-		 QString("Unable to determine the maximum copy number of "
-			 "the item."),
+		(QString(tr("Database Error")),
+		 QString(tr("Unable to determine the maximum copy number of "
+			    "the item.")),
 		 errorstr, __FILE__, __LINE__);
 	      QMessageBox::critical
-		(this, "BiblioteQ: Database Error",
-		 "Unable to determine the maximum copy number of "
-		 "the item.");
+		(this, tr("BiblioteQ: Database Error"),
+		 tr("Unable to determine the maximum copy number of "
+		    "the item."));
 	      return;
 	    }
 
@@ -243,18 +243,19 @@ void qtbook_book::slotGo(void)
 
 	  if(newq < maxcopynumber)
 	    {
-	      QMessageBox::critical(this, "BiblioteQ: User Error",
-				    "It appears that you are attempting to "
-				    "decrease the "
-				    "number of copies while there are copies "
-				    "that have been reserved.");
+	      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				    tr("It appears that you are attempting to "
+				       "decrease the "
+				       "number of copies while there are "
+				       "copies "
+				       "that have been reserved."));
 	      id.quantity->setValue(oldq);
 	      return;
 	    }
 	  else if(newq > oldq)
 	    if(QMessageBox::question
-	       (this, "BiblioteQ: Question",
-		"Would you like to modify copy information?",
+	       (this, tr("BiblioteQ: Question"),
+		tr("Would you like to modify copy information?"),
 		QMessageBox::Yes | QMessageBox::No,
 		QMessageBox::No) == QMessageBox::Yes)
 	      slotPopulateCopiesEditor();
@@ -266,12 +267,12 @@ void qtbook_book::slotGo(void)
 	{
 	  qapp->restoreOverrideCursor();
 	  qmain->addError
-	    (QString("Database Error"),
-	     QString("Unable to create a database transaction."),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create a database transaction.")),
 	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (this, "BiblioteQ: Database Error",
-	     "Unable to create a database transaction.");
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create a database transaction."));
 	  return;
 	}
 
@@ -285,9 +286,9 @@ void qtbook_book::slotGo(void)
       if(id.id->text().length() != 10 ||
 	 id.isbn13->text().length() != 13)
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete both the "
-				"ISBN-10 and ISBN-13 fields.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete both the "
+				   "ISBN-10 and ISBN-13 fields."));
 
 	  if(id.id->text().length() != 10)
 	    id.id->setFocus();
@@ -302,8 +303,8 @@ void qtbook_book::slotGo(void)
 
       if(id.author->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Author(s) field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Author(s) field."));
 	  id.author->setFocus();
 	  goto db_rollback;
 	}
@@ -313,8 +314,8 @@ void qtbook_book::slotGo(void)
 
       if(id.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Title field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
 	  id.title->setFocus();
 	  goto db_rollback;
 	}
@@ -324,8 +325,8 @@ void qtbook_book::slotGo(void)
 
       if(id.publisher->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Publisher field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Publisher field."));
 	  id.publisher->setFocus();
 	  goto db_rollback;
 	}
@@ -335,8 +336,8 @@ void qtbook_book::slotGo(void)
 
       if(id.category->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Categories field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories field."));
 	  id.category->setFocus();
 	  goto db_rollback;
 	}
@@ -346,8 +347,8 @@ void qtbook_book::slotGo(void)
 
       if(id.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Abstract field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
 	  id.description->setFocus();
 	  goto db_rollback;
 	}
@@ -361,7 +362,7 @@ void qtbook_book::slotGo(void)
       str = id.url->toPlainText().trimmed();
       id.url->setPlainText(str);
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.prepare(QString("UPDATE book SET id = ?, "
 			      "title = ?, "
 			      "edition = ?, author = ?, "
@@ -481,7 +482,7 @@ void qtbook_book::slotGo(void)
       else
 	query.bindValue(20, QVariant(QVariant::String));
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.bindValue(21, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	query.bindValue(21, id.id->text().replace("X", "10"));
@@ -491,13 +492,13 @@ void qtbook_book::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString("Database Error"),
-			  QString("Unable to create or update the entry."),
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Unable to create or update the entry.")),
 			  query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Database Error",
-				"Unable to create or update the entry. "
-				"Please verify that "
-				"the entry does not already exist.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				tr("Unable to create or update the entry. "
+				   "Please verify that "
+				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -506,7 +507,7 @@ void qtbook_book::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
 	      query.prepare(QString("DELETE FROM book_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -518,15 +519,16 @@ void qtbook_book::slotGo(void)
 	      if(!query.exec())
 		{
 		  qapp->restoreOverrideCursor();
-		  qmain->addError(QString("Database Error"),
-				  QString("Unable to purge unnecessary copy "
-					  "data."),
-				  query.lastError().text(), __FILE__,
-				  __LINE__);
+		  qmain->addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to purge unnecessary copy "
+				"data.")),
+		     query.lastError().text(), __FILE__,
+		     __LINE__);
 		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to purge unnecessary "
-					"copy data.");
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to purge unnecessary "
+					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -534,14 +536,14 @@ void qtbook_book::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -560,12 +562,13 @@ void qtbook_book::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to create initial copies."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to create initial copies.");
+		  QMessageBox::critical
+		    (this,
+		     tr("BiblioteQ: Database Error"),
+		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -573,14 +576,14 @@ void qtbook_book::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -620,14 +623,14 @@ void qtbook_book::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
-	      str = QString("BiblioteQ: Modify Book Entry (%1)").arg
-		(id.id->text());
+	      str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		id.id->text() + tr(")");
 	      setWindowTitle(str);
 
-	      if((qmain->getUI().typefilter->currentText() == "All" ||
-		  qmain->getUI().typefilter->currentText() == "Books") &&
+	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
+		  qmain->getUI().typefilter->currentText() == tr("Books")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))
 		{
@@ -638,23 +641,23 @@ void qtbook_book::slotGo(void)
 		      if(column == 0)
 			continue;
 
-		      if(column->text() == "ISBN-10" ||
-			 column->text() == "ID Number")
+		      if(column->text() == tr("ISBN-10") ||
+			 column->text() == tr("ID Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.id->text());
-		      else if(column->text() == "Title")
+		      else if(column->text() == tr("Title"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.title->text());
-		      else if(column->text() == "Edition")
+		      else if(column->text() == tr("Edition"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.edition->currentText().trimmed());
-		      else if(column->text() == "Author(s)")
+		      else if(column->text() == tr("Author(s)"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.author->toPlainText());
-		      else if(column->text() == "Publication Date")
+		      else if(column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publication_date->date().toString("MM/dd/yyyy"));
-		      else if(column->text() == "Publisher")
+		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publisher->toPlainText());
 		      else if(column->text() == "Categories")
