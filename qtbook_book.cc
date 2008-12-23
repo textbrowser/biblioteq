@@ -660,40 +660,40 @@ void qtbook_book::slotGo(void)
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publisher->toPlainText());
-		      else if(column->text() == "Categories")
+		      else if(column->text() == tr("Categories"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.category->toPlainText());
-		      else if(column->text() == "Price")
+		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.price->text());
-		      else if(column->text() == "Language")
+		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.language->currentText().trimmed());
-		      else if(column->text() == "Monetary Units")
+		      else if(column->text() == tr("Monetary Units"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.monetary_units->currentText().trimmed());
-		      else if(column->text() == "Quantity")
+		      else if(column->text() == tr("Quantity"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.quantity->text());
-		      else if(column->text() == "Book Binding Type")
+		      else if(column->text() == tr("Book Binding Type"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.binding->currentText().trimmed());
-		      else if(column->text() == "Location")
+		      else if(column->text() == tr("Location"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.location->currentText().trimmed());
-		      else if(column->text() == "ISBN-13")
+		      else if(column->text() == tr("ISBN-13"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.isbn13->text());
-		      else if(column->text() == "LC Control Number")
+		      else if(column->text() == tr("LC Control Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.lcnum->text());
-		      else if(column->text() == "Call Number")
+		      else if(column->text() == tr("Call Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.callnum->text());
-		      else if(column->text() == "Dewey Class Number")
+		      else if(column->text() == tr("Dewey Class Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.deweynum->text());
-		      else if(column->text() == "Availability")
+		      else if(column->text() == tr("Availability"))
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
@@ -702,8 +702,8 @@ void qtbook_book::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString("Database Error"),
-			       QString("Retrieving availability."),
+			      (QString(tr("Database Error")),
+			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
 		    }
@@ -729,13 +729,13 @@ void qtbook_book::slotGo(void)
 	      if(!errorstr.isEmpty())
 		{
 		  oid = "insert";
-		  qmain->addError(QString("Database Error"),
-				  QString("Unable to retrieve the book's "
-					  "OID."),
+		  qmain->addError(QString(tr("Database Error")),
+				  QString(tr("Unable to retrieve the book's "
+					     "OID.")),
 				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to retrieve the book's "
-					"OID.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to retrieve the book's "
+					   "OID."));
 		}
 	      else
 		qmain->replaceBook("insert", this);
@@ -744,7 +744,7 @@ void qtbook_book::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, "Books", QString(""));
+		  (qtbook::POPULATE_ALL, tr("Books"), QString(""));
 
 	      raise();
 	    }
@@ -760,7 +760,7 @@ void qtbook_book::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString("Database Error"), QString("Rollback failure."),
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
@@ -876,7 +876,7 @@ void qtbook_book::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, "Books", searchstr);
+	(qtbook::POPULATE_SEARCH, tr("Books"), searchstr);
       slotCancel();
     }
 }
@@ -902,7 +902,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
   id.queryButton->setVisible(false);
-  id.okButton->setText("&Search");
+  id.okButton->setText(tr("&Search"));
   id.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
   id.price->setMinimum(-0.01);
@@ -914,20 +914,20 @@ void qtbook_book::search(const QString &field, const QString &value)
   ** Add "any".
   */
 
-  if(id.edition->findText("Any") == -1)
-    id.edition->insertItem(0, "Any");
+  if(id.edition->findText(tr("Any")) == -1)
+    id.edition->insertItem(0, tr("Any"));
 
-  if(id.language->findText("Any") == -1)
-    id.language->insertItem(0, "Any");
+  if(id.language->findText(tr("Any")) == -1)
+    id.language->insertItem(0, tr("Any"));
 
-  if(id.monetary_units->findText("Any") == -1)
-    id.monetary_units->insertItem(0, "Any");
+  if(id.monetary_units->findText(tr("Any")) == -1)
+    id.monetary_units->insertItem(0, tr("Any"));
 
-  if(id.binding->findText("Any") == -1)
-    id.binding->insertItem(0, "Any");
+  if(id.binding->findText(tr("Any")) == -1)
+    id.binding->insertItem(0, tr("Any"));
 
-  if(id.location->findText("Any") == -1)
-    id.location->insertItem(0, "Any");
+  if(id.location->findText(tr("Any")) == -1)
+    id.location->insertItem(0, tr("Any"));
 
   id.location->setCurrentIndex(0);
   id.edition->setCurrentIndex(0);
@@ -940,10 +940,10 @@ void qtbook_book::search(const QString &field, const QString &value)
     {
       foreach(QAction *action,
 	      id.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains("Cover Image"))
+	if(action->text().contains(tr("Cover Image")))
 	  action->setVisible(false);
 
-      setWindowTitle("BiblioteQ: Database Book Search");
+      setWindowTitle(tr("BiblioteQ: Database Book Search"));
       id.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -982,7 +982,8 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(true);
       id.generate->setVisible(true);
       id.isbn10to13->setVisible(true);
-      str = QString("BiblioteQ: Modify Book Entry (%1)").arg(id.id->text());
+      str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	id.id->text() + tr(")");
     }
   else
     {
@@ -997,7 +998,8 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(false);
       id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
-      str = QString("BiblioteQ: View Book Details (%1)").arg(id.id->text());
+      str = QString(tr("BiblioteQ: View Book Details (")) +
+	id.id->text() + tr(")");
     }
 
   id.coverImages->setVisible(true);
@@ -1019,7 +1021,7 @@ void qtbook_book::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
-      setWindowTitle("BiblioteQ: Modify Book Entry");
+      setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       id.copiesButton->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
@@ -1049,7 +1051,7 @@ void qtbook_book::modify(const int state)
     }
   else
     {
-      setWindowTitle("BiblioteQ: View Book Details");
+      setWindowTitle(tr("BiblioteQ: View Book Details"));
       id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
@@ -1064,13 +1066,13 @@ void qtbook_book::modify(const int state)
 
       foreach(QAction *action,
 	      id.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains("Cover Image"))
+	if(action->text().contains(tr("Cover Image")))
 	  action->setVisible(false);
     }
 
   id.quantity->setMinimum(1);
   id.price->setMinimum(0.00);
-  id.okButton->setText("&Save");
+  id.okButton->setText(tr("&Save"));
   str = oid;
   searchstr = "SELECT title, "
     "author, "
