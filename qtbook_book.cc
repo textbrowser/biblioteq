@@ -1096,11 +1096,13 @@ void qtbook_book::modify(const int state)
   if(!query.exec(searchstr) || !query.next())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to retrieve the selected book's data."),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to retrieve the selected book's data.");
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected book's data.")),
+	 query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Database Error"),
+	 tr("Unable to retrieve the selected book's data."));
       return;
     }
   else
@@ -1146,7 +1148,7 @@ void qtbook_book::modify(const int state)
 		  (id.language->findText(var.toString()));
 	      else
 		id.language->setCurrentIndex
-		  (id.language->findText("UNKNOWN"));
+		  (id.language->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "quantity")
 	    id.quantity->setValue(var.toInt());
@@ -1157,7 +1159,7 @@ void qtbook_book::modify(const int state)
 		  (id.monetary_units->findText(var.toString()));
 	      else
 		id.monetary_units->setCurrentIndex
-		  (id.monetary_units->findText("UNKNOWN"));
+		  (id.monetary_units->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "binding_type")
 	    {
@@ -1174,16 +1176,16 @@ void qtbook_book::modify(const int state)
 		  (id.location->findText(var.toString()));
 	      else
 		id.location->setCurrentIndex
-		  (id.location->findText("UNKNOWN"));
+		  (id.location->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString("BiblioteQ: Modify Book Entry (%1)").arg
-		  (var.toString());
+		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		  var.toString() + tr(")");
 	      else
-		str = QString("BiblioteQ: View Book Details (%1)").arg
-		  (var.toString());
+		str = QString(tr("BiblioteQ: View Book Details (")) +
+		  tr(")") + var.toString();
 
 	      id.id->setText(var.toString());
 	      setWindowTitle(str);
@@ -1245,7 +1247,7 @@ void qtbook_book::insert(void)
   id.description->setPlainText("N/A");
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
-  id.okButton->setText("&Save");
+  id.okButton->setText(tr("&Save"));
   id.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
   id.price->setMinimum(0.00);
@@ -1274,7 +1276,7 @@ void qtbook_book::insert(void)
   misc_functions::highlightWidget
     (id.category->viewport(), QColor(255, 248, 220));
   te_orig_pal = id.id->palette();
-  setWindowTitle("BiblioteQ: Create Book Entry");
+  setWindowTitle(tr("BiblioteQ: Create Book Entry"));
   id.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1297,41 +1299,41 @@ void qtbook_book::slotReset(void)
       if(name.isNull())
 	name = "";
 
-      if(name.contains("Front Cover Image"))
+      if(name.contains(tr("Front Cover Image")))
 	id.front_image->clear();
-      else if(name.contains("Back Cover Image"))
+      else if(name.contains(tr("Back Cover Image")))
 	id.back_image->clear();
-      else if(name.contains("ISBN-10"))
+      else if(name.contains(tr("ISBN-10")))
 	{
 	  id.id->clear();
 	  id.id->setPalette(te_orig_pal);
 	  id.id->setFocus();
 	}
-      else if(name.contains("Title"))
+      else if(name.contains(tr("Title")))
 	{
 	  id.title->clear();
 	  id.title->setPalette(te_orig_pal);
 	  id.title->setFocus();
 	}
-      else if(name.contains("Edition"))
+      else if(name.contains(tr("Edition")))
 	{
 	  id.edition->setCurrentIndex(0);
 	  id.edition->setStyleSheet(cb_orig_ss);
 	  id.edition->setFocus();
 	}
-      else if(name.contains("Author(s)"))
+      else if(name.contains(tr("Author(s)")))
 	{
 	  id.author->clear();
 
-	  if(!windowTitle().contains("Search"))
+	  if(!windowTitle().contains(tr("Search")))
 	    id.author->setPlainText("N/A");
 
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
 	}
-      else if(name.contains("Publication Date"))
+      else if(name.contains(tr("Publication Date")))
 	{
-	  if(windowTitle().contains("Search"))
+	  if(windowTitle().contains(tr("Search")))
 	    id.publication_date->setDate
 	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
 	  else
@@ -1341,91 +1343,91 @@ void qtbook_book::slotReset(void)
 	  id.publication_date->setStyleSheet(dt_orig_ss);
 	  id.publication_date->setFocus();
 	}
-      else if(name.contains("Publisher"))
+      else if(name.contains(tr("Publisher")))
 	{
 	  id.publisher->clear();
 
-	  if(!windowTitle().contains("Search"))
+	  if(!windowTitle().contains(tr("Search")))
 	    id.publisher->setPlainText("N/A");
 
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
 	}
-      else if(name.contains("Categories"))
+      else if(name.contains(tr("Categories")))
 	{
 	  id.category->clear();
 
-	  if(!windowTitle().contains("Search"))
+	  if(!windowTitle().contains(tr("Search")))
 	    id.category->setPlainText("N/A");
 
 	  id.category->viewport()->setPalette(te_orig_pal);
 	  id.category->setFocus();
 	}
-      else if(name.contains("Price"))
+      else if(name.contains(tr("Price")))
 	{
 	  id.price->setValue(id.price->minimum());
 	  id.price->setFocus();
 	}
-      else if(name.contains("Language"))
+      else if(name.contains(tr("Language")))
 	{
 	  id.language->setCurrentIndex(0);
 	  id.language->setFocus();
 	}
-      else if(name.contains("Monetary Units"))
+      else if(name.contains(tr("Monetary Units")))
 	{
 	  id.monetary_units->setCurrentIndex(0);
 	  id.monetary_units->setFocus();
 	}
-      else if(name.contains("Book Binding Type"))
+      else if(name.contains(tr("Book Binding Type")))
 	{
 	  id.binding->setCurrentIndex(0);
 	  id.binding->setFocus();
 	}
-      else if(name.contains("Abstract"))
+      else if(name.contains(tr("Abstract")))
 	{
 	  id.description->clear();
 
-	  if(!windowTitle().contains("Search"))
+	  if(!windowTitle().contains(tr("Search")))
 	    id.description->setPlainText("N/A");
 
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
-      else if(name.contains("Copies"))
+      else if(name.contains(tr("Copies")))
 	{
 	  id.quantity->setValue(id.quantity->minimum());
 	  id.quantity->setFocus();
 	}
-      else if(name.contains("Location"))
+      else if(name.contains(tr("Location")))
 	{
 	  id.location->setCurrentIndex(0);
 	  id.location->setFocus();
 	}
-      else if(name.contains("ISBN-13"))
+      else if(name.contains(tr("ISBN-13")))
 	{
 	  id.isbn13->clear();
 	  id.isbn13->setPalette(te_orig_pal);
 	  id.isbn13->setFocus();
 	}
-      else if(name.contains("LC Control Number"))
+      else if(name.contains(tr("LC Control Number")))
 	{
 	  id.lcnum->clear();
 	  id.lcnum->setPalette(id.url->viewport()->palette());
 	  id.lcnum->setFocus();
 	}
-      else if(name.contains("Call Number"))
+      else if(name.contains(tr("Call Number")))
 	{
 	  id.callnum->clear();
 	  id.callnum->setPalette(id.url->viewport()->palette());
 	  id.callnum->setFocus();
 	}
-      else if(name.contains("Dewey Class Number"))
+      else if(name.contains(tr("Dewey Class Number")))
 	{
 	  id.deweynum->clear();
 	  id.deweynum->setPalette(id.url->viewport()->palette());
 	  id.deweynum->setFocus();
 	}
-      else if(name.contains("OFFSYSTEM URL"))
+      else if(name.contains(tr("OFFSYSTEM URL")))
 	{
 	  id.url->clear();
 	  id.url->setFocus();
@@ -1443,16 +1445,16 @@ void qtbook_book::slotReset(void)
       id.publisher->clear();
       id.description->clear();
 
-      if(!windowTitle().contains("Search"))
+      if(!windowTitle().contains(tr("Search")))
 	id.author->setPlainText("N/A");
 
-      if(!windowTitle().contains("Search"))
+      if(!windowTitle().contains(tr("Search")))
 	id.publisher->setPlainText("N/A");
 
-      if(!windowTitle().contains("Search"))
+      if(!windowTitle().contains(tr("Search")))
 	id.category->setPlainText("N/A");
 
-      if(windowTitle().contains("Search"))
+      if(windowTitle().contains(tr("Search")))
 	id.publication_date->setDate(QDate::fromString("01/01/7999",
 						       "MM/dd/yyyy"));
       else
@@ -1461,7 +1463,7 @@ void qtbook_book::slotReset(void)
 
       id.quantity->setValue(id.quantity->minimum());
 
-      if(!windowTitle().contains("Search"))
+      if(!windowTitle().contains(tr("Search")))
 	id.description->setPlainText("N/A");
 
       id.isbn13->clear();
@@ -1530,10 +1532,11 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     if(hasDataChanged(this))
-      if(QMessageBox::question(this, "BiblioteQ: Question",
-			       "You have unsaved data. Continue closing?",
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("You have unsaved data. Continue closing?"),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
@@ -1615,9 +1618,9 @@ void qtbook_book::slotQuery(void)
        id.isbn13->text().trimmed().length() == 13))
     {
       QMessageBox::critical
-	(this, "BiblioteQ: User Error", 
-	 "In order to query a Z39.50 system, either the ISBN-10 "
-	 "or ISBN-13 must be provided.");
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query a Z39.50 system, either the ISBN-10 "
+	    "or ISBN-13 must be provided."));
       id.id->setFocus();
       return;
     }
@@ -1625,9 +1628,9 @@ void qtbook_book::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       working.setModal(true);
-      working.setWindowTitle("BiblioteQ: Z39.50 Data Retrieval");
-      working.setLabelText("Downloading information from the Z39.50 "
-			   "system. Please be patient.");
+      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
+      working.setLabelText(tr("Downloading information from the Z39.50 "
+			      "system. Please be patient."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
@@ -1652,9 +1655,9 @@ void qtbook_book::slotQuery(void)
 	 !thread->getLOCResults().isEmpty())
 	{
 	  if(QMessageBox::question
-	     (this, "BiblioteQ: Question",
-	      "Replace existing values with those retrieved "
-	      "from the Z39.50 system?",
+	     (this, tr("BiblioteQ: Question"),
+	      tr("Replace existing values with those retrieved "
+		 "from the Z39.50 system?"),
 	      QMessageBox::Yes | QMessageBox::No,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
@@ -1912,9 +1915,9 @@ void qtbook_book::slotQuery(void)
 	}
       else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())
 	QMessageBox::critical
-	  (this, "BiblioteQ: Z39.50 Query Error",
-	   "A Z39.50 entry may not yet exist for " +
-	   id.id->text() + ".");
+	  (this, tr("BiblioteQ: Z39.50 Query Error"),
+	   tr("A Z39.50 entry may not yet exist for ") +
+	   id.id->text() + tr("."));
       else
 	etype = thread->getEType();
 
@@ -1923,17 +1926,18 @@ void qtbook_book::slotQuery(void)
     }
   else
     {
-      etype = "Memory Error";
-      errorstr = "Unable to create a thread due to insufficient resources.";
+      etype = tr("Memory Error");
+      errorstr = tr("Unable to create a thread due to "
+		    "insufficient resources.");
     }
 
   if(!errorstr.isEmpty())
     {
-      qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
+      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
 		      __FILE__, __LINE__);
       QMessageBox::critical
-	(this, "BiblioteQ: Z39.50 Query Error",
-	 "The Z39.50 entry could not be retrieved.");
+	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	 tr("The Z39.50 entry could not be retrieved."));
     }
 }
 
@@ -1944,15 +1948,22 @@ void qtbook_book::slotQuery(void)
 void qtbook_book::slotPrint(void)
 {
   html = "";
-  html += "<b>ISBN-10:</b> " + id.id->text().trimmed() + "<br>";
-  html += "<b>ISBN-13:</b> " + id.isbn13->text().trimmed() + "<br>";
-  html += "<b>Edition:</b> " + id.edition->currentText() + "<br>";
-  html += "<b>Author(s):</b> " + id.author->toPlainText().trimmed() + "<br>";
-  html += "<b>Book Binding Type:</b> " + id.binding->currentText() + "<br>";
-  html += "<b>LC Control Number:</b> " + id.lcnum->text().trimmed() + "<br>";
-  html += "<b>Call Number:</b> " + id.callnum->text().trimmed() + "<br>";
-  html += "<b>Dewey Class Number:</b> " + id.deweynum->text().trimmed() +
-    "<br>";
+  html += "<b>" + tr("ISBN-10:") + "</b> " +
+    id.id->text().trimmed() + "<br>";
+  html += "<b>" + tr("ISBN-13:") + "</b> " +
+    id.isbn13->text().trimmed() + "<br>";
+  html += "<b>" + tr("Edition:") + "</b> " +
+    id.edition->currentText() + "<br>";
+  html += "<b>" + tr("Author(s):") + "</b> " +
+    id.author->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Book Binding Type:") + "</b> " +
+    id.binding->currentText() + "<br>";
+  html += "<b>" + tr("LC Control Number:") + "</b> " +
+    id.lcnum->text().trimmed() + "<br>";
+  html += "<b>" + tr("Call Number:") + "</b> " +
+    id.callnum->text().trimmed() + "<br>";
+  html += "<b>" + tr("Dewey Class Number:") + "</b> " +
+    id.deweynum->text().trimmed() + "<br>";
 
   /*
   ** General information.
