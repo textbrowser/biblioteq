@@ -5,15 +5,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>280</height>
+    <width>359</width>
+    <height>217</height>
    </rect>
-  </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="font" >
    <font>
@@ -28,13 +22,7 @@
    <iconset>
     <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>6</number>
-   </property>
-   <property name="margin" >
-    <number>9</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3" >
    <item>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
@@ -89,143 +77,164 @@
     </layout>
    </item>
    <item>
-    <widget class="QFrame" name="file_frame" >
-     <property name="frameShape" >
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow" >
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" >
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <property name="margin" >
-       <number>9</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="pixmap" >
-         <pixmap>icons.d/32x32/fileopen.png</pixmap>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="fileButton" >
-        <property name="text" >
-         <string>&amp;Select SQLite Database</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="filename" >
-        <property name="readOnly" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QFrame" name="db_frame" >
+    <widget class="QStackedWidget" name="stackedWidget" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="frameShape" >
-      <enum>QFrame::StyledPanel</enum>
+     <property name="currentIndex" >
+      <number>0</number>
      </property>
-     <property name="frameShadow" >
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>9</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item rowspan="2" row="0" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
-         <string/>
-        </property>
-        <property name="pixmap" >
-         <pixmap>icons.d/32x32/database.png</pixmap>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <widget class="QLabel" name="label_6" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Userid</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2" >
-       <layout class="QHBoxLayout" >
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <property name="margin" >
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLineEdit" name="userid" />
-        </item>
-        <item>
-         <widget class="QCheckBox" name="adminCheck" >
-          <property name="text" >
-           <string>Administrator</string>
+     <widget class="QWidget" name="page_5" >
+      <layout class="QVBoxLayout" name="verticalLayout" >
+       <item>
+        <widget class="QFrame" name="file_frame" >
+         <property name="frameShape" >
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" >
+          <property name="spacing" >
+           <number>6</number>
           </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="1" >
-       <widget class="QLabel" name="label_5" >
-        <property name="font" >
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text" >
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2" >
-       <widget class="QLineEdit" name="password" >
-        <property name="echoMode" >
-         <enum>QLineEdit::Password</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="pixmap" >
+             <pixmap>icons.d/32x32/fileopen.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="fileButton" >
+            <property name="text" >
+             <string>&amp;Select SQLite Database</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="filename" >
+            <property name="readOnly" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_6" >
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <item>
+        <widget class="QFrame" name="db_frame" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape" >
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item rowspan="2" row="0" column="0" >
+           <widget class="QLabel" name="label" >
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="pixmap" >
+             <pixmap>icons.d/32x32/database.png</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QLabel" name="label_6" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Userid</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <layout class="QHBoxLayout" >
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <property name="margin" >
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLineEdit" name="userid" />
+            </item>
+            <item>
+             <widget class="QCheckBox" name="adminCheck" >
+              <property name="text" >
+               <string>Administrator</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QLabel" name="label_5" >
+            <property name="font" >
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text" >
+             <string>Password</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2" >
+           <widget class="QLineEdit" name="password" >
+            <property name="echoMode" >
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
-    <spacer>
+    <spacer name="verticalSpacer" >
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0" >
       <size>
-       <width>382</width>
-       <height>21</height>
+       <width>20</width>
+       <height>40</height>
       </size>
      </property>
     </spacer>

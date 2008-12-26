@@ -8022,14 +8022,12 @@ void qtbook::slotBranchChanged(void)
 
   if(tmphash["database_type"] == "sqlite")
     {
-      br.file_frame->setVisible(true);
-      br.db_frame->setVisible(false);
+      br.stackedWidget->setCurrentIndex(0);
       br.fileButton->setFocus();
     }
   else
     {
-      br.file_frame->setVisible(false);
-      br.db_frame->setVisible(true);
+      br.stackedWidget->setCurrentIndex(1);
       br.userid->setFocus();
     }
 
