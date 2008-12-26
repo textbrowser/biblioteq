@@ -1973,19 +1973,22 @@ void qtbook_book::slotPrint(void)
     id.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Publication Date:") + "</b> " +
     id.publication_date->date().toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + id.publisher->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>Categories:</b> " + id.category->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>Price:</b> " + id.price->text() + "<br>";
-  html += "<b>Language:</b> " + id.language->currentText() + "<br>";
-  html += "<b>Monetary Units:</b> " + id.monetary_units->currentText() +
-    "<br>";
-  html += "<b>Copies:</b> " + id.quantity->text() + "<br>";
-  html += "<b>Location:</b> " + id.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + id.description->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + id.url->toPlainText().trimmed();
+  html += "<b>" + tr("Publisher:") + "</b> " +
+    id.publisher->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Categories:") + "</b> " +
+    id.category->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + id.price->text() + "<br>";
+  html += "<b>" + tr("Language:") + "</b> " +
+    id.language->currentText() + "<br>";
+  html += "<b>" + tr("Monetary Units:") + "</b> " +
+    id.monetary_units->currentText() + "<br>";
+  html += "<b>" + tr("Copies:") + "</b> " + id.quantity->text() + "<br>";
+  html += "<b>" + tr("Location:") + "</b> " +
+    id.location->currentText() + "<br>";
+  html += "<b>" + tr("Abstract:") + "</b> " +
+    id.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("OFFSYSTEM URL:") + "</b> " +
+    id.url->toPlainText().trimmed();
   print(this);
 }
 

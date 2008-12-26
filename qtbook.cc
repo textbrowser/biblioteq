@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2006, 2007, 2008 Alexis Megas, Diana Megas
+** Copyright (c) 2006, 2007, 2008, 2009 Alexis Megas
 ** All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -506,7 +506,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	 typefilter != tr("All Reserved"))
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
-	     ui.table->horizontalHeaderItem(i)->text() == "Type")
+	     ui.table->horizontalHeaderItem(i)->text() == tr("Type"))
 	    continue;
 	}
       else if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
@@ -4942,7 +4942,7 @@ void qtbook::slotDisplaySummary(void)
       type = misc_functions::getColumnString(ui.table, i, tr("Type"));
       summary = "<html>";
 
-      if(type == tr("Book"))
+      if(type == "Book")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
@@ -4963,7 +4963,7 @@ void qtbook::slotDisplaySummary(void)
 						     tr("Publisher"));
 	  summary += "<br>";
 	}
-      else if(type == tr("CD"))
+      else if(type == "CD")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
@@ -4997,7 +4997,7 @@ void qtbook::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	}
-      else if(type == tr("DVD"))
+      else if(type == "DVD")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
@@ -5031,7 +5031,7 @@ void qtbook::slotDisplaySummary(void)
 	  summary += tmpstr;
 	  summary += "<br>";
 	}
-      else if(type == tr("Journal") || type == tr("Magazine"))
+      else if(type == "Journal" || type == "Magazine")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
@@ -5052,7 +5052,7 @@ void qtbook::slotDisplaySummary(void)
 						     tr("Publisher"));
 	  summary += "<br>";
 	}
-      else if(type == tr("Video Game"))
+      else if(type == "Video Game")
 	{
 	  summary += "<b>" +
 	    misc_functions::getColumnString(ui.table, i,
@@ -5290,8 +5290,8 @@ void qtbook::slotConnectDB(void)
       tmphash.clear();
       QMessageBox::critical(branch_diag, tr("BiblioteQ: Database Error"),
 			    tr("The selected branch's database type does not "
-			       "have a driver associated with it.\n"
-			       "The following drivers are available: ") +
+			       "have a driver associated with it.") + "\n" +
+			    tr("The following drivers are available: ") +
 			    drivers + tr(".") + "\n" +
 			    tr("In addition, Qt expects plugins to exist "
 			       "in: ") + plugins + tr(".") + "\n" +
@@ -8064,7 +8064,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 	    value1 = misc_functions::getColumnString
 	      (history.table, i, "MYOID");
 	    value2 = misc_functions::getColumnString
-	      (history.table, i, "Barcode");
+	      (history.table, i, tr("Barcode"));
 	    value3 = misc_functions::getColumnString
 	      (history.table, i, tr("Item Type")).toLower().remove(" ");
 
