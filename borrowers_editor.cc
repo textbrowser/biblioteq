@@ -102,7 +102,7 @@ void borrowers_editor::showUsers(void)
       list.append(tr("Reservation Date"));
       list.append(tr("Copy Due Date"));
       list.append(tr("Lender"));
-      list.append(tr("MYOID"));
+      list.append("MYOID");
     }
   else
     {

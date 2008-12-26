@@ -1969,9 +1969,10 @@ void qtbook_book::slotPrint(void)
   ** General information.
   */
 
-  html += "<b>Title:</b> " + id.title->text().trimmed() + "<br>";
-  html += "<b>Publication Date:</b> " + id.publication_date->date().
-    toString("MM/dd/yyyy") + "<br>";
+  html += "<b>" + tr("Title:") + "</b> " +
+    id.title->text().trimmed() + "<br>";
+  html += "<b>" + tr("Publication Date:") + "</b> " +
+    id.publication_date->date().toString("MM/dd/yyyy") + "<br>";
   html += "<b>Publisher:</b> " + id.publisher->toPlainText().trimmed() +
     "<br>";
   html += "<b>Categories:</b> " + id.category->toPlainText().trimmed() +
@@ -2001,9 +2002,9 @@ void qtbook_book::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == id.frontButton)
-    dialog.setWindowTitle("Front Cover Image Selection");
+    dialog.setWindowTitle(tr("Front Cover Image Selection"));
   else
-    dialog.setWindowTitle("Back Cover Image Selection");
+    dialog.setWindowTitle(tr("Back Cover Image Selection"));
 
   dialog.exec();
 
@@ -2064,9 +2065,9 @@ void qtbook_book::slotDownloadImage(void)
   if(id.id->text().trimmed().length() != 10)
     {
       QMessageBox::critical
-	(this, "BiblioteQ: User Error",
-	 "In order to download a cover image from Amazon, the ISBN-10 "
-	 "must be provided.");
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to download a cover image from Amazon, the ISBN-10 "
+	    "must be provided."));
       id.id->setFocus();
       return;
     }
@@ -2077,18 +2078,19 @@ void qtbook_book::slotDownloadImage(void)
 
   if(pb == id.dwnldFront)
     {
-      httpProgress->setWindowTitle("BiblioteQ: Front Cover Image Download");
-      httpProgress->setLabelText("Downloading the front cover image. "
-				 "Please be patient...");
+      httpProgress->setWindowTitle
+	(tr("BiblioteQ: Front Cover Image Download"));
+      httpProgress->setLabelText(tr("Downloading the front cover image. "
+				    "Please be patient..."));
       url = qmain->getAmazonHash()["front_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer1->open(QIODevice::WriteOnly);
     }
   else
     {
-      httpProgress->setWindowTitle("BiblioteQ: Back Cover Image Download");
-      httpProgress->setLabelText("Downloading the back cover image. "
-				 "Please be patient...");
+      httpProgress->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
+      httpProgress->setLabelText(tr("Downloading the back cover image. "
+				    "Please be patient..."));
       url = qmain->getAmazonHash()["back_cover_path"].replace
 	("%", id.id->text().trimmed());
       imgbuffer2->open(QIODevice::WriteOnly);
@@ -2132,8 +2134,9 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 
 	  if(imgbytes1.size() < 1000)
 	    QMessageBox::warning
-	      (this, "BiblioteQ: HTTP Warning",
-	       "The front cover image for the specified ISBN may not exist.");
+	      (this, tr("BiblioteQ: HTTP Warning"),
+	       tr("The front cover image for the specified "
+		  "ISBN may not exist."));
 	}
       else if(rqid == requestid2)
 	{
@@ -2148,8 +2151,9 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 
 	  if(imgbytes2.size() < 1000)
 	    QMessageBox::warning
-	      (this, "BiblioteQ: HTTP Warning",
-	       "The back cover image for the specified ISBN may not exist.");
+	      (this, tr("BiblioteQ: HTTP Warning"),
+	       tr("The back cover image for the specified ISBN "
+		  "may not exist."));
 	}
     }
 
@@ -2157,14 +2161,14 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
     {
       if(rqid == requestid1)
 	QMessageBox::critical
-	  (this, "BiblioteQ: HTTP Error",
-	   QString("Front cover image download failed: %1.").arg
-	   (http1->errorString()));
+	  (this, tr("BiblioteQ: HTTP Error"),
+	   QString(tr("Front cover image download failed: ")) +
+	   http1->errorString() + tr("."));
       else if(rqid == requestid2)
 	QMessageBox::critical
-	  (this, "BiblioteQ: HTTP Error",
-	   QString("Back cover image download failed: %1.").arg
-	   (http2->errorString()));
+	  (this, tr("BiblioteQ: HTTP Error"),
+	   QString(tr("Back cover image download failed: ")) +
+	   http2->errorString() + tr("."));
     }
 
   requestid1 = requestid2 = 0;

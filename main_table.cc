@@ -32,7 +32,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
      type == tr("All Requested") ||
      type == tr("All Reserved"))
     {
-      if(type == tr("All Overdue") || type == ("All Reserved"))
+      if(type == tr("All Overdue") || type == tr("All Reserved"))
 	{
 	  if(!roles.isEmpty())
 	    {
