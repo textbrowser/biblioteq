@@ -1580,9 +1580,9 @@ void qtbook_dvd::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == dvd.frontButton)
-    dialog.setWindowTitle("Front Cover Image Selection");
+    dialog.setWindowTitle("BiblioteQ: Front Cover Image Selection");
   else
-    dialog.setWindowTitle("Back Cover Image Selection");
+    dialog.setWindowTitle("BiblioteQ: Back Cover Image Selection");
 
   dialog.exec();
 

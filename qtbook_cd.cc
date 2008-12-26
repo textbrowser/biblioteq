@@ -50,7 +50,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   isQueryEnabled = false;
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, "Quantity").toInt();
+    (qmain->getUI().table, row, tr("Quantity")).toInt();
   cd.setupUi(this);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   tracks_diag->setWindowModality(Qt::WindowModal);
@@ -83,45 +83,45 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 	  SLOT(slotSaveTracks(void)));
   connect(cd.computeButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotComputeRuntime(void)));
-  connect(menu->addAction("Reset &Front Cover Image"),
+  connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Back Cover Image"),
+  connect(menu->addAction(tr("Reset &Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Catalog Number"),
+  connect(menu->addAction(tr("Reset &Catalog Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Format"),
+  connect(menu->addAction(tr("Reset &Format")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Artist"),
+  connect(menu->addAction(tr("Reset &Artist")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Number of Discs"),
+  connect(menu->addAction(tr("Reset &Number of Discs")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Runtime"),
+  connect(menu->addAction(tr("Reset &Runtime")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Audio"),
+  connect(menu->addAction(tr("Reset &Audio")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Recording Type"),
+  connect(menu->addAction(tr("Reset &Recording Type")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Title"),
+  connect(menu->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Release Date"),
+  connect(menu->addAction(tr("Reset &Release Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Recording Label"),
+  connect(menu->addAction(tr("Reset &Recording Label")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Categories"),
+  connect(menu->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Price"),
+  connect(menu->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Language"),
+  connect(menu->addAction(tr("Reset &Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Monetary Units"),
+  connect(menu->addAction(tr("Reset &Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Copies"),
+  connect(menu->addAction(tr("Reset &Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Location"),
+  connect(menu->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Abstract"),
+  connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+  connect(menu->addAction(tr("Reset &OFFSYSTEM URL")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(cd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
@@ -138,16 +138,16 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   cd.back_image->setScene(scene2);
 
   if(cd.language->count() == 0)
-    cd.language->addItem("UNKNOWN");
+    cd.language->addItem(tr("UNKNOWN"));
 
   if(cd.monetary_units->count() == 0)
-    cd.monetary_units->addItem("UNKNOWN");
+    cd.monetary_units->addItem(tr("UNKNOWN"));
 
   if(cd.location->count() == 0)
-    cd.location->addItem("UNKNOWN");
+    cd.location->addItem(tr("UNKNOWN"));
 
   if(cd.format->count() == 0)
-    cd.format->addItem("UNKNOWN");
+    cd.format->addItem(tr("UNKNOWN"));
 
   resize(baseSize());
   misc_functions::center(this, parentWid);
@@ -177,10 +177,10 @@ void qtbook_cd::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains("Create") ||
-     windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     {
-      if(windowTitle().contains("Modify") && row > -1)
+      if(windowTitle().contains(tr("Modify")) && row > -1)
 	{
 	  newq = cd.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -191,14 +191,14 @@ void qtbook_cd::slotGo(void)
 	    {
 	      qapp->restoreOverrideCursor();
 	      qmain->addError
-		(QString("Database Error"),
-		 QString("Unable to determine the maximum copy number of "
-			 "the item."),
+		(QString(tr("Database Error")),
+		 QString(tr("Unable to determine the maximum copy number of "
+			    "the item.")),
 		 errorstr, __FILE__, __LINE__);
 	      QMessageBox::critical
-		(this, "BiblioteQ: Database Error",
-		 "Unable to determine the maximum copy number of "
-		 "the item.");
+		(this, tr("BiblioteQ: Database Error"),
+		 tr("Unable to determine the maximum copy number of "
+		    "the item."));
 	      return;
 	    }
 
@@ -207,17 +207,17 @@ void qtbook_cd::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical
-		(this, "BiblioteQ: User Error",
-		 "It appears that you are attempting to decrease the "
-		 "number of copies while there are copies "
-		 "that have been reserved.");
+		(this, tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to decrease the "
+		    "number of copies while there are copies "
+		    "that have been reserved."));
 	      cd.quantity->setValue(oldq);
 	      return;
 	    }
 	  else if(newq > oldq)
 	    if(QMessageBox::question
-	       (this, "BiblioteQ: Question",
-		"Would you like to modify copy information?",
+	       (this, tr("BiblioteQ: Question"),
+		tr("Would you like to modify copy information?"),
 		QMessageBox::Yes | QMessageBox::No,
 		QMessageBox::No) == QMessageBox::Yes)
 	      slotPopulateCopiesEditor();
@@ -229,12 +229,12 @@ void qtbook_cd::slotGo(void)
 	{
 	  qapp->restoreOverrideCursor();
 	  qmain->addError
-	    (QString("Database Error"),
-	     QString("Unable to create a database transaction."),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create a database transaction.")),
 	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (this, "BiblioteQ: Database Error",
-	     "Unable to create a database transaction.");
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create a database transaction."));
 	  return;
 	}
 
@@ -244,8 +244,9 @@ void qtbook_cd::slotGo(void)
 
       if(cd.id->text().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Catalog Number field.");
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: User Error"),
+	     tr("Please complete the Catalog Number field."));
 	  cd.id->setFocus();
 	  goto db_rollback;
 	}
@@ -1992,9 +1993,9 @@ void qtbook_cd::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == cd.frontButton)
-    dialog.setWindowTitle("Front Cover Image Selection");
+    dialog.setWindowTitle("BiblioteQ: Front Cover Image Selection");
   else
-    dialog.setWindowTitle("Back Cover Image Selection");
+    dialog.setWindowTitle("BiblioteQ: Back Cover Image Selection");
 
   dialog.exec();
 

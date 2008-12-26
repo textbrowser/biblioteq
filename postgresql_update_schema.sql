@@ -478,3 +478,8 @@ ALTER TABLE member ADD COLUMN email VARCHAR(128);
 /* Release 6.13 */
 
 /* Please "Save" each member's information through the Members Browser. */
+
+/* Release 6.17 */
+
+ALTER TABLE item_request DROP CONSTRAINT item_request_pkey;
+ALTER TABLE item_request ADD PRIMARY KEY (item_oid, memberid, type);

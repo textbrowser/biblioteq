@@ -2005,9 +2005,9 @@ void qtbook_book::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == id.frontButton)
-    dialog.setWindowTitle(tr("Front Cover Image Selection"));
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
   else
-    dialog.setWindowTitle(tr("Back Cover Image Selection"));
+    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
 

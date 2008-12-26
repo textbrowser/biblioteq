@@ -280,7 +280,7 @@ CREATE TABLE item_request
 	requestdate	 VARCHAR(32) NOT NULL,
 	myoid		 BIGSERIAL NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
-	PRIMARY KEY(item_oid, type),
+	PRIMARY KEY(item_oid, memberid, type),
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
