@@ -1959,10 +1959,13 @@ void qtbook_cd::slotComputeRuntime(void)
 void qtbook_cd::slotPrint(void)
 {
   html = "";
-  html += "<b>Catalog Number:</b> " + cd.id->text().trimmed() + "<br>";
-  html += "<b>Format:</b> " + cd.format->currentText() + "<br>";
-  html += "<b>Artist:</b> " + cd.artist->toPlainText().trimmed() + "<br>";
-  html += "<b>Number of Discs:</b> " + cd.no_of_discs->text() + "<br>";
+  html += "<b>" + tr("Catalog Number:") + "</b> " +
+    cd.id->text().trimmed() + "<br>";
+  html += "<b>" + tr("Format:") + "</b> " + cd.format->currentText() + "<br>";
+  html += "<b>" + tr("Artist:") + "</b> " +
+    cd.artist->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Number of Discs:") + "</b> " +
+    cd.no_of_discs->text() + "<br>";
   html += "<b>Runtime:</b> " + cd.runtime->text() + "<br>";
   html += "<b>Audio:</b> " + cd.audio->currentText() + "<br>";
   html += "<b>Recording Type:</b> " + cd.recording_type->currentText() +
