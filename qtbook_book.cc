@@ -805,7 +805,7 @@ void qtbook_book::slotGo(void)
 		       myqstring::escape(id.deweynum->text().toLower()) +
 		       "%' AND ");
 
-      if(id.edition->currentText() != "Any")
+      if(id.edition->currentText() != tr("Any"))
 	searchstr.append("edition = '" + id.edition->currentText() +
 			 "' AND ");
 
@@ -835,18 +835,18 @@ void qtbook_book::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(id.language->currentText() != "Any")
+      if(id.language->currentText() != tr("Any"))
 	searchstr.append("language = '" +
 			 myqstring::escape(id.language->currentText()) +
 			 "' AND ");
 
-      if(id.monetary_units->currentText() != "Any")
+      if(id.monetary_units->currentText() != tr("Any"))
 	searchstr.append("monetary_units = '" +
 			 myqstring::escape
 			 (id.monetary_units->currentText()) +
 			 "' AND ");
 
-      if(id.binding->currentText() != "Any")
+      if(id.binding->currentText() != tr("Any"))
 	searchstr.append("binding_type = '" +
 			 myqstring::escape(id.binding->currentText()) +
 			 "' AND ");
@@ -859,7 +859,7 @@ void qtbook_book::slotGo(void)
       if(id.quantity->value() != 0)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
 
-      if(id.location->currentText() != "Any")
+      if(id.location->currentText() != tr("Any"))
 	searchstr.append("AND location = '" +
 			 myqstring::escape
 			 (id.location->currentText()) + "' ");

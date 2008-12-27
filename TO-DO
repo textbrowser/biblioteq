@@ -201,7 +201,7 @@
      biblioteq.conf file . This is no longer applicable. (DONE)
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
-105. Prepare the application for translations. (DONE)
+105. Prepare the application for translations. (TBD)
 106. Provide a graphical representation of the database layout. (TBD)
 107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item

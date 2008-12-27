@@ -3441,13 +3441,13 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		    str.append(" AND ");
 		  }
 
-		if(al.language->currentText() != "Any")
+		if(al.language->currentText() != tr("Any"))
 		  str.append("language = '" +
 			     myqstring::escape
 			     (al.language->currentText()) +
 			     "' AND ");
 
-		if(al.monetary_units->currentText() != "Any")
+		if(al.monetary_units->currentText() != tr("Any"))
 		  str.append("monetary_units = '" +
 			     myqstring::escape
 			     (al.monetary_units->currentText()) +
@@ -3460,7 +3460,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 		if(al.quantity->value() != 0)
 		  str.append("AND quantity = " + al.quantity->text() + " ");
 
-		if(al.location->currentText() != "Any")
+		if(al.location->currentText() != tr("Any"))
 		  str.append("AND location = '" +
 			     myqstring::escape
 			     (al.location->currentText()) + "' ");

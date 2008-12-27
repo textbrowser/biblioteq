@@ -256,8 +256,8 @@ void qtbook_cd::slotGo(void)
 
       if(cd.artist->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Artist field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Artist field."));
 	  cd.artist->setFocus();
 	  goto db_rollback;
 	}
@@ -267,16 +267,16 @@ void qtbook_cd::slotGo(void)
 
       if(cd.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Title field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
 	  cd.title->setFocus();
 	  goto db_rollback;
 	}
 
       if(cd.runtime->text() == "00:00:00")
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please provide a valid Runtime.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please provide a valid Runtime."));
 	  cd.runtime->setFocus();
 	  goto db_rollback;
 	}
@@ -286,9 +286,9 @@ void qtbook_cd::slotGo(void)
 
       if(cd.recording_label->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Recording Label "
-				"field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Recording Label "
+				   "field."));
 	  cd.recording_label->setFocus();
 	  goto db_rollback;
 	}
@@ -298,9 +298,9 @@ void qtbook_cd::slotGo(void)
 
       if(cd.category->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Categories "
-				"field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories "
+				   "field."));
 	  cd.category->setFocus();
 	  goto db_rollback;
 	}
@@ -310,8 +310,8 @@ void qtbook_cd::slotGo(void)
 
       if(cd.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Abstract field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
 	  cd.description->setFocus();
 	  goto db_rollback;
 	}
@@ -319,7 +319,7 @@ void qtbook_cd::slotGo(void)
       str = cd.url->toPlainText().trimmed();
       cd.url->setPlainText(str);
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.prepare(QString("UPDATE cd SET "
 			      "id = ?, "
 			      "title = ?, "
@@ -453,7 +453,7 @@ void qtbook_cd::slotGo(void)
       else
 	query.bindValue(19, QVariant(QVariant::String));
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	query.bindValue(20, cd.id->text());
@@ -463,13 +463,13 @@ void qtbook_cd::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString("Database Error"),
-			  QString("Unable to create or update the entry."),
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Unable to create or update the entry.")),
 			  query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, "BiblioteQ: Database Error",
-				"Unable to create or update the entry. "
-				"Please verify that "
-				"the entry does not already exist.");
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+				tr("Unable to create or update the entry. "
+				   "Please verify that "
+				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -478,7 +478,7 @@ void qtbook_cd::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
 	      query.prepare(QString("DELETE FROM cd_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -491,14 +491,14 @@ void qtbook_cd::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to purge unnecessary copy "
-			     "data."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to purge unnecessary copy "
+				"data.")),
 		     query.lastError().text(), __FILE__, __LINE__);
 		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to purge unnecessary "
-					"copy data.");
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to purge unnecessary "
+					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -506,14 +506,14 @@ void qtbook_cd::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -532,12 +532,13 @@ void qtbook_cd::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to create initial copies."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to create initial copies.");
+		  QMessageBox::critical
+		    (this,
+		     tr("BiblioteQ: Database Error"),
+		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -545,14 +546,14 @@ void qtbook_cd::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -580,14 +581,15 @@ void qtbook_cd::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
-	      str = QString("BiblioteQ: Modify CD Entry (%1)").arg
-		(cd.id->text());
+	      str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+		cd.id->text() + tr(")");
 	      setWindowTitle(str);
 
-	      if((qmain->getUI().typefilter->currentText() == "All" ||
-		  qmain->getUI().typefilter->currentText() == "Music CDs") &&
+	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("Music CDs")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))
 		{
@@ -598,58 +600,58 @@ void qtbook_cd::slotGo(void)
 		      if(column == 0)
 			continue;
 
-		      if(column->text() == "Catalog Number" ||
-			 column->text() == "ID Number")
+		      if(column->text() == tr("Catalog Number") ||
+			 column->text() == tr("ID Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.id->text());
-		      else if(column->text() == "Title")
+		      else if(column->text() == tr("Title"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.title->text());
-		      else if(column->text() == "Format")
+		      else if(column->text() == tr("Format"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.format->currentText().trimmed());
-		      else if(column->text() == "Artist")
+		      else if(column->text() == tr("Artist"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.artist->toPlainText());
-		      else if(column->text() == "Number of Discs")
+		      else if(column->text() == tr("Number of Discs"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.no_of_discs->text());
-		      else if(column->text() == "Runtime")
+		      else if(column->text() == tr("Runtime"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.runtime->text());
-		      else if(column->text() == "Release Date" ||
-			      column->text() == "Publication Date")
+		      else if(column->text() == tr("Release Date") ||
+			      column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.release_date->date().toString("MM/dd/yyyy"));
-		      else if(column->text() == "Recording Label" ||
-			      column->text() == "Publisher")
+		      else if(column->text() == tr("Recording Label") ||
+			      column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.recording_label->toPlainText());
-		      else if(column->text() == "Categories")
+		      else if(column->text() == tr("Categories"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.category->toPlainText().trimmed());
-		      else if(column->text() == "Price")
+		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.price->text());
-		      else if(column->text() == "Language")
+		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.language->currentText().trimmed());
-		      else if(column->text() == "Monetary Units")
+		      else if(column->text() == tr("Monetary Units"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.monetary_units->currentText().trimmed());
-		      else if(column->text() == "Quantity")
+		      else if(column->text() == tr("Quantity"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.quantity->text());
-		      else if(column->text() == "Location")
+		      else if(column->text() == tr("Location"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.location->currentText().trimmed());
-		      else if(column->text() == "Recording Type")
+		      else if(column->text() == tr("Recording Type"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.recording_type->currentText().trimmed());
-		      else if(column->text() == "Audio")
+		      else if(column->text() == tr("Audio"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.audio->currentText().trimmed());
-		      else if(column->text() == "Availability")
+		      else if(column->text() == tr("Availability"))
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
@@ -657,8 +659,8 @@ void qtbook_cd::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString("Database Error"),
-			       QString("Retrieving availability."),
+			      (QString(tr("Database Error")),
+			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
 		    }
@@ -684,13 +686,13 @@ void qtbook_cd::slotGo(void)
 	      if(!errorstr.isEmpty())
 		{
 		  oid = "insert";
-		  qmain->addError(QString("Database Error"),
-				  QString("Unable to retrieve the CD's "
-					  "OID."),
+		  qmain->addError(QString(tr("Database Error")),
+				  QString(tr("Unable to retrieve the CD's "
+					     "OID.")),
 				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to retrieve the CD's "
-					"OID.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to retrieve the CD's "
+					   "OID."));
 		}
 	      else
 		qmain->replaceCD("insert", this);
@@ -699,7 +701,7 @@ void qtbook_cd::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, "Music CDs", QString(""));
+		  (qtbook::POPULATE_ALL, tr("Music CDs"), QString(""));
 
 	      raise();
 	    }
@@ -715,7 +717,7 @@ void qtbook_cd::slotGo(void)
 
       if(!qmain->getDB().rollback())
 	qmain->addError
-	  (QString("Database Error"), QString("Rollback failure."),
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
@@ -748,7 +750,7 @@ void qtbook_cd::slotGo(void)
 	"WHERE ";
       searchstr.append("id LIKE '%").append(cd.id->text()).append("%' AND ");
 
-      if(cd.format->currentText() != "Any")
+      if(cd.format->currentText() != tr("Any"))
 	searchstr.append("cdformat = '" +
 			 myqstring::escape(cd.format->currentText()) +
 			 "' AND ");
@@ -765,11 +767,11 @@ void qtbook_cd::slotGo(void)
 	searchstr.append("cdruntime = '" + cd.runtime->text() +
 			 "' AND ");
 
-      if(cd.audio->currentText() != "Any")
+      if(cd.audio->currentText() != tr("Any"))
 	searchstr.append("cdaudio = '" + cd.audio->currentText() +
 			 "' AND ");
 
-      if(cd.recording_type->currentText() != "Any")
+      if(cd.recording_type->currentText() != tr("Any"))
 	searchstr.append("cdrecording = '" +
 			 cd.recording_type->currentText() +
 			 "' AND ");
@@ -799,12 +801,12 @@ void qtbook_cd::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(cd.language->currentText() != "Any")
+      if(cd.language->currentText() != tr("Any"))
 	searchstr.append("language = '" +
 			 myqstring::escape(cd.language->currentText()) +
 			 "' AND ");
 
-      if(cd.monetary_units->currentText() != "Any")
+      if(cd.monetary_units->currentText() != tr("Any"))
 	searchstr.append("monetary_units = '" +
 			 myqstring::escape
 			 (cd.monetary_units->currentText()) +
@@ -817,7 +819,7 @@ void qtbook_cd::slotGo(void)
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
-      if(cd.location->currentText() != "Any")
+      if(cd.location->currentText() != tr("Any"))
 	searchstr.append(" AND location = '" +
 			 myqstring::escape
 			 (cd.location->currentText()) + "' ");
@@ -834,7 +836,7 @@ void qtbook_cd::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, "Music CDs", searchstr);
+	(qtbook::POPULATE_SEARCH, tr("Music CDs"), searchstr);
       slotCancel();
     }
 }
@@ -857,7 +859,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.showUserButton->setVisible(false);
   cd.computeButton->setVisible(false);
   cd.tracks_lbl->setVisible(false);
-  cd.okButton->setText("&Search");
+  cd.okButton->setText(tr("&Search"));
   cd.release_date->setDate(QDate::fromString("01/01/7999",
 					     "MM/dd/yyyy"));
   cd.runtime->setTime(QTime(0, 0, 0));
@@ -869,23 +871,23 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.no_of_discs->setMinimum(0);
   cd.no_of_discs->setValue(0);
 
-  if(cd.audio->findText("Any") == -1)
-    cd.audio->insertItem(0, "Any");
+  if(cd.audio->findText(tr("Any")) == -1)
+    cd.audio->insertItem(0, tr("Any"));
 
-  if(cd.recording_type->findText("Any") == -1)
-    cd.recording_type->insertItem(0, "Any");
+  if(cd.recording_type->findText(tr("Any")) == -1)
+    cd.recording_type->insertItem(0, tr("Any"));
 
-  if(cd.format->findText("Any") == -1)
-    cd.format->insertItem(0, "Any");
+  if(cd.format->findText(tr("Any")) == -1)
+    cd.format->insertItem(0, tr("Any"));
 
-  if(cd.language->findText("Any") == -1)
-    cd.language->insertItem(0, "Any");
+  if(cd.language->findText(tr("Any")) == -1)
+    cd.language->insertItem(0, tr("Any"));
 
-  if(cd.monetary_units->findText("Any") == -1)
-    cd.monetary_units->insertItem(0, "Any");
+  if(cd.monetary_units->findText(tr("Any")) == -1)
+    cd.monetary_units->insertItem(0, tr("Any"));
 
-  if(cd.location->findText("Any") == -1)
-    cd.location->insertItem(0, "Any");
+  if(cd.location->findText(tr("Any")) == -1)
+    cd.location->insertItem(0, tr("Any"));
 
   cd.audio->setCurrentIndex(0);
   cd.location->setCurrentIndex(0);
@@ -898,7 +900,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
   if(field.isEmpty() && value.isEmpty())
     {
       cd.coverImages->setVisible(false);
-      setWindowTitle("BiblioteQ: Database CD Search");
+      setWindowTitle(tr("BiblioteQ: Database CD Search"));
       cd.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -937,7 +939,8 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(true);
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
-      str = QString("BiblioteQ: Modify CD Entry (%1)").arg(cd.id->text());
+      str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+	cd.id->text() + tr(")");
     }
   else
     {
@@ -952,7 +955,8 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(false);      
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
-      str = QString("BiblioteQ: View CD Details (%1)").arg(cd.id->text());
+      str = QString(tr("BiblioteQ: View CD Details (")) +
+	cd.id->text() + tr(")");
     }
 
   setWindowTitle(str);
@@ -974,7 +978,7 @@ void qtbook_cd::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
-      setWindowTitle("BiblioteQ: Modify CD Entry");
+      setWindowTitle(tr("BiblioteQ: Modify CD Entry"));
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setEnabled(true);
       cd.okButton->setVisible(true);
@@ -1001,7 +1005,7 @@ void qtbook_cd::modify(const int state)
     }
   else
     {
-      setWindowTitle("BiblioteQ: View CD Details");
+      setWindowTitle(tr("BiblioteQ: View CD Details"));
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
@@ -1016,13 +1020,13 @@ void qtbook_cd::modify(const int state)
 
       foreach(QAction *action,
 	      cd.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains("Cover Image"))
+	if(action->text().contains(tr("Cover Image")))
 	  action->setVisible(false);
     }
 
   cd.tracksButton->setEnabled(true);
   cd.queryButton->setEnabled(true);
-  cd.okButton->setText("&Save");
+  cd.okButton->setText(tr("&Save"));
   cd.runtime->setMinimumTime(QTime(0, 0, 1));
   cd.price->setMinimum(0.00);
   cd.quantity->setMinimum(1);
@@ -1059,12 +1063,13 @@ void qtbook_cd::modify(const int state)
   if(!query.exec(searchstr) || !query.next())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to retrieve the selected CD's data."),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to retrieve the selected CD's "
-			    "data.");
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to retrieve the selected CD's data.")),
+	 query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the selected CD's "
+			       "data."));
       return;
     }
   else
@@ -1099,7 +1104,7 @@ void qtbook_cd::modify(const int state)
 		  (cd.language->findText(var.toString()));
 	      else
 		cd.language->setCurrentIndex
-		  (cd.language->findText("UNKNOWN"));
+		  (cd.language->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "quantity")
 	    cd.quantity->setValue(var.toInt());
@@ -1110,7 +1115,7 @@ void qtbook_cd::modify(const int state)
 		  (cd.monetary_units->findText(var.toString()));
 	      else
 		cd.monetary_units->setCurrentIndex
-		  (cd.monetary_units->findText("UNKNOWN"));
+		  (cd.monetary_units->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "cddiskcount")
 	    cd.no_of_discs->setValue(var.toInt());
@@ -1123,16 +1128,16 @@ void qtbook_cd::modify(const int state)
 		  (cd.location->findText(var.toString()));
 	      else
 		cd.location->setCurrentIndex
-		  (cd.location->findText("UNKNOWN"));
+		  (cd.location->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString("BiblioteQ: Modify CD Entry (%1)").arg
-		  (var.toString());
+		str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+		  var.toString() + tr(")");
 	      else
-		str = QString("BiblioteQ: View CD Details (%1)").arg
-		  (var.toString());
+		str = QString(tr("BiblioteQ: View CD Details (")) +
+		  var.toString() + tr(")");
 
 	      setWindowTitle(str);
 	      cd.id->setText(var.toString());
@@ -1214,7 +1219,7 @@ void qtbook_cd::insert(void)
   cd.showUserButton->setEnabled(false);
   cd.queryButton->setEnabled(true);
   cd.computeButton->setVisible(true);
-  cd.okButton->setText("&Save");
+  cd.okButton->setText(tr("&Save"));
   cd.release_date->setDate(QDate::fromString("01/01/2000",
 					     "MM/dd/yyyy"));
   cd.runtime->setTime(QTime(0, 0, 1));
@@ -1244,7 +1249,7 @@ void qtbook_cd::insert(void)
     (cd.description->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (cd.category->viewport(), QColor(255, 248, 220));
-  setWindowTitle("BiblioteQ: Create CD Entry");
+  setWindowTitle(tr("BiblioteQ: Create CD Entry"));
   cd.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1279,14 +1284,14 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   if(!query.exec(querystr))
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to retrieve track data for table "
-			      "populating."),
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to retrieve track data for table "
+				 "populating.")),
 		      query.lastError().text(),
 		      __FILE__, __LINE__);
-      QMessageBox::critical(this, "BiblioteQ: Database Error",
-			    "Unable to retrieve track data for "
-			    "table populating.");
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve track data for "
+			       "table populating."));
       return;
     }
 
@@ -1299,10 +1304,10 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   trd.table->setCurrentItem(0);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
-  list.append("Album Number");
-  list.append("Track Number");
-  list.append("Track Title");
-  list.append("Track Runtime");
+  list.append(tr("Album Number"));
+  list.append(tr("Track Number"));
+  list.append(tr("Track Title"));
+  list.append(tr("Track Runtime"));
   trd.table->setColumnCount(list.size());
   trd.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -1311,7 +1316,8 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   trd.table->horizontalScrollBar()->setValue(0);
   tracks_diag->updateGeometry();
   tracks_diag->setWindowTitle
-    (QString("BiblioteQ: Album Tracks Browser (%1)").arg(cd.id->text()));
+    (QString(tr("BiblioteQ: Album Tracks Browser (")) +
+     cd.id->text() + tr(")"));
   tracks_diag->resize(tracks_diag->sizeHint());
   tracks_diag->show();
   trd.table->setSortingEnabled(false);
@@ -1320,8 +1326,8 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
     trd.table->setRowCount(query.size());
 
   progress.setModal(true);
-  progress.setWindowTitle("BiblioteQ: Progress Dialog");
-  progress.setLabelText("Populating the table...");
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Populating the table..."));
 
   if(qmain->getDB().driverName() == "QSQLITE")
     progress.setMaximum(misc_functions::sqliteQuerySize(querystr,
@@ -1353,11 +1359,12 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 		    comboBox->setCurrentIndex(comboBox->findText(str));
 		  }
 		else
-		  qmain->addError(QString("Memory Error"),
-				  QString("Unable to allocate memory for the "
-					  "\"comboBox\" object. "
-					  "This is a serious problem!"),
-				  QString(""), __FILE__, __LINE__);
+		  qmain->addError
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to allocate memory for the "
+				"\"comboBox\" object. "
+				"This is a serious problem!")),
+		     QString(""), __FILE__, __LINE__);
 	      }
 	    else if(j == 1)
 	      {
@@ -1368,11 +1375,12 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 		    trackEdit->setValue(str.toInt());
 		  }
 		else
-		  qmain->addError(QString("Memory Error"),
-				  QString("Unable to allocate memory for the "
-					  "\"trackEdit\" object. "
-					  "This is a serious problem!"),
-				  QString(""), __FILE__, __LINE__);
+		  qmain->addError
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to allocate memory for the "
+				"\"trackEdit\" object. "
+				"This is a serious problem!")),
+		     QString(""), __FILE__, __LINE__);
 	      }
 	    else if(j == 3)
 	      {
@@ -1383,11 +1391,12 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 		    timeEdit->setTime(QTime::fromString(str, "hh:mm:ss"));
 		  }
 		else
-		  qmain->addError(QString("Memory Error"),
-				  QString("Unable to allocate memory for the "
-					  "\"timeEdit\" object. "
-					  "This is a serious problem!"),
-				  QString(""), __FILE__, __LINE__);
+		  qmain->addError
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to allocate memory for the "
+				"\"timeEdit\" object. "
+				"This is a serious problem!")),
+		     QString(""), __FILE__, __LINE__);
 	      }
 	    else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
@@ -1397,10 +1406,10 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 		trd.table->setItem(i, j, item);
 	      }
 	    else
-	      qmain->addError(QString("Memory Error"),
-			      QString("Unable to allocate memory for the "
-				      "\"item\" object. "
-				      "This is a serious problem!"),
+	      qmain->addError(QString(tr("Memory Error")),
+			      QString(tr("Unable to allocate memory for the "
+					 "\"item\" object. "
+					 "This is a serious problem!")),
 			      QString(""), __FILE__, __LINE__);
 
 	    trd.table->resizeColumnToContents(i);
@@ -1471,10 +1480,10 @@ void qtbook_cd::slotInsertTrack(void)
 	      comboBox->addItems(list);
 	    }
 	  else
-	    qmain->addError(QString("Memory Error"),
-			    QString("Unable to allocate memory for the "
-				    "\"comboBox\" object. "
-				    "This is a serious problem!"),
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"comboBox\" object. "
+				       "This is a serious problem!")),
 			    QString(""), __FILE__, __LINE__);
 	}
       else if(i == 1)
@@ -1486,10 +1495,10 @@ void qtbook_cd::slotInsertTrack(void)
 	      trackEdit->setValue(1);
 	    }
 	  else
-	    qmain->addError(QString("Memory Error"),
-			    QString("Unable to allocate memory for the "
-				    "\"trackEdit\" object. "
-				    "This is a serious problem!"),
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"trackEdit\" object. "
+				       "This is a serious problem!")),
 			    QString(""), __FILE__, __LINE__);
 	}
       else if(i == 3)
@@ -1500,10 +1509,10 @@ void qtbook_cd::slotInsertTrack(void)
 	      timeEdit->setDisplayFormat("hh:mm:ss");
 	    }
 	  else
-	    qmain->addError(QString("Memory Error"),
-			    QString("Unable to allocate memory for the "
-				    "\"timeEdit\" object. "
-				    "This is a serious problem!"),
+	    qmain->addError(QString(tr("Memory Error")),
+			    QString(tr("Unable to allocate memory for the "
+				       "\"timeEdit\" object. "
+				       "This is a serious problem!")),
 			    QString(""), __FILE__, __LINE__);
 	}
       else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
@@ -1514,10 +1523,10 @@ void qtbook_cd::slotInsertTrack(void)
 	  trd.table->setItem(trow, i, item);
 	}
       else
-	qmain->addError(QString("Memory Error"),
-			QString("Unable to allocate memory for the "
-				"\"item\" object. "
-				"This is a serious problem!"),
+	qmain->addError(QString(tr("Memory Error")),
+			QString(tr("Unable to allocate memory for the "
+				   "\"item\" object. "
+				   "This is a serious problem!")),
 			QString(""), __FILE__, __LINE__);
 
       trd.table->resizeColumnToContents(i);
@@ -1553,9 +1562,10 @@ void qtbook_cd::slotSaveTracks(void)
     if(trd.table->item(i, 2) != 0 &&
        trd.table->item(i, 2)->text().trimmed().isEmpty())
       {
-	errormsg = QString("Row number %1 contains an empty Song Title.").arg
-	  (i + 1);
-	QMessageBox::critical(tracks_diag, "BiblioteQ: User Error", errormsg);
+	errormsg = QString(tr("Row number ")) + QString::number(i + 1) +
+	  tr(" contains an empty Song Title.");
+	QMessageBox::critical(tracks_diag, tr("BiblioteQ: User Error"),
+			      errormsg);
 	return;
       }
 
@@ -1564,11 +1574,11 @@ void qtbook_cd::slotSaveTracks(void)
   if(!qmain->getDB().transaction())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to create a database transaction."),
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
-			    "Unable to create a database transaction.");
+      QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create a database transaction."));
       return;
     }
 
@@ -1581,14 +1591,14 @@ void qtbook_cd::slotSaveTracks(void)
   if(!query.exec())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError(QString("Database Error"),
-		      QString("Unable to purge track data."),
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to purge track data.")),
 		      query.lastError().text(), __FILE__, __LINE__);
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
-	qmain->addError(QString("Database Error"),
-			QString("Rollback failure."),
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Rollback failure.")),
 			qmain->getDB().lastError().text(),
 			__FILE__, __LINE__);
 
@@ -1598,8 +1608,8 @@ void qtbook_cd::slotSaveTracks(void)
     {
       qapp->restoreOverrideCursor();
       progress.setModal(true);
-      progress.setWindowTitle("BiblioteQ: Progress Dialog");
-      progress.setLabelText("Saving the track data...");
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.setLabelText(tr("Saving the track data..."));
       progress.setMaximum(trd.table->rowCount());
       progress.show();
       progress.update();
@@ -1635,8 +1645,8 @@ void qtbook_cd::slotSaveTracks(void)
 
 	  if(!query.exec())
 	    {
-	      qmain->addError(QString("Database Error"),
-			      QString("Unable to create track data."),
+	      qmain->addError(QString(tr("Database Error")),
+			      QString(tr("Unable to create track data.")),
 			      query.lastError().text(), __FILE__, __LINE__);
 	      lastError = query.lastError().text();
 	    }
@@ -1649,21 +1659,21 @@ void qtbook_cd::slotSaveTracks(void)
       progress.hide();
 
       if(!lastError.isEmpty())
-	QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
-			      "Some or all of the track data has not "
-			      "been saved. Please review the Error Log.");
+	QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
+			      tr("Some or all of the track data has not "
+				 "been saved. Please review the Error Log."));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().commit())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString("Database Error"),
-			  QString("Commit failure."),
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Commit failure.")),
 			  qmain->getDB().lastError().text(), __FILE__,
 			  __LINE__);
-	  QMessageBox::critical(tracks_diag, "BiblioteQ: Database Error",
-				"Unable to commit the track data.");
+	  QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
+				tr("Unable to commit the track data."));
 	}
 
       qapp->restoreOverrideCursor();
@@ -1683,47 +1693,47 @@ void qtbook_cd::slotReset(void)
     {
       name = action->text();
 
-      if(name.contains("Front Cover Image"))
+      if(name.contains(tr("Front Cover Image")))
 	cd.front_image->clear();
-      else if(name.contains("Back Cover Image"))
+      else if(name.contains(tr("Back Cover Image")))
 	cd.back_image->clear();
-      else if(name.contains("Catalog Number"))
+      else if(name.contains(tr("Catalog Number")))
 	{
 	  cd.id->clear();
 	  cd.id->setFocus();
 	}
-      else if(name.contains("Title"))
+      else if(name.contains(tr("Title")))
 	{
 	  cd.title->clear();
 	  cd.title->setFocus();
 	}
-      else if(name.contains("Format"))
+      else if(name.contains(tr("Format")))
 	{
 	  cd.format->setCurrentIndex(0);
 	  cd.format->setFocus();
 	}
-      else if(name.contains("Artist"))
+      else if(name.contains(tr("Artist")))
 	{
 	  cd.artist->clear();
 	  cd.artist->setFocus();
 	}
-      else if(name.contains("Number of Discs"))
+      else if(name.contains(tr("Number of Discs")))
 	{
 	  cd.no_of_discs->setValue(cd.no_of_discs->minimum());
 	  cd.no_of_discs->setFocus();
 	}
-      else if(name.contains("Runtime"))
+      else if(name.contains(tr("Runtime")))
 	{
-	  if(windowTitle().contains("Search"))
+	  if(windowTitle().contains(tr("Search")))
 	    cd.runtime->setTime(QTime(0, 0, 0));
 	  else
 	    cd.runtime->setTime(QTime(0, 0, 1));
 
 	  cd.runtime->setFocus();
 	}
-      else if(name.contains("Release Date"))
+      else if(name.contains(tr("Release Date")))
 	{
-	  if(windowTitle().contains("Search"))
+	  if(windowTitle().contains(tr("Search")))
 	    cd.release_date->setDate
 	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
 	  else
@@ -1732,57 +1742,57 @@ void qtbook_cd::slotReset(void)
 
 	  cd.release_date->setFocus();
 	}
-      else if(name.contains("Audio"))
+      else if(name.contains(tr("Audio")))
 	{
 	  cd.audio->setCurrentIndex(0);
 	  cd.audio->setFocus();
 	}
-      else if(name.contains("Recording Type"))
+      else if(name.contains(tr("Recording Type")))
 	{
 	  cd.recording_type->setCurrentIndex(0);
 	  cd.recording_type->setFocus();
 	}
-      else if(name.contains("Recording Label"))
+      else if(name.contains(tr("Recording Label")))
 	{
 	  cd.recording_label->clear();
 	  cd.recording_label->setFocus();
 	}
-      else if(name.contains("Categories"))
+      else if(name.contains(tr("Categories")))
 	{
 	  cd.category->clear();
 	  cd.category->setFocus();
 	}
-      else if(name.contains("Price"))
+      else if(name.contains(tr("Price")))
 	{
 	  cd.price->setValue(cd.price->minimum());
 	  cd.price->setFocus();
 	}
-      else if(name.contains("Language"))
+      else if(name.contains(tr("Language")))
 	{
 	  cd.language->setCurrentIndex(0);
 	  cd.language->setFocus();
 	}
-      else if(name.contains("Monetary Units"))
+      else if(name.contains(tr("Monetary Units")))
 	{
 	  cd.monetary_units->setCurrentIndex(0);
 	  cd.monetary_units->setFocus();
 	}
-      else if(name.contains("Abstract"))
+      else if(name.contains(tr("Abstract")))
 	{
 	  cd.description->clear();
 	  cd.description->setFocus();
 	}
-      else if(name.contains("Copies"))
+      else if(name.contains(tr("Copies")))
 	{
 	  cd.quantity->setValue(cd.quantity->minimum());
 	  cd.quantity->setFocus();
 	}
-      else if(name.contains("Location"))
+      else if(name.contains(tr("Location")))
 	{
 	  cd.location->setCurrentIndex(0);
 	  cd.location->setFocus();
 	}
-      else if(name.contains("OFFSYSTEM URL"))
+      else if(name.contains(tr("OFFSYSTEM URL")))
 	{
 	  cd.url->clear();
 	  cd.url->setFocus();
@@ -1797,7 +1807,7 @@ void qtbook_cd::slotReset(void)
       cd.title->clear();
       cd.recording_label->clear();
 
-      if(windowTitle().contains("Search"))
+      if(windowTitle().contains(tr("Search")))
 	{
 	  cd.runtime->setTime(QTime(0, 0, 0));
 	  cd.release_date->setDate(QDate::fromString("01/01/7999",
@@ -1836,10 +1846,11 @@ void qtbook_cd::slotReset(void)
 
 void qtbook_cd::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     if(hasDataChanged(this))
-      if(QMessageBox::question(this, "BiblioteQ: Question",
-			       "You have unsaved data. Continue closing?",
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("You have unsaved data. Continue closing?"),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
@@ -1933,9 +1944,9 @@ void qtbook_cd::slotComputeRuntime(void)
   qapp->restoreOverrideCursor();
 
   if(sum.toString("hh:mm:ss") == "00:00:00")
-    QMessageBox::critical(this, "BiblioteQ: Error",
-			  "The total runtime of the available tracks is "
-			  "zero. Please set the individual runtimes.");
+    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			  tr("The total runtime of the available tracks is "
+			     "zero. Please set the individual runtimes."));
   else
     cd.runtime->setTime(QTime::fromString(sum.toString("hh:mm:ss"),
 					  "hh:mm:ss"));
@@ -1993,9 +2004,9 @@ void qtbook_cd::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == cd.frontButton)
-    dialog.setWindowTitle("BiblioteQ: Front Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
   else
-    dialog.setWindowTitle("BiblioteQ: Back Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
 
