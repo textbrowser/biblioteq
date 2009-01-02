@@ -177,7 +177,6 @@ class qtbook: public QMainWindow
   QString getRoles(void);
   QString getAdminID(void);
   QString sqlitefile(void);
-  QString getGeometryString(void);
   QMainWindow *getMembersBrowser(void);
   QSqlDatabase getDB(void);
   Ui_mainWindow getUI(void);

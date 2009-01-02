@@ -1966,31 +1966,34 @@ void qtbook_cd::slotPrint(void)
     cd.artist->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Number of Discs:") + "</b> " +
     cd.no_of_discs->text() + "<br>";
-  html += "<b>Runtime:</b> " + cd.runtime->text() + "<br>";
-  html += "<b>Audio:</b> " + cd.audio->currentText() + "<br>";
-  html += "<b>Recording Type:</b> " + cd.recording_type->currentText() +
-    "<br>";
+  html += "<b>" + tr("Runtime:") + "</b> " + cd.runtime->text() + "<br>";
+  html += "<b>" + tr("Audio:") + "</b> " + cd.audio->currentText() + "<br>";
+  html += "<b>" + tr("Recording Type:") + "</b> " +
+    cd.recording_type->currentText() + "<br>";
 
   /*
   ** General information.
   */
 
-  html += "<b>Title:</b> " + cd.title->text().trimmed() + "<br>";
-  html += "<b>Release Date:</b> " + cd.release_date->date().
+  html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() + "<br>";
+  html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Recording Label:</b> " + cd.recording_label->
+  html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
     toPlainText().trimmed() + "<br>";
-  html += "<b>Categories:</b> " + cd.category->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>Price:</b> " + cd.price->text() + "<br>";
-  html += "<b>Language:</b> " + cd.language->currentText() + "<br>";
-  html += "<b>Monetary Units:</b> " + cd.monetary_units->currentText() +
-    "<br>";
-  html += "<b>Copies:</b> " + cd.quantity->text() + "<br>";
-  html += "<b>Location:</b> " + cd.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + cd.description->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + cd.url->toPlainText().trimmed();
+  html += "<b>" + tr("Categories:") + "</b> " +
+    cd.category->toPlainText().trimmed() + "<br>";
+  html += "<b>"+ tr("Price:") + "</b> " + cd.price->text() + "<br>";
+  html += "<b>" + tr("Language:") + "</b> " +
+    cd.language->currentText() + "<br>";
+  html += "<b>" + tr("Monetary Units:") + "</b> " +
+    cd.monetary_units->currentText() + "<br>";
+  html += "<b>" + tr("Copies:") + "</b> " + cd.quantity->text() + "<br>";
+  html += "<b>" + tr("Location:") + "</b> " +
+    cd.location->currentText() + "<br>";
+  html += "<b>" + tr("Abstract:") + "</b> " +
+    cd.description->toPlainText().trimmed() + "<br>";
+  html += "<b>"+ tr("OFFSYSTEM URL:") + "</b> " +
+    cd.url->toPlainText().trimmed();
   print(this);
 }
 

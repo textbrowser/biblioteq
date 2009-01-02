@@ -4700,23 +4700,6 @@ void qtbook::readConfig(void)
 }
 
 /*
-** -- getGeometryString() --
-*/
-
-QString qtbook::getGeometryString(void)
-{
-  QString str = "";
-
-  if(ui.actionPreserveGeometry->isChecked())
-    str = QString("%1x%2x%3x%4").arg(geometry().x()).
-      arg(geometry().y()).
-      arg(geometry().width()).
-      arg(geometry().height());
-
-  return str;
-}
-
-/*
 ** -- slotRemoveMember() --
 */
 
