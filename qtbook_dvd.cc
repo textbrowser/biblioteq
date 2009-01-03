@@ -1540,35 +1540,45 @@ void qtbook_dvd::slotQuery(void)
 void qtbook_dvd::slotPrint(void)
 {
   html = "";
-  html += "<b>UPC:</b> " + dvd.id->text().trimmed() + "<br>";
-  html += "<b>Rating:</b> " + dvd.rating->currentText() + "<br>";
-  html += "<b>Actor(s):</b> " + dvd.actors->toPlainText().trimmed() + "<br>";
-  html += "<b>Director(s):</b> " + dvd.directors->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>Number of Discs:</b> " + dvd.no_of_discs->text() + "<br>";
-  html += "<b>Runtime:</b> " + dvd.runtime->text() + "<br>";
-  html += "<b>Format:</b> " + dvd.format->text().trimmed() + "<br>";
-  html += "<b>Region:</b> " + dvd.region->currentText() + "<br>";
-  html += "<b>Aspect Ratio:</b> " + dvd.aspectratio->currentText() + "<br>";
+  html += "<b>" + tr("UPC:") + "</b> " + dvd.id->text().trimmed() + "<br>";
+  html += "<b>" + tr("Rating:") + "</b> " + dvd.rating->currentText() + "<br>";
+  html += "<b>" + tr("Actor(s):") + "</b> " +
+    dvd.actors->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Director(s):") + "</b> " +
+    dvd.directors->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Number of Discs:") + "</b> " +
+    dvd.no_of_discs->text() + "<br>";
+  html += "<b>" + tr("Runtime:") + "</b> " + dvd.runtime->text() + "<br>";
+  html += "<b>" + tr("Format:") + "</b> " +
+    dvd.format->text().trimmed() + "<br>";
+  html += "<b>" + tr("Region:") + "</b> " + dvd.region->currentText() + "<br>";
+  html += "<b>" + tr("Aspect Ratio:") + "</b> " +
+    dvd.aspectratio->currentText() + "<br>";
 
   /*
   ** General information.
   */
 
-  html += "<b>Title:</b> " + dvd.title->text().trimmed() + "<br>";
-  html += "<b>Release Date:</b> " + dvd.release_date->date().
+  html += "<b>" + tr("Title:") + "</b> " +
+    dvd.title->text().trimmed() + "<br>";
+  html += "<b>" + tr("Release Date:") + "</b> " + dvd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Studio:</b> " + dvd.studio->toPlainText().trimmed() + "<br>";
-  html += "<b>Category:</b> " + dvd.category->toPlainText().trimmed() + "<br>";
-  html += "<b>Price:</b> " + dvd.price->text() + "<br>";
-  html += "<b>Language:</b> " + dvd.language->currentText() + "<br>";
-  html += "<b>Monetary Units:</b> " + dvd.monetary_units->currentText() +
-    "<br>";
-  html += "<b>Copies:</b> " + dvd.quantity->text() + "<br>";
-  html += "<b>Location:</b> " + dvd.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + dvd.description->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>OFFSYSTEM URL:</b> " + dvd.url->toPlainText().trimmed();
+  html += "<b>" + tr("Studio:") + "</b> " +
+    dvd.studio->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Category:") + "</b> " +
+    dvd.category->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + dvd.price->text() + "<br>";
+  html += "<b>" + tr("Language:") + "</b> " +
+    dvd.language->currentText() + "<br>";
+  html += "<b>" + tr("Monetary Units:") + "</b> " +
+    dvd.monetary_units->currentText() + "<br>";
+  html += "<b>" + tr("Copies:") + "</b> " + dvd.quantity->text() + "<br>";
+  html += "<b>" + tr("Location:") + "</b> " +
+    dvd.location->currentText() + "<br>";
+  html += "<b>" + tr("Abstract:") + "</b> " +
+    dvd.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("OFFSYSTEM URL:") + "</b> " +
+    dvd.url->toPlainText().trimmed();
   print(this);
 }
 
@@ -1585,9 +1595,9 @@ void qtbook_dvd::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == dvd.frontButton)
-    dialog.setWindowTitle("BiblioteQ: Front Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
   else
-    dialog.setWindowTitle("BiblioteQ: Back Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
 
