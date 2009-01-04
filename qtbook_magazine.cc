@@ -52,7 +52,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   subType = "Magazine";
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, "Quantity").toInt();
+    (qmain->getUI().table, row, tr("Quantity")).toInt();
   ma.setupUi(this);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -67,43 +67,43 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   connect(ma.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(ma.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(menu->addAction("Reset &Front Cover Image"),
+  connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Back Cover Image"),
+  connect(menu->addAction(tr("Reset &Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &ISSN"),
+  connect(menu->addAction(tr("Reset &ISSN")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Volume"),
+  connect(menu->addAction(tr("Reset &Volume")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Issue"),
+  connect(menu->addAction(tr("Reset &Issue")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &LC Control Number"),
+  connect(menu->addAction(tr("Reset &LC Control Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Call Number"),
+  connect(menu->addAction(tr("Reset &Call Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Dewey Number"),
+  connect(menu->addAction(tr("Reset &Dewey Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Title"),
+  connect(menu->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Publication Date"),
+  connect(menu->addAction(tr("Reset &Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Publisher"),
+  connect(menu->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Categories"),
+  connect(menu->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Price"),
+  connect(menu->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Language"),
+  connect(menu->addAction(tr("Reset &Language")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Monetary Units"),
+  connect(menu->addAction(tr("Reset &Monetary Units")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Copies"),
+  connect(menu->addAction(tr("Reset &Copies")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Location"),
+  connect(menu->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Abstract"),
+  connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &OFFSYSTEM URL"),
+  connect(menu->addAction(tr("Reset &OFFSYSTEM URL")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(ma.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
@@ -119,13 +119,13 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ma.back_image->setScene(scene2);
 
   if(ma.language->count() == 0)
-    ma.language->addItem("UNKNOWN");
+    ma.language->addItem(tr("UNKNOWN"));
 
   if(ma.monetary_units->count() == 0)
-    ma.monetary_units->addItem("UNKNOWN");
+    ma.monetary_units->addItem(tr("UNKNOWN"));
 
   if(ma.location->count() == 0)
-    ma.location->addItem("UNKNOWN");
+    ma.location->addItem(tr("UNKNOWN"));
 
   /*
   ** Save some palettes and style sheets.
@@ -167,10 +167,10 @@ void qtbook_magazine::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains("Create") ||
-     windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     {
-      if(windowTitle().contains("Modify") && row > -1)
+      if(windowTitle().contains(tr("Modify")) && row > -1)
 	{
 	  newq = ma.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -181,14 +181,14 @@ void qtbook_magazine::slotGo(void)
 	    {
 	      qapp->restoreOverrideCursor();
 	      qmain->addError
-		(QString("Database Error"),
-		 QString("Unable to determine the maximum copy number of "
-			 "the item."),
+		(QString(tr("Database Error")),
+		 QString(tr("Unable to determine the maximum copy number of "
+			    "the item.")),
 		 errorstr, __FILE__, __LINE__);
 	      QMessageBox::critical
-		(this, "BiblioteQ: Database Error",
-		 "Unable to determine the maximum copy number of "
-		 "the item.");
+		(this, tr("BiblioteQ: Database Error"),
+		 tr("Unable to determine the maximum copy number of "
+		    "the item."));
 	      return;
 	    }
 
@@ -197,17 +197,17 @@ void qtbook_magazine::slotGo(void)
 	  if(newq < maxcopynumber)
 	    {
 	      QMessageBox::critical
-		(this, "BiblioteQ: User Error",
-		 "It appears that you are attempting to decrease the "
-		 "number of copies while there are copies "
-		 "that have been reserved.");
+		(this, tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to decrease the "
+		    "number of copies while there are copies "
+		    "that have been reserved."));
 	      ma.quantity->setValue(oldq);
 	      return;
 	    }
 	  else if(newq > oldq)
 	    if(QMessageBox::question
-	       (this, "BiblioteQ: Question",
-		"Would you like to modify copy information?",
+	       (this, tr("BiblioteQ: Question"),
+		tr("Would you like to modify copy information?"),
 		QMessageBox::Yes | QMessageBox::No,
 		QMessageBox::No) == QMessageBox::Yes)
 	      slotPopulateCopiesEditor();
@@ -219,12 +219,12 @@ void qtbook_magazine::slotGo(void)
 	{
 	  qapp->restoreOverrideCursor();
 	  qmain->addError
-	    (QString("Database Error"),
-	     QString("Unable to create a database transaction."),
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create a database transaction.")),
 	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (this, "BiblioteQ: Database Error",
-	     "Unable to create a database transaction.");
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create a database transaction."));
 	  return;
 	}
 
@@ -234,8 +234,8 @@ void qtbook_magazine::slotGo(void)
 
       if(ma.id->text().length() != 9)
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the ISSN field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the ISSN field."));
 	  ma.id->setFocus();
 	  goto db_rollback;
 	}
@@ -245,8 +245,8 @@ void qtbook_magazine::slotGo(void)
 
       if(ma.title->text().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Title field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
 	  ma.title->setFocus();
 	  goto db_rollback;
 	}
@@ -256,8 +256,8 @@ void qtbook_magazine::slotGo(void)
 
       if(ma.publisher->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Publisher field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Publisher field."));
 	  ma.publisher->setFocus();
 	  goto db_rollback;
 	}
@@ -267,8 +267,8 @@ void qtbook_magazine::slotGo(void)
 
       if(ma.category->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Categories field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories field."));
 	  ma.category->setFocus();
 	  goto db_rollback;
 	}
@@ -278,8 +278,8 @@ void qtbook_magazine::slotGo(void)
 
       if(ma.description->toPlainText().isEmpty())
 	{
-	  QMessageBox::critical(this, "BiblioteQ: User Error",
-				"Please complete the Abstract field.");
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
 	  ma.description->setFocus();
 	  goto db_rollback;
 	}
@@ -293,7 +293,7 @@ void qtbook_magazine::slotGo(void)
       str = ma.url->toPlainText().trimmed();
       ma.url->setPlainText(str);
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.prepare(QString("UPDATE %1 SET "
 			      "id = ?, "
 			      "title = ?, "
@@ -412,12 +412,12 @@ void qtbook_magazine::slotGo(void)
       else
 	query.bindValue(18, QVariant(QVariant::String));
 
-      if(windowTitle().contains("Modify"))
+      if(windowTitle().contains(tr("Modify")))
 	query.bindValue(19, oid);
       else
 	query.bindValue(19, subType);
 
-      if(windowTitle().contains("Create"))
+      if(windowTitle().contains(tr("Create")))
 	if(qmain->getDB().driverName() == "QSQLITE")
 	  query.bindValue(20,
 			  ma.id->text().remove("-") +
@@ -428,14 +428,15 @@ void qtbook_magazine::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString("Database Error"),
-			  QString("Unable to create or update the entry."),
-			  query.lastError().text(), __FILE__, __LINE__);
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create or update the entry.")),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (this, "BiblioteQ: Database Error",
-	     "Unable to create or update the entry. "
-	     "Please verify that "
-	     "the entry does not already exist.");
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create or update the entry. "
+		"Please verify that "
+		"the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -444,7 +445,7 @@ void qtbook_magazine::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
 	      query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -456,15 +457,16 @@ void qtbook_magazine::slotGo(void)
 	      if(!query.exec())
 		{
 		  qapp->restoreOverrideCursor();
-		  qmain->addError(QString("Database Error"),
-				  QString("Unable to purge unnecessary copy "
-					  "data."),
-				  query.lastError().text(), __FILE__,
-				  __LINE__);
+		  qmain->addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to purge unnecessary copy "
+				"data.")),
+		     query.lastError().text(), __FILE__,
+		     __LINE__);
 		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to purge unnecessary "
-					"copy data.");
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to purge unnecessary "
+					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -472,13 +474,13 @@ void qtbook_magazine::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__, __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -497,12 +499,13 @@ void qtbook_magazine::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to create initial copies."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this,
-					"BiblioteQ: Database Error",
-					"Unable to create initial copies.");
+		  QMessageBox::critical
+		    (this,
+		     tr("BiblioteQ: Database Error"),
+		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -510,14 +513,14 @@ void qtbook_magazine::slotGo(void)
 		{
 		  qapp->restoreOverrideCursor();
 		  qmain->addError
-		    (QString("Database Error"),
-		     QString("Unable to commit the current database "
-			     "transaction."),
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, "BiblioteQ: Database Error",
-					"Unable to commit the current "
-					"database transaction.");
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -556,15 +559,26 @@ void qtbook_magazine::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains("Modify"))
+	  if(windowTitle().contains(tr("Modify")))
 	    {
-	      str = QString("BiblioteQ: Modify %1 Entry (%2)").arg
-		(subType).arg(ma.id->text());
+	      if(subType == "Journal")
+		str = QString(tr("BiblioteQ: Modify Journal Entry ("));
+	      else
+		str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
+
+	      str += ma.id->text() + tr(")");
 	      setWindowTitle(str);
 
-	      if((qmain->getUI().typefilter->currentText() == "All" ||
+	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
 		  qmain->getUI().typefilter->currentText() ==
-		  (subType + "s")) &&
+		  tr("All Overdue") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Requested") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Reserved") ||
+		  qmain->getUI().typefilter->currentText() == tr("Journals") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("Magazines")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))
 		{
@@ -575,53 +589,53 @@ void qtbook_magazine::slotGo(void)
 		      if(column == 0)
 			continue;
 
-		      if(column->text() == "ISSN" ||
-			 column->text() == "ID Number")
+		      if(column->text() == tr("ISSN") ||
+			 column->text() == tr("ID Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.id->text());
-		      else if(column->text() == "Title")
+		      else if(column->text() == tr("Title"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.title->text());
-		      else if(column->text() == "Publication Date")
+		      else if(column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publication_date->date().toString("MM/dd/yyyy"));
-		      else if(column->text() == "Publisher")
+		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publisher->toPlainText());
-		      else if(column->text() == "Categories")
+		      else if(column->text() == tr("Categories"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.category->toPlainText().trimmed());
-		      else if(column->text() == "Price")
+		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.price->text());
-		      else if(column->text() == "Language")
+		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.language->currentText().trimmed());
-		      else if(column->text() == "Monetary Units")
+		      else if(column->text() == tr("Monetary Units"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.monetary_units->currentText().trimmed());
-		      else if(column->text() == "Quantity")
+		      else if(column->text() == tr("Quantity"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.quantity->text());
-		      else if(column->text() == "Location")
+		      else if(column->text() == tr("Location"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.location->currentText().trimmed());
-		      else if(column->text() == "Volume")
+		      else if(column->text() == tr("Volume"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.volume->text());
-		      else if(column->text() == "Issue")
+		      else if(column->text() == tr("Issue"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.issue->text());
-		      else if(column->text() == "LC Control Number")
+		      else if(column->text() == tr("LC Control Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.lcnum->text());
-		      else if(column->text() == "Call Number")
+		      else if(column->text() == tr("Call Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.callnum->text());
-		      else if(column->text() == "Dewey Number")
+		      else if(column->text() == tr("Dewey Number"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.deweynum->text());
-		      else if(column->text() == "Availability")
+		      else if(column->text() == tr("Availability"))
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability
@@ -630,8 +644,8 @@ void qtbook_magazine::slotGo(void)
 
 			  if(!errorstr.isEmpty())
 			    qmain->addError
-			      (QString("Database Error"),
-			       QString("Retrieving availability."),
+			      (QString(tr("Database Error")),
+			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
 		    }
@@ -659,15 +673,29 @@ void qtbook_magazine::slotGo(void)
 	      if(!errorstr.isEmpty())
 		{
 		  oid = "insert";
-		  qmain->addError(QString("Database Error"),
-				  QString("Unable to retrieve the "
-					  "%1's OID.").arg
-				  (subType.toLower()),
-				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this, "BiblioteQ: Database Error",
-		     QString("Unable to retrieve the "
-			     "%1's OID.").arg(subType.toLower()));
+
+		  if(subType == "Journal")
+		    {
+		      qmain->addError(QString(tr("Database Error")),
+				      QString(tr("Unable to retrieve the "
+						 "journal's OID.")),
+				      errorstr, __FILE__, __LINE__);
+		      QMessageBox::critical
+			(this, tr("BiblioteQ: Database Error"),
+			 QString(tr("Unable to retrieve the "
+				    "journal's OID.")));
+		    }
+		  else
+		    {
+		      qmain->addError(QString(tr("Database Error")),
+				      QString(tr("Unable to retrieve the "
+						 "magazine's OID.")),
+				      errorstr, __FILE__, __LINE__);
+		      QMessageBox::critical
+			(this, tr("BiblioteQ: Database Error"),
+			 QString(tr("Unable to retrieve the "
+				    "magazine's OID.")));
+		    }
 		}
 	      else if(subType == "Journal")
 		qmain->replaceJournal
@@ -678,9 +706,16 @@ void qtbook_magazine::slotGo(void)
 	      updateWindow(qtbook::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, QString("%1s").arg(subType),
-		   QString(""));
+		{
+		  if(subType == "Journal")
+		    (void) qmain->populateTable
+		      (qtbook::POPULATE_ALL, QString(tr("Journals")),
+		       QString(""));
+		  else
+		    (void) qmain->populateTable
+		      (qtbook::POPULATE_ALL, QString(tr("Magazines")),
+		       QString(""));
+		}
 
 	      raise();
 	    }
@@ -695,8 +730,8 @@ void qtbook_magazine::slotGo(void)
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
-	qmain->addError(QString("Database Error"),
-			QString("Rollback failure."),
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Rollback failure.")),
 			qmain->getDB().lastError().text(), __FILE__,
 			__LINE__);
 
@@ -772,12 +807,12 @@ void qtbook_magazine::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(ma.language->currentText() != "Any")
+      if(ma.language->currentText() != tr("Any"))
 	searchstr.append("language = '" +
 			 myqstring::escape(ma.language->currentText()) +
 			 "' AND ");
 
-      if(ma.monetary_units->currentText() != "Any")
+      if(ma.monetary_units->currentText() != tr("Any"))
 	searchstr.append("monetary_units = '" +
 			 myqstring::escape
 			 (ma.monetary_units->currentText()) +
@@ -790,7 +825,7 @@ void qtbook_magazine::slotGo(void)
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
-      if(ma.location->currentText() != "Any")
+      if(ma.location->currentText() != tr("Any"))
 	searchstr.append("AND location = '" +
 			 myqstring::escape
 			 (ma.location->currentText()) + "' ");
@@ -806,8 +841,12 @@ void qtbook_magazine::slotGo(void)
       ** Search the database.
       */
 
-      (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, QString("%1s").arg(subType), searchstr);
+      if(subType == "Journal")
+	(void) qmain->populateTable
+	  (qtbook::POPULATE_SEARCH, QString(tr("Journals")), searchstr);
+      else
+	(void) qmain->populateTable
+	  (qtbook::POPULATE_SEARCH, QString(tr("Magazines")), searchstr);
 
       if(subType == "Journal")
 	/*
@@ -842,7 +881,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.copiesButton->setVisible(false);
   ma.showUserButton->setVisible(false);
   ma.queryButton->setVisible(false);
-  ma.okButton->setText("&Search");
+  ma.okButton->setText(tr("&Search"));
   ma.publication_date->setDate(QDate::fromString("01/01/7999",
 						 "MM/dd/yyyy"));
   ma.id->setCursorPosition(0);
@@ -859,14 +898,14 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ** Add "any".
   */
 
-  if(ma.language->findText("Any") == -1)
-    ma.language->insertItem(0, "Any");
+  if(ma.language->findText(tr("Any")) == -1)
+    ma.language->insertItem(0, tr("Any"));
 
-  if(ma.monetary_units->findText("Any") == -1)
-    ma.monetary_units->insertItem(0, "Any");
+  if(ma.monetary_units->findText(tr("Any")) == -1)
+    ma.monetary_units->insertItem(0, tr("Any"));
 
-  if(ma.location->findText("Any") == -1)
-    ma.location->insertItem(0, "Any");
+  if(ma.location->findText(tr("Any")) == -1)
+    ma.location->insertItem(0, tr("Any"));
 
   ma.location->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
@@ -877,10 +916,14 @@ void qtbook_magazine::search(const QString &field, const QString &value)
     {
       foreach(QAction *action,
 	      ma.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains("Cover Image"))
+	if(action->text().contains(tr("Cover Image")))
 	  action->setVisible(false);
 
-      setWindowTitle(QString("BiblioteQ: Database %1 Search").arg(subType));
+      if(subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
+
       ma.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -913,8 +956,13 @@ void qtbook_magazine::updateWindow(const int state)
       ma.resetButton->setVisible(true);
       ma.frontButton->setVisible(true);
       ma.backButton->setVisible(true);
-      str = QString("BiblioteQ: Modify %1 Entry "
-		    "(%2)").arg(subType).arg(ma.id->text());
+
+      if(subType == "Journal")
+	str = QString(tr("BiblioteQ: Modify Journal Entry ("));
+      else
+	str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
+
+      str += ma.id->text() + tr(")");
     }
   else
     {
@@ -925,8 +973,13 @@ void qtbook_magazine::updateWindow(const int state)
       ma.resetButton->setVisible(false);
       ma.frontButton->setVisible(false);
       ma.backButton->setVisible(false);
-      str = QString("BiblioteQ: View %1 Details "
-		    "(%2)").arg(subType).arg(ma.id->text());
+
+      if(subType == "Journal")
+	str = QString(tr("BiblioteQ: View Journal Details ("));
+      else
+	str = QString(tr("BiblioteQ: View Magazine Details ("));
+
+      str += ma.id->text() + tr(")");
     }
 
   ma.coverImages->setVisible(true);
@@ -948,7 +1001,11 @@ void qtbook_magazine::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
-      setWindowTitle(QString("BiblioteQ: Modify %1 Entry").arg(subType));
+      if(subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: Modify Journal Entry")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: Modify Magazine Entry")));
+
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.queryButton->setVisible(true);
@@ -970,7 +1027,11 @@ void qtbook_magazine::modify(const int state)
     }
   else
     {
-      setWindowTitle(QString("BiblioteQ: View %1 Details").arg(subType));
+      if(subType == "Journal")
+	setWindowTitle(QString(tr("BiblioteQ: View Journal Details")));
+      else
+	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
+
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
       ma.queryButton->setVisible(false);
@@ -981,13 +1042,13 @@ void qtbook_magazine::modify(const int state)
 
       foreach(QAction *action,
 	      ma.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains("Cover Image"))
+	if(action->text().contains(tr("Cover Image")))
 	  action->setVisible(false);
     }
 
   ma.quantity->setMinimum(1);
   ma.price->setMinimum(0.00);
-  ma.okButton->setText("&Save");
+  ma.okButton->setText(tr("&Save"));
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = oid;
@@ -1010,15 +1071,30 @@ void qtbook_magazine::modify(const int state)
   if(!query.exec(searchstr) || !query.next())
     {
       qapp->restoreOverrideCursor();
-      qmain->addError
-	(QString("Database Error"),
-	 QString("Unable to retrieve the selected %1's data.").arg
-	 (subType.toLower()),
-	 query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical
-	(this, "BiblioteQ: Database Error",
-	 QString("Unable to retrieve the selected %1's "
-		 "data.").arg(subType.toLower()));
+
+      if(subType == "Journal")
+	{
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the selected journal's data.")),
+	     query.lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to retrieve the selected journal's "
+			"data.")));
+	}
+      else
+	{
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to retrieve the selected magazine's data.")),
+	     query.lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     QString(tr("Unable to retrieve the selected magazine's "
+			"data.")));
+	}
+
       return;
     }
   else
@@ -1065,7 +1141,7 @@ void qtbook_magazine::modify(const int state)
 		  (ma.language->findText(var.toString()));
 	      else
 		ma.language->setCurrentIndex
-		  (ma.language->findText("UNKNOWN"));
+		  (ma.language->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "quantity")
 	    ma.quantity->setValue(var.toInt());
@@ -1076,7 +1152,7 @@ void qtbook_magazine::modify(const int state)
 		  (ma.monetary_units->findText(var.toString()));
 	      else
 		ma.monetary_units->setCurrentIndex
-		  (ma.monetary_units->findText("UNKNOWN"));
+		  (ma.monetary_units->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "issuevolume")
 	    ma.volume->setValue(var.toInt());
@@ -1089,16 +1165,28 @@ void qtbook_magazine::modify(const int state)
 		  (ma.location->findText(var.toString()));
 	      else
 		ma.location->setCurrentIndex
-		  (ma.location->findText("UNKNOWN"));
+		  (ma.location->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString("BiblioteQ: Modify %1 Entry (%2)").arg
-		  (subType).arg(var.toString());
+		{
+		  if(subType == "Journal")
+		    str = QString(tr("BiblioteQ: Modify Journal Entry (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = QString(tr("BiblioteQ: Modify Magazine Entry (")) +
+		      var.toString() + tr(")");
+		}
 	      else
-		str = QString("BiblioteQ: View %1 Details (%2)").arg
-		  (subType).arg(var.toString());
+		{
+		  if(subType == "Journal")
+		    str = QString(tr("BiblioteQ: View Journal Details (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = QString(tr("BiblioteQ: View Magazine Details (")) +
+		      var.toString() + tr(")");
+		}
 
 	      setWindowTitle(str);
 	      ma.id->setText(var.toString());
@@ -1156,7 +1244,7 @@ void qtbook_magazine::insert(void)
   ma.category->clear();
   ma.copiesButton->setEnabled(false);
   ma.queryButton->setVisible(true);
-  ma.okButton->setText("&Save");
+  ma.okButton->setText(tr("&Save"));
   ma.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
   ma.id->setCursorPosition(0);
@@ -1184,7 +1272,12 @@ void qtbook_magazine::insert(void)
   misc_functions::highlightWidget
     (ma.category->viewport(), QColor(255, 248, 220));
   te_orig_pal = ma.description->viewport()->palette();
-  setWindowTitle(QString("BiblioteQ: Create %1 Entry").arg(subType));
+
+  if(subType == "Journal")
+    setWindowTitle(QString(tr("BiblioteQ: Create Journal Entry")));
+  else
+    setWindowTitle(QString(tr("BiblioteQ: Create Magazine Entry")));
+
   ma.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1204,36 +1297,36 @@ void qtbook_magazine::slotReset(void)
     {
       name = action->text();
 
-      if(name.contains("Front Cover Image"))
+      if(name.contains(tr("Front Cover Image")))
 	ma.front_image->clear();
-      else if(name.contains("Back Cover Image"))
+      else if(name.contains(tr("Back Cover Image")))
 	ma.back_image->clear();
-      else if(name.contains("ISSN"))
+      else if(name.contains(tr("ISSN")))
 	{
 	  ma.id->clear();
 	  ma.id->setCursorPosition(0);
 	  ma.id->setPalette(te_orig_pal);
 	  ma.id->setFocus();
 	}
-      else if(name.contains("Title"))
+      else if(name.contains(tr("Title")))
 	{
 	  ma.title->clear();
 	  ma.title->setPalette(te_orig_pal);
 	  ma.title->setFocus();
 	}
-      else if(name.contains("Volume"))
+      else if(name.contains(tr("Volume")))
 	{
 	  ma.volume->setValue(ma.volume->minimum());
 	  ma.volume->setFocus();
 	}
-      else if(name.contains("Issue"))
+      else if(name.contains(tr("Issue")))
 	{
 	  ma.issue->setValue(ma.issue->minimum());
 	  ma.issue->setFocus();
 	}
-      else if(name.contains("Publication Date"))
+      else if(name.contains(tr("Publication Date")))
 	{
-	  if(windowTitle().contains("Search"))
+	  if(windowTitle().contains(tr("Search")))
 	    ma.publication_date->setDate
 	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
 	  else
@@ -1243,68 +1336,68 @@ void qtbook_magazine::slotReset(void)
 	  ma.publication_date->setStyleSheet(dt_orig_ss);
 	  ma.publication_date->setFocus();
 	}
-      else if(name.contains("Publisher"))
+      else if(name.contains(tr("Publisher")))
 	{
 	  ma.publisher->clear();
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
 	  ma.publisher->setFocus();
 	}
-      else if(name.contains("Categories"))
+      else if(name.contains(tr("Categories")))
 	{
 	  ma.category->clear();
 	  ma.category->viewport()->setPalette(te_orig_pal);
 	  ma.category->setFocus();
 	}
-      else if(name.contains("Price"))
+      else if(name.contains(tr("Price")))
 	{
 	  ma.price->setValue(ma.price->minimum());
 	  ma.price->setFocus();
 	}
-      else if(name.contains("Language"))
+      else if(name.contains(tr("Language")))
 	{
 	  ma.language->setCurrentIndex(0);
 	  ma.language->setFocus();
 	}
-      else if(name.contains("Monetary Units"))
+      else if(name.contains(tr("Monetary Units")))
 	{
 	  ma.monetary_units->setCurrentIndex(0);
 	  ma.monetary_units->setFocus();
 	}
-      else if(name.contains("Abstract"))
+      else if(name.contains(tr("Abstract")))
 	{
 	  ma.description->clear();
 	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.description->setFocus();
 	}
-      else if(name.contains("Copies"))
+      else if(name.contains(tr("Copies")))
 	{
 	  ma.quantity->setValue(ma.quantity->minimum());
 	  ma.quantity->setFocus();
 	}
-      else if(name.contains("Location"))
+      else if(name.contains(tr("Location")))
 	{
 	  ma.location->setCurrentIndex(0);
 	  ma.location->setFocus();
 	}
-      else if(name.contains("LC Control Number"))
+      else if(name.contains(tr("LC Control Number")))
 	{
 	  ma.lcnum->clear();
 	  ma.lcnum->setPalette(ma.url->viewport()->palette());
 	  ma.lcnum->setFocus();
 	}
-      else if(name.contains("Call Number"))
+      else if(name.contains(tr("Call Number")))
 	{
 	  ma.callnum->clear();
 	  ma.callnum->setPalette(ma.url->viewport()->palette());
 	  ma.callnum->setFocus();
 	}
-      else if(name.contains("Dewey Number"))
+      else if(name.contains(tr("Dewey Number")))
 	{
 	  ma.deweynum->clear();
 	  ma.deweynum->setPalette(ma.url->viewport()->palette());
 	  ma.deweynum->setFocus();
 	}
-      else if(name.contains("OFFSYSTEM URL"))
+      else if(name.contains(tr("OFFSYSTEM URL")))
 	{
 	  ma.url->clear();
 	  ma.url->setFocus();

@@ -517,6 +517,12 @@ void qtbook_videogame::slotGo(void)
 	      setWindowTitle(str);
 
 	      if((qmain->getUI().typefilter->currentText() == "All" ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Overdue") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Requested") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Reserved") ||
 		  qmain->getUI().typefilter->currentText() == "Video Games") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))

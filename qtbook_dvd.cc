@@ -606,6 +606,12 @@ void qtbook_dvd::slotGo(void)
 	      setWindowTitle(str);
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Overdue") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Requested") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Reserved") ||
 		  qmain->getUI().typefilter->currentText() == tr("DVDs")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))

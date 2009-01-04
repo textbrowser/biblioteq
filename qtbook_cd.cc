@@ -589,6 +589,12 @@ void qtbook_cd::slotGo(void)
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
 		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Overdue") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Requested") ||
+		  qmain->getUI().typefilter->currentText() ==
+		  tr("All Reserved") ||
+		  qmain->getUI().typefilter->currentText() ==
 		  tr("Music CDs")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID"))

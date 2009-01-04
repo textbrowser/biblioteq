@@ -7,6 +7,10 @@
 extern qtbook *qmain;
 
 /*
+** As of SQLite 3.5.9, users are not supported.
+*/
+
+/*
 ** -- userCount() --
 */
 
