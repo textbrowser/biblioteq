@@ -49,7 +49,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   isQueryEnabled = false;
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, "Quantity").toInt();
+    (qmain->getUI().table, row, tr("Quantity")).toInt();
   vg.setupUi(this);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -64,21 +64,21 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   connect(vg.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(vg.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
-  connect(menu->addAction("Reset &Front Cover Image"),
+  connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Back Cover Image"),
+  connect(menu->addAction(tr("Reset &Back Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &UPC"),
+  connect(menu->addAction(tr("Reset &UPC")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Game Rating"),
+  connect(menu->addAction(tr("Reset &Game Rating")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Developer(s)"),
+  connect(menu->addAction(tr("Reset &Developer(s)")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Platform"),
+  connect(menu->addAction(tr("Reset &Platform")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Mode"),
+  connect(menu->addAction(tr("Reset &Mode")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction("Reset &Title"),
+  connect(menu->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction("Reset &Release Date"),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
