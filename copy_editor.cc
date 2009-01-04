@@ -167,7 +167,7 @@ void copy_editor::populateCopiesEditor(void)
   list.append(tr("Barcode"));
   list.append(tr("Availability"));
   list.append("ITEM_OID");
-  list.append(tr("Copy Number"));
+  list.append("Copy Number");
   cb.table->setColumnCount(list.size());
   cb.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -382,7 +382,7 @@ void copy_editor::slotCheckoutCopy(void)
   memberid = misc_functions::getColumnString
     (qmain->getBB().table, memberrow, QString(tr("Member ID")));
   copynumber = misc_functions::getColumnString(cb.table, copyrow,
-					       QString(tr("Copy Number")));
+					       QString("Copy Number"));
   copyid = misc_functions::getColumnString(cb.table, copyrow,
 					   QString(tr("Barcode")));
   qapp->setOverrideCursor(Qt::WaitCursor);
