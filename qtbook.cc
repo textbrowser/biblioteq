@@ -26,6 +26,13 @@
 */
 
 /*
+** -- Qt Includes --
+*/
+
+#include <QTranslator>
+#include <QLibraryInfo>
+
+/*
 ** -- Local Includes --
 */
 
@@ -60,6 +67,16 @@ int main(int argc, char *argv[])
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  QTranslator qtTranslator;
+
+  qtTranslator.load("qt_" + QLocale::system().name(),
+		    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+  qapp->installTranslator(&qtTranslator);
+
+  QTranslator myappTranslator;
+
+  myappTranslator.load("biblioteq_" + QLocale::system().name());
+  qapp->installTranslator(&myappTranslator);
   qapp->connect(qapp, SIGNAL(lastWindowClosed()), qapp, SLOT(quit(void)));
 
   if((qmain = new(std::nothrow) qtbook()) == 0)
