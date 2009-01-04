@@ -1417,7 +1417,7 @@ void qtbook_magazine::slotReset(void)
       ma.issue->setValue(ma.issue->minimum());
       ma.price->setValue(ma.price->minimum());
 
-      if(windowTitle().contains("Search"))
+      if(windowTitle().contains(tr("Search")))
 	ma.publication_date->setDate
 	  (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
       else
@@ -1455,10 +1455,11 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains("Create") || windowTitle().contains("Modify"))
+  if(windowTitle().contains(tr("Create")) ||
+     windowTitle().contains(tr("Modify")))
     if(hasDataChanged(this))
-      if(QMessageBox::question(this, "BiblioteQ: Question",
-			       "You have unsaved data. Continue closing?",
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("You have unsaved data. Continue closing?"),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
@@ -1534,9 +1535,9 @@ void qtbook_magazine::slotQuery(void)
   if(ma.id->text().trimmed().length() != 9)
     {
       QMessageBox::critical
-	(this, "BiblioteQ: User Error", 
-	 "In order to query a Z39.50 system, the ISSN "
-	 "must be provided.");
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query a Z39.50 system, the ISSN "
+	    "must be provided."));
       ma.id->setFocus();
       return;
     }
@@ -1544,9 +1545,9 @@ void qtbook_magazine::slotQuery(void)
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
       working.setModal(true);
-      working.setWindowTitle("BiblioteQ: Z39.50 Data Retrieval");
-      working.setLabelText("Downloading information from the Z39.50 "
-			   "system. Please be patient.");
+      working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
+      working.setLabelText(tr("Downloading information from the Z39.50 "
+			      "system. Please be patient."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
@@ -1574,9 +1575,9 @@ void qtbook_magazine::slotQuery(void)
 	  if(thread->getLOCResults().size() == 1)
 	    {
 	      if(QMessageBox::question
-		 (this, "BiblioteQ: Question",
-		  "Replace existing values with those retrieved "
-		  "from the Z39.50 system?",
+		 (this, tr("BiblioteQ: Question"),
+		  tr("Replace existing values with those retrieved "
+		     "from the Z39.50 system?"),
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
@@ -1599,22 +1600,22 @@ void qtbook_magazine::slotQuery(void)
 		   this, font())) == 0)
 		{
 		  qmain->addError
-		    (QString("Memory Error"),
-		     QString("Unable to create a \"dialog\" object "
-			     "due to insufficient resources."),
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to create a \"dialog\" object "
+				"due to insufficient resources.")),
 		     QString(""),
 		     __FILE__, __LINE__);
 		  QMessageBox::critical
-		    (this, "BiblioteQ: Memory Error",
-		     "Unable to create a \"dialog\" object "
-		     "due to insufficient resources.");
+		    (this, tr("BiblioteQ: Memory Error"),
+		     tr("Unable to create a \"dialog\" object "
+			"due to insufficient resources."));
 		}
 	    }
 	  else
 	    QMessageBox::critical
-	      (this, "BiblioteQ: Z39.50 Query Error",
-	       "A Z39.50 entry may not yet exist for " +
-	       ma.id->text() + ".");
+	      (this, tr("BiblioteQ: Z39.50 Query Error"),
+	       tr("A Z39.50 entry may not yet exist for ") +
+	       ma.id->text() + tr("."));
 	}
       else
 	etype = thread->getEType();
@@ -1624,17 +1625,18 @@ void qtbook_magazine::slotQuery(void)
     }
   else
     {
-      etype = "Memory Error";
-      errorstr = "Unable to create a thread due to insufficient resources.";
+      etype = tr("Memory Error");
+      errorstr = tr("Unable to create a thread due to insufficient "
+		    "resources.");
     }
 
   if(!errorstr.isEmpty())
     {
-      qmain->addError(QString("Z39.50 Query Error"), etype, errorstr,
+      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
 		      __FILE__, __LINE__);
       QMessageBox::critical
-	(this, "BiblioteQ: Z39.50 Query Error",
-	 "The Z39.50 entry could not be retrieved.");
+	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	 tr("The Z39.50 entry could not be retrieved."));
     }
 }
 
@@ -1645,33 +1647,39 @@ void qtbook_magazine::slotQuery(void)
 void qtbook_magazine::slotPrint(void)
 {
   html = "";
-  html += "<b>ISSN:</b> " + ma.id->text().trimmed() + "<br>";
-  html += "<b>Volume:</b> " + ma.volume->text() + "<br>";
-  html += "<b>Issue (Number):</b> " + ma.issue->text() + "<br>";
-  html += "<b>LC Control Number:</b> " + ma.lcnum->text().trimmed() + "<br>";
-  html += "<b>Call Number:</b> " + ma.callnum->text().trimmed() + "<br>";
-  html += "<b>Dewey Class Number:</b> " + ma.deweynum->text().trimmed() +
-    "<br>";
+  html += "<b>" + tr("ISSN:") + "</b> " + ma.id->text().trimmed() + "<br>";
+  html += "<b>" + tr("Volume:") + "</b> " + ma.volume->text() + "<br>";
+  html += "<b>" + tr("Issue (Number):") + "</b> " + ma.issue->text() + "<br>";
+  html += "<b>" + tr("LC Control Number:") + "</b> " +
+    ma.lcnum->text().trimmed() + "<br>";
+  html += "<b>" + tr("Call Number:") + "</b> " +
+    ma.callnum->text().trimmed() + "<br>";
+  html += "<b>" + tr("Dewey Class Number:") + "</b> " +
+    ma.deweynum->text().trimmed() + "<br>";
 
   /*
   ** General information.
   */
 
-  html += "<b>Title:</b> " + ma.title->text().trimmed() + "<br>";
-  html += "<b>Publication Date:</b> " + ma.publication_date->date().
-    toString("MM/dd/yyyy") + "<br>";
-  html += "<b>Publisher:</b> " + ma.publisher->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>Category:</b> " + ma.category->toPlainText().trimmed() + "<br>";
-  html += "<b>Price:</b> " + ma.price->text() + "<br>";
-  html += "<b>Language:</b> " + ma.language->currentText() + "<br>";
-  html += "<b>Monetary Units:</b> " + ma.monetary_units->currentText() +
-    "<br>";
-  html += "<b>Copies:</b> " + ma.quantity->text() + "<br>";
-  html += "<b>Location:</b> " + ma.location->currentText() + "<br>";
-  html += "<b>Abstract:</b> " + ma.description->toPlainText().trimmed() +
-    "<br>";
-  html += "<b>OFFSYSTEM URL:</b>" + ma.url->toPlainText().trimmed();
+  html += "<b>" + tr("Title:") + "</b> " + ma.title->text().trimmed() + "<br>";
+  html += "<b>" + tr("Publication Date:") + "</b> " +
+    ma.publication_date->date().toString("MM/dd/yyyy") + "<br>";
+  html += "<b>" + tr("Publisher:") + "</b> " +
+    ma.publisher->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Category:") + "</b> " +
+    ma.category->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + ma.price->text() + "<br>";
+  html += "<b>" + tr("Language:") + "</b> " +
+    ma.language->currentText() + "<br>";
+  html += "<b>" + tr("Monetary Units:") + "</b> " +
+    ma.monetary_units->currentText() + "<br>";
+  html += "<b>" + tr("Copies:") + "</b> " + ma.quantity->text() + "<br>";
+  html += "<b>" + tr("Location:") + "</b> " +
+    ma.location->currentText() + "<br>";
+  html += "<b>" + tr("Abstract:") + "</b> " +
+    ma.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("OFFSYSTEM URL:") + "</b>" +
+    ma.url->toPlainText().trimmed();
   print(this);
 }
 
@@ -1815,9 +1823,9 @@ void qtbook_magazine::slotSelectImage(void)
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == ma.frontButton)
-    dialog.setWindowTitle("BiblioteQ: Front Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
   else
-    dialog.setWindowTitle("BiblioteQ: Back Cover Image Selection");
+    dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
 
