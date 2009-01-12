@@ -1,3 +1,7 @@
+/*
+** Please do not load this file in its entirety.
+*/
+
 /* Release 3.22 */
 
 ALTER TABLE book ADD type VARCHAR(16);

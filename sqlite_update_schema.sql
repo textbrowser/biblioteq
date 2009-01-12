@@ -1,3 +1,7 @@
+/*
+** Please do not load this file in its entirety.
+*/
+
 /* Release 4.04 */
 
 ALTER TABLE book ADD offsystem_url TEXT;
