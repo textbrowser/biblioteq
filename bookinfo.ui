@@ -220,12 +220,6 @@
           </item>
           <item row="1" column="0" >
            <widget class="QLineEdit" name="isbn13" >
-            <property name="minimumSize" >
-             <size>
-              <width>125</width>
-              <height>0</height>
-             </size>
-            </property>
             <property name="maxLength" >
              <number>16</number>
             </property>
