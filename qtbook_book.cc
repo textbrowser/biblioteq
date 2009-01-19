@@ -2005,7 +2005,7 @@ void qtbook_book::slotPrint(void)
 void qtbook_book::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = static_cast<QPushButton *> (sender());
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
@@ -2060,7 +2060,7 @@ void qtbook_book::slotGenerateISBN(void)
 void qtbook_book::slotDownloadImage(void)
 {
   QString url = "";
-  QPushButton *pb = static_cast<QPushButton *> (sender());
+  QPushButton *pb = qobject_cast<QPushButton *> (sender());
 
   if(httpProgress->isVisible())
     return;

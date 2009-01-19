@@ -1595,7 +1595,7 @@ void qtbook_dvd::slotPrint(void)
 void qtbook_dvd::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = static_cast<QPushButton *> (sender());
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

@@ -1399,7 +1399,7 @@ void qtbook_videogame::slotPrint(void)
 void qtbook_videogame::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = static_cast<QPushButton *> (sender());
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");

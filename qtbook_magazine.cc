@@ -1817,7 +1817,7 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 void qtbook_magazine::slotSelectImage(void)
 {
   QFileDialog dialog(this);
-  QPushButton *button = static_cast<QPushButton *> (sender());
+  QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
