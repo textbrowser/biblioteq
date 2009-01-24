@@ -1,0 +1,6 @@
+Role		Privileges
+
+Administrator	All
+Circulation	Item Returns, Item Reservations, Reservation Histories
+Librarian	Create Items, Delete Items, Update Items
+Membership	Create Members, Delete Members, Update Member Data
