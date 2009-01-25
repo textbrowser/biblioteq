@@ -1695,11 +1695,22 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
   QStringList tmplist;
 
   for(i = 0; i < list.size(); i++)
+    if(list[i].startsWith("650"))
+      ma.category->clear();
+
+  for(i = 0; i < list.size(); i++)
     {
       str = list[i];
 
       if(str.startsWith("010"))
 	{
+	  /*
+	  ** $a - LC Control Number
+	  ** $b - NUCMC Control Number
+	  ** $z - Canceled/Invalid LC Control Number
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  ma.lcnum->setText(str);
 	  misc_functions::highlightWidget
@@ -1707,14 +1718,33 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	}
       else if(str.startsWith("050"))
 	{
+	  /*
+	  ** $a - Classification Number
+	  ** $b - Item Number
+	  ** $d - Supplementary Class Number (Obsolete)
+	  ** $3 - Materials Specified
+	  ** $6 - Linkage
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
-	  str = str.remove(" $b").trimmed();
+	  str = str.remove(" $b").remove(" $d").remove(" $3").
+	    remove(" $6").remove(" $8").trimmed();
 	  ma.callnum->setText(str);
 	  misc_functions::highlightWidget
 	    (ma.callnum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("082"))
 	{
+	  /*
+	  ** $a - Classification Number
+	  ** $b - Item Number
+	  ** $b - DDC Number--abridged NST Version (Obsolete)
+	  ** $2 - Edition Number
+	  ** $6 - Linkage
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $2").trimmed();
 	  ma.deweynum->setText(str);
@@ -1723,6 +1753,23 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	}
       else if(str.startsWith("245"))
 	{
+	  /*
+	  ** $a - Title
+	  ** $b - Remainder of Title
+	  ** $c - Statement of Responsibility
+	  ** $d - Designation of section (Obsolete)
+	  ** $e - Name of Part/Section
+	  ** $f - Inclusive Dates
+	  ** $g - Bulk Dates
+	  ** $h - Medium
+	  ** $k - Form
+	  ** $n - Number of Part/Section of a Work
+	  ** $p - Name of Part/Section of a Work
+	  ** $s - Version (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2,
 			str.indexOf("/") - str.indexOf("$a") - 2).trimmed();
 
@@ -1757,12 +1804,30 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	      str += tmplist[j].mid(0, 1).toUpper() + tmplist[j].mid(1) + " ";
 
 	  tmplist.clear();
+	  str = str.trimmed();
+
+	  if(!str.isEmpty() && str[str.length() - 1].isPunct())
+	    str.remove(str.length() - 1, 1);
+
 	  ma.title->setText(str.trimmed());
 	  misc_functions::highlightWidget
 	    (ma.title, QColor(162, 205, 90));
 	}
       else if(str.startsWith("260"))
 	{
+	  /*
+	  ** $a - Place of Publication, Distribution, etc.
+	  ** $b - Name of Publisher, Distributor, etc.
+	  ** $c - Date of Publication, Distribution, etc.
+	  ** $d - Plate or Publisher's Number for Music
+	  ** $e - Place of Manufacture
+	  ** $f - Manufacturer
+	  ** $g - Date of Manufacture
+	  ** $3 - Materials Specified
+	  ** $6 - Linkage
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  ma.publication_date->setDate
 	    (QDate::fromString("01/01/" +
 			       str.mid(str.trimmed().length() - 5, 4),
@@ -1777,6 +1842,18 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	}
       else if(str.startsWith("300"))
 	{
+	  /*
+	  ** $a - Extent
+	  ** $b - Other Physical Details
+	  ** $c - Dimensions
+	  ** $e - Accompanying Material
+	  ** $f - Type of Unit
+	  ** $g - Size of Unit
+	  ** $3 - Materials Specified
+	  ** $6 - Linkage
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $b").trimmed();
 	  str = str.remove(" $c").trimmed();
@@ -1786,22 +1863,56 @@ void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
 	}
       else if(str.startsWith("650"))
 	{
+	  /*
+	  ** $a - Topical Term or Geographic Name as Entry Element
+	  ** $b - Topical Term following Geographic Name as Entry
+	  **      Element
+	  ** $c - Location of Event
+	  ** $d - Active Dates
+	  ** $e - Relator Term
+	  ** $v - Form Subdivision
+	  ** $x - General Subdivision
+	  ** $y - Chronological Subdivision
+	  ** $z - Geographic Subdivision
+	  ** $0 - Authority Record Control Number
+	  ** $2 - Source of Heading or Term
+	  ** $3 - Materials Specified
+	  ** $4 - Relator Code
+	  ** $6 - Linkage
+	  ** $8 - Field Link and Sequence Number
+	  */
+
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.mid(0, str.indexOf("$v")).trimmed();
 
-	  if(ma.category->toPlainText() == "N/A")
-	    ma.category->clear();
+	  if(str.contains("$v"))
+	    str = str.mid(0, str.indexOf("$v")).trimmed();
 
-	  if(!ma.category->toPlainText().contains(str))
+	  if(str.contains("$x"))
+	    str = str.mid(0, str.indexOf("$x")).trimmed();
+
+	  if(str.contains("$y"))
+	    str = str.mid(0, str.indexOf("$y")).trimmed();
+
+	  if(str.contains("$z"))
+	    str = str.mid(0, str.indexOf("$z")).trimmed();
+
+	  if(!str.isEmpty())
 	    {
-	      if(!ma.category->toPlainText().isEmpty())
-		ma.category->setPlainText
-		  (ma.category->toPlainText() + "\n" + str);
-	      else
-		ma.category->setPlainText(str);
+	      if(!str[str.length() - 1].isPunct())
+		str += ".";
 
-	      misc_functions::highlightWidget
-		(ma.category->viewport(), QColor(162, 205, 90));
+	      if(!ma.category->toPlainText().contains(str))
+		{
+		  if(!ma.category->toPlainText().isEmpty())
+		    ma.category->setPlainText
+		      (ma.category->toPlainText() + "\n" + str);
+		  else
+		    ma.category->setPlainText(str);
+
+		  misc_functions::highlightWidget
+		    (ma.category->viewport(), QColor(162, 205, 90));
+		}
 	    }
 	}
     }

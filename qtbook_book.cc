@@ -1672,11 +1672,25 @@ void qtbook_book::slotQuery(void)
 	      id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
 
 	      for(i = 0; i < list.size(); i++)
+		if(list[i].startsWith("100") ||
+		   list[i].startsWith("700"))
+		  id.author->clear();
+		else if(list[i].startsWith("650"))
+		  id.category->clear();
+
+	      for(i = 0; i < list.size(); i++)
 		{
 		  str = list[i];
 
 		  if(str.startsWith("010"))
 		    {
+		      /*
+		      ** $a - LC Control Number
+		      ** $b - NUCMC Control Number
+		      ** $z - Canceled/Invalid LC Control Number
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(" $b").remove(" $z").remove(" $8").
 			trimmed();
@@ -1686,6 +1700,14 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("020"))
 		    {
+		      /*
+		      ** $a - International Standard Book Number
+		      ** $c - Terms of Availability
+		      ** $z - Canceled/Invalid ISBN
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.mid(0, 10);
 
@@ -1698,15 +1720,33 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("050"))
 		    {
+		      /*
+		      ** $a - Classification Number
+		      ** $b - Item Number
+		      ** $d - Supplementary Class Number (Obsolete)
+		      ** $3 - Materials Specified
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(" $b").remove(" $3").remove(" $6").
-			remove(" $8").trimmed();
+		      str = str.remove(" $b").remove(" $d").remove(" $3").
+			remove(" $6").remove(" $8").trimmed();
 		      id.callnum->setText(str);
 		      misc_functions::highlightWidget
 			(id.callnum, QColor(162, 205, 90));
 		    }
 		  else if(str.startsWith("082"))
 		    {
+		      /*
+		      ** $a - Classification Number
+		      ** $b - Item Number
+		      ** $b - DDC Number--abridged NST Version (Obsolete)
+		      ** $2 - Edition Number
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(" $b").remove(" $2").remove(" $6").
 			remove(" $8").trimmed();
@@ -1717,6 +1757,28 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("100") ||
 			  str.startsWith("700"))
 		    {
+		      /*
+		      ** $a - Personal Name
+		      ** $b - Numeration
+		      ** $c - Titles and other Words associated with a Name
+		      ** $d - Dates associated with a Name
+		      ** $e - Relator Term
+		      ** $f - Date of a Work
+		      ** $g - Miscellaneous Information
+		      ** $j - Attribution Qualifier
+		      ** $k - Form Subheading
+		      ** $l - Language of a Work
+		      ** $n - Number of Part/Section of a Work
+		      ** $p - Name of Part/Section of a Work
+		      ** $q - Fuller Form of Name
+		      ** $t - Title of a Work
+		      ** $u - Affiliation
+		      ** $0 - Authority Record Control Number
+		      ** $4 - Relator Code
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(".").trimmed();
 		      removeList.append(" $b");
@@ -1733,6 +1795,7 @@ void qtbook_book::slotQuery(void)
 		      removeList.append(" $q");
 		      removeList.append(" $t");
 		      removeList.append(" $u");
+		      removeList.append(" $0");
 		      removeList.append(" $4");
 		      removeList.append(" $6");
 		      removeList.append(" $8");
@@ -1742,9 +1805,6 @@ void qtbook_book::slotQuery(void)
 
 		      if(str.count(",") > 1)
 			str = str.mid(0, str.lastIndexOf(","));
-
-		      if(id.author->toPlainText() == "N/A")
-			id.author->clear();
 
 		      /*
 		      ** Pure regular expressions would have worked just
@@ -1778,6 +1838,23 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("245"))
 		    {
+		      /*
+		      ** $a - Title
+		      ** $b - Remainder of Title
+		      ** $c - Statement of Responsibility
+		      ** $d - Designation of section (Obsolete)
+		      ** $e - Name of Part/Section
+		      ** $f - Inclusive Dates
+		      ** $g - Bulk Dates
+		      ** $h - Medium
+		      ** $k - Form
+		      ** $n - Number of Part/Section of a Work
+		      ** $p - Name of Part/Section of a Work
+		      ** $s - Version (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(" $b").trimmed();
 		      str = str.remove(" $c").trimmed();
@@ -1834,6 +1911,13 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("250"))
 		    {
+		      /*
+		      ** $a - Edition Statement
+		      ** $b - Remainder of Edition Statement
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.mid(0, str.indexOf(" ")).trimmed();
 		      str = str.remove(" $b").remove(" $6").remove(" $8").
@@ -1853,6 +1937,19 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("260"))
 		    {
+		      /*
+		      ** $a - Place of Publication, Distribution, etc.
+		      ** $b - Name of Publisher, Distributor, etc.
+		      ** $c - Date of Publication, Distribution, etc.
+		      ** $d - Plate or Publisher's Number for Music
+		      ** $e - Place of Manufacture
+		      ** $f - Manufacturer
+		      ** $g - Date of Manufacture
+		      ** $3 - Materials Specified
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      if(str.mid(str.indexOf("$c") + 2, 4).contains("c"))
 			id.publication_date->setDate
 			  (QDate::fromString
@@ -1880,6 +1977,18 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("300"))
 		    {
+		      /*
+		      ** $a - Extent
+		      ** $b - Other Physical Details
+		      ** $c - Dimensions
+		      ** $e - Accompanying Material
+		      ** $f - Type of Unit
+		      ** $g - Size of Unit
+		      ** $3 - Materials Specified
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(" $b").trimmed();
 		      str = str.remove(" $c").trimmed();
@@ -1895,22 +2004,56 @@ void qtbook_book::slotQuery(void)
 		    }
 		  else if(str.startsWith("650"))
 		    {
+		      /*
+		      ** $a - Topical Term or Geographic Name as Entry Element
+		      ** $b - Topical Term following Geographic Name as Entry
+		      **      Element
+		      ** $c - Location of Event
+		      ** $d - Active Dates
+		      ** $e - Relator Term
+		      ** $v - Form Subdivision
+		      ** $x - General Subdivision
+		      ** $y - Chronological Subdivision
+		      ** $z - Geographic Subdivision
+		      ** $0 - Authority Record Control Number
+		      ** $2 - Source of Heading or Term
+		      ** $3 - Materials Specified
+		      ** $4 - Relator Code
+		      ** $6 - Linkage
+		      ** $8 - Field Link and Sequence Number
+		      */
+
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.mid(0, str.indexOf("$x")).trimmed();
 
-		      if(id.category->toPlainText() == "N/A")
-			id.category->clear();
+		      if(str.contains("$v"))
+			str = str.mid(0, str.indexOf("$v")).trimmed();
 
-		      if(!id.category->toPlainText().contains(str))
+		      if(str.contains("$x"))
+			str = str.mid(0, str.indexOf("$x")).trimmed();
+
+		      if(str.contains("$y"))
+			str = str.mid(0, str.indexOf("$y")).trimmed();
+
+		      if(str.contains("$z"))
+			str = str.mid(0, str.indexOf("$z")).trimmed();
+
+		      if(!str.isEmpty())
 			{
-			  if(!id.category->toPlainText().isEmpty())
-			    id.category->setPlainText
-			      (id.category->toPlainText() + "\n" + str);
-			  else
-			    id.category->setPlainText(str);
+			  if(!str[str.length() - 1].isPunct())
+			    str += ".";
 
-			  misc_functions::highlightWidget
-			    (id.category->viewport(), QColor(162, 205, 90));
+			  if(!id.category->toPlainText().contains(str))
+			    {
+			      if(!id.category->toPlainText().isEmpty())
+				id.category->setPlainText
+				  (id.category->toPlainText() + "\n" + str);
+			      else
+				id.category->setPlainText(str);
+
+			      misc_functions::highlightWidget
+				(id.category->viewport(),
+				 QColor(162, 205, 90));
+			    }
 			}
 		    }
 		}
