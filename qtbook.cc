@@ -8032,6 +8032,7 @@ void qtbook::slotBranchChanged(void)
     }
 
   tmphash.clear();
+  branch_diag->update();
   branch_diag->show();
 }
 

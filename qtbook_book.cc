@@ -1905,6 +1905,10 @@ void qtbook_book::slotQuery(void)
 
 		      tmplist.clear();
 		      str = str.trimmed();
+
+		      if(!str.isEmpty() && str[str.length() - 1].isPunct())
+			str.remove(str.length() - 1, 1);
+
 		      id.title->setText(str);
 		      misc_functions::highlightWidget
 			(id.title, QColor(162, 205, 90));
