@@ -1,4 +1,0 @@
-It is sometimes necessary to update the database schema after a software
-update. To do so, please execute the SQL statements that are located in the
-postgresql_update_schema.sql and sqlite_update_schema.sql files under the
-appropriate software version.
