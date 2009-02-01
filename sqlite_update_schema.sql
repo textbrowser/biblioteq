@@ -459,3 +459,9 @@ SELECT	 item_oid,
 	 duedate,
 	 type
 FROM	 item_borrower;
+
+/* RELEASE 6.19 */
+
+ALTER TABLE book ADD place TEXT NOT NULL DEFAULT 'N/A';
+ALTER TABLE journal ADD place TEXT NOT NULL DEFAULT 'N/A';
+ALTER TABLE magazine ADD place TEXT NOT NULL DEFAULT 'N/A';

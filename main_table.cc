@@ -81,6 +81,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Author(s)"));
       list.append(tr("Publisher"));
       list.append(tr("Publication Date"));
+      list.append(tr("Place of Publication"));
       list.append(tr("Edition"));
       list.append(tr("Categories"));
       list.append(tr("Language"));
@@ -166,6 +167,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Title"));
       list.append(tr("Publisher"));
       list.append(tr("Publication Date"));
+      list.append(tr("Place of Publication"));
       list.append(tr("Volume"));
       list.append(tr("Issue"));
       list.append(tr("Categories"));

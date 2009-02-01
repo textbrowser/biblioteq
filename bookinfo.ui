@@ -655,7 +655,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
+        <item row="4" column="0" >
          <widget class="QLabel" name="label_15" >
           <property name="font" >
            <font>
@@ -668,7 +668,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0" >
+        <item row="5" column="0" >
          <widget class="QLabel" name="label_16" >
           <property name="font" >
            <font>
@@ -681,7 +681,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1" >
+        <item row="5" column="1" >
          <widget class="QDoubleSpinBox" name="price" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
@@ -703,7 +703,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0" >
+        <item row="6" column="0" >
          <widget class="QLabel" name="label_3" >
           <property name="font" >
            <font>
@@ -716,7 +716,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1" >
+        <item row="6" column="1" >
          <layout class="QHBoxLayout" >
           <item>
            <widget class="QComboBox" name="language" />
@@ -736,7 +736,7 @@
           </item>
          </layout>
         </item>
-        <item row="6" column="0" >
+        <item row="7" column="0" >
          <widget class="QLabel" name="label_4" >
           <property name="font" >
            <font>
@@ -749,7 +749,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1" >
+        <item row="7" column="1" >
          <widget class="QComboBox" name="monetary_units" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
@@ -759,7 +759,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="0" >
+        <item row="8" column="0" >
          <widget class="QLabel" name="label_8" >
           <property name="font" >
            <font>
@@ -772,7 +772,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="1" >
+        <item row="8" column="1" >
          <layout class="QHBoxLayout" >
           <item>
            <widget class="QSpinBox" name="quantity" >
@@ -840,7 +840,7 @@
           </item>
          </layout>
         </item>
-        <item row="8" column="0" >
+        <item row="9" column="0" >
          <widget class="QLabel" name="label_10" >
           <property name="font" >
            <font>
@@ -853,7 +853,7 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="1" >
+        <item row="9" column="1" >
          <layout class="QHBoxLayout" >
           <item>
            <widget class="QComboBox" name="location" >
@@ -879,7 +879,7 @@
           </item>
          </layout>
         </item>
-        <item row="9" column="0" >
+        <item row="10" column="0" >
          <widget class="QLabel" name="label_7" >
           <property name="font" >
            <font>
@@ -892,14 +892,14 @@
           </property>
          </widget>
         </item>
-        <item row="9" column="1" >
+        <item row="10" column="1" >
          <widget class="QTextEdit" name="description" >
           <property name="acceptRichText" >
            <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item row="10" column="0" >
+        <item row="11" column="0" >
          <widget class="QLabel" name="label_19" >
           <property name="text" >
            <string>OFFSYSTEM
@@ -907,7 +907,7 @@ URL</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="1" >
+        <item row="11" column="1" >
          <widget class="QTextBrowser" name="url" >
           <property name="readOnly" >
            <bool>false</bool>
@@ -920,11 +920,28 @@ URL</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
+        <item row="4" column="1" >
          <widget class="hyperlinked_text_edit" name="category" >
           <property name="readOnly" >
            <bool>false</bool>
           </property>
+          <property name="textInteractionFlags" >
+           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="openLinks" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QLabel" name="label_20" >
+          <property name="text" >
+           <string>Place of Publication</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <widget class="hyperlinked_text_edit" name="place" >
           <property name="textInteractionFlags" >
            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
           </property>
@@ -1122,6 +1139,7 @@ URL</string>
   <tabstop>title</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>publisher</tabstop>
+  <tabstop>place</tabstop>
   <tabstop>category</tabstop>
   <tabstop>price</tabstop>
   <tabstop>language</tabstop>

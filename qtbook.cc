@@ -757,9 +757,9 @@ void qtbook::slotAbout(void)
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText("<html>BiblioteQ Version 6.19.<br>"
-	     "Copyright (c) 2006, 2007, 2008, 2009 "
-	     "Slurpy McNash.<br>"
-	     "Icons copyright (c) David Vignoni.<br><br>"
+	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
+	     "Icons copyright (c) David Vignoni."
+	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
 	     "project information.<br>"
@@ -3198,7 +3198,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	  {
 	    searchstr = "SELECT book.title, "
 	      "book.author, "
-	      "book.publisher, book.pdate, "
+	      "book.publisher, book.pdate, book.place, "
 	      "book.edition, "
 	      "book.category, book.language, "
 	      "book.id, "
@@ -3222,7 +3222,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	      "GROUP BY "
 	      "book.title, "
 	      "book.author, "
-	      "book.publisher, book.pdate, "
+	      "book.publisher, book.pdate, book.place, "
 	      "book.edition, "
 	      "book.category, book.language, "
 	      "book.id, "
@@ -3344,6 +3344,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 	    searchstr = QString("SELECT %1.title, "
 				"%1.publisher, %1.pdate, "
+				"%1.place, "
 				"%1.issuevolume, %1.issueno, "
 				"%1.category, %1.language, "
 				"%1.id, "
@@ -3368,6 +3369,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 				"GROUP BY "
 				"%1.title, "
 				"%1.publisher, %1.pdate, "
+				"%1.place, "
 				"%1.issuevolume, %1.issueno, "
 				"%1.category, %1.language, "
 				"%1.id, "
@@ -3527,7 +3529,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY book.title, "
 			     "book.author, "
-			     "book.publisher, book.pdate, "
+			     "book.publisher, book.pdate, book.place, "
 			     "book.edition, "
 			     "book.category, book.language, "
 			     "book.id, "
@@ -3620,6 +3622,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY journal.title, "
 			     "journal.publisher, journal.pdate, "
+			     "journal.place, "
 			     "journal.issuevolume, "
 			     "journal.issueno, "
 			     "journal.category, journal.language, "
@@ -3641,6 +3644,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY magazine.title, "
 			     "magazine.publisher, magazine.pdate, "
+			     "magazine.place, "
 			     "magazine.issuevolume, "
 			     "magazine.issueno, "
 			     "magazine.category, magazine.language, "
@@ -4962,6 +4966,9 @@ void qtbook::slotDisplaySummary(void)
 	  summary += misc_functions::getColumnString(ui.table, i,
 						     tr("Publisher"));
 	  summary += "<br>";
+	  summary += misc_functions::getColumnString
+	    (ui.table, i, tr("Place of Publication"));
+	  summary += "<br>";
 	}
       else if(type == "CD")
 	{
@@ -5050,6 +5057,10 @@ void qtbook::slotDisplaySummary(void)
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
 						     tr("Publisher"));
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString
+	    (ui.table, i,
+	     tr("Place of Publication"));
 	  summary += "<br>";
 	}
       else if(type == "Video Game")

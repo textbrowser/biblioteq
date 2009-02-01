@@ -487,3 +487,20 @@ ALTER TABLE member ADD COLUMN email VARCHAR(128);
 
 ALTER TABLE item_request DROP CONSTRAINT item_request_pkey;
 ALTER TABLE item_request ADD PRIMARY KEY (item_oid, memberid, type);
+
+/* Release 6.19 */
+
+ALTER TABLE book ADD COLUMN place TEXT;
+ALTER TABLE book ALTER place SET DEFAULT 'N/A';
+UPDATE book SET place = 'N/A';
+ALTER TABLE book ALTER place SET NOT NULL;
+
+ALTER TABLE journal ADD COLUMN place TEXT;
+ALTER TABLE journal ALTER place SET DEFAULT 'N/A';
+UPDATE journal SET place = 'N/A';
+ALTER TABLE journal ALTER place SET NOT NULL;
+
+ALTER TABLE magazine ADD COLUMN place TEXT;
+ALTER TABLE magazine ALTER place SET DEFAULT 'N/A';
+UPDATE magazine SET place = 'N/A';
+ALTER TABLE magazine ALTER place SET NOT NULL;

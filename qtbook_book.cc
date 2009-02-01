@@ -113,6 +113,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Place of Publication")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Price")),
@@ -331,6 +333,18 @@ void qtbook_book::slotGo(void)
 	  goto db_rollback;
 	}
 
+      str = id.place->toPlainText().trimmed();
+      id.place->setPlainText(str);
+
+      if(id.place->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Place of Publication "
+				   "field."));
+	  id.place->setFocus();
+	  goto db_rollback;
+	}
+
       str = id.category->toPlainText().trimmed();
       id.category->setPlainText(str);
 
@@ -381,7 +395,8 @@ void qtbook_book::slotGo(void)
 			      "deweynumber = ?, "
 			      "front_cover = ?, "
 			      "back_cover = ?, "
-			      "offsystem_url = ? "
+			      "offsystem_url = ?, "
+			      "place = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -393,12 +408,12 @@ void qtbook_book::slotGo(void)
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
 			      "back_cover, "
-			      "offsystem_url) "
+			      "offsystem_url, place) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO book (id, title, "
 			      "edition, author, pdate, publisher, "
@@ -408,13 +423,13 @@ void qtbook_book::slotGo(void)
 			      "isbn13, lccontrolnumber, callnumber, "
 			      "deweynumber, front_cover, "
 			      "back_cover, "
-			      "offsystem_url, myoid) "
+			      "offsystem_url, place, myoid) "
 			      "VALUES (?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
-			      "?, ?)"));
+			      "?, ?, ?)"));
 
       query.bindValue(0, id.id->text());
       query.bindValue(1, id.title->text().trimmed());
@@ -482,10 +497,12 @@ void qtbook_book::slotGo(void)
       else
 	query.bindValue(20, QVariant(QVariant::String));
 
+      query.bindValue(21, id.place->toPlainText().trimmed());
+
       if(windowTitle().contains(tr("Modify")))
-	query.bindValue(21, oid);
+	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(21, id.id->text().replace("X", "10"));
+	query.bindValue(22, id.id->text().replace("X", "10"));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -597,6 +614,7 @@ void qtbook_book::slotGo(void)
 	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.publisher->viewport()->setPalette(te_orig_pal);
+	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.lcnum->setPalette(id.url->viewport()->palette());
 	  id.callnum->setPalette(id.url->viewport()->palette());
 	  id.deweynum->setPalette(id.url->viewport()->palette());
@@ -616,6 +634,8 @@ void qtbook_book::slotGo(void)
 	    (QString("<a href=\"book_search?publisher?%1\">" +
 		     id.publisher->toPlainText() + "</a>").arg
 	     (id.publisher->toPlainText()));
+	  id.place->setMultipleLinks("book_search", "place",
+				     id.place->toPlainText());
 
 	  if(!id.url->toPlainText().isEmpty())
 	    id.url->setText(QString("<a href=\"%1\">%1</a>").arg
@@ -666,6 +686,9 @@ void qtbook_book::slotGo(void)
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publisher->toPlainText());
+		      else if(column->text() == tr("Place of Publication"))
+			qmain->getUI().table->item(row, i)->setText
+			  (id.place->toPlainText());
 		      else if(column->text() == tr("Categories"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.category->toPlainText());
@@ -775,7 +798,7 @@ void qtbook_book::slotGo(void)
     {
       searchstr = "SELECT book.title, "
 	"book.author, "
-	"book.publisher, book.pdate, book.edition, "
+	"book.publisher, book.pdate, book.place, book.edition, "
 	"book.category, book.language, book.id, "
 	"book.price, book.monetary_units, "
 	"book.quantity, "
@@ -828,6 +851,10 @@ void qtbook_book::slotGo(void)
       searchstr.append("LOWER(publisher) LIKE '%" +
 		       myqstring::escape
 		       (id.publisher->toPlainText().toLower()) +
+		       "%' AND ");
+      searchstr.append("LOWER(place) LIKE '%" +
+		       myqstring::escape
+		       (id.place->toPlainText().toLower()) +
 		       "%' AND ");
       searchstr.append("LOWER(category) LIKE '%" +
 		       myqstring::escape
@@ -904,6 +931,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.deweynum->clear();
   id.title->clear();
   id.publisher->clear();
+  id.place->clear();
   id.description->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
@@ -962,6 +990,8 @@ void qtbook_book::search(const QString &field, const QString &value)
 	id.author->setPlainText(value);
       else if(field == "category")
 	id.category->setPlainText(value);
+      else if(field == "place")
+	id.place->setPlainText(value);
 
       slotGo();
     }
@@ -1048,6 +1078,8 @@ void qtbook_book::modify(const int state)
       misc_functions::highlightWidget
 	(id.publisher->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
+	(id.place->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
 	(id.author->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(id.description->viewport(), QColor(255, 248, 220));
@@ -1082,7 +1114,7 @@ void qtbook_book::modify(const int state)
   str = oid;
   searchstr = "SELECT title, "
     "author, "
-    "publisher, pdate, edition, "
+    "publisher, pdate, place, edition, "
     "category, language, id, "
     "price, monetary_units, quantity, "
     "binding_type, "
@@ -1131,6 +1163,9 @@ void qtbook_book::modify(const int state)
 	      (QString
 	       ("<a href=\"book_search?publisher?%1\">" +
 		var.toString() + "</a>").arg(var.toString()));
+	  else if(fieldname == "place")
+	    id.place->setMultipleLinks("book_search", "place",
+				       var.toString());
 	  else if(fieldname == "pdate")
 	    id.publication_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1250,6 +1285,7 @@ void qtbook_book::insert(void)
   id.deweynum->clear();
   id.title->clear();
   id.publisher->setPlainText("N/A");
+  id.place->setPlainText("N/A");
   id.description->setPlainText("N/A");
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
@@ -1275,6 +1311,8 @@ void qtbook_book::insert(void)
     (id.title, QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.publisher->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (id.place->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.author->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
@@ -1358,6 +1396,16 @@ void qtbook_book::slotReset(void)
 
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
+	}
+      else if(name.contains(tr("Place of Publication")))
+	{
+	  id.place->clear();
+
+	  if(!windowTitle().contains(tr("Search")))
+	    id.place->setPlainText("N/A");
+
+	  id.place->viewport()->setPalette(te_orig_pal);
+	  id.place->setFocus();
 	}
       else if(name.contains(tr("Categories")))
 	{
@@ -1449,6 +1497,7 @@ void qtbook_book::slotReset(void)
       id.title->clear();
       id.author->clear();
       id.publisher->clear();
+      id.place->clear();
       id.description->clear();
 
       if(!windowTitle().contains(tr("Search")))
@@ -1456,6 +1505,9 @@ void qtbook_book::slotReset(void)
 
       if(!windowTitle().contains(tr("Search")))
 	id.publisher->setPlainText("N/A");
+
+      if(!windowTitle().contains(tr("Search")))
+	id.place->setPlainText("N/A");
 
       if(!windowTitle().contains(tr("Search")))
 	id.category->setPlainText("N/A");
@@ -1498,6 +1550,7 @@ void qtbook_book::slotReset(void)
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
       id.publisher->viewport()->setPalette(te_orig_pal);
+      id.place->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
     }
 }
@@ -1675,6 +1728,8 @@ void qtbook_book::slotQuery(void)
 		if(list[i].startsWith("100") ||
 		   list[i].startsWith("700"))
 		  id.author->clear();
+		else if(list[i].startsWith("260"))
+		  id.place->clear();
 		else if(list[i].startsWith("650"))
 		  id.category->clear();
 
@@ -1954,6 +2009,44 @@ void qtbook_book::slotQuery(void)
 		      ** $8 - Field Link and Sequence Number
 		      */
 
+		      QString tmpstr = str.mid(str.indexOf("$a") + 2).
+			trimmed();
+
+		      if(tmpstr.contains("$b"))
+			tmpstr = tmpstr.mid(0, tmpstr.indexOf("$b")).trimmed();
+		      else
+			tmpstr = tmpstr.mid(0, tmpstr.indexOf("$c")).trimmed();
+
+		      tmplist = tmpstr.split("$a");
+
+		      for(j = 0; j < tmplist.size(); j++)
+			{
+			  tmpstr = tmplist.at(j).trimmed();
+			  tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+			    trimmed();
+
+			  if(tmpstr.isEmpty())
+			    continue;
+
+			  if(!tmpstr[0].isLetterOrNumber())
+			    tmpstr = tmpstr.mid(1).trimmed();
+
+			  if(tmpstr.isEmpty())
+			    continue;
+
+			  if(tmpstr[tmpstr.length() - 1] == ',')
+			    tmpstr.remove(tmpstr.length() - 1, 1);
+
+			  if(id.place->toPlainText().isEmpty())
+			    id.place->setPlainText(tmpstr);
+			  else
+			    id.place->setPlainText(id.place->toPlainText() +
+						   "\n" + tmpstr);
+			}
+
+		      misc_functions::highlightWidget
+			(id.place->viewport(), QColor(162, 205, 90));
+
 		      if(str.mid(str.indexOf("$c") + 2, 4).contains("c"))
 			id.publication_date->setDate
 			  (QDate::fromString
@@ -1970,7 +2063,14 @@ void qtbook_book::slotQuery(void)
 		      id.publication_date->setStyleSheet
 			("background-color: rgb(162, 205, 90)");
 		      str = str.mid(str.indexOf("$b") + 2).trimmed();
-		      str = str.mid(0, str.indexOf("$c")).trimmed();
+
+		      if(str.contains("$a"))
+			{
+			  str = str.mid(0, str.indexOf("$a")).trimmed();
+			  str = str.mid(0, str.lastIndexOf(" ")).trimmed();
+			}
+		      else
+			str = str.mid(0, str.indexOf("$c")).trimmed();
 
 		      if(str.endsWith(","))
 			str = str.mid(0, str.length() - 1);
@@ -2128,6 +2228,8 @@ void qtbook_book::slotPrint(void)
     id.publication_date->date().toString("MM/dd/yyyy") + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     id.publisher->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Place of Publication:") + "</b> " +
+    id.place->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Categories:") + "</b> " +
     id.category->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Price:") + "</b> " + id.price->text() + "<br>";
