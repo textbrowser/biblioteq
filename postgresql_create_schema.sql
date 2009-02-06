@@ -241,7 +241,8 @@ CREATE TABLE item_borrower
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
 );
 
 CREATE TABLE member
