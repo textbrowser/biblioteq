@@ -571,6 +571,20 @@ void qtbook_magazine::slotGo(void)
 		       ma.publisher->toPlainText() + "</a>").arg
 	       (ma.publisher->toPlainText()));
 
+	  if(subType == "Journal")
+	    ma.place->setMultipleLinks("journal_search", "place",
+				       ma.place->toPlainText());
+	  else
+	    ma.place->setMultipleLinks("magazine_search", "place",
+				       ma.place->toPlainText());
+
+	  if(subType == "Journal")
+	    ma.category->setMultipleLinks("journal_search", "category",
+					  ma.category->toPlainText());
+	  else
+	    ma.category->setMultipleLinks("magazine_search", "category",
+					  ma.category->toPlainText());
+
 	  if(!ma.url->toPlainText().isEmpty())
 	    ma.url->setText(QString("<a href=\"%1\">%1</a>").arg
 			    (ma.url->toPlainText()));
@@ -1278,10 +1292,10 @@ void qtbook_magazine::insert(void)
   ma.callnum->clear();
   ma.deweynum->clear();
   ma.title->clear();
-  ma.publisher->setText("N/A");
-  ma.description->setText("N/A");
-  ma.category->setText("N/A");
-  ma.place->setText("N/A");
+  ma.publisher->setPlainText("N/A");
+  ma.description->setPlainText("N/A");
+  ma.category->setPlainText("N/A");
+  ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
   ma.queryButton->setVisible(true);
   ma.okButton->setText(tr("&Save"));
@@ -1381,7 +1395,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains(tr("Publisher")))
 	{
 	  if(!windowTitle().contains(tr("Search")))
-	    ma.publisher->setText("N/A");
+	    ma.publisher->setPlainText("N/A");
 	  else
 	    ma.publisher->clear();
 
@@ -1391,7 +1405,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains(tr("Place of Publication")))
 	{
 	  if(!windowTitle().contains(tr("Search")))
-	    ma.place->setText("N/A");
+	    ma.place->setPlainText("N/A");
 	  else
 	    ma.place->clear();
 
@@ -1401,7 +1415,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains(tr("Categories")))
 	{
 	  if(!windowTitle().contains(tr("Search")))
-	    ma.category->setText("N/A");
+	    ma.category->setPlainText("N/A");
 	  else
 	    ma.category->clear();
 
@@ -1426,7 +1440,7 @@ void qtbook_magazine::slotReset(void)
       else if(name.contains(tr("Abstract")))
 	{
 	  if(!windowTitle().contains(tr("Search")))
-	    ma.description->setText("N/A");
+	    ma.description->setPlainText("N/A");
 	  else
 	    ma.description->clear();
 
@@ -1478,22 +1492,22 @@ void qtbook_magazine::slotReset(void)
       ma.title->clear();
 
       if(!windowTitle().contains(tr("Search")))
-	ma.category->setText("N/A");
+	ma.category->setPlainText("N/A");
       else
 	ma.category->clear();
 
       if(!windowTitle().contains(tr("Search")))
-	ma.place->setText("N/A");
+	ma.place->setPlainText("N/A");
       else
 	ma.place->clear();
 
       if(!windowTitle().contains(tr("Search")))
-	ma.publisher->setText("N/A");
+	ma.publisher->setPlainText("N/A");
       else
 	ma.publisher->clear();
 
       if(!windowTitle().contains(tr("Search")))
-	ma.description->setText("N/A");
+	ma.description->setPlainText("N/A");
       else
 	ma.description->clear();
 
