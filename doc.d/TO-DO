@@ -323,3 +323,7 @@
 184. Fix the administrator privileges functionality. (DONE)
 185. Improve the misc_functions::updateColumn method. It should locate
      all appropriate matches. (TBD)
+186. Removing an item via the database will not remove corresponding
+     entries in the item_borrower table. Should item removal be prevented
+     if an item is reserved? This is the current behavior of BiblioteQ,
+     however, the database schema does not enforce this. (TBD)
