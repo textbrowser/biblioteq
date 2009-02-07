@@ -505,4 +505,9 @@ ALTER TABLE magazine ALTER place SET DEFAULT 'N/A';
 UPDATE magazine SET place = 'N/A';
 ALTER TABLE magazine ALTER place SET NOT NULL;
 
+ALTER TABLE videogame ADD COLUMN place TEXT;
+ALTER TABLE videogame ALTER place SET DEFAULT 'N/A';
+UPDATE videogame SET place = 'N/A';
+ALTER TABLE videogame ALTER place SET NOT NULL;
+
 ALTER TABLE item_borrower ADD FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT;

@@ -107,6 +107,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Mode"));
       list.append(tr("Publisher"));
       list.append(tr("Release Date"));
+      list.append(tr("Place of Publication"));
       list.append(tr("Genres"));
       list.append(tr("Language"));
       list.append(tr("UPC"));

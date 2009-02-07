@@ -1278,10 +1278,10 @@ void qtbook_magazine::insert(void)
   ma.callnum->clear();
   ma.deweynum->clear();
   ma.title->clear();
-  ma.publisher->clear();
-  ma.description->clear();
-  ma.category->clear();
-  ma.place->clear();
+  ma.publisher->setText("N/A");
+  ma.description->setText("N/A");
+  ma.category->setText("N/A");
+  ma.place->setText("N/A");
   ma.copiesButton->setEnabled(false);
   ma.queryButton->setVisible(true);
   ma.okButton->setText(tr("&Save"));
@@ -1380,19 +1380,31 @@ void qtbook_magazine::slotReset(void)
 	}
       else if(name.contains(tr("Publisher")))
 	{
-	  ma.publisher->clear();
+	  if(!windowTitle().contains(tr("Search")))
+	    ma.publisher->setText("N/A");
+	  else
+	    ma.publisher->clear();
+
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
 	  ma.publisher->setFocus();
 	}
       else if(name.contains(tr("Place of Publication")))
 	{
-	  ma.place->clear();
+	  if(!windowTitle().contains(tr("Search")))
+	    ma.place->setText("N/A");
+	  else
+	    ma.place->clear();
+
 	  ma.place->viewport()->setPalette(te_orig_pal);
 	  ma.place->setFocus();
 	}
       else if(name.contains(tr("Categories")))
 	{
-	  ma.category->clear();
+	  if(!windowTitle().contains(tr("Search")))
+	    ma.category->setText("N/A");
+	  else
+	    ma.category->clear();
+
 	  ma.category->viewport()->setPalette(te_orig_pal);
 	  ma.category->setFocus();
 	}
@@ -1413,7 +1425,11 @@ void qtbook_magazine::slotReset(void)
 	}
       else if(name.contains(tr("Abstract")))
 	{
-	  ma.description->clear();
+	  if(!windowTitle().contains(tr("Search")))
+	    ma.description->setText("N/A");
+	  else
+	    ma.description->clear();
+
 	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.description->setFocus();
 	}
@@ -1460,8 +1476,27 @@ void qtbook_magazine::slotReset(void)
       ma.id->clear();
       ma.id->setCursorPosition(0);
       ma.title->clear();
-      ma.category->clear();
-      ma.place->clear();
+
+      if(!windowTitle().contains(tr("Search")))
+	ma.category->setText("N/A");
+      else
+	ma.category->clear();
+
+      if(!windowTitle().contains(tr("Search")))
+	ma.place->setText("N/A");
+      else
+	ma.place->clear();
+
+      if(!windowTitle().contains(tr("Search")))
+	ma.publisher->setText("N/A");
+      else
+	ma.publisher->clear();
+
+      if(!windowTitle().contains(tr("Search")))
+	ma.description->setText("N/A");
+      else
+	ma.description->clear();
+
       ma.volume->setValue(ma.volume->minimum());
       ma.issue->setValue(ma.issue->minimum());
       ma.price->setValue(ma.price->minimum());
@@ -1473,10 +1508,8 @@ void qtbook_magazine::slotReset(void)
 	ma.publication_date->setDate
 	  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
-      ma.publisher->clear();
       ma.language->setCurrentIndex(0);
       ma.monetary_units->setCurrentIndex(0);
-      ma.description->clear();
       ma.quantity->setValue(ma.quantity->minimum());
       ma.location->setCurrentIndex(0);
       ma.lcnum->clear();

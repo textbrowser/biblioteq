@@ -1367,10 +1367,10 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains(tr("Author(s)")))
 	{
-	  id.author->clear();
-
 	  if(!windowTitle().contains(tr("Search")))
 	    id.author->setPlainText("N/A");
+	  else
+	    id.author->clear();
 
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
@@ -1389,30 +1389,30 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains(tr("Publisher")))
 	{
-	  id.publisher->clear();
-
 	  if(!windowTitle().contains(tr("Search")))
 	    id.publisher->setPlainText("N/A");
+	  else
+	    id.publisher->clear();
 
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
 	}
       else if(name.contains(tr("Place of Publication")))
 	{
-	  id.place->clear();
-
 	  if(!windowTitle().contains(tr("Search")))
 	    id.place->setPlainText("N/A");
+	  else
+	    id.place->clear();
 
 	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.place->setFocus();
 	}
       else if(name.contains(tr("Categories")))
 	{
-	  id.category->clear();
-
 	  if(!windowTitle().contains(tr("Search")))
 	    id.category->setPlainText("N/A");
+	  else
+	    id.category->clear();
 
 	  id.category->viewport()->setPalette(te_orig_pal);
 	  id.category->setFocus();
@@ -1439,10 +1439,10 @@ void qtbook_book::slotReset(void)
 	}
       else if(name.contains(tr("Abstract")))
 	{
-	  id.description->clear();
-
 	  if(!windowTitle().contains(tr("Search")))
 	    id.description->setPlainText("N/A");
+	  else
+	    id.description->clear();
 
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
@@ -1495,22 +1495,26 @@ void qtbook_book::slotReset(void)
 
       id.id->clear();
       id.title->clear();
-      id.author->clear();
-      id.publisher->clear();
-      id.place->clear();
-      id.description->clear();
 
       if(!windowTitle().contains(tr("Search")))
 	id.author->setPlainText("N/A");
+      else
+	id.author->clear();
 
       if(!windowTitle().contains(tr("Search")))
 	id.publisher->setPlainText("N/A");
+      else
+	id.publisher->clear();
 
       if(!windowTitle().contains(tr("Search")))
 	id.place->setPlainText("N/A");
+      else
+	id.place->clear();
 
       if(!windowTitle().contains(tr("Search")))
 	id.category->setPlainText("N/A");
+      else
+	id.category->clear();
 
       if(windowTitle().contains(tr("Search")))
 	id.publication_date->setDate(QDate::fromString("01/01/7999",
@@ -1523,12 +1527,13 @@ void qtbook_book::slotReset(void)
 
       if(!windowTitle().contains(tr("Search")))
 	id.description->setPlainText("N/A");
+      else
+	id.description->clear();
 
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();
       id.deweynum->clear();
-      id.category->clear();
       id.location->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
       id.price->setValue(id.price->minimum());
