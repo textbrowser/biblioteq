@@ -327,3 +327,6 @@
      entries in the item_borrower table. Should item removal be prevented
      if an item is reserved? This is the current behavior of BiblioteQ,
      however, the database schema does not enforce this. (TBD)
+187. Add the Place of Publication to Video Games.
+188. Should CDs, DVDs, and Video Games require mandatory fields to have default
+     values of N/A?
