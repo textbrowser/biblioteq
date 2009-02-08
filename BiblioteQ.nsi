@@ -17,6 +17,7 @@ setOutPath $INSTDIR
 file biblioteq.conf
 file /r .\release\icons.d
 file /r .\release\plugins
+file /r .\release\doc.d
 file .\release\*.dll
 file .\release\qt.conf
 file .\release\biblioteq.db
@@ -24,10 +25,6 @@ file .\release\BiblioteQ.exe
 file .\release\sqlite3.exe
 file .\release\sqlite-*.zip
 file *.sql
-file UPDATING
-file TO-DO
-file INSTALL
-file ROLES
 
 # Define uninstaller name.
 writeUninstaller $INSTDIR\BiblioteQ-Uninstaller-6.19.exe
