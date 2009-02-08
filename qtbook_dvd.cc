@@ -245,7 +245,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.actors->toPlainText().trimmed();
-      dvd.actors->setMultipleLinks("dvd_search", "actors", str);
+      dvd.actors->setPlainText(str);
 
       if(dvd.actors->toPlainText().isEmpty())
 	{
@@ -256,7 +256,7 @@ void qtbook_dvd::slotGo(void)
 	}
 
       str = dvd.directors->toPlainText().trimmed();
-      dvd.directors->setMultipleLinks("dvd_search", "directors", str);
+      dvd.directors->setPlainText(str);
 
       if(dvd.directors->toPlainText().isEmpty())
 	{
@@ -588,10 +588,16 @@ void qtbook_dvd::slotGo(void)
 	  if(dvd.back_image->image.isNull())
 	    dvd.back_image->imageFormat = "";
 
+	  dvd.actors->setMultipleLinks("dvd_search", "actors",
+				       dvd.actors->toPlainText());
+	  dvd.directors->setMultipleLinks("dvd_search", "directors",
+					  dvd.directors->toPlainText());
 	  dvd.studio->setText
 	    (QString("<a href=\"dvd_search?studio?%1\">" +
 		     dvd.studio->toPlainText() + "</a>").arg
 	     (dvd.studio->toPlainText()));
+	  dvd.category->setMultipleLinks("dvd_search", "category",
+					 dvd.category->toPlainText());
 
 	  if(!dvd.url->toPlainText().isEmpty())
 	    dvd.url->setText(QString("<a href=\"%1\">%1</a>").arg
@@ -824,7 +830,7 @@ void qtbook_dvd::slotGo(void)
 		       "%' AND ");
       searchstr.append
 	("LOWER(category) LIKE '%" +
-	 myqstring::escape(dvd.category->toPlainText().trimmed()) +
+	 myqstring::escape(dvd.category->toPlainText().toLower()) +
 	 "%' AND ");
 
       if(dvd.price->value() > -0.01)
@@ -860,7 +866,7 @@ void qtbook_dvd::slotGo(void)
       if(!dvd.url->toPlainText().isEmpty())
 	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
-			 (dvd.url->toPlainText()) + "%' ");
+			 (dvd.url->toPlainText().toLower()) + "%' ");
 
       hide();
 
@@ -950,6 +956,8 @@ void qtbook_dvd::search(const QString &field, const QString &value)
 	dvd.directors->setPlainText(value);
       else if(field == "studio")
 	dvd.studio->setPlainText(value);
+      else if(field == "category")
+	dvd.category->setPlainText(value);
 
       slotGo();
     }
@@ -1239,13 +1247,13 @@ void qtbook_dvd::insert(void)
 {
   slotReset();
   dvd.id->clear();
-  dvd.actors->clear();
-  dvd.directors->clear();
-  dvd.format->clear();
+  dvd.actors->setPlainText("N/A");
+  dvd.directors->setPlainText("N/A");
+  dvd.format->setText("N/A");
   dvd.title->clear();
-  dvd.studio->clear();
-  dvd.description->clear();
-  dvd.category->clear();
+  dvd.studio->setPlainText("N/A");
+  dvd.description->setPlainText("N/A");
+  dvd.category->setPlainText("N/A");
   dvd.copiesButton->setEnabled(false);
   dvd.showUserButton->setEnabled(false);
   dvd.queryButton->setEnabled(true);
@@ -1319,12 +1327,20 @@ void qtbook_dvd::slotReset(void)
 	}
       else if(name.contains(tr("Format")))
 	{
-	  dvd.format->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.format->clear();
+	  else
+	    dvd.format->setText("N/A");
+
 	  dvd.format->setFocus();
 	}
       else if(name.contains(tr("Actor(s)")))
 	{
-	  dvd.actors->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.actors->clear();
+	  else
+	    dvd.actors->setPlainText("N/A");
+
 	  dvd.actors->setFocus();
 	}
       else if(name.contains(tr("Number of Discs")))
@@ -1354,12 +1370,20 @@ void qtbook_dvd::slotReset(void)
 	}
       else if(name.contains(tr("Studio")))
 	{
-	  dvd.studio->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.studio->clear();
+	  else
+	    dvd.studio->setPlainText("N/A");
+
 	  dvd.studio->setFocus();
 	}
       else if(name.contains(tr("Categories")))
 	{
-	  dvd.category->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.category->clear();
+	  else
+	    dvd.category->setPlainText("N/A");
+
 	  dvd.category->setFocus();
 	}
       else if(name.contains(tr("Price")))
@@ -1379,7 +1403,11 @@ void qtbook_dvd::slotReset(void)
 	}
       else if(name.contains(tr("Abstract")))
 	{
-	  dvd.description->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.description->clear();
+	  else
+	    dvd.description->setPlainText("N/A");
+
 	  dvd.description->setFocus();
 	}
       else if(name.contains(tr("Copies")))
@@ -1394,7 +1422,11 @@ void qtbook_dvd::slotReset(void)
 	}
       else if(name.contains(tr("Director(s)")))
 	{
-	  dvd.directors->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    dvd.directors->clear();
+	  else
+	    dvd.directors->setPlainText("N/A");
+
 	  dvd.directors->setFocus();
 	}
       else if(name.contains(tr("Rating")))
@@ -1425,7 +1457,36 @@ void qtbook_dvd::slotReset(void)
       */
 
       dvd.title->clear();
-      dvd.studio->clear();
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.actors->clear();
+      else
+	dvd.actors->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.directors->clear();
+      else
+	dvd.directors->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.format->clear();
+      else
+	dvd.format->setText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.studio->clear();
+      else
+	dvd.studio->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.category->clear();
+      else
+	dvd.category->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	dvd.description->clear();
+      else
+	dvd.description->setPlainText("N/A");
 
       if(windowTitle().contains(tr("Search")))
 	{
@@ -1441,12 +1502,9 @@ void qtbook_dvd::slotReset(void)
 	}
 
       dvd.id->clear();
-      dvd.actors->clear();
-      dvd.category->clear();
       dvd.price->setValue(dvd.price->minimum());
       dvd.quantity->setValue(dvd.quantity->minimum());
       dvd.no_of_discs->setValue(dvd.no_of_discs->minimum());
-      dvd.description->clear();
       dvd.location->setCurrentIndex(0);
       dvd.language->setCurrentIndex(0);
       dvd.monetary_units->setCurrentIndex(0);
@@ -1455,8 +1513,6 @@ void qtbook_dvd::slotReset(void)
       dvd.aspectratio->setCurrentIndex(0);
       dvd.front_image->clear();
       dvd.back_image->clear();
-      dvd.format->clear();
-      dvd.directors->clear();
       dvd.url->clear();
       dvd.id->setFocus();
     }

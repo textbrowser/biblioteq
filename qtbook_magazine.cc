@@ -872,7 +872,7 @@ void qtbook_magazine::slotGo(void)
       if(!ma.url->toPlainText().isEmpty())
 	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
-			 (ma.url->toPlainText()) + "%' ");
+			 (ma.url->toPlainText().toLower()) + "%' ");
 
       hide();
 

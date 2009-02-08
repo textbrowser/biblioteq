@@ -574,6 +574,8 @@ void qtbook_cd::slotGo(void)
 	    (QString("<a href=\"cd_search?recording_label?%1\">" +
 		     cd.recording_label->toPlainText() + "</a>").arg
 	     (cd.recording_label->toPlainText()));
+	  cd.category->setMultipleLinks("cd_search", "category",
+					cd.category->toPlainText());
 
 	  if(!cd.url->toPlainText().isEmpty())
 	    cd.url->setText(QString("<a href=\"%1\">%1</a>").arg
@@ -1215,11 +1217,11 @@ void qtbook_cd::insert(void)
 {
   slotReset();
   cd.id->clear();
-  cd.artist->clear();
+  cd.artist->setPlainText("N/A");
   cd.title->clear();
-  cd.recording_label->clear();
-  cd.description->clear();
-  cd.category->clear();
+  cd.recording_label->setPlainText("N/A");
+  cd.description->setPlainText("N/A");
+  cd.category->setPlainText("N/A");
   cd.copiesButton->setEnabled(false);
   cd.tracksButton->setEnabled(false);
   cd.showUserButton->setEnabled(false);
@@ -1720,7 +1722,11 @@ void qtbook_cd::slotReset(void)
 	}
       else if(name.contains(tr("Artist")))
 	{
-	  cd.artist->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    cd.artist->clear();
+	  else
+	    cd.artist->setPlainText("N/A");
+
 	  cd.artist->setFocus();
 	}
       else if(name.contains(tr("Number of Discs")))
@@ -1760,12 +1766,20 @@ void qtbook_cd::slotReset(void)
 	}
       else if(name.contains(tr("Recording Label")))
 	{
-	  cd.recording_label->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    cd.recording_label->clear();
+	  else
+	    cd.recording_label->setPlainText("N/A");
+
 	  cd.recording_label->setFocus();
 	}
       else if(name.contains(tr("Categories")))
 	{
-	  cd.category->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    cd.category->clear();
+	  else
+	    cd.category->setPlainText("N/A");
+
 	  cd.category->setFocus();
 	}
       else if(name.contains(tr("Price")))
@@ -1785,7 +1799,11 @@ void qtbook_cd::slotReset(void)
 	}
       else if(name.contains(tr("Abstract")))
 	{
-	  cd.description->clear();
+	  if(windowTitle().contains(tr("Search")))
+	    cd.description->clear();
+	  else
+	    cd.description->setPlainText("N/A");
+
 	  cd.description->setFocus();
 	}
       else if(name.contains(tr("Copies")))
@@ -1811,7 +1829,26 @@ void qtbook_cd::slotReset(void)
       */
 
       cd.title->clear();
-      cd.recording_label->clear();
+
+      if(windowTitle().contains(tr("Search")))
+	cd.artist->clear();
+      else
+	cd.artist->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	cd.recording_label->clear();
+      else
+	cd.recording_label->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	cd.category->clear();
+      else
+	cd.category->setPlainText("N/A");
+
+      if(windowTitle().contains(tr("Search")))
+	cd.description->clear();
+      else
+	cd.description->setPlainText("N/A");
 
       if(windowTitle().contains(tr("Search")))
 	{
@@ -1827,12 +1864,9 @@ void qtbook_cd::slotReset(void)
 	}
 
       cd.id->clear();
-      cd.artist->clear();
-      cd.category->clear();
       cd.price->setValue(cd.price->minimum());
       cd.quantity->setValue(cd.quantity->minimum());
       cd.no_of_discs->setValue(cd.no_of_discs->minimum());
-      cd.description->clear();
       cd.audio->setCurrentIndex(0);
       cd.location->setCurrentIndex(0);
       cd.language->setCurrentIndex(0);

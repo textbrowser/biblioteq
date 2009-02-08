@@ -775,7 +775,7 @@ void qtbook_videogame::slotGo(void)
       if(!vg.url->toPlainText().isEmpty())
 	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
 			 myqstring::escape
-			 (vg.url->toPlainText()) + "%' ");
+			 (vg.url->toPlainText().toLower()) + "%' ");
 
       hide();
 
