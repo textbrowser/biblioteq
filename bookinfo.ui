@@ -79,6 +79,10 @@
             <property name="text" >
              <string>&amp;Download</string>
             </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -91,6 +95,10 @@
             </property>
             <property name="text" >
              <string>&amp;Select</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
             </property>
            </widget>
           </item>
@@ -148,6 +156,10 @@
             <property name="text" >
              <string>&amp;Download</string>
             </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -160,6 +172,10 @@
             </property>
             <property name="text" >
              <string>&amp;Select</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
             </property>
            </widget>
           </item>

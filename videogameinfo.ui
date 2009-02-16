@@ -73,6 +73,10 @@
             <property name="text" >
              <string>&amp;Select</string>
             </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -122,6 +126,10 @@
            <widget class="QPushButton" name="backButton" >
             <property name="text" >
              <string>&amp;Select</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
             </property>
            </widget>
           </item>

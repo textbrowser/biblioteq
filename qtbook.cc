@@ -243,12 +243,13 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
+  menu3->setWindowIcon(QIcon("icons.d/book.gif"));
   menu3->setWindowTitle(tr("BiblioteQ: Columns Selection"));
   connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Release Date")),
+  connect(menu4->addAction(tr("Reset &Publication Date")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Publisher")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -756,7 +757,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.19.<br>"
+  mb.setText("<html>BiblioteQ Version 6.20.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -786,8 +787,8 @@ void qtbook::slotSearch(void)
   al.title->clear();
   al.publisher->clear();
   al.category->clear();
-  al.publication_date->setDate(QDate::fromString("01/01/7999",
-						 "MM/dd/yyyy"));
+  al.publication_date->setDate(QDate::fromString("01/7999",
+						 "MM/yyyy"));
   al.price->setMinimum(-0.01);
   al.price->setValue(-0.01);
   al.quantity->setMinimum(0);
@@ -3442,10 +3443,10 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 			   "%' AND ");
 
 		if(al.publication_date->date().toString
-		   ("MM/dd/yyyy") != "01/01/7999")
-		  str.append("pdate = '" +
+		   ("MM/yyyy") != "01/7999")
+		  str.append("SUBSTR(pdate, 4) = '" +
 			     al.publication_date->date().toString
-			     ("MM/dd/yyyy") + "' AND ");
+			     ("MM/yyyy") + "' AND ");
 
 		str.append("LOWER(category) LIKE '%" +
 			   myqstring::escape
@@ -6188,10 +6189,10 @@ void qtbook::slotReset(void)
 	      al.title->clear();
 	      al.title->setFocus();
 	    }
-	  else if(name.contains(tr("Release Date")))
+	  else if(name.contains(tr("Publication Date")))
 	    {
 	      al.publication_date->setDate
-		(QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+		(QDate::fromString("01/7999", "MM/yyyy"));
 	      al.publication_date->setFocus();
 	    }
 	  else if(name.contains(tr("Publisher")))
