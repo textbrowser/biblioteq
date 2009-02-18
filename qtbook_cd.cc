@@ -787,11 +787,10 @@ void qtbook_cd::slotGo(void)
       searchstr.append("LOWER(title) LIKE '%").append
 	(myqstring::escape(cd.title->text().toLower())).append("%' AND ");
 
-      if(cd.release_date->date().toString
-	 ("MM/dd/yyyy") != "01/01/7999")
-	searchstr.append("rdate = '" +
+      if(cd.release_date->date().toString("MM/yyyy") != "01/7999")
+	searchstr.append("SUBSTR(rdate, 4) = '" +
 			 cd.release_date->date().toString
-			 ("MM/dd/yyyy") +
+			 ("MM/yyyy") +
 			 "' AND ");
 
       searchstr.append("LOWER(recording_label) LIKE '%" +
@@ -868,8 +867,9 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.computeButton->setVisible(false);
   cd.tracks_lbl->setVisible(false);
   cd.okButton->setText(tr("&Search"));
-  cd.release_date->setDate(QDate::fromString("01/01/7999",
-					     "MM/dd/yyyy"));
+  cd.release_date->setDate(QDate::fromString("01/7999",
+					     "MM/yyyy"));
+  cd.release_date->setDisplayFormat("MM/yyyy");
   cd.runtime->setTime(QTime(0, 0, 0));
   cd.runtime->setMinimumTime(QTime(0, 0, 0));
   cd.price->setMinimum(-0.01);
@@ -1747,7 +1747,7 @@ void qtbook_cd::slotReset(void)
 	{
 	  if(windowTitle().contains(tr("Search")))
 	    cd.release_date->setDate
-	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
 	    cd.release_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -1853,8 +1853,8 @@ void qtbook_cd::slotReset(void)
       if(windowTitle().contains(tr("Search")))
 	{
 	  cd.runtime->setTime(QTime(0, 0, 0));
-	  cd.release_date->setDate(QDate::fromString("01/01/7999",
-						     "MM/dd/yyyy"));
+	  cd.release_date->setDate(QDate::fromString("01/7999",
+						     "MM/yyyy"));
 	}
       else
 	{
