@@ -788,7 +788,7 @@ void qtbook_cd::slotGo(void)
 	(myqstring::escape(cd.title->text().toLower())).append("%' AND ");
 
       if(cd.release_date->date().toString("MM/yyyy") != "01/7999")
-	searchstr.append("SUBSTR(rdate, 4) = '" +
+	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
 			 cd.release_date->date().toString
 			 ("MM/yyyy") +
 			 "' AND ");

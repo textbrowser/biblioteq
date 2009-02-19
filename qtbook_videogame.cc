@@ -714,10 +714,10 @@ void qtbook_videogame::slotGo(void)
 		       "AND ");
 
       if(vg.release_date->date().toString
-	 ("MM/dd/yyyy") != "01/01/7999")
-	searchstr.append("rdate = '" +
+	 ("MM/yyyy") != "01/7999")
+	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
 			 vg.release_date->date().toString
-			 ("MM/dd/yyyy") +
+			 ("MM/yyyy") +
 			 "' AND ");
 
       searchstr.append("LOWER(publisher) LIKE '%" +
@@ -806,8 +806,9 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.showUserButton->setVisible(false);
   vg.queryButton->setVisible(false);
   vg.okButton->setText(tr("&Search"));
-  vg.release_date->setDate(QDate::fromString("01/01/7999",
-					     "MM/dd/yyyy"));
+  vg.release_date->setDate(QDate::fromString("01/7999",
+					     "MM/yyyy"));
+  vg.release_date->setDisplayFormat("MM/yyyy");
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);
@@ -1218,7 +1219,7 @@ void qtbook_videogame::slotReset(void)
 	{
 	  if(windowTitle().contains(tr("Search")))
 	    vg.release_date->setDate
-	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
 	    vg.release_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -1342,8 +1343,8 @@ void qtbook_videogame::slotReset(void)
 	vg.description->setPlainText("N/A");
 
       if(windowTitle().contains(tr("Search")))
-	vg.release_date->setDate(QDate::fromString("01/01/7999",
-						   "MM/dd/yyyy"));
+	vg.release_date->setDate(QDate::fromString("01/7999",
+						   "MM/yyyy"));
       else
 	vg.release_date->setDate(QDate::fromString("01/01/2000",
 						   "MM/dd/yyyy"));

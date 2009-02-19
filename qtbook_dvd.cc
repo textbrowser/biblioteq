@@ -818,10 +818,10 @@ void qtbook_dvd::slotGo(void)
 	(myqstring::escape(dvd.title->text().toLower())).append("%' AND ");
 
       if(dvd.release_date->date().toString
-	 ("MM/dd/yyyy") != "01/01/7999")
-	searchstr.append("rdate = '" +
+	 ("MM/yyyy") != "01/7999")
+	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
 			 dvd.release_date->date().toString
-			 ("MM/dd/yyyy") +
+			 ("MM/yyyy") +
 			 "' AND ");
 
       searchstr.append("LOWER(studio) LIKE '%" +
@@ -899,8 +899,9 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.queryButton->setVisible(false);
   dvd.showUserButton->setVisible(false);
   dvd.okButton->setText(tr("&Search"));
-  dvd.release_date->setDate(QDate::fromString("01/01/7999",
-					     "MM/dd/yyyy"));
+  dvd.release_date->setDate(QDate::fromString("01/7999",
+					     "MM/yyyy"));
+  dvd.release_date->setDisplayFormat("MM/yyyy");
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
   dvd.price->setMinimum(-0.01);
@@ -1361,7 +1362,7 @@ void qtbook_dvd::slotReset(void)
 	{
 	  if(windowTitle().contains(tr("Search")))
 	    dvd.release_date->setDate
-	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
 	    dvd.release_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -1491,8 +1492,8 @@ void qtbook_dvd::slotReset(void)
       if(windowTitle().contains(tr("Search")))
 	{
 	  dvd.runtime->setTime(QTime(0, 0, 0));
-	  dvd.release_date->setDate(QDate::fromString("01/01/7999",
-						     "MM/dd/yyyy"));
+	  dvd.release_date->setDate(QDate::fromString("01/7999",
+						     "MM/yyyy"));
 	}
       else
 	{

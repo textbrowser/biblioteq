@@ -843,7 +843,7 @@ void qtbook_book::slotGo(void)
 					 toLower()) + "%' AND ");
 
       if(id.publication_date->date().toString("MM/yyyy") != "01/7999")
-	searchstr.append("SUBSTR(pdate, 4) = '" +
+	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			 id.publication_date->date().toString
 			 ("MM/yyyy") +
 			 "' AND ");

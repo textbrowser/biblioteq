@@ -820,10 +820,10 @@ void qtbook_magazine::slotGo(void)
 		       "%' AND ");
 
       if(ma.publication_date->date().toString
-	 ("MM/dd/yyyy") != "01/01/7999")
-	searchstr.append("pdate = '" +
+	 ("MM/yyyy") != "01/7999")
+	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			 ma.publication_date->date().toString
-			 ("MM/dd/yyyy") +
+			 ("MM/yyyy") +
 			 "' AND ");
 
       searchstr.append("LOWER(publisher) LIKE '%" +
@@ -922,8 +922,9 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.showUserButton->setVisible(false);
   ma.queryButton->setVisible(false);
   ma.okButton->setText(tr("&Search"));
-  ma.publication_date->setDate(QDate::fromString("01/01/7999",
-						 "MM/dd/yyyy"));
+  ma.publication_date->setDate(QDate::fromString("01/7999",
+						 "MM/yyyy"));
+  ma.publication_date->setDisplayFormat("MM/yyyy");
   ma.id->setCursorPosition(0);
   ma.price->setMinimum(-0.01);
   ma.price->setValue(-0.01);
@@ -1384,7 +1385,7 @@ void qtbook_magazine::slotReset(void)
 	{
 	  if(windowTitle().contains(tr("Search")))
 	    ma.publication_date->setDate
-	      (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
 	    ma.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -1517,7 +1518,7 @@ void qtbook_magazine::slotReset(void)
 
       if(windowTitle().contains(tr("Search")))
 	ma.publication_date->setDate
-	  (QDate::fromString("01/01/7999", "MM/dd/yyyy"));
+	  (QDate::fromString("01/7999", "MM/yyyy"));
       else
 	ma.publication_date->setDate
 	  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));

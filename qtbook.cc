@@ -3444,7 +3444,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
 
 		if(al.publication_date->date().toString
 		   ("MM/yyyy") != "01/7999")
-		  str.append("SUBSTR(pdate, 4) = '" +
+		  str.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			     al.publication_date->date().toString
 			     ("MM/yyyy") + "' AND ");
 
