@@ -56,6 +56,16 @@ QApplication *qapp = 0;
 
 int main(int argc, char *argv[])
 {
+  /*
+  ** Remove the old configuration file.
+  */
+
+  (void) QFile::remove(QString(QDir::homePath()).append("/.biblioteq.dat"));
+
+  /*
+  ** Prepare configuration settings.
+  */
+
   QCoreApplication::setOrganizationName("BiblioteQ");
   QCoreApplication::setOrganizationDomain("biblioteq.sourceforge.net");
   QCoreApplication::setApplicationName("BiblioteQ");
