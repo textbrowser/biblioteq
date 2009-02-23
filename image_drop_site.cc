@@ -32,7 +32,8 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
 	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).toLower();
+	  (event->mimeData()->data(event->mimeData()->formats()[i])).
+	  toLower().trimmed();
 	break;
       }
 #elif defined(Q_OS_MAC)
@@ -62,7 +63,8 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
 	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).toLower();
+	  (event->mimeData()->data(event->mimeData()->formats()[i])).
+	  toLower().trimmed();
 	break;
       }
 #elif defined(Q_OS_MAC)
@@ -94,17 +96,27 @@ void image_drop_site::dropEvent(QDropEvent *event)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
 	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i]));
+	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
 	break;
       }
 #elif defined(Q_OS_MAC)
-  QString filename = event->mimeData()->urls()[0].toLocalFile();
+  QString filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
   QUrl url(event->mimeData()->text());
-  QString filename = url.toLocalFile();
+  QString filename = url.toLocalFile().trimmed();
 #endif
 
-  image = QImage(filename);
+  if(filename.toLower().endsWith(".bmp"))
+    imageFormat = "BMP";
+  else if(filename.toLower().endsWith(".jpg") ||
+	  filename.toLower().endsWith(".jpeg")) 
+    imageFormat = "JPG";
+  else if(filename.toLower().endsWith(".png"))
+    imageFormat = "PNG";
+  else // Guess!
+    imageFormat = "JPG";
+
+  image = QImage(filename, imageFormat.toAscii().data());
 
   if(!image.isNull())
     {
@@ -113,8 +125,6 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
       if(scene()->items().size() > 0)
 	scene()->removeItem(scene()->items().at(0));
-
-      imageFormat = filename.mid(filename.lastIndexOf(".") + 1).toUpper();
 
       if(image.width() > width() ||
 	 image.height() > height())
