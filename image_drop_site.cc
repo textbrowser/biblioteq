@@ -43,11 +43,11 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
   filename = event->mimeData()->text().trimmed();
 #endif
 
-  QString imgf = determineFormat(filename).toLower();
+  QString imgf = determineFormat(filename);
 
-  if(imgf == "bmp" ||
-     imgf == "jpg" || imgf == "jpeg" ||
-     imgf == "png")
+  if(imgf == "BMP" ||
+     imgf == "JPG" || imgf == "JPEG" ||
+     imgf == "PNG")
     event->acceptProposedAction();
 }
 
@@ -76,11 +76,11 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
   filename = event->mimeData()->text().trimmed();
 #endif
 
-  QString imgf = determineFormat(filename).toLower();
+  QString imgf = determineFormat(filename);
 
-  if(imgf == "bmp" ||
-     imgf == "jpg" || imgf == "jpeg" ||
-     imgf == "png")
+  if(imgf == "BMP" ||
+     imgf == "JPG" || imgf == "JPEG" ||
+     imgf == "PNG")
     event->acceptProposedAction();
 }
 
@@ -113,7 +113,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
   QString filename = url.toLocalFile().trimmed();
 #endif
 
-  imgf = determineFormat(filename).toLower();
+  imgf = determineFormat(filename);
   image = QImage(filename, imgf.toAscii().data());
 
   if(!image.isNull())
@@ -159,6 +159,7 @@ void image_drop_site::keyPressEvent(QKeyEvent *event)
 void image_drop_site::clear(void)
 {
   image = QImage();
+  imageFormat = "";
   doubleclicked = false;
 
   while(!scene()->items().isEmpty())
@@ -217,7 +218,10 @@ QString image_drop_site::determineFormat(const QString &filename)
 
   if(imgf.isEmpty())
     {
-      QString ext(filename.mid(filename.lastIndexOf(".") + 1));
+      QString ext("");
+
+      if(filename.contains("."))
+	ext = filename.mid(filename.lastIndexOf(".") + 1);
 
       if(ext.isEmpty())
 	imgf = "JPG";
