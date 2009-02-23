@@ -767,7 +767,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.20.<br>"
+  mb.setText("<html>BiblioteQ Version 6.20.1.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -887,7 +887,7 @@ void qtbook::slotModify(void)
     {
       i = index.row();
       oid = misc_functions::getColumnString(table, i, "MYOID");
-      type = misc_functions::getColumnString(table, i, "Type");
+      type = misc_functions::getColumnString(table, i, tr("Type"));
 
       if(type.toLower() == "cd")
 	{
@@ -1051,7 +1051,7 @@ void qtbook::slotViewDetails(void)
     {
       i = index.row();
       oid = misc_functions::getColumnString(table,i, "MYOID");
-      type = misc_functions::getColumnString(table, i, "Type");
+      type = misc_functions::getColumnString(table, i, tr("Type"));
 
       if(type.toLower() == "cd")
 	{
@@ -1209,7 +1209,7 @@ void qtbook::slotDelete(void)
 	continue;
 
       oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      itemType = misc_functions::getColumnString(ui.table, i, "Type");
+      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
 
       if(oid.isEmpty() || itemType.isEmpty())
 	{
@@ -3874,7 +3874,7 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
   for(i = 0; i < ui.table->rowCount(); i++)
     {
       oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      itemType = misc_functions::getColumnString(ui.table, i, "Type");
+      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
       itemType = itemType.toLower().remove(" ");
       updateRows(oid, i, itemType);
     }
@@ -8090,7 +8090,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 	    value2 = misc_functions::getColumnString
 	      (history.table, i, tr("Barcode"));
 	    value3 = misc_functions::getColumnString
-	      (history.table, i, tr("Item Type")).toLower().remove(" ");
+	      (history.table, i, tr("Type")).toLower().remove(" ");
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {

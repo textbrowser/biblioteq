@@ -381,6 +381,11 @@ void copy_editor::slotCheckoutCopy(void)
 
   memberid = misc_functions::getColumnString
     (qmain->getBB().table, memberrow, QString(tr("Member ID")));
+
+  /*
+  ** The "Copy Number" does not require tr().
+  */
+
   copynumber = misc_functions::getColumnString(cb.table, copyrow,
 					       QString("Copy Number"));
   copyid = misc_functions::getColumnString(cb.table, copyrow,
