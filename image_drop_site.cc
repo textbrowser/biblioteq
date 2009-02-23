@@ -12,6 +12,8 @@
 image_drop_site::image_drop_site(QWidget *parent)
 {
   (void) parent;
+  image = QImage();
+  imageFormat = "";
   doubleclicked = false;
   setAcceptDrops(true);
 }
@@ -32,19 +34,20 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
 	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).
-	  toLower().trimmed();
+	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
 	break;
       }
 #elif defined(Q_OS_MAC)
-  filename = event->mimeData()->urls()[0].toLocalFile().toLower().trimmed();
+  filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
-  filename = event->mimeData()->text().toLower().trimmed();
+  filename = event->mimeData()->text().trimmed();
 #endif
 
   QString imgf = determineFormat(filename).toLower();
 
-  if(imgf == "bmp" || imgf == "jpg" || imgf == "jpeg" || imgf == "png")
+  if(imgf == "bmp" ||
+     imgf == "jpg" || imgf == "jpeg" ||
+     imgf == "png")
     event->acceptProposedAction();
 }
 
@@ -64,19 +67,20 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
     if(event->mimeData()->formats()[i].toLower().contains("filename"))
       {
 	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).
-	  toLower().trimmed();
+	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
 	break;
       }
 #elif defined(Q_OS_MAC)
-  filename = event->mimeData()->urls()[0].toLocalFile().toLower().trimmed();
+  filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
-  filename = event->mimeData()->text().toLower().trimmed();
+  filename = event->mimeData()->text().trimmed();
 #endif
 
   QString imgf = determineFormat(filename).toLower();
 
-  if(imgf == "bmp" || imgf == "jpg" || imgf == "jpeg" || imgf == "png")
+  if(imgf == "bmp" ||
+     imgf == "jpg" || imgf == "jpeg" ||
+     imgf == "png")
     event->acceptProposedAction();
 }
 
@@ -87,6 +91,7 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 void image_drop_site::dropEvent(QDropEvent *event)
 {
   QPixmap pixmap;
+  QString imgf("");
 
   if(event == 0)
     return;
@@ -108,12 +113,13 @@ void image_drop_site::dropEvent(QDropEvent *event)
   QString filename = url.toLocalFile().trimmed();
 #endif
 
-  imageFormat = determineFormat(filename).toLower();
-  image = QImage(filename, imageFormat.toAscii().data());
+  imgf = determineFormat(filename).toLower();
+  image = QImage(filename, imgf.toAscii().data());
 
   if(!image.isNull())
     {
       event->acceptProposedAction();
+      imageFormat = imgf;
       doubleclicked = false;
 
       if(scene()->items().size() > 0)
@@ -153,7 +159,6 @@ void image_drop_site::keyPressEvent(QKeyEvent *event)
 void image_drop_site::clear(void)
 {
   image = QImage();
-  imageFormat = "";
   doubleclicked = false;
 
   while(!scene()->items().isEmpty())
@@ -166,18 +171,22 @@ void image_drop_site::clear(void)
 ** -- determineFormat() --
 */
 
-void image_drop_site::determineFormat(const QByteArray &bytes)
+QString image_drop_site::determineFormat(const QByteArray &bytes)
 {
+  QString imgf("");
+
   if(bytes.size() >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
      bytes[3] == 'G')
-    imageFormat = "PNG";
+    imgf = "PNG";
   else if(bytes.size() >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
 	  bytes[8] == 'I' && bytes[9] == 'F')
-    imageFormat = "JPG";
+    imgf = "JPG";
   else if(bytes.size() >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
-    imageFormat = "BMP";
+    imgf = "BMP";
   else // Guess!
-    imageFormat = "JPG";
+    imgf = "JPG";
+
+  return imgf;
 }
 
 /*
@@ -198,12 +207,12 @@ QString image_drop_site::determineFormat(const QString &filename)
     {
       if(bytesRead >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
 	 bytes[3] == 'G')
-	imgf = "png";
+	imgf = "PNG";
       else if(bytesRead >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
 	      bytes[8] == 'I' && bytes[9] == 'F')
-	imgf = "jpg";
+	imgf = "JPG";
       else if(bytesRead >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
-	imgf = "bmp";
+	imgf = "BMP";
     }
 
   if(imgf.isEmpty())
@@ -211,9 +220,9 @@ QString image_drop_site::determineFormat(const QString &filename)
       QString ext(filename.mid(filename.lastIndexOf(".") + 1));
 
       if(ext.isEmpty())
-	imgf = "jpg";
+	imgf = "JPG";
       else
-	imgf = ext;
+	imgf = ext.toUpper();
     }
 
   file.close();
@@ -229,7 +238,7 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
   QPixmap pixmap;
 
   doubleclicked = false;
-  determineFormat(bytes);
+  imageFormat = determineFormat(bytes);
   image.loadFromData(bytes, imageFormat.toAscii().data());
 
   if(image.width() > width() ||
