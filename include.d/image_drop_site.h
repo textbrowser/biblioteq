@@ -39,6 +39,7 @@ class image_drop_site: public QGraphicsView
   void dragEnterEvent(QDragEnterEvent *);
   void determineFormat(const QByteArray &);
   void mouseDoubleClickEvent(QMouseEvent *);
+  QString determineFormat(const QString &);
 };
 
 #endif

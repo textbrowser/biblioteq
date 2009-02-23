@@ -42,8 +42,9 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
   filename = event->mimeData()->text().toLower().trimmed();
 #endif
 
-  if(filename.endsWith(".bmp") || filename.endsWith(".jpg") ||
-     filename.endsWith(".jpeg") || filename.endsWith(".png"))
+  QString imgf = determineFormat(filename).toLower();
+
+  if(imgf == "bmp" || imgf == "jpg" || imgf == "jpeg" || imgf == "png")
     event->acceptProposedAction();
 }
 
@@ -73,8 +74,9 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
   filename = event->mimeData()->text().toLower().trimmed();
 #endif
 
-  if(filename.endsWith(".bmp") || filename.endsWith(".jpg") ||
-     filename.endsWith(".jpeg") || filename.endsWith(".png"))
+  QString imgf = determineFormat(filename).toLower();
+
+  if(imgf == "bmp" || imgf == "jpg" || imgf == "jpeg" || imgf == "png")
     event->acceptProposedAction();
 }
 
@@ -106,16 +108,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
   QString filename = url.toLocalFile().trimmed();
 #endif
 
-  if(filename.toLower().endsWith(".bmp"))
-    imageFormat = "BMP";
-  else if(filename.toLower().endsWith(".jpg") ||
-	  filename.toLower().endsWith(".jpeg")) 
-    imageFormat = "JPG";
-  else if(filename.toLower().endsWith(".png"))
-    imageFormat = "PNG";
-  else // Guess!
-    imageFormat = "JPG";
-
+  imageFormat = determineFormat(filename).toLower();
   image = QImage(filename, imageFormat.toAscii().data());
 
   if(!image.isNull())
@@ -185,6 +178,46 @@ void image_drop_site::determineFormat(const QByteArray &bytes)
     imageFormat = "BMP";
   else // Guess!
     imageFormat = "JPG";
+}
+
+/*
+** -- determineFormat() --
+*/
+
+QString image_drop_site::determineFormat(const QString &filename)
+{
+  char bytes[10];
+  QFile file(filename);
+  qint64 bytesRead = 0;
+  QString imgf("");
+
+  (void) memset(bytes, 0, sizeof(bytes));
+
+  if(file.open(QIODevice::ReadOnly) && (bytesRead =
+					file.read(bytes, sizeof(bytes))) > 0)
+    {
+      if(bytesRead >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
+	 bytes[3] == 'G')
+	imgf = "png";
+      else if(bytesRead >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
+	      bytes[8] == 'I' && bytes[9] == 'F')
+	imgf = "jpg";
+      else if(bytesRead >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
+	imgf = "bmp";
+    }
+
+  if(imgf.isEmpty())
+    {
+      QString ext(filename.mid(filename.lastIndexOf(".") + 1));
+
+      if(ext.isEmpty())
+	imgf = "jpg";
+      else
+	imgf = ext;
+    }
+
+  file.close();
+  return imgf;
 }
 
 /*
