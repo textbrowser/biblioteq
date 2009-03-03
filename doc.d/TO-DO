@@ -201,7 +201,7 @@
      biblioteq.conf file . This is no longer applicable. (DONE)
 103. Allow for custom queries. (DONE)
 104. The database searches should be case-insensitive. (DONE)
-105. Prepare the application for translations. (TBD)
+105. Prepare the application for translations. (DONE)
 106. Provide a graphical representation of the database layout. (TBD)
 107. Create an elegant display of a member's reserved items. (DONE)
 108. Update the Returned Date in the member_history table after an item
@@ -332,3 +332,19 @@
      fields. (DONE)
 189. CDs and DVDs should have default values of N/A for some mandatory
      fields. (DONE)
+190. Review all source files for contains:
+     borrowers_editor.cc (DONE)
+     copy_editor.cc (DONE)
+     image_drop_site.cc (DONE)
+     main_table.cc (DONE)
+     misc_functions.cc (DONE)
+     myqstring.cc (DONE)
+     qtbook_book.cc (DONE)
+     qtbook.cc (DONE)
+     qtbook_cd.cc (DONE)
+     qtbook_dvd.cc (DONE)
+     qtbook_journal.cc (DONE)
+     qtbook_magazine.cc (DONE)
+     qtbook_videogame.cc (DONE)
+191. Pressing the escape key on a QDialog window will not trigger a 
+     close event. As a result, "dirty data" warning may be displayed. (DONE)
