@@ -75,7 +75,7 @@ void locresults::slotUpdateQueryText(void)
 void locresults::closeEvent(QCloseEvent *e)
 {
   (void) e;
-  deleteLater();
+  slotClose();
 }
 
 /*
@@ -84,7 +84,6 @@ void locresults::closeEvent(QCloseEvent *e)
 
 void locresults::slotClose(void)
 {
-  close();
   deleteLater();
 }
 
@@ -98,4 +97,14 @@ void locresults::setGlobalFonts(const QFont &font)
 
   foreach(QWidget *widget, findChildren<QWidget *>())
     widget->setFont(font);
+}
+
+/*
+** -- keyPressEvent() --
+*/
+
+void locresults::keyPressEvent(QKeyEvent *event)
+{
+  if(event->key() == Qt::Key_Escape)
+    slotClose();
 }
