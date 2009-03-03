@@ -689,7 +689,6 @@ void copy_editor::slotSaveCopies(void)
 
   bitem->setOldQ(copies.size());
   copies.clear();
-  
 }
 
 /*
@@ -772,6 +771,16 @@ QString copy_editor::saveCopies(void)
     }
 
   return lastError;
+}
+
+/*
+** -- keyPressEvent() --
+*/
+
+void copy_editor::keyPressEvent(QKeyEvent *event)
+{
+  if(event->key() == Qt::Key_Escape)
+    slotCloseCopyEditor();
 }
 
 /*
