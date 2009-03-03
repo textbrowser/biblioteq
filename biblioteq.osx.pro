@@ -1,4 +1,4 @@
-purge.commands = rm -f *~ && rm -f include.d/*~
+purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
@@ -69,6 +69,9 @@ SOURCES		= qtbook.cc \
 		  qtbook_videogame.cc \
 		  numeric_table_item.cc \
 		  hyperlinked_text_edit.cc
+
+TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
+		  translations.d/biblioteq_de_DE.ts
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
