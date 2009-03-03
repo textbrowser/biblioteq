@@ -1,4 +1,4 @@
-purge.commands = del *~ && del include.d/*~
+purge.commands = del *~ && del include.d\*~ && del doc.d\*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
@@ -36,20 +36,20 @@ FORMS           = cdinfo.ui \
 
 UI_HEADERS_DIR  = include.d
 
-HEADERS		= include.d/qtbook.h \
-                  include.d/myqstring.h \
-		  include.d/qtbook_cd.h \
-		  include.d/locresults.h \
-		  include.d/main_table.h \
-		  include.d/qtbook_dvd.h \
-		  include.d/copy_editor.h \
-		  include.d/qtbook_book.h \
-		  include.d/qtbook_item.h \
-		  include.d/image_drop_site.h \
-		  include.d/qtbook_magazine.h \
-		  include.d/borrowers_editor.h \
-		  include.d/qtbook_videogame.h \
-		  include.d/hyperlinked_text_edit.h
+HEADERS		= include.d\qtbook.h \
+                  include.d\myqstring.h \
+		  include.d\qtbook_cd.h \
+		  include.d\locresults.h \
+		  include.d\main_table.h \
+		  include.d\qtbook_dvd.h \
+		  include.d\copy_editor.h \
+		  include.d\qtbook_book.h \
+		  include.d\qtbook_item.h \
+		  include.d\image_drop_site.h \
+		  include.d\qtbook_magazine.h \
+		  include.d\borrowers_editor.h \
+		  include.d\qtbook_videogame.h \
+		  include.d\hyperlinked_text_edit.h
 
 SOURCES		= qtbook.cc \
                   myqstring.cc \
@@ -69,6 +69,9 @@ SOURCES		= qtbook.cc \
 		  qtbook_videogame.cc \
 		  numeric_table_item.cc \
 		  hyperlinked_text_edit.cc
+
+TRANSLATIONS    = translations.d\biblioteq_cs_CZ.ts \
+		  translations.d\biblioteq_de_DE.ts
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
