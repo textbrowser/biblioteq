@@ -228,3 +228,12 @@ QString generic_thread::getEType(void)
 {
   return eType;
 }
+
+/*
+** -- msleep() --
+*/
+
+void generic_thread::msleep(const int msecs)
+{
+  QThread::msleep(msecs);
+}
