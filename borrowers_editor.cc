@@ -210,7 +210,7 @@ void borrowers_editor::showUsers(void)
        "borrowers.reserved_date, "
        "borrowers.duedate "
        "FROM "
-       "item_borrower borrowers "
+       "item_borrower_vw borrowers "
        "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 "
        "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
 
@@ -488,6 +488,16 @@ void borrowers_editor::slotSave(void)
     QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			  tr("Some or all of the Due Dates were not updated "
 			     "due to database errors."));
+}
+
+/*
+** -- keyPressEvent() --
+*/
+
+void borrowers_editor::keyPressEvent(QKeyEvent *event)
+{
+  if(event->key() == Qt::Key_Escape)
+    slotCloseCurrentBorrowers();
 }
 
 /*
