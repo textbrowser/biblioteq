@@ -41,6 +41,7 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QString engWindowTitle;
   Ui_vgDialog vg;
 
  protected:

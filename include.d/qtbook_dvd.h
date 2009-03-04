@@ -40,6 +40,7 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QString engWindowTitle;
   Ui_dvdDialog dvd;
 
  protected:

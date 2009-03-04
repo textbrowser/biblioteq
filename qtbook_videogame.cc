@@ -160,10 +160,10 @@ void qtbook_videogame::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     {
-      if(windowTitle().contains("Modify") && row > -1)
+      if(engWindowTitle.contains("Modify") && row > -1)
 	{
 	  newq = vg.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -304,7 +304,7 @@ void qtbook_videogame::slotGo(void)
       str = vg.url->toPlainText().trimmed();
       vg.url->setPlainText(str);
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE videogame SET id = ?, "
 			      "title = ?, "
 			      "vgrating = ?, developer = ?, "
@@ -404,7 +404,7 @@ void qtbook_videogame::slotGo(void)
 
       query.bindValue(18, vg.place->toPlainText().trimmed());
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.bindValue(19, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	query.bindValue(19, vg.id->text());
@@ -429,7 +429,7 @@ void qtbook_videogame::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      query.prepare(QString("DELETE FROM videogame_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -536,11 +536,12 @@ void qtbook_videogame::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
 		vg.id->text() + tr(")");
 	      setWindowTitle(str);
+	      engWindowTitle = "Modify";
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
 		  qmain->getUI().typefilter->currentText() ==
@@ -846,12 +847,13 @@ void qtbook_videogame::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      foreach(QAction *action,
-	      vg.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
-
+      QList<QAction *> actions = vg.resetButton->menu()->actions();
+      
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
+      engWindowTitle = "Search";
       vg.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -890,6 +892,7 @@ void qtbook_videogame::updateWindow(const int state)
       vg.backButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
 	vg.id->text() + tr(")");
+      engWindowTitle = "Modify";
     }
   else
     {
@@ -902,6 +905,7 @@ void qtbook_videogame::updateWindow(const int state)
       vg.backButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Video Game Details (")) +
 	vg.id->text() + tr(")");
+      engWindowTitle = "View";
     }
 
   vg.coverImages->setVisible(true);
@@ -924,6 +928,7 @@ void qtbook_videogame::modify(const int state)
   if(state == qtbook::EDITABLE)
     {
       setWindowTitle(tr("BiblioteQ: Modify Video Game Entry"));
+      engWindowTitle = "Modify";
       vg.copiesButton->setEnabled(true);
       vg.showUserButton->setEnabled(true);
       vg.okButton->setVisible(true);
@@ -949,6 +954,7 @@ void qtbook_videogame::modify(const int state)
   else
     {
       setWindowTitle(tr("BiblioteQ: View Video Game Details"));
+      engWindowTitle = "View";
       vg.copiesButton->setVisible(false);
       vg.showUserButton->setEnabled(true);
       vg.okButton->setVisible(false);
@@ -957,10 +963,11 @@ void qtbook_videogame::modify(const int state)
       vg.frontButton->setVisible(false);
       vg.backButton->setVisible(false);
 
-      foreach(QAction *action,
-	      vg.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = vg.resetButton->menu()->actions();
+      
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
     }
 
   vg.quantity->setMinimum(1);
@@ -1076,11 +1083,17 @@ void qtbook_videogame::modify(const int state)
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
-		  var.toString() + tr(")");
+		{
+		  str = QString(tr("BiblioteQ: Modify Video Game Entry (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "Modify";
+		}
 	      else
-		str = QString(tr("BiblioteQ: View Video Game Details (")) +
-		  var.toString() + tr(")");
+		{
+		  str = QString(tr("BiblioteQ: View Video Game Details (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "View";
+		}
 
 	      vg.id->setText(var.toString());
 	      setWindowTitle(str);
@@ -1168,6 +1181,7 @@ void qtbook_videogame::insert(void)
   misc_functions::highlightWidget
     (vg.place->viewport(), QColor(255, 248, 220));
   setWindowTitle(tr("BiblioteQ: Create Video Game Entry"));
+  engWindowTitle = "Create";
   vg.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1181,43 +1195,42 @@ void qtbook_videogame::insert(void)
 void qtbook_videogame::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
-  QString name = "";
 
   if(action != 0)
     {
-      name = action->text();
+      QList<QAction *> actions = vg.resetButton->menu()->actions();
 
-      if(name.contains(tr("Front Cover Image")))
+      if(action == actions[0])
 	vg.front_image->clear();
-      else if(name.contains(tr("Back Cover Image")))
+      else if(action == actions[1])
 	vg.back_image->clear();
-      else if(name.contains(tr("UPC")))
+      else if(action == actions[2])
 	{
 	  vg.id->clear();
 	  vg.id->setFocus();
 	}
-      else if(name.contains(tr("Title")))
+      else if(action == actions[7])
 	{
 	  vg.title->clear();
 	  vg.title->setFocus();
 	}
-      else if(name.contains(tr("Rating")))
+      else if(action == actions[3])
 	{
 	  vg.rating->setCurrentIndex(0);
 	  vg.rating->setFocus();
 	}
-      else if(name.contains(tr("Developer(s)")))
+      else if(action == actions[4])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.developer->clear();
 	  else
 	    vg.developer->setPlainText("N/A");
 
 	  vg.developer->setFocus();
 	}
-      else if(name.contains(tr("Release Date")))
+      else if(action == actions[8])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.release_date->setDate
 	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
@@ -1226,87 +1239,84 @@ void qtbook_videogame::slotReset(void)
 
 	  vg.release_date->setFocus();
 	}
-      else if(name.contains(tr("Publisher")))
+      else if(action == actions[9])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.publisher->clear();
 	  else
 	    vg.publisher->setPlainText("N/A");
 
 	  vg.publisher->setFocus();
 	}
-      else if(name.contains(tr("Place of Publication")))
+      else if(action == actions[10])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.place->clear();
 	  else
 	    vg.place->setPlainText("N/A");
 
 	  vg.place->setFocus();
 	}
-      else if(name.contains(tr("Genre")))
+      else if(action == actions[11])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.genre->clear();
 	  else
 	    vg.genre->setPlainText("N/A");
 
 	  vg.genre->setFocus();
 	}
-      else if(name.contains(tr("Price")))
+      else if(action == actions[12])
 	{
 	  vg.price->setValue(vg.price->minimum());
 	  vg.price->setFocus();
 	}
-      else if(name.contains(tr("Language")))
+      else if(action == actions[13])
 	{
 	  vg.language->setCurrentIndex(0);
 	  vg.language->setFocus();
 	}
-      else if(name.contains(tr("Monetary Units")))
+      else if(action == actions[14])
 	{
 	  vg.monetary_units->setCurrentIndex(0);
 	  vg.monetary_units->setFocus();
 	}
-      else if(name.contains(tr("Game Rating")))
+      else if(action == actions[17])
 	{
-	  vg.rating->setCurrentIndex(0);
-	  vg.rating->setFocus();
-	}
-      else if(name.contains(tr("Abstract")))
-	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    vg.description->clear();
 	  else
 	    vg.description->setPlainText("N/A");
 
 	  vg.description->setFocus();
 	}
-      else if(name.contains(tr("Copies")))
+      else if(action == actions[15])
 	{
 	  vg.quantity->setValue(vg.quantity->minimum());
 	  vg.quantity->setFocus();
 	}
-      else if(name.contains(tr("Location")))
+      else if(action == actions[16])
 	{
 	  vg.location->setCurrentIndex(0);
 	  vg.location->setFocus();
 	}
-      else if(name.contains(tr("Platform")))
+      else if(action == actions[5])
 	{
 	  vg.platform->setCurrentIndex(0);
 	  vg.platform->setFocus();
 	}
-      else if(name.contains(tr("Mode")))
+      else if(action == actions[6])
 	{
 	  vg.mode->setCurrentIndex(0);
 	  vg.mode->setFocus();
 	}
-      else if(name.contains(tr("OFFSYSTEM URL")))
+      else if(action == actions[18])
 	{
 	  vg.url->clear();
 	  vg.url->setFocus();
 	}
+
+      actions.clear();
     }
   else
     {
@@ -1317,32 +1327,32 @@ void qtbook_videogame::slotReset(void)
       vg.id->clear();
       vg.title->clear();
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.developer->clear();
       else
 	vg.developer->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.publisher->clear();
       else
 	vg.publisher->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.place->clear();
       else
 	vg.place->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.genre->clear();
       else
 	vg.genre->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.description->clear();
       else
 	vg.description->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	vg.release_date->setDate(QDate::fromString("01/7999",
 						   "MM/yyyy"));
       else
@@ -1370,8 +1380,8 @@ void qtbook_videogame::slotReset(void)
 
 void qtbook_videogame::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("You have unsaved data. Continue closing?"),

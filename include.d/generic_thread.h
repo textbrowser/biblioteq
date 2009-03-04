@@ -33,6 +33,7 @@ class generic_thread: public QThread
   generic_thread(void);
   ~generic_thread();
   void run(void);
+  void msleep(const int);
   void setType(const int);
   void setFilename(const QString &);
   void setOutputList(const QList<bool> &);

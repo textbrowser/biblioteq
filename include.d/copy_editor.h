@@ -56,6 +56,7 @@ class copy_editor: QDialog
   qtbook_item *bitem;
   Ui_copybrowser cb;
   QList<copy_class *> copies;
+  void keyPressEvent(QKeyEvent *event);
   void setGlobalFonts(const QFont &);
   void clearCopiesList(void);
   QString saveCopies(void);

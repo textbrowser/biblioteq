@@ -53,6 +53,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QBuffer *imgbuffer2; // Back Cover Buffer
   QString cb_orig_ss;
   QString dt_orig_ss;
+  QString engWindowTitle;
   QPalette te_orig_pal;
   QByteArray imgbytes1; // Front Cover Byte Array
   QByteArray imgbytes2; // Back Cover Byte Array

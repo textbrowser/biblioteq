@@ -36,6 +36,7 @@ class borrowers_editor: QDialog
   QString itemType;
   qtbook_item *bitem;
   Ui_checkedOutDialog bd;
+  void keyPressEvent(QKeyEvent *event);
   void setGlobalFonts(const QFont &);
 
  protected:

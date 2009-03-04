@@ -90,8 +90,8 @@ class qtbook: public QMainWindow
       bool warnuser = false;
 
       if(memberProperties["membersince"] !=
-	      userinfo.membersince->date().toString
-	      ("MM/dd/yyyy"))
+	 userinfo.membersince->date().toString
+	 ("MM/dd/yyyy"))
 	warnuser = true;
       else if(memberProperties["dob"] !=
 	      userinfo.dob->date().toString("MM/dd/yyyy"))
@@ -125,10 +125,11 @@ class qtbook: public QMainWindow
     void closeEvent(QCloseEvent *e)
     {
       if(haveMemberChanges())
-	if(QMessageBox::question(this, "BiblioteQ: Question",
-				 "You have unsaved data. Continue closing?",
-				 QMessageBox::Yes | QMessageBox::No,
-				 QMessageBox::No) == QMessageBox::No)
+	if(QMessageBox::question
+	   (this, tr("BiblioteQ: Question"),
+	    tr("You have unsaved data. Continue closing?"),
+	    QMessageBox::Yes | QMessageBox::No,
+	    QMessageBox::No) == QMessageBox::No)
 	  {
 	    e->ignore();
 	    return;
@@ -192,6 +193,7 @@ class qtbook: public QMainWindow
 
  private:
   QString roles;
+  QString engUserinfoTitle;
   QString previousTypeFilter;
   QStringList deletedAdmins;
   QHash<QString, QString> LOCHash;

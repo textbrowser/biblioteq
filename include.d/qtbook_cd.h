@@ -42,6 +42,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
 
  private:
   QDialog *tracks_diag;
+  QString engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
 

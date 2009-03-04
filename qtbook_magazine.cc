@@ -46,7 +46,6 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  thread = 0;
   oid = oidArg;
   row = rowArg;
   subType = "Magazine";
@@ -169,10 +168,10 @@ void qtbook_magazine::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     {
-      if(windowTitle().contains(tr("Modify")) && row > -1)
+      if(engWindowTitle.contains("Modify") && row > -1)
 	{
 	  newq = ma.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -307,7 +306,7 @@ void qtbook_magazine::slotGo(void)
       str = ma.url->toPlainText().trimmed();
       ma.url->setPlainText(str);
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE %1 SET "
 			      "id = ?, "
 			      "title = ?, "
@@ -429,12 +428,12 @@ void qtbook_magazine::slotGo(void)
 
       query.bindValue(19, ma.place->toPlainText().trimmed());
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.bindValue(20, oid);
       else
 	query.bindValue(20, subType);
 
-      if(windowTitle().contains(tr("Create")))
+      if(engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
 	  query.bindValue(21,
 			  ma.id->text().remove("-") +
@@ -462,7 +461,7 @@ void qtbook_magazine::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -591,7 +590,7 @@ void qtbook_magazine::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      if(subType == "Journal")
 		str = QString(tr("BiblioteQ: Modify Journal Entry ("));
@@ -600,6 +599,7 @@ void qtbook_magazine::slotGo(void)
 
 	      str += ma.id->text() + tr(")");
 	      setWindowTitle(str);
+	      engWindowTitle = "Modify";
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
 		  qmain->getUI().typefilter->currentText() ==
@@ -955,16 +955,18 @@ void qtbook_magazine::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      foreach(QAction *action,
-	      ma.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = ma.resetButton->menu()->actions();
+      
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
 
       if(subType == "Journal")
 	setWindowTitle(QString(tr("BiblioteQ: Database Journal Search")));
       else
 	setWindowTitle(QString(tr("BiblioteQ: Database Magazine Search")));
 
+      engWindowTitle = "Search";
       ma.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -1006,6 +1008,7 @@ void qtbook_magazine::updateWindow(const int state)
 	str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
 
       str += ma.id->text() + tr(")");
+      engWindowTitle = "Modify";
     }
   else
     {
@@ -1023,6 +1026,7 @@ void qtbook_magazine::updateWindow(const int state)
 	str = QString(tr("BiblioteQ: View Magazine Details ("));
 
       str += ma.id->text() + tr(")");
+      engWindowTitle = "View";
     }
 
   ma.coverImages->setVisible(true);
@@ -1049,6 +1053,7 @@ void qtbook_magazine::modify(const int state)
       else
 	setWindowTitle(QString(tr("BiblioteQ: Modify Magazine Entry")));
 
+      engWindowTitle = "Modify";
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.queryButton->setVisible(true);
@@ -1077,6 +1082,7 @@ void qtbook_magazine::modify(const int state)
       else
 	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
 
+      engWindowTitle = "Modify";
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
       ma.queryButton->setVisible(false);
@@ -1085,10 +1091,11 @@ void qtbook_magazine::modify(const int state)
       ma.frontButton->setVisible(false);
       ma.backButton->setVisible(false);
 
-      foreach(QAction *action,
-	      ma.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = ma.resetButton->menu()->actions();
+      
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
     }
 
   ma.quantity->setMinimum(1);
@@ -1231,6 +1238,8 @@ void qtbook_magazine::modify(const int state)
 		  else
 		    str = QString(tr("BiblioteQ: Modify Magazine Entry (")) +
 		      var.toString() + tr(")");
+
+		  engWindowTitle = "Modify";
 		}
 	      else
 		{
@@ -1240,6 +1249,8 @@ void qtbook_magazine::modify(const int state)
 		  else
 		    str = QString(tr("BiblioteQ: View Magazine Details (")) +
 		      var.toString() + tr(")");
+
+		  engWindowTitle = "View";
 		}
 
 	      setWindowTitle(str);
@@ -1335,6 +1346,7 @@ void qtbook_magazine::insert(void)
   else
     setWindowTitle(QString(tr("BiblioteQ: Create Magazine Entry")));
 
+  engWindowTitle = "Create";
   ma.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1348,42 +1360,41 @@ void qtbook_magazine::insert(void)
 void qtbook_magazine::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
-  QString name = "";
 
   if(action != 0)
     {
-      name = action->text();
+      QList<QAction *> actions = ma.resetButton->menu()->actions();
 
-      if(name.contains(tr("Front Cover Image")))
+      if(action == actions[0])
 	ma.front_image->clear();
-      else if(name.contains(tr("Back Cover Image")))
+      else if(action == actions[1])
 	ma.back_image->clear();
-      else if(name.contains(tr("ISSN")))
+      else if(action == actions[2])
 	{
 	  ma.id->clear();
 	  ma.id->setCursorPosition(0);
 	  ma.id->setPalette(te_orig_pal);
 	  ma.id->setFocus();
 	}
-      else if(name.contains(tr("Title")))
+      else if(action == actions[8])
 	{
 	  ma.title->clear();
 	  ma.title->setPalette(te_orig_pal);
 	  ma.title->setFocus();
 	}
-      else if(name.contains(tr("Volume")))
+      else if(action == actions[3])
 	{
 	  ma.volume->setValue(ma.volume->minimum());
 	  ma.volume->setFocus();
 	}
-      else if(name.contains(tr("Issue")))
+      else if(action == actions[4])
 	{
 	  ma.issue->setValue(ma.issue->minimum());
 	  ma.issue->setFocus();
 	}
-      else if(name.contains(tr("Publication Date")))
+      else if(action == actions[9])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    ma.publication_date->setDate
 	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
@@ -1393,9 +1404,9 @@ void qtbook_magazine::slotReset(void)
 	  ma.publication_date->setStyleSheet(dt_orig_ss);
 	  ma.publication_date->setFocus();
 	}
-      else if(name.contains(tr("Publisher")))
+      else if(action == actions[10])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    ma.publisher->setPlainText("N/A");
 	  else
 	    ma.publisher->clear();
@@ -1403,9 +1414,9 @@ void qtbook_magazine::slotReset(void)
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
 	  ma.publisher->setFocus();
 	}
-      else if(name.contains(tr("Place of Publication")))
+      else if(action == actions[11])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    ma.place->setPlainText("N/A");
 	  else
 	    ma.place->clear();
@@ -1413,9 +1424,9 @@ void qtbook_magazine::slotReset(void)
 	  ma.place->viewport()->setPalette(te_orig_pal);
 	  ma.place->setFocus();
 	}
-      else if(name.contains(tr("Categories")))
+      else if(action == actions[12])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    ma.category->setPlainText("N/A");
 	  else
 	    ma.category->clear();
@@ -1423,24 +1434,24 @@ void qtbook_magazine::slotReset(void)
 	  ma.category->viewport()->setPalette(te_orig_pal);
 	  ma.category->setFocus();
 	}
-      else if(name.contains(tr("Price")))
+      else if(action == actions[13])
 	{
 	  ma.price->setValue(ma.price->minimum());
 	  ma.price->setFocus();
 	}
-      else if(name.contains(tr("Language")))
+      else if(action == actions[14])
 	{
 	  ma.language->setCurrentIndex(0);
 	  ma.language->setFocus();
 	}
-      else if(name.contains(tr("Monetary Units")))
+      else if(action == actions[15])
 	{
 	  ma.monetary_units->setCurrentIndex(0);
 	  ma.monetary_units->setFocus();
 	}
-      else if(name.contains(tr("Abstract")))
+      else if(action == actions[18])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    ma.description->setPlainText("N/A");
 	  else
 	    ma.description->clear();
@@ -1448,39 +1459,41 @@ void qtbook_magazine::slotReset(void)
 	  ma.description->viewport()->setPalette(te_orig_pal);
 	  ma.description->setFocus();
 	}
-      else if(name.contains(tr("Copies")))
+      else if(action == actions[16])
 	{
 	  ma.quantity->setValue(ma.quantity->minimum());
 	  ma.quantity->setFocus();
 	}
-      else if(name.contains(tr("Location")))
+      else if(action == actions[17])
 	{
 	  ma.location->setCurrentIndex(0);
 	  ma.location->setFocus();
 	}
-      else if(name.contains(tr("LC Control Number")))
+      else if(action == actions[5])
 	{
 	  ma.lcnum->clear();
 	  ma.lcnum->setPalette(ma.url->viewport()->palette());
 	  ma.lcnum->setFocus();
 	}
-      else if(name.contains(tr("Call Number")))
+      else if(action == actions[6])
 	{
 	  ma.callnum->clear();
 	  ma.callnum->setPalette(ma.url->viewport()->palette());
 	  ma.callnum->setFocus();
 	}
-      else if(name.contains(tr("Dewey Number")))
+      else if(action == actions[7])
 	{
 	  ma.deweynum->clear();
 	  ma.deweynum->setPalette(ma.url->viewport()->palette());
 	  ma.deweynum->setFocus();
 	}
-      else if(name.contains(tr("OFFSYSTEM URL")))
+      else if(action == actions[19])
 	{
 	  ma.url->clear();
 	  ma.url->setFocus();
 	}
+
+      actions.clear();
     }
   else
     {
@@ -1492,22 +1505,22 @@ void qtbook_magazine::slotReset(void)
       ma.id->setCursorPosition(0);
       ma.title->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	ma.category->setPlainText("N/A");
       else
 	ma.category->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	ma.place->setPlainText("N/A");
       else
 	ma.place->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	ma.publisher->setPlainText("N/A");
       else
 	ma.publisher->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	ma.description->setPlainText("N/A");
       else
 	ma.description->clear();
@@ -1516,7 +1529,7 @@ void qtbook_magazine::slotReset(void)
       ma.issue->setValue(ma.issue->minimum());
       ma.price->setValue(ma.price->minimum());
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	ma.publication_date->setDate
 	  (QDate::fromString("01/7999", "MM/yyyy"));
       else
@@ -1553,8 +1566,8 @@ void qtbook_magazine::slotReset(void)
 
 void qtbook_magazine::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("You have unsaved data. Continue closing?"),
@@ -1657,14 +1670,16 @@ void qtbook_magazine::slotQuery(void)
       thread->start();
 
       while(thread->isRunning())
-	qapp->processEvents();
+	{
+	  qapp->processEvents();
+	  thread->msleep(10);
+	}
 
       working.hide();
 
       if(working.wasCanceled())
 	{
-	  delete thread;
-	  thread = 0;
+	  thread->deleteLater();
 	  return;
 	}
 
@@ -1718,8 +1733,7 @@ void qtbook_magazine::slotQuery(void)
       else
 	etype = thread->getEType();
 
-      delete thread;
-      thread = 0;
+      thread->deleteLater();
     }
   else
     {

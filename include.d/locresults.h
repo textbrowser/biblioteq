@@ -30,6 +30,7 @@ class locresults: QDialog
   QStringList records;
   qtbook_magazine *magazine;
   Ui_locResultsDialog ui;
+  void keyPressEvent(QKeyEvent *event);
   void setGlobalFonts(const QFont &);
 
  protected:

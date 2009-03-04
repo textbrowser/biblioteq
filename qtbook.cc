@@ -265,8 +265,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Categories")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu4->addAction(tr("Reset &Type")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Price")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Language")),
@@ -524,8 +522,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
   ** Delete existing actions, if any.
   */
 
-  while(!ui.configTool->menu()->actions().isEmpty())
-    delete ui.configTool->menu()->actions().takeFirst();
+  ui.configTool->menu()->clear();
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
@@ -767,7 +764,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.20.2.<br>"
+  mb.setText("<html>BiblioteQ Version 6.21.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -1303,7 +1300,7 @@ void qtbook::slotDelete(void)
 	continue;
 
       str = ui.table->item(i, col)->text();
-      itemType = misc_functions::getColumnString(ui.table, i, "Type");
+      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
       itemType = itemType.toLower().remove(" ");
       query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
       query.bindValue(0, str);
@@ -3951,6 +3948,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->memberProperties["telephone_num"] =
     userinfo_diag->userinfo.telephoneNumber->text();
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
+  engUserinfoTitle = "Create New Member";
   userinfo_diag->userinfo.prevTool->setVisible(false);
   userinfo_diag->userinfo.nextTool->setVisible(false);
   userinfo_diag->userinfo.memberid->selectAll();
@@ -3993,7 +3991,7 @@ void qtbook::slotSaveUser(void)
   str = userinfo_diag->userinfo.email->text().trimmed();
   userinfo_diag->userinfo.email->setText(str);
 
-  if(userinfo_diag->windowTitle().contains(tr("Create New Member")))
+  if(engUserinfoTitle.contains("New"))
     {
       if(userinfo_diag->userinfo.memberid->text().length() < 7)
 	{
@@ -4097,7 +4095,7 @@ void qtbook::slotSaveUser(void)
       return;
     }
 
-  if(userinfo_diag->windowTitle().contains(tr("New")))
+  if(engUserinfoTitle.contains("New"))
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -4171,7 +4169,7 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
-      if(userinfo_diag->windowTitle().contains(tr("New")))
+      if(engUserinfoTitle.contains("New"))
 	if(!getDB().rollback())
 	  addError
 	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
@@ -4186,7 +4184,7 @@ void qtbook::slotSaveUser(void)
     }
   else
     {
-      if(userinfo_diag->windowTitle().contains(tr("New")))
+      if(engUserinfoTitle.contains("New"))
 	{
 	  /*
 	  ** Create a database account for the new member.
@@ -4283,7 +4281,7 @@ void qtbook::slotSaveUser(void)
 	userinfo_diag->userinfo.email->text();
       bb.table->setSortingEnabled(false);
 
-      if(userinfo_diag->windowTitle().contains(tr("Modify")))
+      if(engUserinfoTitle.contains("Modify"))
 	{
 	  for(i = 0; i < bb.table->columnCount(); i++)
 	    {
@@ -5073,15 +5071,13 @@ void qtbook::slotDisplaySummary(void)
 						     tr("Publisher"));
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString
-	    (ui.table, i,
-	     tr("Place of Publication"));
+	    (ui.table, i, tr("Place of Publication"));
 	  summary += "<br>";
 	}
       else if(type == "Video Game")
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i,
-					    tr("Title")) +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
 	    "</b>";
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5955,8 +5951,13 @@ void qtbook::slotModifyBorrower(void)
 	    userinfo_diag->userinfo.dob->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "sex")
-	    userinfo_diag->userinfo.sex->setCurrentIndex
-	      (userinfo_diag->userinfo.sex->findText(var.toString()));
+	    {
+	      if(userinfo_diag->userinfo.sex->findText(var.toString()) > -1)
+		userinfo_diag->userinfo.sex->setCurrentIndex
+		  (userinfo_diag->userinfo.sex->findText(var.toString()));
+	      else
+		userinfo_diag->userinfo.sex->setCurrentIndex(0);
+	    }
 	  else if(fieldname == "first_name")
 	    userinfo_diag->userinfo.firstName->setText(var.toString());
 	  else if(fieldname == "middle_init")
@@ -5994,6 +5995,7 @@ void qtbook::slotModifyBorrower(void)
   userinfo_diag->userinfo.prevTool->setVisible(true);
   userinfo_diag->userinfo.nextTool->setVisible(true);
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
+  engUserinfoTitle = "Modify Member";
   userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo_diag->userinfo.membersince->setFocus();
   userinfo_diag->userinfo.memberid->setPalette
@@ -6180,71 +6182,72 @@ void qtbook::slotAutoPopOnFilter(void)
 
 void qtbook::slotReset(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
-  QString name = "";
-
-  if(action != 0)
+  if(all_diag->isVisible())
     {
-      name = action->text();
+      QAction *action = qobject_cast<QAction *> (sender());
 
-      if(all_diag->isVisible())
+      if(action != 0)
 	{
-	  if(name.contains(tr("ID Number")))
+	  QList<QAction *> actions = al.resetButton->menu()->actions();
+
+	  if(action == actions[0])
 	    {
 	      al.idnumber->clear();
 	      al.idnumber->setFocus();
 	    }
-	  else if(name.contains(tr("Title")))
+	  else if(action == actions[1])
 	    {
 	      al.title->clear();
 	      al.title->setFocus();
 	    }
-	  else if(name.contains(tr("Publication Date")))
+	  else if(action == actions[2])
 	    {
 	      al.publication_date->setDate
 		(QDate::fromString("01/7999", "MM/yyyy"));
 	      al.publication_date->setFocus();
 	    }
-	  else if(name.contains(tr("Publisher")))
+	  else if(action == actions[3])
 	    {
 	      al.publisher->clear();
 	      al.publisher->setFocus();
 	    }
-	  else if(name.contains(tr("Categories")))
+	  else if(action == actions[4])
 	    {
 	      al.category->clear();
 	      al.category->setFocus();
 	    }
-	  else if(name.contains(tr("Price")))
+	  else if(action == actions[5])
 	    {
 	      al.price->setValue(-0.01);
 	      al.price->setFocus();
 	    }
-	  else if(name.contains(tr("Language")))
+	  else if(action == actions[6])
 	    {
 	      al.language->setCurrentIndex(0);
 	      al.language->setFocus();
 	    }
-	  else if(name.contains(tr("Monetary Units")))
+	  else if(action == actions[7])
 	    {
 	      al.monetary_units->setCurrentIndex(0);
 	      al.monetary_units->setFocus();
 	    }
-	  else if(name.contains(tr("Abstract")))
+	  else if(action == actions[8])
 	    {
 	      al.description->clear();
 	      al.description->setFocus();
 	    }
-	  else if(name.contains(tr("Copies")))
+	  else if(action == actions[9])
 	    {
 	      al.quantity->setValue(0);
 	      al.quantity->setFocus();
 	    }
-	  else if(name.contains(tr("Location")))
+	  else if(action == actions[10])
 	    {
 	      al.location->setCurrentIndex(0);
 	      al.location->setFocus();
 	    }
+
+	  actions.clear();
 	}
     }
 }
@@ -8465,6 +8468,7 @@ void qtbook::slotRefreshAdminList(void)
   query.clear();
   ab.table->setRowCount(i);
   ab.table->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+  deletedAdmins.clear();
 }
 
 /*
@@ -8487,7 +8491,8 @@ void qtbook::slotSaveAdministrators(void)
   QProgressDialog progress(admin_diag);
 
   /*
-  ** 1. Prohibit duplicate administrator ids.
+  ** 1. Prohibit duplicate administrator ids and administrators
+  **    without privileges.
   ** 2. Create a database transaction.
   ** 3. Delete required entries from the admin table.
   ** 4. Remove all deleted database accounts.
@@ -8496,27 +8501,44 @@ void qtbook::slotSaveAdministrators(void)
   ** 7. Commit or rollback the current database transaction.
   */
 
-  /*
-  ** Prepare a database transaction.
-  */
-
   ab.saveButton->setFocus();
 
   for(i = 0; i < ab.table->rowCount(); i++)
-    if(ab.table->item(i, 0)->text().trimmed().isEmpty())
-      continue;
-    else if(!tmplist.contains(ab.table->item(i, 0)->text().trimmed()))
-      tmplist.append(ab.table->item(i, 0)->text().trimmed());
-    else
-      {
-	tmplist.clear();
-	ab.table->selectRow(i);
-	ab.table->horizontalScrollBar()->setValue(i);
-	QMessageBox::critical
-	  (admin_diag, tr("BiblioteQ: User Error"),
-	   tr("Duplicate administrator ids are not allowed."));
-	return;
-      }
+    {
+      if(ab.table->item(i, 0)->text().trimmed().isEmpty())
+	continue;
+
+      if(!(static_cast<QCheckBox *>
+	   (ab.table->cellWidget(i, 1))->isChecked() ||
+	   static_cast<QCheckBox *>
+	   (ab.table->cellWidget(i, 2))->isChecked() ||
+	   static_cast<QCheckBox *>
+	   (ab.table->cellWidget(i, 3))->isChecked() ||
+	   static_cast<QCheckBox *>
+	   (ab.table->cellWidget(i, 4))->isChecked()))
+	{
+	  tmplist.clear();
+	  ab.table->selectRow(i);
+	  ab.table->horizontalScrollBar()->setValue(i);
+	  QMessageBox::critical
+	    (admin_diag, tr("BiblioteQ: User Error"),
+	     tr("Administrators must belong to at least one category."));
+	  return;
+	}
+
+      if(!tmplist.contains(ab.table->item(i, 0)->text().trimmed()))
+	tmplist.append(ab.table->item(i, 0)->text().trimmed());
+      else
+	{
+	  tmplist.clear();
+	  ab.table->selectRow(i);
+	  ab.table->horizontalScrollBar()->setValue(i);
+	  QMessageBox::critical
+	    (admin_diag, tr("BiblioteQ: User Error"),
+	     tr("Duplicate administrator ids are not allowed."));
+	  return;
+	}
+    }
 
   tmplist.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -8610,6 +8632,17 @@ void qtbook::slotSaveAdministrators(void)
 	str = "none";
 
       ucount = misc_functions::userCount(adminStr, getDB(), errorstr);
+
+      if(!errorstr.isEmpty())
+	{
+	  progress.hide();
+	  addError
+	    (QString(tr("Database Error")),
+	     QString(tr("The function misc_functions::userCount() failed "
+			"for ")) + adminStr + QString(tr(".")),
+	     errorstr, __FILE__, __LINE__);
+	  goto db_rollback;
+	}
 
       if(ucount == 0)
 	querystr = QString("INSERT INTO admin (username, roles) "

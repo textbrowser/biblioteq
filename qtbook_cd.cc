@@ -177,10 +177,10 @@ void qtbook_cd::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     {
-      if(windowTitle().contains(tr("Modify")) && row > -1)
+      if(engWindowTitle.contains("Modify") && row > -1)
 	{
 	  newq = cd.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -319,7 +319,7 @@ void qtbook_cd::slotGo(void)
       str = cd.url->toPlainText().trimmed();
       cd.url->setPlainText(str);
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE cd SET "
 			      "id = ?, "
 			      "title = ?, "
@@ -453,7 +453,7 @@ void qtbook_cd::slotGo(void)
       else
 	query.bindValue(19, QVariant(QVariant::String));
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	query.bindValue(20, cd.id->text());
@@ -478,7 +478,7 @@ void qtbook_cd::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      query.prepare(QString("DELETE FROM cd_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -583,10 +583,11 @@ void qtbook_cd::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      str = QString(tr("BiblioteQ: Modify CD Entry (")) +
 		cd.id->text() + tr(")");
+	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
@@ -907,8 +908,14 @@ void qtbook_cd::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
+      QList<QAction *> actions = cd.resetButton->menu()->actions();
+
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
       cd.coverImages->setVisible(false);
       setWindowTitle(tr("BiblioteQ: Database CD Search"));
+      engWindowTitle = "Search";
       cd.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -949,6 +956,7 @@ void qtbook_cd::updateWindow(const int state)
       cd.backButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify CD Entry (")) +
 	cd.id->text() + tr(")");
+      engWindowTitle = "Modify";
     }
   else
     {
@@ -965,6 +973,7 @@ void qtbook_cd::updateWindow(const int state)
       cd.backButton->setVisible(false);
       str = QString(tr("BiblioteQ: View CD Details (")) +
 	cd.id->text() + tr(")");
+      engWindowTitle = "View";
     }
 
   setWindowTitle(str);
@@ -987,6 +996,7 @@ void qtbook_cd::modify(const int state)
   if(state == qtbook::EDITABLE)
     {
       setWindowTitle(tr("BiblioteQ: Modify CD Entry"));
+      engWindowTitle = "Modify";
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setEnabled(true);
       cd.okButton->setVisible(true);
@@ -1014,6 +1024,7 @@ void qtbook_cd::modify(const int state)
   else
     {
       setWindowTitle(tr("BiblioteQ: View CD Details"));
+      engWindowTitle = "View";
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
@@ -1026,10 +1037,11 @@ void qtbook_cd::modify(const int state)
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
 
-      foreach(QAction *action,
-	      cd.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = cd.resetButton->menu()->actions();
+
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
     }
 
   cd.tracksButton->setEnabled(true);
@@ -1141,11 +1153,17 @@ void qtbook_cd::modify(const int state)
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString(tr("BiblioteQ: Modify CD Entry (")) +
-		  var.toString() + tr(")");
+		{
+		  str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "Modify";
+		}
 	      else
-		str = QString(tr("BiblioteQ: View CD Details (")) +
-		  var.toString() + tr(")");
+		{
+		  str = QString(tr("BiblioteQ: View CD Details (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "View";
+		}
 
 	      setWindowTitle(str);
 	      cd.id->setText(var.toString());
@@ -1258,6 +1276,7 @@ void qtbook_cd::insert(void)
   misc_functions::highlightWidget
     (cd.category->viewport(), QColor(255, 248, 220));
   setWindowTitle(tr("BiblioteQ: Create CD Entry"));
+  engWindowTitle = "Create";
   cd.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1695,57 +1714,56 @@ void qtbook_cd::slotSaveTracks(void)
 void qtbook_cd::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
-  QString name = "";
 
   if(action != 0)
     {
-      name = action->text();
+      QList<QAction *> actions = cd.resetButton->menu()->actions();
 
-      if(name.contains(tr("Front Cover Image")))
+      if(action == actions[0])
 	cd.front_image->clear();
-      else if(name.contains(tr("Back Cover Image")))
+      else if(action == actions[1])
 	cd.back_image->clear();
-      else if(name.contains(tr("Catalog Number")))
+      else if(action == actions[2])
 	{
 	  cd.id->clear();
 	  cd.id->setFocus();
 	}
-      else if(name.contains(tr("Title")))
+      else if(action == actions[9])
 	{
 	  cd.title->clear();
 	  cd.title->setFocus();
 	}
-      else if(name.contains(tr("Format")))
+      else if(action == actions[3])
 	{
 	  cd.format->setCurrentIndex(0);
 	  cd.format->setFocus();
 	}
-      else if(name.contains(tr("Artist")))
+      else if(action == actions[4])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.artist->clear();
 	  else
 	    cd.artist->setPlainText("N/A");
 
 	  cd.artist->setFocus();
 	}
-      else if(name.contains(tr("Number of Discs")))
+      else if(action == actions[5])
 	{
 	  cd.no_of_discs->setValue(cd.no_of_discs->minimum());
 	  cd.no_of_discs->setFocus();
 	}
-      else if(name.contains(tr("Runtime")))
+      else if(action == actions[6])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.runtime->setTime(QTime(0, 0, 0));
 	  else
 	    cd.runtime->setTime(QTime(0, 0, 1));
 
 	  cd.runtime->setFocus();
 	}
-      else if(name.contains(tr("Release Date")))
+      else if(action == actions[10])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.release_date->setDate
 	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
@@ -1754,73 +1772,75 @@ void qtbook_cd::slotReset(void)
 
 	  cd.release_date->setFocus();
 	}
-      else if(name.contains(tr("Audio")))
+      else if(action == actions[7])
 	{
 	  cd.audio->setCurrentIndex(0);
 	  cd.audio->setFocus();
 	}
-      else if(name.contains(tr("Recording Type")))
+      else if(action == actions[8])
 	{
 	  cd.recording_type->setCurrentIndex(0);
 	  cd.recording_type->setFocus();
 	}
-      else if(name.contains(tr("Recording Label")))
+      else if(action == actions[11])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.recording_label->clear();
 	  else
 	    cd.recording_label->setPlainText("N/A");
 
 	  cd.recording_label->setFocus();
 	}
-      else if(name.contains(tr("Categories")))
+      else if(action == actions[12])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.category->clear();
 	  else
 	    cd.category->setPlainText("N/A");
 
 	  cd.category->setFocus();
 	}
-      else if(name.contains(tr("Price")))
+      else if(action == actions[13])
 	{
 	  cd.price->setValue(cd.price->minimum());
 	  cd.price->setFocus();
 	}
-      else if(name.contains(tr("Language")))
+      else if(action == actions[14])
 	{
 	  cd.language->setCurrentIndex(0);
 	  cd.language->setFocus();
 	}
-      else if(name.contains(tr("Monetary Units")))
+      else if(action == actions[15])
 	{
 	  cd.monetary_units->setCurrentIndex(0);
 	  cd.monetary_units->setFocus();
 	}
-      else if(name.contains(tr("Abstract")))
+      else if(action == actions[18])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    cd.description->clear();
 	  else
 	    cd.description->setPlainText("N/A");
 
 	  cd.description->setFocus();
 	}
-      else if(name.contains(tr("Copies")))
+      else if(action == actions[16])
 	{
 	  cd.quantity->setValue(cd.quantity->minimum());
 	  cd.quantity->setFocus();
 	}
-      else if(name.contains(tr("Location")))
+      else if(action == actions[17])
 	{
 	  cd.location->setCurrentIndex(0);
 	  cd.location->setFocus();
 	}
-      else if(name.contains(tr("OFFSYSTEM URL")))
+      else if(action == actions[19])
 	{
 	  cd.url->clear();
 	  cd.url->setFocus();
 	}
+
+      actions.clear();
     }
   else
     {
@@ -1830,27 +1850,27 @@ void qtbook_cd::slotReset(void)
 
       cd.title->clear();
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	cd.artist->clear();
       else
 	cd.artist->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	cd.recording_label->clear();
       else
 	cd.recording_label->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	cd.category->clear();
       else
 	cd.category->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	cd.description->clear();
       else
 	cd.description->setPlainText("N/A");
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	{
 	  cd.runtime->setTime(QTime(0, 0, 0));
 	  cd.release_date->setDate(QDate::fromString("01/7999",
@@ -1886,8 +1906,8 @@ void qtbook_cd::slotReset(void)
 
 void qtbook_cd::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("You have unsaved data. Continue closing?"),

@@ -61,7 +61,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  thread = 0;
   requestid1 = requestid2 = 0;
   parentWid = parentArg;
   oid = oidArg;
@@ -197,8 +196,8 @@ qtbook_book::~qtbook_book()
   (void) http2->close();
   imgbuffer1->close();
   imgbuffer2->close();
-  delete imgbuffer1;
-  delete imgbuffer2;
+  imgbuffer1->deleteLater();
+  imgbuffer2->deleteLater();
 }
 
 /*
@@ -216,10 +215,10 @@ void qtbook_book::slotGo(void)
   QSqlQuery query(qmain->getDB());
   QTableWidgetItem *column = 0;
 
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     {
-      if(windowTitle().contains(tr("Modify")) && row > -1)
+      if(engWindowTitle.contains("Modify") && row > -1)
 	{
 	  newq = id.quantity->value();
 	  qapp->setOverrideCursor(Qt::WaitCursor);
@@ -376,7 +375,7 @@ void qtbook_book::slotGo(void)
       str = id.url->toPlainText().trimmed();
       id.url->setPlainText(str);
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE book SET id = ?, "
 			      "title = ?, "
 			      "edition = ?, author = ?, "
@@ -499,7 +498,7 @@ void qtbook_book::slotGo(void)
 
       query.bindValue(21, id.place->toPlainText().trimmed());
 
-      if(windowTitle().contains(tr("Modify")))
+      if(engWindowTitle.contains("Modify"))
 	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	query.bindValue(22, id.id->text().replace("X", "10"));
@@ -524,7 +523,7 @@ void qtbook_book::slotGo(void)
 	  ** Remove copies if the quantity has been decreased.
 	  */
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      query.prepare(QString("DELETE FROM book_copy_info WHERE "
 				    "copy_number > ? AND "
@@ -643,10 +642,11 @@ void qtbook_book::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(windowTitle().contains(tr("Modify")))
+	  if(engWindowTitle.contains("Modify"))
 	    {
 	      str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 		id.id->text() + tr(")");
+	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
 	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
@@ -973,12 +973,13 @@ void qtbook_book::search(const QString &field, const QString &value)
 
   if(field.isEmpty() && value.isEmpty())
     {
-      foreach(QAction *action,
-	      id.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = id.resetButton->menu()->actions();
 
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
+      engWindowTitle = "Search";
       id.id->setFocus();
       misc_functions::center(this, parentWid);
       show();
@@ -1021,6 +1022,7 @@ void qtbook_book::updateWindow(const int state)
       id.isbn10to13->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 	id.id->text() + tr(")");
+      engWindowTitle = "Modify";
     }
   else
     {
@@ -1037,6 +1039,7 @@ void qtbook_book::updateWindow(const int state)
       id.isbn10to13->setVisible(false);
       str = QString(tr("BiblioteQ: View Book Details (")) +
 	id.id->text() + tr(")");
+      engWindowTitle = "View";
     }
 
   id.coverImages->setVisible(true);
@@ -1059,6 +1062,7 @@ void qtbook_book::modify(const int state)
   if(state == qtbook::EDITABLE)
     {
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
+      engWindowTitle = "Modify";
       id.copiesButton->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
@@ -1091,6 +1095,7 @@ void qtbook_book::modify(const int state)
   else
     {
       setWindowTitle(tr("BiblioteQ: View Book Details"));
+      engWindowTitle = "View";
       id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
@@ -1103,10 +1108,11 @@ void qtbook_book::modify(const int state)
       id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
 
-      foreach(QAction *action,
-	      id.resetButton->menu()->findChildren<QAction *>())
-	if(action->text().contains(tr("Cover Image")))
-	  action->setVisible(false);
+      QList<QAction *> actions = id.resetButton->menu()->actions();
+
+      actions[0]->setVisible(false);
+      actions[1]->setVisible(false);
+      actions.clear();
     }
 
   id.quantity->setMinimum(1);
@@ -1223,11 +1229,17 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "id")
 	    {
 	      if(state == qtbook::EDITABLE)
-		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		  var.toString() + tr(")");
+		{
+		  str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "Modify";
+		}
 	      else
-		str = QString(tr("BiblioteQ: View Book Details (")) +
-		  tr(")") + var.toString();
+		{
+		  str = QString(tr("BiblioteQ: View Book Details (")) +
+		    tr(")") + var.toString();
+		  engWindowTitle = "View";
+		}
 
 	      id.id->setText(var.toString());
 	      setWindowTitle(str);
@@ -1322,6 +1334,7 @@ void qtbook_book::insert(void)
     (id.category->viewport(), QColor(255, 248, 220));
   te_orig_pal = id.id->palette();
   setWindowTitle(tr("BiblioteQ: Create Book Entry"));
+  engWindowTitle = "Create";
   id.id->setFocus();
   storeData(this);
   misc_functions::center(this, parentWid);
@@ -1335,40 +1348,36 @@ void qtbook_book::insert(void)
 void qtbook_book::slotReset(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
-  QString name = "";
 
   if(action != 0)
     {
-      name = action->text();
+      QList<QAction *> actions = id.resetButton->menu()->actions();
 
-      if(name.isNull())
-	name = "";
-
-      if(name.contains(tr("Front Cover Image")))
+      if(action == actions[0])
 	id.front_image->clear();
-      else if(name.contains(tr("Back Cover Image")))
+      else if(action == actions[1])
 	id.back_image->clear();
-      else if(name.contains(tr("ISBN-10")))
+      else if(action == actions[2])
 	{
 	  id.id->clear();
 	  id.id->setPalette(te_orig_pal);
 	  id.id->setFocus();
 	}
-      else if(name.contains(tr("Title")))
+      else if(action == actions[10])
 	{
 	  id.title->clear();
 	  id.title->setPalette(te_orig_pal);
 	  id.title->setFocus();
 	}
-      else if(name.contains(tr("Edition")))
+      else if(action == actions[4])
 	{
 	  id.edition->setCurrentIndex(0);
 	  id.edition->setStyleSheet(cb_orig_ss);
 	  id.edition->setFocus();
 	}
-      else if(name.contains(tr("Author(s)")))
+      else if(action == actions[5])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    id.author->setPlainText("N/A");
 	  else
 	    id.author->clear();
@@ -1376,9 +1385,9 @@ void qtbook_book::slotReset(void)
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
 	}
-      else if(name.contains(tr("Publication Date")))
+      else if(action == actions[11])
 	{
-	  if(windowTitle().contains(tr("Search")))
+	  if(engWindowTitle.contains("Search"))
 	    id.publication_date->setDate
 	      (QDate::fromString("01/7999", "MM/yyyy"));
 	  else
@@ -1388,9 +1397,9 @@ void qtbook_book::slotReset(void)
 	  id.publication_date->setStyleSheet(dt_orig_ss);
 	  id.publication_date->setFocus();
 	}
-      else if(name.contains(tr("Publisher")))
+      else if(action == actions[12])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    id.publisher->setPlainText("N/A");
 	  else
 	    id.publisher->clear();
@@ -1398,9 +1407,9 @@ void qtbook_book::slotReset(void)
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.publisher->setFocus();
 	}
-      else if(name.contains(tr("Place of Publication")))
+      else if(action == actions[13])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    id.place->setPlainText("N/A");
 	  else
 	    id.place->clear();
@@ -1408,9 +1417,9 @@ void qtbook_book::slotReset(void)
 	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.place->setFocus();
 	}
-      else if(name.contains(tr("Categories")))
+      else if(action == actions[14])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    id.category->setPlainText("N/A");
 	  else
 	    id.category->clear();
@@ -1418,29 +1427,29 @@ void qtbook_book::slotReset(void)
 	  id.category->viewport()->setPalette(te_orig_pal);
 	  id.category->setFocus();
 	}
-      else if(name.contains(tr("Price")))
+      else if(action == actions[15])
 	{
 	  id.price->setValue(id.price->minimum());
 	  id.price->setFocus();
 	}
-      else if(name.contains(tr("Language")))
+      else if(action == actions[16])
 	{
 	  id.language->setCurrentIndex(0);
 	  id.language->setFocus();
 	}
-      else if(name.contains(tr("Monetary Units")))
+      else if(action == actions[17])
 	{
 	  id.monetary_units->setCurrentIndex(0);
 	  id.monetary_units->setFocus();
 	}
-      else if(name.contains(tr("Book Binding Type")))
+      else if(action == actions[6])
 	{
 	  id.binding->setCurrentIndex(0);
 	  id.binding->setFocus();
 	}
-      else if(name.contains(tr("Abstract")))
+      else if(action == actions[20])
 	{
-	  if(!windowTitle().contains(tr("Search")))
+	  if(!engWindowTitle.contains("Search"))
 	    id.description->setPlainText("N/A");
 	  else
 	    id.description->clear();
@@ -1448,45 +1457,47 @@ void qtbook_book::slotReset(void)
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
-      else if(name.contains(tr("Copies")))
+      else if(action == actions[18])
 	{
 	  id.quantity->setValue(id.quantity->minimum());
 	  id.quantity->setFocus();
 	}
-      else if(name.contains(tr("Location")))
+      else if(action == actions[19])
 	{
 	  id.location->setCurrentIndex(0);
 	  id.location->setFocus();
 	}
-      else if(name.contains(tr("ISBN-13")))
+      else if(action == actions[3])
 	{
 	  id.isbn13->clear();
 	  id.isbn13->setPalette(te_orig_pal);
 	  id.isbn13->setFocus();
 	}
-      else if(name.contains(tr("LC Control Number")))
+      else if(action == actions[7])
 	{
 	  id.lcnum->clear();
 	  id.lcnum->setPalette(id.url->viewport()->palette());
 	  id.lcnum->setFocus();
 	}
-      else if(name.contains(tr("Call Number")))
+      else if(action == actions[8])
 	{
 	  id.callnum->clear();
 	  id.callnum->setPalette(id.url->viewport()->palette());
 	  id.callnum->setFocus();
 	}
-      else if(name.contains(tr("Dewey Class Number")))
+      else if(action == actions[9])
 	{
 	  id.deweynum->clear();
 	  id.deweynum->setPalette(id.url->viewport()->palette());
 	  id.deweynum->setFocus();
 	}
-      else if(name.contains(tr("OFFSYSTEM URL")))
+      else if(action == actions[21])
 	{
 	  id.url->clear();
 	  id.url->setFocus();
 	}
+
+      actions.clear();
     }
   else
     {
@@ -1497,27 +1508,27 @@ void qtbook_book::slotReset(void)
       id.id->clear();
       id.title->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	id.author->setPlainText("N/A");
       else
 	id.author->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	id.publisher->setPlainText("N/A");
       else
 	id.publisher->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	id.place->setPlainText("N/A");
       else
 	id.place->clear();
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	id.category->setPlainText("N/A");
       else
 	id.category->clear();
 
-      if(windowTitle().contains(tr("Search")))
+      if(engWindowTitle.contains("Search"))
 	id.publication_date->setDate(QDate::fromString("01/7999",
 						       "MM/yyyy"));
       else
@@ -1526,7 +1537,7 @@ void qtbook_book::slotReset(void)
 
       id.quantity->setValue(id.quantity->minimum());
 
-      if(!windowTitle().contains(tr("Search")))
+      if(!engWindowTitle.contains("Search"))
 	id.description->setPlainText("N/A");
       else
 	id.description->clear();
@@ -1597,8 +1608,8 @@ void qtbook_book::slotConvertISBN10to13(void)
 
 void qtbook_book::closeEvent(QCloseEvent *e)
 {
-  if(windowTitle().contains(tr("Create")) ||
-     windowTitle().contains(tr("Modify")))
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("You have unsaved data. Continue closing?"),
@@ -1712,7 +1723,10 @@ void qtbook_book::slotQuery(void)
       thread->start();
 
       while(thread->isRunning())
-	qapp->processEvents();
+	{
+	  qapp->processEvents();
+	  thread->msleep(10);
+	}
 
       working.hide();
 
@@ -2180,8 +2194,7 @@ void qtbook_book::slotQuery(void)
       else
 	etype = thread->getEType();
 
-      delete thread;
-      thread = 0;
+      thread->deleteLater();
     }
   else
     {
