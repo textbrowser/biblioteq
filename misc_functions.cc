@@ -1473,9 +1473,9 @@ void misc_functions::center(QMainWindow *child, QMainWindow *parent)
   p = parent->pos();
 
   if(parent->width() >= child->width())
-    X = p.x() + parent->width() / 2  - child->width() / 2;
+    X = p.x() + parent->width() / 2 - child->width() / 2;
   else
-    X = p.x() - (child->width() / 2  - parent->width() / 2);
+    X = p.x() - (child->width() / 2 - parent->width() / 2);
 
   if(parent->height() >= child->height())
     Y = p.y() + parent->height() / 2 - child->height() / 2;
