@@ -79,13 +79,13 @@ int main(int argc, char *argv[])
 
   QTranslator qtTranslator;
 
-  qtTranslator.load("qt_" + QLocale::system().name(),
-		    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+  qtTranslator.load("qt_" + QLocale::system().name(), "translations.d");
   qapp->installTranslator(&qtTranslator);
 
   QTranslator myappTranslator;
 
-  myappTranslator.load("biblioteq_" + QLocale::system().name());
+  myappTranslator.load("biblioteq_" + QLocale::system().name(),
+		       "translations.d");
   qapp->installTranslator(&myappTranslator);
   qapp->connect(qapp, SIGNAL(lastWindowClosed()), qapp, SLOT(quit(void)));
 
@@ -764,7 +764,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.21.<br>"
+  mb.setText("<html>BiblioteQ Version 6.21.1.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"

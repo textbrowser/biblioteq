@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font" >
@@ -536,9 +536,6 @@
    <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
    <property name="text" >
     <string>&amp;Display Table Grid</string>
    </property>
@@ -626,9 +623,6 @@
    <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
    <property name="text" >
     <string>Automatically &amp;Resize Columns to Contents</string>
    </property>
@@ -681,9 +675,6 @@
   </action>
   <action name="actionResetErrorLogOnDisconnect" >
    <property name="checkable" >
-    <bool>true</bool>
-   </property>
-   <property name="checked" >
     <bool>true</bool>
    </property>
    <property name="text" >
@@ -1157,9 +1148,6 @@
    <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
    <property name="text" >
     <string>Preserve Main Window's &amp;Geometry</string>
    </property>
@@ -1172,9 +1160,6 @@
   </action>
   <action name="actionAutomaticallySaveSettingsOnExit" >
    <property name="checkable" >
-    <bool>true</bool>
-   </property>
-   <property name="checked" >
     <bool>true</bool>
    </property>
    <property name="text" >
@@ -1221,18 +1206,12 @@
    <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked" >
-    <bool>true</bool>
-   </property>
    <property name="text" >
     <string>Populate &amp;Members Browser Table on Display</string>
    </property>
   </action>
   <action name="actionPopulate_Administrator_Browser_Table_on_Display" >
    <property name="checkable" >
-    <bool>true</bool>
-   </property>
-   <property name="checked" >
     <bool>true</bool>
    </property>
    <property name="text" >
