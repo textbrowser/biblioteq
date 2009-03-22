@@ -22,7 +22,7 @@ file /r .\release\plugins
 # The translations directory contains translation files
 # provided by both BiblioteQ and Qt.
 
-file /r .\release\translations
+file /r .\release\translations.d
 file .\release\*.dll
 file .\release\qt.conf
 file .\release\sqlite3.exe
