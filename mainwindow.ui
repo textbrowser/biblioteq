@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>31</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="font" >
@@ -301,6 +301,8 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout" />
+    <addaction name="separator" />
+    <addaction name="actionCheck_Updates" />
    </widget>
    <widget class="QMenu" name="menuTools" >
     <property name="font" >
@@ -729,7 +731,7 @@
      <normaloff>icons.d/16x16/exit.png</normaloff>icons.d/16x16/exit.png</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Exit BiblioteQ</string>
+    <string>Exit Bibliote&amp;Q</string>
    </property>
    <property name="font" >
     <font>
@@ -738,7 +740,7 @@
     </font>
    </property>
    <property name="shortcut" >
-    <string>Ctrl+E</string>
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionDeleteEntry" >
@@ -861,7 +863,7 @@
      <normaloff>icons.d/16x16/fonts.png</normaloff>icons.d/16x16/fonts.png</iconset>
    </property>
    <property name="text" >
-    <string>Select Global &amp;Font</string>
+    <string>Select &amp;Global Font</string>
    </property>
    <property name="font" >
     <font>
@@ -1149,7 +1151,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Preserve Main Window's &amp;Geometry</string>
+    <string>Preserve Main &amp;Window's Geometry</string>
    </property>
    <property name="font" >
     <font>
@@ -1216,6 +1218,15 @@
    </property>
    <property name="text" >
     <string>Populate &amp;Administrator Browser Table on Display</string>
+   </property>
+  </action>
+  <action name="actionCheck_Updates" >
+   <property name="icon" >
+    <iconset>
+     <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check for &amp;Updates</string>
    </property>
   </action>
  </widget>
