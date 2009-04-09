@@ -1,0 +1,625 @@
+<ui version="4.0" >
+ <class>adminBrowser</class>
+ <widget class="QMainWindow" name="adminBrowser" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1146</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>1140</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="font" >
+   <font>
+    <family>Times</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle" >
+   <string>BiblioteQ: Administrator Browser</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>
+    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
+    <item>
+     <widget class="QFrame" name="frame" >
+      <property name="frameShape" >
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <item>
+        <widget class="QFrame" name="frame_2" >
+         <property name="frameShape" >
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
+          <item>
+           <layout class="QGridLayout" name="gridLayout" >
+            <item row="0" column="1" >
+             <widget class="QLabel" name="label_6" >
+              <property name="text" >
+               <string>Item Creation</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2" >
+             <widget class="QLabel" name="label_7" >
+              <property name="text" >
+               <string>Item Deletion</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3" >
+             <widget class="QLabel" name="label_8" >
+              <property name="text" >
+               <string>Item Returns</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4" >
+             <widget class="QLabel" name="label_9" >
+              <property name="text" >
+               <string>Item Reservations</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5" >
+             <widget class="QLabel" name="label_10" >
+              <property name="text" >
+               <string>Item Updates</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6" >
+             <widget class="QLabel" name="label_11" >
+              <property name="text" >
+               <string>Member Creation</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="7" >
+             <widget class="QLabel" name="label_12" >
+              <property name="text" >
+               <string>Member Deletion</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="8" >
+             <widget class="QLabel" name="label_13" >
+              <property name="text" >
+               <string>Member Updates</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="9" >
+             <widget class="QLabel" name="label_14" >
+              <property name="text" >
+               <string>Reservation Histories</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QLabel" name="label_2" >
+              <property name="text" >
+               <string>Administrator</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" >
+             <widget class="QLabel" name="label" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap" >
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" >
+             <widget class="QLabel" name="label_3" >
+              <property name="text" >
+               <string>Circulation</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" >
+             <widget class="QLabel" name="label_4" >
+              <property name="text" >
+               <string>Librarian</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" >
+             <widget class="QLabel" name="label_5" >
+              <property name="text" >
+               <string>Membership</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" >
+             <widget class="QLabel" name="label_15" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3" >
+             <widget class="QLabel" name="label_16" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4" >
+             <widget class="QLabel" name="label_17" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="5" >
+             <widget class="QLabel" name="label_18" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="6" >
+             <widget class="QLabel" name="label_19" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="7" >
+             <widget class="QLabel" name="label_20" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="8" >
+             <widget class="QLabel" name="label_21" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="9" >
+             <widget class="QLabel" name="label_22" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3" >
+             <widget class="QLabel" name="label_23" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4" >
+             <widget class="QLabel" name="label_24" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="9" >
+             <widget class="QLabel" name="label_25" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1" >
+             <widget class="QLabel" name="label_26" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2" >
+             <widget class="QLabel" name="label_27" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="5" >
+             <widget class="QLabel" name="label_28" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="6" >
+             <widget class="QLabel" name="label_29" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="7" >
+             <widget class="QLabel" name="label_30" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="8" >
+             <widget class="QLabel" name="label_31" >
+              <property name="text" >
+               <string/>
+              </property>
+              <property name="pixmap" >
+               <pixmap>icons.d/16x16/ok.png</pixmap>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="table" >
+         <property name="font" >
+          <font>
+           <family>Times</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy" >
+          <enum>Qt::StrongFocus</enum>
+         </property>
+         <property name="editTriggers" >
+          <set>QAbstractItemView::DoubleClicked</set>
+         </property>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode" >
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior" >
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="horizontalScrollMode" >
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="cornerButtonEnabled" >
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text" >
+           <string>ID</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Administrator</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Circulation</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Librarian</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Membership</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QToolButton" name="addButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Add Administrator</string>
+        </property>
+        <property name="icon" >
+         <iconset>
+          <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="deleteButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Delete Selected Administrator</string>
+        </property>
+        <property name="icon" >
+         <iconset>
+          <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="saveButton" >
+        <property name="toolTip" >
+         <string>Save Changes</string>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset>
+          <normaloff>icons.d/32x32/save.png</normaloff>icons.d/32x32/save.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="reloadButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Refresh List</string>
+        </property>
+        <property name="icon" >
+         <iconset>
+          <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="cancelButton" >
+        <property name="font" >
+         <font>
+          <family>Times</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="toolTip" >
+         <string>Close Browser</string>
+        </property>
+        <property name="icon" >
+         <iconset>
+          <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
+        </property>
+        <property name="iconSize" >
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+ </widget>
+ <tabstops>
+  <tabstop>table</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>reloadButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>adminBrowser</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>856</x>
+     <y>579</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>443</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

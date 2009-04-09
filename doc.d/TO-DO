@@ -293,7 +293,7 @@
 161. Allow the user to cancel an image download. (DONE)
 162. Integrate the administrator privileges documentation into the
      application. (DONE)
-163. Provide an option for downloading OFFSYSTEM files. (TBD)
+163. Provide an option for downloading OFFSYSTEM files. (NO)
 164. Warn the user of unsaved changes in the Members Browser. (DONE)
 165. Implement the closeEvent for progress dialogs that must not be
      dismissed. (DONE)
@@ -348,3 +348,4 @@
      qtbook_videogame.cc (DONE)
 191. Pressing the escape key on a QDialog window will not trigger a 
      close event. As a result, "dirty data" warning may be displayed. (DONE)
+192. Remove OFFSYSTEM support. The project appears abandoned.

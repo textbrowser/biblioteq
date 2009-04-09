@@ -121,8 +121,6 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &OFFSYSTEM URL")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(cd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(cd.backButton,
@@ -316,9 +314,6 @@ void qtbook_cd::slotGo(void)
 	  goto db_rollback;
 	}
 
-      str = cd.url->toPlainText().trimmed();
-      cd.url->setPlainText(str);
-
       if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE cd SET "
 			      "id = ?, "
@@ -339,8 +334,7 @@ void qtbook_cd::slotGo(void)
 			      "cdrecording = ?, "
 			      "cdaudio = ?, "
 			      "front_cover = ?, "
-			      "back_cover = ?, "
-			      "offsystem_url = ? "
+			      "back_cover = ? "
 			      "WHERE "
 			      "myoid = ?"));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -362,14 +356,13 @@ void qtbook_cd::slotGo(void)
 			      "location, "
 			      "cdrecording, "
 			      "cdaudio, front_cover, "
-			      "back_cover, "
-			      "offsystem_url) "
+			      "back_cover) "
 			      "VALUES "
 			      "(?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, ?, "
-			      "?, ?, "
+			      "?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?)"));
       else
 	query.prepare(QString("INSERT INTO cd "
@@ -391,11 +384,11 @@ void qtbook_cd::slotGo(void)
 			      "cdrecording, "
 			      "cdaudio, front_cover, "
 			      "back_cover, "
-			      "offsystem_url, myoid) "
+			      "myoid) "
 			      "VALUES "
 			      "(?, ?, "
 			      "?, ?, "
-			      "?, ?, ?, "
+			      "?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?)"));
@@ -448,15 +441,10 @@ void qtbook_cd::slotGo(void)
 	  query.bindValue(18, QVariant());
 	}
 
-      if(!cd.url->toPlainText().isEmpty())
-	query.bindValue(19, cd.url->toPlainText());
-      else
-	query.bindValue(19, QVariant(QVariant::String));
-
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(20, oid);
+	query.bindValue(19, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(20, cd.id->text());
+	query.bindValue(19, cd.id->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -576,11 +564,6 @@ void qtbook_cd::slotGo(void)
 	     (cd.recording_label->toPlainText()));
 	  cd.category->setMultipleLinks("cd_search", "category",
 					cd.category->toPlainText());
-
-	  if(!cd.url->toPlainText().isEmpty())
-	    cd.url->setText(QString("<a href=\"%1\">%1</a>").arg
-			    (cd.url->toPlainText()));
-
 	  qapp->restoreOverrideCursor();
 
 	  if(engWindowTitle.contains("Modify"))
@@ -832,11 +815,6 @@ void qtbook_cd::slotGo(void)
 			 myqstring::escape
 			 (cd.location->currentText()) + "' ");
 
-      if(!cd.url->toPlainText().isEmpty())
-	searchstr.append(" AND LOWER(COALESCE(offsystem_url, '')) LIKE '%" +
-			 myqstring::escape(cd.url->toPlainText().toLower()) +
-			 "%' ");
-
       hide();
 
       /*
@@ -904,7 +882,6 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
-  cd.url->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1072,8 +1049,7 @@ void qtbook_cd::modify(const int state)
     "cdrecording, "
     "location, "
     "front_cover, "
-    "back_cover, "
-    "offsystem_url "
+    "back_cover "
     "FROM "
     "cd "
     "WHERE myoid = ";
@@ -1209,12 +1185,6 @@ void qtbook_cd::modify(const int state)
 	      if(!query.record().field(i).isNull())
 		cd.back_image->loadFromData(var.toByteArray());
 	    }
-	  else if(fieldname == "offsystem_url")
-	    {
-	      if(!query.record().field(i).isNull())
-		cd.url->setText(QString("<a href=\"%1\">%1</a>").arg
-				(var.toString()));
-	    }
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1262,7 +1232,6 @@ void qtbook_cd::insert(void)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
-  cd.url->clear();      
   misc_functions::highlightWidget
     (cd.id, QColor(255, 248, 220));
   misc_functions::highlightWidget
@@ -1834,11 +1803,6 @@ void qtbook_cd::slotReset(void)
 	  cd.location->setCurrentIndex(0);
 	  cd.location->setFocus();
 	}
-      else if(action == actions[19])
-	{
-	  cd.url->clear();
-	  cd.url->setFocus();
-	}
 
       actions.clear();
     }
@@ -1895,7 +1859,6 @@ void qtbook_cd::slotReset(void)
       cd.format->setCurrentIndex(0);
       cd.front_image->clear();
       cd.back_image->clear();
-      cd.url->clear();
       cd.id->setFocus();
     }
 }
@@ -2052,8 +2015,6 @@ void qtbook_cd::slotPrint(void)
     cd.location->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     cd.description->toPlainText().trimmed() + "<br>";
-  html += "<b>"+ tr("OFFSYSTEM URL:") + "</b> " +
-    cd.url->toPlainText().trimmed();
   print(this);
 }
 

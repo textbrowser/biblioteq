@@ -851,30 +851,6 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="0" >
-         <widget class="QLabel" name="label_12" >
-          <property name="text" >
-           <string>OFFSYSTEM
-URL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="1" >
-         <widget class="QTextBrowser" name="url" >
-          <property name="autoFormatting" >
-           <set>QTextEdit::AutoAll</set>
-          </property>
-          <property name="readOnly" >
-           <bool>false</bool>
-          </property>
-          <property name="textInteractionFlags" >
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
-          <property name="openExternalLinks" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="1" >
          <widget class="hyperlinked_text_edit" name="category" >
           <property name="readOnly" >
@@ -1116,7 +1092,6 @@ URL</string>
   <tabstop>showUserButton</tabstop>
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
-  <tabstop>url</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>

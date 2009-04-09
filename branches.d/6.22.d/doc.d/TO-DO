@@ -1,0 +1,350 @@
+1.   Allow the user to hide the main table's columns. (DONE)
+2.   Save major settings to a configuration file. (DONE)
+3.   Implement the Library of Congress query. (DONE)
+4.   Allow for image storage of front and back covers. (DONE)
+5.   Port to Windows XP. (DONE) Test on FreeBSD (DONE), Linux (DONE),
+     OS X (DONE), and Solaris (DONE).
+6.   Allow searching of library members. This feature should only be
+     available to administrators. (DONE)
+7.   Perform the database queries in threads. (TBD)
+8.   Create a configuration file to store values for various pull-down menus.
+     (DONE)
+9.   Create a mechanism for determining the uniqueness of members. (DONE)
+10.  Provide support for:
+	a. Magazines (DONE)
+	b. Newspapers (TBD)
+	c. DVDs (DONE)
+	d. Music CDs (DONE)
+	e. Video Games (DONE)
+	f. Cassette Tapes (TBD)
+    	g. Vinyl Records (TBD)
+	h. Books (DONE)
+	i. VHS (TBD)
+	j. Journals (DONE)
+11.  Finish the availability column. (DONE)
+12.  Implement a generic search. (DONE)
+     Fields included:
+	a. ID Number (ISBN, ISSN, Catalog Number, UPC, etc.)
+	b. Title
+	c. Publisher
+	d. Publication Date
+	e. Quantity
+	f. Price
+	g. Language
+	h. Monetary Units
+	i. Location
+	j. Type (Removed)
+	k. Availability (TBD)
+	l. Category
+13.  Provide more detailed error messages. See #22. (DONE)
+14.  Process the configuration files with threads. (DONE)
+15.  Implement the lending of items. (DONE)
+16.  Implement the Copy Editor. (DONE)
+17.  Sort numeric columns. (DONE)
+18.  If selected, automatically resize column headers after sorting. (DONE)
+19.  Provide improved reset mechanisms. (DONE)
+20.  Set focus on appropriate widget after a widget reset. (DONE)
+21.  SQL queries must be compatible with PostgreSQL. (DONE)
+22.  Create a dialog that'll provide a complete record of
+     a session's errors. (DONE)
+23.  Include the day in the publication date. (DONE)
+24.  Record an error, if one occurs, in the getAvailability() method. (DONE)
+25.  Separate the application into three tiers. (TBD)
+26.  Implement a close() slot for the Copy Editor. (DONE)
+27.  Provide a mechanism for displaying items that are overdue. (DONE)
+28.  Update the availability column after an item has been reserved and
+     after it has been returned. (DONE)
+29.  Do not allow an administrator to delete a copy that has been
+     reserved. (DONE)
+30.  Prevent the administrator from decreasing the quantity of an item
+     if the action would delete copies that have been reserved. (DONE)
+31.  Complement the toolbar with menus. (DONE)
+32.  Add null default icons for pull-down menus and for buttons that
+     lack icons. (DONE)
+33.  Pressing the Enter button on the Members Borrowers's Filter textfield
+     should activate the Refresh slot. (DONE)
+34.  Preserve the display status of the main table's columns. (DONE)
+35.  Add the line number and the file where the error occurred
+     to the error log. (DONE)
+36.  Escape special characters in search routines. (DONE)
+37.  Allow the user to copy the error dialog's contents to the copyboard
+     buffer. (DONE)
+38.  Do not allow multiple identical barcodes for a particular item. (DONE)
+39.  The total runtime of a CD's tracks should equal the runtime specified
+     for the CD. Provide the user with a mechanism to calculate the
+     runtime based on the runtimes of the tracks. (DONE)
+40.  The uniqueness of a song should be determined by the CD's OID,
+     album number, and song number. (DONE)
+41.  Do not allow an administrator to remove a member if that member has items
+     reserved. (DONE)
+42.  Do not allow an administrator to modify barcodes of items that have been
+     reserved. (DONE)
+43.  Provide a mechanism to list the items that have been reserved
+     by a member. (DONE)
+44.  Allow an administrator to modify a copy's due date. (DONE)
+45.  Reorder the reset pull-down values so that they match the layout order
+     of the widgets. (DONE)
+46.  Empty the members list after a disconnect from the database. (DONE)
+47.  Do not allow an item to be deleted if it has been reserved. (DONE)
+48.  Allow normal users to view an item's details. (DONE)
+49.  Class-ify the items. This will require an extensive overhaul. (DONE)
+50.  Add an item's ID to its window's title. (DONE)
+51.  Empty containers after a database disconnect. (DONE)
+52.  Update the items' windows after administrator authentication. (DONE)
+53.  Prevent the administrator from reserving a copy that no longer
+     exists, has been reserved, or had its name changed.
+     (DONE)
+54.  Perform an immediate status check of an item upon a reservation request.
+     That is, verify that the copy is available by querying the database.
+     (DONE)
+55.  Verify a copy's status via a database query prior to saving it. (DONE)
+56.  Only allow digits, or other applicable characters, in the ID
+     (ISBN, etc.) fields. (DONE)
+57.  Replace all references of qtbook with biblioteq. (TBD)
+58.  Add "create" and "search" displays to appropriate containers. (DONE)
+59.  Remove modality from "create" and "search" displays. (DONE)
+60.  Update the Items Reserved column in the Members Browser after an
+     item has been reserved or returned. (DONE)
+61.  If an item has been returned and the items list is displaying a member's
+     reserved items that includes the returned item, update the Due Date
+     to "Returned." (DONE)
+62.  Add an indicator to the main window's statusbar to inform the user if
+     the error log contains entries. (DONE)
+63.  Provide per-item print support. (DONE)
+64.  Obtain the Library of Congress connection information from the
+     biblioteq.conf file. (DONE)
+65.  The Library of Congress USMARC data fields for books are as
+     follows: (DONE)
+	a. 010 LC Control Number
+	b. 050 Call Number
+	c. 082 Dewey Class Number
+	d. 100 Author
+	e. 245 Title
+	f. 250 Edition
+	g. 260 Publication Date
+	h. 260 Publisher
+	i. 300 Abstract (Description)
+66.  Perform the Library of Congress queries in threads. (DONE)
+67.  Create an initial copy whenever a new item is created. Use the item's
+     ID as the copy's Barcode. Refer to #77. (DONE)
+68.  Add notes sections to both the Copy Editor and individual items. (TBD)
+     Retrieve the Notes section from the Library of Congress, if available.
+69.  The Library of Congress USMARC data fields for journals and
+     magazines are as follows: (DONE)
+	a. 010 LC Control Number
+	b. 050 Call Number
+	c. 082 Dewey Class Number
+	d. 245 Title
+	e. 260 Publication Date
+	f. 260 Publisher
+	g. 300 Abstract (Description)
+70.  The ISSN is not unique. Use the Issue and Volume Number as part of
+     the uniqueness key. Refer to #85. (DONE)
+71.  Prevent an administrator from launching multiple Z39.50 queries
+     from the same item. (DONE)
+72.  Should an administrator be allowed to delete an item during a Z39.50
+     query? No. (DONE)
+73.  Do not allow the administrator to set a member's "Member Since" date
+     beyond the current date. (DONE)
+74.  Allow the user to set a global font. (DONE)
+75.  Change the font for the Administrator Browser, Borrowers Browser,
+     Copy Editor, Custom Query Dialog, Error Log,
+     Library of Congress Query Results, Member's Reservation History,
+     and the Tracks Editor after a global font change. (DONE)
+76.  Save the selected global font to the user's configuration file. (DONE)
+77.  Create as many initial copies as necessary when a new item is created.
+     The number of copies to create is to be determined by the quantity.
+     Refer to #67. (DONE)
+78.  Read the saved global font from the user's configuration file during
+     program initialization. (DONE)
+79.  Set focus on the widget that caused a completion-requirement error. (DONE)
+80.  Create a view of a restricted version of the borrower tables. (DONE)
+     See #114.
+81.  Create an administrator table. (DONE)
+82.  Provide a mechanism for granting administrator privileges. (DONE)
+83.  Verify that all failed database queries are logged and, if necessary,
+     the user is notified. (DONE)
+84.  Each type should have its own table. (DONE)
+85.  Create uniqueness keys for the magazine table based on the ISSN,
+     Issue Number, and Volume Number. Refer to #70. (DONE)
+86.  Prompt the user if they wish to modify copy information
+     after a quantity increase. (DONE)
+87.  Verify that modifying an item updates the main table correctly. (DONE)
+88.  Update the indices after a table sort. (DONE)
+89.  Create a borrowers table for each of the item types. (DONE)
+90.  Display the Member ID where appropriate. (DONE)
+91.  Notify the user that an item is unavailable before displaying
+     the Members Browser. (DONE)
+92.  The Copy Due Date in the Borrowers Browser should reflect the actual
+     date while also preventing the user from setting it to an invalid
+     value. (DONE)
+93.  Allow SSL connections to the database server. (DONE)
+94.  Do not allow runtimes of 00:00:00. (DONE)
+95.  Implement roles: (DONE)
+	Role		Abilities
+	Administrator	All
+	Circulation	Reservation, Returns
+	Standard	Browse
+96.  Provide a mechanism that allows the user to print information
+     from the main table. (DONE)
+97.  Simplify the branch-selection dialog. (DONE)
+     The user should be presented with the following fields:
+ 	Userid
+ 	Password
+ 	Branch Name
+98.  Allow editing of copy information during item creation. (DONE)
+99.  Create a statistics panel. (TBD)
+100. Release a version for Windows XP. (DONE)
+101. Create a Journal category. The new class should inherit from the
+     Magazine class. (DONE)
+102. Store information regarding anonymous connections in the
+     biblioteq.conf file . This is no longer applicable. (DONE)
+103. Allow for custom queries. (DONE)
+104. The database searches should be case-insensitive. (DONE)
+105. Prepare the application for translations. (DONE)
+106. Provide a graphical representation of the database layout. (TBD)
+107. Create an elegant display of a member's reserved items. (DONE)
+108. Update the Returned Date in the member_history table after an item
+     has been returned. (DONE)
+109. Provide print support for the Member's Reservation History. (DONE)
+110. Display the application icon in the About dialog. (DONE)
+111. If necessary, update the Member's Reservation History panel
+     whenever an item has been returned. (DONE)
+112. Verify the member's age prior to reserving an age-restricted item.
+113. Implement OFFSYSTEM's Off-Link-URL. (DONE)
+114. Create a mechanism that allows members to log in. Members should
+     also be allowed to view their reservation histories. (DONE)
+115. Create compact views for the borrower tables. See #80. (DONE)
+116. Drop the member's database account during member removal.
+     Must first revoke all privileges. (DONE)
+117. Reload the image summary after an item has been updated. (DONE)
+118. Provide support for SQLite. (DONE)
+119. Allow for dropping of images from external applications. (DONE)
+120. Remove "green" informational dialogs. (DONE)
+121. Provide hyperlinks in text browsers. Once a link is clicked,
+     the application should perform a query using the text that's referenced
+     in the hyperlink. (DONE)
+122. Fix NULL QVariant bind values. (DONE)
+123. Notify the administrator to remind a new member of the default
+     password. (DONE)
+124. Use the COALESCE function when injecting NULL values in WHERE clauses.
+     (DONE)
+125. If an item has been deleted, remove its entry from the member history
+     table. (DONE)
+126. Do not allow duplicate administrator ids. (DONE)
+127. Highlight required fields. (DONE)
+128. Properly reset highlighted fields to their original colors
+     after a reset. (DONE)
+129. Fields should have their hyperlinks activated only after a successful
+     save. (DONE)
+130. Devise an intelligent widget-centering algorithm. (DONE)
+131. Reset the Administrator Browser after a database disconnect. (DONE)
+132. Key fields should have non-empty default values. This currently applies
+     to the Book category. (DONE)
+133. Provide a mechanism for generating unique ISBNs. (DONE)
+134. Non-administrators should not be presented with price and monetary
+     units information. (DONE)
+135. Must support reservation requests. (DONE)
+136. Replace all borrower tables with one table that also contains item
+     types. (DONE)
+137. Update an item's oldq variable whenever the copy data has been saved.
+     (DONE)
+138. Remove the database disconnect confirmation question. (DONE)
+139. Allow generation of random ISBNs for PostgreSQL databases. (DONE)
+140. Do not allow requested items to be deleted. (DONE)
+141. Only members should me able to request items. Administrators
+     should be able to view all requested items while members should only
+     be allowed to view the items that they have requested. (DONE)
+142. SQLite databases do not require request systems. (DONE)
+143. Enable selection options based on privileges: (DONE)
+	Administrator / Circulation / Member
+		All
+		All Overdue
+		All Requested
+		All Reserved
+		Items
+	Librarian
+		All
+		Items
+	Membership
+		All
+		Items
+144. A request should be removed once it has been approved (reserved). (DONE)
+145. Notify administrators of requests? No. (DONE)
+146. Do not allow multiple requests of identical items. (DONE)
+147. Allow members to view their overdue items, requests, and reservations.
+     (DONE)
+148. Canceling a custom query that references images is difficult.
+     Must resolve. (DONE) Inform the user of potential issue.
+149. Remove requested items after a member has been deleted. (DONE)
+150. Drop image format columns from the various item tables. (DONE)
+151. The program should display a different icon for the request action
+     when an administrator is logged on. (DONE)
+152. Create an OS X installation package. (DONE)
+153. Create a Journal table. (DONE)
+154. Allow for multiple categories (labels). (DONE)
+155. Download front cover images from Amazon. (DONE)
+156. Close HTTP sockets after an Amazon query. (DONE)
+157. Style sheets are not fully supported in OS X (Edition,
+     Publication Date). (TBD)
+158. Resolve resource competition for Amazon and Z39.50 queries. (DONE)
+159. Provide documentation for administrator privileges. (DONE)
+160. Provide a status dialog for the Library of Congress query. (DONE)
+161. Allow the user to cancel an image download. (DONE)
+162. Integrate the administrator privileges documentation into the
+     application. (DONE)
+163. Provide an option for downloading OFFSYSTEM files. (TBD)
+164. Warn the user of unsaved changes in the Members Browser. (DONE)
+165. Implement the closeEvent for progress dialogs that must not be
+     dismissed. (DONE)
+166. Allow members to cancel their reserved items. (DONE)
+167. Warn the user of unsaved changes for new items. (DONE)
+168. Add the Abstract information to the summary panel. (DONE)
+169. Add e-mail addresses to patron accounts. (DONE)
+170. Allow prices of 0.00. Search routines require review. (DONE)
+171. The UPC should be a 13-digit number. (DONE)
+172. Remove "Library of Congress" references. (DONE)
+173. The e-mail address format should be abc@def.xyz. (TBD)
+174. Investigate the privileges in misc_functions.cc. (DONE)
+175. Update the memberProperties container when a member's information
+     has been saved. (DONE)
+176. Be consistent when enabling and/or hiding widgets. (DONE)
+177. Resolve "do not delete object" warnings that appear after
+     various search dialogs are dismissed. (DONE)
+178. Investigate the widget-centering algorithm. (DONE)
+179. The "request" toolbutton's icon is incorrect under some
+     circumstances. (DONE)
+180. Fix the incorrect question regarding changes when attempting to
+     create a new member. (DONE)
+181. Regular members do not require access to the admin table. (DONE)
+182. The Membership account is unable to access the Members Browser. (DONE)
+183. Grant the createuser privilege to the Membership account correctly.
+     Remove the privilege accordingly. (DONE)
+184. Fix the administrator privileges functionality. (DONE)
+185. Improve the misc_functions::updateColumn method. It should locate
+     all appropriate matches. (TBD)
+186. Removing an item via the database will not remove corresponding
+     entries in the item_borrower table. Should item removal be prevented
+     if an item is reserved? This is the current behavior of BiblioteQ,
+     however, the database schema does not enforce this. (TBD)
+187. Add the Place of Publication to Video Games. (DONE)
+188. Video Games should have default values of N/A for some mandatory
+     fields. (DONE)
+189. CDs and DVDs should have default values of N/A for some mandatory
+     fields. (DONE)
+190. Review all source files for contains:
+     borrowers_editor.cc (DONE)
+     copy_editor.cc (DONE)
+     image_drop_site.cc (DONE)
+     main_table.cc (DONE)
+     misc_functions.cc (DONE)
+     myqstring.cc (DONE)
+     qtbook_book.cc (DONE)
+     qtbook.cc (DONE)
+     qtbook_cd.cc (DONE)
+     qtbook_dvd.cc (DONE)
+     qtbook_journal.cc (DONE)
+     qtbook_magazine.cc (DONE)
+     qtbook_videogame.cc (DONE)
+191. Pressing the escape key on a QDialog window will not trigger a 
+     close event. As a result, "dirty data" warning may be displayed. (DONE)

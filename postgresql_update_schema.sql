@@ -511,3 +511,13 @@ UPDATE videogame SET place = 'N/A';
 ALTER TABLE videogame ALTER place SET NOT NULL;
 
 ALTER TABLE item_borrower ADD FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT;
+
+/* Release 6.30 */
+
+ALTER TABLE book DROP offsystem_url;
+ALTER TABLE cd DROP offsystem_url;
+ALTER TABLE dvd DROP offsystem_url;
+ALTER TABLE journal DROP offsystem_url;
+ALTER TABLE magazine DROP offsystem_url;
+ALTER TABLE videogame DROP offsystem_url;
+VACUUM FULL;

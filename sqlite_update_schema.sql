@@ -466,3 +466,7 @@ ALTER TABLE book ADD place TEXT NOT NULL DEFAULT 'N/A';
 ALTER TABLE journal ADD place TEXT NOT NULL DEFAULT 'N/A';
 ALTER TABLE magazine ADD place TEXT NOT NULL DEFAULT 'N/A';
 ALTER TABLE videogame ADD place TEXT NOT NULL DEFAULT 'N/A';
+
+/* RELEASE 6.30 */
+
+/* The offsystem_url columns are harmless.
