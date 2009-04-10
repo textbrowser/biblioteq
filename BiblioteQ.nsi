@@ -1,9 +1,9 @@
 # Define installer name.
 Name "BiblioteQ Installer"
-outFile "BiblioteQ-Installer-6.22.exe"
+outFile "BiblioteQ-Installer-6.30.exe"
 
 # Install directory.
-installDir C:\BiblioteQ-6.22
+installDir C:\BiblioteQ-6.30
 
 DirText "Please choose an installation directory for BiblioteQ."
 
@@ -32,7 +32,7 @@ file .\release\BiblioteQ.exe
 file *.sql
 
 # Define uninstaller name.
-writeUninstaller $INSTDIR\BiblioteQ-Uninstaller-6.22.exe
+writeUninstaller $INSTDIR\BiblioteQ-Uninstaller-6.30.exe
 
 # Default section end.
 sectionEnd
