@@ -4345,6 +4345,7 @@ void qtbook::readGlobalSetup(void)
 		 DVD_REGION,
 		 BRANCHES,
 		 AMAZON_FRONT_COVER_IMAGES,
+		 AMAZON_BACK_COVER_IMAGES,
 		 UNKNOWN};
   QString str = "";
   QString filename = "";
@@ -4428,6 +4429,8 @@ void qtbook::readGlobalSetup(void)
 	      type = BRANCHES;
 	    else if(str == "[Amazon Front Cover Images]")
 	      type = AMAZON_FRONT_COVER_IMAGES;
+	    else if(str == "[Amazon Back Cover Images]")
+	      type = AMAZON_BACK_COVER_IMAGES;
 	    else
 	      type = UNKNOWN;
 
@@ -4606,7 +4609,12 @@ void qtbook::readGlobalSetup(void)
 			  AmazonImages["front_cover_host"] = str;
 			else if(!AmazonImages.contains("front_cover_path"))
 			  AmazonImages["front_cover_path"] = str;
-			else if(!AmazonImages.contains("back_cover_host"))
+
+			break;
+		      }
+		    case AMAZON_BACK_COVER_IMAGES:
+		      {
+			if(!AmazonImages.contains("back_cover_host"))
 			  AmazonImages["back_cover_host"] = str;
 			else if(!AmazonImages.contains("back_cover_path"))
 			  AmazonImages["back_cover_path"] = str;
