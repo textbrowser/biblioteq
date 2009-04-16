@@ -14,6 +14,8 @@ section
 setOutPath $INSTDIR
 
 # Specify files to go in output path.
+file *.sql
+file qt.conf
 file biblioteq.conf
 file /r .\release\doc.d
 file /r .\release\icons.d
@@ -24,12 +26,10 @@ file /r .\release\plugins
 
 file /r .\release\translations.d
 file .\release\*.dll
-file .\release\qt.conf
 file .\release\sqlite3.exe
 file .\release\sqlite-*.zip
 file .\release\biblioteq.db
 file .\release\BiblioteQ.exe
-file *.sql
 
 # Define uninstaller name.
 writeUninstaller $INSTDIR\BiblioteQ-Uninstaller-6.22.1.exe
