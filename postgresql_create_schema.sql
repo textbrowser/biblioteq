@@ -226,20 +226,6 @@ CREATE TABLE videogame_copy_info
 	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE
 );
 
-CREATE TABLE item_borrower
-(
-	item_oid	 BIGINT NOT NULL,
-	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
-	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
-);
-
 CREATE TABLE member
 (
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,
@@ -255,6 +241,20 @@ CREATE TABLE member
 	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
 	zip		 VARCHAR(16) NOT NULL,
 	email		 VARCHAR(128)
+);
+
+CREATE TABLE item_borrower
+(
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL PRIMARY KEY,
+	copyid		 VARCHAR(64) NOT NULL,
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	reserved_by	 VARCHAR(128) NOT NULL,
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
 );
 
 CREATE TABLE member_history
