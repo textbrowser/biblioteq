@@ -71,6 +71,14 @@ int main(int argc, char *argv[])
   QCoreApplication::setApplicationName("BiblioteQ");
 
   /*
+  ** Remove old configuration settings.
+  */
+
+  QSettings settings;
+
+  settings.remove("sqlite_db");
+
+  /*
   ** Create the user interface.
   */
 
@@ -474,7 +482,6 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.table->resetTable(tr("All"), roles);
   ui.summary->setVisible(false);
-  ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = tr("All");
   prepareFilter();
@@ -4720,15 +4727,6 @@ void qtbook::readConfig(void)
   if(settings.contains("global_font"))
     font.fromString(settings.value("global_font").toString());
 
-  if(settings.contains("sqlite_db"))
-    {
-      br.filename->setText(settings.value("sqlite_db").toString());
-      br.filename->setCursorPosition(0);
-      ui.actionRememberSQLiteFilename->setChecked(true);
-    }
-  else
-    ui.actionRememberSQLiteFilename->setChecked(false);
-
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit").toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
@@ -4738,6 +4736,7 @@ void qtbook::readConfig(void)
     (settings.value("automatically_populate_admin_list_on_display").toBool());
   setGlobalFonts(font);
   slotResizeColumns();
+  createSqliteMenuActions();
 }
 
 /*
@@ -4909,11 +4908,6 @@ void qtbook::slotSaveConfig(void)
     settings.setValue("main_window_geometry", geometry());
   else
     settings.remove("main_window_geometry");
-
-  if(ui.actionRememberSQLiteFilename->isChecked())
-    settings.setValue("sqlite_db", sqlitefile());
-  else
-    settings.remove("sqlite_db");
 }
 
 /*
@@ -5446,14 +5440,10 @@ void qtbook::slotConnectDB(void)
   ui.actionConnect->setEnabled(false);
 
   if(selectedBranch["database_type"] == "sqlite")
-    {
-      ui.actionChangePassword->setEnabled(false);
-      ui.actionRememberSQLiteFilename->setEnabled(true);
-    }
+    ui.actionChangePassword->setEnabled(false);
   else
     {
       ui.actionChangePassword->setEnabled(true);
-      ui.actionRememberSQLiteFilename->setEnabled(false);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
     }
@@ -5461,7 +5451,71 @@ void qtbook::slotConnectDB(void)
   prepareFilter();
 
   if(br.adminCheck->isChecked() || selectedBranch["database_type"] == "sqlite")
-    adminSetup();
+    {
+      if(selectedBranch["database_type"] == "sqlite")
+	{
+	  /*
+	  ** Add the database's information to the pulldown menu.
+	  */
+
+	  bool exists = false;
+	  QList<QAction *> actions = ui.menu_Recent_SQLite_Files->actions();
+
+	  for(int i = 0; i < actions.size(); i++)
+	    if(actions[i]->isSeparator())
+	      break;
+	    else if(actions[i]->data().toString() == br.filename->text())
+	      {
+		exists = true;
+		break;
+	      }
+
+	  actions.clear();
+
+	  if(!exists)
+	    {
+	      ui.menu_Recent_SQLite_Files->clear();
+	      createSqliteMenuActions();
+
+	      QList<QAction *> actions =
+		ui.menu_Recent_SQLite_Files->actions();
+
+	      for(int i = 0; i < actions.size(); i++)
+		if(actions[i]->isSeparator())
+		  {
+		    QAction *action = new(std::nothrow) QAction
+		      (br.filename->text(), this);
+
+		    if(action)
+		      {
+			action->setData(br.filename->text());
+			connect(action, SIGNAL(triggered(bool)), this,
+				SLOT(slotSqliteFileSelected(bool)));
+			ui.menu_Recent_SQLite_Files->insertAction(actions[i],
+								  action);
+		      }
+
+		    break;
+		  }
+
+	      actions.clear();
+
+	      int index = 1;
+	      QSettings settings;
+	      QStringList allKeys(settings.allKeys());
+
+	      for(int i = 0; i < allKeys.size(); i++)
+		if(allKeys[i].startsWith("sqlite_db_"))
+		  index += 1;
+
+	      allKeys.clear();
+	      settings.setValue(QString("sqlite_db_%1").arg(index),
+				br.filename->text());
+	    }
+	}
+
+      adminSetup();
+    }
   else
     {
       /*
@@ -5518,7 +5572,6 @@ void qtbook::slotDisconnect(void)
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
-  ui.actionRememberSQLiteFilename->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setToolTip(tr("Item Requests"));
@@ -8219,18 +8272,6 @@ void qtbook::slotSelectDatabaseFile(void)
 }
 
 /*
-** -- sqlitefile() --
-*/
-
-QString qtbook::sqlitefile(void)
-{
-  if(ui.actionRememberSQLiteFilename->isChecked())
-    return br.filename->text();
-  else
-    return "";
-}
-
-/*
 ** -- slotShowAdminDialog() --
 */
 
@@ -8969,4 +9010,102 @@ void qtbook::prepareFilter(void)
 
   ui.typefilter->addItems(tmplist);
   tmplist.clear();
+}
+
+/*
+** -- slotSqliteFileSelected() --
+*/
+
+void qtbook::slotSqliteFileSelected(bool state)
+{
+  Q_UNUSED(state);
+
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  slotDisconnect();
+  br.filename->setText(action->data().toString());
+  br.filename->setCursorPosition(0);
+  br.branch_name->setCurrentIndex(0);
+  slotConnectDB();
+}
+
+/*
+** -- slotClearSqliteMenu() --
+*/
+
+void qtbook::slotClearSqliteMenu(bool state)
+{
+  Q_UNUSED(state);
+
+  ui.menu_Recent_SQLite_Files->clear();
+
+  QSettings settings;
+  QStringList allKeys(settings.allKeys());
+
+  for(int i = 0; i < allKeys.size(); i++)
+    if(allKeys[i].startsWith("sqlite_db_"))
+      settings.remove(allKeys[i]);
+
+  allKeys.clear();
+  createSqliteMenuActions();
+}
+
+/*
+** -- createSqliteMenuActions() --
+*/
+
+void qtbook::createSqliteMenuActions(void)
+{
+  QSettings settings;
+  QStringList dups;
+  QStringList allKeys(settings.allKeys());
+
+  for(int i = 0; i < allKeys.size(); i++)
+    {
+      if(!allKeys[i].startsWith("sqlite_db_"))
+	continue;
+
+      QString str(settings.value(allKeys[i], "").toString().trimmed());
+
+      if(str.isEmpty())
+	{
+	  settings.remove(allKeys[i]);
+	  continue;
+	}
+
+      if(!dups.contains(str) && QFileInfo(str).isReadable() &&
+	 QFileInfo(str).isWritable())
+	dups.append(str);
+      else
+	{
+	  settings.remove(allKeys[i]);
+	  continue;
+	}
+
+      QAction *action = new(std::nothrow) QAction(str, this);
+
+      if(!action)
+	continue;
+
+      action->setData(str);
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotSqliteFileSelected(bool)));
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
+
+  QAction *action = new(std::nothrow) QAction("&Clear Menu", this);
+
+  if(action)
+    {
+      ui.menu_Recent_SQLite_Files->addSeparator();
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotClearSqliteMenu(bool)));
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
+
+  dups.clear();
+  allKeys.clear();
 }

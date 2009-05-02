@@ -177,7 +177,6 @@ class qtbook: public QMainWindow
 				       const QString &);
   QString getRoles(void);
   QString getAdminID(void);
-  QString sqlitefile(void);
   QMainWindow *getMembersBrowser(void);
   QSqlDatabase getDB(void);
   Ui_mainWindow getUI(void);
@@ -255,6 +254,7 @@ class qtbook: public QMainWindow
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
+  void createSqliteMenuActions(void);
   void prepareRequestToolbutton(const QString &);
 
  protected:
@@ -309,6 +309,7 @@ class qtbook: public QMainWindow
   void slotResetErrorLog(void);
   void slotModifyBorrower(void);
   void slotAutoPopOnFilter(void);
+  void slotClearSqliteMenu(bool);
   void slotShowCustomQuery(void);
   void slotInsertVideoGame(void);
   void slotShowAdminDialog(void);
@@ -324,6 +325,7 @@ class qtbook: public QMainWindow
   void slotSelectDatabaseFile(void);
   void slotShowChangePassword(void);
   void slotShowMembersBrowser(void);
+  void slotSqliteFileSelected(bool);
   void slotCloseMembersBrowser(void);
   void slotAdminCheckBoxClicked(int);
   void slotCloseCustomQueryDialog(void);

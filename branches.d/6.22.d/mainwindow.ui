@@ -329,9 +329,14 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <widget class="QMenu" name="menu_Recent_SQLite_Files">
+     <property name="title">
+      <string>&amp;Recent SQLite Files</string>
+     </property>
+    </widget>
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
-    <addaction name="action_Recent_SQLite_Databases"/>
+    <addaction name="menu_Recent_SQLite_Files"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -379,7 +384,6 @@
     <addaction name="actionPopulateOnStart"/>
     <addaction name="actionAutoPopulateOnCreation"/>
     <addaction name="actionPreserveGeometry"/>
-    <addaction name="actionRememberSQLiteFilename"/>
     <addaction name="actionResetErrorLogOnDisconnect"/>
     <addaction name="separator"/>
     <addaction name="actionSaveSettings"/>
@@ -1131,20 +1135,6 @@
     </font>
    </property>
   </action>
-  <action name="actionRememberSQLiteFilename">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Remember S&amp;QLite Filename</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
   <action name="actionPreserveGeometry">
    <property name="checkable">
     <bool>true</bool>
@@ -1226,11 +1216,6 @@
    </property>
    <property name="text">
     <string>Check for &amp;Updates</string>
-   </property>
-  </action>
-  <action name="action_Recent_SQLite_Databases">
-   <property name="text">
-    <string>&amp;Recent SQLite Databases</string>
    </property>
   </action>
  </widget>
