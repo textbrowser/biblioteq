@@ -5322,19 +5322,6 @@ void qtbook::slotConnectDB(void)
       return;
     }
 
-  if(tmphash["database_type"] == "sqlite")
-    {
-      if(!(QFileInfo(br.filename->text()).isReadable() &&
-	   QFileInfo(br.filename->text()).isWritable()))
-	{
-	  QMessageBox::critical(branch_diag, tr("BiblioteQ: User Error"),
-				tr("The selected SQLite file must be both "
-				   "readable and writable."));
-	  tmphash.clear();
-	  return;
-	}
-    }
-
   db = QSqlDatabase::addDatabase(str, "Default");
 
   if(tmphash["database_type"] == "sqlite")
@@ -8275,8 +8262,10 @@ void qtbook::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(branch_diag);
 
+  dialog.setFilter(QDir::Files | QDir::AllDirs |
+		   QDir::Readable | QDir::Writable);
   dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setFilter("SQLite Databases (*.db *.sqlite)");
+  dialog.setNameFilter("SQLite Databases (*.db *.sqlite)");
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
 
