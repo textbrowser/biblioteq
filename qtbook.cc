@@ -771,7 +771,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.32.<br>"
+  mb.setText("<html>BiblioteQ Version 6.33.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -5320,6 +5320,19 @@ void qtbook::slotConnectDB(void)
 			       "in: ") + plugins + tr(".") + "\n" +
 			    tr("Please contact your administrator."));
       return;
+    }
+
+  if(tmphash["database_type"] == "sqlite")
+    {
+      if(!(QFileInfo(br.filename->text()).isReadable() &&
+	   QFileInfo(br.filename->text()).isWritable()))
+	{
+	  QMessageBox::critical(branch_diag, tr("BiblioteQ: User Error"),
+				tr("The selected SQLite file must be both "
+				   "readable and writable."));
+	  tmphash.clear();
+	  return;
+	}
     }
 
   db = QSqlDatabase::addDatabase(str, "Default");
