@@ -2084,7 +2084,7 @@ void qtbook_magazine::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
+  dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == ma.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));

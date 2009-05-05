@@ -771,7 +771,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.22.2.<br>"
+  mb.setText("<html>BiblioteQ Version 6.22.3.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -8263,7 +8263,7 @@ void qtbook::slotSelectDatabaseFile(void)
   QFileDialog dialog(branch_diag);
 
   dialog.setFileMode(QFileDialog::ExistingFile);
-  dialog.setFilter("SQLite Databases (*.db *.sqlite)");
+  dialog.setNameFilter("SQLite Databases (*.db *.sqlite)");
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
 
