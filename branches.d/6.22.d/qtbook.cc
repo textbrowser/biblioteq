@@ -9096,7 +9096,7 @@ void qtbook::createSqliteMenuActions(void)
       ui.menu_Recent_SQLite_Files->addAction(action);
     }
 
-  QAction *action = new(std::nothrow) QAction("&Clear Menu", this);
+  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
 
   if(action)
     {
