@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>customquery</class>
- <widget class="QMainWindow" name="customquery" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="customquery">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,42 +10,42 @@
     <height>500</height>
    </rect>
   </property>
-  <property name="minimumSize" >
+  <property name="minimumSize">
    <size>
     <width>500</width>
     <height>500</height>
    </size>
   </property>
-  <property name="font" >
+  <property name="font">
    <font>
     <family>Times</family>
     <pointsize>10</pointsize>
    </font>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>BiblioteQ: Custom Query</string>
   </property>
-  <property name="windowIcon" >
+  <property name="windowIcon">
    <iconset>
     <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout">
     <item>
-     <widget class="QFrame" name="frame" >
-      <property name="frameShape" >
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="frameShadow" >
+      <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</string>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</string>
          </property>
-         <property name="wordWrap" >
+         <property name="wordWrap">
           <bool>true</bool>
          </property>
         </widget>
@@ -53,59 +54,59 @@
      </widget>
     </item>
     <item>
-     <widget class="QSplitter" name="splitter" >
-      <property name="orientation" >
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <property name="childrenCollapsible" >
+      <property name="childrenCollapsible">
        <bool>false</bool>
       </property>
-      <widget class="QGroupBox" name="tables_gb" >
-       <property name="title" >
+      <widget class="QGroupBox" name="tables_gb">
+       <property name="title">
         <string>Database Tables</string>
        </property>
-       <layout class="QVBoxLayout" >
+       <layout class="QVBoxLayout">
         <item>
-         <widget class="QTreeWidget" name="tables_t" >
-          <property name="alternatingRowColors" >
+         <widget class="QTreeWidget" name="tables_t">
+          <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
-          <property name="selectionMode" >
+          <property name="selectionMode">
            <enum>QAbstractItemView::NoSelection</enum>
           </property>
-          <property name="uniformRowHeights" >
+          <property name="uniformRowHeights">
            <bool>true</bool>
           </property>
-          <property name="animated" >
+          <property name="animated">
            <bool>true</bool>
           </property>
-          <property name="columnCount" >
+          <property name="columnCount">
            <number>0</number>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QGroupBox" name="query_gb" >
-       <property name="title" >
+      <widget class="QGroupBox" name="query_gb">
+       <property name="title">
         <string>Query Statement</string>
        </property>
-       <layout class="QVBoxLayout" >
+       <layout class="QVBoxLayout">
         <item>
-         <widget class="QTextEdit" name="query_te" />
+         <widget class="QTextEdit" name="query_te"/>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" >
+     <layout class="QHBoxLayout">
       <item>
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
           <height>20</height>
@@ -114,46 +115,46 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="execute_pb" >
-        <property name="minimumSize" >
+       <widget class="QPushButton" name="execute_pb">
+        <property name="minimumSize">
          <size>
           <width>105</width>
           <height>0</height>
          </size>
         </property>
-        <property name="font" >
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>Execute</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="close_pb" >
-        <property name="minimumSize" >
+       <widget class="QPushButton" name="close_pb">
+        <property name="minimumSize">
          <size>
           <width>105</width>
           <height>0</height>
          </size>
         </property>
-        <property name="font" >
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>Close</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
         </property>
@@ -161,10 +162,10 @@
       </item>
       <item>
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>40</width>
           <height>20</height>
@@ -176,7 +177,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
