@@ -26,6 +26,15 @@
 */
 
 /*
+** -- C Includes --
+*/
+
+extern "C"
+{
+#include <math.h>
+}
+
+/*
 ** -- Qt Includes --
 */
 
@@ -145,6 +154,12 @@ void qtbook::cleanup(void)
   if(qapp != 0 && qmain != 0 && qmain->isVisible())
     qapp->setOverrideCursor(Qt::WaitCursor);
 
+  if(populateQuery)
+    {
+      delete populateQuery;
+      populateQuery = 0;
+    }
+
   if(db.isOpen())
     db.close();
 
@@ -187,6 +202,7 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu3 = 0;
   QMenu *menu4 = 0;
 
+  populateQuery = 0;
   previousTypeFilter = "";
 
   if((branch_diag = new(std::nothrow) QDialog(this)) == 0)
@@ -424,6 +440,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowMenu(void)));
   connect(ui.printTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotPrintSelected(void)));
+  connect(ui.previousPageButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotPreviousPage(void)));
+  connect(ui.nextPageButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotNextPage(void)));
   connect(cq.close_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCustomQueryDialog(void)));
   connect(cq.execute_pb, SIGNAL(clicked(void)), this,
@@ -455,6 +475,8 @@ qtbook::qtbook(void):QMainWindow()
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
   al.resetButton->setMenu(menu4);
+  ui.previousPageButton->setEnabled(false);
+  ui.nextPageButton->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
@@ -489,8 +511,20 @@ qtbook::qtbook(void):QMainWindow()
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
-  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.itemSummary),  0);
-  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.table),  1);
+  entriesPerPageAG = new QActionGroup(this);
+
+  for(int i = 1; i <= 4; i++)
+    {
+      QAction *action = entriesPerPageAG->addAction
+	(QString(tr("&%1")).arg(25 * i));
+
+      action->setCheckable(true);
+
+      if(i == 1)
+	action->setChecked(true);
+
+      ui.menuEntriesPerPage->addAction(action);
+    }
 
   QRegExp rx1("\\w+");
   QValidator *validator1 = 0;
@@ -1384,7 +1418,7 @@ void qtbook::slotRefresh(void)
 */
 
 int qtbook::populateTable(const int search_type, const QString &typefilter,
-			  const QString &searchstrArg)
+			  const QString &searchstrArg, const int pagingType)
 {
   int i = -1;
   int j = 0;
@@ -1393,12 +1427,15 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   QString type = "";
   QString itemType = "";
   QString searchstr = "";
-  QSqlQuery query(db);
   QStringList types;
   QStringList tmplist;
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
 
+  if(pagingType != -1)
+    goto populate_label;
+
+  ui.previousPageButton->setEnabled(false);
   prepareRequestToolbutton(typefilter);
 
   /*
@@ -3685,8 +3722,9 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
+  populateQuery->clear();
 
-  if(!query.exec(searchstr))
+  if(!populateQuery->exec(searchstr))
     {
       qapp->restoreOverrideCursor();
 
@@ -3697,142 +3735,165 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the data required for "
 			  "populating the main table.")),
-	       query.lastError().text(), __FILE__, __LINE__);
+	       populateQuery->lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
 			       "populating the main table."));
       return 1;
     }
   else
+    ui.currentPageSpinBox->setValue(1);
+
+  qapp->restoreOverrideCursor();
+
+  if(ui.typefilter->findText(typefilter) > -1)
+    previousTypeFilter = typefilter;
+
+  if(typefilter.isEmpty())
+    ui.typefilter->setCurrentIndex(0);
+  else if(ui.typefilter->findText(typefilter) > -1)
+    ui.typefilter->setCurrentIndex(ui.typefilter->findText(typefilter));
+  else
+    ui.typefilter->setCurrentIndex(0);
+
+  if(search_type == POPULATE_SEARCH && all_diag->isVisible())
+    all_diag->close();
+
+  if(search_type != CUSTOM_QUERY)
     {
-      qapp->restoreOverrideCursor();
+      ui.table->resetTable(typefilter, roles);
+      addConfigOptions(typefilter);
+    }
+  else
+    ui.table->resetTable("", roles);
 
-      if(ui.typefilter->findText(typefilter) > -1)
-	previousTypeFilter = typefilter;
+ populate_label:
 
-      if(typefilter.isEmpty())
-	ui.typefilter->setCurrentIndex(0);
-      else if(ui.typefilter->findText(typefilter) > -1)
-	ui.typefilter->setCurrentIndex(ui.typefilter->findText(typefilter));
+  if(pagingType == 1)
+    ui.currentPageSpinBox->setValue(ui.currentPageSpinBox->value() - 1);
+  else if(pagingType == 2)
+    ui.currentPageSpinBox->setValue(ui.currentPageSpinBox->value() + 1);
+
+  if(selectedBranch["database_type"] != "sqlite")
+    ui.table->setRowCount(qMin(25, populateQuery->size()));
+
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Populating the table..."));
+  progress.setMaximum(25);
+  progress.show();
+  progress.update();
+
+  if(pagingType == 1)
+    {
+      if(ui.currentPageSpinBox->value() > 1)
+	populateQuery->seek((ui.currentPageSpinBox->value() - 1) * 25);
       else
-	ui.typefilter->setCurrentIndex(0);
+	populateQuery->seek(-1);
+    }
 
-      if(search_type == POPULATE_SEARCH && all_diag->isVisible())
-	all_diag->close();
+  i = -1;
 
-      if(search_type != CUSTOM_QUERY)
-	{
-	  ui.table->resetTable(typefilter, roles);
-	  addConfigOptions(typefilter);
-	}
-      else
-	ui.table->resetTable("", roles);
+  while(i++, !progress.wasCanceled() && populateQuery->next() && i < 25)
+    {
+      if(populateQuery->isValid())
+	for(j = 0; j < populateQuery->record().count(); j++)
+	  {
+	    str = populateQuery->value(j).toString();
 
-      if(selectedBranch["database_type"] != "sqlite")
-	ui.table->setRowCount(query.size());
-
-      progress.setModal(true);
-      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-      progress.setLabelText(tr("Populating the table..."));
-
-      if(selectedBranch["database_type"] == "sqlite")
-	progress.setMaximum
-	  (misc_functions::sqliteQuerySize(searchstr, getDB(),
-					   __FILE__, __LINE__));
-      else
-	progress.setMaximum(query.size());
-
-      progress.show();
-      progress.update();
-      i = -1;
-
-      while(i++, !progress.wasCanceled() && query.next())
-	{
-	  if(query.isValid())
-	    for(j = 0; j < query.record().count(); j++)
-	      {
-		str = query.value(j).toString();
-
-		if(search_type == CUSTOM_QUERY)
-		  if(!tmplist.contains(query.record().fieldName(j)))
-		    {
-		      tmplist.append(query.record().fieldName(j));
-		      ui.table->setColumnCount(tmplist.size());
-		    }
-
-		if(query.record().fieldName(j) == "issue" ||
-		   query.record().fieldName(j) == "price" ||
-		   query.record().fieldName(j) == "volume" ||
-		   query.record().fieldName(j) == "quantity" ||
-		   query.record().fieldName(j) == "issueno" ||
-		   query.record().fieldName(j) == "issuevolume" ||
-		   query.record().fieldName(j) == "cddiskcount" ||
-		   query.record().fieldName(j) == "dvddiskcount" ||
-		   query.record().fieldName(j) == "availability")
-		  item = new(std::nothrow) numeric_table_item(str.toDouble());
-		else
-		  item = new(std::nothrow) QTableWidgetItem();
-
-		if(item != 0)
-		  {
-		    item->setText(str);
-		    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-		    if(selectedBranch["database_type"] == "sqlite")
-		      ui.table->setRowCount(i + 1);
-
-		    ui.table->setItem(i, j, item);
-
-		    if(query.record().fieldName(j) == "type")
-		      {
-			itemType = str;
-			itemType = itemType.toLower().remove(" ");
-		      }
-
-		    if(query.record().fieldName(j) == "myoid")
-		      updateRows(str, i, itemType);
-		  }
-		else
-		  addError(QString(tr("Memory Error")),
-			   QString(tr("Unable to allocate "
-				      "memory for the \"item\" "
-				      "object. "
-				      "This is a serious "
-				      "problem!")), QString(""),
-			   __FILE__, __LINE__);
-	      }
-
-	  progress.setValue(i + 1);
-	  progress.update();
-	  qapp->processEvents();
-	}
-
-      if(search_type == CUSTOM_QUERY)
-	{
-	  if(tmplist.isEmpty())
-	    for(int ii = 0; ii < query.record().count(); ii++)
-	      if(!tmplist.contains(query.record().fieldName(ii)))
+	    if(search_type == CUSTOM_QUERY)
+	      if(!tmplist.contains(populateQuery->record().fieldName(j)))
 		{
-		  tmplist.append(query.record().fieldName(ii));
+		  tmplist.append(populateQuery->record().fieldName(j));
 		  ui.table->setColumnCount(tmplist.size());
 		}
 
-	  ui.table->setColumnCount(tmplist.size());
-	  ui.table->setHorizontalHeaderLabels(tmplist);
-	  tmplist.clear();
-	  addConfigOptions(tr("Custom"));
-	}
+	    if(populateQuery->record().fieldName(j) == "issue" ||
+	       populateQuery->record().fieldName(j) == "price" ||
+	       populateQuery->record().fieldName(j) == "volume" ||
+	       populateQuery->record().fieldName(j) == "quantity" ||
+	       populateQuery->record().fieldName(j) == "issueno" ||
+	       populateQuery->record().fieldName(j) == "issuevolume" ||
+	       populateQuery->record().fieldName(j) == "cddiskcount" ||
+	       populateQuery->record().fieldName(j) == "dvddiskcount" ||
+	       populateQuery->record().fieldName(j) == "availability")
+	      item = new(std::nothrow) numeric_table_item(str.toDouble());
+	    else
+	      item = new(std::nothrow) QTableWidgetItem();
 
-      query.clear();
-      ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-      ui.table->setRowCount(i);
-      slotDisplaySummary();
+	    if(item != 0)
+	      {
+		item->setText(str);
+		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
-      if(ui.actionAutoResizeColumns->isChecked())
-	slotResizeColumns();
+		if(selectedBranch["database_type"] == "sqlite")
+		  ui.table->setRowCount(i + 1);
 
-      return 0;
+		ui.table->setItem(i, j, item);
+
+		if(populateQuery->record().fieldName(j) == "type")
+		  {
+		    itemType = str;
+		    itemType = itemType.toLower().remove(" ");
+		  }
+
+		if(populateQuery->record().fieldName(j) == "myoid")
+		  updateRows(str, i, itemType);
+	      }
+	    else
+	      addError(QString(tr("Memory Error")),
+		       QString(tr("Unable to allocate "
+				  "memory for the \"item\" "
+				  "object. "
+				  "This is a serious "
+				  "problem!")), QString(""),
+		       __FILE__, __LINE__);
+	  }
+
+      progress.setValue(i + 1);
+      progress.update();
+      qapp->processEvents();
     }
+
+  if(search_type == CUSTOM_QUERY)
+    {
+      if(tmplist.isEmpty())
+	for(int ii = 0; ii < populateQuery->record().count(); ii++)
+	  if(!tmplist.contains(populateQuery->record().fieldName(ii)))
+	    {
+	      tmplist.append(populateQuery->record().fieldName(ii));
+	      ui.table->setColumnCount(tmplist.size());
+	    }
+
+      ui.table->setColumnCount(tmplist.size());
+      ui.table->setHorizontalHeaderLabels(tmplist);
+      tmplist.clear();
+      addConfigOptions(tr("Custom"));
+    }
+
+  ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  ui.table->setRowCount(i);
+  slotDisplaySummary();
+
+  if(ui.actionAutoResizeColumns->isChecked())
+    slotResizeColumns();
+
+  ui.previousPageButton->setEnabled(ui.currentPageSpinBox->value() > 1);
+
+  int pages = 1;
+
+  if(selectedBranch["database_type"] == "sqlite")
+    pages = ceil(misc_functions::sqliteQuerySize(searchstr, getDB(),
+						 __FILE__, __LINE__) / 25.0);
+  else
+    pages = ceil(populateQuery->size() / 25.0);
+
+  if(!pages)
+    pages = 1;
+
+  ui.nextPageButton->setEnabled(ui.currentPageSpinBox->value() < pages);
+  ui.currentPageSpinBox->setMaximum(pages);
+  return 0;
 }
 
 /*
@@ -5417,6 +5478,7 @@ void qtbook::slotConnectDB(void)
   else
     branch_diag->close();
 
+  populateQuery = new QSqlQuery(db);
   selectedBranch = branches[br.branch_name->currentText()];
 
   if(connected_bar_label != 0)
@@ -5546,6 +5608,10 @@ void qtbook::slotDisconnect(void)
   admin_diag->close();
   resetAdminBrowser();
   resetMembersBrowser();
+  ui.currentPageSpinBox->setValue(1);
+  ui.currentPageSpinBox->setMaximum(1);
+  ui.previousPageButton->setEnabled(false);
+  ui.nextPageButton->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
@@ -5614,6 +5680,9 @@ void qtbook::slotDisconnect(void)
 
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
+
+  delete populateQuery;
+  populateQuery = 0;
 }
 
 /*
@@ -9108,4 +9177,24 @@ void qtbook::createSqliteMenuActions(void)
 
   dups.clear();
   allKeys.clear();
+}
+
+/*
+** -- slotPreviousPage() --
+*/
+
+void qtbook::slotPreviousPage(void)
+{
+  if(db.isOpen())
+    (void) populateTable(POPULATE_ALL, "", "", 1);
+}
+
+/*
+** -- slotNextPage() --
+*/
+
+void qtbook::slotNextPage(void)
+{
+  if(db.isOpen())
+    (void) populateTable(POPULATE_ALL, "", "", 2);
 }

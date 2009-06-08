@@ -145,7 +145,8 @@ class qtbook: public QMainWindow
 
   qtbook(void);
   ~qtbook();
-  int populateTable(const int, const QString &, const QString &);
+  int populateTable(const int, const QString &, const QString &,
+		    const int = -1);
   void addError(const QString &, const QString &, const QString & = "",
 		const char * = "", const int = 0);
   void removeCD(qtbook_cd *);
@@ -194,7 +195,9 @@ class qtbook: public QMainWindow
   QString roles;
   QString engUserinfoTitle;
   QString previousTypeFilter;
+  QSqlQuery *populateQuery;
   QStringList deletedAdmins;
+  QActionGroup *entriesPerPageAG;
   QHash<QString, QString> LOCHash;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
@@ -275,6 +278,7 @@ class qtbook: public QMainWindow
   void slotCheckout(void);
   void slotCDSearch(void);
   void slotInsertCD(void);
+  void slotNextPage(void);
   void slotSaveUser(void);
   void slotSetFonts(void);
   void slotShowGrid(void);
@@ -300,6 +304,7 @@ class qtbook: public QMainWindow
   void slotShowColumns(void);
   void slotShowHistory(void);
   void slotInsertJourn(void);
+  void slotPreviousPage(void);
   void slotRemoveMember(void);
   void slotSavePassword(void);
   void slotCancelAddUser(void);
