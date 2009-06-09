@@ -518,6 +518,7 @@ qtbook::qtbook(void):QMainWindow()
       QAction *action = entriesPerPageAG->addAction
 	(QString(tr("&%1")).arg(25 * i));
 
+      action->setData(25 * i);
       action->setCheckable(true);
 
       if(i == 1)
@@ -3742,7 +3743,7 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
       return 1;
     }
   else
-    ui.currentPageSpinBox->setValue(1);
+    currentPage = 1;
 
   qapp->restoreOverrideCursor();
 
@@ -3770,31 +3771,41 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
  populate_label:
 
   if(pagingType == 1)
-    ui.currentPageSpinBox->setValue(ui.currentPageSpinBox->value() - 1);
+    currentPage -= 1;
   else if(pagingType == 2)
-    ui.currentPageSpinBox->setValue(ui.currentPageSpinBox->value() + 1);
+    currentPage += 1;
+
+  int entriesPerPage = 25;
+
+  for(i = 0; i < entriesPerPageAG->actions().size(); i++)
+    if(entriesPerPageAG->actions()[i]->isChecked())
+      {
+	entriesPerPage = entriesPerPageAG->actions()[i]->data().toInt();
+	break;
+      }
 
   if(selectedBranch["database_type"] != "sqlite")
-    ui.table->setRowCount(qMin(25, populateQuery->size()));
+    ui.table->setRowCount(qMin(entriesPerPage, populateQuery->size()));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
-  progress.setMaximum(25);
+  progress.setMaximum(entriesPerPage);
   progress.show();
   progress.update();
 
   if(pagingType == 1)
     {
-      if(ui.currentPageSpinBox->value() > 1)
-	populateQuery->seek((ui.currentPageSpinBox->value() - 1) * 25);
+      if(currentPage > 1)
+	populateQuery->seek((currentPage - 1) * entriesPerPage);
       else
 	populateQuery->seek(-1);
     }
 
   i = -1;
 
-  while(i++, !progress.wasCanceled() && populateQuery->next() && i < 25)
+  while(i++, !progress.wasCanceled() && populateQuery->next() &&
+	i < entriesPerPage)
     {
       if(populateQuery->isValid())
 	for(j = 0; j < populateQuery->record().count(); j++)
@@ -3878,21 +3889,21 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   if(ui.actionAutoResizeColumns->isChecked())
     slotResizeColumns();
 
-  ui.previousPageButton->setEnabled(ui.currentPageSpinBox->value() > 1);
+  ui.previousPageButton->setEnabled(currentPage > 1);
 
   int pages = 1;
 
   if(selectedBranch["database_type"] == "sqlite")
-    pages = ceil(misc_functions::sqliteQuerySize(searchstr, getDB(),
-						 __FILE__, __LINE__) / 25.0);
+    pages = ceil(misc_functions::sqliteQuerySize
+		 (searchstr, getDB(),
+		  __FILE__, __LINE__) / (entriesPerPage * 1.0));
   else
-    pages = ceil(populateQuery->size() / 25.0);
+    pages = ceil(populateQuery->size() / (entriesPerPage * 1.0));
 
   if(!pages)
     pages = 1;
 
-  ui.nextPageButton->setEnabled(ui.currentPageSpinBox->value() < pages);
-  ui.currentPageSpinBox->setMaximum(pages);
+  ui.nextPageButton->setEnabled(currentPage < pages);
   return 0;
 }
 
@@ -5600,6 +5611,7 @@ void qtbook::slotConnectDB(void)
 void qtbook::slotDisconnect(void)
 {
   roles = "";
+  currentPage = 1;
   userinfo_diag->memberProperties.clear();
   all_diag->close();
   members_diag->close();
@@ -5608,8 +5620,6 @@ void qtbook::slotDisconnect(void)
   admin_diag->close();
   resetAdminBrowser();
   resetMembersBrowser();
-  ui.currentPageSpinBox->setValue(1);
-  ui.currentPageSpinBox->setMaximum(1);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);

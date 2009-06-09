@@ -192,6 +192,7 @@ class qtbook: public QMainWindow
   void slotDisplaySummary(void);
 
  private:
+  int currentPage;
   QString roles;
   QString engUserinfoTitle;
   QString previousTypeFilter;
