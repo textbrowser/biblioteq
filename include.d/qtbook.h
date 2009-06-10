@@ -146,7 +146,7 @@ class qtbook: public QMainWindow
   qtbook(void);
   ~qtbook();
   int populateTable(const int, const QString &, const QString &,
-		    const int = -1);
+		    const int = 0);
   void addError(const QString &, const QString &, const QString & = "",
 		const char * = "", const int = 0);
   void removeCD(qtbook_cd *);
@@ -193,6 +193,7 @@ class qtbook: public QMainWindow
 
  private:
   int currentPage;
+  int lastSearchType;
   QString roles;
   QString engUserinfoTitle;
   QString previousTypeFilter;
@@ -305,6 +306,7 @@ class qtbook: public QMainWindow
   void slotShowColumns(void);
   void slotShowHistory(void);
   void slotInsertJourn(void);
+  void slotPageClicked(const QString &);
   void slotPreviousPage(void);
   void slotRemoveMember(void);
   void slotSavePassword(void);

@@ -444,6 +444,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotPreviousPage(void)));
   connect(ui.nextPageButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotNextPage(void)));
+  connect(ui.pagesLabel, SIGNAL(linkActivated(const QString &)),
+	  this, SLOT(slotPageClicked(const QString &)));
   connect(cq.close_pb, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCustomQueryDialog(void)));
   connect(cq.execute_pb, SIGNAL(clicked(void)), this,
@@ -1418,11 +1420,12 @@ void qtbook::slotRefresh(void)
 ** -- populateTable() --
 */
 
-int qtbook::populateTable(const int search_type, const QString &typefilter,
+int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			  const QString &searchstrArg, const int pagingType)
 {
   int i = -1;
   int j = 0;
+  int search_type = search_type_arg;
   QDate now = QDate::currentDate();
   QString str = "";
   QString type = "";
@@ -1433,9 +1436,13 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
 
-  if(pagingType != -1)
-    goto populate_label;
+  if(pagingType != 0)
+    {
+      search_type = lastSearchType;
+      goto populate_label;
+    }
 
+  lastSearchType = search_type;
   ui.previousPageButton->setEnabled(false);
   prepareRequestToolbutton(typefilter);
 
@@ -3774,6 +3781,8 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
     currentPage -= 1;
   else if(pagingType == 2)
     currentPage += 1;
+  else if(pagingType < 0)
+    currentPage = qAbs(pagingType);
 
   int entriesPerPage = 25;
 
@@ -3794,18 +3803,18 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
   progress.show();
   progress.update();
 
-  if(pagingType == 1)
+  if(pagingType == 1 || pagingType < 0)
     {
       if(currentPage > 1)
-	populateQuery->seek((currentPage - 1) * entriesPerPage);
+	populateQuery->seek((currentPage - 1) * entriesPerPage - 1);
       else
 	populateQuery->seek(-1);
     }
 
   i = -1;
 
-  while(i++, !progress.wasCanceled() && populateQuery->next() &&
-	i < entriesPerPage)
+  while(i++,
+	!progress.wasCanceled() && i < entriesPerPage && populateQuery->next())
     {
       if(populateQuery->isValid())
 	for(j = 0; j < populateQuery->record().count(); j++)
@@ -3904,6 +3913,30 @@ int qtbook::populateTable(const int search_type, const QString &typefilter,
     pages = 1;
 
   ui.nextPageButton->setEnabled(currentPage < pages);
+
+  if(pages == 1)
+    ui.pagesLabel->setText("1");
+  else
+    {
+      QString str("");
+
+      for(int ii = 0; ii < pages - 1; ii++)
+	if(ii + 1 == currentPage)
+	  str += QString(tr(" %1 ")).arg(currentPage);
+	else
+	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii + 1);
+
+      str = str.trimmed() + tr(" ... ");
+
+      if(pages == currentPage)
+	str += QString(tr(" %1 ")).arg(currentPage);
+      else
+	str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(pages);
+
+      str = str.trimmed();
+      ui.pagesLabel->setText(str);
+    }
+
   return 0;
 }
 
@@ -4806,6 +4839,17 @@ void qtbook::readConfig(void)
 		    "list_on_display").toBool());
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_admin_list_on_display").toBool());
+
+  for(int i = 0; i < entriesPerPageAG->actions().size(); i++)
+    if(entriesPerPageAG->actions()[i]->data().toInt() == 25)
+      entriesPerPageAG->actions()[i]->setChecked(true);
+    else if(entriesPerPageAG->actions()[i]->data().toInt() ==
+	    settings.value("entries_per_page").toInt())
+      {
+	entriesPerPageAG->actions()[i]->setChecked(true);
+	break;
+      }
+
   setGlobalFonts(font);
   slotResizeColumns();
   createSqliteMenuActions();
@@ -4980,6 +5024,14 @@ void qtbook::slotSaveConfig(void)
     settings.setValue("main_window_geometry", geometry());
   else
     settings.remove("main_window_geometry");
+
+  for(int i = 0; i < entriesPerPageAG->actions().size(); i++)
+    if(entriesPerPageAG->actions()[i]->isChecked())
+      {
+	settings.setValue("entries_per_page",
+			  entriesPerPageAG->actions()[i]->data().toInt());
+	break;
+      }
 }
 
 /*
@@ -5620,6 +5672,7 @@ void qtbook::slotDisconnect(void)
   admin_diag->close();
   resetAdminBrowser();
   resetMembersBrowser();
+  ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
   ui.actionReservationHistory->setEnabled(false);
@@ -9196,7 +9249,7 @@ void qtbook::createSqliteMenuActions(void)
 void qtbook::slotPreviousPage(void)
 {
   if(db.isOpen())
-    (void) populateTable(POPULATE_ALL, "", "", 1);
+    (void) populateTable(lastSearchType, "", "", 1);
 }
 
 /*
@@ -9206,5 +9259,15 @@ void qtbook::slotPreviousPage(void)
 void qtbook::slotNextPage(void)
 {
   if(db.isOpen())
-    (void) populateTable(POPULATE_ALL, "", "", 2);
+    (void) populateTable(lastSearchType, "", "", 2);
+}
+
+/*
+** -- slotPageClicked() --
+*/
+
+void qtbook::slotPageClicked(const QString &link)
+{
+  if(db.isOpen())
+    (void) populateTable(lastSearchType, "", "", -link.toInt());
 }
