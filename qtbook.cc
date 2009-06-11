@@ -1438,6 +1438,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   if(pagingType != 0)
     {
+      searchstr = lastSearchStr;
       search_type = lastSearchType;
       goto populate_label;
     }
@@ -3774,6 +3775,8 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
   else
     ui.table->resetTable("", roles);
+
+  lastSearchStr = searchstr;
 
  populate_label:
 
@@ -9249,7 +9252,7 @@ void qtbook::createSqliteMenuActions(void)
 void qtbook::slotPreviousPage(void)
 {
   if(db.isOpen())
-    (void) populateTable(lastSearchType, "", "", 1);
+    (void) populateTable(lastSearchType, "", lastSearchStr, 1);
 }
 
 /*
@@ -9259,7 +9262,7 @@ void qtbook::slotPreviousPage(void)
 void qtbook::slotNextPage(void)
 {
   if(db.isOpen())
-    (void) populateTable(lastSearchType, "", "", 2);
+    (void) populateTable(lastSearchType, "", lastSearchStr, 2);
 }
 
 /*
@@ -9269,5 +9272,5 @@ void qtbook::slotNextPage(void)
 void qtbook::slotPageClicked(const QString &link)
 {
   if(db.isOpen())
-    (void) populateTable(lastSearchType, "", "", -link.toInt());
+    (void) populateTable(lastSearchType, "", lastSearchStr, -link.toInt());
 }

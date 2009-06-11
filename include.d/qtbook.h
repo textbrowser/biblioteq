@@ -195,6 +195,7 @@ class qtbook: public QMainWindow
   int currentPage;
   int lastSearchType;
   QString roles;
+  QString lastSearchStr;
   QString engUserinfoTitle;
   QString previousTypeFilter;
   QSqlQuery *populateQuery;
