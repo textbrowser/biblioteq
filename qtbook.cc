@@ -3907,11 +3907,17 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int pages = 1;
 
   if(selectedBranch["database_type"] == "sqlite")
-    pages = ceil(misc_functions::sqliteQuerySize
-		 (searchstr, getDB(),
-		  __FILE__, __LINE__) / (entriesPerPage * 1.0));
+    pages = static_cast<int> 
+      (ceil
+       ((static_cast<double> (misc_functions::sqliteQuerySize
+			      (searchstr, getDB(),
+			       __FILE__, __LINE__))) /
+	(static_cast<double> (entriesPerPage))));
   else
-    pages = ceil(populateQuery->size() / (entriesPerPage * 1.0));
+    pages = static_cast<int> 
+      (ceil
+       ((static_cast<double> (populateQuery->size())) /
+	(static_cast<double> (entriesPerPage))));
 
   if(!pages)
     pages = 1;
