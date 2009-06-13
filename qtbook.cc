@@ -3798,6 +3798,11 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   if(selectedBranch["database_type"] != "sqlite")
     ui.table->setRowCount(qMin(entriesPerPage, populateQuery->size()));
+  else
+    ui.table->setRowCount
+      (qMin(entriesPerPage, misc_functions::sqliteQuerySize(searchstr, getDB(),
+							    __FILE__,
+							    __LINE__)));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -3848,10 +3853,6 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      {
 		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-		if(selectedBranch["database_type"] == "sqlite")
-		  ui.table->setRowCount(i + 1);
-
 		ui.table->setItem(i, j, item);
 
 		if(populateQuery->record().fieldName(j) == "type")
@@ -3919,22 +3920,43 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   if(pages == 1)
     ui.pagesLabel->setText("1");
-  else
+  else if(pages >= 2 && pages <= 10)
     {
       QString str("");
 
-      for(int ii = 0; ii < pages - 1; ii++)
-	if(ii + 1 == currentPage)
+      for(int ii = 1; ii <= pages; ii++)
+	if(ii == currentPage)
 	  str += QString(tr(" %1 ")).arg(currentPage);
 	else
-	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii + 1);
+	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
 
-      str = str.trimmed() + tr(" ... ");
+      str = str.trimmed();
+      ui.pagesLabel->setText(str);
+    }
+  else
+    {
+      int start = 2;
+      QString str("");
 
-      if(pages == currentPage)
-	str += QString(tr(" %1 ")).arg(currentPage);
+      if(currentPage == 1)
+	str += tr(" 1 ... ");
       else
-	str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(pages);
+	str += " <a href=\"1\">" + tr("1") + "</a>" + tr(" ... ");
+
+      if(currentPage != 1)
+	while(!(start <= currentPage && currentPage <= start + 6))
+	  start += 7;
+
+      for(int ii = start; ii <= start + 6; ii++)
+	if(ii == currentPage && ii <= pages - 1)
+	  str += QString(tr(" %1 ")).arg(ii);
+	else if(ii <= pages - 1)
+	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
+
+      if(currentPage == pages)
+	str += QString(tr(" ... %1 ")).arg(currentPage);
+      else
+	str += QString(" ... <a href=\"%1\">" + tr("%1") + "</a> ").arg(pages);
 
       str = str.trimmed();
       ui.pagesLabel->setText(str);
@@ -5924,6 +5946,9 @@ void qtbook::slotPopulateMembersBrowser(void)
 
   if(selectedBranch["database_type"] != "sqlite")
     bb.table->setRowCount(query.size());
+  else
+    bb.table->setRowCount
+      (misc_functions::sqliteQuerySize(str, getDB(), __FILE__, __LINE__));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -5953,10 +5978,6 @@ void qtbook::slotPopulateMembersBrowser(void)
 	      {
 		item->setText(str);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-
-		if(selectedBranch["database_type"] == "sqlite")
-		  bb.table->setRowCount(i + 1);
-
 		bb.table->setItem(i, j, item);
 	      }
 	    else
@@ -8106,6 +8127,10 @@ void qtbook::slotShowHistory(void)
 
   if(selectedBranch["database_type"] != "sqlite")
     history.table->setRowCount(query.size());
+  else
+    history.table->setRowCount
+      (misc_functions::sqliteQuerySize(querystr, getDB(),
+				       __FILE__, __LINE__));
 
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
@@ -8134,10 +8159,6 @@ void qtbook::slotShowHistory(void)
 	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
 		item->setText(str);
-
-		if(selectedBranch["database_type"] == "sqlite")
-		  history.table->setRowCount(i + 1);
-
 		history.table->setItem(i, j, item);
 	      }
 	    else
