@@ -6281,7 +6281,7 @@ void qtbook::slotCheckout(void)
 	{
 	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
 				tr("It appears that the item you selected "
-				   "is no longer available for reservation."));
+				   "is not available for reservation."));
 	  return;
 	}
     }
@@ -6782,7 +6782,7 @@ void qtbook::replaceVideoGame(const QString &id,
 void qtbook::updateItemWindows(void)
 {
   /*
-  ** This method is no longer needed.
+  ** This method is not used.
   */
 
   QHash<QString, qtbook_cd *>::const_iterator cdit;
@@ -7583,11 +7583,11 @@ void qtbook::slotReserveCopy(void)
       if(members_diag->isVisible())
 	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
 			      tr("It appears that the item you selected "
-				 "is no longer available for reservation."));
+				 "is not available for reservation."));
       else
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			      tr("It appears that the item you selected "
-				 "is no longer available for reservation."));
+				 "is not available for reservation."));
 
       return;
     }
