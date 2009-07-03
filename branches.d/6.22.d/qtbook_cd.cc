@@ -409,7 +409,7 @@ void qtbook_cd::slotGo(void)
       query.bindValue(6, cd.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(7, cd.recording_label->toPlainText());
       query.bindValue(8, cd.category->toPlainText());
-      query.bindValue(9, cd.price->text());
+      query.bindValue(9, cd.price->value());
       query.bindValue(10, cd.language->currentText().trimmed());
       query.bindValue(11, cd.monetary_units->currentText().trimmed());
       query.bindValue(12, cd.description->toPlainText());
@@ -805,7 +805,7 @@ void qtbook_cd::slotGo(void)
       if(cd.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
-	  searchstr.append(cd.price->text());
+	  searchstr.append(QString::number(cd.price->value()));
 	  searchstr.append(" AND ");
 	}
 

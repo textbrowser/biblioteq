@@ -358,7 +358,7 @@ void qtbook_videogame::slotGo(void)
       query.bindValue(4, vg.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(5, vg.publisher->toPlainText().trimmed());
       query.bindValue(6, vg.genre->toPlainText().trimmed());
-      query.bindValue(7, vg.price->text());
+      query.bindValue(7, vg.price->value());
       query.bindValue(8, vg.description->toPlainText().trimmed());
       query.bindValue(9, vg.language->currentText().trimmed());
       query.bindValue(10, vg.monetary_units->currentText().trimmed());
@@ -736,7 +736,7 @@ void qtbook_videogame::slotGo(void)
       if(vg.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
-	  searchstr.append(vg.price->text());
+	  searchstr.append(QString::number(vg.price->value()));
 	  searchstr.append(" AND ");
 	}
 

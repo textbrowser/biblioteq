@@ -808,7 +808,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.22.3.<br>"
+  mb.setText("<html>BiblioteQ Version 6.22.4.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -3519,7 +3519,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 		if(al.price->value() > -0.01)
 		  {
 		    str.append("price = ");
-		    str.append(al.price->text());
+		    str.append(QString::number(al.price->value()));
 		    str.append(" AND ");
 		  }
 

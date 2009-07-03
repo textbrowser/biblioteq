@@ -367,7 +367,6 @@
        </item>
       </layout>
       <zorder>table</zorder>
-      <zorder></zorder>
      </widget>
     </item>
    </layout>

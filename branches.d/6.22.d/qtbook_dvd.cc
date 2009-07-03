@@ -433,7 +433,7 @@ void qtbook_dvd::slotGo(void)
       query.bindValue(10, dvd.release_date->date().toString("MM/dd/yyyy"));
       query.bindValue(11, dvd.studio->toPlainText());
       query.bindValue(12, dvd.category->toPlainText());
-      query.bindValue(13, dvd.price->text());
+      query.bindValue(13, dvd.price->value());
       query.bindValue(14, dvd.language->currentText().trimmed());
       query.bindValue(15, dvd.monetary_units->currentText().trimmed());
       query.bindValue(16, dvd.quantity->text());
@@ -837,7 +837,7 @@ void qtbook_dvd::slotGo(void)
       if(dvd.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
-	  searchstr.append(dvd.price->text());
+	  searchstr.append(QString::number(dvd.price->value()));
 	  searchstr.append(" AND ");
 	}
 
