@@ -362,7 +362,7 @@ void qtbook_magazine::slotGo(void)
       query.bindValue(2, ma.publication_date->date().toString("MM/dd/yyyy"));
       query.bindValue(3, ma.publisher->toPlainText());
       query.bindValue(4, ma.category->toPlainText().trimmed());
-      query.bindValue(5, ma.price->text());
+      query.bindValue(5, ma.price->value());
       query.bindValue(6, ma.description->toPlainText());
       query.bindValue(7, ma.language->currentText().trimmed());
       query.bindValue(8, ma.monetary_units->currentText().trimmed());
@@ -828,7 +828,7 @@ void qtbook_magazine::slotGo(void)
       if(ma.price->value() > -0.01)
 	{
 	  searchstr.append("price = ");
-	  searchstr.append(ma.price->text());
+	  searchstr.append(QString::number(ma.price->value()));
 	  searchstr.append(" AND ");
 	}
 
