@@ -3796,18 +3796,27 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	break;
       }
 
-  if(selectedBranch["database_type"] != "sqlite")
-    ui.table->setRowCount(qMin(entriesPerPage, populateQuery->size()));
-  else
-    ui.table->setRowCount
-      (qMin(entriesPerPage, misc_functions::sqliteQuerySize(searchstr, getDB(),
-							    __FILE__,
-							    __LINE__)));
+  int rowCount = 0;
+  int querySize = 0;
 
+  if(selectedBranch["database_type"] != "sqlite")
+    querySize = populateQuery->size();
+  else
+    querySize = misc_functions::sqliteQuerySize(searchstr, getDB(),
+						__FILE__,
+						__LINE__);
+
+  if(currentPage > 1)
+    rowCount = qMin(querySize - (currentPage - 1) * entriesPerPage,
+		    entriesPerPage);
+  else
+    rowCount = qMin(querySize, entriesPerPage);
+
+  ui.table->setRowCount(rowCount);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
-  progress.setMaximum(entriesPerPage);
+  progress.setMaximum(rowCount);
   progress.show();
   progress.update();
 

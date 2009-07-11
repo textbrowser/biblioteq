@@ -3807,7 +3807,8 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 						__LINE__);
 
   if(currentPage > 1)
-    rowCount = querySize - currentPage * entriesPerPage;
+    rowCount = qMin(querySize - (currentPage - 1) * entriesPerPage,
+		    entriesPerPage);
   else
     rowCount = qMin(querySize, entriesPerPage);
 
