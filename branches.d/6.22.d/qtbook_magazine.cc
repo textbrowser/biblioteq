@@ -612,7 +612,9 @@ void qtbook_magazine::slotGo(void)
 		  qmain->getUI().typefilter->currentText() ==
 		  tr("Magazines")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID"))
+							row, "MYOID")  &&
+		 misc_functions::getColumnString(qmain->getUI().table,
+						 row, tr("Type")) == subType)
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {

@@ -460,7 +460,7 @@ SELECT	 item_oid,
 	 type
 FROM	 item_borrower;
 
-/* RELEASE 6.19 */
+/* Release 6.19 */
 
 ALTER TABLE book ADD place TEXT NOT NULL DEFAULT 'N/A';
 ALTER TABLE journal ADD place TEXT NOT NULL DEFAULT 'N/A';

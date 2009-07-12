@@ -658,7 +658,9 @@ void qtbook_book::slotGo(void)
 		  tr("All Reserved") ||
 		  qmain->getUI().typefilter->currentText() == tr("Books")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID"))
+							row, "MYOID")  &&
+		 misc_functions::getColumnString(qmain->getUI().table,
+						 row, tr("Type")) == "Book")
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {

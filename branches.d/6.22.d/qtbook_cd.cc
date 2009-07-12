@@ -600,7 +600,9 @@ void qtbook_cd::slotGo(void)
 		  qmain->getUI().typefilter->currentText() ==
 		  tr("Music CDs")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID"))
+							row, "MYOID")  &&
+		 misc_functions::getColumnString(qmain->getUI().table,
+						 row, tr("Type")) == "CD")
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {
