@@ -604,7 +604,9 @@ void qtbook_dvd::slotGo(void)
 		  tr("All Reserved") ||
 		  qmain->getUI().typefilter->currentText() == tr("DVDs")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID"))
+							row, "MYOID") &&
+		 misc_functions::getColumnString(qmain->getUI().table,
+						 row, tr("Type")) == "DVD")
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {

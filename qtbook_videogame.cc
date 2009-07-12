@@ -537,7 +537,10 @@ void qtbook_videogame::slotGo(void)
 		  qmain->getUI().typefilter->currentText() ==
 		  tr("Video Games")) &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID"))
+							row, "MYOID") &&
+		 misc_functions::getColumnString(qmain->getUI().table,
+						 row, tr("Type")) ==
+		 "Video Game")
 		{
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {
