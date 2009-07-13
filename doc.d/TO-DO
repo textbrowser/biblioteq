@@ -348,4 +348,4 @@
      qtbook_videogame.cc (DONE)
 191. Pressing the escape key on a QDialog window will not trigger a 
      close event. As a result, "dirty data" warning may be displayed. (DONE)
-192. Remove OFFSYSTEM support. The project appears abandoned.
+192. Remove OFFSYSTEM support. The project appears abandoned. (DONE)

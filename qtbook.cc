@@ -7835,6 +7835,17 @@ void qtbook::slotPrintSelected(void)
 			    tr("Please select at least one item to print."));
       return;
     }
+  else if(list.size() >= 5)
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to print the ") +
+			     QString::number(list.size()) +
+			     tr(" selected items?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	list.clear();
+	return;
+      }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
