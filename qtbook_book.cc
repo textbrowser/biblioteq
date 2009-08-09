@@ -1686,7 +1686,7 @@ void qtbook_book::slotQuery(void)
 	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
 
       thread->setType(generic_thread::Z3950_QUERY);
-      thread->setLOCSearchString(searchstr);
+      thread->setZ3950SearchString(searchstr);
       thread->start();
 
       while(thread->isRunning())
@@ -1698,7 +1698,7 @@ void qtbook_book::slotQuery(void)
       working.hide();
 
       if((errorstr = thread->getErrorStr()).isEmpty() &&
-	 !thread->getLOCResults().isEmpty())
+	 !thread->getZ3950Results().isEmpty())
 	{
 	  if(QMessageBox::question
 	     (this, tr("BiblioteQ: Question"),
@@ -1707,7 +1707,7 @@ void qtbook_book::slotQuery(void)
 	      QMessageBox::Yes | QMessageBox::No,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
-	      list = QString(thread->getLOCResults()[0]).split("\n");
+	      list = QString(thread->getZ3950Results()[0]).split("\n");
 	      id.edition->setCurrentIndex(0);
 	      id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
 
@@ -2153,7 +2153,7 @@ void qtbook_book::slotQuery(void)
 		textfield->setCursorPosition(0);
 	    }
 	}
-      else if(errorstr.isEmpty() && thread->getLOCResults().isEmpty())
+      else if(errorstr.isEmpty() && thread->getZ3950Results().isEmpty())
 	QMessageBox::critical
 	  (this, tr("BiblioteQ: Z39.50 Query Error"),
 	   tr("A Z39.50 entry may not yet exist for ") +

@@ -27,10 +27,10 @@ FORMS           = cdinfo.ui \
                   borrowers.ui \
 		  errordiag.ui \
 		  adminsetup.ui \
-		  locresults.ui \
                   mainwindow.ui \
 		  copybrowser.ui \
 		  customquery.ui \
+		  z3950results.ui \
 		  videogameinfo.ui \
 		  members_browser.ui
 
@@ -39,12 +39,12 @@ UI_HEADERS_DIR  = include.d
 HEADERS		= include.d/qtbook.h \
                   include.d/myqstring.h \
 		  include.d/qtbook_cd.h \
-		  include.d/locresults.h \
 		  include.d/main_table.h \
 		  include.d/qtbook_dvd.h \
 		  include.d/copy_editor.h \
 		  include.d/qtbook_book.h \
 		  include.d/qtbook_item.h \
+		  include.d/z3950results.h \
 		  include.d/image_drop_site.h \
 		  include.d/qtbook_magazine.h \
 		  include.d/borrowers_editor.h \
@@ -54,12 +54,12 @@ HEADERS		= include.d/qtbook.h \
 SOURCES		= qtbook.cc \
                   myqstring.cc \
 		  qtbook_cd.cc \
-		  locresults.cc \
 		  main_table.cc \
 		  qtbook_dvd.cc \
 		  copy_editor.cc \
 		  qtbook_book.cc \
 		  qtbook_item.cc \
+		  z3950results.cc \
 		  generic_thread.cc \
 		  misc_functions.cc \
 		  qtbook_journal.cc \

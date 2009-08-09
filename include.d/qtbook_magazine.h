@@ -15,11 +15,11 @@
 */
 
 #include "qtbook.h"
-#include "locresults.h"
 #include "ui_maginfo.h"
 #include "copy_editor.h"
 #include "qtbook_item.h"
 #include "ui_borrowers.h"
+#include "z3950results.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
 #include "borrowers_editor.h"
@@ -41,7 +41,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void modify(const int);
   void search(const QString & = "", const QString & = "");
   void updateWindow(const int);
-  void populateDisplayAfterLOC(const QStringList &);
+  void populateDisplayAfterZ3950(const QStringList &);
 
  protected:
   QString subType;

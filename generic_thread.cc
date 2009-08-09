@@ -14,6 +14,7 @@ generic_thread::generic_thread(void)
   list.clear();
   outputListBool.clear();
   setTerminationEnabled(true);
+  z3950Name = "";
 }
 
 /*
@@ -23,7 +24,7 @@ generic_thread::generic_thread(void)
 generic_thread::~generic_thread()
 {
   list.clear();
-  LOCResults.clear();
+  z3950Results.clear();
   outputListBool.clear();
 }
 
@@ -77,86 +78,42 @@ void generic_thread::run(void)
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = ZOOM_connection_new
 	  (static_cast<const char *>
-	   ((qmain->getLOCHash().value("Address") + ":" +
-	     qmain->getLOCHash().value("Port") + "/" +
-	     qmain->getLOCHash().value("Database")).toStdString().data()),
-	   0);
+	   ((qmain->getZ3950Hashes()[z3950Name].value("Address") + ":" +
+	     qmain->getZ3950Hashes()[z3950Name].value("Port") + "/" +
+	     qmain->getZ3950Hashes()[z3950Name].value("Database")).
+	    toStdString().data()), 0);
 
 	ZOOM_connection_option_set(zoomConnection,
 				   "preferredRecordSyntax", "USMARC");
 	ZOOM_connection_option_set
 	  (zoomConnection,
-	   "user", qmain->getLOCHash().value("user").toStdString().data());
+	   "user",
+	   qmain->getZ3950Hashes()[z3950Name].value("Userid").toStdString().
+	   data());
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "password",
-	   qmain->getLOCHash().value("password").toStdString().data());
+	   qmain->getZ3950Hashes()[z3950Name].value("Password").toStdString().
+	   data());
 	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   static_cast<const char *> (LOCSearchStr.toStdString().data()));
+	   static_cast<const char *> (z3950SearchStr.toStdString().data()));
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
 				     "render", 0)) != 0)
 	  {
 	    i += 1;
-	    LOCResults.append(rec);
+	    z3950Results.append(rec);
 	  }
 
 	ZOOM_resultset_destroy(zoomResultSet);
 	ZOOM_connection_destroy(zoomConnection);
 
-	if(LOCResults.isEmpty())
+	if(z3950Results.isEmpty())
 	  {
 	    eType = tr("Query Error");
 	    errorStr = tr("Query Error");
 	  }
-
-	/*
-	  try
-	  {
-	  ZOOM::connection conn
-	  (qmain->getLOCHash().value("Address").toStdString(),
-	  qmain->getLOCHash().value("Port").toInt());
-	  conn.option
-	  ("databaseName",
-	  qmain->getLOCHash().value("Database").toStdString());
-	  conn.option("preferredRecordSyntax", "USMARC");
-	  ZOOM::resultSet rs
-	  (conn, ZOOM::prefixQuery(LOCSearchStr.toStdString()));
-
-	  for(i = 0; i < rs.size(); i++)
-	  {
-	  ZOOM::record rec(rs, i);
-	  LOCResults.append(rec.render().data());
-	  }
-	  }
-	  catch(ZOOM::systemException &e)
-	  {
-	  eType = tr("System Error");
-	  errorStr = QString::number(e.errcode()) +
-	  QString(" (%1)").arg(e.errmsg().data());
-	  }
-	  catch(ZOOM::bib1Exception &e)
-	  {
-	  eType = tr("BIB-1 Error");
-	  errorStr = QString::number(e.errcode()) +
-	  QString(" (%1): %2").arg(e.errmsg().data()).arg
-	  (e.addinfo().data());
-	  }
-	  catch(ZOOM::queryException &e)
-	  {
-	  eType = tr("Query Error");
-	  errorStr = QString::number(e.errcode()) +
-	  QString(" (%1): %2").arg(e.errmsg().data()).arg
-	  (e.addinfo().data());
-	  }
-	  catch(ZOOM::exception &e)
-	  {
-	  eType = tr("General Error");
-	  errorStr = QString::number(e.errcode()) +
-	  QString(" (%1)").arg(e.errmsg().data());
-	  }
-	*/
 
 	break;
       }
@@ -214,21 +171,21 @@ void generic_thread::setFilename(const QString &filename_arg)
 }
 
 /*
-** -- setLOCSearchString() --
+** -- setZ3950SearchString() --
 */
 
-void generic_thread::setLOCSearchString(const QString &LOCSearchStr_arg)
+void generic_thread::setZ3950SearchString(const QString &z3950SearchStr_arg)
 {
-  LOCSearchStr = LOCSearchStr_arg;
+  z3950SearchStr = z3950SearchStr_arg;
 }
 
 /*
-** -- getLOCResults() --
+** -- getZ3950Results() --
 */
 
-QStringList generic_thread::getLOCResults(void)
+QStringList generic_thread::getZ3950Results(void)
 {
-  return LOCResults;
+  return z3950Results;
 }
 
 /*

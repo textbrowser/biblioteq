@@ -1608,8 +1608,8 @@ void qtbook_magazine::slotQuery(void)
   QString etype = "";
   QString errorstr = "";
   QString searchstr = "";
-  locresults *dialog = 0;
   QStringList list;
+  z3950results *dialog = 0;
   qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
 
   if(ma.id->text().trimmed().length() != 9)
@@ -1635,7 +1635,7 @@ void qtbook_magazine::slotQuery(void)
       working.update();
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::Z3950_QUERY);
-      thread->setLOCSearchString(searchstr);
+      thread->setZ3950SearchString(searchstr);
       thread->start();
 
       while(thread->isRunning())
@@ -1654,7 +1654,7 @@ void qtbook_magazine::slotQuery(void)
 
       if((errorstr = thread->getErrorStr()).isEmpty())
 	{
-	  if(thread->getLOCResults().size() == 1)
+	  if(thread->getZ3950Results().size() == 1)
 	    {
 	      if(QMessageBox::question
 		 (this, tr("BiblioteQ: Question"),
@@ -1663,21 +1663,21 @@ void qtbook_magazine::slotQuery(void)
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
-		  list = QString(thread->getLOCResults()[0]).split("\n");
-		  populateDisplayAfterLOC(list);
+		  list = QString(thread->getZ3950Results()[0]).split("\n");
+		  populateDisplayAfterZ3950(list);
 		  list.clear();
 		}
 	    }
-	  else if(thread->getLOCResults().size() > 1)
+	  else if(thread->getZ3950Results().size() > 1)
 	    {
-	      for(i = 0; i < thread->getLOCResults().size(); i++)
-		list.append(thread->getLOCResults()[i]);
+	      for(i = 0; i < thread->getZ3950Results().size(); i++)
+		list.append(thread->getZ3950Results()[i]);
 
 	      /*
 	      ** Display a selection dialog.
 	      */
 
-	      if((dialog = new(std::nothrow) locresults
+	      if((dialog = new(std::nothrow) z3950results
 		  (static_cast<QWidget *> (this), list,
 		   this, font())) == 0)
 		{
@@ -1765,10 +1765,10 @@ void qtbook_magazine::slotPrint(void)
 }
 
 /*
-** -- populateDisplayAfterLOC() --
+** -- populateDisplayAfterZ3950() --
 */
 
-void qtbook_magazine::populateDisplayAfterLOC(const QStringList &list)
+void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 {
   int i = 0;
   int j = 0;

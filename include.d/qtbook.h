@@ -182,7 +182,7 @@ class qtbook: public QMainWindow
   QSqlDatabase getDB(void);
   Ui_mainWindow getUI(void);
   Ui_membersBrowser getBB(void);
-  QHash<QString, QString> getLOCHash(void);
+  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void);
   QHash<QString, QString> getAmazonHash(void);
   static void quit(void);
   static void quit(const char *, const char *, const int);
@@ -201,7 +201,6 @@ class qtbook: public QMainWindow
   QSqlQuery *populateQuery;
   QStringList deletedAdmins;
   QActionGroup *entriesPerPageAG;
-  QHash<QString, QString> LOCHash;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;
@@ -211,6 +210,7 @@ class qtbook: public QMainWindow
   QHash<QString, qtbook_magazine *> magazines;
   QHash<QString, qtbook_videogame *> video_games;
   QHash<QString, QHash<QString, QString> > branches;
+  QHash<QString, QHash<QString, QString> > z3950Hashes;
   QLabel *error_bar_label;
   QLabel *status_bar_label;
   QLabel *connected_bar_label;

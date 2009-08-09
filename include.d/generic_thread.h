@@ -37,21 +37,22 @@ class generic_thread: public QThread
   void setType(const int);
   void setFilename(const QString &);
   void setOutputList(const QList<bool> &);
-  void setLOCSearchString(const QString &);
+  void setZ3950SearchString(const QString &);
   QString getEType(void);
   QString getErrorStr(void);
   QStringList getList(void);
-  QStringList getLOCResults(void);
+  QStringList getZ3950Results(void);
 
  private:
   int type;
   QString eType;
   QString errorStr;
   QString filename;
-  QString LOCSearchStr;
+  QString z3950Name;
+  QString z3950SearchStr;
   QList<bool> outputListBool;
   QStringList list;
-  QStringList LOCResults;
+  QStringList z3950Results;
 };
 
 #endif

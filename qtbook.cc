@@ -4720,12 +4720,22 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case Z3950_CONFIGURATION:
 		      {
-			if(!LOCHash.contains("Address"))
-			  LOCHash["Address"] = str;
-			else if(!LOCHash.contains("Port"))
-			  LOCHash["Port"] = str;
+			if(!tmphash.contains("Name"))
+			  tmphash["Name"] = str;
+			if(!tmphash.contains("Address"))
+			  tmphash["Address"] = str;
+			else if(!tmphash.contains("Port"))
+			  tmphash["Port"] = str;
+			else if(!tmphash.contains("Database"))
+			  tmphash["Database"] = str;
+			else if(!tmphash.contains("Userid"))
+			  tmphash["Userid"] = str;
 			else
-			  LOCHash["Database"] = str;
+			  {
+			    tmphash["Password"] = str;
+			    z3950Hashes[tmphash["Name"]] = tmphash;
+			    tmphash.clear();
+			  }
 
 			break;
 		      }
@@ -4797,14 +4807,15 @@ void qtbook::readGlobalSetup(void)
       if(br.branch_name->count() == 0)
 	br.branch_name->addItem(tr("UNKNOWN"));
 
-      if(!LOCHash.contains("Address"))
-	LOCHash["Address"] = "z3950.loc.gov";
-
-      if(!LOCHash.contains("Port"))
-	LOCHash["Port"] = "7090";
-
-      if(!LOCHash.contains("Database"))
-	LOCHash["Database"] = "Voyager";
+      if(z3950Hashes.isEmpty())
+	{
+	  tmphash["Name"] = "Library of Congress";
+	  tmphash["Address"] = "z3950.loc.gov";
+	  tmphash["Port"] = "7090";
+	  tmphash["Database"] = "Voyager";
+	  z3950Hashes["Library of Congress"] = tmphash;
+	  tmphash.clear();
+	}
 
       if(statusBar() != 0)
 	statusBar()->clearMessage();
@@ -7616,12 +7627,12 @@ void qtbook::slotReserveCopy(void)
 }
 
 /*
-** -- getLOCHash() --
+** -- getZ3950Hashes() --
 */
 
-QHash<QString, QString> qtbook::getLOCHash(void)
+QHash<QString, QHash<QString, QString> > qtbook::getZ3950Hashes(void)
 {
-  return LOCHash;
+  return z3950Hashes;
 }
 
 /*
