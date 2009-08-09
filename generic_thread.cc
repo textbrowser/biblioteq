@@ -66,6 +66,8 @@ void generic_thread::run(void)
 
 	    if(!str.startsWith("#"))
 	      list.append(str);
+	    else
+	      list.append("");
 	  }
 
 	qf.close();
