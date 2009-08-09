@@ -1685,7 +1685,7 @@ void qtbook_book::slotQuery(void)
       else
 	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
 
-      thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
+      thread->setType(generic_thread::Z3950_QUERY);
       thread->setLOCSearchString(searchstr);
       thread->start();
 

@@ -808,7 +808,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.34.<br>"
+  mb.setText("<html>BiblioteQ Version 6.35.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni."
 	     "<hr>"
@@ -4490,7 +4490,7 @@ void qtbook::readGlobalSetup(void)
 		 VG_LOCATION,
 		 VG_RATING,
 		 VG_PLATFORM,
-		 LIBRARY_OF_CONGRESS_CONFIGURATION,
+		 Z3950_CONFIGURATION,
 		 DVD_LOCATION,
 		 DVD_RATING,
 		 DVD_ASPECT_RATIO,
@@ -4568,7 +4568,7 @@ void qtbook::readGlobalSetup(void)
 	    else if(str == "[Video Game Platform]")
 	      type = VG_PLATFORM;
 	    else if(str == "[Z39.50 Configuration]")
-	      type = LIBRARY_OF_CONGRESS_CONFIGURATION;
+	      type = Z3950_CONFIGURATION;
 	    else if(str == "[DVD Location]")
 	      type = DVD_LOCATION;
 	    else if(str == "[DVD Rating]")
@@ -4718,7 +4718,7 @@ void qtbook::readGlobalSetup(void)
 
 			break;
 		      }
-		    case LIBRARY_OF_CONGRESS_CONFIGURATION:
+		    case Z3950_CONFIGURATION:
 		      {
 			if(!LOCHash.contains("Address"))
 			  LOCHash["Address"] = str;

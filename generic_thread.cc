@@ -60,13 +60,17 @@ void generic_thread::run(void)
 	while(!qts.atEnd())
 	  {
 	    str = str.prepConfigString(qts.readLine().trimmed(), true);
-	    list.append(str);
+
+	    // Ignore comments.
+
+	    if(!str.startsWith("#"))
+	      list.append(str);
 	  }
 
 	qf.close();
 	break;
       }
-    case QUERY_LIBRARY_OF_CONGRESS:
+    case Z3950_QUERY:
       {
 	size_t i = 0;
 	const char *rec = 0;
@@ -80,6 +84,13 @@ void generic_thread::run(void)
 
 	ZOOM_connection_option_set(zoomConnection,
 				   "preferredRecordSyntax", "USMARC");
+	ZOOM_connection_option_set
+	  (zoomConnection,
+	   "user", qmain->getLOCHash().value("user").toStdString().data());
+	ZOOM_connection_option_set
+	  (zoomConnection,
+	   "password",
+	   qmain->getLOCHash().value("password").toStdString().data());
 	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
 	   static_cast<const char *> (LOCSearchStr.toStdString().data()));

@@ -1634,7 +1634,7 @@ void qtbook_magazine::slotQuery(void)
       working.show();
       working.update();
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
-      thread->setType(generic_thread::QUERY_LIBRARY_OF_CONGRESS);
+      thread->setType(generic_thread::Z3950_QUERY);
       thread->setLOCSearchString(searchstr);
       thread->start();
 

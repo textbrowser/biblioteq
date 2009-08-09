@@ -28,7 +28,7 @@ class generic_thread: public QThread
 {
  public:
   static const int READ_GLOBAL_CONFIG_FILE = 200;
-  static const int QUERY_LIBRARY_OF_CONGRESS = 300;
+  static const int Z3950_QUERY = 300;
 
   generic_thread(void);
   ~generic_thread();

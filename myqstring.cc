@@ -29,7 +29,7 @@ QString myqstring::prepConfigString(const QString &str,
   QString mystr = str;
 
   if(mystr.startsWith("#"))
-    return mystr;
+    return mystr.trimmed();
   else if(mystr.contains("#") && !ignore_embedded_comments)
     mystr.resize(mystr.indexOf('#'));
 
