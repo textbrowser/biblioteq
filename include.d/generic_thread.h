@@ -36,6 +36,7 @@ class generic_thread: public QThread
   void msleep(const int);
   void setType(const int);
   void setFilename(const QString &);
+  void setZ3950Name(const QString &);
   void setOutputList(const QList<bool> &);
   void setZ3950SearchString(const QString &);
   QString getEType(void);

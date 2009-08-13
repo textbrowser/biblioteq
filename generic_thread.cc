@@ -61,13 +61,7 @@ void generic_thread::run(void)
 	while(!qts.atEnd())
 	  {
 	    str = str.prepConfigString(qts.readLine().trimmed(), true);
-
-	    // Ignore comments.
-
-	    if(!str.startsWith("#"))
-	      list.append(str);
-	    else
-	      list.append("");
+	    list.append(str);
 	  }
 
 	qf.close();
@@ -206,4 +200,13 @@ QString generic_thread::getEType(void)
 void generic_thread::msleep(const int msecs)
 {
   QThread::msleep(msecs);
+}
+
+/*
+** -- setZ3950Name() --
+*/
+
+void generic_thread::setZ3950Name(const QString &name)
+{
+  z3950Name = name;
 }

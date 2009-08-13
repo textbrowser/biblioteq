@@ -167,6 +167,22 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if(id.location->count() == 0)
     id.location->addItem(tr("UNKNOWN"));
 
+  QActionGroup *actionGroup = new QActionGroup(this);
+  QHash<QString, QHash<QString, QString> > hashes(qmain->getZ3950Hashes());
+
+  for(int i = 0; i < hashes.size(); i++)
+    {
+      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+
+      action->setCheckable(true);
+      id.queryButton->addAction(action);
+
+      if(i == 0)
+	action->setChecked(true);
+    }
+
+  hashes.clear();
+
   /*
   ** Save some palettes and style sheets.
   */
@@ -1684,6 +1700,14 @@ void qtbook_book::slotQuery(void)
 	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
       else
 	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
+
+      for(i = 0; i < id.queryButton->actions().size(); i++)
+	if(id.queryButton->actions().at(i)->isChecked())
+	  {
+	    thread->setZ3950Name
+	      (id.queryButton->actions().at(i)->text());
+	    break;
+	  }
 
       thread->setType(generic_thread::Z3950_QUERY);
       thread->setZ3950SearchString(searchstr);

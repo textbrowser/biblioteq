@@ -4545,7 +4545,11 @@ void qtbook::readGlobalSetup(void)
       else
 	for(i = 0; i < thread->getList().size(); i++)
 	  {
+	    tmphash.clear();
 	    str = thread->getList().at(i);
+
+	    if(str.isEmpty() || str.startsWith("#"))
+	      continue;
 
 	    if(str == "[CD Format]")
 	      type = CD_FORMAT;
@@ -4591,13 +4595,16 @@ void qtbook::readGlobalSetup(void)
 		{
 		  str = thread->getList().at(j);
 
-		  if(str.isEmpty())
+		  if(str.isEmpty() || str.startsWith("["))
 		    break;
 
 		  switch(type)
 		    {
 		    case CD_FORMAT:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!cd_formats.contains(str))
 			  cd_formats.append(str);
 
@@ -4605,6 +4612,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case LANGUAGE:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(al.language->findText(str) == -1)
 			  al.language->addItem(str);
 
@@ -4615,6 +4625,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case MONETARY_UNITS:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(al.monetary_units->findText(str) == -1)
 			  al.monetary_units->addItem(str);
 
@@ -4625,6 +4638,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case CD_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4635,6 +4651,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case BOOK_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4645,6 +4664,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case JOURNAL_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4655,6 +4677,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case MAGAZINE_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4665,6 +4690,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case VG_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4675,6 +4703,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case VG_RATING:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!vg_ratings.contains(str))
 			  vg_ratings.append(str);
 
@@ -4682,6 +4713,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case VG_PLATFORM:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!vg_platforms.contains(str))
 			  vg_platforms.append(str);
 
@@ -4689,6 +4723,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case DVD_RATING:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!dvd_ratings.contains(str))
 			  dvd_ratings.append(str);
 
@@ -4696,6 +4733,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case DVD_LOCATION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!locations.contains(str))
 			  locations.append(str);
 
@@ -4706,6 +4746,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case DVD_REGION:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!dvd_regions.contains(str))
 			  dvd_regions.append(str);
 
@@ -4713,6 +4756,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case DVD_ASPECT_RATIO:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!dvd_aspectratios.contains(str))
 			  dvd_aspectratios.append(str);
 
@@ -4722,16 +4768,24 @@ void qtbook::readGlobalSetup(void)
 		      {
 			if(!tmphash.contains("Name"))
 			  tmphash["Name"] = str;
-			if(!tmphash.contains("Address"))
+			else if(!tmphash.contains("Address"))
 			  tmphash["Address"] = str;
 			else if(!tmphash.contains("Port"))
 			  tmphash["Port"] = str;
 			else if(!tmphash.contains("Database"))
 			  tmphash["Database"] = str;
 			else if(!tmphash.contains("Userid"))
-			  tmphash["Userid"] = str;
+			  {
+			    if(str.startsWith("#"))
+			      str = "";
+
+			    tmphash["Userid"] = str;
+			  }
 			else
 			  {
+			    if(str.startsWith("#"))
+			      str = "";
+
 			    tmphash["Password"] = str;
 			    z3950Hashes[tmphash["Name"]] = tmphash;
 			    tmphash.clear();
@@ -4741,6 +4795,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case BRANCHES:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!tmphash.contains("branch_name"))
 			  tmphash["branch_name"] = str;
 			else if(!tmphash.contains("hostname"))
@@ -4767,6 +4824,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case AMAZON_FRONT_COVER_IMAGES:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!AmazonImages.contains("front_cover_host"))
 			  AmazonImages["front_cover_host"] = str;
 			else if(!AmazonImages.contains("front_cover_path"))
@@ -4776,6 +4836,9 @@ void qtbook::readGlobalSetup(void)
 		      }
 		    case AMAZON_BACK_COVER_IMAGES:
 		      {
+			if(str.startsWith("#"))
+			  break;
+
 			if(!AmazonImages.contains("back_cover_host"))
 			  AmazonImages["back_cover_host"] = str;
 			else if(!AmazonImages.contains("back_cover_path"))
