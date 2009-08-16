@@ -91,7 +91,7 @@ void generic_thread::run(void)
 	   "password",
 	   qmain->getZ3950Hashes()[z3950Name].value("Password").toStdString().
 	   data());
-	zoomResultSet = ZOOM_connection_search_pqf
+ 	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
 	   static_cast<const char *> (z3950SearchStr.toStdString().data()));
 
@@ -103,14 +103,22 @@ void generic_thread::run(void)
 	  }
 
 	ZOOM_resultset_destroy(zoomResultSet);
-	ZOOM_connection_destroy(zoomConnection);
 
-	if(z3950Results.isEmpty())
+	const char *errmsg = 0;
+	const char *addinfo = 0;
+
+	if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
 	  {
-	    eType = tr("Query Error");
-	    errorStr = tr("Query Error");
+	    eType = errmsg;
+	    errorStr = addinfo;
+	  }
+	else if(z3950Results.isEmpty())
+	  {
+	    eType = tr("Z39.50 Empty Results Set");
+	    errorStr = tr("Z39.50 Empty Results Set");
 	  }
 
+	ZOOM_connection_destroy(zoomConnection);
 	break;
       }
     default:

@@ -126,6 +126,22 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if(ma.location->count() == 0)
     ma.location->addItem(tr("UNKNOWN"));
 
+  QActionGroup *actionGroup = new QActionGroup(this);
+  QHash<QString, QHash<QString, QString> > hashes(qmain->getZ3950Hashes());
+
+  for(int i = 0; i < hashes.size(); i++)
+    {
+      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+
+      action->setCheckable(true);
+      ma.queryButton->addAction(action);
+
+      if(i == 0)
+	action->setChecked(true);
+    }
+
+  hashes.clear();
+
   /*
   ** Save some palettes and style sheets.
   */
@@ -1633,6 +1649,15 @@ void qtbook_magazine::slotQuery(void)
       working.setCancelButton(0);
       working.show();
       working.update();
+
+      for(i = 0; i < ma.queryButton->actions().size(); i++)
+	if(ma.queryButton->actions().at(i)->isChecked())
+	  {
+	    thread->setZ3950Name
+	      (ma.queryButton->actions().at(i)->text());
+	    break;
+	  }
+
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::Z3950_QUERY);
       thread->setZ3950SearchString(searchstr);
