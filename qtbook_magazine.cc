@@ -10,7 +10,6 @@
 ** -- Local Includes --
 */
 
-#include "ui_locresults.h"
 #include "qtbook_magazine.h"
 
 extern qtbook *qmain;
