@@ -4964,6 +4964,10 @@ void qtbook::readConfig(void)
 	break;
       }
 
+  for(int i = 0; i < getZ3950Hashes().size(); i++)
+    {
+    }
+
   setGlobalFonts(font);
   slotResizeColumns();
   createSqliteMenuActions();
@@ -5873,6 +5877,21 @@ void qtbook::initialUpdate(void)
   */
 
   readConfig();
+
+  /*
+  ** Perform additional user interface duties.
+  */
+
+  QActionGroup *group1 = new QActionGroup(this);
+
+  for(int i = 0; i < getZ3950Hashes().size(); i++)
+    {
+      QAction *action = group1->addAction
+	(getZ3950Hashes().values()[i]["Name"]);
+
+      action->setCheckable(true);
+      ui.menuPreferredZ3950Server->addAction(action);
+    }
 
   /*
   ** Act upon the contents of the settings file.
