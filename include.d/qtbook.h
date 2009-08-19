@@ -200,7 +200,6 @@ class qtbook: public QMainWindow
   QString previousTypeFilter;
   QSqlQuery *populateQuery;
   QStringList deletedAdmins;
-  QActionGroup *entriesPerPageAG;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;

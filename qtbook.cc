@@ -513,12 +513,12 @@ qtbook::qtbook(void):QMainWindow()
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
-  entriesPerPageAG = new QActionGroup(this);
+  
+  QActionGroup *group1 = new QActionGroup(this);
 
   for(int i = 1; i <= 4; i++)
     {
-      QAction *action = entriesPerPageAG->addAction
-	(QString(tr("&%1")).arg(25 * i));
+      QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
 
       action->setData(25 * i);
       action->setCheckable(true);
@@ -772,6 +772,25 @@ void qtbook::showMain(void)
   */
 
   readGlobalSetup();
+
+  /*
+  ** Perform additional user interface duties.
+  */
+
+  QActionGroup *group1 = new QActionGroup(this);
+
+  for(int i = 0; i < getZ3950Hashes().size(); i++)
+    {
+      QAction *action = group1->addAction
+	(getZ3950Hashes().values()[i]["Name"]);
+
+      action->setCheckable(true);
+
+      if(i == 0)
+	action->setChecked(true);
+
+      ui.menuPreferredZ3950Server->addAction(action);
+    }
 
   /*
   ** Initial update.
@@ -3789,10 +3808,10 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   int entriesPerPage = 25;
 
-  for(i = 0; i < entriesPerPageAG->actions().size(); i++)
-    if(entriesPerPageAG->actions()[i]->isChecked())
+  for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
       {
-	entriesPerPage = entriesPerPageAG->actions()[i]->data().toInt();
+	entriesPerPage = ui.menuEntriesPerPage->actions()[i]->data().toInt();
 	break;
       }
 
@@ -4954,19 +4973,33 @@ void qtbook::readConfig(void)
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_admin_list_on_display").toBool());
 
-  for(int i = 0; i < entriesPerPageAG->actions().size(); i++)
-    if(entriesPerPageAG->actions()[i]->data().toInt() == 25)
-      entriesPerPageAG->actions()[i]->setChecked(true);
-    else if(entriesPerPageAG->actions()[i]->data().toInt() ==
+  bool found = false;
+
+  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+    if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
 	    settings.value("entries_per_page").toInt())
       {
-	entriesPerPageAG->actions()[i]->setChecked(true);
+	found = true;
+	ui.menuEntriesPerPage->actions()[i]->setChecked(true);
 	break;
       }
 
-  for(int i = 0; i < getZ3950Hashes().size(); i++)
-    {
-    }
+  if(!found && !ui.menuEntriesPerPage->actions().isEmpty())
+    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+
+  found = false;
+
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(settings.value("preferred_z3950_site").toString().trimmed() ==
+       ui.menuPreferredZ3950Server->actions()[i]->text())
+      {
+	found = true;
+	ui.menuPreferredZ3950Server->actions()[i]->setChecked(true);
+	break;
+      }
+
+  if(!found && !ui.menuPreferredZ3950Server->actions().isEmpty())
+    ui.menuPreferredZ3950Server->actions()[0]->setChecked(true);
 
   setGlobalFonts(font);
   slotResizeColumns();
@@ -5143,11 +5176,20 @@ void qtbook::slotSaveConfig(void)
   else
     settings.remove("main_window_geometry");
 
-  for(int i = 0; i < entriesPerPageAG->actions().size(); i++)
-    if(entriesPerPageAG->actions()[i]->isChecked())
+  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
       {
 	settings.setValue("entries_per_page",
-			  entriesPerPageAG->actions()[i]->data().toInt());
+			  ui.menuEntriesPerPage->actions()[i]->data().toInt());
+	break;
+      }
+
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
+      {
+	settings.setValue
+	  ("preferred_z3950_site",
+	   ui.menuPreferredZ3950Server->actions()[i]->text().trimmed());
 	break;
       }
 }
@@ -5877,21 +5919,6 @@ void qtbook::initialUpdate(void)
   */
 
   readConfig();
-
-  /*
-  ** Perform additional user interface duties.
-  */
-
-  QActionGroup *group1 = new QActionGroup(this);
-
-  for(int i = 0; i < getZ3950Hashes().size(); i++)
-    {
-      QAction *action = group1->addAction
-	(getZ3950Hashes().values()[i]["Name"]);
-
-      action->setCheckable(true);
-      ui.menuPreferredZ3950Server->addAction(action);
-    }
 
   /*
   ** Act upon the contents of the settings file.
