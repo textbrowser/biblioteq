@@ -9441,3 +9441,16 @@ void qtbook::slotPageClicked(const QString &link)
   if(db.isOpen())
     (void) populateTable(lastSearchType, "", lastSearchStr, -link.toInt());
 }
+
+/*
+** -- getPreferredZ3950Site() --
+*/
+
+QString qtbook::getPreferredZ3950Site(void)
+{
+  for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
+    if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
+      return ui.menuPreferredZ3950Server->actions()[i]->text();
+
+  return "";
+}

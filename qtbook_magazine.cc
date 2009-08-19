@@ -135,7 +135,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
       action->setCheckable(true);
       ma.queryButton->addAction(action);
 
-      if(i == 0)
+      if(qmain->getPreferredZ3950Site() == action->text())
 	action->setChecked(true);
     }
 
