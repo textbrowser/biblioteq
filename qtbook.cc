@@ -4786,13 +4786,33 @@ void qtbook::readGlobalSetup(void)
 		    case Z3950_CONFIGURATION:
 		      {
 			if(!tmphash.contains("Name"))
-			  tmphash["Name"] = str;
+			  {
+			    if(str.startsWith("#"))
+			      break;
+
+			    tmphash["Name"] = str;
+			  }
 			else if(!tmphash.contains("Address"))
-			  tmphash["Address"] = str;
+			  {
+			    if(str.startsWith("#"))
+			      break;
+
+			    tmphash["Address"] = str;
+			  }
 			else if(!tmphash.contains("Port"))
-			  tmphash["Port"] = str;
+			  {
+			    if(str.startsWith("#"))
+			      break;
+
+			    tmphash["Port"] = str;
+			  }
 			else if(!tmphash.contains("Database"))
-			  tmphash["Database"] = str;
+			  {
+			    if(str.startsWith("#"))
+			      break;
+
+			    tmphash["Database"] = str;
+			  }
 			else if(!tmphash.contains("Userid"))
 			  {
 			    if(str.startsWith("#"))
