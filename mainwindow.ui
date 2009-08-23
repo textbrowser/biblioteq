@@ -489,7 +489,7 @@
     </widget>
     <widget class="QMenu" name="menuPreferredZ3950Server">
      <property name="title">
-      <string>Preferred &amp;Z39.50 Server</string>
+      <string>Preferred &amp;Z39.50 Site</string>
      </property>
     </widget>
     <addaction name="actionAutoResizeColumns"/>
