@@ -765,6 +765,7 @@ void qtbook::showMain(void)
       qmain->statusBar()->addPermanentWidget(error_bar_label);
     }
 
+  ui.itemsCountLabel->setText("0 Results");
   show();
 
   /*
@@ -3933,19 +3934,27 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   ui.previousPageButton->setEnabled(currentPage > 1);
 
   int pages = 1;
+  int resultsCount = 0;
 
   if(selectedBranch["database_type"] == "sqlite")
-    pages = static_cast<int> 
-      (ceil
-       ((static_cast<double> (misc_functions::sqliteQuerySize
-			      (searchstr, getDB(),
-			       __FILE__, __LINE__))) /
-	(static_cast<double> (entriesPerPage))));
+    {
+      resultsCount = misc_functions::sqliteQuerySize
+	(searchstr, getDB(), __FILE__, __LINE__);
+      pages = static_cast<int> 
+	(ceil
+	 ((static_cast<double> (resultsCount)) /
+	  (static_cast<double> (entriesPerPage))));
+    }
   else
-    pages = static_cast<int> 
-      (ceil
-       ((static_cast<double> (populateQuery->size())) /
-	(static_cast<double> (entriesPerPage))));
+    {
+      resultsCount = populateQuery->size();
+      pages = static_cast<int> 
+	(ceil
+	 ((static_cast<double> (resultsCount)) /
+	  (static_cast<double> (entriesPerPage))));
+    }
+
+  ui.itemsCountLabel->setText(QString("%1 Result(s)").arg(resultsCount));
 
   if(!pages)
     pages = 1;
@@ -5907,6 +5916,7 @@ void qtbook::slotDisconnect(void)
   previousTypeFilter = tr("All");
   ui.table->resetTable(tr("All"), roles);
   ui.table->clearHiddenColumnsRecord();
+  ui.itemsCountLabel->setText("0 Results");
   prepareFilter();
   addConfigOptions(tr("All"));
   ui.typefilter->setCurrentIndex(0);
