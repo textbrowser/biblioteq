@@ -6,6 +6,7 @@ QT		+= sql network
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 QMAKE_CXXFLAGS	+= -Wall -Werror
+QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
