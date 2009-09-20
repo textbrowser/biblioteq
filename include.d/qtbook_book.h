@@ -47,10 +47,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   int requestid1; // Front Cover HTTP Get ID
   int requestid2; // Back Cover HTTP Get ID
   bool httpRequestAborted;
-  QHttp *http1; // Front Cover
-  QHttp *http2; // Back Cover
-  QBuffer *imgbuffer1; // Front Cover Buffer
-  QBuffer *imgbuffer2; // Back Cover Buffer
   QString cb_orig_ss;
   QString dt_orig_ss;
   QString engWindowTitle;
