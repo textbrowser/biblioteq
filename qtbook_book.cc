@@ -7,6 +7,7 @@
 */
 
 #include "qtbook_book.h"
+#include <QtDebug>
 
 extern qtbook *qmain;
 extern QApplication *qapp;
@@ -2319,13 +2320,19 @@ void qtbook_book::slotDownloadImage(void)
 
   if(pb == id.dwnldFront)
     {
-      if((imgbuffer = new(std::nothrow) QBuffer(&imgbytes1, this)) == 0)
-	return;
+      if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
+	{
+	  http->deleteLater();
+	  return;
+	}
     }
   else
     {
-      if((imgbuffer = new(std::nothrow) QBuffer(&imgbytes2, this)) == 0)
-	return;
+      if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
+	{
+	  http->deleteLater();
+	  return;
+	}
     }
 
   connect(http, SIGNAL(requestFinished(int, bool)),
@@ -2345,7 +2352,6 @@ void qtbook_book::slotDownloadImage(void)
       http->setHost(qmain->getAmazonHash()["front_cover_host"]);
       url = qmain->getAmazonHash()["front_cover_path"].replace
 	("%", id.id->text().trimmed());
-      imgbuffer->open(QIODevice::WriteOnly);
     }
   else
     {
@@ -2355,10 +2361,11 @@ void qtbook_book::slotDownloadImage(void)
       http->setHost(qmain->getAmazonHash()["back_cover_host"]);
       url = qmain->getAmazonHash()["back_cover_path"].replace
 	("%", id.id->text().trimmed());
-      imgbuffer->open(QIODevice::WriteOnly);
     }
 
   httpProgress->show();
+  imgbuffer->open(QIODevice::WriteOnly);
+
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
 
   if(pb == id.dwnldFront)
@@ -2382,19 +2389,22 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
   httpProgress->hide();
 
   QHttp *http = findChild<QHttp *> ();
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
+  QBuffer *imgbuffer = 0;
 
-  if(!error)
+  if(http)
+    imgbuffer = qobject_cast<QBuffer *> (http->currentDestinationDevice());
+
+  if(!error && imgbuffer)
     {
       if(rqid == requestid1)
 	{
-	  if(imgbytes1.size() > 1000)
+	  if(imgbuffer->data().size() > 1000)
 	    {
 	      id.front_image->clear();
-	      id.front_image->loadFromData(imgbytes1);
+	      id.front_image->loadFromData(imgbuffer->data());
 	    }
 
-	  if(imgbytes1.size() < 1000)
+	  if(imgbuffer->data().size() < 1000)
 	    QMessageBox::warning
 	      (this, tr("BiblioteQ: HTTP Warning"),
 	       tr("The front cover image for the specified "
@@ -2402,24 +2412,18 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	}
       else if(rqid == requestid2)
 	{
-	  if(imgbytes2.size() > 1000)
+	  if(imgbuffer->data().size() > 1000)
 	    {
 	      id.back_image->clear();
-	      id.back_image->loadFromData(imgbytes2);
+	      id.back_image->loadFromData(imgbuffer->data());
 	    }
 
-	  if(imgbytes2.size() < 1000)
+	  if(imgbuffer->data().size() < 1000)
 	    QMessageBox::warning
 	      (this, tr("BiblioteQ: HTTP Warning"),
 	       tr("The back cover image for the specified ISBN "
 		  "may not exist."));
 	}
-
-      if(http)
-	http->close();
-
-      if(imgbuffer)
-	imgbuffer->close();
     }
 
   if(error && http)
@@ -2478,10 +2482,13 @@ void qtbook_book::slotCancelImageDownload(void)
   httpRequestAborted = true;
 
   QHttp *http = findChild<QHttp *> ();
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
+  QBuffer *imgbuffer = 0;
 
   if(http)
-    http->deleteLater();
+    {
+      imgbuffer = qobject_cast<QBuffer *> (http->currentDestinationDevice());
+      http->deleteLater();
+    }
 
   if(imgbuffer)
     imgbuffer->deleteLater();

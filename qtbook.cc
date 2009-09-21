@@ -8595,6 +8595,7 @@ void qtbook::slotSelectDatabaseFile(void)
   QFileDialog dialog(branch_diag);
 
   dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("SQLite Databases (*.db *.sqlite)");
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();

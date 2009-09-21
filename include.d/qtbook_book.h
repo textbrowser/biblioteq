@@ -52,8 +52,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   QPalette white_pal;
   QPalette te_orig_pal;
-  QByteArray imgbytes1; // Front Cover Byte Array
-  QByteArray imgbytes2; // Back Cover Byte Array
   generic_thread *thread;
   Ui_informationDialog id;
   qtbook_item_working_dialog *httpProgress;
