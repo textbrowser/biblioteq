@@ -70,6 +70,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotGenerateISBN(void);
   void slotDownloadImage(void);
   void slotConvertISBN10to13(void);
+  void slotHttpRequestStarted(int);
   void slotCancelImageDownload(void);
   void slotHttpRequestFinished(int, bool);
   void slotPopulateCopiesEditor(void);

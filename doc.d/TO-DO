@@ -349,5 +349,5 @@
 191. Pressing the escape key on a QDialog window will not trigger a 
      close event. As a result, "dirty data" warning may be displayed. (DONE)
 192. Remove OFFSYSTEM support. The project appears abandoned. (DONE)
-193. All QFileDialog instances should set the current directory to the user's
-     home directory.
+193. All QFileDialog instances should have their current directory set
+     to the user's home directory. (DONE)

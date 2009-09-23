@@ -1471,6 +1471,7 @@ void qtbook_videogame::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == vg.frontButton)

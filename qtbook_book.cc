@@ -7,7 +7,6 @@
 */
 
 #include "qtbook_book.h"
-#include <QtDebug>
 
 extern qtbook *qmain;
 extern QApplication *qapp;
@@ -2238,6 +2237,7 @@ void qtbook_book::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
   dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == id.frontButton)
@@ -2316,6 +2316,13 @@ void qtbook_book::slotDownloadImage(void)
   if((http = new(std::nothrow) QHttp(this)) == 0)
     return;
 
+  connect(http, SIGNAL(requestStarted(int)),
+	  this, SLOT(slotHttpRequestStarted(int)));
+  connect(http, SIGNAL(requestFinished(int, bool)),
+	  this, SLOT(slotHttpRequestFinished(int, bool)));
+  connect(http, SIGNAL(dataReadProgress(int, int)),
+	  this, SLOT(slotUpdateDataReadProgress(int, int)));
+
   QBuffer *imgbuffer = 0;
 
   if(pb == id.dwnldFront)
@@ -2335,10 +2342,6 @@ void qtbook_book::slotDownloadImage(void)
 	}
     }
 
-  connect(http, SIGNAL(requestFinished(int, bool)),
-	  this, SLOT(slotHttpRequestFinished(int, bool)));
-  connect(http, SIGNAL(dataReadProgress(int, int)),
-	  this, SLOT(slotUpdateDataReadProgress(int, int)));
   httpRequestAborted = false;
   httpProgress->setMaximum(0);
   httpProgress->setMinimum(0);
@@ -2363,15 +2366,23 @@ void qtbook_book::slotDownloadImage(void)
 	("%", id.id->text().trimmed());
     }
 
-  httpProgress->show();
   imgbuffer->open(QIODevice::WriteOnly);
-
   QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
 
   if(pb == id.dwnldFront)
     requestid1 = http->get(path, imgbuffer);
   else
     requestid2 = http->get(path, imgbuffer);
+}
+
+/*
+** -- slotHttpRequestStarted() --
+*/
+
+void qtbook_book::slotHttpRequestStarted(int rqid)
+{
+  Q_UNUSED(rqid);
+  httpProgress->show();
 }
 
 /*
@@ -2386,7 +2397,11 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
       return;
     }
 
-  httpProgress->hide();
+  if(!(rqid == requestid1 || rqid == requestid2))
+    return;
+
+  if(httpProgress->isVisible())
+    httpProgress->hide();
 
   QHttp *http = findChild<QHttp *> ();
   QBuffer *imgbuffer = 0;
@@ -2438,6 +2453,10 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	  (this, tr("BiblioteQ: HTTP Error"),
 	   QString(tr("Back cover image download failed: ")) +
 	   http->errorString() + tr("."));
+      else
+	QMessageBox::critical
+	  (this, tr("BiblioteQ: HTTP Error"),
+	   QString(tr("An unknown error occurred.")));
     }
   else if(error)
     {
@@ -2449,6 +2468,10 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	QMessageBox::critical
 	  (this, tr("BiblioteQ: HTTP Error"),
 	   QString(tr("Back cover image download failed.")));
+      else
+	QMessageBox::critical
+	  (this, tr("BiblioteQ: HTTP Error"),
+	   QString(tr("An unknown error occurred.")));
     }
 
   requestid1 = requestid2 = 0;
