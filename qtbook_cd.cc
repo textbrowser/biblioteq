@@ -418,7 +418,7 @@ void qtbook_cd::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.front_image->image.save
 	    (&buffer, cd.front_image->imageFormat.toAscii(), 100);
-	  query.bindValue(17, bytes);
+	  query.bindValue(17, bytes.toBase64());
 	}
       else
 	{
@@ -433,7 +433,7 @@ void qtbook_cd::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.back_image->image.save
 	    (&buffer, cd.back_image->imageFormat.toAscii(), 100);
-	  query.bindValue(18, bytes);
+	  query.bindValue(18, bytes.toBase64());
 	}
       else
 	{
@@ -1180,12 +1180,24 @@ void qtbook_cd::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		cd.front_image->loadFromData(var.toByteArray());
+		{
+		  cd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(cd.front_image->image.isNull())
+		    cd.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		cd.back_image->loadFromData(var.toByteArray());
+		{
+		  cd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(cd.back_image->image.isNull())
+		    cd.back_image->loadFromData(var.toByteArray());
+		}
 	    }
 	}
 

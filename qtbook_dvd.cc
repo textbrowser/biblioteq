@@ -440,7 +440,7 @@ void qtbook_dvd::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.front_image->image.save
 	    (&buffer, dvd.front_image->imageFormat.toAscii(), 100);
-	  query.bindValue(19, bytes);
+	  query.bindValue(19, bytes.toBase64());
 	}
       else
 	{
@@ -455,7 +455,7 @@ void qtbook_dvd::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.back_image->image.save
 	    (&buffer, dvd.back_image->imageFormat.toAscii(), 100);
-	  query.bindValue(20, bytes);
+	  query.bindValue(20, bytes.toBase64());
 	}
       else
 	{
@@ -1206,12 +1206,24 @@ void qtbook_dvd::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		dvd.front_image->loadFromData(var.toByteArray());
+		{
+		  dvd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.front_image->image.isNull())
+		    dvd.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		dvd.back_image->loadFromData(var.toByteArray());
+		{
+		  dvd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(dvd.back_image->image.isNull())
+		    dvd.back_image->loadFromData(var.toByteArray());
+		}
 	    }
 	}
 

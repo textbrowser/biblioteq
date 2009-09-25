@@ -408,7 +408,7 @@ void qtbook_magazine::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  ma.front_image->image.save
 	    (&buffer, ma.front_image->imageFormat.toAscii(), 100);
-	  query.bindValue(16, bytes);
+	  query.bindValue(16, bytes.toBase64());
 	}
       else
 	{
@@ -423,7 +423,7 @@ void qtbook_magazine::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  ma.back_image->image.save
 	    (&buffer, ma.back_image->imageFormat.toAscii(), 100);
-	  query.bindValue(17, bytes);
+	  query.bindValue(17, bytes.toBase64());
 	}
       else
 	{
@@ -1264,12 +1264,24 @@ void qtbook_magazine::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		ma.front_image->loadFromData(var.toByteArray());
+		{
+		  ma.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.front_image->image.isNull())
+		    ma.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		ma.back_image->loadFromData(var.toByteArray());
+		{
+		  ma.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(ma.back_image->image.isNull())
+		    ma.back_image->loadFromData(var.toByteArray());
+		}
 	    }
 	}
 

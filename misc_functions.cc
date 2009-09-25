@@ -86,7 +86,13 @@ QImage misc_functions::getImage(const QString &oid,
 
   if(query.exec(querystr))
     if(query.next())
-      image.loadFromData(query.value(0).toByteArray());
+      {
+	image.loadFromData
+	  (QByteArray::fromBase64(query.value(0).toByteArray()));
+
+	if(image.isNull())
+	  image.loadFromData(query.value(0).toByteArray());
+      }
 
   return image;
 }

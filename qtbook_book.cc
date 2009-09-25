@@ -451,7 +451,7 @@ void qtbook_book::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  id.front_image->image.save
 	    (&buffer, id.front_image->imageFormat.toAscii(), 100);
-	  query.bindValue(18, bytes);
+	  query.bindValue(18, bytes.toBase64());
 	}
       else
 	{
@@ -466,7 +466,7 @@ void qtbook_book::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  id.back_image->image.save
 	    (&buffer, id.back_image->imageFormat.toAscii(), 100);
-	  query.bindValue(19, bytes);
+	  query.bindValue(19, bytes.toBase64());
 	}
       else
 	{
@@ -1225,12 +1225,24 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		id.front_image->loadFromData(var.toByteArray());
+		{
+		  id.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.front_image->image.isNull())
+		    id.front_image->loadFromData(var.toByteArray());
+		}
 	    }
 	  else if(fieldname == "back_cover")
 	    {
 	      if(!query.record().field(i).isNull())
-		id.back_image->loadFromData(var.toByteArray());
+		{
+		  id.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(id.back_image->image.isNull())
+		    id.back_image->loadFromData(var.toByteArray());
+		}
 	    }
 	}
 
@@ -2153,7 +2165,8 @@ void qtbook_book::slotQuery(void)
 	QMessageBox::critical
 	  (this, tr("BiblioteQ: Z39.50 Query Error"),
 	   tr("A Z39.50 entry may not yet exist for ") +
-	   id.id->text() + tr("."));
+	   (id.id->text().isEmpty() ? id.isbn13->text() : id.id->text()) +
+	   tr("."));
       else
 	etype = thread->getEType();
 
