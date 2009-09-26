@@ -12,7 +12,7 @@ MAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_UNIX_TARGETS = purge
 INCPATH		+= include.d /usr/local/include
-ICON		= icons.d/book.gif
+ICON		= icons.d/book.png
 LIBS		+= -L/usr/local/lib -lyaz
 
 FORMS           = cdinfo.ui \

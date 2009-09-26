@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>UserInfo</class>
- <widget class="QDialog" name="UserInfo" >
-  <property name="geometry" >
+ <widget class="QDialog" name="UserInfo">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,320 +10,320 @@
     <height>527</height>
    </rect>
   </property>
-  <property name="minimumSize" >
+  <property name="minimumSize">
    <size>
     <width>400</width>
     <height>0</height>
    </size>
   </property>
-  <property name="font" >
+  <property name="font">
    <font>
     <family>Times</family>
     <pointsize>10</pointsize>
    </font>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>BiblioteQ: Borrower Information</string>
   </property>
-  <property name="windowIcon" >
+  <property name="windowIcon">
    <iconset>
-    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QFrame" name="frame" >
-     <property name="frameShape" >
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <layout class="QGridLayout" >
-        <item row="9" column="1" >
-         <layout class="QHBoxLayout" >
+     <layout class="QGridLayout">
+      <item row="0" column="0">
+       <layout class="QGridLayout">
+        <item row="9" column="1">
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QComboBox" name="state" >
-            <property name="font" >
+           <widget class="QComboBox" name="state">
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>N/A</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>AK</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>AL</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>AR</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>AZ</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>CA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>CO</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>CT</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>DE</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>FL</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>GA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>HI</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>IA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>ID</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>IL</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>IN</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>KS</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>KY</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>LA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MD</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>ME</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MI</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MN</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MO</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MS</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>MT</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NC</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>ND</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NE</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NH</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NJ</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NM</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NV</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>NY</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>OH</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>OK</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>OR</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>PA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>RI</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>SC</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>SD</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>TN</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>TX</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>UT</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>VA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>VT</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>WA</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>WI</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>WV</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>WY</string>
              </property>
             </item>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="zip" >
-            <property name="font" >
+           <widget class="QLineEdit" name="zip">
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="maxLength" >
+            <property name="maxLength">
              <number>5</number>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="10" column="1" >
-         <widget class="QLineEdit" name="telephoneNumber" >
-          <property name="font" >
+        <item row="10" column="1">
+         <widget class="QLineEdit" name="telephoneNumber">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -333,27 +334,27 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>32</number>
           </property>
          </widget>
         </item>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label_5" >
-          <property name="font" >
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Member ID</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="0" >
-         <widget class="QLabel" name="label_3" >
-          <property name="font" >
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -364,27 +365,27 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Telephone Number</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="1" >
-         <widget class="QLineEdit" name="street" >
-          <property name="font" >
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="street">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>256</number>
           </property>
          </widget>
         </item>
-        <item row="7" column="0" >
-         <widget class="QLabel" name="label_2" >
-          <property name="font" >
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -395,14 +396,14 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Street</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
-         <widget class="QLineEdit" name="firstName" >
-          <property name="font" >
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="firstName">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -413,40 +414,40 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>128</number>
           </property>
          </widget>
         </item>
-        <item row="5" column="0" >
-         <widget class="QLabel" name="label_10" >
-          <property name="font" >
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Date of Birth</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="0" >
-         <widget class="QLabel" name="label_6" >
-          <property name="font" >
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>City</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1" >
-         <widget class="QLineEdit" name="lastName" >
-          <property name="font" >
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lastName">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -457,56 +458,56 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>128</number>
           </property>
          </widget>
         </item>
-        <item row="9" column="0" >
-         <widget class="QLabel" name="label_7" >
-          <property name="font" >
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>State &amp; ZIP Code</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" >
-         <layout class="QHBoxLayout" >
+        <item row="4" column="1">
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QLineEdit" name="middle" >
-            <property name="minimumSize" >
+           <widget class="QLineEdit" name="middle">
+            <property name="minimumSize">
              <size>
               <width>25</width>
               <height>0</height>
              </size>
             </property>
-            <property name="maximumSize" >
+            <property name="maximumSize">
              <size>
               <width>25</width>
               <height>16777215</height>
              </size>
             </property>
-            <property name="font" >
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="maxLength" >
+            <property name="maxLength">
              <number>1</number>
             </property>
            </widget>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>20</height>
@@ -516,22 +517,22 @@
           </item>
          </layout>
         </item>
-        <item row="8" column="1" >
-         <widget class="QLineEdit" name="city" >
-          <property name="font" >
+        <item row="8" column="1">
+         <widget class="QLineEdit" name="city">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>256</number>
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QLabel" name="label_4" >
-          <property name="font" >
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -542,39 +543,39 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Last Name</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" >
-         <widget class="QLineEdit" name="memberid" >
-          <property name="font" >
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="memberid">
+          <property name="font">
            <font>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="maxLength" >
+          <property name="maxLength">
            <number>16</number>
           </property>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="label_9" >
-          <property name="font" >
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Member Since</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QLabel" name="label" >
-          <property name="font" >
+        <item row="2" column="0">
+         <widget class="QLabel" name="label">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
@@ -585,53 +586,53 @@
             <strikeout>false</strikeout>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>First Name</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0" >
-         <widget class="QLabel" name="label_8" >
-          <property name="font" >
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Middle Initial</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="0" >
-         <widget class="QLabel" name="label_11" >
-          <property name="font" >
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="font">
            <font>
             <family>Times</family>
             <pointsize>10</pointsize>
            </font>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Sex</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="1" >
-         <layout class="QHBoxLayout" >
+        <item row="6" column="1">
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QComboBox" name="sex" >
-            <property name="font" >
+           <widget class="QComboBox" name="sex">
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Female</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Male</string>
              </property>
             </item>
@@ -639,10 +640,10 @@
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>20</height>
@@ -652,35 +653,35 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="1" >
-         <layout class="QHBoxLayout" >
+        <item row="1" column="1">
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QDateEdit" name="membersince" >
-            <property name="enabled" >
+           <widget class="QDateEdit" name="membersince">
+            <property name="enabled">
              <bool>true</bool>
             </property>
-            <property name="font" >
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="readOnly" >
+            <property name="readOnly">
              <bool>false</bool>
             </property>
-            <property name="displayFormat" >
+            <property name="displayFormat">
              <string>MM/dd/yyyy</string>
             </property>
-            <property name="calendarPopup" >
+            <property name="calendarPopup">
              <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>20</height>
@@ -690,32 +691,32 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="1" >
-         <layout class="QHBoxLayout" >
+        <item row="5" column="1">
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QDateEdit" name="dob" >
-            <property name="font" >
+           <widget class="QDateEdit" name="dob">
+            <property name="font">
              <font>
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="readOnly" >
+            <property name="readOnly">
              <bool>false</bool>
             </property>
-            <property name="displayFormat" >
+            <property name="displayFormat">
              <string>MM/dd/yyyy</string>
             </property>
-            <property name="calendarPopup" >
+            <property name="calendarPopup">
              <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
               <height>20</height>
@@ -725,16 +726,16 @@
           </item>
          </layout>
         </item>
-        <item row="11" column="0" >
-         <widget class="QLabel" name="label_12" >
-          <property name="text" >
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
            <string>E-Mail Address</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="1" >
-         <widget class="QLineEdit" name="email" >
-          <property name="maxLength" >
+        <item row="11" column="1">
+         <widget class="QLineEdit" name="email">
+          <property name="maxLength">
            <number>128</number>
           </property>
          </widget>
@@ -746,10 +747,10 @@
    </item>
    <item>
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>40</height>
@@ -758,52 +759,52 @@
     </spacer>
    </item>
    <item>
-    <widget class="Line" name="line" >
-     <property name="orientation" >
+    <widget class="Line" name="line">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>5</number>
      </property>
      <item>
-      <widget class="QToolButton" name="prevTool" >
-       <property name="font" >
+      <widget class="QToolButton" name="prevTool">
+       <property name="font">
         <font>
          <family>Times</family>
          <pointsize>10</pointsize>
         </font>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Previous Member</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="icon" >
+       <property name="icon">
         <iconset>
          <normaloff>icons.d/32x32/previous.png</normaloff>icons.d/32x32/previous.png</iconset>
        </property>
-       <property name="iconSize" >
+       <property name="iconSize">
         <size>
          <width>32</width>
          <height>32</height>
         </size>
        </property>
-       <property name="autoRaise" >
+       <property name="autoRaise">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>47</width>
          <height>41</height>
@@ -812,14 +813,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton" >
-       <property name="minimumSize" >
+      <widget class="QPushButton" name="okButton">
+       <property name="minimumSize">
         <size>
          <width>105</width>
          <height>0</height>
         </size>
        </property>
-       <property name="font" >
+       <property name="font">
         <font>
          <family>Times</family>
          <pointsize>10</pointsize>
@@ -830,24 +831,24 @@
          <strikeout>false</strikeout>
         </font>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Save</string>
        </property>
-       <property name="icon" >
+       <property name="icon">
         <iconset>
          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="cancelButton" >
-       <property name="minimumSize" >
+      <widget class="QPushButton" name="cancelButton">
+       <property name="minimumSize">
         <size>
          <width>105</width>
          <height>0</height>
         </size>
        </property>
-       <property name="font" >
+       <property name="font">
         <font>
          <family>Times</family>
          <pointsize>10</pointsize>
@@ -858,10 +859,10 @@
          <strikeout>false</strikeout>
         </font>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Close</string>
        </property>
-       <property name="icon" >
+       <property name="icon">
         <iconset>
          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
        </property>
@@ -869,10 +870,10 @@
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>47</width>
          <height>41</height>
@@ -881,30 +882,30 @@
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="nextTool" >
-       <property name="font" >
+      <widget class="QToolButton" name="nextTool">
+       <property name="font">
         <font>
          <family>Times</family>
          <pointsize>10</pointsize>
         </font>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Next Member</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="icon" >
+       <property name="icon">
         <iconset>
          <normaloff>icons.d/32x32/next.png</normaloff>icons.d/32x32/next.png</iconset>
        </property>
-       <property name="iconSize" >
+       <property name="iconSize">
         <size>
          <width>32</width>
          <height>32</height>
         </size>
        </property>
-       <property name="autoRaise" >
+       <property name="autoRaise">
         <bool>true</bool>
        </property>
       </widget>

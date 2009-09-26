@@ -12,7 +12,7 @@ QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_WINDOWS_TARGETS = purge
 INCPATH		+= include.d "C:\Program Files\YAZ\include"
-ICON		= icons.d\book.gif
+ICON		= icons.d\book.png
 LIBS		+= -L"C:\Program Files\YAZ\lib" -lyaz3
 
 FORMS           = cdinfo.ui \

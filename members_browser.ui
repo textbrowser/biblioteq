@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>membersBrowser</class>
- <widget class="QMainWindow" name="membersBrowser" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="membersBrowser">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,83 +10,83 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="minimumSize" >
+  <property name="minimumSize">
    <size>
     <width>400</width>
     <height>600</height>
    </size>
   </property>
-  <property name="font" >
+  <property name="font">
    <font>
     <family>Times</family>
     <pointsize>10</pointsize>
    </font>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>BiblioteQ: Members Browser</string>
   </property>
-  <property name="windowIcon" >
+  <property name="windowIcon">
    <iconset>
-    <normaloff>icons.d/book.gif</normaloff>icons.d/book.gif</iconset>
+    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout">
     <item>
-     <widget class="QFrame" name="frame" >
-      <property name="frameShape" >
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="frameShadow" >
+      <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
-          <widget class="QLabel" name="label" >
-           <property name="font" >
+          <widget class="QLabel" name="label">
+           <property name="font">
             <font>
              <family>Times</family>
              <pointsize>10</pointsize>
             </font>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Filter</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="filtertype" >
+          <widget class="QComboBox" name="filtertype">
            <item>
-            <property name="text" >
+            <property name="text">
              <string>Member ID</string>
             </property>
            </item>
            <item>
-            <property name="text" >
+            <property name="text">
              <string>Last Name</string>
             </property>
            </item>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="filter" >
-           <property name="font" >
+          <widget class="QLineEdit" name="filter">
+           <property name="font">
             <font>
              <pointsize>10</pointsize>
             </font>
            </property>
-           <property name="maxLength" >
+           <property name="maxLength">
             <number>128</number>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="filterBox" >
-           <property name="toolTip" >
+          <widget class="QCheckBox" name="filterBox">
+           <property name="toolTip">
             <string/>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Apply Filter</string>
            </property>
           </widget>
@@ -93,8 +94,8 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="table" >
-         <property name="font" >
+        <widget class="QTableWidget" name="table">
+         <property name="font">
           <font>
            <family>Times</family>
            <pointsize>10</pointsize>
@@ -105,77 +106,77 @@
            <strikeout>false</strikeout>
           </font>
          </property>
-         <property name="focusPolicy" >
+         <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
          </property>
-         <property name="alternatingRowColors" >
+         <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
-         <property name="selectionMode" >
+         <property name="selectionMode">
           <enum>QAbstractItemView::SingleSelection</enum>
          </property>
-         <property name="selectionBehavior" >
+         <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
-         <property name="verticalScrollMode" >
+         <property name="verticalScrollMode">
           <enum>QAbstractItemView::ScrollPerItem</enum>
          </property>
-         <property name="horizontalScrollMode" >
+         <property name="horizontalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
-         <property name="sortingEnabled" >
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
-         <property name="cornerButtonEnabled" >
+         <property name="cornerButtonEnabled">
           <bool>false</bool>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Member ID</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>First Name</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Last Name</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Member Since</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Books Reserved</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>CDs Reserved</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>DVDs Reserved</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Journals Reserved</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Magazines Reserved</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Video Games Reserved</string>
           </property>
          </column>
@@ -185,261 +186,261 @@
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" >
+     <layout class="QVBoxLayout">
       <item>
-       <widget class="QToolButton" name="addButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="addButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Add Member</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="deleteButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="deleteButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Delete Selected Member</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="modifyButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="modifyButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Modify Selected Member</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/edit.png</normaloff>icons.d/32x32/edit.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="historyButton" >
-        <property name="toolTip" >
+       <widget class="QToolButton" name="historyButton">
+        <property name="toolTip">
          <string>Show Selected Member's Reservation History</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string/>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/history.png</normaloff>icons.d/32x32/history.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="listButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="listButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>List Selected Member's Reserved Items</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/stamp.png</normaloff>icons.d/32x32/stamp.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="printButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="printButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Print Selected Member's Reserved Items</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string/>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line" >
-        <property name="orientation" >
+       <widget class="Line" name="line">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="checkoutButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="checkoutButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Reserve Selected Item</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/checkout.png</normaloff>icons.d/32x32/checkout.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line_3" >
-        <property name="orientation" >
+       <widget class="Line" name="line_3">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="overdueButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="overdueButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>List All Overdue Items</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/date.png</normaloff>icons.d/32x32/date.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="reloadButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="reloadButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Refresh List</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <spacer>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="sizeHint" stdset="0" >
+        <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
           <height>40</height>
@@ -448,27 +449,27 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="cancelButton" >
-        <property name="font" >
+       <widget class="QToolButton" name="cancelButton">
+        <property name="font">
          <font>
           <family>Times</family>
           <pointsize>10</pointsize>
          </font>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Close Browser</string>
         </property>
-        <property name="icon" >
+        <property name="icon">
          <iconset>
           <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
         </property>
-        <property name="iconSize" >
+        <property name="iconSize">
          <size>
           <width>32</width>
           <height>32</height>
          </size>
         </property>
-        <property name="autoRaise" >
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>
@@ -477,7 +478,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
   <tabstop>filtertype</tabstop>

@@ -277,7 +277,7 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
-  menu3->setWindowIcon(QIcon("icons.d/book.gif"));
+  menu3->setWindowIcon(QIcon("icons.d/book.png"));
   menu3->setWindowTitle(tr("BiblioteQ: Columns Selection"));
   connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -830,7 +830,8 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText("<html>BiblioteQ Version 6.36.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
-	     "Icons copyright (c) David Vignoni."
+	     "Icons copyright (c) David Vignoni.<br>"
+	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
@@ -839,7 +840,7 @@ void qtbook::slotAbout(void)
 	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
 	     "http://biblioteq.sourceforge.net/news.html</a>.");
   mb.setStandardButtons(QMessageBox::Ok);
-  mb.setIconPixmap(QPixmap("./icons.d/book.gif"));
+  mb.setIconPixmap(QPixmap("./icons.d/book.png"));
   mb.exec();
 }
 
