@@ -419,6 +419,31 @@
               <string>25th</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>26th</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>27th</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>28th</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>29th</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30th</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item>
