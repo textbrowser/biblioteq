@@ -161,6 +161,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
   hashes.clear();
 
+  for(int i = 1; i <= 100; i++)
+    id.edition->addItem(QString::number(i));
+
   /*
   ** Save some palettes and style sheets.
   */

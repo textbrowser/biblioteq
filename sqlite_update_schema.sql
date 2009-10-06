@@ -470,3 +470,10 @@ ALTER TABLE videogame ADD place TEXT NOT NULL DEFAULT 'N/A';
 /* Release 6.30 */
 
 /* The offsystem_url columns are harmless.
+
+/* Release 6.37 */
+
+UPDATE book SET edition = REPLACE(edition, 'st', '');
+UPDATE book SET edition = REPLACE(edition, 'nd', '');
+UPDATE book SET edition = REPLACE(edition, 'rd', '');
+UPDATE book SET edition = REPLACE(edition, 'th', '');

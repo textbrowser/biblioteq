@@ -521,3 +521,10 @@ ALTER TABLE journal DROP offsystem_url;
 ALTER TABLE magazine DROP offsystem_url;
 ALTER TABLE videogame DROP offsystem_url;
 VACUUM FULL;
+
+/* Release 6.37 */
+
+UPDATE book SET edition = TRIM(BOTH 'st' FROM edition);
+UPDATE book SET edition = TRIM(BOTH 'nd' FROM edition);
+UPDATE book SET edition = TRIM(BOTH 'rd' FROM edition);
+UPDATE book SET edition = TRIM(BOTH 'th' FROM edition);
