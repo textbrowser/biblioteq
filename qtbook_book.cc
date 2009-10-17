@@ -161,7 +161,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
   hashes.clear();
 
-  for(int i = 1; i <= 100; i++)
+  for(int i = 1; i <= 1000; i++)
     id.edition->addItem(QString::number(i));
 
   /*
