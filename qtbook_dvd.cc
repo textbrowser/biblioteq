@@ -512,6 +512,8 @@ void qtbook_dvd::slotGo(void)
 		  goto db_rollback;
 		}
 
+	      query.clear();
+
 	      if(!qmain->getDB().commit())
 		{
 		  qapp->restoreOverrideCursor();
@@ -551,6 +553,8 @@ void qtbook_dvd::slotGo(void)
 		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
+
+	      query.clear();
 
 	      if(!qmain->getDB().commit())
 		{
@@ -729,6 +733,7 @@ void qtbook_dvd::slotGo(void)
     db_rollback:
 
       qapp->setOverrideCursor(Qt::WaitCursor);
+      query.clear();
 
       if(!qmain->getDB().rollback())
 	qmain->addError

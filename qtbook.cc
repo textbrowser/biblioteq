@@ -4350,16 +4350,22 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
+      QString lastError(query.lastError().text());
+
       if(engUserinfoTitle.contains("New"))
-	if(!getDB().rollback())
-	  addError
-	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     getDB().lastError().text(), __FILE__, __LINE__);
+	{
+	  query.clear();
+
+	  if(!getDB().rollback())
+	    addError
+	      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	       getDB().lastError().text(), __FILE__, __LINE__);
+	}
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to save the member's information.")),
-	       query.lastError().text(), __FILE__, __LINE__);
+	       lastError, __FILE__, __LINE__);
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the member's information."));
     }
@@ -4377,6 +4383,8 @@ void qtbook::slotSaveUser(void)
 
 	  if(!errorstr.isEmpty())
 	    {
+	      query.clear();
+
 	      if(!getDB().rollback())
 		addError
 		  (QString(tr("Database Error")),
@@ -4398,21 +4406,25 @@ void qtbook::slotSaveUser(void)
 	      return;
 	    }
 	  else
-	    if(!getDB().commit())
-	      {
-		qapp->restoreOverrideCursor();
-		addError
-		  (QString(tr("Database Error")),
-		   QString(tr("Unable to commit the current database "
-			      "transaction.")),
-		   getDB().lastError().text(), __FILE__,
-		   __LINE__);
-		QMessageBox::critical(userinfo_diag,
-				      tr("BiblioteQ: Database Error"),
-				      tr("Unable to commit the current "
-					 "database transaction."));
-		return;
-	      }
+	    {
+	      query.clear();
+
+	      if(!getDB().commit())
+		{
+		  qapp->restoreOverrideCursor();
+		  addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
+		     getDB().lastError().text(), __FILE__,
+		     __LINE__);
+		  QMessageBox::critical(userinfo_diag,
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
+		  return;
+		}
+	    }
 	}
       else
 	{
@@ -5116,6 +5128,10 @@ void qtbook::slotRemoveMember(void)
 
   if(!query.exec())
     {
+      QString lastError(query.lastError().text());
+
+      query.clear();
+
       if(!getDB().rollback())
 	addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
@@ -5124,7 +5140,7 @@ void qtbook::slotRemoveMember(void)
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to remove the selected member.")),
-	       query.lastError().text(), __FILE__, __LINE__);
+	       lastError, __FILE__, __LINE__);
       QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to remove the selected member."));
     }
@@ -5140,6 +5156,7 @@ void qtbook::slotRemoveMember(void)
 	     QString(tr("Unable to remove the patron account ")) +
 	     memberid + tr("."),
 	     errorstr, __FILE__, __LINE__);
+	  query.clear();
 
 	  if(!getDB().rollback())
 	    addError
@@ -5153,20 +5170,25 @@ void qtbook::slotRemoveMember(void)
 	     QString(tr("Unable to remove the patron account ")) +
 	     memberid + tr("."));
 	}
-      else if(!getDB().commit())
+      else
 	{
-	  qapp->restoreOverrideCursor();
-	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to commit the current database "
-			"transaction.")),
-	     getDB().lastError().text(), __FILE__,
-	     __LINE__);
-	  QMessageBox::critical(members_diag,
-				tr("BiblioteQ: Database Error"),
-				tr("Unable to commit the current "
-				   "database transaction."));
-	  return;
+	  query.clear();
+
+	  if(!getDB().commit())
+	    {
+	      qapp->restoreOverrideCursor();
+	      addError
+		(QString(tr("Database Error")),
+		 QString(tr("Unable to commit the current database "
+			    "transaction.")),
+		 getDB().lastError().text(), __FILE__,
+		 __LINE__);
+	      QMessageBox::critical(members_diag,
+				    tr("BiblioteQ: Database Error"),
+				    tr("Unable to commit the current "
+				       "database transaction."));
+	      return;
+	    }
 	}
 
       qapp->restoreOverrideCursor();
@@ -9102,6 +9124,7 @@ void qtbook::slotSaveAdministrators(void)
 
   progress.hide();
   qapp->setOverrideCursor(Qt::WaitCursor);
+  query.clear();
 
   if(!getDB().commit())
     {
@@ -9134,6 +9157,7 @@ void qtbook::slotSaveAdministrators(void)
  db_rollback:
 
   qapp->setOverrideCursor(Qt::WaitCursor);
+  query.clear();
 
   if(!getDB().rollback())
     addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
