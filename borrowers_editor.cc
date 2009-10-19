@@ -284,7 +284,6 @@ void borrowers_editor::showUsers(void)
 	break; // Out of resources?
     }
 
-  query.clear();
   bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 

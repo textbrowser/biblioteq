@@ -335,7 +335,6 @@ void copy_editor::populateCopiesEditor(void)
 	break; // Out of resources?
     }
 
-  query.clear();
   cb.table->resizeColumnsToContents();
 }
 

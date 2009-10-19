@@ -490,8 +490,6 @@ void qtbook_cd::slotGo(void)
 		  goto db_rollback;
 		}
 
-	      query.clear();
-
 	      if(!qmain->getDB().commit())
 		{
 		  qapp->restoreOverrideCursor();
@@ -531,8 +529,6 @@ void qtbook_cd::slotGo(void)
 		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
-
-	      query.clear();
 
 	      if(!qmain->getDB().commit())
 		{
@@ -712,7 +708,6 @@ void qtbook_cd::slotGo(void)
     db_rollback:
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      query.clear();
 
       if(!qmain->getDB().rollback())
 	qmain->addError
@@ -1437,7 +1432,6 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
-  query.clear();
   trd.table->setRowCount(i);
   trd.table->resizeColumnsToContents();
 }
@@ -1610,7 +1604,6 @@ void qtbook_cd::slotSaveTracks(void)
 		      QString(tr("Unable to purge track data.")),
 		      query.lastError().text(), __FILE__, __LINE__);
       qapp->setOverrideCursor(Qt::WaitCursor);
-      query.clear();
 
       if(!qmain->getDB().rollback())
 	qmain->addError(QString(tr("Database Error")),
@@ -1680,7 +1673,6 @@ void qtbook_cd::slotSaveTracks(void)
 				 "been saved. Please review the Error Log."));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      query.clear();
 
       if(!qmain->getDB().commit())
 	{

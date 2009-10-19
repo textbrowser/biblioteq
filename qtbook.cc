@@ -4350,22 +4350,16 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
-      QString lastError(query.lastError().text());
-
       if(engUserinfoTitle.contains("New"))
-	{
-	  query.clear();
-
-	  if(!getDB().rollback())
-	    addError
-	      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	       getDB().lastError().text(), __FILE__, __LINE__);
-	}
+	if(!getDB().rollback())
+	  addError
+	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	     getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to save the member's information.")),
-	       lastError, __FILE__, __LINE__);
+	       query.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the member's information."));
     }
@@ -4383,8 +4377,6 @@ void qtbook::slotSaveUser(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      query.clear();
-
 	      if(!getDB().rollback())
 		addError
 		  (QString(tr("Database Error")),
@@ -4407,8 +4399,6 @@ void qtbook::slotSaveUser(void)
 	    }
 	  else
 	    {
-	      query.clear();
-
 	      if(!getDB().commit())
 		{
 		  qapp->restoreOverrideCursor();
@@ -5128,10 +5118,6 @@ void qtbook::slotRemoveMember(void)
 
   if(!query.exec())
     {
-      QString lastError(query.lastError().text());
-
-      query.clear();
-
       if(!getDB().rollback())
 	addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
@@ -5140,7 +5126,7 @@ void qtbook::slotRemoveMember(void)
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to remove the selected member.")),
-	       lastError, __FILE__, __LINE__);
+	       query.lastError().text((), __FILE__, __LINE__);
       QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to remove the selected member."));
     }
@@ -5156,7 +5142,6 @@ void qtbook::slotRemoveMember(void)
 	     QString(tr("Unable to remove the patron account ")) +
 	     memberid + tr("."),
 	     errorstr, __FILE__, __LINE__);
-	  query.clear();
 
 	  if(!getDB().rollback())
 	    addError
@@ -5172,8 +5157,6 @@ void qtbook::slotRemoveMember(void)
 	}
       else
 	{
-	  query.clear();
-
 	  if(!getDB().commit())
 	    {
 	      qapp->restoreOverrideCursor();
@@ -6181,7 +6164,6 @@ void qtbook::slotPopulateMembersBrowser(void)
       qapp->processEvents();
     }
 
-  query.clear();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i);
   bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
@@ -8373,7 +8355,6 @@ void qtbook::slotShowHistory(void)
       qapp->processEvents();
     }
 
-  query.clear();
   history.table->setRowCount(i);
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -8870,7 +8851,6 @@ void qtbook::slotRefreshAdminList(void)
       qapp->processEvents();
     }
 
-  query.clear();
   ab.table->setRowCount(i);
   ab.table->horizontalHeader()->resizeSections(QHeaderView::Stretch);
   deletedAdmins.clear();
@@ -9124,7 +9104,6 @@ void qtbook::slotSaveAdministrators(void)
 
   progress.hide();
   qapp->setOverrideCursor(Qt::WaitCursor);
-  query.clear();
 
   if(!getDB().commit())
     {
@@ -9157,7 +9136,6 @@ void qtbook::slotSaveAdministrators(void)
  db_rollback:
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  query.clear();
 
   if(!getDB().rollback())
     addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
