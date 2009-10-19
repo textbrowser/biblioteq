@@ -27,7 +27,6 @@ file /r .\release\plugins
 file /r .\release\translations.d
 file .\release\*.dll
 file .\release\sqlite3.exe
-file .\release\sqlite-*.zip
 file .\release\biblioteq.db
 file .\release\BiblioteQ.exe
 
