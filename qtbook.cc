@@ -5126,7 +5126,7 @@ void qtbook::slotRemoveMember(void)
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to remove the selected member.")),
-	       query.lastError().text((), __FILE__, __LINE__);
+	       query.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to remove the selected member."));
     }
