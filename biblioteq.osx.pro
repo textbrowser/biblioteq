@@ -11,9 +11,9 @@ QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_UNIX_TARGETS = purge
-INCPATH		+= include.d /usr/local/include
+INCPATH		+= include.d /opt/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -L/usr/local/lib -lyaz
+LIBS		+= -L/opt/local/lib -lyaz
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \
