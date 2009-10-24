@@ -3810,12 +3810,16 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   int entriesPerPage = 25;
 
+#ifdef Q_OS_WIN
+  entriesPerPage = INT_MAX;
+#else
   for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
     if(ui.menuEntriesPerPage->actions()[i]->isChecked())
       {
 	entriesPerPage = ui.menuEntriesPerPage->actions()[i]->data().toInt();
 	break;
       }
+#endif
 
   int rowCount = 0;
   int querySize = 0;
@@ -4006,6 +4010,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       ui.pagesLabel->setText(str);
     }
 
+#ifdef Q_OS_WIN
+  populateQuery->clear();
+#endif
   return 0;
 }
 
@@ -5760,9 +5767,17 @@ void qtbook::slotConnectDB(void)
   ui.actionConnect->setEnabled(false);
 
   if(selectedBranch["database_type"] == "sqlite")
-    ui.actionChangePassword->setEnabled(false);
+    {
+      ui.actionChangePassword->setEnabled(false);
+#ifdef Q_OS_WIN
+      ui.menuEntriesPerPage->setEnabled(false);
+#endif
+    }
   else
     {
+#ifdef Q_OS_WIN
+      ui.menuEntriesPerPage->setEnabled(true);
+#endif
       ui.actionChangePassword->setEnabled(true);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
@@ -5894,6 +5909,9 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
+#ifdef Q_OS_WIN
+  ui.menuEntriesPerPage->setEnabled(true);
+#endif
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
