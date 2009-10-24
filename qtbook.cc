@@ -3811,7 +3811,15 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int entriesPerPage = 25;
 
 #ifdef Q_OS_WIN
-  entriesPerPage = INT_MAX;
+  if(getDB().driverName() == "QSQLITE")
+    entriesPerPage = INT_MAX;
+  else
+    for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+      if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	{
+	  entriesPerPage = ui.menuEntriesPerPage->actions()[i]->data().toInt();
+	  break;
+	}
 #else
   for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
     if(ui.menuEntriesPerPage->actions()[i]->isChecked())
