@@ -4011,7 +4011,8 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
 
 #ifdef Q_OS_WIN
-  populateQuery->clear();
+  if(getDB().driverName() == "QSQLITE")
+    populateQuery->clear();
 #endif
   return 0;
 }
