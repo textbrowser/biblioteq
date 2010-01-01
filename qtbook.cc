@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2006, 2007, 2008, 2009 Alexis Megas
+** Copyright (c) 2006, 2007, 2008, 2009, 2010 Alexis Megas
 ** All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,7 @@ extern "C"
 ** -- Qt Includes --
 */
 
+#include <QtDebug>
 #include <QTranslator>
 #include <QLibraryInfo>
 
@@ -141,7 +142,7 @@ void qtbook::quit(void)
   if(qapp != 0)
     qapp->quit();
 
-  cout << tr("BiblioteQ has exited.").toStdString() << endl;
+  qDebug() << tr("BiblioteQ has exited.");
   exit(EXIT_SUCCESS);
 }
 
@@ -174,14 +175,14 @@ void qtbook::cleanup(void)
 void qtbook::quit(const char *msg, const char *file, const int line)
 {
   if(msg != 0 && strlen(msg) > 0)
-    cerr << tr(msg).toStdString()
-	 << tr(" in file ").toStdString()
-	 << file << tr(", line ").toStdString() << line
-	 << tr(".").toStdString() << endl;
+    qDebug() << tr(msg)
+	     << tr(" in file ")
+	     << file << tr(", line ") << line
+	     << tr(".");
   else
-    cerr << tr("An unknown error occurred in file ").toStdString()
-	 << file << tr(", line ").toStdString()
-	 << line << tr(".").toStdString() << endl;
+    qDebug() << tr("An unknown error occurred in file ")
+	     << file << tr(", line ")
+	     << line << tr(".");
 
   if(qmain != 0)
     qmain->cleanup();
@@ -504,10 +505,10 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
-  ui.table->resetTable(tr("All"), roles);
+  ui.table->resetTable("All", roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
-  previousTypeFilter = tr("All");
+  previousTypeFilter = "All";
   prepareFilter();
   addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
@@ -570,9 +571,9 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
-      if(typefilter != tr("All") && typefilter != tr("All Overdue") &&
-	 typefilter != tr("All Requested") &&
-	 typefilter != tr("All Reserved"))
+      if(typefilter != "All" && typefilter != "All Overdue" &&
+	 typefilter != "All Requested" &&
+	 typefilter != "All Reserved")
 	{
 	  if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
 	     ui.table->horizontalHeaderItem(i)->text() == tr("Type"))
@@ -602,7 +603,8 @@ void qtbook::addConfigOptions(const QString &typefilter)
 void qtbook::slotSetColumns(void)
 {
   int i = 0;
-  QString typefilter = ui.typefilter->currentText();
+  QString typefilter = ui.typefilter->itemData
+    (ui.typefilter->currentIndex()).toString();
 
   for(i = 0; i < ui.configTool->menu()->actions().size(); i++)
     {
@@ -765,7 +767,7 @@ void qtbook::showMain(void)
       qmain->statusBar()->addPermanentWidget(error_bar_label);
     }
 
-  ui.itemsCountLabel->setText("0 Results");
+  ui.itemsCountLabel->setText(tr("0 Results"));
   show();
 
   /*
@@ -828,8 +830,8 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.37.<br>"
-	     "Copyright (c) 2006, 2007, 2008, 2009 Slurpy McNash.<br>"
+  mb.setText("<html>BiblioteQ Version 6.38.<br>"
+	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
@@ -1422,19 +1424,18 @@ void qtbook::closeEvent(QCloseEvent *e)
 void qtbook::slotRefresh(void)
 {
   QString str = "";
+  QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
 
-  if(ui.typefilter->currentText() == tr("All Overdue") && roles.isEmpty())
+  if(data.toString() == "All Overdue" && roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == tr("All Requested") &&
-	  roles.isEmpty())
+  else if(data.toString() == "All Requested" && roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == tr("All Reserved") &&
-	  roles.isEmpty())
+  else if(data.toString() == "All Reserved" && roles.isEmpty())
     str = br.userid->text();
-  else if(ui.typefilter->currentText() == tr("All Reserved"))
+  else if(data.toString() == "All Reserved")
     str = "%";
 
-  (void) populateTable(POPULATE_ALL, ui.typefilter->currentText(), str);
+  (void) populateTable(POPULATE_ALL, data.toString(), str);
 }
 
 /*
@@ -1482,7 +1483,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       }
     case POPULATE_ALL:
       {
-	if(typefilter == tr("All"))
+	if(typefilter == "All")
 	  {
 	    searchstr = "SELECT DISTINCT book.title, "
 	      "book.id, "
@@ -1648,7 +1649,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      "videogame.myoid "
 	      "ORDER BY 1";
 	  }
-	else if(typefilter == tr("All Overdue"))
+	else if(typefilter == "All Overdue")
 	  {
 	    searchstr = "";
 
@@ -2222,7 +2223,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == tr("All Requested"))
+	else if(typefilter == "All Requested")
 	  {
 	    searchstr = "";
 
@@ -2689,7 +2690,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == tr("All Reserved"))
+	else if(typefilter == "All Reserved")
 	  {
 	    searchstr = "";
 
@@ -3234,7 +3235,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 		searchstr.append("ORDER BY 1");
 	      }
 	  }
-	else if(typefilter == tr("Video Games"))
+	else if(typefilter == "Video Games")
 	  {
 	    searchstr = "SELECT videogame.title, "
 	      "videogame.vgrating, "
@@ -3278,7 +3279,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      "videogame.myoid ORDER BY "
 	      "videogame.title";
 	  }
-	else if(typefilter == tr("Books"))
+	else if(typefilter == "Books")
 	  {
 	    searchstr = "SELECT book.title, "
 	      "book.author, "
@@ -3322,7 +3323,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      "book.myoid ORDER BY "
 	      "book.title";
 	  }
-	else if(typefilter == tr("DVDs"))
+	else if(typefilter == "DVDs")
 	  {
 	    searchstr = "SELECT dvd.title, "
 	      "dvd.dvdformat, "
@@ -3371,7 +3372,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      "ORDER BY "
 	      "dvd.title";
 	  }
-	else if(typefilter == tr("Music CDs"))
+	else if(typefilter == "Music CDs")
 	  {
 	    searchstr = "SELECT cd.title, "
 	      "cd.artist, "
@@ -3419,9 +3420,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	      "ORDER BY "
 	      "cd.title";
 	  }
-	else if(typefilter == tr("Journals") || typefilter == tr("Magazines"))
+	else if(typefilter == "Journals" || typefilter == "Magazines")
 	  {
-	    if(typefilter == tr("Journals"))
+	    if(typefilter == "Journals")
 	      type = "Journal";
 	    else
 	      type = "Magazine";
@@ -3472,7 +3473,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       }
     case POPULATE_SEARCH: default:
       {
-	if(typefilter == tr("All"))
+	if(typefilter == "All")
 	  {
 	    types.append("Book");
 	    types.append("CD");
@@ -3608,7 +3609,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
 	    searchstr += "ORDER BY 1";
 	  }
-	else if(typefilter == tr("Books"))
+	else if(typefilter == "Books")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY book.title, "
@@ -3630,7 +3631,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			     "book.myoid "
 			     "ORDER BY book.title");
 	  }
-	else if(typefilter == tr("Video Games"))
+	else if(typefilter == "Video Games")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3652,7 +3653,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			     "videogame.myoid ORDER BY "
 			     "videogame.title");
 	  }
-	else if(typefilter == tr("Music CDs"))
+	else if(typefilter == "Music CDs")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3677,7 +3678,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			     "ORDER BY "
 			     "cd.title");
 	  }
-	else if(typefilter == tr("DVDs"))
+	else if(typefilter == "DVDs")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY "
@@ -3702,7 +3703,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			     "ORDER BY "
 			     "dvd.title");
 	  }
-	else if(typefilter == tr("Journals"))
+	else if(typefilter == "Journals")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY journal.title, "
@@ -3724,7 +3725,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 			     "ORDER BY journal.title, "
 			     "journal.issuevolume, journal.issueno");
 	  }
-	else if(typefilter == tr("Magazines"))
+	else if(typefilter == "Magazines")
 	  {
 	    searchstr.append(searchstrArg);
 	    searchstr.append("GROUP BY magazine.title, "
@@ -3760,7 +3761,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
       if(!previousTypeFilter.isEmpty())
 	ui.typefilter->setCurrentIndex
-	  (ui.typefilter->findText(previousTypeFilter));
+	  (ui.typefilter->findData(QVariant(previousTypeFilter)));
 
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the data required for "
@@ -3776,13 +3777,14 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   qapp->restoreOverrideCursor();
 
-  if(ui.typefilter->findText(typefilter) > -1)
+  if(ui.typefilter->findData(QVariant(typefilter)) > -1)
     previousTypeFilter = typefilter;
 
   if(typefilter.isEmpty())
     ui.typefilter->setCurrentIndex(0);
-  else if(ui.typefilter->findText(typefilter) > -1)
-    ui.typefilter->setCurrentIndex(ui.typefilter->findText(typefilter));
+  else if(ui.typefilter->findData(QVariant(typefilter)) > -1)
+    ui.typefilter->setCurrentIndex
+      (ui.typefilter->findData(QVariant(typefilter)));
   else
     ui.typefilter->setCurrentIndex(0);
 
@@ -3934,7 +3936,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       ui.table->setColumnCount(tmplist.size());
       ui.table->setHorizontalHeaderLabels(tmplist);
       tmplist.clear();
-      addConfigOptions(tr("Custom"));
+      addConfigOptions("Custom");
     }
 
   ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -3967,7 +3969,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	  (static_cast<double> (entriesPerPage))));
     }
 
-  ui.itemsCountLabel->setText(QString("%1 Result(s)").arg(resultsCount));
+  ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).arg(resultsCount));
 
   if(!pages)
     pages = 1;
@@ -4093,7 +4095,7 @@ void qtbook::slotResizeColumns(void)
 
 void qtbook::slotAllGo(void)
 {
-  (void) populateTable(POPULATE_SEARCH, tr("All"), QString(""));
+  (void) populateTable(POPULATE_SEARCH, "All", QString(""));
 }
 
 /*
@@ -5946,12 +5948,12 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
-  previousTypeFilter = tr("All");
-  ui.table->resetTable(tr("All"), roles);
+  previousTypeFilter = "All";
+  ui.table->resetTable("All", roles);
   ui.table->clearHiddenColumnsRecord();
-  ui.itemsCountLabel->setText("0 Results");
+  ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
-  addConfigOptions(tr("All"));
+  addConfigOptions("All");
   ui.typefilter->setCurrentIndex(0);
   slotDisplaySummary();
   emptyContainers();
@@ -6539,26 +6541,26 @@ void qtbook::prepareRequestToolbutton(const QString &typefilter)
     if(db.isOpen())
       {
 	if((roles == "administrator" || roles == "circulation") &&
-	   typefilter == tr("All Requested"))
+	   typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setEnabled(true);
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
 	      (QIcon("icons.d/32x32/remove_request.png"));
 	  }
-	else if(roles.isEmpty() && (typefilter == tr("All") ||
-				    typefilter == tr("Books") ||
-				    typefilter == tr("DVDs") ||
-				    typefilter == tr("Journals") ||
-				    typefilter == tr("Magazines") ||
-				    typefilter == tr("Music CDs") ||
-				    typefilter == tr("Video Games")))
+	else if(roles.isEmpty() && (typefilter == "All" ||
+				    typefilter == "Books" ||
+				    typefilter == "DVDs" ||
+				    typefilter == "Journals" ||
+				    typefilter == "Magazines" ||
+				    typefilter == "Music CDs" ||
+				    typefilter == "Video Games"))
 	  {
 	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
 	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
-	else if(roles.isEmpty() && typefilter == tr("All Requested"))
+	else if(roles.isEmpty() && typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
@@ -6580,7 +6582,8 @@ void qtbook::prepareRequestToolbutton(const QString &typefilter)
 
 void qtbook::slotAutoPopOnFilter(void)
 {
-  prepareRequestToolbutton(ui.typefilter->currentText());
+  prepareRequestToolbutton
+    (ui.typefilter->itemData(ui.typefilter->currentIndex()).toString());
 
   /*
   ** Populate the main table only if we're connected to a database.
@@ -6730,7 +6733,7 @@ void qtbook::addError(const QString &type, const QString &summary,
 	er.table->resizeColumnToContents(i);
       }
     else
-      cerr << tr("Memory failure in addError()!").toStdString() << endl;
+      qDebug() << tr("Memory failure in addError()!");
 
   er.table->resizeColumnsToContents();
   er.table->setSortingEnabled(true);
@@ -7702,7 +7705,7 @@ void qtbook::slotListReservedItems(void)
     }
 
   memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
-  (void) populateTable(POPULATE_ALL, tr("All Reserved"), memberid);
+  (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
   members_diag->raise();
 }
 
@@ -7720,7 +7723,7 @@ void qtbook::slotListOverdueItems(void)
   else if(roles.isEmpty())
     memberid = br.userid->text();
 
-  (void) populateTable(POPULATE_ALL, tr("All Overdue"), memberid);
+  (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
   members_diag->raise();
 }
 
@@ -7986,7 +7989,7 @@ void qtbook::slotExecuteCustomQuery(void)
       return;
     }
 
-  if(populateTable(CUSTOM_QUERY, tr("Custom"), querystr) == 0)
+  if(populateTable(CUSTOM_QUERY, "Custom", querystr) == 0)
     customquery_diag->close();
   else
     {
@@ -9200,7 +9203,8 @@ void qtbook::slotRequest(void)
 
   if(!roles.isEmpty())
     isRequesting = false;
-  else if(ui.typefilter->currentText() == tr("All Requested"))
+  else if(ui.typefilter->itemData
+	  (ui.typefilter->currentIndex()).toString() == "All Requested")
     isRequesting = false;
 
   if(isRequesting)
@@ -9338,40 +9342,43 @@ void qtbook::prepareFilter(void)
   QStringList tmplist;
 
   if(selectedBranch["database_type"] == "sqlite")
-    tmplist << tr("All")
-	    << tr("All Overdue")
-	    << tr("All Reserved")
-	    << tr("Books")
-	    << tr("DVDs")
-	    << tr("Journals")
-	    << tr("Magazines")
-	    << tr("Music CDs")
-	    << tr("Video Games");
+    tmplist << "All"
+	    << "All Overdue"
+	    << "All Reserved"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
   else if(roles.isEmpty() || roles.contains("administrator") ||
 	  roles.contains("circulation"))
-    tmplist << tr("All")
-	    << tr("All Overdue")
-	    << tr("All Requested")
-	    << tr("All Reserved")
-	    << tr("Books")
-	    << tr("DVDs")
-	    << tr("Journals")
-	    << tr("Magazines")
-	    << tr("Music CDs")
-	    << tr("Video Games");
+    tmplist << "All"
+	    << "All Overdue"
+	    << "All Requested"
+	    << "All Reserved"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
   else
-    tmplist << tr("All")
-	    << tr("Books")
-	    << tr("DVDs")
-	    << tr("Journals")
-	    << tr("Magazines")
-	    << tr("Music CDs")
-	    << tr("Video Games");
+    tmplist << "All"
+	    << "Books"
+	    << "DVDs"
+	    << "Journals"
+	    << "Magazines"
+	    << "Music CDs"
+	    << "Video Games";
 
   while(ui.typefilter->count() > 0)
     ui.typefilter->removeItem(0);
 
-  ui.typefilter->addItems(tmplist);
+  for(int i = 0; i < tmplist.size(); i++)
+    ui.typefilter->addItem(tr(tmplist[i].toAscii().constData()),
+			   QVariant(tmplist[i]));
+
   tmplist.clear();
 }
 
@@ -9514,4 +9521,13 @@ QString qtbook::getPreferredZ3950Site(void)
       return ui.menuPreferredZ3950Server->actions()[i]->text();
 
   return "";
+}
+
+/*
+** -- getTypeFilterString() --
+*/
+
+QString qtbook::getTypeFilterString(void)
+{
+  return ui.typefilter->itemData(ui.typefilter->currentIndex()).toString();
 }

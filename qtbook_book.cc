@@ -625,14 +625,11 @@ void qtbook_book::slotGo(void)
 	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
-	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Overdue") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Requested") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Reserved") ||
-		  qmain->getUI().typefilter->currentText() == tr("Books")) &&
+	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Overdue" ||
+		  qmain->getTypeFilterString() == "All Requested" ||
+		  qmain->getTypeFilterString() == "All Reserved" ||
+		  qmain->getTypeFilterString() == "Books") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID") &&
 		 misc_functions::getColumnString(qmain->getUI().table,
@@ -751,7 +748,7 @@ void qtbook_book::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, tr("Books"), QString(""));
+		  (qtbook::POPULATE_ALL, "Books", QString(""));
 
 	      raise();
 	    }
@@ -882,7 +879,7 @@ void qtbook_book::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, tr("Books"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Books", searchstr);
       slotCancel();
     }
 }

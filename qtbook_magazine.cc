@@ -602,16 +602,12 @@ void qtbook_magazine::slotGo(void)
 	      setWindowTitle(str);
 	      engWindowTitle = "Modify";
 
-	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Overdue") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Requested") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Reserved") ||
-		  qmain->getUI().typefilter->currentText() == tr("Journals") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("Magazines")) &&
+	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Overdue" ||
+		  qmain->getTypeFilterString() == "All Requested" ||
+		  qmain->getTypeFilterString() == "All Reserved" ||
+		  qmain->getTypeFilterString() == "Journals" ||
+		  qmain->getTypeFilterString() == "Magazines") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID") &&
 		 misc_functions::getColumnString(qmain->getUI().table,
@@ -748,11 +744,11 @@ void qtbook_magazine::slotGo(void)
 		{
 		  if(subType == "Journal")
 		    (void) qmain->populateTable
-		      (qtbook::POPULATE_ALL, QString(tr("Journals")),
+		      (qtbook::POPULATE_ALL, "Journals",
 		       QString(""));
 		  else
 		    (void) qmain->populateTable
-		      (qtbook::POPULATE_ALL, QString(tr("Magazines")),
+		      (qtbook::POPULATE_ALL, "Magazines",
 		       QString(""));
 		}
 
@@ -881,10 +877,10 @@ void qtbook_magazine::slotGo(void)
 
       if(subType == "Journal")
 	(void) qmain->populateTable
-	  (qtbook::POPULATE_SEARCH, QString(tr("Journals")), searchstr);
+	  (qtbook::POPULATE_SEARCH, "Journals", searchstr);
       else
 	(void) qmain->populateTable
-	  (qtbook::POPULATE_SEARCH, QString(tr("Magazines")), searchstr);
+	  (qtbook::POPULATE_SEARCH, "Magazines", searchstr);
 
       if(subType == "Journal")
 	/*

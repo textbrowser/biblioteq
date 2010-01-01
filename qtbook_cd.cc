@@ -573,15 +573,11 @@ void qtbook_cd::slotGo(void)
 	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
-	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Overdue") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Requested") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Reserved") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("Music CDs")) &&
+	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Overdue" ||
+		  qmain->getTypeFilterString() == "All Requested" ||
+		  qmain->getTypeFilterString() == "All Reserved" ||
+		  qmain->getTypeFilterString() == "Music CDs") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID") &&
 		 misc_functions::getColumnString(qmain->getUI().table,
@@ -695,7 +691,7 @@ void qtbook_cd::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, tr("Music CDs"), QString(""));
+		  (qtbook::POPULATE_ALL, "Music CDs", QString(""));
 
 	      raise();
 	    }
@@ -824,7 +820,7 @@ void qtbook_cd::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, tr("Music CDs"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Music CDs", searchstr);
       slotCancel();
     }
 }

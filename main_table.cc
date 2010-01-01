@@ -28,11 +28,11 @@ void main_table::setColumns(const QString &type, const QString &roles)
   int i = 0;
   QStringList list;
 
-  if(type == tr("All") || type == tr("All Overdue") ||
-     type == tr("All Requested") ||
-     type == tr("All Reserved"))
+  if(type == "All" || type == "All Overdue" ||
+     type == "All Requested" ||
+     type == "All Reserved")
     {
-      if(type == tr("All Overdue") || type == tr("All Reserved"))
+      if(type == "All Overdue" || type == "All Reserved")
 	{
 	  if(!roles.isEmpty())
 	    {
@@ -44,7 +44,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
 	  list.append(tr("Reservation Date"));
 	  list.append(tr("Due Date"));
 	}
-      else if(type == tr("All Requested"))
+      else if(type == "All Requested")
 	{
 	  if(!roles.isEmpty())
 	    {
@@ -66,16 +66,16 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Quantity"));
       list.append(tr("Location"));
 
-      if(type != tr("All Requested"))
+      if(type != "All Requested")
 	list.append(tr("Availability"));
 
       list.append(tr("Type"));
       list.append("MYOID");
 
-      if(type == tr("All Requested"))
+      if(type == "All Requested")
 	list.append("REQUESTOID");
     }
-  else if(type == tr("Books"))
+  else if(type == "Books")
     {
       list.append(tr("Title"));
       list.append(tr("Author(s)"));
@@ -99,7 +99,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == tr("Video Games"))
+  else if(type == "Video Games")
     {
       list.append(tr("Title"));
       list.append(tr("Game Rating"));
@@ -119,7 +119,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == tr("Music CDs"))
+  else if(type == "Music CDs")
     {
       list.append(tr("Title"));
       list.append(tr("Artist"));
@@ -141,7 +141,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == tr("DVDs"))
+  else if(type == "DVDs")
     {
       list.append(tr("Title"));
       list.append(tr("Format"));
@@ -163,7 +163,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
       list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == tr("Journals") || type == tr("Magazines"))
+  else if(type == "Journals" || type == "Magazines")
     {
       list.append(tr("Title"));
       list.append(tr("Publisher"));
@@ -189,9 +189,9 @@ void main_table::setColumns(const QString &type, const QString &roles)
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
 
-  if(type != tr("All") && type != tr("All Overdue") &&
-     type != tr("All Requested") &&
-     type != tr("All Reserved"))
+  if(type != "All" && type != "All Overdue" &&
+     type != "All Requested" &&
+     type != "All Reserved")
     {
       setColumnHidden(list.size() - 1, true);
       setColumnHidden(list.size() - 2, true);
@@ -200,7 +200,7 @@ void main_table::setColumns(const QString &type, const QString &roles)
     {
       setColumnHidden(list.size() - 1, true);
 
-      if(type == tr("All Requested"))
+      if(type == "All Requested")
 	setColumnHidden(list.size() - 2, true);
     }
 

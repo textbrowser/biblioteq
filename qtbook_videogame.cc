@@ -527,15 +527,11 @@ void qtbook_videogame::slotGo(void)
 	      setWindowTitle(str);
 	      engWindowTitle = "Modify";
 
-	      if((qmain->getUI().typefilter->currentText() == tr("All") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Overdue") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Requested") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("All Reserved") ||
-		  qmain->getUI().typefilter->currentText() ==
-		  tr("Video Games")) &&
+	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Overdue" ||
+		  qmain->getTypeFilterString() == "All Requested" ||
+		  qmain->getTypeFilterString() == "All Reserved" ||
+		  qmain->getTypeFilterString() == "Video Games") &&
 		 oid == misc_functions::getColumnString(qmain->getUI().table,
 							row, "MYOID") &&
 		 misc_functions::getColumnString(qmain->getUI().table,
@@ -645,7 +641,7 @@ void qtbook_videogame::slotGo(void)
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
 		(void) qmain->populateTable
-		  (qtbook::POPULATE_ALL, tr("Video Games"), QString(""));
+		  (qtbook::POPULATE_ALL, "Video Games", QString(""));
 
 	      raise();
 	    }
@@ -767,7 +763,7 @@ void qtbook_videogame::slotGo(void)
       */
 
       (void) qmain->populateTable
-	(qtbook::POPULATE_SEARCH, tr("Video Games"), searchstr);
+	(qtbook::POPULATE_SEARCH, "Video Games", searchstr);
       slotCancel();
     }
 }

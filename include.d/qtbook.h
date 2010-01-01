@@ -178,6 +178,7 @@ class qtbook: public QMainWindow
 				       const QString &);
   QString getRoles(void);
   QString getAdminID(void);
+  QString getTypeFilterString(void);
   QString getPreferredZ3950Site(void);
   QMainWindow *getMembersBrowser(void);
   QSqlDatabase getDB(void);
