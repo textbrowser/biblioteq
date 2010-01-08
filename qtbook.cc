@@ -505,11 +505,25 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
-  ui.table->resetTable("All", roles);
+
+  QString lastCategory("");
+  QSettings settings;
+
+  if(settings.contains("last_category"))
+    lastCategory = settings.value("last_category").toString();
+  else
+    lastCategory = "All";
+
+  ui.table->resetTable(lastCategory, roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
-  previousTypeFilter = "All";
+  previousTypeFilter = lastCategory;
   prepareFilter();
+
+  if(ui.typefilter->findData(QVariant(lastCategory)) > -1)
+    ui.typefilter->setCurrentIndex
+      (ui.typefilter->findData(QVariant(lastCategory)));
+
   addConfigOptions(previousTypeFilter);
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
@@ -5223,6 +5237,7 @@ void qtbook::slotSaveConfig(void)
     ("automatically_populate_admin_list_on_display",
      ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked());
   settings.setValue("global_font", font().toString());
+  settings.setValue("last_category", getTypeFilterString());
 
   if(ui.actionPreserveGeometry->isChecked())
     settings.setValue("main_window_geometry", geometry());
@@ -5873,6 +5888,13 @@ void qtbook::slotConnectDB(void)
       ui.actionReservationHistory->setEnabled(true);
     }
 
+  QSettings settings;
+
+  if(settings.contains("last_category") &&
+     ui.typefilter->findData(settings.value("last_category")) > -1)
+    ui.typefilter->setCurrentIndex
+      (ui.typefilter->findData(settings.value("last_category")));
+
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
 }
@@ -5948,13 +5970,17 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
-  previousTypeFilter = "All";
-  ui.table->resetTable("All", roles);
+  previousTypeFilter = getTypeFilterString();
+  ui.table->resetTable(previousTypeFilter, roles);
   ui.table->clearHiddenColumnsRecord();
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
-  addConfigOptions("All");
-  ui.typefilter->setCurrentIndex(0);
+
+  if(ui.typefilter->findData(QVariant(previousTypeFilter)) > -1)
+    ui.typefilter->setCurrentIndex
+      (ui.typefilter->findData(QVariant(previousTypeFilter)));
+
+  addConfigOptions(previousTypeFilter);
   slotDisplaySummary();
   emptyContainers();
   deletedAdmins.clear();
