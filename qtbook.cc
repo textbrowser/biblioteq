@@ -313,7 +313,6 @@ qtbook::qtbook(void):QMainWindow()
   ab.setupUi(admin_diag);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
-  history_diag->setWindowModality(Qt::ApplicationModal);
   branch_diag->setModal(true);
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
