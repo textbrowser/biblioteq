@@ -1479,14 +1479,14 @@ void misc_functions::center(QMainWindow *child, QMainWindow *parent)
   p = parent->pos();
 
   if(parent->width() >= child->width())
-    X = p.x() + parent->width() / 2 - child->width() / 2;
+    X = p.x() + (parent->width() - child->width()) / 2;
   else
-    X = p.x() - (child->width() / 2 - parent->width() / 2);
+    X = p.x() - (child->width() - parent->width()) / 2;
 
   if(parent->height() >= child->height())
-    Y = p.y() + parent->height() / 2 - child->height() / 2;
+    Y = p.y() + (parent->height() - child->height()) / 2;
   else
-    Y = p.y() - (child->height() / 2 - parent->height() / 2);
+    Y = p.y() - (child->height() - parent->height()) / 2;
 
   child->move(X, Y);
 }
