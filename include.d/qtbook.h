@@ -197,6 +197,7 @@ class qtbook: public QMainWindow
   int currentPage;
   int lastSearchType;
   QString roles;
+  QString lastCategory;
   QString lastSearchStr;
   QString engUserinfoTitle;
   QString previousTypeFilter;

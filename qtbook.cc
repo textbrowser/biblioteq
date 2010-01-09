@@ -505,14 +505,9 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
 
-  QString lastCategory("");
   QSettings settings;
 
-  if(settings.contains("last_category"))
-    lastCategory = settings.value("last_category").toString();
-  else
-    lastCategory = "All";
-
+  lastCategory = settings.value("last_category", "All").toString();
   ui.table->resetTable(lastCategory, roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
@@ -523,7 +518,7 @@ qtbook::qtbook(void):QMainWindow()
     ui.typefilter->setCurrentIndex
       (ui.typefilter->findData(QVariant(lastCategory)));
 
-  addConfigOptions(previousTypeFilter);
+  addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
@@ -5007,15 +5002,16 @@ void qtbook::readConfig(void)
   QFont font;
   QSettings settings;
 
-  ui.actionShowGrid->setChecked(settings.value("show_table_grid").toBool());
+  ui.actionShowGrid->setChecked(settings.value("show_table_grid",
+					       false).toBool());
   ui.actionPopulateOnStart->setChecked
-    (settings.value("populate_table_on_connect").toBool());
+    (settings.value("populate_table_on_connect", false).toBool());
   ui.actionAutoResizeColumns->setChecked
-    (settings.value("automatically_resize_columns").toBool());
+    (settings.value("automatically_resize_columns", false).toBool());
   ui.actionResetErrorLogOnDisconnect->setChecked
-    (settings.value("reset_error_log_on_disconnect").toBool());
+    (settings.value("reset_error_log_on_disconnect", false).toBool());
   ui.actionAutoPopulateOnCreation->setChecked
-    (settings.value("automatically_populate_on_create").toBool());
+    (settings.value("automatically_populate_on_create", false).toBool());
 
   if(settings.contains("main_window_geometry"))
     {
@@ -5029,12 +5025,13 @@ void qtbook::readConfig(void)
     font.fromString(settings.value("global_font").toString());
 
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
-    (settings.value("save_settings_on_exit").toBool());
+    (settings.value("save_settings_on_exit", false).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_members_"
-		    "list_on_display").toBool());
+		    "list_on_display", false).toBool());
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
-    (settings.value("automatically_populate_admin_list_on_display").toBool());
+    (settings.value("automatically_populate_admin_list_on_display",
+		    false).toBool());
 
   bool found = false;
 
@@ -5887,12 +5884,9 @@ void qtbook::slotConnectDB(void)
       ui.actionReservationHistory->setEnabled(true);
     }
 
-  QSettings settings;
-
-  if(settings.contains("last_category") &&
-     ui.typefilter->findData(settings.value("last_category")) > -1)
+  if(ui.typefilter->findData(QVariant(lastCategory)) > -1)
     ui.typefilter->setCurrentIndex
-      (ui.typefilter->findData(settings.value("last_category")));
+      (ui.typefilter->findData(QVariant(lastCategory)));
 
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
