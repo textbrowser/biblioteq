@@ -838,7 +838,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.38.<br>"
+  mb.setText("<html>BiblioteQ Version 6.39.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
@@ -3811,6 +3811,12 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
  populate_label:
 
+  ui.table->scrollToTop();
+  ui.table->horizontalScrollBar()->setValue(0);
+  ui.table->clearSelection();
+  ui.table->setCurrentItem(0);
+  slotDisplaySummary();
+
   if(pagingType == 1)
     currentPage -= 1;
   else if(pagingType == 2)
@@ -3949,7 +3955,6 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   ui.table->setRowCount(i);
-  slotDisplaySummary();
 
   if(ui.actionAutoResizeColumns->isChecked())
     slotResizeColumns();
