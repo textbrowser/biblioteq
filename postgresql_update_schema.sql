@@ -528,3 +528,21 @@ UPDATE book SET edition = TRIM(BOTH 'st' FROM edition);
 UPDATE book SET edition = TRIM(BOTH 'nd' FROM edition);
 UPDATE book SET edition = TRIM(BOTH 'rd' FROM edition);
 UPDATE book SET edition = TRIM(BOTH 'th' FROM edition);
+
+/* Release 6.39 */
+
+GRANT SELECT, UPDATE, USAGE ON public.book_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.book_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.cd_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.cd_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.dvd_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.dvd_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.journal_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.journal_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.magazine_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.magazine_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.videogame_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.videogame_copy_info_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.item_borrower_myoid_seq TO xbook_admin;
+GRANT SELECT, USAGE ON public.item_request_myoid_seq TO xbook_admin;
+GRANT SELECT, UPDATE, USAGE ON public.member_history_myoid_seq TO xbook_admin;
