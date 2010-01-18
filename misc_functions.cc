@@ -151,11 +151,11 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, SELECT"
-	       << "SELECT, UPDATE";
+	       << "SELECT, UPDATE, USAGE";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -194,31 +194,31 @@ void misc_functions::grantPrivs(const QString &userid,
     {
       privlist << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE"
-	       << "SELECT, UPDATE"
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT, UPDATE, USAGE"
 	       << "SELECT"
-	       << "SELECT, UPDATE";
+	       << "SELECT, UPDATE, USAGE";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -589,7 +589,11 @@ void misc_functions::DBAccount(const QString &userid,
 		      (objectlist[i]).arg(userid);
 		  else if(objectlist[i] == "item_request_myoid_seq")
 		    querystr = QString
-		      ("GRANT SELECT, UPDATE ON %1 TO %2").arg
+		      ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
+		      (objectlist[i]).arg(userid);
+		  else if(objectlist[i].endsWith("_seq"))
+		    querystr = QString
+		      ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
 		      (objectlist[i]).arg(userid);
 		  else
 		    querystr = QString
@@ -611,7 +615,7 @@ void misc_functions::DBAccount(const QString &userid,
 		  (objectlist[i]).arg(userid);
 	      else if(objectlist[i] == "item_request_myoid_seq")
 		querystr = QString
-		  ("GRANT SELECT, UPDATE ON %1 TO %2").arg
+		  ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
 		  (objectlist[i]).arg(userid);
 	      else if(objectlist[i] == "admin")
 		querystr = QString("REVOKE ALL ON %1 FROM %2").arg
