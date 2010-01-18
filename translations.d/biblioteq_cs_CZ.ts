@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>QObject</name>
     <message>
@@ -480,11 +482,11 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation type="unfinished">Datum vydání</translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
         <source>MM/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>MM/yyyy</translation>
     </message>
 </context>
 <context>
@@ -794,7 +796,7 @@
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 webová adresa</translation>
     </message>
     <message>
@@ -1095,7 +1097,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</source>
-        <translation>Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. 
+        <translation type="obsolete">Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. 
 Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
@@ -1113,6 +1115,10 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     <message>
         <source>Close</source>
         <translation>Zavřít</translation>
+    </message>
+    <message>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
+        <translation>Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
 </context>
 <context>
@@ -1240,7 +1246,7 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 webová adresa</translation>
     </message>
     <message>
@@ -1319,7 +1325,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Query Error</source>
-        <translation>Chyba při dotazu</translation>
+        <translation type="obsolete">Chyba při dotazu</translation>
+    </message>
+    <message>
+        <source>Z39.50 Empty Results Set</source>
+        <translation>Z39.50 záznamy nenalezeny</translation>
     </message>
 </context>
 <context>
@@ -1449,103 +1459,103 @@ webová adresa</translation>
     </message>
     <message>
         <source>1st</source>
-        <translation>první</translation>
+        <translation type="obsolete">první</translation>
     </message>
     <message>
         <source>2nd</source>
-        <translation>druhé</translation>
+        <translation type="obsolete">druhé</translation>
     </message>
     <message>
         <source>3rd</source>
-        <translation>třetí</translation>
+        <translation type="obsolete">třetí</translation>
     </message>
     <message>
         <source>4th</source>
-        <translation>čtvrté</translation>
+        <translation type="obsolete">čtvrté</translation>
     </message>
     <message>
         <source>5th</source>
-        <translation>páté</translation>
+        <translation type="obsolete">páté</translation>
     </message>
     <message>
         <source>6th</source>
-        <translation>šesté</translation>
+        <translation type="obsolete">šesté</translation>
     </message>
     <message>
         <source>7th</source>
-        <translation>sedmé</translation>
+        <translation type="obsolete">sedmé</translation>
     </message>
     <message>
         <source>8th</source>
-        <translation>osmé</translation>
+        <translation type="obsolete">osmé</translation>
     </message>
     <message>
         <source>9th</source>
-        <translation>deváté</translation>
+        <translation type="obsolete">deváté</translation>
     </message>
     <message>
         <source>10th</source>
-        <translation>desáté</translation>
+        <translation type="obsolete">desáté</translation>
     </message>
     <message>
         <source>11th</source>
-        <translation>jedenácté</translation>
+        <translation type="obsolete">jedenácté</translation>
     </message>
     <message>
         <source>12th</source>
-        <translation>dvanácté</translation>
+        <translation type="obsolete">dvanácté</translation>
     </message>
     <message>
         <source>13th</source>
-        <translation>třinácté</translation>
+        <translation type="obsolete">třinácté</translation>
     </message>
     <message>
         <source>14th</source>
-        <translation>čtrnácté</translation>
+        <translation type="obsolete">čtrnácté</translation>
     </message>
     <message>
         <source>15th</source>
-        <translation>patnácté</translation>
+        <translation type="obsolete">patnácté</translation>
     </message>
     <message>
         <source>16th</source>
-        <translation>šestnácté</translation>
+        <translation type="obsolete">šestnácté</translation>
     </message>
     <message>
         <source>17th</source>
-        <translation>sedmnácté</translation>
+        <translation type="obsolete">sedmnácté</translation>
     </message>
     <message>
         <source>18th</source>
-        <translation>osmnácté</translation>
+        <translation type="obsolete">osmnácté</translation>
     </message>
     <message>
         <source>19th</source>
-        <translation>devatenácté</translation>
+        <translation type="obsolete">devatenácté</translation>
     </message>
     <message>
         <source>20th</source>
-        <translation>dvacáté</translation>
+        <translation type="obsolete">dvacáté</translation>
     </message>
     <message>
         <source>21st</source>
-        <translation>dvacáté první</translation>
+        <translation type="obsolete">dvacáté první</translation>
     </message>
     <message>
         <source>22nd</source>
-        <translation>dvacáté druhé</translation>
+        <translation type="obsolete">dvacáté druhé</translation>
     </message>
     <message>
         <source>23rd</source>
-        <translation>dvacáté třetí</translation>
+        <translation type="obsolete">dvacáté třetí</translation>
     </message>
     <message>
         <source>24th</source>
-        <translation>dvacáté čtvrté</translation>
+        <translation type="obsolete">dvacáté čtvrté</translation>
     </message>
     <message>
         <source>25th</source>
-        <translation>dvacáté páté</translation>
+        <translation type="obsolete">dvacáté páté</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -1634,7 +1644,7 @@ webová adresa</translation>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 webová adresa</translation>
     </message>
     <message>
@@ -1666,30 +1676,30 @@ webová adresa</translation>
     <name>locResultsDialog</name>
     <message>
         <source>BiblioteQ: Z39.50 Query Results</source>
-        <translation>BiblioteQ: výsledky dotazu protokolem Z39.50</translation>
+        <translation type="obsolete">BiblioteQ: výsledky dotazu protokolem Z39.50</translation>
     </message>
     <message>
         <source>&amp;Records Retrieved</source>
-        <translation>&amp;Získané záznamy</translation>
+        <translation type="obsolete">&amp;Získané záznamy</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation>&amp;Obsah záznamu</translation>
+        <translation type="obsolete">&amp;Obsah záznamu</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Storno</translation>
+        <translation type="obsolete">&amp;Storno</translation>
     </message>
 </context>
 <context>
     <name>locresults</name>
     <message>
         <source>Record #</source>
-        <translation>Záznam č.</translation>
+        <translation type="obsolete">Záznam č.</translation>
     </message>
 </context>
 <context>
@@ -1801,7 +1811,7 @@ webová adresa</translation>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 webová adresa</translation>
     </message>
     <message>
@@ -2013,11 +2023,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Exit BiblioteQ</source>
-        <translation>&amp;Zavřít program</translation>
+        <translation type="obsolete">&amp;Zavřít program</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation>Ctrl+E</translation>
+        <translation type="obsolete">Ctrl+E</translation>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
@@ -2069,7 +2079,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Select Global &amp;Font</source>
-        <translation>Vybrat pís&amp;mo pro celou aplikaci</translation>
+        <translation type="obsolete">Vybrat pís&amp;mo pro celou aplikaci</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
@@ -2141,11 +2151,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Remember S&amp;QLite Filename</source>
-        <translation>Zapamatovat jméno S&amp;QLite databáze</translation>
+        <translation type="obsolete">Zapamatovat jméno S&amp;QLite databáze</translation>
     </message>
     <message>
         <source>Preserve Main Window&apos;s &amp;Geometry</source>
-        <translation>Zapamatovat &amp;rozměry okna</translation>
+        <translation type="obsolete">Zapamatovat &amp;rozměry okna</translation>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
@@ -2167,24 +2177,84 @@ webová adresa</translation>
         <source>Populate &amp;Administrator Browser Table on Display</source>
         <translation>Naplnit přehled &amp;administrátorů při zobrazení</translation>
     </message>
+    <message>
+        <source>Previous Page</source>
+        <translation>Předchozí strana</translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>Další strana</translation>
+    </message>
+    <message>
+        <source>&amp;Recent SQLite Files</source>
+        <translation>&amp;Nedávno otevřené SQLite soubory</translation>
+    </message>
+    <message>
+        <source>E&amp;ntries per Page</source>
+        <translation>Z&amp;áznamů na straně</translation>
+    </message>
+    <message>
+        <source>Preferred &amp;Z39.50 Site</source>
+        <translation>&amp;Standardní server pro Z39.50</translation>
+    </message>
+    <message>
+        <source>Exit Bibliote&amp;Q</source>
+        <translation>Ukončit Bibliote&amp;Q</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font</source>
+        <translation>Vybrat pís&amp;mo pro celou aplikaci</translation>
+    </message>
+    <message>
+        <source>Preserve Main &amp;Window&apos;s Geometry</source>
+        <translation>Zapamatovat &amp;rozměry okna</translation>
+    </message>
+    <message>
+        <source>Check for &amp;Updates</source>
+        <translation>Zjisti &amp;novější verzi</translation>
+    </message>
+    <message>
+        <source>&amp;25</source>
+        <translation>&amp;25</translation>
+    </message>
+    <message>
+        <source>&amp;50</source>
+        <translation>&amp;50</translation>
+    </message>
+    <message>
+        <source>&amp;75</source>
+        <translation>&amp;75</translation>
+    </message>
+    <message>
+        <source>&amp;100</source>
+        <translation>&amp;100</translation>
+    </message>
+    <message>
+        <source>test</source>
+        <translation>test</translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Borrower</source>
@@ -2260,7 +2330,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Knihy</translation>
+        <translation type="obsolete">Knihy</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -2300,7 +2370,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Videohry</translation>
+        <translation type="obsolete">Videohry</translation>
     </message>
     <message>
         <source>Game Rating</source>
@@ -2328,7 +2398,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Hudební CD</translation>
+        <translation type="obsolete">Hudební CD</translation>
     </message>
     <message>
         <source>Artist</source>
@@ -2364,7 +2434,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVD disky</translation>
+        <translation type="obsolete">DVD disky</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -2384,11 +2454,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Časopisy</translation>
+        <translation type="obsolete">Časopisy</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Magazíny</translation>
+        <translation type="obsolete">Magazíny</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2661,19 +2731,19 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Type</source>
@@ -2817,27 +2887,27 @@ webová adresa</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Videohry</translation>
+        <translation type="obsolete">Videohry</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Knihy</translation>
+        <translation type="obsolete">Knihy</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVD disky</translation>
+        <translation type="obsolete">DVD disky</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Hudební CD</translation>
+        <translation type="obsolete">Hudební CD</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Časopisy</translation>
+        <translation type="obsolete">Časopisy</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Magazíny</translation>
+        <translation type="obsolete">Magazíny</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -2857,7 +2927,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Custom</source>
-        <translation>Uživatelský</translation>
+        <translation type="obsolete">Uživatelský</translation>
     </message>
     <message>
         <source>BiblioteQ: Create New Member</source>
@@ -3197,7 +3267,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>It appears that the item you selected is no longer available for reservation.</source>
-        <translation>Zdá se, že vybraná položka není dostupná k zapůjčení.</translation>
+        <translation type="obsolete">Zdá se, že vybraná položka není dostupná k zapůjčení.</translation>
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
@@ -3497,19 +3567,67 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation type="unfinished">Vyčistit datum &amp;publikace</translation>
+        <translation>Vyčistit datum &amp;publikace</translation>
     </message>
     <message>
         <source>Administrators must belong to at least one category.</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrátoři musí náležet alespoň do jedné kategorie.</translation>
     </message>
     <message>
         <source>The function misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
+        <translation>Funkce misc%functions&quot;&quot;userCount90 selhala kvůli </translation>
+    </message>
+    <message>
+        <source>&amp;%1</source>
+        <translation>&amp;%1</translation>
+    </message>
+    <message>
+        <source>0 Results</source>
+        <translation>0 výsledků</translation>
+    </message>
+    <message>
+        <source>%1 Result(s)</source>
+        <translation>%1 výsledků</translation>
+    </message>
+    <message>
+        <source> %1 </source>
+        <translation> %1 </translation>
+    </message>
+    <message>
+        <source>%1</source>
+        <translation>%1</translation>
+    </message>
+    <message>
+        <source> 1 ... </source>
+        <translation> 1 ... </translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source> ... </source>
+        <translation> ... </translation>
+    </message>
+    <message>
+        <source> ... %1 </source>
+        <translation> ... %1 </translation>
+    </message>
+    <message>
+        <source>It appears that the item you selected is not available for reservation.</source>
+        <translation>Zdá se, že vybraná položka nemůže být rezervována.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to print the </source>
+        <translation>Opravdu chcete vytisknout </translation>
+    </message>
+    <message>
+        <source>&amp;Clear Menu</source>
+        <translation>menu &amp;Vyčistit</translation>
     </message>
 </context>
 <context>
@@ -3604,7 +3722,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Vyčistit OFF&amp;SYSTEM webová adresa</translation>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -3708,23 +3826,23 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Knihy</translation>
+        <translation type="obsolete">Knihy</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -4004,7 +4122,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM webová adresa:</translation>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -4057,6 +4175,22 @@ webová adresa</translation>
     <message>
         <source>Back cover image download failed: </source>
         <translation>Stažení obrázku zadní strany obálky selhalo:</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred.</source>
+        <translation>Neznámá chyba.</translation>
+    </message>
+    <message>
+        <source>Front cover image download failed.</source>
+        <translation>Stažení obrázku přední strany obálky selhalo.</translation>
+    </message>
+    <message>
+        <source>Back cover image download failed.</source>
+        <translation>Stažení obrázku zadní strany obálky selhalo.</translation>
     </message>
 </context>
 <context>
@@ -4143,7 +4277,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Vyčistit OFF&amp;SYSTEM webová adresa</translation>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -4247,23 +4381,23 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Hudební CD</translation>
+        <translation type="obsolete">Hudební CD</translation>
     </message>
     <message>
         <source>Catalog Number</source>
@@ -4583,7 +4717,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM webová adresa:</translation>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -4592,6 +4726,10 @@ webová adresa</translation>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
@@ -4686,7 +4824,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Vyčistit OFF&amp;SYSTEM webová adresa</translation>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -4798,23 +4936,23 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVD disky</translation>
+        <translation type="obsolete">DVD disky</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -5058,7 +5196,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM webová adresa:</translation>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5067,6 +5205,10 @@ webová adresa</translation>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
@@ -5172,7 +5314,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Vyčistit OFF&amp;SYSTEM webová adresa</translation>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -5276,27 +5418,27 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Časopisy</translation>
+        <translation type="obsolete">Časopisy</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Magazíny</translation>
+        <translation type="obsolete">Magazíny</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -5596,7 +5738,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM webová adresa:</translation>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5605,6 +5747,10 @@ webová adresa</translation>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
@@ -5687,7 +5833,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Vyčistit OFF&amp;SYSTEM webová adresa</translation>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -5791,23 +5937,23 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Všechno</translation>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Všechny prošlé půjčky</translation>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Všechny požadované</translation>
+        <translation type="obsolete">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Všechny vypůjčené</translation>
+        <translation type="obsolete">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Videohry</translation>
+        <translation type="obsolete">Videohry</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -6035,7 +6181,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM webová adresa:</translation>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -6044,6 +6190,10 @@ webová adresa</translation>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
@@ -6198,7 +6348,7 @@ webová adresa</translation>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 webová adresa</translation>
     </message>
     <message>
@@ -6224,6 +6374,36 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>z3950ResultsDialog</name>
+    <message>
+        <source>BiblioteQ: Z39.50 Query Results</source>
+        <translation>BiblioteQ: výsledky dotazu protokolem Z39.50</translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation>&amp;Získané záznamy</translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation>&amp;Obsah záznamu</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation>&amp;Vybrat</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Storno</translation>
+    </message>
+</context>
+<context>
+    <name>z3950results</name>
+    <message>
+        <source>Record #</source>
+        <translation>Záznam č.</translation>
     </message>
 </context>
 </TS>
