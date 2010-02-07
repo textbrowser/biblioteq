@@ -5824,9 +5824,7 @@ void qtbook::slotConnectDB(void)
 	  QList<QAction *> actions = ui.menu_Recent_SQLite_Files->actions();
 
 	  for(int i = 0; i < actions.size(); i++)
-	    if(actions[i]->isSeparator())
-	      break;
-	    else if(actions[i]->data().toString() == br.filename->text())
+	    if(actions[i]->data().toString() == br.filename->text())
 	      {
 		exists = true;
 		break;
@@ -5839,28 +5837,19 @@ void qtbook::slotConnectDB(void)
 	      ui.menu_Recent_SQLite_Files->clear();
 	      createSqliteMenuActions();
 
-	      QList<QAction *> actions =
-		ui.menu_Recent_SQLite_Files->actions();
+	      if(ui.menu_Recent_SQLite_Files->actions().size() == 1)
+		ui.menu_Recent_SQLite_Files->addSeparator();
 
-	      for(int i = 0; i < actions.size(); i++)
-		if(actions[i]->isSeparator())
-		  {
-		    QAction *action = new(std::nothrow) QAction
-		      (br.filename->text(), this);
+	      QAction *action = new(std::nothrow) QAction
+		(br.filename->text(), this);
 
-		    if(action)
-		      {
-			action->setData(br.filename->text());
-			connect(action, SIGNAL(triggered(bool)), this,
-				SLOT(slotSqliteFileSelected(bool)));
-			ui.menu_Recent_SQLite_Files->insertAction(actions[i],
-								  action);
-		      }
-
-		    break;
-		  }
-
-	      actions.clear();
+	      if(action)
+		{
+		  action->setData(br.filename->text());
+		  connect(action, SIGNAL(triggered(bool)), this,
+			  SLOT(slotSqliteFileSelected(bool)));
+		  ui.menu_Recent_SQLite_Files->addAction(action);
+		}
 
 	      int index = 1;
 	      QSettings settings;
@@ -9433,7 +9422,6 @@ void qtbook::slotSqliteFileSelected(bool state)
 void qtbook::slotClearSqliteMenu(bool state)
 {
   Q_UNUSED(state);
-
   ui.menu_Recent_SQLite_Files->clear();
 
   QSettings settings;
@@ -9453,6 +9441,15 @@ void qtbook::slotClearSqliteMenu(bool state)
 
 void qtbook::createSqliteMenuActions(void)
 {
+  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
+
+  if(action)
+    {
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotClearSqliteMenu(bool)));
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
+
   QSettings settings;
   QStringList dups;
   QStringList allKeys(settings.allKeys());
@@ -9484,19 +9481,12 @@ void qtbook::createSqliteMenuActions(void)
       if(!action)
 	continue;
 
+      if(ui.menu_Recent_SQLite_Files->actions().size() == 1)
+	ui.menu_Recent_SQLite_Files->addSeparator();
+
       action->setData(str);
       connect(action, SIGNAL(triggered(bool)), this,
 	      SLOT(slotSqliteFileSelected(bool)));
-      ui.menu_Recent_SQLite_Files->addAction(action);
-    }
-
-  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
-
-  if(action)
-    {
-      ui.menu_Recent_SQLite_Files->addSeparator();
-      connect(action, SIGNAL(triggered(bool)), this,
-	      SLOT(slotClearSqliteMenu(bool)));
       ui.menu_Recent_SQLite_Files->addAction(action);
     }
 
