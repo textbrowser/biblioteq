@@ -383,7 +383,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="font">
@@ -441,6 +441,8 @@
       <string>&amp;Recent SQLite Files</string>
      </property>
     </widget>
+    <addaction name="action_New_SQLite_Database"/>
+    <addaction name="separator"/>
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="menu_Recent_SQLite_Files"/>
@@ -1394,6 +1396,18 @@
   <action name="actionTest">
    <property name="text">
     <string>test</string>
+   </property>
+  </action>
+  <action name="action_New_SQLite_Database">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons.d/16x16/filenew.png</normaloff>icons.d/16x16/filenew.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New SQLite Database</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

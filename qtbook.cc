@@ -5799,6 +5799,13 @@ void qtbook::slotConnectDB(void)
 #ifdef Q_OS_WIN
       ui.menuEntriesPerPage->setEnabled(false);
 #endif
+
+      /*
+      ** Set the window's title.
+      */
+
+      setWindowTitle(tr("BiblioteQ: ") +
+		     QFileInfo(br.filename->text()).fileName());
     }
   else
     {
@@ -5984,6 +5991,7 @@ void qtbook::slotDisconnect(void)
 
   delete populateQuery;
   populateQuery = 0;
+  setWindowTitle(tr("BiblioteQ"));
 }
 
 /*
