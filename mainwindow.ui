@@ -442,10 +442,10 @@
      </property>
     </widget>
     <addaction name="action_New_SQLite_Database"/>
+    <addaction name="menu_Recent_SQLite_Files"/>
     <addaction name="separator"/>
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
-    <addaction name="menu_Recent_SQLite_Files"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
