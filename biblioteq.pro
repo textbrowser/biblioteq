@@ -27,6 +27,7 @@ FORMS           = cdinfo.ui \
 		  userinfo.ui \
                   borrowers.ui \
 		  errordiag.ui \
+		  newsqlite.ui \
 		  adminsetup.ui \
 		  mainwindow.ui \
 		  copybrowser.ui \
