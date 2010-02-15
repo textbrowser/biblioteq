@@ -4037,6 +4037,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   if(getDB().driverName() == "QSQLITE")
     populateQuery->clear();
 #endif
+  ui.table->setFocus();
   return 0;
 }
 
