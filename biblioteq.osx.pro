@@ -6,6 +6,7 @@ QT		+= sql network
 CONFIG		+= qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror
+QMAKE_CXXFLAGS  -= -O1
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE += -Werror
