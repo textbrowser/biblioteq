@@ -7857,11 +7857,14 @@ void qtbook::slotShowMenu(void)
 
 void qtbook::slotSetFonts(void)
 {
-  bool ok = false;
-  QFont font = QFontDialog::getFont(&ok, this);
+  QFontDialog dialog(this);
 
-  if(ok)
-    setGlobalFonts(font);
+  dialog.setOption(QFontDialog::DontUseNativeDialog);
+  dialog.setCurrentFont(QFont());
+  dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
+
+  if(dialog.exec() == QDialog::Accepted)
+    setGlobalFonts(dialog.selectedFont());
 }
 
 /*
