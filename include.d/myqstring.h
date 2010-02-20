@@ -4,7 +4,7 @@
 #include <QRegExp>
 #include <QString>
 
-class myqstring:public QString
+class myqstring: public QString
 {
  public:
   myqstring(const char *);

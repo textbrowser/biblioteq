@@ -18,7 +18,7 @@
 #include "ui_borrowers.h"
 #include "misc_functions.h"
 
-class borrowers_editor: QDialog
+class borrowers_editor: public QDialog
 {
   Q_OBJECT
 

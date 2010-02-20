@@ -18,7 +18,7 @@
 
 class qtbook_magazine;
 
-class z3950results: QDialog
+class z3950results: public QDialog
 {
   Q_OBJECT
 

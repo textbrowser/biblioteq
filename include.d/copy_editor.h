@@ -20,7 +20,7 @@
 #include "misc_functions.h"
 #include "ui_copybrowser.h"
 
-class copy_editor: QDialog
+class copy_editor: public QDialog
 {
   Q_OBJECT
 
