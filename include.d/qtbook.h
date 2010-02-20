@@ -340,6 +340,7 @@ class qtbook: public QMainWindow
   void slotCloseMembersBrowser(void);
   void slotAdminCheckBoxClicked(int);
   void slotCloseCustomQueryDialog(void);
+  void slotDisplayNewSqliteDialog(void);
   void slotPopulateMembersBrowser(void);
   void slotResizeColumnsAfterSort(void);
   void slotUpdateIndicesAfterSort(int);
