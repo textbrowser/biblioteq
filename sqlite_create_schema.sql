@@ -1,3 +1,7 @@
+/*
+** Please update include.d/sqlite_create_schema.h after updating this file.
+*/
+
 CREATE TABLE book
 (
 	id		 VARCHAR(32) NOT NULL PRIMARY KEY,

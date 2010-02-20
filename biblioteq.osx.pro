@@ -14,7 +14,7 @@ QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_UNIX_TARGETS = purge
 INCPATH		+= include.d /opt/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -L/opt/local/lib -lyaz
+LIBS		+= -L/opt/local/lib -lyaz -lsqlite3
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \
@@ -28,7 +28,6 @@ FORMS           = cdinfo.ui \
 		  userinfo.ui \
                   borrowers.ui \
 		  errordiag.ui \
-		  newsqlite.ui \
 		  adminsetup.ui \
                   mainwindow.ui \
 		  copybrowser.ui \

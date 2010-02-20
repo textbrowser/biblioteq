@@ -32,6 +32,7 @@
 extern "C"
 {
 #include <math.h>
+#include <sqlite3.h>
 }
 
 /*
@@ -47,6 +48,7 @@ extern "C"
 */
 
 #include "qtbook.h"
+#include "sqlite_create_schema.h"
 
 /*
 ** -- Local Variables --
@@ -465,6 +467,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotDeleteAdmin(void)));
   connect(ab.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveAdministrators(void)));
+  connect(ui.action_New_SQLite_Database,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotDisplayNewSqliteDialog(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -9434,6 +9440,7 @@ void qtbook::slotSqliteFileSelected(bool state)
 void qtbook::slotClearSqliteMenu(bool state)
 {
   Q_UNUSED(state);
+  br.filename->clear();
   ui.menu_Recent_SQLite_Files->clear();
 
   QSettings settings;
@@ -9556,4 +9563,63 @@ QString qtbook::getPreferredZ3950Site(void)
 QString qtbook::getTypeFilterString(void)
 {
   return ui.typefilter->itemData(ui.typefilter->currentIndex()).toString();
+}
+
+/*
+** -- slotDisplayNewSqliteDialog() --
+*/
+
+void qtbook::slotDisplayNewSqliteDialog(void)
+{
+  bool error = true;
+  QFileDialog dialog(this);
+
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      int rc = 0;
+      sqlite3 *ppDb = 0;
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      rc = sqlite3_open_v2(dialog.selectedFiles().at(0).toUtf8(),
+			   &ppDb,
+			   SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE,
+			   0);
+
+      if(rc == SQLITE_OK)
+	{
+	  char *errorstr = 0;
+
+	  if(sqlite3_exec(ppDb,
+			  sqlite_create_schema_text,
+			  0,
+			  0,
+			  &errorstr) == SQLITE_OK)
+	    error = false;
+	  else
+	    addError(tr("Database Error"),
+		     "Unable to create the specified SQLite database.",
+		     errorstr, __FILE__, __LINE__);
+
+	  sqlite3_free(errorstr);
+	}
+      else
+	addError(tr("Database Error"),
+		 tr("Unable to create the specified SQLite database."),
+		 "sqlite3_open_v2() failure.", __FILE__, __LINE__);
+
+      sqlite3_close(ppDb);
+      qapp->restoreOverrideCursor();
+
+      if(!error)
+	{
+	  br.filename->setText(dialog.selectedFiles().at(0));
+	  slotConnectDB();
+	}
+    }
 }
