@@ -9586,6 +9586,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
       sqlite3 *ppDb = 0;
 
       qapp->setOverrideCursor(Qt::WaitCursor);
+      QFile::remove(dialog.selectedFiles().at(0));
       rc = sqlite3_open_v2(dialog.selectedFiles().at(0).toUtf8(),
 			   &ppDb,
 			   SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE,
