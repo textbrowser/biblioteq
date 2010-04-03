@@ -844,7 +844,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.39.<br>"
+  mb.setText("<html>BiblioteQ Version 6.40.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
@@ -5822,6 +5822,13 @@ void qtbook::slotConnectDB(void)
       ui.actionChangePassword->setEnabled(true);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
+
+      /*
+      ** Set the window's title.
+      */
+
+      setWindowTitle(tr("BiblioteQ: ") + selectedBranch["branch_name"] +
+		     QString(" (%1)").arg(br.userid->text()));
     }
 
   prepareFilter();
@@ -9618,9 +9625,11 @@ void qtbook::slotDisplayNewSqliteDialog(void)
       qapp->restoreOverrideCursor();
 
       if(!error)
-	{
-	  br.filename->setText(dialog.selectedFiles().at(0));
-	  slotConnectDB();
-	}
+	/*
+	** The user may not wish to open the database, so let's not
+	** connect automatically.
+	*/
+
+	br.filename->setText(dialog.selectedFiles().at(0));
     }
 }
