@@ -1205,7 +1205,7 @@ void qtbook_book::modify(const int state)
 	      else
 		{
 		  str = QString(tr("BiblioteQ: View Book Details (")) +
-		    tr(")") + var.toString();
+		    var.toString() + tr(")");
 		  engWindowTitle = "View";
 		}
 
