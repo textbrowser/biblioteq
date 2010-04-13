@@ -844,7 +844,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.40.<br>"
+  mb.setText("<html>BiblioteQ Version 6.41.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
@@ -9625,11 +9625,33 @@ void qtbook::slotDisplayNewSqliteDialog(void)
       qapp->restoreOverrideCursor();
 
       if(!error)
-	/*
-	** The user may not wish to open the database, so let's not
-	** connect automatically.
-	*/
+	{
+	  /*
+	  ** The user may not wish to open the new database, so let's not
+	  ** connect automatically.
+	  */
 
-	br.filename->setText(dialog.selectedFiles().at(0));
+	  if(db.isOpen())
+	    {
+	      if(QMessageBox::question
+		 (this,
+		  tr("BiblioteQ: Question"),
+		  tr("It appears that you are already "
+		     "connected to a database. Do you "
+		     "want to disconnect and connect "
+		     "to the new SQLite database?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::Yes)
+		{
+		  br.filename->setText(dialog.selectedFiles().at(0));
+		  slotConnectDB();
+		}
+	    }
+	  else
+	    {
+	      br.filename->setText(dialog.selectedFiles().at(0));
+	      slotConnectDB();
+	    }
+	}
     }
 }
