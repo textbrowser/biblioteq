@@ -1,19 +1,24 @@
 # Define installer name.
+
 Name "BiblioteQ Installer"
 outFile "BiblioteQ-Installer-6.41.exe"
 
 # Install directory.
+
 installDir C:\BiblioteQ-6.41
 
 DirText "Please choose an installation directory for BiblioteQ."
 
 # Default section start.
+
 section
 
 # Define output path.
+
 setOutPath $INSTDIR
 
 # Specify files to go in output path.
+
 file *.sql
 file .\release\qt.conf
 file .\release\biblioteq.conf
@@ -31,23 +36,20 @@ file .\release\biblioteq.db
 file .\release\BiblioteQ.exe
 
 # Define uninstaller name.
+
 writeUninstaller $INSTDIR\BiblioteQ-Uninstaller-6.41.exe
 
 # Default section end.
+
 sectionEnd
 
 # Create a section to define what the uninstaller does.
 # The section will always be named "Uninstall".
+
 section "Uninstall"
 
-# Desktop icon.
-
-Section "Desktop Shortcut" SectionX
-    SetShellVarContext current
-    CreateShortCut "$DESKTOP\BiblioteQ.lnk" "$INSTDIR\BiblioteQ.exe"
-SectionEnd
-
 # Always delete uninstaller first.
+
 RMDir /r $INSTDIR
 
 sectionEnd
