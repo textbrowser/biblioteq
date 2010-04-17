@@ -40,6 +40,13 @@ sectionEnd
 # The section will always be named "Uninstall".
 section "Uninstall"
 
+# Desktop icon.
+
+Section "Desktop Shortcut" SectionX
+    SetShellVarContext current
+    CreateShortCut "$DESKTOP\BiblioteQ.lnk" "$INSTDIR\BiblioteQ.exe"
+SectionEnd
+
 # Always delete uninstaller first.
 RMDir /r $INSTDIR
 
