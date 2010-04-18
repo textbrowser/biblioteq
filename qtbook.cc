@@ -9658,46 +9658,66 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 
 	  if(db.isOpen())
 	    {
-	      if(QMessageBox::question
-		 (this,
-		  tr("BiblioteQ: Question"),
-		  tr("It appears that you are already "
-		     "connected to a database. Do you "
-		     "want to terminate the current connection "
-		     "and connect to the new SQLite database?"),
-		  QMessageBox::Yes | QMessageBox::No,
-		  QMessageBox::No) == QMessageBox::Yes)
-		{
-		  for(int i = 0; i < br.branch_name->count(); i++)
-		    {
-		      if(branches.contains(br.branch_name->itemText(i)))
-			if(branches[br.branch_name->itemText(i)]
-			   ["database_type"] == "sqlite")
-			  {
-			    br.branch_name->setCurrentIndex(i);
-			    break;
-			  }
-		    }
+	      /*
+	      ** Attempt to locate a SQLite branch.
+	      */
 
-		  br.filename->setText(dialog.selectedFiles().at(0));
-		  slotConnectDB();
-		}
-	    }
-	  else
-	    {
+	      bool found = false;
+
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
 		  if(branches.contains(br.branch_name->itemText(i)))
 		    if(branches[br.branch_name->itemText(i)]
 		       ["database_type"] == "sqlite")
 		      {
+			found = true;
 			br.branch_name->setCurrentIndex(i);
 			break;
 		      }
 		}
 
-	      br.filename->setText(dialog.selectedFiles().at(0));
-	      slotConnectDB();
+	      if(found)
+		{
+		  if(QMessageBox::question
+		     (this,
+		      tr("BiblioteQ: Question"),
+		      tr("It appears that you are already "
+			 "connected to a database. Do you "
+			 "want to terminate the current connection "
+			 "and connect to the new SQLite database?"),
+		      QMessageBox::Yes | QMessageBox::No,
+		      QMessageBox::No) == QMessageBox::Yes)
+		    {
+		      br.filename->setText(dialog.selectedFiles().at(0));
+		      slotConnectDB();
+		    }
+		}
+	    }
+	  else
+	    {
+	      /*
+	      ** Attempt to locate a SQLite branch.
+	      */
+
+	      bool found = false;
+
+	      for(int i = 0; i < br.branch_name->count(); i++)
+		{
+		  if(branches.contains(br.branch_name->itemText(i)))
+		    if(branches[br.branch_name->itemText(i)]
+		       ["database_type"] == "sqlite")
+		      {
+			found = true;
+			br.branch_name->setCurrentIndex(i);
+			break;
+		      }
+		}
+
+	      if(found)
+		{
+		  br.filename->setText(dialog.selectedFiles().at(0));
+		  slotConnectDB();
+		}
 	    }
 	}
     }
