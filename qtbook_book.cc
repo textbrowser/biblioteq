@@ -71,6 +71,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(slotReset(void)));
   connect(id.isbn10to13, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN10to13(void)));
+  connect(id.isbn13to10, SIGNAL(clicked(void)), this,
+	  SLOT(slotConvertISBN13to10(void)));
   connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -269,9 +271,15 @@ void qtbook_book::slotGo(void)
       qapp->restoreOverrideCursor();
       str = id.id->text().trimmed();
       id.id->setText(str);
-      slotConvertISBN10to13();
+
+      if(id.isbn13->text().trimmed().isEmpty())
+	slotConvertISBN10to13();
+
       str = id.isbn13->text().trimmed();
       id.isbn13->setText(str);
+
+      if(id.id->text().trimmed().isEmpty())
+	slotConvertISBN13to10();
 
       if(id.id->text().length() != 10 ||
 	 id.isbn13->text().length() != 13)
@@ -1567,6 +1575,30 @@ void qtbook_book::slotConvertISBN10to13(void)
 
   numberstr.setNum(check);
   id.isbn13->setText(str + numberstr);
+}
+
+/*
+** -- slotConvertISBN13to10() --
+*/
+
+void qtbook_book::slotConvertISBN13to10(void)
+{
+  int total = 0;
+  QString z("");
+  QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
+
+  for(int i = 0; i < 9; i++)
+    if(i < isbnnum.length())
+      total += isbnnum[i].digitValue() * (10 - i);
+    else
+      break;
+
+  z = QString::number((11 - (total % 11)) % 11);
+
+  if(z == "10")
+    z = "X";
+
+  id.id->setText(isbnnum + z);
 }
 
 /*
