@@ -2,7 +2,7 @@
 
 ostype="`uname -s`"
 
-if [ $ostype = "Darwin" ]
+if [ "$ostype" = "Darwin" ]
 then
     open /Applications/BiblioteQ.d/BiblioteQ.app &
 else
