@@ -8,9 +8,8 @@
 ** -- main_table() --
 */
 
-main_table::main_table(QWidget *parent)
+main_table::main_table(QWidget *parent):QTableWidget(parent)
 {
-  (void) parent;
   setDragEnabled(false);
   setAcceptDrops(false);
   horizontalHeader()->setMovable(true);
