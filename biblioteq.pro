@@ -10,8 +10,8 @@ QMAKE_CXXFLAGS_RELEASE-= -O2
 QMAKE_CLEAN	+= BiblioteQ
 MAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
-QMAKE_EXTRA_UNIX_TARGETS = purge
-INCPATH		+= include.d /usr/local/include
+QMAKE_EXTRA_TARGETS = purge
+INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.png
 LIBS		+= -lyaz -lsqlite3
 

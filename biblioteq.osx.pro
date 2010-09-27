@@ -12,8 +12,8 @@ QMAKE_LFLAGS_RPATH =
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
-QMAKE_EXTRA_UNIX_TARGETS = purge
-INCPATH		+= include.d /opt/local/include
+QMAKE_EXTRA_TARGETS = purge
+INCLUDEPATH	+= include.d /opt/local/include
 ICON		= icons.d/book.icns
 LIBS		+= -L/opt/local/lib -lyaz -lsqlite3
 
