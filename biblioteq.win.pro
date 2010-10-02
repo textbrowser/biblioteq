@@ -1,4 +1,4 @@
-purge.commands = del *~ && del include.d\*~ && del doc.d\*~
+purge.commands = del *~ && del include.d\\*~ && del doc.d\\*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
@@ -10,9 +10,9 @@ QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
-QMAKE_EXTRA_WINDOWS_TARGETS = purge
+QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d "C:\Program Files\YAZ\include"
-ICON		= icons.d\book.png
+ICON		= icons.d\\book.png
 RC_FILE		= biblioteq.win.rc
 LIBS		+= -L"." -lsqlite3 -L"C:\Program Files\YAZ\lib" -lyaz3
 
@@ -38,20 +38,20 @@ FORMS           = cdinfo.ui \
 
 UI_HEADERS_DIR  = include.d
 
-HEADERS		= include.d\qtbook.h \
-                  include.d\myqstring.h \
-		  include.d\qtbook_cd.h \
-		  include.d\main_table.h \
-		  include.d\qtbook_dvd.h \
-		  include.d\copy_editor.h \
-		  include.d\qtbook_book.h \
-		  include.d\qtbook_item.h \
-		  include.d\z3950results.h \
-		  include.d\image_drop_site.h \
-		  include.d\qtbook_magazine.h \
-		  include.d\borrowers_editor.h \
-		  include.d\qtbook_videogame.h \
-		  include.d\hyperlinked_text_edit.h
+HEADERS		= include.d\\qtbook.h \
+                  include.d\\myqstring.h \
+		  include.d\\qtbook_cd.h \
+		  include.d\\main_table.h \
+		  include.d\\qtbook_dvd.h \
+		  include.d\\copy_editor.h \
+		  include.d\\qtbook_book.h \
+		  include.d\\qtbook_item.h \
+		  include.d\\z3950results.h \
+		  include.d\\image_drop_site.h \
+		  include.d\\qtbook_magazine.h \
+		  include.d\\borrowers_editor.h \
+		  include.d\\qtbook_videogame.h \
+		  include.d\\hyperlinked_text_edit.h
 
 SOURCES		= qtbook.cc \
                   myqstring.cc \
