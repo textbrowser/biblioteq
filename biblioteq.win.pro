@@ -11,10 +11,10 @@ QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_TARGETS = purge
-INCLUDEPATH	+= include.d "C:\Program Files\YAZ\include"
+INCLUDEPATH	+= include.d "C:\\Program Files\\YAZ\\include"
 ICON		= icons.d\\book.png
 RC_FILE		= biblioteq.win.rc
-LIBS		+= -L"." -lsqlite3 -L"C:\Program Files\YAZ\lib" -lyaz3
+LIBS		+= -L"." -lsqlite3 -L"C:\\Program Files\\YAZ\\lib" -lyaz3
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \
@@ -72,8 +72,8 @@ SOURCES		= qtbook.cc \
 		  numeric_table_item.cc \
 		  hyperlinked_text_edit.cc
 
-TRANSLATIONS    = translations.d\biblioteq_cs_CZ.ts \
-		  translations.d\biblioteq_de_DE.ts
+TRANSLATIONS    = translations.d\\biblioteq_cs_CZ.ts \
+		  translations.d\\biblioteq_de_DE.ts
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
