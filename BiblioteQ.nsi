@@ -20,7 +20,7 @@ setOutPath $INSTDIR
 # Specify files to go in output path.
 
 file *.sql
-file .\release\qt.conf
+file qt.conf
 file .\release\biblioteq.conf
 file /r .\release\doc.d
 file /r .\release\icons.d
