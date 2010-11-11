@@ -130,7 +130,7 @@ void generic_thread::run(void)
 ** -- getList() --
 */
 
-QStringList generic_thread::getList(void)
+QStringList generic_thread::getList(void) const
 {
   return list;
 }
@@ -139,7 +139,7 @@ QStringList generic_thread::getList(void)
 ** -- getErrorStr() --
 */
 
-QString generic_thread::getErrorStr(void)
+QString generic_thread::getErrorStr(void) const
 {
   return errorStr;
 }
@@ -187,7 +187,7 @@ void generic_thread::setZ3950SearchString(const QString &z3950SearchStr_arg)
 ** -- getZ3950Results() --
 */
 
-QStringList generic_thread::getZ3950Results(void)
+QStringList generic_thread::getZ3950Results(void) const
 {
   return z3950Results;
 }
@@ -196,7 +196,7 @@ QStringList generic_thread::getZ3950Results(void)
 ** -- getEType() --
 */
 
-QString generic_thread::getEType(void)
+QString generic_thread::getEType(void) const
 {
   return eType;
 }

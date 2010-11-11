@@ -172,7 +172,7 @@ void image_drop_site::clear(void)
 ** -- determineFormat() --
 */
 
-QString image_drop_site::determineFormat(const QByteArray &bytes)
+QString image_drop_site::determineFormat(const QByteArray &bytes) const
 {
   QString imgf("");
 
@@ -194,7 +194,7 @@ QString image_drop_site::determineFormat(const QByteArray &bytes)
 ** -- determineFormat() --
 */
 
-QString image_drop_site::determineFormat(const QString &filename)
+QString image_drop_site::determineFormat(const QString &filename) const
 {
   char bytes[10];
   QFile file(filename);

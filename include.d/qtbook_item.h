@@ -44,12 +44,12 @@ class qtbook_item
   qtbook_item(void);
   qtbook_item(const int);
   ~qtbook_item();
-  int getRow(void);
-  int getOldQ(void);
+  int getRow(void) const;
+  int getOldQ(void) const;
   void setOldQ(const int);
   void updateRow(const int);
   void updateFont(const QFont &, QWidget *);
-  QString getID(void);
+  QString getID(void) const;
 
  private:
   QMap<QString, QImage> imageValues;
@@ -62,7 +62,7 @@ class qtbook_item
   QString oid;
   QString html;
   QMainWindow *parentWid;
-  bool hasDataChanged(QMainWindow *);
+  bool hasDataChanged(QMainWindow *) const;
   void print(QWidget *);
   void storeData(QMainWindow *);
 };

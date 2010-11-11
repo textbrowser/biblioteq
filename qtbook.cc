@@ -633,7 +633,7 @@ void qtbook::slotSetColumns(void)
 ** -- getRoles() --
 */
 
-QString qtbook::getRoles(void)
+QString qtbook::getRoles(void) const
 {
   return roles;
 }
@@ -6850,7 +6850,7 @@ void qtbook::slotResetErrorLog(void)
 ** -- getBB() --
 */
 
-Ui_membersBrowser qtbook::getBB(void)
+Ui_membersBrowser qtbook::getBB(void) const
 {
   return bb;
 }
@@ -6859,7 +6859,7 @@ Ui_membersBrowser qtbook::getBB(void)
 ** -- getUI() --
 */
 
-Ui_mainWindow qtbook::getUI(void)
+Ui_mainWindow qtbook::getUI(void) const
 {
   return ui;
 }
@@ -6868,7 +6868,7 @@ Ui_mainWindow qtbook::getUI(void)
 ** -- getDB() --
 */
 
-QSqlDatabase qtbook::getDB(void)
+QSqlDatabase qtbook::getDB(void) const
 {
   return db;
 }
@@ -7198,7 +7198,7 @@ void qtbook::emptyContainers(void)
 ** -- getAdminID() --
 */
 
-QString qtbook::getAdminID(void)
+QString qtbook::getAdminID(void) const
 {
   if(selectedBranch["database_type"] != "sqlite")
     return br.userid->text();
@@ -7877,7 +7877,7 @@ void qtbook::slotReserveCopy(void)
 ** -- getZ3950Hashes() --
 */
 
-QHash<QString, QHash<QString, QString> > qtbook::getZ3950Hashes(void)
+QHash<QString, QHash<QString, QString> > qtbook::getZ3950Hashes(void) const
 {
   return z3950Hashes;
 }
@@ -7886,7 +7886,7 @@ QHash<QString, QHash<QString, QString> > qtbook::getZ3950Hashes(void)
 ** -- getAmazonHash() --
 */
 
-QHash<QString, QString> qtbook::getAmazonHash(void)
+QHash<QString, QString> qtbook::getAmazonHash(void) const
 {
   return AmazonImages;
 }
@@ -8482,7 +8482,7 @@ void qtbook::slotShowHistory(void)
 ** -- getMembersBrowser() --
 */
 
-QMainWindow *qtbook::getMembersBrowser(void)
+QMainWindow *qtbook::getMembersBrowser(void) const
 {
   return members_diag;
 }
@@ -9602,7 +9602,7 @@ void qtbook::slotPageClicked(const QString &link)
 ** -- getPreferredZ3950Site() --
 */
 
-QString qtbook::getPreferredZ3950Site(void)
+QString qtbook::getPreferredZ3950Site(void) const
 {
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
@@ -9615,7 +9615,7 @@ QString qtbook::getPreferredZ3950Site(void)
 ** -- getTypeFilterString() --
 */
 
-QString qtbook::getTypeFilterString(void)
+QString qtbook::getTypeFilterString(void) const
 {
   return ui.typefilter->itemData(ui.typefilter->currentIndex()).toString();
 }
@@ -9746,7 +9746,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
     }
 }
 
-QHash<QString, int> qtbook::getMinimumDueDaysHash(void)
+QHash<QString, int> qtbook::getMinimumDueDaysHash(void) const
 {
   return minimumDueDays;
 }

@@ -39,10 +39,10 @@ class generic_thread: public QThread
   void setZ3950Name(const QString &);
   void setOutputList(const QList<bool> &);
   void setZ3950SearchString(const QString &);
-  QString getEType(void);
-  QString getErrorStr(void);
-  QStringList getList(void);
-  QStringList getZ3950Results(void);
+  QString getEType(void) const;
+  QString getErrorStr(void) const;
+  QStringList getList(void) const;
+  QStringList getZ3950Results(void) const;
 
  private:
   int type;

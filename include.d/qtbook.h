@@ -176,17 +176,17 @@ class qtbook: public QMainWindow
   void updateReservationHistoryBrowser(const QString &, const QString &,
 				       const QString &, const QString &,
 				       const QString &);
-  QString getRoles(void);
-  QString getAdminID(void);
-  QString getTypeFilterString(void);
-  QString getPreferredZ3950Site(void);
-  QMainWindow *getMembersBrowser(void);
-  QSqlDatabase getDB(void);
-  Ui_mainWindow getUI(void);
-  Ui_membersBrowser getBB(void);
-  QHash<QString, int> getMinimumDueDaysHash(void);
-  QHash<QString, QString> getAmazonHash(void);
-  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void);
+  QString getRoles(void) const;
+  QString getAdminID(void) const;
+  QString getTypeFilterString(void) const;
+  QString getPreferredZ3950Site(void) const;
+  QMainWindow *getMembersBrowser(void) const;
+  QSqlDatabase getDB(void) const;
+  Ui_mainWindow getUI(void) const;
+  Ui_membersBrowser getBB(void) const;
+  QHash<QString, int> getMinimumDueDaysHash(void) const;
+  QHash<QString, QString> getAmazonHash(void) const;
+  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void) const;
   static void quit(void);
   static void quit(const char *, const char *, const int);
 

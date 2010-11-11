@@ -47,7 +47,7 @@ qtbook_item::~qtbook_item()
 ** -- getRow() --
 */
 
-int qtbook_item::getRow(void)
+int qtbook_item::getRow(void) const
 {
   return row;
 }
@@ -56,7 +56,7 @@ int qtbook_item::getRow(void)
 ** -- getOldQ() --
 */
 
-int qtbook_item::getOldQ(void)
+int qtbook_item::getOldQ(void) const
 {
   return oldq;
 }
@@ -74,7 +74,7 @@ void qtbook_item::updateRow(const int rowArg)
 ** -- getID() --
 */
 
-QString qtbook_item::getID(void)
+QString qtbook_item::getID(void) const
 {
   return oid;
 }
@@ -173,7 +173,7 @@ void qtbook_item::storeData(QMainWindow *window)
 ** -- hasDataChanged() --
 */
 
-bool qtbook_item::hasDataChanged(QMainWindow *window)
+bool qtbook_item::hasDataChanged(QMainWindow *window) const
 {
   int i = 0;
   bool hasChanged = false;
