@@ -126,7 +126,6 @@ void copy_editor::populateCopiesEditor(void)
   int j = 0;
   int row = 0;
   bool terminate = false;
-  QDate duedate = QDate::currentDate().addDays(21);
   QString str = "";
   QString querystr = "";
   QSqlQuery query(qmain->getDB());
@@ -149,6 +148,9 @@ void copy_editor::populateCopiesEditor(void)
       /*
       ** Set the minimum date to duedate.
       */
+
+      QDate duedate = QDate::currentDate().addDays
+	(qmain->getMinimumDueDaysHash()[itemType.toLower().remove(" ")]);
 
       cb.dueDate->setMinimumDate(duedate);
       cb.saveButton->setText(tr("&Reserve"));

@@ -844,7 +844,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.42.<br>"
+  mb.setText("<html>BiblioteQ Version 6.43.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
@@ -4567,6 +4567,7 @@ void qtbook::readGlobalSetup(void)
 		 BRANCHES,
 		 AMAZON_FRONT_COVER_IMAGES,
 		 AMAZON_BACK_COVER_IMAGES,
+		 MINIMUM_DUE_DAYS,
 		 UNKNOWN};
   QString str = "";
   QString filename = "";
@@ -4656,6 +4657,8 @@ void qtbook::readGlobalSetup(void)
 	      type = AMAZON_FRONT_COVER_IMAGES;
 	    else if(str == "[Amazon Back Cover Images]")
 	      type = AMAZON_BACK_COVER_IMAGES;
+	    else if(str == "[Minimum Due Days]")
+	      type = MINIMUM_DUE_DAYS;
 	    else
 	      type = UNKNOWN;
 
@@ -4933,6 +4936,26 @@ void qtbook::readGlobalSetup(void)
 			else if(!AmazonImages.contains("back_cover_path"))
 			  AmazonImages["back_cover_path"] = str;
 
+			break;
+		      }
+		    case MINIMUM_DUE_DAYS:
+		      {
+			if(str.startsWith("#"))
+			  break;
+
+			if(!minimumDueDays.contains("book"))
+			  minimumDueDays["book"] = qAbs(str.toInt());
+			else if(!minimumDueDays.contains("cd"))
+			  minimumDueDays["cd"] = qAbs(str.toInt());
+			else if(!minimumDueDays.contains("dvd"))
+			  minimumDueDays["dvd"] = qAbs(str.toInt());
+			else if(!minimumDueDays.contains("journal"))
+			  minimumDueDays["journal"] = qAbs(str.toInt());
+			else if(!minimumDueDays.contains("magazine"))
+			  minimumDueDays["magazine"] = qAbs(str.toInt());
+			else if(!minimumDueDays.contains("video_game"))
+			  minimumDueDays["videogame"] = qAbs(str.toInt());
+;
 			break;
 		      }
 		    default:
@@ -9721,4 +9744,9 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 	    }
 	}
     }
+}
+
+QHash<QString, int> qtbook::getMinimumDueDaysHash(void)
+{
+  return minimumDueDays;
 }

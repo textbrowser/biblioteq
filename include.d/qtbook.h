@@ -184,8 +184,9 @@ class qtbook: public QMainWindow
   QSqlDatabase getDB(void);
   Ui_mainWindow getUI(void);
   Ui_membersBrowser getBB(void);
-  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void);
+  QHash<QString, int> getMinimumDueDaysHash(void);
   QHash<QString, QString> getAmazonHash(void);
+  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void);
   static void quit(void);
   static void quit(const char *, const char *, const int);
 
@@ -203,6 +204,7 @@ class qtbook: public QMainWindow
   QString previousTypeFilter;
   QSqlQuery *populateQuery;
   QStringList deletedAdmins;
+  QHash<QString, int> minimumDueDays;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;
