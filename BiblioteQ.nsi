@@ -20,8 +20,8 @@ setOutPath $INSTDIR
 # Specify files to go in output path.
 
 file *.sql
-file qt.conf
-file .\release\biblioteq.conf
+file .\qt.conf
+file .\biblioteq.conf
 file /r .\release\doc.d
 file /r .\release\icons.d
 file /r .\release\plugins
@@ -31,8 +31,8 @@ file /r .\release\plugins
 
 file /r .\release\translations.d
 file .\release\*.dll
-file .\release\sqlite3.exe
-file .\release\biblioteq.db
+file .\sqlite3.exe
+file .\biblioteq.db
 file .\release\BiblioteQ.exe
 
 # Define uninstaller name.
