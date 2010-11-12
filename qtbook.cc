@@ -4687,9 +4687,6 @@ void qtbook::readGlobalSetup(void)
 			if(str.startsWith("#"))
 			  break;
 
-			if(al.language->findText(str) == -1)
-			  al.language->addItem(str);
-
 			if(!languages.contains(str))
 			  languages.append(str);
 
@@ -4699,9 +4696,6 @@ void qtbook::readGlobalSetup(void)
 		      {
 			if(str.startsWith("#"))
 			  break;
-
-			if(al.monetary_units->findText(str) == -1)
-			  al.monetary_units->addItem(str);
 
 			if(!monetary_units.contains(str))
 			  monetary_units.append(str);
@@ -4955,7 +4949,7 @@ void qtbook::readGlobalSetup(void)
 			  minimumDueDays["magazine"] = qAbs(str.toInt());
 			else if(!minimumDueDays.contains("video_game"))
 			  minimumDueDays["videogame"] = qAbs(str.toInt());
-;
+
 			break;
 		      }
 		    default:
@@ -4966,18 +4960,38 @@ void qtbook::readGlobalSetup(void)
 
       tmphash.clear();
       locations.sort();
+      languages.sort();
+      cd_formats.sort();
+      vg_ratings.sort();
+      dvd_ratings.sort();
+      dvd_regions.sort();
+      cd_locations.sort();
+      vg_locations.sort();
+      vg_platforms.sort();
+      dvd_locations.sort();
+      book_locations.sort();
+      monetary_units.sort();
+      dvd_aspectratios.sort();
+      journal_locations.sort();
+      magazine_locations.sort();
 
       while(!locations.isEmpty())
 	al.location->addItem(locations.takeFirst());
 
+      if(al.location->count() == 0)
+	al.location->addItem(tr("UNKNOWN"));
+
+      for(int i = 0; i < languages.size(); i++)
+	al.language->addItem(languages.at(i));
+
       if(al.language->count() == 0)
 	al.language->addItem(tr("UNKNOWN"));
 
+      for(int i = 0; i < monetary_units.size(); i++)
+	al.monetary_units->addItem(monetary_units.at(i));
+
       if(al.monetary_units->count() == 0)
 	al.monetary_units->addItem(tr("UNKNOWN"));
-
-      if(al.location->count() == 0)
-	al.location->addItem(tr("UNKNOWN"));
 
       if(br.branch_name->count() == 0)
 	{
