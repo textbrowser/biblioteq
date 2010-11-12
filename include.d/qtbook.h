@@ -13,6 +13,7 @@ using namespace std;
 */
 
 #include <QDir>
+#include <QMap>
 #include <QHash>
 #include <QCheckBox>
 #include <QDateTime>
@@ -186,7 +187,7 @@ class qtbook: public QMainWindow
   Ui_membersBrowser getBB(void) const;
   QHash<QString, int> getMinimumDueDaysHash(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
-  QHash<QString, QHash<QString, QString> > getZ3950Hashes(void) const;
+  QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   static void quit(void);
   static void quit(const char *, const char *, const int);
 
@@ -213,8 +214,8 @@ class qtbook: public QMainWindow
   QHash<QString, qtbook_journal *> journals;
   QHash<QString, qtbook_magazine *> magazines;
   QHash<QString, qtbook_videogame *> video_games;
-  QHash<QString, QHash<QString, QString> > branches;
-  QHash<QString, QHash<QString, QString> > z3950Hashes;
+  QMap<QString, QHash<QString, QString> > branches;
+  QMap<QString, QHash<QString, QString> > z3950Maps;
   QLabel *error_bar_label;
   QLabel *status_bar_label;
   QLabel *connected_bar_label;

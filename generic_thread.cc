@@ -74,9 +74,9 @@ void generic_thread::run(void)
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = ZOOM_connection_new
 	  (static_cast<const char *>
-	   ((qmain->getZ3950Hashes()[z3950Name].value("Address") + ":" +
-	     qmain->getZ3950Hashes()[z3950Name].value("Port") + "/" +
-	     qmain->getZ3950Hashes()[z3950Name].value("Database")).
+	   ((qmain->getZ3950Maps()[z3950Name].value("Address") + ":" +
+	     qmain->getZ3950Maps()[z3950Name].value("Port") + "/" +
+	     qmain->getZ3950Maps()[z3950Name].value("Database")).
 	    toStdString().data()), 0);
 
 	ZOOM_connection_option_set(zoomConnection,
@@ -84,12 +84,12 @@ void generic_thread::run(void)
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "user",
-	   qmain->getZ3950Hashes()[z3950Name].value("Userid").toStdString().
+	   qmain->getZ3950Maps()[z3950Name].value("Userid").toStdString().
 	   data());
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "password",
-	   qmain->getZ3950Hashes()[z3950Name].value("Password").toStdString().
+	   qmain->getZ3950Maps()[z3950Name].value("Password").toStdString().
 	   data());
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,

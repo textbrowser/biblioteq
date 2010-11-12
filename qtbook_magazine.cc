@@ -126,7 +126,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
     ma.location->addItem(tr("UNKNOWN"));
 
   QActionGroup *actionGroup = new QActionGroup(this);
-  QHash<QString, QHash<QString, QString> > hashes(qmain->getZ3950Hashes());
+  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
 
   for(int i = 0; i < hashes.size(); i++)
     {

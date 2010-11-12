@@ -796,10 +796,10 @@ void qtbook::showMain(void)
 
   QActionGroup *group1 = new QActionGroup(this);
 
-  for(int i = 0; i < getZ3950Hashes().size(); i++)
+  for(int i = 0; i < getZ3950Maps().size(); i++)
     {
       QAction *action = group1->addAction
-	(getZ3950Hashes().values()[i]["Name"]);
+	(getZ3950Maps().values()[i]["Name"]);
 
       action->setCheckable(true);
 
@@ -4879,7 +4879,7 @@ void qtbook::readGlobalSetup(void)
 			      str = "";
 
 			    tmphash["Password"] = str;
-			    z3950Hashes[tmphash["Name"]] = tmphash;
+			    z3950Maps[tmphash["Name"]] = tmphash;
 			    tmphash.clear();
 			  }
 
@@ -4997,13 +4997,13 @@ void qtbook::readGlobalSetup(void)
 	  tmphash.clear();
 	}
 
-      if(z3950Hashes.isEmpty())
+      if(z3950Maps.isEmpty())
 	{
 	  tmphash["Name"] = "Library of Congress";
 	  tmphash["Address"] = "z3950.loc.gov";
 	  tmphash["Port"] = "7090";
 	  tmphash["Database"] = "Voyager";
-	  z3950Hashes["Library of Congress"] = tmphash;
+	  z3950Maps["Library of Congress"] = tmphash;
 	  tmphash.clear();
 	}
 
@@ -7874,12 +7874,12 @@ void qtbook::slotReserveCopy(void)
 }
 
 /*
-** -- getZ3950Hashes() --
+** -- getZ3950Maps() --
 */
 
-QHash<QString, QHash<QString, QString> > qtbook::getZ3950Hashes(void) const
+QMap<QString, QHash<QString, QString> > qtbook::getZ3950Maps(void) const
 {
-  return z3950Hashes;
+  return z3950Maps;
 }
 
 /*
