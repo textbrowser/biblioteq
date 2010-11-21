@@ -19,17 +19,12 @@ extern qtbook *qmain;
 */
 
 qtbook_journal::qtbook_journal(QMainWindow *parent,
-			       const QStringList &languages,
-			       const QStringList &monetary_units,
-			       const QStringList &locations,
 			       const QString &oidArg,
 			       const int rowArg):
   qtbook_magazine(parent,
-		  languages,
-		  monetary_units,
-		  locations,
 		  oidArg,
-		  rowArg)
+		  rowArg,
+		  "journal")
 {
   subType = "Journal";
   disconnect(ma.cancelButton, SIGNAL(clicked(void)),

@@ -16,9 +16,7 @@ extern QApplication *qapp;
 */
 
 qtbook_book::qtbook_book(QMainWindow *parentArg,
-			 const QStringList &languages,
-			 const QStringList &monetary_units,
-			 const QStringList &locations, const QString &oidArg,
+			 const QString &oidArg,
 			 const int rowArg):
   QMainWindow()
 {
@@ -131,9 +129,46 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
-  id.language->addItems(languages);
-  id.monetary_units->addItems(monetary_units);
-  id.location->addItems(locations);
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  id.language->addItems
+    (misc_functions::getLanguages(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  id.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(qmain->getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  id.location->addItems
+    (misc_functions::getLocations(qmain->getDB(),
+				  "Book",
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the book locations.")),
+       errorstr, __FILE__, __LINE__);
+
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
   httpProgress->setModal(true);

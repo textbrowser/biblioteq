@@ -20,11 +20,9 @@ extern QApplication *qapp;
 */
 
 qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
-				 const QStringList &languages,
-				 const QStringList &monetary_units,
-				 const QStringList &locations,
 				 const QString &oidArg,
-				 const int rowArg):
+				 const int rowArg,
+				 const QString &subTypeArg):
   QMainWindow()
 {
   QMenu *menu = 0;
@@ -110,9 +108,62 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ma.id->setCursorPosition(0);
   ma.id->setValidator(validator1);
   ma.resetButton->setMenu(menu);
-  ma.language->addItems(languages);
-  ma.monetary_units->addItems(monetary_units);
-  ma.location->addItems(locations);
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  ma.language->addItems
+    (misc_functions::getLanguages(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  ma.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(qmain->getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(subTypeArg.toLower() == "journal")
+    ma.location->addItems
+      (misc_functions::getLocations(qmain->getDB(),
+				    "Journal",
+				    errorstr));
+  else
+    ma.location->addItems
+      (misc_functions::getLocations(qmain->getDB(),
+				    "Magazine",
+				    errorstr));
+
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    {
+      if(subTypeArg.toLower() == "journal")
+	qmain->addError
+	  (QString(tr("Database Error")),
+	   QString(tr("Unable to retrieve the journal locations.")),
+	   errorstr, __FILE__, __LINE__);
+      else
+	qmain->addError
+	  (QString(tr("Database Error")),
+	   QString(tr("Unable to retrieve the magazine locations.")),
+	   errorstr, __FILE__, __LINE__);
+    }
+
   ma.front_image->setScene(scene1);
   ma.back_image->setScene(scene2);
 

@@ -16,11 +16,6 @@ extern QApplication *qapp;
 */
 
 qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
-				   const QStringList &ratings,
-				   const QStringList &platforms,
-				   const QStringList &languages,
-				   const QStringList &monetary_units,
-				   const QStringList &locations,
 				   const QString &oidArg,
 				   const int rowArg):
   QMainWindow()
@@ -106,11 +101,70 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   vg.id->setValidator(validator1);
   vg.resetButton->setMenu(menu);
-  vg.rating->addItems(ratings);
-  vg.platform->addItems(platforms);
-  vg.language->addItems(languages);
-  vg.monetary_units->addItems(monetary_units);
-  vg.location->addItems(locations);
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  vg.rating->addItems
+    (misc_functions::getVideoGameRatings(qmain->getDB(),
+					 errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the video game ratings.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  vg.rating->addItems
+    (misc_functions::getVideoGamePlatforms(qmain->getDB(),
+					   errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the video game platforms.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  vg.language->addItems
+    (misc_functions::getLanguages(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  vg.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(qmain->getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  vg.location->addItems
+    (misc_functions::getLocations(qmain->getDB(),
+				  "videogame",
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the video game locations.")),
+       errorstr, __FILE__, __LINE__);
+
   vg.queryButton->setVisible(isQueryEnabled);
   vg.front_image->setScene(scene1);
   vg.back_image->setScene(scene2);

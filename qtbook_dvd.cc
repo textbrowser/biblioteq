@@ -16,12 +16,6 @@ extern QApplication *qapp;
 */
 
 qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
-		       const QStringList &languages,
-		       const QStringList &monetary_units,
-		       const QStringList &locations,
-		       const QStringList &ratings,
-		       const QStringList &aspectratios,
-		       const QStringList &regions,
 		       const QString &oidArg,
 		       const int rowArg):
   QMainWindow()
@@ -114,12 +108,82 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.queryButton->setVisible(isQueryEnabled);
   dvd.resetButton->setMenu(menu);
   dvd.id->setValidator(validator1);
-  dvd.language->addItems(languages);
-  dvd.monetary_units->addItems(monetary_units);
-  dvd.location->addItems(locations);
-  dvd.rating->addItems(ratings);
-  dvd.aspectratio->addItems(aspectratios);
-  dvd.region->addItems(regions);
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.language->addItems
+    (misc_functions::getLanguages(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(qmain->getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.location->addItems
+    (misc_functions::getLocations(qmain->getDB(),
+				  "DVD",
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the dvd locations.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.rating->addItems
+    (misc_functions::getDVDRatings(qmain->getDB(),
+				   errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the dvd ratings.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.aspectratio->addItems
+    (misc_functions::getDVDAspectRatios(qmain->getDB(),
+					errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the dvd aspect ratios.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  dvd.region->addItems
+    (misc_functions::getDVDRegions(qmain->getDB(),
+				   errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the dvd regions.")),
+       errorstr, __FILE__, __LINE__);
+
   dvd.front_image->setScene(scene1);
   dvd.back_image->setScene(scene2);
 

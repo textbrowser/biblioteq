@@ -16,10 +16,6 @@ extern QApplication *qapp;
 */
 
 qtbook_cd::qtbook_cd(QMainWindow *parentArg,
-		     const QStringList &languages,
-		     const QStringList &monetary_units,
-		     const QStringList &locations,
-		     const QStringList &formats,
 		     const QString &oidArg,
 		     const int rowArg):
   QMainWindow()
@@ -128,10 +124,58 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   cd.queryButton->setVisible(isQueryEnabled);
   cd.resetButton->setMenu(menu);
   cd.id->setValidator(validator1);
-  cd.language->addItems(languages);
-  cd.monetary_units->addItems(monetary_units);
-  cd.location->addItems(locations);
-  cd.format->addItems(formats);
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  cd.language->addItems
+    (misc_functions::getLanguages(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  cd.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(qmain->getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  cd.location->addItems
+    (misc_functions::getLocations(qmain->getDB(),
+				  "CD",
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the cd locations.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  cd.format->addItems
+    (misc_functions::getCDFormats(qmain->getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the cd formats.")),
+       errorstr, __FILE__, __LINE__);
+
   cd.front_image->setScene(scene1);
   cd.back_image->setScene(scene2);
 
