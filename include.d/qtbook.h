@@ -185,7 +185,6 @@ class qtbook: public QMainWindow
   QSqlDatabase getDB(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
-  QHash<QString, int> getMinimumDueDaysHash(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
   QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   static void quit(void);
@@ -205,7 +204,6 @@ class qtbook: public QMainWindow
   QString previousTypeFilter;
   QSqlQuery *populateQuery;
   QStringList deletedAdmins;
-  QHash<QString, int> minimumDueDays;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
   QHash<QString, qtbook_cd *> cds;
@@ -227,20 +225,6 @@ class qtbook: public QMainWindow
   QMainWindow *history_diag;
   QMainWindow *members_diag;
   QMainWindow *customquery_diag;
-  QStringList languages;
-  QStringList cd_formats;
-  QStringList vg_ratings;
-  QStringList dvd_ratings;
-  QStringList dvd_regions;
-  QStringList cd_locations;
-  QStringList vg_locations;
-  QStringList vg_platforms;
-  QStringList dvd_locations;
-  QStringList book_locations;
-  QStringList monetary_units;
-  QStringList dvd_aspectratios;
-  QStringList journal_locations;
-  QStringList magazine_locations;
   QSqlDatabase db;
   Ui_allDialog al;
   Ui_mainWindow ui;

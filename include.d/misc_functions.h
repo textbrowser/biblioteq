@@ -33,6 +33,9 @@ class misc_functions
   static const int DELETE_USER = 200;
   static const int UPDATE_USER = 300;
   static int userCount(const QString &, const QSqlDatabase &, QString &);
+  static int getMinimumDays(const QSqlDatabase &,
+			    const QString &,
+			    QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
   static int sqliteQuerySize(const QString &, const QSqlDatabase &,
 			     const char *, const int);
@@ -82,9 +85,28 @@ class misc_functions
 				 const QString &);
   static QString getAvailability(const QString &, const QSqlDatabase &,
 				 const QString &, QString &);
+  static QStringList getCDFormats(const QSqlDatabase &,
+				  QString &);
+  static QStringList getLanguages(const QSqlDatabase &,
+				  QString &);
+  static QStringList getLocations(const QSqlDatabase &,
+				  const QString &,
+				  QString &);
+  static QStringList getDVDRatings(const QSqlDatabase &,
+				   QString &);
+  static QStringList getDVDRegions(const QSqlDatabase &,
+				   QString &);
+  static QStringList getMonetaryUnits(const QSqlDatabase &,
+				      QString &);
   static QStringList getReservedItems(const QString &,
 				      const QSqlDatabase &,
 				      QString &);
+  static QStringList getDVDAspectRatios(const QSqlDatabase &,
+					QString &);
+  static QStringList getVideoGameRatings(const QSqlDatabase &,
+					 QString &);
+  static QStringList getVideoGamePlatforms(const QSqlDatabase &,
+					   QString &);
   static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
 						       const QString &,
 						       QString &);

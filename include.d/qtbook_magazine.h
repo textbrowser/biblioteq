@@ -33,9 +33,8 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_magazine(QMainWindow *, const QStringList &,
-		  const QStringList &, const QStringList &, const QString &,
-		  const int);
+  qtbook_magazine(QMainWindow *, const QString &,
+		  const int, const QString &);
   ~qtbook_magazine();
   void insert(void);
   void modify(const int);
@@ -70,8 +69,7 @@ class qtbook_journal: public qtbook_magazine
   Q_OBJECT
 
  public:
-  qtbook_journal(QMainWindow *, const QStringList &,
-		 const QStringList &, const QStringList &, const QString &,
+  qtbook_journal(QMainWindow *, const QString &,
 		 const int);
   ~qtbook_journal();
   void closeEvent(QCloseEvent *);

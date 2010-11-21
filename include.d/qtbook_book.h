@@ -35,8 +35,8 @@ class qtbook_book: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_book(QMainWindow *, const QStringList &, const QStringList &,
-	      const QStringList &, const QString &, const int);
+  qtbook_book(QMainWindow *,
+	      const QString &, const int);
   ~qtbook_book();
   void insert(void);
   void modify(const int);

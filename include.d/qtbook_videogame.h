@@ -30,9 +30,7 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
-  qtbook_videogame(QMainWindow *, const QStringList &,
-		   const QStringList &, const QStringList &,
-		   const QStringList &, const QStringList &, const QString &,
+  qtbook_videogame(QMainWindow *, const QString &,
 		   const int);
   ~qtbook_videogame();
   void insert(void);
