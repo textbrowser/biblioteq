@@ -370,6 +370,59 @@ SELECT	 item_oid,
 	 type
 FROM	 item_borrower;
 
+CREATE TABLE locations
+(
+	location	 TEXT NOT NULL,
+	type		 VARCHAR(16),
+	PRIMARY KEY(location, type)
+);
+
+CREATE TABLE monetary_units
+(
+	monetary_unit	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE languages
+(
+	language	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE cd_formats
+(
+	cd_format	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_ratings
+(
+	dvd_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_aspect_ratios
+(
+	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_regions
+(
+	dvd_region	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE minimum_days
+(
+	days		 INTEGER NOT NULL,
+	type		 VARCHAR(16) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_ratings
+(
+	videogame_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_platforms
+(
+	videogame_platform	 TEXT NOT NULL PRIMARY KEY
+);
+
 GRANT SELECT ON item_borrower_vw TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO xbook_admin;
@@ -404,5 +457,14 @@ GRANT SELECT, USAGE ON public.item_request_myoid_seq TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO xbook_admin;
 GRANT SELECT, UPDATE, USAGE ON public.member_history_myoid_seq TO xbook_admin;
-
+GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO xbook_admin;
 INSERT INTO admin VALUES ('xbook_admin', 'administrator');
