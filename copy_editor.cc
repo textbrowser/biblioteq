@@ -149,8 +149,22 @@ void copy_editor::populateCopiesEditor(void)
       ** Set the minimum date to duedate.
       */
 
-      QDate duedate = QDate::currentDate().addDays
-	(qmain->getMinimumDueDaysHash()[itemType.toLower().remove(" ")]);
+      QDate duedate = QDate::currentDate();
+      QString errorstr("");
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      duedate.addDays
+	(misc_functions::getMinimumDays
+	 (qmain->getDB(),
+	  itemType,
+	  errorstr));
+      qapp->restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to retrieve "
+				   "the minimum number of days.")),
+			errorstr, __FILE__, __LINE__);
 
       cb.dueDate->setMinimumDate(duedate);
       cb.saveButton->setText(tr("&Reserve"));
