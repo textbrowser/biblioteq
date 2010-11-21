@@ -566,6 +566,9 @@ qtbook::qtbook(void):QMainWindow()
 				  QColor(255, 248, 220));
   misc_functions::highlightWidget(userinfo_diag->userinfo.zip,
 				  QColor(255, 248, 220));
+  ui.splitter->setCollapsible(1, false);
+  ui.splitter->setStretchFactor(0, 0);
+  ui.splitter->setStretchFactor(1, 1);
 }
 
 /*
@@ -844,7 +847,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.43.<br>"
+  mb.setText("<html>BiblioteQ Version 6.44.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
@@ -973,10 +976,7 @@ void qtbook::slotModify(void)
 	    cd = cds.value(oid);
 	  else
 	    {
-	      if((cd = new(std::nothrow) qtbook_cd(this, languages,
-						   monetary_units,
-						   cd_locations,
-						   cd_formats, oid, i)) != 0)
+	      if((cd = new(std::nothrow) qtbook_cd(this, oid, i)) != 0)
 		cds.insert(oid, cd);
 	    }
 
@@ -989,12 +989,7 @@ void qtbook::slotModify(void)
 	    dvd = dvds.value(oid);
 	  else
 	    {
-	      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
-						     monetary_units,
-						     dvd_locations,
-						     dvd_ratings,
-						     dvd_aspectratios,
-						     dvd_regions,
+	      if((dvd = new(std::nothrow) qtbook_dvd(this,
 						     oid, i)) != 0)
 		dvds.insert(oid, dvd);
 	    }
@@ -1008,9 +1003,7 @@ void qtbook::slotModify(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new(std::nothrow) qtbook_book(this, languages,
-						       monetary_units,
-						       book_locations,
+	      if((book = new(std::nothrow) qtbook_book(this,
 						       oid, i)) != 0)
 		books.insert(oid, book);
 	    }
@@ -1025,8 +1018,7 @@ void qtbook::slotModify(void)
 	  else
 	    {
 	      if((journal = new(std::nothrow) qtbook_journal
-		  (this, languages, monetary_units,
-		   journal_locations,
+		  (this,
 		   oid, i)) != 0)
 		journals.insert(oid, journal);
 	    }
@@ -1041,10 +1033,8 @@ void qtbook::slotModify(void)
 	  else
 	    {
 	      if((magazine = new(std::nothrow) qtbook_magazine
-		  (this, languages,
-		   monetary_units,
-		   magazine_locations,
-		   oid, i)) != 0)
+		  (this,
+		   oid, i, "magazine")) != 0)
 		magazines.insert(oid, magazine);
 	      }
 
@@ -1058,11 +1048,7 @@ void qtbook::slotModify(void)
 	  else
 	    {
 	      if((video_game = new(std::nothrow) qtbook_videogame
-		  (this, vg_ratings,
-		   vg_platforms,
-		   languages,
-		   monetary_units,
-		   vg_locations,
+		  (this,
 		   oid, i)) != 0)
 		video_games.insert(oid, video_game);
 	    }
@@ -1137,10 +1123,7 @@ void qtbook::slotViewDetails(void)
 	    cd = cds.value(oid);
 	  else
 	    {
-	      if((cd = new(std::nothrow) qtbook_cd(this, languages,
-						   monetary_units,
-						   cd_locations,
-						   cd_formats, oid, i)) != 0)
+	      if((cd = new(std::nothrow) qtbook_cd(this, oid, i)) != 0)
 		cds.insert(oid, cd);
 	    }
 
@@ -1154,10 +1137,7 @@ void qtbook::slotViewDetails(void)
 	  else
 	    {
 	      if((dvd = new(std::nothrow) qtbook_dvd
-		  (this, languages,
-		   monetary_units, dvd_locations,
-		   dvd_ratings, dvd_aspectratios,
-		   dvd_regions, oid, i)) != 0)
+		  (this, oid, i)) != 0)
 		dvds.insert(oid, dvd);
 	    }
 
@@ -1170,9 +1150,7 @@ void qtbook::slotViewDetails(void)
 	    book = books.value(oid);
 	  else
 	    {
-	      if((book = new(std::nothrow) qtbook_book(this, languages,
-						       monetary_units,
-						       book_locations,
+	      if((book = new(std::nothrow) qtbook_book(this,
 						       oid, i)) != 0)
 		books.insert(oid, book);
 	    }
@@ -1187,9 +1165,6 @@ void qtbook::slotViewDetails(void)
 	  else
 	    {
 	      if((journal = new(std::nothrow) qtbook_journal(this,
-							     languages,
-							     monetary_units,
-							     journal_locations,
 							     oid, i)) != 0)
 		journals.insert(oid, journal);
 	    }
@@ -1205,9 +1180,7 @@ void qtbook::slotViewDetails(void)
 	    {
 	      if((magazine = new(std::nothrow) qtbook_magazine
 		  (this,
-		   languages, monetary_units,
-		   magazine_locations,
-		   oid, i)) != 0)
+		   oid, i, "magazine")) != 0)
 		magazines.insert(oid, magazine);
 	    }
 
@@ -1221,11 +1194,7 @@ void qtbook::slotViewDetails(void)
 	  else
 	    {
 	      if((video_game = new(std::nothrow) qtbook_videogame
-		  (this, vg_ratings,
-		   vg_platforms,
-		   languages,
-		   monetary_units,
-		   vg_locations,
+		  (this,
 		   oid, i)) != 0)
 		video_games.insert(oid, video_game);
 	    }
@@ -4549,30 +4518,14 @@ void qtbook::readGlobalSetup(void)
 {
   int i = 0;
   int j = 0;
-  enum enumtype {LANGUAGE,
-		 MONETARY_UNITS,
-		 CD_LOCATION,
-		 BOOK_LOCATION,
-		 JOURNAL_LOCATION,
-		 MAGAZINE_LOCATION,
-		 CD_FORMAT,
-		 VG_LOCATION,
-		 VG_RATING,
-		 VG_PLATFORM,
-		 Z3950_CONFIGURATION,
-		 DVD_LOCATION,
-		 DVD_RATING,
-		 DVD_ASPECT_RATIO,
-		 DVD_REGION,
+  enum enumtype {Z3950_CONFIGURATION,
 		 BRANCHES,
 		 AMAZON_FRONT_COVER_IMAGES,
 		 AMAZON_BACK_COVER_IMAGES,
-		 MINIMUM_DUE_DAYS,
 		 UNKNOWN};
   QString str = "";
   QString filename = "";
   enumtype type = UNKNOWN;
-  QStringList locations;
   generic_thread *thread = 0;
   QHash<QString, QString> tmphash;
 
@@ -4621,44 +4574,14 @@ void qtbook::readGlobalSetup(void)
 	    if(str.isEmpty() || str.startsWith("#"))
 	      continue;
 
-	    if(str == "[CD Format]")
-	      type = CD_FORMAT;
-	    else if(str == "[Language]")
-	      type = LANGUAGE;
-	    else if(str == "[Monetary Units]")
-	      type = MONETARY_UNITS;
-	    else if(str == "[CD Location]")
-	      type = CD_LOCATION;
-	    else if(str == "[Book Location]")
-	      type = BOOK_LOCATION;
-	    else if(str == "[Magazine Location]")
-	      type = MAGAZINE_LOCATION;
-	    else if(str == "[Journal Location]")
-	      type = JOURNAL_LOCATION;
-	    else if(str == "[Video Game Location]")
-	      type = VG_LOCATION;
-	    else if(str == "[Video Game Rating]")
-	      type = VG_RATING;
-	    else if(str == "[Video Game Platform]")
-	      type = VG_PLATFORM;
-	    else if(str == "[Z39.50 Configuration]")
+	    if(str == "[Z39.50 Configuration]")
 	      type = Z3950_CONFIGURATION;
-	    else if(str == "[DVD Location]")
-	      type = DVD_LOCATION;
-	    else if(str == "[DVD Rating]")
-	      type = DVD_RATING;
-	    else if(str == "[DVD Aspect Ratio]")
-	      type = DVD_ASPECT_RATIO;
-	    else if(str == "[DVD Region]")
-	      type = DVD_REGION;
 	    else if(str == "[Branches]")
 	      type = BRANCHES;
 	    else if(str == "[Amazon Front Cover Images]")
 	      type = AMAZON_FRONT_COVER_IMAGES;
 	    else if(str == "[Amazon Back Cover Images]")
 	      type = AMAZON_BACK_COVER_IMAGES;
-	    else if(str == "[Minimum Due Days]")
-	      type = MINIMUM_DUE_DAYS;
 	    else
 	      type = UNKNOWN;
 
@@ -4672,164 +4595,6 @@ void qtbook::readGlobalSetup(void)
 
 		  switch(type)
 		    {
-		    case CD_FORMAT:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!cd_formats.contains(str))
-			  cd_formats.append(str);
-
-			break;
-		      }
-		    case LANGUAGE:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!languages.contains(str))
-			  languages.append(str);
-
-			break;
-		      }
-		    case MONETARY_UNITS:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!monetary_units.contains(str))
-			  monetary_units.append(str);
-
-			break;
-		      }
-		    case CD_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!cd_locations.contains(str))
-			  cd_locations.append(str);
-
-			break;
-		      }
-		    case BOOK_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!book_locations.contains(str))
-			  book_locations.append(str);
-
-			break;
-		      }
-		    case JOURNAL_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!journal_locations.contains(str))
-			  journal_locations.append(str);
-
-			break;
-		      }
-		    case MAGAZINE_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!magazine_locations.contains(str))
-			  magazine_locations.append(str);
-
-			break;
-		      }
-		    case VG_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!vg_locations.contains(str))
-			  vg_locations.append(str);
-
-			break;
-		      }
-		    case VG_RATING:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!vg_ratings.contains(str))
-			  vg_ratings.append(str);
-
-			break;
-		      }
-		    case VG_PLATFORM:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!vg_platforms.contains(str))
-			  vg_platforms.append(str);
-
-			break;
-		      }
-		    case DVD_RATING:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!dvd_ratings.contains(str))
-			  dvd_ratings.append(str);
-
-			break;
-		      }
-		    case DVD_LOCATION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!locations.contains(str))
-			  locations.append(str);
-
-			if(!dvd_locations.contains(str))
-			  dvd_locations.append(str);
-
-			break;
-		      }
-		    case DVD_REGION:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!dvd_regions.contains(str))
-			  dvd_regions.append(str);
-
-			break;
-		      }
-		    case DVD_ASPECT_RATIO:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!dvd_aspectratios.contains(str))
-			  dvd_aspectratios.append(str);
-
-			break;
-		      }
 		    case Z3950_CONFIGURATION:
 		      {
 			if(!tmphash.contains("Name"))
@@ -4932,26 +4697,6 @@ void qtbook::readGlobalSetup(void)
 
 			break;
 		      }
-		    case MINIMUM_DUE_DAYS:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!minimumDueDays.contains("book"))
-			  minimumDueDays["book"] = qAbs(str.toInt());
-			else if(!minimumDueDays.contains("cd"))
-			  minimumDueDays["cd"] = qAbs(str.toInt());
-			else if(!minimumDueDays.contains("dvd"))
-			  minimumDueDays["dvd"] = qAbs(str.toInt());
-			else if(!minimumDueDays.contains("journal"))
-			  minimumDueDays["journal"] = qAbs(str.toInt());
-			else if(!minimumDueDays.contains("magazine"))
-			  minimumDueDays["magazine"] = qAbs(str.toInt());
-			else if(!minimumDueDays.contains("video_game"))
-			  minimumDueDays["videogame"] = qAbs(str.toInt());
-
-			break;
-		      }
 		    default:
 		      break;
 		    }
@@ -4959,39 +4704,6 @@ void qtbook::readGlobalSetup(void)
 	  }
 
       tmphash.clear();
-      locations.sort();
-      languages.sort();
-      cd_formats.sort();
-      vg_ratings.sort();
-      dvd_ratings.sort();
-      dvd_regions.sort();
-      cd_locations.sort();
-      vg_locations.sort();
-      vg_platforms.sort();
-      dvd_locations.sort();
-      book_locations.sort();
-      monetary_units.sort();
-      dvd_aspectratios.sort();
-      journal_locations.sort();
-      magazine_locations.sort();
-
-      while(!locations.isEmpty())
-	al.location->addItem(locations.takeFirst());
-
-      if(al.location->count() == 0)
-	al.location->addItem(tr("UNKNOWN"));
-
-      for(int i = 0; i < languages.size(); i++)
-	al.language->addItem(languages.at(i));
-
-      if(al.language->count() == 0)
-	al.language->addItem(tr("UNKNOWN"));
-
-      for(int i = 0; i < monetary_units.size(); i++)
-	al.monetary_units->addItem(monetary_units.at(i));
-
-      if(al.monetary_units->count() == 0)
-	al.monetary_units->addItem(tr("UNKNOWN"));
 
       if(br.branch_name->count() == 0)
 	{
@@ -7230,9 +6942,7 @@ void qtbook::slotInsertCD(void)
 
   if((cd = cds.value("insert")) == 0)
     {
-      if((cd = new(std::nothrow) qtbook_cd(this, languages,
-					   monetary_units, cd_locations,
-					   cd_formats, "insert", -1)) != 0)
+      if((cd = new(std::nothrow) qtbook_cd(this, "insert", -1)) != 0)
 	cds.insert("insert", cd);
 
       if(cd != 0)
@@ -7255,10 +6965,7 @@ void qtbook::slotInsertDVD(void)
 
   if((dvd = dvds.value("insert")) == 0)
     {
-      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
-					     monetary_units, dvd_locations,
-					     dvd_ratings, dvd_aspectratios,
-					     dvd_regions, "insert", -1)) != 0)
+      if((dvd = new(std::nothrow) qtbook_dvd(this, "insert", -1)) != 0)
 	dvds.insert("insert", dvd);
 
       if(dvd != 0)
@@ -7281,8 +6988,7 @@ void qtbook::slotInsertBook(void)
 
   if((book = books.value("insert")) == 0)
     {
-      if((book = new(std::nothrow) qtbook_book(this, languages,
-					       monetary_units, book_locations,
+      if((book = new(std::nothrow) qtbook_book(this,
 					       "insert", -1)) != 0)
 	books.insert("insert", book);
 
@@ -7308,8 +7014,6 @@ void qtbook::slotInsertJourn(void)
     {
       if((journal = new(std::nothrow) qtbook_journal
 	  (this,
-	   languages,
-	   monetary_units, journal_locations,
 	   "insert", -1)) != 0)
 	journals.insert("insert", journal);
 
@@ -7333,11 +7037,9 @@ void qtbook::slotInsertMag(void)
 
   if((magazine = magazines.value("insert")) == 0)
     {
-      if((magazine = new(std::nothrow) qtbook_magazine(this,
-						       languages,
-						       monetary_units,
-						       magazine_locations,
-						       "insert", -1)) != 0)
+      if((magazine = new(std::nothrow) qtbook_magazine
+	  (this,
+	   "insert", -1, "magazine")) != 0)
 	magazines.insert("insert", magazine);
 
       if(magazine != 0)
@@ -7361,9 +7063,7 @@ void qtbook::slotInsertVideoGame(void)
   if((video_game = video_games.value("insert")) == 0)
     {
       if((video_game = new(std::nothrow) qtbook_videogame
-	  (this, vg_ratings, vg_platforms,
-	   languages,
-	   monetary_units, vg_locations,
+	  (this,
 	   "insert", -1)) != 0)
 	video_games.insert("insert", video_game);
 
@@ -7427,8 +7127,7 @@ void qtbook::bookSearch(const QString &field, const QString &value)
 
   if((book = books.value("search")) == 0)
     {
-      if((book = new(std::nothrow) qtbook_book(this, languages,
-					       monetary_units, book_locations,
+      if((book = new(std::nothrow) qtbook_book(this,
 					       "search", -1)) != 0)
 	books.insert("search", book);
 
@@ -7449,8 +7148,7 @@ void qtbook::slotBookSearch(void)
 
   if((book = books.value("search")) == 0)
     {
-      if((book = new(std::nothrow) qtbook_book(this, languages,
-					       monetary_units, book_locations,
+      if((book = new(std::nothrow) qtbook_book(this,
 					       "search", -1)) != 0)
 	books.insert("search", book);
 
@@ -7474,9 +7172,7 @@ void qtbook::cdSearch(const QString &field, const QString &value)
 
   if((cd = cds.value("search")) == 0)
     {
-      if((cd = new(std::nothrow) qtbook_cd(this, languages,
-					   monetary_units, cd_locations,
-					   cd_formats,
+      if((cd = new(std::nothrow) qtbook_cd(this,
 					   "search", -1)) != 0)
 	cds.insert("search", cd);
 
@@ -7497,9 +7193,7 @@ void qtbook::slotCDSearch(void)
 
   if((cd = cds.value("search")) == 0)
     {
-      if((cd = new(std::nothrow) qtbook_cd(this, languages,
-					   monetary_units, cd_locations,
-					   cd_formats,
+      if((cd = new(std::nothrow) qtbook_cd(this,
 					   "search", -1)) != 0)
 	cds.insert("search", cd);
 
@@ -7523,10 +7217,7 @@ void qtbook::dvdSearch(const QString &field, const QString &value)
 
   if((dvd = dvds.value("search")) == 0)
     {
-      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
-					     monetary_units,
-					     dvd_locations, dvd_ratings,
-					     dvd_aspectratios, dvd_regions,
+      if((dvd = new(std::nothrow) qtbook_dvd(this,
 					     "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
@@ -7547,10 +7238,7 @@ void qtbook::slotDVDSearch(void)
 
   if((dvd = dvds.value("search")) == 0)
     {
-      if((dvd = new(std::nothrow) qtbook_dvd(this, languages,
-					     monetary_units,
-					     dvd_locations, dvd_ratings,
-					     dvd_aspectratios, dvd_regions,
+      if((dvd = new(std::nothrow) qtbook_dvd(this,
 					     "search", -1)) != 0)
 	dvds.insert("search", dvd);
 
@@ -7574,9 +7262,7 @@ void qtbook::journSearch(const QString &field, const QString &value)
 
   if((journal = journals.value("search")) == 0)
     {
-      if((journal = new(std::nothrow) qtbook_journal(this, languages,
-						     monetary_units,
-						     journal_locations,
+      if((journal = new(std::nothrow) qtbook_journal(this,
 						     "search", -1)) != 0)
 	journals.insert("search", journal);
 
@@ -7597,9 +7283,7 @@ void qtbook::slotJournSearch(void)
 
   if((journal = journals.value("search")) == 0)
     {
-      if((journal = new(std::nothrow) qtbook_journal(this, languages,
-						     monetary_units,
-						     journal_locations,
+      if((journal = new(std::nothrow) qtbook_journal(this,
 						     "search", -1)) != 0)
 	journals.insert("search", journal);
 
@@ -7623,10 +7307,9 @@ void qtbook::magSearch(const QString &field, const QString &value)
 
   if((magazine = magazines.value("search")) == 0)
     {
-      if((magazine = new(std::nothrow) qtbook_magazine(this, languages,
-						       monetary_units,
-						       magazine_locations,
-						       "search", -1)) != 0)
+      if((magazine = new(std::nothrow) qtbook_magazine
+	  (this,
+	   "search", -1, "magazine")) != 0)
 	magazines.insert("search", magazine);
 
       if(magazine != 0)
@@ -7646,10 +7329,9 @@ void qtbook::slotMagSearch(void)
 
   if((magazine = magazines.value("search")) == 0)
     {
-      if((magazine = new(std::nothrow) qtbook_magazine(this, languages,
-						       monetary_units,
-						       magazine_locations,
-						       "search", -1)) != 0)
+      if((magazine = new(std::nothrow) qtbook_magazine
+	  (this,
+	   "search", -1, "magazine")) != 0)
 	magazines.insert("search", magazine);
 
       if(magazine != 0)
@@ -7673,11 +7355,6 @@ void qtbook::vgSearch(const QString &field, const QString &value)
   if((video_game = video_games.value("search")) == 0)
     {
       if((video_game = new(std::nothrow) qtbook_videogame(this,
-							  vg_ratings,
-							  vg_platforms,
-							  languages,
-							  monetary_units,
-							  vg_locations,
 							  "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
@@ -7699,9 +7376,7 @@ void qtbook::slotVideoGameSearch(void)
   if((video_game = video_games.value("search")) == 0)
     {
       if((video_game = new(std::nothrow) qtbook_videogame
-	  (this, vg_ratings, vg_platforms,
-	   languages,
-	   monetary_units, vg_locations,
+	  (this,
 	   "search", -1)) != 0)
 	video_games.insert("search", video_game);
 
@@ -9758,9 +9433,4 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 	    }
 	}
     }
-}
-
-QHash<QString, int> qtbook::getMinimumDueDaysHash(void) const
-{
-  return minimumDueDays;
 }
