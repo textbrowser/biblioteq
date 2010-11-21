@@ -477,3 +477,58 @@ UPDATE book SET edition = REPLACE(edition, 'st', '');
 UPDATE book SET edition = REPLACE(edition, 'nd', '');
 UPDATE book SET edition = REPLACE(edition, 'rd', '');
 UPDATE book SET edition = REPLACE(edition, 'th', '');
+
+/* Release 6.44 */
+
+CREATE TABLE locations
+(
+	location	 TEXT NOT NULL,
+	type		 VARCHAR(16),
+	PRIMARY KEY(location, type)
+);
+
+CREATE TABLE monetary_units
+(
+	monetary_unit	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE languages
+(
+	language	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE cd_formats
+(
+	cd_format	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_ratings
+(
+	dvd_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_aspect_ratios
+(
+	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_regions
+(
+	dvd_region	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE minimum_days
+(
+	days		 INTEGER NOT NULL,
+	type		 VARCHAR(16) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_ratings
+(
+	videogame_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_platforms
+(
+	videogame_platform	 TEXT NOT NULL PRIMARY KEY
+);
