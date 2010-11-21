@@ -155,7 +155,17 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "INSERT, SELECT, UPDATE"
 	       << "SELECT, UPDATE, USAGE"
 	       << "DELETE, SELECT"
-	       << "SELECT, UPDATE, USAGE";
+	       << "SELECT, UPDATE, USAGE"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "SELECT"
+	       << "SELECT";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -187,7 +197,17 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "member_history"
 		 << "member_history_myoid_seq"
 		 << "item_request"
-		 << "item_request_myoid_seq";
+		 << "item_request_myoid_seq"
+		 << "locations"
+		 << "monetary_units"
+		 << "languages"
+		 << "cd_formats"
+		 << "dvd_ratings"
+		 << "dvd_aspect_ratios"
+		 << "dvd_regions"
+		 << "minimum_days"
+		 << "videogame_ratings"
+		 << "videogame_platforms";
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
@@ -218,7 +238,17 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT, UPDATE, USAGE"
 	       << "SELECT, UPDATE, USAGE"
 	       << "SELECT"
-	       << "SELECT, UPDATE, USAGE";
+	       << "SELECT, UPDATE, USAGE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "SELECT"
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "DELETE, INSERT, SELECT, UPDATE";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -245,7 +275,17 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq"
 		 << "item_request"
-		 << "item_request_myoid_seq";
+		 << "item_request_myoid_seq"
+		 << "locations"
+		 << "monetary_units"
+		 << "languages"
+		 << "cd_formats"
+		 << "dvd_ratings"
+		 << "dvd_aspect_ratios"
+		 << "dvd_regions"
+		 << "minimum_days"
+		 << "videogame_ratings"
+		 << "videogame_platforms";
     }
 
   if(roles.contains("administrator") || roles.contains("membership"))
@@ -275,7 +315,17 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "SELECT"
 	       << "SELECT"
 	       << "SELECT"
-	       << "DELETE, INSERT, SELECT, UPDATE";
+	       << "DELETE, INSERT, SELECT, UPDATE"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT"
+	       << "SELECT";
       objectlist << "book"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
@@ -301,7 +351,17 @@ void misc_functions::grantPrivs(const QString &userid,
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq"
-		 << "member";
+		 << "member"
+		 << "locations"
+		 << "monetary_units"
+		 << "languages"
+		 << "cd_formats"
+		 << "dvd_ratings"
+		 << "dvd_aspect_ratios"
+		 << "dvd_regions"
+		 << "minimum_days"
+		 << "videogame_ratings"
+		 << "videogame_platforms";
     }
 
   if(objectlist.size() != privlist.size())
@@ -387,7 +447,17 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "videogame"
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq";
+		 << "videogame_myoid_seq"
+		 << "locations"
+		 << "monetary_units"
+		 << "languages"
+		 << "cd_formats"
+		 << "dvd_ratings"
+		 << "dvd_aspect_ratios"
+		 << "dvd_regions"
+		 << "minimum_days"
+		 << "videogame_ratings"
+		 << "videogame_platforms";
 
       for(i = 0; i < objectlist.size(); i++)
 	{
@@ -495,7 +565,17 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "videogame"
 		       << "videogame_copy_info"
 		       << "videogame_copy_info_myoid_seq"
-		       << "videogame_myoid_seq";
+		       << "videogame_myoid_seq"
+		       << "locations"
+		       << "monetary_units"
+		       << "languages"
+		       << "cd_formats"
+		       << "dvd_ratings"
+		       << "dvd_aspect_ratios"
+		       << "dvd_regions"
+		       << "minimum_days"
+		       << "videogame_ratings"
+		       << "videogame_platforms";
 	  else if(roles.contains("circulation") ||
 		  roles.contains("librarian") ||
 		  roles.contains("membership"))
@@ -535,7 +615,16 @@ void misc_functions::DBAccount(const QString &userid,
 		       << "member_history"
 		       << "member_history_myoid_seq"
 		       << "item_request"
-		       << "item_request_myoid_seq";
+		       << "item_request_myoid_seq"
+		       << "locations"
+		       << "monetary_units"
+		       << "languages"
+		       << "cd_formats"
+		       << "dvd_ratings"
+		       << "dvd_aspect_ratios"
+		       << "dvd_regions"
+		       << "videogame_ratings"
+		       << "videogame_platforms";
 	}
       else /* Delete the account. */
 	objectlist << "admin"
@@ -1582,4 +1671,257 @@ bool misc_functions::isRequested(const QSqlDatabase &db,
     }
 
   return isRequested;
+}
+
+/*
+** -- getLocations() --
+*/
+
+QStringList misc_functions::getLocations(const QSqlDatabase &db,
+					 const QString &type,
+					 QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList locations;
+
+  errorstr = "";
+
+  if(type.isEmpty())
+    querystr = "SELECT location FROM locations ORDER BY location";
+  else
+    querystr = QString("SELECT location FROM locations WHERE type = '%1' "
+		       "ORDER BY location").arg(type);
+
+  if(query.exec(querystr))
+    while(query.next())
+      locations.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return locations;
+}
+
+/*
+** -- getMonetaryUnits() --
+*/
+
+QStringList misc_functions::getMonetaryUnits(const QSqlDatabase &db,
+					     QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList monetary_units;
+
+  errorstr = "";
+  querystr = "SELECT monetary_unit FROM monetary_units "
+    "ORDER BY monetary_unit";
+
+  if(query.exec(querystr))
+    while(query.next())
+      monetary_units.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return monetary_units;
+}
+
+/*
+** -- getLanguages() --
+*/
+
+QStringList misc_functions::getLanguages(const QSqlDatabase &db,
+					 QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList languages;
+
+  errorstr = "";
+  querystr = "SELECT language FROM languages "
+    "ORDER BY language";
+
+  if(query.exec(querystr))
+    while(query.next())
+      languages.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return languages;
+}
+
+/*
+** -- getCDFormats() --
+*/
+
+QStringList misc_functions::getCDFormats(const QSqlDatabase &db,
+					 QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList formats;
+
+  errorstr = "";
+  querystr = "SELECT cd_format FROM cd_formats ORDER BY cd_format";
+
+  if(query.exec(querystr))
+    while(query.next())
+      formats.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return formats;
+}
+
+/*
+** -- get DVDRatings() --
+*/
+
+QStringList misc_functions::getDVDRatings(const QSqlDatabase &db,
+					  QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList ratings;
+
+  errorstr = "";
+  querystr = "SELECT dvd_rating FROM dvd_ratings ORDER BY dvd_rating";
+
+  if(query.exec(querystr))
+    while(query.next())
+      ratings.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return ratings;
+}
+
+/*
+** -- getDVDAspectRatios() --
+*/
+
+QStringList misc_functions::getDVDAspectRatios(const QSqlDatabase &db,
+					       QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList aspectratios;
+
+  errorstr = "";
+  querystr = "SELECT dvd_aspect_ratio FROM dvd_aspect_ratios "
+    "ORDER BY dvd_aspect_ratio";
+
+  if(query.exec(querystr))
+    while(query.next())
+      aspectratios.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return aspectratios;
+}
+
+/*
+** -- getDVDRegions() --
+*/
+
+QStringList misc_functions::getDVDRegions(const QSqlDatabase &db,
+					  QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList regions;
+
+  errorstr = "";
+  querystr = "SELECT dvd_region FROM dvd_regions ORDER BY dvd_region";
+
+  if(query.exec(querystr))
+    while(query.next())
+      regions.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return regions;
+}
+
+/*
+** -- getMinimumDays() --
+*/
+
+int misc_functions::getMinimumDays(const QSqlDatabase &db,
+				   const QString &type,
+				   QString &errorstr)
+{
+  int minimumdays = 0;
+  QString querystr("");
+  QSqlQuery query(db);
+
+  errorstr = "";
+  querystr = QString("SELECT days FROM minimum_days WHERE type = '%1'").
+    arg(type);
+
+  if(query.exec(querystr))
+    if(query.next())
+      minimumdays = query.value(0).toInt();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return minimumdays;
+}
+
+/*
+** -- getVideoGameRatings() --
+*/
+
+QStringList misc_functions::getVideoGameRatings(const QSqlDatabase &db,
+						QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList ratings;
+
+  errorstr = "";
+  querystr = "SELECT videogame_rating FROM videogame_ratings "
+    "ORDER BY videogame_rating";
+
+  if(query.exec(querystr))
+    while(query.next())
+      ratings.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return ratings;
+}
+
+/*
+** -- getVideoGamePlatforms() --
+*/
+
+QStringList misc_functions::getVideoGamePlatforms(const QSqlDatabase &db,
+						  QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList platforms;
+
+  errorstr = "";
+  querystr = "SELECT videogame_platform FROM videogame_platforms "
+    "ORDER BY videogame_platform";
+
+  if(query.exec(querystr))
+    while(query.next())
+      platforms.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return platforms;
 }
