@@ -546,3 +546,74 @@ GRANT SELECT, UPDATE, USAGE ON public.videogame_copy_info_myoid_seq TO xbook_adm
 GRANT SELECT, UPDATE, USAGE ON public.item_borrower_myoid_seq TO xbook_admin;
 GRANT SELECT, USAGE ON public.item_request_myoid_seq TO xbook_admin;
 GRANT SELECT, UPDATE, USAGE ON public.member_history_myoid_seq TO xbook_admin;
+
+/* Release 6.44 */
+
+CREATE TABLE locations
+(
+	location	 TEXT NOT NULL,
+	type		 VARCHAR(16),
+	PRIMARY KEY(location, type)
+);
+
+CREATE TABLE monetary_units
+(
+	monetary_unit	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE languages
+(
+	language	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE cd_formats
+(
+	cd_format	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_ratings
+(
+	dvd_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_aspect_ratios
+(
+	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_regions
+(
+	dvd_region	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE minimum_days
+(
+	days		 INTEGER NOT NULL,
+	type		 VARCHAR(16) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_ratings
+(
+	videogame_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_platforms
+(
+	videogame_platform	 TEXT NOT NULL PRIMARY KEY
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO xbook_admin;
+GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO xbook_admin;
+
+/* Please execute the "Save Changes" function from within the Administrator
+   Browser as this will grant the correct privileges to existing administrator
+   accounts. */
+/* Please also "Save" each member's information through the Members Browser. */
