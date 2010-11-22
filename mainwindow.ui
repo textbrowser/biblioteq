@@ -41,7 +41,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QGroupBox" name="groupBox">
@@ -549,6 +549,7 @@
    <addaction name="connectTool"/>
    <addaction name="disconnectTool"/>
    <addaction name="actionChangePassword"/>
+   <addaction name="actionDatabase_Enumerations"/>
    <addaction name="actionConfigureAdministratorPrivileges"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -773,23 +774,6 @@
      <bold>false</bold>
      <underline>false</underline>
      <strikeout>false</strikeout>
-    </font>
-   </property>
-  </action>
-  <action name="actionAutoPopulateOnFilter">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Automatically Populate Table on Filter Change</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
     </font>
    </property>
   </action>
@@ -1354,55 +1338,6 @@
     </font>
    </property>
   </action>
-  <action name="actionCheck_Updates">
-   <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
-   </property>
-   <property name="text">
-    <string>Check for &amp;Updates</string>
-   </property>
-  </action>
-  <action name="action_25">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;25</string>
-   </property>
-  </action>
-  <action name="action_50">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;50</string>
-   </property>
-  </action>
-  <action name="action_75">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;75</string>
-   </property>
-  </action>
-  <action name="action_100">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;100</string>
-   </property>
-  </action>
-  <action name="actionTest">
-   <property name="text">
-    <string>test</string>
-   </property>
-  </action>
   <action name="action_New_SQLite_Database">
    <property name="icon">
     <iconset>
@@ -1413,6 +1348,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionDatabase_Enumerations">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons.d/32x32/settings.png</normaloff>icons.d/32x32/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Database Enumerations</string>
+   </property>
+   <property name="toolTip">
+    <string>Database Enumerations</string>
    </property>
   </action>
  </widget>

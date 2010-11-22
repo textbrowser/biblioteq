@@ -510,6 +510,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
+  ui.actionDatabase_Enumerations->setEnabled(false);
 
   QSettings settings;
 
@@ -723,7 +724,11 @@ void qtbook::adminSetup(void)
 	(roles.contains("administrator"));
       ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
 	(roles.contains("administrator"));
+      ui.actionDatabase_Enumerations->setEnabled
+	(roles.contains("administrator"));
     }
+  else
+    ui.actionDatabase_Enumerations->setEnabled(true);
 
   ui.actionRequests->setToolTip(tr("Item Requests"));
 
@@ -745,6 +750,7 @@ void qtbook::adminSetup(void)
       bb.addButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
+      ui.actionDatabase_Enumerations->setEnabled(true);
     }
   else
     {
@@ -5720,6 +5726,7 @@ void qtbook::slotDisconnect(void)
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
+  ui.actionDatabase_Enumerations->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setToolTip(tr("Item Requests"));
   ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
