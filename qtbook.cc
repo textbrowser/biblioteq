@@ -4782,6 +4782,18 @@ void qtbook::readGlobalSetup(void)
 	  tmphash.clear();
 	}
 
+      if(!AmazonImages.contains("front_cover_host"))
+	AmazonImages["front_cover_host"] = "images.amazon.com";
+
+      if(!AmazonImages.contains("front_cover_path"))
+	AmazonImages["front_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
+
+      if(!AmazonImages.contains("back_cover_host"))
+	AmazonImages["back_cover_host"] = "images.amazon.com";
+
+      if(!AmazonImages.contains("back_cover_path"))
+	AmazonImages["back_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
+
       if(statusBar() != 0)
 	statusBar()->clearMessage();
 
