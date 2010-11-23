@@ -5680,23 +5680,6 @@ void qtbook::slotConnectDB(void)
 
 	  if(!exists)
 	    {
-	      ui.menu_Recent_SQLite_Files->clear();
-	      createSqliteMenuActions();
-
-	      if(ui.menu_Recent_SQLite_Files->actions().size() == 1)
-		ui.menu_Recent_SQLite_Files->addSeparator();
-
-	      QAction *action = new(std::nothrow) QAction
-		(br.filename->text(), this);
-
-	      if(action)
-		{
-		  action->setData(br.filename->text());
-		  connect(action, SIGNAL(triggered(bool)), this,
-			  SLOT(slotSqliteFileSelected(bool)));
-		  ui.menu_Recent_SQLite_Files->addAction(action);
-		}
-
 	      int index = 1;
 	      QSettings settings;
 	      QStringList allKeys(settings.allKeys());
@@ -5708,6 +5691,7 @@ void qtbook::slotConnectDB(void)
 	      allKeys.clear();
 	      settings.setValue(QString("sqlite_db_%1").arg(index),
 				br.filename->text());
+	      createSqliteMenuActions();
 	    }
 	}
 
@@ -9266,18 +9250,11 @@ void qtbook::slotClearSqliteMenu(bool state)
 
 void qtbook::createSqliteMenuActions(void)
 {
-  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
-
-  if(action)
-    {
-      connect(action, SIGNAL(triggered(bool)), this,
-	      SLOT(slotClearSqliteMenu(bool)));
-      ui.menu_Recent_SQLite_Files->addAction(action);
-    }
-
   QSettings settings;
   QStringList dups;
   QStringList allKeys(settings.allKeys());
+
+  ui.menu_Recent_SQLite_Files->clear();
 
   for(int i = 0; i < allKeys.size(); i++)
     {
@@ -9306,9 +9283,6 @@ void qtbook::createSqliteMenuActions(void)
       if(!action)
 	continue;
 
-      if(ui.menu_Recent_SQLite_Files->actions().size() == 1)
-	ui.menu_Recent_SQLite_Files->addSeparator();
-
       action->setData(str);
       connect(action, SIGNAL(triggered(bool)), this,
 	      SLOT(slotSqliteFileSelected(bool)));
@@ -9317,6 +9291,19 @@ void qtbook::createSqliteMenuActions(void)
 
   dups.clear();
   allKeys.clear();
+
+  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
+
+  if(action)
+    {
+      connect(action, SIGNAL(triggered(bool)), this,
+	      SLOT(slotClearSqliteMenu(bool)));
+
+      if(ui.menu_Recent_SQLite_Files->actions().size() > 0)
+	ui.menu_Recent_SQLite_Files->addSeparator();
+
+      ui.menu_Recent_SQLite_Files->addAction(action);
+    }
 }
 
 /*
