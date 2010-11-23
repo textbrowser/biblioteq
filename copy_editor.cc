@@ -153,7 +153,7 @@ void copy_editor::populateCopiesEditor(void)
       QString errorstr("");
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      duedate.addDays
+      duedate = duedate.addDays
 	(misc_functions::getMinimumDays
 	 (qmain->getDB(),
 	  itemType,

@@ -242,6 +242,22 @@ void borrowers_editor::showUsers(void)
   progress2.update();
   i = -1;
 
+  int minimumdays = 1;
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  minimumdays = misc_functions::getMinimumDays
+    (qmain->getDB(),
+     itemType,
+     errorstr);
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError(QString(tr("Database Error")),
+		    QString(tr("Unable to retrieve "
+			       "the minimum number of days.")),
+		    errorstr, __FILE__, __LINE__);
+
   while(i++, !progress2.wasCanceled() && query.next())
     {
       if(query.isValid())
@@ -267,7 +283,7 @@ void borrowers_editor::showUsers(void)
 		    static_cast<QDateEdit *> (bd.table->cellWidget
 					      (row, j))->setMinimumDate
 		      (QDate::fromString(bd.table->item(row, 5)->text(),
-					 "MM/dd/yyyy").addDays(21));
+					 "MM/dd/yyyy").addDays(minimumdays));
 		  }
 	      }
 	    else if(bd.table->item(row, j) != 0)

@@ -1858,7 +1858,7 @@ int misc_functions::getMinimumDays(const QSqlDatabase &db,
 				   const QString &type,
 				   QString &errorstr)
 {
-  int minimumdays = 0;
+  int minimumdays = 1;
   QString querystr("");
   QSqlQuery query(db);
 
