@@ -315,8 +315,8 @@ void borrowers_editor::slotEraseBorrower(void)
   if(oid.isEmpty())
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("To modify a copy's reservation status, "
-			       "you must first select it."));
+			    tr("It appears that the selected "
+			       "item has not been reserved."));
       return;
     }
 
