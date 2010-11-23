@@ -154,7 +154,7 @@ void qtbook::quit(void)
 
 void qtbook::cleanup(void)
 {
-  if(qapp != 0 && qmain != 0 && qmain->isVisible())
+  if(qapp != 0 && isVisible())
     qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(populateQuery)
@@ -166,7 +166,7 @@ void qtbook::cleanup(void)
   if(db.isOpen())
     db.close();
 
-  if(qapp != 0 && qmain != 0 && qmain->isVisible())
+  if(qapp != 0 && isVisible())
     qapp->restoreOverrideCursor();
 }
 
@@ -773,21 +773,21 @@ void qtbook::showMain(void)
       connected_bar_label->setPixmap
 	(QPixmap("icons.d/16x16/disconnected.png"));
       connected_bar_label->setToolTip(tr("Disconnected"));
-      qmain->statusBar()->addPermanentWidget(connected_bar_label);
+      statusBar()->addPermanentWidget(connected_bar_label);
     }
 
   if((status_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
       status_bar_label->setToolTip(tr("Standard User Mode"));
-      qmain->statusBar()->addPermanentWidget(status_bar_label);
+      statusBar()->addPermanentWidget(status_bar_label);
     }
 
   if((error_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
       error_bar_label->setToolTip(tr("Empty Error Log"));
-      qmain->statusBar()->addPermanentWidget(error_bar_label);
+      statusBar()->addPermanentWidget(error_bar_label);
     }
 
   ui.itemsCountLabel->setText(tr("0 Results"));
@@ -891,6 +891,52 @@ void qtbook::slotSearch(void)
   al.quantity->setMinimum(0);
   al.quantity->setValue(0);
   al.description->clear();
+  al.language->clear();
+  al.monetary_units->clear();
+  al.location->clear();
+
+  /*
+  ** Populate combination boxes.
+  */
+
+  QString errorstr("");
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  al.language->addItems
+    (misc_functions::getLanguages(getDB(),
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the languages.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  al.monetary_units->addItems
+    (misc_functions::getMonetaryUnits(getDB(),
+				      errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the monetary units.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  al.location->addItems
+    (misc_functions::getLocations(getDB(),
+				  "",
+				  errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the locations.")),
+       errorstr, __FILE__, __LINE__);
 
   /*
   ** Add "any".
@@ -4540,9 +4586,6 @@ void qtbook::readGlobalSetup(void)
 #else
   filename.append(CONFIGFILE);
 #endif
-  al.language->clear();
-  al.monetary_units->clear();
-  al.location->clear();
 
   if((thread = new(std::nothrow) generic_thread()) != 0)
     {
@@ -7626,9 +7669,9 @@ void qtbook::setGlobalFonts(const QFont &font)
   foreach(QWidget *widget, qapp->allWidgets())
     widget->setFont(font);
 
-  qmain->menuBar()->setFont(font);
+  menuBar()->setFont(font);
 
-  foreach(QMenu *menu, qmain->menuBar()->findChildren<QMenu *>())
+  foreach(QMenu *menu, menuBar()->findChildren<QMenu *>())
     foreach(QAction *action, menu->actions())
       action->setFont(font);
 
@@ -8673,7 +8716,7 @@ void qtbook::slotSaveAdministrators(void)
   QString errorstr = "";
   QString querystr = "";
   QCheckBox *checkBox = 0;
-  QSqlQuery query(qmain->getDB());
+  QSqlQuery query(getDB());
   QStringList tmplist;
   QProgressDialog progress(admin_diag);
 
