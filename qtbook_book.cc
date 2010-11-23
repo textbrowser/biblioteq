@@ -631,6 +631,7 @@ void qtbook_book::slotGo(void)
 	  id.id->setPalette(te_orig_pal);
 	  id.isbn13->setPalette(te_orig_pal);
 	  id.edition->setStyleSheet(cb_orig_ss);
+	  id.binding->setStyleSheet(cb_orig_ss);
 	  id.category->viewport()->setPalette(te_orig_pal);
 	  id.publication_date->setStyleSheet(dt_orig_ss);
 	  id.author->viewport()->setPalette(te_orig_pal);
@@ -1461,6 +1462,7 @@ void qtbook_book::slotReset(void)
       else if(action == actions[6])
 	{
 	  id.binding->setCurrentIndex(0);
+	  id.binding->setStyleSheet(cb_orig_ss);
 	  id.binding->setFocus();
 	}
       else if(action == actions[20])
@@ -1572,6 +1574,7 @@ void qtbook_book::slotReset(void)
       id.id->setPalette(te_orig_pal);
       id.isbn13->setPalette(te_orig_pal);
       id.edition->setStyleSheet(cb_orig_ss);
+      id.binding->setStyleSheet(cb_orig_ss);
       id.category->viewport()->setPalette(te_orig_pal);
       id.publication_date->setStyleSheet(dt_orig_ss);
       id.author->viewport()->setPalette(te_orig_pal);
@@ -1826,10 +1829,35 @@ void qtbook_book::slotQuery(void)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.mid(0, 10);
 
-		      if(id.id->text().isEmpty())
+		      if(str.toLower().contains("hardcover"))
 			{
+			  id.binding->setCurrentIndex(0);
+			  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+			}
+		      else if(str.toLower().contains("pbk."))
+			{
+			  id.binding->setCurrentIndex(1);
+			  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+			}
+
+		      if(str.contains(" ") && str.indexOf(" ") == 10)
+			{
+			  str = str.mid(0, 10);
+			  id.id->setText(str);
+			  misc_functions::highlightWidget
+			    (id.id, QColor(162, 205, 90));
+			}
+		      else if(str.contains(" ") && str.indexOf(" ") == 13)
+			{
+			  str = str.mid(0, 13);
+			  id.isbn13->setText(str);
+			  misc_functions::highlightWidget
+			    (id.isbn13, QColor(162, 205, 90));
+			}
+		      else
+			{
+			  str = str.mid(0, 10);
 			  id.id->setText(str);
 			  misc_functions::highlightWidget
 			    (id.id, QColor(162, 205, 90));
