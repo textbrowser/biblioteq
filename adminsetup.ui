@@ -526,6 +526,13 @@
        </widget>
       </item>
       <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="reloadButton">
         <property name="font">
          <font>
@@ -534,7 +541,7 @@
          </font>
         </property>
         <property name="toolTip">
-         <string>Refresh List</string>
+         <string>Refresh Table</string>
         </property>
         <property name="icon">
          <iconset>

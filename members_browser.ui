@@ -418,7 +418,7 @@
          </font>
         </property>
         <property name="toolTip">
-         <string>Refresh List</string>
+         <string>Refresh Table</string>
         </property>
         <property name="icon">
          <iconset>

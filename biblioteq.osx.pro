@@ -35,6 +35,7 @@ FORMS           = cdinfo.ui \
 		  customquery.ui \
 		  z3950results.ui \
 		  videogameinfo.ui \
+		  dbenumerations.ui \
 		  members_browser.ui
 
 UI_HEADERS_DIR  = include.d
