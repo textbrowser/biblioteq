@@ -74,8 +74,8 @@ void z3950results::slotUpdateQueryText(void)
 
 void z3950results::closeEvent(QCloseEvent *e)
 {
-  (void) e;
   slotClose();
+  QDialog::closeEvent(e);
 }
 
 /*
@@ -105,6 +105,8 @@ void z3950results::setGlobalFonts(const QFont &font)
 
 void z3950results::keyPressEvent(QKeyEvent *event)
 {
-  if(event->key() == Qt::Key_Escape)
+  if(event && event->key() == Qt::Key_Escape)
     slotClose();
+
+  QDialog::keyPressEvent(event);
 }

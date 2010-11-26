@@ -510,6 +510,7 @@
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
+    <addaction name="actionPopulate_Database_Enumerations_Browser_on_Display"/>
     <addaction name="actionPopulate_Members_Browser_Table_on_Display"/>
     <addaction name="actionPopulateOnStart"/>
     <addaction name="actionAutoPopulateOnCreation"/>
@@ -1360,6 +1361,14 @@
    </property>
    <property name="toolTip">
     <string>Database Enumerations</string>
+   </property>
+  </action>
+  <action name="actionPopulate_Database_Enumerations_Browser_on_Display">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Populate Database En&amp;umerations Browser on Display</string>
    </property>
   </action>
  </widget>

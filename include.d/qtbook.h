@@ -51,6 +51,7 @@ using namespace std;
 #include "ui_errordiag.h"
 #include "ui_adminsetup.h"
 #include "ui_mainwindow.h"
+#include "dbenumerations.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
 #include "ui_customquery.h"
@@ -132,9 +133,13 @@ class qtbook: public QMainWindow
 	    QMessageBox::Yes | QMessageBox::No,
 	    QMessageBox::No) == QMessageBox::No)
 	  {
-	    e->ignore();
+	    if(e)
+	      e->ignore();
+
 	    return;
 	  }
+
+      QDialog::closeEvent(e);
     }
   };
 
@@ -229,6 +234,7 @@ class qtbook: public QMainWindow
   Ui_allDialog al;
   Ui_mainWindow ui;
   Ui_passSelect pass;
+  dbenumerations *db_enumerations;
   Ui_customquery cq;
   Ui_errordialog er;
   Ui_adminBrowser ab;
@@ -322,6 +328,7 @@ class qtbook: public QMainWindow
   void slotSaveAdministrators(void);
   void slotSelectDatabaseFile(void);
   void slotShowChangePassword(void);
+  void slotShowDbEnumerations(void);
   void slotShowMembersBrowser(void);
   void slotSqliteFileSelected(bool);
   void slotCloseMembersBrowser(void);

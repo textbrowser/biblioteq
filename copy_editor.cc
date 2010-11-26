@@ -794,8 +794,10 @@ QString copy_editor::saveCopies(void)
 
 void copy_editor::keyPressEvent(QKeyEvent *event)
 {
-  if(event->key() == Qt::Key_Escape)
+  if(event && event->key() == Qt::Key_Escape)
     slotCloseCopyEditor();
+
+  QDialog::keyPressEvent(event);
 }
 
 /*
@@ -824,8 +826,8 @@ void copy_editor::clearCopiesList(void)
 
 void copy_editor::closeEvent(QCloseEvent *e)
 {
-  (void) e;
   slotCloseCopyEditor();
+  QDialog::closeEvent(e);
 }
 
 /*

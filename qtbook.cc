@@ -236,6 +236,9 @@ qtbook::qtbook(void):QMainWindow()
   if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((db_enumerations = new(std::nothrow) dbenumerations()) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((menu1 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
@@ -471,6 +474,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisplayNewSqliteDialog(void)));
+  connect(ui.actionDatabase_Enumerations,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowDbEnumerations(void)));
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -511,6 +518,8 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+    (false);
 
   QSettings settings;
 
@@ -726,9 +735,15 @@ void qtbook::adminSetup(void)
 	(roles.contains("administrator"));
       ui.actionDatabase_Enumerations->setEnabled
 	(roles.contains("administrator"));
+      ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+	(roles.contains("administrator"));
     }
   else
-    ui.actionDatabase_Enumerations->setEnabled(true);
+    {
+      ui.actionDatabase_Enumerations->setEnabled(true);
+      ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+	(true);
+    }
 
   ui.actionRequests->setToolTip(tr("Item Requests"));
 
@@ -751,6 +766,8 @@ void qtbook::adminSetup(void)
       bb.deleteButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
       ui.actionDatabase_Enumerations->setEnabled(true);
+      ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+	(true);
     }
   else
     {
@@ -1448,8 +1465,8 @@ void qtbook::slotDelete(void)
 
 void qtbook::closeEvent(QCloseEvent *e)
 {
-  (void) e;
   slotExit();
+  QMainWindow::closeEvent(e);
 }
 
 /*
@@ -4869,6 +4886,9 @@ void qtbook::readConfig(void)
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setChecked
     (settings.value("automatically_populate_admin_list_on_display",
 		    false).toBool());
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setChecked
+    (settings.value("automatically_populate_enum_list_on_display",
+		    false).toBool());
 
   bool found = false;
 
@@ -5069,6 +5089,9 @@ void qtbook::slotSaveConfig(void)
   settings.setValue
     ("automatically_populate_admin_list_on_display",
      ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked());
+  settings.setValue
+    ("automatically_populate_enum_list_on_display",
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
   settings.setValue("global_font", font().toString());
   settings.setValue("last_category", getTypeFilterString());
 
@@ -5763,6 +5786,8 @@ void qtbook::slotDisconnect(void)
   ui.menuEntriesPerPage->setEnabled(true);
 #endif
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
+  ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
+    (false);
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   ui.actionDatabase_Enumerations->setEnabled(false);
@@ -9482,4 +9507,15 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 	    }
 	}
     }
+}
+
+/*
+** -- slotShowDbEnumerations() --
+*/
+
+void qtbook::slotShowDbEnumerations(void)
+{
+  db_enumerations->show
+    (this,
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
 }

@@ -239,6 +239,9 @@
             <property name="text">
              <string>Books</string>
             </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+            </property>
            </item>
            <item row="0" column="1">
             <property name="text">
@@ -251,6 +254,9 @@
            <item row="1" column="0">
             <property name="text">
              <string>DVDs</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
             </property>
            </item>
            <item row="1" column="1">
@@ -265,6 +271,9 @@
             <property name="text">
              <string>Journals</string>
             </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+            </property>
            </item>
            <item row="2" column="1">
             <property name="text">
@@ -277,6 +286,9 @@
            <item row="3" column="0">
             <property name="text">
              <string>Magazines</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
             </property>
            </item>
            <item row="3" column="1">
@@ -291,6 +303,9 @@
             <property name="text">
              <string>Music CDs</string>
             </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+            </property>
            </item>
            <item row="4" column="1">
             <property name="text">
@@ -303,6 +318,9 @@
            <item row="5" column="0">
             <property name="text">
              <string>Video Games</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
             </property>
            </item>
            <item row="5" column="1">
@@ -331,12 +349,9 @@
             </spacer>
            </item>
            <item>
-            <widget class="QToolButton" name="toolButton">
-             <property name="iconSize">
-              <size>
-               <width>16</width>
-               <height>16</height>
-              </size>
+            <widget class="QLabel" name="emptyLabel">
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
@@ -1007,7 +1022,6 @@
   <tabstop>addLocation</tabstop>
   <tabstop>removeLocation</tabstop>
   <tabstop>minimumDaysTable</tabstop>
-  <tabstop>toolButton</tabstop>
   <tabstop>monetaryUnitsList</tabstop>
   <tabstop>addMonetaryUnit</tabstop>
   <tabstop>removeMonetaryUnit</tabstop>

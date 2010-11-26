@@ -47,6 +47,7 @@ HEADERS		= include.d/qtbook.h \
 		  include.d/qtbook_book.h \
 		  include.d/qtbook_item.h \
 		  include.d/z3950results.h \
+		  include.d/dbenumerations.h \
 		  include.d/image_drop_site.h \
 		  include.d/qtbook_magazine.h \
 		  include.d/borrowers_editor.h \
@@ -62,6 +63,7 @@ SOURCES		= qtbook.cc \
 		  qtbook_book.cc \
 		  qtbook_item.cc \
 		  z3950results.cc \
+		  dbenumerations.cc \
 		  generic_thread.cc \
 		  misc_functions.cc \
 		  qtbook_journal.cc \

@@ -511,8 +511,10 @@ void borrowers_editor::slotSave(void)
 
 void borrowers_editor::keyPressEvent(QKeyEvent *event)
 {
-  if(event->key() == Qt::Key_Escape)
+  if(event && event->key() == Qt::Key_Escape)
     slotCloseCurrentBorrowers();
+
+  QDialog::keyPressEvent(event);
 }
 
 /*
@@ -521,8 +523,8 @@ void borrowers_editor::keyPressEvent(QKeyEvent *event)
 
 void borrowers_editor::closeEvent(QCloseEvent *e)
 {
-  (void) e;
   slotCloseCurrentBorrowers();
+  QDialog::closeEvent(e);
 }
 
 /*

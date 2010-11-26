@@ -1416,11 +1416,14 @@ void qtbook_videogame::closeEvent(QCloseEvent *e)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
-	  e->ignore();
+	  if(e)
+	    e->ignore();
+
 	  return;
 	}
 
   qmain->removeVideoGame(this);
+  QMainWindow::closeEvent(e);
 }
 
 /*

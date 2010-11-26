@@ -26,21 +26,22 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
   QString filename = "";
 
-  if(event == 0)
-    return;
-
 #if defined(Q_OS_WIN)
-  for(int i = 0; i < event->mimeData()->formats().size(); i++)
-    if(event->mimeData()->formats()[i].toLower().contains("filename"))
-      {
-	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
-	break;
-      }
+  if(event)
+    for(int i = 0; i < event->mimeData()->formats().size(); i++)
+      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	{
+	  filename = QString
+	    (event->mimeData()->data(event->mimeData()->formats()[i])).
+	    trimmed();
+	  break;
+	}
 #elif defined(Q_OS_MAC)
-  filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+  if(event)
+    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
-  filename = event->mimeData()->text().trimmed();
+  if(event)
+    filename = event->mimeData()->text().trimmed();
 #endif
 
   QString imgf = determineFormat(filename);
@@ -49,6 +50,8 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
      imgf == "JPG" || imgf == "JPEG" ||
      imgf == "PNG")
     event->acceptProposedAction();
+
+  QGraphicsView::dragEnterEvent(event);
 }
 
 /*
@@ -59,21 +62,22 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
   QString filename = "";
 
-  if(event == 0)
-    return;
-
 #if defined(Q_OS_WIN)
-  for(int i = 0; i < event->mimeData()->formats().size(); i++)
-    if(event->mimeData()->formats()[i].toLower().contains("filename"))
-      {
-	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
-	break;
-      }
+  if(event)
+    for(int i = 0; i < event->mimeData()->formats().size(); i++)
+      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	{
+	  filename = QString
+	    (event->mimeData()->data(event->mimeData()->formats()[i])).
+	    trimmed();
+	  break;
+	}
 #elif defined(Q_OS_MAC)
-  filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+  if(event)
+    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
-  filename = event->mimeData()->text().trimmed();
+  if(event)
+    filename = event->mimeData()->text().trimmed();
 #endif
 
   QString imgf = determineFormat(filename);
@@ -82,6 +86,8 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
      imgf == "JPG" || imgf == "JPEG" ||
      imgf == "PNG")
     event->acceptProposedAction();
+
+  QGraphicsView::dragMoveEvent(event);
 }
 
 /*
@@ -92,25 +98,28 @@ void image_drop_site::dropEvent(QDropEvent *event)
 {
   QPixmap pixmap;
   QString imgf("");
-
-  if(event == 0)
-    return;
+  QString filename("");
 
 #if defined(Q_OS_WIN)
-  QString filename = "";
-
-  for(int i = 0; i < event->mimeData()->formats().size(); i++)
-    if(event->mimeData()->formats()[i].toLower().contains("filename"))
-      {
-	filename = QString
-	  (event->mimeData()->data(event->mimeData()->formats()[i])).trimmed();
-	break;
-      }
+  if(event)
+    for(int i = 0; i < event->mimeData()->formats().size(); i++)
+      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	{
+	  filename = QString
+	    (event->mimeData()->data(event->mimeData()->formats()[i])).
+	    trimmed();
+	  break;
+	}
 #elif defined(Q_OS_MAC)
-  QString filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+  if(event)
+    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
 #else
-  QUrl url(event->mimeData()->text());
-  QString filename = url.toLocalFile().trimmed();
+  if(event)
+    {
+      QUrl url(event->mimeData()->text());
+
+      filename = url.toLocalFile().trimmed();
+    }
 #endif
 
   imgf = determineFormat(filename);
@@ -118,7 +127,9 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
   if(!image.isNull())
     {
-      event->acceptProposedAction();
+      if(event)
+	event->acceptProposedAction();
+
       imageFormat = imgf;
       doubleclicked = false;
 
@@ -136,6 +147,8 @@ void image_drop_site::dropEvent(QDropEvent *event)
       scene()->addPixmap(pixmap);
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
+
+  QGraphicsView::dropEvent(event);
 }
 
 /*
@@ -144,12 +157,12 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
 void image_drop_site::keyPressEvent(QKeyEvent *event)
 {
-  if(event == 0)
-    return;
+  if(event)
+    if((event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) &&
+       !scene()->selectedItems().isEmpty())
+      clear();
 
-  if((event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) &&
-     !scene()->selectedItems().isEmpty())
-    clear();
+  QGraphicsView::keyPressEvent(event);
 }
 
 /*
@@ -264,8 +277,6 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 {
   QPixmap pixmap;
 
-  (void) e;
-
   if(image.width() < width() && image.height() < height())
     return;
 
@@ -284,4 +295,5 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 
   doubleclicked = !doubleclicked;
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+  QGraphicsView::mouseDoubleClickEvent(e);
 }

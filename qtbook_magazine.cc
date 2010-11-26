@@ -1617,11 +1617,14 @@ void qtbook_magazine::closeEvent(QCloseEvent *e)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
-	  e->ignore();
+	  if(e)
+	    e->ignore();
+
 	  return;
 	}
 
   qmain->removeMagazine(this);
+  QMainWindow::closeEvent(e);
 }
 
 /*

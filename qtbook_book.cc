@@ -1653,11 +1653,14 @@ void qtbook_book::closeEvent(QCloseEvent *e)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
-	  e->ignore();
+	  if(e)
+	    e->ignore();
+
 	  return;
 	}
 
   qmain->removeBook(this);
+  QMainWindow::closeEvent(e);
 }
 
 /*

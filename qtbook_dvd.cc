@@ -1586,11 +1586,14 @@ void qtbook_dvd::closeEvent(QCloseEvent *e)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
-	  e->ignore();
+	  if(e)
+	    e->ignore();
+
 	  return;
 	}
 
   qmain->removeDVD(this);
+  QMainWindow::closeEvent(e);
 }
 
 /*
