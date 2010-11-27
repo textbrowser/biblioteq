@@ -1836,12 +1836,14 @@ void qtbook_book::slotQuery(void)
 		      if(str.toLower().contains("hardcover"))
 			{
 			  id.binding->setCurrentIndex(0);
-			  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+			  id.binding->setStyleSheet
+			    ("background-color: rgb(162, 205, 90)");
 			}
 		      else if(str.toLower().contains("pbk."))
 			{
 			  id.binding->setCurrentIndex(1);
-			  id.binding->setStyleSheet("background-color: rgb(162, 205, 90)");
+			  id.binding->setStyleSheet
+			    ("background-color: rgb(162, 205, 90)");
 			}
 
 		      if(str.contains(" ") && str.indexOf(" ") == 10)

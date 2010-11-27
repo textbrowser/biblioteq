@@ -399,6 +399,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowNext(void)));
   connect(history.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
+  connect(history.cancelButton, SIGNAL(clicked(void)),
+	  history_diag, SLOT(close(void)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotConnectDB(void)));
   connect(br.branch_name, SIGNAL(activated(int)), this,
@@ -423,6 +425,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotListOverdueItems(void)));
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
+  connect(al.cancelButton, SIGNAL(clicked(void)),
+	  all_diag, SLOT(close(void)));
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowHistory(void)));
   connect(ui.searchTool, SIGNAL(triggered(void)), this,
@@ -439,6 +443,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowMenu(void)));
   connect(er.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetErrorLog(void)));
+  connect(er.cancelButton, SIGNAL(clicked(void)),
+	  error_diag, SLOT(close(void)));
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
   connect(ui.configTool, SIGNAL(triggered(void)), this,
@@ -457,10 +463,14 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotExecuteCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSavePassword(void)));
+  connect(pass.cancelButton, SIGNAL(clicked(void)), pass_diag,
+	  SLOT(close(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetLoginDialog(void)));
   connect(br.fileButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectDatabaseFile(void)));
+  connect(br.cancelButton, SIGNAL(clicked(void)),
+	  branch_diag, SLOT(close(void)));
   connect(ui.actionConfigureAdministratorPrivileges,
 	  SIGNAL(triggered(void)), this, SLOT(slotShowAdminDialog(void)));
   connect(ab.reloadButton, SIGNAL(clicked(void)), this,
@@ -470,6 +480,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotDeleteAdmin(void)));
   connect(ab.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveAdministrators(void)));
+  connect(ab.cancelButton, SIGNAL(clicked(void)),
+	  admin_diag, SLOT(close(void)));
   connect(ui.action_New_SQLite_Database,
 	  SIGNAL(triggered(void)),
 	  this,

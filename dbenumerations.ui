@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1104</width>
-    <height>884</height>
+    <height>855</height>
    </rect>
   </property>
   <property name="font">
@@ -141,6 +141,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addDvdRegion">
+             <property name="toolTip">
+              <string>Add DVD Region</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -155,6 +158,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeDvdRegion">
+             <property name="toolTip">
+              <string>Remove DVD Region</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -401,6 +407,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addVideoGameRating">
+             <property name="toolTip">
+              <string>Add Video Game Rating</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -415,6 +424,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeVideoGameRating">
+             <property name="toolTip">
+              <string>Remove Video Game Rating</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -551,6 +563,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addLanguage">
+             <property name="toolTip">
+              <string>Add Language</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -565,6 +580,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeLanguage">
+             <property name="toolTip">
+              <string>Remove Language</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -623,6 +641,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addMonetaryUnit">
+             <property name="toolTip">
+              <string>Add Monetary Unit</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -637,6 +658,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeMonetaryUnit">
+             <property name="toolTip">
+              <string>Remove Monetary Unit</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -695,6 +719,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addDvdRating">
+             <property name="toolTip">
+              <string>Add DVD Rating</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -709,6 +736,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeDvdRating">
+             <property name="toolTip">
+              <string>Remove DVD Rating</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -778,6 +808,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addLocation">
+             <property name="toolTip">
+              <string>Add Location</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -792,6 +825,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeLocation">
+             <property name="toolTip">
+              <string>Remove Location</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
@@ -850,6 +886,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="addVideoGamePlatform">
+             <property name="toolTip">
+              <string>Add Video Game Platform</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
@@ -864,6 +903,9 @@
            </item>
            <item>
             <widget class="QToolButton" name="removeVideoGamePlatform">
+             <property name="toolTip">
+              <string>Remove Video Game Platform</string>
+             </property>
              <property name="icon">
               <iconset>
                <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
