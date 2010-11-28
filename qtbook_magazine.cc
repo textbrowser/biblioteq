@@ -176,21 +176,28 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if(ma.location->count() == 0)
     ma.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = new QActionGroup(this);
-  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+  QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);
 
-  for(int i = 0; i < hashes.size(); i++)
+  if(actionGroup)
     {
-      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
 
-      action->setCheckable(true);
-      ma.queryButton->addAction(action);
+      for(int i = 0; i < hashes.size(); i++)
+	{
+	  QAction *action = actionGroup->addAction(hashes.keys().at(i));
 
-      if(qmain->getPreferredZ3950Site() == action->text())
-	action->setChecked(true);
+	  if(!action)
+	    continue;
+
+	  action->setCheckable(true);
+	  ma.queryButton->addAction(action);
+
+	  if(qmain->getPreferredZ3950Site() == action->text())
+	    action->setChecked(true);
+	}
+
+      hashes.clear();
     }
-
-  hashes.clear();
 
   /*
   ** Save some palettes and style sheets.

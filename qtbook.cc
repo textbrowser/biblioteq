@@ -550,21 +550,25 @@ qtbook::qtbook(void):QMainWindow()
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
-  
-  QActionGroup *group1 = new QActionGroup(this);
 
-  for(int i = 1; i <= 4; i++)
-    {
-      QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+  QActionGroup *group1 = new(std::nothrow) QActionGroup(this);
 
-      action->setData(25 * i);
-      action->setCheckable(true);
+  if(group1)
+    for(int i = 1; i <= 4; i++)
+      {
+	QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
 
-      if(i == 1)
-	action->setChecked(true);
+	if(!action)
+	  continue;
 
-      ui.menuEntriesPerPage->addAction(action);
-    }
+	action->setData(25 * i);
+	action->setCheckable(true);
+
+	if(i == 1)
+	  action->setChecked(true);
+
+	ui.menuEntriesPerPage->addAction(action);
+      }
 
   QRegExp rx1("\\w+");
   QValidator *validator1 = 0;
@@ -832,20 +836,24 @@ void qtbook::showMain(void)
   ** Perform additional user interface duties.
   */
 
-  QActionGroup *group1 = new QActionGroup(this);
+  QActionGroup *group1 = new(std::nothrow) QActionGroup(this);
 
-  for(int i = 0; i < getZ3950Maps().size(); i++)
-    {
-      QAction *action = group1->addAction
-	(getZ3950Maps().values()[i]["Name"]);
+  if(group1)
+    for(int i = 0; i < getZ3950Maps().size(); i++)
+      {
+	QAction *action = group1->addAction
+	  (getZ3950Maps().values()[i]["Name"]);
 
-      action->setCheckable(true);
+	if(!action)
+	  continue;
 
-      if(i == 0)
-	action->setChecked(true);
+	action->setCheckable(true);
 
-      ui.menuPreferredZ3950Server->addAction(action);
-    }
+	if(i == 0)
+	  action->setChecked(true);
+
+	ui.menuPreferredZ3950Server->addAction(action);
+      }
 
   /*
   ** Initial update.
@@ -3817,9 +3825,11 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  populateQuery->clear();
 
-  if(!populateQuery->exec(searchstr))
+  if(populateQuery)
+    populateQuery->clear();
+
+  if(populateQuery && !populateQuery->exec(searchstr))
     {
       qapp->restoreOverrideCursor();
 
@@ -3905,7 +3915,10 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int querySize = 0;
 
   if(selectedBranch["database_type"] != "sqlite")
-    querySize = populateQuery->size();
+    {
+      if(populateQuery)
+	querySize = populateQuery->size();
+    }
   else
     querySize = misc_functions::sqliteQuerySize(searchstr, getDB(),
 						__FILE__,
@@ -3927,16 +3940,20 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   if(pagingType == 1 || pagingType < 0)
     {
-      if(currentPage > 1)
-	populateQuery->seek((currentPage - 1) * entriesPerPage - 1);
-      else
-	populateQuery->seek(-1);
+      if(populateQuery)
+	{
+	  if(currentPage > 1)
+	    populateQuery->seek((currentPage - 1) * entriesPerPage - 1);
+	  else
+	    populateQuery->seek(-1);
+	}
     }
 
   i = -1;
 
   while(i++,
-	!progress.wasCanceled() && i < entriesPerPage && populateQuery->next())
+	!progress.wasCanceled() && i < entriesPerPage && populateQuery &&
+	populateQuery->next())
     {
       if(populateQuery->isValid())
 	for(j = 0; j < populateQuery->record().count(); j++)
@@ -3995,7 +4012,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   if(search_type == CUSTOM_QUERY)
     {
-      if(tmplist.isEmpty())
+      if(tmplist.isEmpty() && populateQuery)
 	for(int ii = 0; ii < populateQuery->record().count(); ii++)
 	  if(!tmplist.contains(populateQuery->record().fieldName(ii)))
 	    {
@@ -4031,7 +4048,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
   else
     {
-      resultsCount = populateQuery->size();
+      if(populateQuery)
+	resultsCount = populateQuery->size();
+
       pages = static_cast<int> 
 	(ceil
 	 ((static_cast<double> (resultsCount)) /
@@ -4091,7 +4110,8 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
 #ifdef Q_OS_WIN
   if(getDB().driverName() == "QSQLITE")
-    populateQuery->clear();
+    if(populateQuery)
+      populateQuery->clear();
 #endif
   ui.table->setFocus();
   return 0;
@@ -5637,7 +5657,7 @@ void qtbook::slotConnectDB(void)
   else
     branch_diag->close();
 
-  populateQuery = new QSqlQuery(db);
+  populateQuery = new(std::nothrow) QSqlQuery(db);
   selectedBranch = branches[br.branch_name->currentText()];
 
   if(connected_bar_label != 0)
@@ -5850,7 +5870,9 @@ void qtbook::slotDisconnect(void)
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
 
-  delete populateQuery;
+  if(populateQuery)
+    delete populateQuery;
+
   populateQuery = 0;
   setWindowTitle(tr("BiblioteQ"));
 }

@@ -182,21 +182,28 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if(id.location->count() == 0)
     id.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = new QActionGroup(this);
-  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+  QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);
 
-  for(int i = 0; i < hashes.size(); i++)
+  if(actionGroup)
     {
-      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
 
-      action->setCheckable(true);
-      id.queryButton->addAction(action);
+      for(int i = 0; i < hashes.size(); i++)
+	{
+	  QAction *action = actionGroup->addAction(hashes.keys().at(i));
 
-      if(qmain->getPreferredZ3950Site() == action->text())
-	action->setChecked(true);
+	  if(!action)
+	    continue;
+
+	  action->setCheckable(true);
+	  id.queryButton->addAction(action);
+
+	  if(qmain->getPreferredZ3950Site() == action->text())
+	    action->setChecked(true);
+	}
+
+      hashes.clear();
     }
-
-  hashes.clear();
 
   for(int i = 1; i <= 1000; i++)
     id.edition->addItem(QString::number(i));
@@ -1860,9 +1867,8 @@ void qtbook_book::slotQuery(void)
 			  misc_functions::highlightWidget
 			    (id.isbn13, QColor(162, 205, 90));
 			}
-		      else
+		      else if(str.length() == 10)
 			{
-			  str = str.mid(0, 10);
 			  id.id->setText(str);
 			  misc_functions::highlightWidget
 			    (id.id, QColor(162, 205, 90));
