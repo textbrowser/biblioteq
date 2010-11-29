@@ -167,13 +167,13 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ma.front_image->setScene(scene1);
   ma.back_image->setScene(scene2);
 
-  if(ma.language->count() == 0)
+  if(ma.language->findText(tr("UNKNOWN")) == -1)
     ma.language->addItem(tr("UNKNOWN"));
 
-  if(ma.monetary_units->count() == 0)
+  if(ma.monetary_units->findText(tr("UNKNOWN")) == -1)
     ma.monetary_units->addItem(tr("UNKNOWN"));
 
-  if(ma.location->count() == 0)
+  if(ma.location->findText(tr("UNKNOWN")) == -1)
     ma.location->addItem(tr("UNKNOWN"));
 
   QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);

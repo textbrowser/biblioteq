@@ -173,13 +173,13 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.back_image->setScene(scene2);
   httpProgress->setModal(true);
 
-  if(id.language->count() == 0)
+  if(id.language->findText(tr("UNKNOWN")) == -1)
     id.language->addItem(tr("UNKNOWN"));
 
-  if(id.monetary_units->count() == 0)
+  if(id.monetary_units->findText(tr("UNKNOWN")) == -1)
     id.monetary_units->addItem(tr("UNKNOWN"));
 
-  if(id.location->count() == 0)
+  if(id.location->findText(tr("UNKNOWN")) == -1)
     id.location->addItem(tr("UNKNOWN"));
 
   QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);
@@ -277,12 +277,13 @@ void qtbook_book::slotGo(void)
 
 	  if(newq < maxcopynumber)
 	    {
-	      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				    tr("It appears that you are attempting to "
-				       "decrease the "
-				       "number of copies while there are "
-				       "copies "
-				       "that have been reserved."));
+	      QMessageBox::critical
+		(this, tr("BiblioteQ: User Error"),
+		 tr("It appears that you are attempting to "
+		    "decrease the "
+		    "number of copies while there are "
+		    "copies "
+		    "that have been reserved."));
 	      id.quantity->setValue(oldq);
 	      return;
 	    }
@@ -539,9 +540,10 @@ void qtbook_book::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to create or update the entry.")),
-			  query.lastError().text(), __FILE__, __LINE__);
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create or update the entry.")),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to create or update the entry. "
 				   "Please verify that "
@@ -708,7 +710,8 @@ void qtbook_book::slotGo(void)
 			  (id.author->toPlainText());
 		      else if(column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
-			  (id.publication_date->date().toString("MM/dd/yyyy"));
+			  (id.publication_date->date().toString
+			   ("MM/dd/yyyy"));
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publisher->toPlainText());
@@ -1797,7 +1800,8 @@ void qtbook_book::slotQuery(void)
 	    {
 	      list = QString(thread->getZ3950Results()[0]).split("\n");
 	      id.edition->setCurrentIndex(0);
-	      id.edition->setStyleSheet("background-color: rgb(162, 205, 90)");
+	      id.edition->setStyleSheet
+		("background-color: rgb(162, 205, 90)");
 
 	      for(i = 0; i < list.size(); i++)
 		if(list[i].startsWith("100") ||
@@ -2114,9 +2118,11 @@ void qtbook_book::slotQuery(void)
 			trimmed();
 
 		      if(tmpstr.contains("$b"))
-			tmpstr = tmpstr.mid(0, tmpstr.indexOf("$b")).trimmed();
+			tmpstr = tmpstr.mid
+			  (0, tmpstr.indexOf("$b")).trimmed();
 		      else
-			tmpstr = tmpstr.mid(0, tmpstr.indexOf("$c")).trimmed();
+			tmpstr = tmpstr.mid
+			  (0, tmpstr.indexOf("$c")).trimmed();
 
 		      tmplist = tmpstr.split("$a");
 
@@ -2477,7 +2483,8 @@ void qtbook_book::slotDownloadImage(void)
     }
   else
     {
-      httpProgress->setWindowTitle(tr("BiblioteQ: Back Cover Image Download"));
+      httpProgress->setWindowTitle
+	(tr("BiblioteQ: Back Cover Image Download"));
       httpProgress->setLabelText(tr("Downloading the back cover image. "
 				    "Please be patient..."));
       http->setHost(qmain->getAmazonHash()["back_cover_host"]);

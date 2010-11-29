@@ -48,7 +48,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.setupUi(this);
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
-  connect(dvd.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(dvd.printButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotPrint(void)));
   connect(dvd.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(dvd.queryButton, SIGNAL(clicked(void)), this,
@@ -187,22 +188,22 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   dvd.front_image->setScene(scene1);
   dvd.back_image->setScene(scene2);
 
-  if(dvd.language->count() == 0)
+  if(dvd.language->findText(tr("UNKNOWN")) == -1)
     dvd.language->addItem(tr("UNKNOWN"));
 
-  if(dvd.monetary_units->count() == 0)
+  if(dvd.monetary_units->findText(tr("UNKNOWN")) == -1)
     dvd.monetary_units->addItem(tr("UNKNOWN"));
 
-  if(dvd.location->count() == 0)
+  if(dvd.location->findText(tr("UNKNOWN")) == -1)
     dvd.location->addItem(tr("UNKNOWN"));
 
-  if(dvd.rating->count() == 0)
+  if(dvd.rating->findText(tr("UNKNOWN")) == -1)
     dvd.rating->addItem(tr("UNKNOWN"));
 
-  if(dvd.aspectratio->count() == 0)
+  if(dvd.aspectratio->findText(tr("UNKNOWN")) == -1)
     dvd.aspectratio->addItem(tr("UNKNOWN"));
 
-  if(dvd.region->count() == 0)
+  if(dvd.region->findText(tr("UNKNOWN")) == -1)
     dvd.region->addItem(tr("UNKNOWN"));
 
   resize(baseSize());
@@ -537,9 +538,10 @@ void qtbook_dvd::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to create or update the entry.")),
-			  query.lastError().text(), __FILE__, __LINE__);
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create or update the entry.")),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to create or update the entry. "
 				   "Please verify that "
@@ -1670,7 +1672,8 @@ void qtbook_dvd::slotPrint(void)
   html += "<b>" + tr("Runtime:") + "</b> " + dvd.runtime->text() + "<br>";
   html += "<b>" + tr("Format:") + "</b> " +
     dvd.format->text().trimmed() + "<br>";
-  html += "<b>" + tr("Region:") + "</b> " + dvd.region->currentText() + "<br>";
+  html += "<b>" + tr("Region:") + "</b> " + dvd.region->currentText() +
+    "<br>";
   html += "<b>" + tr("Aspect Ratio:") + "</b> " +
     dvd.aspectratio->currentText() + "<br>";
 

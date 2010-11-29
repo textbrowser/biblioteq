@@ -179,16 +179,16 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   cd.front_image->setScene(scene1);
   cd.back_image->setScene(scene2);
 
-  if(cd.language->count() == 0)
+  if(cd.language->findText(tr("UNKNOWN")) == -1)
     cd.language->addItem(tr("UNKNOWN"));
 
-  if(cd.monetary_units->count() == 0)
+  if(cd.monetary_units->findText(tr("UNKNOWN")) == -1)
     cd.monetary_units->addItem(tr("UNKNOWN"));
 
-  if(cd.location->count() == 0)
+  if(cd.location->findText(tr("UNKNOWN")) == -1)
     cd.location->addItem(tr("UNKNOWN"));
 
-  if(cd.format->count() == 0)
+  if(cd.format->findText(tr("UNKNOWN")) == -1)
     cd.format->addItem(tr("UNKNOWN"));
 
   resize(baseSize());
@@ -495,9 +495,10 @@ void qtbook_cd::slotGo(void)
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to create or update the entry.")),
-			  query.lastError().text(), __FILE__, __LINE__);
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create or update the entry.")),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to create or update the entry. "
 				   "Please verify that "
@@ -1158,7 +1159,8 @@ void qtbook_cd::modify(const int state)
 	  else if(fieldname == "cddiskcount")
 	    cd.no_of_discs->setValue(var.toInt());
 	  else if(fieldname == "cdruntime")
-	    cd.runtime->setTime(QTime::fromString(var.toString(), "hh:mm:ss"));
+	    cd.runtime->setTime
+	      (QTime::fromString(var.toString(), "hh:mm:ss"));
 	  else if(fieldname == "location")
 	    {
 	      if(cd.location->findText(var.toString()) > -1)
@@ -2054,7 +2056,8 @@ void qtbook_cd::slotPrint(void)
   ** General information.
   */
 
-  html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() + "<br>";
+  html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
+    "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
     toString("MM/dd/yyyy") + "<br>";
   html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->

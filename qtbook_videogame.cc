@@ -169,19 +169,19 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   vg.front_image->setScene(scene1);
   vg.back_image->setScene(scene2);
 
-  if(vg.platform->count() == 0)
+  if(vg.platform->findText(tr("UNKNOWN")) == -1)
     vg.platform->addItem(tr("UNKNOWN"));
 
-  if(vg.rating->count() == 0)
+  if(vg.rating->findText(tr("UNKNOWN")) == -1)
     vg.rating->addItem(tr("UNKNOWN"));
 
-  if(vg.language->count() == 0)
+  if(vg.language->findText(tr("UNKNOWN")) == -1)
     vg.language->addItem(tr("UNKNOWN"));
 
-  if(vg.monetary_units->count() == 0)
+  if(vg.monetary_units->findText(tr("UNKNOWN")) == -1)
     vg.monetary_units->addItem(tr("UNKNOWN"));
 
-  if(vg.location->count() == 0)
+  if(vg.location->findText(tr("UNKNOWN")) == -1)
     vg.location->addItem(tr("UNKNOWN"));
 
   resize(baseSize());

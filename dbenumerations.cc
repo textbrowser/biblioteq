@@ -59,6 +59,14 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(ui.addLanguage,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeLanguage,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
 }
 
 /*
@@ -74,6 +82,8 @@ void dbenumerations::show(QMainWindow *parent, const bool populate)
 
   if(populate)
     populateWidgets();
+  else
+    ui.cdFormatsList->setFocus();
 }
 
 /*
@@ -107,6 +117,8 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.dvdRatingsList;
       else if(i == 3)
 	listwidget = ui.dvdRegionsList;
+      else if(i == 4)
+	listwidget = ui.languagesList;
 
       if(listwidget)
 	listwidget->clear();
@@ -137,6 +149,12 @@ void dbenumerations::populateWidgets(void)
 	  list = misc_functions::getDVDRegions(qmain->getDB(),
 					       errorstr);
 	}
+      else if(i == 4)
+	{
+	  forerror = "languages";
+	  list = misc_functions::getLanguages(qmain->getDB(),
+					      errorstr);
+	}
 
       qapp->restoreOverrideCursor();
 
@@ -161,6 +179,8 @@ void dbenumerations::populateWidgets(void)
 	      }
 	  }
     }
+
+  ui.cdFormatsList->setFocus();
 }
 
 /*
@@ -203,6 +223,11 @@ void dbenumerations::slotAdd(void)
       list = ui.dvdRegionsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Region"));
     }
+  else if(toolButton == ui.addLanguage)
+    {
+      list = ui.languagesList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Language"));
+    }
 
   if(list && listItem)
     {
@@ -230,6 +255,8 @@ void dbenumerations::slotRemove(void)
     list = ui.dvdRatingsList;
   else if(toolButton == ui.removeDvdRegion)
     list = ui.dvdRegionsList;
+  else if(toolButton == ui.removeLanguage)
+    list = ui.languagesList;
 
   if(list)
     delete list->takeItem(list->currentRow());
@@ -246,7 +273,7 @@ void dbenumerations::slotSave(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  for(int i = 0; i < 4; i++)
+  for(int i = 0; i < 5; i++)
     {
       if(!qmain->getDB().transaction())
 	{
@@ -269,6 +296,8 @@ void dbenumerations::slotSave(void)
 	querystr = "DELETE FROM dvd_ratings";
       else if(i == 3)
 	querystr = "DELETE FROM dvd_regions";
+      else if(i == 4)
+	querystr = "DELETE FROM languages";
 
       if(!query.exec(querystr))
 	{
@@ -297,6 +326,12 @@ void dbenumerations::slotSave(void)
 	      (QString(tr("Database Error")),
 	       QString(tr("An error occurred while attempting to "
 			  "remove the dvd regions.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 4)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the languages.")),
 	       query.lastError().text(), __FILE__, __LINE__);
 
 	  goto db_rollback;
@@ -329,6 +364,12 @@ void dbenumerations::slotSave(void)
 	  table = "dvd_regions";
 	  forerror = tr("dvd region");
 	  list = ui.dvdRegionsList;
+	}
+      else if(i == 4)
+	{
+	  table = "languages";
+	  forerror = tr("language");
+	  list = ui.languagesList;
 	}
 
       if(list)
