@@ -43,6 +43,22 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(ui.addDvdRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeDvdRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(ui.addDvdRegion,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeDvdRegion,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
 }
 
 /*
@@ -76,6 +92,7 @@ void dbenumerations::slotClose(void)
 void dbenumerations::populateWidgets(void)
 {
   QString errorstr("");
+  QString forerror("");
   QStringList list;
 
   for(int i = 0; i < 10; i++)
@@ -86,6 +103,10 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.cdFormatsList;
       else if(i == 1)
 	listwidget = ui.dvdAspectRatiosList;
+      else if(i == 2)
+	listwidget = ui.dvdRatingsList;
+      else if(i == 3)
+	listwidget = ui.dvdRegionsList;
 
       if(listwidget)
 	listwidget->clear();
@@ -93,18 +114,37 @@ void dbenumerations::populateWidgets(void)
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(i == 0)
-	list = misc_functions::getCDFormats(qmain->getDB(),
-					    errorstr);
+	{
+	  forerror = "cd formats";
+	  list = misc_functions::getCDFormats(qmain->getDB(),
+					      errorstr);
+	}
       else if(i == 1)
-	list = misc_functions::getDVDAspectRatios(qmain->getDB(),
-						  errorstr);
+	{
+	  forerror = "dvd aspect ratios";
+	  list = misc_functions::getDVDAspectRatios(qmain->getDB(),
+						    errorstr);
+	}
+      else if(i == 2)
+	{
+	  forerror = "dvd ratings";
+	  list = misc_functions::getDVDRatings(qmain->getDB(),
+					       errorstr);
+	}
+      else if(i == 3)
+	{
+	  forerror = "dvd regions";
+	  list = misc_functions::getDVDRegions(qmain->getDB(),
+					       errorstr);
+	}
 
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError
 	  (QString(tr("Database Error")),
-	   QString(tr("Unable to retrieve the cd formats.")),
+	   QString(tr("Unable to retrieve the ")) +
+	   forerror + tr("."),
 	   errorstr, __FILE__, __LINE__);
       else if(listwidget)
 	while(!list.isEmpty())
@@ -153,6 +193,16 @@ void dbenumerations::slotAdd(void)
       list = ui.dvdAspectRatiosList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Aspect Ratio"));
     }
+  else if(toolButton == ui.addDvdRating)
+    {
+      list = ui.dvdRatingsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("DVD Rating"));
+    }
+  else if(toolButton == ui.addDvdRegion)
+    {
+      list = ui.dvdRegionsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("DVD Region"));
+    }
 
   if(list && listItem)
     {
@@ -176,6 +226,10 @@ void dbenumerations::slotRemove(void)
     list = ui.cdFormatsList;
   else if(toolButton == ui.removeDvdAspectRatio)
     list = ui.dvdAspectRatiosList;
+  else if(toolButton == ui.removeDvdRating)
+    list = ui.dvdRatingsList;
+  else if(toolButton == ui.removeDvdRegion)
+    list = ui.dvdRegionsList;
 
   if(list)
     delete list->takeItem(list->currentRow());
@@ -192,7 +246,7 @@ void dbenumerations::slotSave(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  for(int i = 0; i < 2; i++)
+  for(int i = 0; i < 4; i++)
     {
       if(!qmain->getDB().transaction())
 	{
@@ -211,21 +265,39 @@ void dbenumerations::slotSave(void)
 	querystr = "DELETE FROM cd_formats";
       else if(i == 1)
 	querystr = "DELETE FROM dvd_aspect_ratios";
+      else if(i == 2)
+	querystr = "DELETE FROM dvd_ratings";
+      else if(i == 3)
+	querystr = "DELETE FROM dvd_regions";
 
       if(!query.exec(querystr))
 	{
 	  qapp->restoreOverrideCursor();
 
 	  if(i == 0)
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("An error occurred while attempting to "
-				       "remove the cd formats.")),
-			    query.lastError().text(), __FILE__, __LINE__);
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the cd formats.")),
+	       query.lastError().text(), __FILE__, __LINE__);
 	  else if(i == 1)
-	    qmain->addError(QString(tr("Database Error")),
-			    QString(tr("An error occurred while attempting to "
-				       "remove the dvd aspect_ratios.")),
-			    query.lastError().text(), __FILE__, __LINE__);
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the dvd aspect ratios.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 2)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the dvd ratings.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 3)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the dvd regions.")),
+	       query.lastError().text(), __FILE__, __LINE__);
 
 	  goto db_rollback;
 	}
@@ -246,6 +318,18 @@ void dbenumerations::slotSave(void)
 	  forerror = tr("dvd aspect ratio");
 	  list = ui.dvdAspectRatiosList;
 	}
+      else if(i == 2)
+	{
+	  table = "dvd_ratings";
+	  forerror = tr("dvd rating");
+	  list = ui.dvdRatingsList;
+	}
+      else if(i == 3)
+	{
+	  table = "dvd_regions";
+	  forerror = tr("dvd region");
+	  list = ui.dvdRegionsList;
+	}
 
       if(list)
 	for(int j = 0; j < list->count(); j++)
@@ -262,8 +346,8 @@ void dbenumerations::slotSave(void)
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the ")) +
-		       forerror +
-		       list->item(j)->text() + QString(tr(" .")),
+		       forerror + tr(" ") +
+		       list->item(j)->text() + QString(tr(".")),
 		       query.lastError().text(), __FILE__, __LINE__);
 		    goto db_rollback;
 		  }
