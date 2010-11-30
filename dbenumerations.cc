@@ -67,6 +67,14 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(ui.addMonetaryUnit,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeMonetaryUnit,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
 }
 
 /*
@@ -119,6 +127,8 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.dvdRegionsList;
       else if(i == 4)
 	listwidget = ui.languagesList;
+      else if(i == 7)
+	listwidget = ui.monetaryUnitsList;
 
       if(listwidget)
 	listwidget->clear();
@@ -154,6 +164,12 @@ void dbenumerations::populateWidgets(void)
 	  forerror = "languages";
 	  list = misc_functions::getLanguages(qmain->getDB(),
 					      errorstr);
+	}
+      else if(i == 7)
+	{
+	  forerror = "monetary units";
+	  list = misc_functions::getMonetaryUnits(qmain->getDB(),
+						  errorstr);
 	}
 
       qapp->restoreOverrideCursor();
@@ -230,6 +246,11 @@ void dbenumerations::slotAdd(void)
       list = ui.languagesList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Language"));
     }
+  else if(toolButton == ui.addMonetaryUnit)
+    {
+      list = ui.monetaryUnitsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Monetary Unit"));
+    }
 
   if(list && listItem)
     {
@@ -259,6 +280,8 @@ void dbenumerations::slotRemove(void)
     list = ui.dvdRegionsList;
   else if(toolButton == ui.removeLanguage)
     list = ui.languagesList;
+  else if(toolButton == ui.removeMonetaryUnit)
+    list = ui.monetaryUnitsList;
 
   if(list)
     delete list->takeItem(list->currentRow());
@@ -275,8 +298,23 @@ void dbenumerations::slotSave(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < 10; i++)
     {
+      if(i == 0)
+	querystr = "DELETE FROM cd_formats";
+      else if(i == 1)
+	querystr = "DELETE FROM dvd_aspect_ratios";
+      else if(i == 2)
+	querystr = "DELETE FROM dvd_ratings";
+      else if(i == 3)
+	querystr = "DELETE FROM dvd_regions";
+      else if(i == 4)
+	querystr = "DELETE FROM languages";
+      else if(i == 7)
+	querystr = "DELETE FROM monetary_units";
+      else
+	continue;
+
       if(!qmain->getDB().transaction())
 	{
 	  qapp->restoreOverrideCursor();
@@ -289,17 +327,6 @@ void dbenumerations::slotSave(void)
 	     tr("Unable to create a database transaction."));
 	  return;
 	}
-
-      if(i == 0)
-	querystr = "DELETE FROM cd_formats";
-      else if(i == 1)
-	querystr = "DELETE FROM dvd_aspect_ratios";
-      else if(i == 2)
-	querystr = "DELETE FROM dvd_ratings";
-      else if(i == 3)
-	querystr = "DELETE FROM dvd_regions";
-      else if(i == 4)
-	querystr = "DELETE FROM languages";
 
       if(!query.exec(querystr))
 	{
@@ -334,6 +361,12 @@ void dbenumerations::slotSave(void)
 	      (QString(tr("Database Error")),
 	       QString(tr("An error occurred while attempting to "
 			  "remove the languages.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 7)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the monetary units.")),
 	       query.lastError().text(), __FILE__, __LINE__);
 
 	  goto db_rollback;
@@ -372,6 +405,12 @@ void dbenumerations::slotSave(void)
 	  table = "languages";
 	  forerror = tr("language");
 	  list = ui.languagesList;
+	}
+      else if(i == 7)
+	{
+	  table = "monetary_units";
+	  forerror = tr("monetary unit");
+	  list = ui.monetaryUnitsList;
 	}
 
       if(list)

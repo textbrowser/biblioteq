@@ -1712,7 +1712,7 @@ void qtbook_cd::slotSaveTracks(void)
       if(!lastError.isEmpty())
 	QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
 			      tr("Some or all of the track data has not "
-				 "been saved. Please review the Error Log."));
+				 "been saved."));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1733,7 +1733,8 @@ void qtbook_cd::slotSaveTracks(void)
       ** Update the runtime.
       */
 
-      slotComputeRuntime();
+      if(!qmain->getDB().lastError().isValid())
+	slotComputeRuntime();
     }
 }
 
