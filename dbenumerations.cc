@@ -75,6 +75,22 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(ui.addVideoGamePlatform,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeVideoGamePlatform,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
+  connect(ui.addVideoGameRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeVideoGameRating,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
 }
 
 /*
@@ -129,6 +145,10 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.languagesList;
       else if(i == 7)
 	listwidget = ui.monetaryUnitsList;
+      else if(i == 8)
+	listwidget = ui.videoGamePlatformsList;
+      else if(i == 9)
+	listwidget = ui.videoGameRatingsList;
 
       if(listwidget)
 	listwidget->clear();
@@ -170,6 +190,18 @@ void dbenumerations::populateWidgets(void)
 	  forerror = "monetary units";
 	  list = misc_functions::getMonetaryUnits(qmain->getDB(),
 						  errorstr);
+	}
+      else if(i == 8)
+	{
+	  forerror = "video game platforms";
+	  list = misc_functions::getVideoGamePlatforms(qmain->getDB(),
+						       errorstr);
+	}
+      else if(i == 9)
+	{
+	  forerror = "video game ratings";
+	  list = misc_functions::getVideoGameRatings(qmain->getDB(),
+						     errorstr);
 	}
 
       qapp->restoreOverrideCursor();
@@ -251,6 +283,16 @@ void dbenumerations::slotAdd(void)
       list = ui.monetaryUnitsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Monetary Unit"));
     }
+  else if(toolButton == ui.addVideoGamePlatform)
+    {
+      list = ui.videoGamePlatformsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Platform"));
+    }
+  else if(toolButton == ui.addVideoGameRating)
+    {
+      list = ui.videoGameRatingsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Rating"));
+    }
 
   if(list && listItem)
     {
@@ -282,6 +324,10 @@ void dbenumerations::slotRemove(void)
     list = ui.languagesList;
   else if(toolButton == ui.removeMonetaryUnit)
     list = ui.monetaryUnitsList;
+  else if(toolButton == ui.removeVideoGamePlatform)
+    list = ui.videoGamePlatformsList;
+  else if(toolButton == ui.removeVideoGameRating)
+    list = ui.videoGameRatingsList;
 
   if(list)
     delete list->takeItem(list->currentRow());
@@ -312,6 +358,10 @@ void dbenumerations::slotSave(void)
 	querystr = "DELETE FROM languages";
       else if(i == 7)
 	querystr = "DELETE FROM monetary_units";
+      else if(i == 8)
+	querystr = "DELETE FROM videogame_platforms";
+      else if(i == 9)
+	querystr = "DELETE FROM videogame_ratings";
       else
 	continue;
 
@@ -368,6 +418,18 @@ void dbenumerations::slotSave(void)
 	       QString(tr("An error occurred while attempting to "
 			  "remove the monetary units.")),
 	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 8)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the video game platforms.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 9)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the video game ratings.")),
+	       query.lastError().text(), __FILE__, __LINE__);
 
 	  goto db_rollback;
 	}
@@ -411,6 +473,18 @@ void dbenumerations::slotSave(void)
 	  table = "monetary_units";
 	  forerror = tr("monetary unit");
 	  list = ui.monetaryUnitsList;
+	}
+      else if(i == 8)
+	{
+	  table = "videogame_platforms";
+	  forerror = tr("video game platform");
+	  list = ui.videoGamePlatformsList;
+	}
+      else if(i == 9)
+	{
+	  table = "videogame_ratings";
+	  forerror = tr("video game rating");
+	  list = ui.videoGameRatingsList;
 	}
 
       if(list)

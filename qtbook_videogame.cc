@@ -117,7 +117,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
        errorstr, __FILE__, __LINE__);
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  vg.rating->addItems
+  vg.platform->addItems
     (misc_functions::getVideoGamePlatforms(qmain->getDB(),
 					   errorstr));
   qapp->restoreOverrideCursor();
