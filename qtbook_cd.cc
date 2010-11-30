@@ -613,7 +613,7 @@ void qtbook_cd::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+	      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
 		cd.id->text() + tr(")");
 	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
@@ -934,7 +934,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
       actions[1]->setVisible(false);
       actions.clear();
       cd.coverImages->setVisible(false);
-      setWindowTitle(tr("BiblioteQ: Database CD Search"));
+      setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
       engWindowTitle = "Search";
       cd.id->setFocus();
       misc_functions::center(this, parentWid);
@@ -974,7 +974,7 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(true);
       cd.frontButton->setVisible(true);
       cd.backButton->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+      str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
 	cd.id->text() + tr(")");
       engWindowTitle = "Modify";
     }
@@ -991,7 +991,7 @@ void qtbook_cd::updateWindow(const int state)
       trd.deleteButton->setVisible(false);      
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
-      str = QString(tr("BiblioteQ: View CD Details (")) +
+      str = QString(tr("BiblioteQ: View Music CD Details (")) +
 	cd.id->text() + tr(")");
       engWindowTitle = "View";
     }
@@ -1015,7 +1015,7 @@ void qtbook_cd::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
-      setWindowTitle(tr("BiblioteQ: Modify CD Entry"));
+      setWindowTitle(tr("BiblioteQ: Modify Music CD Entry"));
       engWindowTitle = "Modify";
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setEnabled(true);
@@ -1043,7 +1043,7 @@ void qtbook_cd::modify(const int state)
     }
   else
     {
-      setWindowTitle(tr("BiblioteQ: View CD Details"));
+      setWindowTitle(tr("BiblioteQ: View Music CD Details"));
       engWindowTitle = "View";
       cd.showUserButton->setEnabled(true);
       cd.copiesButton->setVisible(false);
@@ -1174,13 +1174,13 @@ void qtbook_cd::modify(const int state)
 	    {
 	      if(state == qtbook::EDITABLE)
 		{
-		  str = QString(tr("BiblioteQ: Modify CD Entry (")) +
+		  str = QString(tr("BiblioteQ: Modify Music CD Entry (")) +
 		    var.toString() + tr(")");
 		  engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  str = QString(tr("BiblioteQ: View CD Details (")) +
+		  str = QString(tr("BiblioteQ: View Music CD Details (")) +
 		    var.toString() + tr(")");
 		  engWindowTitle = "View";
 		}
@@ -1300,7 +1300,7 @@ void qtbook_cd::insert(void)
     (cd.description->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (cd.category->viewport(), QColor(255, 248, 220));
-  setWindowTitle(tr("BiblioteQ: Create CD Entry"));
+  setWindowTitle(tr("BiblioteQ: Create Music CD Entry"));
   engWindowTitle = "Create";
   cd.id->setFocus();
   storeData(this);
@@ -1728,6 +1728,12 @@ void qtbook_cd::slotSaveTracks(void)
 	}
 
       qapp->restoreOverrideCursor();
+
+      /*
+      ** Update the runtime.
+      */
+
+      slotComputeRuntime();
     }
 }
 

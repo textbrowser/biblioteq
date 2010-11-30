@@ -178,6 +178,8 @@ void dbenumerations::populateWidgets(void)
 		listwidget->addItem(item);
 	      }
 	  }
+
+      list.clear();
     }
 
   ui.cdFormatsList->setFocus();

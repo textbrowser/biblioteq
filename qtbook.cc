@@ -254,14 +254,14 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu1->addAction(tr("Insert &Book")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
   // menu1->addAction(tr("Insert &Cassette Tape"));
-  connect(menu1->addAction(tr("Insert &CD")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
   connect(menu1->addAction(tr("Insert &DVD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
   connect(menu1->addAction(tr("Insert &Journal")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
   connect(menu1->addAction(tr("Insert &Magazine")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
+  connect(menu1->addAction(tr("Insert Music &CD")),
+	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
   // menu1->addAction(tr("Insert &Newspaper"));
   connect(menu1->addAction(tr("Insert &Video Game")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
@@ -272,14 +272,14 @@ qtbook::qtbook(void):QMainWindow()
   menu2->addSeparator();
   connect(menu2->addAction(tr("&Book Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
-  connect(menu2->addAction(tr("&CD Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
   connect(menu2->addAction(tr("&DVD Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
   connect(menu2->addAction(tr("&Journal Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
   connect(menu2->addAction(tr("&Magazine Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
+  connect(menu2->addAction(tr("&Music CD Search")),
+	  SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
   connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
