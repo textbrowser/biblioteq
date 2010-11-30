@@ -134,6 +134,7 @@ void dbenumerations::populateWidgets(void)
   for(int i = 0; i < 10; i++)
     {
       QListWidget *listwidget = 0;
+      QTableWidget *tablewidget = 0;
 
       if(i == 0)
 	listwidget = ui.cdFormatsList;
@@ -145,6 +146,8 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.dvdRegionsList;
       else if(i == 4)
 	listwidget = ui.languagesList;
+      else if(i == 6)
+	tablewidget = ui.minimumDaysTable;
       else if(i == 7)
 	listwidget = ui.monetaryUnitsList;
       else if(i == 8)
@@ -154,6 +157,8 @@ void dbenumerations::populateWidgets(void)
 
       if(listwidget)
 	listwidget->clear();
+      else if(tablewidget)
+	tablewidget->clearSelection();
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -186,6 +191,46 @@ void dbenumerations::populateWidgets(void)
 	  forerror = "languages";
 	  list = misc_functions::getLanguages(qmain->getDB(),
 					      errorstr);
+	}
+      else if(i == 6)
+	{
+	  forerror = "minimum days";
+
+	  int days = 0;
+	  QString lasterror("");
+
+	  for(int j = 0; j < 6; j++)
+	    {
+	      if(j == 0)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "Book",
+						      lasterror);
+	      else if(j == 1)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "DVD",
+						      lasterror);
+	      else if(j == 2)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "Journal",
+						      lasterror);
+	      else if(j == 3)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "Magazine",
+						      lasterror);
+	      else if(j == 4)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "CD",
+						      lasterror);
+	      else if(j == 5)
+		days = misc_functions::getMinimumDays(qmain->getDB(),
+						      "Video Game",
+						      lasterror);
+
+	      if(errorstr.isEmpty())
+		errorstr = lasterror;
+
+	      list.append(QString::number(days));
+	    }
 	}
       else if(i == 7)
 	{
@@ -228,6 +273,12 @@ void dbenumerations::populateWidgets(void)
 		listwidget->addItem(item);
 	      }
 	  }
+      else if(tablewidget == ui.minimumDaysTable)
+	{
+	  for(int j = 0; j < list.size(); j++)
+	    if(tablewidget->item(j, 1))
+	      tablewidget->item(j, 1)->setText(list.at(j));
+	}
 
       list.clear();
     }
@@ -358,6 +409,8 @@ void dbenumerations::slotSave(void)
 	querystr = "DELETE FROM dvd_regions";
       else if(i == 4)
 	querystr = "DELETE FROM languages";
+      else if(i == 6)
+	querystr = "DELETE FROM minimum_days";
       else if(i == 7)
 	querystr = "DELETE FROM monetary_units";
       else if(i == 8)
@@ -414,6 +467,12 @@ void dbenumerations::slotSave(void)
 	       QString(tr("An error occurred while attempting to "
 			  "remove the languages.")),
 	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 5)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
+			  "remove the minimum days.")),
+	       query.lastError().text(), __FILE__, __LINE__);
 	  else if(i == 7)
 	    qmain->addError
 	      (QString(tr("Database Error")),
@@ -438,65 +497,68 @@ void dbenumerations::slotSave(void)
 
       QString table("");
       QString forerror("");
-      QListWidget *list = 0;
+      QListWidget *listwidget = 0;
+      QTableWidget *tablewidget = 0;
 
       if(i == 0)
 	{
 	  table = "cd_formats";
 	  forerror = tr("cd format");
-	  list = ui.cdFormatsList;
+	  listwidget = ui.cdFormatsList;
 	}
       else if(i == 1)
 	{
 	  table = "dvd_aspect_ratios";
 	  forerror = tr("dvd aspect ratio");
-	  list = ui.dvdAspectRatiosList;
+	  listwidget = ui.dvdAspectRatiosList;
 	}
       else if(i == 2)
 	{
 	  table = "dvd_ratings";
 	  forerror = tr("dvd rating");
-	  list = ui.dvdRatingsList;
+	  listwidget = ui.dvdRatingsList;
 	}
       else if(i == 3)
 	{
 	  table = "dvd_regions";
 	  forerror = tr("dvd region");
-	  list = ui.dvdRegionsList;
+	  listwidget = ui.dvdRegionsList;
 	}
       else if(i == 4)
 	{
 	  table = "languages";
 	  forerror = tr("language");
-	  list = ui.languagesList;
+	  listwidget = ui.languagesList;
 	}
+      else if(i == 6)
+	tablewidget = ui.minimumDaysTable;
       else if(i == 7)
 	{
 	  table = "monetary_units";
 	  forerror = tr("monetary unit");
-	  list = ui.monetaryUnitsList;
+	  listwidget = ui.monetaryUnitsList;
 	}
       else if(i == 8)
 	{
 	  table = "videogame_platforms";
 	  forerror = tr("video game platform");
-	  list = ui.videoGamePlatformsList;
+	  listwidget = ui.videoGamePlatformsList;
 	}
       else if(i == 9)
 	{
 	  table = "videogame_ratings";
 	  forerror = tr("video game rating");
-	  list = ui.videoGameRatingsList;
+	  listwidget = ui.videoGameRatingsList;
 	}
 
-      if(list)
-	for(int j = 0; j < list->count(); j++)
-	  {
-	    if(list->item(j))
+      if(listwidget)
+	{
+	  for(int j = 0; j < listwidget->count(); j++)
+	    if(listwidget->item(j))
 	      {
 		querystr = QString("INSERT INTO %1 VALUES ('%2')").arg
 		  (table).arg
-		  (list->item(j)->text());
+		  (listwidget->item(j)->text());
 
 		if(!query.exec(querystr))
 		  {
@@ -505,12 +567,61 @@ void dbenumerations::slotSave(void)
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the ")) +
 		       forerror + tr(" ") +
-		       list->item(j)->text() + QString(tr(".")),
+		       listwidget->item(j)->text() + QString(tr(".")),
 		       query.lastError().text(), __FILE__, __LINE__);
 		    goto db_rollback;
 		  }
 	      }
-	  }
+	}
+      else if(tablewidget == ui.minimumDaysTable)
+	{
+	  for(int j = 0; j < tablewidget->rowCount(); j++)
+	    if(tablewidget->item(j, 1))
+	      {
+		if(j == 0)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'Book')").arg
+		    (tablewidget->item(j, 1)->text());
+		else if(j == 1)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'DVD')").arg
+		    (tablewidget->item(j, 1)->text());
+		else if(j == 2)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'Journal')").arg
+		    (tablewidget->item(j, 1)->text());
+		else if(j == 3)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'Magazine')").arg
+		    (tablewidget->item(j, 1)->text());
+		else if(j == 4)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'CD')").arg
+		    (tablewidget->item(j, 1)->text());
+		else if(j == 5)
+		  querystr = QString("INSERT INTO minimum_days "
+				     "(days, type) VALUES "
+				     "(%1, 'Video Game')").arg
+		    (tablewidget->item(j, 1)->text());
+
+		if(!query.exec(querystr))
+		  {
+		    qapp->restoreOverrideCursor();
+		    qmain->addError
+		      (QString(tr("Database Error")),
+		       QString(tr("Unable to create the minimum day (Book, ")) +
+		       tablewidget->item(j, 1)->text() +
+		       QString(tr(").")),
+		       query.lastError().text(), __FILE__, __LINE__);
+		    goto db_rollback;
+		  }
+	      }
+	}
 
       if(!qmain->getDB().commit())
 	{
