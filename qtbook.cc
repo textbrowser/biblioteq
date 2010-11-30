@@ -490,6 +490,7 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDbEnumerations(void)));
+  ab.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
