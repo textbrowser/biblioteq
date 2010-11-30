@@ -388,7 +388,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
@@ -533,7 +533,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Connect Toobar</string>
    </property>
    <property name="iconSize">
     <size>
@@ -555,7 +555,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>Edit Toolbar</string>
    </property>
    <property name="iconSize">
     <size>
@@ -577,7 +577,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar_3">
    <property name="windowTitle">
-    <string>toolBar_3</string>
+    <string>Reservations Toolbar</string>
    </property>
    <property name="iconSize">
     <size>
@@ -598,7 +598,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar_4">
    <property name="windowTitle">
-    <string>toolBar_4</string>
+    <string>Search Toolbar</string>
    </property>
    <property name="iconSize">
     <size>
@@ -618,7 +618,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar_5">
    <property name="windowTitle">
-    <string>toolBar_5</string>
+    <string>Configurations Toolbar</string>
    </property>
    <property name="iconSize">
     <size>
@@ -636,7 +636,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar_6">
    <property name="windowTitle">
-    <string>toolBar_6</string>
+    <string>Exit Toolbar</string>
    </property>
    <property name="iconSize">
     <size>
