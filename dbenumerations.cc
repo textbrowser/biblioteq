@@ -352,6 +352,8 @@ void dbenumerations::slotAdd(void)
       listItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
 			 Qt::ItemIsSelectable) ;
       list->addItem(listItem);
+      list->setCurrentItem(listItem);
+      list->editItem(listItem);
     }
 }
 
@@ -558,7 +560,7 @@ void dbenumerations::slotSave(void)
 	      {
 		querystr = QString("INSERT INTO %1 VALUES ('%2')").arg
 		  (table).arg
-		  (listwidget->item(j)->text());
+		  (listwidget->item(j)->text().trimmed());
 
 		if(!query.exec(querystr))
 		  {
@@ -567,7 +569,8 @@ void dbenumerations::slotSave(void)
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the ")) +
 		       forerror + tr(" ") +
-		       listwidget->item(j)->text() + QString(tr(".")),
+		       listwidget->item(j)->text().trimmed() +
+		       QString(tr(".")),
 		       query.lastError().text(), __FILE__, __LINE__);
 		    goto db_rollback;
 		  }
@@ -582,32 +585,32 @@ void dbenumerations::slotSave(void)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'Book')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 		else if(j == 1)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'DVD')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 		else if(j == 2)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'Journal')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 		else if(j == 3)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'Magazine')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 		else if(j == 4)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'CD')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 		else if(j == 5)
 		  querystr = QString("INSERT INTO minimum_days "
 				     "(days, type) VALUES "
 				     "(%1, 'Video Game')").arg
-		    (tablewidget->item(j, 1)->text());
+		    (tablewidget->item(j, 1)->text().trimmed());
 
 		if(!query.exec(querystr))
 		  {
@@ -615,7 +618,7 @@ void dbenumerations::slotSave(void)
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the minimum day (Book, ")) +
-		       tablewidget->item(j, 1)->text() +
+		       tablewidget->item(j, 1)->text().trimmed() +
 		       QString(tr(").")),
 		       query.lastError().text(), __FILE__, __LINE__);
 		    goto db_rollback;

@@ -1543,7 +1543,7 @@ void qtbook_cd::slotInsertTrack(void)
 	    {
 	      trd.table->setCellWidget(trow, i, trackEdit);
 	      trackEdit->setMinimum(1);
-	      trackEdit->setValue(1);
+	      trackEdit->setValue(trd.table->rowCount());
 	    }
 	  else
 	    qmain->addError(QString(tr("Memory Error")),
