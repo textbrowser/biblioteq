@@ -552,24 +552,26 @@ qtbook::qtbook(void):QMainWindow()
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
 
-  QActionGroup *group1 = new(std::nothrow) QActionGroup(this);
+  QActionGroup *group1 = 0;
 
-  if(group1)
-    for(int i = 1; i <= 4; i++)
-      {
-	QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+  if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-	if(!action)
-	  continue;
+  for(int i = 1; i <= 4; i++)
+    {
+      QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
 
-	action->setData(25 * i);
-	action->setCheckable(true);
+      if(!action)
+	continue;
 
-	if(i == 1)
-	  action->setChecked(true);
+      action->setData(25 * i);
+      action->setCheckable(true);
 
-	ui.menuEntriesPerPage->addAction(action);
-      }
+      if(i == 1)
+	action->setChecked(true);
+
+      ui.menuEntriesPerPage->addAction(action);
+    }
 
   QRegExp rx1("\\w+");
   QValidator *validator1 = 0;
@@ -837,24 +839,26 @@ void qtbook::showMain(void)
   ** Perform additional user interface duties.
   */
 
-  QActionGroup *group1 = new(std::nothrow) QActionGroup(this);
+  QActionGroup *group1 = 0;
 
-  if(group1)
-    for(int i = 0; i < getZ3950Maps().size(); i++)
-      {
-	QAction *action = group1->addAction
-	  (getZ3950Maps().values()[i]["Name"]);
+  if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-	if(!action)
-	  continue;
+  for(int i = 0; i < getZ3950Maps().size(); i++)
+    {
+      QAction *action = group1->addAction
+	(getZ3950Maps().values()[i]["Name"]);
 
-	action->setCheckable(true);
+      if(!action)
+	continue;
 
-	if(i == 0)
-	  action->setChecked(true);
+      action->setCheckable(true);
 
-	ui.menuPreferredZ3950Server->addAction(action);
-      }
+      if(i == 0)
+	action->setChecked(true);
+
+      ui.menuPreferredZ3950Server->addAction(action);
+    }
 
   /*
   ** Initial update.
@@ -5786,6 +5790,7 @@ void qtbook::slotDisconnect(void)
   history_diag->close();
   customquery_diag->close();
   admin_diag->close();
+  db_enumerations->clear();
   resetAdminBrowser();
   resetMembersBrowser();
   ui.pagesLabel->setText(tr("1"));
@@ -5872,9 +5877,11 @@ void qtbook::slotDisconnect(void)
     QSqlDatabase::removeDatabase("Default");
 
   if(populateQuery)
-    delete populateQuery;
+    {
+      delete populateQuery;
+      populateQuery = 0;
+    }
 
-  populateQuery = 0;
   setWindowTitle(tr("BiblioteQ"));
 }
 

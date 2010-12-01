@@ -182,28 +182,28 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if(id.location->findText(tr("UNKNOWN")) == -1)
     id.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);
+  QActionGroup *actionGroup = 0;
 
-  if(actionGroup)
+  if((actionGroup = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+
+  for(int i = 0; i < hashes.size(); i++)
     {
-      QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+      QAction *action = actionGroup->addAction(hashes.keys().at(i));
 
-      for(int i = 0; i < hashes.size(); i++)
-	{
-	  QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      if(!action)
+	continue;
 
-	  if(!action)
-	    continue;
+      action->setCheckable(true);
+      id.queryButton->addAction(action);
 
-	  action->setCheckable(true);
-	  id.queryButton->addAction(action);
-
-	  if(qmain->getPreferredZ3950Site() == action->text())
-	    action->setChecked(true);
-	}
-
-      hashes.clear();
+      if(qmain->getPreferredZ3950Site() == action->text())
+	action->setChecked(true);
     }
+
+  hashes.clear();
 
   for(int i = 1; i <= 1000; i++)
     id.edition->addItem(QString::number(i));

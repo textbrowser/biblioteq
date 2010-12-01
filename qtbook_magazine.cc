@@ -176,28 +176,28 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if(ma.location->findText(tr("UNKNOWN")) == -1)
     ma.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = new(std::nothrow) QActionGroup(this);
+  QActionGroup *actionGroup = 0;
 
-  if(actionGroup)
+  if((actionGroup = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+
+  for(int i = 0; i < hashes.size(); i++)
     {
-      QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+      QAction *action = actionGroup->addAction(hashes.keys().at(i));
 
-      for(int i = 0; i < hashes.size(); i++)
-	{
-	  QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      if(!action)
+	continue;
 
-	  if(!action)
-	    continue;
+      action->setCheckable(true);
+      ma.queryButton->addAction(action);
 
-	  action->setCheckable(true);
-	  ma.queryButton->addAction(action);
-
-	  if(qmain->getPreferredZ3950Site() == action->text())
-	    action->setChecked(true);
-	}
-
-      hashes.clear();
+      if(qmain->getPreferredZ3950Site() == action->text())
+	action->setChecked(true);
     }
+
+  hashes.clear();
 
   /*
   ** Save some palettes and style sheets.

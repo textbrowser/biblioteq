@@ -1,5 +1,5 @@
 /*
-** Please update include.d/sqlite_create_schema.h after updating this file.
+** Please keep include.d/sqlite_create_schema.h current.
 */
 
 CREATE TABLE book

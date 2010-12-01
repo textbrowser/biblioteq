@@ -96,6 +96,8 @@ class misc_functions
 				   QString &);
   static QStringList getDVDRegions(const QSqlDatabase &,
 				   QString &);
+  static QStringList getMinimumDays(const QSqlDatabase &,
+				    QString &);
   static QStringList getMonetaryUnits(const QSqlDatabase &,
 				      QString &);
   static QStringList getReservedItems(const QString &,

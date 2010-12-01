@@ -20,6 +20,7 @@ class dbenumerations: public QMainWindow
  public:
   dbenumerations(void);
   void show(QMainWindow *parent, const bool populate);
+  void clear(void);
 
  private:
   Ui_dbEnumerations ui;

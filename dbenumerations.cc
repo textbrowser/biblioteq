@@ -113,6 +113,21 @@ void dbenumerations::show(QMainWindow *parent, const bool populate)
 }
 
 /*
+** -- clear() --
+*/
+
+void dbenumerations::clear(void)
+{
+  foreach(QListWidget *listwidget, findChildren<QListWidget *> ())
+    listwidget->clear();
+
+  while(ui.locationsTable->rowCount() > 0)
+    ui.locationsTable->removeRow(0);
+
+  ui.minimumDaysTable->clearSelection();
+}
+
+/*
 ** -- slotClose() --
 */
 
@@ -127,6 +142,8 @@ void dbenumerations::slotClose(void)
 
 void dbenumerations::populateWidgets(void)
 {
+  clear();
+
   QString errorstr("");
   QString forerror("");
   QStringList list;
@@ -154,11 +171,6 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.videoGamePlatformsList;
       else if(i == 9)
 	listwidget = ui.videoGameRatingsList;
-
-      if(listwidget)
-	listwidget->clear();
-      else if(tablewidget)
-	tablewidget->clearSelection();
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -195,42 +207,8 @@ void dbenumerations::populateWidgets(void)
       else if(i == 6)
 	{
 	  forerror = "minimum days";
-
-	  int days = 0;
-	  QString lasterror("");
-
-	  for(int j = 0; j < 6; j++)
-	    {
-	      if(j == 0)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "Book",
-						      lasterror);
-	      else if(j == 1)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "DVD",
-						      lasterror);
-	      else if(j == 2)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "Journal",
-						      lasterror);
-	      else if(j == 3)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "Magazine",
-						      lasterror);
-	      else if(j == 4)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "CD",
-						      lasterror);
-	      else if(j == 5)
-		days = misc_functions::getMinimumDays(qmain->getDB(),
-						      "Video Game",
-						      lasterror);
-
-	      if(errorstr.isEmpty())
-		errorstr = lasterror;
-
-	      list.append(QString::number(days));
-	    }
+	  list = misc_functions::getMinimumDays(qmain->getDB(),
+						errorstr);
 	}
       else if(i == 7)
 	{

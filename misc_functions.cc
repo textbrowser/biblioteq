@@ -1877,6 +1877,53 @@ int misc_functions::getMinimumDays(const QSqlDatabase &db,
 }
 
 /*
+** -- getMinimumDays() --
+*/
+
+QStringList misc_functions::getMinimumDays(const QSqlDatabase &db,
+					   QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList minimumdays;
+  QMap<QString, QString> map;
+
+  errorstr = "";
+  querystr = "SELECT type, days FROM minimum_days ORDER BY type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      if(query.value(0).toString() == "CD")
+	map["Music CD"] = query.value(1).toString();
+      else
+	map[query.value(0).toString()] = query.value(1).toString();
+
+  if(!map.contains("Book"))
+    map["Book"] = "1";
+
+  if(!map.contains("DVD"))
+    map["DVD"] = "1";
+
+  if(!map.contains("Journal"))
+    map["Journal"] = "1";
+
+  if(!map.contains("Magazine"))
+    map["Magazine"] = "1";
+
+  if(!map.contains("Music CD"))
+    map["Music CD"] = "1";
+
+  if(!map.contains("Video Game"))
+    map["Video Game"] = "1";
+
+  for(int i = 0; i < map.values().size(); i++)
+    minimumdays.append(map.values().at(i));
+
+  map.clear();
+  return minimumdays;
+}
+
+/*
 ** -- getVideoGameRatings() --
 */
 
