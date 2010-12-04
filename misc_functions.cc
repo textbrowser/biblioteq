@@ -246,7 +246,7 @@ void misc_functions::grantPrivs(const QString &userid,
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT"
+	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE"
 	       << "DELETE, INSERT, SELECT, UPDATE";
       objectlist << "book"
@@ -1688,7 +1688,7 @@ QStringList misc_functions::getLocations(const QSqlDatabase &db,
   errorstr = "";
 
   if(type.isEmpty())
-    querystr = "SELECT location FROM locations ORDER BY location";
+    querystr = "SELECT DISTINCT(location) FROM locations ORDER BY location";
   else
     querystr = QString("SELECT location FROM locations WHERE type = '%1' "
 		       "ORDER BY location").arg(type);
@@ -1696,6 +1696,32 @@ QStringList misc_functions::getLocations(const QSqlDatabase &db,
   if(query.exec(querystr))
     while(query.next())
       locations.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return locations;
+}
+
+/*
+** -- getLocations() --
+*/
+
+QList<QPair<QString, QString> > misc_functions::getLocations
+(const QSqlDatabase &db,
+ QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QList<QPair<QString, QString> > locations;
+
+  errorstr = "";
+  querystr = "SELECT type, location FROM locations ORDER BY type, location";
+
+  if(query.exec(querystr))
+    while(query.next())
+      locations.append(qMakePair(query.value(0).toString(),
+				 query.value(1).toString()));
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
