@@ -784,9 +784,14 @@ void qtbook::adminSetup(void)
       bb.addButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
-      ui.actionDatabase_Enumerations->setEnabled(true);
-      ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
-	(true);
+
+      if(roles == "librarian")
+	{
+	  ui.actionDatabase_Enumerations->setEnabled(true);
+	  ui.actionPopulate_Database_Enumerations_Browser_on_Display->
+	    setEnabled
+	    (true);
+	}
     }
   else
     {
