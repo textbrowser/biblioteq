@@ -67,6 +67,14 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+  connect(ui.addLocation,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeLocation,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
   connect(ui.addMonetaryUnit,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -147,6 +155,7 @@ void dbenumerations::populateWidgets(void)
   QString errorstr("");
   QString forerror("");
   QStringList list;
+  QList<QPair<QString, QString> > pairList;
 
   for(int i = 0; i < 10; i++)
     {
@@ -163,6 +172,8 @@ void dbenumerations::populateWidgets(void)
 	listwidget = ui.dvdRegionsList;
       else if(i == 4)
 	listwidget = ui.languagesList;
+      else if(i == 5)
+	tablewidget = ui.locationsTable;
       else if(i == 6)
 	tablewidget = ui.minimumDaysTable;
       else if(i == 7)
@@ -203,6 +214,12 @@ void dbenumerations::populateWidgets(void)
 	  forerror = "languages";
 	  list = misc_functions::getLanguages(qmain->getDB(),
 					      errorstr);
+	}
+      else if(i == 5)
+	{
+	  forerror = "locations";
+	  pairList = misc_functions::getLocations(qmain->getDB(),
+						  errorstr);
 	}
       else if(i == 6)
 	{
@@ -251,6 +268,54 @@ void dbenumerations::populateWidgets(void)
 		listwidget->addItem(item);
 	      }
 	  }
+      else if(tablewidget == ui.locationsTable)
+	{
+	  ui.locationsTable->setRowCount(pairList.size());
+
+	  for(int j = 0; j < pairList.size(); j++)
+	    {
+	      QComboBox *item1 = new QComboBox();
+	      QTableWidgetItem *item2 = new QTableWidgetItem
+		(pairList.at(j).second);
+
+	      if(item1 && item2)
+		{
+		  QStringList list;
+
+		  list << tr("Book") << tr("DVD") << tr("Journal")
+		       << tr("Magazine") << tr("Music CD")
+		       << tr("Video Game");
+		  item1->addItems(list);
+
+		  if(pairList.at(j).first == "Book")
+		    item1->setCurrentIndex(0);
+		  else if(pairList.at(j).first == "CD")
+		    item1->setCurrentIndex(4);
+		  else if(pairList.at(j).first == "DVD")
+		    item1->setCurrentIndex(1);
+		  else if(pairList.at(j).first == "Journal")
+		    item1->setCurrentIndex(2);
+		  else if(pairList.at(j).first == "Magazine")
+		    item1->setCurrentIndex(3);
+		  else if(pairList.at(j).first == "Video Game")
+		    item1->setCurrentIndex(5);
+
+		  list.clear();
+		  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
+				  Qt::ItemIsSelectable);
+		  ui.locationsTable->setCellWidget(j, 0, item1);
+		  ui.locationsTable->setItem(j, 1, item2);
+		}
+	      else
+		{
+		  if(item1)
+		    item1->deleteLater();
+
+		  if(item2)
+		    delete item2;
+		}
+	    }
+	}
       else if(tablewidget == ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < list.size(); j++)
@@ -259,6 +324,7 @@ void dbenumerations::populateWidgets(void)
 	}
 
       list.clear();
+      pairList.clear();
     }
 
   ui.cdFormatsList->setFocus();
@@ -309,6 +375,40 @@ void dbenumerations::slotAdd(void)
       list = ui.languagesList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Language"));
     }
+  else if(toolButton == ui.addLocation)
+    {
+      QComboBox *item1 = new QComboBox();
+      QTableWidgetItem *item2 = new QTableWidgetItem();
+
+      if(item1 && item2)
+	{
+	  QStringList list;
+
+	  list << tr("Book") << tr("DVD") << tr("Journal")
+	       << tr("Magazine") << tr("Music CD") << tr("Video Game");
+	  item1->addItems(list);
+	  list.clear();
+	  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
+			  Qt::ItemIsSelectable);
+	  ui.locationsTable->setRowCount(ui.locationsTable->rowCount() + 1);
+	  ui.locationsTable->setCellWidget(ui.locationsTable->rowCount() - 1,
+					   0,
+					   item1);
+	  ui.locationsTable->setItem(ui.locationsTable->rowCount() - 1,
+				     1,
+				     item2);
+	  ui.locationsTable->setCurrentCell(ui.locationsTable->rowCount() - 1,
+					    0);
+	}
+      else
+	{
+	  if(item1)
+	    item1->deleteLater();
+
+	  if(item2)
+	    delete item2;
+	}
+    }
   else if(toolButton == ui.addMonetaryUnit)
     {
       list = ui.monetaryUnitsList;
@@ -333,6 +433,8 @@ void dbenumerations::slotAdd(void)
       list->setCurrentItem(listItem);
       list->editItem(listItem);
     }
+  else if(listItem)
+    delete listItem;
 }
 
 /*
@@ -355,6 +457,8 @@ void dbenumerations::slotRemove(void)
     list = ui.dvdRegionsList;
   else if(toolButton == ui.removeLanguage)
     list = ui.languagesList;
+  else if(toolButton == ui.removeLocation)
+    ui.locationsTable->removeRow(ui.locationsTable->currentRow());
   else if(toolButton == ui.removeMonetaryUnit)
     list = ui.monetaryUnitsList;
   else if(toolButton == ui.removeVideoGamePlatform)
@@ -389,6 +493,8 @@ void dbenumerations::slotSave(void)
 	querystr = "DELETE FROM dvd_regions";
       else if(i == 4)
 	querystr = "DELETE FROM languages";
+      else if(i == 5)
+	querystr = "DELETE FROM locations";
       else if(i == 6)
 	querystr = "DELETE FROM minimum_days";
       else if(i == 7)
@@ -451,6 +557,12 @@ void dbenumerations::slotSave(void)
 	    qmain->addError
 	      (QString(tr("Database Error")),
 	       QString(tr("An error occurred while attempting to "
+			  "remove the locations.")),
+	       query.lastError().text(), __FILE__, __LINE__);
+	  else if(i == 6)
+	    qmain->addError
+	      (QString(tr("Database Error")),
+	       QString(tr("An error occurred while attempting to "
 			  "remove the minimum days.")),
 	       query.lastError().text(), __FILE__, __LINE__);
 	  else if(i == 7)
@@ -510,6 +622,8 @@ void dbenumerations::slotSave(void)
 	  forerror = tr("language");
 	  listwidget = ui.languagesList;
 	}
+      else if(i == 5)
+	tablewidget = ui.locationsTable;
       else if(i == 6)
 	tablewidget = ui.minimumDaysTable;
       else if(i == 7)
@@ -549,6 +663,62 @@ void dbenumerations::slotSave(void)
 		       forerror + tr(" ") +
 		       listwidget->item(j)->text().trimmed() +
 		       QString(tr(".")),
+		       query.lastError().text(), __FILE__, __LINE__);
+		    goto db_rollback;
+		  }
+	      }
+	}
+      else if(tablewidget == ui.locationsTable)
+	{
+	  for(int j = 0; j < tablewidget->rowCount(); j++)
+	    if(tablewidget->cellWidget(j, 0) &&
+	       tablewidget->item(j, 1))
+	      {
+		int index = qobject_cast<QComboBox *> 
+		  (tablewidget->cellWidget(j, 0))->currentIndex();
+
+		if(index == 0)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'Book')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+		else if(index == 1)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'DVD')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+		else if(index == 2)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'Journal')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+		else if(index == 3)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'Magazine')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+		else if(index == 4)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'CD')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+		else if(index == 5)
+		  querystr = QString("INSERT INTO locations "
+				     "(location, type) VALUES "
+				     "('%1', 'Video Game')").arg
+		    (tablewidget->item(j, 1)->text().trimmed());
+
+		if(!query.exec(querystr))
+		  {
+		    qapp->restoreOverrideCursor();
+		    qmain->addError
+		      (QString(tr("Database Error")),
+		       QString(tr("Unable to create the location (")) +
+		       qobject_cast<QComboBox *> 
+		       (tablewidget->cellWidget(j, 0))->currentText() +
+		       tr(", ") +
+		       tablewidget->item(j, 1)->text().trimmed() +
+		       QString(tr(").")),
 		       query.lastError().text(), __FILE__, __LINE__);
 		    goto db_rollback;
 		  }
@@ -595,7 +765,9 @@ void dbenumerations::slotSave(void)
 		    qapp->restoreOverrideCursor();
 		    qmain->addError
 		      (QString(tr("Database Error")),
-		       QString(tr("Unable to create the minimum day (Book, ")) +
+		       QString(tr("Unable to create the minimum day (")) +
+		       tablewidget->item(j, 0)->text() +
+		       tr(", ") +
 		       tablewidget->item(j, 1)->text().trimmed() +
 		       QString(tr(").")),
 		       query.lastError().text(), __FILE__, __LINE__);
