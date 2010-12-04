@@ -12,6 +12,7 @@ using namespace std;
 ** -- Qt Includes --
 */
 
+#include <QPair>
 #include <QString>
 #include <QVariant>
 #include <QSqlError>
@@ -112,6 +113,8 @@ class misc_functions
   static QMap<QString, QString> getItemsReservedCounts(const QSqlDatabase &,
 						       const QString &,
 						       QString &);
+  static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
+						      QString &);
 };
 
 #endif
