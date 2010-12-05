@@ -155,7 +155,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   qapp->setOverrideCursor(Qt::WaitCursor);
   vg.location->addItems
     (misc_functions::getLocations(qmain->getDB(),
-				  "videogame",
+				  "Video Game",
 				  errorstr));
   qapp->restoreOverrideCursor();
 

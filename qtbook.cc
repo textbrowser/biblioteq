@@ -986,7 +986,7 @@ void qtbook::slotSearch(void)
        errorstr, __FILE__, __LINE__);
 
   /*
-  ** Add "any".
+  ** Add "any" and "UNKNOWN".
   */
 
   if(al.language->findText(tr("Any")) == -1)
@@ -997,6 +997,15 @@ void qtbook::slotSearch(void)
 
   if(al.location->findText(tr("Any")) == -1)
     al.location->insertItem(0, tr("Any"));
+
+  if(al.language->findText(tr("UNKNOWN")) == -1)
+    al.language->addItem(tr("UNKNOWN"));
+
+  if(al.monetary_units->findText(tr("UNKNOWN")) == -1)
+    al.monetary_units->addItem(tr("UNKNOWN"));
+
+  if(al.location->findText(tr("UNKNOWN")) == -1)
+    al.location->addItem(tr("UNKNOWN"));
 
   al.location->setCurrentIndex(0);
   al.language->setCurrentIndex(0);
