@@ -50,8 +50,6 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
      imgf == "JPG" || imgf == "JPEG" ||
      imgf == "PNG")
     event->acceptProposedAction();
-
-  QGraphicsView::dragEnterEvent(event);
 }
 
 /*
@@ -86,8 +84,6 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
      imgf == "JPG" || imgf == "JPEG" ||
      imgf == "PNG")
     event->acceptProposedAction();
-
-  QGraphicsView::dragMoveEvent(event);
 }
 
 /*
@@ -147,8 +143,6 @@ void image_drop_site::dropEvent(QDropEvent *event)
       scene()->addPixmap(pixmap);
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
-
-  QGraphicsView::dropEvent(event);
 }
 
 /*
@@ -161,8 +155,6 @@ void image_drop_site::keyPressEvent(QKeyEvent *event)
     if((event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) &&
        !scene()->selectedItems().isEmpty())
       clear();
-
-  QGraphicsView::keyPressEvent(event);
 }
 
 /*
@@ -275,6 +267,7 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
 void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 {
+  Q_UNUSED(e);
   QPixmap pixmap;
 
   if(image.width() < width() && image.height() < height())
@@ -295,5 +288,4 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 
   doubleclicked = !doubleclicked;
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
-  QGraphicsView::mouseDoubleClickEvent(e);
 }
