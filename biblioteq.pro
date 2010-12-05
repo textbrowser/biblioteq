@@ -48,6 +48,7 @@ HEADERS		= include.d/qtbook.h \
 		  include.d/qtbook_item.h \
 		  include.d/z3950results.h \
 		  include.d/dbenumerations.h \
+		  include.d/generic_thread.h \
 		  include.d/image_drop_site.h \
 		  include.d/qtbook_magazine.h \
 		  include.d/borrowers_editor.h \

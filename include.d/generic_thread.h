@@ -26,6 +26,8 @@
 
 class generic_thread: public QThread
 {
+  Q_OBJECT
+
  public:
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int Z3950_QUERY = 300;
