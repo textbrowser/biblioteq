@@ -429,16 +429,16 @@ void copy_editor::slotCheckoutCopy(void)
       return;
     }
 
-  query.prepare(QString("INSERT INTO item_borrower "
-			"(item_oid, "
-			"memberid, "
-			"reserved_date, "
-			"duedate, "
-			"copyid, "
-			"copy_number, "
-			"reserved_by, "
-			"type) "
-			"VALUES(?, ?, ?, ?, ?, ?, ?, ?)"));
+  query.prepare("INSERT INTO item_borrower "
+		"(item_oid, "
+		"memberid, "
+		"reserved_date, "
+		"duedate, "
+		"copyid, "
+		"copy_number, "
+		"reserved_by, "
+		"type) "
+		"VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
   query.bindValue(0, ioid);
   query.bindValue(1, memberid);
   query.bindValue(2, checkedout);
@@ -464,17 +464,17 @@ void copy_editor::slotCheckoutCopy(void)
   ** Record the transaction.
   */
 
-  query.prepare(QString("INSERT INTO member_history "
-			"(memberid, "
-			"item_oid, "
-			"copyid, "
-			"reserved_date, "
-			"duedate, "
-			"returned_date, "
-			"reserved_by, "
-			"type, "
-			"item_id) "
-			"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+  query.prepare("INSERT INTO member_history "
+		"(memberid, "
+		"item_oid, "
+		"copyid, "
+		"reserved_date, "
+		"duedate, "
+		"returned_date, "
+		"reserved_by, "
+		"type, "
+		"item_id) "
+		"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
   query.bindValue(0, memberid);
   query.bindValue(1, ioid);
   query.bindValue(2, copyid);

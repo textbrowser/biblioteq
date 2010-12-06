@@ -4421,16 +4421,16 @@ void qtbook::slotSaveUser(void)
 	}
 
       qapp->restoreOverrideCursor();
-      query.prepare(QString("INSERT INTO member "
-			    "(memberid, membersince, dob, sex, "
-			    "first_name, middle_init, last_name, "
-			    "telephone_num, street, city, "
-			    "state_abbr, zip, email) "
-			    "VALUES "
-			    "(?, ?, ?, ?, "
-			    "?, ?, ?, "
-			    "?, ?, ?, "
-			    "?, ?, ?)"));
+      query.prepare("INSERT INTO member "
+		    "(memberid, membersince, dob, sex, "
+		    "first_name, middle_init, last_name, "
+		    "telephone_num, street, city, "
+		    "state_abbr, zip, email) "
+		    "VALUES "
+		    "(?, ?, ?, ?, "
+		    "?, ?, ?, "
+		    "?, ?, ?, "
+		    "?, ?, ?)");
       query.bindValue(0, userinfo_diag->userinfo.memberid->text());
       query.bindValue(1, userinfo_diag->userinfo.membersince->text());
       query.bindValue(2, userinfo_diag->userinfo.dob->text());
@@ -4447,17 +4447,17 @@ void qtbook::slotSaveUser(void)
     }
   else
     {
-      query.prepare(QString("UPDATE member SET "
-			    "membersince = ?, "
-			    "dob = ?, sex = ?, "
-			    "first_name = ?, "
-			    "middle_init = ?, "
-			    "last_name = ?, "
-			    "telephone_num = ?, "
-			    "street = ?, "
-			    "city = ?, "
-			    "state_abbr = ?, zip = ?, email = ? "
-			    "WHERE memberid = ?"));
+      query.prepare("UPDATE member SET "
+		    "membersince = ?, "
+		    "dob = ?, sex = ?, "
+		    "first_name = ?, "
+		    "middle_init = ?, "
+		    "last_name = ?, "
+		    "telephone_num = ?, "
+		    "street = ?, "
+		    "city = ?, "
+		    "state_abbr = ?, zip = ?, email = ? "
+		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->userinfo.membersince->text());
       query.bindValue(1, userinfo_diag->userinfo.dob->text());
       query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
@@ -8952,13 +8952,21 @@ void qtbook::slotSaveAdministrators(void)
 	}
 
       if(ucount == 0)
-	querystr = QString("INSERT INTO admin (username, roles) "
-			   "VALUES ('%1', '%2')").arg(adminStr).arg(str);
+	{
+	  query.prepare("INSERT INTO admin (username, roles) "
+			"VALUES (?, ?)");
+	  query.bindValue(0, adminStr);
+	  query.bindValue(1, str);
+	}
       else
-	querystr = QString("UPDATE admin SET roles = '%1' WHERE "
-			   "username = '%2'").arg(str).arg(adminStr);
+	{
+	  query.prepare("UPDATE admin SET roles = ? WHERE "
+			"username = ?");
+	  query.bindValue(0, str);
+	  query.bindValue(1, adminStr);
+	}
 
-      if(!query.exec(querystr))
+      if(!query.exec())
 	{
 	  progress.hide();
 	  addError

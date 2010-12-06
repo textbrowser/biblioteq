@@ -650,11 +650,12 @@ void dbenumerations::slotSave(void)
 	  for(int j = 0; j < listwidget->count(); j++)
 	    if(listwidget->item(j))
 	      {
-		querystr = QString("INSERT INTO %1 VALUES ('%2')").arg
-		  (table).arg
-		  (listwidget->item(j)->text().trimmed());
+		query.prepare(QString("INSERT INTO %1 VALUES (?)").arg
+			      (table));
+		query.bindValue(0,
+				listwidget->item(j)->text().trimmed());
 
-		if(!query.exec(querystr))
+		if(!query.exec())
 		  {
 		    qapp->restoreOverrideCursor();
 		    qmain->addError
@@ -678,37 +679,55 @@ void dbenumerations::slotSave(void)
 		  (tablewidget->cellWidget(j, 0))->currentIndex();
 
 		if(index == 0)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'Book')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'Book')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(index == 1)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'DVD')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'DVD')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(index == 2)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'Journal')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'Journal')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(index == 3)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'Magazine')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'Magazine')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(index == 4)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'CD')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'CD')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(index == 5)
-		  querystr = QString("INSERT INTO locations "
-				     "(location, type) VALUES "
-				     "('%1', 'Video Game')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
+				  "(?, 'Video Game')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 
-		if(!query.exec(querystr))
+		if(!query.exec())
 		  {
 		    qapp->restoreOverrideCursor();
 		    qmain->addError
@@ -730,37 +749,55 @@ void dbenumerations::slotSave(void)
 	    if(tablewidget->item(j, 1))
 	      {
 		if(j == 0)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'Book')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'Book')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(j == 1)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'DVD')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'DVD')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(j == 2)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'Journal')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'Journal')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(j == 3)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'Magazine')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'Magazine')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(j == 4)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'CD')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'CD')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 		else if(j == 5)
-		  querystr = QString("INSERT INTO minimum_days "
-				     "(days, type) VALUES "
-				     "(%1, 'Video Game')").arg
-		    (tablewidget->item(j, 1)->text().trimmed());
+		  {
+		    query.prepare("INSERT INTO minimum_days "
+				  "(days, type) VALUES "
+				  "(?, 'Video Game')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
 
-		if(!query.exec(querystr))
+		if(!query.exec())
 		  {
 		    qapp->restoreOverrideCursor();
 		    qmain->addError

@@ -369,9 +369,9 @@ void borrowers_editor::slotEraseBorrower(void)
 					       tr("Barcode"));
       memberid = misc_functions::getColumnString(bd.table, row,
 						 tr("Member ID"));
-      query.prepare(QString("UPDATE member_history SET returned_date = ? "
-			    "WHERE item_oid = ? AND copyid = ? AND "
-			    "memberid = ?"));
+      query.prepare("UPDATE member_history SET returned_date = ? "
+		    "WHERE item_oid = ? AND copyid = ? AND "
+		    "memberid = ?");
       query.bindValue(0, returnedDate);
       query.bindValue(1, ioid);
       query.bindValue(2, copyid);
@@ -463,12 +463,13 @@ void borrowers_editor::slotSave(void)
 	    error = true;
 	  else
 	    {
-	      query.prepare(QString("UPDATE item_borrower "
-				    "SET duedate = ? "
-				    "WHERE myoid = ? AND "
-				    "type = '%1'").arg(itemType));
+	      query.prepare("UPDATE item_borrower "
+			    "SET duedate = ? "
+			    "WHERE myoid = ? AND "
+			    "type = ?");
 	      query.bindValue(0, dueDate->date().toString("MM/dd/yyyy"));
 	      query.bindValue(1, oid);
+	      query.bindValue(2, itemType);
 
 	      if(!query.exec())
 		qmain->addError(QString(tr("Database Error")),

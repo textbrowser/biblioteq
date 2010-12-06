@@ -1688,9 +1688,12 @@ QStringList misc_functions::getLocations(const QSqlDatabase &db,
   errorstr = "";
 
   if(type.isEmpty())
-    querystr = "SELECT DISTINCT(location) FROM locations ORDER BY location";
+    querystr = "SELECT DISTINCT(location) FROM locations "
+      "WHERE LENGTH(TRIM(location)) > 0 "
+      "ORDER BY location";
   else
-    querystr = QString("SELECT location FROM locations WHERE type = '%1' "
+    querystr = QString("SELECT location FROM locations WHERE type = '%1' AND "
+		       "LENGTH(TRIM(location)) > 0 "
 		       "ORDER BY location").arg(type);
 
   if(query.exec(querystr))
@@ -1716,7 +1719,10 @@ QList<QPair<QString, QString> > misc_functions::getLocations
   QList<QPair<QString, QString> > locations;
 
   errorstr = "";
-  querystr = "SELECT type, location FROM locations ORDER BY type, location";
+  querystr = "SELECT type, location FROM locations "
+    "WHERE LENGTH(TRIM(type)) > 0 AND "
+    "LENGTH(TRIM(location)) > 0 "
+    "ORDER BY type, location";
 
   if(query.exec(querystr))
     while(query.next())
@@ -1742,6 +1748,7 @@ QStringList misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT monetary_unit FROM monetary_units "
+    "WHERE LENGTH(TRIM(monetary_unit)) > 0 "
     "ORDER BY monetary_unit";
 
   if(query.exec(querystr))
@@ -1767,6 +1774,7 @@ QStringList misc_functions::getLanguages(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT language FROM languages "
+    "WHERE LENGTH(TRIM(language)) > 0 "
     "ORDER BY language";
 
   if(query.exec(querystr))
@@ -1791,7 +1799,9 @@ QStringList misc_functions::getCDFormats(const QSqlDatabase &db,
   QStringList formats;
 
   errorstr = "";
-  querystr = "SELECT cd_format FROM cd_formats ORDER BY cd_format";
+  querystr = "SELECT cd_format FROM cd_formats "
+    "WHERE LENGTH(TRIM(cd_format)) > 0 "
+    "ORDER BY cd_format";
 
   if(query.exec(querystr))
     while(query.next())
@@ -1815,7 +1825,9 @@ QStringList misc_functions::getDVDRatings(const QSqlDatabase &db,
   QStringList ratings;
 
   errorstr = "";
-  querystr = "SELECT dvd_rating FROM dvd_ratings ORDER BY dvd_rating";
+  querystr = "SELECT dvd_rating FROM dvd_ratings "
+    "WHERE LENGTH(TRIM(dvd_rating)) > 0 "
+    "ORDER BY dvd_rating";
 
   if(query.exec(querystr))
     while(query.next())
@@ -1840,6 +1852,7 @@ QStringList misc_functions::getDVDAspectRatios(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT dvd_aspect_ratio FROM dvd_aspect_ratios "
+    "WHERE LENGTH(TRIM(dvd_aspect_ratio)) > 0 "
     "ORDER BY dvd_aspect_ratio";
 
   if(query.exec(querystr))
@@ -1864,7 +1877,9 @@ QStringList misc_functions::getDVDRegions(const QSqlDatabase &db,
   QStringList regions;
 
   errorstr = "";
-  querystr = "SELECT dvd_region FROM dvd_regions ORDER BY dvd_region";
+  querystr = "SELECT dvd_region FROM dvd_regions "
+    "WHERE LENGTH(TRIM(dvd_region)) > 0 "
+    "ORDER BY dvd_region";
 
   if(query.exec(querystr))
     while(query.next())
@@ -1915,7 +1930,9 @@ QStringList misc_functions::getMinimumDays(const QSqlDatabase &db,
   QMap<QString, QString> map;
 
   errorstr = "";
-  querystr = "SELECT type, days FROM minimum_days ORDER BY type";
+  querystr = "SELECT type, days FROM minimum_days "
+    "WHERE LENGTH(TRIM(type)) > 0 "
+    "ORDER BY type";
 
   if(query.exec(querystr))
     while(query.next())
@@ -1962,6 +1979,7 @@ QStringList misc_functions::getVideoGameRatings(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT videogame_rating FROM videogame_ratings "
+    "WHERE LENGTH(TRIM(videogame_rating)) > 0 "
     "ORDER BY videogame_rating";
 
   if(query.exec(querystr))
@@ -1987,6 +2005,7 @@ QStringList misc_functions::getVideoGamePlatforms(const QSqlDatabase &db,
 
   errorstr = "";
   querystr = "SELECT videogame_platform FROM videogame_platforms "
+    "WHERE LENGTH(TRIM(videogame_platform)) > 0 "
     "ORDER BY videogame_platform";
 
   if(query.exec(querystr))
