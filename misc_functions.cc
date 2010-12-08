@@ -660,7 +660,17 @@ void misc_functions::DBAccount(const QString &userid,
 		   << "videogame"
 		   << "videogame_copy_info"
 		   << "videogame_copy_info_myoid_seq"
-		   << "videogame_myoid_seq";
+		   << "videogame_myoid_seq"
+		   << "locations"
+		   << "monetary_units"
+		   << "languages"
+		   << "cd_formats"
+		   << "dvd_ratings"
+		   << "dvd_aspect_ratios"
+		   << "dvd_regions"
+		   << "minimum_days"
+		   << "videogame_ratings"
+		   << "videogame_platforms";
 
       for(i = 0; i < objectlist.size(); i++)
 	{
