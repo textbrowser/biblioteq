@@ -1248,7 +1248,8 @@ void qtbook_dvd::modify(const int state)
 		dvd.rating->setCurrentIndex
 		  (dvd.rating->findText(var.toString()));
 	      else
-		dvd.rating->setCurrentIndex(0);
+		dvd.rating->setCurrentIndex
+		  (dvd.rating->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "dvdregion")
 	    {
@@ -1256,7 +1257,8 @@ void qtbook_dvd::modify(const int state)
 		dvd.region->setCurrentIndex
 		  (dvd.region->findText(var.toString()));
 	      else
-		dvd.region->setCurrentIndex(0);
+		dvd.region->setCurrentIndex
+		  (dvd.region->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "dvdaspectratio")
 	    {
@@ -1264,7 +1266,8 @@ void qtbook_dvd::modify(const int state)
 		dvd.aspectratio->setCurrentIndex
 		  (dvd.aspectratio->findText(var.toString()));
 	      else
-		dvd.aspectratio->setCurrentIndex(0);
+		dvd.aspectratio->setCurrentIndex
+		  (dvd.aspectratio->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "front_cover")
 	    {

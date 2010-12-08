@@ -557,14 +557,23 @@ qtbook::qtbook(void):QMainWindow()
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 1; i <= 4; i++)
+  for(int i = 1; i <= 5; i++)
     {
-      QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+      QAction *action = 0;
+
+      if(i != 5)
+	action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+      else
+	action = group1->addAction(tr("Unlimited"));
 
       if(!action)
 	continue;
 
-      action->setData(25 * i);
+      if(i != 5)
+	action->setData(25 * i);
+      else
+	action->setData(-1);
+
       action->setCheckable(true);
 
       if(i == 1)
@@ -3930,6 +3939,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       }
 #endif
 
+  if(entriesPerPage == -1)
+    entriesPerPage = INT_MAX;
+
   int rowCount = 0;
   int querySize = 0;
 
@@ -4945,7 +4957,7 @@ void qtbook::readConfig(void)
 
   for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
     if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
-	    settings.value("entries_per_page").toInt())
+       settings.value("entries_per_page").toInt())
       {
 	found = true;
 	ui.menuEntriesPerPage->actions()[i]->setChecked(true);

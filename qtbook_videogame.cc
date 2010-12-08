@@ -1063,7 +1063,8 @@ void qtbook_videogame::modify(const int state)
 		vg.rating->setCurrentIndex
 		  (vg.rating->findText(var.toString()));
 	      else
-		vg.rating->setCurrentIndex(0);
+		vg.rating->setCurrentIndex
+		  (vg.rating->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "price")
 	    vg.price->setValue(var.toDouble());
@@ -1099,7 +1100,8 @@ void qtbook_videogame::modify(const int state)
 		vg.platform->setCurrentIndex
 		  (vg.platform->findText(var.toString()));
 	      else
-		vg.platform->setCurrentIndex(0);
+		vg.platform->setCurrentIndex
+		  (vg.platform->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "location")
 	    {
@@ -1136,8 +1138,7 @@ void qtbook_videogame::modify(const int state)
 		vg.mode->setCurrentIndex
 		  (vg.mode->findText(var.toString()));
 	      else
-		vg.mode->setCurrentIndex
-		  (vg.mode->findText(tr("UNKNOWN")));
+		vg.mode->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "front_cover")
 	    {

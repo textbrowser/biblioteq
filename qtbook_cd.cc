@@ -1196,7 +1196,8 @@ void qtbook_cd::modify(const int state)
 		cd.format->setCurrentIndex
 		  (cd.format->findText(var.toString()));
 	      else
-		cd.format->setCurrentIndex(0);
+		cd.format->setCurrentIndex
+		  (cd.format->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "artist")
 	    cd.artist->setText
