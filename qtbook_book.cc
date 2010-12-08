@@ -1043,6 +1043,7 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(true);
       id.generate->setVisible(true);
       id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 	id.id->text() + tr(")");
       engWindowTitle = "Modify";
@@ -1060,6 +1061,7 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(false);
       id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
       str = QString(tr("BiblioteQ: View Book Details (")) +
 	id.id->text() + tr(")");
       engWindowTitle = "View";
@@ -1097,6 +1099,7 @@ void qtbook_book::modify(const int state)
       id.dwnldBack->setVisible(true);
       id.generate->setVisible(true);
       id.isbn10to13->setVisible(true);
+      id.isbn13to10->setVisible(true);
       misc_functions::highlightWidget
 	(id.id, QColor(255, 248, 220));
       misc_functions::highlightWidget
@@ -1130,6 +1133,7 @@ void qtbook_book::modify(const int state)
       id.dwnldBack->setVisible(false);
       id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
+      id.isbn13to10->setVisible(false);
 
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
