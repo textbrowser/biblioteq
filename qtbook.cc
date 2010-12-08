@@ -564,7 +564,7 @@ qtbook::qtbook(void):QMainWindow()
       if(i != 5)
 	action = group1->addAction(QString(tr("&%1")).arg(25 * i));
       else
-	action = group1->addAction(tr("Unlimited"));
+	action = group1->addAction(tr("&Unlimited"));
 
       if(!action)
 	continue;
@@ -676,6 +676,10 @@ void qtbook::slotSetColumns(void)
 
 QString qtbook::getRoles(void) const
 {
+  /*
+  ** Empty roles suggest that the user is a patron.
+  */
+
   return roles;
 }
 
@@ -755,7 +759,7 @@ void qtbook::adminSetup(void)
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled
     (roles.contains("administrator"));
 
-  if(selectedBranch["database_type"] != "sqlite")
+  if(db.driverName() != "QSQLITE")
     {
       ui.actionConfigureAdministratorPrivileges->setEnabled
 	(roles.contains("administrator"));
@@ -959,7 +963,7 @@ void qtbook::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.language->addItems
-    (misc_functions::getLanguages(getDB(),
+    (misc_functions::getLanguages(db,
 				  errorstr));
   qapp->restoreOverrideCursor();
 
@@ -971,7 +975,7 @@ void qtbook::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.monetary_units->addItems
-    (misc_functions::getMonetaryUnits(getDB(),
+    (misc_functions::getMonetaryUnits(db,
 				      errorstr));
   qapp->restoreOverrideCursor();
 
@@ -983,7 +987,7 @@ void qtbook::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.location->addItems
-    (misc_functions::getLocations(getDB(),
+    (misc_functions::getLocations(db,
 				  "",
 				  errorstr));
   qapp->restoreOverrideCursor();
@@ -3921,7 +3925,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int entriesPerPage = 25;
 
 #ifdef Q_OS_WIN
-  if(getDB().driverName() == "QSQLITE")
+  if(db.driverName() == "QSQLITE")
     entriesPerPage = INT_MAX;
   else
     for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
@@ -3945,13 +3949,13 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int rowCount = 0;
   int querySize = 0;
 
-  if(selectedBranch["database_type"] != "sqlite")
+  if(db.driverName() != "QSQLITE")
     {
       if(populateQuery)
 	querySize = populateQuery->size();
     }
   else
-    querySize = misc_functions::sqliteQuerySize(searchstr, getDB(),
+    querySize = misc_functions::sqliteQuerySize(searchstr, db,
 						__FILE__,
 						__LINE__);
 
@@ -4068,10 +4072,10 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   int pages = 1;
   int resultsCount = 0;
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(db.driverName() == "QSQLITE")
     {
       resultsCount = misc_functions::sqliteQuerySize
-	(searchstr, getDB(), __FILE__, __LINE__);
+	(searchstr, db, __FILE__, __LINE__);
       pages = static_cast<int> 
 	(ceil
 	 ((static_cast<double> (resultsCount)) /
@@ -4140,7 +4144,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
 
 #ifdef Q_OS_WIN
-  if(getDB().driverName() == "QSQLITE")
+  if(db.driverName() == "QSQLITE")
     if(populateQuery)
       populateQuery->clear();
 #endif
@@ -4324,7 +4328,7 @@ void qtbook::slotSaveUser(void)
 
       qapp->setOverrideCursor(Qt::WaitCursor);
       int ucount = misc_functions::userCount
-	(userinfo_diag->userinfo.memberid->text(), getDB(), errorstr);
+	(userinfo_diag->userinfo.memberid->text(), db, errorstr);
       qapp->restoreOverrideCursor();
 
       if(ucount > 0)
@@ -4419,13 +4423,13 @@ void qtbook::slotSaveUser(void)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
-      if(!getDB().transaction())
+      if(!db.transaction())
 	{
 	  qapp->restoreOverrideCursor();
 	  addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
-	     getDB().lastError().text(), __FILE__, __LINE__);
+	     db.lastError().text(), __FILE__, __LINE__);
 	  QMessageBox::critical
 	    (userinfo_diag, tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
@@ -4490,10 +4494,10 @@ void qtbook::slotSaveUser(void)
   if(!query.exec())
     {
       if(engUserinfoTitle.contains("New"))
-	if(!getDB().rollback())
+	if(!db.rollback())
 	  addError
 	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     getDB().lastError().text(), __FILE__, __LINE__);
+	     db.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -4516,11 +4520,11 @@ void qtbook::slotSaveUser(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      if(!getDB().rollback())
+	      if(!db.rollback())
 		addError
 		  (QString(tr("Database Error")),
 		   QString(tr("Rollback failure.")),
-		   getDB().lastError().text(), __FILE__, __LINE__);
+		   db.lastError().text(), __FILE__, __LINE__);
 
 	      qapp->restoreOverrideCursor();
 	      addError
@@ -4538,14 +4542,14 @@ void qtbook::slotSaveUser(void)
 	    }
 	  else
 	    {
-	      if(!getDB().commit())
+	      if(!db.commit())
 		{
 		  qapp->restoreOverrideCursor();
 		  addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     getDB().lastError().text(), __FILE__,
+		     db.lastError().text(), __FILE__,
 		     __LINE__);
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
@@ -4629,7 +4633,7 @@ void qtbook::slotSaveUser(void)
 	{
 	  userinfo_diag->close();
 
-	  if(selectedBranch["database_type"] != "sqlite")
+	  if(db.driverName() != "QSQLITE")
 	    QMessageBox::information
 	      (members_diag,
 	       tr("BiblioteQ: Information"),
@@ -5045,13 +5049,13 @@ void qtbook::slotRemoveMember(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!getDB().transaction())
+  if(!db.transaction())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
-	 getDB().lastError().text(), __FILE__, __LINE__);
+	 db.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
 	(members_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
@@ -5066,10 +5070,10 @@ void qtbook::slotRemoveMember(void)
 
   if(!query.exec())
     {
-      if(!getDB().rollback())
+      if(!db.rollback())
 	addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   getDB().lastError().text(), __FILE__, __LINE__);
+	   db.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -5091,10 +5095,10 @@ void qtbook::slotRemoveMember(void)
 	     memberid + tr("."),
 	     errorstr, __FILE__, __LINE__);
 
-	  if(!getDB().rollback())
+	  if(!db.rollback())
 	    addError
 	      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	       getDB().lastError().text(), __FILE__, __LINE__);
+	       db.lastError().text(), __FILE__, __LINE__);
 
 	  qapp->restoreOverrideCursor();
 	  QMessageBox::critical
@@ -5105,14 +5109,14 @@ void qtbook::slotRemoveMember(void)
 	}
       else
 	{
-	  if(!getDB().commit())
+	  if(!db.commit())
 	    {
 	      qapp->restoreOverrideCursor();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to commit the current database "
 			    "transaction.")),
-		 getDB().lastError().text(), __FILE__,
+		 db.lastError().text(), __FILE__,
 		 __LINE__);
 	      QMessageBox::critical(members_diag,
 				    tr("BiblioteQ: Database Error"),
@@ -5377,7 +5381,7 @@ void qtbook::slotDisplaySummary(void)
 	}
 
       summary = summary.remove("<br><br>");
-      summary += misc_functions::getAbstractInfo(oid, type, getDB());
+      summary += misc_functions::getAbstractInfo(oid, type, db);
       summary += "<br>";
       tmpstr = misc_functions::getColumnString(ui.table, i,
 					       tr("Availability"));
@@ -5396,9 +5400,9 @@ void qtbook::slotDisplaySummary(void)
       ui.summary->setVisible(true);
       qapp->setOverrideCursor(Qt::WaitCursor);
       frontImage = misc_functions::getImage(oid, "front_cover", type,
-					    getDB());
+					    db);
       backImage = misc_functions::getImage(oid, "back_cover", type,
-					   getDB());
+					   db);
 
       /*
       ** 165 x 255
@@ -5711,7 +5715,7 @@ void qtbook::slotConnectDB(void)
   ui.connectTool->setEnabled(false);
   ui.actionConnect->setEnabled(false);
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
 #ifdef Q_OS_WIN
@@ -5744,9 +5748,9 @@ void qtbook::slotConnectDB(void)
 
   prepareFilter();
 
-  if(br.adminCheck->isChecked() || selectedBranch["database_type"] == "sqlite")
+  if(br.adminCheck->isChecked() || db.driverName() == "QSQLITE")
     {
-      if(selectedBranch["database_type"] == "sqlite")
+      if(db.driverName() == "QSQLITE")
 	{
 	  /*
 	  ** Add the database's information to the pulldown menu.
@@ -5893,6 +5897,17 @@ void qtbook::slotDisconnect(void)
   deletedAdmins.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
+  /*
+  ** Close the query before closing the database so as to
+  ** avoid memory problems.
+  */
+
+  if(populateQuery)
+    {
+      delete populateQuery;
+      populateQuery = 0;
+    }
+
   if(db.isOpen())
     db.close();
 
@@ -5901,12 +5916,6 @@ void qtbook::slotDisconnect(void)
 
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
-
-  if(populateQuery)
-    {
-      delete populateQuery;
-      populateQuery = 0;
-    }
 
   setWindowTitle(tr("BiblioteQ"));
 }
@@ -6082,19 +6091,19 @@ void qtbook::slotPopulateMembersBrowser(void)
   resetMembersBrowser();
   bb.table->setSortingEnabled(false);
 
-  if(selectedBranch["database_type"] != "sqlite")
+  if(db.driverName() != "QSQLITE")
     bb.table->setRowCount(query.size());
   else
     bb.table->setRowCount
-      (misc_functions::sqliteQuerySize(str, getDB(), __FILE__, __LINE__));
+      (misc_functions::sqliteQuerySize(str, db, __FILE__, __LINE__));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(db.driverName() == "QSQLITE")
     progress.setMaximum
-      (misc_functions::sqliteQuerySize(str, getDB(), __FILE__, __LINE__));
+      (misc_functions::sqliteQuerySize(str, db, __FILE__, __LINE__));
   else
     progress.setMaximum(query.size());
 
@@ -6475,7 +6484,7 @@ void qtbook::slotCheckout(void)
 
 void qtbook::prepareRequestToolbutton(const QString &typefilter)
 {
-  if(selectedBranch["database_type"] != "sqlite")
+  if(db.driverName() != "QSQLITE")
     if(db.isOpen())
       {
 	if((roles == "administrator" || roles == "circulation") &&
@@ -7065,8 +7074,8 @@ void qtbook::emptyContainers(void)
 
 QString qtbook::getAdminID(void) const
 {
-  if(selectedBranch["database_type"] != "sqlite")
-    return br.userid->text();
+  if(db.driverName() != "QSQLITE")
+    return db.userName();
   else
     return "N/A";
 }
@@ -7784,19 +7793,164 @@ void qtbook::slotShowCustomQuery(void)
   if(cq.tables_t->columnCount() == 0)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
-      list << "book"
-	   << "book_copy_info"
-	   << "cd"
-	   << "cd_songs"
-	   << "cd_copy_info"
-	   << "dvd"
-	   << "dvd_copy_info"
-	   << "journal"
-	   << "journal_copy_info"
-	   << "magazine"
-	   << "magazine_copy_info"
-	   << "videogame"
-	   << "videogame_copy_info";
+
+      if(db.driverName() == "QSQLITE")
+	list << "book"
+	     << "item_borrower"
+	     << "item_borrower_vw"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "member"
+	     << "member_history"
+	     << "videogame"
+	     << "videogame_copy_info"
+	     << "locations"
+	     << "monetary_units"
+	     << "languages"
+	     << "cd_formats"
+	     << "dvd_ratings"
+	     << "dvd_aspect_ratios"
+	     << "dvd_regions"
+	     << "minimum_days"
+	     << "videogame_ratings"
+	     << "videogame_platforms";
+      else if(roles.contains("administrator"))
+	list << "admin"
+	     << "book"
+	     << "item_borrower"
+	     << "item_borrower_vw"
+	     << "item_request"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "member"
+	     << "member_history"
+	     << "videogame"
+	     << "videogame_copy_info"
+	     << "locations"
+	     << "monetary_units"
+	     << "languages"
+	     << "cd_formats"
+	     << "dvd_ratings"
+	     << "dvd_aspect_ratios"
+	     << "dvd_regions"
+	     << "minimum_days"
+	     << "videogame_ratings"
+	     << "videogame_platforms";
+      else if(roles.contains("circulation"))
+	list << "admin"
+	     << "book"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "item_borrower_vw"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "videogame"
+	     << "videogame_copy_info"
+	     << "member"
+	     << "item_borrower"
+	     << "member_history"
+	     << "item_request"
+	     << "locations"
+	     << "monetary_units"
+	     << "languages"
+	     << "cd_formats"
+	     << "dvd_ratings"
+	     << "dvd_aspect_ratios"
+	     << "dvd_regions"
+	     << "minimum_days"
+	     << "videogame_ratings"
+	     << "videogame_platforms";
+      else if(roles.contains("librarian"))
+	list << "admin"
+	     << "book"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "item_borrower_vw"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "videogame"
+	     << "videogame_copy_info"
+	     << "item_request"
+	     << "locations"
+	     << "monetary_units"
+	     << "languages"
+	     << "cd_formats"
+	     << "dvd_ratings"
+	     << "dvd_aspect_ratios"
+	     << "dvd_regions"
+	     << "minimum_days"
+	     << "videogame_ratings"
+	     << "videogame_platforms";
+      else if(roles.contains("membership"))
+	list << "admin"
+	     << "book"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "item_borrower_vw"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "videogame"
+	     << "videogame_copy_info"
+	     << "member"
+	     << "locations"
+	     << "monetary_units"
+	     << "languages"
+	     << "cd_formats"
+	     << "dvd_ratings"
+	     << "dvd_aspect_ratios"
+	     << "dvd_regions"
+	     << "minimum_days"
+	     << "videogame_ratings"
+	     << "videogame_platforms";
+      else
+	list << "book"
+	     << "book_copy_info"
+	     << "cd"
+	     << "cd_copy_info"
+	     << "cd_songs"
+	     << "dvd"
+	     << "dvd_copy_info"
+	     << "journal"
+	     << "journal_copy_info"
+	     << "magazine"
+	     << "magazine_copy_info"
+	     << "videogame"
+	     << "videogame_copy_info";
+
       list.sort();
       cq.tables_t->setColumnCount(3);
       cq.tables_t->setHeaderLabels(QStringList()
@@ -7809,7 +7963,7 @@ void qtbook::slotShowCustomQuery(void)
 	if((item1 = new(std::nothrow) QTreeWidgetItem(cq.tables_t)) != 0)
 	  {
 	    item1->setText(0, list[i]);
-	    rec = getDB().record(list[i]);
+	    rec = db.record(list[i]);
 
 	    for(j = 0; j < rec.count(); j++)
 	      {
@@ -8019,7 +8173,7 @@ void qtbook::slotPrintReserved(void)
   memberinfo["lastname"] = misc_functions::getColumnString(bb.table, row,
 							   tr("Last Name"));
   qapp->setOverrideCursor(Qt::WaitCursor);
-  itemsList = misc_functions::getReservedItems(memberid, getDB(), errorstr);
+  itemsList = misc_functions::getReservedItems(memberid, db, errorstr);
   qapp->restoreOverrideCursor();
 
   if(errorstr.isEmpty())
@@ -8240,11 +8394,11 @@ void qtbook::slotShowHistory(void)
   list.clear();
   history.table->setSortingEnabled(false);
 
-  if(selectedBranch["database_type"] != "sqlite")
+  if(db.driverName() != "QSQLITE")
     history.table->setRowCount(query.size());
   else
     history.table->setRowCount
-      (misc_functions::sqliteQuerySize(querystr, getDB(),
+      (misc_functions::sqliteQuerySize(querystr, db,
 				       __FILE__, __LINE__));
 
   history.table->scrollToTop();
@@ -8253,9 +8407,9 @@ void qtbook::slotShowHistory(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(db.driverName() == "QSQLITE")
     progress.setMaximum
-      (misc_functions::sqliteQuerySize(querystr, getDB(),
+      (misc_functions::sqliteQuerySize(querystr, db,
 				       __FILE__, __LINE__));
   else
     progress.setMaximum(query.size());
@@ -8487,7 +8641,7 @@ void qtbook::slotSavePassword(void)
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  misc_functions::savePassword(pass.userid->text(), getDB(),
+  misc_functions::savePassword(pass.userid->text(), db,
 			       pass.password->text(), errorstr);
   qapp->restoreOverrideCursor();
 
@@ -8805,7 +8959,7 @@ void qtbook::slotSaveAdministrators(void)
   QString errorstr = "";
   QString querystr = "";
   QCheckBox *checkBox = 0;
-  QSqlQuery query(getDB());
+  QSqlQuery query(db);
   QStringList tmplist;
   QProgressDialog progress(admin_diag);
 
@@ -8862,13 +9016,13 @@ void qtbook::slotSaveAdministrators(void)
   tmplist.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!getDB().transaction())
+  if(!db.transaction())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
-	 getDB().lastError().text(), __FILE__, __LINE__);
+	 db.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
 	(admin_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
@@ -8895,7 +9049,7 @@ void qtbook::slotSaveAdministrators(void)
 	  goto db_rollback;
 	}
 
-      misc_functions::DBAccount(deletedAdmins[i], getDB(),
+      misc_functions::DBAccount(deletedAdmins[i], db,
 				misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
@@ -8950,7 +9104,7 @@ void qtbook::slotSaveAdministrators(void)
       if(str.isEmpty())
 	str = "none";
 
-      ucount = misc_functions::userCount(adminStr, getDB(), errorstr);
+      ucount = misc_functions::userCount(adminStr, db, errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -9047,14 +9201,14 @@ void qtbook::slotSaveAdministrators(void)
   progress.hide();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!getDB().commit())
+  if(!db.commit())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to commit the current database "
 		    "transaction.")),
-	 getDB().lastError().text(), __FILE__,
+	 db.lastError().text(), __FILE__,
 	 __LINE__);
       QMessageBox::critical(admin_diag,
 			    tr("BiblioteQ: Database Error"),
@@ -9079,9 +9233,9 @@ void qtbook::slotSaveAdministrators(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!getDB().rollback())
+  if(!db.rollback())
     addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     getDB().lastError().text(), __FILE__, __LINE__);
+	     db.lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
   QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
@@ -9253,7 +9407,7 @@ void qtbook::prepareFilter(void)
 {
   QStringList tmplist;
 
-  if(selectedBranch["database_type"] == "sqlite")
+  if(db.driverName() == "QSQLITE")
     tmplist << "All"
 	    << "All Overdue"
 	    << "All Reserved"
@@ -9550,6 +9704,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 		      QMessageBox::Yes | QMessageBox::No,
 		      QMessageBox::No) == QMessageBox::Yes)
 		    {
+		      slotDisconnect();
 		      br.filename->setText(dialog.selectedFiles().at(0));
 		      slotConnectDB();
 		    }
