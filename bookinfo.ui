@@ -215,7 +215,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1" colspan="2">
+        <item row="0" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLineEdit" name="id">
@@ -272,28 +272,32 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="isbn13">
-          <property name="maxLength">
-           <number>16</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="isbn10to13">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>From &amp;ISBN-10</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLineEdit" name="isbn13">
+            <property name="maxLength">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="isbn10to13">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>From &amp;ISBN-10</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_5">
@@ -345,7 +349,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1" colspan="2">
+        <item row="3" column="1">
          <widget class="hyperlinked_text_edit" name="author">
           <property name="readOnly">
            <bool>false</bool>
@@ -371,7 +375,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1" colspan="2">
+        <item row="4" column="1">
          <layout class="QHBoxLayout">
           <item>
            <widget class="QComboBox" name="binding">
