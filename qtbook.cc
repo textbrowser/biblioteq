@@ -1539,7 +1539,7 @@ void qtbook::slotRefresh(void)
   else if(data.toString() == "All Reserved")
     str = "%";
 
-  (void) populateTable(POPULATE_ALL, data.toString(), str);
+  (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
 }
 
 /*
@@ -5605,7 +5605,7 @@ void qtbook::slotConnectDB(void)
     {
       db.setHostName(tmphash["hostname"]);
       db.setDatabaseName(br.branch_name->currentText());
-      db.setUserName(br.userid->text());
+      db.setUserName(br.userid->text().trimmed());
       db.setPassword(br.password->text());
       db.setPort(tmphash["database_port"].toInt());
     }
@@ -5655,26 +5655,48 @@ void qtbook::slotConnectDB(void)
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  roles = misc_functions::getRoles
-	    (db, br.userid->text(), errorstr).toLower();
+	    (db, br.userid->text().trimmed(), errorstr).toLower();
 	  qapp->restoreOverrideCursor();
 
-	  if(br.adminCheck->isChecked() && roles.isEmpty())
+	  if(!errorstr.isEmpty())
+	    addError(QString(tr("Database Error")),
+		     QString(tr("Unable to determine the "
+				"roles of ")) +
+		     br.userid->text().trimmed() +
+		     tr("."),
+		     errorstr,
+		     __FILE__, __LINE__);
+
+	  if(errorstr.isEmpty())
 	    {
-	      error = true;
-	      QMessageBox::critical
-		(branch_diag, tr("BiblioteQ: User Error"),
-		 QString(tr("It appears that the user ")) +
-			 br.userid->text() +
-		 QString(tr(" does not have "
-			    "administrator privileges.")));
+	      if(br.adminCheck->isChecked() && roles.isEmpty())
+		{
+		  error = true;
+		  QMessageBox::critical
+		    (branch_diag, tr("BiblioteQ: User Error"),
+		     QString(tr("It appears that the user ")) +
+		     br.userid->text().trimmed() +
+		     QString(tr(" does not have "
+				"administrator privileges.")));
+		}
+	      else if(!br.adminCheck->isChecked() && !roles.isEmpty())
+		{
+		  error = true;
+		  QMessageBox::critical
+		    (branch_diag, tr("BiblioteQ: User Error"),
+		     tr("It appears that you are attempting to assume an "
+			"administrator role in a non-administrator mode."));
+		}
 	    }
-	  else if(!br.adminCheck->isChecked() && !roles.isEmpty())
+	  else
 	    {
 	      error = true;
 	      QMessageBox::critical
-		(branch_diag, tr("BiblioteQ: User Error"),
-		 tr("It appears that you are attempting to assume an "
-		    "administrator role in a non-administrator mode."));
+		(branch_diag, tr("BiblioteQ: Database Error"),
+		 QString(tr("Unable to determine the "
+			    "roles of ")) +
+		 br.userid->text().trimmed() +
+		 tr("."));
 	    }
 	}
     }
@@ -5743,7 +5765,7 @@ void qtbook::slotConnectDB(void)
       */
 
       setWindowTitle(tr("BiblioteQ: ") + selectedBranch["branch_name"] +
-		     QString(" (%1)").arg(br.userid->text()));
+		     QString(" (%1)").arg(br.userid->text().trimmed()));
     }
 
   prepareFilter();
@@ -7631,7 +7653,7 @@ void qtbook::slotListOverdueItems(void)
   if(members_diag->isVisible())
     memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   else if(roles.isEmpty())
-    memberid = br.userid->text();
+    memberid = br.userid->text().trimmed();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
   members_diag->raise();
@@ -8330,7 +8352,7 @@ void qtbook::slotShowHistory(void)
 			    "%1.id = history.item_id AND "
 			    "%1.myoid = history.item_oid AND %1.type = "
 			    "history.type ").arg(list[i]).arg
-	  (br.userid->text());
+	  (br.userid->text().trimmed());
 
 	if(i != list.size() - 1)
 	  querystr += "UNION ";
@@ -8599,7 +8621,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
 void qtbook::slotShowChangePassword(void)
 {
-  pass.userid->setText(br.userid->text());
+  pass.userid->setText(br.userid->text().trimmed());
   pass.currentpassword->clear();
   pass.password->clear();
   pass.passwordAgain->clear();
@@ -9339,7 +9361,7 @@ void qtbook::slotRequest(void)
 	    "requestdate, type) VALUES(?, ?, ?, ?)";
 	  query.prepare(querystr);
 	  query.bindValue(0, oid);
-	  query.bindValue(1, br.userid->text());
+	  query.bindValue(1, br.userid->text().trimmed());
 	  query.bindValue(2, now.toString("MM/dd/yyyy"));
 	  query.bindValue(3, itemType);
 	}
