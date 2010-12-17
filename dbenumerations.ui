@@ -195,7 +195,7 @@
          <item>
           <widget class="QLabel" name="label_14">
            <property name="text">
-            <string>Minimum Days</string>
+            <string>Reservations Minimum Days</string>
            </property>
           </widget>
          </item>
