@@ -602,6 +602,9 @@ CREATE TABLE videogame_platforms
 	videogame_platform	 TEXT NOT NULL PRIMARY KEY
 );
 
+ALTER TABLE book ADD marc_tags TEXT;
+ALTER TABLE journal ADD marc_tags TEXT;
+ALTER TABLE magazine ADD marc_tags TEXT;
 GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO xbook_admin;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO xbook_admin;

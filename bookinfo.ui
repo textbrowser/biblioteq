@@ -846,6 +846,20 @@
           </property>
          </widget>
         </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>MARC Tags</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QTextEdit" name="marc_tags">
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -1042,6 +1056,7 @@
   <tabstop>showUserButton</tabstop>
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
+  <tabstop>marc_tags</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>

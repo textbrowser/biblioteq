@@ -26,6 +26,7 @@ CREATE TABLE book
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	marc_tags	 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'	
 );
 
@@ -165,6 +166,7 @@ CREATE TABLE journal
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	marc_tags	 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	PRIMARY KEY(id, issuevolume, issueno)
 );
@@ -208,6 +210,7 @@ CREATE TABLE magazine
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	marc_tags	 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
 	PRIMARY KEY(id, issuevolume, issueno)
 );

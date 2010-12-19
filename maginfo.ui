@@ -882,6 +882,31 @@
           </property>
          </widget>
         </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>MARC Tags</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QTextEdit" name="marc_tags">
+          <property name="font">
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="acceptRichText">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -1081,6 +1106,7 @@
   <tabstop>showUserButton</tabstop>
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
+  <tabstop>marc_tags</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>

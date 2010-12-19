@@ -114,6 +114,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &MARC Tags")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -412,6 +414,8 @@ void qtbook_book::slotGo(void)
       id.callnum->setText(str);
       str = id.deweynum->text().trimmed();
       id.deweynum->setText(str);
+      str = id.marc_tags->toPlainText().trimmed();
+      id.marc_tags->setPlainText(str);
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -432,7 +436,8 @@ void qtbook_book::slotGo(void)
 		      "deweynumber = ?, "
 		      "front_cover = ?, "
 		      "back_cover = ?, "
-		      "place = ? "
+		      "place = ?, "
+		      "marc_tags = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -444,11 +449,11 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place) "
+		      "place, marc_tags) "
 		      "VALUES (?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
-		      "?, ?, "
+		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       else
 	query.prepare("INSERT INTO book (id, title, "
@@ -459,11 +464,11 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, myoid) "
+		      "place, marc_tags, myoid) "
 		      "VALUES (?, ?, "
 		      "?, ?, ?, ?, "
 		      "?, ?, "
-		      "?, ?, "
+		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?)");
 
@@ -529,11 +534,12 @@ void qtbook_book::slotGo(void)
 	}
 
       query.bindValue(20, id.place->toPlainText().trimmed());
+      query.bindValue(21, id.marc_tags->toPlainText().trimmed());
 
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(21, oid);
+	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(21, id.id->text().replace("X", "10"));
+	query.bindValue(22, id.id->text().replace("X", "10"));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -646,6 +652,7 @@ void qtbook_book::slotGo(void)
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
+	  id.marc_tags->viewport()->setPalette(te_orig_pal);
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.lcnum->setPalette(white_pal);
@@ -926,6 +933,10 @@ void qtbook_book::slotGo(void)
 			 myqstring::escape
 			 (id.location->currentText()) + "' ");
 
+      searchstr.append("AND LOWER(marc_tags) LIKE '%" +
+		       myqstring::escape
+		       (id.marc_tags->toPlainText().toLower()) +
+		       "%' ");
       hide();
 
       /*
@@ -957,6 +968,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.publisher->clear();
   id.place->clear();
   id.description->clear();
+  id.marc_tags->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
   id.queryButton->setVisible(false);
@@ -1115,6 +1127,8 @@ void qtbook_book::modify(const int state)
       misc_functions::highlightWidget
 	(id.description->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
+	(id.marc_tags->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
 	(id.category->viewport(), QColor(255, 248, 220));
       te_orig_pal = id.id->palette();
     }
@@ -1159,7 +1173,8 @@ void qtbook_book::modify(const int state)
     "deweynumber, "
     "description, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "marc_tags "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -1272,6 +1287,8 @@ void qtbook_book::modify(const int state)
 	    }
 	  else if(fieldname == "description")
 	    id.description->setPlainText(var.toString());
+	  else if(fieldname == "marc_tags")
+	    id.marc_tags->setPlainText(var.toString());
 	  else if(fieldname == "isbn13")
 	    id.isbn13->setText(var.toString());
 	  else if(fieldname == "lccontrolnumber")
@@ -1332,6 +1349,7 @@ void qtbook_book::insert(void)
   id.publisher->setPlainText("N/A");
   id.place->setPlainText("N/A");
   id.description->setPlainText("N/A");
+  id.marc_tags->setPlainText("N/A");
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
@@ -1361,6 +1379,8 @@ void qtbook_book::insert(void)
     (id.author->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.description->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (id.marc_tags->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.category->viewport(), QColor(255, 248, 220));
   te_orig_pal = id.id->palette();
@@ -1489,6 +1509,16 @@ void qtbook_book::slotReset(void)
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
+      else if(action == actions[21])
+	{
+	  if(!engWindowTitle.contains("Search"))
+	    id.marc_tags->setPlainText("N/A");
+	  else
+	    id.marc_tags->clear();
+
+	  id.marc_tags->viewport()->setPalette(te_orig_pal);
+	  id.marc_tags->setFocus();
+	}
       else if(action == actions[18])
 	{
 	  id.quantity->setValue(id.quantity->minimum());
@@ -1569,6 +1599,11 @@ void qtbook_book::slotReset(void)
       else
 	id.description->clear();
 
+      if(!engWindowTitle.contains("Search"))
+	id.marc_tags->setPlainText("N/A");
+      else
+	id.marc_tags->clear();
+
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();
@@ -1593,6 +1628,7 @@ void qtbook_book::slotReset(void)
       id.publication_date->setStyleSheet(dt_orig_ss);
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
+      id.marc_tags->viewport()->setPalette(te_orig_pal);
       id.publisher->viewport()->setPalette(te_orig_pal);
       id.place->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
@@ -1806,6 +1842,10 @@ void qtbook_book::slotQuery(void)
 	      id.edition->setCurrentIndex(0);
 	      id.edition->setStyleSheet
 		("background-color: rgb(162, 205, 90)");
+	      id.marc_tags->setPlainText
+		(thread->getZ3950Results()[0].trimmed());
+	      misc_functions::highlightWidget
+		(id.marc_tags->viewport(), QColor(162, 205, 90));
 
 	      for(i = 0; i < list.size(); i++)
 		if(list[i].startsWith("100") ||
@@ -2353,6 +2393,8 @@ void qtbook_book::slotPrint(void)
     id.location->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     id.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("MARC Tags:") + "</b> " +
+    id.marc_tags->toPlainText().trimmed() + "<br>";
   print(this);
 }
 

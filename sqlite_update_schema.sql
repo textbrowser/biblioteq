@@ -532,3 +532,7 @@ CREATE TABLE videogame_platforms
 (
 	videogame_platform	 TEXT NOT NULL PRIMARY KEY
 );
+
+ALTER TABLE book ADD marc_tags TEXT;
+ALTER TABLE journal ADD marc_tags TEXT;
+ALTER TABLE magazine ADD marc_tags TEXT;
