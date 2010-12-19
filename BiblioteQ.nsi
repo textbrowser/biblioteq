@@ -32,7 +32,6 @@ file /r .\release\plugins
 file /r .\release\translations.d
 file .\release\*.dll
 file .\sqlite3.exe
-file .\biblioteq.db
 file .\release\BiblioteQ.exe
 
 # Define uninstaller name.
