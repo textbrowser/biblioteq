@@ -505,7 +505,7 @@ void qtbook_magazine::slotGo(void)
       if(engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
 	  query.bindValue(21,
-			  ma.id->text().remove("-") +
+			  ma.id->text().remove("-").replace("X", "10") +
 			  ma.volume->text() + ma.issue->text());
 
       qapp->setOverrideCursor(Qt::WaitCursor);
