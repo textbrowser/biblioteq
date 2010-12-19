@@ -1952,8 +1952,9 @@ void qtbook_book::slotQuery(void)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(" $b").remove(" $2").remove(" $6").
-			remove(" $8").trimmed();
+		      str = str.remove(" $a").remove
+			(" $b").remove(" $2").remove(" $6").remove
+			(" $8").trimmed();
 		      id.deweynum->setText(str);
 		      misc_functions::highlightWidget
 			(id.deweynum, QColor(162, 205, 90));
