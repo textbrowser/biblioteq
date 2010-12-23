@@ -1470,7 +1470,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   trd.table->setSortingEnabled(false);
@@ -1705,7 +1707,9 @@ void qtbook_cd::slotSaveTracks(void)
 
 	  progress.setValue(i + 1);
 	  progress.update();
+#ifndef Q_WS_MAC
 	  qapp->processEvents();
+#endif
 	}
 
       progress.hide();

@@ -6,16 +6,15 @@ QT		+= sql network
 CONFIG		+= qt release thread warn_on app_bundle
 DEFINES		+= CONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror
-QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_LFLAGS_RELEASE =
 QMAKE_LFLAGS_RPATH =
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CFLAGS_RELEASE += -Werror
 QMAKE_CXXFLAGS_RELEASE += -Werror
 QMAKE_EXTRA_TARGETS = purge
-INCLUDEPATH	+= include.d /opt/local/include
+INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -L/opt/local/lib -lyaz -lsqlite3
+LIBS		+= -L/usr/local/lib -lyaz -lsqlite3
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \

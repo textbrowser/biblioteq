@@ -1491,7 +1491,9 @@ void qtbook::slotDelete(void)
 
       progress.setValue(list.size() + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   progress.hide();
@@ -4042,7 +4044,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   if(search_type == CUSTOM_QUERY)
@@ -4685,7 +4689,9 @@ void qtbook::readGlobalSetup(void)
 	    statusBar()->showMessage(tr("Processing the global "
 					"configuration file."));
 
+#ifndef Q_WS_MAC
 	  qapp->processEvents();
+#endif
 	  thread->wait(100);
 	}
 
@@ -6159,7 +6165,9 @@ void qtbook::slotPopulateMembersBrowser(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   bb.table->setSortingEnabled(true);
@@ -8462,7 +8470,9 @@ void qtbook::slotShowHistory(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   history.table->setRowCount(i);
@@ -8958,7 +8968,9 @@ void qtbook::slotRefreshAdminList(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   ab.table->setRowCount(i);
@@ -9217,7 +9229,9 @@ void qtbook::slotSaveAdministrators(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   progress.hide();
@@ -9395,7 +9409,9 @@ void qtbook::slotRequest(void)
 
       progress.setValue(ct);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   progress.hide();

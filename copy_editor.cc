@@ -253,7 +253,9 @@ void copy_editor::populateCopiesEditor(void)
 
       progress1.setValue(i + 1);
       progress1.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   cb.table->setRowCount(i);
@@ -345,8 +347,9 @@ void copy_editor::populateCopiesEditor(void)
 
       progress2.setValue(i + 1);
       progress2.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
-
+#endif
       if(terminate)
 	break; // Out of resources?
     }
@@ -781,7 +784,9 @@ QString copy_editor::saveCopies(void)
 
 	  progress.setValue(i + 1);
 	  progress.update();
+#ifndef Q_WS_MAC
 	  qapp->processEvents();
+#endif
 	}
     }
 

@@ -182,7 +182,9 @@ void borrowers_editor::showUsers(void)
 
       progress1.setValue(i + 1);
       progress1.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   bd.table->setRowCount(i);
@@ -294,8 +296,9 @@ void borrowers_editor::showUsers(void)
 
       progress2.setValue(i + 1);
       progress2.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
-
+#endif
       if(terminate)
 	break; // Out of resources?
     }
@@ -490,7 +493,9 @@ void borrowers_editor::slotSave(void)
 
       progress.setValue(i + 1);
       progress.update();
+#ifndef Q_WS_MAC
       qapp->processEvents();
+#endif
     }
 
   progress.hide();

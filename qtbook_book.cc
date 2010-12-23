@@ -1822,7 +1822,9 @@ void qtbook_book::slotQuery(void)
 
       while(thread->isRunning())
 	{
+#ifndef Q_WS_MAC
 	  qapp->processEvents();
+#endif
 	  thread->msleep(10);
 	}
 
