@@ -22,6 +22,7 @@ setOutPath $INSTDIR
 file *.sql
 file .\qt.conf
 file .\biblioteq.conf
+file .\Microsoft.VC90.CRT.manifest
 file /r .\release\doc.d
 file /r .\release\icons.d
 file /r .\release\plugins
