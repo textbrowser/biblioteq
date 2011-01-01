@@ -351,3 +351,4 @@
 192. Remove OFFSYSTEM support. The project appears abandoned. (DONE)
 193. All QFileDialog instances should have their current directory set
      to the user's home directory. (DONE)
+194. Allow patrons to opt out of reservation histories.

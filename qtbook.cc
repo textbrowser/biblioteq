@@ -3926,7 +3926,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   int entriesPerPage = 25;
 
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   if(db.driverName() == "QSQLITE")
     entriesPerPage = INT_MAX;
   else
@@ -5746,7 +5746,7 @@ void qtbook::slotConnectDB(void)
   if(db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
       ui.menuEntriesPerPage->setEnabled(false);
 #endif
 
@@ -5759,7 +5759,7 @@ void qtbook::slotConnectDB(void)
     }
   else
     {
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
       ui.menuEntriesPerPage->setEnabled(true);
 #endif
       ui.actionChangePassword->setEnabled(true);
@@ -5878,7 +5878,7 @@ void qtbook::slotDisconnect(void)
   ui.connectTool->setEnabled(true);
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
-#ifdef Q_OS_WIN
+#ifdef Q_WS_WIN
   ui.menuEntriesPerPage->setEnabled(true);
 #endif
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
@@ -9493,7 +9493,6 @@ void qtbook::prepareFilter(void)
 void qtbook::slotSqliteFileSelected(bool state)
 {
   Q_UNUSED(state);
-
   QAction *action = qobject_cast<QAction *> (sender());
 
   if(!action)
