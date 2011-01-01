@@ -4948,8 +4948,10 @@ void qtbook::readConfig(void)
   else
     ui.actionPreserveGeometry->setChecked(false);
 
+  font = qapp->font();
+
   if(settings.contains("global_font"))
-    font.fromString(settings.value("global_font").toString());
+    font.fromString(settings.value("global_font", "").toString());
 
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", false).toBool());
