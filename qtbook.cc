@@ -7817,7 +7817,7 @@ void qtbook::slotSetFonts(void)
   QFontDialog dialog(this);
 
 #ifdef Q_WS_MAC
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setCurrentFont(QFont());
