@@ -89,6 +89,9 @@ void qtbook_item::print(QWidget *parent)
   QPrintDialog dialog(&printer, parent);
   QTextDocument document;
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   printer.setPageSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
 

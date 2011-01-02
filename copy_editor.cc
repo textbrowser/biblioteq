@@ -25,6 +25,9 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
     setWindowModality(Qt::WindowModal);
 
   cb.setupUi(this);
+#ifdef Q_WS_MAC
+  setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   bitem = bitemArg;
   ioid = ioidArg;
   quantity = quantityArg;
@@ -174,8 +177,14 @@ void copy_editor::populateCopiesEditor(void)
 
   connect(cb.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCopyEditor(void)));
+
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
+
+#ifdef Q_WS_MAC
+  progress1.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress2.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   cb.table->clear();
   cb.table->setColumnCount(0);
   cb.table->setRowCount(0);
@@ -721,6 +730,9 @@ QString copy_editor::saveCopies(void)
   copy_class *copy = 0;
   QProgressDialog progress(this);
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 			"item_oid = ?").arg(itemType.toLower().remove(" ")));
   query.bindValue(0, ioid);

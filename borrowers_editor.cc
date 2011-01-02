@@ -19,6 +19,9 @@ borrowers_editor::borrowers_editor(QWidget *parent,
 {
   setWindowModality(Qt::WindowModal);
   bd.setupUi(this);
+#ifdef Q_WS_MAC
+  setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   ioid = ioidArg;
   quantity = quantityArg;
   bitem = bitemArg;
@@ -87,6 +90,10 @@ void borrowers_editor::showUsers(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
+#ifdef Q_WS_MAC
+  progress1.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress2.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   bd.table->clear();
   bd.table->setCurrentItem(0);
   bd.table->setColumnCount(0);
@@ -447,6 +454,9 @@ void borrowers_editor::slotSave(void)
   QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Updating the due date(s)..."));

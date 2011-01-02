@@ -40,8 +40,14 @@ extern "C"
 */
 
 #include <QtDebug>
+#ifdef Q_WS_MAC
+#include <QMacStyle>
+#endif
 #include <QTranslator>
 #include <QLibraryInfo>
+#ifdef Q_WS_WIN
+#include <QWindowsStyle>
+#endif
 
 /*
 ** -- Local Includes --
@@ -96,6 +102,12 @@ int main(int argc, char *argv[])
 
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+#ifdef Q_WS_MAC
+  qapp->setStyle(new QMacStyle());
+#elif defined Q_WS_WIN
+  qapp->setStyle(new QWindowsStyle());
+#endif
 
   QTranslator qtTranslator;
 
@@ -308,6 +320,9 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu4->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
+#ifdef Q_WS_MAC
+  setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   bb.setupUi(members_diag);
   history.setupUi(history_diag);
   br.setupUi(branch_diag);
@@ -316,6 +331,16 @@ qtbook::qtbook(void):QMainWindow()
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
   ab.setupUi(admin_diag);
+#ifdef Q_WS_MAC
+  members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  pass_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  all_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   branch_diag->setModal(true);
@@ -913,8 +938,9 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.44.1.<br>"
-	     "Copyright (c) 2006, 2007, 2008, 2009, 2010 Slurpy McNash.<br>"
+  mb.setText("<html>BiblioteQ Version 6.45.<br>"
+	     "Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011 "
+	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
@@ -1360,6 +1386,10 @@ void qtbook::slotDelete(void)
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+
   if(list.isEmpty())
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
@@ -1563,6 +1593,10 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
   QStringList tmplist;
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
+
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 
   if(pagingType != 0)
     {
@@ -6058,6 +6092,9 @@ void qtbook::slotPopulateMembersBrowser(void)
   QProgressDialog progress(members_diag);
   QTableWidgetItem *item = 0;
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   str = "SELECT member.memberid, "
     "member.first_name, "
     "member.last_name, "
@@ -7779,6 +7816,9 @@ void qtbook::slotSetFonts(void)
 {
   QFontDialog dialog(this);
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setCurrentFont(QFont());
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
@@ -8104,6 +8144,10 @@ void qtbook::slotPrintSelected(void)
   QTextDocument document;
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+
   if(list.isEmpty())
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"),
@@ -8167,6 +8211,10 @@ void qtbook::slotPrintReserved(void)
   QPrintDialog dialog(&printer, members_diag);
   QTextDocument document;
   QMap<QString, QString> memberinfo;
+
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 
   if(row < 0)
     {
@@ -8259,7 +8307,8 @@ void qtbook::slotCopyError(void)
   if(list.isEmpty())
     {
       QMessageBox::critical(error_diag, tr("BiblioteQ: User Error"),
-			    tr("To copy the contents of the Error Dialog into "
+			    tr("To copy the contents of the Error "
+			       "Log into "
 			       "the clipboard buffer, you must first "
 			       "select at least one entry."));
       return;
@@ -8300,6 +8349,10 @@ void qtbook::slotShowHistory(void)
   QStringList list;
   QProgressDialog progress(history_diag);
   QTableWidgetItem *item = 0;
+
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 
   if(members_diag->isVisible())
     if(row < 0)
@@ -8516,6 +8569,10 @@ void qtbook::slotPrintReservationHistory(void)
   QPrintDialog dialog(&printer, history_diag);
   QTextDocument document;
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+
   if(history.table->rowCount() == 0)
     {
       if(members_diag->isVisible())
@@ -8720,6 +8777,9 @@ void qtbook::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(branch_diag);
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("SQLite Databases (*.db *.sqlite)");
@@ -8881,6 +8941,9 @@ void qtbook::slotRefreshAdminList(void)
   QProgressDialog progress(admin_diag);
   QTableWidgetItem *item = 0;
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   querystr = "SELECT username, roles FROM admin ORDER BY username";
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -8999,6 +9062,9 @@ void qtbook::slotSaveAdministrators(void)
   QStringList tmplist;
   QProgressDialog progress(admin_diag);
 
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   /*
   ** 1. Prohibit duplicate administrator ids and administrators
   **    without privileges.
@@ -9304,6 +9370,10 @@ void qtbook::slotRequest(void)
   QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
+
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 
   if(!roles.isEmpty())
     isRequesting = false;
@@ -9661,6 +9731,9 @@ void qtbook::slotDisplayNewSqliteDialog(void)
   bool error = true;
   QFileDialog dialog(this);
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setAcceptMode(QFileDialog::AcceptSave);

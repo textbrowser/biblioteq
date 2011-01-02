@@ -50,6 +50,9 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, tr("Quantity")).toInt();
   ma.setupUi(this);
+#ifdef Q_WS_MAC
+  setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
@@ -2194,6 +2197,9 @@ void qtbook_magazine::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
