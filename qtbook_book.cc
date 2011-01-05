@@ -301,22 +301,6 @@ void qtbook_book::slotGo(void)
 	      slotPopulateCopiesEditor();
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
-
-      if(!qmain->getDB().transaction())
-	{
-	  qapp->restoreOverrideCursor();
-	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
-	     tr("Unable to create a database transaction."));
-	  return;
-	}
-
-      qapp->restoreOverrideCursor();
       str = id.id->text().trimmed();
       id.id->setText(str);
 
@@ -341,7 +325,7 @@ void qtbook_book::slotGo(void)
 	  else
 	    id.isbn13->setFocus();
 
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.author->toPlainText().trimmed();
@@ -352,7 +336,7 @@ void qtbook_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Author(s) field."));
 	  id.author->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.title->text().trimmed();
@@ -363,7 +347,7 @@ void qtbook_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
 	  id.title->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.publisher->toPlainText().trimmed();
@@ -374,7 +358,7 @@ void qtbook_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
 	  id.publisher->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.place->toPlainText().trimmed();
@@ -386,7 +370,7 @@ void qtbook_book::slotGo(void)
 				tr("Please complete the Place of Publication "
 				   "field."));
 	  id.place->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.category->toPlainText().trimmed();
@@ -397,7 +381,7 @@ void qtbook_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
 	  id.category->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
       str = id.description->toPlainText().trimmed();
@@ -408,9 +392,25 @@ void qtbook_book::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
 	  id.description->setFocus();
-	  goto db_rollback;
+	  return;
 	}
 
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      if(!qmain->getDB().transaction())
+	{
+	  qapp->restoreOverrideCursor();
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("Unable to create a database transaction.")),
+	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Database Error"),
+	     tr("Unable to create a database transaction."));
+	  return;
+	}
+
+      qapp->restoreOverrideCursor();
       str = id.lcnum->text().trimmed();
       id.lcnum->setText(str);
       str = id.callnum->text().trimmed();
@@ -553,10 +553,6 @@ void qtbook_book::slotGo(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
 	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to create or update the entry. "
-				   "Please verify that "
-				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -583,10 +579,6 @@ void qtbook_book::slotGo(void)
 				"data.")),
 		     query.lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this,
-					tr("BiblioteQ: Database Error"),
-					tr("Unable to purge unnecessary "
-					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -599,9 +591,6 @@ void qtbook_book::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -623,10 +612,6 @@ void qtbook_book::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this,
-		     tr("BiblioteQ: Database Error"),
-		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -639,9 +624,6 @@ void qtbook_book::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -832,6 +814,10 @@ void qtbook_book::slotGo(void)
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create or update the entry. "
+			       "Please verify that "
+			       "the entry does not already exist."));
     }
   else
     {

@@ -290,6 +290,73 @@ void qtbook_magazine::slotGo(void)
 	      slotPopulateCopiesEditor();
 	}
 
+      str = ma.id->text().trimmed();
+      ma.id->setText(str);
+
+      if(ma.id->text().length() != 9)
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the ISSN field."));
+	  ma.id->setFocus();
+	  return;
+	}
+
+      str = ma.title->text().trimmed();
+      ma.title->setText(str);
+
+      if(ma.title->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
+	  ma.title->setFocus();
+	  return;
+	}
+
+      str = ma.publisher->toPlainText().trimmed();
+      ma.publisher->setPlainText(str);
+
+      if(ma.publisher->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Publisher field."));
+	  ma.publisher->setFocus();
+	  return;
+	}
+
+      str = ma.place->toPlainText().trimmed();
+      ma.place->setPlainText(str);
+
+      if(ma.place->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Place of Publication "
+				   "field."));
+	  ma.place->setFocus();
+	  return;
+	}
+
+      str = ma.category->toPlainText().trimmed();
+      ma.category->setPlainText(str);
+
+      if(ma.category->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories field."));
+	  ma.category->setFocus();
+	  return;
+	}
+
+      str = ma.description->toPlainText().trimmed();
+      ma.description->setPlainText(str);
+
+      if(ma.description->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
+	  ma.description->setFocus();
+	  return;
+	}
+
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -306,73 +373,6 @@ void qtbook_magazine::slotGo(void)
 	}
 
       qapp->restoreOverrideCursor();
-      str = ma.id->text().trimmed();
-      ma.id->setText(str);
-
-      if(ma.id->text().length() != 9)
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the ISSN field."));
-	  ma.id->setFocus();
-	  goto db_rollback;
-	}
-
-      str = ma.title->text().trimmed();
-      ma.title->setText(str);
-
-      if(ma.title->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Title field."));
-	  ma.title->setFocus();
-	  goto db_rollback;
-	}
-
-      str = ma.publisher->toPlainText().trimmed();
-      ma.publisher->setPlainText(str);
-
-      if(ma.publisher->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Publisher field."));
-	  ma.publisher->setFocus();
-	  goto db_rollback;
-	}
-
-      str = ma.place->toPlainText().trimmed();
-      ma.place->setPlainText(str);
-
-      if(ma.place->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Place of Publication "
-				   "field."));
-	  ma.place->setFocus();
-	  goto db_rollback;
-	}
-
-      str = ma.category->toPlainText().trimmed();
-      ma.category->setPlainText(str);
-
-      if(ma.category->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Categories field."));
-	  ma.category->setFocus();
-	  goto db_rollback;
-	}
-
-      str = ma.description->toPlainText().trimmed();
-      ma.description->setPlainText(str);
-
-      if(ma.description->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Abstract field."));
-	  ma.description->setFocus();
-	  goto db_rollback;
-	}
-
       str = ma.lcnum->text().trimmed();
       ma.lcnum->setText(str);
       str = ma.callnum->text().trimmed();
@@ -520,11 +520,6 @@ void qtbook_magazine::slotGo(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
 	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
-	     tr("Unable to create or update the entry. "
-		"Please verify that "
-		"the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -551,10 +546,6 @@ void qtbook_magazine::slotGo(void)
 				"data.")),
 		     query.lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this,
-					tr("BiblioteQ: Database Error"),
-					tr("Unable to purge unnecessary "
-					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -566,9 +557,6 @@ void qtbook_magazine::slotGo(void)
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__, __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -590,10 +578,6 @@ void qtbook_magazine::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this,
-		     tr("BiblioteQ: Database Error"),
-		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -606,9 +590,6 @@ void qtbook_magazine::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -839,6 +820,11 @@ void qtbook_magazine::slotGo(void)
 			__LINE__);
 
       qapp->restoreOverrideCursor();
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create or update the entry. "
+	    "Please verify that "
+	    "the entry does not already exist."));
     }
   else
     {

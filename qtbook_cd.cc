@@ -269,6 +269,83 @@ void qtbook_cd::slotGo(void)
 	      slotPopulateCopiesEditor();
 	}
 
+      str = cd.id->text().trimmed();
+      cd.id->setText(str);
+
+      if(cd.id->text().isEmpty())
+	{
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: User Error"),
+	     tr("Please complete the Catalog Number field."));
+	  cd.id->setFocus();
+	  return;
+	}
+
+      str = cd.artist->toPlainText().trimmed();
+      cd.artist->setPlainText(str);
+
+      if(cd.artist->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Artist field."));
+	  cd.artist->setFocus();
+	  return;
+	}
+
+      str = cd.title->text().trimmed();
+      cd.title->setText(str);
+
+      if(cd.title->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
+	  cd.title->setFocus();
+	  return;
+	}
+
+      if(cd.runtime->text() == "00:00:00")
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please provide a valid Runtime."));
+	  cd.runtime->setFocus();
+	  return;
+	}
+
+      str = cd.recording_label->toPlainText().trimmed();
+      cd.recording_label->setPlainText(str);
+
+      if(cd.recording_label->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Recording Label "
+				   "field."));
+	  cd.recording_label->setFocus();
+	  return;
+	}
+
+      str = cd.category->toPlainText().trimmed();
+      cd.category->setPlainText(str);
+
+      if(cd.category->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories "
+				   "field."));
+	  cd.category->setFocus();
+	  return;
+	}
+
+      str = cd.description->toPlainText().trimmed();
+      cd.description->setPlainText(str);
+
+      if(cd.description->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
+	  cd.description->setFocus();
+	  return;
+	}
+
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -285,82 +362,6 @@ void qtbook_cd::slotGo(void)
 	}
 
       qapp->restoreOverrideCursor();
-      str = cd.id->text().trimmed();
-      cd.id->setText(str);
-
-      if(cd.id->text().isEmpty())
-	{
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: User Error"),
-	     tr("Please complete the Catalog Number field."));
-	  cd.id->setFocus();
-	  goto db_rollback;
-	}
-
-      str = cd.artist->toPlainText().trimmed();
-      cd.artist->setPlainText(str);
-
-      if(cd.artist->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Artist field."));
-	  cd.artist->setFocus();
-	  goto db_rollback;
-	}
-
-      str = cd.title->text().trimmed();
-      cd.title->setText(str);
-
-      if(cd.title->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Title field."));
-	  cd.title->setFocus();
-	  goto db_rollback;
-	}
-
-      if(cd.runtime->text() == "00:00:00")
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please provide a valid Runtime."));
-	  cd.runtime->setFocus();
-	  goto db_rollback;
-	}
-
-      str = cd.recording_label->toPlainText().trimmed();
-      cd.recording_label->setPlainText(str);
-
-      if(cd.recording_label->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Recording Label "
-				   "field."));
-	  cd.recording_label->setFocus();
-	  goto db_rollback;
-	}
-
-      str = cd.category->toPlainText().trimmed();
-      cd.category->setPlainText(str);
-
-      if(cd.category->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Categories "
-				   "field."));
-	  cd.category->setFocus();
-	  goto db_rollback;
-	}
-
-      str = cd.description->toPlainText().trimmed();
-      cd.description->setPlainText(str);
-
-      if(cd.description->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Abstract field."));
-	  cd.description->setFocus();
-	  goto db_rollback;
-	}
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE cd SET "
@@ -503,10 +504,6 @@ void qtbook_cd::slotGo(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
 	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to create or update the entry. "
-				   "Please verify that "
-				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -532,10 +529,6 @@ void qtbook_cd::slotGo(void)
 		     QString(tr("Unable to purge unnecessary copy "
 				"data.")),
 		     query.lastError().text(), __FILE__, __LINE__);
-		  QMessageBox::critical(this,
-					tr("BiblioteQ: Database Error"),
-					tr("Unable to purge unnecessary "
-					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -548,9 +541,6 @@ void qtbook_cd::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -572,10 +562,6 @@ void qtbook_cd::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this,
-		     tr("BiblioteQ: Database Error"),
-		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -588,9 +574,6 @@ void qtbook_cd::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -760,6 +743,10 @@ void qtbook_cd::slotGo(void)
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create or update the entry. "
+			       "Please verify that "
+			       "the entry does not already exist."));
     }
   else
     {
@@ -1724,32 +1711,31 @@ void qtbook_cd::slotSaveTracks(void)
 	}
 
       progress.hide();
-
-      if(!lastError.isEmpty())
-	QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
-			      tr("Some or all of the track data has not "
-				 "been saved."));
-
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().commit())
 	{
-	  qapp->restoreOverrideCursor();
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Commit failure.")),
 			  qmain->getDB().lastError().text(), __FILE__,
 			  __LINE__);
-	  QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
-				tr("Unable to commit the track data."));
+	  qmain->getDB().rollback();
 	}
 
       qapp->restoreOverrideCursor();
+
+      if(!lastError.isEmpty() ||
+	 qmain->getDB().lastError().isValid())
+	QMessageBox::critical(tracks_diag, tr("BiblioteQ: Database Error"),
+			      tr("Some or all of the track data has not "
+				 "been saved."));
 
       /*
       ** Update the runtime.
       */
 
-      if(!qmain->getDB().lastError().isValid())
+      if(lastError.isEmpty() &&
+	 !qmain->getDB().lastError().isValid())
 	slotComputeRuntime();
     }
 }

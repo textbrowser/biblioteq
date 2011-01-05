@@ -938,7 +938,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.45.<br>"
+  mb.setText("<html>BiblioteQ Version 6.44.2.<br>"
 	     "Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011 "
 	     "Slurpy McNash.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
@@ -4582,13 +4582,14 @@ void qtbook::slotSaveUser(void)
 	    {
 	      if(!db.commit())
 		{
-		  qapp->restoreOverrideCursor();
 		  addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
 		     db.lastError().text(), __FILE__,
 		     __LINE__);
+		  db.rollback();
+		  qapp->restoreOverrideCursor();
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to commit the current "
@@ -5153,13 +5154,14 @@ void qtbook::slotRemoveMember(void)
 	{
 	  if(!db.commit())
 	    {
-	      qapp->restoreOverrideCursor();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to commit the current database "
 			    "transaction.")),
 		 db.lastError().text(), __FILE__,
 		 __LINE__);
+	      db.rollback();
+	      qapp->restoreOverrideCursor();
 	      QMessageBox::critical(members_diag,
 				    tr("BiblioteQ: Database Error"),
 				    tr("Unable to commit the current "
@@ -9307,13 +9309,14 @@ void qtbook::slotSaveAdministrators(void)
 
   if(!db.commit())
     {
-      qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to commit the current database "
 		    "transaction.")),
 	 db.lastError().text(), __FILE__,
 	 __LINE__);
+      db.rollback();
+      qapp->restoreOverrideCursor();
       QMessageBox::critical(admin_diag,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the current "

@@ -410,7 +410,7 @@ void misc_functions::revokeAll(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  count = misc_functions::userCount(userid, db, errorstr);
+  count = userCount(userid, db, errorstr);
 
   if(count > 0)
     {
@@ -509,7 +509,7 @@ void misc_functions::DBAccount(const QString &userid,
       ** Does the user exist?
       */
 
-      count = misc_functions::userCount(userid, db, errorstr);
+      count = userCount(userid, db, errorstr);
 
       if(count == 0)
 	{
@@ -525,6 +525,8 @@ void misc_functions::DBAccount(const QString &userid,
 
 	  (void) query.exec(querystr);
 	}
+      else if(!errorstr.isEmpty())
+	return;
     }
 
   if(!query.lastError().isValid())
@@ -730,7 +732,10 @@ void misc_functions::DBAccount(const QString &userid,
 	      (objectlist[i]).arg(userid);
 
 	  if(!query.exec(querystr))
-	    break;
+	    {
+	      errorstr = query.lastError().text();
+	      break;
+	    }
 	}
 
       objectlist.clear();
@@ -738,14 +743,20 @@ void misc_functions::DBAccount(const QString &userid,
       if(action == CREATE_USER && !query.lastError().isValid())
 	if(roles.contains("circulation") || roles.contains("librarian") ||
 	   roles.contains("membership"))
-	  grantPrivs(userid, roles, db, errorstr);
+	  {
+	    grantPrivs(userid, roles, db, errorstr);
+
+	    if(!errorstr.isEmpty())
+	      return;
+	  }
     }
 
   if(action == DELETE_USER)
     if(!query.lastError().isValid())
       (void) query.exec(QString("DROP USER %1").arg(userid));
 
-  if(query.lastError().isValid())
+  if(errorstr.isEmpty() &&
+     query.lastError().isValid())
     errorstr = query.lastError().text();
 }
 
@@ -924,10 +935,8 @@ int misc_functions::getMemberMatchCount(const QString &checksum,
   query.bindValue(1, memberid);
 
   if(query.exec())
-    {
-      (void) query.next();
+    if(query.next())
       count = query.value(0).toInt();
-    }
 
   if(query.lastError().isValid())
     {
@@ -969,10 +978,8 @@ QString misc_functions::getAvailability(const QString &oid,
   query.bindValue(0, oid);
 
   if(query.exec())
-    {
-      (void) query.next();
+    if(query.next())
       str = query.value(0).toString();
-    }
 
   if(query.lastError().isValid())
     {
@@ -1110,8 +1117,8 @@ bool misc_functions::isCheckedOut(const QSqlDatabase &db,
 
   if(query.exec())
     {
-      (void) query.next();
-      str = query.value(0).toString();
+      if(query.next())
+	str = query.value(0).toString();
 
       if(str == "0")
 	isCheckedOut = false;
@@ -1155,8 +1162,8 @@ bool misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 
   if(query.exec())
     {
-      (void) query.next();
-      str = query.value(0).toString();
+      if(query.next())
+	str = query.value(0).toString();
 
       if(str == "0")
 	isCheckedOut = false;
@@ -1221,10 +1228,8 @@ int misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
   query.bindValue(0, oid);
 
   if(query.exec())
-    {
-      (void) query.next();
+    if(query.next())
       copy_number = query.value(0).toInt();
-    }
 
   if(query.lastError().isValid())
     {
@@ -1263,12 +1268,9 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
   query.bindValue(2, oid);
 
   if(query.exec())
-    {
-      (void) query.next();
-
+    if(query.next())
       if(query.value(0).toInt() >= 1)
 	isAvailable = true;
-    }
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
@@ -1426,11 +1428,10 @@ QString misc_functions::getOID(const QString &idArg,
     query.bindValue(0, id);
 
   if(query.exec())
-    {
-      (void) query.next();
+    if(query.next())
       oid = query.value(0).toString();
-    }
-  else
+
+  if(query.lastError().isValid())
     errorstr = query.lastError().text();
 
   return oid;
@@ -1450,7 +1451,6 @@ void misc_functions::createInitialCopies(const QString &idArg,
   QString id = "";
   QString itemoid = "";
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
 
   /*
@@ -1461,6 +1461,9 @@ void misc_functions::createInitialCopies(const QString &idArg,
   id = idArg;
   itemType = itemTypeArg.toLower().remove(" ");
   itemoid = getOID(id, itemType, db, errorstr);
+
+  if(!errorstr.isEmpty())
+    return;
 
   if(itemType == "journal" || itemType == "magazine")
     id = id.split(",")[0];
@@ -1514,10 +1517,8 @@ QString misc_functions::getMemberName(const QSqlDatabase &db,
   query.bindValue(0, memberid);
 
   if(query.exec())
-    {
-      (void) query.next();
+    if(query.next())
       str = query.value(0).toString() + ", " + query.value(1).toString();
-    }
 
   if(query.lastError().isValid())
     {
@@ -1665,8 +1666,8 @@ bool misc_functions::isRequested(const QSqlDatabase &db,
 
   if(query.exec())
     {
-      (void) query.next();
-      str = query.value(0).toString();
+      if(query.next())
+	str = query.value(0).toString();
 
       if(str == "0")
 	isRequested = false;

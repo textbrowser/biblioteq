@@ -262,6 +262,84 @@ void qtbook_videogame::slotGo(void)
 	      slotPopulateCopiesEditor();
 	}
 
+      str = vg.id->text().trimmed();
+      vg.id->setText(str);
+
+      if(vg.id->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the UPC field."));
+	  vg.id->setFocus();
+	  return;
+	}
+
+      str = vg.developer->toPlainText().trimmed();
+      vg.developer->setPlainText(str);
+
+      if(vg.developer->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Developer(s) field."));
+	  vg.developer->setFocus();
+	  return;
+	}
+
+      str = vg.title->text().trimmed();
+      vg.title->setText(str);
+
+      if(vg.title->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title field."));
+	  vg.title->setFocus();
+	  return;
+	}
+
+      str = vg.publisher->toPlainText().trimmed();
+      vg.publisher->setPlainText(str);
+
+      if(vg.publisher->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Publisher field."));
+	  vg.publisher->setFocus();
+	  return;
+	}
+
+      str = vg.place->toPlainText().trimmed();
+      vg.place->setPlainText(str);
+
+      if(vg.place->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Place of Publication "
+				   "field."));
+	  vg.place->setFocus();
+	  return;
+	}
+
+      str = vg.genre->toPlainText().trimmed();
+      vg.genre->setPlainText(str);
+
+      if(vg.genre->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Genres field."));
+	  vg.genre->setFocus();
+	  return;
+	}
+
+      str = vg.description->toPlainText().trimmed();
+      vg.description->setPlainText(str);
+
+      if(vg.description->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
+	  vg.description->setFocus();
+	  return;
+	}
+
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -278,83 +356,6 @@ void qtbook_videogame::slotGo(void)
 	}
 
       qapp->restoreOverrideCursor();
-      str = vg.id->text().trimmed();
-      vg.id->setText(str);
-
-      if(vg.id->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the UPC field."));
-	  vg.id->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.developer->toPlainText().trimmed();
-      vg.developer->setPlainText(str);
-
-      if(vg.developer->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Developer(s) field."));
-	  vg.developer->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.title->text().trimmed();
-      vg.title->setText(str);
-
-      if(vg.title->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Title field."));
-	  vg.title->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.publisher->toPlainText().trimmed();
-      vg.publisher->setPlainText(str);
-
-      if(vg.publisher->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Publisher field."));
-	  vg.publisher->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.place->toPlainText().trimmed();
-      vg.place->setPlainText(str);
-
-      if(vg.place->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Place of Publication "
-				   "field."));
-	  vg.place->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.genre->toPlainText().trimmed();
-      vg.genre->setPlainText(str);
-
-      if(vg.genre->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Genres field."));
-	  vg.genre->setFocus();
-	  goto db_rollback;
-	}
-
-      str = vg.description->toPlainText().trimmed();
-      vg.description->setPlainText(str);
-
-      if(vg.description->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Abstract field."));
-	  vg.description->setFocus();
-	  goto db_rollback;
-	}
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE videogame SET id = ?, "
@@ -463,10 +464,6 @@ void qtbook_videogame::slotGo(void)
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Unable to create or update the entry.")),
 			  query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to create or update the entry. "
-				   "Please verify that "
-				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -493,10 +490,6 @@ void qtbook_videogame::slotGo(void)
 				"data.")),
 		     query.lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this,
-					tr("BiblioteQ: Database Error"),
-					tr("Unable to purge unnecessary "
-					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -509,9 +502,6 @@ void qtbook_videogame::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -534,10 +524,6 @@ void qtbook_videogame::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this,
-		     tr("BiblioteQ: Database Error"),
-		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -550,9 +536,6 @@ void qtbook_videogame::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -718,6 +701,10 @@ void qtbook_videogame::slotGo(void)
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create or update the entry. "
+			       "Please verify that "
+			       "the entry does not already exist."));
     }
   else
     {

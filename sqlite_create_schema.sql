@@ -387,3 +387,8 @@ CREATE TABLE videogame_platforms
 (
 	videogame_platform	 TEXT NOT NULL PRIMARY KEY
 );
+
+CREATE TABLE sequence
+(
+	value		 INTEGER PRIMARY KEY AUTOINCREMENT
+);

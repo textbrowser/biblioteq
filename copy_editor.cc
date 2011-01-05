@@ -473,7 +473,8 @@ void copy_editor::slotCheckoutCopy(void)
     }
 
   /*
-  ** Record the transaction.
+  ** Record the reservation in the member's history
+  ** table.
   */
 
   query.prepare("INSERT INTO member_history "
@@ -679,15 +680,17 @@ void copy_editor::slotSaveCopies(void)
   return;
 
  success_label:
+
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().commit())
     {
       copies.clear();
-      qapp->restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Commit failure.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+      qmain->getDB().rollback();
+      qapp->restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the copy data."));
       return;
@@ -785,13 +788,9 @@ QString copy_editor::saveCopies(void)
 	  if(!query.exec())
 	    {
 	      lastError = query.lastError().text();
-
-	      if(!lastError.toLower().contains("duplicate"))
-		qmain->addError(QString(tr("Database Error")),
-				QString(tr("Unable to create copy data.")),
-				query.lastError().text(), __FILE__, __LINE__);
-	      else
-		lastError = "";
+	      qmain->addError(QString(tr("Database Error")),
+			      QString(tr("Unable to create copy data.")),
+			      query.lastError().text(), __FILE__, __LINE__);
 	    }
 
 	  progress.setValue(i + 1);

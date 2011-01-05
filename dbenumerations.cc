@@ -818,13 +818,14 @@ void dbenumerations::slotSave(void)
 
       if(!qmain->getDB().commit())
 	{
-	  qapp->restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to commit the current database "
 			"transaction.")),
 	     qmain->getDB().lastError().text(), __FILE__,
 	     __LINE__);
+	  qmain->getDB().rollback();
+	  qapp->restoreOverrideCursor();
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: Database Error"),
 				tr("Unable to commit the current "

@@ -283,6 +283,103 @@ void qtbook_dvd::slotGo(void)
 	      slotPopulateCopiesEditor();
 	}
 
+      str = dvd.id->text().trimmed();
+      dvd.id->setText(str);
+
+      if(dvd.id->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the UPC field."));
+	  dvd.id->setFocus();
+	  return;
+	}
+
+      str = dvd.actors->toPlainText().trimmed();
+      dvd.actors->setPlainText(str);
+
+      if(dvd.actors->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Actor(s) field."));
+	  dvd.actors->setFocus();
+	  return;
+	}
+
+      str = dvd.directors->toPlainText().trimmed();
+      dvd.directors->setPlainText(str);
+
+      if(dvd.directors->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Director(s) field."));
+	  dvd.directors->setFocus();
+	  return;
+	}
+
+      if(dvd.runtime->text() == "00:00:00")
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please provide a valid Runtime."));
+	  dvd.runtime->setFocus();
+	  return;
+	}
+
+      str = dvd.format->text().trimmed();
+      dvd.format->setText(str);
+
+      if(dvd.format->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Format field."));
+	  dvd.format->setFocus();
+	  return;
+	}
+
+      str = dvd.title->text().trimmed();
+      dvd.title->setText(str);
+
+      if(dvd.title->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Title "
+				   "field."));
+	  dvd.title->setFocus();
+	  return;
+	}
+
+      str = dvd.studio->toPlainText().trimmed();
+      dvd.studio->setPlainText(str);
+
+      if(dvd.studio->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Studio field."));
+	  dvd.studio->setFocus();
+	  return;
+	}
+
+      str = dvd.category->toPlainText().trimmed();
+      dvd.category->setPlainText(str);
+
+      if(dvd.category->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Categories field."));
+	  dvd.category->setFocus();
+	  return;
+	}
+
+      str = dvd.description->toPlainText().trimmed();
+      dvd.description->setPlainText(str);
+
+      if(dvd.description->toPlainText().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the Abstract field."));
+	  dvd.description->setFocus();
+	  return;
+	}
+
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -299,102 +396,6 @@ void qtbook_dvd::slotGo(void)
 	}
 
       qapp->restoreOverrideCursor();
-      str = dvd.id->text().trimmed();
-      dvd.id->setText(str);
-
-      if(dvd.id->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the UPC field."));
-	  dvd.id->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.actors->toPlainText().trimmed();
-      dvd.actors->setPlainText(str);
-
-      if(dvd.actors->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Actor(s) field."));
-	  dvd.actors->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.directors->toPlainText().trimmed();
-      dvd.directors->setPlainText(str);
-
-      if(dvd.directors->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Director(s) field."));
-	  dvd.directors->setFocus();
-	  goto db_rollback;
-	}
-
-      if(dvd.runtime->text() == "00:00:00")
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please provide a valid Runtime."));
-	  dvd.runtime->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.format->text().trimmed();
-      dvd.format->setText(str);
-
-      if(dvd.format->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Format field."));
-	  dvd.format->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.title->text().trimmed();
-      dvd.title->setText(str);
-
-      if(dvd.title->text().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Title "
-				   "field."));
-	  dvd.title->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.studio->toPlainText().trimmed();
-      dvd.studio->setPlainText(str);
-
-      if(dvd.studio->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Studio field."));
-	  dvd.studio->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.category->toPlainText().trimmed();
-      dvd.category->setPlainText(str);
-
-      if(dvd.category->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Categories field."));
-	  dvd.category->setFocus();
-	  goto db_rollback;
-	}
-
-      str = dvd.description->toPlainText().trimmed();
-      dvd.description->setPlainText(str);
-
-      if(dvd.description->toPlainText().isEmpty())
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the Abstract field."));
-	  dvd.description->setFocus();
-	  goto db_rollback;
-	}
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE dvd SET "
@@ -545,10 +546,6 @@ void qtbook_dvd::slotGo(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
 	     query.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-				tr("Unable to create or update the entry. "
-				   "Please verify that "
-				   "the entry does not already exist."));
 	  goto db_rollback;
 	}
       else
@@ -574,10 +571,6 @@ void qtbook_dvd::slotGo(void)
 		     QString(tr("Unable to purge unnecessary copy "
 				"data.")),
 		     query.lastError().text(), __FILE__, __LINE__);
-		  QMessageBox::critical(this,
-					tr("BiblioteQ: Database Error"),
-					tr("Unable to purge unnecessary "
-					   "copy data."));
 		  goto db_rollback;
 		}
 
@@ -590,9 +583,6 @@ void qtbook_dvd::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -614,10 +604,6 @@ void qtbook_dvd::slotGo(void)
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
 		     errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this,
-		     tr("BiblioteQ: Database Error"),
-		     tr("Unable to create initial copies."));
 		  goto db_rollback;
 		}
 
@@ -630,9 +616,6 @@ void qtbook_dvd::slotGo(void)
 				"transaction.")),
 		     qmain->getDB().lastError().text(), __FILE__,
 		     __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to commit the current "
-					   "database transaction."));
 		  goto db_rollback;
 		}
 	    }
@@ -802,6 +785,10 @@ void qtbook_dvd::slotGo(void)
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create or update the entry. "
+			       "Please verify that "
+			       "the entry does not already exist."));
     }
   else
     {

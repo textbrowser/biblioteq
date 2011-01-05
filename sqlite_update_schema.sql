@@ -536,3 +536,10 @@ CREATE TABLE videogame_platforms
 ALTER TABLE book ADD marc_tags TEXT;
 ALTER TABLE journal ADD marc_tags TEXT;
 ALTER TABLE magazine ADD marc_tags TEXT;
+
+/* Release 6.44.2 */
+
+CREATE TABLE sequence
+(
+	value		 INTEGER PRIMARY KEY AUTOINCREMENT
+);
