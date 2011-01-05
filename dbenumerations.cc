@@ -479,13 +479,23 @@ void dbenumerations::slotRemove(void)
 
 void dbenumerations::slotSave(void)
 {
+  bool error = false;
+  QString table("");
+  QString forerror("");
   QString querystr("");
   QSqlQuery query(qmain->getDB());
+  QListWidget *listwidget = 0;
+  QTableWidget *tablewidget = 0;
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   for(int i = 0; i < 10; i++)
     {
+      table = "";
+      forerror = "";
+      listwidget = 0;
+      tablewidget = 0;
+
       if(i == 0)
 	querystr = "DELETE FROM cd_formats";
       else if(i == 1)
@@ -511,21 +521,16 @@ void dbenumerations::slotSave(void)
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  error = true;
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
 	     qmain->getDB().lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (this, tr("BiblioteQ: Database Error"),
-	     tr("Unable to create a database transaction."));
-	  return;
+	  continue;
 	}
 
       if(!query.exec(querystr))
 	{
-	  qapp->restoreOverrideCursor();
-
 	  if(i == 0)
 	    qmain->addError
 	      (QString(tr("Database Error")),
@@ -589,11 +594,6 @@ void dbenumerations::slotSave(void)
 
 	  goto db_rollback;
 	}
-
-      QString table("");
-      QString forerror("");
-      QListWidget *listwidget = 0;
-      QTableWidget *tablewidget = 0;
 
       if(i == 0)
 	{
@@ -660,7 +660,6 @@ void dbenumerations::slotSave(void)
 
 		if(!query.exec())
 		  {
-		    qapp->restoreOverrideCursor();
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the ")) +
@@ -732,7 +731,6 @@ void dbenumerations::slotSave(void)
 
 		if(!query.exec())
 		  {
-		    qapp->restoreOverrideCursor();
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the location (")) +
@@ -802,7 +800,6 @@ void dbenumerations::slotSave(void)
 
 		if(!query.exec())
 		  {
-		    qapp->restoreOverrideCursor();
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the minimum day (")) +
@@ -817,38 +814,32 @@ void dbenumerations::slotSave(void)
 	}
 
       if(!qmain->getDB().commit())
-	{
-	  qmain->addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to commit the current database "
-			"transaction.")),
-	     qmain->getDB().lastError().text(), __FILE__,
-	     __LINE__);
-	  qmain->getDB().rollback();
-	  qapp->restoreOverrideCursor();
-	  QMessageBox::critical(this,
-				tr("BiblioteQ: Database Error"),
-				tr("Unable to commit the current "
-				   "database transaction."));
-	  return;
-	}
+	qmain->addError
+	  (QString(tr("Database Error")),
+	   QString(tr("Unable to commit the current database "
+		      "transaction.")),
+	   qmain->getDB().lastError().text(), __FILE__,
+	   __LINE__);
+      else
+	continue;
+
+    db_rollback:
+
+      error = true;
+
+      if(!qmain->getDB().rollback())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Rollback failure.")),
+			qmain->getDB().lastError().text(),
+			__FILE__, __LINE__);
     }
 
   qapp->restoreOverrideCursor();
-  populateWidgets();
-  return;
 
- db_rollback:
-
-  qapp->setOverrideCursor(Qt::WaitCursor);
-
-  if(!qmain->getDB().rollback())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Rollback failure.")),
-		    qmain->getDB().lastError().text(), __FILE__, __LINE__);
-
-  qapp->restoreOverrideCursor();
-  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			tr("An error occurred while attempting to save "
-			   "the database enumerations."));
+  if(error)
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("An error occurred while attempting to save "
+			     "the database enumerations."));
+  else
+    populateWidgets();
 }
