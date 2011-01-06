@@ -1490,7 +1490,7 @@ void misc_functions::createInitialCopies(const QString &idArg,
 
 	if(db.driverName() == "QSQLITE")
 	  {
-	    int value = getSqliteUniqueId(db, errorstr);
+	    qint64 value = getSqliteUniqueId(db, errorstr);
 
 	    if(errorstr.isEmpty())
 	      query.bindValue(3, value);
@@ -2040,10 +2040,10 @@ QStringList misc_functions::getVideoGamePlatforms(const QSqlDatabase &db,
 ** -- getSqliteUniqueId() --
 */
 
-int misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
+qint64 misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 				      QString &errorstr)
 {
-  int value = -1;
+  qint64 value = -1;
   QString querystr("");
   QSqlQuery query(db);
 

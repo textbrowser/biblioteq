@@ -42,8 +42,6 @@ class misc_functions
 			     const char *, const int);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
-  static int getSqliteUniqueId(const QSqlDatabase &,
-			       QString &);
   static int getMemberMatchCount(const QString &, const QString &,
 				 const QSqlDatabase &, QString &);
   static bool isRequested(const QSqlDatabase &, const QString &,
@@ -73,6 +71,8 @@ class misc_functions
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,
 				  const QString &, QString &);
+  static qint64 getSqliteUniqueId(const QSqlDatabase &,
+				  QString &);
   static QImage getImage(const QString &, const QString &, const QString &,
 			 const QSqlDatabase &);
   static QString getOID(const QString &, const QString &,

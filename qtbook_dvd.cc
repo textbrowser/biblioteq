@@ -536,8 +536,8 @@ void qtbook_dvd::slotGo(void)
 	query.bindValue(21, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
-	  int value = misc_functions::getSqliteUniqueId(qmain->getDB(),
-							errorstr);
+	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							   errorstr);
 
 	  if(errorstr.isEmpty())
 	    query.bindValue(21, value);

@@ -508,8 +508,8 @@ void qtbook_magazine::slotGo(void)
       if(engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
 	  {
-	    int value = misc_functions::getSqliteUniqueId(qmain->getDB(),
-							  errorstr);
+	    qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							     errorstr);
 
 	    if(errorstr.isEmpty())
 	      query.bindValue(21, value);

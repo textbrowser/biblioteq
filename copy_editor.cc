@@ -784,7 +784,7 @@ QString copy_editor::saveCopies(void)
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
-	      int value = 0;
+	      qint64 value = 0;
 	      QString errorstr("");
 
 	      value = misc_functions::getSqliteUniqueId(qmain->getDB(),
