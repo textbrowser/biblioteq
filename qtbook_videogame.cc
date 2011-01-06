@@ -454,7 +454,18 @@ void qtbook_videogame::slotGo(void)
       if(engWindowTitle.contains("Modify"))
 	query.bindValue(18, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(18, vg.id->text());
+	{
+	  int value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.bindValue(18, value);
+	  else
+	    qmain->addError(QString(tr("Database Error")),
+			    QString(tr("Unable to generate a unique "
+				       "integer.")),
+			    errorstr);
+	}
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

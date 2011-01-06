@@ -783,7 +783,21 @@ QString copy_editor::saveCopies(void)
 	  query.bindValue(2, copy->copyid);
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
-	    query.bindValue(3, copy->itemoid + QString::number(i + 1));
+	    {
+	      int value = 0;
+	      QString errorstr("");
+
+	      value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							errorstr);
+
+	      if(errorstr.isEmpty())
+		query.bindValue(3, value);
+	      else
+		qmain->addError(QString(tr("Database Error")),
+				QString(tr("Unable to generate a unique "
+					   "integer.")),
+				errorstr);
+	    }
 
 	  if(!query.exec())
 	    {

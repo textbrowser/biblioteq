@@ -542,7 +542,18 @@ void qtbook_book::slotGo(void)
       if(engWindowTitle.contains("Modify"))
 	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
-	query.bindValue(22, id.id->text().replace("X", "10"));
+	{
+	  int value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.bindValue(22, value);
+	  else
+	    qmain->addError(QString(tr("Database Error")),
+			    QString(tr("Unable to generate a unique "
+				       "integer.")),
+			    errorstr);
+	}
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 

@@ -1489,7 +1489,14 @@ void misc_functions::createInitialCopies(const QString &idArg,
 	query.bindValue(2, id + "-" + QString::number(i + 1));
 
 	if(db.driverName() == "QSQLITE")
-	  query.bindValue(3, itemoid + QString::number(i + 1));
+	  {
+	    int value = getSqliteUniqueId(db, errorstr);
+
+	    if(errorstr.isEmpty())
+	      query.bindValue(3, value);
+	    else
+	      break;
+	  }
 
 	if(!query.exec())
 	  {
@@ -2027,4 +2034,36 @@ QStringList misc_functions::getVideoGamePlatforms(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return platforms;
+}
+
+/*
+** -- getSqliteUniqueId() --
+*/
+
+int misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
+				      QString &errorstr)
+{
+  int value = -1;
+  QString querystr("");
+  QSqlQuery query(db);
+
+  if(db.driverName() != "QSQLITE")
+    return value;
+
+  errorstr = "";
+  querystr = "INSERT INTO sequence VALUES (NULL)";
+
+  if(query.exec(querystr))
+    {
+      querystr = "SELECT MAX(value) FROM sequence";
+
+      if(query.exec(querystr))
+	if(query.next())
+	  value = query.value(0).toInt();
+    }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return value;
 }
