@@ -2648,8 +2648,13 @@ void qtbook_book::slotCancelImageDownload(void)
 void qtbook_book::slotReadyRead(void)
 {
   QBuffer *imgbuffer = findChild<QBuffer *> ();
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
 
-  if(reply && imgbuffer)
-    imgbuffer->write(reply->readAll());
+  if(manager)
+    {
+      QNetworkReply *reply = manager->findChild<QNetworkReply *> ();
+
+      if(reply && imgbuffer)
+	imgbuffer->write(reply->readAll());
+    }
 }
