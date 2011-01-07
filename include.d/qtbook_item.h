@@ -34,9 +34,6 @@ class qtbook_item_working_dialog: public QProgressDialog
  protected:
   void closeEvent(QCloseEvent *e)
   {
-    if(e)
-      e->ignore();
-
     QProgressDialog::closeEvent(e);
   }
 };

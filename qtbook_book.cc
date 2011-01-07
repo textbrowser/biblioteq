@@ -129,6 +129,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(slotDownloadImage(void)));
   connect(httpProgress, SIGNAL(canceled(void)), this,
 	  SLOT(slotCancelImageDownload(void)));
+  connect(httpProgress, SIGNAL(rejected(void)), this,
+	  SLOT(slotCancelImageDownload(void)));
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
