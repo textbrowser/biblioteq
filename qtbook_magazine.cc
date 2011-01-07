@@ -1721,6 +1721,9 @@ void qtbook_magazine::slotShowUsers(void)
 
 void qtbook_magazine::slotQuery(void)
 {
+  if(findChild<generic_thread *> ())
+    return;
+
   int i = 0;
   QString etype = "";
   QString errorstr = "";
@@ -1739,7 +1742,7 @@ void qtbook_magazine::slotQuery(void)
       return;
     }
 
-  if((thread = new(std::nothrow) generic_thread()) != 0)
+  if((thread = new(std::nothrow) generic_thread(this)) != 0)
     {
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));

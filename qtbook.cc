@@ -4710,7 +4710,7 @@ void qtbook::readGlobalSetup(void)
   filename.append(CONFIGFILE);
 #endif
 
-  if((thread = new(std::nothrow) generic_thread()) != 0)
+  if((thread = new(std::nothrow) generic_thread(this)) != 0)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
       thread->setFilename(filename);

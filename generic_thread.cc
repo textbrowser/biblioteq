@@ -6,7 +6,7 @@ extern qtbook *qmain;
 ** -- generic_thread() --
 */
 
-generic_thread::generic_thread(void)
+generic_thread::generic_thread(QObject *parent):QThread(parent)
 {
   type = -1;
   eType = "";

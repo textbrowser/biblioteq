@@ -15,6 +15,7 @@
 #include <QString>
 #include <QWidget>
 #include <QPrinter>
+#include <QKeyEvent>
 #include <QMainWindow>
 #include <QPrintDialog>
 #include <QTextDocument>
@@ -36,6 +37,14 @@ class qtbook_item_working_dialog: public QProgressDialog
   {
     if(e)
       e->ignore();
+  }
+
+  void keyPressEvent(QKeyEvent *e)
+  {
+    if(e && e->key() == Qt::Key_Escape)
+      e->ignore();
+    else
+      QProgressDialog::keyPressEvent(e);
   }
 };
 

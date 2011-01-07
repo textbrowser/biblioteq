@@ -32,7 +32,7 @@ class generic_thread: public QThread
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int Z3950_QUERY = 300;
 
-  generic_thread(void);
+  generic_thread(QObject *);
   ~generic_thread();
   void run(void);
   void msleep(const int);
