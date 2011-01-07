@@ -2492,6 +2492,9 @@ void qtbook_book::slotDownloadImage(void)
   if(manager)
     return;
 
+  if(manager->findChild<QNetworkReply *> ())
+    return;
+
   if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     return;
 
@@ -2524,6 +2527,12 @@ void qtbook_book::slotDownloadImage(void)
        ("%", id.id->text().trimmed()));
 
   QNetworkReply *reply = manager->get(QNetworkRequest(url));
+
+  if(!reply)
+    {
+      manager->deleteLater();
+      imgbuffer->deleteLater();
+    }
 
   connect(reply, SIGNAL(readyRead(void)),
 	  this, SLOT(slotReadyRead(void)));
