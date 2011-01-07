@@ -2614,8 +2614,11 @@ void qtbook_book::slotDownloadFinished(void)
 void qtbook_book::slotDataTransferProgress(qint64 bytesread,
 					   qint64 totalbytes)
 {
-  httpProgress->setMaximum(totalbytes);
-  httpProgress->setValue(bytesread);
+  if(httpProgress->isVisible())
+    {
+      httpProgress->setMaximum(totalbytes);
+      httpProgress->setValue(bytesread);
+    }
 }
 
 /*
