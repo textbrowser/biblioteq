@@ -2485,7 +2485,10 @@ void qtbook_book::slotDownloadImage(void)
   if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     return;
 
-  QBuffer *imgbuffer = 0;
+  QBuffer *imgbuffer = findChild<QBuffer *> ();
+
+  if(imgbuffer)
+    imgbuffer->deleteLater();
 
   if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
     {
