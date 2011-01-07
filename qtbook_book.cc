@@ -47,11 +47,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  requestid1 = requestid2 = 0;
   parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
-  httpRequestAborted = false;
   oldq = misc_functions::getColumnString
     (qmain->getUI().table, row, tr("Quantity")).toInt();
   id.setupUi(this);
@@ -1796,7 +1794,7 @@ void qtbook_book::slotQuery(void)
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
-			      "system. Please be patient."));
+			      "system. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
@@ -2466,16 +2464,7 @@ void qtbook_book::slotGenerateISBN(void)
 
 void qtbook_book::slotDownloadImage(void)
 {
-  QString url = "";
-  QPushButton *pb = qobject_cast<QPushButton *> (sender());
-
   if(httpProgress->isVisible())
-    return;
-
-  if(requestid1 > 0 && pb == id.dwnldFront)
-    return;
-
-  if(requestid2 > 0 && pb == id.dwnldBack)
     return;
 
   if(id.id->text().trimmed().length() != 10)
@@ -2488,40 +2477,55 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  QHttp *http = 0;
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
 
-  if((http = new(std::nothrow) QHttp(this)) == 0)
+  if(manager)
+    manager->deleteLater();
+
+  if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     return;
-
-  connect(http, SIGNAL(requestStarted(int)),
-	  this, SLOT(slotHttpRequestStarted(int)));
-  connect(http, SIGNAL(requestFinished(int, bool)),
-	  this, SLOT(slotHttpRequestFinished(int, bool)));
-  connect(http, SIGNAL(dataReadProgress(int, int)),
-	  this, SLOT(slotUpdateDataReadProgress(int, int)));
 
   QBuffer *imgbuffer = 0;
 
-  if(pb == id.dwnldFront)
+  if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
     {
-      if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
-	{
-	  http->deleteLater();
-	  return;
-	}
-    }
-  else
-    {
-      if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
-	{
-	  http->deleteLater();
-	  return;
-	}
+      manager->deleteLater();
+      return;
     }
 
-  httpRequestAborted = false;
+  QPushButton *pb = qobject_cast<QPushButton *> (sender());
+
+  if(pb == id.dwnldFront)
+    imgbuffer->setProperty("which", "front");
+  else
+    imgbuffer->setProperty("which", "back");
+
+  imgbuffer->open(QIODevice::WriteOnly);
+
+  QUrl url;
+
+  if(pb == id.dwnldFront)
+    url = QUrl::fromUserInput
+      (qmain->getAmazonHash()["front_cover_host"] +
+       qmain->getAmazonHash()["front_cover_path"].replace
+       ("%", id.id->text().trimmed()));
+  else
+    url = QUrl::fromUserInput
+      (qmain->getAmazonHash()["back_cover_host"] +
+       qmain->getAmazonHash()["back_cover_path"].replace
+       ("%", id.id->text().trimmed()));
+
+  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+
+  connect(reply, SIGNAL(readyRead(void)),
+	  this, SLOT(slotReadyRead(void)));
+  connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
+	  this, SLOT(slotDataTransferProgress(qint64, qint64)));
+  connect(reply, SIGNAL(finished(void)),
+	  this, SLOT(slotDownloadFinished(void)));
   httpProgress->setMaximum(0);
   httpProgress->setMinimum(0);
+  httpProgress->show();
 
   if(pb == id.dwnldFront)
     {
@@ -2529,9 +2533,6 @@ void qtbook_book::slotDownloadImage(void)
 	(tr("BiblioteQ: Front Cover Image Download"));
       httpProgress->setLabelText(tr("Downloading the front cover image. "
 				    "Please be patient..."));
-      http->setHost(qmain->getAmazonHash()["front_cover_host"]);
-      url = qmain->getAmazonHash()["front_cover_path"].replace
-	("%", id.id->text().trimmed());
     }
   else
     {
@@ -2539,57 +2540,28 @@ void qtbook_book::slotDownloadImage(void)
 	(tr("BiblioteQ: Back Cover Image Download"));
       httpProgress->setLabelText(tr("Downloading the back cover image. "
 				    "Please be patient..."));
-      http->setHost(qmain->getAmazonHash()["back_cover_host"]);
-      url = qmain->getAmazonHash()["back_cover_path"].replace
-	("%", id.id->text().trimmed());
     }
-
-  imgbuffer->open(QIODevice::WriteOnly);
-  QByteArray path = QUrl::toPercentEncoding(url, "!$&'()*+,;=:@/");
-
-  if(pb == id.dwnldFront)
-    requestid1 = http->get(path, imgbuffer);
-  else
-    requestid2 = http->get(path, imgbuffer);
 }
 
 /*
-** -- slotHttpRequestStarted() --
+** -- slotDownloadFinished() --
 */
 
-void qtbook_book::slotHttpRequestStarted(int rqid)
+void qtbook_book::slotDownloadFinished(void)
 {
-  Q_UNUSED(rqid);
-  httpProgress->show();
-}
-
-/*
-** -- slotHttpRequestFinished() --
-*/
-
-void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
-{
-  if(httpRequestAborted)
-    {
-      httpProgress->hide();
-      return;
-    }
-
-  if(!(rqid == requestid1 || rqid == requestid2))
-    return;
-
   if(httpProgress->isVisible())
     httpProgress->hide();
 
-  QHttp *http = findChild<QHttp *> ();
-  QBuffer *imgbuffer = 0;
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
 
-  if(http)
-    imgbuffer = qobject_cast<QBuffer *> (http->currentDestinationDevice());
+  if(manager)
+    manager->deleteLater();
 
-  if(!error && imgbuffer)
+  QBuffer *imgbuffer = findChild<QBuffer *> ();
+
+  if(imgbuffer)
     {
-      if(rqid == requestid1)
+      if(imgbuffer->property("which") == "front")
 	{
 	  if(imgbuffer->data().size() > 1000)
 	    {
@@ -2598,12 +2570,17 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	    }
 
 	  if(imgbuffer->data().size() < 1000)
-	    QMessageBox::warning
-	      (this, tr("BiblioteQ: HTTP Warning"),
-	       tr("The front cover image for the specified "
-		  "ISBN may not exist."));
+	    {
+	      imgbuffer->deleteLater();
+	      QMessageBox::warning
+		(this, tr("BiblioteQ: HTTP Warning"),
+		 tr("The front cover image for the specified "
+		    "ISBN may not exist."));
+	    }
+	  else
+	    imgbuffer->deleteLater();
 	}
-      else if(rqid == requestid2)
+      else
 	{
 	  if(imgbuffer->data().size() > 1000)
 	    {
@@ -2612,64 +2589,26 @@ void qtbook_book::slotHttpRequestFinished(int rqid, bool error)
 	    }
 
 	  if(imgbuffer->data().size() < 1000)
-	    QMessageBox::warning
-	      (this, tr("BiblioteQ: HTTP Warning"),
-	       tr("The back cover image for the specified ISBN "
-		  "may not exist."));
+	    {
+	      imgbuffer->deleteLater();
+	      QMessageBox::warning
+		(this, tr("BiblioteQ: HTTP Warning"),
+		 tr("The back cover image for the specified ISBN "
+		    "may not exist."));
+	    }
+	  else
+	    imgbuffer->deleteLater();
 	}
     }
-
-  if(error && http)
-    {
-      if(rqid == requestid1)
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("Front cover image download failed: ")) +
-	   http->errorString() + tr("."));
-      else if(rqid == requestid2)
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("Back cover image download failed: ")) +
-	   http->errorString() + tr("."));
-      else
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("An unknown error occurred.")));
-    }
-  else if(error)
-    {
-      if(rqid == requestid1)
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("Front cover image download failed.")));
-      else if(rqid == requestid2)
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("Back cover image download failed.")));
-      else
-	QMessageBox::critical
-	  (this, tr("BiblioteQ: HTTP Error"),
-	   QString(tr("An unknown error occurred.")));
-    }
-
-  requestid1 = requestid2 = 0;
-
-  if(http)
-    http->deleteLater();
-
-  if(imgbuffer)
-    imgbuffer->deleteLater();
 }
 
 /*
-** -- slotUpdateDataReadProgress() --
+** -- slotDataTransferProgress() --
 */
 
-void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
+void qtbook_book::slotDataTransferProgress(qint64 bytesread,
+					   qint64 totalbytes)
 {
-  if(httpRequestAborted)
-    return;
-
   httpProgress->setMaximum(totalbytes);
   httpProgress->setValue(bytesread);
 }
@@ -2680,19 +2619,26 @@ void qtbook_book::slotUpdateDataReadProgress(int bytesread, int totalbytes)
 
 void qtbook_book::slotCancelImageDownload(void)
 {
-  httpRequestAborted = true;
-
-  QHttp *http = findChild<QHttp *> ();
-  QBuffer *imgbuffer = 0;
-
-  if(http)
-    {
-      imgbuffer = qobject_cast<QBuffer *> (http->currentDestinationDevice());
-      http->deleteLater();
-    }
+  QBuffer *imgbuffer = findChild<QBuffer *> ();
 
   if(imgbuffer)
     imgbuffer->deleteLater();
 
-  requestid1 = requestid2 = 0;
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+
+  if(manager)
+    manager->deleteLater();
+}
+
+/*
+** -- slotReadyRead() --
+*/
+
+void qtbook_book::slotReadyRead(void)
+{
+  QBuffer *imgbuffer = findChild<QBuffer *> ();
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply && imgbuffer)
+    imgbuffer->write(reply->readAll());
 }

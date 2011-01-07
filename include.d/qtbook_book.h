@@ -5,13 +5,14 @@
 ** -- Qt Includes --
 */
 
-#include <QHttp>
 #include <QMenu>
 #include <QBuffer>
 #include <QDialog>
 #include <QFileDialog>
 #include <QMainWindow>
 #include <QStringList>
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
 
 /*
 ** -- Local Includes --
@@ -44,9 +45,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
-  int requestid1; // Front Cover HTTP Get ID
-  int requestid2; // Back Cover HTTP Get ID
-  bool httpRequestAborted;
   QString cb_orig_ss;
   QString dt_orig_ss;
   QString engWindowTitle;
@@ -65,17 +63,17 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotQuery(void);
   void slotReset(void);
   void slotCancel(void);
+  void slotReadyRead(void);
   void slotShowUsers(void);
   void slotSelectImage(void);
   void slotGenerateISBN(void);
   void slotDownloadImage(void);
+  void slotDownloadFinished(void);
   void slotConvertISBN10to13(void);
   void slotConvertISBN13to10(void);
-  void slotHttpRequestStarted(int);
   void slotCancelImageDownload(void);
-  void slotHttpRequestFinished(int, bool);
+  void slotDataTransferProgress(qint64, qint64);
   void slotPopulateCopiesEditor(void);
-  void slotUpdateDataReadProgress(int, int);
 };
 
 #endif

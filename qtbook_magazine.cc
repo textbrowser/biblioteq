@@ -1744,7 +1744,7 @@ void qtbook_magazine::slotQuery(void)
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
-			      "system. Please be patient."));
+			      "system. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
