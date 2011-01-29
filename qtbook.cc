@@ -4114,7 +4114,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     {
       resultsCount = misc_functions::sqliteQuerySize
 	(searchstr, db, __FILE__, __LINE__);
-      pages = static_cast<int> 
+      pages = static_cast<int>
 	(ceil
 	 ((static_cast<double> (resultsCount)) /
 	  (static_cast<double> (entriesPerPage))));
@@ -4124,7 +4124,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
       if(populateQuery)
 	resultsCount = populateQuery->size();
 
-      pages = static_cast<int> 
+      pages = static_cast<int>
 	(ceil
 	 ((static_cast<double> (resultsCount)) /
 	  (static_cast<double> (entriesPerPage))));
@@ -4618,7 +4618,7 @@ void qtbook::slotSaveUser(void)
 		     errorstr, __FILE__, __LINE__);
 	}
 
-      qapp->restoreOverrideCursor(); 
+      qapp->restoreOverrideCursor();
       userinfo_diag->memberProperties["membersince"] =
 	userinfo_diag->userinfo.membersince->date().toString
 	("MM/dd/yyyy");
@@ -5057,7 +5057,7 @@ void qtbook::slotRemoveMember(void)
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
-  
+
   if(!errorstr.isEmpty())
     {
       addError(QString(tr("Database Error")),
@@ -8848,7 +8848,6 @@ void qtbook::slotAddAdmin(void)
 		    SLOT(slotAdminCheckBoxClicked(int)));
 	  }
       }
-      
 }
 
 /*

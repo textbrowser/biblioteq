@@ -40,7 +40,7 @@ class copy_editor: public QDialog
 	copyid = copyid_arg;
 	itemoid = itemoid_arg;
       };
-    
+
   public:
     QString copyid;
     QString itemoid;

@@ -677,7 +677,7 @@ void dbenumerations::slotSave(void)
 	    if(tablewidget->cellWidget(j, 0) &&
 	       tablewidget->item(j, 1))
 	      {
-		int index = qobject_cast<QComboBox *> 
+		int index = qobject_cast<QComboBox *>
 		  (tablewidget->cellWidget(j, 0))->currentIndex();
 
 		if(index == 0)
@@ -734,7 +734,7 @@ void dbenumerations::slotSave(void)
 		    qmain->addError
 		      (QString(tr("Database Error")),
 		       QString(tr("Unable to create the location (")) +
-		       qobject_cast<QComboBox *> 
+		       qobject_cast<QComboBox *>
 		       (tablewidget->cellWidget(j, 0))->currentText() +
 		       tr(", ") +
 		       tablewidget->item(j, 1)->text().trimmed() +

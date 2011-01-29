@@ -990,7 +990,7 @@ void qtbook_cd::updateWindow(const int state)
       cd.computeButton->setVisible(false);
       trd.saveButton->setVisible(false);
       trd.insertButton->setVisible(false);
-      trd.deleteButton->setVisible(false);      
+      trd.deleteButton->setVisible(false);
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Music CD Details (")) +
@@ -1055,7 +1055,7 @@ void qtbook_cd::modify(const int state)
       cd.computeButton->setVisible(false);
       trd.saveButton->setVisible(false);
       trd.insertButton->setVisible(false);
-      trd.deleteButton->setVisible(false);      
+      trd.deleteButton->setVisible(false);
       cd.frontButton->setVisible(false);
       cd.backButton->setVisible(false);
 

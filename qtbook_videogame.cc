@@ -880,7 +880,7 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   if(field.isEmpty() && value.isEmpty())
     {
       QList<QAction *> actions = vg.resetButton->menu()->actions();
-      
+
       actions[0]->setVisible(false);
       actions[1]->setVisible(false);
       actions.clear();
@@ -991,12 +991,12 @@ void qtbook_videogame::modify(const int state)
       vg.showUserButton->setEnabled(true);
       vg.okButton->setVisible(false);
       vg.queryButton->setVisible(false);
-      vg.resetButton->setVisible(false);     
+      vg.resetButton->setVisible(false);
       vg.frontButton->setVisible(false);
       vg.backButton->setVisible(false);
 
       QList<QAction *> actions = vg.resetButton->menu()->actions();
-      
+
       actions[0]->setVisible(false);
       actions[1]->setVisible(false);
       actions.clear();

@@ -1017,7 +1017,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   if(field.isEmpty() && value.isEmpty())
     {
       QList<QAction *> actions = ma.resetButton->menu()->actions();
-      
+
       actions[0]->setVisible(false);
       actions[1]->setVisible(false);
       actions.clear();
@@ -1155,7 +1155,7 @@ void qtbook_magazine::modify(const int state)
       ma.backButton->setVisible(false);
 
       QList<QAction *> actions = ma.resetButton->menu()->actions();
-      
+
       actions[0]->setVisible(false);
       actions[1]->setVisible(false);
       actions.clear();

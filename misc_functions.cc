@@ -840,7 +840,7 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
     "item_borrower.item_oid = dvd.myoid AND "
     "item_borrower.type = 'DVD' AND "
     "item_borrower.memberid = ? "
-    "UNION ALL "    
+    "UNION ALL "
     "SELECT "
     "item_borrower.copyid, "
     "journal.location, "

@@ -346,7 +346,7 @@
      qtbook_journal.cc (DONE)
      qtbook_magazine.cc (DONE)
      qtbook_videogame.cc (DONE)
-191. Pressing the escape key on a QDialog window will not trigger a 
+191. Pressing the escape key on a QDialog window will not trigger a
      close event. As a result, "dirty data" warning may be displayed. (DONE)
 192. Remove OFFSYSTEM support. The project appears abandoned. (DONE)
 193. All QFileDialog instances should have their current directory set
