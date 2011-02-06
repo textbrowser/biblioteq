@@ -5,10 +5,10 @@ LANGUAGE	= C++
 QT		+= sql network
 CONFIG		+= qt release thread warn_on x11
 DEFINES		+= CONFIGFILE="'\"/usr/local/share/biblioteq.conf\"'"
-QMAKE_CXXFLAGS	+= -Wall -Werror
+QMAKE_CXXFLAGS	+= -Wall -Wextra -Werror
 QMAKE_CXXFLAGS_RELEASE -= -O
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall -Werror
+QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.png
