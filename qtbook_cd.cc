@@ -1480,6 +1480,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 #endif
     }
 
+  progress.hide();
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   trd.table->setRowCount(i);

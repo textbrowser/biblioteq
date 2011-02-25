@@ -267,6 +267,7 @@ void copy_editor::populateCopiesEditor(void)
 #endif
     }
 
+  progress1.hide();
   cb.table->setRowCount(i);
   querystr = QString
     ("SELECT %1.title, "
@@ -363,6 +364,7 @@ void copy_editor::populateCopiesEditor(void)
 	break; // Out of resources?
     }
 
+  progress2.hide();
   cb.table->resizeColumnsToContents();
 }
 
@@ -813,6 +815,8 @@ QString copy_editor::saveCopies(void)
 	  qapp->processEvents();
 #endif
 	}
+
+      progress.hide();
     }
 
   return lastError;

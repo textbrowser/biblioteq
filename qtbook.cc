@@ -4083,7 +4083,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 #endif
     }
 
-  ui.table->update();
+  progress.hide();
 
   if(search_type == CUSTOM_QUERY)
     {
@@ -6213,6 +6213,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 #endif
     }
 
+  progress.hide();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i);
   bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
@@ -8534,6 +8535,7 @@ void qtbook::slotShowHistory(void)
 #endif
     }
 
+  progress.hide();
   history.table->setRowCount(i);
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -9041,6 +9043,7 @@ void qtbook::slotRefreshAdminList(void)
 #endif
     }
 
+  progress.hide();
   ab.table->setRowCount(i);
   ab.table->horizontalHeader()->resizeSections(QHeaderView::Stretch);
   deletedAdmins.clear();

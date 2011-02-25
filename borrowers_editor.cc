@@ -194,6 +194,7 @@ void borrowers_editor::showUsers(void)
 #endif
     }
 
+  progress1.hide();
   bd.table->setRowCount(i);
 
   if(state == qtbook::EDITABLE)
@@ -310,6 +311,7 @@ void borrowers_editor::showUsers(void)
 	break; // Out of resources?
     }
 
+  progress2.hide();
   bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
