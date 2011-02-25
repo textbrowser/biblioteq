@@ -933,7 +933,7 @@ void qtbook_book::slotGo(void)
 			 myqstring::escape
 			 (id.location->currentText()) + "' ");
 
-      searchstr.append("AND LOWER(marc_tags) LIKE '%" +
+      searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
 		       myqstring::escape
 		       (id.marc_tags->toPlainText().toLower()) +
 		       "%' ");
