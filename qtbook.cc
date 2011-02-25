@@ -4083,6 +4083,8 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 #endif
     }
 
+  ui.table->update();
+
   if(search_type == CUSTOM_QUERY)
     {
       if(tmplist.isEmpty() && populateQuery)

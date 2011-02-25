@@ -229,6 +229,7 @@ void main_table::resetTable(const QString &type, const QString &roles)
   resizeColumnsToContents();
   clearSelection();
   setCurrentItem(0);
+  update();
 }
 
 /*
