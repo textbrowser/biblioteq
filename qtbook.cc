@@ -4188,7 +4188,11 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     if(populateQuery)
       populateQuery->clear();
 #endif
-  ui.table->setFocus();
+
+#ifdef Q_WS_MAC
+  ui.table->hide();
+  ui.table->show();
+#endif
   return 0;
 }
 
@@ -6217,6 +6221,10 @@ void qtbook::slotPopulateMembersBrowser(void)
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i);
   bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+#ifdef Q_WS_MAC
+  bb.table->hide();
+  bb.table->show();
+#endif
 }
 
 /*
@@ -8887,6 +8895,10 @@ void qtbook::slotDeleteAdmin(void)
 	deletedAdmins.append(str);
 
       ab.table->removeRow(row);
+#ifdef Q_WS_MAC
+      ab.table->hide();
+      ab.table->show();
+#endif
     }
 }
 
