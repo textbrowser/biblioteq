@@ -76,7 +76,8 @@ SOURCES		= qtbook.cc \
 		  hyperlinked_text_edit.cc
 
 TRANSLATIONS    = translations.d\\biblioteq_cs_CZ.ts \
-		  translations.d\\biblioteq_de_DE.ts
+		  translations.d\\biblioteq_de_DE.ts \
+		  translations.d\\biblioteq_el_GR.ts
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
