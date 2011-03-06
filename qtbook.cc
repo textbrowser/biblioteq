@@ -475,7 +475,7 @@ qtbook::qtbook(void):QMainWindow()
   connect(ui.configTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.printTool, SIGNAL(triggered(void)), this,
-	  SLOT(slotPrintSelected(void)));
+	  SLOT(slotPrintView(void)));
   connect(ui.previousPageButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPreviousPage(void)));
   connect(ui.nextPageButton, SIGNAL(clicked(void)), this,
@@ -938,9 +938,9 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.44.3.<br>"
+  mb.setText("<html>BiblioteQ Version 6.45<br>"
 	     "Copyright (c) 2006 - 2011 "
-	     "Battery.<br>"
+	     "Two Red Frogs Productions.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
@@ -8143,63 +8143,48 @@ void qtbook::slotExecuteCustomQuery(void)
 }
 
 /*
-** -- slotPrintSelected() --
+** -- slotPrintView() --
 */
 
-void qtbook::slotPrintSelected(void)
+void qtbook::slotPrintView(void)
 {
-  int i = 0;
-  int j = 0;
   QString html = "<html>";
   QPrinter printer;
-  QModelIndex index;
   QPrintDialog dialog(&printer, this);
   QTextDocument document;
-  QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
 #ifdef Q_WS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
-  if(list.isEmpty())
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select at least one item to print."));
-      return;
-    }
-  else if(list.size() >= 5)
-    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			     tr("Are you sure that you wish to print the ") +
-			     QString::number(list.size()) +
-			     tr(" selected items?"),
-			     QMessageBox::Yes | QMessageBox::No,
-			     QMessageBox::No) == QMessageBox::No)
-      {
-	list.clear();
-	return;
-      }
-
   qapp->setOverrideCursor(Qt::WaitCursor);
+  html += "<table>";
+  html += "<tr>";
 
-  foreach(index, list)
+  for(int i = 0; i < ui.table->columnCount(); i++)
+    if(!ui.table->isColumnHidden(i))
+      html += "<th>" + ui.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+  
+  for(int i = 0; i < ui.table->rowCount(); i++)
     {
-      i = index.row();
+      html += "<tr>";
 
-      for(j = 0; j < ui.table->columnCount(); j++)
+      for(int j = 0; j < ui.table->columnCount(); j++)
 	if(!ui.table->isColumnHidden(j))
-	  html += "<b>" + ui.table->horizontalHeaderItem(j)->text() +
-	    ":</b> " + ui.table->item(i, j)->text() + "<br>";
+	  html += "<td>" + ui.table->item(i, j)->text() + "</td>";
 
-      html = html.trimmed();
-      html += "<br>";
+      html += "</tr>";
     }
 
-  html = html.trimmed();
+  html += "</table>";
   html += "</html>";
-  list.clear();
   qapp->restoreOverrideCursor();
-  printer.setPageSize(QPrinter::Letter);
+  printer.setPaperSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
+  printer.setOrientation(QPrinter::Landscape);
 
   if(dialog.exec() == QDialog::Accepted)
     {

@@ -1109,7 +1109,7 @@
      <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
    </property>
    <property name="text">
-    <string>Print Selected Item(s)</string>
+    <string>Print Current View</string>
    </property>
    <property name="font">
     <font>

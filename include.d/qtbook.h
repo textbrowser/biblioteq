@@ -289,6 +289,7 @@ class qtbook: public QMainWindow
   void slotInsertMag(void);
   void slotInsertDVD(void);
   void slotMagSearch(void);
+  void slotPrintView(void);
   void slotBookSearch(void);
   void slotDisconnect(void);
   void slotInsertBook(void);
@@ -309,7 +310,6 @@ class qtbook: public QMainWindow
   void slotCancelAddUser(void);
   void slotBranchChanged(void);
   void slotPrintReserved(void);
-  void slotPrintSelected(void);
   void slotResetErrorLog(void);
   void slotModifyBorrower(void);
   void slotAutoPopOnFilter(void);
