@@ -1,4 +1,10 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QSettings>
+
+/*
 ** -- Local Includes --
 */
 
@@ -224,8 +230,12 @@ void main_table::resetTable(const QString &type, const QString &roles)
   if(!type.isEmpty())
     setColumns(type, roles);
 
-  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  horizontalHeader()->setSortIndicatorShown(true);
+  QSettings settings;
+
+  if(settings.contains(type + "_header_state"))
+    horizontalHeader()->restoreState
+      (settings.value(type + "_header_state").toByteArray());
+
   resizeColumnsToContents();
   clearSelection();
   setCurrentItem(0);

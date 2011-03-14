@@ -693,6 +693,11 @@ void qtbook::slotSetColumns(void)
       ui.table->recordColumnHidden
 	(typefilter, i, !ui.configTool->menu()->actions().at(i)->isChecked());
     }
+
+  QSettings settings;
+
+  settings.setValue(typefilter + "_header_state",
+		    ui.table->horizontalHeader()->saveState());
 }
 
 /*
@@ -1561,6 +1566,11 @@ void qtbook::slotRefresh(void)
 {
   QString str = "";
   QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
+  QSettings settings;
+
+  if(settings.contains(data.toString() + "_header_state"))
+    ui.table->horizontalHeader()->restoreState
+      (settings.value(data.toString() + "_header_state").toByteArray());
 
   if(data.toString() == "All Overdue" && roles.isEmpty())
     str = br.userid->text();
