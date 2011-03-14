@@ -61,5 +61,5 @@ QString myqstring::escape(const QString &str)
   else
     mystr = str;
 
-  return mystr;
+  return mystr.trimmed();
 }
