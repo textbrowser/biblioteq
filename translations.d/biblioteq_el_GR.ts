@@ -407,11 +407,15 @@
     </message>
     <message>
         <source>Refresh List</source>
-        <translation>Ανανέωση λίστας</translation>
+        <translation type="obsolete">Ανανέωση λίστας</translation>
     </message>
     <message>
         <source>Close Browser</source>
         <translation>Κλείσιμο περιοχής</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">Ανανέωση πίνακα</translation>
     </message>
 </context>
 <context>
@@ -430,11 +434,11 @@
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -573,7 +577,7 @@
     </message>
     <message>
         <source>To modify a copy&apos;s reservation status, you must first select it.</source>
-        <translation>Η επεξεργασία της κατάστασης δανεισμού ενός αντικειμένου προϋποθέτει την αρχική επιλογή του.</translation>
+        <translation type="obsolete">Η επεξεργασία της κατάστασης δανεισμού ενός αντικειμένου προϋποθέτει την αρχική επιλογή του.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -610,6 +614,14 @@
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
         <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω σφαλμάτων στη βάση δεδομένων.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the selected item has not been reserved.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -796,7 +808,7 @@
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 Διαδίκτυο</translation>
     </message>
     <message>
@@ -1041,6 +1053,14 @@ URL</source>
         <source>Unable to create copy data.</source>
         <translation>Δεν είναι δυνατή η δημιουργία δεδομένων του αντίτυπου.</translation>
     </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1097,7 +1117,7 @@ URL</source>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</source>
-        <translation>Αυτή η φόρμα απευθύνεται σε προχωρημένους χρήστες που γνωρίζουν SQL και το πρότυπο βάσης δεδομένων του BiblioteQ. Παρακαλώ να γίνει εισαγωγή πληροφορίας εικόνας  όταν δημιουργηθεί το ερώτημα.</translation>
+        <translation type="obsolete">Αυτή η φόρμα απευθύνεται σε προχωρημένους χρήστες που γνωρίζουν SQL και το πρότυπο βάσης δεδομένων του BiblioteQ. Παρακαλώ να γίνει εισαγωγή πληροφορίας εικόνας  όταν δημιουργηθεί το ερώτημα.</translation>
     </message>
     <message>
         <source>Database Tables</source>
@@ -1118,6 +1138,384 @@ URL</source>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
         <translation>Αυτή η φόρμα απευθύνεται σε προχωρημένους χρήστες που γνωρίζουν SQL και το πρότυπο βάσης δεδομένων του BiblioteQ. Παρακαλώ να γίνει εισαγωγή πληροφορίας εικόνας (Εξώφυλλο, οπισθόφυλλο) όταν δημιουργηθεί το ερώτημα.</translation>
+    </message>
+</context>
+<context>
+    <name>dbEnumerations</name>
+    <message>
+        <source>CD Formats</source>
+        <translation>Είδος CD</translation>
+    </message>
+    <message>
+        <source>DVD Regions</source>
+        <translation>Περιοχή DVD</translation>
+    </message>
+    <message>
+        <source>Reservations Minimum Days</source>
+        <translation>Ελάχιστες ημέρες δανεισμού</translation>
+    </message>
+    <message>
+        <source>Video Game Ratings</source>
+        <translation>Βαθμολογία παιχνιδιού</translation>
+    </message>
+    <message>
+        <source>DVD Aspect Ratios</source>
+        <translation>Κινηματογραφικό κάδρο</translation>
+    </message>
+    <message>
+        <source>Languages</source>
+        <translation>Γλώσσα</translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation>Νομισματική μονάδα</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Τύπος</translation>
+    </message>
+    <message>
+        <source>Days</source>
+        <translation>Ημέρες</translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation>Βιβλία</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation>Εφημερίδες</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation>Περιοδικά</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation>Μουσικά CDs</translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation>Ηλεκτρονικά παιχνίδια</translation>
+    </message>
+    <message>
+        <source>DVD Ratings</source>
+        <translation>Βαθμολογία DVD</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Τοποθεσίες</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Τοποθεσία</translation>
+    </message>
+    <message>
+        <source>Video Game Platforms</source>
+        <translation>Είδος παιχνιδιού</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Enumerations Browser</source>
+        <translation>BiblioteQ: Επεξεργασία τιμών στη βάση δεδομένων</translation>
+    </message>
+    <message>
+        <source>Add CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation type="unfinished">5</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation type="unfinished">6</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVDs</translation>
+    </message>
+    <message>
+        <source>Add Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Changes</source>
+        <translation type="unfinished">Αποθήκευση αλλαγών</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished">Κλείσιμο περιοχής</translation>
+    </message>
+</context>
+<context>
+    <name>dbenumerations</name>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Γλώσσα</translation>
+    </message>
+    <message>
+        <source>Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the cd formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd regions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the minimum days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the video game platforms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the video game ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cd format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd aspect ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>monetary unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>video game platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>video game rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the location (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <source>).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the minimum day (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Αδυναμία δέσμευσης της τρέχουσας βάσης δεδομένων.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback αποτυχία.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to save the database enumerations.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1245,7 +1643,7 @@ URL</source>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 Διαδίκτυο</translation>
     </message>
     <message>
@@ -1324,7 +1722,7 @@ URL</source>
     </message>
     <message>
         <source>Query Error</source>
-        <translation>Σφάλμα ερωτήματος</translation>
+        <translation type="obsolete">Σφάλμα ερωτήματος</translation>
     </message>
     <message>
         <source>Z39.50 Empty Results Set</source>
@@ -1446,7 +1844,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Convert</source>
-        <translation>&amp;Μετατροπή</translation>
+        <translation type="obsolete">&amp;Μετατροπή</translation>
     </message>
     <message>
         <source>ISBN-13</source>
@@ -1458,103 +1856,103 @@ URL</source>
     </message>
     <message>
         <source>1st</source>
-        <translation>πρώτη</translation>
+        <translation type="obsolete">πρώτη</translation>
     </message>
     <message>
         <source>2nd</source>
-        <translation>δεύτερη</translation>
+        <translation type="obsolete">δεύτερη</translation>
     </message>
     <message>
         <source>3rd</source>
-        <translation>τρίτη</translation>
+        <translation type="obsolete">τρίτη</translation>
     </message>
     <message>
         <source>4th</source>
-        <translation>τέταρτη</translation>
+        <translation type="obsolete">τέταρτη</translation>
     </message>
     <message>
         <source>5th</source>
-        <translation>πέμπτη</translation>
+        <translation type="obsolete">πέμπτη</translation>
     </message>
     <message>
         <source>6th</source>
-        <translation>έκτη</translation>
+        <translation type="obsolete">έκτη</translation>
     </message>
     <message>
         <source>7th</source>
-        <translation>έβδομη</translation>
+        <translation type="obsolete">έβδομη</translation>
     </message>
     <message>
         <source>8th</source>
-        <translation>όγδη</translation>
+        <translation type="obsolete">όγδη</translation>
     </message>
     <message>
         <source>9th</source>
-        <translation>ένατη</translation>
+        <translation type="obsolete">ένατη</translation>
     </message>
     <message>
         <source>10th</source>
-        <translation>δέκατη</translation>
+        <translation type="obsolete">δέκατη</translation>
     </message>
     <message>
         <source>11th</source>
-        <translation>ενδέκατη</translation>
+        <translation type="obsolete">ενδέκατη</translation>
     </message>
     <message>
         <source>12th</source>
-        <translation>δωδέκατη</translation>
+        <translation type="obsolete">δωδέκατη</translation>
     </message>
     <message>
         <source>13th</source>
-        <translation>δέκατη τρίτη</translation>
+        <translation type="obsolete">δέκατη τρίτη</translation>
     </message>
     <message>
         <source>14th</source>
-        <translation>δέκατη τέταρτη</translation>
+        <translation type="obsolete">δέκατη τέταρτη</translation>
     </message>
     <message>
         <source>15th</source>
-        <translation>δέκατη πέμπτη</translation>
+        <translation type="obsolete">δέκατη πέμπτη</translation>
     </message>
     <message>
         <source>16th</source>
-        <translation>δέκατη έκτη</translation>
+        <translation type="obsolete">δέκατη έκτη</translation>
     </message>
     <message>
         <source>17th</source>
-        <translation>δέκατη έβδομη</translation>
+        <translation type="obsolete">δέκατη έβδομη</translation>
     </message>
     <message>
         <source>18th</source>
-        <translation>δέκατη όγδη</translation>
+        <translation type="obsolete">δέκατη όγδη</translation>
     </message>
     <message>
         <source>19th</source>
-        <translation>δέκατη ένατη</translation>
+        <translation type="obsolete">δέκατη ένατη</translation>
     </message>
     <message>
         <source>20th</source>
-        <translation>εικοστή</translation>
+        <translation type="obsolete">εικοστή</translation>
     </message>
     <message>
         <source>21st</source>
-        <translation>εικοστή πρώτη</translation>
+        <translation type="obsolete">εικοστή πρώτη</translation>
     </message>
     <message>
         <source>22nd</source>
-        <translation>εικοστή δεύτερη</translation>
+        <translation type="obsolete">εικοστή δεύτερη</translation>
     </message>
     <message>
         <source>23rd</source>
-        <translation>εικοστή τρίτη</translation>
+        <translation type="obsolete">εικοστή τρίτη</translation>
     </message>
     <message>
         <source>24th</source>
-        <translation>εικοστή τέταρτη</translation>
+        <translation type="obsolete">εικοστή τέταρτη</translation>
     </message>
     <message>
         <source>25th</source>
-        <translation>εικοστή πέμπτη</translation>
+        <translation type="obsolete">εικοστή πέμπτη</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -1643,7 +2041,7 @@ URL</source>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 Διαδίκτυο</translation>
     </message>
     <message>
@@ -1670,35 +2068,47 @@ URL</source>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
+    <message>
+        <source>From &amp;ISBN-13</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From &amp;ISBN-10</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
     <message>
         <source>BiblioteQ: Z39.50 Query Results</source>
-        <translation>BiblioteQ: Z39.50 Αποτελέσματα ερωτήματος</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Αποτελέσματα ερωτήματος</translation>
     </message>
     <message>
         <source>&amp;Records Retrieved</source>
-        <translation>&amp;Ανανέωση εγγραφών</translation>
+        <translation type="obsolete">&amp;Ανανέωση εγγραφών</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation>&amp;Περιεχόμενα εγγραφής</translation>
+        <translation type="obsolete">&amp;Περιεχόμενα εγγραφής</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Άκυρο</translation>
+        <translation type="obsolete">&amp;Άκυρο</translation>
     </message>
 </context>
 <context>
     <name>locresults</name>
     <message>
         <source>Record #</source>
-        <translation>Εγγραφή #</translation>
+        <translation type="obsolete">Εγγραφή #</translation>
     </message>
 </context>
 <context>
@@ -1810,7 +2220,7 @@ URL</source>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 Διαδίκτυο</translation>
     </message>
     <message>
@@ -1836,6 +2246,10 @@ URL</source>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1998,7 +2412,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Automatically Populate Table on Filter Change</source>
-        <translation>&amp;Αυτόματη συμπλήρωση του πίνακα με την αλλαγή του φίλτρου</translation>
+        <translation type="obsolete">&amp;Αυτόματη συμπλήρωση του πίνακα με την αλλαγή του φίλτρου</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
@@ -2030,11 +2444,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Exit BiblioteQ</source>
-        <translation>&amp;Έξοδος BiblioteQ</translation>
+        <translation type="obsolete">&amp;Έξοδος BiblioteQ</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation>Ctrl+E</translation>
+        <translation type="obsolete">Ctrl+E</translation>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
@@ -2086,7 +2500,7 @@ URL</source>
     </message>
     <message>
         <source>Select Global &amp;Font</source>
-        <translation>Επιλογή γενικής &amp;γραμματοσειράς</translation>
+        <translation type="obsolete">Επιλογή γενικής &amp;γραμματοσειράς</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
@@ -2122,7 +2536,7 @@ URL</source>
     </message>
     <message>
         <source>Print Selected Item(s)</source>
-        <translation>Εκτύπωση επιλεγμένων αντικειμένων</translation>
+        <translation type="obsolete">Εκτύπωση επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
@@ -2150,7 +2564,7 @@ URL</source>
     </message>
     <message>
         <source>GR Translations</source>
-        <translation>Dimitris Kanatas</translation>
+        <translation type="obsolete">Dimitris Kanatas</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
@@ -2166,11 +2580,11 @@ URL</source>
     </message>
     <message>
         <source>Remember S&amp;QLite Filename</source>
-        <translation>Πρόσφατο αρχείο S&amp;QLite βάσης δεδομένων</translation>
+        <translation type="obsolete">Πρόσφατο αρχείο S&amp;QLite βάσης δεδομένων</translation>
     </message>
     <message>
         <source>Preserve Main Window&apos;s &amp;Geometry</source>
-        <translation>Διατήρηση θέσης του Βασικού &amp;παραθύρου</translation>
+        <translation type="obsolete">Διατήρηση θέσης του Βασικού &amp;παραθύρου</translation>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
@@ -2230,46 +2644,54 @@ URL</source>
     </message>
     <message>
         <source>Check for &amp;Updates</source>
-        <translation>Έλεγχος για ενη&amp;μερώσεις</translation>
+        <translation type="obsolete">Έλεγχος για ενη&amp;μερώσεις</translation>
     </message>
     <message>
         <source>&amp;25</source>
-        <translation>&amp;25</translation>
+        <translation type="obsolete">&amp;25</translation>
     </message>
     <message>
         <source>&amp;50</source>
-        <translation>&amp;50</translation>
+        <translation type="obsolete">&amp;50</translation>
     </message>
     <message>
         <source>&amp;75</source>
-        <translation>&amp;75</translation>
+        <translation type="obsolete">&amp;75</translation>
     </message>
     <message>
         <source>&amp;100</source>
-        <translation>&amp;100</translation>
+        <translation type="obsolete">&amp;100</translation>
     </message>
     <message>
         <source>test</source>
-        <translation>δοκιμή</translation>
+        <translation type="obsolete">δοκιμή</translation>
+    </message>
+    <message>
+        <source>Print Current View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+N</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>main_table</name>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Borrower</source>
@@ -2345,7 +2767,7 @@ URL</source>
     </message>
     <message>
         <source>Books</source>
-        <translation>Βιβλία</translation>
+        <translation type="obsolete">Βιβλία</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -2385,7 +2807,7 @@ URL</source>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Ηλεκτρονικά παιχνίδια</translation>
+        <translation type="obsolete">Ηλεκτρονικά παιχνίδια</translation>
     </message>
     <message>
         <source>Game Rating</source>
@@ -2413,7 +2835,7 @@ URL</source>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Μουσικά CDs</translation>
+        <translation type="obsolete">Μουσικά CDs</translation>
     </message>
     <message>
         <source>Artist</source>
@@ -2449,7 +2871,7 @@ URL</source>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="obsolete">DVDs</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -2469,11 +2891,11 @@ URL</source>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Εφημερίδες</translation>
+        <translation type="obsolete">Εφημερίδες</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Περιοδικά</translation>
+        <translation type="obsolete">Περιοδικά</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2580,11 +3002,15 @@ URL</source>
     </message>
     <message>
         <source>Refresh List</source>
-        <translation>Ανανέωση λίστας</translation>
+        <translation type="obsolete">Ανανέωση λίστας</translation>
     </message>
     <message>
         <source>Close Browser</source>
         <translation>Κλείσιμο περιοχής</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">Ανανέωση πίνακα</translation>
     </message>
 </context>
 <context>
@@ -2706,7 +3132,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Επαναφορά &amp;Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Επαναφορά &amp;Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
@@ -2718,7 +3144,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;Type</source>
-        <translation>Επαναφορά Τ&amp;ύπου</translation>
+        <translation type="obsolete">Επαναφορά Τ&amp;ύπου</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
@@ -2746,19 +3172,19 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Type</source>
@@ -2902,27 +3328,27 @@ URL</source>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Ηλεκτρονικά παιχνίδια</translation>
+        <translation type="obsolete">Ηλεκτρονικά παιχνίδια</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Βιβλία</translation>
+        <translation type="obsolete">Βιβλία</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="obsolete">DVDs</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Μουσικά CDs</translation>
+        <translation type="obsolete">Μουσικά CDs</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Εφημερίδες</translation>
+        <translation type="obsolete">Εφημερίδες</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Περιοδικά</translation>
+        <translation type="obsolete">Περιοδικά</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -2942,7 +3368,7 @@ URL</source>
     </message>
     <message>
         <source>Custom</source>
-        <translation>Προσαρμογή</translation>
+        <translation type="obsolete">Προσαρμογή</translation>
     </message>
     <message>
         <source>BiblioteQ: Create New Member</source>
@@ -2950,7 +3376,7 @@ URL</source>
     </message>
     <message>
         <source>Create New Member</source>
-        <translation>Δημιουργία νέου μέλους</translation>
+        <translation type="obsolete">Δημιουργία νέου μέλους</translation>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
@@ -2994,7 +3420,7 @@ URL</source>
     </message>
     <message>
         <source>New</source>
-        <translation>Νέο</translation>
+        <translation type="obsolete">Νέο</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -3022,7 +3448,7 @@ URL</source>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>First Name</source>
@@ -3282,7 +3708,7 @@ URL</source>
     </message>
     <message>
         <source>It appears that the item you selected is no longer available for reservation.</source>
-        <translation>Το συγκεκριμένο αντικείμενο που επιλέχθηκε δεν είναι διαθέσιμο για δανεισμό.</translation>
+        <translation type="obsolete">Το συγκεκριμένο αντικείμενο που επιλέχθηκε δεν είναι διαθέσιμο για δανεισμό.</translation>
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
@@ -3302,27 +3728,27 @@ URL</source>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>Error Log Active</source>
@@ -3398,7 +3824,7 @@ URL</source>
     </message>
     <message>
         <source>Please select at least one item to print.</source>
-        <translation>Παρακαλώ να γίνει επιλογή τουλάχιστον ένός αντικειμένου για εκτύπωση.</translation>
+        <translation type="obsolete">Παρακαλώ να γίνει επιλογή τουλάχιστον ένός αντικειμένου για εκτύπωση.</translation>
     </message>
     <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
@@ -3422,7 +3848,7 @@ URL</source>
     </message>
     <message>
         <source>To copy the contents of the Error Dialog into the clipboard buffer, you must first select at least one entry.</source>
-        <translation>Η αντιγραφή των περιεχομένων του  βιβλίου καταγραφής στο πρόχειρο των MS Windows γίνεται όταν επιλεχθεί έστω μία σχετική εγγραφή.</translation>
+        <translation type="obsolete">Η αντιγραφή των περιεχομένων του  βιβλίου καταγραφής στο πρόχειρο των MS Windows γίνεται όταν επιλεχθεί έστω μία σχετική εγγραφή.</translation>
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
@@ -3466,7 +3892,7 @@ URL</source>
     </message>
     <message>
         <source>Item Type</source>
-        <translation>Τύπος αντικειμένου</translation>
+        <translation type="obsolete">Τύπος αντικειμένου</translation>
     </message>
     <message>
         <source>The current password is incorrect.</source>
@@ -3638,11 +4064,59 @@ URL</source>
     </message>
     <message>
         <source>Are you sure that you wish to print the </source>
-        <translation>Είστε σίγουροι ότι επιθυμείτε να εκτυπώσετε το </translation>
+        <translation type="obsolete">Είστε σίγουροι ότι επιθυμείτε να εκτυπώσετε το </translation>
     </message>
     <message>
         <source>&amp;Clear Menu</source>
         <translation>Καθάρισμα π&amp;ρόσφατων αρχείων</translation>
+    </message>
+    <message>
+        <source>&amp;Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the roles of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select Global Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: New SQLite Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3737,7 +4211,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
+        <translation type="obsolete">Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -3745,11 +4219,11 @@ URL</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -3841,23 +4315,23 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation>Βιβλία</translation>
+        <translation type="obsolete">Βιβλία</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -3957,7 +4431,7 @@ URL</source>
     </message>
     <message>
         <source>Cover Image</source>
-        <translation>Εικόνες αντικειμένου</translation>
+        <translation type="obsolete">Εικόνες αντικειμένου</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Book Search</source>
@@ -3989,27 +4463,27 @@ URL</source>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Εξώφυλλο</translation>
+        <translation type="obsolete">Εξώφυλλο</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Οπισθόφυλλο</translation>
+        <translation type="obsolete">Οπισθόφυλλο</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="obsolete">Αναζήτηση</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL</source>
-        <translation>OFFSYSTEM διαδίκτυο</translation>
+        <translation type="obsolete">OFFSYSTEM διαδίκτυο</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -4025,7 +4499,7 @@ URL</source>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient.</source>
-        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε.</translation>
+        <translation type="obsolete">Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -4137,7 +4611,7 @@ URL</source>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM Διαδίκτυο:</translation>
+        <translation type="obsolete">OFFSYSTEM Διαδίκτυο:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -4181,15 +4655,15 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: HTTP Error</source>
-        <translation>BiblioteQ: HTTP Σφάλμα</translation>
+        <translation type="obsolete">BiblioteQ: HTTP Σφάλμα</translation>
     </message>
     <message>
         <source>Front cover image download failed: </source>
-        <translation>Αποτυχία κατεβάσματος εικόνας εξώφυλλου:</translation>
+        <translation type="obsolete">Αποτυχία κατεβάσματος εικόνας εξώφυλλου:</translation>
     </message>
     <message>
         <source>Back cover image download failed: </source>
-        <translation>Αποτυχία κατεβάσματος εικόνας οπισθόφυλλου:</translation>
+        <translation type="obsolete">Αποτυχία κατεβάσματος εικόνας οπισθόφυλλου:</translation>
     </message>
     <message>
         <source>Type</source>
@@ -4197,15 +4671,43 @@ URL</source>
     </message>
     <message>
         <source>An unknown error occurred.</source>
-        <translation>Ένα άγνωστο σφάλμα πραγματοποιήθηκε. </translation>
+        <translation type="obsolete">Ένα άγνωστο σφάλμα πραγματοποιήθηκε. </translation>
     </message>
     <message>
         <source>Front cover image download failed.</source>
-        <translation>Αποτυχία κατεβάσματος εικόνας εξώφυλλου.</translation>
+        <translation type="obsolete">Αποτυχία κατεβάσματος εικόνας εξώφυλλου.</translation>
     </message>
     <message>
         <source>Back cover image download failed.</source>
-        <translation>Αποτυχία κατεβάσματος εικόνας οπισθόφυλλου.</translation>
+        <translation type="obsolete">Αποτυχία κατεβάσματος εικόνας οπισθόφυλλου.</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 system. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4292,7 +4794,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
+        <translation type="obsolete">Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -4300,11 +4802,11 @@ URL</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4388,7 +4890,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Modify CD Entry (</source>
-        <translation>BiblioteQ: Επεξεργασία εγγραφής CD (</translation>
+        <translation type="obsolete">BiblioteQ: Επεξεργασία εγγραφής CD (</translation>
     </message>
     <message>
         <source>)</source>
@@ -4396,23 +4898,23 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Μουσικά CDs</translation>
+        <translation type="obsolete">Μουσικά CDs</translation>
     </message>
     <message>
         <source>Catalog Number</source>
@@ -4512,23 +5014,23 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Database CD Search</source>
-        <translation>BiblioteQ: Αναζήτηση CD στη βάση δεδομένων</translation>
+        <translation type="obsolete">BiblioteQ: Αναζήτηση CD στη βάση δεδομένων</translation>
     </message>
     <message>
         <source>BiblioteQ: View CD Details (</source>
-        <translation>BiblioteQ: Προβολή λεπτομερειών του CD (</translation>
+        <translation type="obsolete">BiblioteQ: Προβολή λεπτομερειών του CD (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify CD Entry</source>
-        <translation>BiblioteQ: Επεξεργασία εγγραφής του CD</translation>
+        <translation type="obsolete">BiblioteQ: Επεξεργασία εγγραφής του CD</translation>
     </message>
     <message>
         <source>BiblioteQ: View CD Details</source>
-        <translation>BiblioteQ: Προβολή λεπτομερειών CD</translation>
+        <translation type="obsolete">BiblioteQ: Προβολή λεπτομερειών CD</translation>
     </message>
     <message>
         <source>Cover Image</source>
-        <translation>Εικόνες αντικειμένου</translation>
+        <translation type="obsolete">Εικόνες αντικειμένου</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -4540,7 +5042,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Create CD Entry</source>
-        <translation>BiblioteQ: Δημιουργία εγγραφής CD</translation>
+        <translation type="obsolete">BiblioteQ: Δημιουργία εγγραφής CD</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
@@ -4616,7 +5118,7 @@ URL</source>
     </message>
     <message>
         <source>Some or all of the track data has not been saved. Please review the Error Log.</source>
-        <translation>Ορισμένα ή όλα τα δεομένα του κομματιού δεν έχουν αποθηκευτεί. Παρακαλώ να γίνει έλεγχος του βιβλίου καταγραφών σφαλμάτων.</translation>
+        <translation type="obsolete">Ορισμένα ή όλα τα δεομένα του κομματιού δεν έχουν αποθηκευτεί. Παρακαλώ να γίνει έλεγχος του βιβλίου καταγραφών σφαλμάτων.</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -4624,31 +5126,31 @@ URL</source>
     </message>
     <message>
         <source>Unable to commit the track data.</source>
-        <translation>Unable to commit the track data.</translation>
+        <translation type="obsolete">Unable to commit the track data.</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Εξώφυλλο</translation>
+        <translation type="obsolete">Εξώφυλλο</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Οπισθόφυλλο</translation>
+        <translation type="obsolete">Οπισθόφυλλο</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="obsolete">Αναζήτηση</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL</source>
-        <translation>OFFSYSTEM διαδίκτυο</translation>
+        <translation type="obsolete">OFFSYSTEM διαδίκτυο</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -4732,7 +5234,7 @@ URL</source>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM Διαδίκτυο:</translation>
+        <translation type="obsolete">OFFSYSTEM Διαδίκτυο:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -4745,6 +5247,54 @@ URL</source>
     <message>
         <source>Type</source>
         <translation>Τύπος</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Music CD Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the track data has not been saved.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4839,7 +5389,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
+        <translation type="obsolete">Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -4847,11 +5397,11 @@ URL</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4951,23 +5501,23 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVDs</translation>
+        <translation type="obsolete">DVDs</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -5067,7 +5617,7 @@ URL</source>
     </message>
     <message>
         <source>Cover Image</source>
-        <translation>Εικόνες αντικειμένου</translation>
+        <translation type="obsolete">Εικόνες αντικειμένου</translation>
     </message>
     <message>
         <source>BiblioteQ: Database DVD Search</source>
@@ -5099,35 +5649,35 @@ URL</source>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Εξώφυλλο</translation>
+        <translation type="obsolete">Εξώφυλλο</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Οπισθόφυλλο</translation>
+        <translation type="obsolete">Οπισθόφυλλο</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="obsolete">Αναζήτηση</translation>
     </message>
     <message>
         <source>Actor(s)</source>
-        <translation>Ηθοποιός (-οι)</translation>
+        <translation type="obsolete">Ηθοποιός (-οι)</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>Director(s)</source>
-        <translation>Σκηνοθέτης (-ες)</translation>
+        <translation type="obsolete">Σκηνοθέτης (-ες)</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL</source>
-        <translation>OFFSYSTEM διαδίκτυο</translation>
+        <translation type="obsolete">OFFSYSTEM διαδίκτυο</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -5211,7 +5761,7 @@ URL</source>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM Διαδίκτυο:</translation>
+        <translation type="obsolete">OFFSYSTEM Διαδίκτυο:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5225,16 +5775,44 @@ URL</source>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd aspect ratios.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd regions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -5329,7 +5907,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
+        <translation type="obsolete">Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -5337,11 +5915,11 @@ URL</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -5433,27 +6011,27 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Εφημερίδες</translation>
+        <translation type="obsolete">Εφημερίδες</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Περιοδικά</translation>
+        <translation type="obsolete">Περιοδικά</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -5549,7 +6127,7 @@ URL</source>
     </message>
     <message>
         <source>Cover Image</source>
-        <translation>Εικόνες αντικειμένου</translation>
+        <translation type="obsolete">Εικόνες αντικειμένου</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Journal Search</source>
@@ -5605,27 +6183,27 @@ URL</source>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Εξώφυλλο</translation>
+        <translation type="obsolete">Εξώφυλλο</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Οπισθόφυλλο</translation>
+        <translation type="obsolete">Οπισθόφυλλο</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="obsolete">Αναζήτηση</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL</source>
-        <translation>OFFSYSTEM διαδίκτυο</translation>
+        <translation type="obsolete">OFFSYSTEM διαδίκτυο</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -5641,7 +6219,7 @@ URL</source>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient.</source>
-        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε.</translation>
+        <translation type="obsolete">Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -5753,7 +6331,7 @@ URL</source>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM Διαδίκτυο:</translation>
+        <translation type="obsolete">OFFSYSTEM Διαδίκτυο:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5766,6 +6344,38 @@ URL</source>
     <message>
         <source>Type</source>
         <translation>Τύπος</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the journal locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the magazine locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 system. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5848,7 +6458,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;OFFSYSTEM URL</source>
-        <translation>Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
+        <translation type="obsolete">Επαναφορά OFF&amp;SYSTEM διαδικτύου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -5856,11 +6466,11 @@ URL</source>
     </message>
     <message>
         <source>Create</source>
-        <translation>Δημιουργία</translation>
+        <translation type="obsolete">Δημιουργία</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation>Επεξεργασία</translation>
+        <translation type="obsolete">Επεξεργασία</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -5952,23 +6562,23 @@ URL</source>
     </message>
     <message>
         <source>All</source>
-        <translation>Όλα</translation>
+        <translation type="obsolete">Όλα</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation>Όλες οι καθυστερήσεις</translation>
+        <translation type="obsolete">Όλες οι καθυστερήσεις</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation>Όλα τα διαθέσιμα</translation>
+        <translation type="obsolete">Όλα τα διαθέσιμα</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation>Όλα τα δανεισμένα</translation>
+        <translation type="obsolete">Όλα τα δανεισμένα</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Ηλεκτρονικά παιχνίδια</translation>
+        <translation type="obsolete">Ηλεκτρονικά παιχνίδια</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -6060,7 +6670,7 @@ URL</source>
     </message>
     <message>
         <source>Cover Image</source>
-        <translation>Εικόνες αντικειμένου</translation>
+        <translation type="obsolete">Εικόνες αντικειμένου</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Video Game Search</source>
@@ -6092,39 +6702,39 @@ URL</source>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Εξώφυλλο</translation>
+        <translation type="obsolete">Εξώφυλλο</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Οπισθόφυλλο</translation>
+        <translation type="obsolete">Οπισθόφυλλο</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Βαθμολογία</translation>
+        <translation type="obsolete">Βαθμολογία</translation>
     </message>
     <message>
         <source>Developer(s)</source>
-        <translation>Παραγωγή</translation>
+        <translation type="obsolete">Παραγωγή</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="obsolete">Αναζήτηση</translation>
     </message>
     <message>
         <source>Genre</source>
-        <translation>Θέμα</translation>
+        <translation type="obsolete">Θέμα</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Περίληψη</translation>
+        <translation type="obsolete">Περίληψη</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Αντίτυπα</translation>
+        <translation type="obsolete">Αντίτυπα</translation>
     </message>
     <message>
         <source>OFFSYSTEM URL</source>
-        <translation>OFFSYSTEM διαδίκτυο</translation>
+        <translation type="obsolete">OFFSYSTEM διαδίκτυο</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -6196,7 +6806,7 @@ URL</source>
     </message>
     <message>
         <source>OFFSYSTEM URL:</source>
-        <translation>OFFSYSTEM Διαδίκτυο:</translation>
+        <translation type="obsolete">OFFSYSTEM Διαδίκτυο:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -6209,6 +6819,30 @@ URL</source>
     <message>
         <source>Type</source>
         <translation>Τύπος</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game platforms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6363,7 +6997,7 @@ URL</source>
     <message>
         <source>OFFSYSTEM
 URL</source>
-        <translation>OFFSYSTEM
+        <translation type="obsolete">OFFSYSTEM
 Διαδίκτυο</translation>
     </message>
     <message>
@@ -6412,85 +7046,6 @@ URL</source>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Άκυρο</translation>
-    </message>
-</context>
-<context>
-    <name>dbEnumerations</name>
-    <message>
-        <source>CD Formats</source>
-        <translation>Είδος CD</translation>
-    </message>
-    <message>
-        <source>DVD Regions</source>
-        <translation>Περιοχή DVD</translation>
-    </message>
-    <message>
-        <source>Reservations Minimum Days</source>
-        <translation>Ελάχιστες ημέρες δανεισμού</translation>
-    </message>
-    <message>
-        <source>Video Game Ratings</source>
-        <translation>Βαθμολογία παιχνιδιού</translation>
-    </message>
-    <message>
-        <source>DVD Aspect Ratios</source>
-        <translation>Κινηματογραφικό κάδρο</translation>
-    </message>
-    <message>
-        <source>Languages</source>
-        <translation>Γλώσσα</translation>
-    </message>
-    <message>
-        <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Τύπος</translation>
-    </message>
-    <message>
-        <source>Days</source>
-        <translation>Ημέρες</translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation>Βιβλία</translation>
-    </message>
-    <message>
-        <source>Journals</source>
-        <translation>Εφημερίδες</translation>
-    </message>
-    <message>
-        <source>Magazines</source>
-        <translation>Περιοδικά</translation>
-    </message>
-    <message>
-        <source>Music CDs</source>
-        <translation>Μουσικά CDs</translation>
-    </message>
-    <message>
-        <source>Video Games</source>
-        <translation>Ηλεκτρονικά παιχνίδια</translation>
-    </message>
-    <message>
-        <source>DVD Ratings</source>
-        <translation>Βαθμολογία DVD</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Τοποθεσίες</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Τοποθεσία</translation>
-    </message>
-    <message>
-        <source>Video Game Platforms</source>
-        <translation>Είδος παιχνιδιού</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation>BiblioteQ: Επεξεργασία τιμών στη βάση δεδομένων</translation>
     </message>
 </context>
 <context>
