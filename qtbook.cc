@@ -1617,7 +1617,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 
   lastSearchType = search_type;
   ui.previousPageButton->setEnabled(false);
-  prepareRequestToolbutton(typefilter);
+  prepareRequestToolButton(typefilter);
 
   /*
   ** The order of the fields in the select statements should match
@@ -6571,10 +6571,10 @@ void qtbook::slotCheckout(void)
 }
 
 /*
-** -- prepareRequestToolbutton() --
+** -- prepareRequestToolButton() --
 */
 
-void qtbook::prepareRequestToolbutton(const QString &typefilter)
+void qtbook::prepareRequestToolButton(const QString &typefilter)
 {
   if(db.driverName() != "QSQLITE")
     if(db.isOpen())
@@ -6621,7 +6621,7 @@ void qtbook::prepareRequestToolbutton(const QString &typefilter)
 
 void qtbook::slotAutoPopOnFilter(void)
 {
-  prepareRequestToolbutton
+  prepareRequestToolButton
     (ui.typefilter->itemData(ui.typefilter->currentIndex()).toString());
 
   /*
@@ -6630,6 +6630,9 @@ void qtbook::slotAutoPopOnFilter(void)
 
   if(db.isOpen())
     slotRefresh();
+  else
+    ui.table->resetTable
+      (ui.typefilter->itemData(ui.typefilter->currentIndex()).toString(), "");
 }
 
 /*

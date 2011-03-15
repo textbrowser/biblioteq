@@ -256,7 +256,7 @@ class qtbook: public QMainWindow
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
   void createSqliteMenuActions(void);
-  void prepareRequestToolbutton(const QString &);
+  void prepareRequestToolButton(const QString &);
 
  protected:
   void closeEvent(QCloseEvent *);
