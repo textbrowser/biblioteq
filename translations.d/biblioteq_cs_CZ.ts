@@ -407,11 +407,15 @@
     </message>
     <message>
         <source>Refresh List</source>
-        <translation>Znovu načíst list</translation>
+        <translation type="obsolete">Znovu načíst list</translation>
     </message>
     <message>
         <source>Close Browser</source>
         <translation>Zavřít okno</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">Znovu načíst tabulku</translation>
     </message>
 </context>
 <context>
@@ -573,7 +577,7 @@
     </message>
     <message>
         <source>To modify a copy&apos;s reservation status, you must first select it.</source>
-        <translation>Chcete-li měnit údaje o zapůjčené kopii, musíte kopii vybrat.</translation>
+        <translation type="obsolete">Chcete-li měnit údaje o zapůjčené kopii, musíte kopii vybrat.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
@@ -610,6 +614,14 @@
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
         <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli chybám při databázovém zpracování.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the selected item has not been reserved.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1041,6 +1053,14 @@ webová adresa</translation>
         <source>Unable to create copy data.</source>
         <translation>Nemohu vytvořit data kopie.</translation>
     </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1119,6 +1139,384 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
         <translation>Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. Načítání obrázků může dotaz značně zpomalit.</translation>
+    </message>
+</context>
+<context>
+    <name>dbEnumerations</name>
+    <message>
+        <source>BiblioteQ: Database Enumerations Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD Formats</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Regions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservations Minimum Days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished">2</translation>
+    </message>
+    <message>
+        <source>3</source>
+        <translation type="unfinished">3</translation>
+    </message>
+    <message>
+        <source>4</source>
+        <translation type="unfinished">4</translation>
+    </message>
+    <message>
+        <source>5</source>
+        <translation type="unfinished">5</translation>
+    </message>
+    <message>
+        <source>6</source>
+        <translation type="unfinished">6</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Typ</translation>
+    </message>
+    <message>
+        <source>Days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Knihy</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD disky</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Časopisy</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Magazíny</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">Hudební CD</translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Videohry</translation>
+    </message>
+    <message>
+        <source>Video Game Ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Aspect Ratios</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation type="unfinished">Měnová jednotka</translation>
+    </message>
+    <message>
+        <source>Add Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Umístění</translation>
+    </message>
+    <message>
+        <source>Add Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game Platforms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Changes</source>
+        <translation type="unfinished">Ulož změny</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Browser</source>
+        <translation type="unfinished">Zavřít okno</translation>
+    </message>
+</context>
+<context>
+    <name>dbenumerations</name>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Chyba databáze</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Aspect Ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DVD Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Jazyk</translation>
+    </message>
+    <message>
+        <source>Monetary Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game Rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Nemohu nastartovat databázovou transakci.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the cd formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the dvd regions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the minimum days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the video game platforms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the video game ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cd format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd aspect ratio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dvd region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>monetary unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>video game platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>video game rating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the location (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <source>).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the minimum day (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Nemohu potvrdit databázovou transakci.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Chyba při rušení transakce.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: chyba databáze</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to save the database enumerations.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1447,7 +1845,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Convert</source>
-        <translation>&amp;Zkonvertovat</translation>
+        <translation type="obsolete">&amp;Zkonvertovat</translation>
     </message>
     <message>
         <source>ISBN-13</source>
@@ -1671,6 +2069,18 @@ webová adresa</translation>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
+    <message>
+        <source>From &amp;ISBN-13</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From &amp;ISBN-10</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -1838,6 +2248,10 @@ webová adresa</translation>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
+    <message>
+        <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -1935,27 +2349,27 @@ webová adresa</translation>
     </message>
     <message>
         <source>toolBar</source>
-        <translation>nástrojová lišta 1</translation>
+        <translation type="obsolete">nástrojová lišta 1</translation>
     </message>
     <message>
         <source>toolBar_2</source>
-        <translation>nástrojová lišta 2</translation>
+        <translation type="obsolete">nástrojová lišta 2</translation>
     </message>
     <message>
         <source>toolBar_3</source>
-        <translation>nástrojová lišta 3</translation>
+        <translation type="obsolete">nástrojová lišta 3</translation>
     </message>
     <message>
         <source>toolBar_4</source>
-        <translation>nástrojová lišta 4</translation>
+        <translation type="obsolete">nástrojová lišta 4</translation>
     </message>
     <message>
         <source>toolBar_5</source>
-        <translation>nástrojová lišta 5</translation>
+        <translation type="obsolete">nástrojová lišta 5</translation>
     </message>
     <message>
         <source>toolBar_6</source>
-        <translation>nástrojová lišta 6</translation>
+        <translation type="obsolete">nástrojová lišta 6</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -1991,7 +2405,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Automatically Populate Table on Filter Change</source>
-        <translation>&amp;Automaticky načíst tabulku po změně filtru</translation>
+        <translation type="obsolete">&amp;Automaticky načíst tabulku po změně filtru</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
@@ -2115,7 +2529,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Print Selected Item(s)</source>
-        <translation>Tisknout vybrané položky</translation>
+        <translation type="obsolete">Tisknout vybrané položky</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
@@ -2215,27 +2629,71 @@ webová adresa</translation>
     </message>
     <message>
         <source>Check for &amp;Updates</source>
-        <translation>Zjisti &amp;novější verzi</translation>
+        <translation type="obsolete">Zjisti &amp;novější verzi</translation>
     </message>
     <message>
         <source>&amp;25</source>
-        <translation>&amp;25</translation>
+        <translation type="obsolete">&amp;25</translation>
     </message>
     <message>
         <source>&amp;50</source>
-        <translation>&amp;50</translation>
+        <translation type="obsolete">&amp;50</translation>
     </message>
     <message>
         <source>&amp;75</source>
-        <translation>&amp;75</translation>
+        <translation type="obsolete">&amp;75</translation>
     </message>
     <message>
         <source>&amp;100</source>
-        <translation>&amp;100</translation>
+        <translation type="obsolete">&amp;100</translation>
     </message>
     <message>
         <source>test</source>
-        <translation>test</translation>
+        <translation type="obsolete">test</translation>
+    </message>
+    <message>
+        <source>Connect Toobar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservations Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configurations Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Current View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New SQLite Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Enumerations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate Database En&amp;umerations Browser on Display</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2565,11 +3023,15 @@ webová adresa</translation>
     </message>
     <message>
         <source>Refresh List</source>
-        <translation>Znovu načíst list</translation>
+        <translation type="obsolete">Znovu načíst list</translation>
     </message>
     <message>
         <source>Close Browser</source>
         <translation>Zavřít okno</translation>
+    </message>
+    <message>
+        <source>Refresh Table</source>
+        <translation type="unfinished">Znovu načíst tabulku</translation>
     </message>
 </context>
 <context>
@@ -2631,7 +3093,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Insert &amp;CD</source>
-        <translation>Vložit &amp;CD</translation>
+        <translation type="obsolete">Vložit &amp;CD</translation>
     </message>
     <message>
         <source>Insert &amp;DVD</source>
@@ -2659,7 +3121,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;CD Search</source>
-        <translation>Hledání &amp;CD</translation>
+        <translation type="obsolete">Hledání &amp;CD</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
@@ -2679,7 +3141,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Columns Selection</source>
-        <translation>BiblioteQ: výběr sloupců</translation>
+        <translation type="obsolete">BiblioteQ: výběr sloupců</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
@@ -3383,7 +3845,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Please select at least one item to print.</source>
-        <translation>Prosím, vyberte aspoň jednu položku, kterou si chcete vytisknout.</translation>
+        <translation type="obsolete">Prosím, vyberte aspoň jednu položku, kterou si chcete vytisknout.</translation>
     </message>
     <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
@@ -3407,7 +3869,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>To copy the contents of the Error Dialog into the clipboard buffer, you must first select at least one entry.</source>
-        <translation>Pro zkopírování obsahu seznamu chyb do schránky musíte aspoň jednu položku seznamu vybrat.</translation>
+        <translation type="obsolete">Pro zkopírování obsahu seznamu chyb do schránky musíte aspoň jednu položku seznamu vybrat.</translation>
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
@@ -3623,11 +4085,67 @@ webová adresa</translation>
     </message>
     <message>
         <source>Are you sure that you wish to print the </source>
-        <translation>Opravdu chcete vytisknout </translation>
+        <translation type="obsolete">Opravdu chcete vytisknout </translation>
     </message>
     <message>
         <source>&amp;Clear Menu</source>
         <translation>menu &amp;Vyčistit</translation>
+    </message>
+    <message>
+        <source>Insert Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>Table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the roles of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select Global Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: New SQLite Database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4010,7 +4528,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient.</source>
-        <translation>Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
+        <translation type="obsolete">Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -4166,15 +4684,15 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: HTTP Error</source>
-        <translation>BiblioteQ: HTTP chyba</translation>
+        <translation type="obsolete">BiblioteQ: HTTP chyba</translation>
     </message>
     <message>
         <source>Front cover image download failed: </source>
-        <translation>Stažení obrázku přední strany obálky selhalo:</translation>
+        <translation type="obsolete">Stažení obrázku přední strany obálky selhalo:</translation>
     </message>
     <message>
         <source>Back cover image download failed: </source>
-        <translation>Stažení obrázku zadní strany obálky selhalo:</translation>
+        <translation type="obsolete">Stažení obrázku zadní strany obálky selhalo:</translation>
     </message>
     <message>
         <source>Type</source>
@@ -4182,15 +4700,43 @@ webová adresa</translation>
     </message>
     <message>
         <source>An unknown error occurred.</source>
-        <translation>Neznámá chyba.</translation>
+        <translation type="obsolete">Neznámá chyba.</translation>
     </message>
     <message>
         <source>Front cover image download failed.</source>
-        <translation>Stažení obrázku přední strany obálky selhalo.</translation>
+        <translation type="obsolete">Stažení obrázku přední strany obálky selhalo.</translation>
     </message>
     <message>
         <source>Back cover image download failed.</source>
-        <translation>Stažení obrázku zadní strany obálky selhalo.</translation>
+        <translation type="obsolete">Stažení obrázku zadní strany obálky selhalo.</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 system. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4373,7 +4919,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify CD Entry (</source>
-        <translation>BiblioteQ: Změnit údaje CD (</translation>
+        <translation type="obsolete">BiblioteQ: Změnit údaje CD (</translation>
     </message>
     <message>
         <source>)</source>
@@ -4497,19 +5043,19 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Database CD Search</source>
-        <translation>BiblioteQ: hledání CD v databázi</translation>
+        <translation type="obsolete">BiblioteQ: hledání CD v databázi</translation>
     </message>
     <message>
         <source>BiblioteQ: View CD Details (</source>
-        <translation>BiblioteQ: prohlížení detailů o CD (</translation>
+        <translation type="obsolete">BiblioteQ: prohlížení detailů o CD (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify CD Entry</source>
-        <translation>BiblioteQ: Změnit údaje CD</translation>
+        <translation type="obsolete">BiblioteQ: Změnit údaje CD</translation>
     </message>
     <message>
         <source>BiblioteQ: View CD Details</source>
-        <translation>BiblioteQ: prohlížení detailů o CD</translation>
+        <translation type="obsolete">BiblioteQ: prohlížení detailů o CD</translation>
     </message>
     <message>
         <source>Cover Image</source>
@@ -4525,7 +5071,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Create CD Entry</source>
-        <translation>BiblioteQ: založit údaje CD</translation>
+        <translation type="obsolete">BiblioteQ: založit údaje CD</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
@@ -4601,7 +5147,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Some or all of the track data has not been saved. Please review the Error Log.</source>
-        <translation>Jedno nebo více dat stopy nemohlo být uloženo. Podívejte se, prosím, do výpisu chyb.</translation>
+        <translation type="obsolete">Jedno nebo více dat stopy nemohlo být uloženo. Podívejte se, prosím, do výpisu chyb.</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -4609,7 +5155,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to commit the track data.</source>
-        <translation>Nemohu uložit data o stopě.</translation>
+        <translation type="obsolete">Nemohu uložit data o stopě.</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
@@ -4730,6 +5276,54 @@ webová adresa</translation>
     <message>
         <source>Type</source>
         <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Music CD Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the track data has not been saved.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5210,6 +5804,34 @@ webová adresa</translation>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd aspect ratios.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd regions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -5626,7 +6248,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient.</source>
-        <translation>Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
+        <translation type="obsolete">Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -5751,6 +6373,38 @@ webová adresa</translation>
     <message>
         <source>Type</source>
         <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the journal locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the magazine locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 system. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6194,6 +6848,30 @@ webová adresa</translation>
     <message>
         <source>Type</source>
         <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game platforms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
