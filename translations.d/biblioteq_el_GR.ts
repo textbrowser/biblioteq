@@ -3120,7 +3120,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Columns Selection</source>
-        <translation>BiblioteQ: Επιλογή πεδίων</translation>
+        <translation type="obsolete">BiblioteQ: Επιλογή πεδίων</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
@@ -4071,10 +4071,6 @@ URL</source>
         <translation>Καθάρισμα π&amp;ρόσφατων αρχείων</translation>
     </message>
     <message>
-        <source>&amp;Unlimited</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4116,6 +4112,10 @@ URL</source>
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
