@@ -20,7 +20,6 @@ using namespace std;
 #include <QSettings>
 #include <QSqlError>
 #include <QSqlField>
-#include <QSqlQuery>
 #include <QClipboard>
 #include <QScrollBar>
 #include <QSqlDriver>
@@ -144,15 +143,18 @@ class qtbook: public QMainWindow
   };
 
   static const int EDITABLE = 0;
+  static const int NEW_PAGE = 0;
+  static const int NEXT_PAGE = 1;
   static const int VIEW_ONLY = 1;
   static const int CUSTOM_QUERY = 0;
   static const int POPULATE_ALL = 1;
+  static const int PREVIOUS_PAGE = 2;
   static const int POPULATE_SEARCH = 2;
 
   qtbook(void);
   ~qtbook();
   int populateTable(const int, const QString &, const QString &,
-		    const int = 0);
+		    const int = NEW_PAGE);
   void addError(const QString &, const QString &, const QString & = "",
 		const char * = "", const int = 0);
   void removeCD(qtbook_cd *);
@@ -200,14 +202,14 @@ class qtbook: public QMainWindow
   void slotDisplaySummary(void);
 
  private:
-  int currentPage;
+  int m_pages;
+  int m_queryOffset;
   int lastSearchType;
   QString roles;
   QString lastCategory;
   QString lastSearchStr;
   QString engUserinfoTitle;
   QString previousTypeFilter;
-  QSqlQuery *populateQuery;
   QStringList deletedAdmins;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
@@ -291,6 +293,7 @@ class qtbook: public QMainWindow
   void slotMagSearch(void);
   void slotPrintView(void);
   void slotBookSearch(void);
+  void slotChangeView(bool);
   void slotDisconnect(void);
   void slotInsertBook(void);
   void slotSaveConfig(void);
@@ -298,12 +301,12 @@ class qtbook: public QMainWindow
   void slotAddBorrower(void);
   void slotDeleteAdmin(void);
   void slotJournSearch(void);
+  void slotPageClicked(const QString &);
   void slotViewDetails(void);
   void slotReserveCopy(void);
   void slotShowColumns(void);
   void slotShowHistory(void);
   void slotInsertJourn(void);
-  void slotPageClicked(const QString &);
   void slotPreviousPage(void);
   void slotRemoveMember(void);
   void slotSavePassword(void);
