@@ -590,6 +590,10 @@ qtbook::qtbook(void):QMainWindow()
       if(!action)
 	continue;
 
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotRefresh(void)));
       action->setData(25 * i);
       action->setCheckable(true);
 
@@ -1623,7 +1627,6 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 #ifdef Q_WS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
-  prepareRequestToolButton(typefilter);
 
   int limit = 0;
   int offset = m_queryOffset;
@@ -1662,10 +1665,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
 	}
     }
   else
-    {
-      m_pages = 0;
-      offset = 0;
-    }
+    offset = 0;
 
   limitStr = QString(" LIMIT %1 ").arg(limit);
   offsetStr = QString(" OFFSET %1 ").arg(offset);
@@ -4151,6 +4151,7 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     }
 
   qapp->restoreOverrideCursor();
+  prepareRequestToolButton(typefilter);
 
   if(ui.typefilter->findData(QVariant(typefilter)) > -1)
     previousTypeFilter = typefilter;
@@ -4175,6 +4176,9 @@ int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
     ui.table->resetTable("", roles);
 
   int currentPage = offset / limit + 1;
+
+  if(pagingType == NEW_PAGE)
+    m_pages = 0;
 
   if(pagingType >= 0 &&
      pagingType != PREVIOUS_PAGE &&
@@ -5978,7 +5982,7 @@ void qtbook::slotConnectDB(void)
   if(db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
-      ui.menuEntriesPerPage->setEnabled(false);
+      ui.menuEntriesPerPage->setEnabled(true);
 
       /*
       ** Set the window's title.
