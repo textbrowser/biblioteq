@@ -4,8645 +4,6406 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../misc_functions.cc" line="374"/>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba aplikace: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="902"/>
         <source>#</source>
-        <translation type="unfinished"></translation>
+        <translation>#</translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="904"/>
         <source>Barcode: </source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód: </translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="905"/>
         <source> Location: </source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění: </translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="907"/>
         <source>Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>Typ: </translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="908"/>
         <source>Title: </source>
-        <translation type="unfinished"></translation>
+        <translation>Titul: </translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="909"/>
         <source>Due Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do: </translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="998"/>
         <source>NULL availability value.</source>
-        <translation type="unfinished"></translation>
+        <translation>NULL dostupnost.</translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="1579"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba databáze</translation>
     </message>
     <message>
-        <location filename="../misc_functions.cc" line="1580"/>
         <source>Unable to determine the query size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit velikost dotazu.</translation>
     </message>
 </context>
 <context>
     <name>UserInfo</name>
     <message>
-        <location filename="../userinfo.ui" line="26"/>
         <source>BiblioteQ: Borrower Information</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Informace o zapůjčiteli</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="55"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="60"/>
         <source>AK</source>
-        <translation type="unfinished"></translation>
+        <translation>AK</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="65"/>
         <source>AL</source>
-        <translation type="unfinished"></translation>
+        <translation>AL</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="70"/>
         <source>AR</source>
-        <translation type="unfinished"></translation>
+        <translation>AR</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="75"/>
         <source>AZ</source>
-        <translation type="unfinished"></translation>
+        <translation>AZ</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="80"/>
         <source>CA</source>
-        <translation type="unfinished"></translation>
+        <translation>CA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="85"/>
         <source>CO</source>
-        <translation type="unfinished"></translation>
+        <translation>CO</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="90"/>
         <source>CT</source>
-        <translation type="unfinished"></translation>
+        <translation>CT</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="95"/>
         <source>DE</source>
-        <translation type="unfinished"></translation>
+        <translation>DE</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="100"/>
         <source>FL</source>
-        <translation type="unfinished"></translation>
+        <translation>FL</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="105"/>
         <source>GA</source>
-        <translation type="unfinished"></translation>
+        <translation>GA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="110"/>
         <source>HI</source>
-        <translation type="unfinished"></translation>
+        <translation>HI</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="115"/>
         <source>IA</source>
-        <translation type="unfinished"></translation>
+        <translation>IA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="120"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="125"/>
         <source>IL</source>
-        <translation type="unfinished"></translation>
+        <translation>IL</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="130"/>
         <source>IN</source>
-        <translation type="unfinished"></translation>
+        <translation>IN</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="135"/>
         <source>KS</source>
-        <translation type="unfinished"></translation>
+        <translation>KS</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="140"/>
         <source>KY</source>
-        <translation type="unfinished"></translation>
+        <translation>KY</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="145"/>
         <source>LA</source>
-        <translation type="unfinished"></translation>
+        <translation>LA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="150"/>
         <source>MA</source>
-        <translation type="unfinished"></translation>
+        <translation>MA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="155"/>
         <source>MD</source>
-        <translation type="unfinished"></translation>
+        <translation>MD</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="160"/>
         <source>ME</source>
-        <translation type="unfinished"></translation>
+        <translation>ME</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="165"/>
         <source>MI</source>
-        <translation type="unfinished"></translation>
+        <translation>MI</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="170"/>
         <source>MN</source>
-        <translation type="unfinished"></translation>
+        <translation>MN</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="175"/>
         <source>MO</source>
-        <translation type="unfinished"></translation>
+        <translation>MO</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="180"/>
         <source>MS</source>
-        <translation type="unfinished"></translation>
+        <translation>MS</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="185"/>
         <source>MT</source>
-        <translation type="unfinished"></translation>
+        <translation>MT</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="190"/>
         <source>NC</source>
-        <translation type="unfinished"></translation>
+        <translation>NC</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="195"/>
         <source>ND</source>
-        <translation type="unfinished"></translation>
+        <translation>ND</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="200"/>
         <source>NE</source>
-        <translation type="unfinished"></translation>
+        <translation>NE</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="205"/>
         <source>NH</source>
-        <translation type="unfinished"></translation>
+        <translation>NH</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="210"/>
         <source>NJ</source>
-        <translation type="unfinished"></translation>
+        <translation>NJ</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="215"/>
         <source>NM</source>
-        <translation type="unfinished"></translation>
+        <translation>NM</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="220"/>
         <source>NV</source>
-        <translation type="unfinished"></translation>
+        <translation>NV</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="225"/>
         <source>NY</source>
-        <translation type="unfinished"></translation>
+        <translation>NY</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="230"/>
         <source>OH</source>
-        <translation type="unfinished"></translation>
+        <translation>OH</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="235"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="240"/>
         <source>OR</source>
-        <translation type="unfinished"></translation>
+        <translation>OR</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="245"/>
         <source>PA</source>
-        <translation type="unfinished"></translation>
+        <translation>PA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="250"/>
         <source>RI</source>
-        <translation type="unfinished"></translation>
+        <translation>RI</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="255"/>
         <source>SC</source>
-        <translation type="unfinished"></translation>
+        <translation>SC</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="260"/>
         <source>SD</source>
-        <translation type="unfinished"></translation>
+        <translation>SD</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="265"/>
         <source>TN</source>
-        <translation type="unfinished"></translation>
+        <translation>TN</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="270"/>
         <source>TX</source>
-        <translation type="unfinished"></translation>
+        <translation>TX</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="275"/>
         <source>UT</source>
-        <translation type="unfinished"></translation>
+        <translation>UT</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="280"/>
         <source>VA</source>
-        <translation type="unfinished"></translation>
+        <translation>VA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="285"/>
         <source>VT</source>
-        <translation type="unfinished"></translation>
+        <translation>VT</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="290"/>
         <source>WA</source>
-        <translation type="unfinished"></translation>
+        <translation>WA</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="295"/>
         <source>WI</source>
-        <translation type="unfinished"></translation>
+        <translation>WI</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="300"/>
         <source>WV</source>
-        <translation type="unfinished"></translation>
+        <translation>WV</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="305"/>
         <source>WY</source>
-        <translation type="unfinished"></translation>
+        <translation>WY</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="351"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="369"/>
         <source>Telephone Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="400"/>
         <source>Street</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulice</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="431"/>
         <source>Date of Birth</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum narození</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="444"/>
         <source>City</source>
-        <translation type="unfinished"></translation>
+        <translation>Město</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="475"/>
         <source>State &amp; ZIP Code</source>
-        <translation type="unfinished"></translation>
+        <translation>Stát</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="547"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="572"/>
         <source>Member Since</source>
-        <translation type="unfinished"></translation>
+        <translation>Evidován od</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="590"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="603"/>
         <source>Middle Initial</source>
-        <translation type="unfinished"></translation>
+        <translation>Střední iniciála</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="616"/>
         <source>Sex</source>
-        <translation type="unfinished"></translation>
+        <translation>Pohlaví</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="631"/>
         <source>Female</source>
-        <translation type="unfinished"></translation>
+        <translation>Muž</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="636"/>
         <source>Male</source>
-        <translation type="unfinished"></translation>
+        <translation>Žena</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="672"/>
-        <location filename="../userinfo.ui" line="707"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="732"/>
         <source>E-Mail Address</source>
-        <translation type="unfinished"></translation>
+        <translation>E-mail</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="782"/>
         <source>Previous Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Předchozí zapůjčitel</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="835"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="863"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="../userinfo.ui" line="893"/>
         <source>Next Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Další zapůjčitel</translation>
     </message>
 </context>
 <context>
     <name>adminBrowser</name>
     <message>
-        <location filename="../adminsetup.ui" line="26"/>
         <source>BiblioteQ: Administrator Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Administrace</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="57"/>
         <source>Item Creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Věc vytvořena</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="64"/>
         <source>Item Deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Věc smazána</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="71"/>
         <source>Item Returns</source>
-        <translation type="unfinished"></translation>
+        <translation>Věc navrácena</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="78"/>
         <source>Item Reservations</source>
-        <translation type="unfinished"></translation>
+        <translation>Věc rezervována</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="85"/>
         <source>Item Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Věc aktualizována</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="92"/>
         <source>Member Creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Osoba vytvořena</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="99"/>
         <source>Member Deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Osoba smazána</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="106"/>
         <source>Member Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Osoba aktualizována</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="113"/>
         <source>Reservation Histories</source>
-        <translation type="unfinished"></translation>
+        <translation>Historie zápůjček</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="120"/>
-        <location filename="../adminsetup.ui" line="428"/>
         <source>Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrátor</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="143"/>
-        <location filename="../adminsetup.ui" line="433"/>
         <source>Circulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Cirkulace</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="150"/>
-        <location filename="../adminsetup.ui" line="438"/>
         <source>Librarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Knihovník</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="157"/>
-        <location filename="../adminsetup.ui" line="443"/>
         <source>Membership</source>
-        <translation type="unfinished"></translation>
+        <translation>Členství</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="423"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="462"/>
         <source>Add Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidej administrátora</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="488"/>
         <source>Delete Selected Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Smaž vybraného administrátora</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="508"/>
         <source>Save Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulož změny</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="544"/>
-        <source>Refresh Table</source>
-        <translation type="unfinished"></translation>
+        <source>Refresh List</source>
+        <translation>Znovu načíst list</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="583"/>
         <source>Close Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít okno</translation>
     </message>
 </context>
 <context>
     <name>allDialog</name>
     <message>
-        <location filename="../allinfo.ui" line="26"/>
         <source>BiblioteQ: General Database Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Hledání v databázi</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="52"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="68"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="84"/>
-        <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <source>Release Date</source>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="93"/>
-        <source>MM/yyyy</source>
-        <translation type="unfinished"></translation>
+        <source>MM/dd/yyyy</source>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="124"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="140"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="153"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="188"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="221"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="244"/>
         <source>Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="267"/>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="310"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="392"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="415"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../allinfo.ui" line="437"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation>Datum vydání</translation>
+    </message>
+    <message>
+        <source>MM/yyyy</source>
+        <translation>MM/yyyy</translation>
     </message>
 </context>
 <context>
     <name>borrowers_editor</name>
     <message>
-        <location filename="../borrowers_editor.cc" line="61"/>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: zapůjčená věc</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="62"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="104"/>
-        <location filename="../borrowers_editor.cc" line="116"/>
         <source>Copy Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo kopie</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="105"/>
-        <location filename="../borrowers_editor.cc" line="117"/>
-        <location filename="../borrowers_editor.cc" line="381"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="106"/>
-        <location filename="../borrowers_editor.cc" line="383"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="107"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="108"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="109"/>
-        <location filename="../borrowers_editor.cc" line="118"/>
         <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="110"/>
-        <location filename="../borrowers_editor.cc" line="119"/>
         <source>Copy Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="111"/>
         <source>Lender</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydal</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="144"/>
-        <location filename="../borrowers_editor.cc" line="236"/>
-        <location filename="../borrowers_editor.cc" line="463"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: indikátor postupu</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="145"/>
         <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytváření objektů...</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="164"/>
-        <location filename="../borrowers_editor.cc" line="184"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="165"/>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;dateEdit&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="185"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="230"/>
-        <location filename="../borrowers_editor.cc" line="266"/>
-        <location filename="../borrowers_editor.cc" line="365"/>
-        <location filename="../borrowers_editor.cc" line="393"/>
-        <location filename="../borrowers_editor.cc" line="490"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba databáze</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="231"/>
         <source>Unable to retrieve borrower data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjitit informace o zapůjčiteli.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="237"/>
         <source>Retrieving borrower data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávám informace o zapůjčiteli...</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="267"/>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../borrowers_editor.cc" line="336"/>
-        <location filename="../borrowers_editor.cc" line="345"/>
-        <location filename="../borrowers_editor.cc" line="516"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="337"/>
         <source>Please select the copy that has been returned.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím vyberte kopii, která je vracena.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="346"/>
-        <source>It appears that the selected item has not been reserved.</source>
-        <translation type="unfinished"></translation>
+        <source>To modify a copy&apos;s reservation status, you must first select it.</source>
+        <translation>Chcete-li měnit údaje o zapůjčené kopii, musíte kopii vybrat.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="351"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="352"/>
         <source>Are you sure that the copy has been returned?</source>
-        <translation type="unfinished"></translation>
+        <translation>Byla kopie opravdu vrácena?</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="366"/>
-        <location filename="../borrowers_editor.cc" line="370"/>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu změnit stav zapůjčené kopie.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="369"/>
-        <location filename="../borrowers_editor.cc" line="521"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="394"/>
         <source>Unable to modify the returned date of the selected copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu změnit datum navrácení označené kopie.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="464"/>
         <source>Updating the due date(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace dat vrácení...</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="491"/>
         <source>Unable to update the due date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu aktualizovat datum vrácení.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="517"/>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli neplatnosti datumu.</translation>
     </message>
     <message>
-        <location filename="../borrowers_editor.cc" line="522"/>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli chybám při databázovém zpracování.</translation>
     </message>
 </context>
 <context>
     <name>branchSelect</name>
     <message>
-        <location filename="../branch_s.ui" line="20"/>
         <source>BiblioteQ: Branch Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr pobočky</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="44"/>
         <source>Branch Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno pobočky</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="121"/>
         <source>&amp;Select SQLite Database</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyber SQLite databázi</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="179"/>
         <source>Userid</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatel</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="197"/>
         <source>Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrátor</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="212"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="286"/>
         <source>&amp;Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Připojit</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="303"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../branch_s.ui" line="329"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Storno</translation>
     </message>
 </context>
 <context>
     <name>cdDialog</name>
     <message>
-        <location filename="../cdinfo.ui" line="26"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="41"/>
         <source>Cover Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky obálky</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="53"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Přední strana</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="75"/>
-        <location filename="../cdinfo.ui" line="129"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="107"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadní strana</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="156"/>
         <source>Specific Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifické informace</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="173"/>
         <source>Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogové číslo</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="204"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="244"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Umělec</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="281"/>
         <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="331"/>
         <source>Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="340"/>
         <source>hh:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>hh:mm:ss</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="353"/>
         <source>&amp;Compute</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vypočítat</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="385"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvuk</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="398"/>
         <source>Mono</source>
-        <translation type="unfinished"></translation>
+        <translation>Mono</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="403"/>
         <source>Stereo</source>
-        <translation type="unfinished"></translation>
+        <translation>Stereo</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="432"/>
         <source>Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Druh nahrávky</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="445"/>
         <source>Live</source>
-        <translation type="unfinished"></translation>
+        <translation>Live</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="450"/>
         <source>Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="479"/>
         <source>Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>Stopy</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="494"/>
         <source>&amp;Show Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukázat stopy</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="534"/>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné informace</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="551"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="584"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="598"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="634"/>
         <source>Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávací společnost</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="671"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="689"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="740"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="793"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="832"/>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="873"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopie</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="890"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zápůjčky</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="924"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="969"/>
         <source>Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="1049"/>
+        <source>OFFSYSTEM
+URL</source>
+        <translation type="obsolete">OFFSYSTEM
+webová adresa</translation>
+    </message>
+    <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="1077"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Z39.50 Dotaz</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="1100"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="1125"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../cdinfo.ui" line="1153"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
     <message>
-        <location filename="../borrowers.ui" line="32"/>
         <source>BiblioteQ: Current Borrowers</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Aktuálně zapůjčeno</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="79"/>
         <source>Copy Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo kopie</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="84"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="89"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="94"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="99"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="104"/>
         <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="109"/>
         <source>Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="114"/>
         <source>Lender</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydal</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="119"/>
         <source>MYOID</source>
-        <translation type="unfinished"></translation>
+        <translation>Moje ID</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="160"/>
         <source>&amp;Return</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Návrat</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="183"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../borrowers.ui" line="206"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>copy_editor</name>
     <message>
-        <location filename="../copy_editor.cc" line="42"/>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Přehled kopií (</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="43"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="70"/>
-        <location filename="../copy_editor.cc" line="77"/>
-        <location filename="../copy_editor.cc" line="102"/>
-        <location filename="../copy_editor.cc" line="393"/>
-        <location filename="../copy_editor.cc" line="399"/>
-        <location filename="../copy_editor.cc" line="406"/>
-        <location filename="../copy_editor.cc" line="440"/>
-        <location filename="../copy_editor.cc" line="598"/>
-        <location filename="../copy_editor.cc" line="608"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="71"/>
         <source>Please select the copy that you intend to delete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte kopii, kterou chcete smazat.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="78"/>
         <source>You must have at least one copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte mít alespoň jednu kopii.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="82"/>
-        <location filename="../copy_editor.cc" line="192"/>
-        <location filename="../copy_editor.cc" line="421"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="103"/>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že kopie, kterou chcete smazat je zrovna zapůjčená.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="109"/>
-        <location filename="../copy_editor.cc" line="167"/>
-        <location filename="../copy_editor.cc" line="297"/>
-        <location filename="../copy_editor.cc" line="429"/>
-        <location filename="../copy_editor.cc" line="469"/>
-        <location filename="../copy_editor.cc" line="504"/>
-        <location filename="../copy_editor.cc" line="627"/>
-        <location filename="../copy_editor.cc" line="664"/>
-        <location filename="../copy_editor.cc" line="675"/>
-        <location filename="../copy_editor.cc" line="691"/>
-        <location filename="../copy_editor.cc" line="749"/>
-        <location filename="../copy_editor.cc" line="798"/>
-        <location filename="../copy_editor.cc" line="807"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba databáze</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="110"/>
-        <location filename="../copy_editor.cc" line="114"/>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit stav výpůjčky vybrané kopie.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="113"/>
-        <location filename="../copy_editor.cc" line="433"/>
-        <location filename="../copy_editor.cc" line="472"/>
-        <location filename="../copy_editor.cc" line="630"/>
-        <location filename="../copy_editor.cc" line="680"/>
-        <location filename="../copy_editor.cc" line="696"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="143"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="168"/>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../copy_editor.cc" line="173"/>
         <source>&amp;Reserve</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zapůjčit</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="191"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="193"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="213"/>
-        <location filename="../copy_editor.cc" line="303"/>
-        <location filename="../copy_editor.cc" line="758"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: indikátor postupu</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="214"/>
         <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytváření objektů...</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="257"/>
-        <location filename="../copy_editor.cc" line="650"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="258"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="298"/>
         <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit informace o kopii (knihy).</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="304"/>
         <source>Retrieving copy information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávám informace o kopii...</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="394"/>
         <source>Please select a copy to reserve.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte kopii, která bude zapůjčena.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="400"/>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že vybraná kopie je nedostupná nebo neexistuje.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="407"/>
         <source>Please select a future Due Date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, nastavte požadované datum vrácení do budoucnosti.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="412"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="430"/>
-        <location filename="../copy_editor.cc" line="434"/>
         <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit dostupnost kopie.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="441"/>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybraná kopie je zapůjčená nebo není dostupná.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="470"/>
-        <location filename="../copy_editor.cc" line="473"/>
         <source>Unable to create a reserve record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit záznam o výpůjčce.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="505"/>
         <source>Unable to create a history record.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit záznam o historii vypůjčení.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="596"/>
-        <location filename="../copy_editor.cc" line="606"/>
         <source>Row number </source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo řádku</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="597"/>
         <source> contains an empty Barcode.</source>
-        <translation type="unfinished"></translation>
+        <translation>obsahuje prázdný čarový kód.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="607"/>
         <source> contains a duplicate Barcode.</source>
-        <translation type="unfinished"></translation>
+        <translation>obsahuje duplicitní čarový kód.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="628"/>
-        <location filename="../copy_editor.cc" line="631"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="651"/>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;kopie&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="665"/>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uložit počet položek.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="676"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="681"/>
         <source>Unable to save the copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uložit informace o kopii.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="692"/>
         <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při potvrzení transakce.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="697"/>
         <source>Unable to commit the copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uložit data o kopii.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="750"/>
         <source>Unable to purge copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyčistit data o kopii.</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="759"/>
         <source>Saving the copy data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukládám data o kopii...</translation>
     </message>
     <message>
-        <location filename="../copy_editor.cc" line="799"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../copy_editor.cc" line="808"/>
         <source>Unable to create copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit data kopie.</translation>
     </message>
 </context>
 <context>
     <name>copybrowser</name>
     <message>
-        <location filename="../copybrowser.ui" line="32"/>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Přehled kopií</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="81"/>
         <source>Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="88"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="152"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="157"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="162"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="167"/>
         <source>MYOID</source>
-        <translation type="unfinished"></translation>
+        <translation>Moje ID</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="172"/>
         <source>Copy Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo kopie</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="216"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="244"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Smazat</translation>
     </message>
     <message>
-        <location filename="../copybrowser.ui" line="272"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>customquery</name>
     <message>
-        <location filename="../customquery.ui" line="26"/>
         <source>BiblioteQ: Custom Query</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Uživatelský databázový dotaz</translation>
     </message>
     <message>
-        <location filename="../customquery.ui" line="46"/>
-        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation type="unfinished"></translation>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</source>
+        <translation type="obsolete">Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. 
+Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
-        <location filename="../customquery.ui" line="66"/>
         <source>Database Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázové tabulky</translation>
     </message>
     <message>
-        <location filename="../customquery.ui" line="92"/>
         <source>Query Statement</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz</translation>
     </message>
     <message>
-        <location filename="../customquery.ui" line="132"/>
         <source>Execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Provést dotaz</translation>
     </message>
     <message>
-        <location filename="../customquery.ui" line="155"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít</translation>
     </message>
-</context>
-<context>
-    <name>dbEnumerations</name>
     <message>
-        <location filename="../dbenumerations.ui" line="20"/>
-        <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="42"/>
-        <source>CD Formats</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="67"/>
-        <source>Add CD Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="84"/>
-        <source>Remove CD Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="120"/>
-        <source>DVD Regions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="145"/>
-        <source>Add DVD Region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="162"/>
-        <source>Remove DVD Region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="198"/>
-        <source>Reservations Minimum Days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="206"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="211"/>
-        <source>2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="216"/>
-        <source>3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="221"/>
-        <source>4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="226"/>
-        <source>5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="231"/>
-        <source>6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="236"/>
-        <location filename="../dbenumerations.ui" line="784"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="241"/>
-        <source>Days</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="246"/>
-        <source>Books</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="262"/>
-        <source>DVDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="278"/>
-        <source>Journals</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="294"/>
-        <source>Magazines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="310"/>
-        <source>Music CDs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="326"/>
-        <source>Video Games</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="386"/>
-        <source>Video Game Ratings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="411"/>
-        <source>Add Video Game Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="428"/>
-        <source>Remove Video Game Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="464"/>
-        <source>DVD Aspect Ratios</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="489"/>
-        <source>Add DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="506"/>
-        <source>Remove DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="542"/>
-        <source>Languages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="567"/>
-        <source>Add Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="584"/>
-        <source>Remove Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="620"/>
-        <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="645"/>
-        <source>Add Monetary Unit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="662"/>
-        <source>Remove Monetary Unit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="698"/>
-        <source>DVD Ratings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="723"/>
-        <source>Add DVD Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="740"/>
-        <source>Remove DVD Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="776"/>
-        <source>Locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="789"/>
-        <source>Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="812"/>
-        <source>Add Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="829"/>
-        <source>Remove Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="865"/>
-        <source>Video Game Platforms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="890"/>
-        <source>Add Video Game Platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="907"/>
-        <source>Remove Video Game Platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="952"/>
-        <source>Save Changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="985"/>
-        <source>Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.ui" line="1024"/>
-        <source>Close Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>dbenumerations</name>
-    <message>
-        <location filename="../dbenumerations.cc" line="256"/>
-        <location filename="../dbenumerations.cc" line="526"/>
-        <location filename="../dbenumerations.cc" line="536"/>
-        <location filename="../dbenumerations.cc" line="542"/>
-        <location filename="../dbenumerations.cc" line="548"/>
-        <location filename="../dbenumerations.cc" line="554"/>
-        <location filename="../dbenumerations.cc" line="560"/>
-        <location filename="../dbenumerations.cc" line="566"/>
-        <location filename="../dbenumerations.cc" line="572"/>
-        <location filename="../dbenumerations.cc" line="578"/>
-        <location filename="../dbenumerations.cc" line="584"/>
-        <location filename="../dbenumerations.cc" line="590"/>
-        <location filename="../dbenumerations.cc" line="664"/>
-        <location filename="../dbenumerations.cc" line="735"/>
-        <location filename="../dbenumerations.cc" line="804"/>
-        <location filename="../dbenumerations.cc" line="818"/>
-        <location filename="../dbenumerations.cc" line="831"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="257"/>
-        <source>Unable to retrieve the </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="258"/>
-        <location filename="../dbenumerations.cc" line="668"/>
-        <source>.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="288"/>
-        <location filename="../dbenumerations.cc" line="390"/>
-        <source>Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="288"/>
-        <location filename="../dbenumerations.cc" line="390"/>
-        <source>DVD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="288"/>
-        <location filename="../dbenumerations.cc" line="390"/>
-        <source>Journal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="289"/>
-        <location filename="../dbenumerations.cc" line="391"/>
-        <source>Magazine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="289"/>
-        <location filename="../dbenumerations.cc" line="391"/>
-        <source>Music CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="290"/>
-        <location filename="../dbenumerations.cc" line="391"/>
-        <source>Video Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="359"/>
-        <source>CD Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="364"/>
-        <source>DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="369"/>
-        <source>DVD Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="374"/>
-        <source>DVD Region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="379"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="418"/>
-        <source>Monetary Unit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="423"/>
-        <source>Video Game Platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="428"/>
-        <source>Video Game Rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="527"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="840"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="537"/>
-        <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="543"/>
-        <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="549"/>
-        <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="555"/>
-        <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="561"/>
-        <source>An error occurred while attempting to remove the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="567"/>
-        <source>An error occurred while attempting to remove the locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="573"/>
-        <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="579"/>
-        <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="585"/>
-        <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="591"/>
-        <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="601"/>
-        <source>cd format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="607"/>
-        <source>dvd aspect ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="613"/>
-        <source>dvd rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="619"/>
-        <source>dvd region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="625"/>
-        <source>language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="635"/>
-        <source>monetary unit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="641"/>
-        <source>video game platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="647"/>
-        <source>video game rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="665"/>
-        <source>Unable to create the </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="666"/>
-        <source> </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="736"/>
-        <source>Unable to create the location (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="739"/>
-        <location filename="../dbenumerations.cc" line="807"/>
-        <source>, </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="741"/>
-        <location filename="../dbenumerations.cc" line="809"/>
-        <source>).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="805"/>
-        <source>Unable to create the minimum day (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="819"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="832"/>
-        <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbenumerations.cc" line="841"/>
-        <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation type="unfinished"></translation>
+        <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
+        <translation>Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
 </context>
 <context>
     <name>dvdDialog</name>
     <message>
-        <location filename="../dvdinfo.ui" line="26"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="41"/>
         <source>Cover Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky obálky</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="53"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Přední strana</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="75"/>
-        <location filename="../dvdinfo.ui" line="129"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="107"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadní strana</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="156"/>
         <source>Specific Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifické informace</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="173"/>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="204"/>
         <source>Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="241"/>
         <source>Actor(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hrají</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="254"/>
         <source>Director(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Režisér</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="272"/>
         <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="322"/>
         <source>Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="335"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="351"/>
         <source>Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Region</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="384"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran obrazu</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="413"/>
         <source>hh:mm:ss</source>
-        <translation type="unfinished"></translation>
+        <translation>hh:mm:ss</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="462"/>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné informace</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="479"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="512"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="526"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="562"/>
         <source>Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="599"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="617"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="668"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="718"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="757"/>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="798"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopie</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="815"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zápůjčky</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="849"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="894"/>
         <source>Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="974"/>
+        <source>OFFSYSTEM
+URL</source>
+        <translation type="obsolete">OFFSYSTEM
+webová adresa</translation>
+    </message>
+    <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="1002"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Z39.50 Dotaz</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="1025"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="1050"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../dvdinfo.ui" line="1078"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>errordialog</name>
     <message>
-        <location filename="../errordiag.ui" line="26"/>
         <source>BiblioteQ: Error Log</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výpis chyb</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="85"/>
         <source>Event Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="90"/>
         <source>Event Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ události</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="95"/>
         <source>Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>Shrnutí</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="100"/>
         <source>Full Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Plný popis</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="105"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="110"/>
         <source>Line Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo řádku</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="154"/>
         <source>&amp;To Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Do schránky</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="177"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../errordiag.ui" line="205"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>generic_thread</name>
     <message>
-        <location filename="../generic_thread.cc" line="53"/>
         <source>Unable to read </source>
-        <translation type="unfinished"></translation>
+        <translation>Čtení selhalo</translation>
     </message>
     <message>
-        <location filename="../generic_thread.cc" line="55"/>
         <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished"></translation>
+        <translation>. Tento soubor je nutný pro běh BiblioteQ.</translation>
     </message>
     <message>
-        <location filename="../generic_thread.cc" line="117"/>
-        <location filename="../generic_thread.cc" line="118"/>
+        <source>Query Error</source>
+        <translation type="obsolete">Chyba při dotazu</translation>
+    </message>
+    <message>
         <source>Z39.50 Empty Results Set</source>
-        <translation type="unfinished"></translation>
+        <translation>Z39.50 záznamy nenalezeny</translation>
     </message>
 </context>
 <context>
     <name>historyDialog</name>
     <message>
-        <location filename="../history.ui" line="26"/>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Historie zápůjček</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="74"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="79"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="84"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="89"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="94"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="99"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="104"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="109"/>
         <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="114"/>
         <source>Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="119"/>
         <source>Returned Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vráceno dne</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="124"/>
         <source>Lender</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydal</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="129"/>
         <source>MYOID</source>
-        <translation type="unfinished"></translation>
+        <translation>Moje ID</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="142"/>
         <source>Previous Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Předchozí zapůjčitel</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="181"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Načíst znovu</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="204"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="227"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="../history.ui" line="251"/>
         <source>Next Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Další zapůjčitel</translation>
     </message>
 </context>
 <context>
     <name>informationDialog</name>
     <message>
-        <location filename="../bookinfo.ui" line="26"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="41"/>
         <source>Cover Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky obálky</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="53"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Přední strana</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="81"/>
-        <location filename="../bookinfo.ui" line="158"/>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stažení ze sítě</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="98"/>
-        <location filename="../bookinfo.ui" line="175"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="130"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadní strana</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="202"/>
         <source>Specific Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifické informace</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="214"/>
         <source>ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-10</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="232"/>
         <source>&amp;Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Generovat</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="249"/>
-        <source>From &amp;ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Convert</source>
+        <translation>&amp;Zkonvertovat</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="270"/>
         <source>ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-13</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="292"/>
-        <source>From &amp;ISBN-10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="311"/>
         <source>Edition</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="348"/>
+        <source>1st</source>
+        <translation type="obsolete">první</translation>
+    </message>
+    <message>
+        <source>2nd</source>
+        <translation type="obsolete">druhé</translation>
+    </message>
+    <message>
+        <source>3rd</source>
+        <translation type="obsolete">třetí</translation>
+    </message>
+    <message>
+        <source>4th</source>
+        <translation type="obsolete">čtvrté</translation>
+    </message>
+    <message>
+        <source>5th</source>
+        <translation type="obsolete">páté</translation>
+    </message>
+    <message>
+        <source>6th</source>
+        <translation type="obsolete">šesté</translation>
+    </message>
+    <message>
+        <source>7th</source>
+        <translation type="obsolete">sedmé</translation>
+    </message>
+    <message>
+        <source>8th</source>
+        <translation type="obsolete">osmé</translation>
+    </message>
+    <message>
+        <source>9th</source>
+        <translation type="obsolete">deváté</translation>
+    </message>
+    <message>
+        <source>10th</source>
+        <translation type="obsolete">desáté</translation>
+    </message>
+    <message>
+        <source>11th</source>
+        <translation type="obsolete">jedenácté</translation>
+    </message>
+    <message>
+        <source>12th</source>
+        <translation type="obsolete">dvanácté</translation>
+    </message>
+    <message>
+        <source>13th</source>
+        <translation type="obsolete">třinácté</translation>
+    </message>
+    <message>
+        <source>14th</source>
+        <translation type="obsolete">čtrnácté</translation>
+    </message>
+    <message>
+        <source>15th</source>
+        <translation type="obsolete">patnácté</translation>
+    </message>
+    <message>
+        <source>16th</source>
+        <translation type="obsolete">šestnácté</translation>
+    </message>
+    <message>
+        <source>17th</source>
+        <translation type="obsolete">sedmnácté</translation>
+    </message>
+    <message>
+        <source>18th</source>
+        <translation type="obsolete">osmnácté</translation>
+    </message>
+    <message>
+        <source>19th</source>
+        <translation type="obsolete">devatenácté</translation>
+    </message>
+    <message>
+        <source>20th</source>
+        <translation type="obsolete">dvacáté</translation>
+    </message>
+    <message>
+        <source>21st</source>
+        <translation type="obsolete">dvacáté první</translation>
+    </message>
+    <message>
+        <source>22nd</source>
+        <translation type="obsolete">dvacáté druhé</translation>
+    </message>
+    <message>
+        <source>23rd</source>
+        <translation type="obsolete">dvacáté třetí</translation>
+    </message>
+    <message>
+        <source>24th</source>
+        <translation type="obsolete">dvacáté čtvrté</translation>
+    </message>
+    <message>
+        <source>25th</source>
+        <translation type="obsolete">dvacáté páté</translation>
+    </message>
+    <message>
         <source>Author(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="374"/>
         <source>Book Binding Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazba knihy</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="390"/>
         <source>Hardcover</source>
-        <translation type="unfinished"></translation>
+        <translation>tvrdé desky</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="395"/>
         <source>Paperback</source>
-        <translation type="unfinished"></translation>
+        <translation>papírová vazba</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="424"/>
         <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="444"/>
         <source>Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="464"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="479"/>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné informace</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="494"/>
-        <source>Publication Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="508"/>
-        <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="539"/>
-        <source>Publisher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="571"/>
-        <source>Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="584"/>
-        <source>Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="619"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="652"/>
-        <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="692"/>
-        <source>&amp;Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="709"/>
-        <source>&amp;Reservation Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="743"/>
-        <source>Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="782"/>
-        <source>Abstract</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="809"/>
-        <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="832"/>
-        <source>Copies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../bookinfo.ui" line="845"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="852"/>
-        <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <source>Publication Date</source>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="903"/>
+        <source>MM/dd/yyyy</source>
+        <translation>dd.MM.yyyy</translation>
+    </message>
+    <message>
+        <source>Publisher</source>
+        <translation>Vydavatel</translation>
+    </message>
+    <message>
+        <source>Categories</source>
+        <translation>Kategorie</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation>Cena</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Jazyk</translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation>Měnová jednotka</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation>Kopie</translation>
+    </message>
+    <message>
+        <source>&amp;Copies</source>
+        <translation>&amp;Kopie</translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status</source>
+        <translation>&amp;Zápůjčky</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Umístění</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation>Abstrakt</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM
+URL</source>
+        <translation type="obsolete">OFFSYSTEM
+webová adresa</translation>
+    </message>
+    <message>
+        <source>Place of Publication</source>
+        <translation>Místo vydání</translation>
+    </message>
+    <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="920"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Z39.50 Dotaz</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="945"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="967"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../bookinfo.ui" line="990"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>locResultsDialog</name>
+    <message>
+        <source>BiblioteQ: Z39.50 Query Results</source>
+        <translation type="obsolete">BiblioteQ: výsledky dotazu protokolem Z39.50</translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation type="obsolete">&amp;Získané záznamy</translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation type="obsolete">&amp;Obsah záznamu</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="obsolete">&amp;Vybrat</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="obsolete">&amp;Storno</translation>
+    </message>
+</context>
+<context>
+    <name>locresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="obsolete">Záznam č.</translation>
     </message>
 </context>
 <context>
     <name>magDialog</name>
     <message>
-        <location filename="../maginfo.ui" line="26"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="41"/>
         <source>Cover Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky obálky</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="53"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Přední strana</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="75"/>
-        <location filename="../maginfo.ui" line="129"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="107"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadní strana</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="161"/>
         <source>Specific Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifické informace</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="178"/>
         <source>Issue (Number)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="191"/>
         <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="209"/>
         <source>ISSN (9999-9999)</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN (9999-9999)</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="336"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Svazek</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="349"/>
         <source>Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="362"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="400"/>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné informace</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="417"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="450"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="465"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="501"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="538"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="556"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="607"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="657"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="696"/>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="737"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopie</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="754"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zápůjčky</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="788"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="833"/>
         <source>Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="881"/>
+        <source>OFFSYSTEM
+URL</source>
+        <translation type="obsolete">OFFSYSTEM
+webová adresa</translation>
+    </message>
+    <message>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="888"/>
-        <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../maginfo.ui" line="955"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="972"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Z39.50 Dotaz</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="994"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="1019"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../maginfo.ui" line="1047"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="31"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="223"/>
-        <location filename="../mainwindow.ui" line="352"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="228"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="233"/>
         <source>3</source>
-        <translation type="unfinished"></translation>
+        <translation>3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="238"/>
         <source>4</source>
-        <translation type="unfinished"></translation>
+        <translation>4</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
         <source>5</source>
-        <translation type="unfinished"></translation>
+        <translation>5</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="248"/>
         <source>6</source>
-        <translation type="unfinished"></translation>
+        <translation>6</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="253"/>
         <source>7</source>
-        <translation type="unfinished"></translation>
+        <translation>7</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="258"/>
         <source>8</source>
-        <translation type="unfinished"></translation>
+        <translation>8</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="263"/>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation>9</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="268"/>
         <source>10</source>
-        <translation type="unfinished"></translation>
+        <translation>10</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="273"/>
         <source>11</source>
-        <translation type="unfinished"></translation>
+        <translation>11</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="278"/>
         <source>12</source>
-        <translation type="unfinished"></translation>
+        <translation>12</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="283"/>
         <source>13</source>
-        <translation type="unfinished"></translation>
+        <translation>13</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="288"/>
         <source>14</source>
-        <translation type="unfinished"></translation>
+        <translation>14</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="293"/>
         <source>15</source>
-        <translation type="unfinished"></translation>
+        <translation>15</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="298"/>
         <source>16</source>
-        <translation type="unfinished"></translation>
+        <translation>16</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="332"/>
-        <source>Previous Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="365"/>
-        <source>Next Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="426"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="438"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nástroje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="454"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="464"/>
-        <source>&amp;Recent SQLite Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="483"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Úpravy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="496"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zobrazit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="510"/>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nastavení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="520"/>
-        <source>E&amp;ntries per Page</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar</source>
+        <translation>nástrojová lišta 1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="525"/>
-        <source>Preferred &amp;Z39.50 Site</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar_2</source>
+        <translation>nástrojová lišta 2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="555"/>
-        <source>Connect Toobar</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar_3</source>
+        <translation>nástrojová lišta 3</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="577"/>
-        <source>Edit Toolbar</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar_4</source>
+        <translation>nástrojová lišta 4</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="599"/>
-        <source>Reservations Toolbar</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar_5</source>
+        <translation>nástrojová lišta 5</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="620"/>
-        <source>Search Toolbar</source>
-        <translation type="unfinished"></translation>
+        <source>toolBar_6</source>
+        <translation>nástrojová lišta 6</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="640"/>
-        <source>Configurations Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="658"/>
-        <source>Exit Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="680"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O programu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="699"/>
         <source>&amp;Display Table Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zobrazit mřížku v tabulce</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="719"/>
         <source>&amp;Resize Columns to Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Přizpůsobit šířku sloupce obsahu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="733"/>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="742"/>
         <source>&amp;Save Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit nastavení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="756"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="767"/>
         <source>&amp;Populate Table on Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Načíst tabulku při připojení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="786"/>
         <source>Automatically &amp;Resize Columns to Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky &amp;přizpůsobit šířku sloupce obsahu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="806"/>
+        <source>&amp;Automatically Populate Table on Filter Change</source>
+        <translation>&amp;Automaticky načíst tabulku po změně filtru</translation>
+    </message>
+    <message>
         <source>View Error &amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlížení seznamu &amp;chyb</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="815"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="823"/>
         <source>Reset &amp;Error Log on Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;seznam chyb při odpojení z databáze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="838"/>
         <source>&amp;Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Připojit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="847"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="856"/>
         <source>&amp;Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Odpojit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="865"/>
         <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="874"/>
-        <source>Exit Bibliote&amp;Q</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Exit BiblioteQ</source>
+        <translation type="obsolete">&amp;Zavřít program</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="883"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <source>Ctrl+E</source>
+        <translation type="obsolete">Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="892"/>
         <source>&amp;Delete Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Smazat vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="901"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="910"/>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Změnit vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="919"/>
-        <location filename="../mainwindow.ui" line="997"/>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="928"/>
         <source>&amp;Members Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;eznam zapůjčitelů</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="937"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="946"/>
         <source>&amp;Database Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání v &amp;databázi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="949"/>
-        <location filename="../mainwindow.ui" line="952"/>
-        <location filename="../mainwindow.ui" line="1176"/>
         <source>Database Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání v databázi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="961"/>
         <source>Ctrl+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="970"/>
         <source>Refresh &amp;Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu &amp;načíst tabulku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="979"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="988"/>
         <source>&amp;Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>V&amp;ybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1006"/>
-        <source>Select &amp;Global Font</source>
-        <translation type="unfinished"></translation>
+        <source>Select Global &amp;Font</source>
+        <translation type="obsolete">Vybrat pís&amp;mo pro celou aplikaci</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1015"/>
         <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1023"/>
         <source>Populate Table on Item &amp;Creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Načíst tabulku při vytvoř&amp;ení nového záznamu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1038"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1053"/>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpojit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1068"/>
         <source>View Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohlížení vybraných položek</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1083"/>
         <source>Add Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat záznam</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1101"/>
         <source>Delete Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1116"/>
         <source>Modify Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1131"/>
-        <source>Print Current View</source>
-        <translation type="unfinished"></translation>
+        <source>Print Selected Item(s)</source>
+        <translation>Tisknout vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1146"/>
         <source>Reserve Selected Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčit vybrané položky</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1161"/>
         <source>Display Members Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraz seznam zapůjčitelů</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1191"/>
         <source>Custom Database Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelský databázový dotaz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1206"/>
         <source>Refresh Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu načíst tabulku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1221"/>
         <source>Select Viewable Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr sloupců</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1236"/>
         <source>Exit BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít program</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1251"/>
         <source>View Member&apos;s Reservation History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historie zápůjček</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1266"/>
         <source>Change Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Změna hesla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1280"/>
-        <source>Preserve Main &amp;Window&apos;s Geometry</source>
-        <translation type="unfinished"></translation>
+        <source>Remember S&amp;QLite Filename</source>
+        <translation type="obsolete">Zapamatovat jméno S&amp;QLite databáze</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1294"/>
+        <source>Preserve Main Window&apos;s &amp;Geometry</source>
+        <translation type="obsolete">Zapamatovat &amp;rozměry okna</translation>
+    </message>
+    <message>
         <source>Automatically Save Settings on E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>Při ukončení &amp;automaticky uložit nastavení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1309"/>
         <source>Configure Administrator Privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte práva administrátora</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1324"/>
         <source>Item Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadavek</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1338"/>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation type="unfinished"></translation>
+        <translation>Naplnit &amp;tabulku zapůjčitelů při zobrazení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1352"/>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation type="unfinished"></translation>
+        <translation>Naplnit přehled &amp;administrátorů při zobrazení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1367"/>
-        <source>&amp;New SQLite Database</source>
-        <translation type="unfinished"></translation>
+        <source>Previous Page</source>
+        <translation>Předchozí strana</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1370"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <source>Next Page</source>
+        <translation>Další strana</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1379"/>
-        <location filename="../mainwindow.ui" line="1382"/>
-        <source>Database Enumerations</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Recent SQLite Files</source>
+        <translation>&amp;Nedávno otevřené SQLite soubory</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1390"/>
-        <source>Populate Database En&amp;umerations Browser on Display</source>
-        <translation type="unfinished"></translation>
+        <source>E&amp;ntries per Page</source>
+        <translation>Z&amp;áznamů na straně</translation>
+    </message>
+    <message>
+        <source>Preferred &amp;Z39.50 Site</source>
+        <translation>&amp;Standardní server pro Z39.50</translation>
+    </message>
+    <message>
+        <source>Exit Bibliote&amp;Q</source>
+        <translation>Ukončit Bibliote&amp;Q</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font</source>
+        <translation>Vybrat pís&amp;mo pro celou aplikaci</translation>
+    </message>
+    <message>
+        <source>Preserve Main &amp;Window&apos;s Geometry</source>
+        <translation>Zapamatovat &amp;rozměry okna</translation>
+    </message>
+    <message>
+        <source>Check for &amp;Updates</source>
+        <translation>Zjisti &amp;novější verzi</translation>
+    </message>
+    <message>
+        <source>&amp;25</source>
+        <translation>&amp;25</translation>
+    </message>
+    <message>
+        <source>&amp;50</source>
+        <translation>&amp;50</translation>
+    </message>
+    <message>
+        <source>&amp;75</source>
+        <translation>&amp;75</translation>
+    </message>
+    <message>
+        <source>&amp;100</source>
+        <translation>&amp;100</translation>
+    </message>
+    <message>
+        <source>test</source>
+        <translation>test</translation>
     </message>
 </context>
 <context>
     <name>main_table</name>
     <message>
-        <location filename="../main_table.cc" line="44"/>
-        <location filename="../main_table.cc" line="56"/>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
+    </message>
+    <message>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
         <source>Borrower</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčitel</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="45"/>
-        <location filename="../main_table.cc" line="57"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="48"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="49"/>
         <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="50"/>
         <source>Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčeno do</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="60"/>
         <source>Request Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="63"/>
-        <location filename="../main_table.cc" line="85"/>
-        <location filename="../main_table.cc" line="109"/>
-        <location filename="../main_table.cc" line="129"/>
-        <location filename="../main_table.cc" line="151"/>
-        <location filename="../main_table.cc" line="173"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="64"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="65"/>
-        <location filename="../main_table.cc" line="87"/>
-        <location filename="../main_table.cc" line="113"/>
-        <location filename="../main_table.cc" line="174"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="66"/>
-        <location filename="../main_table.cc" line="88"/>
-        <location filename="../main_table.cc" line="175"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="67"/>
-        <location filename="../main_table.cc" line="91"/>
-        <location filename="../main_table.cc" line="136"/>
-        <location filename="../main_table.cc" line="157"/>
-        <location filename="../main_table.cc" line="179"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="68"/>
-        <location filename="../main_table.cc" line="92"/>
-        <location filename="../main_table.cc" line="117"/>
-        <location filename="../main_table.cc" line="137"/>
-        <location filename="../main_table.cc" line="158"/>
-        <location filename="../main_table.cc" line="180"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="69"/>
-        <location filename="../main_table.cc" line="94"/>
-        <location filename="../main_table.cc" line="119"/>
-        <location filename="../main_table.cc" line="139"/>
-        <location filename="../main_table.cc" line="160"/>
-        <location filename="../main_table.cc" line="182"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="70"/>
-        <location filename="../main_table.cc" line="95"/>
-        <location filename="../main_table.cc" line="120"/>
-        <location filename="../main_table.cc" line="140"/>
-        <location filename="../main_table.cc" line="161"/>
-        <location filename="../main_table.cc" line="183"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="71"/>
-        <location filename="../main_table.cc" line="96"/>
-        <location filename="../main_table.cc" line="121"/>
-        <location filename="../main_table.cc" line="141"/>
-        <location filename="../main_table.cc" line="162"/>
-        <location filename="../main_table.cc" line="184"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="72"/>
-        <location filename="../main_table.cc" line="98"/>
-        <location filename="../main_table.cc" line="122"/>
-        <location filename="../main_table.cc" line="142"/>
-        <location filename="../main_table.cc" line="163"/>
-        <location filename="../main_table.cc" line="185"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="75"/>
-        <location filename="../main_table.cc" line="103"/>
-        <location filename="../main_table.cc" line="123"/>
-        <location filename="../main_table.cc" line="145"/>
-        <location filename="../main_table.cc" line="167"/>
-        <location filename="../main_table.cc" line="189"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="77"/>
-        <location filename="../main_table.cc" line="104"/>
-        <location filename="../main_table.cc" line="124"/>
-        <location filename="../main_table.cc" line="146"/>
-        <location filename="../main_table.cc" line="168"/>
-        <location filename="../main_table.cc" line="190"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="86"/>
+        <source>Books</source>
+        <translation type="obsolete">Knihy</translation>
+    </message>
+    <message>
         <source>Author(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="89"/>
-        <location filename="../main_table.cc" line="115"/>
-        <location filename="../main_table.cc" line="176"/>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="90"/>
         <source>Edition</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="93"/>
         <source>ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-10</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="97"/>
         <source>Book Binding Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazba knihy</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="99"/>
         <source>ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-13</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="100"/>
-        <location filename="../main_table.cc" line="186"/>
         <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="101"/>
-        <location filename="../main_table.cc" line="187"/>
         <source>Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="102"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="110"/>
+        <source>Video Games</source>
+        <translation type="obsolete">Videohry</translation>
+    </message>
+    <message>
         <source>Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení hry</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="111"/>
         <source>Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="112"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mód</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="114"/>
-        <location filename="../main_table.cc" line="133"/>
-        <location filename="../main_table.cc" line="154"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="116"/>
         <source>Genres</source>
-        <translation type="unfinished"></translation>
+        <translation>Žánr</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="118"/>
-        <location filename="../main_table.cc" line="159"/>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="130"/>
+        <source>Music CDs</source>
+        <translation type="obsolete">Hudební CD</translation>
+    </message>
+    <message>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Umělec</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="131"/>
-        <location filename="../main_table.cc" line="152"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="132"/>
         <source>Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávací společnost</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="134"/>
-        <location filename="../main_table.cc" line="155"/>
         <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="135"/>
-        <location filename="../main_table.cc" line="156"/>
         <source>Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="138"/>
         <source>Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogové číslo</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="143"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvuk</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="144"/>
         <source>Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Druh nahrávky</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="153"/>
+        <source>DVDs</source>
+        <translation type="obsolete">DVD disky</translation>
+    </message>
+    <message>
         <source>Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="164"/>
         <source>Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="165"/>
         <source>Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Region</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="166"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran obrazu</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="177"/>
+        <source>Journals</source>
+        <translation type="obsolete">Časopisy</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="obsolete">Magazíny</translation>
+    </message>
+    <message>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Svazek</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="178"/>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo vydání</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="181"/>
         <source>ISSN</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN</translation>
     </message>
     <message>
-        <location filename="../main_table.cc" line="188"/>
         <source>Dewey Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
 </context>
 <context>
     <name>membersBrowser</name>
     <message>
-        <location filename="../members_browser.ui" line="26"/>
         <source>BiblioteQ: Members Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Přehled zapůjčitelů</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="54"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="62"/>
-        <location filename="../members_browser.ui" line="135"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="67"/>
-        <location filename="../members_browser.ui" line="145"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="90"/>
         <source>Apply Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Použij filtr</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="140"/>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="150"/>
         <source>Member Since</source>
-        <translation type="unfinished"></translation>
+        <translation>Evidován od</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="155"/>
         <source>Books Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené knihy</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="160"/>
         <source>CDs Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené CD</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="165"/>
         <source>DVDs Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené DVD</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="170"/>
         <source>Journals Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené časopisy</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="175"/>
         <source>Magazines Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené magazíny</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="180"/>
         <source>Video Games Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené videohry</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="199"/>
         <source>Add Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="225"/>
         <source>Delete Selected Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Smazat vybraného zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="251"/>
         <source>Modify Selected Member</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit vybraného zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="271"/>
         <source>Show Selected Member&apos;s Reservation History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historie zápůjček vybraného zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="300"/>
         <source>List Selected Member&apos;s Reserved Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat seznam vypůjčených věcí vybraného zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="326"/>
         <source>Print Selected Member&apos;s Reserved Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Tisknout seznam vypůjčených věcí vybraného zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="362"/>
         <source>Reserve Selected Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčit vybrané položky</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="395"/>
         <source>List All Overdue Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam zápůjček po termínu</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="421"/>
-        <source>Refresh Table</source>
-        <translation type="unfinished"></translation>
+        <source>Refresh List</source>
+        <translation>Znovu načíst list</translation>
     </message>
     <message>
-        <location filename="../members_browser.ui" line="460"/>
         <source>Close Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít okno</translation>
     </message>
 </context>
 <context>
     <name>passSelect</name>
     <message>
-        <location filename="../password.ui" line="32"/>
         <source>BiblioteQ: Password Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Zadání hesla</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="78"/>
         <source>Userid</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatel</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="98"/>
         <source>New Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové heslo</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="112"/>
         <source>Confirm Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdit heslo</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="126"/>
         <source>Current Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální heslo</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="192"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../password.ui" line="218"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Storno</translation>
     </message>
 </context>
 <context>
     <name>qtbook</name>
     <message>
-        <location filename="../include.d/qtbook.h" line="130"/>
-        <location filename="../qtbook.cc" line="1126"/>
-        <location filename="../qtbook.cc" line="1273"/>
-        <location filename="../qtbook.cc" line="1504"/>
-        <location filename="../qtbook.cc" line="5287"/>
-        <location filename="../qtbook.cc" line="5725"/>
-        <location filename="../qtbook.cc" line="5763"/>
-        <location filename="../qtbook.cc" line="7964"/>
-        <location filename="../qtbook.cc" line="9589"/>
-        <location filename="../qtbook.cc" line="9998"/>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../include.d/qtbook.h" line="131"/>
-        <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="159"/>
         <source>BiblioteQ has exited.</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ skončil</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="187"/>
         <source> in file </source>
-        <translation type="unfinished"></translation>
+        <translation>v souboru</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="188"/>
-        <location filename="../qtbook.cc" line="192"/>
         <source>, line </source>
-        <translation type="unfinished"></translation>
+        <translation>, řádek</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="189"/>
-        <location filename="../qtbook.cc" line="193"/>
-        <location filename="../qtbook.cc" line="4818"/>
-        <location filename="../qtbook.cc" line="5339"/>
-        <location filename="../qtbook.cc" line="5352"/>
-        <location filename="../qtbook.cc" line="5838"/>
-        <location filename="../qtbook.cc" line="5840"/>
-        <location filename="../qtbook.cc" line="5934"/>
-        <location filename="../qtbook.cc" line="5942"/>
-        <location filename="../qtbook.cc" line="9332"/>
-        <location filename="../qtbook.cc" line="9347"/>
-        <location filename="../qtbook.cc" line="9400"/>
-        <location filename="../qtbook.cc" line="9426"/>
-        <location filename="../qtbook.cc" line="9443"/>
-        <location filename="../qtbook.cc" line="9461"/>
-        <location filename="../qtbook.cc" line="9475"/>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="191"/>
         <source>An unknown error occurred in file </source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá chyba v souboru</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="259"/>
         <source>Insert &amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit &amp;knihu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="262"/>
+        <source>Insert &amp;CD</source>
+        <translation>Vložit &amp;CD</translation>
+    </message>
+    <message>
         <source>Insert &amp;DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit &amp;DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="264"/>
         <source>Insert &amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit &amp;časopis</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="266"/>
         <source>Insert &amp;Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit &amp;magazín</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="268"/>
-        <source>Insert Music &amp;CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="271"/>
         <source>Insert &amp;Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložit &amp;videohru</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="275"/>
         <source>&amp;General Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Všeobecné hledání</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="278"/>
         <source>&amp;Book Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání &amp;knih</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="280"/>
+        <source>&amp;CD Search</source>
+        <translation>Hledání &amp;CD</translation>
+    </message>
+    <message>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání &amp;DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="282"/>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání &amp;časopisů</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="284"/>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání &amp;magazínů</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="286"/>
-        <source>&amp;Music CD Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="288"/>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání &amp;videoher</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="293"/>
+        <source>BiblioteQ: Columns Selection</source>
+        <translation>BiblioteQ: výběr sloupců</translation>
+    </message>
+    <message>
         <source>Reset &amp;ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="295"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="297"/>
-        <source>Reset &amp;Publication Date</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;Release Date</source>
+        <translation type="obsolete">Vyčistit &amp;datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="299"/>
         <source>Reset &amp;Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydavatele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="301"/>
         <source>Reset &amp;Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="303"/>
+        <source>Reset &amp;Type</source>
+        <translation type="obsolete">Vyčistit &amp;typ</translation>
+    </message>
+    <message>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="305"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="307"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="309"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="311"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="313"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="588"/>
-        <source>&amp;%1</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="679"/>
-        <location filename="../qtbook.cc" line="1143"/>
-        <location filename="../qtbook.cc" line="1290"/>
-        <location filename="../qtbook.cc" line="1435"/>
-        <location filename="../qtbook.cc" line="1529"/>
-        <location filename="../qtbook.cc" line="4437"/>
-        <location filename="../qtbook.cc" line="5480"/>
-        <location filename="../qtbook.cc" line="6664"/>
-        <location filename="../qtbook.cc" line="7929"/>
-        <location filename="../qtbook.cc" line="8648"/>
-        <location filename="../qtbook.cc" line="8851"/>
-        <location filename="../qtbook.cc" line="9629"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="758"/>
         <source>Administrator Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim administrátora</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="760"/>
         <source>Circulation Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim oběžníku (?)</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="762"/>
         <source>Librarian Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim knihovníka</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="764"/>
         <source>Membership Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim členství</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="766"/>
         <source>Privileged Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim privilegovaný</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="830"/>
-        <location filename="../qtbook.cc" line="6122"/>
-        <location filename="../qtbook.cc" line="6778"/>
         <source>Item Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadavky na věci</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="879"/>
-        <location filename="../qtbook.cc" line="6132"/>
         <source>Disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpojen</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="886"/>
-        <location filename="../qtbook.cc" line="6138"/>
         <source>Standard User Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim standardního uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="893"/>
-        <location filename="../qtbook.cc" line="6981"/>
         <source>Empty Error Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdnit seznam chyb</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="897"/>
-        <location filename="../qtbook.cc" line="6147"/>
-        <source>0 Results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="964"/>
         <source>BiblioteQ: About</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: O programu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1023"/>
-        <location filename="../qtbook.cc" line="1035"/>
-        <location filename="../qtbook.cc" line="1048"/>
-        <location filename="../qtbook.cc" line="1458"/>
-        <location filename="../qtbook.cc" line="1483"/>
-        <location filename="../qtbook.cc" line="1537"/>
-        <location filename="../qtbook.cc" line="4143"/>
-        <location filename="../qtbook.cc" line="4644"/>
-        <location filename="../qtbook.cc" line="4669"/>
-        <location filename="../qtbook.cc" line="4738"/>
-        <location filename="../qtbook.cc" line="4742"/>
-        <location filename="../qtbook.cc" line="4764"/>
-        <location filename="../qtbook.cc" line="4770"/>
-        <location filename="../qtbook.cc" line="4787"/>
-        <location filename="../qtbook.cc" line="4813"/>
-        <location filename="../qtbook.cc" line="5264"/>
-        <location filename="../qtbook.cc" line="5300"/>
-        <location filename="../qtbook.cc" line="5319"/>
-        <location filename="../qtbook.cc" line="5323"/>
-        <location filename="../qtbook.cc" line="5337"/>
-        <location filename="../qtbook.cc" line="5344"/>
-        <location filename="../qtbook.cc" line="5359"/>
-        <location filename="../qtbook.cc" line="5869"/>
-        <location filename="../qtbook.cc" line="5883"/>
-        <location filename="../qtbook.cc" line="5930"/>
-        <location filename="../qtbook.cc" line="6331"/>
-        <location filename="../qtbook.cc" line="6431"/>
-        <location filename="../qtbook.cc" line="6472"/>
-        <location filename="../qtbook.cc" line="6540"/>
-        <location filename="../qtbook.cc" line="6672"/>
-        <location filename="../qtbook.cc" line="7937"/>
-        <location filename="../qtbook.cc" line="8459"/>
-        <location filename="../qtbook.cc" line="8609"/>
-        <location filename="../qtbook.cc" line="8920"/>
-        <location filename="../qtbook.cc" line="9135"/>
-        <location filename="../qtbook.cc" line="9308"/>
-        <location filename="../qtbook.cc" line="9329"/>
-        <location filename="../qtbook.cc" line="9344"/>
-        <location filename="../qtbook.cc" line="9398"/>
-        <location filename="../qtbook.cc" line="9424"/>
-        <location filename="../qtbook.cc" line="9440"/>
-        <location filename="../qtbook.cc" line="9458"/>
-        <location filename="../qtbook.cc" line="9472"/>
-        <location filename="../qtbook.cc" line="9494"/>
-        <location filename="../qtbook.cc" line="9525"/>
-        <location filename="../qtbook.cc" line="9650"/>
-        <location filename="../qtbook.cc" line="9654"/>
-        <location filename="../qtbook.cc" line="9953"/>
-        <location filename="../qtbook.cc" line="9960"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="1024"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="1036"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="1049"/>
-        <source>Unable to retrieve the locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="1056"/>
-        <location filename="../qtbook.cc" line="1057"/>
-        <location filename="../qtbook.cc" line="1059"/>
-        <location filename="../qtbook.cc" line="1060"/>
-        <location filename="../qtbook.cc" line="1062"/>
-        <location filename="../qtbook.cc" line="1063"/>
-        <location filename="../qtbook.cc" line="3864"/>
-        <location filename="../qtbook.cc" line="3870"/>
-        <location filename="../qtbook.cc" line="3883"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1065"/>
-        <location filename="../qtbook.cc" line="1066"/>
-        <location filename="../qtbook.cc" line="1068"/>
-        <location filename="../qtbook.cc" line="1069"/>
-        <location filename="../qtbook.cc" line="1071"/>
-        <location filename="../qtbook.cc" line="1072"/>
-        <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="1121"/>
-        <location filename="../qtbook.cc" line="1268"/>
-        <location filename="../qtbook.cc" line="1420"/>
-        <location filename="../qtbook.cc" line="4561"/>
-        <location filename="../qtbook.cc" line="4576"/>
-        <location filename="../qtbook.cc" line="4587"/>
-        <location filename="../qtbook.cc" line="4595"/>
-        <location filename="../qtbook.cc" line="4603"/>
-        <location filename="../qtbook.cc" line="4611"/>
-        <location filename="../qtbook.cc" line="4619"/>
-        <location filename="../qtbook.cc" line="4656"/>
-        <location filename="../qtbook.cc" line="5252"/>
-        <location filename="../qtbook.cc" line="5281"/>
-        <location filename="../qtbook.cc" line="5912"/>
-        <location filename="../qtbook.cc" line="5922"/>
-        <location filename="../qtbook.cc" line="6526"/>
-        <location filename="../qtbook.cc" line="6681"/>
-        <location filename="../qtbook.cc" line="6690"/>
-        <location filename="../qtbook.cc" line="7873"/>
-        <location filename="../qtbook.cc" line="7917"/>
-        <location filename="../qtbook.cc" line="7921"/>
-        <location filename="../qtbook.cc" line="7950"/>
-        <location filename="../qtbook.cc" line="7954"/>
-        <location filename="../qtbook.cc" line="8297"/>
-        <location filename="../qtbook.cc" line="8309"/>
-        <location filename="../qtbook.cc" line="8399"/>
-        <location filename="../qtbook.cc" line="8422"/>
-        <location filename="../qtbook.cc" line="8487"/>
-        <location filename="../qtbook.cc" line="8539"/>
-        <location filename="../qtbook.cc" line="8758"/>
-        <location filename="../qtbook.cc" line="8762"/>
-        <location filename="../qtbook.cc" line="8890"/>
-        <location filename="../qtbook.cc" line="8898"/>
-        <location filename="../qtbook.cc" line="8907"/>
-        <location filename="../qtbook.cc" line="9042"/>
-        <location filename="../qtbook.cc" line="9052"/>
-        <location filename="../qtbook.cc" line="9282"/>
-        <location filename="../qtbook.cc" line="9295"/>
-        <location filename="../qtbook.cc" line="9572"/>
-        <location filename="../qtbook.cc" line="9582"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1122"/>
         <source>Please select at least one item to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte aspoň jednu položku, kterou změníte.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1127"/>
+        <source>BiblioteQ: Question</source>
+        <translation>BiblioteQ: Dotaz</translation>
+    </message>
+    <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jistý(á), že chcete změnit</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1129"/>
-        <location filename="../qtbook.cc" line="1276"/>
         <source> selected items?</source>
-        <translation type="unfinished"></translation>
+        <translation>vybrané položky?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1241"/>
-        <location filename="../qtbook.cc" line="1387"/>
-        <location filename="../qtbook.cc" line="1445"/>
-        <location filename="../qtbook.cc" line="1462"/>
-        <location filename="../qtbook.cc" line="1471"/>
-        <location filename="../qtbook.cc" line="1487"/>
-        <location filename="../qtbook.cc" line="1496"/>
-        <location filename="../qtbook.cc" line="6726"/>
         <source>BiblioteQ: Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Chyba</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1242"/>
-        <location filename="../qtbook.cc" line="1388"/>
         <source>Unable to determine the selected item&apos;s type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit typ vybrané položky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1269"/>
         <source>Please select at least one item to view.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte aspoň jednu položku, kterou si chcete prohlédnout.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1274"/>
         <source>Are you sure that you wish to view the </source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jistý(á), že si chcete prohlížet</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1421"/>
         <source>Please select an item to delete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte položku, kterou chcete smazat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1439"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1440"/>
-        <location filename="../qtbook.cc" line="1442"/>
-        <location filename="../qtbook.cc" line="1446"/>
         <source>The main table does not contain enough information for item deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavní tabulka neobsahuje dostatek informací pro smazání položky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1459"/>
-        <location filename="../qtbook.cc" line="1463"/>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine if the item has been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit, zda je věc vypůjčená.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1472"/>
         <source>Reserved items may not be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypůjčené věci se nedají smazat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1484"/>
-        <location filename="../qtbook.cc" line="1488"/>
         <source>Unable to determine if the item has been requested.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit, zda je věc vyžádaná.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1497"/>
         <source>Requested items may not be deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyžádané položky nemohou být smazány.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1505"/>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jistý(á), že chcete nadobro smazat vybrané položky?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1515"/>
-        <location filename="../qtbook.cc" line="4244"/>
-        <location filename="../qtbook.cc" line="6353"/>
-        <location filename="../qtbook.cc" line="8670"/>
-        <location filename="../qtbook.cc" line="9151"/>
-        <location filename="../qtbook.cc" line="9355"/>
-        <location filename="../qtbook.cc" line="9601"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: indikátor postupu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1516"/>
         <source>Deleting the selected item(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Mažu vybrané položky...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1538"/>
         <source>Unable to delete the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu smazat položku.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1561"/>
-        <location filename="../qtbook.cc" line="4147"/>
-        <location filename="../qtbook.cc" line="4648"/>
-        <location filename="../qtbook.cc" line="4673"/>
-        <location filename="../qtbook.cc" line="4745"/>
-        <location filename="../qtbook.cc" line="4776"/>
-        <location filename="../qtbook.cc" line="4795"/>
-        <location filename="../qtbook.cc" line="5268"/>
-        <location filename="../qtbook.cc" line="5304"/>
-        <location filename="../qtbook.cc" line="5326"/>
-        <location filename="../qtbook.cc" line="5350"/>
-        <location filename="../qtbook.cc" line="5367"/>
-        <location filename="../qtbook.cc" line="5834"/>
-        <location filename="../qtbook.cc" line="5874"/>
-        <location filename="../qtbook.cc" line="5890"/>
-        <location filename="../qtbook.cc" line="5938"/>
-        <location filename="../qtbook.cc" line="6336"/>
-        <location filename="../qtbook.cc" line="6547"/>
-        <location filename="../qtbook.cc" line="6551"/>
-        <location filename="../qtbook.cc" line="7941"/>
-        <location filename="../qtbook.cc" line="8463"/>
-        <location filename="../qtbook.cc" line="8616"/>
-        <location filename="../qtbook.cc" line="8620"/>
-        <location filename="../qtbook.cc" line="8624"/>
-        <location filename="../qtbook.cc" line="8923"/>
-        <location filename="../qtbook.cc" line="9140"/>
-        <location filename="../qtbook.cc" line="9312"/>
-        <location filename="../qtbook.cc" line="9502"/>
-        <location filename="../qtbook.cc" line="9529"/>
-        <location filename="../qtbook.cc" line="9680"/>
-        <location filename="../qtbook.cc" line="9686"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="1562"/>
         <source>Unable to delete all or some of the selected items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu smazat některé z vybraných položek.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4144"/>
-        <location filename="../qtbook.cc" line="4148"/>
+        <source>Video Games</source>
+        <translation type="obsolete">Videohry</translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="obsolete">Knihy</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="obsolete">DVD disky</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="obsolete">Hudební CD</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="obsolete">Časopisy</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="obsolete">Magazíny</translation>
+    </message>
+    <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data do hlavní tabulky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4245"/>
-        <location filename="../qtbook.cc" line="6354"/>
-        <location filename="../qtbook.cc" line="8671"/>
-        <location filename="../qtbook.cc" line="9152"/>
         <source>Populating the table...</source>
-        <translation type="unfinished"></translation>
+        <translation>Plním tabulku...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4339"/>
-        <location filename="../qtbook.cc" line="6383"/>
-        <location filename="../qtbook.cc" line="8237"/>
-        <location filename="../qtbook.cc" line="8253"/>
-        <location filename="../qtbook.cc" line="8697"/>
-        <location filename="../qtbook.cc" line="9007"/>
-        <location filename="../qtbook.cc" line="9016"/>
-        <location filename="../qtbook.cc" line="9180"/>
-        <location filename="../qtbook.cc" line="9202"/>
-        <location filename="../qtbook.cc" line="9209"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4340"/>
-        <location filename="../qtbook.cc" line="6384"/>
-        <location filename="../qtbook.cc" line="8698"/>
-        <location filename="../qtbook.cc" line="9008"/>
-        <location filename="../qtbook.cc" line="9181"/>
-        <location filename="../qtbook.cc" line="9210"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4130"/>
-        <location filename="../qtbook.cc" line="4379"/>
-        <source>%1 Result(s)</source>
-        <translation type="unfinished"></translation>
+        <source>Custom</source>
+        <translation type="obsolete">Uživatelský</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4196"/>
-        <location filename="../qtbook.cc" line="4219"/>
-        <source> %1 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4198"/>
-        <location filename="../qtbook.cc" line="4221"/>
-        <location filename="../qtbook.cc" line="4226"/>
-        <source>%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4209"/>
-        <source> 1 ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4211"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4211"/>
-        <source> ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4224"/>
-        <source> ... %1 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="4513"/>
         <source>BiblioteQ: Create New Member</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: vytvořit nového zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4562"/>
+        <source>Create New Member</source>
+        <translation type="obsolete">Vytvořit nového zapůjčitele</translation>
+    </message>
+    <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele musí mít aspoň sedm znaků.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4577"/>
         <source>The Member ID </source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4579"/>
         <source> already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>už existuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4588"/>
         <source>Please provide a valid First Name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte neprázdné křestní jméno.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4596"/>
         <source>Please provide a valid Last Name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte neprázdné příjmení.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4604"/>
         <source>Please provide a valid Street.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte neprázdnou ulici.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4612"/>
         <source>Please provide a valid City.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte neprázdné jméno sídla.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4620"/>
         <source>Please provide a valid ZIP Code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte neprázdné PSČ.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4645"/>
-        <location filename="../qtbook.cc" line="4649"/>
         <source>Unable to determine the uniqueness of the proposed member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit, zda je kód zapůjčitele jednoznačný.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4657"/>
         <source>An identical member already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Takový zapůjčitel už existuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4670"/>
-        <location filename="../qtbook.cc" line="4674"/>
-        <location filename="../qtbook.cc" line="5301"/>
-        <location filename="../qtbook.cc" line="5305"/>
-        <location filename="../qtbook.cc" line="9309"/>
-        <location filename="../qtbook.cc" line="9313"/>
+        <source>New</source>
+        <translation type="obsolete">Nový</translation>
+    </message>
+    <message>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4738"/>
-        <location filename="../qtbook.cc" line="4765"/>
-        <location filename="../qtbook.cc" line="5319"/>
-        <location filename="../qtbook.cc" line="5344"/>
-        <location filename="../qtbook.cc" line="9525"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4743"/>
-        <location filename="../qtbook.cc" line="4746"/>
         <source>Unable to save the member&apos;s information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uložit informace o zapůjčiteli.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4771"/>
-        <location filename="../qtbook.cc" line="4777"/>
         <source>An error occurred while attempting to create a database account for the new member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stala se chyba při vytváření databázového účtu pro nového zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4788"/>
-        <location filename="../qtbook.cc" line="4796"/>
-        <location filename="../qtbook.cc" line="5360"/>
-        <location filename="../qtbook.cc" line="5368"/>
-        <location filename="../qtbook.cc" line="9495"/>
-        <location filename="../qtbook.cc" line="9503"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4814"/>
         <source>An error occurred while attempting to update the database account for </source>
-        <translation type="unfinished"></translation>
+        <translation>Stala se chyba při aktualizaci databázového účtu pro </translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4859"/>
-        <location filename="../qtbook.cc" line="6232"/>
-        <location filename="../qtbook.cc" line="8430"/>
-        <location filename="../qtbook.cc" line="8641"/>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
         <source>First Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4862"/>
-        <location filename="../qtbook.cc" line="6233"/>
-        <location filename="../qtbook.cc" line="8432"/>
-        <location filename="../qtbook.cc" line="8642"/>
         <source>Last Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Příjmení</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4865"/>
-        <location filename="../qtbook.cc" line="6234"/>
         <source>Member Since</source>
-        <translation type="unfinished"></translation>
+        <translation>Evidován od</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4879"/>
-        <location filename="../qtbook.cc" line="9512"/>
         <source>BiblioteQ: Information</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Informace</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4880"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím upozorněte nového zapůjčitele, že jeho heslo bylo změněno na tempPass.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4925"/>
         <source>Processing the global configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Čtu globální konfiguraní soubor.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4939"/>
-        <location filename="../qtbook.cc" line="5137"/>
         <source>File Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba souboru</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5130"/>
-        <location filename="../qtbook.cc" line="5142"/>
+        <source>UNKNOWN</source>
+        <translation>NEZNÁMÁ</translation>
+    </message>
+    <message>
         <source>BiblioteQ: File Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba souboru</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5138"/>
-        <location filename="../qtbook.cc" line="5143"/>
         <source>Unable to read </source>
-        <translation type="unfinished"></translation>
+        <translation>Čtení selhalo</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5139"/>
-        <location filename="../qtbook.cc" line="5144"/>
         <source> due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>kvůli nedostatečné paměti.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5253"/>
         <source>Please select a member to delete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte zapůjčitele, kterého chcete smazat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5257"/>
-        <location filename="../qtbook.cc" line="6231"/>
-        <location filename="../qtbook.cc" line="6425"/>
-        <location filename="../qtbook.cc" line="6482"/>
-        <location filename="../qtbook.cc" line="6531"/>
-        <location filename="../qtbook.cc" line="7879"/>
-        <location filename="../qtbook.cc" line="7894"/>
-        <location filename="../qtbook.cc" line="8428"/>
-        <location filename="../qtbook.cc" line="8571"/>
-        <location filename="../qtbook.cc" line="8637"/>
-        <location filename="../qtbook.cc" line="8839"/>
         <source>Member ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5265"/>
-        <location filename="../qtbook.cc" line="5269"/>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit počet zápůjček vybraného uživatele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5282"/>
         <source>You may not remove a member that has reserved items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesmíte odstranit uživatele, který má zápůjčky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5288"/>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jistý(á), že chcete zrušit vybraného zapůjčitele?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5324"/>
-        <location filename="../qtbook.cc" line="5327"/>
         <source>Unable to remove the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu odstranit vybraného zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5338"/>
-        <location filename="../qtbook.cc" line="5351"/>
         <source>Unable to remove the patron account </source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu odstranit účet patrona</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5451"/>
-        <location filename="../qtbook.cc" line="5501"/>
-        <location filename="../qtbook.cc" line="5532"/>
-        <location filename="../qtbook.cc" line="5566"/>
-        <location filename="../qtbook.cc" line="5593"/>
-        <location filename="../qtbook.cc" line="5624"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5486"/>
-        <location filename="../qtbook.cc" line="5510"/>
-        <location filename="../qtbook.cc" line="5544"/>
-        <location filename="../qtbook.cc" line="5578"/>
-        <location filename="../qtbook.cc" line="5602"/>
-        <location filename="../qtbook.cc" line="8645"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5489"/>
-        <location filename="../qtbook.cc" line="6704"/>
         <source>ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-10</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5493"/>
-        <location filename="../qtbook.cc" line="5518"/>
-        <location filename="../qtbook.cc" line="5552"/>
-        <location filename="../qtbook.cc" line="5585"/>
-        <location filename="../qtbook.cc" line="5610"/>
-        <location filename="../qtbook.cc" line="6720"/>
-        <location filename="../qtbook.cc" line="8646"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5498"/>
-        <location filename="../qtbook.cc" line="5523"/>
-        <location filename="../qtbook.cc" line="5557"/>
-        <location filename="../qtbook.cc" line="5590"/>
-        <location filename="../qtbook.cc" line="5615"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5504"/>
-        <location filename="../qtbook.cc" line="5596"/>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5514"/>
-        <location filename="../qtbook.cc" line="6713"/>
         <source>Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogové číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5527"/>
-        <location filename="../qtbook.cc" line="5561"/>
-        <location filename="../qtbook.cc" line="5619"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5536"/>
         <source>Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávací společnost</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5548"/>
-        <location filename="../qtbook.cc" line="5606"/>
-        <location filename="../qtbook.cc" line="6707"/>
-        <location filename="../qtbook.cc" line="6716"/>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5570"/>
         <source>Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5581"/>
-        <location filename="../qtbook.cc" line="6710"/>
         <source>ISSN</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5632"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5637"/>
         <source>Available</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupná</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5639"/>
         <source>Unavailable</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedostupná</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5642"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5726"/>
-        <location filename="../qtbook.cc" line="5764"/>
         <source>You have unsaved data. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Máte neuložená data. Pokračovat?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5835"/>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte ovladač pro typ vybrané databáze.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5837"/>
         <source>The following drivers are available: </source>
-        <translation type="unfinished"></translation>
+        <translation>Jsou k dispozici následující ovladače:</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5839"/>
         <source>In addition, Qt expects plugins to exist in: </source>
-        <translation type="unfinished"></translation>
+        <translation>Systém očekává ovladače v složce:</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5841"/>
         <source>Please contact your administrator.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, kontaktujte administrátora.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5870"/>
-        <location filename="../qtbook.cc" line="5875"/>
         <source>Unable to open a database connection with the provided information.</source>
-        <translation type="unfinished"></translation>
+        <translation>S danými informacemi nejde otevřít spojení s databází.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5884"/>
-        <location filename="../qtbook.cc" line="5891"/>
         <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
-        <translation type="unfinished"></translation>
+        <translation>Použitý ovladač databáze nepodporuje transakce. Prosím aktualizujte databázi nebo ovladač.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5931"/>
-        <location filename="../qtbook.cc" line="5939"/>
-        <source>Unable to determine the roles of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="5913"/>
         <source>It appears that the user </source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že uživatel</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5915"/>
         <source> does not have administrator privileges.</source>
-        <translation type="unfinished"></translation>
+        <translation>nemá administrátorská práva.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5923"/>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že se pokoušíte uplatnit administrátorské funkce v ne-administračním režimu.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5965"/>
         <source>Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojeno</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5991"/>
-        <location filename="../qtbook.cc" line="6005"/>
-        <source>BiblioteQ: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="6056"/>
-        <location filename="../qtbook.cc" line="6765"/>
         <source>Request Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadovat vybrané položky</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="292"/>
-        <location filename="../qtbook.cc" line="6169"/>
-        <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="620"/>
-        <source>Table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="6207"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6208"/>
         <source>Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation>Administrátor</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6209"/>
         <source>Circulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Cirkulace</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6210"/>
         <source>Librarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Knihovník</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6211"/>
         <source>Membership</source>
-        <translation type="unfinished"></translation>
+        <translation>Členství</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6235"/>
-        <location filename="../qtbook.cc" line="6437"/>
-        <location filename="../qtbook.cc" line="6486"/>
-        <location filename="../qtbook.cc" line="8407"/>
         <source>Books Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené knihy</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6236"/>
-        <location filename="../qtbook.cc" line="6439"/>
-        <location filename="../qtbook.cc" line="6488"/>
-        <location filename="../qtbook.cc" line="8409"/>
         <source>CDs Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené CD</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6237"/>
-        <location filename="../qtbook.cc" line="6441"/>
-        <location filename="../qtbook.cc" line="6490"/>
-        <location filename="../qtbook.cc" line="8411"/>
         <source>DVDs Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6238"/>
-        <location filename="../qtbook.cc" line="6443"/>
-        <location filename="../qtbook.cc" line="6493"/>
-        <location filename="../qtbook.cc" line="8413"/>
         <source>Journals Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené časopisy</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6239"/>
-        <location filename="../qtbook.cc" line="6445"/>
-        <location filename="../qtbook.cc" line="6496"/>
-        <location filename="../qtbook.cc" line="8415"/>
         <source>Magazines Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené magazíny</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6240"/>
-        <location filename="../qtbook.cc" line="6447"/>
-        <location filename="../qtbook.cc" line="6499"/>
-        <location filename="../qtbook.cc" line="8417"/>
         <source>Video Games Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapůjčené videohry</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6332"/>
-        <location filename="../qtbook.cc" line="6337"/>
         <source>Unable to retrieve member data for table populating.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data zapůjčitelů.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6432"/>
         <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit počet zápůjček vybraného uživatele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6473"/>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit počet zápůjček vybraného uživatele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6527"/>
         <source>Please select a member to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyberte zapůjčitele, kterého změníte.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6541"/>
-        <location filename="../qtbook.cc" line="6548"/>
-        <location filename="../qtbook.cc" line="6552"/>
         <source>Unable to retrieve the selected member&apos;s information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6619"/>
         <source>BiblioteQ: Modify Member</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: změnit zapůjčitele</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6673"/>
-        <location filename="../qtbook.cc" line="7938"/>
-        <location filename="../qtbook.cc" line="7942"/>
         <source>Unable to determine the availability of the selected item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit dostupnost vybrané položky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6682"/>
-        <location filename="../qtbook.cc" line="7951"/>
-        <location filename="../qtbook.cc" line="7955"/>
-        <source>It appears that the item you selected is not available for reservation.</source>
-        <translation type="unfinished"></translation>
+        <source>It appears that the item you selected is no longer available for reservation.</source>
+        <translation type="obsolete">Zdá se, že vybraná položka není dostupná k zapůjčení.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6691"/>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prsím vyberte zapůjčitele A položku, kterou chcete zapůjčit.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6700"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6727"/>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zjistit číslo položky. Číslo je nutné k provedení zápůjčky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6753"/>
-        <location filename="../qtbook.cc" line="6771"/>
         <source>Cancel Selected Request(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit vybrané požadavky</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6910"/>
+        <source>Categories</source>
+        <translation type="obsolete">Kategorie</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation type="obsolete">Cena</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="obsolete">Jazyk</translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation type="obsolete">Měnová jednotka</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
         <source>Error Log Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Seznam chyb je aktivní</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6945"/>
         <source>Memory failure in addError()!</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti v addError()!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6959"/>
         <source>Event Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6960"/>
         <source>Event Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ události</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6961"/>
         <source>Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>Shrnutí</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6962"/>
         <source>Full Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Plný popis</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6963"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6964"/>
         <source>Line Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo řádku</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7874"/>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro výpis zápůjček musíte vybrat zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7918"/>
-        <location filename="../qtbook.cc" line="7922"/>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro zapůjčení položky ji musíte nejdříve vybrat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7965"/>
         <source>Would you like to retrieve the list of members?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete načíst seznam zapůjčitelů?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8017"/>
-        <source>BiblioteQ: Select Global Font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="8222"/>
         <source>Table Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno tabulky</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8223"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Sloupec</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8224"/>
         <source>Column Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ sloupce</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8238"/>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item2&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8254"/>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item1&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8298"/>
         <source>Please provide a valid SQL statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napište platný SQL dotaz.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8310"/>
         <source>Please provide a non-destructive SQL statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, napište nedestruktivní, nemodifikující SQL dotaz.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8400"/>
+        <source>Please select at least one item to print.</source>
+        <translation>Prosím, vyberte aspoň jednu položku, kterou si chcete vytisknout.</translation>
+    </message>
+    <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro tisk zápůjček musíte vybrat zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8423"/>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybraný zapůjčitel nemá žádné zápůjčky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8440"/>
         <source>Reserved Items for </source>
-        <translation type="unfinished"></translation>
+        <translation>Zápůjčky pro</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8441"/>
         <source>, </source>
-        <translation type="unfinished"></translation>
+        <translation>,</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8460"/>
-        <location filename="../qtbook.cc" line="8464"/>
         <source>Unable to determine the reserved items for the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit zápůjčky vybraného uživatele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8488"/>
-        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation type="unfinished"></translation>
+        <source>To copy the contents of the Error Dialog into the clipboard buffer, you must first select at least one entry.</source>
+        <translation>Pro zkopírování obsahu seznamu chyb do schránky musíte aspoň jednu položku seznamu vybrat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8540"/>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro výpis historie zápůjček musíte vybrat zapůjčitele.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8610"/>
-        <location filename="../qtbook.cc" line="8617"/>
-        <location filename="../qtbook.cc" line="8621"/>
-        <location filename="../qtbook.cc" line="8625"/>
         <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data pro historii zápůjček.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8647"/>
-        <location filename="../qtbook.cc" line="8849"/>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Čarový kód</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8649"/>
         <source>Reservation Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vypůjčení</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8650"/>
         <source>Original Due Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Původní datum navrácení</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8651"/>
-        <location filename="../qtbook.cc" line="8857"/>
         <source>Returned Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vráceno dne</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8652"/>
         <source>Lender</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydal</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8759"/>
         <source>The selected member does not yet have a reservation history to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybraný zapůjčitel nemá ještě žádnou historii zápůjček.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8763"/>
         <source>You do not yet have a reservation history to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemáte ještě historii zápůjček.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8770"/>
         <source>Reservation History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historie zápůjček</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8891"/>
+        <source>Item Type</source>
+        <translation type="obsolete">Typ položky</translation>
+    </message>
+    <message>
         <source>The current password is incorrect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo ne nekorektní.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8899"/>
         <source>The password must be at least eight characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo musí mýt alespoň osm znaků.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8908"/>
         <source>The passwords do not match. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové heslo nesouhlasí s kontrolním zadáním. Prosím zadejte je ještě jednou.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8921"/>
-        <location filename="../qtbook.cc" line="8924"/>
         <source>Unable to save the new password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu uložit nové heslo.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8965"/>
         <source>BiblioteQ: SQLite Database Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr databáze SQLite</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9017"/>
-        <location filename="../qtbook.cc" line="9203"/>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;checkBox&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9043"/>
         <source>To delete an entry, you must first select it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro smazání položky ji musíte vybrat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9053"/>
         <source>As an administrator, you may not delete your account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jako administrátor si nesmíte smazat vlastní účet.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9136"/>
-        <location filename="../qtbook.cc" line="9141"/>
         <source>Unable to retrieve administrator data for table populating.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data pro tabulku administrátorů.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9283"/>
-        <source>Administrators must belong to at least one category.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="9296"/>
         <source>Duplicate administrator ids are not allowed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Další administrátor není povolený.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9330"/>
         <source>An error occurred while attempting to remove </source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při odstraňování </translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9345"/>
         <source>An error occurred while attempting to remove the database account </source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při odstraňování databázového účtu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9356"/>
         <source>Saving administrator information...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukládám informace o administrátorovi...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9399"/>
-        <source>The function misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="9425"/>
         <source>Unable to create or update the administrator entry for </source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat administrátorská data pro</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9441"/>
         <source>An error occurred while attempting to create a database account for </source>
-        <translation type="unfinished"></translation>
+        <translation>Stala se chyba při vytváření databázového účtu pro</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9459"/>
         <source>An error occurred while attempting to revoke privileges from </source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při odnímání práv</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9473"/>
         <source>An error occurred while attempting to grant privileges to </source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při přidávání práv</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9513"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím upozorněte nové administrátory, že jejich hesla byla nastavena na tempPass.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9530"/>
         <source>An error occurred while attempting to save the administrator information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stala se chyba při ukládání informací o administrátorovi.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9573"/>
         <source>Please select at least one item to place on request.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro umístění požadavku vyberte aspoň jednu položku.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9583"/>
         <source>Please select at least one request to cancel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro zrušení požadavku vyberte aspoň jednu položku.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9590"/>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jste si jistí, že chcete zrušit vybrané požadavky?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9604"/>
         <source>Requesting the selected item(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Požaduji vyznačené položky...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9606"/>
         <source>Cancelling the selected request(s)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rušení vybraných požadavků...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9651"/>
         <source>Unable to request the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vznést požadavek na položku.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9655"/>
         <source>Unable to cancel the request.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zrušit požadavek.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9681"/>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu požadovat některé z vybraných položek. Ověřte, prosím, že nepožadujete duplicitní položky.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9687"/>
         <source>Unable to cancel some or all of the selected requests.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu zrušit některé z vybraných požadavků.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9843"/>
+        <source>You have unsaved data. Continue closing?</source>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publication Date</source>
+        <translation>Vyčistit datum &amp;publikace</translation>
+    </message>
+    <message>
+        <source>Administrators must belong to at least one category.</source>
+        <translation>Administrátoři musí náležet alespoň do jedné kategorie.</translation>
+    </message>
+    <message>
+        <source>The function misc_functions::userCount() failed for </source>
+        <translation>Funkce misc%functions&quot;&quot;userCount90 selhala kvůli </translation>
+    </message>
+    <message>
+        <source>&amp;%1</source>
+        <translation>&amp;%1</translation>
+    </message>
+    <message>
+        <source>0 Results</source>
+        <translation>0 výsledků</translation>
+    </message>
+    <message>
+        <source>%1 Result(s)</source>
+        <translation>%1 výsledků</translation>
+    </message>
+    <message>
+        <source> %1 </source>
+        <translation> %1 </translation>
+    </message>
+    <message>
+        <source>%1</source>
+        <translation>%1</translation>
+    </message>
+    <message>
+        <source> 1 ... </source>
+        <translation> 1 ... </translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <source> ... </source>
+        <translation> ... </translation>
+    </message>
+    <message>
+        <source> ... %1 </source>
+        <translation> ... %1 </translation>
+    </message>
+    <message>
+        <source>It appears that the item you selected is not available for reservation.</source>
+        <translation>Zdá se, že vybraná položka nemůže být rezervována.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to print the </source>
+        <translation>Opravdu chcete vytisknout </translation>
+    </message>
+    <message>
         <source>&amp;Clear Menu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="9927"/>
-        <source>BiblioteQ: New SQLite Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="9961"/>
-        <source>Unable to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="9999"/>
-        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation type="unfinished"></translation>
+        <translation>menu &amp;Vyčistit</translation>
     </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
-        <location filename="../qtbook_book.cc" line="54"/>
-        <location filename="../qtbook_book.cc" line="736"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="76"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;přední strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="78"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;zadní strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="80"/>
         <source>Reset &amp;ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit ISBN-1&amp;0</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="82"/>
         <source>Reset &amp;ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit ISBN-1&amp;3</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="84"/>
         <source>Reset &amp;Edition</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="86"/>
         <source>Reset &amp;Author(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit a&amp;utora</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="88"/>
         <source>Reset &amp;Book Binding Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vazbu knihy</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="90"/>
         <source>Reset &amp;LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="92"/>
         <source>Reset &amp;Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="94"/>
         <source>Reset &amp;Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit klasifikaci De&amp;wey</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="96"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="98"/>
         <source>Reset &amp;Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit datum &amp;publikace</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="100"/>
         <source>Reset &amp;Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydavatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="102"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit místo v&amp;ydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="104"/>
         <source>Reset &amp;Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="106"/>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="108"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="110"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="112"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="114"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="116"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="148"/>
-        <location filename="../qtbook_book.cc" line="160"/>
-        <location filename="../qtbook_book.cc" line="173"/>
-        <location filename="../qtbook_book.cc" line="270"/>
-        <location filename="../qtbook_book.cc" line="404"/>
-        <location filename="../qtbook_book.cc" line="552"/>
-        <location filename="../qtbook_book.cc" line="564"/>
-        <location filename="../qtbook_book.cc" line="588"/>
-        <location filename="../qtbook_book.cc" line="600"/>
-        <location filename="../qtbook_book.cc" line="623"/>
-        <location filename="../qtbook_book.cc" line="633"/>
-        <location filename="../qtbook_book.cc" line="766"/>
-        <location filename="../qtbook_book.cc" line="793"/>
-        <location filename="../qtbook_book.cc" line="824"/>
-        <location filename="../qtbook_book.cc" line="1187"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;OFFSYSTEM URL</source>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="149"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_book.cc" line="161"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_book.cc" line="174"/>
-        <source>Unable to retrieve the book locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_book.cc" line="181"/>
-        <location filename="../qtbook_book.cc" line="182"/>
-        <location filename="../qtbook_book.cc" line="184"/>
-        <location filename="../qtbook_book.cc" line="185"/>
-        <location filename="../qtbook_book.cc" line="187"/>
-        <location filename="../qtbook_book.cc" line="188"/>
-        <location filename="../qtbook_book.cc" line="1241"/>
-        <location filename="../qtbook_book.cc" line="1252"/>
-        <location filename="../qtbook_book.cc" line="1269"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
+        <translation>NEZNÁMÁ</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="271"/>
-        <location filename="../qtbook_book.cc" line="276"/>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit nejvyšší číslo kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="275"/>
-        <location filename="../qtbook_book.cc" line="408"/>
-        <location filename="../qtbook_book.cc" line="797"/>
-        <location filename="../qtbook_book.cc" line="828"/>
-        <location filename="../qtbook_book.cc" line="1191"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="286"/>
-        <location filename="../qtbook_book.cc" line="319"/>
-        <location filename="../qtbook_book.cc" line="336"/>
-        <location filename="../qtbook_book.cc" line="347"/>
-        <location filename="../qtbook_book.cc" line="358"/>
-        <location filename="../qtbook_book.cc" line="369"/>
-        <location filename="../qtbook_book.cc" line="381"/>
-        <location filename="../qtbook_book.cc" line="392"/>
-        <location filename="../qtbook_book.cc" line="1791"/>
-        <location filename="../qtbook_book.cc" line="2479"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="287"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že zkoušíte zmenšit počet kopií, zatímco jsou kopie rozpůjčované.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="297"/>
-        <location filename="../qtbook_book.cc" line="1702"/>
-        <location filename="../qtbook_book.cc" line="1841"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="298"/>
         <source>Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="405"/>
-        <location filename="../qtbook_book.cc" line="409"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="320"/>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte (nebo dokončete zadání) jak ISBN-10 tak ISBN-13.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="337"/>
         <source>Please complete the Author(s) field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Autor.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="348"/>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Titul.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="359"/>
         <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Vydavatel.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="370"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Místo vydání.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="382"/>
         <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Kategorie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="393"/>
         <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="565"/>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="829"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="589"/>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vymazat data o nepotřebných kopiích.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="118"/>
-        <source>Reset &amp;MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_book.cc" line="553"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_book.cc" line="601"/>
-        <location filename="../qtbook_book.cc" line="634"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="624"/>
         <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="679"/>
-        <location filename="../qtbook_book.cc" line="1060"/>
-        <location filename="../qtbook_book.cc" line="1275"/>
         <source>BiblioteQ: Modify Book Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje knihy (</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="680"/>
-        <location filename="../qtbook_book.cc" line="1061"/>
-        <location filename="../qtbook_book.cc" line="1079"/>
-        <location filename="../qtbook_book.cc" line="1276"/>
-        <location filename="../qtbook_book.cc" line="1282"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="692"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="701"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="obsolete">Knihy</translation>
+    </message>
+    <message>
         <source>ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-10</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="702"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="705"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="708"/>
         <source>Edition</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="711"/>
         <source>Author(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="714"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="718"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="721"/>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="724"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="727"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="730"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="733"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="739"/>
         <source>Book Binding Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazba knihy</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="742"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="745"/>
         <source>ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-13</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="748"/>
         <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="751"/>
         <source>Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="754"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="757"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="767"/>
         <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání údajů o dostupnosti.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="794"/>
-        <location filename="../qtbook_book.cc" line="798"/>
         <source>Unable to retrieve the book&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID knihy.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="824"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="874"/>
-        <location filename="../qtbook_book.cc" line="908"/>
-        <location filename="../qtbook_book.cc" line="913"/>
-        <location filename="../qtbook_book.cc" line="919"/>
-        <location filename="../qtbook_book.cc" line="932"/>
-        <location filename="../qtbook_book.cc" line="989"/>
-        <location filename="../qtbook_book.cc" line="990"/>
-        <location filename="../qtbook_book.cc" line="992"/>
-        <location filename="../qtbook_book.cc" line="993"/>
-        <location filename="../qtbook_book.cc" line="995"/>
-        <location filename="../qtbook_book.cc" line="996"/>
-        <location filename="../qtbook_book.cc" line="998"/>
-        <location filename="../qtbook_book.cc" line="999"/>
-        <location filename="../qtbook_book.cc" line="1001"/>
-        <location filename="../qtbook_book.cc" line="1002"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="976"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1017"/>
+        <source>Cover Image</source>
+        <translation type="obsolete">Obrázek na obálce</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Database Book Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: hledání knih v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1078"/>
-        <location filename="../qtbook_book.cc" line="1281"/>
         <source>BiblioteQ: View Book Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o knize (</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1102"/>
         <source>BiblioteQ: Modify Book Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje knihy</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1138"/>
         <source>BiblioteQ: View Book Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o knize</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1162"/>
-        <location filename="../qtbook_book.cc" line="1356"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1188"/>
-        <location filename="../qtbook_book.cc" line="1192"/>
         <source>Unable to retrieve the selected book&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných knihách.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1388"/>
         <source>BiblioteQ: Create Book Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: založit údaje knihy</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1703"/>
+        <source>Front Cover Image</source>
+        <translation type="obsolete">Přední strana</translation>
+    </message>
+    <message>
+        <source>Back Cover Image</source>
+        <translation type="obsolete">Zadní strana</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="obsolete">Hledat</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM URL</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1792"/>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro provedení Z39.50 dotazu je nutné vyplněné ISBN-10 nebo ISBN-13.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1801"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: dotaz protokolem Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1802"/>
-        <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <source>Downloading information from the Z39.50 system. Please be patient.</source>
+        <translation>Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1842"/>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2329"/>
-        <location filename="../qtbook_book.cc" line="2350"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba dotazu Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2330"/>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam Z39.50 patrně neexistuje pro</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2332"/>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2340"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2341"/>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>Není k dispozici dostatek systémových prostředků pro vytvoření programového vlákna.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2347"/>
         <source>Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba dotazu Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2351"/>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam Z39.50 nebyl načten.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2362"/>
         <source>ISBN-10:</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-10:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2364"/>
         <source>ISBN-13:</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN-13:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2366"/>
         <source>Edition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2368"/>
         <source>Author(s):</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2370"/>
         <source>Book Binding Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazba knihy:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2372"/>
         <source>LC Control Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2374"/>
         <source>Call Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2376"/>
         <source>Dewey Class Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2383"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul: </translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2385"/>
         <source>Publication Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2387"/>
         <source>Publisher:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2389"/>
         <source>Place of Publication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2391"/>
         <source>Categories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2393"/>
         <source>Price:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2394"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2396"/>
         <source>Monetary Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2398"/>
         <source>Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2399"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2401"/>
         <source>Abstract:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2403"/>
-        <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
+        <source>OFFSYSTEM URL:</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2425"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2427"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2480"/>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aby bylo možné nahrát obrázek obálky z Amazonu, musí být vyplněno ISBN-10.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2551"/>
         <source>BiblioteQ: Front Cover Image Download</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: stažení obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2552"/>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování obrázku přední strany obálky. Prosím o strpení...</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2558"/>
         <source>BiblioteQ: Back Cover Image Download</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: stažení obrázku zadní strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2559"/>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování obrázku zadní strany obálky. Prosím o strpení...</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2594"/>
-        <location filename="../qtbook_book.cc" line="2613"/>
         <source>BiblioteQ: HTTP Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: HTTP varování</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2595"/>
         <source>The front cover image for the specified ISBN may not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek přední strany obálky pro dané ISBN patrně neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2614"/>
         <source>The back cover image for the specified ISBN may not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázek zadní strany obálky pro dané ISBN patrně neexistuje.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: HTTP Error</source>
+        <translation>BiblioteQ: HTTP chyba</translation>
+    </message>
+    <message>
+        <source>Front cover image download failed: </source>
+        <translation>Stažení obrázku přední strany obálky selhalo:</translation>
+    </message>
+    <message>
+        <source>Back cover image download failed: </source>
+        <translation>Stažení obrázku zadní strany obálky selhalo:</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred.</source>
+        <translation>Neznámá chyba.</translation>
+    </message>
+    <message>
+        <source>Front cover image download failed.</source>
+        <translation>Stažení obrázku přední strany obálky selhalo.</translation>
+    </message>
+    <message>
+        <source>Back cover image download failed.</source>
+        <translation>Stažení obrázku zadní strany obálky selhalo.</translation>
     </message>
 </context>
 <context>
     <name>qtbook_cd</name>
     <message>
-        <location filename="../qtbook_cd.cc" line="49"/>
-        <location filename="../qtbook_cd.cc" line="675"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="86"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;přední strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="88"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;zadní strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="90"/>
         <source>Reset &amp;Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;katalogové číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="92"/>
         <source>Reset &amp;Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;formát</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="94"/>
         <source>Reset &amp;Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umělce</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="96"/>
         <source>Reset &amp;Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;počet disků</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="98"/>
         <source>Reset &amp;Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;délku záznamu</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="100"/>
         <source>Reset &amp;Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;zvuk</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="102"/>
         <source>Reset &amp;Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;druh nahrávky</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="104"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="106"/>
         <source>Reset &amp;Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="108"/>
         <source>Reset &amp;Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;nahrávací studio</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="110"/>
         <source>Reset &amp;Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="112"/>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="114"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="116"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="118"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="120"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="122"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="142"/>
-        <location filename="../qtbook_cd.cc" line="154"/>
-        <location filename="../qtbook_cd.cc" line="167"/>
-        <location filename="../qtbook_cd.cc" line="179"/>
-        <location filename="../qtbook_cd.cc" line="240"/>
-        <location filename="../qtbook_cd.cc" line="355"/>
-        <location filename="../qtbook_cd.cc" line="503"/>
-        <location filename="../qtbook_cd.cc" line="515"/>
-        <location filename="../qtbook_cd.cc" line="539"/>
-        <location filename="../qtbook_cd.cc" line="550"/>
-        <location filename="../qtbook_cd.cc" line="573"/>
-        <location filename="../qtbook_cd.cc" line="583"/>
-        <location filename="../qtbook_cd.cc" line="695"/>
-        <location filename="../qtbook_cd.cc" line="722"/>
-        <location filename="../qtbook_cd.cc" line="753"/>
-        <location filename="../qtbook_cd.cc" line="1109"/>
-        <location filename="../qtbook_cd.cc" line="1346"/>
-        <location filename="../qtbook_cd.cc" line="1642"/>
-        <location filename="../qtbook_cd.cc" line="1659"/>
-        <location filename="../qtbook_cd.cc" line="1665"/>
-        <location filename="../qtbook_cd.cc" line="1713"/>
-        <location filename="../qtbook_cd.cc" line="1731"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;OFFSYSTEM URL</source>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="143"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_cd.cc" line="155"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_cd.cc" line="168"/>
-        <source>Unable to retrieve the cd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_cd.cc" line="180"/>
-        <source>Unable to retrieve the cd formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_cd.cc" line="186"/>
-        <location filename="../qtbook_cd.cc" line="187"/>
-        <location filename="../qtbook_cd.cc" line="189"/>
-        <location filename="../qtbook_cd.cc" line="190"/>
-        <location filename="../qtbook_cd.cc" line="192"/>
-        <location filename="../qtbook_cd.cc" line="193"/>
-        <location filename="../qtbook_cd.cc" line="195"/>
-        <location filename="../qtbook_cd.cc" line="196"/>
-        <location filename="../qtbook_cd.cc" line="1149"/>
-        <location filename="../qtbook_cd.cc" line="1160"/>
-        <location filename="../qtbook_cd.cc" line="1174"/>
-        <location filename="../qtbook_cd.cc" line="1203"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
+        <translation>NEZNÁMÁ</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="241"/>
-        <location filename="../qtbook_cd.cc" line="246"/>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit nejvyšší číslo kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="245"/>
-        <location filename="../qtbook_cd.cc" line="359"/>
-        <location filename="../qtbook_cd.cc" line="726"/>
-        <location filename="../qtbook_cd.cc" line="757"/>
-        <location filename="../qtbook_cd.cc" line="1112"/>
-        <location filename="../qtbook_cd.cc" line="1351"/>
-        <location filename="../qtbook_cd.cc" line="1645"/>
-        <location filename="../qtbook_cd.cc" line="1742"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="256"/>
-        <location filename="../qtbook_cd.cc" line="278"/>
-        <location filename="../qtbook_cd.cc" line="289"/>
-        <location filename="../qtbook_cd.cc" line="300"/>
-        <location filename="../qtbook_cd.cc" line="308"/>
-        <location filename="../qtbook_cd.cc" line="319"/>
-        <location filename="../qtbook_cd.cc" line="331"/>
-        <location filename="../qtbook_cd.cc" line="343"/>
-        <location filename="../qtbook_cd.cc" line="1632"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="257"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že zkoušíte zmenšit počet kopií, zatímco jsou kopie rozpůjčované.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="265"/>
-        <location filename="../qtbook_cd.cc" line="1952"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="266"/>
         <source>Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="356"/>
-        <location filename="../qtbook_cd.cc" line="360"/>
-        <location filename="../qtbook_cd.cc" line="1643"/>
-        <location filename="../qtbook_cd.cc" line="1646"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="279"/>
         <source>Please complete the Catalog Number field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Katalogové číslo.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="290"/>
         <source>Please complete the Artist field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Umělec.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="301"/>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Titul.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="309"/>
         <source>Please provide a valid Runtime.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte platnou délku nahrávky.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="320"/>
         <source>Please complete the Recording Label field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Nahrávací studio.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="332"/>
         <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Kategorie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="344"/>
         <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="516"/>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="758"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="540"/>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vymazat data o nepotřebných kopiích.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="504"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_cd.cc" line="551"/>
-        <location filename="../qtbook_cd.cc" line="584"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="574"/>
         <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="614"/>
-        <location filename="../qtbook_cd.cc" line="980"/>
-        <location filename="../qtbook_cd.cc" line="1180"/>
-        <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: Modify CD Entry (</source>
+        <translation>BiblioteQ: Změnit údaje CD (</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="615"/>
-        <location filename="../qtbook_cd.cc" line="981"/>
-        <location filename="../qtbook_cd.cc" line="998"/>
-        <location filename="../qtbook_cd.cc" line="1181"/>
-        <location filename="../qtbook_cd.cc" line="1187"/>
-        <location filename="../qtbook_cd.cc" line="1379"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="627"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="636"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="obsolete">Hudební CD</translation>
+    </message>
+    <message>
         <source>Catalog Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogové číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="637"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="640"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="643"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="646"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Umělec</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="649"/>
         <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="652"/>
         <source>Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="655"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="656"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="659"/>
         <source>Recording Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávací společnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="660"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="663"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="666"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="669"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="672"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="678"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="681"/>
         <source>Recording Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Druh nahrávky</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="684"/>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvuk</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="687"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="696"/>
         <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání údajů o dostupnosti.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="723"/>
-        <location filename="../qtbook_cd.cc" line="727"/>
         <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID CD disku.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="753"/>
-        <location filename="../qtbook_cd.cc" line="1666"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="791"/>
-        <location filename="../qtbook_cd.cc" line="808"/>
-        <location filename="../qtbook_cd.cc" line="812"/>
-        <location filename="../qtbook_cd.cc" line="841"/>
-        <location filename="../qtbook_cd.cc" line="846"/>
-        <location filename="../qtbook_cd.cc" line="859"/>
-        <location filename="../qtbook_cd.cc" line="907"/>
-        <location filename="../qtbook_cd.cc" line="908"/>
-        <location filename="../qtbook_cd.cc" line="910"/>
-        <location filename="../qtbook_cd.cc" line="911"/>
-        <location filename="../qtbook_cd.cc" line="913"/>
-        <location filename="../qtbook_cd.cc" line="914"/>
-        <location filename="../qtbook_cd.cc" line="916"/>
-        <location filename="../qtbook_cd.cc" line="917"/>
-        <location filename="../qtbook_cd.cc" line="919"/>
-        <location filename="../qtbook_cd.cc" line="920"/>
-        <location filename="../qtbook_cd.cc" line="922"/>
-        <location filename="../qtbook_cd.cc" line="923"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="894"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="940"/>
-        <source>BiblioteQ: Database Music CD Search</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: Database CD Search</source>
+        <translation>BiblioteQ: hledání CD v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="997"/>
-        <location filename="../qtbook_cd.cc" line="1186"/>
-        <source>BiblioteQ: View Music CD Details (</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: View CD Details (</source>
+        <translation>BiblioteQ: prohlížení detailů o CD (</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1021"/>
-        <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: Modify CD Entry</source>
+        <translation>BiblioteQ: Změnit údaje CD</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1049"/>
-        <source>BiblioteQ: View Music CD Details</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: View CD Details</source>
+        <translation>BiblioteQ: prohlížení detailů o CD</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1072"/>
-        <location filename="../qtbook_cd.cc" line="1278"/>
+        <source>Cover Image</source>
+        <translation type="obsolete">Obrázek na obálce</translation>
+    </message>
+    <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1110"/>
-        <location filename="../qtbook_cd.cc" line="1113"/>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných CD.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1307"/>
-        <source>BiblioteQ: Create Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <source>BiblioteQ: Create CD Entry</source>
+        <translation>BiblioteQ: založit údaje CD</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1347"/>
-        <location filename="../qtbook_cd.cc" line="1352"/>
         <source>Unable to retrieve track data for table populating.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst data stop na CD.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1366"/>
         <source>Album Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo alba</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1367"/>
         <source>Track Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo stopy</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1368"/>
         <source>Track Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Název stopy</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1369"/>
         <source>Track Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Délka stopy</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1378"/>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení seznamu stop (</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1388"/>
-        <location filename="../qtbook_cd.cc" line="1676"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: indikátor postupu</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1389"/>
         <source>Populating the table...</source>
-        <translation type="unfinished"></translation>
+        <translation>Plním tabulku...</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1422"/>
-        <location filename="../qtbook_cd.cc" line="1438"/>
-        <location filename="../qtbook_cd.cc" line="1454"/>
-        <location filename="../qtbook_cd.cc" line="1468"/>
-        <location filename="../qtbook_cd.cc" line="1544"/>
-        <location filename="../qtbook_cd.cc" line="1559"/>
-        <location filename="../qtbook_cd.cc" line="1573"/>
-        <location filename="../qtbook_cd.cc" line="1587"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1423"/>
-        <location filename="../qtbook_cd.cc" line="1545"/>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;comboBox&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1439"/>
-        <location filename="../qtbook_cd.cc" line="1560"/>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;trackEdit&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1455"/>
-        <location filename="../qtbook_cd.cc" line="1574"/>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;timeEdit&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1469"/>
-        <location filename="../qtbook_cd.cc" line="1588"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyhradit paměť pro objekt &quot;item&quot;. To je vážný problém!</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1630"/>
         <source>Row number </source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo řádku</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1631"/>
         <source> contains an empty Song Title.</source>
-        <translation type="unfinished"></translation>
+        <translation>obsahuje prázdný název písničky.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1660"/>
         <source>Unable to purge track data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vyčistit data stopy.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1677"/>
         <source>Saving the track data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukládám data stopy...</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1714"/>
         <source>Unable to create track data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit data stopy.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1743"/>
-        <source>Some or all of the track data has not been saved.</source>
-        <translation type="unfinished"></translation>
+        <source>Some or all of the track data has not been saved. Please review the Error Log.</source>
+        <translation>Jedno nebo více dat stopy nemohlo být uloženo. Podívejte se, prosím, do výpisu chyb.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1732"/>
         <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při potvrzení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="1953"/>
+        <source>Unable to commit the track data.</source>
+        <translation>Nemohu uložit data o stopě.</translation>
+    </message>
+    <message>
+        <source>Front Cover Image</source>
+        <translation type="obsolete">Přední strana</translation>
+    </message>
+    <message>
+        <source>Back Cover Image</source>
+        <translation type="obsolete">Zadní strana</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="obsolete">Hledat</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM URL</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2050"/>
         <source>BiblioteQ: Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Chyba</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2051"/>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Součet délek stop je nulový. Prosím, nastavte jednotlivé délky stop.</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2065"/>
         <source>Catalog Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogové číslo:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2067"/>
         <source>Format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2068"/>
         <source>Artist:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umělec:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2070"/>
         <source>Number of Discs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2072"/>
         <source>Runtime:</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2073"/>
         <source>Audio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvuk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2074"/>
         <source>Recording Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Druh nahrávky:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2081"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul: </translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2083"/>
         <source>Release Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2085"/>
         <source>Recording Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávací společnost:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2087"/>
         <source>Categories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2089"/>
         <source>Price:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2090"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2092"/>
         <source>Monetary Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2094"/>
         <source>Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2095"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2097"/>
         <source>Abstract:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2119"/>
+        <source>OFFSYSTEM URL:</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_cd.cc" line="2121"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
     <message>
-        <location filename="../qtbook_dvd.cc" line="47"/>
-        <location filename="../qtbook_dvd.cc" line="723"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="66"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;přední strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="68"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;zadní strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="70"/>
         <source>Reset &amp;UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="72"/>
         <source>Reset &amp;Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;hodnocení</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="74"/>
         <source>Reset &amp;Actor(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;herce</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="76"/>
         <source>Reset &amp;Director(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;režiséra</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="78"/>
         <source>Reset &amp;Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;počet disků</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="80"/>
         <source>Reset &amp;Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;délku záznamu</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="82"/>
         <source>Reset &amp;Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;formát</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="84"/>
         <source>Reset &amp;Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;region</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="86"/>
         <source>Reset &amp;Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;poměr stran obrazu</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="88"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="90"/>
         <source>Reset &amp;Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="92"/>
         <source>Reset &amp;Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;studio</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="94"/>
         <source>Reset &amp;Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="96"/>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="98"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="100"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="102"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="104"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="106"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="126"/>
-        <location filename="../qtbook_dvd.cc" line="138"/>
-        <location filename="../qtbook_dvd.cc" line="151"/>
-        <location filename="../qtbook_dvd.cc" line="163"/>
-        <location filename="../qtbook_dvd.cc" line="175"/>
-        <location filename="../qtbook_dvd.cc" line="187"/>
-        <location filename="../qtbook_dvd.cc" line="254"/>
-        <location filename="../qtbook_dvd.cc" line="389"/>
-        <location filename="../qtbook_dvd.cc" line="545"/>
-        <location filename="../qtbook_dvd.cc" line="557"/>
-        <location filename="../qtbook_dvd.cc" line="581"/>
-        <location filename="../qtbook_dvd.cc" line="592"/>
-        <location filename="../qtbook_dvd.cc" line="615"/>
-        <location filename="../qtbook_dvd.cc" line="625"/>
-        <location filename="../qtbook_dvd.cc" line="737"/>
-        <location filename="../qtbook_dvd.cc" line="764"/>
-        <location filename="../qtbook_dvd.cc" line="795"/>
-        <location filename="../qtbook_dvd.cc" line="1152"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;OFFSYSTEM URL</source>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="127"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="139"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="152"/>
-        <source>Unable to retrieve the dvd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="164"/>
-        <source>Unable to retrieve the dvd ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="176"/>
-        <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="188"/>
-        <source>Unable to retrieve the dvd regions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="194"/>
-        <location filename="../qtbook_dvd.cc" line="195"/>
-        <location filename="../qtbook_dvd.cc" line="197"/>
-        <location filename="../qtbook_dvd.cc" line="198"/>
-        <location filename="../qtbook_dvd.cc" line="200"/>
-        <location filename="../qtbook_dvd.cc" line="201"/>
-        <location filename="../qtbook_dvd.cc" line="203"/>
-        <location filename="../qtbook_dvd.cc" line="204"/>
-        <location filename="../qtbook_dvd.cc" line="206"/>
-        <location filename="../qtbook_dvd.cc" line="207"/>
-        <location filename="../qtbook_dvd.cc" line="209"/>
-        <location filename="../qtbook_dvd.cc" line="210"/>
-        <location filename="../qtbook_dvd.cc" line="1192"/>
-        <location filename="../qtbook_dvd.cc" line="1203"/>
-        <location filename="../qtbook_dvd.cc" line="1217"/>
-        <location filename="../qtbook_dvd.cc" line="1254"/>
-        <location filename="../qtbook_dvd.cc" line="1263"/>
-        <location filename="../qtbook_dvd.cc" line="1272"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
+        <translation>NEZNÁMÁ</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="255"/>
-        <location filename="../qtbook_dvd.cc" line="260"/>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit nejvyšší číslo kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="259"/>
-        <location filename="../qtbook_dvd.cc" line="393"/>
-        <location filename="../qtbook_dvd.cc" line="768"/>
-        <location filename="../qtbook_dvd.cc" line="799"/>
-        <location filename="../qtbook_dvd.cc" line="1155"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="270"/>
-        <location filename="../qtbook_dvd.cc" line="291"/>
-        <location filename="../qtbook_dvd.cc" line="302"/>
-        <location filename="../qtbook_dvd.cc" line="313"/>
-        <location filename="../qtbook_dvd.cc" line="321"/>
-        <location filename="../qtbook_dvd.cc" line="332"/>
-        <location filename="../qtbook_dvd.cc" line="343"/>
-        <location filename="../qtbook_dvd.cc" line="355"/>
-        <location filename="../qtbook_dvd.cc" line="366"/>
-        <location filename="../qtbook_dvd.cc" line="377"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="271"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že zkoušíte zmenšit počet kopií, zatímco jsou kopie rozpůjčované.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="279"/>
-        <location filename="../qtbook_dvd.cc" line="1591"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="280"/>
         <source>Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="390"/>
-        <location filename="../qtbook_dvd.cc" line="394"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="292"/>
         <source>Please complete the UPC field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole UPC.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="303"/>
         <source>Please complete the Actor(s) field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Hrají.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="314"/>
         <source>Please complete the Director(s) field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Režisér.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="322"/>
         <source>Please provide a valid Runtime.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, zadejte platnou délku nahrávky.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="333"/>
         <source>Please complete the Format field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Formát.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="344"/>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Titul.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="356"/>
         <source>Please complete the Studio field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Studio.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="367"/>
         <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Kategorie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="378"/>
         <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="558"/>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="800"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="582"/>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vymazat data o nepotřebných kopiích.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="546"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_dvd.cc" line="593"/>
-        <location filename="../qtbook_dvd.cc" line="626"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="616"/>
         <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="656"/>
-        <location filename="../qtbook_dvd.cc" line="1030"/>
-        <location filename="../qtbook_dvd.cc" line="1223"/>
         <source>BiblioteQ: Modify DVD Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje DVD (</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="657"/>
-        <location filename="../qtbook_dvd.cc" line="1031"/>
-        <location filename="../qtbook_dvd.cc" line="1044"/>
-        <location filename="../qtbook_dvd.cc" line="1224"/>
-        <location filename="../qtbook_dvd.cc" line="1230"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="669"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="678"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="obsolete">DVD disky</translation>
+    </message>
+    <message>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="679"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="682"/>
         <source>Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="685"/>
         <source>Number of Discs</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="688"/>
         <source>Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="691"/>
         <source>Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="694"/>
         <source>Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Region</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="697"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran obrazu</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="700"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="703"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="704"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="707"/>
         <source>Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="708"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="711"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="714"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="717"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="720"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="726"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="729"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="738"/>
         <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání údajů o dostupnosti.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="765"/>
-        <location filename="../qtbook_dvd.cc" line="769"/>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID DVD disku.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="795"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="838"/>
-        <location filename="../qtbook_dvd.cc" line="858"/>
-        <location filename="../qtbook_dvd.cc" line="863"/>
-        <location filename="../qtbook_dvd.cc" line="894"/>
-        <location filename="../qtbook_dvd.cc" line="899"/>
-        <location filename="../qtbook_dvd.cc" line="912"/>
-        <location filename="../qtbook_dvd.cc" line="960"/>
-        <location filename="../qtbook_dvd.cc" line="961"/>
-        <location filename="../qtbook_dvd.cc" line="963"/>
-        <location filename="../qtbook_dvd.cc" line="964"/>
-        <location filename="../qtbook_dvd.cc" line="966"/>
-        <location filename="../qtbook_dvd.cc" line="967"/>
-        <location filename="../qtbook_dvd.cc" line="969"/>
-        <location filename="../qtbook_dvd.cc" line="970"/>
-        <location filename="../qtbook_dvd.cc" line="972"/>
-        <location filename="../qtbook_dvd.cc" line="973"/>
-        <location filename="../qtbook_dvd.cc" line="975"/>
-        <location filename="../qtbook_dvd.cc" line="976"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="947"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="992"/>
+        <source>Cover Image</source>
+        <translation type="obsolete">Obrázek na obálce</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Database DVD Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: hledání DVD v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1043"/>
-        <location filename="../qtbook_dvd.cc" line="1229"/>
         <source>BiblioteQ: View DVD Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o DVD (</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1067"/>
         <source>BiblioteQ: Modify DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1095"/>
         <source>BiblioteQ: View DVD Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1113"/>
-        <location filename="../qtbook_dvd.cc" line="1326"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1153"/>
-        <location filename="../qtbook_dvd.cc" line="1156"/>
         <source>Unable to retrieve the selected DVD&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných DVD.</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1359"/>
         <source>BiblioteQ: Create DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: založit údaje DVD</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1592"/>
+        <source>Front Cover Image</source>
+        <translation type="obsolete">Přední strana</translation>
+    </message>
+    <message>
+        <source>Back Cover Image</source>
+        <translation type="obsolete">Zadní strana</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="obsolete">Hledat</translation>
+    </message>
+    <message>
+        <source>Actor(s)</source>
+        <translation type="obsolete">Hrají</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
+        <source>Director(s)</source>
+        <translation type="obsolete">Režisér</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM URL</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1669"/>
         <source>UPC:</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1670"/>
         <source>Rating:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1671"/>
         <source>Actor(s):</source>
-        <translation type="unfinished"></translation>
+        <translation>Hrají:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1673"/>
         <source>Director(s):</source>
-        <translation type="unfinished"></translation>
+        <translation>Režisér:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1675"/>
         <source>Number of Discs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet disků:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1677"/>
         <source>Runtime:</source>
-        <translation type="unfinished"></translation>
+        <translation>Doba záznamu:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1678"/>
         <source>Format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1680"/>
         <source>Region:</source>
-        <translation type="unfinished"></translation>
+        <translation>Region:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1682"/>
         <source>Aspect Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poměr stran obrazu:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1689"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul: </translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1691"/>
         <source>Release Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1693"/>
         <source>Studio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Studio:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1695"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1697"/>
         <source>Price:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1698"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1700"/>
         <source>Monetary Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1702"/>
         <source>Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1703"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1705"/>
         <source>Abstract:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1727"/>
+        <source>OFFSYSTEM URL:</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_dvd.cc" line="1729"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
     <name>qtbook_journal</name>
     <message>
-        <location filename="../qtbook_journal.cc" line="63"/>
-        <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
     </message>
     <message>
-        <location filename="../qtbook_journal.cc" line="64"/>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation>BiblioteQ: Dotaz</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
 </context>
 <context>
     <name>qtbook_magazine</name>
     <message>
-        <location filename="../qtbook_magazine.cc" line="51"/>
-        <location filename="../qtbook_magazine.cc" line="710"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="69"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;přední strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="71"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;zadní strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="73"/>
         <source>Reset &amp;ISSN</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;ISSN</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="75"/>
         <source>Reset &amp;Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;svazek</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="77"/>
         <source>Reset &amp;Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="79"/>
         <source>Reset &amp;LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="81"/>
         <source>Reset &amp;Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="83"/>
         <source>Reset &amp;Dewey Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit klasifikaci De&amp;wey</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="85"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="87"/>
         <source>Reset &amp;Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit datum &amp;publikace</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="89"/>
         <source>Reset &amp;Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydavatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="91"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit místo v&amp;ydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="93"/>
         <source>Reset &amp;Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="95"/>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="97"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="99"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="101"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="103"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="105"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="127"/>
-        <location filename="../qtbook_magazine.cc" line="139"/>
-        <location filename="../qtbook_magazine.cc" line="162"/>
-        <location filename="../qtbook_magazine.cc" line="167"/>
-        <location filename="../qtbook_magazine.cc" line="261"/>
-        <location filename="../qtbook_magazine.cc" line="366"/>
-        <location filename="../qtbook_magazine.cc" line="517"/>
-        <location filename="../qtbook_magazine.cc" line="529"/>
-        <location filename="../qtbook_magazine.cc" line="553"/>
-        <location filename="../qtbook_magazine.cc" line="565"/>
-        <location filename="../qtbook_magazine.cc" line="587"/>
-        <location filename="../qtbook_magazine.cc" line="597"/>
-        <location filename="../qtbook_magazine.cc" line="740"/>
-        <location filename="../qtbook_magazine.cc" line="772"/>
-        <location filename="../qtbook_magazine.cc" line="783"/>
-        <location filename="../qtbook_magazine.cc" line="826"/>
-        <location filename="../qtbook_magazine.cc" line="1194"/>
-        <location filename="../qtbook_magazine.cc" line="1205"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;OFFSYSTEM URL</source>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="128"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="140"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="163"/>
-        <source>Unable to retrieve the journal locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="168"/>
-        <source>Unable to retrieve the magazine locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="175"/>
-        <location filename="../qtbook_magazine.cc" line="176"/>
-        <location filename="../qtbook_magazine.cc" line="178"/>
-        <location filename="../qtbook_magazine.cc" line="179"/>
-        <location filename="../qtbook_magazine.cc" line="181"/>
-        <location filename="../qtbook_magazine.cc" line="182"/>
-        <location filename="../qtbook_magazine.cc" line="1269"/>
-        <location filename="../qtbook_magazine.cc" line="1280"/>
-        <location filename="../qtbook_magazine.cc" line="1293"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
+        <translation>NEZNÁMÁ</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="262"/>
-        <location filename="../qtbook_magazine.cc" line="267"/>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit nejvyšší číslo kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="266"/>
-        <location filename="../qtbook_magazine.cc" line="370"/>
-        <location filename="../qtbook_magazine.cc" line="777"/>
-        <location filename="../qtbook_magazine.cc" line="788"/>
-        <location filename="../qtbook_magazine.cc" line="833"/>
-        <location filename="../qtbook_magazine.cc" line="1198"/>
-        <location filename="../qtbook_magazine.cc" line="1209"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="277"/>
-        <location filename="../qtbook_magazine.cc" line="298"/>
-        <location filename="../qtbook_magazine.cc" line="309"/>
-        <location filename="../qtbook_magazine.cc" line="320"/>
-        <location filename="../qtbook_magazine.cc" line="331"/>
-        <location filename="../qtbook_magazine.cc" line="343"/>
-        <location filename="../qtbook_magazine.cc" line="354"/>
-        <location filename="../qtbook_magazine.cc" line="1739"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="278"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že zkoušíte zmenšit počet kopií, zatímco jsou kopie rozpůjčované.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="286"/>
-        <location filename="../qtbook_magazine.cc" line="1656"/>
-        <location filename="../qtbook_magazine.cc" line="1792"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="287"/>
         <source>Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="367"/>
-        <location filename="../qtbook_magazine.cc" line="371"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="299"/>
         <source>Please complete the ISSN field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole ISSN.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="310"/>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Titul.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="321"/>
         <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Vydavatel.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="332"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Místo vydání.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="344"/>
         <source>Please complete the Categories field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Kategorie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="355"/>
         <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="530"/>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="834"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="554"/>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vymazat data o nepotřebných kopiích.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="107"/>
-        <source>Reset &amp;MARC Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="518"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_magazine.cc" line="566"/>
-        <location filename="../qtbook_magazine.cc" line="598"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="588"/>
         <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="655"/>
-        <location filename="../qtbook_magazine.cc" line="1068"/>
-        <location filename="../qtbook_magazine.cc" line="1300"/>
         <source>BiblioteQ: Modify Journal Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje časopisu (</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="657"/>
-        <location filename="../qtbook_magazine.cc" line="1070"/>
-        <location filename="../qtbook_magazine.cc" line="1303"/>
         <source>BiblioteQ: Modify Magazine Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje magazínu (</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="659"/>
-        <location filename="../qtbook_magazine.cc" line="1072"/>
-        <location filename="../qtbook_magazine.cc" line="1090"/>
-        <location filename="../qtbook_magazine.cc" line="1301"/>
-        <location filename="../qtbook_magazine.cc" line="1304"/>
-        <location filename="../qtbook_magazine.cc" line="1312"/>
-        <location filename="../qtbook_magazine.cc" line="1315"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="672"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="682"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="obsolete">Časopisy</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="obsolete">Magazíny</translation>
+    </message>
+    <message>
         <source>ISSN</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="683"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="686"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="689"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="692"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="695"/>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="698"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="701"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="704"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="707"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="713"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="716"/>
         <source>Volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Svazek</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="719"/>
         <source>Issue</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="722"/>
         <source>LC Control Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="725"/>
         <source>Call Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="728"/>
         <source>Dewey Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="731"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="741"/>
         <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání údajů o dostupnosti.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="773"/>
-        <location filename="../qtbook_magazine.cc" line="778"/>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID časopisu.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="784"/>
-        <location filename="../qtbook_magazine.cc" line="789"/>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID magazínu.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="827"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="913"/>
-        <location filename="../qtbook_magazine.cc" line="918"/>
-        <location filename="../qtbook_magazine.cc" line="931"/>
-        <location filename="../qtbook_magazine.cc" line="1005"/>
-        <location filename="../qtbook_magazine.cc" line="1006"/>
-        <location filename="../qtbook_magazine.cc" line="1008"/>
-        <location filename="../qtbook_magazine.cc" line="1009"/>
-        <location filename="../qtbook_magazine.cc" line="1011"/>
-        <location filename="../qtbook_magazine.cc" line="1012"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="987"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1027"/>
+        <source>Cover Image</source>
+        <translation type="obsolete">Obrázek na obálce</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Database Journal Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: hledání časopisů v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1029"/>
         <source>BiblioteQ: Database Magazine Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: hledání magazínů v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1086"/>
-        <location filename="../qtbook_magazine.cc" line="1311"/>
         <source>BiblioteQ: View Journal Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o časopisu (</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1088"/>
-        <location filename="../qtbook_magazine.cc" line="1314"/>
         <source>BiblioteQ: View Magazine Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o magazínu (</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1114"/>
         <source>BiblioteQ: Modify Journal Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje časopisu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1116"/>
         <source>BiblioteQ: Modify Magazine Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje magazínu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1145"/>
         <source>BiblioteQ: View Journal Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o časopisu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1147"/>
         <source>BiblioteQ: View Magazine Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o magazínu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1167"/>
-        <location filename="../qtbook_magazine.cc" line="1386"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1195"/>
-        <location filename="../qtbook_magazine.cc" line="1199"/>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných časopisech.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1206"/>
-        <location filename="../qtbook_magazine.cc" line="1210"/>
         <source>Unable to retrieve the selected magazine&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných magazínech.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1419"/>
         <source>BiblioteQ: Create Journal Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: založit údaje časopisu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1421"/>
         <source>BiblioteQ: Create Magazine Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: založit údaje magazínu</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1657"/>
+        <source>Front Cover Image</source>
+        <translation type="obsolete">Přední strana</translation>
+    </message>
+    <message>
+        <source>Back Cover Image</source>
+        <translation type="obsolete">Zadní strana</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="obsolete">Hledat</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM URL</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1740"/>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro provedení Z39.50 dotazu je nutné vyplněné ISSN.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1749"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: dotaz protokolem Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1750"/>
-        <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <source>Downloading information from the Z39.50 system. Please be patient.</source>
+        <translation>Načítám údaje ze systému Z39.50. Prosím o trpělivost.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1793"/>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1817"/>
-        <location filename="../qtbook_magazine.cc" line="1841"/>
         <source>Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba paměti</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1818"/>
-        <location filename="../qtbook_magazine.cc" line="1824"/>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>Není k dispozici dostatek systémových prostředků pro vytvoření dialogového okna.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1823"/>
         <source>BiblioteQ: Memory Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba paměti</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1830"/>
-        <location filename="../qtbook_magazine.cc" line="1851"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba dotazu Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1831"/>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam Z39.50 patrně neexistuje pro</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1832"/>
         <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1842"/>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>Není k dispozici dostatek systémových prostředků pro vytvoření programového vlákna.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1848"/>
         <source>Z39.50 Query Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba dotazu Z39.50</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1852"/>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam Z39.50 nebyl načten.</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1863"/>
         <source>ISSN:</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1864"/>
         <source>Volume:</source>
-        <translation type="unfinished"></translation>
+        <translation>Svazek:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1865"/>
         <source>Issue (Number):</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1866"/>
         <source>LC Control Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolní číslo LC:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1868"/>
         <source>Call Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonní číslo:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1870"/>
         <source>Dewey Class Number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasifikace Dewey:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1877"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul: </translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1878"/>
         <source>Publication Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1880"/>
         <source>Publisher:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1882"/>
         <source>Place of Publication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1884"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1886"/>
         <source>Price:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1887"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1889"/>
         <source>Monetary Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1891"/>
         <source>Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1892"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1894"/>
         <source>Abstract:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="1896"/>
-        <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
+        <source>OFFSYSTEM URL:</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="2207"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_magazine.cc" line="2209"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
     <message>
-        <location filename="../qtbook_videogame.cc" line="47"/>
-        <location filename="../qtbook_videogame.cc" line="632"/>
         <source>Quantity</source>
-        <translation type="unfinished"></translation>
+        <translation>Množství</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="65"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;přední strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="67"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit obrázek &amp;zadní strany</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="69"/>
         <source>Reset &amp;UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="71"/>
         <source>Reset &amp;Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;hodnocení</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="73"/>
         <source>Reset &amp;Developer(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vývojáře</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="75"/>
         <source>Reset &amp;Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;platformu</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="77"/>
         <source>Reset &amp;Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;mód</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="79"/>
         <source>Reset &amp;Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="81"/>
         <source>Reset &amp;Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="83"/>
         <source>Reset &amp;Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;vydavatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="85"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit místo v&amp;ydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="87"/>
         <source>Reset &amp;Genres</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;žánr</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="89"/>
         <source>Reset &amp;Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;cenu</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="91"/>
         <source>Reset &amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="93"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;měnovou jednotku</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="95"/>
         <source>Reset &amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;kopie</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="97"/>
         <source>Reset &amp;Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="99"/>
         <source>Reset &amp;Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit &amp;abstrakt</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="118"/>
-        <location filename="../qtbook_videogame.cc" line="130"/>
-        <location filename="../qtbook_videogame.cc" line="142"/>
-        <location filename="../qtbook_videogame.cc" line="154"/>
-        <location filename="../qtbook_videogame.cc" line="167"/>
-        <location filename="../qtbook_videogame.cc" line="232"/>
-        <location filename="../qtbook_videogame.cc" line="349"/>
-        <location filename="../qtbook_videogame.cc" line="464"/>
-        <location filename="../qtbook_videogame.cc" line="475"/>
-        <location filename="../qtbook_videogame.cc" line="499"/>
-        <location filename="../qtbook_videogame.cc" line="511"/>
-        <location filename="../qtbook_videogame.cc" line="535"/>
-        <location filename="../qtbook_videogame.cc" line="545"/>
-        <location filename="../qtbook_videogame.cc" line="653"/>
-        <location filename="../qtbook_videogame.cc" line="680"/>
-        <location filename="../qtbook_videogame.cc" line="711"/>
-        <location filename="../qtbook_videogame.cc" line="1031"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <source>Reset &amp;OFFSYSTEM URL</source>
+        <translation type="obsolete">Vyčistit OFF&amp;SYSTEM webová adresa</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="119"/>
-        <source>Unable to retrieve the video game ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="131"/>
-        <source>Unable to retrieve the video game platforms.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="143"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="155"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="168"/>
-        <source>Unable to retrieve the video game locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="175"/>
-        <location filename="../qtbook_videogame.cc" line="176"/>
-        <location filename="../qtbook_videogame.cc" line="178"/>
-        <location filename="../qtbook_videogame.cc" line="179"/>
-        <location filename="../qtbook_videogame.cc" line="181"/>
-        <location filename="../qtbook_videogame.cc" line="182"/>
-        <location filename="../qtbook_videogame.cc" line="184"/>
-        <location filename="../qtbook_videogame.cc" line="185"/>
-        <location filename="../qtbook_videogame.cc" line="187"/>
-        <location filename="../qtbook_videogame.cc" line="188"/>
-        <location filename="../qtbook_videogame.cc" line="1069"/>
-        <location filename="../qtbook_videogame.cc" line="1086"/>
-        <location filename="../qtbook_videogame.cc" line="1097"/>
-        <location filename="../qtbook_videogame.cc" line="1106"/>
-        <location filename="../qtbook_videogame.cc" line="1115"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished"></translation>
+        <translation>NEZNÁMÁ</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="233"/>
-        <location filename="../qtbook_videogame.cc" line="238"/>
+        <source>Create</source>
+        <translation type="obsolete">Vytvořit</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="obsolete">Změnit</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation>Chyba databáze</translation>
+    </message>
+    <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu určit nejvyšší číslo kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="237"/>
-        <location filename="../qtbook_videogame.cc" line="353"/>
-        <location filename="../qtbook_videogame.cc" line="684"/>
-        <location filename="../qtbook_videogame.cc" line="715"/>
-        <location filename="../qtbook_videogame.cc" line="1035"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba databáze</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="248"/>
-        <location filename="../qtbook_videogame.cc" line="270"/>
-        <location filename="../qtbook_videogame.cc" line="281"/>
-        <location filename="../qtbook_videogame.cc" line="292"/>
-        <location filename="../qtbook_videogame.cc" line="303"/>
-        <location filename="../qtbook_videogame.cc" line="314"/>
-        <location filename="../qtbook_videogame.cc" line="326"/>
-        <location filename="../qtbook_videogame.cc" line="337"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: chyba uživatele</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="249"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdá se, že zkoušíte zmenšit počet kopií, zatímco jsou kopie rozpůjčované.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="258"/>
-        <location filename="../qtbook_videogame.cc" line="1417"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Dotaz</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="259"/>
         <source>Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="350"/>
-        <location filename="../qtbook_videogame.cc" line="354"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="271"/>
         <source>Please complete the UPC field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole UPC.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="282"/>
         <source>Please complete the Developer(s) field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Vývojář.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="293"/>
         <source>Please complete the Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Titul.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="304"/>
         <source>Please complete the Publisher field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Vydavatel.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="315"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Místo vydání.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="327"/>
         <source>Please complete the Genres field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Žánr.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="338"/>
         <source>Please complete the Abstract field.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="476"/>
         <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="716"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="500"/>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vymazat data o nepotřebných kopiích.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="465"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qtbook_videogame.cc" line="512"/>
-        <location filename="../qtbook_videogame.cc" line="546"/>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu potvrdit databázovou transakci.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="536"/>
         <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu vytvořit kopie.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="576"/>
-        <location filename="../qtbook_videogame.cc" line="926"/>
-        <location filename="../qtbook_videogame.cc" line="1121"/>
         <source>BiblioteQ: Modify Video Game Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje videohry (</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="577"/>
-        <location filename="../qtbook_videogame.cc" line="927"/>
-        <location filename="../qtbook_videogame.cc" line="940"/>
-        <location filename="../qtbook_videogame.cc" line="1122"/>
-        <location filename="../qtbook_videogame.cc" line="1128"/>
         <source>)</source>
-        <translation type="unfinished"></translation>
+        <translation>)</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="589"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
+        <source>All</source>
+        <translation type="obsolete">Všechno</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="599"/>
+        <source>All Overdue</source>
+        <translation type="obsolete">Všechny prošlé půjčky</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="obsolete">Všechny požadované</translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="obsolete">Všechny vypůjčené</translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="obsolete">Videohry</translation>
+    </message>
+    <message>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="600"/>
         <source>ID Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="603"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="606"/>
         <source>Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení hry</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="609"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="610"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="613"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="616"/>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="619"/>
         <source>Genres</source>
-        <translation type="unfinished"></translation>
+        <translation>Žánr</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="620"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="623"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="626"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="629"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="635"/>
         <source>Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="638"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="641"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mód</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="644"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupnost</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="654"/>
         <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrávání údajů o dostupnosti.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="681"/>
-        <location filename="../qtbook_videogame.cc" line="685"/>
         <source>Unable to retrieve the video game&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o ID videohry.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="711"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba při rušení transakce.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="746"/>
-        <location filename="../qtbook_videogame.cc" line="782"/>
-        <location filename="../qtbook_videogame.cc" line="787"/>
-        <location filename="../qtbook_videogame.cc" line="793"/>
-        <location filename="../qtbook_videogame.cc" line="805"/>
-        <location filename="../qtbook_videogame.cc" line="810"/>
-        <location filename="../qtbook_videogame.cc" line="856"/>
-        <location filename="../qtbook_videogame.cc" line="857"/>
-        <location filename="../qtbook_videogame.cc" line="859"/>
-        <location filename="../qtbook_videogame.cc" line="860"/>
-        <location filename="../qtbook_videogame.cc" line="862"/>
-        <location filename="../qtbook_videogame.cc" line="863"/>
-        <location filename="../qtbook_videogame.cc" line="865"/>
-        <location filename="../qtbook_videogame.cc" line="866"/>
-        <location filename="../qtbook_videogame.cc" line="868"/>
-        <location filename="../qtbook_videogame.cc" line="869"/>
-        <location filename="../qtbook_videogame.cc" line="871"/>
-        <location filename="../qtbook_videogame.cc" line="872"/>
         <source>Any</source>
-        <translation type="unfinished"></translation>
+        <translation>Jakýkoliv</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="843"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hledat</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="888"/>
+        <source>Cover Image</source>
+        <translation type="obsolete">Obrázek na obálce</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Database Video Game Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: hledání videoher v databázi</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="939"/>
-        <location filename="../qtbook_videogame.cc" line="1127"/>
         <source>BiblioteQ: View Video Game Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o videohře (</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="963"/>
         <source>BiblioteQ: Modify Video Game Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Změnit údaje videohry</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="989"/>
         <source>BiblioteQ: View Video Game Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení detailů o videohře</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1009"/>
-        <location filename="../qtbook_videogame.cc" line="1188"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1032"/>
-        <location filename="../qtbook_videogame.cc" line="1036"/>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemohu načíst údaje o vybraných videohrách.</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1220"/>
         <source>BiblioteQ: Create Video Game Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: založit údaje videohry</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1418"/>
+        <source>Front Cover Image</source>
+        <translation type="obsolete">Přední strana</translation>
+    </message>
+    <message>
+        <source>Back Cover Image</source>
+        <translation type="obsolete">Zadní strana</translation>
+    </message>
+    <message>
+        <source>Rating</source>
+        <translation type="obsolete">Hodnocení</translation>
+    </message>
+    <message>
+        <source>Developer(s)</source>
+        <translation type="obsolete">Vývojář(i)</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="obsolete">Hledat</translation>
+    </message>
+    <message>
+        <source>Genre</source>
+        <translation type="obsolete">Žánr</translation>
+    </message>
+    <message>
+        <source>Abstract</source>
+        <translation type="obsolete">Abstrakt</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="obsolete">Kopie</translation>
+    </message>
+    <message>
+        <source>OFFSYSTEM URL</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa</translation>
+    </message>
+    <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1495"/>
         <source>UPC:</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1496"/>
         <source>Game Rating:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení hry:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1498"/>
         <source>Developer(s):</source>
-        <translation type="unfinished"></translation>
+        <translation>Vývojář(i):</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1500"/>
         <source>Platform:</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1502"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mód:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1508"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1509"/>
         <source>Release Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1511"/>
         <source>Publisher:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1513"/>
         <source>Place of Publication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1515"/>
         <source>Genre:</source>
-        <translation type="unfinished"></translation>
+        <translation>Žánr:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1517"/>
         <source>Price:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1518"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1520"/>
         <source>Monetary Units:</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1522"/>
         <source>Copies:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1523"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1525"/>
         <source>Abstract:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt:</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1548"/>
+        <source>OFFSYSTEM URL:</source>
+        <translation type="obsolete">OFFSYSTEM webová adresa:</translation>
+    </message>
+    <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku přední strany obálky</translation>
     </message>
     <message>
-        <location filename="../qtbook_videogame.cc" line="1550"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výběr obrázku zadní strany obálky</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>
     <name>tracksDialog</name>
     <message>
-        <location filename="../tracks.ui" line="32"/>
         <source>BiblioteQ: Album Tracks Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: prohlížení stop alba</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="90"/>
         <source>Album Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo alba</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="95"/>
         <source>Track Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo stopy</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="100"/>
         <source>Track Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Název stopy</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="105"/>
         <source>Track Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Délka stopy</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="146"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="169"/>
         <source>&amp;Insert</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="192"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Smazat</translation>
     </message>
     <message>
-        <location filename="../tracks.ui" line="220"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>vgDialog</name>
     <message>
-        <location filename="../videogameinfo.ui" line="26"/>
         <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="41"/>
         <source>Cover Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky obálky</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="53"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Přední strana</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="75"/>
-        <location filename="../videogameinfo.ui" line="129"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="107"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadní strana</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="156"/>
         <source>Specific Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Specifické informace</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="173"/>
         <source>UPC</source>
-        <translation type="unfinished"></translation>
+        <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="209"/>
         <source>Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnocení hry</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="259"/>
         <source>Developer(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vývojář(i)</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="277"/>
         <source>Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="322"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mód</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="337"/>
         <source>Multiplayer</source>
-        <translation type="unfinished"></translation>
+        <translation>Více hráčů (multiplayer)</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="342"/>
         <source>Single Player</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden hráč (Single Player)</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="379"/>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné informace</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="396"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titul</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="429"/>
         <source>Release Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum vydání</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="443"/>
         <source>MM/dd/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation>dd.MM.yyyy</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="479"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Vydavatel</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="516"/>
         <source>Genres</source>
-        <translation type="unfinished"></translation>
+        <translation>Žánr</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="534"/>
         <source>Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Cena</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="585"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="635"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Měnová jednotka</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="674"/>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="715"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopie</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="732"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zápůjčky</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="766"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Umístění</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="811"/>
         <source>Abstract</source>
-        <translation type="unfinished"></translation>
+        <translation>Abstrakt</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="849"/>
+        <source>OFFSYSTEM
+URL</source>
+        <translation type="obsolete">OFFSYSTEM
+webová adresa</translation>
+    </message>
+    <message>
         <source>Place of Publication</source>
-        <translation type="unfinished"></translation>
+        <translation>Místo vydání</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="908"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="936"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Z39.50 Dotaz</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="959"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčistit</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="981"/>
         <source>&amp;Print</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tisk</translation>
     </message>
     <message>
-        <location filename="../videogameinfo.ui" line="1009"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>
     <name>z3950ResultsDialog</name>
     <message>
-        <location filename="../z3950results.ui" line="26"/>
         <source>BiblioteQ: Z39.50 Query Results</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: výsledky dotazu protokolem Z39.50</translation>
     </message>
     <message>
-        <location filename="../z3950results.ui" line="58"/>
         <source>&amp;Records Retrieved</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Získané záznamy</translation>
     </message>
     <message>
-        <location filename="../z3950results.ui" line="75"/>
         <source>Record &amp;Contents</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Obsah záznamu</translation>
     </message>
     <message>
-        <location filename="../z3950results.ui" line="130"/>
         <source>&amp;Select</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vybrat</translation>
     </message>
     <message>
-        <location filename="../z3950results.ui" line="153"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Storno</translation>
     </message>
 </context>
 <context>
     <name>z3950results</name>
     <message>
-        <location filename="../z3950results.cc" line="23"/>
         <source>Record #</source>
-        <translation type="unfinished"></translation>
+        <translation>Záznam č.</translation>
     </message>
 </context>
 </TS>
