@@ -780,6 +780,7 @@ void qtbook_cd::slotGo(void)
 	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
 	"cd.type, "
 	"cd.myoid "
+	// "cd.front_cover "
 	"FROM "
 	"cd LEFT JOIN item_borrower_vw ON "
 	"cd.myoid = item_borrower_vw.item_oid "

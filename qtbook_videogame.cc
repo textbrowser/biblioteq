@@ -732,6 +732,7 @@ void qtbook_videogame::slotGo(void)
 	"AS availability, "
 	"videogame.type, "
 	"videogame.myoid "
+	// "videogame.front_cover "
 	"FROM "
 	"videogame LEFT JOIN item_borrower_vw ON "
 	"videogame.myoid = item_borrower_vw.item_oid "

@@ -848,6 +848,7 @@ void qtbook_book::slotGo(void)
 	"AS availability, "
 	"book.type, "
 	"book.myoid "
+	// "book.front_cover "
 	"FROM "
 	"book LEFT JOIN item_borrower_vw ON "
 	"book.myoid = item_borrower_vw.item_oid "

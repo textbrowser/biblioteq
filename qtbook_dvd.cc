@@ -824,6 +824,7 @@ void qtbook_dvd::slotGo(void)
 	"AS availability, "
 	"dvd.type, "
 	"dvd.myoid "
+	// "dvd.front_cover "
 	"FROM "
 	"dvd LEFT JOIN item_borrower_vw ON "
 	"dvd.myoid = item_borrower_vw.item_oid "

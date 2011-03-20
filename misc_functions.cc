@@ -1,4 +1,10 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QtDebug>
+
+/*
 ** -- Local Includes --
 */
 
