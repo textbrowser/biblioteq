@@ -963,7 +963,7 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.45<br>"
+  mb.setText("<html>BiblioteQ Version 6.46<br>"
 	     "Copyright (c) 2006 - 2011 "
 	     "Two Red Frogs Productions.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
@@ -1592,16 +1592,19 @@ void qtbook::slotRefresh(void)
     ui.table->horizontalHeader()->restoreState
       (settings.value(data.toString() + "_header_state").toByteArray());
 
-  if(data.toString() == "All Overdue" && roles.isEmpty())
-    str = br.userid->text();
-  else if(data.toString() == "All Requested" && roles.isEmpty())
-    str = br.userid->text();
-  else if(data.toString() == "All Reserved" && roles.isEmpty())
-    str = br.userid->text();
-  else if(data.toString() == "All Reserved")
-    str = "%";
+  if(db.isOpen())
+    {
+      if(data.toString() == "All Overdue" && roles.isEmpty())
+	str = br.userid->text();
+      else if(data.toString() == "All Requested" && roles.isEmpty())
+	str = br.userid->text();
+      else if(data.toString() == "All Reserved" && roles.isEmpty())
+	str = br.userid->text();
+      else if(data.toString() == "All Reserved")
+	str = "%";
 
-  (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
+      (void) populateTable(POPULATE_ALL, data.toString(), str.trimmed());
+    }
 }
 
 /*
