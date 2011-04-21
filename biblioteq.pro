@@ -80,3 +80,18 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
+
+biblioteq.path	= /usr/local/biblioteq
+biblioteq.files	= BiblioteQ
+cleanup.path	= /usr/local/biblioteq
+cleanup.files	=
+cleanup.extra	= find /usr/local/biblioteq -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
+conf.path	= /usr/local/share
+conf.files	= biblioteq.conf
+icons.path	= /usr/local/biblioteq/icons.d
+icons.files	= icons.d/*
+sh.path		= /usr/local/bin
+sh.files	= biblioteq.sh
+
+QMAKE_STRIP	= echo
+INSTALLS	= biblioteq conf icons sh cleanup
