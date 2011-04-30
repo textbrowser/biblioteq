@@ -15,6 +15,7 @@ using namespace std;
 #include <QDir>
 #include <QMap>
 #include <QHash>
+#include <QtDebug>
 #include <QCheckBox>
 #include <QDateTime>
 #include <QSettings>
@@ -120,7 +121,7 @@ class qtbook: public QMainWindow
 	warnuser = true;
       else if(memberProperties["expiration_date"] !=
 	      userinfo.expirationdate->date().toString
-	      ("MM/ddd/yyyy"))
+	      ("MM/dd/yyyy"))
 	warnuser = true;
 
       return warnuser;

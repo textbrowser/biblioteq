@@ -4502,6 +4502,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.zip->setCursorPosition(0);
   userinfo_diag->userinfo.telephoneNumber->clear();
   userinfo_diag->userinfo.email->clear();
+  userinfo_diag->userinfo.expirationdate->setDate
+    (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
   userinfo_diag->memberProperties["membersince"] =
     userinfo_diag->userinfo.membersince->date().toString("MM/dd/yyyy");
   userinfo_diag->memberProperties["dob"] =
@@ -4513,6 +4515,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->memberProperties["zip"] = userinfo_diag->userinfo.zip->text();
   userinfo_diag->memberProperties["telephone_num"] =
     userinfo_diag->userinfo.telephoneNumber->text();
+  userinfo_diag->memberProperties["expiration_date"] =
+    userinfo_diag->userinfo.expirationdate->date().toString("MM/dd/yyyy");
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   engUserinfoTitle = "Create New Member";
   userinfo_diag->userinfo.prevTool->setVisible(false);
@@ -4852,7 +4856,8 @@ void qtbook::slotSaveUser(void)
       userinfo_diag->memberProperties["email"] =
 	userinfo_diag->userinfo.email->text();
       userinfo_diag->memberProperties["expiration_date"] =
-	userinfo_diag->userinfo.expirationdate->text();
+	userinfo_diag->userinfo.expirationdate->date().toString
+	("MM/dd/yyyy");
       bb.table->setSortingEnabled(false);
 
       if(engUserinfoTitle.contains("Modify"))
