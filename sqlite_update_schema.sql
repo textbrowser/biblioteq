@@ -546,4 +546,4 @@ CREATE TABLE sequence
 
 /* Release 6.46 */
 
-ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL;
+ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL DEFAULT '01/01/9999';
