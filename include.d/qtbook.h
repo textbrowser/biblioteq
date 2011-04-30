@@ -118,6 +118,10 @@ class qtbook: public QMainWindow
 	warnuser = true;
       else if(memberProperties["email"] != userinfo.email->text())
 	warnuser = true;
+      else if(memberProperties["expiration_date"] !=
+	      userinfo.expirationdate->date().toString
+	      ("MM/ddd/yyyy"))
+	warnuser = true;
 
       return warnuser;
     }

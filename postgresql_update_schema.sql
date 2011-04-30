@@ -623,7 +623,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO xbook_admin;
 
 /* Release 6.46 */
 
-ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL DEFAULT '01/01/9999';
+ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL DEFAULT '01/01/3000';
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 
 /* Please "Save" each member's information through the Members Browser. */
