@@ -477,7 +477,7 @@ ALTER TABLE videogame ALTER COLUMN genre SET NOT NULL;
 
 ALTER TABLE member ADD COLUMN email VARCHAR(128);
 
-/* Please also "Save" each member's information through the Members Browser. */
+/* Please "Save" each member's information through the Members Browser. */
 
 /* Release 6.13 */
 
@@ -620,3 +620,10 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO xbook_admin;
    Browser as this will grant the correct privileges to existing administrator
    accounts. */
 /* Please also "Save" each member's information through the Members Browser. */
+
+/* Release 6.46 */
+
+ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL;
+GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
+
+/* Please "Save" each member's information through the Members Browser. */

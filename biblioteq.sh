@@ -1,13 +1,11 @@
 #!/bin/sh
 
-ostype="`uname -s`"
-
-if [ "$ostype" = "Darwin" ]
+if [ -x /usr/local/biblioteq/BiblioteQ ]
 then
-    open /Applications/BiblioteQ.d/BiblioteQ.app &
-else
     cd /usr/local/biblioteq
     ./BiblioteQ &
+else
+    exit 1
 fi
 
 exit 0

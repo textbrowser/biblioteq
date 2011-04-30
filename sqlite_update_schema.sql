@@ -543,3 +543,7 @@ CREATE TABLE sequence
 (
 	value		 INTEGER PRIMARY KEY AUTOINCREMENT
 );
+
+/* Release 6.46 */
+
+ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL;

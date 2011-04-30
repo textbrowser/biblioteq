@@ -301,7 +301,8 @@ CREATE TABLE member
 	city		 VARCHAR(256) NOT NULL,
 	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
 	zip		 VARCHAR(16) NOT NULL,
-	email		 VARCHAR(128)
+	email		 VARCHAR(128),
+	expiration_date	 VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE member_history
