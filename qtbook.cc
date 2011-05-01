@@ -577,6 +577,8 @@ qtbook::qtbook(void):QMainWindow()
   setUpdatesEnabled(true);
   userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
   userinfo_diag->userinfo.zip->setInputMask("99999");
+  userinfo_diag->userinfo.expirationdate->setMaximumDate
+    (QDate(3000, 1, 1));
 
   QActionGroup *group1 = 0;
 
@@ -4878,6 +4880,9 @@ void qtbook::slotSaveUser(void)
 	      else if(column->text() == tr("Member Since"))
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.membersince->text());
+	      else if(column->text() == tr("Expiration Date"))
+		bb.table->item(row, i)->setText
+		  (userinfo_diag->userinfo.expirationdate->text());
 	    }
 
 	  bb.table->setSortingEnabled(true);
@@ -6672,6 +6677,35 @@ void qtbook::slotCheckout(void)
   copy_editor *copyeditor = 0;
   qtbook_item *item = 0;
 
+  if(row1 > -1)
+    {
+      /*
+      ** Has the member's membership expired?
+      */
+
+      bool expired = true;
+      QString memberid =
+	misc_functions::getColumnString(bb.table, row1, tr("Member ID"));
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      expired = misc_functions::hasMemberExpired(db, memberid, errorstr);
+      qapp->restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	addError(QString(tr("Database Error")),
+		 QString(tr("Unable to determine if the membership of "
+			    "the selected member has expired.")),
+		 errorstr, __FILE__, __LINE__);
+
+      if(expired || !errorstr.isEmpty())
+	{
+	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+				tr("It appears that the selected member's "
+				   "membership has expired."));
+	  return;
+	}
+    }
+
   if(row2 > -1)
     {
       /*
@@ -6687,18 +6721,16 @@ void qtbook::slotCheckout(void)
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
-	{
-	  addError(QString(tr("Database Error")),
-		   QString(tr("Unable to determine the availability of "
-			      "the selected item.")),
-		   errorstr, __FILE__, __LINE__);
-	  return;
-	}
+	addError(QString(tr("Database Error")),
+		 QString(tr("Unable to determine the availability of "
+			    "the selected item.")),
+		 errorstr, __FILE__, __LINE__);
 
-      if(availability < 1)
+      if(availability < 1 || !errorstr.isEmpty())
 	{
 	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
-				tr("It appears that the item you selected "
+				tr("It appears that the item that you "
+				   "selected "
 				   "is not available for reservation."));
 	  return;
 	}
@@ -9159,7 +9191,6 @@ void qtbook::slotRefreshAdminList(void)
       QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve administrator "
 			       "data for table populating."));
-
       return;
     }
 
