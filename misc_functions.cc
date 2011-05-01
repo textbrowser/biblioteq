@@ -2089,20 +2089,38 @@ bool misc_functions::hasMemberExpired(const QSqlDatabase &db,
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
-    querystr = "";
+    querystr = QString("SELECT expiration_date "
+		       "FROM member WHERE memberid = '%1'").
+      arg(memberid);
   else
     querystr = QString("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
-		       "current_date FROM member where memberid = '%1'").
+		       "current_date FROM member WHERE memberid = '%1'").
       arg(memberid);
 
   if(query.exec(querystr))
     if(query.next())
       {
-	if(query.value(0).toInt() < 0)
-	  expired = true;
+	if(db.driverName() == "QSQLITE")
+	  {
+	    QDate date(QDate::fromString(query.value(0).toString(),
+					 "MM/dd/yyyy"));
+
+	    if(date.daysTo(QDate::currentDate()) > 0)
+	      expired = true;
+	    else
+	      expired = false;
+	  }
 	else
-	  expired = false;
+	  {
+	    if(query.value(0).toInt() < 0)
+	      expired = true;
+	    else
+	      expired = false;
+	  }
       }
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
 
   return expired;
 }
