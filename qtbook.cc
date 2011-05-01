@@ -6245,6 +6245,7 @@ void qtbook::resetMembersBrowser(void)
   list.append(tr("First Name"));
   list.append(tr("Last Name"));
   list.append(tr("Member Since"));
+  list.append(tr("Expiration Date"));
   list.append(tr("Books Reserved"));
   list.append(tr("CDs Reserved"));
   list.append(tr("DVDs Reserved"));
@@ -6297,6 +6298,7 @@ void qtbook::slotPopulateMembersBrowser(void)
     "member.first_name, "
     "member.last_name, "
     "member.membersince, "
+    "member.expiration_date, "
     "COUNT(DISTINCT ib1.myoid) AS numbooks, "
     "COUNT(DISTINCT ib2.myoid) AS numcds, "
     "COUNT(DISTINCT ib3.myoid) AS numdvds, "
@@ -6334,7 +6336,8 @@ void qtbook::slotPopulateMembersBrowser(void)
 	     "member.memberid, "
 	     "member.first_name, "
 	     "member.last_name, "
-	     "member.membersince ");
+	     "member.membersince, "
+	     "member.expiration_date ");
   str.append("ORDER BY member.memberid");
   qapp->setOverrideCursor(Qt::WaitCursor);
 

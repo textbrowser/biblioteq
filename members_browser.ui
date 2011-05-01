@@ -152,6 +152,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Expiration Date</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Books Reserved</string>
           </property>
          </column>
