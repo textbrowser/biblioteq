@@ -2047,7 +2047,7 @@ QStringList misc_functions::getVideoGamePlatforms(const QSqlDatabase &db,
 */
 
 qint64 misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
-				      QString &errorstr)
+					 QString &errorstr)
 {
   qint64 value = -1;
   QString querystr("");
@@ -2072,4 +2072,37 @@ qint64 misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return value;
+}
+
+/*
+** -- hasMemberExpired() --
+*/
+
+bool misc_functions::hasMemberExpired(const QSqlDatabase &db,
+				      const QString &memberid,
+				      QString &errorstr)
+{
+  bool expired = true;
+  QString querystr("");
+  QSqlQuery query(db);
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    querystr = "";
+  else
+    querystr = QString("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
+		       "current_date FROM member where memberid = '%1'").
+      arg(memberid);
+
+  if(query.exec(querystr))
+    if(query.next())
+      {
+	if(query.value(0).toInt() < 0)
+	  expired = true;
+	else
+	  expired = false;
+      }
+
+  return expired;
 }

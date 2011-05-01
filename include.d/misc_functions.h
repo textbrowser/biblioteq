@@ -50,6 +50,9 @@ class misc_functions
 			   const QString &, QString &);
   static bool isCopyAvailable(const QSqlDatabase &, const QString &,
 			      const QString &, const QString &, QString &);
+  static bool hasMemberExpired(const QSqlDatabase &db,
+			       const QString &memberid,
+			       QString &errorstr);
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
   static void center(QMainWindow *, QMainWindow *);
