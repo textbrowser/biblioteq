@@ -10163,7 +10163,8 @@ void qtbook::slotExportAsCSV(void)
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1);
 
-	  stream << str << endl;
+	  if(!str.isEmpty())
+	    stream << str << endl;
 
 	  for(int i = 0; i < ui.table->rowCount(); i++)
 	    {
@@ -10186,7 +10187,8 @@ void qtbook::slotExportAsCSV(void)
 	      if(str.endsWith(","))
 		str = str.mid(0, str.length() - 1);
 
-	      stream << str << endl;
+	      if(!str.isEmpty())
+		stream << str << endl;
 	    }
 
 	  file.close();
