@@ -516,6 +516,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotShowDbEnumerations(void)));
+  connect(ui.actionExport_Current_View,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotExportAsCSV(void)));
   ab.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
@@ -10112,4 +10116,82 @@ void qtbook::slotChangeView(bool checked)
 
   if(action)
     ui.stackedWidget->setCurrentIndex(action->data().toInt());
+}
+
+/*
+** -- slotExportAsCSV(void) --
+*/
+
+void qtbook::slotExportAsCSV(void)
+{
+  QFileDialog dialog(this);
+
+#ifdef Q_WS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setNameFilter(tr("CSV (*.csv)"));
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setWindowTitle(tr("BiblioteQ: Export View as CSV"));
+  dialog.setDefaultSuffix("csv");
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      QFile file(dialog.selectedFiles().at(0));
+
+      if(file.open(QIODevice::WriteOnly | QIODevice::Truncate |
+		   QIODevice::Text))
+	{
+	  QString str("");
+	  QTextStream stream(&file);
+
+	  for(int i = 0; i < ui.table->columnCount(); i++)
+	    if(!ui.table->isColumnHidden(i))
+	      {
+		if(ui.table->horizontalHeaderItem(i)->text().contains(","))
+		  str += QString("\"%1\",").arg
+		    (ui.table->horizontalHeaderItem(i)->text());
+		else
+		  str += QString("%1,").arg
+		    (ui.table->horizontalHeaderItem(i)->text());
+	      }
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1);
+
+	  stream << str << endl;
+
+	  for(int i = 0; i < ui.table->rowCount(); i++)
+	    {
+	      str = "";
+
+	      for(int j = 0; j < ui.table->columnCount(); j++)
+		if(!ui.table->isColumnHidden(j))
+		  {
+		    QString cleaned(ui.table->item(i, j)->text());
+
+		    cleaned.replace("\n", " ");
+		    cleaned.replace("\r\n", " ");
+
+		    if(cleaned.contains(","))
+		      str += QString("\"%1\",").arg(cleaned);
+		    else
+		      str += QString("%1,").arg(cleaned);
+		  }
+
+	      if(str.endsWith(","))
+		str = str.mid(0, str.length() - 1);
+
+	      stream << str << endl;
+	    }
+
+	  file.close();
+	}
+
+      qapp->restoreOverrideCursor();
+    }
 }

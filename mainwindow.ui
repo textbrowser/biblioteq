@@ -470,6 +470,8 @@
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
+    <addaction name="actionExport_Current_View"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
@@ -1388,6 +1390,15 @@
    </property>
    <property name="text">
     <string>Populate Database En&amp;umerations Browser on Display</string>
+   </property>
+  </action>
+  <action name="actionExport_Current_View">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons.d/16x16/fileexport.png</normaloff>icons.d/16x16/fileexport.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Export View as CSV</string>
    </property>
   </action>
  </widget>

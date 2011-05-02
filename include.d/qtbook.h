@@ -305,6 +305,7 @@ class qtbook: public QMainWindow
   void slotSetColumns(void);
   void slotAddBorrower(void);
   void slotDeleteAdmin(void);
+  void slotExportAsCSV(void);
   void slotJournSearch(void);
   void slotPageClicked(const QString &);
   void slotViewDetails(void);
