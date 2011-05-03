@@ -589,9 +589,15 @@ qtbook::qtbook(void):QMainWindow()
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 1; i <= 4; i++)
+  for(int i = 1; i <= 5; i++)
     {
-      QAction *action = group1->addAction(QString(tr("&%1")).arg(25 * i));
+      QAction *action = 0;
+
+      if(i == 5)
+	action = group1->addAction
+	  (QString(tr("&Unlimited Entries per Page")));
+      else
+	action = group1->addAction(QString(tr("&%1")).arg(25 * i));
 
       if(!action)
 	continue;
@@ -600,7 +606,12 @@ qtbook::qtbook(void):QMainWindow()
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotRefresh(void)));
-      action->setData(25 * i);
+
+      if(i == 5)
+	action->setData(-1);
+      else
+	action->setData(25 * i);
+
       action->setCheckable(true);
 
       if(i == 1)
@@ -6005,6 +6016,7 @@ void qtbook::slotConnectDB(void)
     {
       ui.actionChangePassword->setEnabled(false);
       ui.menuEntriesPerPage->setEnabled(true);
+      ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
 
       /*
       ** Set the window's title.
@@ -6016,6 +6028,7 @@ void qtbook::slotConnectDB(void)
   else
     {
       ui.menuEntriesPerPage->setEnabled(true);
+      ui.menuEntriesPerPage->actions()[4]->setEnabled(false);
       ui.actionChangePassword->setEnabled(true);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
@@ -6134,6 +6147,7 @@ void qtbook::slotDisconnect(void)
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.menuEntriesPerPage->setEnabled(true);
+  ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled(false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
     (false);
@@ -6265,7 +6279,8 @@ void qtbook::resetMembersBrowser(void)
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  bb.table->horizontalHeader()->resizeSections
+    (QHeaderView::ResizeToContents);
 }
 
 /*
@@ -6278,7 +6293,8 @@ void qtbook::slotShowMembersBrowser(void)
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
   bb.filter->setFocus();
-  bb.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  bb.table->horizontalHeader()->resizeSections
+    (QHeaderView::ResizeToContents);
   misc_functions::center(members_diag, this);
   members_diag->raise();
   members_diag->show();
@@ -10177,6 +10193,7 @@ void qtbook::slotExportAsCSV(void)
 
 		    cleaned.replace("\n", " ");
 		    cleaned.replace("\r\n", " ");
+		    cleaned = cleaned.trimmed();
 
 		    if(cleaned.contains(","))
 		      str += QString("\"%1\",").arg(cleaned);
