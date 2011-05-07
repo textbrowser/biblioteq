@@ -230,13 +230,16 @@ void main_table::resetTable(const QString &type, const QString &roles)
   if(!type.isEmpty())
     setColumns(type, roles);
 
+  QString l_type(type);
   QSettings settings;
 
-  if(settings.contains(type + "_header_state"))
+  if(settings.contains(l_type.replace(" ", "_") + "_header_state"))
     horizontalHeader()->restoreState
-      (settings.value(type + "_header_state").toByteArray());
+      (settings.value(l_type.replace(" ", "_") +
+		      "_header_state").toByteArray());
+  else
+    resizeColumnsToContents();
 
-  resizeColumnsToContents();
   clearSelection();
   setCurrentItem(0);
 }

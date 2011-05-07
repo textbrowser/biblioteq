@@ -349,6 +349,9 @@ qtbook::qtbook(void):QMainWindow()
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotUpdateIndicesAfterSort(int)));
+  connect(ui.table->horizontalHeader(),
+	  SIGNAL(sectionResized(int, int, int)),
+	  this, SLOT(slotSectionResized(int, int, int)));
   connect(er.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(er.copyButton, SIGNAL(clicked(void)), this,
@@ -568,7 +571,12 @@ qtbook::qtbook(void):QMainWindow()
   QSettings settings;
 
   lastCategory = settings.value("last_category", "All").toString();
+  ui.table->horizontalHeader()->disconnect
+    (SIGNAL(sectionResized(int, int, int)));
   ui.table->resetTable(lastCategory, roles);
+  connect(ui.table->horizontalHeader(),
+	  SIGNAL(sectionResized(int, int, int)),
+	  this, SLOT(slotSectionResized(int, int, int)));
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -1662,39 +1670,42 @@ int qtbook::populateTable(const int search_type_arg,
 	break;
       }
 
-  if(pagingType != NEW_PAGE)
+  if(limit != -1)
     {
-      if(pagingType == PREVIOUS_PAGE)
+      if(pagingType != NEW_PAGE)
 	{
-	  offset -= limit;
+	  if(pagingType == PREVIOUS_PAGE)
+	    {
+	      offset -= limit;
 
-	  if(offset < 0)
-	    offset = 0;
-	}
-      else if(pagingType == NEXT_PAGE)
-	offset += limit;
-      else
-	{
-	  /*
-	  ** A specific page was selected from
-	  ** ui.pagesLabel.
-	  */
-
-	  offset = 0;
-
-	  for(int ii = 1; ii < qAbs(pagingType); ii++)
+	      if(offset < 0)
+		offset = 0;
+	    }
+	  else if(pagingType == NEXT_PAGE)
 	    offset += limit;
-	}
-    }
-  else
-    offset = 0;
+	  else
+	    {
+	      /*
+	      ** A specific page was selected from
+	      ** ui.pagesLabel.
+	      */
 
-  limitStr = QString(" LIMIT %1 ").arg(limit);
-  offsetStr = QString(" OFFSET %1 ").arg(offset);
-  ui.graphicsView->setSceneRect
-    (0, 0,
-     5 * 180,
-     limit / 5 * 270);
+	      offset = 0;
+
+	      for(int ii = 1; ii < qAbs(pagingType); ii++)
+		offset += limit;
+	    }
+	}
+      else
+	offset = 0;
+
+      limitStr = QString(" LIMIT %1 ").arg(limit);
+      offsetStr = QString(" OFFSET %1 ").arg(offset);
+      ui.graphicsView->setSceneRect
+	(0, 0,
+	 5 * 180,
+	 limit / 5 * 270);
+    }
 
   /*
   ** The order of the fields in the select statements should match
@@ -4189,6 +4200,9 @@ int qtbook::populateTable(const int search_type_arg,
   if(search_type == POPULATE_SEARCH && all_diag->isVisible())
     all_diag->close();
 
+  ui.table->horizontalHeader()->
+    disconnect(SIGNAL(sectionResized(int, int, int)));
+
   if(search_type != CUSTOM_QUERY)
     {
       ui.table->resetTable(typefilter, roles);
@@ -4197,14 +4211,23 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.table->resetTable("", roles);
 
-  int currentPage = offset / limit + 1;
+  connect(ui.table->horizontalHeader(),
+	  SIGNAL(sectionResized(int, int, int)),
+	  this, SLOT(slotSectionResized(int, int, int)));
 
-  if(pagingType == NEW_PAGE)
+  int currentPage = 1;
+
+  if(limit != -1)
+    currentPage = offset / limit + 1;
+
+  if(pagingType == NEW_PAGE || limit == -1)
     m_pages = 0;
 
   if(pagingType >= 0 &&
      pagingType != PREVIOUS_PAGE &&
      currentPage > m_pages)
+    m_pages += 1;
+  else if(limit == -1)
     m_pages += 1;
 
   if(m_pages == 1)
@@ -4265,7 +4288,15 @@ int qtbook::populateTable(const int search_type_arg,
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
-  progress.setMaximum(limit);
+
+  if(limit == -1)
+    {
+      progress.setMaximum(0);
+      progress.setMinimum(0);
+    }
+  else
+    progress.setMaximum(limit);
+
   progress.show();
   progress.update();
 
@@ -4403,8 +4434,10 @@ int qtbook::populateTable(const int search_type_arg,
 
   if(ui.table->rowCount() < limit)
     ui.nextPageButton->setEnabled(false);
-  else
+  else if(limit != -1)
     ui.nextPageButton->setEnabled(true);
+  else
+    ui.nextPageButton->setEnabled(false);
 
 #ifdef Q_WS_MAC
   ui.table->hide();
@@ -5251,7 +5284,10 @@ void qtbook::readConfig(void)
     ui.menuPreferredZ3950Server->actions()[0]->setChecked(true);
 
   setGlobalFonts(font);
-  slotResizeColumns();
+
+  if(ui.actionAutoResizeColumns->isChecked())
+    slotResizeColumns();
+
   createSqliteMenuActions();
 }
 
@@ -6245,7 +6281,12 @@ void qtbook::slotDisconnect(void)
     slotResetErrorLog();
 
   previousTypeFilter = getTypeFilterString();
+  ui.table->horizontalHeader()->disconnect
+    (SIGNAL(sectionResized(int, int, int)));
   ui.table->resetTable(previousTypeFilter, roles);
+  connect(ui.table->horizontalHeader(),
+	  SIGNAL(sectionResized(int, int, int)),
+	  this, SLOT(slotSectionResized(int, int, int)));
   ui.table->clearHiddenColumnsRecord();
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
@@ -6936,8 +6977,16 @@ void qtbook::slotAutoPopOnFilter(void)
   if(db.isOpen())
     slotRefresh();
   else
-    ui.table->resetTable
-      (ui.typefilter->itemData(ui.typefilter->currentIndex()).toString(), "");
+    {
+      ui.table->horizontalHeader()->disconnect
+	(SIGNAL(sectionResized(int, int, int)));
+      ui.table->resetTable
+	(ui.typefilter->itemData(ui.typefilter->currentIndex()).
+	 toString(), "");
+      connect(ui.table->horizontalHeader(),
+	      SIGNAL(sectionResized(int, int, int)),
+	      this, SLOT(slotSectionResized(int, int, int)));
+    }
 }
 
 /*
@@ -10279,5 +10328,28 @@ void qtbook::slotExportAsCSV(void)
 	}
 
       qapp->restoreOverrideCursor();
+    }
+}
+
+/*
+** -- slotSectionResized() --
+*/
+
+void qtbook::slotSectionResized(int logicalIndex, int oldSize,
+				int newSize)
+{
+  Q_UNUSED(logicalIndex);
+  Q_UNUSED(oldSize);
+  Q_UNUSED(newSize);
+
+  QString typefilter = ui.typefilter->itemData
+    (ui.typefilter->currentIndex()).toString();
+
+  if(!typefilter.isEmpty())
+    {
+      QSettings settings;
+
+      settings.setValue(typefilter.replace(" ", "_") + "_header_state",
+			ui.table->horizontalHeader()->saveState());
     }
 }

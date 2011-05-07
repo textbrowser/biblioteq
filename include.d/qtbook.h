@@ -321,6 +321,7 @@ class qtbook: public QMainWindow
   void slotPrintReserved(void);
   void slotResetErrorLog(void);
   void slotModifyBorrower(void);
+  void slotSectionResized(int, int, int);
   void slotAutoPopOnFilter(void);
   void slotClearSqliteMenu(bool);
   void slotShowCustomQuery(void);
