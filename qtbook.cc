@@ -95,6 +95,7 @@ int main(int argc, char *argv[])
   QSettings settings;
 
   settings.remove("sqlite_db");
+  settings.remove("entries_per_page");
 
   /*
   ** Create the user interface.
@@ -147,10 +148,10 @@ void qtbook::quit(void)
 {
   if(qmain != 0)
     {
-      qmain->cleanup();
-
       if(qmain->ui.actionAutomaticallySaveSettingsOnExit->isChecked())
 	qmain->slotSaveConfig();
+
+      qmain->cleanup();
     }
 
   if(qapp != 0)
@@ -1628,7 +1629,8 @@ void qtbook::slotRefresh(void)
 ** -- populateTable() --
 */
 
-int qtbook::populateTable(const int search_type_arg, const QString &typefilter,
+int qtbook::populateTable(const int search_type_arg,
+			  const QString &typefilter,
 			  const QString &searchstrArg, const int pagingType)
 {
   int i = -1;
@@ -5236,20 +5238,6 @@ void qtbook::readConfig(void)
 
   bool found = false;
 
-  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-    if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
-       settings.value("entries_per_page").toInt())
-      {
-	found = true;
-	ui.menuEntriesPerPage->actions()[i]->setChecked(true);
-	break;
-      }
-
-  if(!found && !ui.menuEntriesPerPage->actions().isEmpty())
-    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
-
-  found = false;
-
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(settings.value("preferred_z3950_site").toString().trimmed() ==
        ui.menuPreferredZ3950Server->actions()[i]->text())
@@ -5445,13 +5433,31 @@ void qtbook::slotSaveConfig(void)
   else
     settings.remove("main_window_geometry");
 
-  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
-      {
-	settings.setValue("entries_per_page",
-			  ui.menuEntriesPerPage->actions()[i]->data().toInt());
-	break;
-      }
+  if(db.isOpen())
+    {
+      if(db.driverName() == "QSQLITE")
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("sqlite_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+      else
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("postgresql_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+    }
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
@@ -6093,6 +6099,37 @@ void qtbook::slotConnectDB(void)
       ui.actionReservationHistory->setEnabled(true);
     }
 
+  bool found = false;
+  QSettings settings;
+
+  if(db.driverName() == "QSQLITE")
+    {
+      for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	   settings.value("sqlite_entries_per_page").toInt())
+	  {
+	    found = true;
+	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    break;
+	  }
+    }
+  else
+    {
+      for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
+	   settings.value("postgresql_entries_per_page").toInt())
+	  {
+	    found = true;
+	    ui.menuEntriesPerPage->actions()[i]->setChecked(true);
+	    break;
+	  }
+    }
+
+  if(!found && !ui.menuEntriesPerPage->actions().isEmpty())
+    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+
+  found = false;
+
   if(ui.typefilter->findData(QVariant(lastCategory)) > -1)
     ui.typefilter->setCurrentIndex
       (ui.typefilter->findData(QVariant(lastCategory)));
@@ -6160,6 +6197,36 @@ void qtbook::slotDisconnect(void)
   ui.graphicsView->scene()->clear();
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+
+  if(db.isOpen())
+    {
+      QSettings settings;
+
+      if(db.driverName() == "QSQLITE")
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("sqlite_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+      else
+	{
+	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
+	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+	      {
+		settings.setValue
+		  ("postgresql_entries_per_page",
+		   ui.menuEntriesPerPage->actions()[i]->data().toInt());
+		break;
+	      }
+	}
+    }
+
+  ui.menuEntriesPerPage->actions()[0]->setChecked(true);
 
   if(connected_bar_label != 0)
     {
