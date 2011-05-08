@@ -731,11 +731,6 @@ void qtbook::slotSetColumns(void)
       ui.table->recordColumnHidden
 	(typefilter, i, !ui.configTool->menu()->actions().at(i)->isChecked());
     }
-
-  QSettings settings;
-
-  settings.setValue(typefilter + "_header_state",
-		    ui.table->horizontalHeader()->saveState());
 }
 
 /*
@@ -4197,20 +4192,21 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.table->resetTable("", roles);
 
-  int currentPage = 1;
+  int currentPage = offset / limit + 1;
 
-  if(limit != -1)
-    currentPage = offset / limit + 1;
+  if(limit == -1)
+    currentPage = 1;
 
-  if(pagingType == NEW_PAGE || limit == -1)
+  if(pagingType == NEW_PAGE)
     m_pages = 0;
 
   if(pagingType >= 0 &&
      pagingType != PREVIOUS_PAGE &&
      currentPage > m_pages)
     m_pages += 1;
-  else if(limit == -1)
-    m_pages += 1;
+
+  if(limit == -1)
+    m_pages = 1;
 
   if(m_pages == 1)
     ui.pagesLabel->setText("1");
@@ -4414,12 +4410,12 @@ int qtbook::populateTable(const int search_type_arg,
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 			      arg(ui.table->rowCount()));
 
-  if(ui.table->rowCount() < limit)
+  if(limit == -1)
     ui.nextPageButton->setEnabled(false);
-  else if(limit != -1)
-    ui.nextPageButton->setEnabled(true);
+  else if(ui.table->rowCount() < limit)
+    ui.nextPageButton->setEnabled(false);
   else
-    ui.nextPageButton->setEnabled(false);
+    ui.nextPageButton->setEnabled(true);
 
 #ifdef Q_WS_MAC
   ui.table->hide();
@@ -5485,6 +5481,12 @@ void qtbook::slotSaveConfig(void)
 	   ui.menuPreferredZ3950Server->actions()[i]->text().trimmed());
 	break;
       }
+
+  QString typefilter = ui.typefilter->itemData
+    (ui.typefilter->currentIndex()).toString();
+
+  settings.setValue(typefilter.replace(" ", "_") + "_header_state",
+		    ui.table->horizontalHeader()->saveState());
 }
 
 /*
