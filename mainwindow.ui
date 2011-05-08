@@ -218,6 +218,9 @@
               <property name="columnCount">
                <number>16</number>
               </property>
+              <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>1</string>
