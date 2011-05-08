@@ -349,9 +349,6 @@ qtbook::qtbook(void):QMainWindow()
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotUpdateIndicesAfterSort(int)));
-  connect(ui.table->horizontalHeader(),
-	  SIGNAL(sectionResized(int, int, int)),
-	  this, SLOT(slotSectionResized(int, int, int)));
   connect(er.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(er.copyButton, SIGNAL(clicked(void)), this,
@@ -571,12 +568,7 @@ qtbook::qtbook(void):QMainWindow()
   QSettings settings;
 
   lastCategory = settings.value("last_category", "All").toString();
-  ui.table->horizontalHeader()->disconnect
-    (SIGNAL(sectionResized(int, int, int)));
   ui.table->resetTable(lastCategory, roles);
-  connect(ui.table->horizontalHeader(),
-	  SIGNAL(sectionResized(int, int, int)),
-	  this, SLOT(slotSectionResized(int, int, int)));
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -1612,16 +1604,11 @@ void qtbook::closeEvent(QCloseEvent *e)
 
 void qtbook::slotRefresh(void)
 {
-  QString str = "";
-  QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
-  QSettings settings;
-
-  if(settings.contains(data.toString() + "_header_state"))
-    ui.table->horizontalHeader()->restoreState
-      (settings.value(data.toString() + "_header_state").toByteArray());
-
   if(db.isOpen())
     {
+      QString str = "";
+      QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
+
       if(data.toString() == "All Overdue" && roles.isEmpty())
 	str = br.userid->text();
       else if(data.toString() == "All Requested" && roles.isEmpty())
@@ -4202,9 +4189,6 @@ int qtbook::populateTable(const int search_type_arg,
   if(search_type == POPULATE_SEARCH && all_diag->isVisible())
     all_diag->close();
 
-  ui.table->horizontalHeader()->
-    disconnect(SIGNAL(sectionResized(int, int, int)));
-
   if(search_type != CUSTOM_QUERY)
     {
       ui.table->resetTable(typefilter, roles);
@@ -4212,10 +4196,6 @@ int qtbook::populateTable(const int search_type_arg,
     }
   else
     ui.table->resetTable("", roles);
-
-  connect(ui.table->horizontalHeader(),
-	  SIGNAL(sectionResized(int, int, int)),
-	  this, SLOT(slotSectionResized(int, int, int)));
 
   int currentPage = 1;
 
@@ -6284,12 +6264,7 @@ void qtbook::slotDisconnect(void)
     slotResetErrorLog();
 
   previousTypeFilter = getTypeFilterString();
-  ui.table->horizontalHeader()->disconnect
-    (SIGNAL(sectionResized(int, int, int)));
   ui.table->resetTable(previousTypeFilter, roles);
-  connect(ui.table->horizontalHeader(),
-	  SIGNAL(sectionResized(int, int, int)),
-	  this, SLOT(slotSectionResized(int, int, int)));
   ui.table->clearHiddenColumnsRecord();
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
@@ -6980,16 +6955,9 @@ void qtbook::slotAutoPopOnFilter(void)
   if(db.isOpen())
     slotRefresh();
   else
-    {
-      ui.table->horizontalHeader()->disconnect
-	(SIGNAL(sectionResized(int, int, int)));
-      ui.table->resetTable
-	(ui.typefilter->itemData(ui.typefilter->currentIndex()).
-	 toString(), "");
-      connect(ui.table->horizontalHeader(),
-	      SIGNAL(sectionResized(int, int, int)),
-	      this, SLOT(slotSectionResized(int, int, int)));
-    }
+    ui.table->resetTable
+      (ui.typefilter->itemData(ui.typefilter->currentIndex()).
+       toString(), "");
 }
 
 /*
@@ -10331,28 +10299,5 @@ void qtbook::slotExportAsCSV(void)
 	}
 
       qapp->restoreOverrideCursor();
-    }
-}
-
-/*
-** -- slotSectionResized() --
-*/
-
-void qtbook::slotSectionResized(int logicalIndex, int oldSize,
-				int newSize)
-{
-  Q_UNUSED(logicalIndex);
-  Q_UNUSED(oldSize);
-  Q_UNUSED(newSize);
-
-  QString typefilter = ui.typefilter->itemData
-    (ui.typefilter->currentIndex()).toString();
-
-  if(!typefilter.isEmpty())
-    {
-      QSettings settings;
-
-      settings.setValue(typefilter.replace(" ", "_") + "_header_state",
-			ui.table->horizontalHeader()->saveState());
     }
 }

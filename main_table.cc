@@ -234,9 +234,12 @@ void main_table::resetTable(const QString &type, const QString &roles)
   QSettings settings;
 
   if(settings.contains(l_type.replace(" ", "_") + "_header_state"))
-    horizontalHeader()->restoreState
-      (settings.value(l_type.replace(" ", "_") +
-		      "_header_state").toByteArray());
+    {
+      if(!horizontalHeader()->restoreState
+	 (settings.value(l_type.replace(" ", "_") +
+			 "_header_state", "").toByteArray()))
+	resizeColumnsToContents();
+    }
   else
     resizeColumnsToContents();
 
