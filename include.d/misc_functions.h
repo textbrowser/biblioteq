@@ -74,6 +74,7 @@ class misc_functions
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,
 				  const QString &, QString &);
+  static void updateSQLiteDatabase(const QSqlDatabase &);
   static qint64 getSqliteUniqueId(const QSqlDatabase &,
 				  QString &);
   static QImage getImage(const QString &, const QString &, const QString &,

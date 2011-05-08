@@ -989,7 +989,8 @@ void qtbook::slotAbout(void)
   mb.setFont(qapp->font());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
-  mb.setText("<html>BiblioteQ Version 6.46<br>"
+  mb.setText
+    (QString("<html>BiblioteQ Version %1<br>"
 	     "Copyright (c) 2006 - 2011 "
 	     "Two Red Frogs Productions.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
@@ -1000,7 +1001,8 @@ void qtbook::slotAbout(void)
 	     "project information.<br>"
 	     "For release notes, please visit "
 	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
-	     "http://biblioteq.sourceforge.net/news.html</a>.");
+	     "http://biblioteq.sourceforge.net/news.html</a>.").
+     arg(BIBLIOTEQ_VERSION));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.png"));
   mb.exec();
@@ -6032,6 +6034,7 @@ void qtbook::slotConnectDB(void)
   else
     branch_diag->close();
 
+  misc_functions::updateSQLiteDatabase(db);
   selectedBranch = branches[br.branch_name->currentText()];
 
   if(connected_bar_label != 0)
