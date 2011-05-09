@@ -220,6 +220,7 @@ class qtbook: public QMainWindow
   QStringList deletedAdmins;
   QHash<QString, QString> AmazonImages;
   QHash<QString, QString> selectedBranch;
+  QHash<QString, QByteArray> headerStates;
   QHash<QString, qtbook_cd *> cds;
   QHash<QString, qtbook_dvd *> dvds;
   QHash<QString, qtbook_book *> books;

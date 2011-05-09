@@ -570,12 +570,13 @@ qtbook::qtbook(void):QMainWindow()
 
   typefilter = lastCategory =
     settings.value("last_category", "All").toString();
+  typefilter.replace(" ", "_");
   ui.table->resetTable(lastCategory, roles);
 
-  if(!ui.table->horizontalHeader()->restoreState
-     (settings.value(typefilter.replace(" ", "_") + "_header_state").
-      toByteArray()))
-    ui.table->resizeColumnsToContents();
+  if(headerStates.contains(roles + typefilter + "_header_state"))
+    if(!ui.table->horizontalHeader()->
+       restoreState(headerStates[roles + typefilter + "_header_state"]))
+      ui.table->resizeColumnsToContents();
 
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
@@ -4196,14 +4197,6 @@ int qtbook::populateTable(const int search_type_arg,
     {
       ui.table->resetTable(typefilter, roles);
       addConfigOptions(typefilter);
-
-      QString l_typefilter(typefilter);
-      QSettings settings;
-
-      if(!ui.table->horizontalHeader()->restoreState
-	 (settings.value(l_typefilter.replace(" ", "_") + "_header_state").
-	  toByteArray()))
-	ui.table->resizeColumnsToContents();
     }
   else
     {
@@ -4420,10 +4413,23 @@ int qtbook::populateTable(const int search_type_arg,
       addConfigOptions("Custom");
     }
 
-  ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  bool resized = false;
+  QString l_typefilter(typefilter);
 
-  if(ui.actionAutoResizeColumns->isChecked())
-    slotResizeColumns();
+  l_typefilter.replace(" ", "_");
+
+  if(headerStates.contains(roles + l_typefilter + "_header_state"))
+    if(!ui.table->horizontalHeader()->
+       restoreState(headerStates[roles + l_typefilter + "_header_state"]))
+      {
+	resized = true;
+	ui.table->resizeColumnsToContents();
+	ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+      }
+
+  if(!resized)
+    if(ui.actionAutoResizeColumns->isChecked())
+      slotResizeColumns();
 
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
@@ -5266,6 +5272,11 @@ void qtbook::readConfig(void)
     (settings.value("automatically_populate_enum_list_on_display",
 		    false).toBool());
 
+  for(int i = 0; i < settings.allKeys().size(); i++)
+    if(settings.allKeys().at(i).contains("_header_state"))
+      headerStates[settings.allKeys().at(i)] =
+	settings.value(settings.allKeys().at(i)).toByteArray();
+
   bool found = false;
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
@@ -5501,11 +5512,9 @@ void qtbook::slotSaveConfig(void)
 	break;
       }
 
-  QString typefilter = ui.typefilter->itemData
-    (ui.typefilter->currentIndex()).toString();
-
-  settings.setValue(typefilter.replace(" ", "_") + "_header_state",
-		    ui.table->horizontalHeader()->saveState());
+  for(int i = 0; i < headerStates.keys().size(); i++)
+    settings.setValue(headerStates.keys().at(i),
+		      headerStates[headerStates.keys().at(i)]);
 }
 
 /*
@@ -6285,16 +6294,16 @@ void qtbook::slotDisconnect(void)
     slotResetErrorLog();
 
   QString typefilter("");
-  QSettings settings;
 
   typefilter = previousTypeFilter = getTypeFilterString();
+  typefilter.replace(" ", "_");
   ui.table->resetTable(previousTypeFilter, roles);
   ui.table->clearHiddenColumnsRecord();
 
-  if(!ui.table->horizontalHeader()->restoreState
-     (settings.value(typefilter.replace(" ", "_") + "_header_state").
-      toByteArray()))
-    ui.table->resizeColumnsToContents();
+  if(headerStates.contains(roles + typefilter + "_header_state"))
+    if(!ui.table->horizontalHeader()->
+       restoreState(headerStates[roles + typefilter + "_header_state"]))
+      ui.table->resizeColumnsToContents();
 
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
@@ -6987,16 +6996,16 @@ void qtbook::slotAutoPopOnFilter(void)
   else
     {
       QString typefilter("");
-      QSettings settings;
 
       typefilter = ui.typefilter->itemData(ui.typefilter->currentIndex()).
 	toString();
       ui.table->resetTable(typefilter, "");
+      typefilter.replace(" ", "_");
 
-      if(!ui.table->horizontalHeader()->restoreState
-	 (settings.value(typefilter.replace(" ", "_") + "_header_state").
-	  toByteArray()))
-	ui.table->resizeColumnsToContents();
+      if(headerStates.contains(getRoles() + typefilter + "_header_state"))
+	if(!ui.table->horizontalHeader()->
+	   restoreState(headerStates[getRoles() + typefilter + "_header_state"]))
+	  ui.table->resizeColumnsToContents();
     }
 }
 
