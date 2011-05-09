@@ -565,10 +565,15 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
     (false);
 
+  QString typefilter("");
   QSettings settings;
 
-  lastCategory = settings.value("last_category", "All").toString();
+  typefilter = lastCategory =
+    settings.value("last_category", "All").toString();
   ui.table->resetTable(lastCategory, roles);
+  ui.table->horizontalHeader()->restoreState
+    (settings.value(typefilter.replace(" ", "_") + "_header_state").
+     toByteArray());
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -4192,6 +4197,13 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.table->resetTable("", roles);
 
+  QString typefilter("");
+  QSettings settings;
+
+  ui.table->horizontalHeader()->restoreState
+    (settings.value(typefilter.replace(" ", "_") + "_header_state").
+     toByteArray());
+
   int currentPage = offset / limit + 1;
 
   if(limit == -1)
@@ -6265,9 +6277,15 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
-  previousTypeFilter = getTypeFilterString();
+  QString typefilter("");
+  QSettings settings;
+
+  typefilter = previousTypeFilter = getTypeFilterString();
   ui.table->resetTable(previousTypeFilter, roles);
   ui.table->clearHiddenColumnsRecord();
+  ui.table->horizontalHeader()->restoreState
+    (settings.value(typefilter.replace(" ", "_") + "_header_state").
+     toByteArray());
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -6957,9 +6975,17 @@ void qtbook::slotAutoPopOnFilter(void)
   if(db.isOpen())
     slotRefresh();
   else
-    ui.table->resetTable
-      (ui.typefilter->itemData(ui.typefilter->currentIndex()).
-       toString(), "");
+    {
+      QString typefilter("");
+      QSettings settings;
+
+      typefilter = ui.typefilter->itemData(ui.typefilter->currentIndex()).
+	toString();
+      ui.table->resetTable(typefilter, "");
+      ui.table->horizontalHeader()->restoreState
+	(settings.value(typefilter.replace(" ", "_") + "_header_state").
+	 toByteArray());
+    }
 }
 
 /*
