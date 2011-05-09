@@ -571,9 +571,12 @@ qtbook::qtbook(void):QMainWindow()
   typefilter = lastCategory =
     settings.value("last_category", "All").toString();
   ui.table->resetTable(lastCategory, roles);
-  ui.table->horizontalHeader()->restoreState
-    (settings.value(typefilter.replace(" ", "_") + "_header_state").
-     toByteArray());
+
+  if(!ui.table->horizontalHeader()->restoreState
+     (settings.value(typefilter.replace(" ", "_") + "_header_state").
+      toByteArray()))
+    ui.table->resizeColumnsToContents();
+
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -4193,16 +4196,20 @@ int qtbook::populateTable(const int search_type_arg,
     {
       ui.table->resetTable(typefilter, roles);
       addConfigOptions(typefilter);
+
+      QString l_typefilter(typefilter);
+      QSettings settings;
+
+      if(!ui.table->horizontalHeader()->restoreState
+	 (settings.value(l_typefilter.replace(" ", "_") + "_header_state").
+	  toByteArray()))
+	ui.table->resizeColumnsToContents();
     }
   else
-    ui.table->resetTable("", roles);
-
-  QString typefilter("");
-  QSettings settings;
-
-  ui.table->horizontalHeader()->restoreState
-    (settings.value(typefilter.replace(" ", "_") + "_header_state").
-     toByteArray());
+    {
+      ui.table->resetTable("", roles);
+      ui.table->resizeColumnsToContents();
+    }
 
   int currentPage = offset / limit + 1;
 
@@ -6283,9 +6290,12 @@ void qtbook::slotDisconnect(void)
   typefilter = previousTypeFilter = getTypeFilterString();
   ui.table->resetTable(previousTypeFilter, roles);
   ui.table->clearHiddenColumnsRecord();
-  ui.table->horizontalHeader()->restoreState
-    (settings.value(typefilter.replace(" ", "_") + "_header_state").
-     toByteArray());
+
+  if(!ui.table->horizontalHeader()->restoreState
+     (settings.value(typefilter.replace(" ", "_") + "_header_state").
+      toByteArray()))
+    ui.table->resizeColumnsToContents();
+
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -6982,9 +6992,11 @@ void qtbook::slotAutoPopOnFilter(void)
       typefilter = ui.typefilter->itemData(ui.typefilter->currentIndex()).
 	toString();
       ui.table->resetTable(typefilter, "");
-      ui.table->horizontalHeader()->restoreState
-	(settings.value(typefilter.replace(" ", "_") + "_header_state").
-	 toByteArray());
+
+      if(!ui.table->horizontalHeader()->restoreState
+	 (settings.value(typefilter.replace(" ", "_") + "_header_state").
+	  toByteArray()))
+	ui.table->resizeColumnsToContents();
     }
 }
 
