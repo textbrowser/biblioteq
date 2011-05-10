@@ -742,6 +742,10 @@ void qtbook::slotSetColumns(void)
       ui.table->recordColumnHidden
 	(typefilter, i, !ui.configTool->menu()->actions().at(i)->isChecked());
     }
+
+  typefilter.replace(" ", "_");
+  headerStates[getRoles() + typefilter + "_header_state"] =
+    ui.table->horizontalHeader()->saveState();
 }
 
 /*
@@ -4196,10 +4200,7 @@ int qtbook::populateTable(const int search_type_arg,
     all_diag->close();
 
   if(search_type != CUSTOM_QUERY)
-    {
-      ui.table->resetTable(typefilter, roles);
-      addConfigOptions(typefilter);
-    }
+    ui.table->resetTable(typefilter, roles);
   else
     {
       ui.table->resetTable("", roles);
@@ -4432,6 +4433,8 @@ int qtbook::populateTable(const int search_type_arg,
 	    ui.table->horizontalHeader()->setSortIndicator
 	      (0, Qt::AscendingOrder);
 	  }
+
+      addConfigOptions(typefilter);
     }
 
   if(!resized)
