@@ -349,6 +349,8 @@ qtbook::qtbook(void):QMainWindow()
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotUpdateIndicesAfterSort(int)));
+  connect(ui.table->horizontalHeader(), SIGNAL(sectionResized(int, int, int)),
+	  this, SLOT(slotSectionResized(int, int, int)));
   connect(er.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(er.copyButton, SIGNAL(clicked(void)), this,
@@ -4414,18 +4416,23 @@ int qtbook::populateTable(const int search_type_arg,
     }
 
   bool resized = false;
-  QString l_typefilter(typefilter);
 
-  l_typefilter.replace(" ", "_");
+  if(search_type != CUSTOM_QUERY)
+    {
+      QString l_typefilter(typefilter);
 
-  if(headerStates.contains(roles + l_typefilter + "_header_state"))
-    if(!ui.table->horizontalHeader()->
-       restoreState(headerStates[roles + l_typefilter + "_header_state"]))
-      {
-	resized = true;
-	ui.table->resizeColumnsToContents();
-	ui.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-      }
+      l_typefilter.replace(" ", "_");
+
+      if(headerStates.contains(roles + l_typefilter + "_header_state"))
+	if(!ui.table->horizontalHeader()->
+	   restoreState(headerStates[roles + l_typefilter + "_header_state"]))
+	  {
+	    resized = true;
+	    ui.table->resizeColumnsToContents();
+	    ui.table->horizontalHeader()->setSortIndicator
+	      (0, Qt::AscendingOrder);
+	  }
+    }
 
   if(!resized)
     if(ui.actionAutoResizeColumns->isChecked())
@@ -4464,6 +4471,12 @@ void qtbook::slotResizeColumnsAfterSort(void)
 	qapp->setOverrideCursor(Qt::WaitCursor);
 	parent = object->parent();
 	(static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
+
+	QString typefilter(getTypeFilterString());
+
+	typefilter.replace(" ", "_");
+	headerStates[getRoles() + typefilter + "_header_state"] =
+	  ui.table->horizontalHeader()->saveState();
 	qapp->restoreOverrideCursor();
       }
 }
@@ -4497,6 +4510,11 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
       updateRows(oid, i, itemType);
     }
 
+  QString typefilter(getTypeFilterString());
+
+  typefilter.replace(" ", "_");
+  headerStates[getRoles() + typefilter + "_header_state"] =
+    ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
 
@@ -4508,6 +4526,12 @@ void qtbook::slotResizeColumns(void)
 {
   qapp->setOverrideCursor(Qt::WaitCursor);
   ui.table->resizeColumnsToContents();
+
+  QString typefilter(getTypeFilterString());
+
+  typefilter.replace(" ", "_");
+  headerStates[getRoles() + typefilter + "_header_state"] =
+    ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
 
@@ -5276,6 +5300,14 @@ void qtbook::readConfig(void)
     if(settings.allKeys().at(i).contains("_header_state"))
       headerStates[settings.allKeys().at(i)] =
 	settings.value(settings.allKeys().at(i)).toByteArray();
+
+  QString typefilter(getTypeFilterString());
+
+  typefilter.replace(" ", "_");
+
+  if(headerStates.contains(getRoles() + typefilter + "_header_state"))
+    ui.table->horizontalHeader()->restoreState
+      (headerStates[getRoles() + typefilter + "_header_state"]);
 
   bool found = false;
 
@@ -7004,7 +7036,8 @@ void qtbook::slotAutoPopOnFilter(void)
 
       if(headerStates.contains(getRoles() + typefilter + "_header_state"))
 	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[getRoles() + typefilter + "_header_state"]))
+	   restoreState(headerStates[getRoles() + typefilter +
+				     "_header_state"]))
 	  ui.table->resizeColumnsToContents();
     }
 }
@@ -10349,4 +10382,16 @@ void qtbook::slotExportAsCSV(void)
 
       qapp->restoreOverrideCursor();
     }
+}
+
+/*
+** -- slotSectionResized() --
+*/
+
+void qtbook::slotSectionResized(int logicalIndex, int oldSize,
+				int newSize)
+{
+  Q_UNUSED(logicalIndex);
+  Q_UNUSED(oldSize);
+  Q_UNUSED(newSize);
 }
