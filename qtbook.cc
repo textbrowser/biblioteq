@@ -575,9 +575,9 @@ qtbook::qtbook(void):QMainWindow()
   typefilter.replace(" ", "_");
   ui.table->resetTable(lastCategory, roles);
 
-  if(headerStates.contains(roles + typefilter + "_header_state"))
+  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
     if(!ui.table->horizontalHeader()->
-       restoreState(headerStates[roles + typefilter + "_header_state"]))
+       restoreState(headerStates[db.userName() + typefilter + "_header_state"]))
       ui.table->resizeColumnsToContents();
 
   ui.summary->setVisible(false);
@@ -744,7 +744,7 @@ void qtbook::slotSetColumns(void)
     }
 
   typefilter.replace(" ", "_");
-  headerStates[getRoles() + typefilter + "_header_state"] =
+  headerStates[db.userName() + typefilter + "_header_state"] =
     ui.table->horizontalHeader()->saveState();
 }
 
@@ -1620,11 +1620,11 @@ void qtbook::slotRefresh(void)
       QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
 
       if(data.toString() == "All Overdue" && roles.isEmpty())
-	str = br.userid->text();
+	str = db.userName();
       else if(data.toString() == "All Requested" && roles.isEmpty())
-	str = br.userid->text();
+	str = db.userName();
       else if(data.toString() == "All Reserved" && roles.isEmpty())
-	str = br.userid->text();
+	str = db.userName();
       else if(data.toString() == "All Reserved")
 	str = "%";
 
@@ -4424,9 +4424,9 @@ int qtbook::populateTable(const int search_type_arg,
 
       l_typefilter.replace(" ", "_");
 
-      if(headerStates.contains(roles + l_typefilter + "_header_state"))
+      if(headerStates.contains(db.userName() + l_typefilter + "_header_state"))
 	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[roles + l_typefilter + "_header_state"]))
+	   restoreState(headerStates[db.userName() + l_typefilter + "_header_state"]))
 	  {
 	    resized = true;
 	    ui.table->resizeColumnsToContents();
@@ -4478,7 +4478,7 @@ void qtbook::slotResizeColumnsAfterSort(void)
 	QString typefilter(getTypeFilterString());
 
 	typefilter.replace(" ", "_");
-	headerStates[getRoles() + typefilter + "_header_state"] =
+	headerStates[db.userName() + typefilter + "_header_state"] =
 	  ui.table->horizontalHeader()->saveState();
 	qapp->restoreOverrideCursor();
       }
@@ -4516,7 +4516,7 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
   QString typefilter(getTypeFilterString());
 
   typefilter.replace(" ", "_");
-  headerStates[getRoles() + typefilter + "_header_state"] =
+  headerStates[db.userName() + typefilter + "_header_state"] =
     ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
@@ -4533,7 +4533,7 @@ void qtbook::slotResizeColumns(void)
   QString typefilter(getTypeFilterString());
 
   typefilter.replace(" ", "_");
-  headerStates[getRoles() + typefilter + "_header_state"] =
+  headerStates[db.userName() + typefilter + "_header_state"] =
     ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
@@ -5308,9 +5308,9 @@ void qtbook::readConfig(void)
 
   typefilter.replace(" ", "_");
 
-  if(headerStates.contains(getRoles() + typefilter + "_header_state"))
+  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
     ui.table->horizontalHeader()->restoreState
-      (headerStates[getRoles() + typefilter + "_header_state"]);
+      (headerStates[db.userName() + typefilter + "_header_state"]);
 
   bool found = false;
 
@@ -6335,9 +6335,9 @@ void qtbook::slotDisconnect(void)
   ui.table->resetTable(previousTypeFilter, roles);
   ui.table->clearHiddenColumnsRecord();
 
-  if(headerStates.contains(roles + typefilter + "_header_state"))
+  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
     if(!ui.table->horizontalHeader()->
-       restoreState(headerStates[roles + typefilter + "_header_state"]))
+       restoreState(headerStates[db.userName() + typefilter + "_header_state"]))
       ui.table->resizeColumnsToContents();
 
   ui.itemsCountLabel->setText(tr("0 Results"));
@@ -7037,9 +7037,9 @@ void qtbook::slotAutoPopOnFilter(void)
       ui.table->resetTable(typefilter, "");
       typefilter.replace(" ", "_");
 
-      if(headerStates.contains(getRoles() + typefilter + "_header_state"))
+      if(headerStates.contains(db.userName() + typefilter + "_header_state"))
 	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[getRoles() + typefilter +
+	   restoreState(headerStates[db.userName() + typefilter +
 				     "_header_state"]))
 	  ui.table->resizeColumnsToContents();
     }
@@ -8136,7 +8136,7 @@ void qtbook::slotListOverdueItems(void)
   if(members_diag->isVisible())
     memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
   else if(roles.isEmpty())
-    memberid = br.userid->text().trimmed();
+    memberid = db.userName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
   members_diag->raise();
@@ -8836,7 +8836,7 @@ void qtbook::slotShowHistory(void)
 			    "%1.id = history.item_id AND "
 			    "%1.myoid = history.item_oid AND %1.type = "
 			    "history.type ").arg(list[i]).arg
-	  (br.userid->text().trimmed());
+	  (db.userName());
 
 	if(i != list.size() - 1)
 	  querystr += "UNION ";
@@ -9112,7 +9112,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
 void qtbook::slotShowChangePassword(void)
 {
-  pass.userid->setText(br.userid->text().trimmed());
+  pass.userid->setText(db.userName());
   pass.currentpassword->clear();
   pass.password->clear();
   pass.passwordAgain->clear();
@@ -9873,7 +9873,7 @@ void qtbook::slotRequest(void)
 	    "requestdate, type) VALUES(?, ?, ?, ?)";
 	  query.prepare(querystr);
 	  query.bindValue(0, oid);
-	  query.bindValue(1, br.userid->text().trimmed());
+	  query.bindValue(1, db.userName());
 	  query.bindValue(2, now.toString("MM/dd/yyyy"));
 	  query.bindValue(3, itemType);
 	}
