@@ -1700,10 +1700,10 @@ int qtbook::populateTable(const int search_type_arg,
 
       limitStr = QString(" LIMIT %1 ").arg(limit);
       offsetStr = QString(" OFFSET %1 ").arg(offset);
-      ui.graphicsView->setSceneRect
-	(0, 0,
-	 5 * 180,
-	 limit / 5 * 270);
+      // ui.graphicsView->setSceneRect
+      // (0, 0,
+      // 5 * 180,
+      // limit / 5 * 270);
     }
 
   /*
@@ -4426,7 +4426,8 @@ int qtbook::populateTable(const int search_type_arg,
 
       if(headerStates.contains(db.userName() + l_typefilter + "_header_state"))
 	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[db.userName() + l_typefilter + "_header_state"]))
+	   restoreState(headerStates[db.userName() + l_typefilter +
+				     "_header_state"]))
 	  {
 	    resized = true;
 	    ui.table->resizeColumnsToContents();
