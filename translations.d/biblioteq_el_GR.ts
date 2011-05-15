@@ -330,6 +330,10 @@
         <source>Next Member</source>
         <translation>Επόμενο μέλος</translation>
     </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -2674,6 +2678,10 @@ URL</source>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Export View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3011,6 +3019,10 @@ URL</source>
     <message>
         <source>Refresh Table</source>
         <translation type="unfinished">Ανανέωση πίνακα</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4116,6 +4128,34 @@ URL</source>
     </message>
     <message>
         <source>Table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unlimited Entries per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine if the membership of the selected member has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the selected member&apos;s membership has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the item that you selected is not available for reservation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export View as CSV</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

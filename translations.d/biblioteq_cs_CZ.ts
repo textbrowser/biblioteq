@@ -330,6 +330,10 @@
         <source>Next Member</source>
         <translation>Další zapůjčitel</translation>
     </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -2695,6 +2699,10 @@ webová adresa</translation>
         <source>Populate Database En&amp;umerations Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Export View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3032,6 +3040,10 @@ webová adresa</translation>
     <message>
         <source>Refresh Table</source>
         <translation type="unfinished">Znovu načíst tabulku</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4145,6 +4157,34 @@ webová adresa</translation>
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unlimited Entries per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine if the membership of the selected member has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the selected member&apos;s membership has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It appears that the item that you selected is not available for reservation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export View as CSV</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
