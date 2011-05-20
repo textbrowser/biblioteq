@@ -4439,8 +4439,13 @@ int qtbook::populateTable(const int search_type_arg,
     }
 
   if(!resized)
-    if(ui.actionAutoResizeColumns->isChecked())
-      slotResizeColumns();
+    {
+      if(ui.actionAutoResizeColumns->isChecked())
+	slotResizeColumns();
+      else
+	ui.table->horizontalHeader()->setSortIndicator
+	  (0, Qt::AscendingOrder);
+    }
 
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).

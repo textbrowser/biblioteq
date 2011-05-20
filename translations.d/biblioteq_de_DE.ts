@@ -3904,20 +3904,20 @@ URL</source>
     <message>
         <location filename="../qtbook.cc" line="190"/>
         <location filename="../qtbook.cc" line="194"/>
-        <location filename="../qtbook.cc" line="4911"/>
-        <location filename="../qtbook.cc" line="5440"/>
-        <location filename="../qtbook.cc" line="5453"/>
-        <location filename="../qtbook.cc" line="5961"/>
-        <location filename="../qtbook.cc" line="5963"/>
-        <location filename="../qtbook.cc" line="6057"/>
-        <location filename="../qtbook.cc" line="6065"/>
-        <location filename="../qtbook.cc" line="9575"/>
-        <location filename="../qtbook.cc" line="9590"/>
-        <location filename="../qtbook.cc" line="9643"/>
-        <location filename="../qtbook.cc" line="9669"/>
-        <location filename="../qtbook.cc" line="9686"/>
-        <location filename="../qtbook.cc" line="9704"/>
-        <location filename="../qtbook.cc" line="9718"/>
+        <location filename="../qtbook.cc" line="4916"/>
+        <location filename="../qtbook.cc" line="5445"/>
+        <location filename="../qtbook.cc" line="5458"/>
+        <location filename="../qtbook.cc" line="5966"/>
+        <location filename="../qtbook.cc" line="5968"/>
+        <location filename="../qtbook.cc" line="6062"/>
+        <location filename="../qtbook.cc" line="6070"/>
+        <location filename="../qtbook.cc" line="9580"/>
+        <location filename="../qtbook.cc" line="9595"/>
+        <location filename="../qtbook.cc" line="9648"/>
+        <location filename="../qtbook.cc" line="9674"/>
+        <location filename="../qtbook.cc" line="9691"/>
+        <location filename="../qtbook.cc" line="9709"/>
+        <location filename="../qtbook.cc" line="9723"/>
         <source>.</source>
         <translation>.</translation>
     </message>
@@ -4073,13 +4073,13 @@ URL</source>
         <location filename="../qtbook.cc" line="1320"/>
         <location filename="../qtbook.cc" line="1465"/>
         <location filename="../qtbook.cc" line="1559"/>
-        <location filename="../qtbook.cc" line="4512"/>
-        <location filename="../qtbook.cc" line="5603"/>
-        <location filename="../qtbook.cc" line="6898"/>
-        <location filename="../qtbook.cc" line="8173"/>
-        <location filename="../qtbook.cc" line="8892"/>
-        <location filename="../qtbook.cc" line="9095"/>
-        <location filename="../qtbook.cc" line="9872"/>
+        <location filename="../qtbook.cc" line="4517"/>
+        <location filename="../qtbook.cc" line="5608"/>
+        <location filename="../qtbook.cc" line="6903"/>
+        <location filename="../qtbook.cc" line="8178"/>
+        <location filename="../qtbook.cc" line="8897"/>
+        <location filename="../qtbook.cc" line="9100"/>
+        <location filename="../qtbook.cc" line="9877"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
@@ -4110,26 +4110,26 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook.cc" line="858"/>
-        <location filename="../qtbook.cc" line="6280"/>
-        <location filename="../qtbook.cc" line="7010"/>
+        <location filename="../qtbook.cc" line="6285"/>
+        <location filename="../qtbook.cc" line="7015"/>
         <source>Item Requests</source>
         <translation type="unfinished">Ausleihen anfragen</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="907"/>
-        <location filename="../qtbook.cc" line="6320"/>
+        <location filename="../qtbook.cc" line="6325"/>
         <source>Disconnected</source>
         <translation type="unfinished">Unverbunden</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="914"/>
-        <location filename="../qtbook.cc" line="6326"/>
+        <location filename="../qtbook.cc" line="6331"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Standard Nutzerinnen Modus</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="921"/>
-        <location filename="../qtbook.cc" line="7225"/>
+        <location filename="../qtbook.cc" line="7230"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Leerer Fehlermodus</translation>
     </message>
@@ -4155,44 +4155,44 @@ URL</source>
         <location filename="../qtbook.cc" line="1151"/>
         <location filename="../qtbook.cc" line="1298"/>
         <location filename="../qtbook.cc" line="1450"/>
-        <location filename="../qtbook.cc" line="4651"/>
-        <location filename="../qtbook.cc" line="4666"/>
-        <location filename="../qtbook.cc" line="4677"/>
-        <location filename="../qtbook.cc" line="4685"/>
-        <location filename="../qtbook.cc" line="4693"/>
-        <location filename="../qtbook.cc" line="4701"/>
-        <location filename="../qtbook.cc" line="4709"/>
-        <location filename="../qtbook.cc" line="4746"/>
-        <location filename="../qtbook.cc" line="5353"/>
-        <location filename="../qtbook.cc" line="5382"/>
-        <location filename="../qtbook.cc" line="6035"/>
-        <location filename="../qtbook.cc" line="6045"/>
-        <location filename="../qtbook.cc" line="6728"/>
-        <location filename="../qtbook.cc" line="6883"/>
-        <location filename="../qtbook.cc" line="6912"/>
-        <location filename="../qtbook.cc" line="6922"/>
-        <location filename="../qtbook.cc" line="8117"/>
-        <location filename="../qtbook.cc" line="8161"/>
-        <location filename="../qtbook.cc" line="8165"/>
-        <location filename="../qtbook.cc" line="8194"/>
-        <location filename="../qtbook.cc" line="8198"/>
-        <location filename="../qtbook.cc" line="8541"/>
-        <location filename="../qtbook.cc" line="8553"/>
-        <location filename="../qtbook.cc" line="8643"/>
-        <location filename="../qtbook.cc" line="8666"/>
-        <location filename="../qtbook.cc" line="8731"/>
-        <location filename="../qtbook.cc" line="8783"/>
-        <location filename="../qtbook.cc" line="9002"/>
-        <location filename="../qtbook.cc" line="9006"/>
-        <location filename="../qtbook.cc" line="9134"/>
-        <location filename="../qtbook.cc" line="9142"/>
-        <location filename="../qtbook.cc" line="9151"/>
-        <location filename="../qtbook.cc" line="9286"/>
-        <location filename="../qtbook.cc" line="9296"/>
-        <location filename="../qtbook.cc" line="9525"/>
-        <location filename="../qtbook.cc" line="9538"/>
-        <location filename="../qtbook.cc" line="9815"/>
-        <location filename="../qtbook.cc" line="9825"/>
+        <location filename="../qtbook.cc" line="4656"/>
+        <location filename="../qtbook.cc" line="4671"/>
+        <location filename="../qtbook.cc" line="4682"/>
+        <location filename="../qtbook.cc" line="4690"/>
+        <location filename="../qtbook.cc" line="4698"/>
+        <location filename="../qtbook.cc" line="4706"/>
+        <location filename="../qtbook.cc" line="4714"/>
+        <location filename="../qtbook.cc" line="4751"/>
+        <location filename="../qtbook.cc" line="5358"/>
+        <location filename="../qtbook.cc" line="5387"/>
+        <location filename="../qtbook.cc" line="6040"/>
+        <location filename="../qtbook.cc" line="6050"/>
+        <location filename="../qtbook.cc" line="6733"/>
+        <location filename="../qtbook.cc" line="6888"/>
+        <location filename="../qtbook.cc" line="6917"/>
+        <location filename="../qtbook.cc" line="6927"/>
+        <location filename="../qtbook.cc" line="8122"/>
+        <location filename="../qtbook.cc" line="8166"/>
+        <location filename="../qtbook.cc" line="8170"/>
+        <location filename="../qtbook.cc" line="8199"/>
+        <location filename="../qtbook.cc" line="8203"/>
+        <location filename="../qtbook.cc" line="8546"/>
+        <location filename="../qtbook.cc" line="8558"/>
+        <location filename="../qtbook.cc" line="8648"/>
+        <location filename="../qtbook.cc" line="8671"/>
+        <location filename="../qtbook.cc" line="8736"/>
+        <location filename="../qtbook.cc" line="8788"/>
+        <location filename="../qtbook.cc" line="9007"/>
+        <location filename="../qtbook.cc" line="9011"/>
+        <location filename="../qtbook.cc" line="9139"/>
+        <location filename="../qtbook.cc" line="9147"/>
+        <location filename="../qtbook.cc" line="9156"/>
+        <location filename="../qtbook.cc" line="9291"/>
+        <location filename="../qtbook.cc" line="9301"/>
+        <location filename="../qtbook.cc" line="9530"/>
+        <location filename="../qtbook.cc" line="9543"/>
+        <location filename="../qtbook.cc" line="9820"/>
+        <location filename="../qtbook.cc" line="9830"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Nutzerin Fehler</translation>
     </message>
@@ -4206,12 +4206,12 @@ URL</source>
         <location filename="../qtbook.cc" line="1156"/>
         <location filename="../qtbook.cc" line="1303"/>
         <location filename="../qtbook.cc" line="1534"/>
-        <location filename="../qtbook.cc" line="5388"/>
-        <location filename="../qtbook.cc" line="5848"/>
-        <location filename="../qtbook.cc" line="5886"/>
-        <location filename="../qtbook.cc" line="8208"/>
-        <location filename="../qtbook.cc" line="9832"/>
-        <location filename="../qtbook.cc" line="10241"/>
+        <location filename="../qtbook.cc" line="5393"/>
+        <location filename="../qtbook.cc" line="5853"/>
+        <location filename="../qtbook.cc" line="5891"/>
+        <location filename="../qtbook.cc" line="8213"/>
+        <location filename="../qtbook.cc" line="9837"/>
+        <location filename="../qtbook.cc" line="10246"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ: Anfrage</translation>
     </message>
@@ -4239,7 +4239,7 @@ URL</source>
         <location filename="../qtbook.cc" line="1501"/>
         <location filename="../qtbook.cc" line="1517"/>
         <location filename="../qtbook.cc" line="1526"/>
-        <location filename="../qtbook.cc" line="6958"/>
+        <location filename="../qtbook.cc" line="6963"/>
         <source>BiblioteQ: Error</source>
         <translation type="unfinished">BiblioteQ: Fehler</translation>
     </message>
@@ -4284,49 +4284,49 @@ URL</source>
         <location filename="../qtbook.cc" line="1513"/>
         <location filename="../qtbook.cc" line="1567"/>
         <location filename="../qtbook.cc" line="4175"/>
-        <location filename="../qtbook.cc" line="4734"/>
-        <location filename="../qtbook.cc" line="4759"/>
-        <location filename="../qtbook.cc" line="4831"/>
-        <location filename="../qtbook.cc" line="4835"/>
-        <location filename="../qtbook.cc" line="4857"/>
-        <location filename="../qtbook.cc" line="4863"/>
-        <location filename="../qtbook.cc" line="4880"/>
-        <location filename="../qtbook.cc" line="4906"/>
-        <location filename="../qtbook.cc" line="5365"/>
-        <location filename="../qtbook.cc" line="5401"/>
-        <location filename="../qtbook.cc" line="5420"/>
-        <location filename="../qtbook.cc" line="5424"/>
-        <location filename="../qtbook.cc" line="5438"/>
-        <location filename="../qtbook.cc" line="5445"/>
-        <location filename="../qtbook.cc" line="5460"/>
-        <location filename="../qtbook.cc" line="5992"/>
-        <location filename="../qtbook.cc" line="6006"/>
-        <location filename="../qtbook.cc" line="6053"/>
-        <location filename="../qtbook.cc" line="6533"/>
-        <location filename="../qtbook.cc" line="6633"/>
-        <location filename="../qtbook.cc" line="6674"/>
-        <location filename="../qtbook.cc" line="6742"/>
-        <location filename="../qtbook.cc" line="6876"/>
-        <location filename="../qtbook.cc" line="6905"/>
-        <location filename="../qtbook.cc" line="8181"/>
-        <location filename="../qtbook.cc" line="8703"/>
-        <location filename="../qtbook.cc" line="8853"/>
-        <location filename="../qtbook.cc" line="9164"/>
-        <location filename="../qtbook.cc" line="9379"/>
-        <location filename="../qtbook.cc" line="9551"/>
-        <location filename="../qtbook.cc" line="9572"/>
-        <location filename="../qtbook.cc" line="9587"/>
-        <location filename="../qtbook.cc" line="9641"/>
-        <location filename="../qtbook.cc" line="9667"/>
-        <location filename="../qtbook.cc" line="9683"/>
-        <location filename="../qtbook.cc" line="9701"/>
-        <location filename="../qtbook.cc" line="9715"/>
-        <location filename="../qtbook.cc" line="9737"/>
-        <location filename="../qtbook.cc" line="9768"/>
-        <location filename="../qtbook.cc" line="9893"/>
-        <location filename="../qtbook.cc" line="9897"/>
-        <location filename="../qtbook.cc" line="10196"/>
-        <location filename="../qtbook.cc" line="10203"/>
+        <location filename="../qtbook.cc" line="4739"/>
+        <location filename="../qtbook.cc" line="4764"/>
+        <location filename="../qtbook.cc" line="4836"/>
+        <location filename="../qtbook.cc" line="4840"/>
+        <location filename="../qtbook.cc" line="4862"/>
+        <location filename="../qtbook.cc" line="4868"/>
+        <location filename="../qtbook.cc" line="4885"/>
+        <location filename="../qtbook.cc" line="4911"/>
+        <location filename="../qtbook.cc" line="5370"/>
+        <location filename="../qtbook.cc" line="5406"/>
+        <location filename="../qtbook.cc" line="5425"/>
+        <location filename="../qtbook.cc" line="5429"/>
+        <location filename="../qtbook.cc" line="5443"/>
+        <location filename="../qtbook.cc" line="5450"/>
+        <location filename="../qtbook.cc" line="5465"/>
+        <location filename="../qtbook.cc" line="5997"/>
+        <location filename="../qtbook.cc" line="6011"/>
+        <location filename="../qtbook.cc" line="6058"/>
+        <location filename="../qtbook.cc" line="6538"/>
+        <location filename="../qtbook.cc" line="6638"/>
+        <location filename="../qtbook.cc" line="6679"/>
+        <location filename="../qtbook.cc" line="6747"/>
+        <location filename="../qtbook.cc" line="6881"/>
+        <location filename="../qtbook.cc" line="6910"/>
+        <location filename="../qtbook.cc" line="8186"/>
+        <location filename="../qtbook.cc" line="8708"/>
+        <location filename="../qtbook.cc" line="8858"/>
+        <location filename="../qtbook.cc" line="9169"/>
+        <location filename="../qtbook.cc" line="9384"/>
+        <location filename="../qtbook.cc" line="9556"/>
+        <location filename="../qtbook.cc" line="9577"/>
+        <location filename="../qtbook.cc" line="9592"/>
+        <location filename="../qtbook.cc" line="9646"/>
+        <location filename="../qtbook.cc" line="9672"/>
+        <location filename="../qtbook.cc" line="9688"/>
+        <location filename="../qtbook.cc" line="9706"/>
+        <location filename="../qtbook.cc" line="9720"/>
+        <location filename="../qtbook.cc" line="9742"/>
+        <location filename="../qtbook.cc" line="9773"/>
+        <location filename="../qtbook.cc" line="9898"/>
+        <location filename="../qtbook.cc" line="9902"/>
+        <location filename="../qtbook.cc" line="10201"/>
+        <location filename="../qtbook.cc" line="10208"/>
         <source>Database Error</source>
         <translation type="unfinished">Datenbank Fehler</translation>
     </message>
@@ -4360,11 +4360,11 @@ URL</source>
     <message>
         <location filename="../qtbook.cc" line="1545"/>
         <location filename="../qtbook.cc" line="4282"/>
-        <location filename="../qtbook.cc" line="6555"/>
-        <location filename="../qtbook.cc" line="8914"/>
-        <location filename="../qtbook.cc" line="9394"/>
-        <location filename="../qtbook.cc" line="9598"/>
-        <location filename="../qtbook.cc" line="9844"/>
+        <location filename="../qtbook.cc" line="6560"/>
+        <location filename="../qtbook.cc" line="8919"/>
+        <location filename="../qtbook.cc" line="9399"/>
+        <location filename="../qtbook.cc" line="9603"/>
+        <location filename="../qtbook.cc" line="9849"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Fortschrittsdialog</translation>
     </message>
@@ -4381,35 +4381,35 @@ URL</source>
     <message>
         <location filename="../qtbook.cc" line="1591"/>
         <location filename="../qtbook.cc" line="4179"/>
-        <location filename="../qtbook.cc" line="4738"/>
-        <location filename="../qtbook.cc" line="4763"/>
-        <location filename="../qtbook.cc" line="4838"/>
-        <location filename="../qtbook.cc" line="4869"/>
-        <location filename="../qtbook.cc" line="4888"/>
-        <location filename="../qtbook.cc" line="5369"/>
-        <location filename="../qtbook.cc" line="5405"/>
-        <location filename="../qtbook.cc" line="5427"/>
-        <location filename="../qtbook.cc" line="5451"/>
-        <location filename="../qtbook.cc" line="5468"/>
-        <location filename="../qtbook.cc" line="5957"/>
-        <location filename="../qtbook.cc" line="5997"/>
-        <location filename="../qtbook.cc" line="6013"/>
-        <location filename="../qtbook.cc" line="6061"/>
-        <location filename="../qtbook.cc" line="6538"/>
-        <location filename="../qtbook.cc" line="6749"/>
-        <location filename="../qtbook.cc" line="6753"/>
-        <location filename="../qtbook.cc" line="8185"/>
-        <location filename="../qtbook.cc" line="8707"/>
-        <location filename="../qtbook.cc" line="8860"/>
-        <location filename="../qtbook.cc" line="8864"/>
-        <location filename="../qtbook.cc" line="8868"/>
-        <location filename="../qtbook.cc" line="9167"/>
-        <location filename="../qtbook.cc" line="9384"/>
-        <location filename="../qtbook.cc" line="9555"/>
-        <location filename="../qtbook.cc" line="9745"/>
-        <location filename="../qtbook.cc" line="9772"/>
-        <location filename="../qtbook.cc" line="9923"/>
-        <location filename="../qtbook.cc" line="9929"/>
+        <location filename="../qtbook.cc" line="4743"/>
+        <location filename="../qtbook.cc" line="4768"/>
+        <location filename="../qtbook.cc" line="4843"/>
+        <location filename="../qtbook.cc" line="4874"/>
+        <location filename="../qtbook.cc" line="4893"/>
+        <location filename="../qtbook.cc" line="5374"/>
+        <location filename="../qtbook.cc" line="5410"/>
+        <location filename="../qtbook.cc" line="5432"/>
+        <location filename="../qtbook.cc" line="5456"/>
+        <location filename="../qtbook.cc" line="5473"/>
+        <location filename="../qtbook.cc" line="5962"/>
+        <location filename="../qtbook.cc" line="6002"/>
+        <location filename="../qtbook.cc" line="6018"/>
+        <location filename="../qtbook.cc" line="6066"/>
+        <location filename="../qtbook.cc" line="6543"/>
+        <location filename="../qtbook.cc" line="6754"/>
+        <location filename="../qtbook.cc" line="6758"/>
+        <location filename="../qtbook.cc" line="8190"/>
+        <location filename="../qtbook.cc" line="8712"/>
+        <location filename="../qtbook.cc" line="8865"/>
+        <location filename="../qtbook.cc" line="8869"/>
+        <location filename="../qtbook.cc" line="8873"/>
+        <location filename="../qtbook.cc" line="9172"/>
+        <location filename="../qtbook.cc" line="9389"/>
+        <location filename="../qtbook.cc" line="9560"/>
+        <location filename="../qtbook.cc" line="9750"/>
+        <location filename="../qtbook.cc" line="9777"/>
+        <location filename="../qtbook.cc" line="9928"/>
+        <location filename="../qtbook.cc" line="9934"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished">BiblioteQ: Datenbankfehler</translation>
     </message>
@@ -4450,33 +4450,33 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook.cc" line="4283"/>
-        <location filename="../qtbook.cc" line="6556"/>
-        <location filename="../qtbook.cc" line="8915"/>
-        <location filename="../qtbook.cc" line="9395"/>
+        <location filename="../qtbook.cc" line="6561"/>
+        <location filename="../qtbook.cc" line="8920"/>
+        <location filename="../qtbook.cc" line="9400"/>
         <source>Populating the table...</source>
         <translation type="unfinished">Erstelle die Tabelle...</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="4385"/>
-        <location filename="../qtbook.cc" line="6585"/>
-        <location filename="../qtbook.cc" line="8481"/>
-        <location filename="../qtbook.cc" line="8497"/>
-        <location filename="../qtbook.cc" line="8941"/>
-        <location filename="../qtbook.cc" line="9251"/>
-        <location filename="../qtbook.cc" line="9260"/>
-        <location filename="../qtbook.cc" line="9423"/>
-        <location filename="../qtbook.cc" line="9445"/>
-        <location filename="../qtbook.cc" line="9452"/>
+        <location filename="../qtbook.cc" line="6590"/>
+        <location filename="../qtbook.cc" line="8486"/>
+        <location filename="../qtbook.cc" line="8502"/>
+        <location filename="../qtbook.cc" line="8946"/>
+        <location filename="../qtbook.cc" line="9256"/>
+        <location filename="../qtbook.cc" line="9265"/>
+        <location filename="../qtbook.cc" line="9428"/>
+        <location filename="../qtbook.cc" line="9450"/>
+        <location filename="../qtbook.cc" line="9457"/>
         <source>Memory Error</source>
         <translation type="unfinished">Fehler in der Speicherkapazität</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="4386"/>
-        <location filename="../qtbook.cc" line="6586"/>
-        <location filename="../qtbook.cc" line="8942"/>
-        <location filename="../qtbook.cc" line="9252"/>
-        <location filename="../qtbook.cc" line="9424"/>
-        <location filename="../qtbook.cc" line="9453"/>
+        <location filename="../qtbook.cc" line="6591"/>
+        <location filename="../qtbook.cc" line="8947"/>
+        <location filename="../qtbook.cc" line="9257"/>
+        <location filename="../qtbook.cc" line="9429"/>
+        <location filename="../qtbook.cc" line="9458"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished">Kann nicht genügend Speicherkapazität für das Ausleih-Objekt erhalten. Dieses ist ein ernstes Problem!</translation>
     </message>
@@ -4485,7 +4485,7 @@ URL</source>
         <translation type="obsolete">Individuell Benutzerinnendefiniert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4603"/>
+        <location filename="../qtbook.cc" line="4608"/>
         <source>BiblioteQ: Create New Member</source>
         <translation type="unfinished">BiblioteQ: Erstelle eine neue Nutzerin</translation>
     </message>
@@ -4494,53 +4494,53 @@ URL</source>
         <translation type="obsolete">Erstelle eine neue Nutzerin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4652"/>
+        <location filename="../qtbook.cc" line="4657"/>
         <source>The Member ID must be at least seven characters long.</source>
         <translation type="unfinished">Die Nutzerinnen ID muss wenigstens sieben Buchstaben lang sein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4667"/>
+        <location filename="../qtbook.cc" line="4672"/>
         <source>The Member ID </source>
         <translation type="unfinished">Die ID der Nutzerin.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4669"/>
+        <location filename="../qtbook.cc" line="4674"/>
         <source> already exists.</source>
         <translation type="unfinished">besteht bereits.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4678"/>
+        <location filename="../qtbook.cc" line="4683"/>
         <source>Please provide a valid First Name.</source>
         <translation type="unfinished">Bitte gebe einen gültigen Vornamen ein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4686"/>
+        <location filename="../qtbook.cc" line="4691"/>
         <source>Please provide a valid Last Name.</source>
         <translation type="unfinished">Bitte geben einen gültigen Nachnamen ein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4694"/>
+        <location filename="../qtbook.cc" line="4699"/>
         <source>Please provide a valid Street.</source>
         <translation type="unfinished">Bitte gebe eine gültige Strasse ein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4702"/>
+        <location filename="../qtbook.cc" line="4707"/>
         <source>Please provide a valid City.</source>
         <translation type="unfinished">Bitte gebe eine gültige Stadt ein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4710"/>
+        <location filename="../qtbook.cc" line="4715"/>
         <source>Please provide a valid ZIP Code.</source>
         <translation type="unfinished">Bitte gebe eine gültige Postleitzahl ein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4735"/>
-        <location filename="../qtbook.cc" line="4739"/>
+        <location filename="../qtbook.cc" line="4740"/>
+        <location filename="../qtbook.cc" line="4744"/>
         <source>Unable to determine the uniqueness of the proposed member.</source>
         <translation type="unfinished">Kann die Einzigartigkeit der vorgeschlagenen Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4747"/>
+        <location filename="../qtbook.cc" line="4752"/>
         <source>An identical member already exists.</source>
         <translation type="unfinished">Eine identische Nutzerin besteht bereits.</translation>
     </message>
@@ -4549,48 +4549,48 @@ URL</source>
         <translation type="obsolete">Neu</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4760"/>
-        <location filename="../qtbook.cc" line="4764"/>
-        <location filename="../qtbook.cc" line="5402"/>
-        <location filename="../qtbook.cc" line="5406"/>
-        <location filename="../qtbook.cc" line="9552"/>
-        <location filename="../qtbook.cc" line="9556"/>
+        <location filename="../qtbook.cc" line="4765"/>
+        <location filename="../qtbook.cc" line="4769"/>
+        <location filename="../qtbook.cc" line="5407"/>
+        <location filename="../qtbook.cc" line="5411"/>
+        <location filename="../qtbook.cc" line="9557"/>
+        <location filename="../qtbook.cc" line="9561"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished">Kann keine Datenbank-Übertragung erstellen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4831"/>
-        <location filename="../qtbook.cc" line="4858"/>
-        <location filename="../qtbook.cc" line="5420"/>
-        <location filename="../qtbook.cc" line="5445"/>
-        <location filename="../qtbook.cc" line="9768"/>
+        <location filename="../qtbook.cc" line="4836"/>
+        <location filename="../qtbook.cc" line="4863"/>
+        <location filename="../qtbook.cc" line="5425"/>
+        <location filename="../qtbook.cc" line="5450"/>
+        <location filename="../qtbook.cc" line="9773"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Fehler im Zurückführen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4836"/>
-        <location filename="../qtbook.cc" line="4839"/>
+        <location filename="../qtbook.cc" line="4841"/>
+        <location filename="../qtbook.cc" line="4844"/>
         <source>Unable to save the member&apos;s information.</source>
         <translation type="unfinished">Kann die Information zur Nutzerin nicht speichern.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4864"/>
-        <location filename="../qtbook.cc" line="4870"/>
+        <location filename="../qtbook.cc" line="4869"/>
+        <location filename="../qtbook.cc" line="4875"/>
         <source>An error occurred while attempting to create a database account for the new member.</source>
         <translation type="unfinished">Ein Fehler trat auf, als versucht wurde, einen Datenbank-Zugang für die neue Nutzerin anzulegen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4881"/>
-        <location filename="../qtbook.cc" line="4889"/>
-        <location filename="../qtbook.cc" line="5461"/>
-        <location filename="../qtbook.cc" line="5469"/>
-        <location filename="../qtbook.cc" line="9738"/>
-        <location filename="../qtbook.cc" line="9746"/>
+        <location filename="../qtbook.cc" line="4886"/>
+        <location filename="../qtbook.cc" line="4894"/>
+        <location filename="../qtbook.cc" line="5466"/>
+        <location filename="../qtbook.cc" line="5474"/>
+        <location filename="../qtbook.cc" line="9743"/>
+        <location filename="../qtbook.cc" line="9751"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished">Kann die aktuelle Datenbank-Übertragung nicht durchführen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4907"/>
+        <location filename="../qtbook.cc" line="4912"/>
         <source>An error occurred while attempting to update the database account for </source>
         <translation type="unfinished">Ein Fehler entstand, während versucht wurde, den Datenbank-Zugang zu aktualisieren für:</translation>
     </message>
@@ -4599,46 +4599,46 @@ URL</source>
         <translation type="obsolete">Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4955"/>
-        <location filename="../qtbook.cc" line="6429"/>
-        <location filename="../qtbook.cc" line="8674"/>
-        <location filename="../qtbook.cc" line="8885"/>
+        <location filename="../qtbook.cc" line="4960"/>
+        <location filename="../qtbook.cc" line="6434"/>
+        <location filename="../qtbook.cc" line="8679"/>
+        <location filename="../qtbook.cc" line="8890"/>
         <source>First Name</source>
         <translation type="unfinished">Vorname</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4958"/>
-        <location filename="../qtbook.cc" line="6430"/>
-        <location filename="../qtbook.cc" line="8676"/>
-        <location filename="../qtbook.cc" line="8886"/>
+        <location filename="../qtbook.cc" line="4963"/>
+        <location filename="../qtbook.cc" line="6435"/>
+        <location filename="../qtbook.cc" line="8681"/>
+        <location filename="../qtbook.cc" line="8891"/>
         <source>Last Name</source>
         <translation type="unfinished">Nachname</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4961"/>
-        <location filename="../qtbook.cc" line="6431"/>
+        <location filename="../qtbook.cc" line="4966"/>
+        <location filename="../qtbook.cc" line="6436"/>
         <source>Member Since</source>
         <translation type="unfinished">Nutzer seit</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4978"/>
-        <location filename="../qtbook.cc" line="9755"/>
+        <location filename="../qtbook.cc" line="4983"/>
+        <location filename="../qtbook.cc" line="9760"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4979"/>
+        <location filename="../qtbook.cc" line="4984"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
         <translation type="unfinished">Bitte benachrichtige die neue Nutzerin, dass das voreingestellte Passwort auf ein temporäres Passwort umgeändert wurde.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5024"/>
+        <location filename="../qtbook.cc" line="5029"/>
         <source>Processing the global configuration file.</source>
         <translation type="unfinished">Erstelle die globale Konfigurations-Datei</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5038"/>
-        <location filename="../qtbook.cc" line="5236"/>
+        <location filename="../qtbook.cc" line="5043"/>
+        <location filename="../qtbook.cc" line="5241"/>
         <source>File Error</source>
         <translation type="unfinished">Dateifehler</translation>
     </message>
@@ -4664,7 +4664,7 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook.cc" line="293"/>
-        <location filename="../qtbook.cc" line="6366"/>
+        <location filename="../qtbook.cc" line="6371"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
@@ -4690,7 +4690,7 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook.cc" line="925"/>
-        <location filename="../qtbook.cc" line="6344"/>
+        <location filename="../qtbook.cc" line="6349"/>
         <source>0 Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4711,7 +4711,7 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook.cc" line="4162"/>
-        <location filename="../qtbook.cc" line="4446"/>
+        <location filename="../qtbook.cc" line="4451"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4749,114 +4749,103 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="4964"/>
-        <location filename="../qtbook.cc" line="6432"/>
+        <location filename="../qtbook.cc" line="4969"/>
+        <location filename="../qtbook.cc" line="6437"/>
         <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5229"/>
-        <location filename="../qtbook.cc" line="5241"/>
+        <location filename="../qtbook.cc" line="5234"/>
+        <location filename="../qtbook.cc" line="5246"/>
         <source>BiblioteQ: File Error</source>
         <translation type="unfinished">BiblioteQ: Dateifehler</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5237"/>
         <location filename="../qtbook.cc" line="5242"/>
+        <location filename="../qtbook.cc" line="5247"/>
         <source>Unable to read </source>
         <translation type="unfinished">Unlesbar</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5238"/>
         <location filename="../qtbook.cc" line="5243"/>
+        <location filename="../qtbook.cc" line="5248"/>
         <source> due to insufficient resources.</source>
         <translation type="unfinished">aufgrund nicht ausreichender Kapazität.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5354"/>
+        <location filename="../qtbook.cc" line="5359"/>
         <source>Please select a member to delete.</source>
         <translation type="unfinished">Bitte wähle eine Nutzerin zum Löschen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5358"/>
-        <location filename="../qtbook.cc" line="6428"/>
-        <location filename="../qtbook.cc" line="6627"/>
-        <location filename="../qtbook.cc" line="6684"/>
-        <location filename="../qtbook.cc" line="6733"/>
-        <location filename="../qtbook.cc" line="6869"/>
-        <location filename="../qtbook.cc" line="8123"/>
-        <location filename="../qtbook.cc" line="8138"/>
-        <location filename="../qtbook.cc" line="8672"/>
-        <location filename="../qtbook.cc" line="8815"/>
-        <location filename="../qtbook.cc" line="8881"/>
-        <location filename="../qtbook.cc" line="9083"/>
+        <location filename="../qtbook.cc" line="5363"/>
+        <location filename="../qtbook.cc" line="6433"/>
+        <location filename="../qtbook.cc" line="6632"/>
+        <location filename="../qtbook.cc" line="6689"/>
+        <location filename="../qtbook.cc" line="6738"/>
+        <location filename="../qtbook.cc" line="6874"/>
+        <location filename="../qtbook.cc" line="8128"/>
+        <location filename="../qtbook.cc" line="8143"/>
+        <location filename="../qtbook.cc" line="8677"/>
+        <location filename="../qtbook.cc" line="8820"/>
+        <location filename="../qtbook.cc" line="8886"/>
+        <location filename="../qtbook.cc" line="9088"/>
         <source>Member ID</source>
         <translation type="unfinished">ID der Nutzerin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5366"/>
-        <location filename="../qtbook.cc" line="5370"/>
+        <location filename="../qtbook.cc" line="5371"/>
+        <location filename="../qtbook.cc" line="5375"/>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
         <translation type="unfinished">Kann de Anzahl der reservierten Ausleihen der gewählten Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5383"/>
+        <location filename="../qtbook.cc" line="5388"/>
         <source>You may not remove a member that has reserved items.</source>
         <translation type="unfinished">Du darfste eine Nutzerin mir reservierten Ausleihen nicht entfernen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5389"/>
+        <location filename="../qtbook.cc" line="5394"/>
         <source>Are you sure that you wish to delete the selected member?</source>
         <translation type="unfinished">Bist Du sicher, dass die ausgewählte Nutzerin gelöscht werden soll?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5425"/>
-        <location filename="../qtbook.cc" line="5428"/>
+        <location filename="../qtbook.cc" line="5430"/>
+        <location filename="../qtbook.cc" line="5433"/>
         <source>Unable to remove the selected member.</source>
         <translation type="unfinished">Kann die ausgewählte Nutzerin nicht entfernen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5439"/>
-        <location filename="../qtbook.cc" line="5452"/>
+        <location filename="../qtbook.cc" line="5444"/>
+        <location filename="../qtbook.cc" line="5457"/>
         <source>Unable to remove the patron account </source>
         <translation type="unfinished">Kann den Patron-Zugang nicht entfernen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5574"/>
-        <location filename="../qtbook.cc" line="5624"/>
-        <location filename="../qtbook.cc" line="5655"/>
-        <location filename="../qtbook.cc" line="5689"/>
-        <location filename="../qtbook.cc" line="5716"/>
-        <location filename="../qtbook.cc" line="5747"/>
+        <location filename="../qtbook.cc" line="5579"/>
+        <location filename="../qtbook.cc" line="5629"/>
+        <location filename="../qtbook.cc" line="5660"/>
+        <location filename="../qtbook.cc" line="5694"/>
+        <location filename="../qtbook.cc" line="5721"/>
+        <location filename="../qtbook.cc" line="5752"/>
         <source>Publisher</source>
         <translation type="unfinished">Verleger</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5609"/>
-        <location filename="../qtbook.cc" line="5633"/>
-        <location filename="../qtbook.cc" line="5667"/>
-        <location filename="../qtbook.cc" line="5701"/>
-        <location filename="../qtbook.cc" line="5725"/>
-        <location filename="../qtbook.cc" line="8889"/>
+        <location filename="../qtbook.cc" line="5614"/>
+        <location filename="../qtbook.cc" line="5638"/>
+        <location filename="../qtbook.cc" line="5672"/>
+        <location filename="../qtbook.cc" line="5706"/>
+        <location filename="../qtbook.cc" line="5730"/>
+        <location filename="../qtbook.cc" line="8894"/>
         <source>Title</source>
         <translation type="unfinished">Titel</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5612"/>
-        <location filename="../qtbook.cc" line="6936"/>
+        <location filename="../qtbook.cc" line="5617"/>
+        <location filename="../qtbook.cc" line="6941"/>
         <source>ISBN-10</source>
         <translation>ISBN-10</translation>
-    </message>
-    <message>
-        <location filename="../qtbook.cc" line="5616"/>
-        <location filename="../qtbook.cc" line="5641"/>
-        <location filename="../qtbook.cc" line="5675"/>
-        <location filename="../qtbook.cc" line="5708"/>
-        <location filename="../qtbook.cc" line="5733"/>
-        <location filename="../qtbook.cc" line="6952"/>
-        <location filename="../qtbook.cc" line="8890"/>
-        <source>ID Number</source>
-        <translation type="unfinished">ID Nummer</translation>
     </message>
     <message>
         <location filename="../qtbook.cc" line="5621"/>
@@ -4864,314 +4853,325 @@ URL</source>
         <location filename="../qtbook.cc" line="5680"/>
         <location filename="../qtbook.cc" line="5713"/>
         <location filename="../qtbook.cc" line="5738"/>
+        <location filename="../qtbook.cc" line="6957"/>
+        <location filename="../qtbook.cc" line="8895"/>
+        <source>ID Number</source>
+        <translation type="unfinished">ID Nummer</translation>
+    </message>
+    <message>
+        <location filename="../qtbook.cc" line="5626"/>
+        <location filename="../qtbook.cc" line="5651"/>
+        <location filename="../qtbook.cc" line="5685"/>
+        <location filename="../qtbook.cc" line="5718"/>
+        <location filename="../qtbook.cc" line="5743"/>
         <source>Publication Date</source>
         <translation type="unfinished">Veröffentlichungsdatum</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5627"/>
-        <location filename="../qtbook.cc" line="5719"/>
+        <location filename="../qtbook.cc" line="5632"/>
+        <location filename="../qtbook.cc" line="5724"/>
         <source>Place of Publication</source>
         <translation type="unfinished">Ort der Veröffentlichung</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5637"/>
-        <location filename="../qtbook.cc" line="6945"/>
+        <location filename="../qtbook.cc" line="5642"/>
+        <location filename="../qtbook.cc" line="6950"/>
         <source>Catalog Number</source>
         <translation type="unfinished">Katalog-Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5650"/>
-        <location filename="../qtbook.cc" line="5684"/>
-        <location filename="../qtbook.cc" line="5742"/>
+        <location filename="../qtbook.cc" line="5655"/>
+        <location filename="../qtbook.cc" line="5689"/>
+        <location filename="../qtbook.cc" line="5747"/>
         <source>Release Date</source>
         <translation type="unfinished">Veröffentlichungsdatum</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5659"/>
+        <location filename="../qtbook.cc" line="5664"/>
         <source>Recording Label</source>
         <translation type="unfinished">Aufnahme Verlag</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5671"/>
-        <location filename="../qtbook.cc" line="5729"/>
-        <location filename="../qtbook.cc" line="6939"/>
-        <location filename="../qtbook.cc" line="6948"/>
+        <location filename="../qtbook.cc" line="5676"/>
+        <location filename="../qtbook.cc" line="5734"/>
+        <location filename="../qtbook.cc" line="6944"/>
+        <location filename="../qtbook.cc" line="6953"/>
         <source>UPC</source>
         <translation>UPC</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5693"/>
+        <location filename="../qtbook.cc" line="5698"/>
         <source>Studio</source>
         <translation>Studio</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5704"/>
-        <location filename="../qtbook.cc" line="6942"/>
+        <location filename="../qtbook.cc" line="5709"/>
+        <location filename="../qtbook.cc" line="6947"/>
         <source>ISSN</source>
         <translation>ISSN</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5755"/>
+        <location filename="../qtbook.cc" line="5760"/>
         <source>Availability</source>
         <translation type="unfinished">Verfügbarkeit</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5760"/>
+        <location filename="../qtbook.cc" line="5765"/>
         <source>Available</source>
         <translation type="unfinished">Verfügbar</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5762"/>
+        <location filename="../qtbook.cc" line="5767"/>
         <source>Unavailable</source>
         <translation type="unfinished">Nicht Verfügbar</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5765"/>
+        <location filename="../qtbook.cc" line="5770"/>
         <source>Location</source>
         <translation type="unfinished">Ort</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5849"/>
-        <location filename="../qtbook.cc" line="5887"/>
+        <location filename="../qtbook.cc" line="5854"/>
+        <location filename="../qtbook.cc" line="5892"/>
         <source>You have unsaved data. Continue?</source>
         <translation type="unfinished">Du hast ungespeicherte Daten. Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5958"/>
+        <location filename="../qtbook.cc" line="5963"/>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
         <translation type="unfinished">Die ausgewählte Datenbank des Bereiches hat keinen Treiber, der mit ihr verbunden ist.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5960"/>
+        <location filename="../qtbook.cc" line="5965"/>
         <source>The following drivers are available: </source>
         <translation type="unfinished">Die folgenden Treiber sind verfügbar:</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5962"/>
+        <location filename="../qtbook.cc" line="5967"/>
         <source>In addition, Qt expects plugins to exist in: </source>
         <translation type="unfinished">Ergänzend, Qt erwartet vorhandene Plugins in:</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5964"/>
+        <location filename="../qtbook.cc" line="5969"/>
         <source>Please contact your administrator.</source>
         <translation type="unfinished">Bitte kontaktiere Deine Administratorin.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="5993"/>
         <location filename="../qtbook.cc" line="5998"/>
+        <location filename="../qtbook.cc" line="6003"/>
         <source>Unable to open a database connection with the provided information.</source>
         <translation type="unfinished">Kann mit der vorhandenen Information keine Datenbankverbindung herstellen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6007"/>
-        <location filename="../qtbook.cc" line="6014"/>
+        <location filename="../qtbook.cc" line="6012"/>
+        <location filename="../qtbook.cc" line="6019"/>
         <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
         <translation type="unfinished">Der aktuell vorhandene Datenbank Treiber unterstützt keine Datenbank-Übertragungen. Bitte erneuere Deine Datenbank und/oder die Treiber.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6036"/>
+        <location filename="../qtbook.cc" line="6041"/>
         <source>It appears that the user </source>
         <translation type="unfinished">Es scheint, als wenn die Nutzerin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6038"/>
+        <location filename="../qtbook.cc" line="6043"/>
         <source> does not have administrator privileges.</source>
         <translation type="unfinished">nicht die Rechte einer Administratorin hat.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6046"/>
+        <location filename="../qtbook.cc" line="6051"/>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
         <translation type="unfinished">Es scheint, dass Du versuchst,  in einem nicht-administrierbaren Modus als Administratorin zu handeln.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6054"/>
-        <location filename="../qtbook.cc" line="6062"/>
+        <location filename="../qtbook.cc" line="6059"/>
+        <location filename="../qtbook.cc" line="6067"/>
         <source>Unable to determine the roles of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6089"/>
+        <location filename="../qtbook.cc" line="6094"/>
         <source>Connected</source>
         <translation type="unfinished">Verbunden</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6116"/>
-        <location filename="../qtbook.cc" line="6131"/>
+        <location filename="../qtbook.cc" line="6121"/>
+        <location filename="../qtbook.cc" line="6136"/>
         <source>BiblioteQ: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6182"/>
-        <location filename="../qtbook.cc" line="6997"/>
+        <location filename="../qtbook.cc" line="6187"/>
+        <location filename="../qtbook.cc" line="7002"/>
         <source>Request Selected Item(s)</source>
         <translation type="unfinished">Frage ausgewählte Ausleihe(n) an</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6404"/>
+        <location filename="../qtbook.cc" line="6409"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6405"/>
+        <location filename="../qtbook.cc" line="6410"/>
         <source>Administrator</source>
         <translation type="unfinished">Administratorin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6406"/>
+        <location filename="../qtbook.cc" line="6411"/>
         <source>Circulation</source>
         <translation type="unfinished">Zirkulation</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6407"/>
+        <location filename="../qtbook.cc" line="6412"/>
         <source>Librarian</source>
         <translation type="unfinished">Bibliothekarin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6408"/>
+        <location filename="../qtbook.cc" line="6413"/>
         <source>Membership</source>
         <translation type="unfinished">Nutzerinnenschaft</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6433"/>
-        <location filename="../qtbook.cc" line="6639"/>
-        <location filename="../qtbook.cc" line="6688"/>
-        <location filename="../qtbook.cc" line="8651"/>
+        <location filename="../qtbook.cc" line="6438"/>
+        <location filename="../qtbook.cc" line="6644"/>
+        <location filename="../qtbook.cc" line="6693"/>
+        <location filename="../qtbook.cc" line="8656"/>
         <source>Books Reserved</source>
         <translation type="unfinished">Bücher reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6434"/>
-        <location filename="../qtbook.cc" line="6641"/>
-        <location filename="../qtbook.cc" line="6690"/>
-        <location filename="../qtbook.cc" line="8653"/>
+        <location filename="../qtbook.cc" line="6439"/>
+        <location filename="../qtbook.cc" line="6646"/>
+        <location filename="../qtbook.cc" line="6695"/>
+        <location filename="../qtbook.cc" line="8658"/>
         <source>CDs Reserved</source>
         <translation type="unfinished">CDs reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6435"/>
-        <location filename="../qtbook.cc" line="6643"/>
-        <location filename="../qtbook.cc" line="6692"/>
-        <location filename="../qtbook.cc" line="8655"/>
+        <location filename="../qtbook.cc" line="6440"/>
+        <location filename="../qtbook.cc" line="6648"/>
+        <location filename="../qtbook.cc" line="6697"/>
+        <location filename="../qtbook.cc" line="8660"/>
         <source>DVDs Reserved</source>
         <translation type="unfinished">DVDs reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6436"/>
-        <location filename="../qtbook.cc" line="6645"/>
-        <location filename="../qtbook.cc" line="6695"/>
-        <location filename="../qtbook.cc" line="8657"/>
+        <location filename="../qtbook.cc" line="6441"/>
+        <location filename="../qtbook.cc" line="6650"/>
+        <location filename="../qtbook.cc" line="6700"/>
+        <location filename="../qtbook.cc" line="8662"/>
         <source>Journals Reserved</source>
         <translation type="unfinished">Journale reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6437"/>
-        <location filename="../qtbook.cc" line="6647"/>
-        <location filename="../qtbook.cc" line="6698"/>
-        <location filename="../qtbook.cc" line="8659"/>
+        <location filename="../qtbook.cc" line="6442"/>
+        <location filename="../qtbook.cc" line="6652"/>
+        <location filename="../qtbook.cc" line="6703"/>
+        <location filename="../qtbook.cc" line="8664"/>
         <source>Magazines Reserved</source>
         <translation type="unfinished">Magazine reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6438"/>
-        <location filename="../qtbook.cc" line="6649"/>
-        <location filename="../qtbook.cc" line="6701"/>
-        <location filename="../qtbook.cc" line="8661"/>
+        <location filename="../qtbook.cc" line="6443"/>
+        <location filename="../qtbook.cc" line="6654"/>
+        <location filename="../qtbook.cc" line="6706"/>
+        <location filename="../qtbook.cc" line="8666"/>
         <source>Video Games Reserved</source>
         <translation type="unfinished">Videospiele reserviert</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6534"/>
         <location filename="../qtbook.cc" line="6539"/>
+        <location filename="../qtbook.cc" line="6544"/>
         <source>Unable to retrieve member data for table populating.</source>
         <translation type="unfinished">Kann  für die Erstellung der Tabelle die Daten der Nutzerin nicht erreichen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6634"/>
+        <location filename="../qtbook.cc" line="6639"/>
         <source>Unable to determine the number of reserved items for the selected member.</source>
         <translation type="unfinished">Kann die Anzahl der reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6675"/>
+        <location filename="../qtbook.cc" line="6680"/>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
         <translation type="unfinished">Kann die Anzahl der reservierten Ausleihen für die ausgewählte Nutzerin nicht erhalten.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6729"/>
+        <location filename="../qtbook.cc" line="6734"/>
         <source>Please select a member to modify.</source>
         <translation type="unfinished">Bitte wähle eine Nutzerin zur Bearbeitung.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6743"/>
-        <location filename="../qtbook.cc" line="6750"/>
-        <location filename="../qtbook.cc" line="6754"/>
+        <location filename="../qtbook.cc" line="6748"/>
+        <location filename="../qtbook.cc" line="6755"/>
+        <location filename="../qtbook.cc" line="6759"/>
         <source>Unable to retrieve the selected member&apos;s information.</source>
         <translation type="unfinished">Kann die Informationen zur ausgewählten Nutzerin nicht erhalten.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6824"/>
+        <location filename="../qtbook.cc" line="6829"/>
         <source>BiblioteQ: Modify Member</source>
         <translation type="unfinished">BiblioteQ: Bearbeite Stammdaten zur Nutzerin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6877"/>
+        <location filename="../qtbook.cc" line="6882"/>
         <source>Unable to determine if the membership of the selected member has expired.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6884"/>
+        <location filename="../qtbook.cc" line="6889"/>
         <source>It appears that the selected member&apos;s membership has expired.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6906"/>
-        <location filename="../qtbook.cc" line="8182"/>
-        <location filename="../qtbook.cc" line="8186"/>
+        <location filename="../qtbook.cc" line="6911"/>
+        <location filename="../qtbook.cc" line="8187"/>
+        <location filename="../qtbook.cc" line="8191"/>
         <source>Unable to determine the availability of the selected item.</source>
         <translation type="unfinished">Kann die Verfügbarkeit der ausgewählten Ausleihen nicht bestimmen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6913"/>
+        <location filename="../qtbook.cc" line="6918"/>
         <source>It appears that the item that you selected is not available for reservation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8195"/>
-        <location filename="../qtbook.cc" line="8199"/>
+        <location filename="../qtbook.cc" line="8200"/>
+        <location filename="../qtbook.cc" line="8204"/>
         <source>It appears that the item you selected is not available for reservation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8732"/>
+        <location filename="../qtbook.cc" line="8737"/>
         <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10086"/>
+        <location filename="../qtbook.cc" line="10091"/>
         <source>&amp;Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10170"/>
+        <location filename="../qtbook.cc" line="10175"/>
         <source>BiblioteQ: New SQLite Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10204"/>
+        <location filename="../qtbook.cc" line="10209"/>
         <source>Unable to create the specified SQLite database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10242"/>
+        <location filename="../qtbook.cc" line="10247"/>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10323"/>
+        <location filename="../qtbook.cc" line="10328"/>
         <source>CSV (*.csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="10325"/>
+        <location filename="../qtbook.cc" line="10330"/>
         <source>BiblioteQ: Export View as CSV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5180,23 +5180,23 @@ URL</source>
         <translation type="obsolete">Es scheint, dass die von Dir ausgewählte Ausleihe für eine Reservierung nicht länger verfügbar ist.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6923"/>
+        <location filename="../qtbook.cc" line="6928"/>
         <source>Please select a member and an item to continue with the reservation process.</source>
         <translation type="unfinished">Bitte wähle eine Nutzerin und eine Ausleihe, um mit dem Reservierungsprozess fortzufahren.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6932"/>
+        <location filename="../qtbook.cc" line="6937"/>
         <source>Quantity</source>
         <translation type="unfinished">Anzahl</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6959"/>
+        <location filename="../qtbook.cc" line="6964"/>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
         <translation type="unfinished">Kann die ID der ausgewählten Ausleihe nicht bestimmen. Um die Ausleihe zu reservieren, muss die ID jedoch bekannt sein.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="6985"/>
-        <location filename="../qtbook.cc" line="7003"/>
+        <location filename="../qtbook.cc" line="6990"/>
+        <location filename="../qtbook.cc" line="7008"/>
         <source>Cancel Selected Request(s)</source>
         <translation type="unfinished">Die ausgewählte(n) Anfrage(n) abbrechen.</translation>
     </message>
@@ -5225,98 +5225,98 @@ URL</source>
         <translation type="obsolete">Kopien</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7154"/>
+        <location filename="../qtbook.cc" line="7159"/>
         <source>Error Log Active</source>
         <translation type="unfinished">Fehler-Aufzeichnung aktiv</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7189"/>
+        <location filename="../qtbook.cc" line="7194"/>
         <source>Memory failure in addError()!</source>
         <translation type="unfinished">Speicher Fehler in addError()!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7203"/>
+        <location filename="../qtbook.cc" line="7208"/>
         <source>Event Time</source>
         <translation type="unfinished">Ereigniszeit</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7204"/>
+        <location filename="../qtbook.cc" line="7209"/>
         <source>Event Type</source>
         <translation type="unfinished">Ereignistyp</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7205"/>
+        <location filename="../qtbook.cc" line="7210"/>
         <source>Summary</source>
         <translation type="unfinished">Zusammenfassung</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7206"/>
+        <location filename="../qtbook.cc" line="7211"/>
         <source>Full Description</source>
         <translation type="unfinished">Volle Beschreibung</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7207"/>
+        <location filename="../qtbook.cc" line="7212"/>
         <source>File</source>
         <translation type="unfinished">Datei</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="7208"/>
+        <location filename="../qtbook.cc" line="7213"/>
         <source>Line Number</source>
         <translation type="unfinished">Zeilennummer</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8118"/>
+        <location filename="../qtbook.cc" line="8123"/>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
         <translation type="unfinished">Um die reservierten Ausleihen einer Nutzerin anzuzeigen, musst Du zuerst die Nutzerin auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8162"/>
-        <location filename="../qtbook.cc" line="8166"/>
+        <location filename="../qtbook.cc" line="8167"/>
+        <location filename="../qtbook.cc" line="8171"/>
         <source>In order to reserve an item, you must first select it.</source>
         <translation type="unfinished">Um eine Ausleihe zu reservieren, musst Du zuerst eine auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8209"/>
+        <location filename="../qtbook.cc" line="8214"/>
         <source>Would you like to retrieve the list of members?</source>
         <translation type="unfinished">Möchtest Du eine Liste aller Nutzerinnen erhalten?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8261"/>
+        <location filename="../qtbook.cc" line="8266"/>
         <source>BiblioteQ: Select Global Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8466"/>
+        <location filename="../qtbook.cc" line="8471"/>
         <source>Table Name</source>
         <translation type="unfinished">Tabellenname</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8467"/>
+        <location filename="../qtbook.cc" line="8472"/>
         <source>Column</source>
         <translation type="unfinished">Spalte</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8468"/>
+        <location filename="../qtbook.cc" line="8473"/>
         <source>Column Type</source>
         <translation type="unfinished">Spaltentyp</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8482"/>
+        <location filename="../qtbook.cc" line="8487"/>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
         <translation type="unfinished">Kann nicht genügend Speicher für das Objekt  &quot;Ausleihe 2&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8498"/>
+        <location filename="../qtbook.cc" line="8503"/>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
         <translation type="unfinished">Kann nicht genügend Speicher für das Objekt &quot;Ausleihe 1&quot; zur Verfügung stellen. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8542"/>
+        <location filename="../qtbook.cc" line="8547"/>
         <source>Please provide a valid SQL statement.</source>
         <translation type="unfinished">Bitte stelle eine gültige SQL-Aussage zur Verfügung.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8554"/>
+        <location filename="../qtbook.cc" line="8559"/>
         <source>Please provide a non-destructive SQL statement.</source>
         <translation type="unfinished">Bitte stelle eine nicht-destruktive SQL-Aussage zur Verfügung.</translation>
     </message>
@@ -5325,28 +5325,28 @@ URL</source>
         <translation type="obsolete">Bitte wähle wenigstens eine Ausleihe aus, die gedruckt werden soll.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8644"/>
+        <location filename="../qtbook.cc" line="8649"/>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
         <translation type="unfinished">Um die reservierten Ausleihen einer Nutzerin zu drucken, musst Du zuerst die Nutzerin auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8667"/>
+        <location filename="../qtbook.cc" line="8672"/>
         <source>The member that you selected does not have any reserved items.</source>
         <translation type="unfinished">Die von Dir ausgewählte Nutzerin hat keine reservierten Ausleihen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8684"/>
+        <location filename="../qtbook.cc" line="8689"/>
         <source>Reserved Items for </source>
         <translation type="unfinished">Reservierte Ausleihen für</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8685"/>
+        <location filename="../qtbook.cc" line="8690"/>
         <source>, </source>
         <translation>,</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8704"/>
-        <location filename="../qtbook.cc" line="8708"/>
+        <location filename="../qtbook.cc" line="8709"/>
+        <location filename="../qtbook.cc" line="8713"/>
         <source>Unable to determine the reserved items for the selected member.</source>
         <translation type="unfinished">Kann die reservierten Ausleihen für die ausgewählte Nutzerin nicht bestimmen.</translation>
     </message>
@@ -5355,57 +5355,57 @@ URL</source>
         <translation type="obsolete">Um die Inhalte des Fehlerdialogs in die Zwischenablage zu kopieren, musst Du zuerst wenigstens einen Eintrag auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8784"/>
+        <location filename="../qtbook.cc" line="8789"/>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
         <translation type="unfinished">Um die Reservierungs-Historie einer Nutzerin anzuzeigen, musst du zuerst eine Nutzerin auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8854"/>
-        <location filename="../qtbook.cc" line="8861"/>
-        <location filename="../qtbook.cc" line="8865"/>
-        <location filename="../qtbook.cc" line="8869"/>
+        <location filename="../qtbook.cc" line="8859"/>
+        <location filename="../qtbook.cc" line="8866"/>
+        <location filename="../qtbook.cc" line="8870"/>
+        <location filename="../qtbook.cc" line="8874"/>
         <source>Unable to retrieve reservation history data for table populating.</source>
         <translation type="unfinished">Kann die Daten der Reservierungs-Historie nicht erhalten, um damit die Tabelle zu füllen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8891"/>
-        <location filename="../qtbook.cc" line="9093"/>
+        <location filename="../qtbook.cc" line="8896"/>
+        <location filename="../qtbook.cc" line="9098"/>
         <source>Barcode</source>
         <translation type="unfinished">Strichcode</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8893"/>
+        <location filename="../qtbook.cc" line="8898"/>
         <source>Reservation Date</source>
         <translation type="unfinished">Reservierungsdatum</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8894"/>
+        <location filename="../qtbook.cc" line="8899"/>
         <source>Original Due Date</source>
         <translation type="unfinished">Originäres Rückgabedatum</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8895"/>
-        <location filename="../qtbook.cc" line="9101"/>
+        <location filename="../qtbook.cc" line="8900"/>
+        <location filename="../qtbook.cc" line="9106"/>
         <source>Returned Date</source>
         <translation type="unfinished">Tatsächliches Datum der Zurückgabe</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="8896"/>
+        <location filename="../qtbook.cc" line="8901"/>
         <source>Lender</source>
         <translation type="unfinished">Leiherin</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9003"/>
+        <location filename="../qtbook.cc" line="9008"/>
         <source>The selected member does not yet have a reservation history to print.</source>
         <translation type="unfinished">Die ausgewählte Nutzerin hat bislang keine Reservierungshistorie, die gedruckt werden könnte.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9007"/>
+        <location filename="../qtbook.cc" line="9012"/>
         <source>You do not yet have a reservation history to print.</source>
         <translation type="unfinished">Du hast bislang keine Reservierungs-Historie, die gedruckt werden kann.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9014"/>
+        <location filename="../qtbook.cc" line="9019"/>
         <source>Reservation History</source>
         <translation type="unfinished">Reservierungs-Historie</translation>
     </message>
@@ -5414,155 +5414,155 @@ URL</source>
         <translation type="obsolete">Typ der Ausleihe</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9135"/>
+        <location filename="../qtbook.cc" line="9140"/>
         <source>The current password is incorrect.</source>
         <translation type="unfinished">Das verwendete Passwort ist fehlerhaft (eingegeben worden).</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9143"/>
+        <location filename="../qtbook.cc" line="9148"/>
         <source>The password must be at least eight characters long.</source>
         <translation type="unfinished">Das Passwort muss wenigstens acht Zeichen umfassen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9152"/>
+        <location filename="../qtbook.cc" line="9157"/>
         <source>The passwords do not match. Please try again.</source>
         <translation type="unfinished">Die Passwörter stimmen nicht überein. Bitte versuche es erneut.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9165"/>
-        <location filename="../qtbook.cc" line="9168"/>
+        <location filename="../qtbook.cc" line="9170"/>
+        <location filename="../qtbook.cc" line="9173"/>
         <source>Unable to save the new password.</source>
         <translation type="unfinished">Kann das neue Passwort nicht speichern.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9209"/>
+        <location filename="../qtbook.cc" line="9214"/>
         <source>BiblioteQ: SQLite Database Selection</source>
         <translation type="unfinished">BiblioteQ: SQLite Datenbank Auswahl</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9261"/>
-        <location filename="../qtbook.cc" line="9446"/>
+        <location filename="../qtbook.cc" line="9266"/>
+        <location filename="../qtbook.cc" line="9451"/>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
         <translation type="unfinished">Kann nicht genügend Speicherplatz für das Objekt &quot;checkBox&quot; erhalten. Das ist ein ernstes Problem!</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9287"/>
+        <location filename="../qtbook.cc" line="9292"/>
         <source>To delete an entry, you must first select it.</source>
         <translation type="unfinished">Um eine Ausleihe zu löschen, musst Du zuerst eine auswählen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9297"/>
+        <location filename="../qtbook.cc" line="9302"/>
         <source>As an administrator, you may not delete your account.</source>
         <translation type="unfinished">Als Administratorin darfst Du Deinen eigenen Zugang nicht löschen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9380"/>
         <location filename="../qtbook.cc" line="9385"/>
+        <location filename="../qtbook.cc" line="9390"/>
         <source>Unable to retrieve administrator data for table populating.</source>
         <translation type="unfinished">Kann die Daten der Administratorin nicht erhalten, um die Tabelle zu erstellen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9526"/>
+        <location filename="../qtbook.cc" line="9531"/>
         <source>Administrators must belong to at least one category.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9539"/>
+        <location filename="../qtbook.cc" line="9544"/>
         <source>Duplicate administrator ids are not allowed.</source>
         <translation type="unfinished">Doppelte IDs für Administratorinnen sind nicht erlaubt.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9573"/>
+        <location filename="../qtbook.cc" line="9578"/>
         <source>An error occurred while attempting to remove </source>
         <translation type="unfinished">Während des Entfernens trat ein Fehler auf.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9588"/>
+        <location filename="../qtbook.cc" line="9593"/>
         <source>An error occurred while attempting to remove the database account </source>
         <translation type="unfinished">Während des Versuchs, den Datenbank-Zugang zu entfernen, trat ein Fehler auf.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9599"/>
+        <location filename="../qtbook.cc" line="9604"/>
         <source>Saving administrator information...</source>
         <translation type="unfinished">Speichere die Informationen zur Administratorin...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9642"/>
+        <location filename="../qtbook.cc" line="9647"/>
         <source>The function misc_functions::userCount() failed for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9668"/>
+        <location filename="../qtbook.cc" line="9673"/>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished">Kann den Eintrag zur Administration nicht erstellen oder aktualisieren für</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9684"/>
+        <location filename="../qtbook.cc" line="9689"/>
         <source>An error occurred while attempting to create a database account for </source>
         <translation type="unfinished">Ein Fehler trat auf während der Erstellung des Datenbank Zugangs für</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9702"/>
+        <location filename="../qtbook.cc" line="9707"/>
         <source>An error occurred while attempting to revoke privileges from </source>
         <translation type="unfinished">Ein Fehler trat auf während des Versuches die Rechts zu entziehen von</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9716"/>
+        <location filename="../qtbook.cc" line="9721"/>
         <source>An error occurred while attempting to grant privileges to </source>
         <translation type="unfinished">Ein Fehler trat auf während des Versuches die Rechte zu gewähren für</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9756"/>
+        <location filename="../qtbook.cc" line="9761"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
         <translation type="unfinished">Bitte benachrichtige neue Administratorinnen, dass ihr voreingestelltes Passwort auf ein temporäres Passwort gesetzt wurde.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9773"/>
+        <location filename="../qtbook.cc" line="9778"/>
         <source>An error occurred while attempting to save the administrator information.</source>
         <translation type="unfinished">Ein Fehler trat auf während des Versuches, die Information der Administration zu speichern.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9816"/>
+        <location filename="../qtbook.cc" line="9821"/>
         <source>Please select at least one item to place on request.</source>
         <translation type="unfinished">Bitte wähle zumindest eine Ausleihe, um sie auf Anfrage zu setzen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9826"/>
+        <location filename="../qtbook.cc" line="9831"/>
         <source>Please select at least one request to cancel.</source>
         <translation type="unfinished">Bitte wähle zumindest eine Anfrage, um sie abzubrechen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9833"/>
+        <location filename="../qtbook.cc" line="9838"/>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
         <translation type="unfinished">Bist Du sicher, das die ausgewählten Anfragen abgebrochen werden sollen?</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9847"/>
+        <location filename="../qtbook.cc" line="9852"/>
         <source>Requesting the selected item(s)...</source>
         <translation type="unfinished">Frage die ausgewählen Ausleihen an...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9849"/>
+        <location filename="../qtbook.cc" line="9854"/>
         <source>Cancelling the selected request(s)...</source>
         <translation type="unfinished">Breche die ausgewählten Anfragen ab...</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9894"/>
+        <location filename="../qtbook.cc" line="9899"/>
         <source>Unable to request the item.</source>
         <translation type="unfinished">Kann die Ausleihe nicht anfragen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9898"/>
+        <location filename="../qtbook.cc" line="9903"/>
         <source>Unable to cancel the request.</source>
         <translation type="unfinished">Kann die Anfrage nicht abbrechen.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9924"/>
+        <location filename="../qtbook.cc" line="9929"/>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
         <translation type="unfinished">Kann einige oder alle ausgewählte Ausleihen nicht anfragen. Bitte prüfen, dass nicht doppelte Ausleihen angefragt werden.</translation>
     </message>
     <message>
-        <location filename="../qtbook.cc" line="9930"/>
+        <location filename="../qtbook.cc" line="9935"/>
         <source>Unable to cancel some or all of the selected requests.</source>
         <translation type="unfinished">Es können einige oder alle ausgewählten Anfragen nicht abgebrochen werden.</translation>
     </message>
