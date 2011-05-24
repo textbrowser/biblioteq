@@ -192,6 +192,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((actionGroup = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  bool found = false;
   QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
 
   for(int i = 0; i < hashes.size(); i++)
@@ -202,12 +203,17 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	continue;
 
       action->setCheckable(true);
-      action->setChecked(true);
       id.queryButton->addAction(action);
 
       if(qmain->getPreferredZ3950Site() == action->text())
-	action->setChecked(true);
+	{
+	  found = true;
+	  action->setChecked(true);
+	}
     }
+
+  if(!found && !id.queryButton->menu()->actions().isEmpty())
+    id.queryButton->menu()->actions()[0]->setChecked(true);
 
   hashes.clear();
 
