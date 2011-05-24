@@ -32,6 +32,7 @@ file /r .\release\plugins
 
 file /r .\release\translations.d
 file .\release\*.dll
+file .\libs.win.d\*.dll
 file .\sqlite3.exe
 file .\release\BiblioteQ.exe
 
