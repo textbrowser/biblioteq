@@ -206,8 +206,10 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	}
     }
 
-  if(!found && !ma.queryButton->menu()->actions().isEmpty())
-    ma.queryButton->menu()->actions()[0]->setChecked(true);
+  if(ma.queryButton->actions().isEmpty())
+    ma.queryButton->setPopupMode(QToolButton::DelayedPopup);
+  else if(!found)
+    ma.queryButton->actions()[0]->setChecked(true);
 
   hashes.clear();
 
@@ -1762,13 +1764,19 @@ void qtbook_magazine::slotQuery(void)
       working.show();
       working.update();
 
+      bool found = false;
+
       for(i = 0; i < ma.queryButton->actions().size(); i++)
 	if(ma.queryButton->actions().at(i)->isChecked())
 	  {
+	    found = true;
 	    thread->setZ3950Name
 	      (ma.queryButton->actions().at(i)->text());
 	    break;
 	  }
+
+      if(!found)
+	thread->setZ3950Name(qmain->getPreferredZ3950Site());
 
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::Z3950_QUERY);

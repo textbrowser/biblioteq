@@ -212,8 +212,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	}
     }
 
-  if(!found && !id.queryButton->menu()->actions().isEmpty())
-    id.queryButton->menu()->actions()[0]->setChecked(true);
+  if(id.queryButton->actions().isEmpty())
+    id.queryButton->setPopupMode(QToolButton::DelayedPopup);
+  else if(!found)
+    id.queryButton->actions()[0]->setChecked(true);
 
   hashes.clear();
 
@@ -1819,13 +1821,19 @@ void qtbook_book::slotQuery(void)
       else
 	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
 
+      bool found = false;
+
       for(i = 0; i < id.queryButton->actions().size(); i++)
 	if(id.queryButton->actions().at(i)->isChecked())
 	  {
+	    found = true;
 	    thread->setZ3950Name
 	      (id.queryButton->actions().at(i)->text());
 	    break;
 	  }
+
+      if(!found)
+	thread->setZ3950Name(qmain->getPreferredZ3950Site());
 
       thread->setType(generic_thread::Z3950_QUERY);
       thread->setZ3950SearchString(searchstr);
