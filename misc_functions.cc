@@ -2135,12 +2135,14 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
     return;
 
   QString version(BIBLIOTEQ_VERSION);
-  QString querystr("");
-  QSqlQuery query(db);
 
   if(version == "6.46")
-    querystr = "ALTER TABLE member ADD expiration_date "
-      "VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
+    {
+      QString querystr("");
+      QSqlQuery query(db);
 
-  query.exec(querystr);
+      querystr = "ALTER TABLE member ADD expiration_date "
+	"VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
+      query.exec(querystr);
+    }
 }
