@@ -65,9 +65,12 @@ void qtbook_journal::closeEvent(QCloseEvent *e)
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	{
-	  e->ignore();
+	  if(e)
+	    e->ignore();
+
 	  return;
 	}
 
   qmain->removeJournal(this);
+  QMainWindow::closeEvent(e);
 }
