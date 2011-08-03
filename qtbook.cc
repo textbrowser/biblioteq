@@ -923,6 +923,12 @@ void qtbook::showMain(void)
     }
 
   ui.itemsCountLabel->setText(tr("0 Results"));
+
+  QSettings settings;
+
+  if(settings.contains("mainwindowState"))
+    restoreState(settings.value("mainwindowState").toByteArray());
+
   show();
 
   /*
@@ -977,6 +983,9 @@ qtbook::~qtbook()
 
 void qtbook::slotExit(void)
 {
+  QSettings settings;
+
+  settings.setValue("mainwindowState", saveState());
   qtbook::quit();
 }
 
