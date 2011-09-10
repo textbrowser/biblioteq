@@ -5341,6 +5341,14 @@ void qtbook::readConfig(void)
   if(!found && !ui.menuPreferredZ3950Server->actions().isEmpty())
     ui.menuPreferredZ3950Server->actions()[0]->setChecked(true);
 
+  int index = br.branch_name->findText
+    (settings.value("previous_branch_name", "").toString());
+
+  if(index >= 0)
+    br.branch_name->setCurrentIndex(index);
+  else
+    br.branch_name->setCurrentIndex(0);
+
   setGlobalFonts(font);
 
   if(ui.actionAutoResizeColumns->isChecked())
@@ -6094,6 +6102,15 @@ void qtbook::slotConnectDB(void)
   else
     branch_diag->close();
 
+  /*
+  ** We've connected successfully. Let's initialize
+  ** other containers and widgets.
+  */
+
+  QSettings settings;
+
+  settings.setValue("previous_branch_name",
+		    br.branch_name->currentText());
   misc_functions::updateSQLiteDatabase(db);
   selectedBranch = branches[br.branch_name->currentText()];
 
@@ -6199,7 +6216,6 @@ void qtbook::slotConnectDB(void)
     }
 
   bool found = false;
-  QSettings settings;
 
   if(db.driverName() == "QSQLITE")
     {
@@ -9202,7 +9218,18 @@ void qtbook::slotResetLoginDialog(void)
   br.password->clear();
   br.filename->clear();
   br.adminCheck->setChecked(false);
-  br.branch_name->setCurrentIndex(0);
+
+  int index = 0;
+  QSettings settings;
+
+  index = br.branch_name->findText(settings.value("previous_branch_name").
+				   toString());
+
+  if(index >= 0)
+    br.branch_name->setCurrentIndex(index);
+  else
+    br.branch_name->setCurrentIndex(0);
+
   slotBranchChanged();
 }
 
