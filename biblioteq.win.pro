@@ -13,7 +13,7 @@ QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d include.win.d "C:\\Program Files\\YAZ\\include"
 ICON		= icons.d\\book.png
 RC_FILE		= biblioteq.win.rc
-LIBS		+= -L "." -L "libs.win.d" -lsqlite3 -L "C:\\Program Files\\YAZ\\lib" -lyaz4
+LIBS		+= -L"." -L"libs.win.d" -lsqlite3 -L"C:\\Program Files\\YAZ\\lib" -lyaz4
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \

@@ -13,7 +13,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -L /usr/local/lib -lyaz -lsqlite3
+LIBS		+= -L/usr/local/lib -lyaz -lsqlite3
 
 FORMS           = cdinfo.ui \
 		  tracks.ui \
