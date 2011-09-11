@@ -1774,11 +1774,6 @@ void qtbook_cd::slotReset(void)
 	  cd.id->clear();
 	  cd.id->setFocus();
 	}
-      else if(action == actions[9])
-	{
-	  cd.title->clear();
-	  cd.title->setFocus();
-	}
       else if(action == actions[3])
 	{
 	  cd.format->setCurrentIndex(0);
@@ -1807,6 +1802,21 @@ void qtbook_cd::slotReset(void)
 
 	  cd.runtime->setFocus();
 	}
+      else if(action == actions[7])
+	{
+	  cd.audio->setCurrentIndex(0);
+	  cd.audio->setFocus();
+	}
+      else if(action == actions[8])
+	{
+	  cd.recording_type->setCurrentIndex(0);
+	  cd.recording_type->setFocus();
+	}
+      else if(action == actions[9])
+	{
+	  cd.title->clear();
+	  cd.title->setFocus();
+	}
       else if(action == actions[10])
 	{
 	  if(engWindowTitle.contains("Search"))
@@ -1817,16 +1827,6 @@ void qtbook_cd::slotReset(void)
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 
 	  cd.release_date->setFocus();
-	}
-      else if(action == actions[7])
-	{
-	  cd.audio->setCurrentIndex(0);
-	  cd.audio->setFocus();
-	}
-      else if(action == actions[8])
-	{
-	  cd.recording_type->setCurrentIndex(0);
-	  cd.recording_type->setFocus();
 	}
       else if(action == actions[11])
 	{
@@ -1861,15 +1861,6 @@ void qtbook_cd::slotReset(void)
 	  cd.monetary_units->setCurrentIndex(0);
 	  cd.monetary_units->setFocus();
 	}
-      else if(action == actions[18])
-	{
-	  if(engWindowTitle.contains("Search"))
-	    cd.description->clear();
-	  else
-	    cd.description->setPlainText("N/A");
-
-	  cd.description->setFocus();
-	}
       else if(action == actions[16])
 	{
 	  cd.quantity->setValue(cd.quantity->minimum());
@@ -1879,6 +1870,15 @@ void qtbook_cd::slotReset(void)
 	{
 	  cd.location->setCurrentIndex(0);
 	  cd.location->setFocus();
+	}
+      else if(action == actions[18])
+	{
+	  if(engWindowTitle.contains("Search"))
+	    cd.description->clear();
+	  else
+	    cd.description->setPlainText("N/A");
+
+	  cd.description->setFocus();
 	}
 
       actions.clear();

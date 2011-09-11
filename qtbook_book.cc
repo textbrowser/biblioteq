@@ -1436,11 +1436,11 @@ void qtbook_book::slotReset(void)
 	  id.id->setPalette(te_orig_pal);
 	  id.id->setFocus();
 	}
-      else if(action == actions[10])
+      else if(action == actions[3])
 	{
-	  id.title->clear();
-	  id.title->setPalette(te_orig_pal);
-	  id.title->setFocus();
+	  id.isbn13->clear();
+	  id.isbn13->setPalette(te_orig_pal);
+	  id.isbn13->setFocus();
 	}
       else if(action == actions[4])
 	{
@@ -1457,6 +1457,36 @@ void qtbook_book::slotReset(void)
 
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.author->setFocus();
+	}
+      else if(action == actions[6])
+	{
+	  id.binding->setCurrentIndex(0);
+	  id.binding->setStyleSheet(cb_orig_ss);
+	  id.binding->setFocus();
+	}
+      else if(action == actions[7])
+	{
+	  id.lcnum->clear();
+	  id.lcnum->setPalette(white_pal);
+	  id.lcnum->setFocus();
+	}
+      else if(action == actions[8])
+	{
+	  id.callnum->clear();
+	  id.callnum->setPalette(white_pal);
+	  id.callnum->setFocus();
+	}
+      else if(action == actions[9])
+	{
+	  id.deweynum->clear();
+	  id.deweynum->setPalette(white_pal);
+	  id.deweynum->setFocus();
+	}
+      else if(action == actions[10])
+	{
+	  id.title->clear();
+	  id.title->setPalette(te_orig_pal);
+	  id.title->setFocus();
 	}
       else if(action == actions[11])
 	{
@@ -1515,11 +1545,15 @@ void qtbook_book::slotReset(void)
 	  id.monetary_units->setCurrentIndex(0);
 	  id.monetary_units->setFocus();
 	}
-      else if(action == actions[6])
+      else if(action == actions[18])
 	{
-	  id.binding->setCurrentIndex(0);
-	  id.binding->setStyleSheet(cb_orig_ss);
-	  id.binding->setFocus();
+	  id.quantity->setValue(id.quantity->minimum());
+	  id.quantity->setFocus();
+	}
+      else if(action == actions[19])
+	{
+	  id.location->setCurrentIndex(0);
+	  id.location->setFocus();
 	}
       else if(action == actions[20])
 	{
@@ -1536,40 +1570,6 @@ void qtbook_book::slotReset(void)
 	  id.marc_tags->clear();
 	  id.marc_tags->viewport()->setPalette(white_pal);
 	  id.marc_tags->setFocus();
-	}
-      else if(action == actions[18])
-	{
-	  id.quantity->setValue(id.quantity->minimum());
-	  id.quantity->setFocus();
-	}
-      else if(action == actions[19])
-	{
-	  id.location->setCurrentIndex(0);
-	  id.location->setFocus();
-	}
-      else if(action == actions[3])
-	{
-	  id.isbn13->clear();
-	  id.isbn13->setPalette(te_orig_pal);
-	  id.isbn13->setFocus();
-	}
-      else if(action == actions[7])
-	{
-	  id.lcnum->clear();
-	  id.lcnum->setPalette(white_pal);
-	  id.lcnum->setFocus();
-	}
-      else if(action == actions[8])
-	{
-	  id.callnum->clear();
-	  id.callnum->setPalette(white_pal);
-	  id.callnum->setFocus();
-	}
-      else if(action == actions[9])
-	{
-	  id.deweynum->clear();
-	  id.deweynum->setPalette(white_pal);
-	  id.deweynum->setFocus();
 	}
       else if(action == actions[22])
 	{
