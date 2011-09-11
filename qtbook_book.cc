@@ -688,6 +688,8 @@ void qtbook_book::slotGo(void)
 	     (id.publisher->toPlainText()));
 	  id.place->setMultipleLinks("book_search", "place",
 				     id.place->toPlainText());
+	  id.keyword->setMultipleLinks("book_search", "keyword",
+				       id.keyword->toPlainText());
 	  qapp->restoreOverrideCursor();
 
 	  if(engWindowTitle.contains("Modify"))
@@ -1051,6 +1053,8 @@ void qtbook_book::search(const QString &field, const QString &value)
 	id.category->setPlainText(value);
       else if(field == "place")
 	id.place->setPlainText(value);
+      else if(field == "keyword")
+	id.keyword->setPlainText(value);
 
       slotGo();
     }
@@ -1311,7 +1315,8 @@ void qtbook_book::modify(const int state)
 	  else if(fieldname == "marc_tags")
 	    id.marc_tags->setPlainText(var.toString());
 	  else if(fieldname == "keyword")
-	    id.keyword->setPlainText(var.toString());
+	    id.keyword->setMultipleLinks("book_search", "keyword",
+					 var.toString());
 	  else if(fieldname == "isbn13")
 	    id.isbn13->setText(var.toString());
 	  else if(fieldname == "lccontrolnumber")

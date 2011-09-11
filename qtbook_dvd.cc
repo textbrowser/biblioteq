@@ -1150,7 +1150,8 @@ void qtbook_dvd::modify(const int state)
     "dvdaspectratio, "
     "location, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "keyword "
     "FROM "
     "dvd "
     "WHERE myoid = ";
