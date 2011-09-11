@@ -654,6 +654,8 @@ void qtbook_dvd::slotGo(void)
 				       dvd.studio->toPlainText());
 	  dvd.category->setMultipleLinks("dvd_search", "category",
 					 dvd.category->toPlainText());
+	  dvd.keyword->setMultipleLinks("dvd_search", "keyword",
+					dvd.keyword->toPlainText());
 	  qapp->restoreOverrideCursor();
 
 	  if(engWindowTitle.contains("Modify"))
@@ -1015,6 +1017,8 @@ void qtbook_dvd::search(const QString &field, const QString &value)
 	dvd.studio->setPlainText(value);
       else if(field == "category")
 	dvd.category->setPlainText(value);
+      else if(field == "keyword")
+	dvd.keyword->setPlainText(value);
 
       slotGo();
     }
@@ -1247,7 +1251,9 @@ void qtbook_dvd::modify(const int state)
 	  else if(fieldname == "description")
 	    dvd.description->setPlainText(var.toString());
 	  else if(fieldname == "keyword")
-	    dvd.keyword->setPlainText(var.toString());
+	    dvd.keyword->setMultipleLinks("dvd_search",
+					  "keyword",
+					  var.toString());
 	  else if(fieldname == "dvdformat")
 	    dvd.format->setText(var.toString());
 	  else if(fieldname == "dvdactor")
