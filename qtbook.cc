@@ -5932,7 +5932,6 @@ void qtbook::slotShowPrev(void)
 void qtbook::slotShowConnectionDB(void)
 {
   slotBranchChanged();
-  branch_diag->show();
 }
 
 /*
@@ -9103,6 +9102,8 @@ void qtbook::slotBranchChanged(void)
 
   tmphash.clear();
   branch_diag->update();
+  branch_diag->resize(branch_diag->width(),
+		      branch_diag->minimumSize().height());
   branch_diag->show();
 }
 
