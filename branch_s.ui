@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>215</height>
+    <height>240</height>
    </rect>
   </property>
   <property name="font">
@@ -26,12 +26,6 @@
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <widget class="QLabel" name="label_4">
        <property name="font">
@@ -47,12 +41,6 @@
      </item>
      <item>
       <layout class="QHBoxLayout">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
        <item>
         <widget class="QComboBox" name="branch_name">
          <property name="editable">
@@ -99,12 +87,6 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QHBoxLayout">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="margin">
-           <number>9</number>
-          </property>
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
@@ -117,6 +99,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="fileButton">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>&amp;Select SQLite Database</string>
             </property>
@@ -151,12 +139,6 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
           <item row="0" column="0" rowspan="2">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -182,12 +164,6 @@
           </item>
           <item row="0" column="2">
            <layout class="QHBoxLayout">
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <property name="margin">
-             <number>0</number>
-            </property>
             <item>
              <widget class="QLineEdit" name="userid"/>
             </item>
@@ -249,12 +225,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <spacer>
        <property name="orientation">
@@ -298,6 +268,12 @@
          <width>105</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times</family>
+         <pointsize>10</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>&amp;Reset</string>

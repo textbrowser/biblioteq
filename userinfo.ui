@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>527</height>
+    <height>583</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -728,6 +728,12 @@
         </item>
         <item row="11" column="0">
          <widget class="QLabel" name="label_12">
+          <property name="font">
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>E-Mail Address</string>
           </property>
@@ -742,6 +748,12 @@
         </item>
         <item row="12" column="0">
          <widget class="QLabel" name="label_13">
+          <property name="font">
+           <font>
+            <family>Times</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Expiration Date</string>
           </property>
