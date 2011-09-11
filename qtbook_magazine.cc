@@ -106,6 +106,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &MARC Tags")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Keywords")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(ma.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(ma.backButton,
@@ -390,6 +392,8 @@ void qtbook_magazine::slotGo(void)
       ma.deweynum->setText(str);
       str = ma.marc_tags->toPlainText().trimmed();
       ma.marc_tags->setPlainText(str);
+      str = ma.keyword->toPlainText().trimmed();
+      ma.keyword->setPlainText(str);
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE %1 SET "
@@ -411,7 +415,8 @@ void qtbook_magazine::slotGo(void)
 			      "front_cover = ?, "
 			      "back_cover = ?, "
 			      "place = ?, "
-			      "marc_tags = ? "
+			      "marc_tags = ?, "
+			      "keyword = ? "
 			      "WHERE "
 			      "myoid = ?").arg(subType));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -424,8 +429,8 @@ void qtbook_magazine::slotGo(void)
 			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "place, marc_tags, type) "
-			      "VALUES (?, ?, "
+			      "place, marc_tags, keyword, type) "
+			      "VALUES (?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
@@ -440,8 +445,8 @@ void qtbook_magazine::slotGo(void)
 			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "place, marc_tags, type, myoid) "
-			      "VALUES (?, ?, ?, "
+			      "place, marc_tags, keyword, type, myoid) "
+			      "VALUES (?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
@@ -508,11 +513,12 @@ void qtbook_magazine::slotGo(void)
 
       query.bindValue(18, ma.place->toPlainText().trimmed());
       query.bindValue(19, ma.marc_tags->toPlainText().trimmed());
+      query.bindValue(20, ma.keyword->toPlainText().trimmed());
 
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(20, oid);
+	query.bindValue(21, oid);
       else
-	query.bindValue(20, subType);
+	query.bindValue(21, subType);
 
       if(engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
@@ -521,7 +527,7 @@ void qtbook_magazine::slotGo(void)
 							     errorstr);
 
 	    if(errorstr.isEmpty())
-	      query.bindValue(21, value);
+	      query.bindValue(22, value);
 	    else
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to generate a unique "
@@ -632,15 +638,13 @@ void qtbook_magazine::slotGo(void)
 	    ma.back_image->imageFormat = "";
 
 	  if(subType == "Journal")
-	    ma.publisher->setText
-	      (QString("<a href=\"journal_search?publisher?%1\">" +
-		       ma.publisher->toPlainText() + "</a>").arg
-	       (ma.publisher->toPlainText()));
+	    ma.publisher->setMultipleLinks
+	      ("journal_search", "publisher",
+	       ma.publisher->toPlainText());
 	  else
-	    ma.publisher->setText
-	      (QString("<a href=\"magazine_search?publisher?%1\">" +
-		       ma.publisher->toPlainText() + "</a>").arg
-	       (ma.publisher->toPlainText()));
+	    ma.publisher->setMultipleLinks
+	      ("magazine_search", "publisher",
+	       ma.publisher->toPlainText());
 
 	  if(subType == "Journal")
 	    ma.place->setMultipleLinks("journal_search", "place",
@@ -655,6 +659,13 @@ void qtbook_magazine::slotGo(void)
 	  else
 	    ma.category->setMultipleLinks("magazine_search", "category",
 					  ma.category->toPlainText());
+
+	  if(subType == "Journal")
+	    ma.keyword->setMultipleLinks("journal_search", "keyword",
+					 ma.keyword->toPlainText());
+	  else
+	    ma.keyword->setMultipleLinks("magazine_search", "keyword",
+					 ma.keyword->toPlainText());
 
 	  qapp->restoreOverrideCursor();
 
@@ -945,6 +956,9 @@ void qtbook_magazine::slotGo(void)
       searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
 		       myqstring::escape
 		       (ma.marc_tags->toPlainText().toLower()) + "%' ");
+      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       myqstring::escape
+		       (ma.keyword->toPlainText().toLower()) + "%' ");
       hide();
 
       /*
@@ -989,6 +1003,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.place->clear();
   ma.description->clear();
   ma.marc_tags->clear();
+  ma.keyword->clear();
   ma.category->clear();
   ma.copiesButton->setVisible(false);
   ma.showUserButton->setVisible(false);
@@ -1050,6 +1065,8 @@ void qtbook_magazine::search(const QString &field, const QString &value)
 	ma.category->setPlainText(value);
       else if(field == "place")
 	ma.place->setPlainText(value);
+      else if(field == "keyword")
+	ma.keyword->setPlainText(value);
 
       slotGo();
     }
@@ -1184,7 +1201,8 @@ void qtbook_magazine::modify(const int state)
 		      "deweynumber, description, "
 		      "front_cover, "
 		      "back_cover, "
-		      "marc_tags "
+		      "marc_tags, "
+		      "keyword "
 		      "FROM "
 		      "%1 "
 		      "WHERE myoid = ").arg(subType);
@@ -1235,13 +1253,13 @@ void qtbook_magazine::modify(const int state)
 	  else if(fieldname == "publisher")
 	    {
 	      if(subType == "Journal")
-		ma.publisher->setText
-		  (QString("<a href=\"journal_search?publisher?%1\">" +
-			   var.toString() + "</a>").arg(var.toString()));
+		ma.publisher->setMultipleLinks
+		  ("journal_search", "publisher",
+		   var.toString());
 	      else
-		ma.publisher->setText
-		  (QString("<a href=\"magazine_search?publisher?%1\">" +
-			   var.toString() + "</a>").arg(var.toString()));
+		ma.publisher->setMultipleLinks
+		  ("magazine_search", "publisher",
+		   var.toString());
 	    }
 	  else if(fieldname == "pdate")
 	    ma.publication_date->setDate
@@ -1331,6 +1349,15 @@ void qtbook_magazine::modify(const int state)
 	    ma.description->setPlainText(var.toString());
 	  else if(fieldname == "marc_tags")
 	    ma.marc_tags->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    {
+	      if(subType == "Journal")
+		ma.keyword->setMultipleLinks("journal_search", "keyword",
+					     var.toString());
+	      else
+		ma.keyword->setMultipleLinks("magazine_search", "keyword",
+					     var.toString());
+	    }
 	  else if(fieldname == "lccontrolnumber")
 	    ma.lcnum->setText(var.toString());
 	  else if(fieldname == "callnumber")
@@ -1386,6 +1413,7 @@ void qtbook_magazine::insert(void)
   ma.publisher->setPlainText("N/A");
   ma.description->setPlainText("N/A");
   ma.marc_tags->clear();
+  ma.keyword->clear();
   ma.category->setPlainText("N/A");
   ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
@@ -1455,12 +1483,6 @@ void qtbook_magazine::slotReset(void)
 	  ma.id->setPalette(te_orig_pal);
 	  ma.id->setFocus();
 	}
-      else if(action == actions[8])
-	{
-	  ma.title->clear();
-	  ma.title->setPalette(te_orig_pal);
-	  ma.title->setFocus();
-	}
       else if(action == actions[3])
 	{
 	  ma.volume->setValue(ma.volume->minimum());
@@ -1470,6 +1492,30 @@ void qtbook_magazine::slotReset(void)
 	{
 	  ma.issue->setValue(ma.issue->minimum());
 	  ma.issue->setFocus();
+	}
+      else if(action == actions[5])
+	{
+	  ma.lcnum->clear();
+	  ma.lcnum->setPalette(white_pal);
+	  ma.lcnum->setFocus();
+	}
+      else if(action == actions[6])
+	{
+	  ma.callnum->clear();
+	  ma.callnum->setPalette(white_pal);
+	  ma.callnum->setFocus();
+	}
+      else if(action == actions[7])
+	{
+	  ma.deweynum->clear();
+	  ma.deweynum->setPalette(white_pal);
+	  ma.deweynum->setFocus();
+	}
+      else if(action == actions[8])
+	{
+	  ma.title->clear();
+	  ma.title->setPalette(te_orig_pal);
+	  ma.title->setFocus();
 	}
       else if(action == actions[9])
 	{
@@ -1528,6 +1574,16 @@ void qtbook_magazine::slotReset(void)
 	  ma.monetary_units->setCurrentIndex(0);
 	  ma.monetary_units->setFocus();
 	}
+      else if(action == actions[16])
+	{
+	  ma.quantity->setValue(ma.quantity->minimum());
+	  ma.quantity->setFocus();
+	}
+      else if(action == actions[17])
+	{
+	  ma.location->setCurrentIndex(0);
+	  ma.location->setFocus();
+	}
       else if(action == actions[18])
 	{
 	  if(!engWindowTitle.contains("Search"))
@@ -1544,33 +1600,10 @@ void qtbook_magazine::slotReset(void)
 	  ma.marc_tags->viewport()->setPalette(white_pal);
 	  ma.marc_tags->setFocus();
 	}
-      else if(action == actions[16])
+      else if(action == actions[20])
 	{
-	  ma.quantity->setValue(ma.quantity->minimum());
-	  ma.quantity->setFocus();
-	}
-      else if(action == actions[17])
-	{
-	  ma.location->setCurrentIndex(0);
-	  ma.location->setFocus();
-	}
-      else if(action == actions[5])
-	{
-	  ma.lcnum->clear();
-	  ma.lcnum->setPalette(white_pal);
-	  ma.lcnum->setFocus();
-	}
-      else if(action == actions[6])
-	{
-	  ma.callnum->clear();
-	  ma.callnum->setPalette(white_pal);
-	  ma.callnum->setFocus();
-	}
-      else if(action == actions[7])
-	{
-	  ma.deweynum->clear();
-	  ma.deweynum->setPalette(white_pal);
-	  ma.deweynum->setFocus();
+	  ma.keyword->clear();
+	  ma.keyword->setFocus();
 	}
 
       actions.clear();
@@ -1606,6 +1639,7 @@ void qtbook_magazine::slotReset(void)
 	ma.description->clear();
 
       ma.marc_tags->clear();
+      ma.keyword->clear();
       ma.volume->setValue(ma.volume->minimum());
       ma.issue->setValue(ma.issue->minimum());
       ma.price->setValue(ma.price->minimum());
@@ -1898,6 +1932,8 @@ void qtbook_magazine::slotPrint(void)
     ma.description->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("MARC Tags:") + "</b> " +
     ma.marc_tags->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Keywords:") + "</b> " +
+    ma.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }
 
