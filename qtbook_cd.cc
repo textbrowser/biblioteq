@@ -605,16 +605,16 @@ void qtbook_cd::slotGo(void)
 	  if(cd.back_image->image.isNull())
 	    cd.back_image->imageFormat = "";
 
-	  cd.artist->setText
-	    (QString("<a href=\"cd_search?artist?%1\">" +
-		     cd.artist->toPlainText() + "</a>").arg
-	     (cd.artist->toPlainText()));
-	  cd.recording_label->setText
-	    (QString("<a href=\"cd_search?recording_label?%1\">" +
-		     cd.recording_label->toPlainText() + "</a>").arg
-	     (cd.recording_label->toPlainText()));
+	  cd.artist->setMultipleLinks
+	    ("cd_search", "artist",
+	     cd.artist->toPlainText());
+	  cd.recording_label->setMultipleLinks
+	    ("cd_search", "recording_label",
+	     cd.recording_label->toPlainText());
 	  cd.category->setMultipleLinks("cd_search", "category",
 					cd.category->toPlainText());
+	  cd.keyword->setMultipleLinks("cd_search", "keyword",
+				       cd.keyword->toPlainText());
 	  qapp->restoreOverrideCursor();
 
 	  if(engWindowTitle.contains("Modify"))
@@ -964,6 +964,8 @@ void qtbook_cd::search(const QString &field, const QString &value)
 	cd.recording_label->setPlainText(value);
       else if(field == "category")
 	cd.category->setPlainText(value);
+      else if(field == "keyword")
+	cd.keyword->setPlainText(value);
 
       slotGo();
     }
@@ -1141,10 +1143,9 @@ void qtbook_cd::modify(const int state)
 	  if(fieldname == "title")
 	    cd.title->setText(var.toString());
 	  else if(fieldname == "recording_label")
-	    cd.recording_label->setText
-	      (QString("<a href=\"cd_search?recording_label?%1\">" +
-		       var.toString() + "</a>").arg
-	       (var.toString()));
+	    cd.recording_label->setMultipleLinks
+	      ("cd_search", "recording_label",
+	       var.toString());
 	  else if(fieldname == "rdate")
 	    cd.release_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
@@ -1208,7 +1209,8 @@ void qtbook_cd::modify(const int state)
 	  else if(fieldname == "description")
 	    cd.description->setPlainText(var.toString());
 	  else if(fieldname == "keyword")
-	    cd.keyword->setPlainText(var.toString());
+	    cd.keyword->setMultipleLinks("cd_search", "keyword",
+					 var.toString());
 	  else if(fieldname == "cdformat")
 	    {
 	      if(cd.format->findText(var.toString()) > -1)
@@ -1219,10 +1221,8 @@ void qtbook_cd::modify(const int state)
 		  (cd.format->findText(tr("UNKNOWN")));
 	    }
 	  else if(fieldname == "artist")
-	    cd.artist->setText
-	      (QString("<a href=\"cd_search?artist?%1\">" +
-		       var.toString() + "</a>").arg
-	       (var.toString()));
+	    cd.artist->setMultipleLinks
+	      ("cd_search", "artist", var.toString());
 	  else if(fieldname == "cdaudio")
 	    {
 	      if(cd.audio->findText(var.toString()) > -1)

@@ -650,10 +650,8 @@ void qtbook_dvd::slotGo(void)
 				       dvd.actors->toPlainText());
 	  dvd.directors->setMultipleLinks("dvd_search", "directors",
 					  dvd.directors->toPlainText());
-	  dvd.studio->setText
-	    (QString("<a href=\"dvd_search?studio?%1\">" +
-		     dvd.studio->toPlainText() + "</a>").arg
-	     (dvd.studio->toPlainText()));
+	  dvd.studio->setMultipleLinks("dvd_search", "studio",
+				       dvd.studio->toPlainText());
 	  dvd.category->setMultipleLinks("dvd_search", "category",
 					 dvd.category->toPlainText());
 	  qapp->restoreOverrideCursor();
@@ -1183,10 +1181,9 @@ void qtbook_dvd::modify(const int state)
 	  if(fieldname == "title")
 	    dvd.title->setText(var.toString());
 	  else if(fieldname == "studio")
-	    dvd.studio->setText
-	      (QString("<a href=\"dvd_search?studio?%1\">" +
-		       var.toString() + "</a>").arg
-	       (var.toString()));
+	    dvd.studio->setMultipleLinks
+	      ("dvd_search", "studio",
+	       var.toString());
 	  else if(fieldname == "rdate")
 	    dvd.release_date->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));

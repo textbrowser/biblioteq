@@ -682,10 +682,8 @@ void qtbook_book::slotGo(void)
 				      id.author->toPlainText());
 	  id.category->setMultipleLinks("book_search", "category",
 					id.category->toPlainText());
-	  id.publisher->setText
-	    (QString("<a href=\"book_search?publisher?%1\">" +
-		     id.publisher->toPlainText() + "</a>").arg
-	     (id.publisher->toPlainText()));
+	  id.publisher->setMultipleLinks("book_search", "publisher",
+					 id.publisher->toPlainText());
 	  id.place->setMultipleLinks("book_search", "place",
 				     id.place->toPlainText());
 	  id.keyword->setMultipleLinks("book_search", "keyword",
@@ -1232,10 +1230,8 @@ void qtbook_book::modify(const int state)
 	    id.author->setMultipleLinks("book_search", "author",
 					var.toString());
 	  else if(fieldname == "publisher")
-	    id.publisher->setText
-	      (QString
-	       ("<a href=\"book_search?publisher?%1\">" +
-		var.toString() + "</a>").arg(var.toString()));
+	    id.publisher->setMultipleLinks("book_search", "publisher",
+					   var.toString());
 	  else if(fieldname == "place")
 	    id.place->setMultipleLinks("book_search", "place",
 				       var.toString());
