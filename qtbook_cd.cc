@@ -121,6 +121,8 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Keywords")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(cd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(cd.backButton,
@@ -292,6 +294,14 @@ void qtbook_cd::slotGo(void)
 	  return;
 	}
 
+      if(cd.runtime->text() == "00:00:00")
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please provide a valid Runtime."));
+	  cd.runtime->setFocus();
+	  return;
+	}
+
       str = cd.title->text().trimmed();
       cd.title->setText(str);
 
@@ -300,14 +310,6 @@ void qtbook_cd::slotGo(void)
 	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
 	  cd.title->setFocus();
-	  return;
-	}
-
-      if(cd.runtime->text() == "00:00:00")
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please provide a valid Runtime."));
-	  cd.runtime->setFocus();
 	  return;
 	}
 
@@ -346,6 +348,8 @@ void qtbook_cd::slotGo(void)
 	  return;
 	}
 
+      str = cd.keyword->toPlainText().trimmed();
+      cd.keyword->setPlainText(str);
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -383,7 +387,8 @@ void qtbook_cd::slotGo(void)
 		      "cdrecording = ?, "
 		      "cdaudio = ?, "
 		      "front_cover = ?, "
-		      "back_cover = ? "
+		      "back_cover = ?, "
+		      "keyword = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -405,9 +410,9 @@ void qtbook_cd::slotGo(void)
 		      "location, "
 		      "cdrecording, "
 		      "cdaudio, front_cover, "
-		      "back_cover) "
+		      "back_cover, keyword) "
 		      "VALUES "
-		      "(?, ?, "
+		      "(?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -433,9 +438,10 @@ void qtbook_cd::slotGo(void)
 		      "cdrecording, "
 		      "cdaudio, front_cover, "
 		      "back_cover, "
+		      "keyword, "
 		      "myoid) "
 		      "VALUES "
-		      "(?, ?, "
+		      "(?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
@@ -490,15 +496,17 @@ void qtbook_cd::slotGo(void)
 	  query.bindValue(18, QVariant());
 	}
 
+      query.bindValue(19, cd.keyword->toPlainText().trimmed());
+
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(19, oid);
+	query.bindValue(20, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
 							   errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(19, value);
+	    query.bindValue(20, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -852,6 +860,10 @@ void qtbook_cd::slotGo(void)
       searchstr.append("LOWER(description) LIKE '%" +
 		       myqstring::escape
 		       (cd.description->toPlainText().toLower()) + "%' ");
+      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       myqstring::escape
+		       (cd.keyword->toPlainText().toLower()) +
+		       "%' ");
 
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
@@ -884,6 +896,7 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.title->clear();
   cd.recording_label->clear();
   cd.description->clear();
+  cd.keyword->clear();
   cd.category->clear();
   cd.copiesButton->setVisible(false);
   cd.tracksButton->setVisible(false);
@@ -1095,7 +1108,8 @@ void qtbook_cd::modify(const int state)
     "cdrecording, "
     "location, "
     "front_cover, "
-    "back_cover "
+    "back_cover, "
+    "keyword "
     "FROM "
     "cd "
     "WHERE myoid = ";
@@ -1193,6 +1207,8 @@ void qtbook_cd::modify(const int state)
 	    }
 	  else if(fieldname == "description")
 	    cd.description->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    cd.keyword->setPlainText(var.toString());
 	  else if(fieldname == "cdformat")
 	    {
 	      if(cd.format->findText(var.toString()) > -1)
@@ -1269,6 +1285,7 @@ void qtbook_cd::insert(void)
   cd.title->clear();
   cd.recording_label->setPlainText("N/A");
   cd.description->setPlainText("N/A");
+  cd.keyword->clear();
   cd.category->setPlainText("N/A");
   cd.copiesButton->setEnabled(false);
   cd.tracksButton->setEnabled(false);
@@ -1880,6 +1897,11 @@ void qtbook_cd::slotReset(void)
 
 	  cd.description->setFocus();
 	}
+      else if(action == actions[19])
+	{
+	  cd.keyword->clear();
+	  cd.keyword->setFocus();
+	}
 
       actions.clear();
     }
@@ -1936,6 +1958,7 @@ void qtbook_cd::slotReset(void)
       cd.format->setCurrentIndex(0);
       cd.front_image->clear();
       cd.back_image->clear();
+      cd.keyword->clear();
       cd.id->setFocus();
     }
 }
@@ -2096,6 +2119,8 @@ void qtbook_cd::slotPrint(void)
     cd.location->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     cd.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Keywords:") + "</b> " +
+    cd.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }
 
