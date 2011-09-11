@@ -627,3 +627,12 @@ ALTER TABLE member ADD expiration_date VARCHAR(32) NOT NULL DEFAULT '01/01/3000'
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO xbook_admin;
 
 /* Please "Save" each member's information through the Members Browser. */
+
+/* Release 6.51 */
+
+ALTER TABLE book ADD keyword TEXT;
+ALTER TABLE cd ADD keyword TEXT;
+ALTER TABLE dvd ADD keyword TEXT;
+ALTER TABLE journal ADD keyword TEXT;
+ALTER TABLE magazine ADD keyword TEXT;
+ALTER TABLE videogame ADD keyword TEXT;

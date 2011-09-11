@@ -313,6 +313,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu4->addAction(tr("Reset &Keywords")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -1044,6 +1046,7 @@ void qtbook::slotSearch(void)
   al.language->clear();
   al.monetary_units->clear();
   al.location->clear();
+  al.keyword->clear();
 
   /*
   ** Populate combination boxes.
@@ -3917,6 +3920,10 @@ int qtbook::populateTable(const int search_type_arg,
 		str.append("LOWER(description) LIKE '%" +
 			   myqstring::escape
 			   (al.description->toPlainText().toLower()) + "%' ");
+		str.append("AND LOWER(keyword) LIKE '%" +
+			   myqstring::escape
+			   (al.keyword->toPlainText().toLower()) +
+			   "%' ");
 
 		if(al.quantity->value() != 0)
 		  str.append("AND quantity = " + al.quantity->text() + " ");
@@ -3936,6 +3943,7 @@ int qtbook::populateTable(const int search_type_arg,
 			       "%1.monetary_units, "
 			       "%1.quantity, "
 			       "%1.location, "
+			       "%1.keyword, "
 			       "%1.type, "
 			       "%1.myoid "
 			       // "%1.front_cover "
@@ -7145,6 +7153,11 @@ void qtbook::slotReset(void)
 	    {
 	      al.location->setCurrentIndex(0);
 	      al.location->setFocus();
+	    }
+	  else if(action == actions[11])
+	    {
+	      al.keyword->clear();
+	      al.keyword->setFocus();
 	    }
 
 	  actions.clear();

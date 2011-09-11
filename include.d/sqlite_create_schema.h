@@ -24,6 +24,7 @@ id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
     front_cover	 BYTEA,							\
     back_cover	 BYTEA,							\
     marc_tags    TEXT,							\
+    keyword      TEXT,							\
     type		 VARCHAR(16) NOT NULL DEFAULT 'Book'		\
     );									\
 									\
@@ -66,6 +67,7 @@ id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
     cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',			\
     front_cover	 BYTEA,							\
     back_cover	 BYTEA,							\
+    keyword      TEXT,							\
     type		 VARCHAR(16) NOT NULL DEFAULT 'CD'		\
     );									\
 									\
@@ -121,6 +123,7 @@ id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
 	  dvdaspectratio	 VARCHAR(64) NOT NULL,			\
 	  front_cover	 BYTEA,						\
 	  back_cover	 BYTEA,						\
+          keyword        TEXT,						\
 	  type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'		\
 	  );								\
 									\
@@ -164,6 +167,7 @@ id		 VARCHAR(32) NOT NULL,					\
 	  front_cover	 BYTEA,						\
 	  back_cover	 BYTEA,						\
           marc_tags      TEXT,						\
+          keyword        TEXT,						\
 	  type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',	\
 	  PRIMARY KEY(id, issuevolume, issueno)				\
 	  );								\
@@ -208,6 +212,7 @@ id		 VARCHAR(32) NOT NULL,					\
 	  front_cover	 BYTEA,						\
 	  back_cover	 BYTEA,						\
           marc_tags      TEXT,						\
+          keyword        TEXT,						\
 	  type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',	\
 	  PRIMARY KEY(id, issuevolume, issueno)				\
 );									\
@@ -250,6 +255,7 @@ CREATE TABLE videogame							\
 	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',	\
 	front_cover	 BYTEA,						\
 	back_cover	 BYTEA,						\
+        keyword          TEXT,						\
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'	\
 );									\
 									\

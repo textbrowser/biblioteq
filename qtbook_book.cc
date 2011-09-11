@@ -117,6 +117,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &MARC Tags")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Keywords")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(id.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
@@ -657,7 +659,7 @@ void qtbook_book::slotGo(void)
 	  id.author->viewport()->setPalette(te_orig_pal);
 	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
-	  id.marc_tags->viewport()->setPalette(te_orig_pal);
+	  id.marc_tags->viewport()->setPalette(white_pal);
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.lcnum->setPalette(white_pal);
@@ -1137,8 +1139,6 @@ void qtbook_book::modify(const int state)
       misc_functions::highlightWidget
 	(id.description->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(id.marc_tags->viewport(), QColor(255, 248, 220));
-      misc_functions::highlightWidget
 	(id.category->viewport(), QColor(255, 248, 220));
       te_orig_pal = id.id->palette();
     }
@@ -1359,7 +1359,7 @@ void qtbook_book::insert(void)
   id.publisher->setPlainText("N/A");
   id.place->setPlainText("N/A");
   id.description->setPlainText("N/A");
-  id.marc_tags->setPlainText("N/A");
+  id.marc_tags->clear();
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
@@ -1389,8 +1389,6 @@ void qtbook_book::insert(void)
     (id.author->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.description->viewport(), QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (id.marc_tags->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (id.category->viewport(), QColor(255, 248, 220));
   te_orig_pal = id.id->palette();
@@ -1521,12 +1519,8 @@ void qtbook_book::slotReset(void)
 	}
       else if(action == actions[21])
 	{
-	  if(!engWindowTitle.contains("Search"))
-	    id.marc_tags->setPlainText("N/A");
-	  else
-	    id.marc_tags->clear();
-
-	  id.marc_tags->viewport()->setPalette(te_orig_pal);
+	  id.marc_tags->clear();
+	  id.marc_tags->viewport()->setPalette(white_pal);
 	  id.marc_tags->setFocus();
 	}
       else if(action == actions[18])
@@ -1562,6 +1556,11 @@ void qtbook_book::slotReset(void)
 	  id.deweynum->clear();
 	  id.deweynum->setPalette(white_pal);
 	  id.deweynum->setFocus();
+	}
+      else if(action == actions[22])
+	{
+	  id.keyword->clear();
+	  id.keyword->setFocus();
 	}
 
       actions.clear();
@@ -1609,11 +1608,7 @@ void qtbook_book::slotReset(void)
       else
 	id.description->clear();
 
-      if(!engWindowTitle.contains("Search"))
-	id.marc_tags->setPlainText("N/A");
-      else
-	id.marc_tags->clear();
-
+      id.marc_tags->clear();
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();
@@ -1638,7 +1633,7 @@ void qtbook_book::slotReset(void)
       id.publication_date->setStyleSheet(dt_orig_ss);
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
-      id.marc_tags->viewport()->setPalette(te_orig_pal);
+      id.marc_tags->viewport()->setPalette(white_pal);
       id.publisher->viewport()->setPalette(te_orig_pal);
       id.place->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
@@ -2417,6 +2412,8 @@ void qtbook_book::slotPrint(void)
     id.description->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("MARC Tags:") + "</b> " +
     id.marc_tags->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Keywords:") + "</b>" +
+    id.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }
 

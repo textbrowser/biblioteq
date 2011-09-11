@@ -621,7 +621,7 @@ void qtbook_magazine::slotGo(void)
 	  ma.title->setPalette(te_orig_pal);
 	  ma.publication_date->setStyleSheet(dt_orig_ss);
 	  ma.description->viewport()->setPalette(te_orig_pal);
-	  ma.marc_tags->viewport()->setPalette(te_orig_pal);
+	  ma.marc_tags->viewport()->setPalette(white_pal);
 	  ma.publisher->viewport()->setPalette(te_orig_pal);
 	  oldq = ma.quantity->value();
 
@@ -1141,8 +1141,6 @@ void qtbook_magazine::modify(const int state)
       misc_functions::highlightWidget
 	(ma.description->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
-	(ma.marc_tags->viewport(), QColor(255, 248, 220));
-      misc_functions::highlightWidget
 	(ma.category->viewport(), QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(ma.place->viewport(), QColor(255, 248, 220));
@@ -1387,7 +1385,7 @@ void qtbook_magazine::insert(void)
   ma.title->clear();
   ma.publisher->setPlainText("N/A");
   ma.description->setPlainText("N/A");
-  ma.marc_tags->setPlainText("N/A");
+  ma.marc_tags->clear();
   ma.category->setPlainText("N/A");
   ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
@@ -1416,8 +1414,6 @@ void qtbook_magazine::insert(void)
     (ma.publisher->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (ma.description->viewport(), QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (ma.marc_tags->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
     (ma.category->viewport(), QColor(255, 248, 220));
   misc_functions::highlightWidget
@@ -1544,12 +1540,8 @@ void qtbook_magazine::slotReset(void)
 	}
       else if(action == actions[19])
 	{
-	  if(!engWindowTitle.contains("Search"))
-	    ma.marc_tags->setPlainText("N/A");
-	  else
-	    ma.marc_tags->clear();
-
-	  ma.marc_tags->viewport()->setPalette(te_orig_pal);
+	  ma.marc_tags->clear();
+	  ma.marc_tags->viewport()->setPalette(white_pal);
 	  ma.marc_tags->setFocus();
 	}
       else if(action == actions[16])
@@ -1613,11 +1605,7 @@ void qtbook_magazine::slotReset(void)
       else
 	ma.description->clear();
 
-      if(!engWindowTitle.contains("Search"))
-	ma.marc_tags->setPlainText("N/A");
-      else
-	ma.marc_tags->clear();
-
+      ma.marc_tags->clear();
       ma.volume->setValue(ma.volume->minimum());
       ma.issue->setValue(ma.issue->minimum());
       ma.price->setValue(ma.price->minimum());
@@ -1647,7 +1635,7 @@ void qtbook_magazine::slotReset(void)
       ma.title->setPalette(te_orig_pal);
       ma.publication_date->setStyleSheet(dt_orig_ss);
       ma.description->viewport()->setPalette(te_orig_pal);
-      ma.marc_tags->viewport()->setPalette(te_orig_pal);
+      ma.marc_tags->viewport()->setPalette(white_pal);
       ma.publisher->viewport()->setPalette(te_orig_pal);
       ma.id->setFocus();
     }

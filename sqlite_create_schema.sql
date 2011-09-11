@@ -27,6 +27,7 @@ CREATE TABLE book
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
 	marc_tags	 TEXT,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'	
 );
 
@@ -69,6 +70,7 @@ CREATE TABLE cd
 	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
 );
 
@@ -124,6 +126,7 @@ CREATE TABLE dvd
 	dvdaspectratio	 VARCHAR(64) NOT NULL,
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'
 );
 
@@ -167,6 +170,7 @@ CREATE TABLE journal
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
 	marc_tags	 TEXT,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	PRIMARY KEY(id, issuevolume, issueno)
 );
@@ -211,6 +215,7 @@ CREATE TABLE magazine
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
 	marc_tags	 TEXT,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
 	PRIMARY KEY(id, issuevolume, issueno)
 );
@@ -253,6 +258,7 @@ CREATE TABLE videogame
 	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	keyword		 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'
 );
 
