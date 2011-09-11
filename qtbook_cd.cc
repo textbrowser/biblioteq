@@ -348,8 +348,6 @@ void qtbook_cd::slotGo(void)
 	  return;
 	}
 
-      str = cd.keyword->toPlainText().trimmed();
-      cd.keyword->setPlainText(str);
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -366,6 +364,8 @@ void qtbook_cd::slotGo(void)
 	}
 
       qapp->restoreOverrideCursor();
+      str = cd.keyword->toPlainText().trimmed();
+      cd.keyword->setPlainText(str);
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE cd SET "

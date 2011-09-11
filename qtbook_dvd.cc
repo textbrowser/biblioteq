@@ -105,6 +105,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Keywords")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(dvd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(dvd.backButton,
@@ -395,6 +397,8 @@ void qtbook_dvd::slotGo(void)
 	  return;
 	}
 
+      str = dvd.keyword->toPlainText().trimmed();
+      dvd.keyword->setPlainText(str);
       qapp->restoreOverrideCursor();
 
       if(engWindowTitle.contains("Modify"))
@@ -419,7 +423,8 @@ void qtbook_dvd::slotGo(void)
 		      "location = ?, "
 		      "description = ?, "
 		      "front_cover = ?, "
-		      "back_cover = ? "
+		      "back_cover = ?, "
+		      "keyword = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -443,10 +448,10 @@ void qtbook_dvd::slotGo(void)
 		      "quantity, "
 		      "location, "
 		      "description, front_cover, "
-		      "back_cover) "
+		      "back_cover, keyword) "
 		      "VALUES "
 		      "(?, ?, ?, "
-		      "?, ?, "
+		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, "
@@ -472,11 +477,11 @@ void qtbook_dvd::slotGo(void)
 		      "quantity, "
 		      "location, "
 		      "description, front_cover, "
-		      "back_cover, "
+		      "back_cover, keyword, "
 		      "myoid) "
 		      "VALUES "
 		      "(?, ?, ?, "
-		      "?, "
+		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -532,15 +537,17 @@ void qtbook_dvd::slotGo(void)
 	  query.bindValue(20, QVariant());
 	}
 
+      query.bindValue(21, dvd.keyword->toPlainText().trimmed());
+
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(21, oid);
+	query.bindValue(22, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
 							   errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(21, value);
+	    query.bindValue(22, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -905,6 +912,10 @@ void qtbook_dvd::slotGo(void)
       searchstr.append("LOWER(description) LIKE '%" +
 		       myqstring::escape
 		       (dvd.description->toPlainText().toLower()) + "%' ");
+      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       myqstring::escape
+		       (dvd.keyword->toPlainText().toLower()) +
+		       "%' ");
 
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
@@ -941,6 +952,7 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.studio->clear();
   dvd.category->clear();
   dvd.description->clear();
+  dvd.keyword->clear();
   dvd.copiesButton->setVisible(false);
   dvd.queryButton->setVisible(false);
   dvd.showUserButton->setVisible(false);
@@ -1236,6 +1248,8 @@ void qtbook_dvd::modify(const int state)
 	    }
 	  else if(fieldname == "description")
 	    dvd.description->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    dvd.keyword->setPlainText(var.toString());
 	  else if(fieldname == "dvdformat")
 	    dvd.format->setText(var.toString());
 	  else if(fieldname == "dvdactor")
@@ -1319,6 +1333,7 @@ void qtbook_dvd::insert(void)
   dvd.title->clear();
   dvd.studio->setPlainText("N/A");
   dvd.description->setPlainText("N/A");
+  dvd.keyword->clear();
   dvd.category->setPlainText("N/A");
   dvd.copiesButton->setEnabled(false);
   dvd.showUserButton->setEnabled(false);
@@ -1385,19 +1400,10 @@ void qtbook_dvd::slotReset(void)
 	  dvd.id->clear();
 	  dvd.id->setFocus();
 	}
-      else if(action == actions[11])
+      else if(action == actions[3])
 	{
-	  dvd.title->clear();
-	  dvd.title->setFocus();
-	}
-      else if(action == actions[8])
-	{
-	  if(engWindowTitle.contains("Search"))
-	    dvd.format->clear();
-	  else
-	    dvd.format->setText("N/A");
-
-	  dvd.format->setFocus();
+	  dvd.rating->setCurrentIndex(0);
+	  dvd.rating->setFocus();
 	}
       else if(action == actions[4])
 	{
@@ -1407,6 +1413,15 @@ void qtbook_dvd::slotReset(void)
 	    dvd.actors->setPlainText("N/A");
 
 	  dvd.actors->setFocus();
+	}
+      else if(action == actions[5])
+	{
+	  if(engWindowTitle.contains("Search"))
+	    dvd.directors->clear();
+	  else
+	    dvd.directors->setPlainText("N/A");
+
+	  dvd.directors->setFocus();
 	}
       else if(action == actions[6])
 	{
@@ -1421,6 +1436,30 @@ void qtbook_dvd::slotReset(void)
 	    dvd.runtime->setTime(QTime(0, 0, 1));
 
 	  dvd.runtime->setFocus();
+	}
+      else if(action == actions[8])
+	{
+	  if(engWindowTitle.contains("Search"))
+	    dvd.format->clear();
+	  else
+	    dvd.format->setText("N/A");
+
+	  dvd.format->setFocus();
+	}
+      else if(action == actions[9])
+	{
+	  dvd.region->setCurrentIndex(0);
+	  dvd.region->setFocus();
+	}
+      else if(action == actions[10])
+	{
+	  dvd.aspectratio->setCurrentIndex(0);
+	  dvd.aspectratio->setFocus();
+	}
+      else if(action == actions[11])
+	{
+	  dvd.title->clear();
+	  dvd.title->setFocus();
 	}
       else if(action == actions[12])
 	{
@@ -1466,15 +1505,6 @@ void qtbook_dvd::slotReset(void)
 	  dvd.monetary_units->setCurrentIndex(0);
 	  dvd.monetary_units->setFocus();
 	}
-      else if(action == actions[20])
-	{
-	  if(engWindowTitle.contains("Search"))
-	    dvd.description->clear();
-	  else
-	    dvd.description->setPlainText("N/A");
-
-	  dvd.description->setFocus();
-	}
       else if(action == actions[18])
 	{
 	  dvd.quantity->setValue(dvd.quantity->minimum());
@@ -1485,29 +1515,19 @@ void qtbook_dvd::slotReset(void)
 	  dvd.location->setCurrentIndex(0);
 	  dvd.location->setFocus();
 	}
-      else if(action == actions[5])
+      else if(action == actions[20])
 	{
 	  if(engWindowTitle.contains("Search"))
-	    dvd.directors->clear();
+	    dvd.description->clear();
 	  else
-	    dvd.directors->setPlainText("N/A");
+	    dvd.description->setPlainText("N/A");
 
-	  dvd.directors->setFocus();
+	  dvd.description->setFocus();
 	}
-      else if(action == actions[3])
+      else if(action == actions[21])
 	{
-	  dvd.rating->setCurrentIndex(0);
-	  dvd.rating->setFocus();
-	}
-      else if(action == actions[9])
-	{
-	  dvd.region->setCurrentIndex(0);
-	  dvd.region->setFocus();
-	}
-      else if(action == actions[10])
-	{
-	  dvd.aspectratio->setCurrentIndex(0);
-	  dvd.aspectratio->setFocus();
+	  dvd.keyword->clear();
+	  dvd.keyword->setFocus();
 	}
 
       actions.clear();
@@ -1575,6 +1595,7 @@ void qtbook_dvd::slotReset(void)
       dvd.aspectratio->setCurrentIndex(0);
       dvd.front_image->clear();
       dvd.back_image->clear();
+      dvd.keyword->clear();
       dvd.id->setFocus();
     }
 }
@@ -1704,6 +1725,8 @@ void qtbook_dvd::slotPrint(void)
     dvd.location->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     dvd.description->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Keyword:") + "</b> " +
+    dvd.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }
 
