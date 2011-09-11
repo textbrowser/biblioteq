@@ -1014,7 +1014,7 @@ void qtbook::slotAbout(void)
 	     "project information.<br>"
 	     "For release notes, please visit "
 	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
-	     "http://biblioteq.sourceforge.net/news.html</a>.").
+	     "http://biblioteq.sourceforge.net/news.html</a>.<br></html>").
      arg(BIBLIOTEQ_VERSION));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.png"));
