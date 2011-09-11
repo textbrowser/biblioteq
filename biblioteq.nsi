@@ -1,6 +1,7 @@
 # Define installer name.
 
 Name "BiblioteQ Installer"
+!define APPNAME "BiblioteQ"
 outFile "BiblioteQ-Installer.exe"
 
 # Install directory.
@@ -36,6 +37,10 @@ file .\libs.win.d\*.dll
 file .\sqlite3.exe
 file .\release\BiblioteQ.exe
 
+# Add an icon to the Desktop.
+
+CreateShortCut  "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\biblioteq.exe" "" "$INSTDIR\biblioteq.exe" 0
+
 # Define uninstaller name.
 
 writeUninstaller $INSTDIR\BiblioteQ-Uninstaller.exe
@@ -49,8 +54,7 @@ sectionEnd
 
 section "Uninstall"
 
-# Always delete uninstaller first.
-
+Delete  "$DESKTOP\${APPNAME}.lnk"
 RMDir /r $INSTDIR
 
 sectionEnd
