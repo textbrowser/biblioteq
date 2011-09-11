@@ -430,6 +430,8 @@ void qtbook_book::slotGo(void)
       id.deweynum->setText(str);
       str = id.marc_tags->toPlainText().trimmed();
       id.marc_tags->setPlainText(str);
+      str = id.keyword->toPlainText().trimmed();
+      id.keyword->setPlainText(str);
 
       if(engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE book SET id = ?, "
@@ -451,7 +453,8 @@ void qtbook_book::slotGo(void)
 		      "front_cover = ?, "
 		      "back_cover = ?, "
 		      "place = ?, "
-		      "marc_tags = ? "
+		      "marc_tags = ?, "
+		      "keyword = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -463,8 +466,8 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags) "
-		      "VALUES (?, ?, "
+		      "place, marc_tags, keyword) "
+		      "VALUES (?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -478,8 +481,8 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags, myoid) "
-		      "VALUES (?, ?, "
+		      "place, marc_tags, keyword, myoid) "
+		      "VALUES (?, ?, ?, "
 		      "?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
@@ -549,16 +552,17 @@ void qtbook_book::slotGo(void)
 
       query.bindValue(20, id.place->toPlainText().trimmed());
       query.bindValue(21, id.marc_tags->toPlainText().trimmed());
+      query.bindValue(22, id.keyword->toPlainText().trimmed());
 
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(22, oid);
+	query.bindValue(23, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
 							   errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(22, value);
+	    query.bindValue(23, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -660,6 +664,7 @@ void qtbook_book::slotGo(void)
 	  id.title->setPalette(te_orig_pal);
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.marc_tags->viewport()->setPalette(white_pal);
+	  id.keyword->viewport()->setPalette(white_pal);
 	  id.publisher->viewport()->setPalette(te_orig_pal);
 	  id.place->viewport()->setPalette(te_orig_pal);
 	  id.lcnum->setPalette(white_pal);
@@ -949,6 +954,10 @@ void qtbook_book::slotGo(void)
 		       myqstring::escape
 		       (id.marc_tags->toPlainText().toLower()) +
 		       "%' ");
+      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       myqstring::escape
+		       (id.keyword->toPlainText().toLower()) +
+		       "%' ");
       hide();
 
       /*
@@ -981,6 +990,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.place->clear();
   id.description->clear();
   id.marc_tags->clear();
+  id.keyword->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
   id.queryButton->setVisible(false);
@@ -1184,7 +1194,8 @@ void qtbook_book::modify(const int state)
     "description, "
     "front_cover, "
     "back_cover, "
-    "marc_tags "
+    "marc_tags, "
+    "keyword "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -1299,6 +1310,8 @@ void qtbook_book::modify(const int state)
 	    id.description->setPlainText(var.toString());
 	  else if(fieldname == "marc_tags")
 	    id.marc_tags->setPlainText(var.toString());
+	  else if(fieldname == "keyword")
+	    id.keyword->setPlainText(var.toString());
 	  else if(fieldname == "isbn13")
 	    id.isbn13->setText(var.toString());
 	  else if(fieldname == "lccontrolnumber")
@@ -1360,6 +1373,7 @@ void qtbook_book::insert(void)
   id.place->setPlainText("N/A");
   id.description->setPlainText("N/A");
   id.marc_tags->clear();
+  id.keyword->clear();
   id.copiesButton->setEnabled(false);
   id.queryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
@@ -1609,6 +1623,7 @@ void qtbook_book::slotReset(void)
 	id.description->clear();
 
       id.marc_tags->clear();
+      id.keyword->clear();
       id.isbn13->clear();
       id.lcnum->clear();
       id.callnum->clear();
@@ -1634,6 +1649,7 @@ void qtbook_book::slotReset(void)
       id.author->viewport()->setPalette(te_orig_pal);
       id.description->viewport()->setPalette(te_orig_pal);
       id.marc_tags->viewport()->setPalette(white_pal);
+      id.keyword->viewport()->setPalette(white_pal);
       id.publisher->viewport()->setPalette(te_orig_pal);
       id.place->viewport()->setPalette(te_orig_pal);
       id.id->setFocus();
