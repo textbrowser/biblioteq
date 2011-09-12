@@ -2145,4 +2145,25 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	"VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
       query.exec(querystr);
     }
+  else if(version == "6.51")
+    {
+      QSqlQuery query(db);
+      QStringList tables;
+
+      tables << "book"
+	     << "cd"
+	     << "dvd"
+	     << "journal"
+	     << "magazine"
+	     << "videogame";
+
+      while(!tables.isEmpty())
+	{
+	  QString querystr;
+
+	  querystr = QString("ALTER TABLE %1 ADD keyword TEXT").
+	    arg(tables.takeFirst());
+	  query.exec(querystr);
+	}
+    }
 }

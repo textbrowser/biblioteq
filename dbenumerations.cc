@@ -267,7 +267,7 @@ void dbenumerations::populateWidgets(void)
 	    if(item)
 	      {
 		item->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-			       Qt::ItemIsSelectable) ;
+			       Qt::ItemIsSelectable);
 		listwidget->addItem(item);
 	      }
 	  }
@@ -277,8 +277,8 @@ void dbenumerations::populateWidgets(void)
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
-	      QComboBox *item1 = new QComboBox();
-	      QTableWidgetItem *item2 = new QTableWidgetItem
+	      QComboBox *item1 = new(std::nothrow) QComboBox();
+	      QTableWidgetItem *item2 = new(std::nothrow) QTableWidgetItem
 		(pairList.at(j).second);
 
 	      if(item1 && item2)
@@ -380,8 +380,8 @@ void dbenumerations::slotAdd(void)
     }
   else if(toolButton == ui.addLocation)
     {
-      QComboBox *item1 = new QComboBox();
-      QTableWidgetItem *item2 = new QTableWidgetItem();
+      QComboBox *item1 = new(std::nothrow) QComboBox();
+      QTableWidgetItem *item2 = new(std::nothrow) QTableWidgetItem();
 
       if(item1 && item2)
 	{
@@ -431,7 +431,7 @@ void dbenumerations::slotAdd(void)
   if(list && listItem)
     {
       listItem->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
-			 Qt::ItemIsSelectable) ;
+			 Qt::ItemIsSelectable);
       list->addItem(listItem);
       list->setCurrentItem(listItem);
       list->editItem(listItem);
