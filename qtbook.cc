@@ -10272,7 +10272,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 	  if(db.isOpen())
 	    {
 	      /*
-	      ** Attempt to locate a SQLite branch.
+	      ** Attempt to locate an SQLite branch.
 	      */
 
 	      bool found = false;
@@ -10310,7 +10310,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 	  else
 	    {
 	      /*
-	      ** Attempt to locate a SQLite branch.
+	      ** Attempt to locate an SQLite branch.
 	      */
 
 	      bool found = false;
