@@ -6284,8 +6284,16 @@ void qtbook::slotDisconnect(void)
   members_diag->close();
   history_diag->close();
   customquery_diag->close();
+  cq.tables_t->clear();
+  cq.tables_t->setColumnCount(0);
+  cq.tables_t->scrollToTop();
+  cq.tables_t->horizontalScrollBar()->setValue(0);
+  cq.tables_t->clearSelection();
+  cq.tables_t->setCurrentItem(0);
+  cq.query_te->clear();
   admin_diag->close();
   db_enumerations->clear();
+  db_enumerations->close();
   resetAdminBrowser();
   resetMembersBrowser();
   ui.pagesLabel->setText("1");
