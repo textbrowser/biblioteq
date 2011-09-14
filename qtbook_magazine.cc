@@ -1953,9 +1953,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
     ma.marc_tags->clear();
 
   for(i = 0; i < list.size(); i++)
-    if(list[i].startsWith("260"))
+    if(list[i].startsWith("260 "))
       ma.place->clear();
-    else if(list[i].startsWith("650"))
+    else if(list[i].startsWith("650 "))
       ma.category->clear();
     else
       str += list[i] + "\n";
@@ -1971,7 +1971,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
     {
       str = list[i];
 
-      if(str.startsWith("010"))
+      if(str.startsWith("010 "))
 	{
 	  /*
 	  ** $a - LC Control Number
@@ -1985,7 +1985,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.lcnum, QColor(162, 205, 90));
 	}
-      else if(str.startsWith("050"))
+      else if(str.startsWith("050 "))
 	{
 	  /*
 	  ** $a - Classification Number
@@ -2003,7 +2003,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.callnum, QColor(162, 205, 90));
 	}
-      else if(str.startsWith("082"))
+      else if(str.startsWith("082 "))
 	{
 	  /*
 	  ** $a - Classification Number
@@ -2020,7 +2020,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.deweynum, QColor(162, 205, 90));
 	}
-      else if(str.startsWith("245"))
+      else if(str.startsWith("245 "))
 	{
 	  /*
 	  ** $a - Title
@@ -2082,7 +2082,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.title, QColor(162, 205, 90));
 	}
-      else if(str.startsWith("260"))
+      else if(str.startsWith("260 "))
 	{
 	  /*
 	  ** $a - Place of Publication, Distribution, etc.
@@ -2142,11 +2142,15 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	    ("background-color: rgb(162, 205, 90)");
 	  str = str.mid(str.indexOf("$b") + 2).trimmed();
 	  str = str.mid(0, str.indexOf(",")).trimmed();
+
+	  if(!QChar(str[str.length() - 1]).isLetter())
+	    str = str.mid(0, str.length() - 1);
+
 	  ma.publisher->setPlainText(str);
 	  misc_functions::highlightWidget
 	    (ma.publisher->viewport(), QColor(162, 205, 90));
 	}
-      else if(str.startsWith("300"))
+      else if(str.startsWith("300 "))
 	{
 	  /*
 	  ** $a - Extent
@@ -2167,7 +2171,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.description->viewport(), QColor(162, 205, 90));
 	}
-      else if(str.startsWith("650"))
+      else if(str.startsWith("650 "))
 	{
 	  /*
 	  ** $a - Topical Term or Geographic Name as Entry Element

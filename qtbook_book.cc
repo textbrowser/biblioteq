@@ -1881,19 +1881,19 @@ void qtbook_book::slotQuery(void)
 		(id.marc_tags->viewport(), QColor(162, 205, 90));
 
 	      for(i = 0; i < list.size(); i++)
-		if(list[i].startsWith("100") ||
-		   list[i].startsWith("700"))
+		if(list[i].startsWith("100 ") ||
+		   list[i].startsWith("700 "))
 		  id.author->clear();
-		else if(list[i].startsWith("260"))
+		else if(list[i].startsWith("260 "))
 		  id.place->clear();
-		else if(list[i].startsWith("650"))
+		else if(list[i].startsWith("650 "))
 		  id.category->clear();
 
 	      for(i = 0; i < list.size(); i++)
 		{
 		  str = list[i];
 
-		  if(str.startsWith("010"))
+		  if(str.startsWith("010 "))
 		    {
 		      /*
 		      ** $a - LC Control Number
@@ -1909,7 +1909,7 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.lcnum, QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("020"))
+		  else if(str.startsWith("020 "))
 		    {
 		      /*
 		      ** $a - International Standard Book Number
@@ -1955,7 +1955,7 @@ void qtbook_book::slotQuery(void)
 			    (id.id, QColor(162, 205, 90));
 			}
 		    }
-		  else if(str.startsWith("050"))
+		  else if(str.startsWith("050 "))
 		    {
 		      /*
 		      ** $a - Classification Number
@@ -1973,7 +1973,7 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.callnum, QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("082"))
+		  else if(str.startsWith("082 "))
 		    {
 		      /*
 		      ** $a - Classification Number
@@ -1992,8 +1992,8 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.deweynum, QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("100") ||
-			  str.startsWith("700"))
+		  else if(str.startsWith("100 ") ||
+			  str.startsWith("700 "))
 		    {
 		      /*
 		      ** $a - Personal Name
@@ -2062,7 +2062,7 @@ void qtbook_book::slotQuery(void)
 
 		      if(!id.author->toPlainText().contains(str))
 			{
-			  if(list[i].startsWith("100"))
+			  if(list[i].startsWith("100 "))
 			    id.author->setPlainText(str);
 			  else if(!id.author->toPlainText().isEmpty())
 			    id.author->setPlainText
@@ -2074,7 +2074,7 @@ void qtbook_book::slotQuery(void)
 			    (id.author->viewport(), QColor(162, 205, 90));
 			}
 		    }
-		  else if(str.startsWith("245"))
+		  else if(str.startsWith("245 "))
 		    {
 		      /*
 		      ** $a - Title
@@ -2151,7 +2151,7 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.title, QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("250"))
+		  else if(str.startsWith("250 "))
 		    {
 		      /*
 		      ** $a - Edition Statement
@@ -2177,7 +2177,7 @@ void qtbook_book::slotQuery(void)
 			    id.edition->setCurrentIndex(str.toInt() - 1);
 			}
 		    }
-		  else if(str.startsWith("260"))
+		  else if(str.startsWith("260 "))
 		    {
 		      /*
 		      ** $a - Place of Publication, Distribution, etc.
@@ -2264,7 +2264,7 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.publisher->viewport(), QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("300"))
+		  else if(str.startsWith("300 "))
 		    {
 		      /*
 		      ** $a - Extent
@@ -2291,7 +2291,7 @@ void qtbook_book::slotQuery(void)
 		      misc_functions::highlightWidget
 			(id.description->viewport(), QColor(162, 205, 90));
 		    }
-		  else if(str.startsWith("650"))
+		  else if(str.startsWith("650 "))
 		    {
 		      /*
 		      ** $a - Topical Term or Geographic Name as Entry Element

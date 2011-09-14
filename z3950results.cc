@@ -21,14 +21,12 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 
   for(i = 0; i < list.count(); i++)
     {
-      QString str("");
+      QString issn("");
       QStringList parsedList(list.at(i).split("\n"));
 
       for(int j = 0; j < parsedList.size(); j++)
-	if(parsedList.at(j).startsWith("022"))
+	if(parsedList.at(j).startsWith("022 "))
 	  {
-	    QString issn("");
-
 	    /*
 	    ** $a - International Standard Serial Number (NR)
 	    ** $l - ISSN-L (NR)
@@ -46,14 +44,14 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	    if(issn.contains(" "))
 	      issn = issn.mid(0, issn.indexOf(" "));
 
-	    str = issn;
-
-	    if(magazine_arg->dialog().id->text() == str)
+	    if(magazine_arg->dialog().id->text() == issn)
 	      row = i;
+
+	    break;
 	  }
 
-      if(!str.isEmpty())
-	ui.list->addItem(str);
+      if(!issn.isEmpty())
+	ui.list->addItem(issn);
       else
 	ui.list->addItem
 	  (QString(tr("Record #")) + QString::number(i + 1));
@@ -109,7 +107,7 @@ void z3950results::slotUpdateQueryText(void)
   QStringList list(records[ui.list->currentRow()].split("\n"));
 
   for(int i = 0; i < list.size(); i++)
-    if(list.at(i).startsWith("245"))
+    if(list.at(i).startsWith("245 "))
       {
 	/*
 	** $a - Title
@@ -142,6 +140,7 @@ void z3950results::slotUpdateQueryText(void)
 	title = title.remove(" $s").trimmed();
 	title = title.remove(" $6").trimmed();
 	title = title.remove(" $8").trimmed();
+	break;
       }
 
   ui.title->setText(title);
