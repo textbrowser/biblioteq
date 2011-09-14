@@ -51,44 +51,6 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	    if(magazine_arg->dialog().id->text() == str)
 	      row = i;
 	  }
-	else if(parsedList.at(j).startsWith("245"))
-	  {
-	    QString title("");
-
-	    /*
-	    ** $a - Title
-	    ** $b - Remainder of Title
-	    ** $c - Statement of Responsibility
-	    ** $d - Designation of section (Obsolete)
-	    ** $e - Name of Part/Section
-	    ** $f - Inclusive Dates
-	    ** $g - Bulk Dates
-	    ** $h - Medium
-	    ** $k - Form
-	    ** $n - Number of Part/Section of a Work
-	    ** $p - Name of Part/Section of a Work
-	    ** $s - Version (NR)
-	    ** $6 - Linkage (NR)
-	    ** $8 - Field Link and Sequence Number
-	    */
-
-	    title = parsedList.at(j);
-	    title = title.mid(title.indexOf("$a") + 2).trimmed();
-	    title = title.remove(" $b").trimmed();
-	    title = title.remove(" $c").trimmed();
-	    title = title.remove(" $d").trimmed();
-	    title = title.remove(" $f").trimmed();
-	    title = title.remove(" $g").trimmed();
-	    title = title.remove(" $h").trimmed();
-	    title = title.remove(" $k").trimmed();
-	    title = title.remove(" $n").trimmed();
-	    title = title.remove(" $p").trimmed();
-	    title = title.remove(" $s").trimmed();
-	    title = title.remove(" $6").trimmed();
-	    title = title.remove(" $8").trimmed();
-	    str.append(" ").append(title);
-	    str = str.trimmed();
-	  }
 
       if(!str.isEmpty())
 	ui.list->addItem(str);
@@ -143,6 +105,46 @@ void z3950results::slotSelectRecord(void)
 
 void z3950results::slotUpdateQueryText(void)
 {
+  QString title("");
+  QStringList list(records[ui.list->currentRow()].split("\n"));
+
+  for(int i = 0; i < list.size(); i++)
+    if(list.at(i).startsWith("245"))
+      {
+	/*
+	** $a - Title
+	** $b - Remainder of Title
+	** $c - Statement of Responsibility
+	** $d - Designation of section (Obsolete)
+	** $e - Name of Part/Section
+	** $f - Inclusive Dates
+	** $g - Bulk Dates
+	** $h - Medium
+	** $k - Form
+	** $n - Number of Part/Section of a Work
+	** $p - Name of Part/Section of a Work
+	** $s - Version (NR)
+	** $6 - Linkage (NR)
+	** $8 - Field Link and Sequence Number
+	*/
+
+	title = list.at(i);
+	title = title.mid(title.indexOf("$a") + 2).trimmed();
+	title = title.remove(" $b").trimmed();
+	title = title.remove(" $c").trimmed();
+	title = title.remove(" $d").trimmed();
+	title = title.remove(" $f").trimmed();
+	title = title.remove(" $g").trimmed();
+	title = title.remove(" $h").trimmed();
+	title = title.remove(" $k").trimmed();
+	title = title.remove(" $n").trimmed();
+	title = title.remove(" $p").trimmed();
+	title = title.remove(" $s").trimmed();
+	title = title.remove(" $6").trimmed();
+	title = title.remove(" $8").trimmed();
+      }
+
+  ui.title->setText(title);
   ui.textarea->setPlainText(records[ui.list->currentRow()]);
 }
 
