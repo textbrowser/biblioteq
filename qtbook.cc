@@ -931,6 +931,11 @@ void qtbook::showMain(void)
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());
 
+  /*
+  ** Initial update.
+  */
+
+  initialUpdate();
   show();
 
   /*
@@ -963,12 +968,6 @@ void qtbook::showMain(void)
 
       ui.menuPreferredZ3950Server->addAction(action);
     }
-
-  /*
-  ** Initial update.
-  */
-
-  initialUpdate();
 }
 
 /*
@@ -4323,7 +4322,18 @@ int qtbook::populateTable(const int search_type_arg,
 	    item = 0;
 
 	    if(query.record().fieldName(j) != "front_cover")
-	      str = query.value(j).toString();
+	      {
+		if(query.record().fieldName(j).contains("date") ||
+		   query.record().fieldName(j).contains("membersince"))
+		  {
+		    QDate date(QDate::fromString(query.value(j).toString(),
+						 "MM/dd/yyyy"));
+
+		    str = date.toString(Qt::SystemLocaleShortDate);
+		  }
+		else
+		  str = query.value(j).toString();
+	      }
 
 	    if(search_type == CUSTOM_QUERY)
 	      if(!tmplist.contains(query.record().fieldName(j)))
@@ -6607,7 +6617,16 @@ void qtbook::slotPopulateMembersBrowser(void)
       if(query.isValid())
 	for(j = 0; j < query.record().count(); j++)
 	  {
-	    str = query.value(j).toString();
+	    if(query.record().fieldName(j).contains("date") ||
+	       query.record().fieldName(j).contains("membersince"))
+	      {
+		QDate date(QDate::fromString(query.value(j).toString(),
+					     "MM/dd/yyyy"));
+
+		str = date.toString(Qt::SystemLocaleShortDate);
+	      }
+	    else
+	      str = query.value(j).toString();
 
 	    if(str == "0")
 	      str = "";
@@ -8972,7 +8991,15 @@ void qtbook::slotShowHistory(void)
       if(query.isValid())
 	for(j = 0; j < query.record().count(); j++)
 	  {
-	    str = query.value(j).toString();
+	    if(query.record().fieldName(j).contains("date"))
+	      {
+		QDate date(QDate::fromString(query.value(j).toString(),
+					     "MM/dd/yyyy"));
+
+		str = date.toString(Qt::SystemLocaleShortDate);
+	      }
+	    else
+	      str = query.value(j).toString();
 
 	    if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	      {
@@ -9140,9 +9167,13 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)
 	      {
+		QDate date(QDate::fromString(returnedDate,
+					     "MM/dd/yyyy"));
+
 		misc_functions::updateColumn
 		  (history.table, i,
-		   tr("Returned Date"), returnedDate);
+		   tr("Returned Date"), date.toString
+		   (Qt::SystemLocaleShortDate));
 		break;
 	      }
 	  }

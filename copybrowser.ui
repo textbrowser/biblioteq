@@ -84,9 +84,6 @@
            </item>
            <item>
             <widget class="QDateEdit" name="dueDate">
-             <property name="displayFormat">
-              <string>MM/dd/yyyy</string>
-             </property>
              <property name="calendarPopup">
               <bool>true</bool>
              </property>
@@ -245,7 +242,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../home/monster/biblioteq.d/icons.d/16x16/eraser.png</normaloff>../../../../home/monster/biblioteq.d/icons.d/16x16/eraser.png</iconset>
+         <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
        </property>
       </widget>
      </item>

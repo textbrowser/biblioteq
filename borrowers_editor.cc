@@ -155,7 +155,6 @@ void borrowers_editor::showUsers(void)
 	    if((dateEdit = new(std::nothrow) QDateEdit()) != 0)
 	      {
 		bd.table->setCellWidget(i, j, dateEdit);
-		dateEdit->setDisplayFormat("MM/dd/yyyy");
 		dateEdit->setDate
 		  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 		dateEdit->setCalendarPopup(true);
@@ -268,6 +267,8 @@ void borrowers_editor::showUsers(void)
 			       "the minimum number of days.")),
 		    errorstr, __FILE__, __LINE__);
 
+  QDate reservationDate;
+
   while(i++, !progress2.wasCanceled() && query.next())
     {
       if(query.isValid())
@@ -280,6 +281,18 @@ void borrowers_editor::showUsers(void)
 
 	    if(j == 0 && query.value(0).isNull())
 	      str = QString::number(i + 1);
+	    else if(j == 5 && state == qtbook::EDITABLE)
+	      {
+		reservationDate = QDate::fromString(query.value(j).toString(),
+						    "MM/dd/yyyy");
+		str = reservationDate.toString(Qt::SystemLocaleShortDate);
+	      }
+	    else if(j == 2 && state != qtbook::EDITABLE)
+	      {
+		reservationDate = QDate::fromString(query.value(j).toString(),
+						    "MM/dd/yyyy");
+		str = reservationDate.toString(Qt::SystemLocaleShortDate);
+	      }
 	    else
 	      str = query.value(j).toString();
 

@@ -668,9 +668,6 @@
             <property name="readOnly">
              <bool>false</bool>
             </property>
-            <property name="displayFormat">
-             <string>MM/dd/yyyy</string>
-            </property>
             <property name="calendarPopup">
              <bool>true</bool>
             </property>
@@ -702,9 +699,6 @@
             </property>
             <property name="readOnly">
              <bool>false</bool>
-            </property>
-            <property name="displayFormat">
-             <string>MM/dd/yyyy</string>
             </property>
             <property name="calendarPopup">
              <bool>true</bool>
@@ -763,9 +757,6 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QDateEdit" name="expirationdate">
-            <property name="displayFormat">
-             <string>MM/dd/yyyy</string>
-            </property>
             <property name="calendarPopup">
              <bool>true</bool>
             </property>

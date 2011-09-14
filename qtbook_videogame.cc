@@ -616,7 +616,8 @@ void qtbook_videogame::slotGo(void)
 		      else if(column->text() == tr("Release Date") ||
 			      column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
-			  (vg.release_date->date().toString("MM/dd/yyyy"));
+			  (vg.release_date->date().toString
+			   (Qt::SystemLocaleShortDate));
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.publisher->toPlainText());
@@ -1532,7 +1533,7 @@ void qtbook_videogame::slotPrint(void)
 
   html += "<b>" + tr("Title:") + "</b> " + vg.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + vg.release_date->date().
-    toString("MM/dd/yyyy") + "<br>";
+    toString(Qt::SystemLocaleShortDate) + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     vg.publisher->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Place of Publication:") + "</b> " +

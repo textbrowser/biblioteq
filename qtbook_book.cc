@@ -730,7 +730,7 @@ void qtbook_book::slotGo(void)
 		      else if(column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publication_date->date().toString
-			   ("MM/dd/yyyy"));
+			   (Qt::SystemLocaleShortDate));
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (id.publisher->toPlainText());
@@ -2410,7 +2410,7 @@ void qtbook_book::slotPrint(void)
   html += "<b>" + tr("Title:") + "</b> " +
     id.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Publication Date:") + "</b> " +
-    id.publication_date->date().toString("MM/dd/yyyy") + "<br>";
+    id.publication_date->date().toString(Qt::SystemLocaleShortDate) + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     id.publisher->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Place of Publication:") + "</b> " +
@@ -2429,7 +2429,7 @@ void qtbook_book::slotPrint(void)
     id.description->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("MARC Tags:") + "</b> " +
     id.marc_tags->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Keywords:") + "</b>" +
+  html += "<b>" + tr("Keywords:") + "</b> " +
     id.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }

@@ -708,7 +708,8 @@ void qtbook_magazine::slotGo(void)
 			  (ma.title->text());
 		      else if(column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
-			  (ma.publication_date->date().toString("MM/dd/yyyy"));
+			  (ma.publication_date->date().toString
+			   (Qt::SystemLocaleShortDate));
 		      else if(column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publisher->toPlainText());
@@ -1913,7 +1914,7 @@ void qtbook_magazine::slotPrint(void)
 
   html += "<b>" + tr("Title:") + "</b> " + ma.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Publication Date:") + "</b> " +
-    ma.publication_date->date().toString("MM/dd/yyyy") + "<br>";
+    ma.publication_date->date().toString(Qt::SystemLocaleShortDate) + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     ma.publisher->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Place of Publication:") + "</b> " +

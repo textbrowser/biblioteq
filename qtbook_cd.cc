@@ -663,7 +663,8 @@ void qtbook_cd::slotGo(void)
 		      else if(column->text() == tr("Release Date") ||
 			      column->text() == tr("Publication Date"))
 			qmain->getUI().table->item(row, i)->setText
-			  (cd.release_date->date().toString("MM/dd/yyyy"));
+			  (cd.release_date->date().toString
+			   (Qt::SystemLocaleShortDate));
 		      else if(column->text() == tr("Recording Label") ||
 			      column->text() == tr("Publisher"))
 			qmain->getUI().table->item(row, i)->setText
@@ -2104,7 +2105,7 @@ void qtbook_cd::slotPrint(void)
   html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
     "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
-    toString("MM/dd/yyyy") + "<br>";
+    toString(Qt::SystemLocaleShortDate) + "<br>";
   html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
     toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Categories:") + "</b> " +

@@ -533,9 +533,6 @@
               <pointsize>10</pointsize>
              </font>
             </property>
-            <property name="displayFormat">
-             <string>MM/dd/yyyy</string>
-            </property>
             <property name="calendarPopup">
              <bool>true</bool>
             </property>

@@ -896,17 +896,23 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
   query.bindValue(4, memberid);
   query.bindValue(5, memberid);
 
+  QDate date;
+
   if(query.exec())
     while(query.next())
       {
+	date = QDate::fromString(query.value(4).toString(),
+				 "MM/dd/yyyy");
 	str = QString(QObject::tr("#")) +
 	  QString::number(list.size() + 1) + "<br>";
 	str += QObject::tr("Barcode: ") +
-	  query.value(0).toString() + QObject::tr(" Location: ") +
+	  query.value(0).toString() + "<br>" +
+	  QObject::tr(" Location: ") +
 	  query.value(1).toString() + "<br>" +
 	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
 	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
-	  QObject::tr("Due Date: ") + query.value(4).toString();
+	  QObject::tr("Due Date: ") +
+	  date.toString(Qt::SystemLocaleShortDate);
 	list.append(str);
       }
 
