@@ -41,6 +41,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void search(const QString & = "", const QString & = "");
   void updateWindow(const int);
   void populateDisplayAfterZ3950(const QStringList &);
+  Ui_magDialog dialog(void) const;
 
  protected:
   QString subType;

@@ -10,6 +10,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   QDialog(parent)
 {
   int i = 0;
+  int row = 0;
 
   magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
@@ -20,7 +21,81 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 
   for(i = 0; i < list.count(); i++)
     {
-      ui.list->addItem(QString(tr("Record #")) + QString::number(i + 1));
+      QString str("");
+      QStringList parsedList(list.at(i).split("\n"));
+
+      for(int j = 0; j < parsedList.size(); j++)
+	if(parsedList.at(j).startsWith("022"))
+	  {
+	    QString issn("");
+
+	    /*
+	    ** $a - International Standard Serial Number (NR)
+	    ** $l - ISSN-L (NR)
+	    ** $m - Canceled ISSN-L (R)
+	    ** $y - Incorrect ISSN (R)
+	    ** $z - Canceled ISSN (R)
+	    ** $2 - Source (NR)
+	    ** $6 - Linkage (NR)
+	    ** $8 - Field link and sequence number (R) 
+	    */
+
+	    issn = parsedList.at(j);
+	    issn = issn.mid(issn.indexOf("$a") + 2).trimmed();
+
+	    if(issn.contains(" "))
+	      issn = issn.mid(0, issn.indexOf(" "));
+
+	    str = issn;
+
+	    if(magazine_arg->dialog().id->text() == str)
+	      row = i;
+	  }
+	else if(parsedList.at(j).startsWith("245"))
+	  {
+	    QString title("");
+
+	    /*
+	    ** $a - Title
+	    ** $b - Remainder of Title
+	    ** $c - Statement of Responsibility
+	    ** $d - Designation of section (Obsolete)
+	    ** $e - Name of Part/Section
+	    ** $f - Inclusive Dates
+	    ** $g - Bulk Dates
+	    ** $h - Medium
+	    ** $k - Form
+	    ** $n - Number of Part/Section of a Work
+	    ** $p - Name of Part/Section of a Work
+	    ** $s - Version (NR)
+	    ** $6 - Linkage (NR)
+	    ** $8 - Field Link and Sequence Number
+	    */
+
+	    title = parsedList.at(j);
+	    title = title.mid(title.indexOf("$a") + 2).trimmed();
+	    title = title.remove(" $b").trimmed();
+	    title = title.remove(" $c").trimmed();
+	    title = title.remove(" $d").trimmed();
+	    title = title.remove(" $f").trimmed();
+	    title = title.remove(" $g").trimmed();
+	    title = title.remove(" $h").trimmed();
+	    title = title.remove(" $k").trimmed();
+	    title = title.remove(" $n").trimmed();
+	    title = title.remove(" $p").trimmed();
+	    title = title.remove(" $s").trimmed();
+	    title = title.remove(" $6").trimmed();
+	    title = title.remove(" $8").trimmed();
+	    str.append(" ").append(title);
+	    str = str.trimmed();
+	  }
+
+      if(!str.isEmpty())
+	ui.list->addItem(str);
+      else
+	ui.list->addItem
+	  (QString(tr("Record #")) + QString::number(i + 1));
+
       records.append(list[i]);
     }
 
@@ -31,7 +106,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	  SLOT(slotSelectRecord(void)));
   connect(ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
-  ui.list->setCurrentRow(0);
+  ui.list->setCurrentRow(row);
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recRet),  0);
   ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recCont),  1);
   setGlobalFonts(font);

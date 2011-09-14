@@ -2191,6 +2191,24 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.mid(0, str.indexOf("$v")).trimmed();
 
+	  if(str.contains("$0"))
+	    str = str.mid(0, str.indexOf("$0")).trimmed();
+
+	  if(str.contains("$2"))
+	    str = str.mid(0, str.indexOf("$2")).trimmed();
+
+	  if(str.contains("$3"))
+	    str = str.mid(0, str.indexOf("$3")).trimmed();
+
+	  if(str.contains("$4"))
+	    str = str.mid(0, str.indexOf("$4")).trimmed();
+
+	  if(str.contains("$6"))
+	    str = str.mid(0, str.indexOf("$6")).trimmed();
+
+	  if(str.contains("$8"))
+	    str = str.mid(0, str.indexOf("$8")).trimmed();
+
 	  if(str.contains("$v"))
 	    str = str.mid(0, str.indexOf("$v")).trimmed();
 
@@ -2275,4 +2293,13 @@ void qtbook_magazine::slotSelectImage(void)
 	    (QGraphicsItem::ItemIsSelectable);
 	}
     }
+}
+
+/*
+** -- dialog() --
+*/
+
+Ui_magDialog qtbook_magazine::dialog(void) const
+{
+  return ma;
 }
