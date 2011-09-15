@@ -931,8 +931,6 @@ void qtbook::showMain(void)
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());
 
-  show();
-
   /*
   ** Configure the global settings file.
   */
@@ -971,6 +969,7 @@ void qtbook::showMain(void)
   */
 
   initialUpdate();
+  show();
 
   if(!error.isEmpty())
     QMessageBox::critical(this, tr("BiblioteQ: File Error"),
