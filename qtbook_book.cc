@@ -1802,7 +1802,6 @@ void qtbook_book::slotQuery(void)
   QString searchstr = "";
   QStringList list;
   QStringList tmplist;
-  QStringList removeList;
   qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
 
   if(!(id.id->text().trimmed().length() == 10 ||
@@ -1896,10 +1895,10 @@ void qtbook_book::slotQuery(void)
 		  if(str.startsWith("010 "))
 		    {
 		      /*
-		      ** $a - LC Control Number
-		      ** $b - NUCMC Control Number
-		      ** $z - Canceled/Invalid LC Control Number
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - LC control number (NR)
+		      ** $b - NUCMC control number (R)
+		      ** $z - Canceled/invalid LC control number (R)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -1927,11 +1926,11 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("020 "))
 		    {
 		      /*
-		      ** $a - International Standard Book Number
-		      ** $c - Terms of Availability
-		      ** $z - Canceled/Invalid ISBN
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - International Standard Book Number (NR)
+		      ** $c - Terms of availability (NR)
+		      ** $z - Canceled/invalid ISBN (R)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -1973,17 +1972,32 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("050 "))
 		    {
 		      /*
-		      ** $a - Classification Number
-		      ** $b - Item Number
-		      ** $d - Supplementary Class Number (Obsolete)
-		      ** $3 - Materials Specified
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Classification number (R)
+		      ** $b - Item number (NR)
+		      ** $3 - Materials specified (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(" $b").remove(" $d").remove(" $3").
-			remove(" $6").remove(" $8").trimmed();
+		      str = str.remove(" $b").trimmed();
+
+		      QStringList subfields;
+
+		      subfields << "$3"
+				<< "$6"
+				<< "$8";
+
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
+
 		      id.callnum->setText(str);
 		      misc_functions::highlightWidget
 			(id.callnum, QColor(162, 205, 90));
@@ -1991,18 +2005,35 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("082 "))
 		    {
 		      /*
-		      ** $a - Classification Number
-		      ** $b - Item Number
-		      ** $b - DDC Number--abridged NST Version (Obsolete)
-		      ** $2 - Edition Number
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Classification number (R)
+		      ** $b - Item number (NR)
+		      ** $m - Standard or optional designation (NR)
+		      ** $q - Assigning agency (NR)
+		      ** $2 - Edition number (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(" $a").remove
-			(" $b").remove(" $2").remove(" $6").remove
-			(" $8").trimmed();
+		      str = str.remove(" $b").remove
+			(" $m").remove(" $q").trimmed();
+
+		      QStringList subfields;
+
+		      subfields << "$2"
+				<< "$6"
+				<< "$8";
+
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
+
 		      id.deweynum->setText(str);
 		      misc_functions::highlightWidget
 			(id.deweynum, QColor(162, 205, 90));
@@ -2011,69 +2042,62 @@ void qtbook_book::slotQuery(void)
 			  str.startsWith("700 "))
 		    {
 		      /*
-		      ** $a - Personal Name
-		      ** $b - Numeration
-		      ** $c - Titles and other Words associated with a Name
-		      ** $d - Dates associated with a Name
-		      ** $e - Relator Term
-		      ** $f - Date of a Work
-		      ** $g - Miscellaneous Information
-		      ** $j - Attribution Qualifier
-		      ** $k - Form Subheading
-		      ** $l - Language of a Work
-		      ** $n - Number of Part/Section of a Work
-		      ** $p - Name of Part/Section of a Work
-		      ** $q - Fuller Form of Name
-		      ** $t - Title of a Work
-		      ** $u - Affiliation
-		      ** $0 - Authority Record Control Number
-		      ** $4 - Relator Code
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Personal name (NR)
+		      ** $b - Numeration (NR)
+		      ** $c - Titles and words associated with a name (R)
+		      ** $d - Dates associated with a name (NR)
+		      ** $e - Relator term (R)
+		      ** $f - Date of a work (NR)
+		      ** $g - Miscellaneous information (NR)
+		      ** $j - Attribution qualifier (R)
+		      ** $k - Form subheading (R)
+		      ** $l - Language of a work (NR)
+		      ** $n - Number of part/section of a work (R)
+		      ** $p - Name of part/section of a work (R)
+		      ** $q - Fuller form of name (NR)
+		      ** $t - Title of a work (NR)
+		      ** $u - Affiliation (NR)
+		      ** $0 - Authority record control number (R)
+		      ** $4 - Relator code (R)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(".").trimmed();
-		      removeList.append(" $b");
-		      removeList.append(" $c");
-		      removeList.append(" $d");
-		      removeList.append(" $e");
-		      removeList.append(" $f");
-		      removeList.append(" $g");
-		      removeList.append(" $j");
-		      removeList.append(" $k");
-		      removeList.append(" $l");
-		      removeList.append(" $n");
-		      removeList.append(" $p");
-		      removeList.append(" $q");
-		      removeList.append(" $t");
-		      removeList.append(" $u");
-		      removeList.append(" $0");
-		      removeList.append(" $4");
-		      removeList.append(" $6");
-		      removeList.append(" $8");
 
-		      while(!removeList.isEmpty())
-			str = str.remove(removeList.takeFirst()).trimmed();
+		      QStringList subfields;
 
-		      if(str.count(",") > 1)
-			str = str.mid(0, str.lastIndexOf(","));
+		      subfields << "$b"
+				<< "$c"
+				<< "$d"
+				<< "$e"
+				<< "$f"
+				<< "$g"
+				<< "$j"
+				<< "$k"
+				<< "$l"
+				<< "$n"
+				<< "$p"
+				<< "$q"
+				<< "$t"
+				<< "$u"
+				<< "$0"
+				<< "$4"
+				<< "$6"
+				<< "$8";
 
-		      /*
-		      ** Pure regular expressions would have worked just
-		      ** as elegantly.
-		      */
-
-		      tmplist = str.split(" ");
-		      str = "";
-
-		      for(j = 0; j < tmplist.size(); j++)
-			if(reg.exactMatch(tmplist[j]))
-			  str += tmplist[j] + ". ";
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
 			else
-			  str += tmplist[j] + " ";
+			  subfields.takeFirst();
 
-		      str = str.trimmed();
+		      if(str.endsWith(","))
+			str = str.mid(0, str.length() - 1);
 
 		      if(!id.author->toPlainText().contains(str))
 			{
@@ -2092,72 +2116,47 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("245 "))
 		    {
 		      /*
-		      ** $a - Title
-		      ** $b - Remainder of Title
-		      ** $c - Statement of Responsibility
-		      ** $d - Designation of section (Obsolete)
-		      ** $e - Name of Part/Section
-		      ** $f - Inclusive Dates
-		      ** $g - Bulk Dates
-		      ** $h - Medium
-		      ** $k - Form
-		      ** $n - Number of Part/Section of a Work
-		      ** $p - Name of Part/Section of a Work
+		      ** $a - Title (NR)
+		      ** $b - Remainder of title (NR)
+		      ** $c - Statement of responsibility, etc. (NR)
+		      ** $f - Inclusive dates (NR)
+		      ** $g - Bulk dates (NR)
+		      ** $h - Medium (NR)
+		      ** $k - Form (R)
+		      ** $n - Number of part/section of a work (R)
+		      ** $p - Name of part/section of a work (R)
 		      ** $s - Version (NR)
 		      ** $6 - Linkage (NR)
-		      ** $8 - Field Link and Sequence Number
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 		      str = str.remove(" $b").trimmed();
-		      str = str.remove(" $c").trimmed();
-		      str = str.remove(" $d").trimmed();
-		      str = str.remove(" $f").trimmed();
-		      str = str.remove(" $g").trimmed();
-		      str = str.remove(" $h").trimmed();
-		      str = str.remove(" $k").trimmed();
-		      str = str.remove(" $n").trimmed();
-		      str = str.remove(" $p").trimmed();
-		      str = str.remove(" $s").trimmed();
-		      str = str.remove(" $6").trimmed();
-		      str = str.remove(" $8").trimmed();
 
-		      if(str.contains("/"))
-			str = str.mid(0, str.lastIndexOf('/')).trimmed();
+		      QStringList subfields;
 
-		      /*
-		      ** Let's perform some additional massaging.
-		      */
+		      subfields << "$c"
+				<< "$f"
+				<< "$g"
+				<< "$h"
+				<< "$k"
+				<< "$n"
+				<< "$p"
+				<< "$s"
+				<< "$6"
+				<< "$8";
 
-		      if(str.contains(" : "))
-			str.replace(" : ", ": ");
-		      else if(str.contains(" ; "))
-			str.replace(" ; ", "; ");
-
-		      tmplist = str.split(" ");
-		      str = "";
-
-		      for(j = 0; j < tmplist.size(); j++)
-			if(j == 0 || j == tmplist.size() - 1)
-			  str += tmplist[j].mid(0, 1).toUpper() +
-			    tmplist[j].mid(1) + " ";
-			else if(tmplist[j] == "a" || tmplist[j] == "an" ||
-				tmplist[j] == "and" || tmplist[j] == "but" ||
-				tmplist[j] == "of" || tmplist[j] == "or" ||
-				tmplist[j] == "the")
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
 			  {
-			    if(tmplist[j - 1].contains(":"))
-			      str += tmplist[j].mid(0, 1).toUpper() +
-				tmplist[j].mid(1) + " ";
-			    else
-			      str += tmplist[j] + " ";
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
 			  }
 			else
-			  str += tmplist[j].mid(0, 1).toUpper() +
-			    tmplist[j].mid(1) + " ";
+			  subfields.takeFirst();
 
-		      tmplist.clear();
-		      str = str.trimmed();
+		      str = str.mid(0, str.lastIndexOf('/')).trimmed();
 
 		      if(!str.isEmpty() && str[str.length() - 1].isPunct())
 			str.remove(str.length() - 1, 1);
@@ -2169,16 +2168,31 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("250 "))
 		    {
 		      /*
-		      ** $a - Edition Statement
-		      ** $b - Remainder of Edition Statement
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Edition statement (NR)
+		      ** $b - Remainder of edition statement (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+		      QStringList subfields;
+
+		      subfields << "$b"
+				<< "$6"
+				<< "$8";
+
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
+
 		      str = str.mid(0, str.indexOf(" ")).trimmed();
-		      str = str.remove(" $b").remove(" $6").remove(" $8").
-			trimmed();
 
 		      if(id.edition->findText(str) > -1)
 			id.edition->setCurrentIndex
@@ -2195,27 +2209,40 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("260 "))
 		    {
 		      /*
-		      ** $a - Place of Publication, Distribution, etc.
-		      ** $b - Name of Publisher, Distributor, etc.
-		      ** $c - Date of Publication, Distribution, etc.
-		      ** $d - Plate or Publisher's Number for Music
-		      ** $e - Place of Manufacture
-		      ** $f - Manufacturer
-		      ** $g - Date of Manufacture
-		      ** $3 - Materials Specified
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Place of publication, distribution, etc. (R)
+		      ** $b - Name of publisher, distributor, etc. (R)
+		      ** $c - Date of publication, distribution, etc. (R)
+		      ** $e - Place of manufacture (R)
+		      ** $f - Manufacturer (R)
+		      ** $g - Date of manufacture (R)
+		      ** $3 - Materials specified (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      QString tmpstr = str.mid(str.indexOf("$a") + 2).
 			trimmed();
 
-		      if(tmpstr.contains("$b"))
-			tmpstr = tmpstr.mid
-			  (0, tmpstr.indexOf("$b")).trimmed();
-		      else
-			tmpstr = tmpstr.mid
-			  (0, tmpstr.indexOf("$c")).trimmed();
+		      QStringList subfields;
+
+		      subfields << "$b"
+				<< "$c"
+				<< "$e"
+				<< "$f"
+				<< "$g"
+				<< "$3"
+				<< "$6"
+				<< "$8";
+
+		      while(!subfields.isEmpty())
+			if(tmpstr.contains(subfields.first()))
+			  {
+			    tmpstr = tmpstr.mid
+			      (0, tmpstr.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
 
 		      tmplist = tmpstr.split("$a");
 
@@ -2262,7 +2289,9 @@ void qtbook_book::slotQuery(void)
 
 		      id.publication_date->setStyleSheet
 			("background-color: rgb(162, 205, 90)");
-		      str = str.mid(str.indexOf("$b") + 2).trimmed();
+
+		      if(str.contains("$b"))
+			str = str.mid(str.indexOf("$b") + 2).trimmed();
 
 		      if(str.contains("$a"))
 			{
@@ -2282,15 +2311,15 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("300 "))
 		    {
 		      /*
-		      ** $a - Extent
-		      ** $b - Other Physical Details
-		      ** $c - Dimensions
-		      ** $e - Accompanying Material
-		      ** $f - Type of Unit
-		      ** $g - Size of Unit
-		      ** $3 - Materials Specified
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Extent (R)
+		      ** $b - Other physical details (NR)
+		      ** $c - Dimensions (R)
+		      ** $e - Accompanying material (NR)
+		      ** $f - Type of unit (R)
+		      ** $g - Size of unit (R)
+		      ** $3 - Materials specified (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -2309,37 +2338,53 @@ void qtbook_book::slotQuery(void)
 		  else if(str.startsWith("650 "))
 		    {
 		      /*
-		      ** $a - Topical Term or Geographic Name as Entry Element
-		      ** $b - Topical Term following Geographic Name as Entry
-		      **      Element
-		      ** $c - Location of Event
-		      ** $d - Active Dates
-		      ** $e - Relator Term
-		      ** $v - Form Subdivision
-		      ** $x - General Subdivision
-		      ** $y - Chronological Subdivision
-		      ** $z - Geographic Subdivision
-		      ** $0 - Authority Record Control Number
-		      ** $2 - Source of Heading or Term
-		      ** $3 - Materials Specified
-		      ** $4 - Relator Code
-		      ** $6 - Linkage
-		      ** $8 - Field Link and Sequence Number
+		      ** $a - Topical term or geographic name entry
+		      **      element (NR)
+		      ** $b - Topical term following geographic name entry
+		      **      element (NR)
+		      ** $c - Location of event (NR)
+		      ** $d - Active dates (NR)
+		      ** $e - Relator term (R)
+		      ** $4 - Relator code (R)
+		      ** $v - Form subdivision (R)
+		      ** $x - General subdivision (R)
+		      ** $y - Chronological subdivision (R)
+		      ** $z - Geographic subdivision (R)
+		      ** $0 - Authority record control number (R)
+		      ** $2 - Source of heading or term (NR)
+		      ** $3 - Materials specified (NR)
+		      ** $6 - Linkage (NR)
+		      ** $8 - Field link and sequence number (R) 
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
 
-		      if(str.contains("$v"))
-			str = str.mid(0, str.indexOf("$v")).trimmed();
+		      QStringList subfields;
 
-		      if(str.contains("$x"))
-			str = str.mid(0, str.indexOf("$x")).trimmed();
+		      subfields << "$b"
+				<< "$c"
+				<< "$d"
+				<< "$e"
+				<< "$4"
+				<< "$v"
+				<< "$x"
+				<< "$y"
+				<< "$z"
+				<< "$0"
+				<< "$2"
+				<< "$3"
+				<< "$6"
+				<< "$8";
 
-		      if(str.contains("$y"))
-			str = str.mid(0, str.indexOf("$y")).trimmed();
-
-		      if(str.contains("$z"))
-			str = str.mid(0, str.indexOf("$z")).trimmed();
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
 
 		      if(!str.isEmpty())
 			{
