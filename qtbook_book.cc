@@ -1906,14 +1906,15 @@ void qtbook_book::slotQuery(void)
 
 		      QStringList subfields;
 
-		      subfields << " $b"
-				<< " $z"
-				<< " $8";
+		      subfields << "$b"
+				<< "$z"
+				<< "$8";
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
 			  {
-			    str = str.mid(0, str.indexOf(subfields.first()));
+			    str = str.mid
+			      (0, str.indexOf(subfields.first())).trimmed();
 			    break;
 			  }
 			else
