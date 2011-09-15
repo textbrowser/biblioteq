@@ -931,18 +931,15 @@ void qtbook::showMain(void)
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());
 
-  /*
-  ** Initial update.
-  */
-
-  initialUpdate();
   show();
 
   /*
   ** Configure the global settings file.
   */
 
-  readGlobalSetup();
+  QString error("");
+
+  readGlobalSetup(error);
 
   /*
   ** Perform additional user interface duties.
@@ -968,6 +965,16 @@ void qtbook::showMain(void)
 
       ui.menuPreferredZ3950Server->addAction(action);
     }
+
+  /*
+  ** Initial update.
+  */
+
+  initialUpdate();
+
+  if(!error.isEmpty())
+    QMessageBox::critical(this, tr("BiblioteQ: File Error"),
+			  error);
 }
 
 /*
@@ -5021,7 +5028,7 @@ void qtbook::slotSaveUser(void)
 ** -- readGlobalSetup() --
 */
 
-void qtbook::readGlobalSetup(void)
+void qtbook::readGlobalSetup(QString &error)
 {
   int i = 0;
   int j = 0;
@@ -5258,21 +5265,19 @@ void qtbook::readGlobalSetup(void)
       qapp->restoreOverrideCursor();
 
       if(!thread->getErrorStr().isEmpty())
-	QMessageBox::critical(this, tr("BiblioteQ: File Error"),
-			      thread->getErrorStr());
+	error = thread->getErrorStr();
 
       thread->deleteLater();
     }
   else
     {
+      error = QString(tr("Unable to read ")) + filename +
+	QString(tr(" due to insufficient resources."));
       addError(QString(tr("File Error")),
 	       QString(tr("Unable to read ")) + filename +
 	       QString(tr(" due to insufficient resources.")),
 	       QString(""),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: File Error"),
-			    tr("Unable to read ") + filename +
-			    tr(" due to insufficient resources."));
     }
 }
 

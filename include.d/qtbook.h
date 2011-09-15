@@ -261,7 +261,7 @@ class qtbook: public QMainWindow
   void initialUpdate(void);
   void prepareFilter(void);
   void emptyContainers(void);
-  void readGlobalSetup(void);
+  void readGlobalSetup(QString &);
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);

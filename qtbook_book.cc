@@ -1903,8 +1903,22 @@ void qtbook_book::slotQuery(void)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
-		      str = str.remove(" $b").remove(" $z").remove(" $8").
-			trimmed();
+
+		      QStringList subfields;
+
+		      subfields << " $b"
+				<< " $z"
+				<< " $8";
+
+		      while(!subfields.isEmpty())
+			if(str.contains(subfields.first()))
+			  {
+			    str = str.mid(0, str.indexOf(subfields.first()));
+			    break;
+			  }
+			else
+			  subfields.takeFirst();
+
 		      id.lcnum->setText(str);
 		      misc_functions::highlightWidget
 			(id.lcnum, QColor(162, 205, 90));
