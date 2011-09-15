@@ -80,7 +80,7 @@ void generic_thread::run(void)
 	    toStdString().data()), 0);
 
 	ZOOM_connection_option_set(zoomConnection,
-				   "preferredRecordSyntax", "USMARC");
+				   "preferredRecordSyntax", "MARC21");
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "user",
