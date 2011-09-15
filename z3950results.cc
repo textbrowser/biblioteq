@@ -29,20 +29,16 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	  {
 	    /*
 	    ** $a - International Standard Serial Number (NR)
-	    ** $l - ISSN-L (NR)
-	    ** $m - Canceled ISSN-L (R)
-	    ** $y - Incorrect ISSN (R)
-	    ** $z - Canceled ISSN (R)
-	    ** $2 - Source (NR)
-	    ** $6 - Linkage (NR)
-	    ** $8 - Field link and sequence number (R) 
 	    */
 
 	    issn = parsedList.at(j);
 	    issn = issn.mid(issn.indexOf("$a") + 2).trimmed();
 
 	    if(issn.contains(" "))
-	      issn = issn.mid(0, issn.indexOf(" "));
+	      issn = issn.mid(0, issn.indexOf(" ")).trimmed();
+
+	    if(issn.length() >= 9)
+	      issn = issn.mid(0, 9);
 
 	    if(magazine_arg->dialog().id->text() == issn)
 	      row = i;
@@ -110,40 +106,57 @@ void z3950results::slotUpdateQueryText(void)
     if(list.at(i).startsWith("245 "))
       {
 	/*
-	** $a - Title
-	** $b - Remainder of Title
-	** $c - Statement of Responsibility
-	** $d - Designation of section (Obsolete)
-	** $e - Name of Part/Section
-	** $f - Inclusive Dates
-	** $g - Bulk Dates
-	** $h - Medium
-	** $k - Form
-	** $n - Number of Part/Section of a Work
-	** $p - Name of Part/Section of a Work
+	** $a - Title (NR)
+	** $b - Remainder of title (NR)
+	** $c - Statement of responsibility, etc. (NR)
+	** $f - Inclusive dates (NR)
+	** $g - Bulk dates (NR)
+	** $h - Medium (NR)
+	** $k - Form (R)
+	** $n - Number of part/section of a work (R)
+	** $p - Name of part/section of a work (R)
 	** $s - Version (NR)
 	** $6 - Linkage (NR)
-	** $8 - Field Link and Sequence Number
+	** $8 - Field link and sequence number (R)
 	*/
 
 	title = list.at(i);
 	title = title.mid(title.indexOf("$a") + 2).trimmed();
 	title = title.remove(" $b").trimmed();
-	title = title.remove(" $c").trimmed();
-	title = title.remove(" $d").trimmed();
-	title = title.remove(" $f").trimmed();
-	title = title.remove(" $g").trimmed();
-	title = title.remove(" $h").trimmed();
-	title = title.remove(" $k").trimmed();
-	title = title.remove(" $n").trimmed();
-	title = title.remove(" $p").trimmed();
-	title = title.remove(" $s").trimmed();
-	title = title.remove(" $6").trimmed();
-	title = title.remove(" $8").trimmed();
+
+	QStringList subfields;
+
+	subfields << "$c"
+		  << "$f"
+		  << "$g"
+		  << "$h"
+		  << "$k"
+		  << "$n"
+		  << "$p"
+		  << "$s"
+		  << "$6"
+		  << "$8";
+
+	while(!subfields.isEmpty())
+	  if(title.contains(subfields.first()))
+	    {
+	      title = title.mid
+		(0, title.indexOf(subfields.first())).trimmed();
+	      break;
+	    }
+	  else
+	    subfields.takeFirst();
+
+	title = title.mid(0, title.lastIndexOf('/')).trimmed();
+
+	if(!title.isEmpty() && title[title.length() - 1].isPunct())
+	  title.remove(title.length() - 1, 1);
+
 	break;
       }
 
   ui.title->setText(title);
+  ui.title->setCursorPosition(0);
   ui.textarea->setPlainText(records[ui.list->currentRow()]);
 }
 
