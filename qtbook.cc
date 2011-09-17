@@ -6887,7 +6887,12 @@ void qtbook::slotModifyBorrower(void)
 	    userinfo_diag->userinfo.expirationdate->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 
-	  userinfo_diag->memberProperties[fieldname] = var.toString();
+	  if(fieldname.contains("date") ||
+	     fieldname.contains("membersince"))
+	    userinfo_diag->memberProperties[fieldname] =
+	      var.toDate().toString(Qt::SystemLocaleShortDate);
+	  else
+	    userinfo_diag->memberProperties[fieldname] = var.toString();
 	}
 
       foreach(QLineEdit *textfield,
