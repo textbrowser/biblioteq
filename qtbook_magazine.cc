@@ -1974,31 +1974,63 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
       if(str.startsWith("010 "))
 	{
 	  /*
-	  ** $a - LC Control Number
-	  ** $b - NUCMC Control Number
-	  ** $z - Canceled/Invalid LC Control Number
-	  ** $8 - Field Link and Sequence Number
+	  ** $a - LC control number (NR)
+	  ** $b - NUCMC control number (R)
+	  ** $z - Canceled/invalid LC control number (R)
+	  ** $8 - Field link and sequence number (R)
 	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$z"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      {
+		str = str.mid
+		  (0, str.indexOf(subfields.first())).trimmed();
+		break;
+	      }
+	    else
+	      subfields.takeFirst();
+
 	  ma.lcnum->setText(str);
 	  misc_functions::highlightWidget
 	    (ma.lcnum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("050 "))
 	{
-	  /*
-	  ** $a - Classification Number
-	  ** $b - Item Number
-	  ** $d - Supplementary Class Number (Obsolete)
-	  ** $3 - Materials Specified
-	  ** $6 - Linkage
-	  ** $8 - Field Link and Sequence Number
-	  */
+	   /*
+	   ** $a - Classification number (R)
+	   ** $b - Item number (NR)
+	   ** $3 - Materials specified (NR)
+	   ** $6 - Linkage (NR)
+	   ** $8 - Field link and sequence number (R)
+	   */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
-	  str = str.remove(" $b").remove(" $d").remove(" $3").
-	    remove(" $6").remove(" $8").trimmed();
+	  str = str.remove(" $b").trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$3"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      {
+		str = str.mid
+		  (0, str.indexOf(subfields.first())).trimmed();
+		break;
+	      }
+	    else
+	      subfields.takeFirst();
+
 	  ma.callnum->setText(str);
 	  misc_functions::highlightWidget
 	    (ma.callnum, QColor(162, 205, 90));
@@ -2006,77 +2038,86 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
       else if(str.startsWith("082 "))
 	{
 	  /*
-	  ** $a - Classification Number
-	  ** $b - Item Number
-	  ** $b - DDC Number--abridged NST Version (Obsolete)
-	  ** $2 - Edition Number
-	  ** $6 - Linkage
-	  ** $8 - Field Link and Sequence Number
+	  ** $a - Classification number (R)
+	  ** $b - Item number (NR)
+	  ** $m - Standard or optional designation (NR)
+	  ** $q - Assigning agency (NR)
+	  ** $2 - Edition number (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
 	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
-	  str = str.remove(" $2").trimmed();
+	  str = str.remove(" $b").remove
+	    (" $m").remove(" $q").trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$2"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      {
+		str = str.mid
+		  (0, str.indexOf(subfields.first())).trimmed();
+		break;
+	      }
+	    else
+	      subfields.takeFirst();
+
 	  ma.deweynum->setText(str);
 	  misc_functions::highlightWidget
 	    (ma.deweynum, QColor(162, 205, 90));
 	}
       else if(str.startsWith("245 "))
 	{
-	  /*
-	  ** $a - Title
-	  ** $b - Remainder of Title
-	  ** $c - Statement of Responsibility
-	  ** $d - Designation of section (Obsolete)
-	  ** $e - Name of Part/Section
-	  ** $f - Inclusive Dates
-	  ** $g - Bulk Dates
-	  ** $h - Medium
-	  ** $k - Form
-	  ** $n - Number of Part/Section of a Work
-	  ** $p - Name of Part/Section of a Work
-	  ** $s - Version (NR)
-	  ** $6 - Linkage (NR)
-	  ** $8 - Field Link and Sequence Number
-	  */
+	   /*
+	   ** $a - Title (NR)
+	   ** $b - Remainder of title (NR)
+	   ** $c - Statement of responsibility, etc. (NR)
+	   ** $f - Inclusive dates (NR)
+	   ** $g - Bulk dates (NR)
+	   ** $h - Medium (NR)
+	   ** $k - Form (R)
+	   ** $n - Number of part/section of a work (R)
+	   ** $p - Name of part/section of a work (R)
+	   ** $s - Version (NR)
+	   ** $6 - Linkage (NR)
+	   ** $8 - Field link and sequence number (R)
+	   */
 
-	  str = str.mid(str.indexOf("$a") + 2,
-			str.indexOf("/") - str.indexOf("$a") - 2).trimmed();
+	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  str = str.remove(" $b").trimmed();
 
-	  /*
-	  ** Let's perform some additional massaging.
-	  */
+	  QStringList subfields;
 
-	  if(str.contains(" : "))
-	    str.replace(" : ", ": ");
-	  else if(str.contains(" ; "))
-	    str.replace(" ; ", "; ");
+	  subfields << "$c"
+		    << "$f"
+		    << "$g"
+		    << "$h"
+		    << "$k"
+		    << "$n"
+		    << "$p"
+		    << "$s"
+		    << "$6"
+		    << "$8";
 
-	  tmplist = str.split(" ");
-	  str = "";
-
-	  for(j = 0; j < tmplist.size(); j++)
-	    if(j == 0 || j == tmplist.size() - 1)
-	      str += tmplist[j].mid(0, 1).toUpper() +
-		tmplist[j].mid(1) + " ";
-	    else if(tmplist[j] == "a" || tmplist[j] == "an" ||
-		    tmplist[j] == "and" || tmplist[j] == "but" ||
-		    tmplist[j] == "of" || tmplist[j] == "or" ||
-		    tmplist[j] == "the")
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
 	      {
-		if(tmplist[j - 1].contains(":"))
-		  str += tmplist[j].mid(0, 1).toUpper() +
-		    tmplist[j].mid(1) + " ";
-		else
-		  str += tmplist[j] + " ";
+		str = str.mid
+		  (0, str.indexOf(subfields.first())).trimmed();
+		break;
 	      }
 	    else
-	      str += tmplist[j].mid(0, 1).toUpper() + tmplist[j].mid(1) + " ";
+	      subfields.takeFirst();
 
-	  tmplist.clear();
-	  str = str.trimmed();
+	  str = str.mid(0, str.lastIndexOf('/')).trimmed();
 
 	  if(!str.isEmpty() && str[str.length() - 1].isPunct())
-	    str.remove(str.length() - 1, 1);
+	    str = str.remove(str.length() - 1, 1).trimmed();
 
 	  ma.title->setText(str.trimmed());
 	  misc_functions::highlightWidget
@@ -2123,7 +2164,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 		continue;
 
 	      if(tmpstr[tmpstr.length() - 1] == ',')
-		tmpstr.remove(tmpstr.length() - 1, 1);
+		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).trimmed();
 
 	      if(ma.place->toPlainText().isEmpty())
 		ma.place->setPlainText(tmpstr);
@@ -2144,7 +2185,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  str = str.mid(0, str.indexOf(",")).trimmed();
 
 	  if(!QChar(str[str.length() - 1]).isLetter())
-	    str = str.mid(0, str.length() - 1);
+	    str = str = str.mid(0, str.length() - 1).trimmed();
 
 	  ma.publisher->setPlainText(str);
 	  misc_functions::highlightWidget
@@ -2153,20 +2194,26 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
       else if(str.startsWith("300 "))
 	{
 	  /*
-	  ** $a - Extent
-	  ** $b - Other Physical Details
-	  ** $c - Dimensions
-	  ** $e - Accompanying Material
-	  ** $f - Type of Unit
-	  ** $g - Size of Unit
-	  ** $3 - Materials Specified
-	  ** $6 - Linkage
-	  ** $8 - Field Link and Sequence Number
+	  ** $a - Extent (R)
+	  ** $b - Other physical details (NR)
+	  ** $c - Dimensions (R)
+	  ** $e - Accompanying material (NR)
+	  ** $f - Type of unit (R)
+	  ** $g - Size of unit (R)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
 	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $b").trimmed();
 	  str = str.remove(" $c").trimmed();
+	  str = str.remove(" $e").trimmed();
+	  str = str.remove(" $f").trimmed();
+	  str = str.remove(" $g").trimmed();
+	  str = str.remove(" $3").trimmed();
+	  str = str.remove(" $6").trimmed();
+	  str = str.remove(" $8").trimmed();
 	  ma.description->setPlainText(str);
 	  misc_functions::highlightWidget
 	    (ma.description->viewport(), QColor(162, 205, 90));
@@ -2174,56 +2221,53 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
       else if(str.startsWith("650 "))
 	{
 	  /*
-	  ** $a - Topical Term or Geographic Name as Entry Element
-	  ** $b - Topical Term following Geographic Name as Entry
-	  **      Element
-	  ** $c - Location of Event
-	  ** $d - Active Dates
-	  ** $e - Relator Term
-	  ** $v - Form Subdivision
-	  ** $x - General Subdivision
-	  ** $y - Chronological Subdivision
-	  ** $z - Geographic Subdivision
-	  ** $0 - Authority Record Control Number
-	  ** $2 - Source of Heading or Term
-	  ** $3 - Materials Specified
-	  ** $4 - Relator Code
-	  ** $6 - Linkage
-	  ** $8 - Field Link and Sequence Number
+	  ** $a - Topical term or geographic name entry
+	  **      element (NR)
+	  ** $b - Topical term following geographic name entry
+	  **      element (NR)
+	  ** $c - Location of event (NR)
+	  ** $d - Active dates (NR)
+	  ** $e - Relator term (R)
+	  ** $4 - Relator code (R)
+	  ** $v - Form subdivision (R)
+	  ** $x - General subdivision (R)
+	  ** $y - Chronological subdivision (R)
+	  ** $z - Geographic subdivision (R)
+	  ** $0 - Authority record control number (R)
+	  ** $2 - Source of heading or term (NR)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R) 
 	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
-	  str = str.mid(0, str.indexOf("$v")).trimmed();
 
-	  if(str.contains("$0"))
-	    str = str.mid(0, str.indexOf("$0")).trimmed();
+	  QStringList subfields;
 
-	  if(str.contains("$2"))
-	    str = str.mid(0, str.indexOf("$2")).trimmed();
+	  subfields << "$b"
+		    << "$c"
+		    << "$d"
+		    << "$e"
+		    << "$4"
+		    << "$v"
+		    << "$x"
+		    << "$y"
+		    << "$z"
+		    << "$0"
+		    << "$2"
+		    << "$3"
+		    << "$6"
+		    << "$8";
 
-	  if(str.contains("$3"))
-	    str = str.mid(0, str.indexOf("$3")).trimmed();
-
-	  if(str.contains("$4"))
-	    str = str.mid(0, str.indexOf("$4")).trimmed();
-
-	  if(str.contains("$6"))
-	    str = str.mid(0, str.indexOf("$6")).trimmed();
-
-	  if(str.contains("$8"))
-	    str = str.mid(0, str.indexOf("$8")).trimmed();
-
-	  if(str.contains("$v"))
-	    str = str.mid(0, str.indexOf("$v")).trimmed();
-
-	  if(str.contains("$x"))
-	    str = str.mid(0, str.indexOf("$x")).trimmed();
-
-	  if(str.contains("$y"))
-	    str = str.mid(0, str.indexOf("$y")).trimmed();
-
-	  if(str.contains("$z"))
-	    str = str.mid(0, str.indexOf("$z")).trimmed();
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      {
+		str = str.mid
+		  (0, str.indexOf(subfields.first())).trimmed();
+		break;
+	      }
+	    else
+	      subfields.takeFirst();
 
 	  if(!str.isEmpty())
 	    {
@@ -2234,12 +2278,14 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 		{
 		  if(!ma.category->toPlainText().isEmpty())
 		    ma.category->setPlainText
-		      (ma.category->toPlainText() + "\n" + str);
+		      (ma.category->toPlainText() + "\n" +
+		       str);
 		  else
 		    ma.category->setPlainText(str);
 
 		  misc_functions::highlightWidget
-		    (ma.category->viewport(), QColor(162, 205, 90));
+		    (ma.category->viewport(),
+		     QColor(162, 205, 90));
 		}
 	    }
 	}

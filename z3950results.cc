@@ -38,7 +38,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	      issn = issn.mid(0, issn.indexOf(" ")).trimmed();
 
 	    if(issn.length() >= 9)
-	      issn = issn.mid(0, 9);
+	      issn = issn.mid(0, 9).trimmed();
 
 	    if(magazine_arg->dialog().id->text() == issn)
 	      row = i;
@@ -150,7 +150,7 @@ void z3950results::slotUpdateQueryText(void)
 	title = title.mid(0, title.lastIndexOf('/')).trimmed();
 
 	if(!title.isEmpty() && title[title.length() - 1].isPunct())
-	  title.remove(title.length() - 1, 1);
+	  title = title.remove(title.length() - 1, 1).trimmed();
 
 	break;
       }

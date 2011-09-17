@@ -1950,14 +1950,14 @@ void qtbook_book::slotQuery(void)
 
 		      if(str.contains(" ") && str.indexOf(" ") == 10)
 			{
-			  str = str.mid(0, 10);
+			  str = str.mid(0, 10).trimmed();
 			  id.id->setText(str);
 			  misc_functions::highlightWidget
 			    (id.id, QColor(162, 205, 90));
 			}
 		      else if(str.contains(" ") && str.indexOf(" ") == 13)
 			{
-			  str = str.mid(0, 13);
+			  str = str.mid(0, 13).trimmed();
 			  id.isbn13->setText(str);
 			  misc_functions::highlightWidget
 			    (id.isbn13, QColor(162, 205, 90));
@@ -2097,7 +2097,7 @@ void qtbook_book::slotQuery(void)
 			  subfields.takeFirst();
 
 		      if(str.endsWith(","))
-			str = str.mid(0, str.length() - 1);
+			str = str.mid(0, str.length() - 1).trimmed();
 
 		      if(!id.author->toPlainText().contains(str))
 			{
@@ -2105,7 +2105,8 @@ void qtbook_book::slotQuery(void)
 			    id.author->setPlainText(str);
 			  else if(!id.author->toPlainText().isEmpty())
 			    id.author->setPlainText
-			      (id.author->toPlainText() + "\n" + str);
+			      (id.author->toPlainText() + "\n" +
+			       str);
 			  else
 			    id.author->setPlainText(str);
 
@@ -2159,7 +2160,7 @@ void qtbook_book::slotQuery(void)
 		      str = str.mid(0, str.lastIndexOf('/')).trimmed();
 
 		      if(!str.isEmpty() && str[str.length() - 1].isPunct())
-			str.remove(str.length() - 1, 1);
+			str = str.remove(str.length() - 1, 1).trimmed();
 
 		      id.title->setText(str);
 		      misc_functions::highlightWidget
@@ -2262,7 +2263,8 @@ void qtbook_book::slotQuery(void)
 			    continue;
 
 			  if(tmpstr[tmpstr.length() - 1] == ',')
-			    tmpstr.remove(tmpstr.length() - 1, 1);
+			    tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
+			      trimmed();
 
 			  if(id.place->toPlainText().isEmpty())
 			    id.place->setPlainText(tmpstr);
@@ -2302,7 +2304,7 @@ void qtbook_book::slotQuery(void)
 			str = str.mid(0, str.indexOf("$c")).trimmed();
 
 		      if(str.endsWith(","))
-			str = str.mid(0, str.length() - 1);
+			str = str.mid(0, str.length() - 1).trimmed();
 
 		      id.publisher->setPlainText(str);
 		      misc_functions::highlightWidget
@@ -2395,7 +2397,8 @@ void qtbook_book::slotQuery(void)
 			    {
 			      if(!id.category->toPlainText().isEmpty())
 				id.category->setPlainText
-				  (id.category->toPlainText() + "\n" + str);
+				  (id.category->toPlainText() + "\n" +
+				   str);
 			      else
 				id.category->setPlainText(str);
 
