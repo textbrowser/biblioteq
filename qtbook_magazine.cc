@@ -2073,20 +2073,20 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	}
       else if(str.startsWith("245 "))
 	{
-	   /*
-	   ** $a - Title (NR)
-	   ** $b - Remainder of title (NR)
-	   ** $c - Statement of responsibility, etc. (NR)
-	   ** $f - Inclusive dates (NR)
-	   ** $g - Bulk dates (NR)
-	   ** $h - Medium (NR)
-	   ** $k - Form (R)
-	   ** $n - Number of part/section of a work (R)
-	   ** $p - Name of part/section of a work (R)
-	   ** $s - Version (NR)
-	   ** $6 - Linkage (NR)
-	   ** $8 - Field link and sequence number (R)
-	   */
+	  /*
+	  ** $a - Title (NR)
+	  ** $b - Remainder of title (NR)
+	  ** $c - Statement of responsibility, etc. (NR)
+	  ** $f - Inclusive dates (NR)
+	  ** $g - Bulk dates (NR)
+	  ** $h - Medium (NR)
+	  ** $k - Form (R)
+	  ** $n - Number of part/section of a work (R)
+	  ** $p - Name of part/section of a work (R)
+	  ** $s - Version (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
 	  str = str.remove(" $b").trimmed();
