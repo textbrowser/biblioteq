@@ -2126,25 +2126,40 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
       else if(str.startsWith("260 "))
 	{
 	  /*
-	  ** $a - Place of Publication, Distribution, etc.
-	  ** $b - Name of Publisher, Distributor, etc.
-	  ** $c - Date of Publication, Distribution, etc.
-	  ** $d - Plate or Publisher's Number for Music
-	  ** $e - Place of Manufacture
-	  ** $f - Manufacturer
-	  ** $g - Date of Manufacture
-	  ** $3 - Materials Specified
-	  ** $6 - Linkage
-	  ** $8 - Field Link and Sequence Number
+	  ** $a - Place of publication, distribution, etc. (R)
+	  ** $b - Name of publisher, distributor, etc. (R)
+	  ** $c - Date of publication, distribution, etc. (R)
+	  ** $e - Place of manufacture (R)
+	  ** $f - Manufacturer (R)
+	  ** $g - Date of manufacture (R)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
 	  */
 
 	  QString tmpstr = str.mid(str.indexOf("$a") + 2).
 	    trimmed();
 
-	  if(tmpstr.contains("$b"))
-	    tmpstr = tmpstr.mid(0, tmpstr.indexOf("$b")).trimmed();
-	  else
-	    tmpstr = tmpstr.mid(0, tmpstr.indexOf("$c")).trimmed();
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$c"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$3"
+		    << "$6"
+		    << "$8";
+
+	  while(!subfields.isEmpty())
+	    if(tmpstr.contains(subfields.first()))
+	      {
+		tmpstr = tmpstr.mid
+		  (0, tmpstr.indexOf(subfields.first())).trimmed();
+		break;
+	      }
+	    else
+	      subfields.takeFirst();
 
 	  tmplist = tmpstr.split("$a");
 
@@ -2163,8 +2178,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	      if(tmpstr.isEmpty())
 		continue;
 
-	      if(tmpstr[tmpstr.length() - 1] == ',')
-		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).trimmed();
+	      if(!tmpstr[tmpstr.length() - 1].isLetter())
+		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
+		  trimmed();
 
 	      if(ma.place->toPlainText().isEmpty())
 		ma.place->setPlainText(tmpstr);
@@ -2175,17 +2191,36 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 
 	  misc_functions::highlightWidget
 	    (ma.place->viewport(), QColor(162, 205, 90));
-	  ma.publication_date->setDate
-	    (QDate::fromString("01/01/" +
-			       str.mid(str.trimmed().length() - 5, 4),
-			       "MM/dd/yyyy"));
+
+	  if(str.mid(str.indexOf("$c") + 2, 4).contains("c"))
+	    ma.publication_date->setDate
+	      (QDate::fromString
+	       ("01/01/" +
+		str.mid(str.indexOf("$c") + 4, 4),
+		"MM/dd/yyyy"));
+	  else
+	    ma.publication_date->setDate
+	      (QDate::fromString
+	       ("01/01/" +
+		str.mid(str.indexOf("$c") + 3, 4),
+		"MM/dd/yyyy"));
+
 	  ma.publication_date->setStyleSheet
 	    ("background-color: rgb(162, 205, 90)");
-	  str = str.mid(str.indexOf("$b") + 2).trimmed();
-	  str = str.mid(0, str.indexOf(",")).trimmed();
 
-	  if(!QChar(str[str.length() - 1]).isLetter())
-	    str = str = str.mid(0, str.length() - 1).trimmed();
+	  if(str.contains("$b"))
+	    str = str.mid(str.indexOf("$b") + 2).trimmed();
+
+	  if(str.contains("$a"))
+	    {
+	      str = str.mid(0, str.indexOf("$a")).trimmed();
+	      str = str.mid(0, str.lastIndexOf(" ")).trimmed();
+	    }
+	  else
+	    str = str.mid(0, str.indexOf("$c")).trimmed();
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1).trimmed();
 
 	  ma.publisher->setPlainText(str);
 	  misc_functions::highlightWidget

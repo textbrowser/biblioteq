@@ -2262,7 +2262,7 @@ void qtbook_book::slotQuery(void)
 			  if(tmpstr.isEmpty())
 			    continue;
 
-			  if(tmpstr[tmpstr.length() - 1] == ',')
+			  if(!tmpstr[tmpstr.length() - 1].isLetter())
 			    tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
 			      trimmed();
 
