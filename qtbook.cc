@@ -4626,9 +4626,11 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
   userinfo_diag->memberProperties["membersince"] =
-    userinfo_diag->userinfo.membersince->date().toString("MM/dd/yyyy");
+    userinfo_diag->userinfo.membersince->date().toString
+    (Qt::SystemLocaleShortDate);
   userinfo_diag->memberProperties["dob"] =
-    userinfo_diag->userinfo.dob->date().toString("MM/dd/yyyy");
+    userinfo_diag->userinfo.dob->date().toString
+    (Qt::SystemLocaleShortDate);
   userinfo_diag->memberProperties["sex"] =
     userinfo_diag->userinfo.sex->currentText();
   userinfo_diag->memberProperties["state_abbr"] =
@@ -4637,7 +4639,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->memberProperties["telephone_num"] =
     userinfo_diag->userinfo.telephoneNumber->text();
   userinfo_diag->memberProperties["expiration_date"] =
-    userinfo_diag->userinfo.expirationdate->date().toString("MM/dd/yyyy");
+    userinfo_diag->userinfo.expirationdate->date().toString
+    (Qt::SystemLocaleShortDate);
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   engUserinfoTitle = "Create New Member";
   userinfo_diag->userinfo.prevTool->setVisible(false);
@@ -4815,7 +4818,8 @@ void qtbook::slotSaveUser(void)
 		    "?, ?, ?, "
 		    "?, ?, ?, ?)");
       query.bindValue(0, userinfo_diag->userinfo.memberid->text());
-      query.bindValue(1, userinfo_diag->userinfo.membersince->text());
+      query.bindValue(1, userinfo_diag->userinfo.membersince->
+		      date().toString("MM/dd/yyyy"));
       query.bindValue(2, userinfo_diag->userinfo.dob->text());
       query.bindValue(3, userinfo_diag->userinfo.sex->currentText());
       query.bindValue(4, userinfo_diag->userinfo.firstName->text());
@@ -4827,7 +4831,8 @@ void qtbook::slotSaveUser(void)
       query.bindValue(10, userinfo_diag->userinfo.state->currentText());
       query.bindValue(11, userinfo_diag->userinfo.zip->text());
       query.bindValue(12, userinfo_diag->userinfo.email->text());
-      query.bindValue(13, userinfo_diag->userinfo.expirationdate->text());
+      query.bindValue(13, userinfo_diag->userinfo.expirationdate->
+		      date().toString("MM/dd/yyyy"));
     }
   else
     {
@@ -4843,7 +4848,8 @@ void qtbook::slotSaveUser(void)
 		    "state_abbr = ?, zip = ?, email = ?, "
 		    "expiration_date = ? "
 		    "WHERE memberid = ?");
-      query.bindValue(0, userinfo_diag->userinfo.membersince->text());
+      query.bindValue(0, userinfo_diag->userinfo.membersince->date().
+		      toString("MM/dd/yyyy"));
       query.bindValue(1, userinfo_diag->userinfo.dob->text());
       query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
       query.bindValue(3, userinfo_diag->userinfo.firstName->text());
@@ -4855,7 +4861,8 @@ void qtbook::slotSaveUser(void)
       query.bindValue(9, userinfo_diag->userinfo.state->currentText());
       query.bindValue(10, userinfo_diag->userinfo.zip->text());
       query.bindValue(11, userinfo_diag->userinfo.email->text());
-      query.bindValue(12, userinfo_diag->userinfo.expirationdate->text());
+      query.bindValue(12, userinfo_diag->userinfo.expirationdate->
+		      date().toString("MM/dd/yyyy"));
       query.bindValue(13, userinfo_diag->userinfo.memberid->text());
     }
 
@@ -4953,9 +4960,10 @@ void qtbook::slotSaveUser(void)
       qapp->restoreOverrideCursor();
       userinfo_diag->memberProperties["membersince"] =
 	userinfo_diag->userinfo.membersince->date().toString
-	("MM/dd/yyyy");
+	(Qt::SystemLocaleShortDate);
       userinfo_diag->memberProperties["dob"] =
-	userinfo_diag->userinfo.dob->date().toString("MM/dd/yyyy");
+	userinfo_diag->userinfo.dob->date().toString
+	(Qt::SystemLocaleShortDate);
       userinfo_diag->memberProperties["sex"] =
 	userinfo_diag->userinfo.sex->currentText();
       userinfo_diag->memberProperties["first_name"] =
@@ -4978,7 +4986,7 @@ void qtbook::slotSaveUser(void)
 	userinfo_diag->userinfo.email->text();
       userinfo_diag->memberProperties["expiration_date"] =
 	userinfo_diag->userinfo.expirationdate->date().toString
-	("MM/dd/yyyy");
+	(Qt::SystemLocaleShortDate);
       bb.table->setSortingEnabled(false);
 
       if(engUserinfoTitle.contains("Modify"))
@@ -5001,7 +5009,8 @@ void qtbook::slotSaveUser(void)
 		  (userinfo_diag->userinfo.membersince->text());
 	      else if(column->text() == tr("Expiration Date"))
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.expirationdate->text());
+		  (userinfo_diag->userinfo.expirationdate->
+		   date().toString(Qt::SystemLocaleShortDate));
 	    }
 
 	  bb.table->setSortingEnabled(true);

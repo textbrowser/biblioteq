@@ -95,10 +95,10 @@ class qtbook: public QMainWindow
 
       if(memberProperties["membersince"] !=
 	 userinfo.membersince->date().toString
-	 ("MM/dd/yyyy"))
+	 (Qt::SystemLocaleShortDate))
 	warnuser = true;
       else if(memberProperties["dob"] !=
-	      userinfo.dob->date().toString("MM/dd/yyyy"))
+	      userinfo.dob->date().toString(Qt::SystemLocaleShortDate))
 	warnuser = true;
       else if(memberProperties["sex"] != userinfo.sex->currentText())
 	warnuser = true;
@@ -123,7 +123,7 @@ class qtbook: public QMainWindow
 	warnuser = true;
       else if(memberProperties["expiration_date"] !=
 	      userinfo.expirationdate->date().toString
-	      ("MM/dd/yyyy"))
+	      (Qt::SystemLocaleShortDate))
 	warnuser = true;
 
       return warnuser;
