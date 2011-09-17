@@ -4753,7 +4753,8 @@ void qtbook::slotSaveUser(void)
       return;
     }
 
-  checksum.append(userinfo_diag->userinfo.dob->text());
+  checksum.append(userinfo_diag->userinfo.dob->date().
+		  toString("MM/dd/yyyy"));
   checksum.append(userinfo_diag->userinfo.sex->currentText());
   checksum.append(userinfo_diag->userinfo.firstName->text());
   checksum.append(userinfo_diag->userinfo.middle->text());
@@ -4820,7 +4821,8 @@ void qtbook::slotSaveUser(void)
       query.bindValue(0, userinfo_diag->userinfo.memberid->text());
       query.bindValue(1, userinfo_diag->userinfo.membersince->
 		      date().toString("MM/dd/yyyy"));
-      query.bindValue(2, userinfo_diag->userinfo.dob->text());
+      query.bindValue(2, userinfo_diag->userinfo.dob->date().
+		      toString("MM/dd/yyyy"));
       query.bindValue(3, userinfo_diag->userinfo.sex->currentText());
       query.bindValue(4, userinfo_diag->userinfo.firstName->text());
       query.bindValue(5, userinfo_diag->userinfo.middle->text());
@@ -4850,7 +4852,8 @@ void qtbook::slotSaveUser(void)
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
-      query.bindValue(1, userinfo_diag->userinfo.dob->text());
+      query.bindValue(1, userinfo_diag->userinfo.dob->date().
+		      toString("MM/dd/yyyy"));
       query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
       query.bindValue(3, userinfo_diag->userinfo.firstName->text());
       query.bindValue(4, userinfo_diag->userinfo.middle->text());
@@ -5897,11 +5900,14 @@ void qtbook::slotShowNext(void)
     }
   else
     {
-      if(userinfo_diag->haveMemberChanges())
-	if(QMessageBox::question(userinfo_diag, tr("BiblioteQ: Question"),
-				 tr("You have unsaved data. Continue?"),
-				 QMessageBox::Yes | QMessageBox::No,
-				 QMessageBox::No) == QMessageBox::No)
+      QString str("");
+
+      if(userinfo_diag->haveMemberChanges(str))
+	if(QMessageBox::question
+	   (userinfo_diag, tr("BiblioteQ: Question"),
+	    tr("You have unsaved data. Continue?\n%1").arg(str),
+	    QMessageBox::Yes | QMessageBox::No,
+	    QMessageBox::No) == QMessageBox::No)
 	  return;
 
       table->clearSelection();
@@ -5935,11 +5941,14 @@ void qtbook::slotShowPrev(void)
     }
   else
     {
-      if(userinfo_diag->haveMemberChanges())
-	if(QMessageBox::question(userinfo_diag, tr("BiblioteQ: Question"),
-				 tr("You have unsaved data. Continue?"),
-				 QMessageBox::Yes | QMessageBox::No,
-				 QMessageBox::No) == QMessageBox::No)
+      QString str("");
+
+      if(userinfo_diag->haveMemberChanges(str))
+	if(QMessageBox::question
+	   (userinfo_diag, tr("BiblioteQ: Question"),
+	    tr("You have unsaved data. Continue?\n%1").arg(str),
+	    QMessageBox::Yes | QMessageBox::No,
+	    QMessageBox::No) == QMessageBox::No)
 	  return;
 
       table->clearSelection();
@@ -6887,10 +6896,12 @@ void qtbook::slotModifyBorrower(void)
 	    userinfo_diag->userinfo.expirationdate->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 
-	  if(fieldname.contains("date") ||
+	  if(fieldname.contains("dob") ||
+	     fieldname.contains("date") ||
 	     fieldname.contains("membersince"))
 	    userinfo_diag->memberProperties[fieldname] =
-	      var.toDate().toString(Qt::SystemLocaleShortDate);
+	      QDate::fromString(var.toString(), "MM/dd/yyyy").
+	      toString(Qt::SystemLocaleShortDate);
 	  else
 	    userinfo_diag->memberProperties[fieldname] = var.toString();
 	}

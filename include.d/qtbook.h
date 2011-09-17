@@ -89,53 +89,78 @@ class qtbook: public QMainWindow
     Ui_UserInfo userinfo;
     QHash<QString, QString> memberProperties;
 
-    bool haveMemberChanges(void)
+    bool haveMemberChanges(QString &str)
     {
-      bool warnuser = false;
+      QStringList list;
 
       if(memberProperties["membersince"] !=
 	 userinfo.membersince->date().toString
 	 (Qt::SystemLocaleShortDate))
-	warnuser = true;
-      else if(memberProperties["dob"] !=
-	      userinfo.dob->date().toString(Qt::SystemLocaleShortDate))
-	warnuser = true;
-      else if(memberProperties["sex"] != userinfo.sex->currentText())
-	warnuser = true;
-      else if(memberProperties["first_name"] != userinfo.firstName->text())
-	warnuser = true;
-      else if(memberProperties["middle_init"] != userinfo.middle->text())
-	warnuser = true;
-      else if(memberProperties["last_name"] != userinfo.lastName->text())
-	warnuser = true;
-      else if(memberProperties["telephone_num"] !=
-	      userinfo.telephoneNumber->text())
-	warnuser = true;
-      else if(memberProperties["street"] != userinfo.street->text())
-	warnuser = true;
-      else if(memberProperties["city"] != userinfo.city->text())
-	warnuser = true;
-      else if(memberProperties["state_abbr"] != userinfo.state->currentText())
-	warnuser = true;
-      else if(memberProperties["zip"] != userinfo.zip->text())
-	warnuser = true;
-      else if(memberProperties["email"] != userinfo.email->text())
-	warnuser = true;
-      else if(memberProperties["expiration_date"] !=
-	      userinfo.expirationdate->date().toString
-	      (Qt::SystemLocaleShortDate))
-	warnuser = true;
+	list << "membersince";
 
-      return warnuser;
+      if(memberProperties["dob"] !=
+	 userinfo.dob->date().toString(Qt::SystemLocaleShortDate))
+	list << "dob";
+
+      if(memberProperties["sex"] != userinfo.sex->currentText())
+	list << "sex";
+
+      if(memberProperties["first_name"] != userinfo.firstName->text())
+	list << "first_name";
+
+      if(memberProperties["middle_init"] != userinfo.middle->text())
+	list << "middle_init";
+
+      if(memberProperties["last_name"] != userinfo.lastName->text())
+	list << "last_name";
+
+      if(memberProperties["telephone_num"] !=
+	 userinfo.telephoneNumber->text())
+	list << "telephone_num";
+
+      if(memberProperties["street"] != userinfo.street->text())
+	list << "street";
+
+      if(memberProperties["city"] != userinfo.city->text())
+	list << "city";
+
+      if(memberProperties["state_abbr"] != userinfo.state->currentText())
+	list << "state_abbr";
+
+      if(memberProperties["zip"] != userinfo.zip->text())
+	list << "zip";
+
+      if(memberProperties["email"] != userinfo.email->text())
+	list << "email";
+
+      if(memberProperties["expiration_date"] !=
+	 userinfo.expirationdate->date().toString
+	 (Qt::SystemLocaleShortDate))
+	list << "expiration_date";
+
+      while(!list.isEmpty())
+	str += list.takeFirst() + ", ";
+
+      if(!str.isEmpty())
+	{
+	  str.prepend("(");
+	  str = str.mid(0, str.length() - 2);
+	  str.append(")");
+	}
+
+      return !str.isEmpty();
     }
 
   protected:
     void closeEvent(QCloseEvent *e)
     {
-      if(haveMemberChanges())
+      QString str("");
+
+      if(haveMemberChanges(str))
 	if(QMessageBox::question
 	   (this, tr("BiblioteQ: Question"),
-	    tr("You have unsaved data. Continue closing?"),
+	    tr("You have unsaved data. Continue closing?\n%1").
+	    arg(str),
 	    QMessageBox::Yes | QMessageBox::No,
 	    QMessageBox::No) == QMessageBox::No)
 	  {
