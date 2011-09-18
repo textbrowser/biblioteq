@@ -267,7 +267,7 @@ void borrowers_editor::showUsers(void)
 			       "the minimum number of days.")),
 		    errorstr, __FILE__, __LINE__);
 
-  QDate reservationDate;
+  QDate date;
 
   while(i++, !progress2.wasCanceled() && query.next())
     {
@@ -283,15 +283,15 @@ void borrowers_editor::showUsers(void)
 	      str = QString::number(i + 1);
 	    else if(j == 5 && state == qtbook::EDITABLE)
 	      {
-		reservationDate = QDate::fromString(query.value(j).toString(),
-						    "MM/dd/yyyy");
-		str = reservationDate.toString(Qt::SystemLocaleShortDate);
+		date = QDate::fromString(query.value(j).toString(),
+					 "MM/dd/yyyy");
+		str = date.toString(Qt::SystemLocaleShortDate);
 	      }
-	    else if(j == 2 && state != qtbook::EDITABLE)
+	    else if((j == 2 || j == 3) && state != qtbook::EDITABLE)
 	      {
-		reservationDate = QDate::fromString(query.value(j).toString(),
-						    "MM/dd/yyyy");
-		str = reservationDate.toString(Qt::SystemLocaleShortDate);
+		date = QDate::fromString(query.value(j).toString(),
+					 "MM/dd/yyyy");
+		str = date.toString(Qt::SystemLocaleShortDate);
 	      }
 	    else
 	      str = query.value(j).toString();
