@@ -5009,7 +5009,8 @@ void qtbook::slotSaveUser(void)
 		  (userinfo_diag->userinfo.lastName->text());
 	      else if(column->text() == tr("Member Since"))
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.membersince->text());
+		  (userinfo_diag->userinfo.membersince->date().
+		   toString(Qt::SystemLocaleShortDate));
 	      else if(column->text() == tr("Expiration Date"))
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.expirationdate->
