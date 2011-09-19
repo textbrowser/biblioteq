@@ -224,6 +224,9 @@ void main_table::resetTable(const QString &type, const QString &roles)
   if(!type.isEmpty())
     setColumns(type, roles);
 
+  horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  horizontalHeader()->setSortIndicatorShown(true);
+  resizeColumnsToContents();
   clearSelection();
   setCurrentItem(0);
 }
