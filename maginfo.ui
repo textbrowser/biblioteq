@@ -218,7 +218,7 @@
            </font>
           </property>
           <property name="text">
-           <string>ISSN (9999-9999)</string>
+           <string>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</string>
           </property>
          </widget>
         </item>
