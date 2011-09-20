@@ -4289,6 +4289,7 @@ int qtbook::populateTable(const int search_type_arg,
   slotDisplaySummary();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
+  ui.table->setSortingEnabled(false);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
@@ -4421,6 +4422,7 @@ int qtbook::populateTable(const int search_type_arg,
     }
 
   progress.hide();
+  ui.table->setSortingEnabled(true);
 
   if(search_type == CUSTOM_QUERY)
     {
@@ -4934,10 +4936,11 @@ void qtbook::slotSaveUser(void)
       userinfo_diag->memberProperties["expiration_date"] =
 	userinfo_diag->userinfo.expirationdate->date().toString
 	(Qt::SystemLocaleShortDate);
-      bb.table->setSortingEnabled(false);
 
       if(engUserinfoTitle.contains("Modify"))
 	{
+	  bb.table->setSortingEnabled(false);
+
 	  for(i = 0; i < bb.table->columnCount(); i++)
 	    {
 	      column = bb.table->horizontalHeaderItem(i);

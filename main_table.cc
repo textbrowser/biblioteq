@@ -31,7 +31,6 @@ main_table::main_table(QWidget *parent):QTableWidget(parent)
 void main_table::setColumns(const QString &username,
 			    const QString &type, const QString &roles)
 {
-  int i = 0;
   QStringList list;
 
   if(type == "All" || type == "All Overdue" ||
@@ -210,6 +209,8 @@ void main_table::setColumns(const QString &username,
 	setColumnHidden(list.size() - 2, true);
     }
 
+  list.clear();
+
   QString l_type(type);
   QString indexstr("");
 
@@ -217,10 +218,8 @@ void main_table::setColumns(const QString &username,
   indexstr.append(l_type.replace(" ", "_"));
   indexstr.append("_header_state");
 
-  for(i = 0; i < hiddenColumns[indexstr].size(); i++)
+  for(int i = 0; i < hiddenColumns[indexstr].size(); i++)
     setColumnHidden(hiddenColumns[indexstr][i], true);
-
-  list.clear();
 }
 
 /*
