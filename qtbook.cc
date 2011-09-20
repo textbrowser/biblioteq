@@ -98,6 +98,15 @@ int main(int argc, char *argv[])
   settings.remove("entries_per_page");
   settings.remove("automatically_resize_columns");
 
+  if(!settings.contains("column_settings_cleared_v6_51"))
+    {
+      settings.setValue("column_settings_cleared_v6_51", true);
+
+      for(int i = settings.allKeys().size() - 1; i >= 0; i--)
+	if(settings.allKeys().at(i).contains("_header_state"))
+	  settings.remove(settings.allKeys().at(i));
+    }
+
   /*
   ** Create the user interface.
   */
