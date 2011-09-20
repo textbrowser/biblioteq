@@ -243,9 +243,8 @@ class qtbook: public QMainWindow
   QString engUserinfoTitle;
   QString previousTypeFilter;
   QStringList deletedAdmins;
-  QHash<QString, QString> AmazonImages;
+  QHash<QString, QString> amazonImages;
   QHash<QString, QString> selectedBranch;
-  QHash<QString, QByteArray> headerStates;
   QHash<QString, qtbook_cd *> cds;
   QHash<QString, qtbook_dvd *> dvds;
   QHash<QString, qtbook_book *> books;

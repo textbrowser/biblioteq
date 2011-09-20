@@ -1,4 +1,10 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QtDebug>
+
+/*
 ** -- Local Includes --
 */
 
@@ -22,7 +28,8 @@ main_table::main_table(QWidget *parent):QTableWidget(parent)
 ** -- setColumns() --
 */
 
-void main_table::setColumns(const QString &type, const QString &roles)
+void main_table::setColumns(const QString &username,
+			    const QString &type, const QString &roles)
 {
   int i = 0;
   QStringList list;
@@ -203,8 +210,15 @@ void main_table::setColumns(const QString &type, const QString &roles)
 	setColumnHidden(list.size() - 2, true);
     }
 
-  for(i = 0; i < hiddenColumns[type].size(); i++)
-    setColumnHidden(hiddenColumns[type][i], true);
+  QString l_type(type);
+  QString indexstr("");
+
+  indexstr.append(username);
+  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append("_header_state");
+
+  for(i = 0; i < hiddenColumns[indexstr].size(); i++)
+    setColumnHidden(hiddenColumns[indexstr][i], true);
 
   list.clear();
 }
@@ -213,7 +227,8 @@ void main_table::setColumns(const QString &type, const QString &roles)
 ** -- resetTable() --
 */
 
-void main_table::resetTable(const QString &type, const QString &roles)
+void main_table::resetTable(const QString &username, const QString &type,
+			    const QString &roles)
 {
   clear();
   setRowCount(0);
@@ -222,7 +237,7 @@ void main_table::resetTable(const QString &type, const QString &roles)
   horizontalScrollBar()->setValue(0);
 
   if(!type.isEmpty())
-    setColumns(type, roles);
+    setColumns(username, type, roles);
 
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
@@ -235,23 +250,69 @@ void main_table::resetTable(const QString &type, const QString &roles)
 ** -- recordColumnHidden() --
 */
 
-void main_table::recordColumnHidden(const QString &type, const int index,
+void main_table::recordColumnHidden(const QString &username,
+				    const QString &type, const int index,
 				    const bool hidden)
 {
+  QString l_type(type);
+  QString indexstr("");
+
+  indexstr.append(username);
+  indexstr.append(l_type.replace(" ", "_"));
+  indexstr.append("_header_state");
+
   if(hidden)
     {
-      if(!hiddenColumns[type].contains(index))
-	hiddenColumns[type].append(index);
+      if(!hiddenColumns[indexstr].contains(index))
+	hiddenColumns[indexstr].append(index);
     }
   else
-    (int) hiddenColumns[type].removeAll(index);
+    (int) hiddenColumns[indexstr].removeAll(index);
 }
 
 /*
-** -- clearHiddenColumnsRecord() --
+** -- friendlyStates() --
 */
 
-void main_table::clearHiddenColumnsRecord(void)
+QHash<QString, QString> main_table::friendlyStates(void) const
 {
-  hiddenColumns.clear();
+  QHash<QString, QString> states;
+
+  for(int i = 0; i < hiddenColumns.keys().size(); i++)
+    {
+      QString state("");
+
+      for(int j = 0; j < hiddenColumns[hiddenColumns.keys().at(i)].size();
+	  j++)
+	state += QString::number
+	  (hiddenColumns[hiddenColumns.keys().at(i)].at(j)).append(",");
+
+      if(state.endsWith(","))
+	state = state.mid(0, state.length() - 1);
+
+      states[hiddenColumns.keys().at(i)] = state;
+    }
+
+  return states;
+}
+
+/*
+** -- parseStates() --
+*/
+
+void main_table::parseStates(const QHash<QString, QString> &states)
+{
+  for(int i = 0; i < states.keys().size(); i++)
+    {
+      QList<int> intList;
+      QStringList strList
+	(states[states.keys().at(i)].split(",",
+					   QString::SkipEmptyParts));
+
+      for(int j = 0; j < strList.size(); j++)
+	if(strList.at(j).toInt() >= 0)
+	  intList.append(strList.at(j).toInt());
+
+      hiddenColumns[states.keys().at(i)] = intList;
+    }
 }

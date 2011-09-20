@@ -510,7 +510,7 @@ void borrowers_editor::slotSave(void)
 		    misc_functions::updateColumn
 		    (qmain->getUI().table,
 		    bitem->getRow(), tr("Due Date"),
-		    dueDate->date().toString("MM/dd/yyyy"));
+		    dueDate->date().toString(Qt::SystemLocaleShortDate));
 		  */
 		}
 	    }

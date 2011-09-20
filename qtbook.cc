@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
 
   settings.remove("sqlite_db");
   settings.remove("entries_per_page");
+  settings.remove("automatically_resize_columns");
 
   /*
   ** Create the user interface.
@@ -575,13 +576,7 @@ qtbook::qtbook(void):QMainWindow()
   typefilter = lastCategory =
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
-  ui.table->resetTable(lastCategory, roles);
-
-  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
-    if(!ui.table->horizontalHeader()->
-       restoreState(headerStates[db.userName() + typefilter + "_header_state"]))
-      ui.table->resizeColumnsToContents();
-
+  ui.table->resetTable(db.userName(), lastCategory, roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -742,12 +737,9 @@ void qtbook::slotSetColumns(void)
       ui.table->setColumnHidden
 	(i, !ui.configTool->menu()->actions().at(i)->isChecked());
       ui.table->recordColumnHidden
-	(typefilter, i, !ui.configTool->menu()->actions().at(i)->isChecked());
+	(db.userName(),
+	 typefilter, i, !ui.configTool->menu()->actions().at(i)->isChecked());
     }
-
-  typefilter.replace(" ", "_");
-  headerStates[db.userName() + typefilter + "_header_state"] =
-    ui.table->horizontalHeader()->saveState();
 }
 
 /*
@@ -4222,12 +4214,9 @@ int qtbook::populateTable(const int search_type_arg,
     all_diag->close();
 
   if(search_type != CUSTOM_QUERY)
-    ui.table->resetTable(typefilter, roles);
+    ui.table->resetTable(db.userName(), typefilter, roles);
   else
-    {
-      ui.table->resetTable("", roles);
-      ui.table->resizeColumnsToContents();
-    }
+    ui.table->resetTable(db.userName(), "", roles);
 
   int currentPage = offset / limit + 1;
 
@@ -4449,37 +4438,10 @@ int qtbook::populateTable(const int search_type_arg,
       addConfigOptions("Custom");
     }
 
-  bool resized = false;
-
   if(search_type != CUSTOM_QUERY)
-    {
-      QString l_typefilter(typefilter);
+    addConfigOptions(typefilter);
 
-      l_typefilter.replace(" ", "_");
-
-      if(headerStates.contains(db.userName() + l_typefilter + "_header_state"))
-	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[db.userName() + l_typefilter +
-				     "_header_state"]))
-	  {
-	    resized = true;
-	    ui.table->resizeColumnsToContents();
-	    ui.table->horizontalHeader()->setSortIndicator
-	      (0, Qt::AscendingOrder);
-	  }
-
-      addConfigOptions(typefilter);
-    }
-
-  if(!resized)
-    {
-      if(ui.actionAutoResizeColumns->isChecked())
-	slotResizeColumns();
-      else
-	ui.table->horizontalHeader()->setSortIndicator
-	  (0, Qt::AscendingOrder);
-    }
-
+  slotResizeColumns();
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 			      arg(ui.table->rowCount()));
@@ -4507,20 +4469,13 @@ void qtbook::slotResizeColumnsAfterSort(void)
   QObject *object = qobject_cast<QObject *> (sender());
   QObject *parent = 0;
 
-  if(ui.actionAutoResizeColumns->isChecked())
-    if(object != 0 && object->parent() != 0)
-      {
-	qapp->setOverrideCursor(Qt::WaitCursor);
-	parent = object->parent();
-	(static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
-
-	QString typefilter(getTypeFilterString());
-
-	typefilter.replace(" ", "_");
-	headerStates[db.userName() + typefilter + "_header_state"] =
-	  ui.table->horizontalHeader()->saveState();
-	qapp->restoreOverrideCursor();
-      }
+  if(object != 0 && object->parent() != 0)
+    {
+      qapp->setOverrideCursor(Qt::WaitCursor);
+      parent = object->parent();
+      (static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
+      qapp->restoreOverrideCursor();
+    }
 }
 
 /*
@@ -4552,11 +4507,6 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
       updateRows(oid, i, itemType);
     }
 
-  QString typefilter(getTypeFilterString());
-
-  typefilter.replace(" ", "_");
-  headerStates[db.userName() + typefilter + "_header_state"] =
-    ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
 
@@ -4568,12 +4518,6 @@ void qtbook::slotResizeColumns(void)
 {
   qapp->setOverrideCursor(Qt::WaitCursor);
   ui.table->resizeColumnsToContents();
-
-  QString typefilter(getTypeFilterString());
-
-  typefilter.replace(" ", "_");
-  headerStates[db.userName() + typefilter + "_header_state"] =
-    ui.table->horizontalHeader()->saveState();
   qapp->restoreOverrideCursor();
 }
 
@@ -5203,10 +5147,10 @@ void qtbook::readGlobalSetup(QString &error)
 			if(str.startsWith("#"))
 			  break;
 
-			if(!AmazonImages.contains("front_cover_host"))
-			  AmazonImages["front_cover_host"] = str;
-			else if(!AmazonImages.contains("front_cover_path"))
-			  AmazonImages["front_cover_path"] = str;
+			if(!amazonImages.contains("front_cover_host"))
+			  amazonImages["front_cover_host"] = str;
+			else if(!amazonImages.contains("front_cover_path"))
+			  amazonImages["front_cover_path"] = str;
 
 			break;
 		      }
@@ -5215,10 +5159,10 @@ void qtbook::readGlobalSetup(QString &error)
 			if(str.startsWith("#"))
 			  break;
 
-			if(!AmazonImages.contains("back_cover_host"))
-			  AmazonImages["back_cover_host"] = str;
-			else if(!AmazonImages.contains("back_cover_path"))
-			  AmazonImages["back_cover_path"] = str;
+			if(!amazonImages.contains("back_cover_host"))
+			  amazonImages["back_cover_host"] = str;
+			else if(!amazonImages.contains("back_cover_path"))
+			  amazonImages["back_cover_path"] = str;
 
 			break;
 		      }
@@ -5258,17 +5202,17 @@ void qtbook::readGlobalSetup(QString &error)
 	  tmphash.clear();
 	}
 
-      if(!AmazonImages.contains("front_cover_host"))
-	AmazonImages["front_cover_host"] = "images.amazon.com";
+      if(!amazonImages.contains("front_cover_host"))
+	amazonImages["front_cover_host"] = "images.amazon.com";
 
-      if(!AmazonImages.contains("front_cover_path"))
-	AmazonImages["front_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
+      if(!amazonImages.contains("front_cover_path"))
+	amazonImages["front_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
 
-      if(!AmazonImages.contains("back_cover_host"))
-	AmazonImages["back_cover_host"] = "images.amazon.com";
+      if(!amazonImages.contains("back_cover_host"))
+	amazonImages["back_cover_host"] = "images.amazon.com";
 
-      if(!AmazonImages.contains("back_cover_path"))
-	AmazonImages["back_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
+      if(!amazonImages.contains("back_cover_path"))
+	amazonImages["back_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
 
       if(statusBar() != 0)
 	statusBar()->clearMessage();
@@ -5317,8 +5261,6 @@ void qtbook::readConfig(void)
 					       false).toBool());
   ui.actionPopulateOnStart->setChecked
     (settings.value("populate_table_on_connect", false).toBool());
-  ui.actionAutoResizeColumns->setChecked
-    (settings.value("automatically_resize_columns", false).toBool());
   ui.actionResetErrorLogOnDisconnect->setChecked
     (settings.value("reset_error_log_on_disconnect", false).toBool());
   ui.actionAutoPopulateOnCreation->setChecked
@@ -5349,18 +5291,15 @@ void qtbook::readConfig(void)
     (settings.value("automatically_populate_enum_list_on_display",
 		    false).toBool());
 
+  QHash<QString, QString> states;
+
   for(int i = 0; i < settings.allKeys().size(); i++)
     if(settings.allKeys().at(i).contains("_header_state"))
-      headerStates[settings.allKeys().at(i)] =
-	settings.value(settings.allKeys().at(i)).toByteArray();
+      states[settings.allKeys().at(i)] =
+	settings.value(settings.allKeys().at(i)).toString();
 
-  QString typefilter(getTypeFilterString());
-
-  typefilter.replace(" ", "_");
-
-  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
-    ui.table->horizontalHeader()->restoreState
-      (headerStates[db.userName() + typefilter + "_header_state"]);
+  ui.table->parseStates(states);
+  states.clear();
 
   bool found = false;
 
@@ -5385,10 +5324,7 @@ void qtbook::readConfig(void)
     br.branch_name->setCurrentIndex(0);
 
   setGlobalFonts(font);
-
-  if(ui.actionAutoResizeColumns->isChecked())
-    slotResizeColumns();
-
+  slotResizeColumns();
   createSqliteMenuActions();
 }
 
@@ -5545,8 +5481,6 @@ void qtbook::slotSaveConfig(void)
   settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
   settings.setValue("populate_table_on_connect",
 		    ui.actionPopulateOnStart->isChecked());
-  settings.setValue("automatically_resize_columns",
-		    ui.actionAutoResizeColumns->isChecked());
   settings.setValue("reset_error_log_on_disconnect",
 		    ui.actionResetErrorLogOnDisconnect->isChecked());
   settings.setValue("automatically_populate_on_create",
@@ -5605,9 +5539,10 @@ void qtbook::slotSaveConfig(void)
 	break;
       }
 
-  for(int i = 0; i < headerStates.keys().size(); i++)
-    settings.setValue(headerStates.keys().at(i),
-		      headerStates[headerStates.keys().at(i)]);
+  for(int i = 0; i < ui.table->friendlyStates().keys().size(); i++)
+    settings.setValue
+      (ui.table->friendlyStates().keys().at(i),
+       ui.table->friendlyStates()[ui.table->friendlyStates().keys().at(i)]);
 }
 
 /*
@@ -6407,18 +6342,7 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
-  QString typefilter("");
-
-  typefilter = previousTypeFilter = getTypeFilterString();
-  typefilter.replace(" ", "_");
-  ui.table->resetTable(previousTypeFilter, roles);
-  ui.table->clearHiddenColumnsRecord();
-
-  if(headerStates.contains(db.userName() + typefilter + "_header_state"))
-    if(!ui.table->horizontalHeader()->
-       restoreState(headerStates[db.userName() + typefilter + "_header_state"]))
-      ui.table->resizeColumnsToContents();
-
+  ui.table->resetTable(db.userName(), previousTypeFilter, roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -7129,14 +7053,7 @@ void qtbook::slotAutoPopOnFilter(void)
 
       typefilter = ui.typefilter->itemData(ui.typefilter->currentIndex()).
 	toString();
-      ui.table->resetTable(typefilter, "");
-      typefilter.replace(" ", "_");
-
-      if(headerStates.contains(db.userName() + typefilter + "_header_state"))
-	if(!ui.table->horizontalHeader()->
-	   restoreState(headerStates[db.userName() + typefilter +
-				     "_header_state"]))
-	  ui.table->resizeColumnsToContents();
+      ui.table->resetTable(db.userName(), typefilter, "");
     }
 }
 
@@ -8330,7 +8247,7 @@ QMap<QString, QHash<QString, QString> > qtbook::getZ3950Maps(void) const
 
 QHash<QString, QString> qtbook::getAmazonHash(void) const
 {
-  return AmazonImages;
+  return amazonImages;
 }
 
 /*

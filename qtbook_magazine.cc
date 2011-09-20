@@ -767,9 +767,7 @@ void qtbook_magazine::slotGo(void)
 		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 		    textfield->setCursorPosition(0);
 
-		  if(qmain->getUI().actionAutoResizeColumns->isChecked())
-		    qmain->slotResizeColumns();
-
+		  qmain->slotResizeColumns();
 		  qmain->slotDisplaySummary();
 		}
 	    }
