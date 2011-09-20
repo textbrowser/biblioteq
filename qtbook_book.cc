@@ -707,6 +707,8 @@ void qtbook_book::slotGo(void)
 		 misc_functions::getColumnString(qmain->getUI().table,
 						 row, tr("Type")) == "Book")
 		{
+		  qmain->getUI().table->setSortingEnabled(false);
+
 		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
 		    {
 		      column = qmain->getUI().table->horizontalHeaderItem(i);
@@ -784,6 +786,8 @@ void qtbook_book::slotGo(void)
 			       errorstr, __FILE__, __LINE__);
 			}
 		    }
+
+		  qmain->getUI().table->setSortingEnabled(true);
 
 		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 		    textfield->setCursorPosition(0);
