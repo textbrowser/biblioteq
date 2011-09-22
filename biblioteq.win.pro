@@ -78,6 +78,7 @@ SOURCES		= qtbook.cc \
 TRANSLATIONS    = translations.d\\biblioteq_cs_CZ.ts \
 		  translations.d\\biblioteq_de_DE.ts \
 		  translations.d\\biblioteq_el_GR.ts \
+                  translations.d\\biblioteq_nl_BE.ts \
                   translations.d\\biblioteq_nl_NL.ts
 
 TARGET		= BiblioteQ
