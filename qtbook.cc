@@ -1950,8 +1950,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -1995,8 +1998,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -2040,8 +2046,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -2085,8 +2094,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -2130,8 +2142,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -2176,8 +2191,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_borrower_vw.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' AND ");
-		searchstr.append("item_borrower_vw.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower_vw.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower_vw.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
 				 "item_borrower_vw.copyid, "
@@ -2229,8 +2247,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2281,8 +2302,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2333,8 +2357,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = member.memberid ");
 		searchstr.append("GROUP BY "
@@ -2385,8 +2412,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
@@ -2438,8 +2468,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
@@ -2492,8 +2525,11 @@ int qtbook::populateTable(const int search_type_arg,
 				 "member.memberid LIKE '%");
 		searchstr.append(searchstrArg);
 		searchstr.append("%' AND ");
-		searchstr.append("item_borrower.duedate < '");
-		searchstr.append(now.toString("MM/dd/yyyy"));
+		searchstr.append
+		  ("SUBSTR(item_borrower.duedate, 7, 4) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 1, 2) || '/' || "
+		   "SUBSTR(item_borrower.duedate, 4, 2) < '");
+		searchstr.append(now.toString("yyyy/MM/dd"));
 		searchstr.append("' AND ");
 		searchstr.append("item_borrower.memberid = "
 				 "member.memberid ");
