@@ -251,8 +251,10 @@ void borrowers_editor::showUsers(void)
   progress2.update();
   i = -1;
 
-  QDate now(QDate::currentDate());
   QDate date;
+  QDate tomorrow(QDate::currentDate());
+
+  tomorrow = tomorrow.addDays(1);
 
   while(i++, !progress2.wasCanceled() && query.next())
     {
@@ -290,7 +292,7 @@ void borrowers_editor::showUsers(void)
 		      (QDate::fromString(str, "MM/dd/yyyy"));
 		    static_cast<QDateEdit *> (bd.table->cellWidget
 					      (row, j))->setMinimumDate
-		      (now);
+		      (tomorrow);
 		  }
 	      }
 	    else if(bd.table->item(row, j) != 0)
