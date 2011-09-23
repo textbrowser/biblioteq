@@ -934,14 +934,15 @@ void qtbook_magazine::slotGo(void)
 	}
 
       if(ma.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
-			 myqstring::escape(ma.language->currentText()) +
+	searchstr.append("LOWER(language) = '" +
+			 myqstring::escape(ma.language->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(ma.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("LOWER(monetary_units) = '" +
 			 myqstring::escape
-			 (ma.monetary_units->currentText()) +
+			 (ma.monetary_units->currentText().toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(description) LIKE '%" +
@@ -952,9 +953,9 @@ void qtbook_magazine::slotGo(void)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
       if(ma.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND LOWER(location) = '" +
 			 myqstring::escape
-			 (ma.location->currentText()) + "' ");
+			 (ma.location->currentText().toLower()) + "' ");
 
       searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
 		       myqstring::escape

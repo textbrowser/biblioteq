@@ -800,8 +800,9 @@ void qtbook_cd::slotGo(void)
       searchstr.append("id LIKE '%").append(cd.id->text()).append("%' AND ");
 
       if(cd.format->currentText() != tr("Any"))
-	searchstr.append("cdformat = '" +
-			 myqstring::escape(cd.format->currentText()) +
+	searchstr.append("LOWER(cdformat) = '" +
+			 myqstring::escape(cd.format->currentText().
+					   toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(artist) LIKE '%").append
@@ -817,12 +818,13 @@ void qtbook_cd::slotGo(void)
 			 "' AND ");
 
       if(cd.audio->currentText() != tr("Any"))
-	searchstr.append("cdaudio = '" + cd.audio->currentText() +
+	searchstr.append("LOWER(cdaudio) = '" +
+			 cd.audio->currentText().toLower() +
 			 "' AND ");
 
       if(cd.recording_type->currentText() != tr("Any"))
-	searchstr.append("cdrecording = '" +
-			 cd.recording_type->currentText() +
+	searchstr.append("LOWER(cdrecording) = '" +
+			 cd.recording_type->currentText().toLower() +
 			 "' AND ");
 
       searchstr.append("LOWER(title) LIKE '%").append
@@ -850,14 +852,15 @@ void qtbook_cd::slotGo(void)
 	}
 
       if(cd.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
-			 myqstring::escape(cd.language->currentText()) +
+	searchstr.append("LOWER(language) = '" +
+			 myqstring::escape(cd.language->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(cd.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("LOWER(monetary_units) = '" +
 			 myqstring::escape
-			 (cd.monetary_units->currentText()) +
+			 (cd.monetary_units->currentText().toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(description) LIKE '%" +
@@ -872,9 +875,9 @@ void qtbook_cd::slotGo(void)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
       if(cd.location->currentText() != tr("Any"))
-	searchstr.append(" AND location = '" +
+	searchstr.append(" AND LOWER(location) = '" +
 			 myqstring::escape
-			 (cd.location->currentText()) + "' ");
+			 (cd.location->currentText().toLower()) + "' ");
 
       hide();
 

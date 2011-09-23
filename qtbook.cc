@@ -3948,21 +3948,21 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(al.language->currentText() != tr("Any"))
-		  str.append("language = '" +
+		  str.append("LOWER(language) = '" +
 			     myqstring::escape
-			     (al.language->currentText()) +
+			     (al.language->currentText().toLower()) +
 			     "' AND ");
 
 		if(al.monetary_units->currentText() != tr("Any"))
-		  str.append("monetary_units = '" +
+		  str.append("LOWER(monetary_units) = '" +
 			     myqstring::escape
-			     (al.monetary_units->currentText()) +
+			     (al.monetary_units->currentText().toLower()) +
 			     "' AND ");
 
 		str.append("LOWER(description) LIKE '%" +
 			   myqstring::escape
 			   (al.description->toPlainText().toLower()) + "%' ");
-		str.append("AND LOWER(keyword) LIKE '%" +
+		str.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
 			   myqstring::escape
 			   (al.keyword->toPlainText().toLower()) +
 			   "%' ");
@@ -3971,9 +3971,9 @@ int qtbook::populateTable(const int search_type_arg,
 		  str.append("AND quantity = " + al.quantity->text() + " ");
 
 		if(al.location->currentText() != tr("Any"))
-		  str.append("AND location = '" +
+		  str.append("AND LOWER(location) = '" +
 			     myqstring::escape
-			     (al.location->currentText()) + "' ");
+			     (al.location->currentText().toLower()) + "' ");
 
 		str += QString("GROUP BY "
 			       "%1.title, "
@@ -4016,7 +4016,7 @@ int qtbook::populateTable(const int search_type_arg,
 		searchstr += str;
 	      }
 
-	    searchstr += "ORDER BY 1";
+	    searchstr += "ORDER BY 1 ";
 	    searchstr += limitStr + offsetStr;
 	  }
 	else if(typefilter == "Books")
@@ -4044,8 +4044,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 // "book.front_cover "
 				 "ORDER BY book.title");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
@@ -4076,8 +4077,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 "ORDER BY "
 				 "videogame.title");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
@@ -4110,8 +4112,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 "ORDER BY "
 				 "cd.title");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
@@ -4144,8 +4147,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 "ORDER BY "
 				 "dvd.title");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
@@ -4175,8 +4179,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 "ORDER BY journal.title, "
 				 "journal.issuevolume, journal.issueno");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;
@@ -4206,8 +4211,9 @@ int qtbook::populateTable(const int search_type_arg,
 				 "ORDER BY magazine.title, "
 				 "magazine.issuevolume, magazine.issueno");
 	      }
-	    else
-	      searchstr.remove(searchstr.indexOf("LIMIT"),
+
+	    if(searchstr.lastIndexOf("LIMIT") != -1)
+	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
 	    searchstr += limitStr + offsetStr;

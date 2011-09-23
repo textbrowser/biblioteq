@@ -924,19 +924,21 @@ void qtbook_book::slotGo(void)
 	}
 
       if(id.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
-			 myqstring::escape(id.language->currentText()) +
+	searchstr.append("LOWER(language) = '" +
+			 myqstring::escape(id.language->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(id.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("LOWER(monetary_units) = '" +
 			 myqstring::escape
-			 (id.monetary_units->currentText()) +
+			 (id.monetary_units->currentText().toLower()) +
 			 "' AND ");
 
       if(id.binding->currentText() != tr("Any"))
-	searchstr.append("binding_type = '" +
-			 myqstring::escape(id.binding->currentText()) +
+	searchstr.append("LOWER(binding_type) = '" +
+			 myqstring::escape(id.binding->currentText().
+					   toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(description) LIKE '%" +
@@ -948,9 +950,9 @@ void qtbook_book::slotGo(void)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
 
       if(id.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND LOWER(location) = '" +
 			 myqstring::escape
-			 (id.location->currentText()) + "' ");
+			 (id.location->currentText().toLower()) + "' ");
 
       searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
 		       myqstring::escape

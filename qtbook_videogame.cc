@@ -754,8 +754,9 @@ void qtbook_videogame::slotGo(void)
 		       "%' AND ");
 
       if(vg.rating->currentText() != tr("Any"))
-	searchstr.append("vgrating = '" +
-			 myqstring::escape(vg.rating->currentText()) +
+	searchstr.append("LOWER(vgrating) = '" +
+			 myqstring::escape(vg.rating->currentText().
+					   toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(developer) LIKE '%" +
@@ -790,19 +791,21 @@ void qtbook_videogame::slotGo(void)
 	}
 
       if(vg.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
-			 myqstring::escape(vg.language->currentText()) +
+	searchstr.append("LOWER(language) = '" +
+			 myqstring::escape(vg.language->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(vg.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("LOWER(monetary_units) = '" +
 			 myqstring::escape
-			 (vg.monetary_units->currentText()) +
+			 (vg.monetary_units->currentText().toLower()) +
 			 "' AND ");
 
       if(vg.platform->currentText() != tr("Any"))
-	searchstr.append("vgplatform = '" +
-			 myqstring::escape(vg.rating->currentText()) +
+	searchstr.append("LOWER(vgplatform) = '" +
+			 myqstring::escape(vg.rating->currentText().
+					   toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(description) LIKE '%" +
@@ -813,14 +816,14 @@ void qtbook_videogame::slotGo(void)
 	searchstr.append("AND quantity = " + vg.quantity->text() + " ");
 
       if(vg.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND LOWER(location) = '" +
 			 myqstring::escape
-			 (vg.location->currentText()) + "' ");
+			 (vg.location->currentText().toLower()) + "' ");
 
       if(vg.mode->currentText() != tr("Any"))
-	searchstr.append("AND vgmode = '" +
+	searchstr.append("AND LOWER(vgmode) = '" +
 			 myqstring::escape
-			 (vg.mode->currentText()) + "' ");
+			 (vg.mode->currentText().toLower()) + "' ");
 
       searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
 		       myqstring::escape

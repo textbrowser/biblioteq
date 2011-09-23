@@ -846,8 +846,8 @@ void qtbook_dvd::slotGo(void)
 	(myqstring::escape(dvd.format->text().toLower())).append("%' AND ");
 
       if(dvd.aspectratio->currentText() != tr("Any"))
-	searchstr.append("dvdaspectratio = '" +
-			 dvd.aspectratio->currentText() +
+	searchstr.append("LOWER(dvdaspectratio) = '" +
+			 dvd.aspectratio->currentText().toLower() +
 			 "' AND ");
 
       searchstr.append("LOWER(dvdactor) LIKE '%").append
@@ -866,13 +866,15 @@ void qtbook_dvd::slotGo(void)
 			 "' AND ");
 
       if(dvd.rating->currentText() != tr("Any"))
-	searchstr.append("dvdrating = '" +
-			 myqstring::escape(dvd.rating->currentText()) +
+	searchstr.append("LOWER(dvdrating) = '" +
+			 myqstring::escape(dvd.rating->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(dvd.region->currentText() != tr("Any"))
-	searchstr.append("dvdregion = '" +
-			 myqstring::escape(dvd.region->currentText()) +
+	searchstr.append("LOWER(dvdregion) = '" +
+			 myqstring::escape(dvd.region->currentText().
+					   toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(title) LIKE '%").append
@@ -902,14 +904,15 @@ void qtbook_dvd::slotGo(void)
 	}
 
       if(dvd.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
-			 myqstring::escape(dvd.language->currentText()) +
+	searchstr.append("LOWER(language) = '" +
+			 myqstring::escape(dvd.language->currentText().
+					   toLower()) +
 			 "' AND ");
 
       if(dvd.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("LOWER(monetary_units) = '" +
 			 myqstring::escape
-			 (dvd.monetary_units->currentText()) +
+			 (dvd.monetary_units->currentText().toLower()) +
 			 "' AND ");
 
       searchstr.append("LOWER(description) LIKE '%" +
@@ -924,9 +927,9 @@ void qtbook_dvd::slotGo(void)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
 
       if(dvd.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND LOWER(location) = '" +
 			 myqstring::escape
-			 (dvd.location->currentText()) + "' ");
+			 (dvd.location->currentText().toLower()) + "' ");
 
       hide();
 
