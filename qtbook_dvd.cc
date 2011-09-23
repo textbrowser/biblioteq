@@ -840,8 +840,8 @@ void qtbook_dvd::slotGo(void)
 	"dvd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'DVD' "
 	"WHERE ";
-      searchstr.append("id LIKE '%").append
-	(dvd.id->text()).append("%' AND ");
+      searchstr.append("LOWER(id) LIKE '%").append
+	(dvd.id->text().toLower()).append("%' AND ");
       searchstr.append("LOWER(dvdformat) LIKE '%").append
 	(myqstring::escape(dvd.format->text().toLower())).append("%' AND ");
 

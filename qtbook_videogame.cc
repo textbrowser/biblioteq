@@ -748,7 +748,8 @@ void qtbook_videogame::slotGo(void)
 	"videogame.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'Video Game' "
 	"WHERE ";
-      searchstr.append("id LIKE '%" + vg.id->text() + "%' AND ");
+      searchstr.append("LOWER(id) LIKE '%" + vg.id->text().toLower() +
+		       "%' AND ");
       searchstr.append("LOWER(title) LIKE '%" +
 		       myqstring::escape(vg.title->text().toLower()) +
 		       "%' AND ");

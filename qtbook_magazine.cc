@@ -883,7 +883,8 @@ void qtbook_magazine::slotGo(void)
 			  "%1.myoid = item_borrower_vw.item_oid "
 			  "AND item_borrower_vw.type = '%1' "
 			  "WHERE %1.type = '%1' AND ").arg(subType);
-      searchstr.append("id LIKE '%" + ma.id->text() + "%' AND ");
+      searchstr.append("LOWER(id) LIKE '%" + ma.id->text().toLower() +
+		       "%' AND ");
       searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
 		       myqstring::escape(ma.lcnum->text().toLower()) +
 		       "%' AND ");

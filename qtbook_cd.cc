@@ -797,7 +797,9 @@ void qtbook_cd::slotGo(void)
 	"cd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
-      searchstr.append("id LIKE '%").append(cd.id->text()).append("%' AND ");
+      searchstr.append("LOWER(id) LIKE '%").append(cd.id->text().
+						   toLower()).
+	append("%' AND ");
 
       if(cd.format->currentText() != tr("Any"))
 	searchstr.append("LOWER(cdformat) = '" +
