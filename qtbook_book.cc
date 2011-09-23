@@ -890,7 +890,8 @@ void qtbook_book::slotGo(void)
 		       "%' AND ");
 
       if(id.edition->currentText() != tr("Any"))
-	searchstr.append("edition = '" + id.edition->currentText() +
+	searchstr.append("LOWER(edition) = '" +
+			 id.edition->currentText().toLower() +
 			 "' AND ");
 
       searchstr.append("LOWER(author) LIKE '%" +
