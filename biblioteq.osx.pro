@@ -83,3 +83,20 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
+
+biblioteq.path		= /Applications/BiblioteQ.d
+biblioteq.files		= BiblioteQ.app
+cleanup.path		= /Applications/BiblioteQ.d
+cleanup.files		=
+cleanup.extra		= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
+conf.path		= /Applications/BiblioteQ.d
+conf.files		= biblioteq.conf
+icons.path		= /Applications/BiblioteQ.d/icons.d
+icons.files		= icons.d/*
+macdeployqt.path	= ./BiblioteQ.app
+macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0
+translations.path	= /Applications/BiblioteQ.d/translations.d
+translations.files	= translations.d/*.qm
+
+QMAKE_STRIP	= echo
+INSTALLS	= biblioteq macdeployqt conf icons translations cleanup
