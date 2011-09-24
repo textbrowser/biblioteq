@@ -1734,6 +1734,11 @@ int qtbook::populateTable(const int search_type_arg,
     case CUSTOM_QUERY:
       {
 	searchstr = searchstrArg;
+
+	if(searchstr.lastIndexOf("LIMIT") != -1)
+	  searchstr.remove(searchstr.lastIndexOf("LIMIT"),
+			   searchstr.length());
+
 	searchstr += limitStr + offsetStr;
 	break;
       }
@@ -2215,7 +2220,7 @@ int qtbook::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else
+	    else // !roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -2691,7 +2696,7 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_request.item_oid "
 				 "AND item_request.type = journal.type "
 				 "WHERE "
-				 "item_request.memberid LIKE '");
+				 "item_request.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
@@ -2729,7 +2734,7 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_request.item_oid "
 				 "AND item_request.type = magazine.type "
 				 "WHERE "
-				 "item_request.memberid LIKE '");
+				 "item_request.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
@@ -2767,7 +2772,7 @@ int qtbook::populateTable(const int search_type_arg,
 				 "item_request.item_oid "
 				 "AND item_request.type = 'Video Game' "
 				 "WHERE "
-				 "item_request.memberid LIKE '");
+				 "item_request.memberid = '");
 		searchstr.append(searchstrArg);
 		searchstr.append("' ");
 		searchstr.append("GROUP BY "
@@ -2787,7 +2792,7 @@ int qtbook::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else
+	    else // !roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -3310,7 +3315,7 @@ int qtbook::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else
+	    else // !roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -4331,7 +4336,14 @@ int qtbook::populateTable(const int search_type_arg,
     }
 
   m_queryOffset = offset;
-  lastSearchStr = searchstr;
+
+  if(typefilter != "All Overdue" &&
+     typefilter != "All Requested" &&
+     typefilter != "All Reserved")
+    lastSearchStr = searchstr;
+  else
+    lastSearchStr = searchstrArg;
+
   lastSearchType = search_type;
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
