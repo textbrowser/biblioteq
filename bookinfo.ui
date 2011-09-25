@@ -224,31 +224,105 @@
        <property name="title">
         <string>Specific Information</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QGroupBox" name="isbnAvailableCheckBox">
+          <property name="title">
+           <string/>
           </property>
-          <property name="text">
-           <string>ISBN-10</string>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="font">
+              <font>
+               <family>Times</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>ISBN-10</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLineEdit" name="id">
+               <property name="maxLength">
+                <number>32</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="isbn13to10">
+               <property name="font">
+                <font>
+                 <family>Times</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>From &amp;ISBN-13</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="font">
+              <font>
+               <family>Times</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>ISBN-13</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLineEdit" name="isbn13">
+               <property name="maxLength">
+                <number>16</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="isbn10to13">
+               <property name="font">
+                <font>
+                 <family>Times</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>From &amp;ISBN-10</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
-        <item row="1" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLineEdit" name="id">
-            <property name="maxLength">
-             <number>32</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="isbn13to10">
+        <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_5">
             <property name="font">
              <font>
               <family>Times</family>
@@ -256,40 +330,36 @@
              </font>
             </property>
             <property name="text">
-             <string>From &amp;ISBN-13</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+             <string>Edition</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>ISBN-13</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLineEdit" name="isbn13">
-            <property name="maxLength">
-             <number>16</number>
-            </property>
-           </widget>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QComboBox" name="edition">
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
-          <item>
-           <widget class="QPushButton" name="isbn10to13">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_6">
             <property name="font">
              <font>
               <family>Times</family>
@@ -297,198 +367,134 @@
              </font>
             </property>
             <property name="text">
-             <string>From &amp;ISBN-10</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+             <string>Author(s)</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Edition</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <layout class="QHBoxLayout">
-          <item>
-           <widget class="QComboBox" name="edition">
-            <property name="autoFillBackground">
+          <item row="1" column="1">
+           <widget class="hyperlinked_text_edit" name="author">
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+            </property>
+            <property name="openLinks">
              <bool>false</bool>
             </property>
            </widget>
           </item>
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
+            <property name="text">
+             <string>Book Binding Type</string>
             </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Author(s)</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="hyperlinked_text_edit" name="author">
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-          </property>
-          <property name="openLinks">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Book Binding Type</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <layout class="QHBoxLayout">
-          <item>
-           <widget class="QComboBox" name="binding">
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Hardcover</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Paperback</string>
-             </property>
-            </item>
            </widget>
           </item>
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QComboBox" name="binding">
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string>Hardcover</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Paperback</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
+            <property name="text">
+             <string>LC Control Number</string>
             </property>
-           </spacer>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lcnum">
+            <property name="maxLength">
+             <number>64</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Call Number</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="callnum">
+            <property name="maxLength">
+             <number>64</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Dewey Class Number</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="deweynum">
+            <property name="maxLength">
+             <number>64</number>
+            </property>
+           </widget>
           </item>
          </layout>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_12">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>LC Control Number</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="lcnum">
-          <property name="maxLength">
-           <number>64</number>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Call Number</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QLineEdit" name="callnum">
-          <property name="maxLength">
-           <number>64</number>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Dewey Class Number</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="1">
-         <widget class="QLineEdit" name="deweynum">
-          <property name="maxLength">
-           <number>64</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCheckBox" name="isbnAvailableCheckBox">
-          <property name="text">
-           <string>ISBNs Available</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>

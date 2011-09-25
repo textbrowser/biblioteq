@@ -737,8 +737,12 @@ void qtbook_book::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		id.id->text() + tr(")");
+	      if(id.isbnAvailableCheckBox->isChecked())
+		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		  id.id->text() + tr(")");
+	      else
+		str = tr("BiblioteQ: Modify Book Entry");
+
 	      engWindowTitle = "Modify";
 	      setWindowTitle(str);
 
@@ -1362,7 +1366,9 @@ void qtbook_book::modify(const int state)
 	      setWindowTitle(str);
 
 	      if(query.record().isNull(i))
-		id.isbnAvailableCheckBox->click();
+		id.isbnAvailableCheckBox->setChecked(false);
+	      else
+		id.isbnAvailableCheckBox->setChecked(true);
 	    }
 	  else if(fieldname == "description")
 	    id.description->setPlainText(var.toString());
