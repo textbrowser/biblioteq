@@ -4,7 +4,7 @@
 
 CREATE TABLE book
 (
-	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
+	id		 VARCHAR(32) UNIQUE,
 	myoid		 BIGINT NOT NULL,
 	title		 TEXT NOT NULL,
 	edition		 VARCHAR(8) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE book
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	binding_type	 VARCHAR(32) NOT NULL,
 	location	 TEXT NOT NULL,
-	isbn13		 VARCHAR(16) NOT NULL,
+	isbn13		 VARCHAR(16) UNIQUE,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),

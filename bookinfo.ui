@@ -225,7 +225,7 @@
         <string>Specific Information</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
@@ -238,7 +238,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="1" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLineEdit" name="id">
@@ -248,46 +248,25 @@
            </widget>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QPushButton" name="generate">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>&amp;Generate</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>icons.d/16x16/gear.png</normaloff>icons.d/16x16/gear.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="isbn13to10">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>From &amp;ISBN-13</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QPushButton" name="isbn13to10">
+            <property name="font">
+             <font>
+              <family>Times</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>From &amp;ISBN-13</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label_11">
           <property name="font">
            <font>
@@ -300,7 +279,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="2" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QLineEdit" name="isbn13">
@@ -328,7 +307,7 @@
           </item>
          </layout>
         </item>
-        <item row="2" column="0">
+        <item row="3" column="0">
          <widget class="QLabel" name="label_5">
           <property name="font">
            <font>
@@ -341,7 +320,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="3" column="1">
          <layout class="QHBoxLayout">
           <item>
            <widget class="QComboBox" name="edition">
@@ -365,7 +344,7 @@
           </item>
          </layout>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="label_6">
           <property name="font">
            <font>
@@ -378,7 +357,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="4" column="1">
          <widget class="hyperlinked_text_edit" name="author">
           <property name="readOnly">
            <bool>false</bool>
@@ -391,7 +370,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="5" column="0">
          <widget class="QLabel" name="label_9">
           <property name="font">
            <font>
@@ -404,7 +383,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="5" column="1">
          <layout class="QHBoxLayout">
           <item>
            <widget class="QComboBox" name="binding">
@@ -441,7 +420,7 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
+        <item row="6" column="0">
          <widget class="QLabel" name="label_12">
           <property name="font">
            <font>
@@ -454,14 +433,14 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="6" column="1">
          <widget class="QLineEdit" name="lcnum">
           <property name="maxLength">
            <number>64</number>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="7" column="0">
          <widget class="QLabel" name="label_17">
           <property name="font">
            <font>
@@ -474,14 +453,14 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="7" column="1">
          <widget class="QLineEdit" name="callnum">
           <property name="maxLength">
            <number>64</number>
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
+        <item row="8" column="0">
          <widget class="QLabel" name="label_18">
           <property name="font">
            <font>
@@ -494,10 +473,20 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
+        <item row="8" column="1">
          <widget class="QLineEdit" name="deweynum">
           <property name="maxLength">
            <number>64</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="isbnAvailableCheckBox">
+          <property name="text">
+           <string>ISBNs Available</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -1096,8 +1085,8 @@
   <tabstop>back_image</tabstop>
   <tabstop>dwnldBack</tabstop>
   <tabstop>backButton</tabstop>
+  <tabstop>isbnAvailableCheckBox</tabstop>
   <tabstop>id</tabstop>
-  <tabstop>generate</tabstop>
   <tabstop>isbn13to10</tabstop>
   <tabstop>isbn13</tabstop>
   <tabstop>isbn10to13</tabstop>

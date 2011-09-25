@@ -66,7 +66,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotReadyRead(void);
   void slotShowUsers(void);
   void slotSelectImage(void);
-  void slotGenerateISBN(void);
   void slotDownloadImage(void);
   void slotDownloadFinished(void);
   void slotConvertISBN10to13(void);

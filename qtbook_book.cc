@@ -73,6 +73,34 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   connect(id.isbn13to10, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN13to10(void)));
   connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.dwnldFront,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.dwnldBack,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.queryButton,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.id,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.isbn13,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.isbn10to13,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.isbn13to10,
+	  SLOT(setEnabled(bool)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Back Cover Image")),
@@ -123,8 +151,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(id.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
-  connect(id.generate, SIGNAL(clicked(void)), this,
-	  SLOT(slotGenerateISBN(void)));
   connect(id.dwnldFront, SIGNAL(clicked(void)), this,
 	  SLOT(slotDownloadImage(void)));
   connect(id.dwnldBack, SIGNAL(clicked(void)), this,
@@ -315,29 +341,32 @@ void qtbook_book::slotGo(void)
       str = id.id->text().trimmed();
       id.id->setText(str);
 
-      if(id.isbn13->text().trimmed().isEmpty())
-	slotConvertISBN10to13();
-
       str = id.isbn13->text().trimmed();
       id.isbn13->setText(str);
 
-      if(id.id->text().trimmed().isEmpty())
-	slotConvertISBN13to10();
+      if(id.isbnAvailableCheckBox->isChecked())
+	if(id.id->text().length() == 10)
+	  slotConvertISBN10to13();
 
-      if(id.id->text().length() != 10 ||
-	 id.isbn13->text().length() != 13)
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete both the "
-				   "ISBN-10 and ISBN-13 fields."));
+      if(id.isbnAvailableCheckBox->isChecked())
+	if(id.isbn13->text().length() == 13)
+	  slotConvertISBN13to10();
 
-	  if(id.id->text().length() != 10)
-	    id.id->setFocus();
-	  else
-	    id.isbn13->setFocus();
+      if(id.isbnAvailableCheckBox->isChecked())
+	if(id.id->text().length() != 10 ||
+	   id.isbn13->text().length() != 13)
+	  {
+	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				  tr("Please complete both the "
+				     "ISBN-10 and ISBN-13 fields."));
 
-	  return;
-	}
+	    if(id.id->text().length() != 10)
+	      id.id->setFocus();
+	    else
+	      id.isbn13->setFocus();
+
+	    return;
+	  }
 
       str = id.author->toPlainText().trimmed();
       id.author->setPlainText(str);
@@ -489,7 +518,12 @@ void qtbook_book::slotGo(void)
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?)");
 
-      query.bindValue(0, id.id->text());
+      if(id.isbnAvailableCheckBox->isChecked() &&
+	 !id.id->text().isEmpty())
+	query.bindValue(0, id.id->text());
+      else
+	query.bindValue(0, QVariant(QVariant::String));
+
       query.bindValue(1, id.title->text().trimmed());
       query.bindValue(2, id.edition->currentText().trimmed());
       query.bindValue(3, id.author->toPlainText().trimmed());
@@ -503,7 +537,12 @@ void qtbook_book::slotGo(void)
       query.bindValue(11, id.quantity->text());
       query.bindValue(12, id.binding->currentText().trimmed());
       query.bindValue(13, id.location->currentText().trimmed());
-      query.bindValue(14, id.isbn13->text());
+
+      if(id.isbnAvailableCheckBox->isChecked() &&
+	 !id.isbn13->text().isEmpty())
+	query.bindValue(14, id.isbn13->text());
+      else
+	query.bindValue(14, QVariant(QVariant::String));
 
       if(!id.lcnum->text().isEmpty())
 	query.bindValue(15, id.lcnum->text());
@@ -652,6 +691,12 @@ void qtbook_book::slotGo(void)
 		     __LINE__);
 		  goto db_rollback;
 		}
+	    }
+
+	  if(!id.isbnAvailableCheckBox->isChecked())
+	    {
+	      id.id->clear();
+	      id.isbn13->clear();
 	    }
 
 	  id.id->setPalette(te_orig_pal);
@@ -872,13 +917,23 @@ void qtbook_book::slotGo(void)
 	"book.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'Book' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE '%" + id.id->text().toLower() +
-		       "%' AND ");
+
+      if(id.isbnAvailableCheckBox->isChecked())
+	searchstr.append("LOWER(id) LIKE '%" + id.id->text().toLower() +
+			 "%' AND ");
+      else
+	searchstr.append("id IS NULL AND ");
+
       searchstr.append("LOWER(title) LIKE '%" +
 		       myqstring::escape(id.title->text().toLower()) +
 		       "%' AND ");
-      searchstr.append("LOWER(isbn13) LIKE '%" +
-		       id.isbn13->text().toLower() + "%' AND ");
+
+      if(id.isbnAvailableCheckBox->isChecked())
+	searchstr.append("LOWER(isbn13) LIKE '%" +
+			 id.isbn13->text().toLower() + "%' AND ");
+      else
+	searchstr.append("isbn13 IS NULL AND ");
+
       searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
 		       myqstring::escape(id.lcnum->text().toLower()) +
 		       "%' AND ");
@@ -982,7 +1037,6 @@ void qtbook_book::slotGo(void)
 void qtbook_book::search(const QString &field, const QString &value)
 {
   id.coverImages->setVisible(false);
-  id.generate->setVisible(false);
   id.id->clear();
   id.category->clear();
   id.isbn13->clear();
@@ -1082,7 +1136,6 @@ void qtbook_book::updateWindow(const int state)
       id.backButton->setVisible(true);
       id.dwnldFront->setVisible(true);
       id.dwnldBack->setVisible(true);
-      id.generate->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Book Entry (")) +
@@ -1100,7 +1153,6 @@ void qtbook_book::updateWindow(const int state)
       id.backButton->setVisible(false);
       id.dwnldFront->setVisible(false);
       id.dwnldBack->setVisible(false);
-      id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
       str = QString(tr("BiblioteQ: View Book Details (")) +
@@ -1138,7 +1190,6 @@ void qtbook_book::modify(const int state)
       id.backButton->setVisible(true);
       id.dwnldFront->setVisible(true);
       id.dwnldBack->setVisible(true);
-      id.generate->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
       misc_functions::highlightWidget
@@ -1172,7 +1223,6 @@ void qtbook_book::modify(const int state)
       id.backButton->setVisible(false);
       id.dwnldFront->setVisible(false);
       id.dwnldBack->setVisible(false);
-      id.generate->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
 
@@ -1310,6 +1360,9 @@ void qtbook_book::modify(const int state)
 
 	      id.id->setText(var.toString());
 	      setWindowTitle(str);
+
+	      if(query.record().isNull(i))
+		id.isbnAvailableCheckBox->click();
 	    }
 	  else if(fieldname == "description")
 	    id.description->setPlainText(var.toString());
@@ -2550,15 +2603,6 @@ void qtbook_book::slotSelectImage(void)
 	    (QGraphicsItem::ItemIsSelectable);
 	}
     }
-}
-
-/*
-** -- slotGenerateISBN() --
-*/
-
-void qtbook_book::slotGenerateISBN(void)
-{
-  id.id->setText(QString::number(QDateTime::currentDateTime().toTime_t()));
 }
 
 /*
