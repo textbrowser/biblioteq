@@ -583,7 +583,7 @@ CREATE TABLE book_backup
 	back_cover	 BYTEA,
 	marc_tags	 TEXT,
 	keyword		 TEXT,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'	
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
 );
 
 INSERT INTO book_backup SELECT * FROM book;

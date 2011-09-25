@@ -2153,6 +2153,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
     }
   else if(version == "6.51")
     {
+      QString querystr("");
       QSqlQuery query(db);
       QStringList tables;
 
@@ -2171,5 +2172,38 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	    arg(tables.takeFirst());
 	  query.exec(querystr);
 	}
+
+      querystr = "CREATE TABLE book_backup"
+	"("
+	"id		 VARCHAR(32) UNIQUE,"
+	"myoid		 BIGINT NOT NULL,"
+	"title		 TEXT NOT NULL,"
+	"edition		 VARCHAR(8) NOT NULL,"
+	"author		 TEXT NOT NULL,"
+	"pdate		 VARCHAR(32) NOT NULL,"
+	"publisher	 TEXT NOT NULL,"
+	"place		 TEXT NOT NULL,"
+	"category	 TEXT NOT NULL,"
+	"price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	"description	 TEXT NOT NULL,"
+	"language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	"monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	"quantity	 INTEGER NOT NULL DEFAULT 1,"
+	"binding_type	 VARCHAR(32) NOT NULL,"
+	"location	 TEXT NOT NULL,"
+	"isbn13		 VARCHAR(16) UNIQUE,"
+	"lccontrolnumber	 VARCHAR(64),"
+	"callnumber	 VARCHAR(64),"
+	"deweynumber	 VARCHAR(64),"
+	"front_cover	 BYTEA,"
+	"back_cover	 BYTEA,"
+	"marc_tags	 TEXT,"
+	"keyword		 TEXT,"
+	"type		 VARCHAR(16) NOT NULL DEFAULT 'Book'"
+	")";
+      query.exec(querystr);
+      query.exec("INSERT INTO book_backup SELECT * FROM book");
+      query.exec("DROP TABLE book");
+      query.exec("ALTER TABLE book_backup RENAME TO book");
     }
 }
