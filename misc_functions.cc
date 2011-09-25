@@ -2202,7 +2202,32 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	"type		 VARCHAR(16) NOT NULL DEFAULT 'Book'"
 	")";
       query.exec(querystr);
-      query.exec("INSERT INTO book_backup SELECT * FROM book");
+      query.exec("INSERT INTO book_backup SELECT "
+		 "id, "
+		 "myoid, "
+		 "title, "
+		 "edition, "
+		 "author, "
+		 "pdate, "
+		 "publisher, "
+		 "place, "
+		 "category, "
+		 "price, "
+		 "description, "
+		 "language, "
+		 "monetary_units, "
+		 "quantity, "
+		 "binding_type, "
+		 "location, "
+		 "isbn13, "
+		 "lccontrolnumber, "
+		 "callnumber, "
+		 "deweynumber, "
+		 "front_cover, "
+		 "back_cover, "
+		 "marc_tags, "
+		 "keyword, "
+		 "type FROM book");
       query.exec("DROP TABLE book");
       query.exec("ALTER TABLE book_backup RENAME TO book");
     }

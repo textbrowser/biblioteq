@@ -737,7 +737,7 @@ void qtbook_book::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      if(id.isbnAvailableCheckBox->isChecked())
+	      if(!id.id->text().isEmpty())
 		str = QString(tr("BiblioteQ: Modify Book Entry (")) +
 		  id.id->text() + tr(")");
 	      else
@@ -1142,8 +1142,13 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(true);
       id.isbn10to13->setVisible(true);
       id.isbn13to10->setVisible(true);
-      str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	id.id->text() + tr(")");
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+	  id.id->text() + tr(")");
+      else
+	str = tr("BiblioteQ: Modify Book Entry");
+
       engWindowTitle = "Modify";
     }
   else
@@ -1159,8 +1164,13 @@ void qtbook_book::updateWindow(const int state)
       id.dwnldBack->setVisible(false);
       id.isbn10to13->setVisible(false);
       id.isbn13to10->setVisible(false);
-      str = QString(tr("BiblioteQ: View Book Details (")) +
-	id.id->text() + tr(")");
+
+      if(!id.id->text().trimmed().isEmpty())
+	str = QString(tr("BiblioteQ: View Book Details (")) +
+	  id.id->text() + tr(")");
+      else
+	str = tr("BiblioteQ: View Book Details");
+
       engWindowTitle = "View";
     }
 
@@ -1351,14 +1361,22 @@ void qtbook_book::modify(const int state)
 	    {
 	      if(state == qtbook::EDITABLE)
 		{
-		  str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-		    var.toString() + tr(")");
+		  if(!var.toString().trimmed().isEmpty())
+		    str = QString(tr("BiblioteQ: Modify Book Entry (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = tr("BiblioteQ: Modify Book Entry");
+
 		  engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  str = QString(tr("BiblioteQ: View Book Details (")) +
-		    var.toString() + tr(")");
+		  if(!var.toString().trimmed().isEmpty())
+		    str = QString(tr("BiblioteQ: View Book Details (")) +
+		      var.toString() + tr(")");
+		  else
+		    str = tr("BiblioteQ: View Book Details");
+
 		  engWindowTitle = "View";
 		}
 
