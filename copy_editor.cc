@@ -339,8 +339,13 @@ void copy_editor::populateCopiesEditor(void)
 		if(query.value(2).toString() == "0")
 		  cb.table->item(row, j)->setFlags(0);
 		else if(showForLending)
-		  cb.table->item(row, j)->setFlags
-		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+		  {
+		    cb.table->item(row, j)->setFlags
+		      (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+		    if(cb.table->currentRow() == -1)
+		      cb.table->selectRow(row);
+		  }
 		else if(j == 1)
 		  cb.table->item(row, 1)->setFlags
 		    (Qt::ItemIsSelectable | Qt::ItemIsEnabled |
