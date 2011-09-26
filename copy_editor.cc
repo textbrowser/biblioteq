@@ -32,6 +32,10 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   ioid = ioidArg;
   quantity = quantityArg;
   uniqueid = uniqueidArg;
+
+  if(uniqueid.isEmpty())
+    uniqueid = ioid;
+
   spinbox = spinboxArg;
   itemType = itemTypeArg;
   showForLending = showForLendingArg;
@@ -41,6 +45,9 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
     setWindowTitle
       (QString(tr("BiblioteQ: Copy Browser (")) +
        uniqueidArg + QString(tr(")")));
+  else
+    setWindowTitle
+      (tr("BiblioteQ: Copy Browser"));
 
   setGlobalFonts(font);
 }

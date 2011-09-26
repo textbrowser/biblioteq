@@ -60,6 +60,8 @@ borrowers_editor::borrowers_editor(QWidget *parent,
     setWindowTitle
       (QString(tr("BiblioteQ: Item Reservation Status (")) + uniqueidArg +
        QString(tr(")")));
+  else
+    setWindowTitle(tr("BiblioteQ: Item Reservation Status"));
 }
 
 /*

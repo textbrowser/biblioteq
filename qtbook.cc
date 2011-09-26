@@ -5673,6 +5673,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("ID Number"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString(ui.table, i,
@@ -5698,6 +5701,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("ID Number"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5707,6 +5713,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("Release Date"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5715,6 +5724,9 @@ void qtbook::slotDisplaySummary(void)
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("Recording Label"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";
@@ -5732,6 +5744,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("ID Number"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5741,6 +5756,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("Release Date"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5749,6 +5767,9 @@ void qtbook::slotDisplaySummary(void)
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("Studio"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";
@@ -5764,6 +5785,9 @@ void qtbook::slotDisplaySummary(void)
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";
@@ -5790,6 +5814,9 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("ID Number"));
 
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
 	  summary += tmpstr;
 	  summary += "<br>";
 	  tmpstr = misc_functions::getColumnString(ui.table, i,
@@ -5798,6 +5825,9 @@ void qtbook::slotDisplaySummary(void)
 	  if(tmpstr.isEmpty())
 	    tmpstr = misc_functions::getColumnString(ui.table, i,
 						     tr("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";

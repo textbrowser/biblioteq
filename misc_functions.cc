@@ -1422,6 +1422,9 @@ QString misc_functions::getOID(const QString &idArg,
   if(itemType == "journal" || itemType == "magazine")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
 		       "issuevolume = ? AND issueno = ?").arg(itemType);
+  else if(itemType == "book")
+    querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
+		       "id IS NOT NULL").arg(itemType);
   else
     querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
 
@@ -1480,6 +1483,16 @@ void misc_functions::createInitialCopies(const QString &idArg,
 
   if(itemType == "journal" || itemType == "magazine")
     id = id.split(",")[0];
+  else if(itemType == "book")
+    {
+      if(itemoid.isEmpty())
+	/*
+	** If the id from getOID() is NULL, createInitialCopies() was called
+	** with an oid.
+	*/
+
+	itemoid = id;
+    }
 
   if(!itemoid.isEmpty())
     for(i = 0; i < numCopies; i++)
