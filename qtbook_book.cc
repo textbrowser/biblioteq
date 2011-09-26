@@ -500,7 +500,7 @@ void qtbook_book::slotGo(void)
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
-		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING myoid");
       else
 	query.prepare("INSERT INTO book (id, title, "
 		      "edition, author, pdate, publisher, "
@@ -601,7 +601,10 @@ void qtbook_book::slotGo(void)
 							   errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(23, value);
+	    {
+	      query.bindValue(23, value);
+	      oid = QString::number(value);
+	    }
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -665,10 +668,22 @@ void qtbook_book::slotGo(void)
 	      ** Create initial copies.
 	      */
 
-	      misc_functions::createInitialCopies(id.id->text(),
-						  id.quantity->value(),
-						  qmain->getDB(),
-						  "Book", errorstr);
+	      if(qmain->getDB().driverName() != "QSQLITE")
+		{
+		  oid = query.next();
+		  oid = query.value(0).toString();
+		}
+
+	      if(id.id->text().isEmpty())
+		misc_functions::createInitialCopies(oid,
+						    id.quantity->value(),
+						    qmain->getDB(),
+						    "Book", errorstr);
+	      else
+		misc_functions::createInitialCopies(id.id->text(),
+						    id.quantity->value(),
+						    qmain->getDB(),
+						    "Book", errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -847,27 +862,7 @@ void qtbook_book::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
-	      oid = misc_functions::getOID(id.id->text(),
-					   "Book",
-					   qmain->getDB(),
-					   errorstr);
-	      qapp->restoreOverrideCursor();
-
-	      if(!errorstr.isEmpty())
-		{
-		  oid = "insert";
-		  qmain->addError(QString(tr("Database Error")),
-				  QString(tr("Unable to retrieve the book's "
-					     "OID.")),
-				  errorstr, __FILE__, __LINE__);
-		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-					tr("Unable to retrieve the book's "
-					   "OID."));
-		}
-	      else
-		qmain->replaceBook("insert", this);
-
+	      qmain->replaceBook("insert", this);
 	      updateWindow(qtbook::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
