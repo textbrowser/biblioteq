@@ -160,6 +160,7 @@ void borrowers_editor::showUsers(void)
 		dateEdit->setDate
 		  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 		dateEdit->setCalendarPopup(true);
+		dateEdit->setEnabled(false);
 	      }
 	    else
 	      qmain->addError(QString(tr("Memory Error")),
@@ -295,6 +296,9 @@ void borrowers_editor::showUsers(void)
 		    static_cast<QDateEdit *> (bd.table->cellWidget
 					      (row, j))->setMinimumDate
 		      (tomorrow);
+		    static_cast<QDateEdit *> (bd.table->cellWidget
+					      (row, j))->setEnabled
+		      (true);
 		  }
 	      }
 	    else if(bd.table->item(row, j) != 0)

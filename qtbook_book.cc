@@ -162,6 +162,14 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.id->setValidator(validator1);
   id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  menu->actions()[2],
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  menu->actions()[3],
+	  SLOT(setEnabled(bool)));
 
   QString errorstr("");
 
