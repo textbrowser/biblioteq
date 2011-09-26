@@ -308,7 +308,7 @@
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>E-Mail Address</source>
@@ -496,6 +496,10 @@
         <source>MM/yyyy</source>
         <translation>MM/yyyy</translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
@@ -620,11 +624,11 @@
         <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli chybám při databázovém zpracování.</translation>
     </message>
     <message>
-        <source>Unable to retrieve the minimum number of days.</source>
+        <source>It appears that the selected item has not been reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>It appears that the selected item has not been reserved.</source>
+        <source>BiblioteQ: Item Reservation Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -767,7 +771,7 @@
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Recording Label</source>
@@ -834,6 +838,10 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1065,6 +1073,10 @@ webová adresa</translation>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1078,7 +1090,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1603,7 +1615,7 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -1670,6 +1682,10 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1845,7 +1861,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Generate</source>
-        <translation>&amp;Generovat</translation>
+        <translation type="obsolete">&amp;Generovat</translation>
     </message>
     <message>
         <source>&amp;Convert</source>
@@ -2001,7 +2017,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -2085,6 +2101,10 @@ webová adresa</translation>
         <source>MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -2152,7 +2172,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>ISSN (9999-9999)</source>
-        <translation>ISSN (9999-9999)</translation>
+        <translation type="obsolete">ISSN (9999-9999)</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2180,7 +2200,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -2254,6 +2274,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2405,7 +2433,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
-        <translation>Automaticky &amp;přizpůsobit šířku sloupce obsahu</translation>
+        <translation type="obsolete">Automaticky &amp;přizpůsobit šířku sloupce obsahu</translation>
     </message>
     <message>
         <source>&amp;Automatically Populate Table on Filter Change</source>
@@ -3621,7 +3649,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
-        <translation>Máte neuložená data. Pokračovat?</translation>
+        <translation type="obsolete">Máte neuložená data. Pokračovat?</translation>
     </message>
     <message>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
@@ -4041,7 +4069,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
@@ -4185,6 +4213,20 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Export View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue?
+%1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4484,7 +4526,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to retrieve the book&apos;s OID.</source>
-        <translation>Nemohu načíst údaje o ID knihy.</translation>
+        <translation type="obsolete">Nemohu načíst údaje o ID knihy.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -4776,6 +4818,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5365,6 +5415,14 @@ webová adresa</translation>
         <source>Some or all of the track data has not been saved.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
@@ -5870,6 +5928,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyword:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6446,6 +6512,14 @@ webová adresa</translation>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6913,6 +6987,14 @@ webová adresa</translation>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>tracksDialog</name>
@@ -7021,7 +7103,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>dd.MM.yyyy</translation>
+        <translation type="obsolete">dd.MM.yyyy</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -7093,6 +7175,10 @@ webová adresa</translation>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>z3950ResultsDialog</name>
@@ -7115,6 +7201,10 @@ webová adresa</translation>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Storno</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
     </message>
 </context>
 <context>

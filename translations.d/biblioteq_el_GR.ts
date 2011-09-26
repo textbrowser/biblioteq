@@ -308,7 +308,7 @@
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>E-Mail Address</source>
@@ -496,6 +496,10 @@
         <source>MM/yyyy</source>
         <translation>μμ/εεεε</translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
@@ -620,11 +624,11 @@
         <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω σφαλμάτων στη βάση δεδομένων.</translation>
     </message>
     <message>
-        <source>Unable to retrieve the minimum number of days.</source>
+        <source>It appears that the selected item has not been reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>It appears that the selected item has not been reserved.</source>
+        <source>BiblioteQ: Item Reservation Status</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -767,7 +771,7 @@
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Recording Label</source>
@@ -834,6 +838,10 @@ URL</source>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1065,6 +1073,10 @@ URL</source>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1078,7 +1090,7 @@ URL</source>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Title</source>
@@ -1602,7 +1614,7 @@ URL</source>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -1669,6 +1681,10 @@ URL</source>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1844,7 +1860,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Generate</source>
-        <translation>&amp;Παραγωγή</translation>
+        <translation type="obsolete">&amp;Παραγωγή</translation>
     </message>
     <message>
         <source>&amp;Convert</source>
@@ -2000,7 +2016,7 @@ URL</source>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -2084,6 +2100,10 @@ URL</source>
         <source>MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -2151,7 +2171,7 @@ URL</source>
     </message>
     <message>
         <source>ISSN (9999-9999)</source>
-        <translation>ISSN (9999-9999)</translation>
+        <translation type="obsolete">ISSN (9999-9999)</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2179,7 +2199,7 @@ URL</source>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -2253,6 +2273,14 @@ URL</source>
     </message>
     <message>
         <source>MARC Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2412,7 +2440,7 @@ URL</source>
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
-        <translation>Αυτόματη προσαρ&amp;μογή των στηλών στα περιεχόμενα</translation>
+        <translation type="obsolete">Αυτόματη προσαρ&amp;μογή των στηλών στα περιεχόμενα</translation>
     </message>
     <message>
         <source>&amp;Automatically Populate Table on Filter Change</source>
@@ -3600,7 +3628,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια;</translation>
     </message>
     <message>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
@@ -4020,7 +4048,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
@@ -4156,6 +4184,20 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Export View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue?
+%1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4455,7 +4497,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the book&apos;s OID.</source>
-        <translation>Αδυναμία καθορισμού του OID βιβλίου.</translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του OID βιβλίου.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -4747,6 +4789,14 @@ URL</source>
     </message>
     <message>
         <source>MARC Tags:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5336,6 +5386,14 @@ URL</source>
         <source>Some or all of the track data has not been saved.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
@@ -5841,6 +5899,14 @@ URL</source>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyword:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6417,6 +6483,14 @@ URL</source>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6884,6 +6958,14 @@ URL</source>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>tracksDialog</name>
@@ -6992,7 +7074,7 @@ URL</source>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
-        <translation>μμ/ηη/εεεε</translation>
+        <translation type="obsolete">μμ/ηη/εεεε</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -7064,6 +7146,10 @@ URL</source>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
+    <message>
+        <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>z3950ResultsDialog</name>
@@ -7086,6 +7172,10 @@ URL</source>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Άκυρο</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
     </message>
 </context>
 <context>
