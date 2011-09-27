@@ -85,13 +85,13 @@ TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
 biblioteq.path		= /Applications/BiblioteQ.d
-biblioteq.extra		= cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
+biblioteq.extra		= BiblioteQ.app
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 icons.path		= /Applications/BiblioteQ.d/icons.d
 icons.files		= icons.d/*
-macdeployqt.path	= ./BiblioteQ.app
-macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0
+macdeployqt.path	= BiblioteQ.app
+macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo; rm -rf ./BiblioteQ.app
 preinstall.path         = /Applications/BiblioteQ.d
@@ -100,10 +100,10 @@ translations.path	= /Applications/BiblioteQ.d/translations.d
 translations.files	= translations.d/*.qm
 
 QMAKE_STRIP	= echo
-INSTALLS	=	preinstall \
-			macdeployqt \
-			biblioteq \
-			conf \
-			icons \
-			translations \
-			postinstall
+INSTALLS	= preinstall \
+		  macdeployqt \
+		  conf \
+		  icons \
+		  translations \
+                  biblioteq \
+		  postinstall

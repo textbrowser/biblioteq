@@ -85,17 +85,21 @@ PROJECTNAME	= BiblioteQ
 
 biblioteq.path		= /usr/local/biblioteq
 biblioteq.files		= BiblioteQ
-cleanup.path		= /usr/local/biblioteq
-cleanup.files		=
-cleanup.extra		= find /usr/local/biblioteq -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 conf.path		= /usr/local/share
 conf.files		= biblioteq.conf
 icons.path		= /usr/local/biblioteq/icons.d
 icons.files		= icons.d/*
+postinstall.path	= /usr/local/biblioteq
+postinstall.extra	= find /usr/local/biblioteq -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 sh.path			= /usr/local/bin
 sh.files		= biblioteq.sh
 translations.path	= /usr/local/biblioteq/translations.d
 translations.files	= translations.d/*.qm
 
 QMAKE_STRIP	= echo
-INSTALLS	= biblioteq conf icons sh translations cleanup
+INSTALLS	= icons \
+                  translations \
+                  biblioteq \
+                  conf \
+                  sh \
+                  postinstall
