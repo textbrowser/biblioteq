@@ -93,11 +93,11 @@ icons.files		= icons.d/*
 macdeployqt.path	= ./BiblioteQ.app
 macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0
 postinstall.path	= /Applications/BiblioteQ.d
-postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
+postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo; rm -rf ./BiblioteQ.app
 preinstall.path         = /Applications/BiblioteQ.d
 preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app
 translations.path	= /Applications/BiblioteQ.d/translations.d
 translations.files	= translations.d/*.qm
 
 QMAKE_STRIP	= echo
-INSTALLS	= preinstall biblioteq macdeployqt conf icons translations postinstall
+INSTALLS	= preinstall macdeployqt biblioteq conf icons translations postinstall
