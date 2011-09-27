@@ -85,7 +85,7 @@ TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
 biblioteq.path		= /Applications/BiblioteQ.d
-biblioteq.files		= BiblioteQ.app
+biblioteq.extra		= cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 icons.path		= /Applications/BiblioteQ.d/icons.d
@@ -100,4 +100,10 @@ translations.path	= /Applications/BiblioteQ.d/translations.d
 translations.files	= translations.d/*.qm
 
 QMAKE_STRIP	= echo
-INSTALLS	= preinstall macdeployqt biblioteq conf icons translations postinstall
+INSTALLS	=	preinstall \
+			macdeployqt \
+			biblioteq \
+			conf \
+			icons \
+			translations \
+			postinstall
