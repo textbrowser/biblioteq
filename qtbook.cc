@@ -4014,7 +4014,7 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(type != "Video Game")
-		  str += "UNION ";
+		  str += "UNION ALL ";
 		else
 		  str += " ";
 
@@ -8995,7 +8995,7 @@ void qtbook::slotShowHistory(void)
 	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ALL ";
+	  querystr += "UNION ";
       }
   else
     for(i = 0; i < list.size(); i++)
@@ -9072,7 +9072,7 @@ void qtbook::slotShowHistory(void)
 	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ALL ";
+	  querystr += "UNION ";
       }
 
   querystr.append("ORDER BY 1");
