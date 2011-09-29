@@ -8933,34 +8933,69 @@ void qtbook::slotShowHistory(void)
 			      "history.type ").arg(list[i]).arg
 	    (misc_functions::getColumnString(bb.table, row, tr("Member ID")));
 	else
-	  querystr += QString("SELECT "
-			      "history.memberid, "
-			      "member.first_name, "
-			      "member.last_name, "
-			      "book.title, "
-			      "history.item_id, "
-			      "history.copyid, "
-			      "book.type, "
-			      "history.reserved_date, "
-			      "history.duedate, "
-			      "history.returned_date, "
-			      "history.reserved_by, "
-			      "book.myoid "
-			      "FROM member_history history, "
-			      "book book, "
-			      "member member "
-			      "WHERE history.memberid = member.memberid AND "
-			      "((book.id = history.item_id AND "
-			      "book.id IS NOT NULL) OR "
-			      "(book.myoid = history.item_id AND "
-			      "book.id IS NULL)) AND "
-			      "book.myoid = history.item_oid AND "
-			      "member.memberid = '%1' AND book.type = "
-			      "history.type ").arg
-	    (misc_functions::getColumnString(bb.table, row, tr("Member ID")));
+	  {
+	    if(db.driverName() != "QSQLITE")
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "member.first_name, "
+		 "member.last_name, "
+		 "book.title, "
+		 "history.item_id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book, "
+		 "member member "
+		 "WHERE history.memberid = member.memberid AND "
+		 "((book.id = history.item_id AND "
+		 "book.id IS NOT NULL) OR "
+		 "(book.myoid::VARCHAR = "
+		 "history.item_id AND "
+		 "book.id IS NULL)) AND "
+		 "book.myoid = history.item_oid AND "
+		 "member.memberid = '%1' AND book.type = "
+		 "history.type ").arg
+		(misc_functions::getColumnString(bb.table, row,
+						 tr("Member ID")));
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "member.first_name, "
+		 "member.last_name, "
+		 "book.title, "
+		 "history.item_id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book, "
+		 "member member "
+		 "WHERE history.memberid = member.memberid AND "
+		 "((book.id = history.item_id AND "
+		 "book.id IS NOT NULL) OR "
+		 "(book.myoid = "
+		 "history.item_id AND "
+		 "book.id IS NULL)) AND "
+		 "book.myoid = history.item_oid AND "
+		 "member.memberid = '%1' AND book.type = "
+		 "history.type ").arg
+		(misc_functions::getColumnString(bb.table, row,
+						 tr("Member ID")));
+	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ";
+	  querystr += "UNION ALL ";
       }
   else
     for(i = 0; i < list.size(); i++)
@@ -8985,30 +9020,59 @@ void qtbook::slotShowHistory(void)
 			      "history.type ").arg(list[i]).arg
 	    (db.userName());
 	else
-	  querystr += QString("SELECT "
-			      "history.memberid, "
-			      "book.title, "
-			      "history.item_id, "
-			      "history.copyid, "
-			      "book.type, "
-			      "history.reserved_date, "
-			      "history.duedate, "
-			      "history.returned_date, "
-			      "history.reserved_by, "
-			      "book.myoid "
-			      "FROM member_history history, "
-			      "book book "
-			      "WHERE history.memberid = '%1' AND "
-			      "((book.id = history.item_id AND "
-			      "book.id IS NOT NULL) OR "
-			      "(book.myoid = history.item_id AND "
-			      "book.id IS NULL)) AND "
-			      "book.myoid = history.item_oid AND book.type = "
-			      "history.type ").arg(list[i]).arg
-	    (db.userName());
+	  {
+	    if(db.driverName() != "QSQLITE")
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "book.title, "
+		 "history.item_id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book "
+		 "WHERE history.memberid = '%1' AND "
+		 "((book.id = history.item_id AND "
+		 "book.id IS NOT NULL) OR "
+		 "(book.myoid::VARCHAR = "
+		 "history.item_id AND "
+		 "book.id IS NULL)) AND "
+		 "book.myoid = history.item_oid AND book.type = "
+		 "history.type ").arg(list[i]).arg
+		(db.userName());
+	    else
+	      querystr += QString
+		("SELECT "
+		 "history.memberid, "
+		 "book.title, "
+		 "history.item_id, "
+		 "history.copyid, "
+		 "book.type, "
+		 "history.reserved_date, "
+		 "history.duedate, "
+		 "history.returned_date, "
+		 "history.reserved_by, "
+		 "book.myoid "
+		 "FROM member_history history, "
+		 "book book "
+		 "WHERE history.memberid = '%1' AND "
+		 "((book.id = history.item_id AND "
+		 "book.id IS NOT NULL) OR "
+		 "(book.myoid = "
+		 "history.item_id AND "
+		 "book.id IS NULL)) AND "
+		 "book.myoid = history.item_oid AND book.type = "
+		 "history.type ").arg(list[i]).arg
+		(db.userName());
+	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ";
+	  querystr += "UNION ALL ";
       }
 
   querystr.append("ORDER BY 1");
