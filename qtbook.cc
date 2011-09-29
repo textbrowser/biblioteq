@@ -3915,7 +3915,7 @@ int qtbook::populateTable(const int search_type_arg,
 			       "WHERE ").arg(type.toLower().remove(" ")).
 		  arg(type);
 
-		str.append("(LOWER(id) LIKE '%" +
+		str.append("(id IS NULL OR LOWER(id) LIKE '%" +
 			   myqstring::escape(al.idnumber->text().toLower()) +
 			   "%' ");
 
@@ -9043,8 +9043,7 @@ void qtbook::slotShowHistory(void)
 		 "history.item_id AND "
 		 "book.id IS NULL)) AND "
 		 "book.myoid = history.item_oid AND book.type = "
-		 "history.type ").arg(list[i]).arg
-		(db.userName());
+		 "history.type ").arg(db.userName());
 	    else
 	      querystr += QString
 		("SELECT "
@@ -9067,8 +9066,7 @@ void qtbook::slotShowHistory(void)
 		 "history.item_id AND "
 		 "book.id IS NULL)) AND "
 		 "book.myoid = history.item_oid AND book.type = "
-		 "history.type ").arg(list[i]).arg
-		(db.userName());
+		 "history.type ").arg(db.userName());
 	  }
 
 	if(i != list.size() - 1)
