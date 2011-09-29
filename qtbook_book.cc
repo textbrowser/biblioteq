@@ -1134,6 +1134,7 @@ void qtbook_book::updateWindow(const int state)
 
   if(state == qtbook::EDITABLE)
     {
+      id.isbnAvailableCheckBox->setCheckable(true);
       id.copiesButton->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
@@ -1156,6 +1157,7 @@ void qtbook_book::updateWindow(const int state)
     }
   else
     {
+      id.isbnAvailableCheckBox->setCheckable(false);
       id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
@@ -1196,6 +1198,7 @@ void qtbook_book::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
+      id.isbnAvailableCheckBox->setCheckable(true);
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       engWindowTitle = "Modify";
       id.copiesButton->setEnabled(true);
@@ -1229,6 +1232,7 @@ void qtbook_book::modify(const int state)
     }
   else
     {
+      id.isbnAvailableCheckBox->setCheckable(false);
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       engWindowTitle = "View";
       id.copiesButton->setVisible(false);
