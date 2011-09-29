@@ -8995,7 +8995,7 @@ void qtbook::slotShowHistory(void)
 	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ";
+	  querystr += "UNION ALL ";
       }
   else
     for(i = 0; i < list.size(); i++)
@@ -9070,7 +9070,7 @@ void qtbook::slotShowHistory(void)
 	  }
 
 	if(i != list.size() - 1)
-	  querystr += "UNION ";
+	  querystr += "UNION ALL ";
       }
 
   querystr.append("ORDER BY 1");
