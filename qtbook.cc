@@ -3625,7 +3625,7 @@ int qtbook::populateTable(const int search_type_arg,
 	  }
 	else if(typefilter == "Video Games")
 	  {
-	    searchstr = "SELECT videogame.title, "
+	    searchstr = "SELECT DISTINCT videogame.title, "
 	      "videogame.vgrating, "
 	      "videogame.vgplatform, "
 	      "videogame.vgmode, "
@@ -3673,7 +3673,7 @@ int qtbook::populateTable(const int search_type_arg,
 	  }
 	else if(typefilter == "Books")
 	  {
-	    searchstr = "SELECT book.title, "
+	    searchstr = "SELECT DISTINCT book.title, "
 	      "book.author, "
 	      "book.publisher, book.pdate, book.place, "
 	      "book.edition, "
@@ -3721,7 +3721,7 @@ int qtbook::populateTable(const int search_type_arg,
 	  }
 	else if(typefilter == "DVDs")
 	  {
-	    searchstr = "SELECT dvd.title, "
+	    searchstr = "SELECT DISTINCT dvd.title, "
 	      "dvd.dvdformat, "
 	      "dvd.studio, "
 	      "dvd.rdate, "
@@ -3773,7 +3773,7 @@ int qtbook::populateTable(const int search_type_arg,
 	  }
 	else if(typefilter == "Music CDs")
 	  {
-	    searchstr = "SELECT cd.title, "
+	    searchstr = "SELECT DISTINCT cd.title, "
 	      "cd.artist, "
 	      "cd.cdformat, "
 	      "cd.recording_label, "
@@ -3829,7 +3829,7 @@ int qtbook::populateTable(const int search_type_arg,
 	    else
 	      type = "Magazine";
 
-	    searchstr = QString("SELECT %1.title, "
+	    searchstr = QString("SELECT DISTINCT %1.title, "
 				"%1.publisher, %1.pdate, "
 				"%1.place, "
 				"%1.issuevolume, %1.issueno, "
