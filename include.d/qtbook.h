@@ -1,7 +1,7 @@
 #ifndef _QTBOOK_H_
 #define _QTBOOK_H_
 
-#define BIBLIOTEQ_VERSION "6.51"
+#define BIBLIOTEQ_VERSION "6.52"
 
 /*
 ** -- C++ Includes --
