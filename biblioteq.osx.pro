@@ -92,10 +92,10 @@ doc.path		= /Applications/BiblioteQ.d/doc.d
 doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d/icons.d
 icons.files		= icons.d/*
-macdeployqt.path	= BiblioteQ.app
+macdeployqt.path	= BiblioteQ.app/
 macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
-postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo; rm -rf ./BiblioteQ.app
+postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
 preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app
 sql.path		= /Applications/BiblioteQ.d
