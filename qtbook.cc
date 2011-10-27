@@ -3915,20 +3915,20 @@ int qtbook::populateTable(const int search_type_arg,
 			       "WHERE ").arg(type.toLower().remove(" ")).
 		  arg(type);
 
-		str.append("(id IS NULL OR LOWER(id) LIKE '%" +
-			   myqstring::escape(al.idnumber->text().toLower()) +
+		str.append("(id IS NULL OR id LIKE '%" +
+			   myqstring::escape(al.idnumber->text().trimmed()) +
 			   "%' ");
 
 		if(type == "Book")
-		  str.append("OR LOWER(isbn13) LIKE '%" +
+		  str.append("OR isbn13 LIKE '%" +
 			     myqstring::escape(al.idnumber->text().
-					       toLower()) + "%')");
+					       trimmed()) + "%')");
 		else
 		  str.append(")");
 
 		str.append(" AND ");
-		str.append("LOWER(title) LIKE '%" +
-			   myqstring::escape(al.title->text().toLower()) +
+		str.append("title LIKE '%" +
+			   myqstring::escape(al.title->text().trimmed()) +
 			   "%' AND ");
 
 		if(al.publication_date->date().toString
@@ -3937,12 +3937,12 @@ int qtbook::populateTable(const int search_type_arg,
 			     al.publication_date->date().toString
 			     ("MM/yyyy") + "' AND ");
 
-		str.append("LOWER(category) LIKE '%" +
+		str.append("category LIKE '%" +
 			   myqstring::escape
-			   (al.category->toPlainText().toLower()) +
+			   (al.category->toPlainText().trimmed()) +
 			   "%' AND ");
-		str.append("LOWER(publisher) LIKE '%" +
-			   myqstring::escape(al.publisher->text().toLower()) +
+		str.append("publisher LIKE '%" +
+			   myqstring::escape(al.publisher->text().trimmed()) +
 			   "%' AND ");
 
 		if(al.price->value() > -0.01)
@@ -3953,32 +3953,32 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(al.language->currentText() != tr("Any"))
-		  str.append("LOWER(language) = '" +
+		  str.append("language = '" +
 			     myqstring::escape
-			     (al.language->currentText().toLower()) +
+			     (al.language->currentText().trimmed()) +
 			     "' AND ");
 
 		if(al.monetary_units->currentText() != tr("Any"))
-		  str.append("LOWER(monetary_units) = '" +
+		  str.append("monetary_units = '" +
 			     myqstring::escape
-			     (al.monetary_units->currentText().toLower()) +
+			     (al.monetary_units->currentText().trimmed()) +
 			     "' AND ");
 
-		str.append("LOWER(description) LIKE '%" +
+		str.append("description LIKE '%" +
 			   myqstring::escape
-			   (al.description->toPlainText().toLower()) + "%' ");
-		str.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+			   (al.description->toPlainText().trimmed()) + "%' ");
+		str.append("AND COALESCE(keyword, '') LIKE '%" +
 			   myqstring::escape
-			   (al.keyword->toPlainText().toLower()) +
+			   (al.keyword->toPlainText().trimmed()) +
 			   "%' ");
 
 		if(al.quantity->value() != 0)
 		  str.append("AND quantity = " + al.quantity->text() + " ");
 
 		if(al.location->currentText() != tr("Any"))
-		  str.append("AND LOWER(location) = '" +
+		  str.append("AND location = '" +
 			     myqstring::escape
-			     (al.location->currentText().toLower()) + "' ");
+			     (al.location->currentText().trimmed()) + "' ");
 
 		str += QString("GROUP BY "
 			       "%1.title, "
@@ -4774,9 +4774,10 @@ void qtbook::slotSaveUser(void)
   checksum.append(userinfo_diag->userinfo.zip->text());
   qapp->setOverrideCursor(Qt::WaitCursor);
   count = misc_functions::getMemberMatchCount
-    (checksum.toLower(),
+    (checksum,
      userinfo_diag->userinfo.memberid->text(),
      db,
+     true,
      errorstr);
   qapp->restoreOverrideCursor();
 
@@ -5193,8 +5194,10 @@ void qtbook::readGlobalSetup(QString &error)
 			else if(!tmphash.contains("database_port"))
 			  tmphash["database_port"] = str;
 			else if(!tmphash.contains("ssl_enabled"))
+			  tmphash["ssl_enabled"] = str;
+			else if(!tmphash.contains("icu_enabled"))
 			  {
-			    tmphash["ssl_enabled"] = str;
+			    tmphash["icu_enabled"] = QVariant(str).toBool();
 
 			    if(!branches.contains(tmphash["branch_name"]))
 			      branches[tmphash["branch_name"]] = tmphash;
@@ -5247,6 +5250,7 @@ void qtbook::readGlobalSetup(QString &error)
 	  tmphash["database_type"] = "sqlite";
 	  tmphash["database_port"] = "-1";
 	  tmphash["ssl_enabled"] = "false";
+	  tmphash["icu_enabled"] = "false";
 
 	  if(!branches.contains(tmphash["branch_name"]))
 	    branches[tmphash["branch_name"]] = tmphash;

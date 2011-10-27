@@ -748,21 +748,21 @@ void qtbook_videogame::slotGo(void)
 	"videogame.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'Video Game' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE '%" + vg.id->text().toLower() +
+      searchstr.append("id LIKE '%" + vg.id->text().trimmed() +
 		       "%' AND ");
-      searchstr.append("LOWER(title) LIKE '%" +
-		       myqstring::escape(vg.title->text().toLower()) +
+      searchstr.append("title LIKE '%" +
+		       myqstring::escape(vg.title->text().trimmed()) +
 		       "%' AND ");
 
       if(vg.rating->currentText() != tr("Any"))
-	searchstr.append("LOWER(vgrating) = '" +
+	searchstr.append("vgrating = '" +
 			 myqstring::escape(vg.rating->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(developer) LIKE '%" +
+      searchstr.append("developer LIKE '%" +
 		       myqstring::escape(vg.developer->toPlainText().
-					 toLower()) + "%' "
+					 trimmed()) + "%' "
 		       "AND ");
 
       if(vg.release_date->date().toString
@@ -772,16 +772,16 @@ void qtbook_videogame::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(publisher) LIKE '%" +
+      searchstr.append("publisher LIKE '%" +
 		       myqstring::escape
-		       (vg.publisher->toPlainText().toLower()) +
+		       (vg.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(place) LIKE '%" +
+      searchstr.append("place LIKE '%" +
 		       myqstring::escape
-		       (vg.place->toPlainText().toLower()) +
+		       (vg.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(genre) LIKE '%" +
-		       myqstring::escape(vg.genre->toPlainText().toLower()) +
+      searchstr.append("genre LIKE '%" +
+		       myqstring::escape(vg.genre->toPlainText().trimmed()) +
 		       "%' AND ");
 
       if(vg.price->value() > -0.01)
@@ -792,43 +792,43 @@ void qtbook_videogame::slotGo(void)
 	}
 
       if(vg.language->currentText() != tr("Any"))
-	searchstr.append("LOWER(language) = '" +
+	searchstr.append("language = '" +
 			 myqstring::escape(vg.language->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(vg.monetary_units->currentText() != tr("Any"))
-	searchstr.append("LOWER(monetary_units) = '" +
+	searchstr.append("monetary_units = '" +
 			 myqstring::escape
-			 (vg.monetary_units->currentText().toLower()) +
+			 (vg.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
       if(vg.platform->currentText() != tr("Any"))
-	searchstr.append("LOWER(vgplatform) = '" +
+	searchstr.append("vgplatform = '" +
 			 myqstring::escape(vg.rating->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE '%" +
+      searchstr.append("description LIKE '%" +
 		       myqstring::escape
-		       (vg.description->toPlainText().toLower()) + "%' ");
+		       (vg.description->toPlainText().trimmed()) + "%' ");
 
       if(vg.quantity->value() != 0)
 	searchstr.append("AND quantity = " + vg.quantity->text() + " ");
 
       if(vg.location->currentText() != tr("Any"))
-	searchstr.append("AND LOWER(location) = '" +
+	searchstr.append("AND location = '" +
 			 myqstring::escape
-			 (vg.location->currentText().toLower()) + "' ");
+			 (vg.location->currentText().trimmed()) + "' ");
 
       if(vg.mode->currentText() != tr("Any"))
-	searchstr.append("AND LOWER(vgmode) = '" +
+	searchstr.append("AND vgmode = '" +
 			 myqstring::escape
-			 (vg.mode->currentText().toLower()) + "' ");
+			 (vg.mode->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
 		       myqstring::escape
-		       (vg.keyword->toPlainText().toLower()) + "%' ");
+		       (vg.keyword->toPlainText().trimmed()) + "%' ");
       hide();
 
       /*

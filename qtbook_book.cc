@@ -926,39 +926,39 @@ void qtbook_book::slotGo(void)
 	"WHERE ";
 
       if(id.isbnAvailableCheckBox->isChecked())
-	searchstr.append("LOWER(id) LIKE '%" + id.id->text().toLower() +
+	searchstr.append("id LIKE '%" + id.id->text().trimmed() +
 			 "%' AND ");
       else
 	searchstr.append("id IS NULL AND ");
 
-      searchstr.append("LOWER(title) LIKE '%" +
-		       myqstring::escape(id.title->text().toLower()) +
+      searchstr.append("title LIKE '%" +
+		       myqstring::escape(id.title->text().trimmed()) +
 		       "%' AND ");
 
       if(id.isbnAvailableCheckBox->isChecked())
-	searchstr.append("LOWER(isbn13) LIKE '%" +
-			 id.isbn13->text().toLower() + "%' AND ");
+	searchstr.append("isbn13 LIKE '%" +
+			 id.isbn13->text().trimmed() + "%' AND ");
       else
 	searchstr.append("isbn13 IS NULL AND ");
 
-      searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
-		       myqstring::escape(id.lcnum->text().toLower()) +
+      searchstr.append("COALESCE(lccontrolnumber, '') LIKE '%" +
+		       myqstring::escape(id.lcnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(COALESCE(callnumber, '')) LIKE '%" +
-		       myqstring::escape(id.callnum->text().toLower()) +
+      searchstr.append("COALESCE(callnumber, '') LIKE '%" +
+		       myqstring::escape(id.callnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(COALESCE(deweynumber, '')) LIKE '%" +
-		       myqstring::escape(id.deweynum->text().toLower()) +
+      searchstr.append("COALESCE(deweynumber, '') LIKE '%" +
+		       myqstring::escape(id.deweynum->text().trimmed()) +
 		       "%' AND ");
 
       if(id.edition->currentText() != tr("Any"))
-	searchstr.append("LOWER(edition) = '" +
-			 id.edition->currentText().toLower() +
+	searchstr.append("edition = '" +
+			 id.edition->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("LOWER(author) LIKE '%" +
+      searchstr.append("author LIKE '%" +
 		       myqstring::escape(id.author->toPlainText().
-					 toLower()) + "%' AND ");
+					 trimmed()) + "%' AND ");
 
       if(id.publication_date->date().toString("MM/yyyy") != "01/7999")
 	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
@@ -966,17 +966,17 @@ void qtbook_book::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(publisher) LIKE '%" +
+      searchstr.append("publisher LIKE '%" +
 		       myqstring::escape
-		       (id.publisher->toPlainText().toLower()) +
+		       (id.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(place) LIKE '%" +
+      searchstr.append("place LIKE '%" +
 		       myqstring::escape
-		       (id.place->toPlainText().toLower()) +
+		       (id.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(category) LIKE '%" +
+      searchstr.append("category LIKE '%" +
 		       myqstring::escape
-		       (id.category->toPlainText().toLower()) +
+		       (id.category->toPlainText().trimmed()) +
 		       "%' AND ");
 
       if(id.price->value() > -0.01)
@@ -987,43 +987,43 @@ void qtbook_book::slotGo(void)
 	}
 
       if(id.language->currentText() != tr("Any"))
-	searchstr.append("LOWER(language) = '" +
+	searchstr.append("language = '" +
 			 myqstring::escape(id.language->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(id.monetary_units->currentText() != tr("Any"))
-	searchstr.append("LOWER(monetary_units) = '" +
+	searchstr.append("monetary_units = '" +
 			 myqstring::escape
-			 (id.monetary_units->currentText().toLower()) +
+			 (id.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
       if(id.binding->currentText() != tr("Any"))
-	searchstr.append("LOWER(binding_type) = '" +
+	searchstr.append("binding_type = '" +
 			 myqstring::escape(id.binding->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE '%" +
+      searchstr.append("description LIKE '%" +
 		       myqstring::escape
-		       (id.description->toPlainText().toLower()) +
+		       (id.description->toPlainText().trimmed()) +
 		       "%' ");
 
       if(id.quantity->value() != 0)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
 
       if(id.location->currentText() != tr("Any"))
-	searchstr.append("AND LOWER(location) = '" +
+	searchstr.append("AND location = '" +
 			 myqstring::escape
-			 (id.location->currentText().toLower()) + "' ");
+			 (id.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
+      searchstr.append("AND COALESCE(marc_tags, '') LIKE '%" +
 		       myqstring::escape
-		       (id.marc_tags->toPlainText().toLower()) +
+		       (id.marc_tags->toPlainText().trimmed()) +
 		       "%' ");
-      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
 		       myqstring::escape
-		       (id.keyword->toPlainText().toLower()) +
+		       (id.keyword->toPlainText().trimmed()) +
 		       "%' ");
       hide();
 

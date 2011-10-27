@@ -840,21 +840,21 @@ void qtbook_dvd::slotGo(void)
 	"dvd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'DVD' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE '%").append
-	(dvd.id->text().toLower()).append("%' AND ");
-      searchstr.append("LOWER(dvdformat) LIKE '%").append
-	(myqstring::escape(dvd.format->text().toLower())).append("%' AND ");
+      searchstr.append("id LIKE '%").append
+	(dvd.id->text().trimmed()).append("%' AND ");
+      searchstr.append("dvdformat LIKE '%").append
+	(myqstring::escape(dvd.format->text().trimmed())).append("%' AND ");
 
       if(dvd.aspectratio->currentText() != tr("Any"))
-	searchstr.append("LOWER(dvdaspectratio) = '" +
-			 dvd.aspectratio->currentText().toLower() +
+	searchstr.append("dvdaspectratio = '" +
+			 dvd.aspectratio->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("LOWER(dvdactor) LIKE '%").append
-	(myqstring::escape(dvd.actors->toPlainText().toLower())).
+      searchstr.append("dvdactor LIKE '%").append
+	(myqstring::escape(dvd.actors->toPlainText().trimmed())).
 	append("%' AND ");
-      searchstr.append("LOWER(dvddirector) LIKE '%").append
-	(myqstring::escape(dvd.directors->toPlainText().toLower())).
+      searchstr.append("dvddirector LIKE '%").append
+	(myqstring::escape(dvd.directors->toPlainText().trimmed())).
 	append("%' AND ");
 
       if(dvd.no_of_discs->value() > 0)
@@ -866,19 +866,19 @@ void qtbook_dvd::slotGo(void)
 			 "' AND ");
 
       if(dvd.rating->currentText() != tr("Any"))
-	searchstr.append("LOWER(dvdrating) = '" +
+	searchstr.append("dvdrating = '" +
 			 myqstring::escape(dvd.rating->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(dvd.region->currentText() != tr("Any"))
-	searchstr.append("LOWER(dvdregion) = '" +
+	searchstr.append("dvdregion = '" +
 			 myqstring::escape(dvd.region->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(title) LIKE '%").append
-	(myqstring::escape(dvd.title->text().toLower())).append("%' AND ");
+      searchstr.append("title LIKE '%").append
+	(myqstring::escape(dvd.title->text().trimmed())).append("%' AND ");
 
       if(dvd.release_date->date().toString
 	 ("MM/yyyy") != "01/7999")
@@ -887,13 +887,13 @@ void qtbook_dvd::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(studio) LIKE '%" +
+      searchstr.append("studio LIKE '%" +
 		       myqstring::escape
-		       (dvd.studio->toPlainText().toLower()) +
+		       (dvd.studio->toPlainText().trimmed()) +
 		       "%' AND ");
       searchstr.append
-	("LOWER(category) LIKE '%" +
-	 myqstring::escape(dvd.category->toPlainText().toLower()) +
+	("category LIKE '%" +
+	 myqstring::escape(dvd.category->toPlainText().trimmed()) +
 	 "%' AND ");
 
       if(dvd.price->value() > -0.01)
@@ -904,32 +904,32 @@ void qtbook_dvd::slotGo(void)
 	}
 
       if(dvd.language->currentText() != tr("Any"))
-	searchstr.append("LOWER(language) = '" +
+	searchstr.append("language = '" +
 			 myqstring::escape(dvd.language->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(dvd.monetary_units->currentText() != tr("Any"))
-	searchstr.append("LOWER(monetary_units) = '" +
+	searchstr.append("monetary_units = '" +
 			 myqstring::escape
-			 (dvd.monetary_units->currentText().toLower()) +
+			 (dvd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE '%" +
+      searchstr.append("description LIKE '%" +
 		       myqstring::escape
-		       (dvd.description->toPlainText().toLower()) + "%' ");
-      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       (dvd.description->toPlainText().trimmed()) + "%' ");
+      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
 		       myqstring::escape
-		       (dvd.keyword->toPlainText().toLower()) +
+		       (dvd.keyword->toPlainText().trimmed()) +
 		       "%' ");
 
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
 
       if(dvd.location->currentText() != tr("Any"))
-	searchstr.append("AND LOWER(location) = '" +
+	searchstr.append("AND location = '" +
 			 myqstring::escape
-			 (dvd.location->currentText().toLower()) + "' ");
+			 (dvd.location->currentText().trimmed()) + "' ");
 
       hide();
 

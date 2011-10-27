@@ -797,18 +797,18 @@ void qtbook_cd::slotGo(void)
 	"cd.myoid = item_borrower_vw.item_oid "
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
-      searchstr.append("LOWER(id) LIKE '%").append(cd.id->text().
-						   toLower()).
+      searchstr.append("id LIKE '%").append(cd.id->text().
+					    trimmed()).
 	append("%' AND ");
 
       if(cd.format->currentText() != tr("Any"))
-	searchstr.append("LOWER(cdformat) = '" +
+	searchstr.append("cdformat = '" +
 			 myqstring::escape(cd.format->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(artist) LIKE '%").append
-	(myqstring::escape(cd.artist->toPlainText().toLower())).append
+      searchstr.append("artist LIKE '%").append
+	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
 	("%' AND ");
 
       if(cd.no_of_discs->value() > 0)
@@ -820,17 +820,17 @@ void qtbook_cd::slotGo(void)
 			 "' AND ");
 
       if(cd.audio->currentText() != tr("Any"))
-	searchstr.append("LOWER(cdaudio) = '" +
-			 cd.audio->currentText().toLower() +
+	searchstr.append("cdaudio = '" +
+			 cd.audio->currentText().trimmed() +
 			 "' AND ");
 
       if(cd.recording_type->currentText() != tr("Any"))
-	searchstr.append("LOWER(cdrecording) = '" +
-			 cd.recording_type->currentText().toLower() +
+	searchstr.append("cdrecording = '" +
+			 cd.recording_type->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("LOWER(title) LIKE '%").append
-	(myqstring::escape(cd.title->text().toLower())).append("%' AND ");
+      searchstr.append("title LIKE '%").append
+	(myqstring::escape(cd.title->text().trimmed())).append("%' AND ");
 
       if(cd.release_date->date().toString("MM/yyyy") != "01/7999")
 	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
@@ -838,12 +838,12 @@ void qtbook_cd::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(recording_label) LIKE '%" +
+      searchstr.append("recording_label LIKE '%" +
 		       myqstring::escape(cd.recording_label->toPlainText().
-					 toLower()) + "%' AND ");
-      searchstr.append("LOWER(category) LIKE '%" +
+					 trimmed()) + "%' AND ");
+      searchstr.append("category LIKE '%" +
 		       myqstring::escape(cd.category->toPlainText().
-					 toLower()) +
+					 trimmed()) +
 		       "%' AND ");
 
       if(cd.price->value() > -0.01)
@@ -854,32 +854,32 @@ void qtbook_cd::slotGo(void)
 	}
 
       if(cd.language->currentText() != tr("Any"))
-	searchstr.append("LOWER(language) = '" +
+	searchstr.append("language = '" +
 			 myqstring::escape(cd.language->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(cd.monetary_units->currentText() != tr("Any"))
-	searchstr.append("LOWER(monetary_units) = '" +
+	searchstr.append("monetary_units = '" +
 			 myqstring::escape
-			 (cd.monetary_units->currentText().toLower()) +
+			 (cd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE '%" +
+      searchstr.append("description LIKE '%" +
 		       myqstring::escape
-		       (cd.description->toPlainText().toLower()) + "%' ");
-      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       (cd.description->toPlainText().trimmed()) + "%' ");
+      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
 		       myqstring::escape
-		       (cd.keyword->toPlainText().toLower()) +
+		       (cd.keyword->toPlainText().trimmed()) +
 		       "%' ");
 
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
       if(cd.location->currentText() != tr("Any"))
-	searchstr.append(" AND LOWER(location) = '" +
+	searchstr.append(" AND location = '" +
 			 myqstring::escape
-			 (cd.location->currentText().toLower()) + "' ");
+			 (cd.location->currentText().trimmed()) + "' ");
 
       hide();
 

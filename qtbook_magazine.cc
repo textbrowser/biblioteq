@@ -883,16 +883,16 @@ void qtbook_magazine::slotGo(void)
 			  "%1.myoid = item_borrower_vw.item_oid "
 			  "AND item_borrower_vw.type = '%1' "
 			  "WHERE %1.type = '%1' AND ").arg(subType);
-      searchstr.append("LOWER(id) LIKE '%" + ma.id->text().toLower() +
+      searchstr.append("id LIKE '%" + ma.id->text().trimmed() +
 		       "%' AND ");
-      searchstr.append("LOWER(COALESCE(lccontrolnumber, '')) LIKE '%" +
-		       myqstring::escape(ma.lcnum->text().toLower()) +
+      searchstr.append("COALESCE(lccontrolnumber, '') LIKE '%" +
+		       myqstring::escape(ma.lcnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(COALESCE(callnumber, '')) LIKE '%" +
-		       myqstring::escape(ma.callnum->text().toLower()) +
+      searchstr.append("COALESCE(callnumber, '') LIKE '%" +
+		       myqstring::escape(ma.callnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(COALESCE(deweynumber, '')) LIKE '%" +
-		       myqstring::escape(ma.deweynum->text().toLower()) +
+      searchstr.append("COALESCE(deweynumber, '') LIKE '%" +
+		       myqstring::escape(ma.deweynum->text().trimmed()) +
 		       "%' AND ");
 
       if(ma.volume->value() != -1)
@@ -903,8 +903,8 @@ void qtbook_magazine::slotGo(void)
 	searchstr.append("issueno = " + ma.issue->text() +
 			 " AND ");
 
-      searchstr.append("LOWER(title) LIKE '%" +
-		       myqstring::escape(ma.title->text().toLower()) +
+      searchstr.append("title LIKE '%" +
+		       myqstring::escape(ma.title->text().trimmed()) +
 		       "%' AND ");
 
       if(ma.publication_date->date().toString
@@ -914,17 +914,17 @@ void qtbook_magazine::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("LOWER(publisher) LIKE '%" +
+      searchstr.append("publisher LIKE '%" +
 		       myqstring::escape
-		       (ma.publisher->toPlainText().toLower()) +
+		       (ma.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(place) LIKE '%" +
+      searchstr.append("place LIKE '%" +
 		       myqstring::escape
-		       (ma.place->toPlainText().toLower()) +
+		       (ma.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("LOWER(category) LIKE '%" +
+      searchstr.append("category LIKE '%" +
 		       myqstring::escape(ma.category->toPlainText().
-					 toLower()) +
+					 trimmed()) +
 		       "%' AND ");
 
       if(ma.price->value() > -0.01)
@@ -935,35 +935,35 @@ void qtbook_magazine::slotGo(void)
 	}
 
       if(ma.language->currentText() != tr("Any"))
-	searchstr.append("LOWER(language) = '" +
+	searchstr.append("language = '" +
 			 myqstring::escape(ma.language->currentText().
-					   toLower()) +
+					   trimmed()) +
 			 "' AND ");
 
       if(ma.monetary_units->currentText() != tr("Any"))
-	searchstr.append("LOWER(monetary_units) = '" +
+	searchstr.append("monetary_units = '" +
 			 myqstring::escape
-			 (ma.monetary_units->currentText().toLower()) +
+			 (ma.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("LOWER(description) LIKE '%" +
+      searchstr.append("description LIKE '%" +
 		       myqstring::escape
-		       (ma.description->toPlainText().toLower()) + "%' ");
+		       (ma.description->toPlainText().trimmed()) + "%' ");
 
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
       if(ma.location->currentText() != tr("Any"))
-	searchstr.append("AND LOWER(location) = '" +
+	searchstr.append("AND location = '" +
 			 myqstring::escape
-			 (ma.location->currentText().toLower()) + "' ");
+			 (ma.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND LOWER(COALESCE(marc_tags, '')) LIKE '%" +
+      searchstr.append("AND COALESCE(marc_tags, '') LIKE '%" +
 		       myqstring::escape
-		       (ma.marc_tags->toPlainText().toLower()) + "%' ");
-      searchstr.append("AND LOWER(COALESCE(keyword, '')) LIKE '%" +
+		       (ma.marc_tags->toPlainText().trimmed()) + "%' ");
+      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
 		       myqstring::escape
-		       (ma.keyword->toPlainText().toLower()) + "%' ");
+		       (ma.keyword->toPlainText().trimmed()) + "%' ");
       hide();
 
       /*
