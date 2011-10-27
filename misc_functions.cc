@@ -2165,7 +2165,8 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	"VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
       query.exec(querystr);
     }
-  else if(version == "6.51")
+  else if(version == "6.51" ||
+	  version == "6.51.1")
     {
       QString querystr("");
       QSqlQuery query(db);
@@ -2187,7 +2188,9 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	  query.exec(querystr);
 	}
 
-      if(!db.primaryIndex("book").isEmpty())
+      QSqlRecord record(db.record("book"));
+
+      if(record.field("id").requiredStatus() == QSqlField::Required)
 	{
 	  querystr = "CREATE TABLE book_backup"
 	    "("
