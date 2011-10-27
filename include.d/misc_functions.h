@@ -43,7 +43,7 @@ class misc_functions
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
   static int getMemberMatchCount(const QString &, const QString &,
-				 const QSqlDatabase &, const bool,
+				 const QSqlDatabase &,
 				 QString &);
   static bool isRequested(const QSqlDatabase &, const QString &,
 			  const QString &, QString &);

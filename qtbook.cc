@@ -4777,7 +4777,6 @@ void qtbook::slotSaveUser(void)
     (checksum,
      userinfo_diag->userinfo.memberid->text(),
      db,
-     true,
      errorstr);
   qapp->restoreOverrideCursor();
 
@@ -5194,10 +5193,8 @@ void qtbook::readGlobalSetup(QString &error)
 			else if(!tmphash.contains("database_port"))
 			  tmphash["database_port"] = str;
 			else if(!tmphash.contains("ssl_enabled"))
-			  tmphash["ssl_enabled"] = str;
-			else if(!tmphash.contains("icu_enabled"))
 			  {
-			    tmphash["icu_enabled"] = QVariant(str).toBool();
+			    tmphash["ssl_enabled"] = str;
 
 			    if(!branches.contains(tmphash["branch_name"]))
 			      branches[tmphash["branch_name"]] = tmphash;
@@ -5250,7 +5247,6 @@ void qtbook::readGlobalSetup(QString &error)
 	  tmphash["database_type"] = "sqlite";
 	  tmphash["database_port"] = "-1";
 	  tmphash["ssl_enabled"] = "false";
-	  tmphash["icu_enabled"] = "false";
 
 	  if(!branches.contains(tmphash["branch_name"]))
 	    branches[tmphash["branch_name"]] = tmphash;

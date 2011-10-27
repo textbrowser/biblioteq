@@ -930,7 +930,6 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
 int misc_functions::getMemberMatchCount(const QString &checksum,
 					const QString &memberid,
 					const QSqlDatabase &db,
-					const bool icuSupported,
 					QString &errorstr)
 {
   int count = 0;
@@ -944,17 +943,8 @@ int misc_functions::getMemberMatchCount(const QString &checksum,
     "middle_init || "
     "last_name || street || city || state_abbr || zip = ? "
     "AND memberid != ?";
-
-  if(icuSupported)
-    querystr = querystr.toLower();
-
   query.prepare(querystr);
-
-  if(icuSupported)
-    query.bindValue(0, checksum.toLower());
-  else
-    query.bindValue(0, checksum);
-
+  query.bindValue(0, checksum);
   query.bindValue(1, memberid);
 
   if(query.exec())
