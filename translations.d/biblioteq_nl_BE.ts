@@ -569,7 +569,7 @@
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation>Niet mogelijk om het aantal minimum dagen te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om het aantal minimum dagen te achterhalen.</translation>
     </message>
     <message>
         <source>First Name</source>
@@ -610,6 +610,10 @@
     <message>
         <source>Database Error</source>
         <translation>Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Item Reservation Status</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1042,6 +1046,10 @@
     <message>
         <source>Database Error</source>
         <translation>Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1908,7 +1916,7 @@
     </message>
     <message>
         <source>&amp;Generate</source>
-        <translation>&amp;Genereer</translation>
+        <translation type="obsolete">&amp;Genereer</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -2047,7 +2055,7 @@
     </message>
     <message>
         <source>ISSN (9999-9999)</source>
-        <translation>ISSN (9999-9999)</translation>
+        <translation type="obsolete">ISSN (9999-9999)</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -2068,6 +2076,10 @@
     <message>
         <source>Issue (Number)</source>
         <translation>Uitgave (Nummer)</translation>
+    </message>
+    <message>
+        <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2326,7 +2338,7 @@
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
-        <translation>&amp;Automatisch Kolom --&gt; Inhoud Aanpassen</translation>
+        <translation type="obsolete">&amp;Automatisch Kolom --&gt; Inhoud Aanpassen</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -2958,7 +2970,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Error Log Active</source>
@@ -3570,7 +3582,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
@@ -3763,6 +3775,16 @@
     <message>
         <source>Unable to retrieve the locations.</source>
         <translation>Onmogelijk om de Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4117,7 +4139,7 @@
     </message>
     <message>
         <source>Unable to retrieve the book&apos;s OID.</source>
-        <translation>Niet mogelijk om BOEK - OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om BOEK - OID op te halen.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
