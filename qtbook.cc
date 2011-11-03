@@ -6610,7 +6610,7 @@ void qtbook::slotPopulateMembersBrowser(void)
       if(bb.filtertype->currentText() == "Member ID")
 	str.append("member.memberid LIKE '%");
       else
-	str.append("LOWER(member.last_name) LIKE '%");
+	str.append("member.last_name LIKE '%");
 
       str.append(myqstring::escape(bb.filter->text().trimmed()));
       str.append("%' ");
