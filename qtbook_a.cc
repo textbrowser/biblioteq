@@ -5080,7 +5080,7 @@ void qtbook::dvdSearch(const QString &field, const QString &value)
 {
   qtbook_dvd *dvd = new(std::nothrow) qtbook_dvd(this, "", -1);
 
-  if(dvd != 0)
+  if(dvd)
     {
       dvd->search(field, value);
       dvd->deleteLater();
