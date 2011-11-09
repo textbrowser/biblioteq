@@ -1,7 +1,7 @@
 #ifndef _QTBOOK_H_
 #define _QTBOOK_H_
 
-#define BIBLIOTEQ_VERSION "6.51.1"
+#define BIBLIOTEQ_VERSION "6.52"
 
 /*
 ** -- C++ Includes --
@@ -237,6 +237,7 @@ class qtbook: public QMainWindow
   int m_pages;
   int m_queryOffset;
   int lastSearchType;
+  quint64 m_idCt;
   QString roles;
   QString lastCategory;
   QString lastSearchStr;
@@ -277,7 +278,6 @@ class qtbook: public QMainWindow
   Ui_membersBrowser bb;
   userinfo_diag_class *userinfo_diag;
   void cleanup(void);
-  void lockApp(const bool);
   void cdModify(const int);
   void adminSetup(void);
   void readConfig(void);

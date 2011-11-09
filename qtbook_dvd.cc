@@ -770,7 +770,6 @@ void qtbook_dvd::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  oid = "insert";
 		  qmain->addError(QString(tr("Database Error")),
 				  QString(tr("Unable to retrieve the DVD's "
 					     "OID.")),
@@ -780,7 +779,7 @@ void qtbook_dvd::slotGo(void)
 					   "OID."));
 		}
 	      else
-		qmain->replaceDVD("insert", this);
+		qmain->replaceDVD(oid, this);
 
 	      updateWindow(qtbook::EDITABLE);
 

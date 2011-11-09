@@ -729,7 +729,6 @@ void qtbook_cd::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  oid = "insert";
 		  qmain->addError(QString(tr("Database Error")),
 				  QString(tr("Unable to retrieve the CD's "
 					     "OID.")),
@@ -739,7 +738,7 @@ void qtbook_cd::slotGo(void)
 					   "OID."));
 		}
 	      else
-		qmain->replaceCD("insert", this);
+		qmain->replaceCD(oid, this);
 
 	      updateWindow(qtbook::EDITABLE);
 

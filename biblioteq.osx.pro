@@ -55,7 +55,8 @@ HEADERS		= include.d/qtbook.h \
 		  include.d/qtbook_videogame.h \
 		  include.d/hyperlinked_text_edit.h
 
-SOURCES		= qtbook.cc \
+SOURCES		= qtbook_a.cc \
+		  qtbook_b.cc \
                   myqstring.cc \
 		  qtbook_cd.cc \
 		  main_table.cc \

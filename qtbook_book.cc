@@ -870,7 +870,7 @@ void qtbook_book::slotGo(void)
 	    }
 	  else
 	    {
-	      qmain->replaceBook("insert", this);
+	      qmain->replaceBook(oid, this);
 	      updateWindow(qtbook::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())

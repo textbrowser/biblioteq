@@ -788,8 +788,6 @@ void qtbook_magazine::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  oid = "insert";
-
 		  if(subType == "Journal")
 		    {
 		      qmain->addError(QString(tr("Database Error")),
@@ -815,9 +813,9 @@ void qtbook_magazine::slotGo(void)
 		}
 	      else if(subType == "Journal")
 		qmain->replaceJournal
-		  ("insert", static_cast<qtbook_journal *> (this));
+		  (oid, static_cast<qtbook_journal *> (this));
 	      else if(subType == "Magazine")
-		qmain->replaceMagazine("insert", this);
+		qmain->replaceMagazine(oid, this);
 
 	      updateWindow(qtbook::EDITABLE);
 

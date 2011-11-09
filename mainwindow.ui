@@ -221,9 +221,6 @@
               <attribute name="verticalHeaderShowSortIndicator" stdset="0">
                <bool>true</bool>
               </attribute>
-              <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-               <bool>true</bool>
-              </attribute>
               <column>
                <property name="text">
                 <string>1</string>
@@ -412,7 +409,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="font">
@@ -597,6 +594,7 @@
    </attribute>
    <addaction name="detailsTool"/>
    <addaction name="createTool"/>
+   <addaction name="duplicateTool"/>
    <addaction name="deleteTool"/>
    <addaction name="modifyTool"/>
    <addaction name="printTool"/>
@@ -1385,6 +1383,24 @@
    </property>
    <property name="text">
     <string>&amp;Export View as CSV</string>
+   </property>
+  </action>
+  <action name="duplicateTool">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons.d/32x32/duplicate.png</normaloff>icons.d/32x32/duplicate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Duplicate</string>
+   </property>
+   <property name="toolTip">
+    <string>Duplicate</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>

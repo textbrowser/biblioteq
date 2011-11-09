@@ -686,7 +686,6 @@ void qtbook_videogame::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  oid = "insert";
 		  qmain->addError(QString(tr("Database Error")),
 				  QString(tr("Unable to retrieve the "
 					     "video game's OID.")),
@@ -696,7 +695,7 @@ void qtbook_videogame::slotGo(void)
 					   "video game's OID."));
 		}
 	      else
-		qmain->replaceVideoGame("insert", this);
+		qmain->replaceVideoGame(oid, this);
 
 	      updateWindow(qtbook::EDITABLE);
 
