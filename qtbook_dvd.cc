@@ -1788,3 +1788,15 @@ void qtbook_dvd::slotSelectImage(void)
 	}
     }
 }
+
+/*
+** -- duplicate() --
+*/
+
+void qtbook_dvd::duplicate(const QString &id, const int state)
+{
+  modify(state); // Initial populate.
+  oid = id;
+  setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
+  engWindowTitle = "Create";
+}

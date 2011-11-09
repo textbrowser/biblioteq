@@ -39,6 +39,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
+  void duplicate(const QString &, const int);
   void updateWindow(const int);
   void populateDisplayAfterZ3950(const QStringList &);
   Ui_magDialog dialog(void) const;

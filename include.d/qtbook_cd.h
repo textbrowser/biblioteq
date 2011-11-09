@@ -37,6 +37,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
+  void duplicate(const QString &, const int);
   void updateWindow(const int);
 
  private:

@@ -1611,3 +1611,15 @@ void qtbook_videogame::slotSelectImage(void)
 	}
     }
 }
+
+/*
+** -- duplicate() --
+*/
+
+void qtbook_videogame::duplicate(const QString &id, const int state)
+{
+  modify(state); // Initial populate.
+  oid = id;
+  setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
+  engWindowTitle = "Create";
+}

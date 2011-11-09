@@ -2840,3 +2840,15 @@ void qtbook_book::slotReadyRead(void)
 	imgbuffer->write(reply->readAll());
     }
 }
+
+/*
+** -- duplicate() --
+*/
+
+void qtbook_book::duplicate(const QString &id, const int state)
+{
+  modify(state); // Initial populate.
+  oid = id;
+  setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
+  engWindowTitle = "Create";
+}

@@ -390,6 +390,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotSetFonts(void)));
   connect(ui.deleteTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
+  connect(ui.duplicateTool, SIGNAL(triggered(void)), this,
+	  SLOT(slotDuplicate(void)));
   connect(ui.actionDeleteEntry, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
   connect(ui.refreshTool, SIGNAL(triggered(void)), this,
@@ -1170,7 +1172,7 @@ void qtbook::slotModify(void)
   qtbook_book *book = 0;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
-  qtbook_videogame *video_game = 0;
+  qtbook_videogame *videogame = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
@@ -1198,92 +1200,128 @@ void qtbook::slotModify(void)
       i = index.row();
       oid = misc_functions::getColumnString(table, i, "MYOID");
       type = misc_functions::getColumnString(table, i, tr("Type"));
+      cd = 0;
+      dvd = 0;
+      book = 0;
+      journal = 0;
+      magazine = 0;
+      videogame = 0;
 
       if(type.toLower() == "cd")
 	{
-	  if(cds.contains(oid))
-	    cd = cds.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((cd = new(std::nothrow) qtbook_cd(this, oid, i)) != 0)
-		cds.insert(oid, cd);
+	      qtbook_cd *c = qobject_cast<qtbook_cd *> (w);
+
+	      if(c && c->getID() == oid)
+		{
+		  cd = c;
+		  break;
+		}
 	    }
 
-	  if(cd != 0)
+	  if(!cd)
+	    cd = new(std::nothrow) qtbook_cd(this, oid, i);
+
+	  if(cd)
 	    cd->modify(EDITABLE);
 	}
       else if(type.toLower() == "dvd")
 	{
-	  if(dvds.contains(oid))
-	    dvd = dvds.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((dvd = new(std::nothrow) qtbook_dvd(this,
-						     oid, i)) != 0)
-		dvds.insert(oid, dvd);
+	      qtbook_dvd *d = qobject_cast<qtbook_dvd *> (w);
+
+	      if(d && d->getID() == oid)
+		{
+		  dvd = d;
+		  break;
+		}
 	    }
 
-	  if(dvd != 0)
+	  if(!dvd)
+	    dvd = new(std::nothrow) qtbook_dvd(this, oid, i);
+
+	  if(dvd)
 	    dvd->modify(EDITABLE);
 	}
       else if(type.toLower() == "book")
 	{
-	  if(books.contains(oid))
-	    book = books.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((book = new(std::nothrow) qtbook_book(this,
-						       oid, i)) != 0)
-		books.insert(oid, book);
+	      qtbook_book *b = qobject_cast<qtbook_book *> (w);
+
+	      if(b && b->getID() == oid)
+		{
+		  book = b;
+		  break;
+		}
 	    }
 
-	  if(book != 0)
+	  if(!book)
+	    book = new(std::nothrow) qtbook_book(this, oid, i);
+
+	  if(book)
 	    book->modify(EDITABLE);
 	}
       else if(type.toLower() == "journal")
 	{
-	  if(journals.contains(oid))
-	    journal = journals.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((journal = new(std::nothrow) qtbook_journal
-		  (this,
-		   oid, i)) != 0)
-		journals.insert(oid, journal);
+	      qtbook_journal *j = qobject_cast<qtbook_journal *> (w);
+
+	      if(j && j->getID() == oid)
+		{
+		  journal = j;
+		  break;
+		}
 	    }
 
-	  if(journal != 0)
+	  if(!journal)
+	    journal = new(std::nothrow) qtbook_journal(this, oid, i);
+
+	  if(journal)
 	    journal->modify(EDITABLE);
 	}
       else if(type.toLower() == "magazine")
 	{
-	  if(magazines.contains(oid))
-	    magazine = magazines.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((magazine = new(std::nothrow) qtbook_magazine
-		  (this,
-		   oid, i, "magazine")) != 0)
-		magazines.insert(oid, magazine);
-	      }
+	      qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
 
-	  if(magazine != 0)
+	      if(m && m->getID() == oid)
+		{
+		  magazine = m;
+		  break;
+		}
+	    }
+
+	  if(!magazine)
+	    magazine = new(std::nothrow) qtbook_magazine
+	      (this,
+	       oid, i, "magazine");
+
+	  if(magazine)
 	    magazine->modify(EDITABLE);
 	}
       else if(type.toLower() == "video game")
 	{
-	  if(video_games.contains(oid))
-	    video_game = video_games.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((video_game = new(std::nothrow) qtbook_videogame
-		  (this,
-		   oid, i)) != 0)
-		video_games.insert(oid, video_game);
+	      qtbook_videogame *v = qobject_cast<qtbook_videogame *> (w);
+
+	      if(v && v->getID() == oid)
+		{
+		  videogame = v;
+		  break;
+		}
 	    }
 
-	  if(video_game != 0)
-	    video_game->modify(EDITABLE);
+	  if(!videogame)
+	    videogame = new(std::nothrow) qtbook_videogame(this, oid, i);
+
+	  if(videogame)
+	    videogame->modify(EDITABLE);
 	}
       else
 	{
@@ -1318,7 +1356,7 @@ void qtbook::slotViewDetails(void)
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
-  qtbook_videogame *video_game = 0;
+  qtbook_videogame *videogame = 0;
 
   if(list.isEmpty())
     {
@@ -1345,91 +1383,128 @@ void qtbook::slotViewDetails(void)
       i = index.row();
       oid = misc_functions::getColumnString(table,i, "MYOID");
       type = misc_functions::getColumnString(table, i, tr("Type"));
+      cd = 0;
+      dvd = 0;
+      book = 0;
+      journal = 0;
+      magazine = 0;
+      videogame = 0;
 
       if(type.toLower() == "cd")
 	{
-	  if(cds.contains(oid))
-	    cd = cds.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((cd = new(std::nothrow) qtbook_cd(this, oid, i)) != 0)
-		cds.insert(oid, cd);
+	      qtbook_cd *c = qobject_cast<qtbook_cd *> (w);
+
+	      if(c && c->getID() == oid)
+		{
+		  cd = c;
+		  break;
+		}
 	    }
 
-	  if(cd != 0)
+	  if(!cd)
+	    cd = new(std::nothrow) qtbook_cd(this, oid, i);
+
+	  if(cd)
 	    cd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "dvd")
 	{
-	  if(dvds.contains(oid))
-	    dvd = dvds.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((dvd = new(std::nothrow) qtbook_dvd
-		  (this, oid, i)) != 0)
-		dvds.insert(oid, dvd);
+	      qtbook_dvd *d = qobject_cast<qtbook_dvd *> (w);
+
+	      if(d && d->getID() == oid)
+		{
+		  dvd = d;
+		  break;
+		}
 	    }
 
-	  if(dvd != 0)
+	  if(!dvd)
+	    dvd = new(std::nothrow) qtbook_dvd(this, oid, i);
+
+	  if(dvd)
 	    dvd->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "book")
 	{
-	  if(books.contains(oid))
-	    book = books.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((book = new(std::nothrow) qtbook_book(this,
-						       oid, i)) != 0)
-		books.insert(oid, book);
+	      qtbook_book *b = qobject_cast<qtbook_book *> (w);
+
+	      if(b && b->getID() == oid)
+		{
+		  book = b;
+		  break;
+		}
 	    }
 
-	  if(book != 0)
+	  if(!book)
+	    book = new(std::nothrow) qtbook_book(this, oid, i);
+
+	  if(book)
 	    book->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "journal")
 	{
-	  if(journals.contains(oid))
-	    journal = journals.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((journal = new(std::nothrow) qtbook_journal(this,
-							     oid, i)) != 0)
-		journals.insert(oid, journal);
+	      qtbook_journal *j = qobject_cast<qtbook_journal *> (w);
+
+	      if(j && j->getID() == oid)
+		{
+		  journal = j;
+		  break;
+		}
 	    }
 
-	  if(journal != 0)
+	  if(!journal)
+	    journal = new(std::nothrow) qtbook_journal(this, oid, i);
+
+	  if(journal)
 	    journal->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "magazine")
 	{
-	  if(magazines.contains(oid))
-	    magazine = magazines.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((magazine = new(std::nothrow) qtbook_magazine
-		  (this,
-		   oid, i, "magazine")) != 0)
-		magazines.insert(oid, magazine);
+	      qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
+
+	      if(m && m->getID() == oid)
+		{
+		  magazine = m;
+		  break;
+		}
 	    }
 
-	  if(magazine != 0)
+	  if(!magazine)
+	    magazine = new(std::nothrow) qtbook_magazine
+	      (this, oid, i, "magazine");
+
+	  if(magazine)
 	    magazine->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "video game")
 	{
-	  if(video_games.contains(oid))
-	    video_game = video_games.value(oid);
-	  else
+	  foreach(QWidget *w, qapp->topLevelWidgets())
 	    {
-	      if((video_game = new(std::nothrow) qtbook_videogame
-		  (this,
-		   oid, i)) != 0)
-		video_games.insert(oid, video_game);
+	      qtbook_videogame *v = qobject_cast<qtbook_videogame *> (w);
+
+	      if(v && v->getID() == oid)
+		{
+		  videogame = v;
+		  break;
+		}
 	    }
 
-	  if(video_game != 0)
-	    video_game->modify(VIEW_ONLY);
+	  if(!videogame)
+	    videogame = new(std::nothrow) qtbook_videogame
+	      (this, oid, i);
+
+	  if(videogame)
+	    videogame->modify(VIEW_ONLY);
 	}
       else
 	{
@@ -4515,13 +4590,8 @@ QSqlDatabase qtbook::getDB(void) const
 
 void qtbook::removeCD(qtbook_cd *cd)
 {
-  if(cd != 0)
-    {
-      if(cds.contains(cd->getID()))
-	cds.remove(cd->getID());
-
-      cd->deleteLater();
-    }
+  if(cd)
+    cd->deleteLater();
 }
 
 /*
@@ -4530,11 +4600,8 @@ void qtbook::removeCD(qtbook_cd *cd)
 
 void qtbook::replaceCD(const QString &id, qtbook_cd *cd)
 {
-  if(cds.contains(id))
-    cds.remove(id);
-
-  if(cd != 0)
-    cds.insert(cd->getID(), cd);
+  Q_UNUSED(id);
+  Q_UNUSED(cd);
 }
 
 /*
@@ -4543,13 +4610,8 @@ void qtbook::replaceCD(const QString &id, qtbook_cd *cd)
 
 void qtbook::removeDVD(qtbook_dvd *dvd)
 {
-  if(dvd != 0)
-    {
-      if(dvds.contains(dvd->getID()))
-	dvds.remove(dvd->getID());
-
-      dvd->deleteLater();
-    }
+  if(dvd)
+    dvd->deleteLater();
 }
 
 /*
@@ -4558,11 +4620,8 @@ void qtbook::removeDVD(qtbook_dvd *dvd)
 
 void qtbook::replaceDVD(const QString &id, qtbook_dvd *dvd)
 {
-  if(dvds.contains(id))
-    dvds.remove(id);
-
-  if(dvd != 0)
-    dvds.insert(dvd->getID(), dvd);
+  Q_UNUSED(id);
+  Q_UNUSED(dvd);
 }
 
 /*
@@ -4571,13 +4630,8 @@ void qtbook::replaceDVD(const QString &id, qtbook_dvd *dvd)
 
 void qtbook::removeBook(qtbook_book *book)
 {
-  if(book != 0)
-    {
-      if(books.contains(book->getID()))
-	books.remove(book->getID());
-
-      book->deleteLater();
-    }
+  if(book)
+    book->deleteLater();
 }
 
 /*
@@ -4586,11 +4640,8 @@ void qtbook::removeBook(qtbook_book *book)
 
 void qtbook::replaceBook(const QString &id, qtbook_book *book)
 {
-  if(books.contains(id))
-    books.remove(id);
-
-  if(book != 0)
-    books.insert(book->getID(), book);
+  Q_UNUSED(id);
+  Q_UNUSED(book);
 }
 
 /*
@@ -4599,13 +4650,8 @@ void qtbook::replaceBook(const QString &id, qtbook_book *book)
 
 void qtbook::removeJournal(qtbook_journal *journal)
 {
-  if(journal != 0)
-    {
-      if(journals.contains(journal->getID()))
-	journals.remove(journal->getID());
-
-      journal->deleteLater();
-    }
+  if(journal)
+    journal->deleteLater();
 }
 
 /*
@@ -4614,13 +4660,8 @@ void qtbook::removeJournal(qtbook_journal *journal)
 
 void qtbook::removeMagazine(qtbook_magazine *magazine)
 {
-  if(magazine != 0)
-    {
-      if(magazines.contains(magazine->getID()))
-	magazines.remove(magazine->getID());
-
-      magazine->deleteLater();
-    }
+  if(magazine)
+    magazine->deleteLater();
 }
 
 /*
@@ -4629,11 +4670,8 @@ void qtbook::removeMagazine(qtbook_magazine *magazine)
 
 void qtbook::replaceJournal(const QString &id, qtbook_journal *journal)
 {
-  if(journals.contains(id))
-    journals.remove(id);
-
-  if(journal != 0)
-    journals.insert(journal->getID(), journal);
+  Q_UNUSED(id);
+  Q_UNUSED(journal);
 }
 
 /*
@@ -4642,26 +4680,18 @@ void qtbook::replaceJournal(const QString &id, qtbook_journal *journal)
 
 void qtbook::replaceMagazine(const QString &id, qtbook_magazine *magazine)
 {
-  if(magazines.contains(id))
-    magazines.remove(id);
-
-  if(magazine != 0)
-    magazines.insert(magazine->getID(), magazine);
+  Q_UNUSED(id);
+  Q_UNUSED(magazine);
 }
 
 /*
 ** -- removeVideoGame() --
 */
 
-void qtbook::removeVideoGame(qtbook_videogame *video_game)
+void qtbook::removeVideoGame(qtbook_videogame *videogame)
 {
-  if(video_game != 0)
-    {
-      if(video_games.contains(video_game->getID()))
-	video_games.remove(video_game->getID());
-
-      video_game->deleteLater();
-    }
+  if(videogame)
+    videogame->deleteLater();
 }
 
 /*
@@ -4669,13 +4699,10 @@ void qtbook::removeVideoGame(qtbook_videogame *video_game)
 */
 
 void qtbook::replaceVideoGame(const QString &id,
-			      qtbook_videogame *video_game)
+			      qtbook_videogame *videogame)
 {
-  if(video_games.contains(id))
-    video_games.remove(id);
-
-  if(video_game != 0)
-    video_games.insert(video_game->getID(), video_game);
+  Q_UNUSED(id);
+  Q_UNUSED(videogame);
 }
 
 /*
@@ -4684,76 +4711,34 @@ void qtbook::replaceVideoGame(const QString &id,
 
 void qtbook::updateItemWindows(void)
 {
-  /*
-  ** This method is not used.
-  */
-
-  QHash<QString, qtbook_cd *>::const_iterator cdit;
-  QHash<QString, qtbook_dvd *>::const_iterator dvdit;
-  QHash<QString, qtbook_book *>::const_iterator bookit;
-  QHash<QString, qtbook_journal *>::const_iterator journalit;
-  QHash<QString, qtbook_magazine *>::const_iterator magazineit;
-  QHash<QString, qtbook_videogame *>::const_iterator videogameit;
-
   qapp->setOverrideCursor(Qt::WaitCursor);
-  cdit = cds.constBegin();
 
-  while(cdit != cds.constEnd())
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if(cdit.value()->isVisible())
-	cdit.value()->updateWindow(EDITABLE);
+      qtbook_cd *cd = qobject_cast<qtbook_cd *> (w);
+      qtbook_dvd *dvd = qobject_cast<qtbook_dvd *> (w);
+      qtbook_book *book = qobject_cast<qtbook_book *> (w);
+      qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
+      qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
+      qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
 
-      ++cdit;
-    }
+      if(cd)
+	cd->updateWindow(EDITABLE);
 
-  dvdit = dvds.constBegin();
+      if(dvd)
+	dvd->updateWindow(EDITABLE);
 
-  while(dvdit != dvds.constEnd())
-    {
-      if(dvdit.value()->isVisible())
-	dvdit.value()->updateWindow(EDITABLE);
+      if(book)
+	book->updateWindow(EDITABLE);
 
-      ++dvdit;
-    }
+      if(journal)
+	journal->updateWindow(EDITABLE);
 
-  bookit = books.constBegin();
+      if(magazine)
+	magazine->updateWindow(EDITABLE);
 
-  while(bookit != books.constEnd())
-    {
-      if(bookit.value()->isVisible())
-	bookit.value()->updateWindow(EDITABLE);
-
-      ++bookit;
-    }
-
-  journalit = journals.constBegin();
-
-  while(journalit != journals.constEnd())
-    {
-      if(journalit.value()->isVisible())
-	journalit.value()->updateWindow(EDITABLE);
-
-      ++journalit;
-    }
-
-  magazineit = magazines.constBegin();
-
-  while(magazineit != magazines.constEnd())
-    {
-      if(magazineit.value()->isVisible())
-	magazineit.value()->updateWindow(EDITABLE);
-
-      ++magazineit;
-    }
-
-  videogameit = video_games.constBegin();
-
-  while(videogameit != video_games.constEnd())
-    {
-      if(videogameit.value()->isVisible())
-	videogameit.value()->updateWindow(EDITABLE);
-
-      ++videogameit;
+      if(videogame)
+	videogame->updateWindow(EDITABLE);
     }
 
   qapp->restoreOverrideCursor();
@@ -4765,68 +4750,36 @@ void qtbook::updateItemWindows(void)
 
 void qtbook::emptyContainers(void)
 {
-  QHash<QString, qtbook_cd *>::const_iterator cdit;
-  QHash<QString, qtbook_dvd *>::const_iterator dvdit;
-  QHash<QString, qtbook_book *>::const_iterator bookit;
-  QHash<QString, qtbook_journal *>::const_iterator journalit;
-  QHash<QString, qtbook_magazine *>::const_iterator magazineit;
-  QHash<QString, qtbook_videogame *>::const_iterator videogameit;
-
   qapp->setOverrideCursor(Qt::WaitCursor);
-  cdit = cds.constBegin();
 
-  while(cdit != cds.constEnd())
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      cdit.value()->deleteLater();
-      ++cdit;
+      qtbook_cd *cd = qobject_cast<qtbook_cd *> (w);
+      qtbook_dvd *dvd = qobject_cast<qtbook_dvd *> (w);
+      qtbook_book *book = qobject_cast<qtbook_book *> (w);
+      qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
+      qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
+      qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
+
+      if(cd)
+	cd->deleteLater();
+
+      if(dvd)
+	dvd->deleteLater();
+
+      if(book)
+	book->deleteLater();
+
+      if(journal)
+	journal->deleteLater();
+
+      if(magazine)
+	magazine->deleteLater();
+
+      if(videogame)
+	videogame->deleteLater();
     }
 
-  cds.clear();
-  dvdit = dvds.constBegin();
-
-  while(dvdit != dvds.constEnd())
-    {
-      dvdit.value()->deleteLater();
-      ++dvdit;
-    }
-
-  dvds.clear();
-  bookit = books.constBegin();
-
-  while(bookit != books.constEnd())
-    {
-      bookit.value()->deleteLater();
-      ++bookit;
-    }
-
-  books.clear();
-  journalit = journals.constBegin();
-
-  while(journalit != journals.constEnd())
-    {
-      journalit.value()->deleteLater();
-      ++journalit;
-    }
-
-  journals.clear();
-  magazineit = magazines.constBegin();
-
-  while(magazineit != magazines.constEnd())
-    {
-      magazineit.value()->deleteLater();
-      ++magazineit;
-    }
-
-  magazines.clear();
-  videogameit = video_games.constBegin();
-
-  while(videogameit != video_games.constEnd())
-    {
-      videogameit.value()->deleteLater();
-      ++videogameit;
-    }
-
-  video_games.clear();
   qapp->restoreOverrideCursor();
 }
 
@@ -4853,20 +4806,10 @@ void qtbook::slotInsertCD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  cd = new(std::nothrow) qtbook_cd(this, id, -1);
 
-  if((cd = cds.value(id)) == 0)
-    {
-      if((cd = new(std::nothrow) qtbook_cd(this, id, -1)) != 0)
-	cds.insert(id, cd);
-
-      if(cd != 0)
-	cd->insert();
-    }
-  else
-    {
-      cd->insert();
-      cd->raise();
-    }
+  if(cd)
+    cd->insert();
 }
 
 /*
@@ -4880,20 +4823,10 @@ void qtbook::slotInsertDVD(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  dvd = new(std::nothrow) qtbook_dvd(this, id, -1);
 
-  if((dvd = dvds.value(id)) == 0)
-    {
-      if((dvd = new(std::nothrow) qtbook_dvd(this, id, -1)) != 0)
-	dvds.insert(id, dvd);
-
-      if(dvd != 0)
-	dvd->insert();
-    }
-  else
-    {
-      dvd->insert();
-      dvd->raise();
-    }
+  if(dvd)
+    dvd->insert();
 }
 
 /*
@@ -4907,20 +4840,10 @@ void qtbook::slotInsertBook(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  book = new(std::nothrow) qtbook_book(this, id, -1);
 
-  if((book = books.value(id)) == 0)
-    {
-      if((book = new(std::nothrow) qtbook_book(this, id, -1)) != 0)
-	books.insert(id, book);
-
-      if(book != 0)
-	book->insert();
-    }
-  else
-    {
-      book->insert();
-      book->raise();
-    }
+  if(book)
+    book->insert();
 }
 
 /*
@@ -4934,21 +4857,10 @@ void qtbook::slotInsertJourn(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  journal = new(std::nothrow) qtbook_journal(this, id, -1);
 
-  if((journal = journals.value(id)) == 0)
-    {
-      if((journal = new(std::nothrow) qtbook_journal
-	  (this, id, -1)) != 0)
-	journals.insert(id, journal);
-
-      if(journal != 0)
-	journal->insert();
-    }
-  else
-    {
-      journal->insert();
-      journal->raise();
-    }
+  if(journal)
+    journal->insert();
 }
 
 /*
@@ -4962,21 +4874,11 @@ void qtbook::slotInsertMag(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  magazine = new(std::nothrow) qtbook_magazine(this, id, -1,
+					       "magazine");
 
-  if((magazine = magazines.value(id)) == 0)
-    {
-      if((magazine = new(std::nothrow) qtbook_magazine
-	  (this, id, -1, "magazine")) != 0)
-	magazines.insert(id, magazine);
-
-      if(magazine != 0)
-	magazine->insert();
-    }
-  else
-    {
-      magazine->insert();
-      magazine->raise();
-    }
+  if(magazine)
+    magazine->insert();
 }
 
 /*
@@ -4986,25 +4888,14 @@ void qtbook::slotInsertMag(void)
 void qtbook::slotInsertVideoGame(void)
 {
   QString id("");
-  qtbook_videogame *video_game = 0;
+  qtbook_videogame *videogame = 0;
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
+  videogame = new(std::nothrow) qtbook_videogame(this, id, -1);
 
-  if((video_game = video_games.value(id)) == 0)
-    {
-      if((video_game = new(std::nothrow) qtbook_videogame
-	  (this, id, -1)) != 0)
-	video_games.insert(id, video_game);
-
-      if(video_game != 0)
-	video_game->insert();
-    }
-  else
-    {
-      video_game->insert();
-      video_game->raise();
-    }
+  if(videogame)
+    videogame->insert();
 }
 
 /*
@@ -5013,37 +4904,83 @@ void qtbook::slotInsertVideoGame(void)
 
 void qtbook::deleteItem(const QString &oid, const QString &itemType)
 {
-  QObject *item = 0;
-
   if(itemType == "cd")
     {
-      if((item = cds.value(oid)) != 0)
-	removeCD(static_cast<qtbook_cd *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_cd *cd = qobject_cast<qtbook_cd *> (w);
+
+	  if(cd && cd->getID() == oid)
+	    {
+	      removeCD(cd);
+	      break;
+	    }
+	}
     }
   else if(itemType == "dvd")
     {
-      if((item = dvds.value(oid)) != 0)
-	removeDVD(static_cast<qtbook_dvd *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_dvd *dvd = qobject_cast<qtbook_dvd *> (w);
+
+	  if(dvd && dvd->getID() == oid)
+	    {
+	      removeDVD(dvd);
+	      break;
+	    }
+	}
     }
   else if(itemType == "book")
     {
-      if((item = books.value(oid)) != 0)
-	removeBook(static_cast<qtbook_book *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_book *book = qobject_cast<qtbook_book *> (w);
+
+	  if(book && book->getID() == oid)
+	    {
+	      removeBook(book);
+	      break;
+	    }
+	}
     }
   else if(itemType == "journal")
     {
-      if((item = journals.value(oid)) != 0)
-	removeJournal(static_cast<qtbook_journal *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
+
+	  if(journal && journal->getID() == oid)
+	    {
+	      removeJournal(journal);
+	      break;
+	    }
+	}
     }
   else if(itemType == "magazine")
     {
-      if((item = magazines.value(oid)) != 0)
-	removeMagazine(static_cast<qtbook_magazine *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
+
+	  if(magazine && magazine->getID() == oid)
+	    {
+	      removeMagazine(magazine);
+	      break;
+	    }
+	}
     }
   else if(itemType == "videogame")
     {
-      if((item = video_games.value(oid)) != 0)
-	removeVideoGame(static_cast<qtbook_videogame *> (item));
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
+
+	  if(videogame && videogame->getID() == oid)
+	    {
+	      removeVideoGame(videogame);
+	      break;
+	    }
+	}
     }
 }
 
@@ -5053,19 +4990,13 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
 
 void qtbook::bookSearch(const QString &field, const QString &value)
 {
-  qtbook_book *book = 0;
+  qtbook_book *book = new(std::nothrow) qtbook_book(this, "", -1);
 
-  if((book = books.value("search")) == 0)
+  if(book)
     {
-      if((book = new(std::nothrow) qtbook_book(this,
-					       "search", -1)) != 0)
-	books.insert("search", book);
-
-      if(book != 0)
-	book->search(field, value);
+      book->search(field, value);
+      book->deleteLater();
     }
-  else
-    book->search(field, value);
 }
 
 /*
@@ -5076,16 +5007,21 @@ void qtbook::slotBookSearch(void)
 {
   qtbook_book *book = 0;
 
-  if((book = books.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((book = new(std::nothrow) qtbook_book(this,
-					       "search", -1)) != 0)
-	books.insert("search", book);
+      qtbook_book *b = qobject_cast<qtbook_book *> (w);
 
-      if(book != 0)
-	book->search();
+      if(b && b->getID() == "search")
+	{
+	  book = b;
+	  break;
+	}
     }
-  else
+
+  if(!book)
+    book = new(std::nothrow) qtbook_book(this, "search", -1);
+
+  if(book)
     {
       book->raise();
       book->search();
@@ -5098,19 +5034,13 @@ void qtbook::slotBookSearch(void)
 
 void qtbook::cdSearch(const QString &field, const QString &value)
 {
-  qtbook_cd *cd = 0;
+  qtbook_cd *cd = new(std::nothrow) qtbook_cd(this, "", -1);
 
-  if((cd = cds.value("search")) == 0)
+  if(cd)
     {
-      if((cd = new(std::nothrow) qtbook_cd(this,
-					   "search", -1)) != 0)
-	cds.insert("search", cd);
-
-      if(cd != 0)
-	cd->search(field, value);
+      cd->search(field, value);
+      cd->deleteLater();
     }
-  else
-    cd->search(field, value);
 }
 
 /*
@@ -5121,16 +5051,21 @@ void qtbook::slotCDSearch(void)
 {
   qtbook_cd *cd = 0;
 
-  if((cd = cds.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((cd = new(std::nothrow) qtbook_cd(this,
-					   "search", -1)) != 0)
-	cds.insert("search", cd);
+      qtbook_cd *c = qobject_cast<qtbook_cd *> (w);
 
-      if(cd != 0)
-	cd->search();
+      if(c && c->getID() == "search")
+	{
+	  cd = c;
+	  break;
+	}
     }
-  else
+
+  if(!cd)
+    cd = new(std::nothrow) qtbook_cd(this, "search", -1);
+
+  if(cd)
     {
       cd->raise();
       cd->search();
@@ -5143,19 +5078,13 @@ void qtbook::slotCDSearch(void)
 
 void qtbook::dvdSearch(const QString &field, const QString &value)
 {
-  qtbook_dvd *dvd = 0;
+  qtbook_dvd *dvd = new(std::nothrow) qtbook_dvd(this, "", -1);
 
-  if((dvd = dvds.value("search")) == 0)
+  if(dvd != 0)
     {
-      if((dvd = new(std::nothrow) qtbook_dvd(this,
-					     "search", -1)) != 0)
-	dvds.insert("search", dvd);
-
-      if(dvd != 0)
-	dvd->search(field, value);
+      dvd->search(field, value);
+      dvd->deleteLater();
     }
-  else
-    dvd->search(field, value);
 }
 
 /*
@@ -5166,16 +5095,21 @@ void qtbook::slotDVDSearch(void)
 {
   qtbook_dvd *dvd = 0;
 
-  if((dvd = dvds.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((dvd = new(std::nothrow) qtbook_dvd(this,
-					     "search", -1)) != 0)
-	dvds.insert("search", dvd);
+      qtbook_dvd *d = qobject_cast<qtbook_dvd *> (w);
 
-      if(dvd != 0)
-	dvd->search();
+      if(d && d->getID() == "search")
+	{
+	  dvd = d;
+	  break;
+	}
     }
-  else
+
+  if(!dvd)
+    dvd = new(std::nothrow) qtbook_dvd(this, "search", -1);
+
+  if(dvd)
     {
       dvd->raise();
       dvd->search();
@@ -5188,19 +5122,13 @@ void qtbook::slotDVDSearch(void)
 
 void qtbook::journSearch(const QString &field, const QString &value)
 {
-  qtbook_journal *journal = 0;
+  qtbook_journal *journal = new(std::nothrow) qtbook_journal(this, "", -1);
 
-  if((journal = journals.value("search")) == 0)
+  if(journal)
     {
-      if((journal = new(std::nothrow) qtbook_journal(this,
-						     "search", -1)) != 0)
-	journals.insert("search", journal);
-
-      if(journal != 0)
-	journal->search(field, value);
+      journal->search(field, value);
+      journal->deleteLater();
     }
-  else
-    journal->search(field, value);
 }
 
 /*
@@ -5211,16 +5139,21 @@ void qtbook::slotJournSearch(void)
 {
   qtbook_journal *journal = 0;
 
-  if((journal = journals.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((journal = new(std::nothrow) qtbook_journal(this,
-						     "search", -1)) != 0)
-	journals.insert("search", journal);
+      qtbook_journal *j = qobject_cast<qtbook_journal *> (w);
 
-      if(journal != 0)
-	journal->search();
+      if(j && j->getID() == "search")
+	{
+	  journal = j;
+	  break;
+	}
     }
-  else
+
+  if(!journal)
+    journal = new(std::nothrow) qtbook_journal(this, "search", -1);
+
+  if(journal)
     {
       journal->raise();
       journal->search();
@@ -5233,20 +5166,14 @@ void qtbook::slotJournSearch(void)
 
 void qtbook::magSearch(const QString &field, const QString &value)
 {
-  qtbook_magazine *magazine = 0;
+  qtbook_magazine *magazine = new(std::nothrow) qtbook_magazine
+    (this, "", -1, "magazine");
 
-  if((magazine = magazines.value("search")) == 0)
+  if(magazine)
     {
-      if((magazine = new(std::nothrow) qtbook_magazine
-	  (this,
-	   "search", -1, "magazine")) != 0)
-	magazines.insert("search", magazine);
-
-      if(magazine != 0)
-	magazine->search(field, value);
+      magazine->search(field, value);
+      magazine->deleteLater();
     }
-  else
-    magazine->search(field, value);
 }
 
 /*
@@ -5257,17 +5184,22 @@ void qtbook::slotMagSearch(void)
 {
   qtbook_magazine *magazine = 0;
 
-  if((magazine = magazines.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((magazine = new(std::nothrow) qtbook_magazine
-	  (this,
-	   "search", -1, "magazine")) != 0)
-	magazines.insert("search", magazine);
+      qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
 
-      if(magazine != 0)
-	magazine->search();
+      if(m && m->getID() == "search")
+	{
+	  magazine = m;
+	  break;
+	}
     }
-  else
+
+  if(!magazine)
+    magazine = new(std::nothrow) qtbook_magazine
+      (this, "search", -1, "magazine");
+
+  if(magazine)
     {
       magazine->raise();
       magazine->search();
@@ -5280,19 +5212,14 @@ void qtbook::slotMagSearch(void)
 
 void qtbook::vgSearch(const QString &field, const QString &value)
 {
-  qtbook_videogame *video_game = 0;
+  qtbook_videogame *videogame = new(std::nothrow) qtbook_videogame
+    (this, "", -1);
 
-  if((video_game = video_games.value("search")) == 0)
+  if(videogame)
     {
-      if((video_game = new(std::nothrow) qtbook_videogame(this,
-							  "search", -1)) != 0)
-	video_games.insert("search", video_game);
-
-      if(video_game != 0)
-	video_game->search(field, value);
+      videogame->search(field, value);
+      videogame->deleteLater();
     }
-  else
-    video_game->search(field, value);
 }
 
 /*
@@ -5301,22 +5228,27 @@ void qtbook::vgSearch(const QString &field, const QString &value)
 
 void qtbook::slotVideoGameSearch(void)
 {
-  qtbook_videogame *video_game = 0;
+  qtbook_videogame *videogame = 0;
 
-  if((video_game = video_games.value("search")) == 0)
+  foreach(QWidget *w, qapp->topLevelWidgets())
     {
-      if((video_game = new(std::nothrow) qtbook_videogame
-	  (this,
-	   "search", -1)) != 0)
-	video_games.insert("search", video_game);
+      qtbook_videogame *v = qobject_cast<qtbook_videogame *> (w);
 
-      if(video_game != 0)
-	video_game->search();
+      if(v && v->getID() == "search")
+	{
+	  videogame = v;
+	  break;
+	}
     }
-  else
+
+  if(!videogame)
+    videogame = new(std::nothrow) qtbook_videogame
+      (this, "search", -1);
+
+  if(videogame)
     {
-      video_game->raise();
-      video_game->search();
+      videogame->raise();
+      videogame->search();
     }
 }
 
@@ -5327,37 +5259,83 @@ void qtbook::slotVideoGameSearch(void)
 void qtbook::updateRows(const QString &oid, const int row,
 			const QString &itemType)
 {
-  QObject *item = 0;
-
   if(itemType == "cd")
     {
-      if((item = cds.value(oid)) != 0)
-	(static_cast<qtbook_cd *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_cd *cd = qobject_cast<qtbook_cd *> (w);
+
+	  if(cd && cd->getID() == oid)
+	    {
+	      cd->updateRow(row);
+	      break;
+	    }
+	}
     }
   else if(itemType == "dvd")
     {
-      if((item = dvds.value(oid)) != 0)
-	(static_cast<qtbook_dvd *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_dvd *dvd = qobject_cast<qtbook_dvd *> (w);
+
+	  if(dvd && dvd->getID() == oid)
+	    {
+	      dvd->updateRow(row);
+	      break;
+	    }
+	}
     }
   else if(itemType == "book")
     {
-      if((item = books.value(oid)) != 0)
-	(static_cast<qtbook_book *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_book *book = qobject_cast<qtbook_book *> (w);
+
+	  if(book && book->getID() == oid)
+	    {
+	      book->updateRow(row);
+	      break;
+	    }
+	}
     }
   else if(itemType == "journal")
     {
-      if((item = journals.value(oid)) != 0)
-	(static_cast<qtbook_journal *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
+
+	  if(journal && journal->getID() == oid)
+	    {
+	      journal->updateRow(row);
+	      break;
+	    }
+	}
     }
   else if(itemType == "magazine")
     {
-      if((item = magazines.value(oid)) != 0)
-	(static_cast<qtbook_magazine *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
+
+	  if(magazine && magazine->getID() == oid)
+	    {
+	      magazine->updateRow(row);
+	      break;
+	    }
+	}
     }
   else if(itemType == "videogame")
     {
-      if((item = video_games.value(oid)) != 0)
-	(static_cast<qtbook_videogame *> (item))->updateRow(row);
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
+
+	  if(videogame && videogame->getID() == oid)
+	    {
+	      videogame->updateRow(row);
+	      break;
+	    }
+	}
     }
 }
 
@@ -7811,4 +7789,119 @@ void qtbook::slotSectionResized(int logicalIndex, int oldSize,
   Q_UNUSED(logicalIndex);
   Q_UNUSED(oldSize);
   Q_UNUSED(newSize);
+}
+
+/*
+** -- slotDuplicate() --
+*/
+
+void qtbook::slotDuplicate(void)
+{
+  if(!db.isOpen())
+    return;
+
+  int i = 0;
+  bool error = false;
+  QString oid = "";
+  QString type = "";
+  qtbook_cd *cd = 0;
+  qtbook_dvd *dvd = 0;
+  QModelIndex index;
+  QTableWidget *table = ui.table;
+  qtbook_book *book = 0;
+  qtbook_journal *journal = 0;
+  qtbook_magazine *magazine = 0;
+  qtbook_videogame *video_game = 0;
+  QModelIndexList list = table->selectionModel()->selectedRows();
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			    tr("Please select at least one item to "
+			       "duplicate."));
+      return;
+    }
+  else if(list.size() >= 5)
+    if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			     tr("Are you sure that you wish to duplicate "
+				"the ") +
+			     QString::number(list.size()) +
+			     tr(" selected items?"),
+			     QMessageBox::Yes | QMessageBox::No,
+			     QMessageBox::No) == QMessageBox::No)
+      {
+	list.clear();
+	return;
+      }
+
+  QString id("");
+
+  qStableSort(list.begin(), list.end());
+
+  foreach(index, list)
+    {
+      i = index.row();
+      oid = misc_functions::getColumnString(table, i, "MYOID");
+      type = misc_functions::getColumnString(table, i, tr("Type"));
+      m_idCt += 1;
+      id = QString("duplicate_%1").arg(m_idCt);
+
+      if(type.toLower() == "cd")
+	{
+	  cd = new(std::nothrow) qtbook_cd(this, oid, i);
+
+	  if(cd)
+	    cd->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "dvd")
+	{
+	  dvd = new(std::nothrow) qtbook_dvd(this, oid, i);
+
+	  if(dvd)
+	    dvd->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "book")
+	{
+	  book = new(std::nothrow) qtbook_book(this, oid, i);
+
+	  if(book)
+	    book->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "journal")
+	{
+	  journal = new(std::nothrow) qtbook_journal(this, oid, i);
+
+	  if(journal)
+	    journal->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "magazine")
+	{
+	  magazine = new(std::nothrow) qtbook_magazine(this,
+						       oid, i,
+						       "magazine");
+
+	  if(magazine)
+	    magazine->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "video game")
+	{
+	  video_game = new(std::nothrow) qtbook_videogame(this,
+							  oid, i);
+
+	  if(video_game)
+	    video_game->duplicate(id, EDITABLE);
+	}
+      else
+	{
+	  error = true;
+	  break;
+	}
+    }
+
+  list.clear();
+
+  if(error)
+    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+			  tr("Unable to determine the selected item's "
+			     "type."));
 }

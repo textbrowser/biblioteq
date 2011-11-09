@@ -2390,3 +2390,20 @@ Ui_magDialog qtbook_magazine::dialog(void) const
 {
   return ma;
 }
+
+/*
+** -- duplicate() --
+*/
+
+void qtbook_magazine::duplicate(const QString &id, const int state)
+{
+  modify(state); // Initial populate.
+  oid = id;
+
+  if(subType.toLower() == "journal")
+    setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
+  else
+    setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
+
+  engWindowTitle = "Create";
+}

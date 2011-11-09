@@ -2180,3 +2180,15 @@ void qtbook_cd::slotSelectImage(void)
 	}
     }
 }
+
+/*
+** -- duplicate() --
+*/
+
+void qtbook_cd::duplicate(const QString &id, const int state)
+{
+  modify(state); // Initial populate.
+  oid = id;
+  setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
+  engWindowTitle = "Create";
+}

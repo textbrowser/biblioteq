@@ -246,12 +246,6 @@ class qtbook: public QMainWindow
   QStringList deletedAdmins;
   QHash<QString, QString> amazonImages;
   QHash<QString, QString> selectedBranch;
-  QHash<QString, qtbook_cd *> cds;
-  QHash<QString, qtbook_dvd *> dvds;
-  QHash<QString, qtbook_book *> books;
-  QHash<QString, qtbook_journal *> journals;
-  QHash<QString, qtbook_magazine *> magazines;
-  QHash<QString, qtbook_videogame *> video_games;
   QMap<QString, QHash<QString, QString> > branches;
   QMap<QString, QHash<QString, QString> > z3950Maps;
   QLabel *error_bar_label;
@@ -320,6 +314,7 @@ class qtbook: public QMainWindow
   void slotConnectDB(void);
   void slotCopyError(void);
   void slotDVDSearch(void);
+  void slotDuplicate(void);
   void slotInsertMag(void);
   void slotInsertDVD(void);
   void slotMagSearch(void);
