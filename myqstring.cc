@@ -43,23 +43,8 @@ QString myqstring::prepConfigString(const QString &str,
 
 QString myqstring::escape(const QString &str)
 {
-  QString mystr = "";
+  QString mystr(str);
 
-  if(str.contains("'"))
-    {
-      if(qmain->getDB().driverName() == "QSQLITE")
-	{
-	  mystr = str;
-	  mystr = mystr.replace("'", "''");
-	}
-      else
-	{
-	  mystr = QRegExp::escape(str);
-	  mystr = mystr.replace("'", QString("\\'"));
-	}
-    }
-  else
-    mystr = str;
-
+  mystr = mystr.replace("'", "''");
   return mystr.trimmed();
 }

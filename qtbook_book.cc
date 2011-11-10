@@ -925,21 +925,27 @@ void qtbook_book::slotGo(void)
 	"AND item_borrower_vw.type = 'Book' "
 	"WHERE ";
 
-      if(id.isbnAvailableCheckBox->isChecked())
-	searchstr.append("id LIKE '%" + id.id->text().trimmed() +
-			 "%' AND ");
-      else
-	searchstr.append("id IS NULL AND ");
+      if(!engWindowTitle.isEmpty())
+	{
+	  if(id.isbnAvailableCheckBox->isChecked())
+	    searchstr.append("id LIKE '%" + id.id->text().trimmed() +
+			     "%' AND ");
+	  else
+	    searchstr.append("id IS NULL AND ");
+	}
 
       searchstr.append("title LIKE '%" +
 		       myqstring::escape(id.title->text().trimmed()) +
 		       "%' AND ");
 
-      if(id.isbnAvailableCheckBox->isChecked())
-	searchstr.append("isbn13 LIKE '%" +
-			 id.isbn13->text().trimmed() + "%' AND ");
-      else
-	searchstr.append("isbn13 IS NULL AND ");
+      if(!engWindowTitle.isEmpty())
+	{
+	  if(id.isbnAvailableCheckBox->isChecked())
+	    searchstr.append("isbn13 LIKE '%" +
+			     id.isbn13->text().trimmed() + "%' AND ");
+	  else
+	    searchstr.append("isbn13 IS NULL AND ");
+	}
 
       searchstr.append("COALESCE(lccontrolnumber, '') LIKE '%" +
 		       myqstring::escape(id.lcnum->text().trimmed()) +
