@@ -800,13 +800,18 @@ void qtbook_cd::slotGo(void)
 					    trimmed()).
 	append("%' AND ");
 
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
       if(cd.format->currentText() != tr("Any"))
-	searchstr.append("cdformat = '" +
+	searchstr.append("cdformat = " + E + "'" +
 			 myqstring::escape(cd.format->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("artist LIKE '%").append
+      searchstr.append("artist LIKE " + E + "'%").append
 	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
 	("%' AND ");
 
@@ -828,7 +833,7 @@ void qtbook_cd::slotGo(void)
 			 cd.recording_type->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("title LIKE '%").append
+      searchstr.append("title LIKE " + E + "'%").append
 	(myqstring::escape(cd.title->text().trimmed())).append("%' AND ");
 
       if(cd.release_date->date().toString("MM/yyyy") != "01/7999")
@@ -837,10 +842,10 @@ void qtbook_cd::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("recording_label LIKE '%" +
+      searchstr.append("recording_label LIKE " + E + "'%" +
 		       myqstring::escape(cd.recording_label->toPlainText().
 					 trimmed()) + "%' AND ");
-      searchstr.append("category LIKE '%" +
+      searchstr.append("category LIKE " + E + "'%" +
 		       myqstring::escape(cd.category->toPlainText().
 					 trimmed()) +
 		       "%' AND ");
@@ -853,21 +858,21 @@ void qtbook_cd::slotGo(void)
 	}
 
       if(cd.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
+	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(cd.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
       if(cd.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (cd.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE '%" +
+      searchstr.append("description LIKE " + E + "'%" +
 		       myqstring::escape
 		       (cd.description->toPlainText().trimmed()) + "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (cd.keyword->toPlainText().trimmed()) +
 		       "%' ");
@@ -876,7 +881,7 @@ void qtbook_cd::slotGo(void)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
       if(cd.location->currentText() != tr("Any"))
-	searchstr.append(" AND location = '" +
+	searchstr.append(" AND location = " + E + "'" +
 			 myqstring::escape
 			 (cd.location->currentText().trimmed()) + "' ");
 

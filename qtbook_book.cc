@@ -934,7 +934,12 @@ void qtbook_book::slotGo(void)
 	    searchstr.append("id IS NULL AND ");
 	}
 
-      searchstr.append("title LIKE '%" +
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      searchstr.append("title LIKE " + E + "'%" +
 		       myqstring::escape(id.title->text().trimmed()) +
 		       "%' AND ");
 
@@ -947,13 +952,13 @@ void qtbook_book::slotGo(void)
 	    searchstr.append("isbn13 IS NULL AND ");
 	}
 
-      searchstr.append("COALESCE(lccontrolnumber, '') LIKE '%" +
+      searchstr.append("COALESCE(lccontrolnumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(id.lcnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("COALESCE(callnumber, '') LIKE '%" +
+      searchstr.append("COALESCE(callnumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(id.callnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("COALESCE(deweynumber, '') LIKE '%" +
+      searchstr.append("COALESCE(deweynumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(id.deweynum->text().trimmed()) +
 		       "%' AND ");
 
@@ -962,7 +967,7 @@ void qtbook_book::slotGo(void)
 			 id.edition->currentText().trimmed() +
 			 "' AND ");
 
-      searchstr.append("author LIKE '%" +
+      searchstr.append("author LIKE " + E + "'%" +
 		       myqstring::escape(id.author->toPlainText().
 					 trimmed()) + "%' AND ");
 
@@ -972,15 +977,15 @@ void qtbook_book::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("publisher LIKE '%" +
+      searchstr.append("publisher LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("place LIKE '%" +
+      searchstr.append("place LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("category LIKE '%" +
+      searchstr.append("category LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.category->toPlainText().trimmed()) +
 		       "%' AND ");
@@ -993,24 +998,24 @@ void qtbook_book::slotGo(void)
 	}
 
       if(id.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
+	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(id.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
       if(id.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (id.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
       if(id.binding->currentText() != tr("Any"))
-	searchstr.append("binding_type = '" +
+	searchstr.append("binding_type = " + E + "'" +
 			 myqstring::escape(id.binding->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE '%" +
+      searchstr.append("description LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.description->toPlainText().trimmed()) +
 		       "%' ");
@@ -1019,15 +1024,15 @@ void qtbook_book::slotGo(void)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
 
       if(id.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (id.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(marc_tags, '') LIKE '%" +
+      searchstr.append("AND COALESCE(marc_tags, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.marc_tags->toPlainText().trimmed()) +
 		       "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (id.keyword->toPlainText().trimmed()) +
 		       "%' ");

@@ -749,17 +749,23 @@ void qtbook_videogame::slotGo(void)
 	"WHERE ";
       searchstr.append("id LIKE '%" + vg.id->text().trimmed() +
 		       "%' AND ");
-      searchstr.append("title LIKE '%" +
+
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      searchstr.append("title LIKE " + E + "'%" +
 		       myqstring::escape(vg.title->text().trimmed()) +
 		       "%' AND ");
 
       if(vg.rating->currentText() != tr("Any"))
-	searchstr.append("vgrating = '" +
+	searchstr.append("vgrating = " + E + "'" +
 			 myqstring::escape(vg.rating->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("developer LIKE '%" +
+      searchstr.append("developer LIKE " + E + "'%" +
 		       myqstring::escape(vg.developer->toPlainText().
 					 trimmed()) + "%' "
 		       "AND ");
@@ -771,15 +777,15 @@ void qtbook_videogame::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("publisher LIKE '%" +
+      searchstr.append("publisher LIKE " + E + "'%" +
 		       myqstring::escape
 		       (vg.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("place LIKE '%" +
+      searchstr.append("place LIKE " + E + "'%" +
 		       myqstring::escape
 		       (vg.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("genre LIKE '%" +
+      searchstr.append("genre LIKE " + E + "'%" +
 		       myqstring::escape(vg.genre->toPlainText().trimmed()) +
 		       "%' AND ");
 
@@ -791,24 +797,24 @@ void qtbook_videogame::slotGo(void)
 	}
 
       if(vg.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
+	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(vg.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
       if(vg.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (vg.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
       if(vg.platform->currentText() != tr("Any"))
-	searchstr.append("vgplatform = '" +
+	searchstr.append("vgplatform = " + E + "'" +
 			 myqstring::escape(vg.rating->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE '%" +
+      searchstr.append("description LIKE " + E + "'%" +
 		       myqstring::escape
 		       (vg.description->toPlainText().trimmed()) + "%' ");
 
@@ -816,16 +822,16 @@ void qtbook_videogame::slotGo(void)
 	searchstr.append("AND quantity = " + vg.quantity->text() + " ");
 
       if(vg.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (vg.location->currentText().trimmed()) + "' ");
 
       if(vg.mode->currentText() != tr("Any"))
-	searchstr.append("AND vgmode = '" +
+	searchstr.append("AND vgmode = " + E + "'" +
 			 myqstring::escape
 			 (vg.mode->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (vg.keyword->toPlainText().trimmed()) + "%' ");
       hide();

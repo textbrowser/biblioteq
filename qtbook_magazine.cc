@@ -883,13 +883,19 @@ void qtbook_magazine::slotGo(void)
 			  "WHERE %1.type = '%1' AND ").arg(subType);
       searchstr.append("id LIKE '%" + ma.id->text().trimmed() +
 		       "%' AND ");
-      searchstr.append("COALESCE(lccontrolnumber, '') LIKE '%" +
+
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      searchstr.append("COALESCE(lccontrolnumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(ma.lcnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("COALESCE(callnumber, '') LIKE '%" +
+      searchstr.append("COALESCE(callnumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(ma.callnum->text().trimmed()) +
 		       "%' AND ");
-      searchstr.append("COALESCE(deweynumber, '') LIKE '%" +
+      searchstr.append("COALESCE(deweynumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(ma.deweynum->text().trimmed()) +
 		       "%' AND ");
 
@@ -901,7 +907,7 @@ void qtbook_magazine::slotGo(void)
 	searchstr.append("issueno = " + ma.issue->text() +
 			 " AND ");
 
-      searchstr.append("title LIKE '%" +
+      searchstr.append("title LIKE " + E + "'%" +
 		       myqstring::escape(ma.title->text().trimmed()) +
 		       "%' AND ");
 
@@ -912,15 +918,15 @@ void qtbook_magazine::slotGo(void)
 			 ("MM/yyyy") +
 			 "' AND ");
 
-      searchstr.append("publisher LIKE '%" +
+      searchstr.append("publisher LIKE " + E+ "'%" +
 		       myqstring::escape
 		       (ma.publisher->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("place LIKE '%" +
+      searchstr.append("place LIKE " + E + "'%" +
 		       myqstring::escape
 		       (ma.place->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("category LIKE '%" +
+      searchstr.append("category LIKE " + E + "'%" +
 		       myqstring::escape(ma.category->toPlainText().
 					 trimmed()) +
 		       "%' AND ");
@@ -933,18 +939,18 @@ void qtbook_magazine::slotGo(void)
 	}
 
       if(ma.language->currentText() != tr("Any"))
-	searchstr.append("language = '" +
+	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(ma.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
       if(ma.monetary_units->currentText() != tr("Any"))
-	searchstr.append("monetary_units = '" +
+	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (ma.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      searchstr.append("description LIKE '%" +
+      searchstr.append("description LIKE " + E + "'%" +
 		       myqstring::escape
 		       (ma.description->toPlainText().trimmed()) + "%' ");
 
@@ -952,14 +958,14 @@ void qtbook_magazine::slotGo(void)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
       if(ma.location->currentText() != tr("Any"))
-	searchstr.append("AND location = '" +
+	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (ma.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(marc_tags, '') LIKE '%" +
+      searchstr.append("AND COALESCE(marc_tags, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (ma.marc_tags->toPlainText().trimmed()) + "%' ");
-      searchstr.append("AND COALESCE(keyword, '') LIKE '%" +
+      searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (ma.keyword->toPlainText().trimmed()) + "%' ");
       hide();

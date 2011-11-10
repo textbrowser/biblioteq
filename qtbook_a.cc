@@ -3820,10 +3820,15 @@ void qtbook::slotPopulateMembersBrowser(void)
     {
       str.append("WHERE ");
 
+      QString E("");
+
+      if(db.driverName() != "QSQLITE")
+	E = "E";
+
       if(bb.filtertype->currentText() == "Member ID")
-	str.append("member.memberid LIKE '%");
+	str.append("member.memberid LIKE " + E + "'%");
       else
-	str.append("member.last_name LIKE '%");
+	str.append("member.last_name LIKE " + E + "'%");
 
       str.append(myqstring::escape(bb.filter->text().trimmed()));
       str.append("%' ");

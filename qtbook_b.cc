@@ -2275,19 +2275,24 @@ int qtbook::populateTable(const int search_type_arg,
 			       "WHERE ").arg(type.toLower().remove(" ")).
 		  arg(type);
 
-		str.append("(id IS NULL OR id LIKE '%" +
+		QString E("");
+
+		if(db.driverName() != "QSQLITE")
+		  E = "E";
+
+		str.append("(id IS NULL OR id LIKE " + E + "'%" +
 			   myqstring::escape(al.idnumber->text().trimmed()) +
 			   "%' ");
 
 		if(type == "Book")
-		  str.append("OR isbn13 LIKE '%" +
+		  str.append("OR isbn13 LIKE " + E + "'%" +
 			     myqstring::escape(al.idnumber->text().
 					       trimmed()) + "%')");
 		else
 		  str.append(")");
 
 		str.append(" AND ");
-		str.append("title LIKE '%" +
+		str.append("title LIKE " + E + "'%" +
 			   myqstring::escape(al.title->text().trimmed()) +
 			   "%' AND ");
 
@@ -2297,11 +2302,11 @@ int qtbook::populateTable(const int search_type_arg,
 			     al.publication_date->date().toString
 			     ("MM/yyyy") + "' AND ");
 
-		str.append("category LIKE '%" +
+		str.append("category LIKE " + E + "'%" +
 			   myqstring::escape
 			   (al.category->toPlainText().trimmed()) +
 			   "%' AND ");
-		str.append("publisher LIKE '%" +
+		str.append("publisher LIKE " + E + "'%" +
 			   myqstring::escape(al.publisher->text().trimmed()) +
 			   "%' AND ");
 
@@ -2313,21 +2318,21 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(al.language->currentText() != tr("Any"))
-		  str.append("language = '" +
+		  str.append("language = " + E + "'" +
 			     myqstring::escape
 			     (al.language->currentText().trimmed()) +
 			     "' AND ");
 
 		if(al.monetary_units->currentText() != tr("Any"))
-		  str.append("monetary_units = '" +
+		  str.append("monetary_units = " + E + "'" +
 			     myqstring::escape
 			     (al.monetary_units->currentText().trimmed()) +
 			     "' AND ");
 
-		str.append("description LIKE '%" +
+		str.append("description LIKE " + E + "'%" +
 			   myqstring::escape
 			   (al.description->toPlainText().trimmed()) + "%' ");
-		str.append("AND COALESCE(keyword, '') LIKE '%" +
+		str.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 			   myqstring::escape
 			   (al.keyword->toPlainText().trimmed()) +
 			   "%' ");
@@ -2336,7 +2341,7 @@ int qtbook::populateTable(const int search_type_arg,
 		  str.append("AND quantity = " + al.quantity->text() + " ");
 
 		if(al.location->currentText() != tr("Any"))
-		  str.append("AND location = '" +
+		  str.append("AND location = " + E + "'" +
 			     myqstring::escape
 			     (al.location->currentText().trimmed()) + "' ");
 
