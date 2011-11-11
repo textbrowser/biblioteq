@@ -2710,6 +2710,10 @@ URL</source>
         <source>&amp;Export View as CSV</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -4200,6 +4204,14 @@ URL</source>
 %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select at least one item to duplicate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to duplicate the </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4799,6 +4811,10 @@ URL</source>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Duplicate Book Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -5394,6 +5410,10 @@ URL</source>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Duplicate Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
@@ -5907,6 +5927,10 @@ URL</source>
     </message>
     <message>
         <source>Keyword:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6491,6 +6515,14 @@ URL</source>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Duplicate Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Magazine Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6964,6 +6996,10 @@ URL</source>
     </message>
     <message>
         <source>Keywords:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Video Game Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
