@@ -10,12 +10,6 @@
     <height>650</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>900</width>
-    <height>650</height>
-   </size>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>

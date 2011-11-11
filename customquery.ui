@@ -10,12 +10,6 @@
     <height>500</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>500</width>
-    <height>500</height>
-   </size>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -27,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+    <normaloff>../.designer/backup/icons.d/book.png</normaloff>../.designer/backup/icons.d/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
@@ -139,7 +133,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+          <normaloff>../.designer/backup/icons.d/16x16/ok.png</normaloff>../.designer/backup/icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -162,7 +156,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+          <normaloff>../.designer/backup/icons.d/16x16/cancel.png</normaloff>../.designer/backup/icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
