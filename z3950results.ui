@@ -42,12 +42,6 @@
          <bool>false</bool>
         </property>
         <widget class="QGroupBox" name="recRet">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="title">
           <string>&amp;Records Retrieved</string>
          </property>
