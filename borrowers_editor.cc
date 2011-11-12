@@ -136,10 +136,7 @@ void borrowers_editor::showUsers(void)
     bd.table->setColumnHidden(bd.table->columnCount() - 1, true);
 
   if(!isVisible())
-    {
-      updateGeometry();
-      resize(sizeHint());
-    }
+    updateGeometry();
 
   show();
   progress1.setModal(true);

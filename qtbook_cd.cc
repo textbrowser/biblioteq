@@ -197,7 +197,6 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   if(cd.format->findText(tr("UNKNOWN")) == -1)
     cd.format->addItem(tr("UNKNOWN"));
 
-  resize(baseSize());
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }
@@ -1406,7 +1405,6 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   tracks_diag->setWindowTitle
     (QString(tr("BiblioteQ: Album Tracks Browser (")) +
      cd.id->text() + tr(")"));
-  tracks_diag->resize(tracks_diag->sizeHint());
   tracks_diag->show();
   trd.table->setSortingEnabled(false);
 

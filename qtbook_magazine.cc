@@ -227,7 +227,6 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ** Prepare the form.
   */
 
-  resize(baseSize());
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }

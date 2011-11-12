@@ -211,7 +211,6 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   if(dvd.region->findText(tr("UNKNOWN")) == -1)
     dvd.region->addItem(tr("UNKNOWN"));
 
-  resize(baseSize());
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }

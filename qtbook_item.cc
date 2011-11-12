@@ -112,8 +112,6 @@ void qtbook_item::updateFont(const QFont &font, QWidget *window)
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
     widget->setFont(font);
-
-  window->resize(window->sizeHint());
 }
 
 /*

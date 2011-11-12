@@ -63,8 +63,8 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   connect(ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
   ui.list->setCurrentRow(row);
-  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recRet),  0);
-  ui.splitter->setStretchFactor(ui.splitter->indexOf(ui.recCont),  1);
+  ui.splitter->setStretchFactor(0,  0);
+  ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
   exec();
 }

@@ -345,6 +345,8 @@ qtbook::qtbook(void):QMainWindow()
   cq.setupUi(customquery_diag);
   er.setupUi(error_diag);
   ab.setupUi(admin_diag);
+  ab.splitter->setStretchFactor(0, 0);
+  ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_WS_MAC
   members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
@@ -1133,10 +1135,7 @@ void qtbook::slotSearch(void)
   al.idnumber->setFocus();
 
   if(!all_diag->isVisible())
-    {
-      all_diag->updateGeometry();
-      all_diag->resize(all_diag->baseSize());
-    }
+    all_diag->updateGeometry();
 
   misc_functions::center(all_diag, this);
   all_diag->raise();

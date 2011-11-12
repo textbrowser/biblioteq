@@ -189,7 +189,6 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   if(vg.location->findText(tr("UNKNOWN")) == -1)
     vg.location->addItem(tr("UNKNOWN"));
 
-  resize(baseSize());
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }
