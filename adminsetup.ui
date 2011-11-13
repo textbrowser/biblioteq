@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>adminBrowser</class>
  <widget class="QMainWindow" name="adminBrowser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>707</width>
+    <height>386</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -44,7 +52,7 @@
              <height>128</height>
             </rect>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <layout class="QGridLayout" name="gridLayout">
               <item row="0" column="1">

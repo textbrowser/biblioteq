@@ -978,6 +978,7 @@ void qtbook::showMain(void)
 
   initialUpdate();
   show();
+  setGlobalFonts(qapp->font());
 
   if(!error.isEmpty())
     QMessageBox::critical(this, tr("BiblioteQ: File Error"),
@@ -2550,6 +2551,7 @@ void qtbook::readConfig(void)
   if(settings.contains("global_font"))
     font.fromString(settings.value("global_font", "").toString());
 
+  qapp->setFont(font);
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", false).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked
@@ -2594,7 +2596,6 @@ void qtbook::readConfig(void)
   else
     br.branch_name->setCurrentIndex(0);
 
-  setGlobalFonts(font);
   slotResizeColumns();
   createSqliteMenuActions();
 }

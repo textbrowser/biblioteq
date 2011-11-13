@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>branchSelect</class>
  <widget class="QDialog" name="branchSelect">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>575</width>
+    <height>225</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Times</family>
