@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>checkedOutDialog</class>
  <widget class="QDialog" name="checkedOutDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>845</width>
-    <height>300</height>
-   </rect>
-  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>

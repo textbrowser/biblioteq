@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>copybrowser</class>
  <widget class="QDialog" name="copybrowser">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>477</width>
-    <height>468</height>
-   </rect>
-  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>

@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>z3950ResultsDialog</class>
  <widget class="QDialog" name="z3950ResultsDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>713</width>
-    <height>615</height>
-   </rect>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>

@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>adminBrowser</class>
  <widget class="QMainWindow" name="adminBrowser">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1146</width>
-    <height>680</height>
-   </rect>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -43,16 +35,13 @@
           <bool>false</bool>
          </property>
          <widget class="QScrollArea" name="scrollArea">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
           <widget class="QWidget" name="scrollAreaWidgetContents">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
              <width>949</width>
-             <height>231</height>
+             <height>128</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">

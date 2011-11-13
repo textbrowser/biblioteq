@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>dvdDialog</class>
  <widget class="QMainWindow" name="dvdDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1000</width>
-    <height>700</height>
-   </rect>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>

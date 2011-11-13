@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>UserInfo</class>
  <widget class="QDialog" name="UserInfo">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>480</height>
-   </rect>
-  </property>
   <property name="font">
    <font>
     <family>Times</family>

@@ -6860,7 +6860,7 @@ void qtbook::slotRefreshAdminList(void)
 
   progress.hide();
   ab.table->setRowCount(i);
-  ab.table->horizontalHeader()->resizeSections(QHeaderView::Stretch);
+  ab.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
   deletedAdmins.clear();
 }
 

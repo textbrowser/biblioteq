@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>tracksDialog</class>
  <widget class="QDialog" name="tracksDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>650</width>
-    <height>335</height>
-   </rect>
-  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
