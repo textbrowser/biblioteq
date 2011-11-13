@@ -227,13 +227,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ** Prepare the form.
   */
 
-  static bool resized = false;
-
-  if(!resized)
-    resize(0.75 * parentWid->size().width(),
-	   0.75 * parentWid->size().height());
-
-  resized = true;
+  resize(0.75 * parentWid->size().width(),
+	 0.75 * parentWid->size().height());
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }
@@ -1471,7 +1466,6 @@ void qtbook_magazine::insert(void)
   engWindowTitle = "Create";
   ma.id->setFocus();
   storeData(this);
-  misc_functions::center(this, parentWid);
   show();
 }
 
