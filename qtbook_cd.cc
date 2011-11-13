@@ -197,6 +197,13 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   if(cd.format->findText(tr("UNKNOWN")) == -1)
     cd.format->addItem(tr("UNKNOWN"));
 
+  static bool resized = false;
+
+  if(!resized)
+    resize(0.75 * parentWid->size().width(),
+	   0.75 * parentWid->size().height());
+
+  resized = true;
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
 }

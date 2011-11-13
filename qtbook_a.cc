@@ -1137,6 +1137,13 @@ void qtbook::slotSearch(void)
   if(!all_diag->isVisible())
     all_diag->updateGeometry();
 
+  static bool resized = false;
+
+  if(!resized)
+    all_diag->resize(0.75 * size().width(),
+		     0.75 * size().height());
+
+  resized = true;
   misc_functions::center(all_diag, this);
   all_diag->raise();
   all_diag->show();
@@ -3766,6 +3773,14 @@ void qtbook::slotShowMembersBrowser(void)
   bb.filter->setFocus();
   bb.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
+
+  static bool resized = false;
+
+  if(!resized)
+    members_diag->resize(0.75 * size().width(),
+			 0.75 * size().height());
+
+  resized = true;
   misc_functions::center(members_diag, this);
   members_diag->raise();
   members_diag->show();
@@ -4465,6 +4480,14 @@ void qtbook::slotShowErrorDialog(void)
 {
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   er.table->resizeColumnsToContents();
+
+  static bool resized = false;
+
+  if(!resized)
+    error_diag->resize(0.75 * size().width(),
+		       0.75 * size().height());
+
+  resized = true;
   misc_functions::center(error_diag, this);
   error_diag->raise();
   error_diag->show();
@@ -5770,6 +5793,13 @@ void qtbook::slotShowCustomQuery(void)
       qapp->restoreOverrideCursor();
     }
 
+  static bool resized = false;
+
+  if(!resized)
+    customquery_diag->resize(0.75 * size().width(),
+			     0.75 * size().height());
+
+  resized = true;
   misc_functions::center(customquery_diag, this);
   customquery_diag->raise();
   customquery_diag->show();
@@ -6340,9 +6370,27 @@ void qtbook::slotShowHistory(void)
   history.prevTool->setVisible(!roles.isEmpty());
 
   if(members_diag->isVisible())
-    misc_functions::center(history_diag, members_diag);
+    {
+      static bool resized = false;
+
+      if(!resized)
+	history_diag->resize(0.75 * members_diag->size().width(),
+			     0.75 * members_diag->size().height());
+
+      resized = true;
+      misc_functions::center(history_diag, members_diag);
+    }
   else
-    misc_functions::center(history_diag, this);
+    {
+      static bool resized = false;
+
+      if(!resized)
+	history_diag->resize(0.75 * size().width(),
+			     0.75 * size().height());
+
+      resized = true;
+      misc_functions::center(history_diag, this);
+    }
 
   history_diag->raise();
   history_diag->show();
@@ -6614,6 +6662,13 @@ void qtbook::slotSelectDatabaseFile(void)
 
 void qtbook::slotShowAdminDialog(void)
 {
+  static bool resized = false;
+
+  if(!resized)
+    admin_diag->resize(0.75 * size().width(),
+		       0.75 * size().height());
+
+  resized = true;
   misc_functions::center(admin_diag, this);
   admin_diag->raise();
   admin_diag->show();
