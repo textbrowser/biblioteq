@@ -112,8 +112,13 @@ dbenumerations::dbenumerations(void):QMainWindow()
 
 void dbenumerations::show(QMainWindow *parent, const bool populate)
 {
-  resize(0.75 * parent->size().width(),
-	 0.75 * parent->size().height());
+  static bool resized = false;
+
+  if(!resized)
+    resize(0.75 * parent->size().width(),
+	   0.75 * parent->size().height());
+
+  resized = true;
   misc_functions::center(this, parent);
   raise();
   QMainWindow::show();
