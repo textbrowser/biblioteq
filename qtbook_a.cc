@@ -979,6 +979,7 @@ void qtbook::showMain(void)
   initialUpdate();
   show();
   setGlobalFonts(qapp->font());
+  slotResizeColumns();
 
   if(!error.isEmpty())
     QMessageBox::critical(this, tr("BiblioteQ: File Error"),
@@ -1018,8 +1019,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - 2011 "
-	     "Two Red Frogs Productions.<br>"
+	     "Copyright (c) 2006 - 2011 Mr. Moose.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
