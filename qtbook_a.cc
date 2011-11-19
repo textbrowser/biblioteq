@@ -5556,7 +5556,13 @@ void qtbook::setGlobalFonts(const QFont &font)
   qapp->setFont(font);
 
   foreach(QWidget *widget, qapp->allWidgets())
-    widget->setFont(font);
+    {
+      widget->setFont(font);
+
+      if(!(qobject_cast<QDialog *> (widget) ||
+	   qobject_cast<QMainWindow *> (widget)))
+	widget->adjustSize();
+    }
 
   menuBar()->setFont(font);
 

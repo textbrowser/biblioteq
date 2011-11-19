@@ -1388,7 +1388,7 @@
     <string>Duplicate</string>
    </property>
    <property name="toolTip">
-    <string>Duplicate</string>
+    <string>Duplicate Selected Item(s)</string>
    </property>
    <property name="font">
     <font>

@@ -43,13 +43,16 @@
           <bool>false</bool>
          </property>
          <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
           <widget class="QWidget" name="scrollAreaWidgetContents">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>949</width>
-             <height>128</height>
+             <width>761</width>
+             <height>136</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
