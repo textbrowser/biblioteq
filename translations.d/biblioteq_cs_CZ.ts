@@ -2735,6 +2735,10 @@ webová adresa</translation>
         <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Duplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
