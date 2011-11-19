@@ -424,96 +424,96 @@
         <translation type="unfinished">BiblioteQ: Administratorin Ansicht</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="67"/>
+        <location filename="../adminsetup.ui" line="65"/>
         <source>Item Creation</source>
         <translation type="unfinished">Ausleihe Erstellen</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="80"/>
+        <location filename="../adminsetup.ui" line="78"/>
         <source>Item Deletion</source>
         <translation type="unfinished">Ausleihe Löschen</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="93"/>
+        <location filename="../adminsetup.ui" line="91"/>
         <source>Item Returns</source>
         <translation type="unfinished">Ausleihe Rückgabe</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="106"/>
+        <location filename="../adminsetup.ui" line="104"/>
         <source>Item Reservations</source>
         <translation type="unfinished">Ausleihe Reservieren</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="119"/>
+        <location filename="../adminsetup.ui" line="117"/>
         <source>Item Updates</source>
         <translation type="unfinished">Ausleihe Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="132"/>
+        <location filename="../adminsetup.ui" line="130"/>
         <source>Member Creation</source>
         <translation type="unfinished">Nutzerin Anlegen</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="145"/>
+        <location filename="../adminsetup.ui" line="143"/>
         <source>Member Deletion</source>
         <translation type="unfinished">Nutzerin Löschen</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="158"/>
+        <location filename="../adminsetup.ui" line="156"/>
         <source>Member Updates</source>
         <translation type="unfinished">Nutzerin Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="171"/>
+        <location filename="../adminsetup.ui" line="169"/>
         <source>Reservation Histories</source>
         <translation type="unfinished">Ausleih-Historie</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="184"/>
-        <location filename="../adminsetup.ui" line="509"/>
+        <location filename="../adminsetup.ui" line="182"/>
+        <location filename="../adminsetup.ui" line="505"/>
         <source>Administrator</source>
         <translation type="unfinished">Administratorin</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="460"/>
-        <location filename="../adminsetup.ui" line="514"/>
+        <location filename="../adminsetup.ui" line="315"/>
+        <location filename="../adminsetup.ui" line="510"/>
         <source>Circulation</source>
         <translation type="unfinished">Zirkulation</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="213"/>
-        <location filename="../adminsetup.ui" line="519"/>
+        <location filename="../adminsetup.ui" line="367"/>
+        <location filename="../adminsetup.ui" line="515"/>
         <source>Librarian</source>
         <translation type="unfinished">Bibliothekarin</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="226"/>
-        <location filename="../adminsetup.ui" line="524"/>
+        <location filename="../adminsetup.ui" line="419"/>
+        <location filename="../adminsetup.ui" line="520"/>
         <source>Membership</source>
         <translation type="unfinished">Nutzung</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="504"/>
+        <location filename="../adminsetup.ui" line="500"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="544"/>
+        <location filename="../adminsetup.ui" line="540"/>
         <source>Add Administrator</source>
         <translation type="unfinished">Administratorin hinzufügen</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="570"/>
+        <location filename="../adminsetup.ui" line="566"/>
         <source>Delete Selected Administrator</source>
         <translation type="unfinished">Lösche ausgewählte Administratorin</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="590"/>
+        <location filename="../adminsetup.ui" line="586"/>
         <source>Save Changes</source>
         <translation type="unfinished">Änderungen speichern</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="626"/>
+        <location filename="../adminsetup.ui" line="622"/>
         <source>Refresh Table</source>
         <translation type="unfinished">Aktualisiere die Tabelle</translation>
     </message>
@@ -522,7 +522,7 @@
         <translation type="obsolete">Liste Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../adminsetup.ui" line="665"/>
+        <location filename="../adminsetup.ui" line="661"/>
         <source>Close Browser</source>
         <translation type="unfinished">Browser Schließen</translation>
     </message>
@@ -4164,7 +4164,7 @@ URL</source>
         <translation type="unfinished">Leerer Fehlermodus</translation>
     </message>
     <message>
-        <location filename="../qtbook_a.cc" line="1017"/>
+        <location filename="../qtbook_a.cc" line="1018"/>
         <source>BiblioteQ: About</source>
         <translation type="unfinished">BiblioteQ: Über das Programm</translation>
     </message>
@@ -4791,7 +4791,7 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_a.cc" line="984"/>
+        <location filename="../qtbook_a.cc" line="985"/>
         <source>BiblioteQ: File Error</source>
         <translation type="unfinished">BiblioteQ: Dateifehler</translation>
     </message>
