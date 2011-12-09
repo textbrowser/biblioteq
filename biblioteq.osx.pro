@@ -4,7 +4,7 @@ TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql network
 CONFIG		+= qt release thread warn_on app_bundle
-DEFINES		+= CONFIGFILE="'\"/Applications/BiblioteQ.d/biblioteq.conf\"'"
+DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Wextra -Werror
 QMAKE_LFLAGS_RELEASE =
 QMAKE_LFLAGS_RPATH =
