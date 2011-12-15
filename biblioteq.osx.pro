@@ -3,7 +3,7 @@ purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql network
-CONFIG		+= qt release thread warn_on app_bundle
+CONFIG		+= qt release thread warn_on app_bundle copy_dir_files
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Wextra -Werror
 QMAKE_LFLAGS_RELEASE =
@@ -92,8 +92,8 @@ conf.files		= biblioteq.conf
 doc.path		= /Applications/BiblioteQ.d/doc.d
 doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d/icons.d
-icons.files		= icons.d/*
-macdeployqt.path	= BiblioteQ.app/
+icons.files		= icons.d
+macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
