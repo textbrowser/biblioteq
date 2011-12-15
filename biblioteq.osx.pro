@@ -86,7 +86,7 @@ TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
 biblioteq.path		= /Applications/BiblioteQ.d
-biblioteq.files		= BiblioteQ.app
+biblioteq.files		= BiblioteQ.app/
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 doc.path		= /Applications/BiblioteQ.d/doc.d
