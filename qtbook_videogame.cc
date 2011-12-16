@@ -1,4 +1,11 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QSqlField>
+#include <QSqlRecord>
+
+/*
 ** Includes video game-specific methods.
 */
 

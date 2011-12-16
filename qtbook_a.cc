@@ -43,11 +43,18 @@ extern "C"
 #ifdef Q_WS_MAC
 #include <QMacStyle>
 #endif
+#include <QSettings>
+#include <QSqlField>
+#include <QClipboard>
+#include <QSqlDriver>
+#include <QSqlRecord>
+#include <QFontDialog>
 #include <QTranslator>
 #include <QLibraryInfo>
 #ifdef Q_WS_WIN
 #include <QWindowsStyle>
 #endif
+#include <QDesktopWidget>
 
 /*
 ** -- Local Includes --
@@ -396,6 +403,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotDuplicate(void)));
   connect(ui.actionDeleteEntry, SIGNAL(triggered(void)), this,
 	  SLOT(slotDelete(void)));
+  connect(ui.actionDuplicateEntry, SIGNAL(triggered(void)), this,
+	  SLOT(slotDuplicate(void)));
   connect(ui.refreshTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotRefresh(void)));
   connect(ui.actionRefreshTable, SIGNAL(triggered(void)), this,
@@ -561,6 +570,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
+  ui.actionDuplicateEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
   ui.modifyTool->setEnabled(false);
@@ -817,6 +827,7 @@ void qtbook::adminSetup(void)
   if(roles.contains("administrator") || roles.contains("librarian"))
     {
       ui.actionDeleteEntry->setEnabled(true);
+      ui.actionDuplicateEntry->setEnabled(true);
       ui.createTool->setEnabled(true);
       ui.modifyTool->setEnabled(true);
       ui.duplicateTool->setEnabled(true);
@@ -3574,6 +3585,7 @@ void qtbook::slotDisconnect(void)
   ui.actionChangePassword->setEnabled(false);
   ui.deleteTool->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
+  ui.actionDuplicateEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
   ui.duplicateTool->setEnabled(false);
   ui.modifyTool->setEnabled(false);
@@ -7623,6 +7635,8 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
+  dialog.setNameFilter("SQLite Databases (*.sqlite)");
+  dialog.setDefaultSuffix("sqlite");
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
   dialog.exec();

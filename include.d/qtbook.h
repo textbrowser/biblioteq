@@ -14,28 +14,12 @@ using namespace std;
 ** -- Qt Includes --
 */
 
-#include <QDir>
 #include <QMap>
 #include <QHash>
-#include <QtDebug>
-#include <QCheckBox>
-#include <QDateTime>
-#include <QSettings>
-#include <QSqlError>
-#include <QSqlField>
-#include <QClipboard>
-#include <QScrollBar>
-#include <QSqlDriver>
-#include <QSqlRecord>
-#include <QFontDialog>
-#include <QHeaderView>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QStringList>
-#include <QApplication>
 #include <QSqlDatabase>
-#include <QDesktopWidget>
-#include <QProgressDialog>
 
 /*
 ** -- Local Includes --

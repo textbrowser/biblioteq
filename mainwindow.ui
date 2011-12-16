@@ -403,7 +403,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="font">
@@ -482,6 +482,7 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="actionDeleteEntry"/>
+    <addaction name="actionDuplicateEntry"/>
     <addaction name="actionModifyEntry"/>
    </widget>
    <widget class="QMenu" name="menu_View">
@@ -1395,6 +1396,18 @@
      <family>Times</family>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionDuplicateEntry">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons.d/16x16/editcopy.png</normaloff>icons.d/16x16/editcopy.png</iconset>
+   </property>
+   <property name="text">
+    <string>D&amp;uplicate Selected Item(s)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>

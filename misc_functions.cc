@@ -3,6 +3,7 @@
 */
 
 #include <QtDebug>
+#include <QSqlField>
 #include <QSqlIndex>
 
 /*
