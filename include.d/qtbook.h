@@ -349,6 +349,7 @@ class qtbook: public QMainWindow
   void slotSqliteFileSelected(bool);
   void slotCloseMembersBrowser(void);
   void slotAdminCheckBoxClicked(int);
+  void slotSceneSelectionChanged(void);
   void slotCloseCustomQueryDialog(void);
   void slotDisplayNewSqliteDialog(void);
   void slotPopulateMembersBrowser(void);

@@ -343,6 +343,10 @@ qtbook::qtbook(void):QMainWindow()
   if((scene = new(std::nothrow) QGraphicsScene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  connect(scene,
+	  SIGNAL(selectionChanged(void)),
+	  this,
+	  SLOT(slotSceneSelectionChanged(void)));
   ui.graphicsView->setScene(scene);
   bb.setupUi(members_diag);
   history.setupUi(history_diag);
@@ -660,19 +664,20 @@ qtbook::qtbook(void):QMainWindow()
   if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  group2->setObjectName("ViewModeMenu");
   group2->setExclusive(true);
-  // (action = group2->addAction(tr("Icon")))->setCheckable(true);
-  // action->setData(0);
-  // connect(action,
-  // SIGNAL(toggled(bool)),
-  // this,
-  // SLOT(slotChangeView(bool)));
-  // ui.menu_View->addAction(action);
-  (action = group2->addAction(tr("Table")))->setCheckable(true);
+  (action = group2->addAction(tr("Icons Mode")))->setCheckable(true);
+  action->setData(0);
+  connect(action,
+	  SIGNAL(triggered(bool)),
+	  this,
+	  SLOT(slotChangeView(bool)));
+  ui.menu_View->addAction(action);
+  (action = group2->addAction(tr("Table Mode")))->setCheckable(true);
   action->setData(1);
   action->setChecked(true);
   connect(action,
-	  SIGNAL(toggled(bool)),
+	  SIGNAL(triggered(bool)),
 	  this,
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
@@ -702,7 +707,6 @@ qtbook::qtbook(void):QMainWindow()
   ui.splitter->setCollapsible(1, false);
   ui.splitter->setStretchFactor(0, 0);
   ui.splitter->setStretchFactor(1, 1);
-  ui.stackedWidget->setCurrentIndex(1);
 }
 
 /*
@@ -2607,6 +2611,12 @@ void qtbook::readConfig(void)
   else
     br.branch_name->setCurrentIndex(0);
 
+  if(!findChild<QActionGroup *> ("ViewModeMenu")->actions().isEmpty())
+    findChild<QActionGroup *> ("ViewModeMenu")->
+      actions().at(0)->setChecked(true);
+
+  ui.stackedWidget->setCurrentIndex
+    (settings.value("view_mode_index", 1).toInt());
   slotResizeColumns();
   createSqliteMenuActions();
 }
@@ -2851,6 +2861,23 @@ void qtbook::slotShowColumns(void)
     }
 
   qapp->restoreOverrideCursor();
+}
+
+/*
+** -- slotSceneSelectionChanged()
+*/
+
+void qtbook::slotSceneSelectionChanged(void)
+{
+  QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
+
+  if(!items.isEmpty())
+    {
+      QGraphicsItem *item = items.at(0);
+
+      if(item)
+	ui.table->selectRow(item->data(0).toInt());
+    }
 }
 
 /*
@@ -6667,7 +6694,7 @@ void qtbook::slotSelectDatabaseFile(void)
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("SQLite Databases (*.db *.sqlite)");
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
 
@@ -7635,7 +7662,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("SQLite Databases (*.sqlite)");
+  dialog.setNameFilter("SQLite Database (*.sqlite)");
   dialog.setDefaultSuffix("sqlite");
   dialog.setAcceptMode(QFileDialog::AcceptSave);
   dialog.setWindowTitle(tr("BiblioteQ: New SQLite Database"));
@@ -7775,7 +7802,13 @@ void qtbook::slotChangeView(bool checked)
   QAction *action = qobject_cast<QAction *> (sender());
 
   if(action)
-    ui.stackedWidget->setCurrentIndex(action->data().toInt());
+    {
+      ui.stackedWidget->setCurrentIndex(action->data().toInt());
+
+      QSettings settings;
+
+      settings.setValue("view_mode_index", action->data().toInt());
+    }
 }
 
 /*

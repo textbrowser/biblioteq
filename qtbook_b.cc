@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QtDebug>
 #include <QSqlRecord>
 
 /*
@@ -84,10 +85,10 @@ int qtbook::populateTable(const int search_type_arg,
 
       limitStr = QString(" LIMIT %1 ").arg(limit);
       offsetStr = QString(" OFFSET %1 ").arg(offset);
-      // ui.graphicsView->setSceneRect
-      // (0, 0,
-      // 5 * 180,
-      // limit / 5 * 270);
+      ui.graphicsView->setSceneRect
+	(0, 0,
+	 5 * 180,
+	 limit / 5 * 270);
     }
 
   /*
@@ -123,8 +124,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "book.quantity - COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "book.type, "
-	      "book.myoid "
-	      // "book.front_cover "
+	      "book.myoid, "
+	      "book.front_cover "
 	      "FROM "
 	      "book LEFT JOIN item_borrower_vw ON "
 	      "book.myoid = item_borrower_vw.item_oid "
@@ -138,8 +139,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "book.quantity, "
 	      "book.location, "
 	      "book.type, "
-	      "book.myoid "
-	      // "book.front_cover "
+	      "book.myoid, "
+	      "book.front_cover "
 	      "UNION "
 	      "SELECT DISTINCT cd.title, "
 	      "cd.id, "
@@ -152,8 +153,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "cd.quantity - COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "cd.type, "
-	      "cd.myoid "
-	      // "cd.front_cover "
+	      "cd.myoid, "
+	      "cd.front_cover "
 	      "FROM "
 	      "cd LEFT JOIN item_borrower_vw ON "
 	      "cd.myoid = item_borrower_vw.item_oid "
@@ -167,8 +168,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "cd.quantity, "
 	      "cd.location, "
 	      "cd.type, "
-	      "cd.myoid "
-	      // "cd.front_cover "
+	      "cd.myoid, "
+	      "cd.front_cover "
 	      "UNION "
 	      "SELECT DISTINCT dvd.title, "
 	      "dvd.id, "
@@ -181,8 +182,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "dvd.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "dvd.type, "
-	      "dvd.myoid "
-	      // "dvd.front_cover "
+	      "dvd.myoid, "
+	      "dvd.front_cover "
 	      "FROM "
 	      "dvd LEFT JOIN item_borrower_vw ON "
 	      "dvd.myoid = item_borrower_vw.item_oid "
@@ -196,8 +197,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "dvd.quantity, "
 	      "dvd.location, "
 	      "dvd.type, "
-	      "dvd.myoid "
-	      // "dvd.front_cover "
+	      "dvd.myoid, "
+	      "dvd.front_cover "
 	      "UNION "
 	      "SELECT DISTINCT journal.title, "
 	      "journal.id, "
@@ -210,8 +211,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "journal.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "journal.type, "
-	      "journal.myoid "
-	      // "journal.front_cover "
+	      "journal.myoid, "
+	      "journal.front_cover "
 	      "FROM "
 	      "journal LEFT JOIN item_borrower_vw ON "
 	      "journal.myoid = item_borrower_vw.item_oid "
@@ -225,8 +226,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "journal.quantity, "
 	      "journal.location, "
 	      "journal.type, "
-	      "journal.myoid "
-	      // "journal.front_cover "
+	      "journal.myoid, "
+	      "journal.front_cover "
 	      "UNION "
 	      "SELECT DISTINCT magazine.title, "
 	      "magazine.id, "
@@ -239,8 +240,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "magazine.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "magazine.type, "
-	      "magazine.myoid "
-	      // "magazine.front_cover "
+	      "magazine.myoid, "
+	      "magazine.front_cover "
 	      "FROM "
 	      "magazine LEFT JOIN item_borrower_vw ON "
 	      "magazine.myoid = item_borrower_vw.item_oid "
@@ -254,8 +255,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "magazine.quantity, "
 	      "magazine.location, "
 	      "magazine.type, "
-	      "magazine.myoid "
-	      // "magazine.front_cover "
+	      "magazine.myoid, "
+	      "magazine.front_cover "
 	      "UNION "
 	      "SELECT DISTINCT videogame.title, "
 	      "videogame.id, "
@@ -269,8 +270,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "AS "
 	      "availability, "
 	      "videogame.type, "
-	      "videogame.myoid "
-	      // "videogame.front_cover "
+	      "videogame.myoid, "
+	      "videogame.front_cover "
 	      "FROM "
 	      "videogame LEFT JOIN item_borrower_vw ON "
 	      "videogame.myoid = item_borrower_vw.item_oid "
@@ -284,8 +285,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "videogame.quantity, "
 	      "videogame.location, "
 	      "videogame.type, "
-	      "videogame.myoid "
-	      // "videogame.front_cover "
+	      "videogame.myoid, "
+	      "videogame.front_cover "
 	      "ORDER BY 1" +
 	      limitStr + offsetStr;
 	  }
@@ -311,8 +312,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "book.type, "
-				 "book.myoid "
-				 // "book.front_cover "
+				 "book.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "book LEFT JOIN item_borrower_vw ON "
 				 "book.myoid = item_borrower_vw.item_oid "
@@ -340,8 +341,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid ");
-		// "book.front_cover ");
+				 "book.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -359,8 +360,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "cd.type, "
-				 "cd.myoid "
-				 // "cd.front_cover "
+				 "cd.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "cd LEFT JOIN item_borrower_vw ON "
 				 "cd.myoid = item_borrower_vw.item_oid "
@@ -388,8 +389,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid ");
-		// "cd.front_cover ");
+				 "cd.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -407,8 +408,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "dvd.type, "
-				 "dvd.myoid "
-				 // "dvd.front_cover "
+				 "dvd.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "dvd LEFT JOIN item_borrower_vw ON "
 				 "dvd.myoid = item_borrower_vw.item_oid "
@@ -436,8 +437,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid ");
-		// "dvd.front_cover ");
+				 "dvd.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -455,8 +456,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "journal.type, "
-				 "journal.myoid "
-				 // "journal.front_cover "
+				 "journal.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "journal LEFT JOIN item_borrower_vw ON "
 				 "journal.myoid = item_borrower_vw.item_oid "
@@ -484,8 +485,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.quantity, "
 				 "journal.location, "
 				 "journal.type, "
-				 "journal.myoid ");
-		// "journal.front_cover ");
+				 "journal.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -503,8 +504,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "magazine.type, "
-				 "magazine.myoid "
-				 // "magazine.front_cover "
+				 "magazine.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "magazine LEFT JOIN item_borrower_vw ON "
 				 "magazine.myoid = item_borrower_vw.item_oid "
@@ -532,8 +533,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid ");
-		// "magazine.front_cover ");
+				 "magazine.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -551,8 +552,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "videogame.type, "
-				 "videogame.myoid "
-				 // "videogame.front_cover "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "videogame LEFT JOIN item_borrower_vw ON "
 				 "videogame.myoid = "
@@ -581,8 +582,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid ");
-		// "videogame.front_cover ");
+				 "videogame.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -607,8 +608,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "book.type, "
-				 "book.myoid "
-				 // "book.front_cover "
+				 "book.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_borrower ON "
@@ -640,8 +641,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid ");
-		// "book.front_cover ");
+				 "book.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -662,8 +663,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "cd.type, "
-				 "cd.myoid "
-				 // "cd.front_cover "
+				 "cd.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_borrower ON "
@@ -695,8 +696,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid ");
-		// "cd.front_cover ");
+				 "cd.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -717,8 +718,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "dvd.type, "
-				 "dvd.myoid "
-				 // "dvd.front_cover "
+				 "dvd.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_borrower ON "
@@ -750,8 +751,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid ");
-		// "dvd.front_cover ");
+				 "dvd.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -772,8 +773,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "journal.type, "
-				 "journal.myoid "
-				 // "journal.front_cover "
+				 "journal.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_borrower ON "
@@ -806,8 +807,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.quantity, "
 				 "journal.location, "
 				 "journal.type, "
-				 "journal.myoid ");
-		// "journal.front_cover ");
+				 "journal.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -828,8 +829,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "magazine.type, "
-				 "magazine.myoid "
-				 // "magazine.front_cover "
+				 "magazine.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_borrower ON "
@@ -862,8 +863,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid ");
-		// "magazine.front_cover ");
+				 "magazine.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -884,8 +885,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "videogame.type, "
-				 "videogame.myoid "
-				 // "videogame.front_cover "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_borrower ON "
@@ -919,8 +920,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid ");
-		// "videogame.front_cover ");
+				 "videogame.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -943,8 +944,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.location, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid "
-				 // "book.front_cover "
+				 "item_request.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "book LEFT JOIN item_request ON "
 				 "book.myoid = item_request.item_oid "
@@ -965,8 +966,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.location, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid ");
-		// "book.front_cover ");
+				 "item_request.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -980,8 +981,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.location, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid "
-				 // "cd.front_cover "
+				 "item_request.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "cd LEFT JOIN item_request ON "
 				 "cd.myoid = item_request.item_oid "
@@ -1002,8 +1003,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.location, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid ");
-		// "cd.front_cover ");
+				 "item_request.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -1017,8 +1018,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid "
-				 // "dvd.front_cover "
+				 "item_request.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "dvd LEFT JOIN item_request ON "
 				 "dvd.myoid = item_request.item_oid "
@@ -1039,8 +1040,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid ");
-		// "dvd.front_cover ");
+				 "item_request.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -1054,8 +1055,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.location, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid "
-				 // "journal.front_cover "
+				 "item_request.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "journal LEFT JOIN item_request ON "
 				 "journal.myoid = "
@@ -1077,8 +1078,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.location, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid ");
-		// "journal.front_cover ");
+				 "item_request.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -1092,8 +1093,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.location, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid "
-				 // "magazine.front_cover "
+				 "item_request.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "magazine LEFT JOIN item_request ON "
 				 "magazine.myoid = "
@@ -1115,8 +1116,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.location, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid ");
-		// "magazine.front_cover ");
+				 "item_request.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -1130,8 +1131,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.location, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid "
-				 // "videogame.front_cover "
+				 "item_request.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "videogame LEFT JOIN item_request ON "
 				 "videogame.myoid = "
@@ -1153,8 +1154,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.location, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid ");
-				 // "videogame.front_cover ");
+				 "item_request.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -1175,8 +1176,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.location, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid "
-				 // "book.front_cover "
+				 "item_request.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_request ON "
@@ -1199,8 +1200,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.location, "
 				 "book.type, "
 				 "book.myoid, "
-				 "item_request.myoid ");
-		// "book.front_cover ");
+				 "item_request.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1217,8 +1218,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.location, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid "
-				 // "cd.front_cover "
+				 "item_request.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_request ON "
@@ -1241,8 +1242,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.location, "
 				 "cd.type, "
 				 "cd.myoid, "
-				 "item_request.myoid ");
-		// "cd.front_cover ");
+				 "item_request.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1259,8 +1260,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid "
-				 // "dvd.front_cover "
+				 "item_request.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_request ON "
@@ -1283,8 +1284,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.location, "
 				 "dvd.type, "
 				 "dvd.myoid, "
-				 "item_request.myoid ");
-		// "dvd.front_cover ");
+				 "item_request.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1301,8 +1302,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.location, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid "
-				 // "journal.front_cover "
+				 "item_request.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_request ON "
@@ -1326,8 +1327,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.location, "
 				 "journal.type, "
 				 "journal.myoid, "
-				 "item_request.myoid ");
-		// "journal.front_cover ");
+				 "item_request.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1344,8 +1345,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.location, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid "
-				 // "magazine.front_cover "
+				 "item_request.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_request ON "
@@ -1369,8 +1370,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.location, "
 				 "magazine.type, "
 				 "magazine.myoid, "
-				 "item_request.myoid ");
-		// "magazine.front_cover ");
+				 "item_request.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1387,8 +1388,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.location, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid "
-				 // "videogame.front_cover "
+				 "item_request.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_request ON "
@@ -1412,8 +1413,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.location, "
 				 "videogame.type, "
 				 "videogame.myoid, "
-				 "item_request.myoid ");
-		// "videogame.front_cover ");
+				 "item_request.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -1440,8 +1441,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "book.type, "
-				 "book.myoid "
-				 // "book.front_cover "
+				 "book.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "book LEFT JOIN item_borrower_vw ON "
 				 "book.myoid = item_borrower_vw.item_oid "
@@ -1463,8 +1464,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid ");
-		// "book.front_cover ");
+				 "book.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1482,8 +1483,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "cd.type, "
-				 "cd.myoid "
-				 // "cd.front_cover "
+				 "cd.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "cd LEFT JOIN item_borrower_vw ON "
 				 "cd.myoid = item_borrower_vw.item_oid "
@@ -1505,8 +1506,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid ");
-		// "cd.front_cover ");
+				 "cd.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1524,8 +1525,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "dvd.type, "
-				 "dvd.myoid "
-				 // "dvd.front_cover "
+				 "dvd.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "dvd LEFT JOIN item_borrower_vw ON "
 				 "dvd.myoid = item_borrower_vw.item_oid "
@@ -1547,8 +1548,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid ");
-		// "dvd.front_cover ");
+				 "dvd.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1566,8 +1567,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "journal.type, "
-				 "journal.myoid "
-				 // "journal.front_cover "
+				 "journal.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "journal LEFT JOIN item_borrower_vw ON "
 				 "journal.myoid = "
@@ -1590,8 +1591,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.quantity, "
 				 "journal.location, "
 				 "journal.type, "
-				 "journal.myoid ");
-		// "journal.front_cover ");
+				 "journal.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1609,8 +1610,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "magazine.type, "
-				 "magazine.myoid "
-				 // "magazine.front_cover "
+				 "magazine.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "magazine LEFT JOIN item_borrower_vw ON "
 				 "magazine.myoid = "
@@ -1633,8 +1634,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid ");
-		// "magazine.front_cover ");
+				 "magazine.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1652,8 +1653,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower_vw.item_oid) "
 				 "AS availability, "
 				 "videogame.type, "
-				 "videogame.myoid "
-				 // "videogame.front_cover "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "videogame LEFT JOIN item_borrower_vw ON "
 				 "videogame.myoid = "
@@ -1676,8 +1677,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid ");
-		// "videogame.front_cover ");
+				 "videogame.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -1702,8 +1703,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "book.type, "
-				 "book.myoid "
-				 // "book.front_cover "
+				 "book.myoid, "
+				 "book.front_cover "
 				 "FROM "
 				 "member, "
 				 "book LEFT JOIN item_borrower ON "
@@ -1730,8 +1731,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.quantity, "
 				 "book.location, "
 				 "book.type, "
-				 "book.myoid ");
-		// "book.front_cover ");
+				 "book.myoid, "
+				 "book.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1752,8 +1753,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "cd.type, "
-				 "cd.myoid "
-				 // "cd.front_cover "
+				 "cd.myoid, "
+				 "cd.front_cover "
 				 "FROM "
 				 "member, "
 				 "cd LEFT JOIN item_borrower ON "
@@ -1780,8 +1781,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.quantity, "
 				 "cd.location, "
 				 "cd.type, "
-				 "cd.myoid ");
-		// "cd.front_cover ");
+				 "cd.myoid, "
+				 "cd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1802,8 +1803,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "dvd.type, "
-				 "dvd.myoid "
-				 // "dvd.front_cover "
+				 "dvd.myoid, "
+				 "dvd.front_cover "
 				 "FROM "
 				 "member, "
 				 "dvd LEFT JOIN item_borrower ON "
@@ -1830,8 +1831,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.quantity, "
 				 "dvd.location, "
 				 "dvd.type, "
-				 "dvd.myoid ");
-		// "dvd.front_cover ");
+				 "dvd.myoid, "
+				 "dvd.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1852,8 +1853,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "journal.type, "
-				 "journal.myoid "
-				 // "journal.front_cover "
+				 "journal.myoid, "
+				 "journal.front_cover "
 				 "FROM "
 				 "member, "
 				 "journal LEFT JOIN item_borrower ON "
@@ -1881,8 +1882,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.quantity, "
 				 "journal.location, "
 				 "journal.type, "
-				 "journal.myoid ");
-		// "journal.front_cover ");
+				 "journal.myoid, "
+				 "journal.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1903,8 +1904,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "magazine.type, "
-				 "magazine.myoid "
-				 // "magazine.front_cover "
+				 "magazine.myoid, "
+				 "magazine.front_cover "
 				 "FROM "
 				 "member, "
 				 "magazine LEFT JOIN item_borrower ON "
@@ -1932,8 +1933,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.quantity, "
 				 "magazine.location, "
 				 "magazine.type, "
-				 "magazine.myoid ");
-		// "magazine.front_cover ");
+				 "magazine.myoid, "
+				 "magazine.front_cover ");
 		searchstr.append("UNION ");
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1954,8 +1955,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "COUNT(item_borrower.item_oid) "
 				 "AS availability, "
 				 "videogame.type, "
-				 "videogame.myoid "
-				 // "videogame.front_cover "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
 				 "FROM "
 				 "member, "
 				 "videogame LEFT JOIN item_borrower ON "
@@ -1983,8 +1984,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid ");
-		// "videogame.front_cover ");
+				 "videogame.myoid, "
+				 "videogame.front_cover ");
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
@@ -2009,8 +2010,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "videogame.type, "
-	      "videogame.myoid "
-	      // "videogame.front_cover "
+	      "videogame.myoid, "
+	      "videogame.front_cover "
 	      "FROM "
 	      "videogame LEFT JOIN item_borrower_vw ON "
 	      "videogame.myoid = item_borrower_vw.item_oid "
@@ -2031,8 +2032,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "videogame.quantity, "
 	      "videogame.location, "
 	      "videogame.type, "
-	      "videogame.myoid "
-	      // "videogame.front_cover "
+	      "videogame.myoid, "
+	      "videogame.front_cover "
 	      "ORDER BY "
 	      "videogame.title" +
 	      limitStr + offsetStr;
@@ -2057,8 +2058,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "book.type, "
-	      "book.myoid "
-	      // "book.front_cover "
+	      "book.myoid, "
+	      "book.front_cover "
 	      "FROM "
 	      "book LEFT JOIN item_borrower_vw ON "
 	      "book.myoid = item_borrower_vw.item_oid "
@@ -2079,8 +2080,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "book.callnumber, "
 	      "book.deweynumber, "
 	      "book.type, "
-	      "book.myoid "
-	      // "book.front_cover "
+	      "book.myoid, "
+	      "book.front_cover "
 	      "ORDER BY "
 	      "book.title" +
 	      limitStr + offsetStr;
@@ -2107,8 +2108,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "COUNT(item_borrower_vw.item_oid) "
 	      "AS availability, "
 	      "dvd.type, "
-	      "dvd.myoid "
-	      // "dvd.front_cover "
+	      "dvd.myoid, "
+	      "dvd.front_cover "
 	      "FROM "
 	      "dvd LEFT JOIN item_borrower_vw ON "
 	      "dvd.myoid = item_borrower_vw.item_oid "
@@ -2131,8 +2132,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "dvd.dvdregion, "
 	      "dvd.dvdaspectratio, "
 	      "dvd.type, "
-	      "dvd.myoid "
-	      // "dvd.front_cover "
+	      "dvd.myoid, "
+	      "dvd.front_cover "
 	      "ORDER BY "
 	      "dvd.title" +
 	      limitStr + offsetStr;
@@ -2158,8 +2159,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "cd.quantity - COUNT(item_borrower_vw.item_oid) AS "
 	      "availability, "
 	      "cd.type, "
-	      "cd.myoid "
-	      // "cd.front_cover "
+	      "cd.myoid, "
+	      "cd.front_cover "
 	      "FROM "
 	      "cd LEFT JOIN item_borrower_vw ON "
 	      "cd.myoid = item_borrower_vw.item_oid "
@@ -2182,8 +2183,8 @@ int qtbook::populateTable(const int search_type_arg,
 	      "cd.cdaudio, "
 	      "cd.cdrecording, "
 	      "cd.type, "
-	      "cd.myoid "
-	      // "cd.front_cover "
+	      "cd.myoid, "
+	      "cd.front_cover "
 	      "ORDER BY "
 	      "cd.title" +
 	      limitStr + offsetStr;
@@ -2211,8 +2212,8 @@ int qtbook::populateTable(const int search_type_arg,
 				"COUNT(item_borrower_vw.item_oid) AS "
 				"availability, "
 				"%1.type, "
-				"%1.myoid "
-				// "%1.front_cover "
+				"%1.myoid, "
+				"%1.front_cover "
 				"FROM "
 				"%1 LEFT JOIN item_borrower_vw ON "
 				"%1.myoid = "
@@ -2234,8 +2235,8 @@ int qtbook::populateTable(const int search_type_arg,
 				"%1.callnumber, "
 				"%1.deweynumber, "
 				"%1.type, "
-				"%1.myoid "
-				// "%1.front_cover "
+				"%1.myoid, "
+				"%1.front_cover "
 				"ORDER BY "
 				"%1.title").arg(type);
 	    searchstr += limitStr + offsetStr;
@@ -2271,8 +2272,8 @@ int qtbook::populateTable(const int search_type_arg,
 		   "COUNT(item_borrower_vw.item_oid) AS availability, "
 		   "%1.type, ").
 		  arg(type.toLower().remove(" "));
-		str += QString("%1.myoid "
-			       // "%1.front_cover "
+		str += QString("%1.myoid, "
+			       "%1.front_cover "
 			       "FROM "
 			       "%1 LEFT JOIN item_borrower_vw ON "
 			       "%1.myoid = "
@@ -2363,8 +2364,8 @@ int qtbook::populateTable(const int search_type_arg,
 			       "%1.location, "
 			       "%1.keyword, "
 			       "%1.type, "
-			       "%1.myoid "
-			       // "%1.front_cover "
+			       "%1.myoid, "
+			       "%1.front_cover "
 			       ).arg
 		  (type.toLower().remove(" "));
 
@@ -2416,8 +2417,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "book.callnumber, "
 				 "book.deweynumber, "
 				 "book.type, "
-				 "book.myoid "
-				 // "book.front_cover "
+				 "book.myoid, "
+				 "book.front_cover "
 				 "ORDER BY book.title");
 	      }
 
@@ -2448,8 +2449,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "videogame.quantity, "
 				 "videogame.location, "
 				 "videogame.type, "
-				 "videogame.myoid "
-				 // "videogame.front_cover "
+				 "videogame.myoid, "
+				 "videogame.front_cover "
 				 "ORDER BY "
 				 "videogame.title");
 	      }
@@ -2483,8 +2484,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "cd.cdaudio, "
 				 "cd.cdrecording, "
 				 "cd.type, "
-				 "cd.myoid "
-				 // "cd.front_cover "
+				 "cd.myoid, "
+				 "cd.front_cover "
 				 "ORDER BY "
 				 "cd.title");
 	      }
@@ -2518,8 +2519,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "dvd.dvdregion, "
 				 "dvd.dvdaspectratio, "
 				 "dvd.type, "
-				 "dvd.myoid "
-				 // "dvd.front_cover "
+				 "dvd.myoid, "
+				 "dvd.front_cover "
 				 "ORDER BY "
 				 "dvd.title");
 	      }
@@ -2550,8 +2551,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "journal.callnumber, "
 				 "journal.deweynumber, "
 				 "journal.type, "
-				 "journal.myoid "
-				 // "journal.front_cover "
+				 "journal.myoid, "
+				 "journal.front_cover "
 				 "ORDER BY journal.title, "
 				 "journal.issuevolume, journal.issueno");
 	      }
@@ -2582,8 +2583,8 @@ int qtbook::populateTable(const int search_type_arg,
 				 "magazine.callnumber, "
 				 "magazine.deweynumber, "
 				 "magazine.type, "
-				 "magazine.myoid "
-				 // "magazine.front_cover "
+				 "magazine.myoid, "
+				 "magazine.front_cover "
 				 "ORDER BY magazine.title, "
 				 "magazine.issuevolume, magazine.issueno");
 	      }
@@ -2723,6 +2724,8 @@ int qtbook::populateTable(const int search_type_arg,
   slotDisplaySummary();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->resetTransform();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -2741,6 +2744,7 @@ int qtbook::populateTable(const int search_type_arg,
 
   int iconTableRowIdx = 0;
   int iconTableColumnIdx = 0;
+  QGraphicsPixmapItem *pixmapItem = 0;
 
   i = -1;
 
@@ -2786,7 +2790,6 @@ int qtbook::populateTable(const int search_type_arg,
 	      {
 		QIcon icon;
 		QImage image;
-		QGraphicsPixmapItem *item = 0;
 
 		image.loadFromData
 		  (QByteArray::fromBase64(query.value(j).
@@ -2798,16 +2801,18 @@ int qtbook::populateTable(const int search_type_arg,
 		if(image.isNull())
 		  image = QImage("icons.d/no_image.png");
 
-		if(image.width() > 165 ||
-		   image.height() > 255)
-		  image = image.scaled
-		    (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+		/*
+		** The size of no_image.png is 126x187.
+		*/
 
-		item = ui.graphicsView->scene()->addPixmap
+		image = image.scaled
+		  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+		pixmapItem = ui.graphicsView->scene()->addPixmap
 		  (QPixmap().fromImage(image));
-		item->setPos(180 * iconTableColumnIdx,
-			     270 * iconTableRowIdx);
-		item->setFlag(QGraphicsItem::ItemIsSelectable, true);
+		pixmapItem->setPos(180 * iconTableColumnIdx,
+				   270 * iconTableRowIdx);
+		pixmapItem->setData(0, -1);
+		pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 		iconTableColumnIdx += 1;
 
 		if(iconTableColumnIdx >= 5)
@@ -2836,7 +2841,12 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(query.record().fieldName(j) == "myoid")
-		  updateRows(str, i, itemType);
+		  {
+		    if(pixmapItem && pixmapItem->data(0).toInt() == -1)
+		      pixmapItem->setData(0, i);
+
+		    updateRows(str, i, itemType);
+		  }
 	      }
 	    else if(query.record().fieldName(j) != "front_cover")
 	      addError(QString(tr("Memory Error")),
