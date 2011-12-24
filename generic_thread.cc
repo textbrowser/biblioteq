@@ -73,27 +73,26 @@ void generic_thread::run(void)
 	const char *rec = 0;
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = ZOOM_connection_new
-	  (static_cast<const char *>
-	   ((qmain->getZ3950Maps()[z3950Name].value("Address") + ":" +
-	     qmain->getZ3950Maps()[z3950Name].value("Port") + "/" +
-	     qmain->getZ3950Maps()[z3950Name].value("Database")).
-	    toStdString().data()), 0);
+	  ((qmain->getZ3950Maps()[z3950Name].value("Address") + ":" +
+	    qmain->getZ3950Maps()[z3950Name].value("Port") + "/" +
+	    qmain->getZ3950Maps()[z3950Name].value("Database")).
+	   toUtf8().constData(), 0);
 
 	ZOOM_connection_option_set(zoomConnection,
 				   "preferredRecordSyntax", "MARC21");
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "user",
-	   qmain->getZ3950Maps()[z3950Name].value("Userid").toStdString().
-	   data());
+	   qmain->getZ3950Maps()[z3950Name].value("Userid").toUtf8().
+	   constData());
 	ZOOM_connection_option_set
 	  (zoomConnection,
 	   "password",
-	   qmain->getZ3950Maps()[z3950Name].value("Password").toStdString().
-	   data());
+	   qmain->getZ3950Maps()[z3950Name].value("Password").
+	   toUtf8().constData());
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   static_cast<const char *> (z3950SearchStr.toStdString().data()));
+	   z3950SearchStr.toUtf8().constData());
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
 				     "render", 0)) != 0)
