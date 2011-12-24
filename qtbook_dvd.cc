@@ -843,8 +843,8 @@ void qtbook_dvd::slotGo(void)
 	"COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"dvd.type, "
-	"dvd.myoid "
-	// "dvd.front_cover "
+	"dvd.myoid, "
+	"dvd.front_cover "
 	"FROM "
 	"dvd LEFT JOIN item_borrower_vw ON "
 	"dvd.myoid = item_borrower_vw.item_oid "
@@ -1811,7 +1811,7 @@ void qtbook_dvd::slotSelectImage(void)
 
 void qtbook_dvd::duplicate(const QString &id, const int state)
 {
-  modify(state); // Initial populate.
+  modify(state); // Initial population.
   oid = id;
   setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
   engWindowTitle = "Create";

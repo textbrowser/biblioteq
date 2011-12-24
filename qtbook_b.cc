@@ -87,8 +87,8 @@ int qtbook::populateTable(const int search_type_arg,
       offsetStr = QString(" OFFSET %1 ").arg(offset);
       ui.graphicsView->setSceneRect
 	(0, 0,
-	 5 * 180,
-	 limit / 5 * 270);
+	 5 * 150,
+	 limit / 5 * 200);
     }
 
   /*
@@ -2750,6 +2750,8 @@ int qtbook::populateTable(const int search_type_arg,
 
   while(i++, !progress.wasCanceled() && query.next())
     {
+      pixmapItem = 0;
+
       if(query.isValid())
 	for(j = 0; j < query.record().count(); j++)
 	  {
@@ -2809,9 +2811,9 @@ int qtbook::populateTable(const int search_type_arg,
 		  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 		pixmapItem = ui.graphicsView->scene()->addPixmap
 		  (QPixmap().fromImage(image));
-		pixmapItem->setPos(180 * iconTableColumnIdx,
-				   270 * iconTableRowIdx);
-		pixmapItem->setData(0, -1);
+		pixmapItem->setPos(150 * iconTableColumnIdx,
+				   200 * iconTableRowIdx);
+		pixmapItem->setData(0, QVariant());
 		pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 		iconTableColumnIdx += 1;
 
@@ -2841,12 +2843,7 @@ int qtbook::populateTable(const int search_type_arg,
 		  }
 
 		if(query.record().fieldName(j) == "myoid")
-		  {
-		    if(pixmapItem && pixmapItem->data(0).toInt() == -1)
-		      pixmapItem->setData(0, i);
-
-		    updateRows(str, i, itemType);
-		  }
+		  updateRows(str, i, itemType);
 	      }
 	    else if(query.record().fieldName(j) != "front_cover")
 	      addError(QString(tr("Memory Error")),
@@ -2856,6 +2853,23 @@ int qtbook::populateTable(const int search_type_arg,
 				  "This is a serious "
 				  "problem!")), QString(""),
 		       __FILE__, __LINE__);
+	  }
+
+      if(query.isValid())
+	if(pixmapItem && pixmapItem->data(0).isNull())
+	  {
+	    QVariantList variantList;
+
+	    for(int ii = 0; ii < query.record().count(); ii++)
+	      if(query.record().fieldName(ii) != "front_cover" &&
+		 query.record().fieldName(ii) != "back_cover")
+		{
+		  variantList.append
+		    (query.record().fieldName(ii));
+		  variantList.append(query.record().value(ii));
+		}
+
+	    pixmapItem->setData(0, variantList);
 	  }
 
       progress.setValue(i + 1);

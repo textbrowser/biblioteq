@@ -2253,3 +2253,26 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	}
     }
 }
+
+/*
+** -- getValueFromVariantList --
+*/
+
+QVariant misc_functions::getValueFromVariantList(const QVariantList &list,
+						 const QString &fieldName)
+{
+  /*
+  ** This method must be used with care.
+  */
+
+  QVariant value;
+
+  for(int i = 0; i < list.size(); i += 2)
+    if(list.at(i).toString().toLower() == fieldName.toLower())
+      {
+	value = list.value(i + 1);
+	break;
+      }
+
+  return value;
+}

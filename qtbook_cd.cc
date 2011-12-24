@@ -800,8 +800,8 @@ void qtbook_cd::slotGo(void)
 	"cd.cdrecording, "
 	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
 	"cd.type, "
-	"cd.myoid "
-	// "cd.front_cover "
+	"cd.myoid, "
+	"cd.front_cover "
 	"FROM "
 	"cd LEFT JOIN item_borrower_vw ON "
 	"cd.myoid = item_borrower_vw.item_oid "
@@ -2201,7 +2201,7 @@ void qtbook_cd::slotSelectImage(void)
 
 void qtbook_cd::duplicate(const QString &id, const int state)
 {
-  modify(state); // Initial populate.
+  modify(state); // Initial population.
   oid = id;
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
   engWindowTitle = "Create";

@@ -222,8 +222,6 @@ void qtbook::quit(const char *msg, const char *file, const int line)
 
 qtbook::qtbook(void):QMainWindow()
 {
-  int h = 0;
-  int w = 0;
   QMenu *menu1 = 0;
   QMenu *menu2 = 0;
   QMenu *menu3 = 0;
@@ -557,11 +555,6 @@ qtbook::qtbook(void):QMainWindow()
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  w = qapp->desktop()->width();
-  h = qapp->desktop()->height();
-  setGeometry(qapp->desktop()->x() + (w - minimumSize().width()) / 2,
-	      qapp->desktop()->y() + (h - minimumSize().height()) / 2,
-	      minimumSize().width(), minimumSize().height());
   ui.createTool->setMenu(menu1);
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
@@ -2611,12 +2604,16 @@ void qtbook::readConfig(void)
   else
     br.branch_name->setCurrentIndex(0);
 
+  int viewModeIndex = settings.value("view_mode_index", 1).toInt();
+
+  if(viewModeIndex < 0 || viewModeIndex > 1)
+    viewModeIndex = 1;
+
   if(!findChild<QActionGroup *> ("ViewModeMenu")->actions().isEmpty())
     findChild<QActionGroup *> ("ViewModeMenu")->
-      actions().at(0)->setChecked(true);
+      actions().at(viewModeIndex)->setChecked(true);
 
-  ui.stackedWidget->setCurrentIndex
-    (settings.value("view_mode_index", 1).toInt());
+  ui.stackedWidget->setCurrentIndex(viewModeIndex);
   slotResizeColumns();
   createSqliteMenuActions();
 }
@@ -2876,7 +2873,221 @@ void qtbook::slotSceneSelectionChanged(void)
       QGraphicsItem *item = items.at(0);
 
       if(item)
-	ui.table->selectRow(item->data(0).toInt());
+	{
+	  QImage backImage;
+	  QImage frontImage;
+	  QString oid = "";
+	  QString type = "";
+	  QString tmpstr = "";
+	  QString summary = "";
+	  QVariantList list(item->data(0).toList());
+
+	  /*
+	  ** The list's layout is as follows:
+	  ** The ith entry is the QSqlRecord's field name.
+	  ** The ith+1 entry is the QSqlRecord's field value.
+	  */
+
+	  oid = misc_functions::getValueFromVariantList(list, "myoid").
+	    toString();
+	  type = misc_functions::getValueFromVariantList(list, "type").
+	    toString();
+	  summary = "<html>";
+
+	  if(type == "Book")
+	    {
+	      summary += "<b>" +
+		misc_functions::getValueFromVariantList(list, "title").
+		toString() + "</b>";
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "id").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "publication_date").toString();
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "publisher").toString();
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "place").toString();
+	      summary += "<br>";
+	    }
+	  else if(type == "CD")
+	    {
+	      summary += "<b>" +
+		misc_functions::getValueFromVariantList
+		(list, "title").toString() + "</b>";
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "id").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "rdate").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "recording_label").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	    }
+	  else if(type == "DVD")
+	    {
+	      summary += "<b>" +
+		misc_functions::getValueFromVariantList
+		(list, "title").toString() + "</b>";
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "id").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "rdate").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "studio").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	    }
+	  else if(type == "Journal" || type == "Magazine")
+	    {
+	      summary += "<b>" +
+		misc_functions::getValueFromVariantList
+		(list, "title").toString() + "</b>";
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "id").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "pdate").toString();
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "publisher").toString();
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "place").toString();
+	      summary += "<br>";
+	    }
+	  else if(type == "Video Game")
+	    {
+	      summary += "<b>" +
+		misc_functions::getValueFromVariantList
+		(list, "title").toString() + "</b>";
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "id").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      tmpstr = misc_functions::getValueFromVariantList
+		(list, "rdate").toString();
+
+	      if(tmpstr.isEmpty())
+		tmpstr = "<br>";
+
+	      summary += tmpstr;
+	      summary += "<br>";
+	      summary += misc_functions::getValueFromVariantList
+		(list, "publisher").toString();
+	      summary += "<br>";
+	    }
+
+	  summary = summary.remove("<br><br>");
+	  summary += misc_functions::getAbstractInfo(oid, type, db);
+	  summary += "<br>";
+	  tmpstr = misc_functions::getValueFromVariantList
+	    (list, "availability").toString();
+
+	  if(!tmpstr.isEmpty())
+	    {
+	      if(tmpstr.toInt() > 0)
+		summary += tr("Available") + "<br>";
+	      else
+		summary += tr("Unavailable") + "<br>";
+	    }
+
+	  summary += misc_functions::getValueFromVariantList
+	    (list, "location").toString();
+	  summary += "</html>";
+	  ui.summary->setText(summary);
+	  ui.summary->setVisible(true);
+	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  frontImage = misc_functions::getImage(oid, "front_cover", type,
+						db);
+	  backImage = misc_functions::getImage(oid, "back_cover", type,
+					       db);
+
+	  /*
+	  ** 165 x 255
+	  */
+
+	  if(frontImage.width() > 165 ||
+	     frontImage.height() > 255)
+	    frontImage = frontImage.scaled
+	      (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	  if(backImage.width() > 165 ||
+	     backImage.height() > 255)
+	    backImage = backImage.scaled
+	      (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	  qapp->restoreOverrideCursor();
+
+	  if(!frontImage.isNull())
+	    {
+	      ui.frontImage->setVisible(true);
+	      ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+	    }
+	  else
+	    ui.frontImage->clear();
+
+	  if(!backImage.isNull())
+	    {
+	      ui.backImage->setVisible(true);
+	      ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	    }
+	  else
+	    ui.backImage->clear();
+	}
     }
 }
 

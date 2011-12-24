@@ -928,8 +928,8 @@ void qtbook_book::slotGo(void)
 	"book.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"book.type, "
-	"book.myoid "
-	// "book.front_cover "
+	"book.myoid, "
+	"book.front_cover "
 	"FROM "
 	"book LEFT JOIN item_borrower_vw ON "
 	"book.myoid = item_borrower_vw.item_oid "
@@ -2868,7 +2868,7 @@ void qtbook_book::slotReadyRead(void)
 
 void qtbook_book::duplicate(const QString &id, const int state)
 {
-  modify(state); // Initial populate.
+  modify(state); // Initial population.
   oid = id;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
   engWindowTitle = "Create";

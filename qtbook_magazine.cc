@@ -885,8 +885,8 @@ void qtbook_magazine::slotGo(void)
 			  "item_oid) "
 			  "AS availability, "
 			  "%1.type, "
-			  "%1.myoid "
-			  // "%1.front_cover "
+			  "%1.myoid, "
+			  "%1.front_cover "
 			  "FROM "
 			  "%1 LEFT JOIN item_borrower_vw ON "
 			  "%1.myoid = item_borrower_vw.item_oid "
@@ -2413,7 +2413,7 @@ Ui_magDialog qtbook_magazine::dialog(void) const
 
 void qtbook_magazine::duplicate(const QString &id, const int state)
 {
-  modify(state); // Initial populate.
+  modify(state); // Initial population.
   oid = id;
 
   if(subType.toLower() == "journal")

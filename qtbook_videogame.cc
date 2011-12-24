@@ -751,8 +751,8 @@ void qtbook_videogame::slotGo(void)
 	"videogame.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"videogame.type, "
-	"videogame.myoid "
-	// "videogame.front_cover "
+	"videogame.myoid, "
+	"videogame.front_cover "
 	"FROM "
 	"videogame LEFT JOIN item_borrower_vw ON "
 	"videogame.myoid = item_borrower_vw.item_oid "
@@ -1634,7 +1634,7 @@ void qtbook_videogame::slotSelectImage(void)
 
 void qtbook_videogame::duplicate(const QString &id, const int state)
 {
-  modify(state); // Initial populate.
+  modify(state); // Initial population.
   oid = id;
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
   engWindowTitle = "Create";

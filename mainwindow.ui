@@ -171,7 +171,11 @@
           <widget class="QWidget" name="page_2">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QGraphicsView" name="graphicsView"/>
+             <widget class="QGraphicsView" name="graphicsView">
+              <property name="viewportUpdateMode">
+               <enum>QGraphicsView::FullViewportUpdate</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -403,7 +407,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
@@ -729,9 +733,6 @@
      <strikeout>false</strikeout>
     </font>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
-   </property>
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
@@ -948,7 +949,7 @@
      <normaloff>icons.d/16x16/reload.png</normaloff>icons.d/16x16/reload.png</iconset>
    </property>
    <property name="text">
-    <string>Refresh &amp;Table</string>
+    <string>&amp;Refresh View</string>
    </property>
    <property name="font">
     <font>
@@ -957,7 +958,7 @@
     </font>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionViewDetails">
@@ -1377,7 +1378,7 @@
      <normaloff>icons.d/16x16/fileexport.png</normaloff>icons.d/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export View as CSV</string>
+    <string>&amp;Export Table View as CSV</string>
    </property>
   </action>
   <action name="duplicateTool">
