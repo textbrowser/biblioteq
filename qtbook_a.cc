@@ -8016,6 +8016,11 @@ void qtbook::slotChangeView(bool checked)
     {
       ui.stackedWidget->setCurrentIndex(action->data().toInt());
 
+      if(ui.stackedWidget->currentIndex() == 0)
+	slotSceneSelectionChanged();
+      else
+	slotDisplaySummary();
+
       QSettings settings;
 
       settings.setValue("view_mode_index", action->data().toInt());
