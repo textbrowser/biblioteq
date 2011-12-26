@@ -2866,6 +2866,9 @@ void qtbook::slotShowColumns(void)
 
 void qtbook::slotSceneSelectionChanged(void)
 {
+  if(ui.stackedWidget->currentIndex() != 0)
+    return;
+
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
 
   if(!items.isEmpty())
@@ -2892,6 +2895,12 @@ void qtbook::slotSceneSelectionChanged(void)
 	      }
 	}
     }
+  else
+    /*
+    ** Clear the summary area.
+    */
+
+    ui.table->setCurrentCell(-1, -1);
 }
 
 /*
@@ -2919,6 +2928,10 @@ void qtbook::slotDisplaySummary(void)
 
       if(ui.stackedWidget->currentIndex() == 1)
 	{
+	  /*
+	  ** This method is also called by slotSceneSelectionChanged().
+	  */
+
 	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
 
 	  for(int ii = 0; ii < items.size(); ii++)
