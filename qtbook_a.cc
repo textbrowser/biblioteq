@@ -2874,219 +2874,22 @@ void qtbook::slotSceneSelectionChanged(void)
 
       if(item)
 	{
-	  QImage backImage;
-	  QImage frontImage;
-	  QString oid = "";
-	  QString type = "";
-	  QString tmpstr = "";
-	  QString summary = "";
-	  QVariantList list(item->data(0).toList());
+	  int column = -1;
+	  QString oid = item->data(0).toString();
 
 	  /*
-	  ** The list's layout is as follows:
-	  ** The ith entry is the QSqlRecord's field name.
-	  ** The ith+1 entry is the QSqlRecord's field value.
+	  ** Find the item in the table and select it.
 	  */
 
-	  oid = misc_functions::getValueFromVariantList(list, "myoid").
-	    toString();
-	  type = misc_functions::getValueFromVariantList(list, "type").
-	    toString();
-	  summary = "<html>";
+	  column = misc_functions::getColumnNumber(ui.table, tr("MYOID"));
 
-	  if(type == "Book")
-	    {
-	      summary += "<b>" +
-		misc_functions::getValueFromVariantList(list, "title").
-		toString() + "</b>";
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "id").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "publication_date").toString();
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "publisher").toString();
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "place").toString();
-	      summary += "<br>";
-	    }
-	  else if(type == "CD")
-	    {
-	      summary += "<b>" +
-		misc_functions::getValueFromVariantList
-		(list, "title").toString() + "</b>";
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "id").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "rdate").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "recording_label").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	    }
-	  else if(type == "DVD")
-	    {
-	      summary += "<b>" +
-		misc_functions::getValueFromVariantList
-		(list, "title").toString() + "</b>";
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "id").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "rdate").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "studio").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	    }
-	  else if(type == "Journal" || type == "Magazine")
-	    {
-	      summary += "<b>" +
-		misc_functions::getValueFromVariantList
-		(list, "title").toString() + "</b>";
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "id").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "pdate").toString();
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "publisher").toString();
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "place").toString();
-	      summary += "<br>";
-	    }
-	  else if(type == "Video Game")
-	    {
-	      summary += "<b>" +
-		misc_functions::getValueFromVariantList
-		(list, "title").toString() + "</b>";
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "id").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      tmpstr = misc_functions::getValueFromVariantList
-		(list, "rdate").toString();
-
-	      if(tmpstr.isEmpty())
-		tmpstr = "<br>";
-
-	      summary += tmpstr;
-	      summary += "<br>";
-	      summary += misc_functions::getValueFromVariantList
-		(list, "publisher").toString();
-	      summary += "<br>";
-	    }
-
-	  summary = summary.remove("<br><br>");
-	  summary += misc_functions::getAbstractInfo(oid, type, db);
-	  summary += "<br>";
-	  tmpstr = misc_functions::getValueFromVariantList
-	    (list, "availability").toString();
-
-	  if(!tmpstr.isEmpty())
-	    {
-	      if(tmpstr.toInt() > 0)
-		summary += tr("Available") + "<br>";
-	      else
-		summary += tr("Unavailable") + "<br>";
-	    }
-
-	  summary += misc_functions::getValueFromVariantList
-	    (list, "location").toString();
-	  summary += "</html>";
-	  ui.summary->setText(summary);
-	  ui.summary->setVisible(true);
-	  qapp->setOverrideCursor(Qt::WaitCursor);
-	  frontImage = misc_functions::getImage(oid, "front_cover", type,
-						db);
-	  backImage = misc_functions::getImage(oid, "back_cover", type,
-					       db);
-
-	  /*
-	  ** 165 x 255
-	  */
-
-	  if(frontImage.width() > 165 ||
-	     frontImage.height() > 255)
-	    frontImage = frontImage.scaled
-	      (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-	  if(backImage.width() > 165 ||
-	     backImage.height() > 255)
-	    backImage = backImage.scaled
-	      (165, 255, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-	  qapp->restoreOverrideCursor();
-
-	  if(!frontImage.isNull())
-	    {
-	      ui.frontImage->setVisible(true);
-	      ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
-	    }
-	  else
-	    ui.frontImage->clear();
-
-	  if(!backImage.isNull())
-	    {
-	      ui.backImage->setVisible(true);
-	      ui.backImage->setPixmap(QPixmap().fromImage(backImage));
-	    }
-	  else
-	    ui.backImage->clear();
+	  for(int i = 0; i < ui.table->rowCount(); i++)
+	    if(ui.table->item(i, column) &&
+	       ui.table->item(i, column)->text() == oid)
+	      {
+		ui.table->selectRow(i);
+		break;
+	      }
 	}
     }
 }
@@ -3113,6 +2916,23 @@ void qtbook::slotDisplaySummary(void)
     {
       i = ui.table->currentRow();
       oid = misc_functions::getColumnString(ui.table, i, "MYOID");
+
+      if(ui.stackedWidget->currentIndex() == 1)
+	{
+	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
+
+	  for(int ii = 0; ii < items.size(); ii++)
+	    if(oid == items.at(ii)->data(0).toString())
+	      {
+		items.at(ii)->setSelected(true);
+		ui.graphicsView->centerOn(items.at(ii));
+	      }
+	    else
+	      items.at(ii)->setSelected(false);
+
+	  items.clear();
+	}
+
       type = misc_functions::getColumnString(ui.table, i, tr("Type"));
       summary = "<html>";
 
@@ -8015,11 +7835,6 @@ void qtbook::slotChangeView(bool checked)
   if(action)
     {
       ui.stackedWidget->setCurrentIndex(action->data().toInt());
-
-      if(ui.stackedWidget->currentIndex() == 0)
-	slotSceneSelectionChanged();
-      else
-	slotDisplaySummary();
 
       QSettings settings;
 

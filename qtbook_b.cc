@@ -2813,7 +2813,6 @@ int qtbook::populateTable(const int search_type_arg,
 		  (QPixmap().fromImage(image));
 		pixmapItem->setPos(150 * iconTableColumnIdx,
 				   200 * iconTableRowIdx);
-		pixmapItem->setData(0, QVariant());
 		pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 		iconTableColumnIdx += 1;
 
@@ -2856,21 +2855,13 @@ int qtbook::populateTable(const int search_type_arg,
 	  }
 
       if(query.isValid())
-	if(pixmapItem && pixmapItem->data(0).isNull())
-	  {
-	    QVariantList variantList;
-
-	    for(int ii = 0; ii < query.record().count(); ii++)
-	      if(query.record().fieldName(ii) != "front_cover" &&
-		 query.record().fieldName(ii) != "back_cover")
-		{
-		  variantList.append
-		    (query.record().fieldName(ii));
-		  variantList.append(query.record().value(ii));
-		}
-
-	    pixmapItem->setData(0, variantList);
-	  }
+	if(pixmapItem)
+	  for(int ii = 0; ii < query.record().count(); ii++)
+	    if(query.record().fieldName(ii) == "myoid")
+	      {
+		pixmapItem->setData(0, query.value(ii));
+		break;
+	      }
 
       progress.setValue(i + 1);
       progress.update();
