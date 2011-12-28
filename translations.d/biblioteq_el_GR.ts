@@ -2520,11 +2520,11 @@ URL</source>
     </message>
     <message>
         <source>Refresh &amp;Table</source>
-        <translation>Α&amp;νανέωση πίνακα</translation>
+        <translation type="obsolete">Α&amp;νανέωση πίνακα</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
-        <translation>Ctrl+Π</translation>
+        <translation type="obsolete">Ctrl+Π</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
@@ -2707,15 +2707,27 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Refresh View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4163,10 +4175,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4215,6 +4223,18 @@ URL</source>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
     </message>
 </context>
 <context>

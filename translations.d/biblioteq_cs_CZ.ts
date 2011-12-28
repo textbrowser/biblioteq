@@ -2513,11 +2513,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Refresh &amp;Table</source>
-        <translation>Znovu &amp;načíst tabulku</translation>
+        <translation type="obsolete">Znovu &amp;načíst tabulku</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
+        <translation type="obsolete">Ctrl+T</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
@@ -2728,15 +2728,27 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Refresh View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4152,10 +4164,6 @@ webová adresa</translation>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <source>Table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4244,6 +4252,18 @@ webová adresa</translation>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">Moje ID</translation>
     </message>
 </context>
 <context>

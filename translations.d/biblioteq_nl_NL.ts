@@ -2266,7 +2266,7 @@
     </message>
     <message>
         <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
+        <translation type="obsolete">Ctrl+T</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2346,11 +2346,11 @@
     </message>
     <message>
         <source>Refresh &amp;Table</source>
-        <translation>&amp;Tabel Herladen</translation>
+        <translation type="obsolete">&amp;Tabel Herladen</translation>
     </message>
     <message>
         <source>&amp;Export View as CSV</source>
-        <translation>&amp;Exporteer als CSV bestand</translation>
+        <translation type="obsolete">&amp;Exporteer als CSV bestand</translation>
     </message>
     <message>
         <source>&amp;Members Browser</source>
@@ -2458,6 +2458,22 @@
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Refresh View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2874,7 +2890,7 @@
     </message>
     <message>
         <source>Table</source>
-        <translation>Tabel</translation>
+        <translation type="obsolete">Tabel</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3801,6 +3817,18 @@
     <message>
         <source>Are you sure that you wish to duplicate the </source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
     </message>
 </context>
 <context>
