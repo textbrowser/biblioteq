@@ -346,6 +346,8 @@ qtbook::qtbook(void):QMainWindow()
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
   ui.graphicsView->setScene(scene);
+  ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+  ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   bb.setupUi(members_diag);
   history.setupUi(history_diag);
   br.setupUi(branch_diag);
@@ -2622,6 +2624,12 @@ void qtbook::readConfig(void)
       actions().at(viewModeIndex)->setChecked(true);
 
   ui.stackedWidget->setCurrentIndex(viewModeIndex);
+
+  if(ui.stackedWidget->currentIndex() == 0)
+    ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
+  else
+    ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
   slotResizeColumns();
   createSqliteMenuActions();
 }
@@ -2881,38 +2889,30 @@ void qtbook::slotSceneSelectionChanged(void)
   if(ui.stackedWidget->currentIndex() != 0)
     return;
 
+  ui.table->clearSelection();
+  ui.table->setCurrentCell(-1, -1);
+  slotDisplaySummary();
+
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
 
   if(!items.isEmpty())
     {
-      QGraphicsItem *item = items.at(0);
+      QStringList oids;
+      QGraphicsItem *item = 0;
 
-      if(item)
-	{
-	  int column = -1;
-	  QString oid = item->data(0).toString();
+      while(!items.isEmpty())
+	if((item = items.takeFirst()))
+	  oids.append(item->data(0).toString());
 
-	  /*
-	  ** Find the item in the table and select it.
-	  */
+      int column = misc_functions::getColumnNumber(ui.table, tr("MYOID"));
 
-	  column = misc_functions::getColumnNumber(ui.table, tr("MYOID"));
+      for(int i = 0; i < ui.table->rowCount(); i++)
+	if(ui.table->item(i, column) &&
+	   oids.contains(ui.table->item(i, column)->text()))
+	  ui.table->selectRow(i);
 
-	  for(int i = 0; i < ui.table->rowCount(); i++)
-	    if(ui.table->item(i, column) &&
-	       ui.table->item(i, column)->text() == oid)
-	      {
-		ui.table->selectRow(i);
-		break;
-	      }
-	}
+      oids.clear();
     }
-  else
-    /*
-    ** Clear the summary area.
-    */
-
-    ui.table->setCurrentCell(-1, -1);
 }
 
 /*
@@ -2948,10 +2948,7 @@ void qtbook::slotDisplaySummary(void)
 
 	  for(int ii = 0; ii < items.size(); ii++)
 	    if(oid == items.at(ii)->data(0).toString())
-	      {
-		items.at(ii)->setSelected(true);
-		ui.graphicsView->centerOn(items.at(ii));
-	      }
+	      items.at(ii)->setSelected(true);
 	    else
 	      items.at(ii)->setSelected(false);
 
@@ -3166,10 +3163,18 @@ void qtbook::slotDisplaySummary(void)
       ** The size of no_image.png is 126x187.
       */
 
-      frontImage = frontImage.scaled
-	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      backImage = backImage.scaled
-	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      if(frontImage.isNull())
+	frontImage = QImage("icons.d/no_image.png");
+      else
+	frontImage = frontImage.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(backImage.isNull())
+	backImage = QImage("icons.d/no_image.png");
+      else
+	backImage = backImage.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())
@@ -7878,6 +7883,11 @@ void qtbook::slotChangeView(bool checked)
     {
       ui.stackedWidget->setCurrentIndex(action->data().toInt());
 
+      if(ui.stackedWidget->currentIndex() == 0)
+	ui.table->setSelectionMode(QAbstractItemView::MultiSelection);
+      else
+	ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
       QSettings settings;
 
       settings.setValue("view_mode_index", action->data().toInt());
@@ -7899,7 +7909,7 @@ void qtbook::slotExportAsCSV(void)
   dialog.setDirectory(QDir::homePath());
   dialog.setNameFilter(tr("CSV (*.csv)"));
   dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setWindowTitle(tr("BiblioteQ: Export View as CSV"));
+  dialog.setWindowTitle(tr("BiblioteQ: Export Table View as CSV"));
   dialog.setDefaultSuffix("csv");
   dialog.exec();
 
