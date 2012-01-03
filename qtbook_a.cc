@@ -61,6 +61,7 @@ extern "C"
 */
 
 #include "qtbook.h"
+#include "bgraphicsscene.h"
 #include "sqlite_create_schema.h"
 
 /*
@@ -336,9 +337,9 @@ qtbook::qtbook(void):QMainWindow()
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
-  QGraphicsScene *scene = 0;
+  bgraphicsscene *scene = 0;
 
-  if((scene = new(std::nothrow) QGraphicsScene()) == 0)
+  if((scene = new(std::nothrow) bgraphicsscene()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,
@@ -817,6 +818,9 @@ void qtbook::adminSetup(void)
     {
       ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotModify(void)));
+      ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
+      connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
 	      this, SLOT(slotModify(void)));
       updateItemWindows();
     }
@@ -3538,6 +3542,8 @@ void qtbook::slotConnectDB(void)
       ui.actionChangePassword->setEnabled(true);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
+      connect(ui.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)), this,
+	      SLOT(slotViewDetails(void)));
 
       /*
       ** Set the window's title.
@@ -3707,6 +3713,7 @@ void qtbook::slotDisconnect(void)
   ui.graphicsView->scene()->clear();
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
+  ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
 
   if(db.isOpen())
     {

@@ -2746,6 +2746,23 @@ int qtbook::populateTable(const int search_type_arg,
   int iconTableColumnIdx = 0;
   QGraphicsPixmapItem *pixmapItem = 0;
 
+  /*
+  ** Adjust the dimensions of the graphics scene if pagination
+  ** is effectively disabled.
+  */
+
+  if(limit == -1)
+    {
+      int size = misc_functions::sqliteQuerySize
+	(searchstr, db, __FILE__, __LINE__);
+
+      if(size > 0 && (size / 250 <= INT_MAX))
+	ui.graphicsView->setSceneRect(0, 0, 5 * 150,
+				      size * 250);
+      else
+	ui.graphicsView->setSceneRect(0, 0, 5 * 150, INT_MAX);
+    }
+
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
