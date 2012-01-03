@@ -2948,15 +2948,31 @@ void qtbook::slotDisplaySummary(void)
 	  ** This method is also called by slotSceneSelectionChanged().
 	  */
 
+	  QPainterPath painterPath;
 	  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
+	  QList<QTableWidgetItem *> tableItems(ui.table->selectedItems());
 
-	  for(int ii = 0; ii < items.size(); ii++)
-	    if(oid == items.at(ii)->data(0).toString())
-	      items.at(ii)->setSelected(true);
-	    else
-	      items.at(ii)->setSelected(false);
+	  for(int ii = 0; ii < tableItems.size(); ii++)
+	    {
+	      QString oid = misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(), "MYOID");
+
+	      for(int jj = 0; jj < items.size(); jj++)
+		if(oid == items.at(jj)->data(0).toString())
+		  {
+		    QRectF rect;
+
+		    rect.setTopLeft(items.at(jj)->scenePos());
+		    rect.setWidth(126);
+		    rect.setHeight(187);
+		    painterPath.addRect(rect);
+		  }
+		else
+		  items.at(jj)->setSelected(false);
+	    }
 
 	  items.clear();
+	  ui.graphicsView->scene()->setSelectionArea(painterPath);
 	}
 
       type = misc_functions::getColumnString(ui.table, i, tr("Type"));
