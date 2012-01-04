@@ -250,7 +250,8 @@ CREATE TABLE member
 	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
 	zip		 VARCHAR(16) NOT NULL,
 	email		 VARCHAR(128),
-	expiration_date	 VARCHAR(32) NOT NULL
+	expiration_date	 VARCHAR(32) NOT NULL,
+	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00
 );
 
 CREATE TABLE item_borrower

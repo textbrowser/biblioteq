@@ -589,3 +589,7 @@ CREATE TABLE book_backup
 INSERT INTO book_backup SELECT * FROM book;
 DROP TABLE book;
 ALTER TABLE book_backup RENAME TO book;
+
+/* Release 6.53 */
+
+ALTER TABLE member overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
