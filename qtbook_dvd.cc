@@ -1750,7 +1750,7 @@ void qtbook_dvd::slotPrint(void)
     dvd.location->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     dvd.description->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Keyword:") + "</b> " +
+  html += "<b>" + tr("Keywords:") + "</b> " +
     dvd.keyword->toPlainText().trimmed() + "<br>";
   print(this);
 }
