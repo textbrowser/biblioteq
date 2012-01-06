@@ -47,7 +47,7 @@ HEADERS		= include.d\\qtbook.h \
 		  include.d\\qtbook_book.h \
 		  include.d\\qtbook_item.h \
 		  include.d\\z3950results.h \
-		  include.d\\braphicsscene.h \
+		  include.d\\bgraphicsscene.h \
                   include.d\\dbenumerations.h \
 		  include.d\\generic_thread.h \
 		  include.d\\image_drop_site.h \
