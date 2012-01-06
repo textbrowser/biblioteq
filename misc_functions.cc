@@ -2252,4 +2252,13 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	  query.exec("ALTER TABLE book_backup RENAME TO book");
 	}
     }
+  else if(version == "6.53")
+    {
+      QString querystr("");
+      QSqlQuery query(db);
+
+      querystr = "ALTER TABLE member ADD overdue_fees "
+	"NUMERIC(10, 2) NOT NULL DEFAULT 0.00";
+      query.exec(querystr);
+    }
 }

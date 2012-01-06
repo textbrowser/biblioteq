@@ -687,7 +687,7 @@ void qtbook_cd::slotGo(void)
 			  (cd.category->toPlainText().trimmed());
 		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
-			  (cd.price->text());
+			  (cd.price->cleanText());
 		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.language->currentText().trimmed());
@@ -2130,7 +2130,7 @@ void qtbook_cd::slotPrint(void)
     toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Categories:") + "</b> " +
     cd.category->toPlainText().trimmed() + "<br>";
-  html += "<b>"+ tr("Price:") + "</b> " + cd.price->text() + "<br>";
+  html += "<b>"+ tr("Price:") + "</b> " + cd.price->cleanText() + "<br>";
   html += "<b>" + tr("Language:") + "</b> " +
     cd.language->currentText() + "<br>";
   html += "<b>" + tr("Monetary Units:") + "</b> " +

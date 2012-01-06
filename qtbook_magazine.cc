@@ -734,7 +734,7 @@ void qtbook_magazine::slotGo(void)
 			  (ma.category->toPlainText().trimmed());
 		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
-			  (ma.price->text());
+			  (ma.price->cleanText());
 		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.language->currentText().trimmed());
@@ -1939,7 +1939,7 @@ void qtbook_magazine::slotPrint(void)
     ma.place->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Category:") + "</b> " +
     ma.category->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Price:") + "</b> " + ma.price->text() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + ma.price->cleanText() + "<br>";
   html += "<b>" + tr("Language:") + "</b> " +
     ma.language->currentText() + "<br>";
   html += "<b>" + tr("Monetary Units:") + "</b> " +

@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>UserInfo</class>
  <widget class="QDialog" name="UserInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>433</width>
+    <height>535</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -728,12 +736,6 @@
         </item>
         <item row="12" column="0">
          <widget class="QLabel" name="label_13">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Expiration Date</string>
           </property>
@@ -762,6 +764,32 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item row="13" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Overdue Fees</string>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1">
+         <widget class="QDoubleSpinBox" name="overduefees">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimum">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>10000.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -945,6 +973,7 @@
   <tabstop>telephoneNumber</tabstop>
   <tabstop>email</tabstop>
   <tabstop>expirationdate</tabstop>
+  <tabstop>overduefees</tabstop>
   <tabstop>prevTool</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>

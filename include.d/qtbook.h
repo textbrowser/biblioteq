@@ -16,6 +16,7 @@ using namespace std;
 
 #include <QMap>
 #include <QHash>
+#include <QtDebug>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QStringList>
@@ -121,6 +122,10 @@ class qtbook: public QMainWindow
 	 userinfo.expirationdate->date().toString
 	 (Qt::SystemLocaleShortDate))
 	list << "expiration_date";
+
+      if(memberProperties["overdue_fees"] !=
+	 QString::number(userinfo.overduefees->value()))
+	list << "overdue_fees";
 
       while(!list.isEmpty())
 	str += list.takeFirst() + ", ";

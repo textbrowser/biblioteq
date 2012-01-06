@@ -1034,7 +1034,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - 2011 Mr. Moose.<br>"
+	     "Copyright (c) 2006 - 2012 Miss Jade.<br>"
 	     "Icons copyright (c) David Vignoni.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
@@ -1872,6 +1872,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.email->clear();
   userinfo_diag->userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
+  userinfo_diag->userinfo.overduefees->setValue(0.00);
   userinfo_diag->memberProperties["membersince"] =
     userinfo_diag->userinfo.membersince->date().toString
     (Qt::SystemLocaleShortDate);
@@ -1889,6 +1890,8 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->memberProperties["expiration_date"] =
     userinfo_diag->userinfo.expirationdate->date().toString
     (Qt::SystemLocaleShortDate);
+  userinfo_diag->memberProperties["overdue_fees"] =
+    QString::number(userinfo_diag->userinfo.overduefees->value());
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   engUserinfoTitle = "Create New Member";
   userinfo_diag->userinfo.prevTool->setVisible(false);
@@ -2060,12 +2063,12 @@ void qtbook::slotSaveUser(void)
 		    "(memberid, membersince, dob, sex, "
 		    "first_name, middle_init, last_name, "
 		    "telephone_num, street, city, "
-		    "state_abbr, zip, email, expiration_date) "
+		    "state_abbr, zip, email, expiration_date, overdue_fees) "
 		    "VALUES "
 		    "(?, ?, ?, ?, "
 		    "?, ?, ?, "
 		    "?, ?, ?, "
-		    "?, ?, ?, ?)");
+		    "?, ?, ?, ?, ?)");
       query.bindValue(0, userinfo_diag->userinfo.memberid->text());
       query.bindValue(1, userinfo_diag->userinfo.membersince->
 		      date().toString("MM/dd/yyyy"));
@@ -2083,6 +2086,7 @@ void qtbook::slotSaveUser(void)
       query.bindValue(12, userinfo_diag->userinfo.email->text());
       query.bindValue(13, userinfo_diag->userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
+      query.bindValue(14, userinfo_diag->userinfo.overduefees->value());
     }
   else
     {
@@ -2096,7 +2100,8 @@ void qtbook::slotSaveUser(void)
 		    "street = ?, "
 		    "city = ?, "
 		    "state_abbr = ?, zip = ?, email = ?, "
-		    "expiration_date = ? "
+		    "expiration_date = ?, "
+		    "overdue_fees = ? "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
@@ -2114,7 +2119,8 @@ void qtbook::slotSaveUser(void)
       query.bindValue(11, userinfo_diag->userinfo.email->text());
       query.bindValue(12, userinfo_diag->userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
-      query.bindValue(13, userinfo_diag->userinfo.memberid->text());
+      query.bindValue(13, userinfo_diag->userinfo.overduefees->value());
+      query.bindValue(14, userinfo_diag->userinfo.memberid->text());
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -2239,6 +2245,8 @@ void qtbook::slotSaveUser(void)
       userinfo_diag->memberProperties["expiration_date"] =
 	userinfo_diag->userinfo.expirationdate->date().toString
 	(Qt::SystemLocaleShortDate);
+      userinfo_diag->memberProperties["overdue_fees"] =
+	QString::number(userinfo_diag->userinfo.overduefees->value());
 
       if(engUserinfoTitle.contains("Modify"))
 	{
@@ -4274,6 +4282,8 @@ void qtbook::slotModifyBorrower(void)
 	  else if(fieldname == "expiration_date")
 	    userinfo_diag->userinfo.expirationdate->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	  else if(fieldname == "overdue_fees")
+	    userinfo_diag->userinfo.overduefees->setValue(var.toDouble());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||

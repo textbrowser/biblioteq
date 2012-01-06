@@ -734,7 +734,7 @@ void qtbook_dvd::slotGo(void)
 			  (dvd.category->toPlainText().trimmed());
 		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
-			  (dvd.price->text());
+			  (dvd.price->cleanText());
 		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.language->currentText().trimmed());
@@ -1740,7 +1740,7 @@ void qtbook_dvd::slotPrint(void)
     dvd.studio->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Category:") + "</b> " +
     dvd.category->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Price:") + "</b> " + dvd.price->text() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + dvd.price->cleanText() + "<br>";
   html += "<b>" + tr("Language:") + "</b> " +
     dvd.language->currentText() + "<br>";
   html += "<b>" + tr("Monetary Units:") + "</b> " +

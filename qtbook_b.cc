@@ -2804,7 +2804,17 @@ int qtbook::populateTable(const int search_type_arg,
 	       query.record().fieldName(j) == "cddiskcount" ||
 	       query.record().fieldName(j) == "dvddiskcount" ||
 	       query.record().fieldName(j) == "availability")
-	      item = new(std::nothrow) numeric_table_item(str.toDouble());
+	      {
+		if(query.record().fieldName(j) == "price")
+		  {
+		    item = new(std::nothrow) numeric_table_item
+		      (query.value(j).toDouble());
+		    str = QString::number(query.value(j).toDouble(), 'f', 2);
+		  }
+		else
+		  item = new(std::nothrow) numeric_table_item
+		    (query.value(j).toInt());
+	      }
 	    else if(query.record().fieldName(j) == "front_cover")
 	      {
 		QIcon icon;

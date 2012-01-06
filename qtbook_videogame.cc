@@ -643,7 +643,7 @@ void qtbook_videogame::slotGo(void)
 			  (vg.genre->toPlainText().trimmed());
 		      else if(column->text() == tr("Price"))
 			qmain->getUI().table->item(row, i)->setText
-			  (vg.price->text());
+			  (vg.price->cleanText());
 		      else if(column->text() == tr("Language"))
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.language->currentText().trimmed());
@@ -1561,7 +1561,7 @@ void qtbook_videogame::slotPrint(void)
     vg.place->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Genre:") + "</b> " +
     vg.genre->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Price:") + "</b> " + vg.price->text() + "<br>";
+  html += "<b>" + tr("Price:") + "</b> " + vg.price->cleanText() + "<br>";
   html += "<b>" + tr("Language:") + "</b> " +
     vg.language->currentText() + "<br>";
   html += "<b>" + tr("Monetary Units:") + "</b> " +

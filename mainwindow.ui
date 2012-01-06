@@ -765,7 +765,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Populate Table on Connect</string>
+    <string>&amp;Populate View on Connect</string>
    </property>
    <property name="font">
     <font>
@@ -1002,7 +1002,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate Table on Item &amp;Creation</string>
+    <string>Populate View on Item &amp;Creation</string>
    </property>
    <property name="font">
     <font>
