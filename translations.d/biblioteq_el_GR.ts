@@ -334,6 +334,10 @@
         <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -2436,7 +2440,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Populate Table on Connect</source>
-        <translation>Σ&amp;υμπλήρωση του πίνακα με την σύνδεση</translation>
+        <translation type="obsolete">Σ&amp;υμπλήρωση του πίνακα με την σύνδεση</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
@@ -2540,7 +2544,7 @@ URL</source>
     </message>
     <message>
         <source>Populate Table on Item &amp;Creation</source>
-        <translation>Συμπλήρωση του πίνακα κατά τη &amp;δημιουργία του αντικειμένου</translation>
+        <translation type="obsolete">Συμπλήρωση του πίνακα κατά τη &amp;δημιουργία του αντικειμένου</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -2728,6 +2732,14 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Populate View on Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4199,10 +4211,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Export View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
         <translation type="unfinished"></translation>
@@ -4235,6 +4243,10 @@ URL</source>
     <message>
         <source>MYOID</source>
         <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5950,11 +5962,11 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keyword:</source>
+        <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Duplicate DVD Entry</source>
+        <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

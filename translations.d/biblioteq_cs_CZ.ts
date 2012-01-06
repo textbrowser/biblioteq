@@ -334,6 +334,10 @@
         <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -2429,7 +2433,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Populate Table on Connect</source>
-        <translation>&amp;Načíst tabulku při připojení</translation>
+        <translation type="obsolete">&amp;Načíst tabulku při připojení</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
@@ -2533,7 +2537,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Populate Table on Item &amp;Creation</source>
-        <translation>Načíst tabulku při vytvoř&amp;ení nového záznamu</translation>
+        <translation type="obsolete">Načíst tabulku při vytvoř&amp;ení nového záznamu</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -2749,6 +2753,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Populate View on Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4228,10 +4240,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Export View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
         <translation type="unfinished"></translation>
@@ -4264,6 +4272,10 @@ webová adresa</translation>
     <message>
         <source>MYOID</source>
         <translation type="unfinished">Moje ID</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5979,11 +5991,11 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keyword:</source>
+        <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Duplicate DVD Entry</source>
+        <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

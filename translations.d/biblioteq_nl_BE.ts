@@ -330,6 +330,10 @@
         <source>Last Name</source>
         <translation>Familienaam</translation>
     </message>
+    <message>
+        <source>Overdue Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -2222,7 +2226,7 @@
     </message>
     <message>
         <source>Populate Table on Item &amp;Creation</source>
-        <translation>&amp;Tabel Laden bij Aanmaak van een Item</translation>
+        <translation type="obsolete">&amp;Tabel Laden bij Aanmaak van een Item</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -2310,7 +2314,7 @@
     </message>
     <message>
         <source>&amp;Populate Table on Connect</source>
-        <translation>&amp;Tabel Laden bij Connectie</translation>
+        <translation type="obsolete">&amp;Tabel Laden bij Connectie</translation>
     </message>
     <message>
         <source>View Selected Item(s)</source>
@@ -2474,6 +2478,14 @@
     </message>
     <message>
         <source>Ctrl+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Populate View on Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3126,7 +3138,7 @@
     </message>
     <message>
         <source>BiblioteQ: Export View as CSV</source>
-        <translation>BiblioteQ: Exporteer Weergave als CSV</translation>
+        <translation type="obsolete">BiblioteQ: Exporteer Weergave als CSV</translation>
     </message>
     <message>
         <source>Column Type</source>
@@ -3829,6 +3841,10 @@
     <message>
         <source>MYOID</source>
         <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5209,7 +5225,7 @@
     </message>
     <message>
         <source>Keyword:</source>
-        <translation>Sleutelwoord:</translation>
+        <translation type="obsolete">Sleutelwoord:</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -5290,6 +5306,10 @@
     <message>
         <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
     </message>
 </context>
 <context>
