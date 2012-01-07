@@ -234,8 +234,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   ** Prepare the form.
   */
 
-  resize(0.85 * parentWid->size().width(),
-	 0.85 * parentWid->size().height());
+  resize(0.90 * parentWid->size().width(),
+	 0.90 * parentWid->size().height());
   ma.splitter->setStretchFactor(0, 0);
   ma.splitter->setStretchFactor(1, 1);
   ma.splitter->setStretchFactor(2, 0);

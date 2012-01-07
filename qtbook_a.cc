@@ -6813,8 +6813,8 @@ void qtbook::slotShowAdminDialog(void)
   static bool resized = false;
 
   if(!resized)
-    admin_diag->resize(0.75 * size().width(),
-		       0.75 * size().height());
+    admin_diag->resize(0.85 * size().width(),
+		       0.85 * size().height());
 
   resized = true;
   misc_functions::center(admin_diag, this);
