@@ -3,7 +3,7 @@ purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql network
-CONFIG		+= qt release thread warn_on app_bundle copy_dir_files
+CONFIG		+= qt release thread warn_on app_bundle
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 QMAKE_LFLAGS_RELEASE =
 QMAKE_LFLAGS_RPATH =
@@ -87,20 +87,20 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
-biblioteq.path		= /Applications/BiblioteQ.d
-biblioteq.files		= BiblioteQ.app/
+biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
+biblioteq.files		= BiblioteQ.app/*
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 doc.path		= /Applications/BiblioteQ.d/doc.d
 doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d/icons.d
-icons.files		= icons.d
+icons.files		= icons.d/*
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
-preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app
+preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
 sql.path		= /Applications/BiblioteQ.d
 sql.files		= *.sql
 translations.path	= /Applications/BiblioteQ.d/translations.d
