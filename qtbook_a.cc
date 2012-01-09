@@ -332,6 +332,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu4->addAction(tr("Reset &Availability")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -1079,6 +1081,7 @@ void qtbook::slotSearch(void)
   al.monetary_units->clear();
   al.location->clear();
   al.keyword->clear();
+  al.available->setChecked(false);
 
   /*
   ** Populate combination boxes.
@@ -4603,6 +4606,11 @@ void qtbook::slotReset(void)
 	    {
 	      al.keyword->clear();
 	      al.keyword->setFocus();
+	    }
+	  else if(action == actions[12])
+	    {
+	      al.available->setChecked(false);
+	      al.available->setFocus();
 	    }
 
 	  actions.clear();

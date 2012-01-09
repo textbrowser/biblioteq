@@ -2385,6 +2385,12 @@ int qtbook::populateTable(const int search_type_arg,
 		    str = str.replace("category", "genre");
 		  }
 
+		if(al.available->isChecked())
+		  str.append
+		    (QString("HAVING (%1.quantity - "
+			     "COUNT(item_borrower_vw.item_oid)) > 0 ").
+		     arg(type.toLower().remove(" ")));
+
 		if(type != "Video Game")
 		  str += "UNION ALL ";
 		else

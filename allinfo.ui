@@ -38,8 +38,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>616</width>
-         <height>936</height>
+         <width>622</width>
+         <height>942</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -388,6 +388,16 @@
              </property>
             </widget>
            </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Available</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="1">
+            <widget class="QCheckBox" name="available"/>
+           </item>
           </layout>
          </widget>
         </item>
@@ -516,6 +526,7 @@
   <tabstop>quantity</tabstop>
   <tabstop>location</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>available</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>cancelButton</tabstop>
