@@ -4140,6 +4140,10 @@ void qtbook::updateMembersBrowser(const QString &memberid)
   QString errorstr = "";
   QMap<QString, QString> counts;
 
+  /*
+  ** Called from the Borrowers Editor when an item has been updated.
+  */
+
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
@@ -4147,7 +4151,7 @@ void qtbook::updateMembersBrowser(const QString &memberid)
   if(!errorstr.isEmpty())
     addError(QString(tr("Database Error")),
 	     QString(tr("Unable to retrieve the number of reserved items "
-			"by the selected member.")),
+			"of the selected member.")),
 	     errorstr, __FILE__, __LINE__);
   else
     {
@@ -6661,6 +6665,10 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
   QString value1 = "";
   QString value2 = "";
   QString value3 = "";
+
+  /*
+  ** Called from the Borrowers Editor when an item has been updated.
+  */
 
   if(history_diag->isVisible())
     if(history.table->rowCount() > 0 &&
