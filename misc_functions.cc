@@ -2157,7 +2157,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 
   QString version(BIBLIOTEQ_VERSION);
 
-  if(version == "6.46")
+  if(version >= "6.46")
     {
       QString querystr("");
       QSqlQuery query(db);
@@ -2166,8 +2166,9 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	"VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
       query.exec(querystr);
     }
-  else if(version == "6.51" ||
-	  version == "6.51.1")
+
+  if(version >= "6.51" ||
+     version >= "6.51.1")
     {
       QString querystr("");
       QSqlQuery query(db);
@@ -2252,7 +2253,8 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	  query.exec("ALTER TABLE book_backup RENAME TO book");
 	}
     }
-  else if(version == "6.53")
+
+  if(version >= "6.53")
     {
       QString querystr("");
       QSqlQuery query(db);
