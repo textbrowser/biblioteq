@@ -276,7 +276,7 @@
     </message>
     <message>
         <source>State &amp; ZIP Code</source>
-        <translation>Νομός και Ταχ κώδικας</translation>
+        <translation>Νομός &amp; Ταχυδρομικός κώδικας</translation>
     </message>
     <message>
         <source>Last Name</source>
@@ -332,11 +332,11 @@
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Ημερομηνία λήξης</translation>
     </message>
     <message>
         <source>Overdue Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Εκπρόθεσμες αμοιβές</translation>
     </message>
 </context>
 <context>
@@ -387,15 +387,15 @@
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Κυκλοφορία</translation>
+        <translation>Γραφείο κίνησης</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Βιβλιοθήκη</translation>
+        <translation>βιβλιοθηκάριος</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Ιδιότητα μέλους</translation>
+        <translation>Μέλος</translation>
     </message>
     <message>
         <source>ID</source>
@@ -423,7 +423,7 @@
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation type="unfinished">Ανανέωση πίνακα</translation>
+        <translation>Ανανέωση πίνακα</translation>
     </message>
 </context>
 <context>
@@ -502,7 +502,7 @@
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
@@ -629,11 +629,11 @@
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το αντίτυπο που επιλέχθηκε δεν έχει επισταφεί.</translation>
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Κατάσταση αντικειμένου δανεισμού</translation>
     </message>
 </context>
 <context>
@@ -845,7 +845,7 @@ URL</source>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
@@ -1071,15 +1071,15 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού του ελάχιστου αριθμού των ημερών.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Περιοχή αντίτυπου</translation>
     </message>
 </context>
 <context>
@@ -1240,302 +1240,302 @@ URL</source>
     </message>
     <message>
         <source>Add CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη είδους CD</translation>
     </message>
     <message>
         <source>Remove CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση είδους CD</translation>
     </message>
     <message>
         <source>Add DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη περιοχής DVD</translation>
     </message>
     <message>
         <source>Remove DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση περιοχής DVD</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
     <message>
         <source>3</source>
-        <translation type="unfinished">3</translation>
+        <translation>3</translation>
     </message>
     <message>
         <source>4</source>
-        <translation type="unfinished">4</translation>
+        <translation>4</translation>
     </message>
     <message>
         <source>5</source>
-        <translation type="unfinished">5</translation>
+        <translation>5</translation>
     </message>
     <message>
         <source>6</source>
-        <translation type="unfinished">6</translation>
+        <translation>6</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVDs</translation>
+        <translation>DVDs</translation>
     </message>
     <message>
         <source>Add Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη βαθμολογίας παιχνιδιού</translation>
     </message>
     <message>
         <source>Remove Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση βαθμολογίας παιχνιδιού</translation>
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη κινηματογραφικού κάδρου</translation>
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση κινηματογραφικού κάδρου</translation>
     </message>
     <message>
         <source>Add Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη γλώσσας</translation>
     </message>
     <message>
         <source>Remove Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση γλώσσας</translation>
     </message>
     <message>
         <source>Add Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη νομισματικής μονάδας</translation>
     </message>
     <message>
         <source>Remove Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση νομισματικής μονάδας</translation>
     </message>
     <message>
         <source>Add DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη βαθμολογίας DVD</translation>
     </message>
     <message>
         <source>Remove DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση βαθμολογίας DVD</translation>
     </message>
     <message>
         <source>Add Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη τοποθεσίας</translation>
     </message>
     <message>
         <source>Remove Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση τοποθεσίας</translation>
     </message>
     <message>
         <source>Add Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη είδους παιχνιδιού</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση είδους παιχνιδιού</translation>
     </message>
     <message>
         <source>Save Changes</source>
-        <translation type="unfinished">Αποθήκευση αλλαγών</translation>
+        <translation>Αποθήκευση αλλαγών</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανανέωση</translation>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation type="unfinished">Κλείσιμο περιοχής</translation>
+        <translation>Κλείσιμο περιοχής</translation>
     </message>
 </context>
 <context>
     <name>dbenumerations</name>
     <message>
         <source>Database Error</source>
-        <translation type="unfinished">Σφάλμα βάσης δεδομένων</translation>
+        <translation>Σφάλμα βάσης δεδομένων</translation>
     </message>
     <message>
         <source>Unable to retrieve the </source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού του </translation>
     </message>
     <message>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation>.</translation>
     </message>
     <message>
         <source>Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Βιβλίο</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Εφημερίδα</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιοδικό</translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation type="unfinished"></translation>
+        <translation>Μουσικό CD</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Ηλεκτρονικό παιχνίδι</translation>
     </message>
     <message>
         <source>CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Είδος CD</translation>
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Κινηματογραφικό κάδρο</translation>
     </message>
     <message>
         <source>DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Βαθμολογία DVD</translation>
     </message>
     <message>
         <source>DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιοχή DVD</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">Γλώσσα</translation>
+        <translation>Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Είδος παιχνιδιού</translation>
     </message>
     <message>
         <source>Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Βαθμολογία παιχνιδιού</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η δημιουργία εργασίας στη βάσης δεδομένων. </translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους CD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός κινηματογραφικού κάδρου.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας DVD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής DVD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας γλώσσας.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ελάχιστων ημερών.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής νομισματικής μονάδας.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους παιχνιδιού.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας παιχνιδιού.</translation>
     </message>
     <message>
         <source>cd format</source>
-        <translation type="unfinished"></translation>
+        <translation>είδος CD</translation>
     </message>
     <message>
         <source>dvd aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>κινηματογραφικό κάδρο</translation>
     </message>
     <message>
         <source>dvd rating</source>
-        <translation type="unfinished"></translation>
+        <translation>βαθμολογία DVD</translation>
     </message>
     <message>
         <source>dvd region</source>
-        <translation type="unfinished"></translation>
+        <translation>περιοχή DVD</translation>
     </message>
     <message>
         <source>language</source>
-        <translation type="unfinished"></translation>
+        <translation>γλώσσα</translation>
     </message>
     <message>
         <source>monetary unit</source>
-        <translation type="unfinished"></translation>
+        <translation>νομισματική μονάδα</translation>
     </message>
     <message>
         <source>video game platform</source>
-        <translation type="unfinished"></translation>
+        <translation>είδος παιχνιδιού</translation>
     </message>
     <message>
         <source>video game rating</source>
-        <translation type="unfinished"></translation>
+        <translation>βαθμολογία παιχνιδιού</translation>
     </message>
     <message>
         <source>Unable to create the </source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας του </translation>
     </message>
     <message>
         <source> </source>
-        <translation type="unfinished"></translation>
+        <translation> </translation>
     </message>
     <message>
         <source>Unable to create the location (</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας περιοχής (</translation>
     </message>
     <message>
         <source>, </source>
-        <translation type="unfinished">,</translation>
+        <translation>,</translation>
     </message>
     <message>
         <source>).</source>
-        <translation type="unfinished"></translation>
+        <translation>).</translation>
     </message>
     <message>
         <source>Unable to create the minimum day (</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας ελάχιστης ημέρας (</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished">Αδυναμία δέσμευσης της τρέχουσας βάσης δεδομένων.</translation>
+        <translation>Αδυναμία δέσμευσης της τρέχουσας βάσης δεδομένων.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback αποτυχία.</translation>
+        <translation>Rollback αποτυχία.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished">BiblioteQ: Σφάλμα βάσης δεδομένων</translation>
+        <translation>BiblioteQ: Σφάλμα βάσης δεδομένων</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποθήκευσης των στοιχείων της  βάσης δεδομένων.</translation>
     </message>
 </context>
 <context>
@@ -1688,7 +1688,7 @@ URL</source>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
@@ -2094,19 +2094,19 @@ URL</source>
     </message>
     <message>
         <source>From &amp;ISBN-13</source>
-        <translation type="unfinished"></translation>
+        <translation>Από ISBN-1&amp;3</translation>
     </message>
     <message>
         <source>From &amp;ISBN-10</source>
-        <translation type="unfinished"></translation>
+        <translation>Από ISBN-1&amp;0</translation>
     </message>
     <message>
         <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC Ετικέτες</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
@@ -2277,22 +2277,22 @@ URL</source>
     </message>
     <message>
         <source>MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC Ετικέτες</translation>
     </message>
     <message>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
     <name>mainWindow</name>
     <message>
         <source>Populate Database En&amp;umerations Browser on Display</source>
-        <translation>Συμπλήρωση περιοχής επεξεργασίας βάσ&amp;ης κατά την προβολή</translation>
+        <translation>Εμφάνιση εγγραφών της περιοχής επεξεργασίας &amp;βάσης κατά την προβολή</translation>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
@@ -2372,7 +2372,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>Ερ&amp;γαλεία</translation>
+        <translation>Ε&amp;ργαλεία</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -2428,19 +2428,19 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+Π</translation>
+        <translation>Ctrl+Ω</translation>
     </message>
     <message>
         <source>&amp;Save Settings</source>
-        <translation>&amp;Αποθήκευση ρυθμίσεων</translation>
+        <translation>Απο&amp;θήκευση ρυθμίσεων</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+Α</translation>
+        <translation>Ctrl+Θ</translation>
     </message>
     <message>
         <source>&amp;Populate Table on Connect</source>
-        <translation type="obsolete">Σ&amp;υμπλήρωση του πίνακα με την σύνδεση</translation>
+        <translation type="obsolete">Ε&amp;μφάνιση εγγραφών του πίνακα με την σύνδεση</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Columns to Contents</source>
@@ -2448,7 +2448,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Automatically Populate Table on Filter Change</source>
-        <translation type="obsolete">&amp;Αυτόματη συμπλήρωση του πίνακα με την αλλαγή του φίλτρου</translation>
+        <translation type="obsolete">&amp;Αυτόματη εμφάνιση εγγραφών του πίνακα με την αλλαγή του φίλτρου</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
@@ -2460,7 +2460,7 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;Error Log on Disconnect</source>
-        <translation>Επαναφο&amp;ρά της καταχώρισης σφαλμάτων με την αποσύνδεση</translation>
+        <translation>Επαναφορά της &amp;καταχώρισης σφαλμάτων με την αποσύνδεση</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -2472,11 +2472,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Disconnect</source>
-        <translation>Απ&amp;οσύνδεση</translation>
+        <translation>&amp;Αποσύνδεση</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation>Ctrl+Ο</translation>
+        <translation>Ctrl+Α</translation>
     </message>
     <message>
         <source>&amp;Exit BiblioteQ</source>
@@ -2496,19 +2496,19 @@ URL</source>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>Δ&amp;ιαμόρφωση επιλεγμένων αντικειμένων</translation>
+        <translation>Διαμό&amp;ρφωση επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation>Ctrl+Ι</translation>
+        <translation>Ctrl+Ρ</translation>
     </message>
     <message>
         <source>&amp;Members Browser</source>
-        <translation>Α&amp;ναζήτηση μελών</translation>
+        <translation>Ανα&amp;ζήτηση μελών</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation>Ctrl+Ν</translation>
+        <translation>Ctrl+Ζ</translation>
     </message>
     <message>
         <source>&amp;Database Search</source>
@@ -2540,11 +2540,11 @@ URL</source>
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation>Ctrl+G</translation>
+        <translation>Ctrl+Γ</translation>
     </message>
     <message>
         <source>Populate Table on Item &amp;Creation</source>
-        <translation type="obsolete">Συμπλήρωση του πίνακα κατά τη &amp;δημιουργία του αντικειμένου</translation>
+        <translation type="obsolete">Εμφάνιση εγγραφών του πίνακα κατά τη &amp;δημιουργία του αντικειμένου</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -2624,7 +2624,7 @@ URL</source>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
-        <translation type="unfinished">Αυτόματη αποθήκευση με την &amp;έξοδο</translation>
+        <translation>Αυτόματη αποθήκευση με την έ&amp;ξοδο</translation>
     </message>
     <message>
         <source>Configure Administrator Privileges</source>
@@ -2636,11 +2636,11 @@ URL</source>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Συμπλήρωση του πίνακα &amp;μελών κατά την προβολή</translation>
+        <translation>Εμφάνιση εγγραφών του πίν&amp;ακα μελών κατά την προβολή</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Συμπλήρωση του πίνακα &amp;διαχειριστών κατά την προβολή</translation>
+        <translation>Εμφάνιση εγγραφών του πίνακα &amp;διαχειριστών κατά την προβολή</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -2660,19 +2660,19 @@ URL</source>
     </message>
     <message>
         <source>Preferred &amp;Z39.50 Site</source>
-        <translation>Π&amp;ροτιμώμενες Z39.50 σελίδες</translation>
+        <translation>Προ&amp;τιμώμενες Ζ.39.50 σελίδες</translation>
     </message>
     <message>
         <source>Exit Bibliote&amp;Q</source>
-        <translation>Έξοδος Bibliote&amp;Q</translation>
+        <translation>&amp;Έξοδος BiblioteQ</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Ctrl+Ε</translation>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Επιλογή γενικής &amp;γραμματοσειράς</translation>
+        <translation>Επιλογή γενικής γραμματο&amp;σειράς</translation>
     </message>
     <message>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
@@ -2704,43 +2704,43 @@ URL</source>
     </message>
     <message>
         <source>Print Current View</source>
-        <translation type="unfinished"></translation>
+        <translation>Εκτύπωση τρέχουσας προβολής</translation>
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντίγραφο</translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντιγραφή επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>&amp;Refresh View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανανέ&amp;ωση προβολής</translation>
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>Εξαγωγή του πίνακα προ&amp;βολής σε CSV</translation>
     </message>
     <message>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντ&amp;ιγραφή επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Ι</translation>
     </message>
     <message>
         <source>&amp;Populate View on Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμ&amp;φάνιση εγγραφών της προβολής κατά τη σύνδεση</translation>
     </message>
     <message>
         <source>Populate View on Item &amp;Creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση εγγραφών της προβολής κατά το αντικείμενο δ&amp;ημιουργίας</translation>
     </message>
 </context>
 <context>
@@ -3078,11 +3078,11 @@ URL</source>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation type="unfinished">Ανανέωση πίνακα</translation>
+        <translation>Ανανέωση πίνακα</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Ημερομηνία λήξης</translation>
     </message>
 </context>
 <context>
@@ -3268,11 +3268,11 @@ URL</source>
     </message>
     <message>
         <source>Circulation Mode</source>
-        <translation>Λειτουργία κυκλοφορίας</translation>
+        <translation>Λειτουργία γραφείου κίνησης</translation>
     </message>
     <message>
         <source>Librarian Mode</source>
-        <translation>Λειτουργία βιβλιοθήκης</translation>
+        <translation>Λειτουργία Βιβλιοθηκάριου</translation>
     </message>
     <message>
         <source>Membership Mode</source>
@@ -3716,15 +3716,15 @@ URL</source>
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Κυκλοφορία</translation>
+        <translation>Γραφείο κίνησης</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Βιβλιοθήκη</translation>
+        <translation>βιβλιοθηκάριος</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Ιδιότητα μέλους</translation>
+        <translation>Μέλος</translation>
     </message>
     <message>
         <source>Books Reserved</source>
@@ -4144,109 +4144,111 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών.</translation>
     </message>
     <message>
         <source>Unable to determine the roles of </source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού των κανόνων από </translation>
     </message>
     <message>
         <source>BiblioteQ: </source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: </translation>
     </message>
     <message>
         <source>BiblioteQ</source>
-        <translation type="unfinished">BiblioteQ</translation>
+        <translation>BiblioteQ</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Επιλογή γραμματοσειράς</translation>
     </message>
     <message>
         <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Η αντιγραφή των περιεχομένων του  βιβλίου καταγραφής στο πρόχειρο των MS Windows γίνεται όταν επιλεχθεί έστω μία σχετική εγγραφή.</translation>
     </message>
     <message>
         <source>BiblioteQ: New SQLite Database</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Δημιουργία SQLite Βάσης</translation>
     </message>
     <message>
         <source>Unable to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας της συγκεκριμένης SQLite βάσης δεδομένων.</translation>
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation type="unfinished"></translation>
+        <translation>Φαίνεται ότι υπάρχει ήδη μια σύνδεση σε βάση δεδομένων. Θέλετε να τερματιστεί η τρέχουσα σύνδεση και να γίνει σύνδεση με τη νέα βάση δεδομένων SQLite;</translation>
     </message>
     <message>
         <source>&amp;Unlimited Entries per Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Α&amp;περιόριστες εγγραφές ανά σελίδα</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Ημερομηνία λήξης</translation>
     </message>
     <message>
         <source>Unable to determine if the membership of the selected member has expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού εάν η συνδρομή του μέλους που επιλέχθηκε έχει λήξει.</translation>
     </message>
     <message>
         <source>It appears that the selected member&apos;s membership has expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Φαίνεται ότι η συνδρομή του επιλεγμένου μέλους έχει λήξει.</translation>
     </message>
     <message>
         <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το συγκεκριμένο αντικείμενο που επιλέχθηκε δεν είναι διαθέσιμο για δανεισμό.</translation>
     </message>
     <message>
         <source>CSV (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV (*.csv)</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;
+%1</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια;
+%1</translation>
     </message>
     <message>
         <source>Please select at least one item to duplicate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρακαλώ να γίνει επιλογή τουλάχιστον ενός αντικειμένου για αντιγραφή.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
-        <translation type="unfinished"></translation>
+        <translation>Είστε σίγουροι ότι επιθυμείτε την αντιγραφή του </translation>
     </message>
     <message>
         <source>Icons Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση εικονιδίων</translation>
     </message>
     <message>
         <source>Table Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση πίνακα</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ:Εξαγωγή του πίνακα προβολής σε CSV</translation>
     </message>
 </context>
 <context>
@@ -4653,7 +4655,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Αδυναμία δημιουργίας a thread λόγω ανεπαρκών πόρων.</translation>
+        <translation>Αδυναμία δημιουργίας ενός νήματος λόγω ανεπαρκών πόρων.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -4813,43 +4815,43 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;MARC ετικετών</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC Ετικέτες:</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά:</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής βιβλίου</translation>
     </message>
 </context>
 <context>
@@ -5392,63 +5394,63 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού τύπου CD.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Επεξεργασία εγγραφής μουσικού CD (</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Music CD Search</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αναζήτηση μουσικού CD στη βάση δεδομένων</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details (</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Προβολή λεπτομερειών του μουσικού CD (</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Επεξεργασία εγγραφής μουσικού CD</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Προβολή λεπτομερειών του μουσικού CD</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Δημιουργία εγγραφής μουσικού CD</translation>
     </message>
     <message>
         <source>Some or all of the track data has not been saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ορισμένα ή όλα τα δεομένα του κομματιού δεν έχουν αποθηκευτεί.</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά:</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής μουσικού CD</translation>
     </message>
 </context>
 <context>
@@ -5931,43 +5933,43 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd ratings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού βαθμολογίας DVD..</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού κινηματογραφικό κάδρο.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd regions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών προβολής DVD.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής DVD</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά:</translation>
     </message>
 </context>
 <context>
@@ -6513,51 +6515,51 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;MARC ετικετών</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών εφημερίδας.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχών περιοδικών.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>MARC Ετικέτες:</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά:</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Journal Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής εφημερίδας</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής περιοδικού</translation>
     </message>
 </context>
 <context>
@@ -7004,39 +7006,39 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the video game ratings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού βαθμολογίας παιχνιδιού.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game platforms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού είδους παιχνιδιού.</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού γλωσσών.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού νομισματικών μονάδων.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game locations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού περιοχής παιχνιδιού.</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά &amp;Λέξεων κλειδιών</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά:</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Αντιγραφή εγγραφής παιχνιδιού</translation>
     </message>
 </context>
 <context>
@@ -7220,7 +7222,7 @@ URL</source>
     </message>
     <message>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Λέξεις κλειδιά</translation>
     </message>
 </context>
 <context>
@@ -7247,7 +7249,7 @@ URL</source>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Τίτλος</translation>
+        <translation>Τίτλος</translation>
     </message>
 </context>
 <context>
