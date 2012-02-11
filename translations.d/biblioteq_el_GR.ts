@@ -504,6 +504,10 @@
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
     </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Διαθέσιμο</translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
@@ -3760,7 +3764,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
-        <translation>Αδυναμία επανάκτησης του αριθμού των δανεισμένων αντικειμένων ανά επιλεγμένο μέλους.</translation>
+        <translation type="obsolete">Αδυναμία επανάκτησης του αριθμού των δανεισμένων αντικειμένων ανά επιλεγμένο μέλους.</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
@@ -4249,6 +4253,14 @@ URL</source>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
         <translation>BiblioteQ:Εξαγωγή του πίνακα προβολής σε CSV</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

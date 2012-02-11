@@ -504,6 +504,10 @@
         <source>Keywords</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Dostupná</translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
@@ -3781,7 +3785,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
-        <translation>Nemohu určit počet zápůjček vybraného uživatele.</translation>
+        <translation type="obsolete">Nemohu určit počet zápůjček vybraného uživatele.</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
@@ -4275,6 +4279,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the number of reserved items of the selected member.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

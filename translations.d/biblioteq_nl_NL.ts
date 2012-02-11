@@ -488,6 +488,10 @@
         <source>Monetary Units</source>
         <translation>Munteenheid</translation>
     </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Beschikbaar</translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
@@ -3666,7 +3670,7 @@
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
-        <translation>Het is niet mogelijk om het aantal items op te halen die door deze klant zijn geleend.</translation>
+        <translation type="obsolete">Het is niet mogelijk om het aantal items op te halen die door deze klant zijn geleend.</translation>
     </message>
     <message>
         <source>&amp;Music CD Search</source>
@@ -3844,6 +3848,14 @@
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the number of reserved items of the selected member.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
