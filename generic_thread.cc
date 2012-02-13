@@ -94,11 +94,19 @@ void generic_thread::run(void)
 	  (zoomConnection,
 	   z3950SearchStr.toUtf8().constData());
 
+	QString format = qmain->getZ3950Maps()[z3950Name].value("Format").
+	  trimmed().toLower();
+
+	if(format.isEmpty())
+	  format = "render";
+	else
+	  format.prepend("render; charset=");
+
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
-				     "render", 0)) != 0)
+				     format.toAscii().constData(), 0)) != 0)
 	  {
 	    i += 1;
-	    z3950Results.append(rec);
+	    z3950Results.append(QString::fromUtf8(rec));
 	  }
 
 	ZOOM_resultset_destroy(zoomResultSet);

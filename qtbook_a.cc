@@ -2410,6 +2410,13 @@ void qtbook::readGlobalSetup(QString &error)
 
 			    tmphash["Database"] = str;
 			  }
+			else if(!tmphash.contains("Format"))
+			  {
+			    if(str.startsWith("#"))
+			      break;
+
+			    tmphash["Format"] = str;
+			  }
 			else if(!tmphash.contains("Userid"))
 			  {
 			    if(str.startsWith("#"))
@@ -2515,6 +2522,7 @@ void qtbook::readGlobalSetup(QString &error)
 	  tmphash["Address"] = "z3950.loc.gov";
 	  tmphash["Port"] = "7090";
 	  tmphash["Database"] = "Voyager";
+	  tmphash["Format"] = "marc8,utf-8";
 	  z3950Maps["Library of Congress"] = tmphash;
 	  tmphash.clear();
 	}
