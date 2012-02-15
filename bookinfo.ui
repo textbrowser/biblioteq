@@ -38,8 +38,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1106</width>
-         <height>1536</height>
+         <width>1112</width>
+         <height>1552</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -246,7 +246,7 @@
             <item>
              <widget class="QGroupBox" name="isbnAvailableCheckBox">
               <property name="title">
-               <string/>
+               <string>ISBNs</string>
               </property>
               <property name="checkable">
                <bool>true</bool>

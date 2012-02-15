@@ -1036,8 +1036,8 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - 2012 Miss Jade.<br>"
-	     "Icons copyright (c) David Vignoni.<br>"
+	     "Copyright (c) 2006 - 2012 Miss Bombastic.<br>"
+	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) Jonas Rask Design."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"

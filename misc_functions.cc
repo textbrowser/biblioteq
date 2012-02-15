@@ -2248,7 +2248,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		     "back_cover, "
 		     "marc_tags, "
 		     "keyword, "
-		     "type FROM book");
+		     "COALESCE(type, 'Book') FROM book");
 	  query.exec("DROP TABLE book");
 	  query.exec("ALTER TABLE book_backup RENAME TO book");
 	}

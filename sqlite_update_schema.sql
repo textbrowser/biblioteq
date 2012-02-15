@@ -586,10 +586,35 @@ CREATE TABLE book_backup
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
 );
 
-INSERT INTO book_backup SELECT * FROM book;
+INSERT INTO book_backup SELECT
+id,
+myoid, 
+title, 
+edition, 
+author, 
+pdate, 
+publisher, 
+place, 
+category, 
+price, 
+description, 
+language, 
+monetary_units, 
+quantity, 
+binding_type, 
+location, 
+isbn13, 
+lccontrolnumber, 
+callnumber, 
+deweynumber, 
+front_cover, 
+back_cover, 
+marc_tags, 
+keyword, 
+COALESCE(type, 'Book') FROM book;
 DROP TABLE book;
 ALTER TABLE book_backup RENAME TO book;
 
 /* Release 6.53 */
 
-ALTER TABLE member overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
+ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;

@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>customquery</class>
  <widget class="QMainWindow" name="customquery">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>328</width>
+    <height>638</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -125,7 +133,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../.designer/backup/icons.d/16x16/ok.png</normaloff>../.designer/backup/icons.d/16x16/ok.png</iconset>
+          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -148,7 +156,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>../.designer/backup/icons.d/16x16/cancel.png</normaloff>../.designer/backup/icons.d/16x16/cancel.png</iconset>
+          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
