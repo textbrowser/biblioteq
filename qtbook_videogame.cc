@@ -1632,10 +1632,12 @@ void qtbook_videogame::slotSelectImage(void)
 ** -- duplicate() --
 */
 
-void qtbook_videogame::duplicate(const QString &id, const int state)
+void qtbook_videogame::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  oid = id;
+  vg.copiesButton->setEnabled(false);
+  vg.showUserButton->setEnabled(false);
+  oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
   engWindowTitle = "Create";
 }

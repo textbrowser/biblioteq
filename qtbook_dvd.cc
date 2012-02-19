@@ -1809,10 +1809,12 @@ void qtbook_dvd::slotSelectImage(void)
 ** -- duplicate() --
 */
 
-void qtbook_dvd::duplicate(const QString &id, const int state)
+void qtbook_dvd::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  oid = id;
+  dvd.copiesButton->setEnabled(false);
+  dvd.showUserButton->setEnabled(false);
+  oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
   engWindowTitle = "Create";
 }

@@ -2866,10 +2866,12 @@ void qtbook_book::slotReadyRead(void)
 ** -- duplicate() --
 */
 
-void qtbook_book::duplicate(const QString &id, const int state)
+void qtbook_book::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  oid = id;
+  id.copiesButton->setEnabled(false);
+  id.showUserButton->setEnabled(false);
+  oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
   engWindowTitle = "Create";
 }

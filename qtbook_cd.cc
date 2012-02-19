@@ -2199,10 +2199,13 @@ void qtbook_cd::slotSelectImage(void)
 ** -- duplicate() --
 */
 
-void qtbook_cd::duplicate(const QString &id, const int state)
+void qtbook_cd::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  oid = id;
+  cd.copiesButton->setEnabled(false);
+  cd.tracksButton->setEnabled(false);
+  cd.showUserButton->setEnabled(false);
+  oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
   engWindowTitle = "Create";
 }

@@ -2411,10 +2411,12 @@ Ui_magDialog qtbook_magazine::dialog(void) const
 ** -- duplicate() --
 */
 
-void qtbook_magazine::duplicate(const QString &id, const int state)
+void qtbook_magazine::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
-  oid = id;
+  ma.copiesButton->setEnabled(false);
+  ma.showUserButton->setEnabled(false);
+  oid = p_oid;
 
   if(subType.toLower() == "journal")
     setWindowTitle(tr("BiblioteQ: Duplicate Journal Entry"));
