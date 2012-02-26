@@ -96,7 +96,7 @@ doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d/icons.d
 icons.files		= icons.d/*
 macdeployqt.path	= BiblioteQ.app
-macdeployqt.extra	= /opt/QtDSK/Desktop/Qt/4.8.0/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
+macdeployqt.extra	= /opt/QtSDK/Desktop/Qt/4.8.0/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
