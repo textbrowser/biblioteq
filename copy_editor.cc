@@ -2,6 +2,7 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
 #include "copy_editor.h"
 
 extern qtbook *qmain;

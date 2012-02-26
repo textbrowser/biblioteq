@@ -10,6 +10,7 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
 #include "qtbook_magazine.h"
 
 extern qtbook *qmain;

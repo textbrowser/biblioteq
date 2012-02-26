@@ -14,7 +14,6 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "ui_maginfo.h"
 #include "copy_editor.h"
 #include "qtbook_item.h"
@@ -22,7 +21,6 @@
 #include "z3950results.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
-#include "borrowers_editor.h"
 
 class copy_editor;
 class generic_thread;

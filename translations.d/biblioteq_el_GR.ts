@@ -2112,6 +2112,10 @@ URL</source>
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
     </message>
+    <message>
+        <source>ISBNs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>

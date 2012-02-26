@@ -1,3 +1,8 @@
+/*
+** -- Local Includes --
+*/
+
+#include "qtbook.h"
 #include "generic_thread.h"
 
 extern qtbook *qmain;

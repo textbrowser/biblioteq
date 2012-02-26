@@ -14,7 +14,6 @@
 */
 
 #include "ui_z3950results.h"
-#include "qtbook_magazine.h"
 
 class qtbook_magazine;
 

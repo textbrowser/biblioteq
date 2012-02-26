@@ -2,6 +2,7 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
 #include "dbenumerations.h"
 #include "misc_functions.h"
 

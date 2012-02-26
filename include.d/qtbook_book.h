@@ -18,14 +18,12 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "copy_editor.h"
 #include "qtbook_item.h"
 #include "ui_bookinfo.h"
 #include "ui_borrowers.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
-#include "borrowers_editor.h"
 
 class copy_editor;
 class generic_thread;

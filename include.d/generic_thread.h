@@ -21,7 +21,6 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "myqstring.h"
 
 class generic_thread: public QThread

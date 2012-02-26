@@ -13,6 +13,8 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
+#include "borrowers_editor.h"
 #include "qtbook_videogame.h"
 
 extern qtbook *qmain;

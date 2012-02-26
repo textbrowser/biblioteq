@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QDate>
 #include <QtDebug>
 #include <QSqlField>
 #include <QSqlIndex>
@@ -10,6 +11,7 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
 #include "misc_functions.h"
 
 extern qtbook *qmain;

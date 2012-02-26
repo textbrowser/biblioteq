@@ -14,12 +14,10 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "ui_dvdinfo.h"
 #include "copy_editor.h"
 #include "qtbook_item.h"
 #include "misc_functions.h"
-#include "borrowers_editor.h"
 
 class copy_editor;
 class borrowers_editor;

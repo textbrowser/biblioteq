@@ -2,6 +2,7 @@
 ** -- Local Includes --
 */
 
+#include "qtbook.h"
 #include "qtbook_book.h"
 #include "hyperlinked_text_edit.h"
 

@@ -1950,6 +1950,10 @@
         <source>ISBN-13</source>
         <translation>ISBN-13</translation>
     </message>
+    <message>
+        <source>ISBNs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>

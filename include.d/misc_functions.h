@@ -21,11 +21,7 @@ using namespace std;
 #include <QTableWidget>
 #include <QTableWidgetItem>
 
-/*
-** -- Local Includes --
-*/
-
-#include "qtbook.h"
+class QMainWindow;
 
 class misc_functions
 {

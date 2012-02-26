@@ -15,7 +15,6 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "qtbook_item.h"
 #include "misc_functions.h"
 #include "ui_copybrowser.h"
