@@ -2133,10 +2133,6 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	      subfields.takeFirst();
 
 	  str = str.mid(0, str.lastIndexOf('/')).trimmed();
-
-	  if(!str.isEmpty() && str[str.length() - 1].isPunct())
-	    str = str.remove(str.length() - 1, 1).trimmed();
-
 	  ma.title->setText(str.trimmed());
 	  misc_functions::highlightWidget
 	    (ma.title, QColor(162, 205, 90));
