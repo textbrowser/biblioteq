@@ -47,7 +47,7 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_1">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QLabel" name="label_4">
@@ -131,7 +131,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_2">
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
               <widget class="QLabel" name="label_5">
@@ -215,7 +215,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_3">
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QLabel" name="label_6">
@@ -299,7 +299,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_4">
             <layout class="QVBoxLayout" name="verticalLayout_13">
              <item>
               <widget class="QLabel" name="label_13">
@@ -388,7 +388,7 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_5">
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
               <widget class="QLabel" name="label_2">
@@ -472,8 +472,8 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
-            <layout class="QVBoxLayout" name="verticalLayout">
+           <widget class="QWidget" name="layoutWidget_6">
+            <layout class="QVBoxLayout" name="_3">
              <item>
               <widget class="QLabel" name="label">
                <property name="font">
@@ -567,7 +567,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_7">
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
               <widget class="QLabel" name="label_3">
@@ -651,7 +651,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="layoutWidget">
+           <widget class="QWidget" name="layoutWidget_8">
             <layout class="QVBoxLayout" name="verticalLayout_14">
              <item>
               <widget class="QLabel" name="label_14">
@@ -851,7 +851,7 @@
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QWidget" name="layoutWidget">
+          <widget class="QWidget" name="layoutWidget_9">
            <layout class="QVBoxLayout" name="verticalLayout_16">
             <item>
              <widget class="QLabel" name="label_16">
@@ -935,7 +935,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="layoutWidget">
+          <widget class="QWidget" name="layoutWidget_10">
            <layout class="QVBoxLayout" name="verticalLayout_15">
             <item>
              <widget class="QLabel" name="label_15">
@@ -1026,7 +1026,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout">
+     <layout class="QVBoxLayout" name="_2">
       <item>
        <widget class="QToolButton" name="saveButton">
         <property name="font">
@@ -1087,7 +1087,7 @@
        </widget>
       </item>
       <item>
-       <spacer>
+       <spacer name="spacer">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>

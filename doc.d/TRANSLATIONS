@@ -1,0 +1,3 @@
+Please verify that translations are consistent. BiblioteQ uses table
+column headers in order to locate the columns. If the translation
+is not consistent, the correct column may not be located.

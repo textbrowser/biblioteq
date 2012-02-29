@@ -407,7 +407,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="font">
@@ -485,6 +485,22 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <widget class="QMenu" name="menu_Add_Item">
+     <property name="title">
+      <string>&amp;Add Item</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+     </property>
+     <addaction name="action_Book"/>
+     <addaction name="action_DVD"/>
+     <addaction name="action_Journal"/>
+     <addaction name="action_Magazine"/>
+     <addaction name="actionMusic_CD"/>
+     <addaction name="action_Video_Game"/>
+    </widget>
+    <addaction name="menu_Add_Item"/>
     <addaction name="actionDeleteEntry"/>
     <addaction name="actionDuplicateEntry"/>
     <addaction name="actionModifyEntry"/>
@@ -1409,6 +1425,36 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="action_Book">
+   <property name="text">
+    <string>&amp;Book</string>
+   </property>
+  </action>
+  <action name="action_DVD">
+   <property name="text">
+    <string>&amp;DVD</string>
+   </property>
+  </action>
+  <action name="action_Journal">
+   <property name="text">
+    <string>&amp;Journal</string>
+   </property>
+  </action>
+  <action name="action_Magazine">
+   <property name="text">
+    <string>&amp;Magazine</string>
+   </property>
+  </action>
+  <action name="actionMusic_CD">
+   <property name="text">
+    <string>Music &amp;CD</string>
+   </property>
+  </action>
+  <action name="action_Video_Game">
+   <property name="text">
+    <string>&amp;Video Game</string>
    </property>
   </action>
  </widget>

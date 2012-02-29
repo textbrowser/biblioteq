@@ -268,22 +268,22 @@ qtbook::qtbook(void):QMainWindow()
   if((menu4 = new(std::nothrow) QMenu()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  connect(menu1->addAction(tr("Insert &Book")),
+  connect(menu1->addAction(tr("Add &Book")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
-  // menu1->addAction(tr("Insert &Cassette Tape"));
-  connect(menu1->addAction(tr("Insert &DVD")),
+  // menu1->addAction(tr("Add &Cassette Tape"));
+  connect(menu1->addAction(tr("Add &DVD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
-  connect(menu1->addAction(tr("Insert &Journal")),
+  connect(menu1->addAction(tr("Add &Journal")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
-  connect(menu1->addAction(tr("Insert &Magazine")),
+  connect(menu1->addAction(tr("Add &Magazine")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
-  connect(menu1->addAction(tr("Insert Music &CD")),
+  connect(menu1->addAction(tr("Add Music &CD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
-  // menu1->addAction(tr("Insert &Newspaper"));
-  connect(menu1->addAction(tr("Insert &Video Game")),
+  // menu1->addAction(tr("Add &Newspaper"));
+  connect(menu1->addAction(tr("Add &Video Game")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
-  // menu1->addAction(tr("Insert &VHS"));
-  // menu1->addAction(tr("Insert &Vinyl Record"));
+  // menu1->addAction(tr("Add &VHS"));
+  // menu1->addAction(tr("Add &Vinyl Record"));
   connect(menu2->addAction(tr("&General Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
   menu2->addSeparator();
@@ -332,6 +332,30 @@ qtbook::qtbook(void):QMainWindow()
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
+  connect(ui.action_Book,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertBook(void)));
+  connect(ui.actionMusic_CD,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertCD(void)));
+  connect(ui.action_DVD,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertDVD(void)));
+  connect(ui.action_Journal,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertJourn(void)));
+  connect(ui.action_Magazine,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertMag(void)));
+  connect(ui.action_Video_Game,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertVideoGame(void)));
 
   bgraphicsscene *scene = 0;
 
@@ -567,6 +591,7 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionChangePassword->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.deleteTool->setEnabled(false);
+  ui.menu_Add_Item->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
   ui.actionDuplicateEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
@@ -829,6 +854,7 @@ void qtbook::adminSetup(void)
 
   if(roles.contains("administrator") || roles.contains("librarian"))
     {
+      ui.menu_Add_Item->setEnabled(true);
       ui.actionDeleteEntry->setEnabled(true);
       ui.actionDuplicateEntry->setEnabled(true);
       ui.createTool->setEnabled(true);
@@ -874,6 +900,7 @@ void qtbook::adminSetup(void)
     }
   else
     {
+      bb.grantButton->setEnabled(false);
       ui.actionDatabase_Enumerations->setEnabled(true);
       ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
 	(true);
@@ -914,7 +941,10 @@ void qtbook::adminSetup(void)
       connect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotModifyBorrower(void)));
       bb.addButton->setEnabled(true);
-      bb.grantButton->setEnabled(true);
+
+      if(db.driverName() != "QSQLITE")
+	bb.grantButton->setEnabled(true);
+
       bb.deleteButton->setEnabled(true);
       bb.modifyButton->setEnabled(true);
     }
@@ -3710,6 +3740,7 @@ void qtbook::slotDisconnect(void)
   ui.printTool->setEnabled(false);
   ui.actionChangePassword->setEnabled(false);
   ui.deleteTool->setEnabled(false);
+  ui.menu_Add_Item->setEnabled(false);
   ui.actionDeleteEntry->setEnabled(false);
   ui.actionDuplicateEntry->setEnabled(false);
   ui.createTool->setEnabled(false);
