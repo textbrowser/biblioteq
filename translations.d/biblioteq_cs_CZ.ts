@@ -2771,6 +2771,34 @@ webová adresa</translation>
         <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3010,6 +3038,10 @@ webová adresa</translation>
         <source>Dewey Number</source>
         <translation>Klasifikace Dewey</translation>
     </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3113,6 +3145,10 @@ webová adresa</translation>
         <source>Expiration Date</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Grant Privileges</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -3169,7 +3205,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Insert &amp;Book</source>
-        <translation>Vložit &amp;knihu</translation>
+        <translation type="obsolete">Vložit &amp;knihu</translation>
     </message>
     <message>
         <source>Insert &amp;CD</source>
@@ -3177,19 +3213,19 @@ webová adresa</translation>
     </message>
     <message>
         <source>Insert &amp;DVD</source>
-        <translation>Vložit &amp;DVD</translation>
+        <translation type="obsolete">Vložit &amp;DVD</translation>
     </message>
     <message>
         <source>Insert &amp;Journal</source>
-        <translation>Vložit &amp;časopis</translation>
+        <translation type="obsolete">Vložit &amp;časopis</translation>
     </message>
     <message>
         <source>Insert &amp;Magazine</source>
-        <translation>Vložit &amp;magazín</translation>
+        <translation type="obsolete">Vložit &amp;magazín</translation>
     </message>
     <message>
         <source>Insert &amp;Video Game</source>
-        <translation>Vložit &amp;videohru</translation>
+        <translation type="obsolete">Vložit &amp;videohru</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
@@ -4172,10 +4208,6 @@ webová adresa</translation>
         <translation>menu &amp;Vyčistit</translation>
     </message>
     <message>
-        <source>Insert Music &amp;CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Music CD Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4291,6 +4323,38 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Granting privileges...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to grant privileges to all of the members.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

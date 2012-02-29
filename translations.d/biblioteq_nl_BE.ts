@@ -2496,6 +2496,34 @@
         <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -2695,6 +2723,10 @@
         <source>Request Date</source>
         <translation>Aanvraag Datum</translation>
     </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -2793,6 +2825,10 @@
     <message>
         <source>BiblioteQ: Members Browser</source>
         <translation>BiblioteQ: Lijst met Klanten</translation>
+    </message>
+    <message>
+        <source>Grant Privileges</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3082,7 +3118,7 @@
     </message>
     <message>
         <source>Insert &amp;Book</source>
-        <translation>&amp;Boek Toevoegen</translation>
+        <translation type="obsolete">&amp;Boek Toevoegen</translation>
     </message>
     <message>
         <source> 1 ... </source>
@@ -3234,7 +3270,7 @@
     </message>
     <message>
         <source>Insert Music &amp;CD</source>
-        <translation>&amp;Muziek CD Toevoegen</translation>
+        <translation type="obsolete">&amp;Muziek CD Toevoegen</translation>
     </message>
     <message>
         <source>Unable to determine the availability of the selected item.</source>
@@ -3478,11 +3514,11 @@
     </message>
     <message>
         <source>Insert &amp;DVD</source>
-        <translation>&amp;DVD Toevoegen</translation>
+        <translation type="obsolete">&amp;DVD Toevoegen</translation>
     </message>
     <message>
         <source>Insert &amp;Video Game</source>
-        <translation>&amp;Video-Game Toevoegen</translation>
+        <translation type="obsolete">&amp;Video-Game Toevoegen</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
@@ -3562,7 +3598,7 @@
     </message>
     <message>
         <source>Insert &amp;Journal</source>
-        <translation>&amp;Krant Toevoegen</translation>
+        <translation type="obsolete">&amp;Krant Toevoegen</translation>
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
@@ -3590,7 +3626,7 @@
     </message>
     <message>
         <source>Insert &amp;Magazine</source>
-        <translation>&amp;Tijdschrift Toevoegen</translation>
+        <translation type="obsolete">&amp;Tijdschrift Toevoegen</translation>
     </message>
     <message>
         <source>Please provide a valid Street.</source>
@@ -3860,6 +3896,38 @@
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Granting privileges...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to grant privileges to all of the members.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

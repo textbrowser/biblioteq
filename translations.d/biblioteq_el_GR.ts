@@ -2750,6 +2750,34 @@ URL</source>
         <source>Populate View on Item &amp;Creation</source>
         <translation>Εμφάνιση εγγραφών της προβολής κατά το αντικείμενο δ&amp;ημιουργίας</translation>
     </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -2989,6 +3017,10 @@ URL</source>
         <source>Dewey Number</source>
         <translation>Dewey Αριθμός</translation>
     </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3092,6 +3124,10 @@ URL</source>
         <source>Expiration Date</source>
         <translation>Ημερομηνία λήξης</translation>
     </message>
+    <message>
+        <source>Grant Privileges</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -3148,27 +3184,27 @@ URL</source>
     </message>
     <message>
         <source>Insert &amp;Book</source>
-        <translation>Εισαγωγή &amp;Βιβλίου</translation>
+        <translation type="obsolete">Εισαγωγή &amp;Βιβλίου</translation>
     </message>
     <message>
         <source>Insert Music &amp;CD</source>
-        <translation>Εισαγωγή &amp;CD</translation>
+        <translation type="obsolete">Εισαγωγή &amp;CD</translation>
     </message>
     <message>
         <source>Insert &amp;DVD</source>
-        <translation>Εισαγωγή &amp;DVD</translation>
+        <translation type="obsolete">Εισαγωγή &amp;DVD</translation>
     </message>
     <message>
         <source>Insert &amp;Journal</source>
-        <translation>Εισαγωγή &amp;Εφημερίδας</translation>
+        <translation type="obsolete">Εισαγωγή &amp;Εφημερίδας</translation>
     </message>
     <message>
         <source>Insert &amp;Magazine</source>
-        <translation>Εισαγωγή &amp;Περιοδικού</translation>
+        <translation type="obsolete">Εισαγωγή &amp;Περιοδικού</translation>
     </message>
     <message>
         <source>Insert &amp;Video Game</source>
-        <translation>Εισαγωγή &amp;Ηλεκτρονικού παιχνιδιού</translation>
+        <translation type="obsolete">Εισαγωγή &amp;Ηλεκτρονικού παιχνιδιού</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
@@ -4264,6 +4300,38 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Granting privileges...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to grant privileges to all of the members.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
