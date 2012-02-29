@@ -72,7 +72,10 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Location"));
 
       if(type != "All Requested")
-	list.append(tr("Availability"));
+	{
+	  list.append(tr("Availability"));
+	  list.append(tr("Total Reserved"));
+	}
 
       list.append(tr("Type"));
       list.append("MYOID");
@@ -101,6 +104,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Call Number"));
       list.append(tr("Dewey Class Number"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
     }
@@ -121,6 +125,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Quantity"));
       list.append(tr("Location"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
     }
@@ -143,6 +148,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Audio"));
       list.append(tr("Recording Type"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
     }
@@ -165,6 +171,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Region"));
       list.append(tr("Aspect Ratio"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
     }
@@ -187,6 +194,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Call Number"));
       list.append(tr("Dewey Number"));
       list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
     }
@@ -198,11 +206,19 @@ void main_table::setColumns(const QString &username,
      type != "All Requested" &&
      type != "All Reserved")
     {
+      /*
+      ** Hide the Type and MYOID columns.
+      */
+
       setColumnHidden(list.size() - 1, true);
       setColumnHidden(list.size() - 2, true);
     }
   else
     {
+      /*
+      ** Hide the MYOID and REQUESTOID columns.
+      */
+
       setColumnHidden(list.size() - 1, true);
 
       if(type == "All Requested")

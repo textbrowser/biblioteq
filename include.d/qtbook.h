@@ -335,9 +335,10 @@ class qtbook: public QMainWindow
   void slotSectionResized(int, int, int);
   void slotAutoPopOnFilter(void);
   void slotClearSqliteMenu(bool);
-  void slotShowCustomQuery(void);
+  void slotGrantPrivileges(void);
   void slotInsertVideoGame(void);
   void slotShowAdminDialog(void);
+  void slotShowCustomQuery(void);
   void slotShowErrorDialog(void);
   void slotVideoGameSearch(void);
   void slotListOverdueItems(void);

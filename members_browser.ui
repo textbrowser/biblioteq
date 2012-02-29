@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>membersBrowser</class>
  <widget class="QMainWindow" name="membersBrowser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>456</width>
+    <height>560</height>
+   </rect>
+  </property>
   <property name="font">
    <font>
     <family>Times</family>
@@ -375,6 +383,26 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="grantButton">
+        <property name="toolTip">
+         <string>Grant Privileges</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons.d/32x32/permissions.png</normaloff>icons.d/32x32/permissions.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="overdueButton">
         <property name="font">
          <font>
@@ -483,6 +511,7 @@
   <tabstop>listButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>checkoutButton</tabstop>
+  <tabstop>grantButton</tabstop>
   <tabstop>overdueButton</tabstop>
   <tabstop>reloadButton</tabstop>
   <tabstop>cancelButton</tabstop>

@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011 Alexis Megas
+** Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011, 2012 Alexis Megas
 ** All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -83,12 +83,6 @@ QApplication *qapp = 0;
 int main(int argc, char *argv[])
 {
   /*
-  ** Remove the old configuration file.
-  */
-
-  (void) QFile::remove(QString(QDir::homePath()).append("/.biblioteq.dat"));
-
-  /*
   ** Prepare configuration settings.
   */
 
@@ -115,18 +109,18 @@ int main(int argc, char *argv[])
 	  settings.remove(settings.allKeys().at(i));
     }
 
+#ifdef Q_WS_MAC
+  QApplication::setStyle(new QMacStyle());
+#elif defined Q_WS_WIN
+  QApplication::setStyle(new QWindowsStyle());
+#endif
+
   /*
   ** Create the user interface.
   */
 
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-#ifdef Q_WS_MAC
-  qapp->setStyle(new QMacStyle());
-#elif defined Q_WS_WIN
-  qapp->setStyle(new QWindowsStyle());
-#endif
 
   QTranslator qtTranslator;
 
@@ -508,6 +502,8 @@ qtbook::qtbook(void):QMainWindow()
 	  error_diag, SLOT(close(void)));
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
+  connect(bb.grantButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotGrantPrivileges(void)));
   connect(ui.configTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
   connect(ui.printTool, SIGNAL(triggered(void)), this,
@@ -790,6 +786,7 @@ QString qtbook::getRoles(void) const
 void qtbook::adminSetup(void)
 {
   bb.addButton->setEnabled(true);
+  bb.grantButton->setEnabled(true);
   bb.deleteButton->setEnabled(true);
   bb.modifyButton->setEnabled(true);
   bb.historyButton->setEnabled(true);
@@ -885,7 +882,7 @@ void qtbook::adminSetup(void)
   ui.actionRequests->setToolTip(tr("Item Requests"));
 
   /*
-  ** Hide certain fields in the Member's Browser.
+  ** Hide certain fields in the Members Browser.
   */
 
   if(roles == "membership")
@@ -900,6 +897,7 @@ void qtbook::adminSetup(void)
   if(roles == "circulation" || roles == "librarian")
     {
       bb.addButton->setEnabled(false);
+      bb.grantButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
 
@@ -916,6 +914,7 @@ void qtbook::adminSetup(void)
       connect(bb.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotModifyBorrower(void)));
       bb.addButton->setEnabled(true);
+      bb.grantButton->setEnabled(true);
       bb.deleteButton->setEnabled(true);
       bb.modifyButton->setEnabled(true);
     }
@@ -4086,6 +4085,63 @@ void qtbook::slotPopulateMembersBrowser(void)
   bb.table->hide();
   bb.table->show();
 #endif
+}
+
+/*
+** -- slotGrantPrivileges() --
+*/
+
+void qtbook::slotGrantPrivileges(void)
+{
+  bool error = false;
+  QString errorstr("");
+  QProgressDialog progress(members_diag);
+  QTableWidgetItem *item = 0;
+
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Granting privileges..."));
+  progress.setMaximum(bb.table->rowCount());
+  progress.show();
+  progress.update();
+
+  for(int i = 0; i < bb.table->rowCount(); i++)
+    {
+      if((item = bb.table->item(i, 0)))
+	{
+	  misc_functions::DBAccount(item->text(),
+				    db, misc_functions::UPDATE_USER,
+				    errorstr);
+
+	  if(!errorstr.isEmpty())
+	    {
+	      error = true;
+	      addError(QString(tr("Database Error")),
+		       QString(tr("An error occurred while attempting to "
+				  "update the database account "
+				  "for ")) +
+		       item->text() +
+		       QString(tr(".")),
+		       errorstr, __FILE__, __LINE__);
+	    }
+	}
+
+      progress.setValue(i + 1);
+      progress.update();
+#ifndef Q_WS_MAC
+      qapp->processEvents();
+#endif
+    }
+
+  progress.hide();
+
+  if(error)
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  tr("Unable to grant privileges to all of "
+			     "the members."));
 }
 
 /*
