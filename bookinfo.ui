@@ -10,12 +10,6 @@
     <height>1605</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ</string>
   </property>
@@ -38,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>1552</height>
+         <width>1106</width>
+         <height>1536</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -95,12 +89,6 @@
                   <height>0</height>
                  </size>
                 </property>
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&amp;Download</string>
                 </property>
@@ -117,12 +105,6 @@
                   <width>105</width>
                   <height>0</height>
                  </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
                 </property>
                 <property name="text">
                  <string>&amp;Select</string>
@@ -183,11 +165,6 @@
                   <width>105</width>
                   <height>0</height>
                  </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>10</pointsize>
-                 </font>
                 </property>
                 <property name="text">
                  <string>&amp;Download</string>
@@ -254,12 +231,6 @@
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
                 <widget class="QLabel" name="label">
-                 <property name="font">
-                  <font>
-                   <family>Times</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>ISBN-10</string>
                  </property>
@@ -276,12 +247,6 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="isbn13to10">
-                   <property name="font">
-                    <font>
-                     <family>Times</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
                    <property name="text">
                     <string>From &amp;ISBN-13</string>
                    </property>
@@ -295,12 +260,6 @@
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_11">
-                 <property name="font">
-                  <font>
-                   <family>Times</family>
-                   <pointsize>10</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>ISBN-13</string>
                  </property>
@@ -317,12 +276,6 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="isbn10to13">
-                   <property name="font">
-                    <font>
-                     <family>Times</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
                    <property name="text">
                     <string>From &amp;ISBN-10</string>
                    </property>
@@ -341,12 +294,6 @@
              <layout class="QGridLayout" name="gridLayout">
               <item row="0" column="0">
                <widget class="QLabel" name="label_5">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Edition</string>
                 </property>
@@ -378,12 +325,6 @@
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_6">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Author(s)</string>
                 </property>
@@ -404,12 +345,6 @@
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_9">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Book Binding Type</string>
                 </property>
@@ -454,12 +389,6 @@
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_12">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>LC Control Number</string>
                 </property>
@@ -474,12 +403,6 @@
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="label_17">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Call Number</string>
                 </property>
@@ -494,12 +417,6 @@
               </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_18">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Dewey Class Number</string>
                 </property>
@@ -526,12 +443,6 @@
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_13">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Publication Date</string>
               </property>
@@ -541,11 +452,6 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="publication_date">
-                <property name="font">
-                 <font>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -568,12 +474,6 @@
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_14">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Publisher</string>
               </property>
@@ -600,12 +500,6 @@
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_15">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Categories</string>
               </property>
@@ -613,12 +507,6 @@
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_16">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Price</string>
               </property>
@@ -648,12 +536,6 @@
             </item>
             <item row="6" column="0">
              <widget class="QLabel" name="label_3">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Language</string>
               </property>
@@ -681,12 +563,6 @@
             </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_4">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Monetary Units</string>
               </property>
@@ -721,12 +597,6 @@
                <layout class="QGridLayout">
                 <item row="0" column="0">
                  <widget class="QPushButton" name="copiesButton">
-                  <property name="font">
-                   <font>
-                    <family>Times</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
                   <property name="text">
                    <string>&amp;Copies</string>
                   </property>
@@ -738,12 +608,6 @@
                 </item>
                 <item row="1" column="0">
                  <widget class="QPushButton" name="showUserButton">
-                  <property name="font">
-                   <font>
-                    <family>Times</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
                   <property name="text">
                    <string>&amp;Reservation Status</string>
                   </property>
@@ -772,12 +636,6 @@
             </item>
             <item row="9" column="0">
              <widget class="QLabel" name="label_10">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Location</string>
               </property>
@@ -786,13 +644,7 @@
             <item row="9" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="location">
-                <property name="font">
-                 <font>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="location"/>
               </item>
               <item>
                <spacer>
@@ -811,12 +663,6 @@
             </item>
             <item row="10" column="0">
              <widget class="QLabel" name="label_7">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Abstract</string>
               </property>
@@ -844,12 +690,6 @@
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_20">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Place of Publication</string>
               </property>
@@ -867,12 +707,6 @@
             </item>
             <item row="8" column="0">
              <widget class="QLabel" name="label_8">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Copies</string>
               </property>
@@ -880,12 +714,6 @@
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Title</string>
               </property>
@@ -893,12 +721,6 @@
             </item>
             <item row="11" column="0">
              <widget class="QLabel" name="label_19">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>MARC Tags</string>
               </property>
@@ -926,12 +748,6 @@
             </item>
             <item row="12" column="0">
              <widget class="QLabel" name="label_21">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Keywords</string>
               </property>
@@ -974,12 +790,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;OK</string>
         </property>
@@ -1016,12 +826,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;Reset</string>
         </property>
@@ -1037,12 +841,6 @@
           <width>170</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Print</string>
@@ -1060,12 +858,6 @@
           <width>170</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Close</string>

@@ -10,12 +10,6 @@
     <height>1400</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ</string>
   </property>
@@ -39,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1008</width>
-         <height>1334</height>
+         <height>1331</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -89,12 +83,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="frontButton">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&amp;Select</string>
                 </property>
@@ -149,12 +137,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="backButton">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>&amp;Select</string>
                 </property>
@@ -188,17 +170,6 @@
            <layout class="QGridLayout">
             <item row="0" column="0">
              <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>UPC</string>
               </property>
@@ -206,17 +177,6 @@
             </item>
             <item row="0" column="1">
              <widget class="QLineEdit" name="id">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="maxLength">
                <number>32</number>
               </property>
@@ -224,17 +184,6 @@
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_5">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Game Rating</string>
               </property>
@@ -243,19 +192,7 @@
             <item row="1" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="rating">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="rating"/>
               </item>
               <item>
                <spacer>
@@ -274,17 +211,6 @@
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_6">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Developer(s)</string>
               </property>
@@ -292,17 +218,6 @@
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_9">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Platform</string>
               </property>
@@ -311,19 +226,7 @@
             <item row="3" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="platform">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="platform"/>
               </item>
               <item>
                <spacer>
@@ -342,12 +245,6 @@
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_11">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Mode</string>
               </property>
@@ -357,11 +254,6 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QComboBox" name="mode">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                 </font>
-                </property>
                 <item>
                  <property name="text">
                   <string>Multiplayer</string>
@@ -411,50 +303,16 @@
            <layout class="QGridLayout">
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Title</string>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="title">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
-             </widget>
+             <widget class="QLineEdit" name="title"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_13">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Release Date</string>
               </property>
@@ -464,11 +322,6 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="release_date">
-                <property name="font">
-                 <font>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -491,17 +344,6 @@
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_14">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Publisher</string>
               </property>
@@ -528,17 +370,6 @@
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_15">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Genres</string>
               </property>
@@ -546,17 +377,6 @@
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_16">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Price</string>
               </property>
@@ -569,17 +389,6 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
               </property>
               <property name="minimum">
                <double>0.010000000000000</double>
@@ -597,17 +406,6 @@
             </item>
             <item row="6" column="0">
              <widget class="QLabel" name="label_3">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Language</string>
               </property>
@@ -616,19 +414,7 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="language">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="language"/>
               </item>
               <item>
                <spacer>
@@ -647,17 +433,6 @@
             </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_4">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Monetary Units</string>
               </property>
@@ -671,32 +446,10 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
              </widget>
             </item>
             <item row="8" column="0">
              <widget class="QLabel" name="label_8">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Copies</string>
               </property>
@@ -706,17 +459,6 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QSpinBox" name="quantity">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <italic>false</italic>
-                  <bold>false</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                 </font>
-                </property>
                 <property name="minimum">
                  <number>1</number>
                 </property>
@@ -732,12 +474,6 @@
                <layout class="QGridLayout">
                 <item row="0" column="0">
                  <widget class="QPushButton" name="copiesButton">
-                  <property name="font">
-                   <font>
-                    <family>Times</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
                   <property name="text">
                    <string>&amp;Copies</string>
                   </property>
@@ -749,12 +485,6 @@
                 </item>
                 <item row="1" column="0">
                  <widget class="QPushButton" name="showUserButton">
-                  <property name="font">
-                   <font>
-                    <family>Times</family>
-                    <pointsize>10</pointsize>
-                   </font>
-                  </property>
                   <property name="text">
                    <string>&amp;Reservation Status</string>
                   </property>
@@ -783,12 +513,6 @@
             </item>
             <item row="9" column="0">
              <widget class="QLabel" name="label_10">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Location</string>
               </property>
@@ -797,14 +521,7 @@
             <item row="9" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="location">
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="location"/>
               </item>
               <item>
                <spacer>
@@ -823,17 +540,6 @@
             </item>
             <item row="10" column="0">
              <widget class="QLabel" name="label_7">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Abstract</string>
               </property>
@@ -841,17 +547,6 @@
             </item>
             <item row="10" column="1">
              <widget class="QTextEdit" name="description">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
@@ -872,12 +567,6 @@
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_17">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Place of Publication</string>
               </property>
@@ -895,17 +584,6 @@
             </item>
             <item row="11" column="0">
              <widget class="QLabel" name="label_12">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-                <underline>false</underline>
-                <strikeout>false</strikeout>
-               </font>
-              </property>
               <property name="text">
                <string>Keywords</string>
               </property>
@@ -961,17 +639,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;OK</string>
         </property>
@@ -988,17 +655,6 @@
           <width>170</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Z39.50 Query</string>
@@ -1017,12 +673,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;Reset</string>
         </property>
@@ -1038,12 +688,6 @@
           <width>170</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Print</string>
@@ -1061,17 +705,6 @@
           <width>170</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Close</string>

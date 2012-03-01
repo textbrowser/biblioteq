@@ -388,6 +388,7 @@ qtbook::qtbook(void):QMainWindow()
   customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  ui.actionSetGlobalFonts->setVisible(false);
 #endif
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
@@ -1024,7 +1025,9 @@ void qtbook::showMain(void)
 
   initialUpdate();
   show();
+#ifndef Q_WS_MAC
   setGlobalFonts(qapp->font());
+#endif
   slotResizeColumns();
 
   if(!error.isEmpty())
@@ -1060,7 +1063,9 @@ void qtbook::slotAbout(void)
 {
   QMessageBox mb(this);
 
+#ifndef Q_WS_MAC
   mb.setFont(qapp->font());
+#endif
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText
@@ -2616,12 +2621,14 @@ void qtbook::readConfig(void)
   else
     ui.actionPreserveGeometry->setChecked(false);
 
+#ifndef Q_WS_MAC
   font = qapp->font();
 
   if(settings.contains("global_font"))
     font.fromString(settings.value("global_font", "").toString());
 
   qapp->setFont(font);
+#endif
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", false).toBool());
   ui.actionPopulate_Members_Browser_Table_on_Display->setChecked

@@ -2,11 +2,13 @@
 <ui version="4.0">
  <class>historyDialog</class>
  <widget class="QMainWindow" name="historyDialog">
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>537</width>
+    <height>332</height>
+   </rect>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Member's Reservation History</string>
@@ -163,12 +165,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;Reload</string>
         </property>
@@ -186,12 +182,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>&amp;Print</string>
         </property>
@@ -208,12 +198,6 @@
           <width>105</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>&amp;Close</string>

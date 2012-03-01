@@ -2,17 +2,19 @@
 <ui version="4.0">
  <class>tracksDialog</class>
  <widget class="QDialog" name="tracksDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>501</width>
+    <height>290</height>
+   </rect>
+  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
     <height>16777215</height>
    </size>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Album Tracks Browser</string>
@@ -36,17 +38,6 @@
      <layout class="QVBoxLayout">
       <item>
        <widget class="QTableWidget" name="table">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>false</underline>
-          <strikeout>false</strikeout>
-         </font>
-        </property>
         <property name="focusPolicy">
          <enum>Qt::StrongFocus</enum>
         </property>
@@ -122,12 +113,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Save</string>
        </property>
@@ -144,12 +129,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
        </property>
        <property name="text">
         <string>&amp;Insert</string>
@@ -168,12 +147,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Delete</string>
        </property>
@@ -190,17 +163,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
        </property>
        <property name="text">
         <string>&amp;Close</string>

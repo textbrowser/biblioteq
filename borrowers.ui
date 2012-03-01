@@ -2,17 +2,19 @@
 <ui version="4.0">
  <class>checkedOutDialog</class>
  <widget class="QDialog" name="checkedOutDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>404</width>
+    <height>290</height>
+   </rect>
+  </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
     <height>16777215</height>
    </size>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Current Borrowers</string>
@@ -136,12 +138,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Return</string>
        </property>
@@ -158,12 +154,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
        </property>
        <property name="text">
         <string>&amp;Save</string>

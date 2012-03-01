@@ -10,12 +10,6 @@
     <height>225</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ: Branch Selection</string>
   </property>
@@ -28,12 +22,6 @@
     <layout class="QHBoxLayout">
      <item>
       <widget class="QLabel" name="label_4">
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>Branch Name</string>
        </property>
@@ -95,12 +83,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="fileButton">
-            <property name="font">
-             <font>
-              <family>Times</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="text">
              <string>&amp;Select SQLite Database</string>
             </property>
@@ -147,12 +129,6 @@
           </item>
           <item row="0" column="1">
            <widget class="QLabel" name="label_6">
-            <property name="font">
-             <font>
-              <family>Times</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="text">
              <string>Userid</string>
             </property>
@@ -174,12 +150,6 @@
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="label_5">
-            <property name="font">
-             <font>
-              <family>Times</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="text">
              <string>Password</string>
             </property>
@@ -235,12 +205,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Connect</string>
        </property>
@@ -258,12 +222,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Reset</string>
        </property>
@@ -280,12 +238,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
        </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>

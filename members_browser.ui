@@ -7,14 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>456</width>
-    <height>560</height>
+    <height>634</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Members Browser</string>
@@ -38,12 +32,6 @@
         <layout class="QHBoxLayout">
          <item>
           <widget class="QLabel" name="label">
-           <property name="font">
-            <font>
-             <family>Times</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
            <property name="text">
             <string>Filter</string>
            </property>
@@ -65,11 +53,6 @@
          </item>
          <item>
           <widget class="QLineEdit" name="filter">
-           <property name="font">
-            <font>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
            <property name="maxLength">
             <number>128</number>
            </property>
@@ -89,17 +72,6 @@
        </item>
        <item>
         <widget class="QTableWidget" name="table">
-         <property name="font">
-          <font>
-           <family>Times</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-           <underline>false</underline>
-           <strikeout>false</strikeout>
-          </font>
-         </property>
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
          </property>
@@ -188,12 +160,6 @@
      <layout class="QVBoxLayout">
       <item>
        <widget class="QToolButton" name="addButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Add Member</string>
         </property>
@@ -214,12 +180,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="deleteButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Delete Selected Member</string>
         </property>
@@ -240,12 +200,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="modifyButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Modify Selected Member</string>
         </property>
@@ -289,12 +243,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="listButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>List Selected Member's Reserved Items</string>
         </property>
@@ -315,12 +263,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="printButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Print Selected Member's Reserved Items</string>
         </property>
@@ -351,12 +293,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="checkoutButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Reserve Selected Item</string>
         </property>
@@ -404,12 +340,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="overdueButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>List All Overdue Items</string>
         </property>
@@ -430,12 +360,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="reloadButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Refresh Table</string>
         </property>
@@ -469,12 +393,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="cancelButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Close Browser</string>
         </property>

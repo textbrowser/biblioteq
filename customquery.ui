@@ -10,12 +10,6 @@
     <height>638</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ: Custom Query</string>
   </property>
@@ -36,12 +30,6 @@
       <layout class="QVBoxLayout">
        <item>
         <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <family>Times</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
          <property name="text">
           <string>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</string>
          </property>
@@ -122,12 +110,6 @@
           <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="text">
          <string>Execute</string>
         </property>
@@ -144,12 +126,6 @@
           <width>105</width>
           <height>0</height>
          </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
         </property>
         <property name="text">
          <string>Close</string>

@@ -7,14 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>433</width>
-    <height>535</height>
+    <height>603</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Borrower Information</string>
@@ -39,11 +33,6 @@
          <layout class="QHBoxLayout">
           <item>
            <widget class="QComboBox" name="state">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <item>
              <property name="text">
               <string>N/A</string>
@@ -303,11 +292,6 @@
           </item>
           <item>
            <widget class="QLineEdit" name="zip">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="maxLength">
              <number>5</number>
             </property>
@@ -317,17 +301,6 @@
         </item>
         <item row="10" column="1">
          <widget class="QLineEdit" name="telephoneNumber">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="maxLength">
            <number>32</number>
           </property>
@@ -335,12 +308,6 @@
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_5">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Member ID</string>
           </property>
@@ -348,17 +315,6 @@
         </item>
         <item row="10" column="0">
          <widget class="QLabel" name="label_3">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="text">
            <string>Telephone Number</string>
           </property>
@@ -366,12 +322,6 @@
         </item>
         <item row="7" column="1">
          <widget class="QLineEdit" name="street">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="maxLength">
            <number>256</number>
           </property>
@@ -379,17 +329,6 @@
         </item>
         <item row="7" column="0">
          <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="text">
            <string>Street</string>
           </property>
@@ -397,17 +336,6 @@
         </item>
         <item row="2" column="1">
          <widget class="QLineEdit" name="firstName">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="maxLength">
            <number>128</number>
           </property>
@@ -415,12 +343,6 @@
         </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_10">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Date of Birth</string>
           </property>
@@ -428,12 +350,6 @@
         </item>
         <item row="8" column="0">
          <widget class="QLabel" name="label_6">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>City</string>
           </property>
@@ -441,17 +357,6 @@
         </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="lastName">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="maxLength">
            <number>128</number>
           </property>
@@ -459,12 +364,6 @@
         </item>
         <item row="9" column="0">
          <widget class="QLabel" name="label_7">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>State &amp; ZIP Code</string>
           </property>
@@ -485,11 +384,6 @@
               <width>25</width>
               <height>16777215</height>
              </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
             </property>
             <property name="maxLength">
              <number>1</number>
@@ -513,12 +407,6 @@
         </item>
         <item row="8" column="1">
          <widget class="QLineEdit" name="city">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="maxLength">
            <number>256</number>
           </property>
@@ -526,17 +414,6 @@
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_4">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="text">
            <string>Last Name</string>
           </property>
@@ -544,11 +421,6 @@
         </item>
         <item row="0" column="1">
          <widget class="QLineEdit" name="memberid">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="maxLength">
            <number>16</number>
           </property>
@@ -556,12 +428,6 @@
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_9">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Member Since</string>
           </property>
@@ -569,17 +435,6 @@
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="text">
            <string>First Name</string>
           </property>
@@ -587,12 +442,6 @@
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_8">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Middle Initial</string>
           </property>
@@ -600,12 +449,6 @@
         </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_11">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>Sex</string>
           </property>
@@ -615,11 +458,6 @@
          <layout class="QHBoxLayout">
           <item>
            <widget class="QComboBox" name="sex">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <item>
              <property name="text">
               <string>Female</string>
@@ -654,11 +492,6 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="readOnly">
              <bool>false</bool>
             </property>
@@ -686,11 +519,6 @@
          <layout class="QHBoxLayout">
           <item>
            <widget class="QDateEdit" name="dob">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
             <property name="readOnly">
              <bool>false</bool>
             </property>
@@ -716,12 +544,6 @@
         </item>
         <item row="11" column="0">
          <widget class="QLabel" name="label_12">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
           <property name="text">
            <string>E-Mail Address</string>
           </property>
@@ -816,12 +638,6 @@
      </property>
      <item>
       <widget class="QToolButton" name="prevTool">
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="toolTip">
         <string>Previous Member</string>
        </property>
@@ -864,17 +680,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Save</string>
        </property>
@@ -891,17 +696,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
        </property>
        <property name="text">
         <string>&amp;Close</string>
@@ -927,12 +721,6 @@
      </item>
      <item>
       <widget class="QToolButton" name="nextTool">
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
        <property name="toolTip">
         <string>Next Member</string>
        </property>

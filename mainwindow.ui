@@ -10,17 +10,6 @@
     <height>650</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-    <weight>50</weight>
-    <italic>false</italic>
-    <bold>false</bold>
-    <underline>false</underline>
-    <strikeout>false</strikeout>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ</string>
   </property>
@@ -407,34 +396,16 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <widget class="QMenu" name="menuHelp">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuTools">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;Tools</string>
     </property>
@@ -445,22 +416,10 @@
     <addaction name="actionRefreshTable"/>
    </widget>
    <widget class="QMenu" name="menu_File">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menu_Recent_SQLite_Files">
-     <property name="font">
-      <font>
-       <family>Times</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="title">
       <string>&amp;Recent SQLite Files</string>
      </property>
@@ -476,12 +435,6 @@
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;Edit</string>
     </property>
@@ -506,12 +459,6 @@
     <addaction name="actionModifyEntry"/>
    </widget>
    <widget class="QMenu" name="menu_View">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;View</string>
     </property>
@@ -520,22 +467,10 @@
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
-    <property name="font">
-     <font>
-      <family>Times</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
     <property name="title">
      <string>&amp;Options</string>
     </property>
     <widget class="QMenu" name="menuEntriesPerPage">
-     <property name="font">
-      <font>
-       <family>Times</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
      <property name="title">
       <string>E&amp;ntries per Page</string>
      </property>
@@ -699,17 +634,6 @@
    <property name="text">
     <string>&amp;About</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
-   </property>
   </action>
   <action name="actionShowGrid">
    <property name="checkable">
@@ -717,17 +641,6 @@
    </property>
    <property name="text">
     <string>&amp;Display Table Grid</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
    </property>
   </action>
   <action name="actionResizeColumns">
@@ -738,17 +651,6 @@
    <property name="text">
     <string>&amp;Resize Columns to Contents</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
-   </property>
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
@@ -757,17 +659,6 @@
    </property>
    <property name="text">
     <string>&amp;Save Settings</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -783,17 +674,6 @@
    <property name="text">
     <string>&amp;Populate View on Connect</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <underline>false</underline>
-     <strikeout>false</strikeout>
-    </font>
-   </property>
   </action>
   <action name="actionShowErrorDialog">
    <property name="icon">
@@ -802,12 +682,6 @@
    </property>
    <property name="text">
     <string>View Error &amp;Log</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -820,12 +694,6 @@
    <property name="text">
     <string>Reset &amp;Error Log on Disconnect</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionConnect">
    <property name="icon">
@@ -834,12 +702,6 @@
    </property>
    <property name="text">
     <string>&amp;Connect</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -853,12 +715,6 @@
    <property name="text">
     <string>&amp;Disconnect</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
    </property>
@@ -870,12 +726,6 @@
    </property>
    <property name="text">
     <string>Exit Bibliote&amp;Q</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -889,12 +739,6 @@
    <property name="text">
     <string>&amp;Delete Selected Item(s)</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
    </property>
@@ -907,12 +751,6 @@
    <property name="text">
     <string>&amp;Modify Selected Item(s)</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
@@ -924,12 +762,6 @@
    </property>
    <property name="text">
     <string>&amp;Members Browser</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -949,12 +781,6 @@
    <property name="toolTip">
     <string>Database Search</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
    </property>
@@ -966,12 +792,6 @@
    </property>
    <property name="text">
     <string>&amp;Refresh View</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -985,12 +805,6 @@
    <property name="text">
     <string>&amp;Selected Item(s)</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
@@ -1003,12 +817,6 @@
    <property name="text">
     <string>Select &amp;Global Font</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
    </property>
@@ -1020,12 +828,6 @@
    <property name="text">
     <string>Populate View on Item &amp;Creation</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="connectTool">
    <property name="icon">
@@ -1034,12 +836,6 @@
    </property>
    <property name="text">
     <string>Connect</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="disconnectTool">
@@ -1050,12 +846,6 @@
    <property name="text">
     <string>Disconnect</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="detailsTool">
    <property name="icon">
@@ -1065,12 +855,6 @@
    <property name="text">
     <string>View Selected Item(s)</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="createTool">
    <property name="icon">
@@ -1079,12 +863,6 @@
    </property>
    <property name="text">
     <string>Add Item</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
    <property name="menuRole">
     <enum>QAction::TextHeuristicRole</enum>
@@ -1098,12 +876,6 @@
    <property name="text">
     <string>Delete Selected Item(s)</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="modifyTool">
    <property name="icon">
@@ -1112,12 +884,6 @@
    </property>
    <property name="text">
     <string>Modify Selected Item(s)</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="printTool">
@@ -1128,12 +894,6 @@
    <property name="text">
     <string>Print Current View</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="reserveTool">
    <property name="icon">
@@ -1142,12 +902,6 @@
    </property>
    <property name="text">
     <string>Reserve Selected Item</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="userTool">
@@ -1158,12 +912,6 @@
    <property name="text">
     <string>Display Members Browser</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="searchTool">
    <property name="icon">
@@ -1172,12 +920,6 @@
    </property>
    <property name="text">
     <string>Database Search</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="customQueryTool">
@@ -1188,12 +930,6 @@
    <property name="text">
     <string>Custom Database Query</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="refreshTool">
    <property name="icon">
@@ -1202,12 +938,6 @@
    </property>
    <property name="text">
     <string>Refresh Table</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="configTool">
@@ -1218,12 +948,6 @@
    <property name="text">
     <string>Select Viewable Columns</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="exitTool">
    <property name="icon">
@@ -1232,12 +956,6 @@
    </property>
    <property name="text">
     <string>Exit BiblioteQ</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="actionReservationHistory">
@@ -1248,12 +966,6 @@
    <property name="text">
     <string>View Member's Reservation History</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionChangePassword">
    <property name="icon">
@@ -1263,12 +975,6 @@
    <property name="text">
     <string>Change Password</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionPreserveGeometry">
    <property name="checkable">
@@ -1277,12 +983,6 @@
    <property name="text">
     <string>Preserve Main &amp;Window's Geometry</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionAutomaticallySaveSettingsOnExit">
    <property name="checkable">
@@ -1290,12 +990,6 @@
    </property>
    <property name="text">
     <string>Automatically Save Settings on E&amp;xit</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="actionConfigureAdministratorPrivileges">
@@ -1306,12 +1000,6 @@
    <property name="text">
     <string>Configure Administrator Privileges</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionRequests">
    <property name="icon">
@@ -1321,12 +1009,6 @@
    <property name="text">
     <string>Item Requests</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionPopulate_Members_Browser_Table_on_Display">
    <property name="checkable">
@@ -1335,12 +1017,6 @@
    <property name="text">
     <string>Populate &amp;Members Browser Table on Display</string>
    </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
   </action>
   <action name="actionPopulate_Administrator_Browser_Table_on_Display">
    <property name="checkable">
@@ -1348,12 +1024,6 @@
    </property>
    <property name="text">
     <string>Populate &amp;Administrator Browser Table on Display</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="action_New_SQLite_Database">
@@ -1407,12 +1077,6 @@
    </property>
    <property name="toolTip">
     <string>Duplicate Selected Item(s)</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times</family>
-     <pointsize>10</pointsize>
-    </font>
    </property>
   </action>
   <action name="actionDuplicateEntry">

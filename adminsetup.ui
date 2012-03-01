@@ -10,12 +10,6 @@
     <height>386</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>BiblioteQ: Administrator Browser</string>
   </property>
@@ -51,19 +45,13 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>761</width>
-             <height>136</height>
+             <width>1107</width>
+             <height>142</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="1">
              <widget class="QLabel" name="label_6">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Item Creation</string>
               </property>
@@ -71,12 +59,6 @@
             </item>
             <item row="0" column="2">
              <widget class="QLabel" name="label_7">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Item Deletion</string>
               </property>
@@ -84,12 +66,6 @@
             </item>
             <item row="0" column="3">
              <widget class="QLabel" name="label_8">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Item Returns</string>
               </property>
@@ -97,12 +73,6 @@
             </item>
             <item row="0" column="4">
              <widget class="QLabel" name="label_9">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Item Reservations</string>
               </property>
@@ -110,12 +80,6 @@
             </item>
             <item row="0" column="5">
              <widget class="QLabel" name="label_10">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Item Updates</string>
               </property>
@@ -123,12 +87,6 @@
             </item>
             <item row="0" column="6">
              <widget class="QLabel" name="label_11">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Member Creation</string>
               </property>
@@ -136,12 +94,6 @@
             </item>
             <item row="0" column="7">
              <widget class="QLabel" name="label_12">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Member Deletion</string>
               </property>
@@ -149,12 +101,6 @@
             </item>
             <item row="0" column="8">
              <widget class="QLabel" name="label_13">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Member Updates</string>
               </property>
@@ -162,12 +108,6 @@
             </item>
             <item row="0" column="9">
              <widget class="QLabel" name="label_14">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Reservation Histories</string>
               </property>
@@ -175,12 +115,6 @@
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_2">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Administrator</string>
               </property>
@@ -308,12 +242,6 @@
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_3">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Circulation</string>
               </property>
@@ -360,12 +288,6 @@
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_4">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Librarian</string>
               </property>
@@ -412,12 +334,6 @@
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_5">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Membership</string>
               </property>
@@ -466,17 +382,6 @@
           </widget>
          </widget>
          <widget class="QTableWidget" name="table">
-          <property name="font">
-           <font>
-            <family>Times</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <italic>false</italic>
-            <bold>false</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
           <property name="focusPolicy">
            <enum>Qt::StrongFocus</enum>
           </property>
@@ -533,12 +438,6 @@
      <layout class="QVBoxLayout" name="_2">
       <item>
        <widget class="QToolButton" name="addButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Add Administrator</string>
         </property>
@@ -559,12 +458,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="deleteButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Delete Selected Administrator</string>
         </property>
@@ -615,12 +508,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="reloadButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Refresh Table</string>
         </property>
@@ -654,12 +541,6 @@
       </item>
       <item>
        <widget class="QToolButton" name="cancelButton">
-        <property name="font">
-         <font>
-          <family>Times</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <property name="toolTip">
          <string>Close Browser</string>
         </property>

@@ -2,11 +2,13 @@
 <ui version="4.0">
  <class>z3950ResultsDialog</class>
  <widget class="QDialog" name="z3950ResultsDialog">
-  <property name="font">
-   <font>
-    <family>Times</family>
-    <pointsize>10</pointsize>
-   </font>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>373</height>
+   </rect>
   </property>
   <property name="windowTitle">
    <string>BiblioteQ: Z39.50 Query Results</string>
@@ -39,14 +41,7 @@
          </property>
          <layout class="QVBoxLayout">
           <item>
-           <widget class="QListWidget" name="list">
-            <property name="font">
-             <font>
-              <family>Times</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-           </widget>
+           <widget class="QListWidget" name="list"/>
           </item>
          </layout>
         </widget>
@@ -59,12 +54,6 @@
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <family>Times</family>
-                <pointsize>10</pointsize>
-               </font>
-              </property>
               <property name="text">
                <string>Title</string>
               </property>
@@ -115,17 +104,6 @@
          <height>0</height>
         </size>
        </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
        <property name="text">
         <string>&amp;Select</string>
        </property>
@@ -142,12 +120,6 @@
          <width>105</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Times</family>
-         <pointsize>10</pointsize>
-        </font>
        </property>
        <property name="text">
         <string>&amp;Cancel</string>
