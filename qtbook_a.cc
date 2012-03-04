@@ -2350,7 +2350,7 @@ void qtbook::readGlobalSetup(QString &error)
   generic_thread *thread = 0;
   QHash<QString, QString> tmphash;
 
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN32
   filename = "biblioteq.conf";
 #else
   filename.append(CONFIGFILE);
