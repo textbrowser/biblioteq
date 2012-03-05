@@ -886,6 +886,8 @@ void qtbook_magazine::slotGo(void)
 			  "%1.quantity - COUNT(item_borrower_vw."
 			  "item_oid) "
 			  "AS availability, "
+			  "COUNT(item_borrower_vw.item_oid) AS "
+			  "total_reserved, "
 			  "%1.type, "
 			  "%1.myoid, "
 			  "%1.front_cover "

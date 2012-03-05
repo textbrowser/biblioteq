@@ -844,6 +844,7 @@ void qtbook_dvd::slotGo(void)
 	"dvd.quantity - "
 	"COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
+	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
 	"dvd.type, "
 	"dvd.myoid, "
 	"dvd.front_cover "

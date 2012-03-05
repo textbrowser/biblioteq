@@ -929,6 +929,7 @@ void qtbook_book::slotGo(void)
 	"book.deweynumber, "
 	"book.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
+	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
 	"book.type, "
 	"book.myoid, "
 	"book.front_cover "

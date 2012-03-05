@@ -801,6 +801,7 @@ void qtbook_cd::slotGo(void)
 	"cd.cdaudio, "
 	"cd.cdrecording, "
 	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
+	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
 	"cd.type, "
 	"cd.myoid, "
 	"cd.front_cover "
