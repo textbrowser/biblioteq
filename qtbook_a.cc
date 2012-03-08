@@ -933,8 +933,7 @@ void qtbook::adminSetup(void)
 	{
 	  ui.actionDatabase_Enumerations->setEnabled(true);
 	  ui.actionPopulate_Database_Enumerations_Browser_on_Display->
-	    setEnabled
-	    (true);
+	    setEnabled(true);
 	}
     }
   else
