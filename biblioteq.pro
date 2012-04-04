@@ -4,7 +4,7 @@ TEMPLATE	= app
 LANGUAGE	= C++
 QT		+= sql network
 CONFIG		+= qt release thread warn_on x11 copy_dir_files
-DEFINES		+= CONFIGFILE="'\"/usr/local/share/biblioteq.conf\"'"
+DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Wextra -Werror
 QMAKE_CXXFLAGS_RELEASE -= -O
 QMAKE_CLEAN	+= BiblioteQ
