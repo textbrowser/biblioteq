@@ -2615,7 +2615,7 @@ void qtbook::readConfig(void)
   if(settings.contains("main_window_geometry"))
     {
       ui.actionPreserveGeometry->setChecked(true);
-      setGeometry(settings.value("main_window_geometry").toRect());
+      restoreGeometry(settings.value("main_window_geometry").toByteArray());
     }
   else
     ui.actionPreserveGeometry->setChecked(false);
@@ -2868,7 +2868,7 @@ void qtbook::slotSaveConfig(void)
   settings.setValue("last_category", getTypeFilterString());
 
   if(ui.actionPreserveGeometry->isChecked())
-    settings.setValue("main_window_geometry", geometry());
+    settings.setValue("main_window_geometry", saveGeometry());
   else
     settings.remove("main_window_geometry");
 
