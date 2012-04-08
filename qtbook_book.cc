@@ -2024,11 +2024,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2103,11 +2100,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2139,11 +2133,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2201,11 +2192,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2262,11 +2250,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2294,11 +2279,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2346,11 +2328,9 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(tmpstr.contains(subfields.first()))
-			  {
-			    tmpstr = tmpstr.mid
-			      (0, tmpstr.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  tmpstr = tmpstr.mid
+			    (0, tmpstr.indexOf(subfields.takeFirst())).
+			    trimmed();
 			else
 			  subfields.takeFirst();
 
@@ -2489,11 +2469,8 @@ void qtbook_book::slotQuery(void)
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
-			  {
-			    str = str.mid
-			      (0, str.indexOf(subfields.first())).trimmed();
-			    break;
-			  }
+			  str = str.mid
+			    (0, str.indexOf(subfields.takeFirst())).trimmed();
 			else
 			  subfields.takeFirst();
 
