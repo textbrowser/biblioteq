@@ -786,6 +786,7 @@ void qtbook_magazine::slotGo(void)
 
 		  qmain->slotResizeColumns();
 		  qmain->slotDisplaySummary();
+		  qmain->updateSceneItem(oid, ma.front_image->image);
 		}
 	    }
 	  else

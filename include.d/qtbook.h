@@ -198,6 +198,7 @@ class qtbook: public QMainWindow
   void setGlobalFonts(const QFont &);
   void replaceMagazine(const QString &, qtbook_magazine *);
   void removeVideoGame(qtbook_videogame *);
+  void updateSceneItem(const QString &id, const QImage &image);
   void replaceVideoGame(const QString &, qtbook_videogame *);
   void updateItemWindows(void);
   void updateMembersBrowser(void);

@@ -729,6 +729,7 @@ void qtbook_cd::slotGo(void)
 
 		  qmain->slotResizeColumns();
 		  qmain->slotDisplaySummary();
+		  qmain->updateSceneItem(oid, cd.front_image->image);
 		}
 	    }
 	  else

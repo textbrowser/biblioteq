@@ -1071,7 +1071,8 @@ void qtbook::slotAbout(void)
     (QString("<html>BiblioteQ Version %1<br>"
 	     "Copyright (c) 2006 - 2012 Miss Bombastic.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
-	     "Library icon copyright (c) Jonas Rask Design."
+	     "Library icon copyright (c) Jonas Rask Design.<br>"
+	     "Qt version %2."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
@@ -1079,7 +1080,8 @@ void qtbook::slotAbout(void)
 	     "For release notes, please visit "
 	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
 	     "http://biblioteq.sourceforge.net/news.html</a>.<br></html>").
-     arg(BIBLIOTEQ_VERSION));
+     arg(BIBLIOTEQ_VERSION).
+     arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap(QPixmap("./icons.d/book.png"));
   mb.exec();
@@ -8250,4 +8252,30 @@ void qtbook::slotDuplicate(void)
     QMessageBox::critical(this, tr("BiblioteQ: Error"),
 			  tr("Unable to determine the selected item's "
 			     "type."));
+}
+
+/*
+** -- updateSceneItem() --
+*/
+
+void qtbook::updateSceneItem(const QString &oid, const QImage &image)
+{
+  QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
+
+  if(!items.isEmpty())
+    {
+      QStringList oids;
+      QGraphicsPixmapItem *item = 0;
+
+      while(!items.isEmpty())
+	if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
+							      takeFirst())))
+	  if(oid == item->data(0).toString())
+	    {
+	      item->setPixmap(QPixmap::fromImage(image));
+	      break;
+	    }
+
+      items.clear();
+    }
 }

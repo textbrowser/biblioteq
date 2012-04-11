@@ -686,6 +686,7 @@ void qtbook_videogame::slotGo(void)
 
 		  qmain->slotResizeColumns();
 		  qmain->slotDisplaySummary();
+		  qmain->updateSceneItem(oid, vg.front_image->image);
 		}
 	    }
 	  else

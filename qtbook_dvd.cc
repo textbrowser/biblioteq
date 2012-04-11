@@ -770,6 +770,7 @@ void qtbook_dvd::slotGo(void)
 
 		  qmain->slotResizeColumns();
 		  qmain->slotDisplaySummary();
+		  qmain->updateSceneItem(oid, dvd.front_image->image);
 		}
 	    }
 	  else
