@@ -51,9 +51,6 @@ extern "C"
 #include <QFontDialog>
 #include <QTranslator>
 #include <QLibraryInfo>
-#ifdef Q_WS_WIN
-#include <QWindowsStyle>
-#endif
 #include <QDesktopWidget>
 
 /*
@@ -111,8 +108,6 @@ int main(int argc, char *argv[])
 
 #ifdef Q_WS_MAC
   QApplication::setStyle(new QMacStyle());
-#elif defined Q_WS_WIN
-  QApplication::setStyle(new QWindowsStyle());
 #endif
 
   /*
