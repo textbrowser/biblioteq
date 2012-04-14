@@ -506,7 +506,7 @@
     </message>
     <message>
         <source>Available</source>
-        <translation type="unfinished">Διαθέσιμο</translation>
+        <translation>Διαθέσιμο</translation>
     </message>
 </context>
 <context>
@@ -2114,7 +2114,7 @@ URL</source>
     </message>
     <message>
         <source>ISBNs</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBNs</translation>
     </message>
 </context>
 <context>
@@ -2752,31 +2752,31 @@ URL</source>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Προσθήκη αντικειμένου</translation>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Βιβλί&amp;ο</translation>
     </message>
     <message>
         <source>&amp;DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Ε&amp;φημερίδα</translation>
     </message>
     <message>
         <source>&amp;Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Περιοδικό</translation>
     </message>
     <message>
         <source>Music &amp;CD</source>
-        <translation type="unfinished"></translation>
+        <translation>Μουσικό &amp;CD</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ηλεκτρονικό παιχνίδι</translation>
     </message>
 </context>
 <context>
@@ -3019,7 +3019,7 @@ URL</source>
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Συνολικά δανεισμένα</translation>
     </message>
 </context>
 <context>
@@ -3126,7 +3126,7 @@ URL</source>
     </message>
     <message>
         <source>Grant Privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Χορηγία προνομίων</translation>
     </message>
 </context>
 <context>
@@ -4296,43 +4296,43 @@ URL</source>
     </message>
     <message>
         <source>Reset &amp;Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά διαθεσι&amp;μότητας</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία επανάκτησης του αριθμού των δανεισμένων αντικειμένων ανά επιλεγμένο μέλους.</translation>
     </message>
     <message>
         <source>Add &amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη Βιβλί&amp;ου</translation>
     </message>
     <message>
         <source>Add &amp;DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη &amp;DVD</translation>
     </message>
     <message>
         <source>Add &amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη Ε&amp;φημερίδας</translation>
     </message>
     <message>
         <source>Add &amp;Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη &amp;Περιοδικού</translation>
     </message>
     <message>
         <source>Add Music &amp;CD</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη Μουσικού &amp;CD</translation>
     </message>
     <message>
         <source>Add &amp;Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Προσθήκη &amp;Ηλεκτρονικού παιχνιδιού</translation>
     </message>
     <message>
         <source>Granting privileges...</source>
-        <translation type="unfinished"></translation>
+        <translation>Χορήγηση προνομίων</translation>
     </message>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η χορήγηση προνομίων σε όλα τα μέλη.</translation>
     </message>
 </context>
 <context>
