@@ -116,288 +116,72 @@ void misc_functions::grantPrivs(const QString &userid,
 				const QSqlDatabase &db,
 				QString &errorstr)
 {
-  int i = 0;
   QString querystr = "";
   QSqlQuery query(db);
-  QStringList privlist;
-  QStringList objectlist;
 
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  privlist << "SELECT"
-	   << "SELECT";
-  objectlist << "admin"
-	     << "item_borrower_vw";
-
-  if(roles.contains("administrator") || roles.contains("circulation"))
+  if(!query.lastError().isValid())
     {
-      privlist << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, SELECT"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT"
-	       << "SELECT";
-      objectlist << "book"
-		 << "book_copy_info"
-		 << "book_copy_info_myoid_seq"
-		 << "book_myoid_seq"
-		 << "cd"
-		 << "cd_copy_info"
-		 << "cd_copy_info_myoid_seq"
-		 << "cd_myoid_seq"
-		 << "cd_songs"
-		 << "dvd"
-		 << "dvd_copy_info"
-		 << "dvd_copy_info_myoid_seq"
-		 << "dvd_myoid_seq"
-		 << "journal"
-		 << "journal_copy_info"
-		 << "journal_copy_info_myoid_seq"
-		 << "journal_myoid_seq"
-		 << "magazine"
-		 << "magazine_copy_info"
-		 << "magazine_copy_info_myoid_seq"
-		 << "magazine_myoid_seq"
-		 << "videogame"
-		 << "videogame_copy_info"
-		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq"
-		 << "member"
-		 << "item_borrower"
-		 << "item_borrower_myoid_seq"
-		 << "member_history"
-		 << "member_history_myoid_seq"
-		 << "item_request"
-		 << "item_request_myoid_seq"
-		 << "locations"
-		 << "monetary_units"
-		 << "languages"
-		 << "cd_formats"
-		 << "dvd_ratings"
-		 << "dvd_aspect_ratios"
-		 << "dvd_regions"
-		 << "minimum_days"
-		 << "videogame_ratings"
-		 << "videogame_platforms";
+      if(roles.contains("administrator"))
+	(void) query.exec(QString("GRANT biblioteq_administrator "
+				  "TO %1 WITH ADMIN OPTION").
+			  arg(userid));
     }
-
-  if(roles.contains("administrator") || roles.contains("librarian"))
-    {
-      privlist << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT, UPDATE, USAGE"
-	       << "SELECT"
-	       << "SELECT, UPDATE, USAGE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "DELETE, INSERT, SELECT, UPDATE";
-      objectlist << "book"
-		 << "book_copy_info"
-		 << "book_copy_info_myoid_seq"
-		 << "book_myoid_seq"
-		 << "cd"
-		 << "cd_copy_info"
-		 << "cd_copy_info_myoid_seq"
-		 << "cd_myoid_seq"
-		 << "cd_songs"
-		 << "dvd"
-		 << "dvd_copy_info"
-		 << "dvd_copy_info_myoid_seq"
-		 << "dvd_myoid_seq"
-		 << "journal"
-		 << "journal_copy_info"
-		 << "journal_copy_info_myoid_seq"
-		 << "journal_myoid_seq"
-		 << "magazine"
-		 << "magazine_copy_info"
-		 << "magazine_copy_info_myoid_seq"
-		 << "magazine_myoid_seq"
-		 << "videogame"
-		 << "videogame_copy_info"
-		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq"
-		 << "item_request"
-		 << "item_request_myoid_seq"
-		 << "locations"
-		 << "monetary_units"
-		 << "languages"
-		 << "cd_formats"
-		 << "dvd_ratings"
-		 << "dvd_aspect_ratios"
-		 << "dvd_regions"
-		 << "minimum_days"
-		 << "videogame_ratings"
-		 << "videogame_platforms";
-    }
-
-  if(roles.contains("administrator") || roles.contains("membership"))
-    {
-      privlist << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "DELETE, INSERT, SELECT, UPDATE"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT"
-	       << "SELECT";
-      objectlist << "book"
-		 << "book_copy_info"
-		 << "book_copy_info_myoid_seq"
-		 << "book_myoid_seq"
-		 << "cd"
-		 << "cd_copy_info"
-		 << "cd_copy_info_myoid_seq"
-		 << "cd_myoid_seq"
-		 << "cd_songs"
-		 << "dvd"
-		 << "dvd_copy_info"
-		 << "dvd_copy_info_myoid_seq"
-		 << "dvd_myoid_seq"
-		 << "journal"
-		 << "journal_copy_info"
-		 << "journal_copy_info_myoid_seq"
-		 << "journal_myoid_seq"
-		 << "magazine"
-		 << "magazine_copy_info"
-		 << "magazine_copy_info_myoid_seq"
-		 << "magazine_myoid_seq"
-		 << "videogame"
-		 << "videogame_copy_info"
-		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq"
-		 << "member"
-		 << "locations"
-		 << "monetary_units"
-		 << "languages"
-		 << "cd_formats"
-		 << "dvd_ratings"
-		 << "dvd_aspect_ratios"
-		 << "dvd_regions"
-		 << "minimum_days"
-		 << "videogame_ratings"
-		 << "videogame_platforms";
-    }
-
-  if(objectlist.size() != privlist.size())
-    errorstr = QObject::tr
-      ("Application error: objectlist.size() != privlist.size().");
-  else
-    for(i = 0; i < objectlist.size(); i++)
-      {
-	querystr = QString("GRANT %1 ON %2 TO %3").arg(privlist[i]).arg
-	  (objectlist[i]).arg(userid);
-
-	if(!query.exec(querystr))
-	  break;
-      }
-
-  privlist.clear();
-  objectlist.clear();
 
   if(!query.lastError().isValid())
-    if(roles.contains("administrator") || roles.contains("membership"))
-      {
-	querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
-	(void) query.exec(querystr);
-      }
+    {
+      if(roles.contains("circulation"))
+	(void) query.exec(QString("GRANT biblioteq_circulation "
+				  "TO %1").arg(userid));
+    }
 
-  if(query.lastError().isValid())
+  if(!query.lastError().isValid())
+    {
+      if(roles.contains("librarian"))
+	(void) query.exec(QString("GRANT biblioteq_librarian "
+				  "TO %1").arg(userid));
+    }
+
+  if(!query.lastError().isValid())
+    {
+      if(roles.contains("membership"))
+	(void) query.exec(QString("GRANT biblioteq_membership "
+				  "TO %1 WITH ADMIN OPTION").
+			  arg(userid));
+    }
+
+  if(!query.lastError().isValid())
+    {
+      if(roles.isEmpty())
+	(void) query.exec(QString("GRANT biblioteq_patron "
+				  "TO %1").arg(userid));
+    }
+
+  if(!query.lastError().isValid())
+    {
+      if(roles.contains("administrator") || roles.contains("membership"))
+	{
+	  if(qmain->getRoles().contains("administrator") ||
+	     qmain->getRoles().contains("membership"))
+	    query.exec("SET ROLE NONE");
+
+	  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+	  (void) query.exec(querystr);
+
+	  if(query.lastError().isValid())
+	    errorstr = query.lastError().text();
+
+	  if(qmain->getRoles().contains("administrator"))
+	    query.exec("SET ROLE biblioteq_administrator");
+	  else if(qmain->getRoles().contains("membership"))
+	    query.exec("SET ROLE biblioteq_membership");
+	}
+    }
+  else
     errorstr = query.lastError().text();
 }
 
@@ -409,7 +193,6 @@ void misc_functions::revokeAll(const QString &userid,
 			       const QSqlDatabase &db,
 			       QString &errorstr)
 {
-  int i = 0;
   int count = 0;
   QString querystr = "";
   QSqlQuery query(db);
@@ -426,27 +209,33 @@ void misc_functions::revokeAll(const QString &userid,
     {
       objectlist << "admin"
 		 << "book"
-		 << "item_borrower"
-		 << "item_borrower_myoid_seq"
-		 << "item_borrower_vw"
-		 << "item_request"
-		 << "item_request_myoid_seq"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
 		 << "book_myoid_seq"
 		 << "cd"
 		 << "cd_copy_info"
 		 << "cd_copy_info_myoid_seq"
+		 << "cd_formats"
 		 << "cd_myoid_seq"
 		 << "cd_songs"
 		 << "dvd"
+		 << "dvd_aspect_ratios"
 		 << "dvd_copy_info"
 		 << "dvd_copy_info_myoid_seq"
 		 << "dvd_myoid_seq"
+		 << "dvd_ratings"
+		 << "dvd_regions"
+		 << "item_borrower"
+		 << "item_borrower_myoid_seq"
+		 << "item_borrower_vw"
+		 << "item_request"
+		 << "item_request_myoid_seq"
 		 << "journal"
 		 << "journal_copy_info"
 		 << "journal_copy_info_myoid_seq"
 		 << "journal_myoid_seq"
+		 << "languages"
+		 << "locations"
 		 << "magazine"
 		 << "magazine_copy_info"
 		 << "magazine_copy_info_myoid_seq"
@@ -454,26 +243,34 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "member"
 		 << "member_history"
 		 << "member_history_myoid_seq"
+		 << "minimum_days"
+		 << "monetary_units"
 		 << "videogame"
 		 << "videogame_copy_info"
 		 << "videogame_copy_info_myoid_seq"
 		 << "videogame_myoid_seq"
-		 << "locations"
-		 << "monetary_units"
-		 << "languages"
-		 << "cd_formats"
-		 << "dvd_ratings"
-		 << "dvd_aspect_ratios"
-		 << "dvd_regions"
-		 << "minimum_days"
-		 << "videogame_ratings"
-		 << "videogame_platforms";
+		 << "videogame_platforms"
+		 << "videogame_ratings";
 
-      for(i = 0; i < objectlist.size(); i++)
+      query.exec("SET ROLE NONE");
+
+      while(!objectlist.isEmpty())
 	{
-	  querystr = QString
-	    ("REVOKE ALL ON %1 FROM %2").arg
-	    (objectlist[i]).arg(userid);
+	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
+	    (objectlist.takeFirst()).arg(userid);
+	  (void) query.exec(querystr);
+	}
+
+      objectlist << "biblioteq_administrator"
+		 << "biblioteq_circulation"
+		 << "biblioteq_librarian"
+		 << "biblioteq_membership"
+		 << "biblioteq_patron";
+
+      while(!objectlist.isEmpty())
+	{
+	  querystr = QString("REVOKE %1 FROM %2").arg
+	    (objectlist.takeFirst()).arg(userid);
 
 	  if(!query.exec(querystr))
 	    break;
@@ -481,15 +278,19 @@ void misc_functions::revokeAll(const QString &userid,
 
       objectlist.clear();
 
-      if(!query.lastError().isValid())
+      if(query.lastError().isValid())
+	errorstr = query.lastError().text();
+      else
 	{
 	  querystr = QString("ALTER USER %1 NOCREATEUSER").arg(userid);
 	  (void) query.exec(querystr);
-	}
-    }
 
-  if(query.lastError().isValid())
-    errorstr = query.lastError().text();
+	  if(query.lastError().isValid())
+	    errorstr = query.lastError().text();
+	}
+
+      query.exec("SET ROLE biblioteq_administrator");
+    }
 }
 
 /*
@@ -502,7 +303,6 @@ void misc_functions::DBAccount(const QString &userid,
 			       QString &errorstr,
 			       const QString &roles)
 {
-  int i = 0;
   int count = 0;
   QString querystr = "";
   QSqlQuery query(db);
@@ -523,251 +323,268 @@ void misc_functions::DBAccount(const QString &userid,
 
       if(count == 0)
 	{
-	  if(roles.contains("administrator") ||
-	     roles.contains("membership"))
+	  if(qmain->getRoles().contains("administrator") ||
+	     qmain->getRoles().contains("membership"))
+	    query.exec("SET ROLE NONE");
+
+	  if(roles.contains("administrator") || roles.contains("membership"))
 	    querystr = QString
 	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
 	       "createuser").arg(userid);
 	  else
 	    querystr = QString
-	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg
-	      (userid);
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
 
 	  (void) query.exec(querystr);
+
+	  if(query.lastError().isValid())
+	    errorstr = query.lastError().text();
+
+	  if(qmain->getRoles().contains("administrator"))
+	    query.exec("SET ROLE biblioteq_administrator");
+	  else if(qmain->getRoles().contains("membership"))
+	    query.exec("SET ROLE biblioteq_membership");
+
+	  if(!errorstr.isEmpty())
+	    return;
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(roles.contains("administrator"))
+		{
+		  (void) query.exec(QString("GRANT biblioteq_administrator "
+					    "TO %1 WITH ADMIN OPTION").
+				    arg(userid));
+
+		  if(query.lastError().isValid())
+		    errorstr = query.lastError().text();
+		}
+	    }
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(roles.contains("circulation"))
+		{
+		  (void) query.exec(QString("GRANT biblioteq_circulation "
+					    "TO %1").arg(userid));
+
+		  if(query.lastError().isValid())
+		    errorstr = query.lastError().text();
+		}
+	    }
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(roles.contains("librarian"))
+		{
+		  (void) query.exec(QString("GRANT biblioteq_librarian "
+					    "TO %1").arg(userid));
+
+		  if(query.lastError().isValid())
+		    errorstr = query.lastError().text();
+		}
+	    }
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(roles.contains("membership"))
+		{
+		  (void) query.exec(QString("GRANT biblioteq_membership "
+					    "TO %1 WITH ADMIN OPTION").
+				    arg(userid));
+
+		  if(query.lastError().isValid())
+		    errorstr = query.lastError().text();
+		}
+	    }
+
+	  if(errorstr.isEmpty())
+	    {
+	      if(roles.isEmpty())
+		{
+		  (void) query.exec(QString("GRANT biblioteq_patron "
+					    "TO %1").arg(userid));
+
+		  if(query.lastError().isValid())
+		    errorstr = query.lastError().text();
+		}
+	    }
+
+	  return;
 	}
       else if(!errorstr.isEmpty())
 	return;
     }
 
-  if(!query.lastError().isValid())
+  if(action == UPDATE_USER)
     {
-      if(action == CREATE_USER || action == UPDATE_USER)
-	{
-	  if(roles.contains("administrator"))
-	    objectlist << "admin"
-		       << "book"
-		       << "item_borrower"
-		       << "item_borrower_myoid_seq"
-		       << "item_borrower_vw"
-		       << "item_request"
-		       << "item_request_myoid_seq"
-		       << "book_copy_info"
-		       << "book_copy_info_myoid_seq"
-		       << "book_myoid_seq"
-		       << "cd"
-		       << "cd_copy_info"
-		       << "cd_copy_info_myoid_seq"
-		       << "cd_myoid_seq"
-		       << "cd_songs"
-		       << "dvd"
-		       << "dvd_copy_info"
-		       << "dvd_copy_info_myoid_seq"
-		       << "dvd_myoid_seq"
-		       << "journal"
-		       << "journal_copy_info"
-		       << "journal_copy_info_myoid_seq"
-		       << "journal_myoid_seq"
-		       << "magazine"
-		       << "magazine_copy_info"
-		       << "magazine_copy_info_myoid_seq"
-		       << "magazine_myoid_seq"
-		       << "member"
-		       << "member_history"
-		       << "member_history_myoid_seq"
-		       << "videogame"
-		       << "videogame_copy_info"
-		       << "videogame_copy_info_myoid_seq"
-		       << "videogame_myoid_seq"
-		       << "locations"
-		       << "monetary_units"
-		       << "languages"
-		       << "cd_formats"
-		       << "dvd_ratings"
-		       << "dvd_aspect_ratios"
-		       << "dvd_regions"
-		       << "minimum_days"
-		       << "videogame_ratings"
-		       << "videogame_platforms";
-	  else if(roles.contains("circulation") ||
-		  roles.contains("librarian") ||
-		  roles.contains("membership"))
-	    {
-	      /*
-	      ** The method grantPrivs() grants the necessary privileges.
-	      */
-	    }
-	  else // Member.
-	    objectlist << "admin"
-		       << "book"
-		       << "book_myoid_seq"
-		       << "book_copy_info"
-		       << "book_copy_info_myoid_seq"
-		       << "cd"
-		       << "cd_myoid_seq"
-		       << "cd_songs"
-		       << "cd_copy_info"
-		       << "cd_copy_info_myoid_seq"
-		       << "dvd"
-		       << "dvd_myoid_seq"
-		       << "dvd_copy_info"
-		       << "dvd_copy_info_myoid_seq"
-		       << "journal"
-		       << "journal_copy_info"
-		       << "journal_copy_info_myoid_seq"
-		       << "journal_myoid_seq"
-		       << "magazine"
-		       << "magazine_myoid_seq"
-		       << "magazine_copy_info"
-		       << "magazine_copy_info_myoid_seq"
-		       << "videogame"
-		       << "videogame_myoid_seq"
-		       << "videogame_copy_info"
-		       << "videogame_copy_info_myoid_seq"
-		       << "item_borrower_vw"
-		       << "member_history"
-		       << "member_history_myoid_seq"
-		       << "item_request"
-		       << "item_request_myoid_seq"
-		       << "locations"
-		       << "monetary_units"
-		       << "languages"
-		       << "cd_formats"
-		       << "dvd_ratings"
-		       << "dvd_aspect_ratios"
-		       << "dvd_regions"
-		       << "videogame_ratings"
-		       << "videogame_platforms";
-	}
-      else /* Delete the account. */
-	objectlist << "admin"
-		   << "book"
-		   << "item_borrower"
-		   << "item_borrower_myoid_seq"
-		   << "item_borrower_vw"
-		   << "item_request"
-		   << "item_request_myoid_seq"
-		   << "book_copy_info"
-		   << "book_copy_info_myoid_seq"
-		   << "book_myoid_seq"
-		   << "cd"
-		   << "cd_copy_info"
-		   << "cd_copy_info_myoid_seq"
-		   << "cd_myoid_seq"
-		   << "cd_songs"
-		   << "dvd"
-		   << "dvd_copy_info"
-		   << "dvd_copy_info_myoid_seq"
-		   << "dvd_myoid_seq"
-		   << "journal"
-		   << "journal_copy_info"
-		   << "journal_copy_info_myoid_seq"
-		   << "journal_myoid_seq"
-		   << "magazine"
-		   << "magazine_copy_info"
-		   << "magazine_copy_info_myoid_seq"
-		   << "magazine_myoid_seq"
-		   << "member"
-		   << "member_history"
-		   << "member_history_myoid_seq"
-		   << "videogame"
-		   << "videogame_copy_info"
-		   << "videogame_copy_info_myoid_seq"
-		   << "videogame_myoid_seq"
-		   << "locations"
-		   << "monetary_units"
-		   << "languages"
-		   << "cd_formats"
-		   << "dvd_ratings"
-		   << "dvd_aspect_ratios"
-		   << "dvd_regions"
-		   << "minimum_days"
-		   << "videogame_ratings"
-		   << "videogame_platforms";
+      if(roles.contains("administrator"))
+	objectlist << "biblioteq_administrator";
 
-      for(i = 0; i < objectlist.size(); i++)
+      if(roles.contains("circulation"))
+	objectlist << "biblioteq_circulation";
+
+      if(roles.contains("librarian"))
+	objectlist << "biblioteq_librarian";
+
+      if(roles.contains("membership"))
+	objectlist << "biblioteq_membership";
+
+      if(roles.isEmpty())
+	objectlist << "biblioteq_patron";
+
+      while(!objectlist.isEmpty())
 	{
-	  if(action == CREATE_USER || action == UPDATE_USER)
-	    {
-	      if(roles.contains("administrator"))
-		{
-		  if(objectlist[i].endsWith("_vw"))
-		    querystr = QString
-		      ("GRANT SELECT ON %1 TO %2").arg
-		      (objectlist[i]).arg(userid);
-		  else if(objectlist[i] == "item_request")
-		    querystr = QString
-		      ("GRANT DELETE, SELECT ON %1 TO %2").arg
-		      (objectlist[i]).arg(userid);
-		  else if(objectlist[i] == "item_request_myoid_seq")
-		    querystr = QString
-		      ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
-		      (objectlist[i]).arg(userid);
-		  else if(objectlist[i].endsWith("_seq"))
-		    querystr = QString
-		      ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
-		      (objectlist[i]).arg(userid);
-		  else
-		    querystr = QString
-		      ("GRANT DELETE, INSERT, SELECT, UPDATE ON %1 TO %2").arg
-		      (objectlist[i]).arg(userid);
-		}
-	      else if(roles.contains("circulation") ||
-		      roles.contains("librarian") ||
-		      roles.contains("membership"))
-		{
-		  /*
-		  ** The method grantPrivs() grants the necessary privileges
-		  ** to circulation, librarian, and membership administrators.
-		  */
-		}
-	      else if(objectlist[i] == "item_request")
-		querystr = QString
-		  ("GRANT DELETE, INSERT, SELECT ON %1 TO %2").arg
-		  (objectlist[i]).arg(userid);
-	      else if(objectlist[i] == "item_request_myoid_seq")
-		querystr = QString
-		  ("GRANT SELECT, UPDATE, USAGE ON %1 TO %2").arg
-		  (objectlist[i]).arg(userid);
-	      else if(objectlist[i] == "admin")
-		querystr = QString("REVOKE ALL ON %1 FROM %2").arg
-		  (objectlist[i]).arg(userid);
-	      else
-		querystr = QString
-		  ("GRANT SELECT ON %1 TO %2").arg
-		  (objectlist[i]).arg(userid);
-	    }
-	  else
-	    querystr = QString
-	      ("REVOKE ALL ON %1 FROM %2").arg
-	      (objectlist[i]).arg(userid);
+	  querystr = QString("REVOKE %1 FROM %2").arg
+	    (objectlist.takeFirst()).arg(userid);
 
 	  if(!query.exec(querystr))
-	    {
-	      errorstr = query.lastError().text();
-	      break;
-	    }
+	    break;
 	}
 
       objectlist.clear();
 
-      if(action == CREATE_USER && !query.lastError().isValid())
-	if(roles.contains("circulation") || roles.contains("librarian") ||
-	   roles.contains("membership"))
-	  {
-	    grantPrivs(userid, roles, db, errorstr);
+      if(query.lastError().isValid())
+	errorstr = query.lastError().text();
 
-	    if(!errorstr.isEmpty())
-	      return;
-	  }
+      if(errorstr.isEmpty())
+	{
+	  if(roles.contains("administrator"))
+	    {
+	      (void) query.exec(QString("GRANT biblioteq_administrator "
+					"TO %1 WITH ADMIN OPTION").
+				arg(userid));
+
+	      if(query.lastError().isValid())
+		errorstr = query.lastError().text();
+	    }
+	}
+
+      if(errorstr.isEmpty())
+	{
+	  if(roles.contains("circulation"))
+	    {
+	      (void) query.exec(QString("GRANT biblioteq_circulation "
+					"TO %1").arg(userid));
+
+	      if(query.lastError().isValid())
+		errorstr = query.lastError().text();
+	    }
+	}
+
+      if(errorstr.isEmpty())
+	{
+	  if(roles.contains("librarian"))
+	    {
+	      (void) query.exec(QString("GRANT biblioteq_librarian "
+					"TO %1").arg(userid));
+
+	      if(query.lastError().isValid())
+		errorstr = query.lastError().text();
+	    }
+	}
+
+      if(errorstr.isEmpty())
+	{
+	  if(roles.contains("membership"))
+	    {
+	      (void) query.exec(QString("GRANT biblioteq_membership "
+					"TO %1 WITH ADMIN OPTION").
+				arg(userid));
+
+	      if(query.lastError().isValid())
+		errorstr = query.lastError().text();
+	    }
+	}
+
+      if(errorstr.isEmpty())
+	{
+	  if(roles.isEmpty())
+	    {
+	      (void) query.exec(QString("GRANT biblioteq_patron "
+					"TO %1").arg(userid));
+
+	      if(query.lastError().isValid())
+		errorstr = query.lastError().text();
+	    }
+	}
     }
 
-  if(action == DELETE_USER)
-    if(!query.lastError().isValid())
-      (void) query.exec(QString("DROP USER %1").arg(userid));
+  if(action == DELETE_USER || action == UPDATE_USER)
+    {
+      objectlist << "admin"
+		 << "book"
+		 << "book_copy_info"
+		 << "book_copy_info_myoid_seq"
+		 << "book_myoid_seq"
+		 << "cd"
+		 << "cd_copy_info"
+		 << "cd_copy_info_myoid_seq"
+		 << "cd_formats"
+		 << "cd_myoid_seq"
+		 << "cd_songs"
+		 << "dvd"
+		 << "dvd_aspect_ratios"
+		 << "dvd_copy_info"
+		 << "dvd_copy_info_myoid_seq"
+		 << "dvd_myoid_seq"
+		 << "dvd_ratings"
+		 << "dvd_regions"
+		 << "item_borrower"
+		 << "item_borrower_myoid_seq"
+		 << "item_borrower_vw"
+		 << "item_request"
+		 << "item_request_myoid_seq"
+		 << "journal"
+		 << "journal_copy_info"
+		 << "journal_copy_info_myoid_seq"
+		 << "journal_myoid_seq"
+		 << "languages"
+		 << "locations"
+		 << "magazine"
+		 << "magazine_copy_info"
+		 << "magazine_copy_info_myoid_seq"
+		 << "magazine_myoid_seq"
+		 << "member"
+		 << "member_history"
+		 << "member_history_myoid_seq"
+		 << "minimum_days"
+		 << "monetary_units"
+		 << "videogame"
+		 << "videogame_copy_info"
+		 << "videogame_copy_info_myoid_seq"
+		 << "videogame_myoid_seq"
+		 << "videogame_platforms"
+		 << "videogame_ratings";
 
-  if(errorstr.isEmpty() &&
-     query.lastError().isValid())
-    errorstr = query.lastError().text();
+      /*
+      ** Revoke old privileges.
+      */
+
+      if(qmain->getRoles().contains("administrator") ||
+	 qmain->getRoles().contains("membership"))
+	query.exec("SET ROLE NONE");
+
+      while(!objectlist.isEmpty())
+	{
+	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
+	    (objectlist.takeFirst()).arg(userid);
+	  (void) query.exec(querystr);
+	}
+
+      if(action == DELETE_USER)
+	{
+	  (void) query.exec(QString("DROP USER %1").arg(userid));
+
+	  if(errorstr.isEmpty() && query.lastError().isValid())
+	    errorstr = query.lastError().text();
+	}
+
+      if(qmain->getRoles().contains("administrator"))
+	query.exec("SET ROLE biblioteq_administrator");
+      else if(qmain->getRoles().contains("membership"))
+	query.exec("SET ROLE biblioteq_membership");
+    }
 }
 
 /*

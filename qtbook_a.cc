@@ -3523,6 +3523,21 @@ void qtbook::slotConnectDB(void)
 		     tr("It appears that you are attempting to assume an "
 			"administrator role in a non-administrator mode."));
 		}
+	      else
+		{
+		  QSqlQuery query(db);
+
+		  if(roles.contains("administrator"))
+		    query.exec("SET ROLE biblioteq_administrator");
+		  else if(roles.contains("circulation"))
+		    query.exec("SET ROLE biblioteq_circulation");
+		  else if(roles.contains("librarian"))
+		    query.exec("SET ROLE biblioteq_librarian");
+		  else if(roles.contains("membership"))
+		    query.exec("SET ROLE biblioteq_membership");
+		  else
+		    query.exec("SET ROLE biblioteq_patron");
+		}
 	    }
 	  else if(br.adminCheck->isChecked())
 	    {
