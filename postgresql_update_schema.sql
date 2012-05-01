@@ -652,7 +652,7 @@ CREATE ROLE biblioteq_administrator INHERIT;
 CREATE ROLE biblioteq_circulation INHERIT;
 CREATE ROLE biblioteq_librarian INHERIT;
 CREATE ROLE biblioteq_membership INHERIT;
-CREATE ROLE biblioteq_patron INHERIT;
+CREATE ROLE biblioteq_patron NOINHERIT;
 
 GRANT biblioteq_circulation TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_administrator WITH ADMIN OPTION;
