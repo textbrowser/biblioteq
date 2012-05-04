@@ -849,7 +849,6 @@ void qtbook_videogame::slotGo(void)
       searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (vg.keyword->toPlainText().trimmed()) + "%' ");
-      hide();
 
       /*
       ** Search the database.
@@ -857,7 +856,6 @@ void qtbook_videogame::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "Video Games", searchstr);
-      slotCancel();
     }
 }
 

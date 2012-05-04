@@ -984,7 +984,6 @@ void qtbook_magazine::slotGo(void)
       searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (ma.keyword->toPlainText().trimmed()) + "%' ");
-      hide();
 
       /*
       ** Search the database.
@@ -996,19 +995,6 @@ void qtbook_magazine::slotGo(void)
       else
 	(void) qmain->populateTable
 	  (qtbook::POPULATE_SEARCH, "Magazines", searchstr);
-
-      if(subType == "Journal")
-	/*
-	** Call qtbook_journal's closeEvent() method.
-	*/
-
-	close();
-      else
-	/*
-	** Call qtbook_magazine's closeEvent() method.
-	*/
-
-	slotCancel();
     }
 }
 

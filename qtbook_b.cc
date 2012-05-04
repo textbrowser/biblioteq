@@ -2705,9 +2705,6 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.typefilter->setCurrentIndex(0);
 
-  if(search_type == POPULATE_SEARCH && all_diag->isVisible())
-    all_diag->close();
-
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(db.userName(), typefilter, roles);
   else
@@ -2806,6 +2803,7 @@ int qtbook::populateTable(const int search_type_arg,
   else
     progress.setMaximum(limit);
 
+  raise();
   progress.show();
   progress.update();
 

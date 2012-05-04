@@ -1051,7 +1051,6 @@ void qtbook_book::slotGo(void)
 		       myqstring::escape
 		       (id.keyword->toPlainText().trimmed()) +
 		       "%' ");
-      hide();
 
       /*
       ** Search the database.
@@ -1059,7 +1058,6 @@ void qtbook_book::slotGo(void)
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "Books", searchstr);
-      slotCancel();
     }
 }
 

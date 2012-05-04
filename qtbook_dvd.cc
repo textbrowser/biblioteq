@@ -951,15 +951,12 @@ void qtbook_dvd::slotGo(void)
 			 myqstring::escape
 			 (dvd.location->currentText().trimmed()) + "' ");
 
-      hide();
-
       /*
       ** Search the database.
       */
 
       (void) qmain->populateTable
 	(qtbook::POPULATE_SEARCH, "DVDs", searchstr);
-      slotCancel();
     }
 }
 
