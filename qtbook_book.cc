@@ -1869,7 +1869,6 @@ void qtbook_book::slotPopulateCopiesEditor(void)
        static_cast<qtbook_item *> (this),
        false,
        id.quantity->value(), oid,
-       id.id->text(),
        id.quantity, font(),
        "Book")) != 0)
     copyeditor->populateCopiesEditor();

@@ -648,6 +648,8 @@ ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
 
 /* Release 6.55 */
 
+ALTER TABLE member_history DROP item_id;
+
 CREATE ROLE biblioteq_administrator INHERIT;
 CREATE ROLE biblioteq_circulation INHERIT;
 CREATE ROLE biblioteq_librarian INHERIT;

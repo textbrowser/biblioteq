@@ -319,8 +319,7 @@ CREATE TABLE member_history						\
 	returned_date	 VARCHAR(32) NOT NULL,				\
 	myoid		 INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
 	reserved_by	 VARCHAR(128) NOT NULL,				\
-	type		 VARCHAR(16) NOT NULL,				\
-	item_id		 VARCHAR(32) NOT NULL				\
+	type		 VARCHAR(16) NOT NULL				\
 );									\
 									\
 CREATE TRIGGER member_history_trigger AFTER DELETE ON member		\

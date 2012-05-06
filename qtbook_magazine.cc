@@ -1731,7 +1731,6 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
        static_cast<qtbook_item *> (this),
        false,
        ma.quantity->value(), oid,
-       ma.id->text(),
        ma.quantity, font(), subType)) != 0)
     copyeditor->populateCopiesEditor();
 }

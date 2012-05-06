@@ -15,7 +15,6 @@ extern QApplication *qapp;
 copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const bool showForLendingArg,
 			 const int quantityArg, const QString &ioidArg,
-			 const QString &uniqueidArg,
 			 QSpinBox *spinboxArg,
 			 const QFont &font,
 			 const QString &itemTypeArg): QDialog(parent)
@@ -32,24 +31,12 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   bitem = bitemArg;
   ioid = ioidArg;
   quantity = quantityArg;
-  uniqueid = uniqueidArg;
-
-  if(uniqueid.isEmpty())
-    uniqueid = ioid;
-
   spinbox = spinboxArg;
   itemType = itemTypeArg;
   showForLending = showForLendingArg;
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-
-  if(!uniqueidArg.isEmpty())
-    setWindowTitle
-      (QString(tr("BiblioteQ: Copy Browser (")) +
-       uniqueidArg + QString(tr(")")));
-  else
-    setWindowTitle
-      (tr("BiblioteQ: Copy Browser"));
-
+  setWindowTitle
+    (tr("BiblioteQ: Copy Browser (%1)").arg(ioid));
   setGlobalFonts(font);
 }
 
@@ -238,11 +225,7 @@ void copy_editor::populateCopiesEditor(void)
 
 	    if(j == 1)
 	      {
-		if(!uniqueid.isEmpty())
-		  str = QString("%1-%2").arg(uniqueid).arg(i + 1);
-		else
-		  str = QString("CopyIdentifier-%1").arg(i + 1);
-
+		str = QString("CopyIdentifier-%1-%2").arg(ioid).arg(i + 1);
 		item->setText(str);
 	      }
 	    else if(j == 2)
@@ -499,9 +482,8 @@ void copy_editor::slotCheckoutCopy(void)
 		"duedate, "
 		"returned_date, "
 		"reserved_by, "
-		"type, "
-		"item_id) "
-		"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		"type) "
+		"VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
   query.bindValue(0, memberid);
   query.bindValue(1, ioid);
   query.bindValue(2, copyid);
@@ -510,7 +492,6 @@ void copy_editor::slotCheckoutCopy(void)
   query.bindValue(5, QString("N/A"));
   query.bindValue(6, qmain->getAdminID());
   query.bindValue(7, itemType);
-  query.bindValue(8, uniqueid);
 
   if(!query.exec())
     qmain->addError(QString(tr("Database Error")),

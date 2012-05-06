@@ -25,7 +25,7 @@ class copy_editor: public QDialog
 
  public:
   copy_editor(QWidget *, qtbook_item *, const bool, const int,
-	      const QString &, const QString &, QSpinBox *,
+	      const QString &, QSpinBox *,
 	      const QFont &, const QString &);
   ~copy_editor();
   void populateCopiesEditor(void);
@@ -49,7 +49,6 @@ class copy_editor: public QDialog
   bool showForLending;
   QString ioid;
   QString itemType;
-  QString uniqueid;
   QWidget *parent;
   QSpinBox *spinbox;
   qtbook_item *bitem;

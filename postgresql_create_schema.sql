@@ -65,6 +65,16 @@ CREATE TABLE cd
 	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
 );
 
+CREATE TABLE cd_copy_info
+(
+	item_oid	 BIGINT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
+	copyid		 VARCHAR(64) NOT NULL,
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	PRIMARY KEY(item_oid, copyid),
+	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE
+);
+
 CREATE TABLE cd_songs
 (
 	item_oid	 BIGINT NOT NULL,
@@ -73,16 +83,6 @@ CREATE TABLE cd_songs
 	songtitle	 VARCHAR(256) NOT NULL,
 	runtime		 VARCHAR(32) NOT NULL,
 	PRIMARY KEY(item_oid, albumnum, songnum),
-	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE
-);
-
-CREATE TABLE cd_copy_info
-(
-	item_oid	 BIGINT NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
 	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE
 );
 
@@ -254,6 +254,20 @@ CREATE TABLE member
 	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00
 );
 
+CREATE TABLE member_history
+(
+	memberid	 VARCHAR(16) NOT NULL,
+	item_oid	 BIGINT NOT NULL,
+	copyid		 VARCHAR(64) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
+	returned_date	 VARCHAR(32) NOT NULL,
+	myoid		 BIGSERIAL PRIMARY KEY,
+	reserved_by	 VARCHAR(128) NOT NULL,
+	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+);
+
 CREATE TABLE item_borrower
 (
 	item_oid	 BIGINT NOT NULL,
@@ -266,21 +280,6 @@ CREATE TABLE item_borrower
 	reserved_by	 VARCHAR(128) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
-);
-
-CREATE TABLE member_history
-(
-	memberid	 VARCHAR(16) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
-	copyid		 VARCHAR(64) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
-	returned_date	 VARCHAR(32) NOT NULL,
-	myoid		 BIGSERIAL PRIMARY KEY,
-	reserved_by	 VARCHAR(128) NOT NULL,
-	type		 VARCHAR(16) NOT NULL,
-	item_id		 VARCHAR(32) NOT NULL,
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE item_request
@@ -381,6 +380,31 @@ SELECT	 item_oid,
 	 type
 FROM	 item_borrower;
 
+CREATE TABLE cd_formats
+(
+	cd_format	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_aspect_ratios
+(
+	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_ratings
+(
+	dvd_rating	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE dvd_regions
+(
+	dvd_region	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE languages
+(
+	language	 TEXT NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE locations
 (
 	location	 TEXT NOT NULL,
@@ -393,45 +417,20 @@ CREATE TABLE monetary_units
 	monetary_unit	 TEXT NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE languages
-(
-	language	 TEXT NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE cd_formats
-(
-	cd_format	 TEXT NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE dvd_ratings
-(
-	dvd_rating	 TEXT NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE dvd_aspect_ratios
-(
-	dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE dvd_regions
-(
-	dvd_region	 TEXT NOT NULL PRIMARY KEY
-);
-
 CREATE TABLE minimum_days
 (
 	days		 INTEGER NOT NULL,
 	type		 VARCHAR(16) NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE videogame_ratings
-(
-	videogame_rating	 TEXT NOT NULL PRIMARY KEY
-);
-
 CREATE TABLE videogame_platforms
 (
 	videogame_platform	 TEXT NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE videogame_ratings
+(
+	videogame_rating	 TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE ROLE biblioteq_administrator INHERIT;
