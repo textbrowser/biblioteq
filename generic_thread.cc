@@ -85,16 +85,21 @@ void generic_thread::run(void)
 
 	ZOOM_connection_option_set(zoomConnection,
 				   "preferredRecordSyntax", "MARC21");
-	ZOOM_connection_option_set
-	  (zoomConnection,
-	   "user",
-	   qmain->getZ3950Maps()[z3950Name].value("Userid").toUtf8().
-	   constData());
-	ZOOM_connection_option_set
-	  (zoomConnection,
-	   "password",
-	   qmain->getZ3950Maps()[z3950Name].value("Password").
-	   toUtf8().constData());
+
+	if(!qmain->getZ3950Maps()[z3950Name].value("Userid").isEmpty())
+	  ZOOM_connection_option_set
+	    (zoomConnection,
+	     "user",
+	     qmain->getZ3950Maps()[z3950Name].value("Userid").toUtf8().
+	     constData());
+
+	if(!qmain->getZ3950Maps()[z3950Name].value("Password").isEmpty())
+	  ZOOM_connection_option_set
+	    (zoomConnection,
+	     "password",
+	     qmain->getZ3950Maps()[z3950Name].value("Password").
+	     toUtf8().constData());
+
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
 	   z3950SearchStr.toUtf8().constData());
