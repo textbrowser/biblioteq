@@ -143,6 +143,7 @@ void borrowers_editor::showUsers(void)
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(quantity);
+  progress1.setMinimum(0);
   progress1.show();
   progress1.update();
 
@@ -186,7 +187,9 @@ void borrowers_editor::showUsers(void)
 			"This is a serious problem!")),
 	     QString(""), __FILE__, __LINE__);
 
-      progress1.setValue(i + 1);
+      if(i + 1 <= progress1.maximum())
+	progress1.setValue(i + 1);
+
       progress1.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -234,6 +237,7 @@ void borrowers_editor::showUsers(void)
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving borrower data..."));
+  progress2.setMinimum(0);
 
   /*
   ** SQLite does not support query.size().
@@ -304,7 +308,9 @@ void borrowers_editor::showUsers(void)
 	      terminate = true;
 	  }
 
-      progress2.setValue(i + 1);
+      if(i + 1 <= progress2.maximum())
+	progress2.setValue(i + 1);
+
       progress2.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -465,6 +471,7 @@ void borrowers_editor::slotSave(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Updating the due date(s)..."));
   progress.setMaximum(bd.table->rowCount());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
 
@@ -505,7 +512,9 @@ void borrowers_editor::slotSave(void)
 	    }
 	}
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();

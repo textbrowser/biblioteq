@@ -2801,7 +2801,10 @@ int qtbook::populateTable(const int search_type_arg,
       progress.setMinimum(0);
     }
   else
-    progress.setMaximum(limit);
+    {
+      progress.setMinimum(0);
+      progress.setMaximum(limit);
+    }
 
   raise();
   progress.show();
@@ -2956,7 +2959,9 @@ int qtbook::populateTable(const int search_type_arg,
 		break;
 	      }
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();

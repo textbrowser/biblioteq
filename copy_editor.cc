@@ -207,6 +207,7 @@ void copy_editor::populateCopiesEditor(void)
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
   progress1.setMaximum(quantity);
+  progress1.setMinimum(0);
   progress1.show();
   progress1.update();
 
@@ -250,7 +251,9 @@ void copy_editor::populateCopiesEditor(void)
 				     "This is a serious problem!")),
 			  QString(""), __FILE__, __LINE__);
 
-      progress1.setValue(i + 1);
+      if(i + 1 <= progress1.maximum())
+	progress1.setValue(i + 1);
+
       progress1.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -292,6 +295,7 @@ void copy_editor::populateCopiesEditor(void)
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving copy information..."));
+  progress2.setMinimum(0);
 
   /*
   ** SQLite does not support query.size().
@@ -350,7 +354,9 @@ void copy_editor::populateCopiesEditor(void)
 	      terminate = true;
 	}
 
-      progress2.setValue(i + 1);
+      if(i + 1 <= progress2.maximum())
+	progress2.setValue(i + 1);
+
       progress2.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -753,6 +759,7 @@ QString copy_editor::saveCopies(void)
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the copy data..."));
       progress.setMaximum(copies.size());
+      progress.setMinimum(0);
       progress.show();
       progress.update();
 
@@ -804,7 +811,9 @@ QString copy_editor::saveCopies(void)
 			      query.lastError().text(), __FILE__, __LINE__);
 	    }
 
-	  progress.setValue(i + 1);
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
 	  progress.update();
 #ifndef Q_WS_MAC
 	  qapp->processEvents();

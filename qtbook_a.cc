@@ -1708,12 +1708,16 @@ void qtbook::slotDelete(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));
   progress.setMaximum(list.size());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
 
   foreach(index, list)
     {
       i = index.row();
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
 
       if(ui.table->item(i, col) == 0)
 	continue;
@@ -1737,7 +1741,6 @@ void qtbook::slotDelete(void)
 	  numdeleted += 1;
 	}
 
-      progress.setValue(list.size() + 1);
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -4074,6 +4077,7 @@ void qtbook::slotPopulateMembersBrowser(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
+  progress.setMinimum(0);
 
   if(db.driverName() == "QSQLITE")
     progress.setMaximum
@@ -4118,7 +4122,9 @@ void qtbook::slotPopulateMembersBrowser(void)
 		       QString(""), __FILE__, __LINE__);
 	  }
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -4154,6 +4160,7 @@ void qtbook::slotGrantPrivileges(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Granting privileges..."));
   progress.setMaximum(bb.table->rowCount());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
 
@@ -4178,7 +4185,9 @@ void qtbook::slotGrantPrivileges(void)
 	    }
 	}
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -6564,6 +6573,7 @@ void qtbook::slotShowHistory(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
+  progress.setMinimum(0);
 
   if(db.driverName() == "QSQLITE")
     progress.setMaximum
@@ -6604,7 +6614,9 @@ void qtbook::slotShowHistory(void)
 		       QString(""), __FILE__, __LINE__);
 	  }
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -7099,6 +7111,7 @@ void qtbook::slotRefreshAdminList(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
   progress.setMaximum(query.size());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
   i = -1;
@@ -7162,7 +7175,9 @@ void qtbook::slotRefreshAdminList(void)
 		     QString(""), __FILE__, __LINE__);
 	}
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -7305,6 +7320,7 @@ void qtbook::slotSaveAdministrators(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Saving administrator information..."));
   progress.setMaximum(ab.table->rowCount());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
 
@@ -7316,6 +7332,9 @@ void qtbook::slotSaveAdministrators(void)
     {
       str = "";
       adminStr = ab.table->item(i, 0)->text().trimmed();
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
 
       if(adminStr.isEmpty())
 	continue; // Ignore empty administrator ids.
@@ -7430,7 +7449,6 @@ void qtbook::slotSaveAdministrators(void)
 	    }
 	}
 
-      progress.setValue(i + 1);
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -7560,6 +7578,7 @@ void qtbook::slotRequest(void)
     progress.setLabelText(tr("Cancelling the selected request(s)..."));
 
   progress.setMaximum(list.size());
+  progress.setMinimum(0);
   progress.show();
   progress.update();
 
@@ -7618,7 +7637,9 @@ void qtbook::slotRequest(void)
 	    deleteItem(oid, itemType);
 	}
 
-      progress.setValue(ct);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(ct);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();

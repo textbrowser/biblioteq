@@ -1426,6 +1426,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
+  progress.setMinimum(0);
 
   if(qmain->getDB().driverName() == "QSQLITE")
     progress.setMaximum(misc_functions::sqliteQuerySize(querystr,
@@ -1513,7 +1514,9 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	    trd.table->resizeColumnToContents(i);
 	  }
 
-      progress.setValue(i + 1);
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       progress.update();
 #ifndef Q_WS_MAC
       qapp->processEvents();
@@ -1715,6 +1718,7 @@ void qtbook_cd::slotSaveTracks(void)
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the track data..."));
       progress.setMaximum(trd.table->rowCount());
+      progress.setMinimum(0);
       progress.show();
       progress.update();
 
@@ -1755,7 +1759,9 @@ void qtbook_cd::slotSaveTracks(void)
 	      lastError = query.lastError().text();
 	    }
 
-	  progress.setValue(i + 1);
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
 	  progress.update();
 #ifndef Q_WS_MAC
 	  qapp->processEvents();
