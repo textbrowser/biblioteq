@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation>Programma Fout: objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Programma Fout: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source> Location: </source>
@@ -885,7 +885,7 @@
     <name>copy_editor</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -905,7 +905,7 @@
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation>BiblioteQ: Kopie Browser (</translation>
+        <translation type="obsolete">BiblioteQ: Kopie Browser (</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -1056,7 +1056,7 @@
         <translation>Database Fout</translation>
     </message>
     <message>
-        <source>BiblioteQ: Copy Browser</source>
+        <source>BiblioteQ: Copy Browser (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

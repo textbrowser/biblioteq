@@ -5,7 +5,7 @@
     <name>QObject</name>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation>Chyba aplikace: objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Chyba aplikace: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source>#</source>
@@ -911,11 +911,11 @@ webová adresa</translation>
     <name>copy_editor</name>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation>BiblioteQ: Přehled kopií (</translation>
+        <translation type="obsolete">BiblioteQ: Přehled kopií (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -1082,7 +1082,7 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Copy Browser</source>
+        <source>BiblioteQ: Copy Browser (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

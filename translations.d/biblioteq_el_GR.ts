@@ -5,7 +5,7 @@
     <name>QObject</name>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation>Σφάλμα εφαρμογής: objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Σφάλμα εφαρμογής: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source>#</source>
@@ -911,11 +911,11 @@ URL</source>
     <name>copy_editor</name>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation>BiblioteQ: Περιοχή αντίτυπου (</translation>
+        <translation type="obsolete">BiblioteQ: Περιοχή αντίτυπου (</translation>
     </message>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
@@ -1083,7 +1083,11 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation>BiblioteQ: Περιοχή αντίτυπου</translation>
+        <translation type="obsolete">BiblioteQ: Περιοχή αντίτυπου</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
