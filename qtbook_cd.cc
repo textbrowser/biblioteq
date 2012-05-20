@@ -2097,7 +2097,7 @@ void qtbook_cd::slotComputeRuntime(void)
   qapp->restoreOverrideCursor();
 
   if(sum.toString("hh:mm:ss") == "00:00:00")
-    QMessageBox::critical(this, tr("BiblioteQ: Error"),
+    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 			  tr("The total runtime of the available tracks is "
 			     "zero. Please set the individual runtimes."));
   else

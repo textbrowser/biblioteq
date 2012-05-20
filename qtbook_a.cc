@@ -1652,7 +1652,7 @@ void qtbook::slotDelete(void)
 		   QString(tr("Unable to determine if the item has been "
 			      "reserved.")),
 		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been reserved."));
 	  list.clear();
@@ -1661,7 +1661,7 @@ void qtbook::slotDelete(void)
 
       if(isCheckedOut)
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Reserved items may not be deleted."));
 	  list.clear();
 	  return;
@@ -1677,7 +1677,7 @@ void qtbook::slotDelete(void)
 		   QString(tr("Unable to determine if the item has been "
 			      "requested.")),
 		   errorstr, __FILE__, __LINE__);
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+	  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 				tr("Unable to determine if the item has "
 				   "been requested."));
 	  list.clear();
@@ -1686,7 +1686,7 @@ void qtbook::slotDelete(void)
 
       if(isRequested)
 	{
-	  QMessageBox::critical(this, tr("BiblioteQ: Error"),
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
 				tr("Requested items may not be deleted."));
 	  list.clear();
 	  return;
@@ -4581,8 +4581,8 @@ void qtbook::slotCheckout(void)
 	    QMessageBox::critical
 	      (members_diag, tr("BiblioteQ: Error"),
 	       tr("Unable to determine the selected item's "
-		  "ID. In order to reserve the item, its "
-		  "ID must be known."));
+		  "id. In order to reserve the item, its "
+		  "id must be known."));
 	  else if((copyeditor = new(std::nothrow) copy_editor
 		   (members_diag, item, true,
 		    quantity, oid,
