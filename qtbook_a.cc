@@ -3561,8 +3561,13 @@ void qtbook::slotConnectDB(void)
 	    }
 	}
     }
-  else if(!error)
-    roles = "administrator";
+  else
+    {
+      db.exec("PRAGMA foreign_keys = ON");
+
+      if(!error)
+	roles = "administrator";
+    }
 
   tmphash.clear();
 
