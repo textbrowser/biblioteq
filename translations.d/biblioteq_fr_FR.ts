@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL">
+<TS version="2.0" language="fr_FR" sourcelanguage="fr">
 <context>
     <name>QObject</name>
     <message>
         <source>#</source>
-        <translation>#</translation>
+        <translation>n°</translation>
     </message>
     <message>
         <source>NULL availability value.</source>
-        <translation>NULL beschikbaarheids-waarde.</translation>
+        <translation>Valeur de disponibilité NULLE.</translation>
     </message>
     <message>
         <source>Unable to determine the query size.</source>
-        <translation>Niet mogelijk de grootte van de query te bepalen.</translation>
+        <translation>Impossible de déterminer la taille de la requête.</translation>
     </message>
     <message>
         <source>Due Date: </source>
-        <translation>Terugbrengdatum: </translation>
+        <translation>Date limite : </translation>
     </message>
     <message>
         <source>Type: </source>
-        <translation>Type: </translation>
+        <translation>Type : </translation>
     </message>
     <message>
         <source>Application error: objectlist.size() != privlist.size().</source>
-        <translation type="obsolete">Programma Fout: objectlist.size() != privlist.size().</translation>
+        <translation type="obsolete">Erreur de l&apos;application : objectlist.size() != privlist.size().</translation>
     </message>
     <message>
         <source> Location: </source>
-        <translation>Locatie: </translation>
+        <translation>Emplacement : </translation>
     </message>
     <message>
         <source>Barcode: </source>
-        <translation>Barcode: </translation>
+        <translation>Code barre : </translation>
     </message>
     <message>
         <source>Title: </source>
-        <translation>Titel: </translation>
+        <translation>Titre : </translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
 </context>
 <context>
@@ -248,91 +248,91 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation>N/B</translation>
+        <translation>N / A</translation>
     </message>
     <message>
         <source>Sex</source>
-        <translation>Geslacht</translation>
+        <translation>Sexe</translation>
     </message>
     <message>
         <source>City</source>
-        <translation>Stad</translation>
+        <translation>Ville</translation>
     </message>
     <message>
         <source>Male</source>
-        <translation>Mannelijk</translation>
+        <translation>Masculin</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Member Since</source>
-        <translation>Klant sinds</translation>
+        <translation>Membre depuis</translation>
     </message>
     <message>
         <source>Middle Initial</source>
-        <translation>Tussen Initialen</translation>
+        <translation>Initiale du deuxième prénom</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>Date of Birth</source>
-        <translation>Geboortedatum</translation>
+        <translation>Date de naissance</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation>Uitschrijfdatum</translation>
+        <translation>Date d&apos;expiration</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>State &amp; ZIP Code</source>
-        <translation>Land en Postcode</translation>
+        <translation>État et Code postal</translation>
     </message>
     <message>
         <source>Female</source>
-        <translation>Vrouwelijk</translation>
+        <translation>Féminin</translation>
     </message>
     <message>
         <source>Next Member</source>
-        <translation>Volgende Klant</translation>
+        <translation>Membre suivant</translation>
     </message>
     <message>
         <source>E-Mail Address</source>
-        <translation>E-Mail-Adres</translation>
+        <translation>Adresse électronique</translation>
     </message>
     <message>
         <source>Street</source>
-        <translation>Straat</translation>
+        <translation>Rue</translation>
     </message>
     <message>
         <source>Telephone Number</source>
-        <translation>Telefoonnummer</translation>
+        <translation>Numéro de téléphone</translation>
     </message>
     <message>
         <source>BiblioteQ: Borrower Information</source>
-        <translation>BiblioteQ: Klant Informatie</translation>
+        <translation>BiblioteQ : informations sur l&apos;emprunteur</translation>
     </message>
     <message>
         <source>Previous Member</source>
-        <translation>Vorige Klant</translation>
+        <translation>Membre précédent</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Overdue Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Arriérés de paiement</translation>
     </message>
 </context>
 <context>
@@ -343,154 +343,154 @@
     </message>
     <message>
         <source>Member Updates</source>
-        <translation>Klant Updaten</translation>
+        <translation>Mises à jour des membres</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation>Tabel Verversen</translation>
+        <translation>Rafraîchir la table</translation>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation>Venster Sluiten</translation>
+        <translation>Fermer l&apos;explorateur</translation>
     </message>
     <message>
         <source>BiblioteQ: Administrator Browser</source>
-        <translation>BiblioteQ: Administrator Pagina</translation>
+        <translation>BiblioteQ : explorateur de l&apos;administrateur</translation>
     </message>
     <message>
         <source>Item Creation</source>
-        <translation>Item Aanmaken</translation>
+        <translation>Création d&apos;un article</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Lidmaatschap</translation>
+        <translation>Adhésion</translation>
     </message>
     <message>
         <source>Item Reservations</source>
-        <translation>Uitgeleende Items</translation>
+        <translation>Réservations d&apos;articles</translation>
     </message>
     <message>
         <source>Item Updates</source>
-        <translation>Item Updates</translation>
+        <translation>Mise à jour des articles</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Bibliothecaris</translation>
+        <translation>Bibliothécaire</translation>
     </message>
     <message>
         <source>Member Deletion</source>
-        <translation>Klant Verwijderen</translation>
+        <translation>Suppression d&apos;un membre</translation>
     </message>
     <message>
         <source>Member Creation</source>
-        <translation>Klant Aanmaken</translation>
+        <translation>Création d&apos;un membre</translation>
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Circulatie</translation>
+        <translation>Circulation</translation>
     </message>
     <message>
         <source>Save Changes</source>
-        <translation>Aanpassing Opslaan</translation>
+        <translation>Enregistrer les changements</translation>
     </message>
     <message>
         <source>Item Deletion</source>
-        <translation>Item Verwijderen</translation>
+        <translation>Supprimer un article</translation>
     </message>
     <message>
         <source>Delete Selected Administrator</source>
-        <translation>Verwijder geselecteerde administrator</translation>
+        <translation>Supprimer l&apos;administrateur sélectionné</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation>Administrateur</translation>
     </message>
     <message>
         <source>Reservation Histories</source>
-        <translation>Uitleengeschiedenis</translation>
+        <translation>Historiques des réservations</translation>
     </message>
     <message>
         <source>Add Administrator</source>
-        <translation>Administrator toevoegen</translation>
+        <translation>Ajouter un administrateur</translation>
     </message>
     <message>
         <source>Item Returns</source>
-        <translation>Teruggebrachte Items</translation>
+        <translation>Retours d&apos;articles</translation>
     </message>
 </context>
 <context>
     <name>allDialog</name>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>MM/yyyy</source>
-        <translation></translation>
+        <translation>MM/aaaa</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Resetten</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID-Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: General Database Search</source>
-        <translation>BiblioteQ: Algemeen Zoeken</translation>
+        <translation>BiblioteQ : recherche dans la base de données générale</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Available</source>
-        <translation type="unfinished">Beschikbaar</translation>
+        <translation>Disponible(s</translation>
     </message>
 </context>
 <context>
@@ -501,177 +501,173 @@
     </message>
     <message>
         <source>Copy Due Date</source>
-        <translation>Kopie Terugbrengdatum</translation>
+        <translation>Date limite de la copie</translation>
     </message>
     <message>
         <source>Updating the due date(s)...</source>
-        <translation>Updaten van de &apos;terugbrengdatums&apos;...</translation>
+        <translation>Mise à jour de la date ou des dates limites...</translation>
     </message>
     <message>
         <source>Are you sure that the copy has been returned?</source>
-        <translation>Bent U zeker dat het item is teruggebracht?</translation>
+        <translation>Êtes-vous sûr(e) que la copie a été restituée ?</translation>
     </message>
     <message>
         <source>Retrieving borrower data...</source>
-        <translation>Ophalen van Klant-data...</translation>
+        <translation>Extraction des données de l&apos;emprunteur...</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation>Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van ongeldige data.</translation>
+        <translation>Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause de dates invalides.</translation>
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
-        <translation>Niet mogelijk om de terugbrengdatum aan te passen.</translation>
+        <translation>Impossible de modifier la date de restitution de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
+        <translation>BiblioteQ : boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
-        <translation>Objecten samenstellen...</translation>
+        <translation>Construction des objets...</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Kopie-Nummer</translation>
+        <translation>Numéro de copie</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Uitlener</translation>
+        <translation>Prêteur</translation>
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation>Het lijkt erop dat het geselecteerde item niet is uitgeleend.</translation>
+        <translation>Il apparaît que l&apos;article sélectionné n&apos;a pas été réservé.</translation>
     </message>
     <message>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation>Niet mogelijk om de uitleenstatus van het geselecteerde aan te passen.</translation>
+        <translation>Impossible de modifier l&apos;état de réservation de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation>Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van database fouten.</translation>
+        <translation>Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause d&apos;erreurs de la base de données.</translation>
     </message>
     <message>
         <source>Please select the copy that has been returned.</source>
-        <translation>Selecteer de kopie die is teruggebracht.</translation>
+        <translation>Veuillez sélectionner la copie qui a été restituée.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>Unable to update the due date.</source>
-        <translation>Niet mogelijk om de &quot;terugbrengdatum&apos; te updaten.</translation>
+        <translation>Impossible de mettre à jour la date limite.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="obsolete">Niet mogelijk om het aantal minimum dagen te achterhalen.</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleendatum</translation>
+        <translation>Date de réservation</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifDate ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
-        <translation>Niet mogelijk klant-data te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données de l&apos;emprunteur.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation>BiblioteQ: Item Uitleenstatus</translation>
+        <translation>BiblioteQ : état de réservation des articles (</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : état de réservation de l&apos;article</translation>
     </message>
 </context>
 <context>
     <name>branchSelect</name>
     <message>
         <source>&amp;Select SQLite Database</source>
-        <translation>&amp;Selecteer SQLite Database</translation>
+        <translation>&amp;Sélectionner la base de données SQLite</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation>Gebruikers ID</translation>
+        <translation>ID utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Paswoord</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Branch Name</source>
-        <translation>Domeinnaam</translation>
+        <translation>Nom de la branche</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Verbinden</translation>
+        <translation>&amp;Connecter</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuleren</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <source>BiblioteQ: Branch Selection</source>
-        <translation>BiblioteQ:Domein Selectie</translation>
+        <translation>BiblioteQ : sélection d&apos;une branche</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation>Administrateur</translation>
     </message>
 </context>
 <context>
     <name>cdDialog</name>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Live</source>
-        <translation>Live</translation>
+        <translation>En direct</translation>
     </message>
     <message>
         <source>Mono</source>
@@ -683,47 +679,47 @@
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Hoezen</translation>
+        <translation>Images de couverture</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Hoes (voorkant)</translation>
+        <translation>Image de première de couverture</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation>&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Platenmaatschappij</translation>
+        <translation>Label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiest</translation>
+        <translation>Artiste</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>Format</source>
@@ -731,11 +727,11 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Stereo</source>
-        <translation>Stereo</translation>
+        <translation>Stéréo</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -743,19 +739,19 @@
     </message>
     <message>
         <source>Tracks</source>
-        <translation>Tracks</translation>
+        <translation>Pistes</translation>
     </message>
     <message>
         <source>&amp;Show Tracks</source>
-        <translation>&amp;Bekijk Tracks</translation>
+        <translation>&amp;Afficher les pistes</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Hoes (achterkant)</translation>
+        <translation>Image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -763,35 +759,35 @@
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Aanvraag</translation>
+        <translation>Requête &amp;Z39.50</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>&amp;Compute</source>
-        <translation>&amp;Bereken</translation>
+        <translation>&amp;Calculer</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation>&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation>Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>hh:mm:ss</source>
@@ -799,38 +795,38 @@
     </message>
     <message>
         <source>General Information</source>
-        <translation>Algemene Informatie</translation>
+        <translation>Informations générales</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Specifieke Informatie</translation>
+        <translation>Informations spécifiques</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation>Numéro de catalogue</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Opname Type</translation>
+        <translation>Type d&apos;enregistrement</translation>
     </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>MYOID</source>
@@ -838,47 +834,47 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Kopie Nummer</translation>
+        <translation>Numéro de copie</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Ontlener</translation>
+        <translation>Prêteur</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleendatum</translation>
+        <translation>Date de réservation</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Terugbreng Datum</translation>
+        <translation>Date limite</translation>
     </message>
     <message>
         <source>&amp;Return</source>
-        <translation>&amp;Terug</translation>
+        <translation>&amp;Retour</translation>
     </message>
     <message>
         <source>BiblioteQ: Current Borrowers</source>
-        <translation>BiblioteQ: Huidige Klanten</translation>
+        <translation>BiblioteQ : emprunteurs actuels</translation>
     </message>
 </context>
 <context>
@@ -889,171 +885,175 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source> contains a duplicate Barcode.</source>
-        <translation>bevat een dubbele barcode.</translation>
+        <translation> contient un code barre en double.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
-        <translation type="obsolete">BiblioteQ: Kopie Browser (</translation>
+        <translation type="obsolete">BiblioteQ : explorateur de copies (</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation>Niet na te gaan of geselecteerde beschikbaar is.</translation>
+        <translation>Impossible de déterminer la disponibilité de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Commit failure.</source>
-        <translation>Toewijsfout.</translation>
+        <translation>Validation impossible.</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ:Voortgangsvenster</translation>
+        <translation>BiblioteQ : boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation>De kopie die u selecteerde is of niet beschikbaar of is uitgeleend.</translation>
+        <translation>La copie sélectionnée est soit indisponible, soit réservée.</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
-        <translation>Construeren van objecten...</translation>
+        <translation>Construction des objets...</translation>
     </message>
     <message>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation>Schijnbaar is de kopie die u selecteerde niet beschikbaar of bestaat niet.</translation>
+        <translation>Il apparaît que la copie sélectionnée est soit indisponible, soit n&apos;existe pas.</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation>Rij-nummer</translation>
+        <translation>Numéro de ligne </translation>
     </message>
     <message>
         <source>Please select a future Due Date.</source>
-        <translation>Selecteer een datum in de toekomst.</translation>
+        <translation>Veuillez sélectionner une future date limite.</translation>
     </message>
     <message>
         <source>Please select the copy that you intend to delete.</source>
-        <translation>Selecteer hetgeen dat u wenst te verwijderen.</translation>
+        <translation>Veuillez sélectionner la copie que vous projetez de supprimer.</translation>
     </message>
     <message>
         <source>Unable to create copy data.</source>
-        <translation>Niet mogelijk om kopie-data aan te maken.</translation>
+        <translation>Impossible de créer les données de la copie.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « Copie ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation>&amp;Uitlenen</translation>
+        <translation>&amp;Réserver</translation>
     </message>
     <message>
         <source>Saving the copy data...</source>
-        <translation>Opslaan van kopie-data...</translation>
+        <translation>Enregistrement des données de la copies...</translation>
     </message>
     <message>
         <source>You must have at least one copy.</source>
-        <translation>U moet tenminste één kopie hebben.</translation>
+        <translation>Vous devez avoir au moins une copie.</translation>
     </message>
     <message>
         <source>Unable to purge copy data.</source>
-        <translation>Niet mogelijk om kopie data te louteren.</translation>
+        <translation>Impossible de purger les données de la copie.</translation>
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
-        <translation>Niet mogelijk om een uitleen-record aan te maken.</translation>
+        <translation>Impossible de créer un enregistrement de réservation.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation>Niet mogelijk om het aantal minimum dagen terug te halen.</translation>
+        <translation>Impossible d&apos;extraire le nombre minimal de jours.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation>Niet mogelijk om de uitleenstatus te bepalen.</translation>
+        <translation>Impossible de déterminer l&apos;état de réservation de la copie sélectionnée.</translation>
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+        <translation>Il apparaît que la copie sélectionnée pour suppression est réservée.</translation>
     </message>
     <message>
         <source>Please select a copy to reserve.</source>
-        <translation>Selecteer a.u.b. een item om uit te lenen.</translation>
+        <translation>Veuillez sélectionner une copie à réserver.</translation>
     </message>
     <message>
         <source>Unable to create a history record.</source>
-        <translation>Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+        <translation>Impossible de créer un enregistrement d&apos;historique.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Onmogelijk om geheugen toe te wijzen voor dit item. Dit is een serieus probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
-        <translation>Niet mogelijk om kopie-data toe te wijzen.</translation>
+        <translation>Impossible de valider les données de la copie.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
-        <translation>De kopie data kan niet teruggevonden worden.</translation>
+        <translation>Impossible d&apos;extraire les données de copie.</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation>Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+        <translation>Impossible d&apos;enregistrer la quantité de l&apos;article.</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>Unable to save the copy data.</source>
-        <translation>Niet mogelijk om de kopie datum op te slaan.</translation>
+        <translation>Impossible d&apos;enregistrer les données de la copie.</translation>
     </message>
     <message>
         <source>Retrieving copy information...</source>
-        <translation>Ophalen van kopie-info...</translation>
+        <translation>Extraction des informations concernant une copie...</translation>
     </message>
     <message>
         <source> contains an empty Barcode.</source>
-        <translation>bevat een lege barcode.</translation>
+        <translation> contient un code barre vide.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
@@ -1064,7 +1064,7 @@
     <name>copybrowser</name>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>MYOID</source>
@@ -1072,62 +1072,62 @@
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Kopie Nummer</translation>
+        <translation>Numéro de copie</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Verwijderen</translation>
+        <translation>&amp;Supprimer</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Terugbrengdatum</translation>
+        <translation>Date limite</translation>
     </message>
     <message>
         <source>BiblioteQ: Copies Browser</source>
-        <translation>BiblioteQ: Kopieën Browser</translation>
+        <translation>BiblioteQ : explorateur de copies</translation>
     </message>
 </context>
 <context>
     <name>customquery</name>
     <message>
         <source>Close</source>
-        <translation>Sluiten</translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation>Dit paneel is bedoeld voor ervaren gebruikers met voldoende kennis van SQL en de database layout van BiblioteQ. Wees gewaarschuwd dat verkeerd handelen gepaard kan gaan met DATAVERLIES, weet dus wat je doet.</translation>
+        <translation>Le tableau de bord est destiné aux utilisateurs avancés ayant une connaissance approfondie de SQL et de la disposition de la base de données de BiblioteQ. Veuillez noter que l&apos;extraction des informations d&apos;images (couverture, quatrième de couverture) alourdira la requête.</translation>
     </message>
     <message>
         <source>Query Statement</source>
-        <translation>Code Invoegen</translation>
+        <translation>Instruction de requête</translation>
     </message>
     <message>
         <source>BiblioteQ: Custom Query</source>
-        <translation>BiblioteQ: Eigen Query Samenstelling</translation>
+        <translation>BiblioteQ : requête personnalisée</translation>
     </message>
     <message>
         <source>Execute</source>
-        <translation>Uitvoeren</translation>
+        <translation>Exécuter</translation>
     </message>
     <message>
         <source>Database Tables</source>
-        <translation>Databank Tabellen</translation>
+        <translation>Tables de la base de données</translation>
     </message>
 </context>
 <context>
@@ -1158,11 +1158,11 @@
     </message>
     <message>
         <source>DVDs</source>
-        <translation>DVD&apos;s</translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <source>Days</source>
-        <translation>Dagen</translation>
+        <translation>Jours</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1170,161 +1170,161 @@
     </message>
     <message>
         <source>Books</source>
-        <translation>Boeken</translation>
+        <translation>Livres</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation>Video Games</translation>
+        <translation>Jeux vidéo</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation>BiblioteQ: Venster van Standaardwaarden</translation>
+        <translation>BiblioteQ : explorateur d&apos;énumérations de la base de données</translation>
     </message>
     <message>
         <source>Video Game Platforms</source>
-        <translation>Video Game Platformen</translation>
+        <translation>Plates-formes de jeux vidéo</translation>
     </message>
     <message>
         <source>Add Location</source>
-        <translation>Locatie Toevoegen</translation>
+        <translation>Ajouter un emplacement</translation>
     </message>
     <message>
         <source>Remove Location</source>
-        <translation>Locatie Verwijderen</translation>
+        <translation>Supprimer un emplacement</translation>
     </message>
     <message>
         <source>Remove CD Format</source>
-        <translation>CD Format Verwijderen</translation>
+        <translation>Supprimer un format de CD</translation>
     </message>
     <message>
         <source>Add Video Game Rating</source>
-        <translation>Video Game Rating Toevoegen</translation>
+        <translation>Ajouter une note de jeu vidéo</translation>
     </message>
     <message>
         <source>Add Video Game Platform</source>
-        <translation>Video Game Platform Toevoegen</translation>
+        <translation>Ajouter une plate-forme de jeu vidéo</translation>
     </message>
     <message>
         <source>Add CD Format</source>
-        <translation>CD Format Toevoegen</translation>
+        <translation>Ajouter un format de CD</translation>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation>Venster Sluiten</translation>
+        <translation>Fermer l&apos;explorateur</translation>
     </message>
     <message>
         <source>Remove Language</source>
-        <translation>Taal Verwijderen</translation>
+        <translation>Supprimer une langue</translation>
     </message>
     <message>
         <source>Add Language</source>
-        <translation>Taal Toevoegen</translation>
+        <translation>Ajouter une langue</translation>
     </message>
     <message>
         <source>Languages</source>
-        <translation>Taal</translation>
+        <translation>Langues</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Remove Video Game Rating</source>
-        <translation>Video Game Rating Verwijderen</translation>
+        <translation>Supprimer une note de jeu vidéo</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation>Kranten</translation>
+        <translation>Journaux</translation>
     </message>
     <message>
         <source>Add DVD Aspect Ratio</source>
-        <translation>DVD Beeldformaat Toevoegen</translation>
+        <translation>Ajouter un rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>Refresh</source>
-        <translation>Verversen</translation>
+        <translation>Rafraîchir</translation>
     </message>
     <message>
         <source>DVD Ratings</source>
-        <translation>DVD Ratings</translation>
+        <translation>Notes de DVD</translation>
     </message>
     <message>
         <source>DVD Regions</source>
-        <translation>DVD Regios</translation>
+        <translation>Régions de DVD</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Locaties</translation>
+        <translation>Emplacements</translation>
     </message>
     <message>
         <source>Video Game Ratings</source>
-        <translation>Video Game Rating</translation>
+        <translation>Notes de jeux vidéo</translation>
     </message>
     <message>
         <source>Remove Monetary Unit</source>
-        <translation>Munteenheid Verwijderen</translation>
+        <translation>Supprimer une unité monétaire</translation>
     </message>
     <message>
         <source>Remove DVD Rating</source>
-        <translation>DVD Ratings Verwijderen</translation>
+        <translation>Supprimer une note de DVD</translation>
     </message>
     <message>
         <source>Remove DVD Region</source>
-        <translation>DVD Regios Verwijderen</translation>
+        <translation>Supprimer une région de DVD</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation>Muziek CD&apos;s</translation>
+        <translation>CD de musique</translation>
     </message>
     <message>
         <source>Save Changes</source>
-        <translation>Aanpassing Opslaan</translation>
+        <translation>Enregistrer les changements</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>DVD Aspect Ratios</source>
-        <translation>DVD Beeldformaat</translation>
+        <translation>Rapports hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>CD Formats</source>
-        <translation>CD Format</translation>
+        <translation>Formats de CD</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation>Tijdschriften</translation>
+        <translation>Magazines</translation>
     </message>
     <message>
         <source>Add Monetary Unit</source>
-        <translation>Munteenheid Toevoegen</translation>
+        <translation>Ajouter une unité monétaire</translation>
     </message>
     <message>
         <source>Reservations Minimum Days</source>
-        <translation>Minimum Aantal Uitleendagen</translation>
+        <translation>Nombre de jours minimal de réservations</translation>
     </message>
     <message>
         <source>Remove DVD Aspect Ratio</source>
-        <translation>DVD Beeldformaat Verwijderen</translation>
+        <translation>Supprimer un rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>Remove Video Game Platform</source>
-        <translation>Video Game Platform Verwijderen</translation>
+        <translation>Supprimer une plate-forme de jeu vidéo</translation>
     </message>
     <message>
         <source>Add DVD Rating</source>
-        <translation>DVD Ratings Toevoegen</translation>
+        <translation>Ajouter une note de DVD</translation>
     </message>
     <message>
         <source>Add DVD Region</source>
-        <translation>DVD Regios Toevoegen</translation>
+        <translation>Ajouter une région de DVD</translation>
     </message>
 </context>
 <context>
     <name>dbenumerations</name>
     <message>
-        <source> </source>
+        <source></source>
         <translation></translation>
     </message>
     <message>
@@ -1333,11 +1333,11 @@
     </message>
     <message>
         <source>).</source>
-        <translation></translation>
+        <translation>).</translation>
     </message>
     <message>
         <source>, </source>
-        <translation>,</translation>
+        <translation>, </translation>
     </message>
     <message>
         <source>DVD</source>
@@ -1345,218 +1345,223 @@
     </message>
     <message>
         <source>Book</source>
-        <translation>Boek</translation>
+        <translation>Livre</translation>
     </message>
     <message>
         <source>dvd aspect ratio</source>
-        <translation>DVD Beeldformaat</translation>
+        <translation>rapport hauteur / largeur de dvd</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Ratings&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression de notes de jeux vidéo.</translation>
     </message>
     <message>
         <source>Journal</source>
-        <translation>Krant</translation>
+        <translation>Journal</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Taal&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des langues.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation>DVD Beeldformaat</translation>
+        <translation>Rapport hauteur / largeur de DVD</translation>
     </message>
     <message>
         <source>video game platform</source>
-        <translation>Video Game Platform</translation>
+        <translation>plate-forme de jeux vidéo</translation>
     </message>
     <message>
         <source>Video Game Platform</source>
-        <translation>Video Game Platform</translation>
+        <translation>Plate-forme de jeux vidéo</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Locaties&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des emplacements.</translation>
     </message>
     <message>
         <source>Unable to create the minimum day (</source>
-        <translation>Niet mogelijk om de minimum dag aan te maken (</translation>
+        <translation>Impossible de créer le nombre minimal de jours (</translation>
     </message>
     <message>
         <source>Video Game Rating</source>
-        <translation>Video Game Rating</translation>
+        <translation>Notes de jeux vidéo</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het &quot; Aantal Minimum Dagen&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression du nombre 
+minmal de jours.</translation>
     </message>
     <message>
         <source>CD Format</source>
-        <translation>CD Format</translation>
+        <translation>Format de CD</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het &quot;DVD Beeldformaat&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur / largeur de DVD.</translation>
     </message>
     <message>
         <source>DVD Rating</source>
-        <translation>DVD Rating</translation>
+        <translation>Note de DVD</translation>
     </message>
     <message>
         <source>DVD Region</source>
-        <translation>DVD Regio</translation>
+        <translation>Région de DVD</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Platformen&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression de plates-formes de jeux vidéo.</translation>
     </message>
     <message>
         <source>Unable to retrieve the </source>
-        <translation>Niet mogelijk om volgende op te halen:</translation>
+        <translation>Impossible d&apos;extraire le </translation>
     </message>
     <message>
         <source>video game rating</source>
-        <translation>Video Game Rating</translation>
+        <translation>note de jeu vidéo</translation>
     </message>
     <message>
         <source>Unable to create the location (</source>
-        <translation>Niet mogelijk om de Locatie aan te maken (</translation>
+        <translation>Impossible de créer l&apos;emplacement (</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Munteenheid&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des unités monétaires.</translation>
     </message>
     <message>
         <source>cd format</source>
-        <translation>CD Format</translation>
+        <translation>format de cd</translation>
     </message>
     <message>
         <source>dvd region</source>
-        <translation>DVD Regio</translation>
+        <translation>région de dvd</translation>
     </message>
     <message>
         <source>dvd rating</source>
-        <translation>DVD Rating</translation>
+        <translation>note de dvd</translation>
     </message>
     <message>
         <source>Magazine</source>
-        <translation>Tijdschrift</translation>
+        <translation>Magazine</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>language</source>
-        <translation>Taal</translation>
+        <translation>langue</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde de Standaardwaarden op te slaan.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative d&apos;enregistrer les énumérations de la base de données.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de CD Formats te verwijderen.</translation>
+        <translation>Un erreur est survenue lors d&apos;une tentative de suppression des formats de CD.</translation>
     </message>
     <message>
         <source>Video Game</source>
-        <translation>Video Game</translation>
+        <translation>Jeu vidéo</translation>
     </message>
     <message>
         <source>Unable to create the </source>
-        <translation>Niet mogelijk om dit aan te maken:</translation>
+        <translation>Impossible de créer le </translation>
     </message>
     <message>
         <source>Music CD</source>
-        <translation>Muziek CD</translation>
+        <translation>CD de musique</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
-        <translation>Munteenheid</translation>
+        <translation>Unité monétaire</translation>
     </message>
     <message>
         <source>monetary unit</source>
-        <translation>Munteenheid</translation>
+        <translation>unité monétaire</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Regios&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des régions de dvd.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Ratings&quot; te verwijderen.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des notes de dvd.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
+    </message>
+    <message>
+        <source> </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>dvdDialog</name>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Hoezen</translation>
+        <translation>Images de couverture</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Hoes (voorkant)</translation>
+        <translation>Image de première de couverture</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Femer</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation>&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Beeldformaat</translation>
+        <translation>Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>Format</source>
@@ -1564,15 +1569,15 @@
     </message>
     <message>
         <source>Rating</source>
-        <translation>Rating</translation>
+        <translation>Note</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Regio</translation>
+        <translation>Région</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -1580,11 +1585,11 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Hoes (achterkant)</translation>
+        <translation>Image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -1592,19 +1597,19 @@
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Aanvraag</translation>
+        <translation>Requête &amp;Z39.50</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation>&amp;Copies</translation>
     </message>
     <message>
         <source>Actor(s)</source>
@@ -1612,19 +1617,19 @@
     </message>
     <message>
         <source>Director(s)</source>
-        <translation>Director(s)</translation>
+        <translation>Réalisateur(s)</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation>Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>hh:mm:ss</source>
@@ -1632,81 +1637,81 @@
     </message>
     <message>
         <source>General Information</source>
-        <translation>Algemene Informatie</translation>
+        <translation>Informations générales</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Specifieke Informatie</translation>
+        <translation>Informations spécifiques</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
 </context>
 <context>
     <name>errordialog</name>
     <message>
         <source>File</source>
-        <translation>Bestand</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Resetten</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Line Number</source>
-        <translation>Regelnummer</translation>
+        <translation>Numéro de ligne</translation>
     </message>
     <message>
         <source>Event Time</source>
-        <translation>Tijd</translation>
+        <translation>Date d&apos;événement</translation>
     </message>
     <message>
         <source>Event Type</source>
-        <translation>Type Voorval</translation>
+        <translation>Type d&apos;événement</translation>
     </message>
     <message>
         <source>Full Description</source>
-        <translation>Volledige Beschrijving</translation>
+        <translation>Description complète</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation>Samenvatting</translation>
+        <translation>Résumé</translation>
     </message>
     <message>
         <source>&amp;To Clipboard</source>
-        <translation>&amp;Naar Plakbord</translation>
+        <translation>&amp;Vers le presse-papiers</translation>
     </message>
     <message>
         <source>BiblioteQ: Error Log</source>
-        <translation>BiblioteQ: Fouten Logboek</translation>
+        <translation>BiblioteQ : journal des erreurs</translation>
     </message>
 </context>
 <context>
     <name>generic_thread</name>
     <message>
         <source>. This file is required by BiblioteQ.</source>
-        <translation>. Dit bestand is nodig voor BiblioteQ.</translation>
+        <translation>. Ce fichier est requis par BiblioteQ.</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Kan niet gelezen worden</translation>
+        <translation>Impossible de lire </translation>
     </message>
     <message>
         <source>Z39.50 Empty Results Set</source>
-        <translation>Z39.50 Lege Resultaten Set</translation>
+        <translation>Ensemble de résultats vides de Z39.50</translation>
     </message>
 </context>
 <context>
@@ -1721,170 +1726,170 @@
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Returned Date</source>
-        <translation>Datum Ingave</translation>
+        <translation>Date de restitution</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Ontlener</translation>
+        <translation>Prêteur</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Next Member</source>
-        <translation>Volgende Klant</translation>
+        <translation>Membre suivant</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>Previous Member</source>
-        <translation>Vorige Klant</translation>
+        <translation>Membre précédent</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleen Datum</translation>
+        <translation>Date de réservation</translation>
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Terugbreng Datum</translation>
+        <translation>Date limite</translation>
     </message>
     <message>
         <source>&amp;Reload</source>
-        <translation>&amp;Herladen</translation>
+        <translation>&amp;Recharger</translation>
     </message>
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation>BiblioteQ: Uitleengeschiedenis van Kl</translation>
+        <translation>BiblioteQ : historique de réservation du membre</translation>
     </message>
 </context>
 <context>
     <name>informationDialog</name>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Type Boekbinding</translation>
+        <translation>Type de reliure</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Hoezen</translation>
+        <translation>Images de couverture</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Hoes (voorkant)</translation>
+        <translation>Image de première de couverture</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation>&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation>Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>From &amp;ISBN-10</source>
-        <translation>Vanuit &amp;ISBN-10</translation>
+        <translation>Depuis l&apos;&amp;ISBN-10</translation>
     </message>
     <message>
         <source>From &amp;ISBN-13</source>
-        <translation>Vanuit &amp;ISBN-13</translation>
+        <translation>Depuis l&apos;&amp;ISBN-13</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation>Cote</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Classificatie Nummer</translation>
+        <translation>Numéro de classification Dewey</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>MARC Tags</source>
-        <translation>MARC Tags</translation>
+        <translation>Étiquettes MARC</translation>
     </message>
     <message>
         <source>Paperback</source>
-        <translation>Paperback</translation>
+        <translation>Livre broché</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation>&amp;Download</translation>
+        <translation>&amp;Télécharger</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Hardcover</source>
-        <translation>Hardcover</translation>
+        <translation>Livre relié</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Hoes (achterkant)</translation>
+        <translation>Image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -1892,19 +1897,19 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Aanvraag</translation>
+        <translation>Requête &amp;Z39.50</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation>&amp;Copies</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -1912,35 +1917,31 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Editie</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
-    </message>
-    <message>
-        <source>&amp;Generate</source>
-        <translation type="obsolete">&amp;Genereer</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Algemene Informatie</translation>
+        <translation>Informations générales</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Specifieke Informatie</translation>
+        <translation>Informations spécifiques</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -1952,70 +1953,70 @@
     </message>
     <message>
         <source>ISBNs</source>
-        <translation type="unfinished"></translation>
+        <translation>ISBN</translation>
     </message>
 </context>
 <context>
     <name>magDialog</name>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Hoezen</translation>
+        <translation>Images de couverture</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Hoes (voorkant)</translation>
+        <translation>Image de première de couverture</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation>&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Reset</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation>Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation>Cote</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Classificatie-Nummer</translation>
+        <translation>Numéro de classification Dewey</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2023,19 +2024,19 @@
     </message>
     <message>
         <source>MARC Tags</source>
-        <translation>MARC Tags</translation>
+        <translation>Étiquettes MARC</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Hoes (achterkant)</translation>
+        <translation>Image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -2043,55 +2044,51 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Aanvraag</translation>
+        <translation>Requête &amp;Z39.50</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation>&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
-    </message>
-    <message>
-        <source>ISSN (9999-9999)</source>
-        <translation type="obsolete">ISSN (9999-9999)</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Algemene Informatie</translation>
+        <translation>Informations générales</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Specifieke Informatie</translation>
+        <translation>Informations spécifiques</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Issue (Number)</source>
-        <translation>Uitgave (Nummer)</translation>
+        <translation>Numéro (publication)</translation>
     </message>
     <message>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
-        <translation type="unfinished"></translation>
+        <translation>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</translation>
     </message>
 </context>
 <context>
@@ -2162,79 +2159,75 @@
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Bewerken</translation>
+        <translation>&amp;Édition</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Bestand</translation>
+        <translation>&amp;Fichier</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
+        <translation>&amp;Aide</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Beeld</translation>
+        <translation>&amp;Affichage</translation>
     </message>
     <message>
         <source>&amp;Display Table Grid</source>
-        <translation>&amp;Toon Rasterlijnen</translation>
+        <translation>&amp;Afficher la grille d&apos;une table</translation>
     </message>
     <message>
         <source>Change Password</source>
-        <translation>Verander Paswoord</translation>
+        <translation>Changer de mot de passe</translation>
     </message>
     <message>
         <source>Delete Selected Item(s)</source>
-        <translation>Verwijder Geselecteerde Item(s)</translation>
+        <translation>Supprimer l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
-        <translation>Bewaar &amp;Programma Layout</translation>
+        <translation>Préserver la g&amp;éométrie de la fenêtre principale</translation>
     </message>
     <message>
         <source>Exit Bibliote&amp;Q</source>
-        <translation>Afsluiten</translation>
+        <translation>Quitter Bibliote&amp;Q</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Over BiblioteQ</translation>
+        <translation>&amp;À propos</translation>
     </message>
     <message>
         <source>Configure Administrator Privileges</source>
-        <translation>Administrator Privileges Aanpassen</translation>
+        <translation>Configurer les privilèges de l&apos;administrateur</translation>
     </message>
     <message>
         <source>&amp;Tools</source>
-        <translation>&amp;Gereedschap</translation>
+        <translation>&amp;Outils</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation>Tabel Verversen</translation>
+        <translation>Rafraîchir une table</translation>
     </message>
     <message>
         <source>Search Toolbar</source>
-        <translation></translation>
+        <translation>Barre de recherche</translation>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
-        <translation>&amp;Verwijder Geselecteerde Item(s)</translation>
+        <translation>&amp;Supprimer l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>&amp;Pas Geselecteerde Item(s) Aan</translation>
+        <translation>&amp;Modifier l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>Connect Toobar</source>
-        <translation></translation>
+        <translation>Barre de connexion</translation>
     </message>
     <message>
         <source>Populate Database En&amp;umerations Browser on Display</source>
-        <translation>Invoer-Database &amp;Laden bij Oproep</translation>
-    </message>
-    <message>
-        <source>Populate Table on Item &amp;Creation</source>
-        <translation type="obsolete">&amp;Tabel Laden bij Aanmaak van een Item</translation>
+        <translation>Remplir l&apos;explorateur des é&amp;numérations de la base de données à l&apos;affichage</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -2262,11 +2255,11 @@
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
@@ -2275,10 +2268,6 @@
     <message>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>Ctrl+T</source>
-        <translation type="obsolete">Ctrl+T</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -2290,246 +2279,230 @@
     </message>
     <message>
         <source>Print Current View</source>
-        <translation>Print Huidige Tabel</translation>
+        <translation>Imprimer la table actuelle</translation>
     </message>
     <message>
         <source>E&amp;ntries per Page</source>
-        <translation>Items per Pagina</translation>
+        <translation>Ar&amp;ticles par page</translation>
     </message>
     <message>
         <source>&amp;Save Settings</source>
-        <translation>&amp;Bewaar Instellingen</translation>
+        <translation>&amp;Enregistrer les paramètres</translation>
     </message>
     <message>
         <source>Custom Database Query</source>
-        <translation>Eigen Query Samenstelling</translation>
+        <translation>Requête de base de données personnalisée</translation>
     </message>
     <message>
         <source>Preferred &amp;Z39.50 Site</source>
-        <translation>Voorkeur &amp;Z39.50 Site</translation>
+        <translation>Site &amp;Z39.50 préféré</translation>
     </message>
     <message>
         <source>Database Enumerations</source>
-        <translation>Invoer Database</translation>
+        <translation>Énumérations de bases de données</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation>&amp;Opties</translation>
+        <translation>&amp;Options</translation>
     </message>
     <message>
         <source>Modify Selected Item(s)</source>
-        <translation>Pas Geselecteerde Item(s) Aan</translation>
-    </message>
-    <message>
-        <source>&amp;Populate Table on Connect</source>
-        <translation type="obsolete">&amp;Tabel Laden bij Connectie</translation>
+        <translation>Modifier l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>View Selected Item(s)</source>
-        <translation>Bekijk Geselecteerde Item(s)</translation>
+        <translation>Afficher l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>&amp;Resize Columns to Contents</source>
-        <translation>&amp;Automatisch Kolom --&gt; Inhoud Aanpassen</translation>
+        <translation>&amp;Redimensionner les colonnes en fonction du contenu</translation>
     </message>
     <message>
         <source>Exit BiblioteQ</source>
-        <translation>Sluit BiblioteQ Af</translation>
+        <translation>Quitter BiblioteQ</translation>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Ledentabel &amp;Laden bij Oproep</translation>
+        <translation>Remplir la ta&amp;ble de l&apos;explorateur des membres à l&apos;affichage</translation>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
-        <translation>&amp;Automatisch Instellingen Opslaan bij Afsluiten</translation>
+        <translation>Enregistrer automatiquement les paramètres à la &amp;fermeture</translation>
     </message>
     <message>
         <source>Display Members Browser</source>
-        <translation>Toon Lijst met Klanten</translation>
-    </message>
-    <message>
-        <source>Automatically &amp;Resize Columns to Contents</source>
-        <translation type="obsolete">&amp;Automatisch Kolom --&gt; Inhoud Aanpassen</translation>
+        <translation>Afficher l&apos;explorateur des membres</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <source>Refresh &amp;Table</source>
-        <translation type="obsolete">&amp;Tabel Herladen</translation>
-    </message>
-    <message>
-        <source>&amp;Export View as CSV</source>
-        <translation type="obsolete">&amp;Exporteer als CSV bestand</translation>
-    </message>
-    <message>
         <source>&amp;Members Browser</source>
-        <translation>&amp;Lijst met Klanten</translation>
+        <translation>&amp;Explorateur de membres</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Verbreken</translation>
+        <translation>Déconnecter</translation>
     </message>
     <message>
         <source>Add Item</source>
-        <translation>Voeg Item Toe</translation>
+        <translation>Ajouter un article</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Verbinden</translation>
+        <translation>&amp;Connecter</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Verbinden</translation>
+        <translation>Connecter</translation>
     </message>
     <message>
         <source>&amp;Recent SQLite Files</source>
-        <translation>&amp;Recente SQLite Bestanden</translation>
+        <translation>Fichiers SQLite &amp;récents</translation>
     </message>
     <message>
         <source>&amp;Disconnect</source>
-        <translation>&amp;Verbreken</translation>
+        <translation>&amp;Déconnecter</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
-        <translation>Bekijk Fouten &amp;Logboek</translation>
+        <translation>Afficher le &amp;journal des erreurs</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
-        <translation>&amp;Geselecteerde Item(s)</translation>
+        <translation>&amp;Sélectionner un ou des articles</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation>Bekijk Uitleengeschiedenis van Klant</translation>
+        <translation>Afficher l&apos;historique de réservation du membre</translation>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation>Vorige Pagina</translation>
+        <translation>Page précédente</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation>Leen selectie uit</translation>
+        <translation>Réserver l&apos;article sélectionné</translation>
     </message>
     <message>
         <source>Item Requests</source>
-        <translation>Item aanvraag</translation>
+        <translation>Requêtes d&apos;articles</translation>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Selecteer &amp;Globaal Lettertype</translation>
+        <translation>Sélectionner une police &amp;globale</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Administrator-&amp;Tabel Laden bij Oproep</translation>
+        <translation>Remplir la table de l&apos;explorateur de l&apos;&amp;administrateur à l&apos;affichage</translation>
     </message>
     <message>
         <source>Reservations Toolbar</source>
-        <translation></translation>
+        <translation>Barre de réservations</translation>
     </message>
     <message>
         <source>Configurations Toolbar</source>
-        <translation></translation>
+        <translation>Barre de configuration</translation>
     </message>
     <message>
         <source>Select Viewable Columns</source>
-        <translation>Selecteer Zichtbare Kolommen</translation>
+        <translation>Sélectionner les colonnes affichables</translation>
     </message>
     <message>
         <source>Reset &amp;Error Log on Disconnect</source>
-        <translation>Reset &amp;Fouten Logboek bij verbreken van Database</translation>
+        <translation>Réinitialiser le journal des erre&amp;urs à la déconnexion</translation>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
-        <translation>&amp;Nieuwe SQLite Database</translation>
+        <translation>&amp;Nouvelle base de données SQLite</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation>Volgende Pagina</translation>
+        <translation>Page suivante</translation>
     </message>
     <message>
         <source>Exit Toolbar</source>
-        <translation></translation>
+        <translation>Barre de sortie</translation>
     </message>
     <message>
         <source>&amp;Database Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>Recherche dans la base &amp;de données</translation>
     </message>
     <message>
         <source>Database Search</source>
-        <translation>Zoeken</translation>
+        <translation>Recherche dans la base de données</translation>
     </message>
     <message>
         <source>Edit Toolbar</source>
-        <translation></translation>
+        <translation>Barre d&apos;édition</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliquer</translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliquer l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>&amp;Refresh View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rafraîchiir l&apos;affichage</translation>
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exporter la vue de la table au format CSV</translation>
     </message>
     <message>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>D&amp;upliquer l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <source>&amp;Populate View on Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remplir la vue à la connexion</translation>
     </message>
     <message>
         <source>Populate View on Item &amp;Creation</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplir la vue lors de la &amp;création d&apos;un article</translation>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter un article</translation>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Livre</translation>
     </message>
     <message>
         <source>&amp;DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Journal</translation>
     </message>
     <message>
         <source>&amp;Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Magazine</translation>
     </message>
     <message>
         <source>Music &amp;CD</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;CD de musique</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeu &amp;vidéo</translation>
     </message>
 </context>
 <context>
     <name>main_table</name>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -2549,51 +2522,51 @@
     </message>
     <message>
         <source>Issue</source>
-        <translation>Issue Nummer</translation>
+        <translation>Numéro</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Type Boekbinding</translation>
+        <translation>Type de reliure</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Dewey Classificatie Nummer</translation>
+        <translation>Numéro Dewey</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Platform</translation>
+        <translation>Plate-forme</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Beeldformaat</translation>
+        <translation>Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Record Label</translation>
+        <translation>Label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>Controle Nummer</translation>
+        <translation>Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiest</translation>
+        <translation>Artiste</translation>
     </message>
     <message>
         <source>Format</source>
@@ -2601,31 +2574,31 @@
     </message>
     <message>
         <source>Genres</source>
-        <translation>Genre</translation>
+        <translation>Genres</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation>Cote</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Classificatienummer</translation>
+        <translation>Numéro de classification Dewey</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Rating</translation>
+        <translation>Note</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Regio</translation>
+        <translation>Région</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -2633,11 +2606,11 @@
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Game Rating</translation>
+        <translation>Note de jeu</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -2645,31 +2618,31 @@
     </message>
     <message>
         <source>Borrower</source>
-        <translation>Klant</translation>
+        <translation>Emprunteur</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleen Datum</translation>
+        <translation>Date de réservation</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -2677,35 +2650,35 @@
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Terugbreng Datum</translation>
+        <translation>Date limite</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Editie</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation>Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorie</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation>Numéro de catalogue</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -2717,149 +2690,149 @@
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Type Opname</translation>
+        <translation>Type d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Request Date</source>
-        <translation>Aanvraag Datum</translation>
+        <translation>Date de requête</translation>
     </message>
     <message>
         <source>Total Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Total réservé</translation>
     </message>
 </context>
 <context>
     <name>membersBrowser</name>
     <message>
         <source>Apply Filter</source>
-        <translation>Pas Filter Toe</translation>
+        <translation>Appliquer un filtre</translation>
     </message>
     <message>
         <source>Member Since</source>
-        <translation>Klant sinds</translation>
+        <translation>Membre depuis</translation>
     </message>
     <message>
         <source>Refresh Table</source>
-        <translation>Tabel Herladen</translation>
+        <translation>Rafraîchir la table</translation>
     </message>
     <message>
         <source>Show Selected Member&apos;s Reservation History</source>
-        <translation>Uitleengeschiedenis van Klant</translation>
+        <translation>Afficher l&apos;historique de réservation du membre sélectionné</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation>Uitschrijfdatum</translation>
+        <translation>Date d&apos;expiration</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation>ID de membre</translation>
     </message>
     <message>
         <source>Close Browser</source>
-        <translation>Sluit dit venster</translation>
+        <translation>Fermer l&apos;explorateur</translation>
     </message>
     <message>
         <source>Print Selected Member&apos;s Reserved Items</source>
-        <translation>Print geselecteerde item(s) van klant</translation>
+        <translation>Imprimer les articles réservés du membre sélectionné</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation>Filtre</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation>Uitgeleende Video Games</translation>
+        <translation>Jeux vidéo réservés</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation>Uitgeleende DVD&apos;s</translation>
+        <translation>DVD réservés</translation>
     </message>
     <message>
         <source>Add Member</source>
-        <translation>Toevoegen Klant</translation>
+        <translation>Ajouter un membre</translation>
     </message>
     <message>
         <source>List All Overdue Items</source>
-        <translation>Overtijdse Item(s) Weergeven</translation>
+        <translation>Lister tous les articles en retard</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation>Uitgeleende Tijdschriften</translation>
+        <translation>Magazines réservés</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation>Uitgeleende Kranten</translation>
+        <translation>Journaux réservés</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation>Uitgeleende CD&apos;s</translation>
+        <translation>CD réservés</translation>
     </message>
     <message>
         <source>List Selected Member&apos;s Reserved Items</source>
-        <translation>Geleende Item(s) van Klant in Hoofdtabel Weergeven</translation>
+        <translation>Lister les articles réservés du membre sélectionné</translation>
     </message>
     <message>
         <source>Modify Selected Member</source>
-        <translation>Wijzig Klant</translation>
+        <translation>Modifier le membre sélectionné</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation>Uitgeleende Boeken</translation>
+        <translation>Livres réservés</translation>
     </message>
     <message>
         <source>Delete Selected Member</source>
-        <translation>Verwijder Klant</translation>
+        <translation>Supprimer le membre sélectionné</translation>
     </message>
     <message>
         <source>Reserve Selected Item</source>
-        <translation>Leen selectie uit</translation>
+        <translation>Réserver l&apos;article sélectionné</translation>
     </message>
     <message>
         <source>BiblioteQ: Members Browser</source>
-        <translation>BiblioteQ: Lijst met Klanten</translation>
+        <translation>BiblioteQ : explorateur des membres</translation>
     </message>
     <message>
         <source>Grant Privileges</source>
-        <translation type="unfinished"></translation>
+        <translation>Accorder des privilèges</translation>
     </message>
 </context>
 <context>
     <name>passSelect</name>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Current Password</source>
-        <translation>Huidig Paswoord</translation>
+        <translation>Mot de passe actuel</translation>
     </message>
     <message>
         <source>BiblioteQ: Password Selection</source>
-        <translation>BiblioteQ: Paswoord Selectie</translation>
+        <translation>BiblioteQ : sélection du mot de passe</translation>
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation>Bevestig Paswoord</translation>
+        <translation>Confirmer le mot de passe</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation>Gebruikers ID</translation>
+        <translation>ID utilisateur</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuleren</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <source>New Password</source>
-        <translation>Nieuw paswoord</translation>
+        <translation>Nouveau mot de passe</translation>
     </message>
 </context>
 <context>
@@ -2874,7 +2847,7 @@
     </message>
     <message>
         <source>%1</source>
-        <translation></translation>
+        <translation>%1</translation>
     </message>
     <message>
         <source>, </source>
@@ -2886,27 +2859,27 @@
     </message>
     <message>
         <source>&amp;%1</source>
-        <translation></translation>
+        <translation>&amp;%1</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source> %1 </source>
-        <translation></translation>
+        <translation> %1 </translation>
     </message>
     <message>
         <source>Unable to remove the selected member.</source>
-        <translation>Onmogelijk om geselecteerde klant te verwijderen.</translation>
+        <translation>Impossible de supprimer le membre sélectionné.</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Bestand</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -2914,375 +2887,355 @@
     </message>
     <message>
         <source>An error occurred while attempting to update the database account for </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account te updaten voor</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de mise à jour du compte de base de données pour </translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
-    </message>
-    <message>
-        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation>U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source> ... </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to create a database account for </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor </translation>
-    </message>
-    <message>
-        <source>Unable to cancel the request.</source>
-        <translation>Kan aanvraag niet annuleren.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fout</translation>
-    </message>
-    <message>
-        <source>Table</source>
-        <translation type="obsolete">Tabel</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Titel</translation>
-    </message>
-    <message>
-        <source>Cancelling the selected request(s)...</source>
-        <translation>Bezig met geselecteerde aanvragen te annuleren...</translation>
-    </message>
-    <message>
-        <source> in file </source>
-        <translation>in bestand</translation>
-    </message>
-    <message>
-        <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
-    </message>
-    <message>
-        <source>Please select at least one item to place on request.</source>
-        <translation>Selecteer minstens één item om bij de aanvraag te plaatsen.</translation>
-    </message>
-    <message>
-        <source>An identical member already exists.</source>
-        <translation>Een identieke klant bestaat reeds.</translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to create a database account for the new member.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor de nieuwe klant.</translation>
-    </message>
-    <message>
-        <source>Administrators must belong to at least one category.</source>
-        <translation>Administrators dienen op zijn minst lid te zijn van één categorie.</translation>
-    </message>
-    <message>
-        <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation>Laat de nieuwe klant weten dat hun paswoord is gezet op tempPass.</translation>
-    </message>
-    <message>
-        <source>Circulation Mode</source>
-        <translation>Circulatie Modus</translation>
-    </message>
-    <message>
-        <source>Empty Error Log</source>
-        <translation>Fouten Logboek Wissen</translation>
-    </message>
-    <message>
-        <source> ... %1 </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation>Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
-    </message>
-    <message>
-        <source>Member Since</source>
-        <translation>Klant sinds</translation>
-    </message>
-    <message>
-        <source>Please provide a valid SQL statement.</source>
-        <translation>Voorzie een geldige SQL uitdrukking a.u.b.  .</translation>
-    </message>
-    <message>
-        <source>Standard User Mode</source>
-        <translation>Standaard Gebruiker Modus</translation>
-    </message>
-    <message>
-        <source>An unknown error occurred in file </source>
-        <translation>Een onbekende fout is opgetreden in bestand</translation>
-    </message>
-    <message>
-        <source>The member that you selected does not have any reserved items.</source>
-        <translation>De klant die U selecteerde heeft geen items ontleend.</translation>
-    </message>
-    <message>
-        <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation>Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
-    </message>
-    <message>
-        <source>Please contact your administrator.</source>
-        <translation>Contacteer uw administrator a.u.b.  .</translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het volgende te verplaatsen:</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>Verbroken</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Create New Member</source>
-        <translation>BiblioteQ: Nieuwe Klant Aanmaken</translation>
-    </message>
-    <message>
-        <source>It appears that the user </source>
-        <translation>Het lijkt dat de gebruiker</translation>
-    </message>
-    <message>
-        <source>You have unsaved data. Continue?</source>
-        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
-    </message>
-    <message>
-        <source>Error Log Active</source>
-        <translation>Fouten Logboek Actief</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation>Kan de reservatiegeschiedenis niet achterhalen om de tabel te vullen.</translation>
-    </message>
-    <message>
-        <source>In addition, Qt expects plugins to exist in: </source>
-        <translation>In aanvulling, Qt verwacht plugins in:</translation>
-    </message>
-    <message>
-        <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
-    </message>
-    <message>
-        <source>Table Name</source>
-        <translation>Tabelnaam</translation>
-    </message>
-    <message>
-        <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Om de geleende Item(s) van een klant af te printen moet U eerst een klant selecteren.</translation>
-    </message>
-    <message>
-        <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
-    </message>
-    <message>
-        <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
-    </message>
-    <message>
-        <source>Please provide a valid ZIP Code.</source>
-        <translation>Vul een geldige postcode in a.u.b.  .</translation>
-    </message>
-    <message>
-        <source>Administrator Mode</source>
-        <translation>Administrator Modus</translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
-    </message>
-    <message>
-        <source>Cancel Selected Request(s)</source>
-        <translation>Annuleer de geselecteerde aanvraag</translation>
-    </message>
-    <message>
-        <source>Unable to save the member&apos;s information.</source>
-        <translation>Niet mogelijk om klant-info op te slaan.</translation>
-    </message>
-    <message>
-        <source>Populating the table...</source>
-        <translation>Hoofdtabel opvullen...</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
-    </message>
-    <message>
-        <source>Expiration Date</source>
-        <translation>Uitschrijfdatum</translation>
-    </message>
-    <message>
-        <source>Insert &amp;Book</source>
-        <translation type="obsolete">&amp;Boek Toevoegen</translation>
-    </message>
-    <message>
-        <source> 1 ... </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Recording Label</source>
-        <translation>Platenmaatschappij</translation>
-    </message>
-    <message>
-        <source>&amp;Journal Search</source>
-        <translation>&amp;Krant Zoeken</translation>
-    </message>
-    <message>
-        <source>Member ID</source>
-        <translation>Klant ID</translation>
-    </message>
-    <message>
-        <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Om uitgeleende item(s) van een klant weer te geven, moet u eerst een klant selecteren.</translation>
-    </message>
-    <message>
-        <source>Requested items may not be deleted.</source>
-        <translation>Gereserveerde items kunnen niet worden verwijderd.</translation>
-    </message>
-    <message>
-        <source>Membership Mode</source>
-        <translation>Klant Modus</translation>
-    </message>
-    <message>
-        <source>Returned Date</source>
-        <translation>Datum Ingave</translation>
-    </message>
-    <message>
-        <source>You may not remove a member that has reserved items.</source>
-        <translation>U mag geen Klant verwijderen die geleende item(s) bezit.</translation>
-    </message>
-    <message>
-        <source>Memory failure in addError()!</source>
-        <translation>Geheugen Falen in addError()!</translation>
-    </message>
-    <message>
-        <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
-        <translation>Uw huidige database driver ondersteunt geen transacties. Upgrade uw database en/of driver.</translation>
-    </message>
-    <message>
-        <source>Reserved items may not be deleted.</source>
-        <translation>Uitgeleende items kunnen niet worden verwijderd.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SQLite Database Selection</source>
-        <translation>BiblioteQ: SQLite Database Selectie</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Select Global Font</source>
-        <translation>BiblioteQ: Wijzig Lettertype</translation>
-    </message>
-    <message>
-        <source>Please select a member to delete.</source>
-        <translation>Selecteer een klant om te verwijderen.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Export View as CSV</source>
-        <translation type="obsolete">BiblioteQ: Exporteer Weergave als CSV</translation>
-    </message>
-    <message>
-        <source>Column Type</source>
-        <translation>Type Kolom </translation>
-    </message>
-    <message>
-        <source> already exists.</source>
-        <translation>bestaat al.</translation>
-    </message>
-    <message>
-        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation>Om de inhoud van het fouten-logboek te kopieëren naar het klembord, dient u minstens één regel te selecteren.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
-    </message>
-    <message>
-        <source>Column</source>
-        <translation>Kolom</translation>
-    </message>
-    <message>
-        <source>Unable to delete the item.</source>
-        <translation>Niet mogelijk om item te verwijderen.</translation>
-    </message>
-    <message>
-        <source>Unable to cancel some or all of the selected requests.</source>
-        <translation>Niet mogelijk om sommige of alle geselecteerde aanvragen te annuleren.</translation>
-    </message>
-    <message>
-        <source>Request Selected Item(s)</source>
-        <translation>Vraag Geselecteerde Item(s) Aan</translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to revoke privileges from </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde privileges in te trekken van </translation>
-    </message>
-    <message>
-        <source>It appears that the selected member&apos;s membership has expired.</source>
-        <translation>Het lidmaatschap van geselecteerde klant is verlopen.</translation>
-    </message>
-    <message>
-        <source>Line Number</source>
-        <translation>Regelnummer</translation>
-    </message>
-    <message>
-        <source>The selected member does not yet have a reservation history to print.</source>
-        <translation>De klant die U selecteerde heeft nog geen reservatiegeschiedenis.</translation>
-    </message>
-    <message>
-        <source>Video Games Reserved</source>
-        <translation>Uitgeleende Video Games</translation>
-    </message>
-    <message>
-        <source>Lender</source>
-        <translation>Ontlener</translation>
-    </message>
-    <message>
-        <source>DVDs Reserved</source>
-        <translation>Uitgeleende DVD&apos;s</translation>
-    </message>
-    <message>
-        <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation>Kan sommige of alle geselecteerde items niet aanvragen.Ga na of U geen dubbele items probeert aan te vragen.</translation>
-    </message>
-    <message>
-        <source>Connected</source>
-        <translation>Verbonden</translation>
-    </message>
-    <message>
-        <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
-    </message>
-    <message>
-        <source>ID Number</source>
-        <translation>ID Nummer</translation>
-    </message>
-    <message>
-        <source>Event Time</source>
-        <translation>Tijd</translation>
-    </message>
-    <message>
-        <source>Event Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <source>Insert Music &amp;CD</source>
-        <translation type="obsolete">&amp;Muziek CD Toevoegen</translation>
+        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation>Il apparaît que vous êtes déjà connecté(e) à une base de données. Voulez-vous mettre fin à la connexion actuelle et vous connecter à la nouvelle base de données SQLite ?</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: </source>
+        <translation>BiblioteQ :  </translation>
+    </message>
+    <message>
+        <source> ... </source>
+        <translation> ...  </translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create a database account for </source>
+        <translation>Une erreur est survenue lors d&apos;une tentative de création de compte de base de données pour </translation>
+    </message>
+    <message>
+        <source>Unable to cancel the request.</source>
+        <translation>Impossible d&apos;annuler la requête.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Titre</translation>
+    </message>
+    <message>
+        <source>Cancelling the selected request(s)...</source>
+        <translation>Annulation de la ou des requêtes sélectionnées...</translation>
+    </message>
+    <message>
+        <source> in file </source>
+        <translation> dans un fichier </translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation>Réinitialiser le &amp;sommaire</translation>
+    </message>
+    <message>
+        <source>Please select at least one item to place on request.</source>
+        <translation>Veuillez sélectionner au moins un article à placer lors d&apos;une requête.</translation>
+    </message>
+    <message>
+        <source>An identical member already exists.</source>
+        <translation>Un membre identique existe déjà.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create a database account for the new member.</source>
+        <translation>Une erreur est survenue lors d&apos;une tentative de création de compte de base de données pour le nouveau membre.</translation>
+    </message>
+    <message>
+        <source>Administrators must belong to at least one category.</source>
+        <translation>Les administrateurs doivent appartenir au moins à une catégorie.</translation>
+    </message>
+    <message>
+        <source>Please notify the new member that their default password has been set to tempPass.</source>
+        <translation>Veuillez avertir le nouveau membre qu&apos;il lui a été attribué le mot de passe « Passtemp ».</translation>
+    </message>
+    <message>
+        <source>Circulation Mode</source>
+        <translation>Mode de circulation</translation>
+    </message>
+    <message>
+        <source>Empty Error Log</source>
+        <translation>Vider le journal d&apos;erreurs</translation>
+    </message>
+    <message>
+        <source> ... %1 </source>
+        <translation> ... %1 </translation>
+    </message>
+    <message>
+        <source>It appears that the item that you selected is not available for reservation.</source>
+        <translation>Il apparaît que l&apos;article sélectionné n&apos;est pas disponible à la réservation.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « caseàCocher ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+    </message>
+    <message>
+        <source>Member Since</source>
+        <translation>Membre depuis</translation>
+    </message>
+    <message>
+        <source>Please provide a valid SQL statement.</source>
+        <translation>Veuillez indiquer une instruction SQL valide.</translation>
+    </message>
+    <message>
+        <source>Standard User Mode</source>
+        <translation>Mode utilisateur standard</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred in file </source>
+        <translation>Une erreur inconnue est survenue dans le fichier </translation>
+    </message>
+    <message>
+        <source>The member that you selected does not have any reserved items.</source>
+        <translation>Le membre sélectionné n&apos;a pas d&apos;articles réservés.</translation>
+    </message>
+    <message>
+        <source>Unable to determine the number of items that are reserved by the selected member.</source>
+        <translation>Impossible de déterminer le nombre d&apos;articles réservés par le membre sélectionné.</translation>
+    </message>
+    <message>
+        <source>Please contact your administrator.</source>
+        <translation>Veuillez contacter votre administrateur.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove </source>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression </translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Déconnecté(e)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create New Member</source>
+        <translation>BiblioteQ : créer un nouveau membre</translation>
+    </message>
+    <message>
+        <source>It appears that the user </source>
+        <translation>Il apparaît que l&apos;utilisateur </translation>
+    </message>
+    <message>
+        <source>Error Log Active</source>
+        <translation>Journal des erreurs actif</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve reservation history data for table populating.</source>
+        <translation>Impossible d&apos;extraire les données d&apos;historique de réservation pour le remplissage de la table.</translation>
+    </message>
+    <message>
+        <source>In addition, Qt expects plugins to exist in: </source>
+        <translation>De plus, Qt s&apos;attend à ce que des modules externes existent dans : </translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation>Réinitialiser les c&amp;opies</translation>
+    </message>
+    <message>
+        <source>Table Name</source>
+        <translation>Nom de la table</translation>
+    </message>
+    <message>
+        <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
+        <translation>Pour pouvoir imprimer les articles réservés d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation>Impossible de créer une transaction de base de données.</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publication Date</source>
+        <translation>Réinitialiser la date de &amp;publication</translation>
+    </message>
+    <message>
+        <source>Please provide a valid ZIP Code.</source>
+        <translation>Veuillez indiquer un code postal valide.</translation>
+    </message>
+    <message>
+        <source>Administrator Mode</source>
+        <translation>Mode administrateur</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article2 ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+    </message>
+    <message>
+        <source>Cancel Selected Request(s)</source>
+        <translation>Annuler la ou les requêtes sélectionnées</translation>
+    </message>
+    <message>
+        <source>Unable to save the member&apos;s information.</source>
+        <translation>Impossible d&apos;enregistrer les informations relatives au membre.</translation>
+    </message>
+    <message>
+        <source>Populating the table...</source>
+        <translation>Remplissage de la table...</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation>Disponibilité</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation>Date d&apos;expiration</translation>
+    </message>
+    <message>
+        <source> 1 ... </source>
+        <translation> 1 ... </translation>
+    </message>
+    <message>
+        <source>Recording Label</source>
+        <translation>Label d&apos;enregistrement</translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search</source>
+        <translation>Recherche de &amp;journaux</translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation>ID de membre</translation>
+    </message>
+    <message>
+        <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
+        <translation>Pour pouvoir lister les articles réservés d&apos;un membre, il faut d&apos;abord sélectionner le membre..</translation>
+    </message>
+    <message>
+        <source>Requested items may not be deleted.</source>
+        <translation>Il est impossible de supprimer les articles demandés.</translation>
+    </message>
+    <message>
+        <source>Membership Mode</source>
+        <translation>Mode d&apos;adhésion</translation>
+    </message>
+    <message>
+        <source>Returned Date</source>
+        <translation>Date de restitution</translation>
+    </message>
+    <message>
+        <source>You may not remove a member that has reserved items.</source>
+        <translation>Il est impossible de supprimer un membre ayant des articles réservés.</translation>
+    </message>
+    <message>
+        <source>Memory failure in addError()!</source>
+        <translation>Défaut de mémoire dans addError() !</translation>
+    </message>
+    <message>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
+        <translation>Le pilote de base de données actuel que vous utilisez ne prend pas en charge les transactions. Veuillez mettre à niveau votre base de données et / ou le pilote.</translation>
+    </message>
+    <message>
+        <source>Reserved items may not be deleted.</source>
+        <translation>Il est impossible de supprimer des articles réservés.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SQLite Database Selection</source>
+        <translation>BiblioteQ : sélection d&apos;une base de données SQLite</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select Global Font</source>
+        <translation>BiblioteQ : sélectionner une police globale</translation>
+    </message>
+    <message>
+        <source>Please select a member to delete.</source>
+        <translation>Veuillez sélectionner un membre à supprimer.</translation>
+    </message>
+    <message>
+        <source>Column Type</source>
+        <translation>Type de colonne </translation>
+    </message>
+    <message>
+        <source> already exists.</source>
+        <translation> existe déjà.</translation>
+    </message>
+    <message>
+        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
+        <translation>Pour copier le contenu du journal des erreurs dans le tampon du presse-papiers, il faut d&apos;abord sélectionner au moins un article.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation>BiblioteQ : boîte de dialogue de progression</translation>
+    </message>
+    <message>
+        <source>Column</source>
+        <translation>Colonne</translation>
+    </message>
+    <message>
+        <source>Unable to delete the item.</source>
+        <translation>Impossible de supprimer l&apos;article.</translation>
+    </message>
+    <message>
+        <source>Unable to cancel some or all of the selected requests.</source>
+        <translation>Impossible d&apos;annuler certaines ou l&apos;ensemble des requêtes sélectionnées.</translation>
+    </message>
+    <message>
+        <source>Request Selected Item(s)</source>
+        <translation>Demander l&apos;article ou les articles sélectionnés</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to revoke privileges from </source>
+        <translation>Une erreur est survenue lors d&apos;une tentative de révocation de privilèges depuis  </translation>
+    </message>
+    <message>
+        <source>It appears that the selected member&apos;s membership has expired.</source>
+        <translation>Il apparaît que l&apos;adhésion du membre sélectionné a expiré.</translation>
+    </message>
+    <message>
+        <source>Line Number</source>
+        <translation>Numéro de ligne</translation>
+    </message>
+    <message>
+        <source>The selected member does not yet have a reservation history to print.</source>
+        <translation>Le membre sélectionné n&apos;a pas encore d&apos;historique de réservation à imprimer.</translation>
+    </message>
+    <message>
+        <source>Video Games Reserved</source>
+        <translation>Jeux vidéo réservés</translation>
+    </message>
+    <message>
+        <source>Lender</source>
+        <translation>Prêteur</translation>
+    </message>
+    <message>
+        <source>DVDs Reserved</source>
+        <translation>DVD réservés</translation>
+    </message>
+    <message>
+        <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
+        <translation>Impossible de consulter certains ou l&apos;ensemble des articles sélectionnés. Veuillez vérifier que vous ne tentez pas de consulter des articles en double.</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation>Connecté(e)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publisher</source>
+        <translation>Réinitialiser l&apos;&amp;éditeur</translation>
+    </message>
+    <message>
+        <source>ID Number</source>
+        <translation>Numéro d&apos;ID</translation>
+    </message>
+    <message>
+        <source>Event Time</source>
+        <translation>Date d&apos;événement</translation>
+    </message>
+    <message>
+        <source>Event Type</source>
+        <translation>Type d&apos;événement</translation>
     </message>
     <message>
         <source>Unable to determine the availability of the selected item.</source>
-        <translation>Niet na te gaan of geselecteerde beschikbaar is.</translation>
+        <translation>Impossible de déterminer la disponibilité de l&apos;article sélectionné.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Unable to remove the patron account </source>
-        <translation>Niet mogelijk om de patroon account te verwijderen.</translation>
+        <translation>Impossible de supprimer le compte client  </translation>
     </message>
     <message>
         <source>Studio</source>
@@ -3290,219 +3243,220 @@
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation>&amp;DVD Zoeken</translation>
+        <translation>Recherche de &amp;DVD</translation>
     </message>
     <message>
         <source> selected items?</source>
-        <translation>geselecteerde Item(s)?</translation>
+        <translation> articles sélectionnés ?</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>The main table does not contain enough information for item deletion.</source>
-        <translation>De hoofdtabel bevat niet genoeg informatie om item te verwijderen.</translation>
+        <translation>La table principale ne contient pas assez d&apos;informations pour la suppression d&apos;articles.</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
-        <translation type="obsolete">Kan geen item ID bepalen. Om een item uit te lenen, moet het item ID kenbaar zijn.</translation>
+        <translation type="obsolete">Impossible de déterminer l&apos;ID de l&apos;article sélectionné. Pour pouvoir réserver l&apos;article, il faut connaître son ID.</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation>&amp;Video-Game Zoeken</translation>
+        <translation>Recherche de jeux &amp;vidéo</translation>
     </message>
     <message>
         <source>Unable to save the new password.</source>
-        <translation>Kan het nieuw paswoord niet opslaan.</translation>
+        <translation>Impossible d&apos;enregistrer le nouveau mot de passe.</translation>
     </message>
     <message>
         <source>The Member ID </source>
-        <translation>Het Klant-ID</translation>
+        <translation>L&apos;ID de membre </translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>BiblioteQ has exited.</source>
-        <translation>BiblioteQ is afgesloten.</translation>
+        <translation>BiblioteQ s&apos;est fermé.</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitaliser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Onleesbaar</translation>
+        <translation>Impossible de lire </translation>
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
-        <translation>Niet mogelijk om na te gaan of dit item is uitgeleend.</translation>
+        <translation>Impossible de déterminer si l&apos;article a été réservé.</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation>&amp;Boek Zoeken</translation>
+        <translation>&amp;Recherche de livres</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Member</source>
-        <translation>BiblioteQ: Bewerk Klant Gegevens</translation>
+        <translation>BiblioteQ : modifier un membre</translation>
     </message>
     <message>
         <source>File Error</source>
-        <translation>Bestands Fout</translation>
+        <translatorcomment>Erreur de fichier</translatorcomment>
+        <translation>Erreur de fichier</translation>
     </message>
     <message>
         <source>Full Description</source>
-        <translation>Volledige Beschrijving</translation>
+        <translation>Description complète</translation>
     </message>
     <message>
         <source>Please select at least one request to cancel.</source>
-        <translation>Selecteer minstens één item-aanvraag om te annuleren.</translation>
+        <translation>Veuillez sélectionner au moins une requête à annuler.</translation>
     </message>
     <message>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation>Om een item uit te lenen, moet u het eerst selecteren.</translation>
+        <translation>Pour pouvoir réserver un article, il faut d&apos;abord le sélectionner.</translation>
     </message>
     <message>
         <source>Unable to create or update the administrator entry for </source>
-        <translation>Niet mogelijk om administrator gegevens te updaten of aan te maken voor</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;entrée d&apos;administrateur pour </translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation>Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
+        <translation>Voulez-vous vraiment supprimer le membre sélectionné ?</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
-        <translation>Om te verwijderen, dient U eerst te selecteren.</translation>
+        <translation>Pour supprimer un article, il faut d&apos;abord le sélectionner.</translation>
     </message>
     <message>
         <source>Unavailable</source>
-        <translation>Niet Beschikbaar</translation>
+        <translation>Indisponible(s)</translation>
     </message>
     <message>
         <source>Unable to delete all or some of the selected items.</source>
-        <translation>Niet mogelijk om sommige of alle geselecteerde item(s) te verwijderen.</translation>
+        <translation>Impossible de supprimer certains ou l&apos;ensemble des articles sélectionnés.</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s type.</source>
-        <translation>Niet mogelijk om het type van dit Item te bepalen.</translation>
+        <translation>Impossible de déterminer le type de l&apos;article sélectionné.</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation>Uitgeleende Tijdschriften</translation>
+        <translation>Magazines réservés</translation>
     </message>
     <message>
         <source>Unable to determine the roles of </source>
-        <translation>Niet mogelijk om de functie vast te stellen van</translation>
+        <translation>Impossible de déterminer les rôles de </translation>
     </message>
     <message>
         <source>Reserved Items for </source>
-        <translation>Ontleende items van</translation>
+        <translation>Articles réservés pour </translation>
     </message>
     <message>
         <source>Available</source>
-        <translation>Beschikbaar</translation>
+        <translation>Disponible(s)</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation>&amp;Tijdschrift Zoeken</translation>
+        <translation>Recherche de maga&amp;zines</translation>
     </message>
     <message>
         <source>Unable to create the specified SQLite database.</source>
-        <translation>Niet mogelijk om de gevraagde SQLite database aan te maken.</translation>
+        <translation>Impossible de créer la base de données SQLite spécifiée.</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been requested.</source>
-        <translation>Niet mogelijk om na te gaan of dit item is gereserveerd.</translation>
+        <translation>Impossible de déterminer si l&apos;article a été demandé.</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>%1 Result(s)</source>
-        <translation>%1 Resultaten</translation>
+        <translation>%1 résultat(s)</translation>
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation>Om de reservatiegeschiedenis te zien moet U eerst een klant selecteren.</translation>
+        <translation>Pour pouvoir afficher l&apos;historique de réservation d&apos;un membre, il faut d&apos;abord sélectionner le membre.</translation>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation>De Klant-ID moet minsten uit zeven karakters bestaan.</translation>
+        <translation>L&apos;ID de membre doit comporter une longueur d&apos;au moins 7 caractères.</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
-        <translation>Verwijderen van geselecteerde item(s)...</translation>
+        <translation>Suppression de l&apos;article ou des articles sélectionnés...</translation>
     </message>
     <message>
         <source>&amp;Clear Menu</source>
-        <translation>&amp;Wis Menu</translation>
+        <translation>&amp;Effacer un menu</translation>
     </message>
     <message>
         <source>BiblioteQ: Information</source>
-        <translation>BiblioteQ: Informatie</translation>
+        <translation>BiblioteQ : informations</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Code barre</translation>
     </message>
     <message>
         <source>Processing the global configuration file.</source>
-        <translation>Uitvoeren van het algemene configuratie bestand.</translation>
+        <translation>Traitement du fichier de configuration global.</translation>
     </message>
     <message>
         <source>Unable to retrieve administrator data for table populating.</source>
-        <translation>Kan de administrator data niet achterhalen om de tabel te vullen.</translation>
+        <translation>Impossible d&apos;extraire les données d&apos;administrateur pour le remplissage de la table.</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation>Uitgeleende Kranten</translation>
+        <translation>Journaux réservés</translation>
     </message>
     <message>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation>Laat  nieuwe administrators weten dat hun paswoord is gezet op tempPass.</translation>
+        <translation>Veuillez avertir les nouveaux administrateurs qu&apos;il leur a été attribué le mot de passe « Passtemp ».</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
-        <translation>wegens onvoldoende capaciteit.</translation>
+        <translation> en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
-        <translation>Kan de klant data niet ophalen om de tabel te vullen.</translation>
+        <translation>Impossible d&apos;extraire les données concernant le membre pour le remplissage de la table.</translation>
     </message>
     <message>
         <source>0 Results</source>
-        <translation>0 Resultaten</translation>
+        <translation>0 résultat</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Lidmaatschap</translation>
+        <translation>Adhésion</translation>
     </message>
     <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation>Bent U zeker dat U volgende wilt wijzigen:</translation>
+        <translation>Voulez-vous vraiment modifier les  </translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation>Uitgeleende CD&apos;s</translation>
+        <translation>CD réservés</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation>Niet mogelijk om de data op te halen om de hoofdtabel te vullen.</translation>
+        <translation>Impossible d&apos;extraire les données requises pour remplir la table principale.</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -3510,83 +3464,75 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
-    </message>
-    <message>
-        <source>Insert &amp;DVD</source>
-        <translation type="obsolete">&amp;DVD Toevoegen</translation>
-    </message>
-    <message>
-        <source>Insert &amp;Video Game</source>
-        <translation type="obsolete">&amp;Video-Game Toevoegen</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
-        <translation>Reset &amp;ID Nummer</translation>
+        <translation>Réinitialiser le numéro d&apos;&amp;ID</translation>
     </message>
     <message>
         <source>Please select at least one item to modify.</source>
-        <translation>Selecteer hetgeen dat u wenst te wijzigen.</translation>
+        <translation>Veuillez sélectionner au moins un article à modifier.</translation>
     </message>
     <message>
         <source>The following drivers are available: </source>
-        <translation>De volgende drivers zijn beschikbaar:</translation>
+        <translation>Les pilotes suivants sont disponibles : </translation>
     </message>
     <message>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation>Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
+        <translation>Voulez-vous vraiment supprimer définitivement l&apos;article ou les articles sélectionnés ?</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Bibliothecaris</translation>
+        <translation>Bibliothécaire</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>Librarian Mode</source>
-        <translation>Bibliothecaris Modus</translation>
+        <translation>Mode bibliothécaire</translation>
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation>Selecteer een klant en een item om door te kunnen gaan met het uitleenproces.</translation>
+        <translation>Veuillez sélectionner un membre et un article pour poursuivre le processus de réservation.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
-        <translation>&amp;Algemeen Zoeken</translation>
+        <translation>Recherche &amp;générale</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues..</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation>Prénom</translation>
     </message>
     <message>
         <source>The passwords do not match. Please try again.</source>
-        <translation>De paswoorden komen niet overeen. Probeert U het nogmaal.</translation>
+        <translation>Les mots de passe ne correspondent pas. Veuillez essayer à nouveau.</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation>Nom de famille</translation>
     </message>
     <message>
         <source>Would you like to retrieve the list of members?</source>
-        <translation>Wilt u de lijst met alle klanten weergeven?</translation>
+        <translation>Voulez-vous extraire la liste des membres ?</translation>
     </message>
     <message>
         <source>Saving administrator information...</source>
-        <translation>Administrator informatie opslaan...</translation>
+        <translation>Enregistrement des informations concernant l&apos;administrateur...</translation>
     </message>
     <message>
         <source>CSV (*.csv)</source>
@@ -3594,211 +3540,195 @@
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleendatum</translation>
-    </message>
-    <message>
-        <source>Insert &amp;Journal</source>
-        <translation type="obsolete">&amp;Krant Toevoegen</translation>
+        <translation>Date de réservation</translation>
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
-        <translation>BiblioteQ: Bestands  Fout</translation>
+        <translation>BiblioteQ : erreur de fichier</translation>
     </message>
     <message>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
-        <translation>Schijnbaar probeert u administrator functies uit te voeren in een niet-administrator omgeving.</translation>
+        <translation>Il apparaît que vous tentez actuellement d&apos;endosser un rôle d&apos;administrateur dans un mode non administrateur.</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>&amp;Unlimited Entries per Page</source>
-        <translation>&amp;Alle Items per Pagina</translation>
+        <translation>Articles &amp;illimités par page</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation>Uitgeleende Boeken</translation>
+        <translation>Livres réservés</translation>
     </message>
     <message>
         <source>Unable to open a database connection with the provided information.</source>
-        <translation>Niet mogelijk om de database te openen met de opgegeven informatie.</translation>
-    </message>
-    <message>
-        <source>Insert &amp;Magazine</source>
-        <translation type="obsolete">&amp;Tijdschrift Toevoegen</translation>
+        <translation>Impossible d&apos;ouvrir une connexion à une base de données avec les informations fournies.</translation>
     </message>
     <message>
         <source>Please provide a valid Street.</source>
-        <translation>Vul een geldige straat in a.u.b.  .</translation>
+        <translation>Veuillez indiquer un nom de rue valide.</translation>
     </message>
     <message>
         <source>Unable to determine the reserved items for the selected member.</source>
-        <translation>Het is niet mogelijk om geleende items vast te stellen van deze klant.</translation>
+        <translation>Impossible de déterminer les articles réservés pour le membre sélectionné.</translation>
     </message>
     <message>
         <source>Original Due Date</source>
-        <translation>Originele Terugbrengdatum</translation>
+        <translation>Date limite d&apos;origine</translation>
     </message>
     <message>
         <source>Please provide a valid City.</source>
-        <translation>Vul een geldige Woonplaats in a.u.b.  .</translation>
+        <translation>Veuillez indiquer un nom de ville valide.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>Please select at least one item to view.</source>
-        <translation>Selecteer minstens één item om weer te geven.</translation>
+        <translation>Veuillez sélectionner au moins un article à afficher.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>An error occurred while attempting to grant privileges to </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde privileges toe te staan aan </translation>
-    </message>
-    <message>
-        <source>You have unsaved data. Continue closing?</source>
-        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative d&apos;octroi de privilèges à  </translation>
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
-        <translation>Niet mogelijk om na te gaan of voorgestelde klant uniek is.</translation>
+        <translation>Impossible de déterminer l&apos;unicité du membre proposé.</translation>
     </message>
     <message>
         <source>Privileged Mode</source>
-        <translation>Bevoorrechte-Modus</translation>
+        <translation>Mode privilégié</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
-        <translation>De geselecteerde Domein-Databank heeft geen driver met zich verbonden.</translation>
+        <translation>Le type de base de données de la branche sélectionnée ne comporte pas de pilote qui lui est associé.</translation>
     </message>
     <message>
         <source>Please provide a valid Last Name.</source>
-        <translation>Vul een geldige Familienaam in a.u.b.  .</translation>
+        <translation>Veuillez indiquer un nom de famille valide.</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
-        <translation>Het paswoord moet uit minstens acht tekens bestaan.</translation>
+        <translation>Le mot de passe doit comporter une longueur d&apos;au moins 8 caractères.</translation>
     </message>
     <message>
         <source>Item Requests</source>
-        <translation>Item Aanvragen</translation>
+        <translation>Requêtes d&apos;articles</translation>
     </message>
     <message>
         <source>Please select an item to delete.</source>
-        <translation>Selecteer minstens één item om te verwijderen.</translation>
+        <translation>Veuillez sélectionner un article à supprimer.</translation>
     </message>
     <message>
         <source>Please provide a non-destructive SQL statement.</source>
-        <translation>Voorzie een SQL uitdrukking zonder destructieve gevolgen a.u.b.  .</translation>
+        <translation>Veuillez indiquer une instruction SQL non destructive.</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser l&apos;&amp;emplacement</translation>
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Circulatie</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the number of reserved items by the selected member.</source>
-        <translation type="obsolete">Het is niet mogelijk om het aantal items op te halen die door deze klant zijn geleend.</translation>
+        <translation>Circulation</translation>
     </message>
     <message>
         <source>&amp;Music CD Search</source>
-        <translation>&amp;Muziek CD Zoeken</translation>
+        <translation>Recherche de CD de &amp;musique</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the database account </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de database-account te verplaatsen</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative de suppression du compte de base de données </translation>
     </message>
     <message>
         <source>Unable to determine if the membership of the selected member has expired.</source>
-        <translation>Het is niet vast te stellen of het lidmaatschap van geselecteerde klant is verlopen.</translation>
+        <translation>Impossible de déterminer si l&apos;adhésion du membre sélectionné a expiré.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the administrator information.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde de administrator gegevens op te slaan.</translation>
+        <translation>Une erreur est survenue lors d&apos;une tentative d&apos;enregistrement des informations concernant l&apos;administrateur.</translation>
     </message>
     <message>
         <source>As an administrator, you may not delete your account.</source>
-        <translation>Als administrator, kunt U uw eigen account niet verwijderen.</translation>
+        <translation>En tant qu&apos;administrateur, vous ne pouvez pas supprimer votre compte.</translation>
     </message>
     <message>
         <source>You do not yet have a reservation history to print.</source>
-        <translation> U heeft nog geen reservatiegeschiedenis om te printen.</translation>
+        <translation>Vous n&apos;avez pas encore d&apos;historique de réservation à imprimer.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation>Administrateur</translation>
     </message>
     <message>
         <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation>Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
+        <translation>Impossible de déterminer le nombre d&apos;articles réservés pour le membre sélectionné.</translation>
     </message>
     <message>
         <source>Please provide a valid First Name.</source>
-        <translation>Vul een geldige voornaam in a.u.b.  .</translation>
+        <translation>Veuillez indiquer un prénom valide.</translation>
     </message>
     <message>
         <source>Unable to request the item.</source>
-        <translation>Kan item niet aanvragen.</translation>
+        <translation>Impossible de demander l&apos;article.</translation>
     </message>
     <message>
         <source>BiblioteQ: New SQLite Database</source>
-        <translation>BiblioteQ: Nieuwe SQLite Database </translation>
+        <translation>BiblioteQ : nouvelle base de données SQLite</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected member&apos;s information.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde klant te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les informations concernant le membre sélectionné.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation>Réinitialiser les &amp;catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source> does not have administrator privileges.</source>
-        <translation>geen administrator rechten heeft.</translation>
+        <translation> ne dispose pas des privilèges d&apos;administrateur.</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation>Numéro de catalogue</translation>
     </message>
     <message>
         <source>The function misc_functions::userCount() failed for </source>
-        <translation>De functie&quot; misc_functions::userCount()&quot; faalde voor</translation>
+        <translation>La fonction « misc_functions::userCount() » a échoué pour </translation>
     </message>
     <message>
         <source>Duplicate administrator ids are not allowed.</source>
-        <translation>Dubbele administrator ID&apos;s zijn niet toegelaten.</translation>
+        <translation>Les ID d&apos;administrateur en double ne sont pas autorisés.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires.</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>, line </source>
-        <translation>, regel</translation>
+        <translation>, ligne </translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -3806,129 +3736,131 @@
     </message>
     <message>
         <source>Please select a member to modify.</source>
-        <translation>Selecteer een klant om te wijzigen.</translation>
+        <translation>Veuillez sélectionner un membre à modifier.</translation>
     </message>
     <message>
         <source>It appears that the item you selected is not available for reservation.</source>
-        <translation>Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
+        <translation>Il apparaît que l&apos;article sélectionné n&apos;est pas disponible à la réservation.</translation>
     </message>
     <message>
         <source>BiblioteQ: About</source>
-        <translation>BiblioteQ:Over dit programma</translation>
+        <translation>BiblioteQ : à propos</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation>BiblioteQ: Fout</translation>
+        <translation>BiblioteQ : erreur</translation>
     </message>
     <message>
         <source>Reservation History</source>
-        <translation>Uitleengeschiedenis</translation>
+        <translation>Historique de réservation</translation>
     </message>
     <message>
         <source>Requesting the selected item(s)...</source>
-        <translation>Bezig met geselecteerde item(s) aan te vragen...</translation>
+        <translation>Consultation des articles sélectionnés...</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réini&amp;tialiser la langue</translation>
     </message>
     <message>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation>Bent U zeker dat U de geselecteerde aanvragen wilt annuleren?</translation>
+        <translation>Voulez-vous vraiment annuler la ou les requêtes sélectionnées ?</translation>
     </message>
     <message>
         <source>Are you sure that you wish to view the </source>
-        <translation>Bent U zeker dat U volgende wilt bekijken:</translation>
+        <translation>Voulez-vous vraiment afficher les  </translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>The current password is incorrect.</source>
-        <translation>Dit paswoord is niet correct.</translation>
+        <translation>Le mot de passe actuel est incorrect.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve the locations.</source>
-        <translation>Onmogelijk om de Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?
+%1</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre ?
+%1</translation>
     </message>
     <message>
         <source>Please select at least one item to duplicate.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez sélectionner au moins un article à dupliquer.</translation>
     </message>
     <message>
         <source>Are you sure that you wish to duplicate the </source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous vraiment dupliquer le </translation>
     </message>
     <message>
         <source>Icons Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode icônes</translation>
     </message>
     <message>
         <source>Table Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode table</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : exporter la vue de la table au format CSV</translation>
     </message>
     <message>
         <source>Reset &amp;Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser l&amp;a disponibilité</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;extraire le nombre d&apos;articles réservés du membre sélectionné.</translation>
     </message>
     <message>
         <source>Add &amp;Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un li&amp;vre</translation>
     </message>
     <message>
         <source>Add &amp;DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un &amp;DVD</translation>
     </message>
     <message>
         <source>Add &amp;Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un &amp;Journal</translation>
     </message>
     <message>
         <source>Add &amp;Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un &amp;magazine</translation>
     </message>
     <message>
         <source>Add Music &amp;CD</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un CD de musi&amp;que</translation>
     </message>
     <message>
         <source>Add &amp;Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un &amp;jeu vidéo</translation>
     </message>
     <message>
         <source>Granting privileges...</source>
-        <translation type="unfinished"></translation>
+        <translation>Octroi de privilèges...</translation>
     </message>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;accorder des privilèges à tous les membres.</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
@@ -3947,7 +3879,7 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>Type</source>
@@ -3955,319 +3887,319 @@
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
-        <translation>Onmogelijk om de BOEK Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements des livres.</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Om een Z39.50 syteem aanvraag te doen moet U of het ISBN-10 of ISBN-13 ingeven.</translation>
+        <translation>Pour pouvoir interroger un système Z39.50, il faut indiquer soit l&apos;ISBN-10 soit l&apos;ISBN-13.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Type Boekbinding</translation>
+        <translation>Type de reliure</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation>Réinitialiser le &amp;sommaire</translation>
     </message>
     <message>
         <source>The front cover image for the specified ISBN may not exist.</source>
-        <translation>De Hoes (Voorkant) voor deze ISBN bestaat mogelijks niet.</translation>
+        <translation>Il se peut que l&apos;image de première de couverture pour l&apos;ISBN spécifié n&apos;existe pas.</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation>Mots clés :</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details</source>
-        <translation>BiblioteQ: Bekijk BOEK Details</translation>
+        <translation>BiblioteQ : afficher les détails d&apos;un livre</translation>
     </message>
     <message>
         <source>Call Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation>Cote :</translation>
     </message>
     <message>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Classificatie Nummer:</translation>
+        <translation>Numéro de classification Dewey :</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation>Unités monétaires :</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation>Réinitialiser les &amp;copies</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
+        <translation>Réinitialiser la date de &amp;publication</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-10</source>
-        <translation>Reset &amp;ISBN-10</translation>
+        <translation>Réinitialiser l&apos;&amp;ISBN-10</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-13</source>
-        <translation>Reset &amp;ISBN-13</translation>
+        <translation>Réinitialiser l&apos;&amp;ISBN-13</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation>Éditeur :</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation>Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Een Z39.50 gegeven zou nog niet bestaan voor</translation>
+        <translation>Il se peut qu&apos;il n&apos;existe pas encore d&apos;article Z39.50 pour </translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Class Number</source>
-        <translation>Reset &amp;Dewey Classificatie Nummer</translation>
+        <translation>Réinitialiser le numéro de classification &amp;Dewey</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation>Reset &amp;Aanroep Nummer</translation>
+        <translation>Réinitialiser l&amp;a cote</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>The back cover image for the specified ISBN may not exist.</source>
-        <translation>De Hoes (Achterkant) voor deze ISBN bestaat mogelijks niet.</translation>
+        <translation>Il se peut que l&apos;image de quatrième de couverture pour l&apos;ISBN spécifié n&apos;existe pas.</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation>Cote</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Classificatie Nummer</translation>
+        <translation>Numéro de classification Dewey</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation>LC Controle Nummer:</translation>
+        <translation>Numéro de contrôle LC :</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation>Réinitialiser l&apos;i&amp;mage de première de couverture</translation>
     </message>
     <message>
         <source>Book Binding Type:</source>
-        <translation>Type Boekbinding:</translation>
+        <translation>Type de reliure :</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation>Réinitialiser l&apos;&amp;éditeur</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation>MARC Tags:</translation>
+        <translation>Étiquettes MARC :</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation>Prix :</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+        <translation>Impossible de créer un fil d&apos;exécution en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Titre ».</translation>
     </message>
     <message>
         <source>Reset &amp;Author(s)</source>
-        <translation>Reset &amp;Auteur(s)</translation>
+        <translation>Réinitaliser l&apos;auteur ou les &amp;auteurs</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
+        <translation>Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Sommaire ».</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitaliser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details (</source>
-        <translation>BiblioteQ: Bekijk BOEK Details</translation>
+        <translation>BiblioteQ : afficher les détails du livre (</translation>
     </message>
     <message>
         <source>Please complete the Author(s) field.</source>
-        <translation>Vervolledig de Acteur(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Auteur(s) ».</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Wilt U de kopie-info aanpassen?</translation>
+        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>Reset &amp;Book Binding Type</source>
-        <translation>Reset &amp;Type Boekbinding</translation>
+        <translation>Réinitialiser le &amp;type de reliure</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Lieu de publication ».</translation>
     </message>
     <message>
         <source>Reset &amp;Edition</source>
-        <translation>Reset &amp;Editie</translation>
+        <translation>Réinitialiser l&apos;&amp;édition</translation>
     </message>
     <message>
         <source>ISBN-13:</source>
-        <translation>ISBN-13:</translation>
+        <translation>ISBN-13 :</translation>
     </message>
     <message>
         <source>ISBN-10:</source>
-        <translation>ISBN-10:</translation>
+        <translation>ISBN-10 :</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de première de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Book Search</source>
-        <translation>BiblioteQ: BOEK Zoeken</translation>
+        <translation>BiblioteQ : recherche de livres dans la base de données</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation>Reset &amp;LC Controle Nummer</translation>
+        <translation>Réinitialiser le numéro de contrôle &amp;LC</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Book Entry</source>
-        <translation>BiblioteQ: BOEK Aanmaken</translation>
+        <translation>BiblioteQ : créer un article « Livre »</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Download</source>
-        <translation>BiblioteQ: Download Voorkant Hoes</translation>
+        <translation>BiblioteQ : télécharger l&apos;image de première de couverture</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
-        <translation>BiblioteQ: Download Achterkant Hoes</translation>
+        <translation>BiblioteQ : télécharger l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ: HTTP Warning</source>
-        <translation>BiblioteQ: HTTP Waarschuwing</translation>
+        <translation>BiblioteQ : avertissement HTTP</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation>Recherche de disponibilité..</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues.</translation>
     </message>
     <message>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation>Downloaden van de  Voorkant Hoes. Even geduld a.u.b. ...</translation>
+        <translation>Téléchargement de l&apos;image de première de couverture. Veuillez patienter...</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation>Reset &amp;MARC Tags</translation>
+        <translation>Réinitialiser les étiquettes &amp;MARC</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation> Z39.50 gegeven kon niet achterhaald worden.</translation>
+        <translation>Impossible d&apos;extraire l&apos;article Z39.50.</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation>Copies :</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation>Sommaire :</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -4275,123 +4207,119 @@
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article. Veuillez vérifier que l&apos;article n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>Edition:</source>
-        <translation>Editie:</translation>
+        <translation>Édition :</translation>
     </message>
     <message>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
-        <translation>Vervolledig zowel de  ISBN-10 als ISBN-13.</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the book&apos;s OID.</source>
-        <translation type="obsolete">Niet mogelijk om BOEK - OID op te halen.</translation>
+        <translation>Veuillez compléter aussi bien les champs « ISBN-10 » que « ISBN-13 ».</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation>Impossible de purger les données des copies non nécessaires.</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Éditeur ».</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation>Lieu de publication :</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Editie</translation>
+        <translation>Édition</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
+        <translation>Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected book&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Boeken te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du livre sélectionné.</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser &amp;l&apos;emplacement</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation>Réinitialiser le lieu de &amp;publication</translation>
     </message>
     <message>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation>Om een hoes te downloaden van Amazon, moet het ISBN-10 gekend zijn.</translation>
+        <translation>Pour pouvoir télécharger une image de couverture depuis Amazon, il faut indiquer l&apos;ISBN-10.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Aanvraag Fout</translation>
+        <translation>Erreur de requête Z39.50</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Aanvraag Fout</translation>
+        <translation>BiblioteQ : erreur de requête Z39.50</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Data Ophalen</translation>
+        <translation>BiblioteQ : extraction de données Z39.50</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry (</source>
-        <translation>BiblioteQ: Bewerk BOEK gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Livre » (</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation>Impossible de déterminer le nombre maximal de copies de l&apos;article.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation>Réinitialiser les &amp;catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires.</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation>Categorieën:</translation>
+        <translation>Catégories :</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -4403,47 +4331,47 @@
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Catégories ».</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation>Impossible de créer des copies initiales..</translation>
     </message>
     <message>
         <source>Author(s):</source>
-        <translation>Auteur(s):</translation>
+        <translation>Auteur(s) :</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation>Réinitialiser l&apos;ima&amp;ge de quatrième de couverture</translation>
     </message>
     <message>
         <source>Publication Date:</source>
-        <translation>Datum van Uitgave:</translation>
+        <translation>Date de publication :</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réini&amp;tialiser la langue</translation>
     </message>
     <message>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation>Downloaden van de  Achterkant Hoes. Even geduld a.u.b. ...</translation>
+        <translation>Téléchargement de l&apos;image de quatrième de couverture. Veuillez patienter...</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry</source>
-        <translation>BiblioteQ: Bewerk BOEK gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Livre »</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer l&apos;article « Livre »</translation>
     </message>
 </context>
 <context>
@@ -4454,7 +4382,7 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>Type</source>
@@ -4462,7 +4390,7 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Audio</source>
@@ -4470,111 +4398,111 @@
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation>Réinitialiser le &amp;sommaire</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Music CD Search</source>
-        <translation>BiblioteQ: CD Zoeken</translation>
+        <translation>BiblioteQ : recherche de CD de musique dans la base de données</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation>Mots clés :</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation>Unités monétaires :</translation>
     </message>
     <message>
         <source>Album Number</source>
-        <translation>Album Nummer</translation>
+        <translation>Numéro d&apos;album</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details (</source>
-        <translation>BiblioteQ: Bekijk CD Details (</translation>
+        <translation>BiblioteQ : afficher les détails du CD de musique (</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation>Reset &amp;Format</translation>
+        <translation>Réinitialiser le &amp;format</translation>
     </message>
     <message>
         <source>Reset &amp;Artist</source>
-        <translation>Reset &amp;Artiest</translation>
+        <translation>Réinitialiser l&apos;&amp;artiste</translation>
     </message>
     <message>
         <source>Track Runtime</source>
-        <translation>Duur Track</translation>
+        <translation>Durée d&apos;exécution de la piste</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation>Réinitialiser les &amp;copies</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>Track Number</source>
-        <translation>Track Nummer</translation>
+        <translation>Numéro de piste</translation>
     </message>
     <message>
         <source>Populating the table...</source>
-        <translation>Tabel opvullen...</translation>
+        <translation>Remplissage de la table...</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation>Niet mogelijk om CD&apos;s OID op te halen.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du CD.</translation>
     </message>
     <message>
         <source>Recording Type:</source>
-        <translation>Type Opname:</translation>
+        <translation>Type d&apos;enregistrement :</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Platenmaatschappij</translation>
+        <translation>Label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
-        <translation>Onmogelijk om de CD Formats te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les formats de CD.</translation>
     </message>
     <message>
         <source>Recording Label:</source>
-        <translation>Platenmaatschappij:</translation>
+        <translation>Label d&apos;enregistrement :</translation>
     </message>
     <message>
         <source>Commit failure.</source>
-        <translation>Toewijsfout.</translation>
+        <translation>Validation impossible.</translation>
     </message>
     <message>
         <source>Please complete the Catalog Number field.</source>
-        <translation>Vervolledig Catalogus Nummer(s)a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Numéro de catalogue ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Music CD Entry</source>
-        <translation>BiblioteQ: CD Aanmaken</translation>
+        <translation>BiblioteQ : créer un article « CD de musique »</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiest</translation>
+        <translation>Artiste</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Studio:</translation>
+        <translation>Audio :</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
+        <translation>BiblioteQ : boîte de dialogue de progression</translation>
     </message>
     <message>
         <source>Format</source>
@@ -4582,371 +4510,371 @@
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;première de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation>Reset &amp;Duur</translation>
+        <translation>Réinitialiser la &amp;durée d&apos;exécution</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation>Prix :</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Unable to create track data.</source>
-        <translation>Niet mogelijk om track-data aan te maken.</translation>
+        <translation>Impossible de créer les données d&apos;une piste.</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel: </translation>
+        <translation>Titre : </translation>
     </message>
     <message>
         <source>Some or all of the track data has not been saved.</source>
-        <translation>Enige of alle track data zijn niet opgeslagen.</translation>
+        <translation>Certaines ou l&apos;ensemble des données de la piste n&apos;ont pas été enregistrées.</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Titre ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation>BiblioteQ: Bewerk Muziek CD gegevens</translation>
+        <translation>BiblioteQ :  modifier l&apos;article « CD de musique »</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation>Rij-nummer</translation>
+        <translation>Numéro de ligne </translation>
     </message>
     <message>
         <source>Reset &amp;Catalog Number</source>
-        <translation>Reset &amp;Catalogus Nummer</translation>
+        <translation>Réinitialiser le numéro de &amp;catalogue</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation>Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+        <translation>Veuillez indiquer une durée d&apos;exécution valide.</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Sommaire ».</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation>BiblioteQ: Browser van Album Tracks (</translation>
+        <translation>BiblioteQ : explorateur de pistes d&apos;albums (</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitialiser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>Reset &amp;Recording Type</source>
-        <translation>Reset &amp;Type Opname</translation>
+        <translation>Réinitialiser le type d&apos;en&amp;registrement</translation>
     </message>
     <message>
         <source>Please complete the Artist field.</source>
-        <translation>Vervolledig &quot;Artiest&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Artiste ».</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Wilt U de kopie-info aanpassen?</translation>
+        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Audio</source>
-        <translation>Reset &amp;Studio</translation>
+        <translation>Réinitialiser l&apos;&amp;audio</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Reset &amp;Aantal Discs</translation>
+        <translation>Réinitialiser le &amp;nombre de disques</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation>BiblioteQ: Bewerk Muziek CD gegevens (</translation>
+        <translation>BiblioteQ : modifier l&apos;article « CD de musique » (</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation>IBiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle..</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
-        <translation>Kan de track-data niet ophalen om de tabel te vullen.</translation>
+        <translation>Impossible d&apos;extraire les données d&apos;une piste pour le remplissage de la table..</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artiest:</translation>
+        <translation>Artiste :</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd locations.</source>
-        <translation>Onmogelijk om de CD Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements des CD.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation>Recherche de disponibilité.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifPiste ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « zonedeListemodifiable ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation>Réinitialiser la date de pa&amp;rution</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation>Copies :</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation>Sommaire :</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article. Veuillez vérifier que l&apos;article n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source> contains an empty Song Title.</source>
-        <translation>bevat een lege Titel.</translation>
+        <translation> contient un titre de morceau de musique vide.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation>Impossible de purger les données de copies non nécessaires.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « modifHeure ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Please complete the Recording Label field.</source>
-        <translation>Vervolledig Record Label(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Label d&apos;enregistrement ».</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation>Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation>De gezamenlijke duur van alle tracks is nul. Vul de individuele duurtijden in a.u.b.  .</translation>
+        <translation>La durée d&apos;exécution totale des pistes disponibles est nulle. Veuillez définir les durées d&apos;exécution individuelles.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation>Impossible d&apos;allouer de la mémoire pour l&apos;objet « article ». Il s&apos;agit d&apos;un problème sérieux !</translation>
     </message>
     <message>
         <source>Runtime:</source>
-        <translation>Duur:</translation>
+        <translation>Durée d&apos;exécution :</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser l&apos;emp&amp;lacement</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation>Aantal Discs:</translation>
+        <translation>Nombre de disques :</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details</source>
-        <translation>BiblioteQ: Bekijk CD Details</translation>
+        <translation>BiblioteQ : afficher les détails du CD de musique</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
     </message>
     <message>
         <source>Unable to purge track data.</source>
-        <translation>Niet mogelijk om track data door te voeren.</translation>
+        <translation>Impossible de purger les données d&apos;une piste.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Track Title</source>
-        <translation>Titel</translation>
+        <translation>Titre de la piste</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Format :</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation>Impossible de déterminer le nombre maximal de copies de l&apos;article.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation>Réinitialiser les &amp;catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ:  erreur de la base de données</translation>
     </message>
     <message>
         <source>Saving the track data...</source>
-        <translation>Opslaan van track-data...</translation>
+        <translation>Enregistrement des données de la piste en cours...</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation>Numéro de catalogue</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires.</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation>Categorieën:</translation>
+        <translation>Catégories :</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Catégories ».</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde CD te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du CD sélectionné.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation>Impossible de créer des copies initiales.</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Opname Type</translation>
+        <translation>Type d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Catalog Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation>Numéro de catalogue :</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation type="obsolete">BiblioteQ: Fout</translation>
+        <translation type="obsolete">BiblioteQ : erreur</translation>
     </message>
     <message>
         <source>Reset &amp;Recording Label</source>
-        <translation>Reset &amp;Record Label</translation>
+        <translation>Réinitialiser le label d&apos;en&amp;registrement</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;quatrième de couverture</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation>Date de parution :</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réini&amp;tialiser la langue</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer l&apos;article « CD de musique »</translation>
     </message>
 </context>
 <context>
@@ -4957,15 +4885,15 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation>CUP :</translation>
     </message>
     <message>
         <source>Type</source>
@@ -4973,87 +4901,87 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation>Réinitialiser le somm&amp;aire</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation>Unités monétaires :</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation>Reset &amp;Format</translation>
+        <translation>Réinitialiser le &amp;format</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation>Réinitialiser les &amp;copies</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation>Onmogelijk om het DVD-Beeldformaat te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les rapports hauteur / largeur de DVD.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Beeldformaat</translation>
+        <translation>Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Please complete the Format field.</source>
-        <translation>Vervolledig &quot;Format&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Format ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Create DVD Entry</source>
-        <translation>BiblioteQ: DVD Aanmaken</translation>
+        <translation>BiblioteQ : créer l&apos;article DVD</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd locations.</source>
-        <translation>Onmogelijk om de DVD Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements de DVD..</translation>
     </message>
     <message>
         <source>Reset &amp;Rating</source>
-        <translation>Re&amp;set Rating</translation>
+        <translation>Réinitialise&amp;r la note</translation>
     </message>
     <message>
         <source>Reset &amp;Region</source>
-        <translation>Reset &amp;Regio</translation>
+        <translation>Réinitialiser la &amp;région</translation>
     </message>
     <message>
         <source>Reset &amp;Studio</source>
-        <translation>Reset &amp;Studio</translation>
+        <translation>Réinitialiser le &amp;studio</translation>
     </message>
     <message>
         <source>Reset &amp;Actor(s)</source>
-        <translation>Reset &amp;Acteur(s)</translation>
+        <translation>Réinitialiser l&apos;&amp;acteur ou les acteurs</translation>
     </message>
     <message>
         <source>Reset &amp;Aspect Ratio</source>
-        <translation>Reset &amp;Beeldformaat</translation>
+        <translation>Réinitialiser le r&amp;apport hauteur / largeur</translation>
     </message>
     <message>
         <source>BiblioteQ: Database DVD Search</source>
-        <translation>BiblioteQ: DVD Zoeken</translation>
+        <translation>BiblioteQ : recherche de DVD dans la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry</source>
-        <translation>BiblioteQ: Bewerk DVD gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article DVD</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5061,39 +4989,39 @@
     </message>
     <message>
         <source>Please complete the Studio field.</source>
-        <translation>Vervolledig Studio a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Studio ».</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;quatrième de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation>Reset &amp;Duur</translation>
+        <translation>Réinitialiser la &amp;durée d&apos;exécution</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation>Prix :</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Rating</translation>
+        <translation>Note</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Regio</translation>
+        <translation>Région</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -5101,314 +5029,310 @@
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Titre ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry (</source>
-        <translation>BiblioteQ: Bewerk DVD gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article DVD (</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details (</source>
-        <translation>BiblioteQ: Bekijk DVD Details</translation>
+        <translation>BiblioteQ : afficher les détails du DVD (</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation>Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+        <translation>Veuillez indiquer une durée d&apos;exécution valide.</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Sommaire ».</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitialiser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Wilt U de kopie-info aanpassen?</translation>
+        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>Please complete the Actor(s) field.</source>
-        <translation>Vervolledig de Acteur(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Acteur(s) ».</translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Reset &amp;Aantal Discs</translation>
+        <translation>Réinitialiser le &amp;nombre de disques</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de première de couverture</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation>Vervolledig de UPC a.u.b..</translation>
+        <translation>Veuillez remplir le champ « CUP ».</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd ratings.</source>
-        <translation>Onmogelijk om het DVD-Rating te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les notes du DVD.</translation>
     </message>
     <message>
         <source>Rating:</source>
-        <translation>Rating:</translation>
+        <translation>Note :</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>Region:</source>
-        <translation>Regio:</translation>
+        <translation>Région :</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
-        <translation>Niet mogelijk om DVD&apos;s OID op te halen.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du DVD.</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation>Recherche de disponibilité.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation>Réinitialiser la date de pa&amp;rution</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation>Copies :</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation>Sommaire :</translation>
     </message>
     <message>
         <source>Studio:</source>
-        <translation>Studio:</translation>
+        <translation>Studio :</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation>Categorie:</translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article. Veuillez vérifier que l&apos;entrée n&apos;existe pas déjà..</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation>Impossible de purger les données de copies non nécessaires.</translation>
     </message>
     <message>
         <source>Actor(s):</source>
-        <translation>Acteur(s):</translation>
+        <translation>Acteur(s) :</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation>Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd regions.</source>
-        <translation>Onmogelijk om de DVD-regio te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les régions du DVD.</translation>
     </message>
     <message>
         <source>Runtime:</source>
-        <translation>Duur:</translation>
+        <translation>Durée d&apos;exécution :</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser l&apos;emp&amp;lacement</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation>Reset &amp;UPC</translation>
+        <translation>Réinitialiser le C&amp;UP</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation>Aantal Discs:</translation>
+        <translation>Nombre de disques :</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
-    </message>
-    <message>
-        <source>Keyword:</source>
-        <translation type="obsolete">Sleutelwoord:</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Aspect Ratio:</source>
-        <translation>Beeldformaat:</translation>
+        <translation>Rapport hauteur / largeur :</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Format :</translation>
     </message>
     <message>
         <source>Reset &amp;Director(s)</source>
-        <translation>Reset  &amp;Director(s)</translation>
+        <translation>Réinitialiser le(s) &amp;réalisateur(s)</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation>Impossible de déterminer le nombre maximal de copies de l&apos;article.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation>Réinitialiser les &amp;catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires..</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details</source>
-        <translation>BiblioteQ: Bekijk DVD Details</translation>
+        <translation>BiblioteQ : afficher les détails du DVD (</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Catégories ».</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected DVD&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde DVD te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du DVD sélectionné.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation>Impossible de créer des copies initiales.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;quatrième de couverture</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation>Date de parution :</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réinitialiser la &amp;langue</translation>
     </message>
     <message>
         <source>Please complete the Director(s) field.</source>
-        <translation>Vervolledig Director(s)a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Réalisateur(s) ».</translation>
     </message>
     <message>
         <source>Director(s):</source>
-        <translation>Regie:</translation>
+        <translation>Réalisateur(s) :</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer l&apos;article « DVD »</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished">Sleutelwoorden:</translation>
+        <translation>Mots clés :</translation>
     </message>
 </context>
 <context>
     <name>qtbook_journal</name>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
 </context>
 <context>
@@ -5423,7 +5347,7 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -5435,159 +5359,159 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>ISSN:</source>
-        <translation>ISSN:</translation>
+        <translation>ISSN :</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Issue</translation>
+        <translation>Numéro</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation>Réinitialiser le &amp;sommaire</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation>Mots clés :</translation>
     </message>
     <message>
         <source>Call Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation>Cote :</translation>
     </message>
     <message>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Classificatie Nummer:</translation>
+        <translation>Numéro de classification Dewey :</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation>Unités monétaires :</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry (</source>
-        <translation>BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Magazine » (</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected magazine&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Tijdschriften te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du magazine sélectionné.</translation>
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Dewey Nummer</translation>
+        <translation>Numéro Dewey</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Kranten te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du journal sélectionné.</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation>Réinitialiser les &amp;copies</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
+        <translation>Réinitialiser la date de &amp;publication</translation>
     </message>
     <message>
         <source>Issue (Number):</source>
-        <translation>Uitgave (Nummer):</translation>
+        <translation>Numéro (publication) :</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation>Éditeur :</translation>
     </message>
     <message>
         <source>Reset &amp;Volume</source>
-        <translation>Reset &amp;Volume</translation>
+        <translation>Réinitialiser le &amp;volume</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation>Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Een Z39.50 gegeven zou nog niet bestaan voor</translation>
+        <translation>Il se peut qu&apos;un article Z39.50 n&apos;existe pas encore pour </translation>
     </message>
     <message>
         <source>BiblioteQ: Database Magazine Search</source>
-        <translation>BiblioteQ: TIJDSCHRIFT Zoeken (</translation>
+        <translation>BiblioteQ : recherche de magazine dans la base de données</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation>Reset &amp;Aanroep Nummer</translation>
+        <translation>Réinitialiser l&amp;a cote</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Journal Search</source>
-        <translation>BiblioteQ: KRANT Zoeken</translation>
+        <translation>BiblioteQ : recherche de journal dans la base de données</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation>Cote</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation>LC Controle Nummer:</translation>
+        <translation>Numéro de contrôle LC :</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;première de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation>Réinitialiser l&apos;&amp;éditeur</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation>MARC Tags:</translation>
+        <translation>Étiquettes MARC :</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation>Prix :</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+        <translation>Impossible de créer un fil d&apos;exécution en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Journal Entry</source>
-        <translation>BiblioteQ: KRANT Aanmaken</translation>
+        <translation>BiblioteQ : créer un article « Journal »</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -5595,319 +5519,319 @@
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Titre ».</translation>
     </message>
     <message>
         <source>Reset &amp;ISSN</source>
-        <translation>Reset &amp;ISSN</translation>
+        <translation>Réinitialiser l&apos;&amp;ISSN</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
+        <translation>Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Sommaire ».</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitialiser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry</source>
-        <translation>BiblioteQ: Bewerk KRANT gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Journal »</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine locations.</source>
-        <translation>Onmogelijk om de TIJDSCHRIFT Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements de magazines.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry (</source>
-        <translation>BiblioteQ: Bewerk KRANT gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Journal » (</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Wilt U de kopie-info aanpassen?</translation>
+        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>Reset &amp;Issue</source>
-        <translation>Reset &amp;Issue</translation>
+        <translation>Réinit&amp;ialiser le numéro</translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Number</source>
-        <translation>Reset &amp;Dewey Classificatie Nummer</translation>
+        <translation>Réinitialiser le numéro &amp;Dewey</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Lieu de publication ».</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation>Niet mogelijk om een &quot;dialoog object&quot; te maken wegens te weinig bronnen.</translation>
+        <translation>Impossible de créer un objet « Boîte de dialogue » en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de première de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation>Reset &amp;LC Controle Nummer</translation>
+        <translation>Réinitialiser le numéro de contrôle &amp;LC</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details</source>
-        <translation>BiblioteQ: Bekijk TIJDSCHRIFT Details</translation>
+        <translation>BiblioteQ : afficher les détails du magazine</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation>Recherche de disponibilité.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation>Reset &amp;MARC Tags</translation>
+        <translation>Réinitialiser les étiquettes &amp;MARC</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation> Z39.50 gegeven kon niet achterhaald worden.</translation>
+        <translation>Impossible d&apos;extraire l&apos;article Z39.50.</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation>Copies :</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation>Sommaire :</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation>Categorie:</translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details (</source>
-        <translation>BiblioteQ: Bekijk KRANT Details (</translation>
+        <translation>BiblioteQ : afficher les détails du journal (</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article. Veuillez vérifier que l&apos;article n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation>Impossible de purger les données de copies non nécessaires.</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Éditeur ».</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation>Date de publication :</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation>Om een Z39.50 syteem aanvraag te doen moet U het ISSN  ingeven.</translation>
+        <translation>Pour pouvoir interroger un système Z39.50, il faut indiquer l&apos;ISSN.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details</source>
-        <translation>BiblioteQ: Bekijk KRANT Details</translation>
+        <translation>BiblioteQ : afficher les détails du journal</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
+        <translation>Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser l&apos;emp&amp;lacement</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation>Réinitialiser le lieu de &amp;publication</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Aanvraag Fout</translation>
+        <translation>Erreur de requête Z39.50</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Aanvraag Fout</translation>
+        <translation>BiblioteQ : erreur de requête Z39.50</translation>
     </message>
     <message>
         <source>Please complete the ISSN field.</source>
-        <translation>Vervolledig ISSNl a.u.b..</translation>
+        <translation>Veuillez remplir le champ « ISSN ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Data Ophalen</translation>
+        <translation>BiblioteQ : extraction de données Z39.50</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Volume:</source>
-        <translation>Volume Uitgave:</translation>
+        <translation>Volume :</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation>Impossible de déterminer le nombre maximal de copies de l&apos;article.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation>Réinitialiser les &amp;catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires.</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details (</source>
-        <translation>BiblioteQ: Bekijk TIJDSCHRIFT Details (</translation>
+        <translation>BiblioteQ : afficher les détails du magazine (</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation>BiblioteQ: Geheugen Fout</translation>
+        <translation>BiblioteQ : erreur de mémoire</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation>Erreur de mémoire</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Catégories ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Magazine Entry</source>
-        <translation>BiblioteQ: TIJDSCHRIFT Aanmaken</translation>
+        <translation>BiblioteQ : créer l&apos;article « Magazine »</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal locations.</source>
-        <translation>Onmogelijk om de KRANT Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements des journaux.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation>Impossible de créer des copies initiales.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation>Niet mogelijk om TIJDSCHRIFT - OID op te halen.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du magazine.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;quatrième de couverture</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation>Niet mogelijk om KRANT - OID op te halen.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du journal.</translation>
     </message>
     <message>
         <source>Publication Date:</source>
-        <translation>Datum van Uitgave:</translation>
+        <translation>Date de publication :</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réinitialiser la &amp;langue</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry</source>
-        <translation>BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+        <translation>BiblioteQ : modifier un article « Magazine »</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Journal Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer un article « Journal »</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer un article « Magazine »</translation>
     </message>
 </context>
 <context>
@@ -5918,11 +5842,11 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation>Quelconque</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source>Mode</source>
@@ -5930,7 +5854,7 @@
     </message>
     <message>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation>CUP :</translation>
     </message>
     <message>
         <source>Type</source>
@@ -5938,83 +5862,83 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation>Modus:</translation>
+        <translation>Mode :</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation>Réinitialiser le &amp;sommaire</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation>Mots clés :</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation>Unités monétaires :</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game ratings.</source>
-        <translation>Onmogelijk om het Video Game-Rating te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les notes des jeux vidéo.</translation>
     </message>
     <message>
         <source>Reset &amp;Genres</source>
-        <translation>Reset &amp;Genres</translation>
+        <translation>Réinitialiser les &amp;genres</translation>
     </message>
     <message>
         <source>Please complete the Developer(s) field.</source>
-        <translation>Vervolledig Ontwikkelaar(s)a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Développeur(s) ».</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation>Réinitialiser les &amp;copies</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation>Impossible de créer une transaction de base de données.</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Platform</translation>
+        <translation>Plate-forme</translation>
     </message>
     <message>
         <source>Reset &amp;Game Rating</source>
-        <translation>Re&amp;set Game Rating</translation>
+        <translation>Réinitialiser la note du &amp;jeu</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation>Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation>Éditeur :</translation>
     </message>
     <message>
         <source>Please complete the Genres field.</source>
-        <translation>Vervolledig Genrel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Genres ».</translation>
     </message>
     <message>
         <source>Reset &amp;Developer(s)</source>
-        <translation>Reset  &amp;Ontwikkelaar(s)</translation>
+        <translation>Réinitialiser le(s) &amp;développeur(s)</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details</source>
-        <translation>BiblioteQ: Bekijk VIDEO-GAME Details</translation>
+        <translation>BiblioteQ : afficher les détails du jeu vidéo</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Genre:</translation>
+        <translation>Genre :</translation>
     </message>
     <message>
         <source>Genres</source>
@@ -6022,345 +5946,345 @@
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation>Langue :</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;première de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation>Réinitialiser l&apos;&amp;éditeur</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation>Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation>Prix :</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation>Titre :</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Game Rating</translation>
+        <translation>Note du jeu</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation>Veuillez remplir le champ « Titre ».</translation>
     </message>
     <message>
         <source>Reset &amp;Mode</source>
-        <translation>Reset &amp;Mode</translation>
+        <translation>Réinitialiser le &amp;mode</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Prosím, vyplňte pole Abstrakt.</translation>
+        <translation>Veuillez remplir le champ « Sommaire ».</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation>Réinitialiser les mot&amp;s clés</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation>Réinitialiser les unités &amp;monétaires</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Wilt U de kopie-info aanpassen?</translation>
+        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation>Réinitialiser le &amp;titre</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation>Réinitialiser le &amp;prix</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation>Veuillez remplir le champ « Lieu de publication ».</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de première de couverture</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation>Impossible de valider la transaction de base de données actuelle.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Video Game Entry</source>
-        <translation>BiblioteQ: VIDEO GAME Aanmaken</translation>
+        <translation>BiblioteQ : créer un article « Jeu vidéo »</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation>Vervolledig de UPC a.u.b..</translation>
+        <translation>Veuillez remplir le champ « CUP ».</translation>
     </message>
     <message>
         <source>Platform:</source>
-        <translation>Platform:</translation>
+        <translation>Plate-forme :</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation>Impossible de générer un entier unique.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation>Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry (</source>
-        <translation>BiblioteQ: Bewerk VIDEO-GAME gegevens (</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Jeu vidéo » (</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Video Game Search</source>
-        <translation>BiblioteQ: VIDEO-GAME Zoeken</translation>
+        <translation>BiblioteQ : recherche de jeu vidéo dans la base de données</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation>Recherche de disponibilité.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation>Emplacement :</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation>BiblioteQ : question</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les langues.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game&apos;s OID.</source>
-        <translation>Niet mogelijk om VIDEO-GAME - OID op te halen.</translation>
+        <translation>Impossible d&apos;extraire l&apos;OID du jeu vidéo.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation>INCONNU</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation>Réinitialiser la date de &amp;parution</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation>Copies :</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation>Sommaire :</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation>Impossible de créer ou mettre à jour l&apos;article. Veuillez vérifier que l&apos;article n&apos;existe pas déjà.</translation>
     </message>
     <message>
         <source>Reset &amp;Platform</source>
-        <translation>Reset &amp;Platform</translation>
+        <translation>Réinitialiser la &amp;plate-forme</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation>Impossible de purger les données de copies non nécessaires..</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation>Veuillez remplir le champ « Éditeur »..</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation>Lieu de publication :</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation>Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation>&amp;Chercher</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde video-game te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les données du jeu vidéo sélectionné.</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation>Catégories</translation>
     </message>
     <message>
         <source>Developer(s):</source>
-        <translation>Ontwikkelaar(s):</translation>
+        <translation>Développeur(s) :</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game locations.</source>
-        <translation>Onmogelijk om de Video Game Locaties te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les emplacements des jeux vidéo.</translation>
     </message>
     <message>
         <source>Game Rating:</source>
-        <translation>Game Rating:</translation>
+        <translation>Note du jeu :</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation>Réinitialiser &amp;l&apos;emplacement</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation>Reset &amp;UPC</translation>
+        <translation>Réinitialiser le C&amp;UP</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation>BiblioteQ : sélection de l&apos;image de quatrième de couverture</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation>Réinitialiser le lieu de &amp;publication</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation>Il apparaît que vous tentez actuellement de réduire le nombre de copies alors qu&apos;il y a des copies réservées.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details (</source>
-        <translation>BiblioteQ: Bekijk VIDEO-GAME Details (</translation>
+        <translation>BiblioteQ : afficher les détails du jeu vidéo (</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation>Impossible de déterminer le nombre maximal de copies de l&apos;article.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation>BiblioteQ : erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry</source>
-        <translation>BiblioteQ: Bewerk VIDEO-GAME gegevens</translation>
+        <translation>BiblioteQ : modifier l&apos;article « Jeu vidéo »</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les unités monétaires.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game platforms.</source>
-        <translation>Onmogelijk om het Video Game-Platform te achterhalen.</translation>
+        <translation>Impossible d&apos;extraire les plates-formes de jeux vidéo.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation>Impossible de créer des copies initiales.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation>Réinitialiser l&apos;image de &amp;quatrième de couverture</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation>Date de parution :</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation>Réini&amp;tialiser la langue</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation>Retour en arrière impossible.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation>Erreur de la base de données</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ : dupliquer un&apos;article « Jeu vidéo »</translation>
     </message>
 </context>
 <context>
     <name>tracksDialog</name>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>BiblioteQ: Album Tracks Browser</source>
-        <translation>BiblioteQ: Browser van Album Titel</translation>
+        <translation>BiblioteQ : explorateur de pistes d&apos;albums (</translation>
     </message>
     <message>
         <source>Album Number</source>
-        <translation>Album Nummer</translation>
+        <translation>Numéro d&apos;album</translation>
     </message>
     <message>
         <source>Track Runtime</source>
-        <translation>Duur</translation>
+        <translation>Durée d&apos;exécution de la piste</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>Track Number</source>
-        <translation>Track Nummer</translation>
+        <translation>Numéro de piste</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Verwijderen</translation>
+        <translation>&amp;Supprimer</translation>
     </message>
     <message>
         <source>&amp;Insert</source>
-        <translation>&amp;Invoegen</translation>
+        <translation>&amp;Insérer</translation>
     </message>
     <message>
         <source>Track Title</source>
-        <translation>Titel</translation>
+        <translation>Titre de la piste</translation>
     </message>
 </context>
 <context>
     <name>vgDialog</name>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation>CUP</translation>
     </message>
     <message>
         <source>Mode</source>
@@ -6368,51 +6292,51 @@
     </message>
     <message>
         <source>Multiplayer</source>
-        <translation>Multiplayer</translation>
+        <translation>Multijoueur</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation>Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>Cover Images</source>
-        <translation>Hoezen</translation>
+        <translation>Images de couverture</translation>
     </message>
     <message>
         <source>Front Cover Image</source>
-        <translation>Hoes (voorkant)</translation>
+        <translation>Image de première de couverture</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Platform</translation>
+        <translation>Plate-forme</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation>&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation>&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>&amp;Resetten</translation>
+        <translation>&amp;Réinitialiser</translation>
     </message>
     <message>
         <source>Developer(s)</source>
-        <translation>Ontwikkelaar(s)</translation>
+        <translation>Développeur(s)</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation>Kopieën</translation>
+        <translation>Copies</translation>
     </message>
     <message>
         <source>Genres</source>
@@ -6420,23 +6344,23 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation>Emplacement</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation>Lieu de publication</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Game Rating</translation>
+        <translation>Note du jeu</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
-        <translation>Hoes (achterkant)</translation>
+        <translation>Image de quatrième de couverture</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -6444,81 +6368,81 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation>Éditeur</translation>
     </message>
     <message>
         <source>&amp;Z39.50 Query</source>
-        <translation>&amp;Z39.50 Aanvraag</translation>
+        <translation>Requête &amp;Z39.50</translation>
     </message>
     <message>
         <source>Abstract</source>
-        <translation>Samenvatting</translation>
+        <translation>Sommaire</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation>&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
     <message>
         <source>General Information</source>
-        <translation>Algemene Informatie</translation>
+        <translation>Informations générales</translation>
     </message>
     <message>
         <source>Specific Information</source>
-        <translation>Specifieke Informatie</translation>
+        <translation>Informations spécifiques</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation>Date de parution</translation>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Sleutelwoorden</translation>
+        <translation>Mots clés</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation>Unités monétaires</translation>
     </message>
     <message>
         <source>Single Player</source>
-        <translation>Single Player</translation>
+        <translation>Joueur solo</translation>
     </message>
 </context>
 <context>
     <name>z3950ResultsDialog</name>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <source>&amp;Records Retrieved</source>
-        <translation>&amp;Records Teruggevonden</translation>
+        <translation>&amp;Enregistrements extraits</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Results</source>
-        <translation>BiblioteQ: Z39.50 Resultaten</translation>
+        <translation>BiblioteQ : résultats de la requête Z39.50</translation>
     </message>
     <message>
         <source>Record &amp;Contents</source>
-        <translation>Record &amp;Inhoud</translation>
+        <translation>&amp;Contenu de l&apos;enregistrement</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuleren</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation>&amp;Sélectionner</translation>
     </message>
 </context>
 <context>
     <name>z3950results</name>
     <message>
         <source>Record #</source>
-        <translation>Record #</translation>
+        <translation>Enregistrement n°</translation>
     </message>
 </context>
 </TS>

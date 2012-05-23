@@ -3840,7 +3840,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
-        <translation>Αδυναμία καθορισμού του αριθμού (ID) των επιλεγμένων αντικειμένων. Η ταξινόμηση τους απαιτεί τον αριθμό (ID).</translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του αριθμού (ID) των επιλεγμένων αντικειμένων. Η ταξινόμηση τους απαιτεί τον αριθμό (ID).</translation>
     </message>
     <message>
         <source>Cancel Selected Request(s)</source>
@@ -4337,6 +4337,10 @@ URL</source>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
         <translation>Δεν είναι δυνατή η χορήγηση προνομίων σε όλα τα μέλη.</translation>
+    </message>
+    <message>
+        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5390,7 +5394,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation>BiblioteQ: Σφάλμα</translation>
+        <translation type="obsolete">BiblioteQ: Σφάλμα</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>

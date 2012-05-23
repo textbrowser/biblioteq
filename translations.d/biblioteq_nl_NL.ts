@@ -3306,7 +3306,7 @@
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
-        <translation>Kan geen item ID bepalen. Om een item uit te lenen, moet het item ID kenbaar zijn.</translation>
+        <translation type="obsolete">Kan geen item ID bepalen. Om een item uit te lenen, moet het item ID kenbaar zijn.</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
@@ -3928,6 +3928,10 @@
     </message>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4914,7 +4918,7 @@
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation>BiblioteQ: Fout</translation>
+        <translation type="obsolete">BiblioteQ: Fout</translation>
     </message>
     <message>
         <source>Reset &amp;Recording Label</source>

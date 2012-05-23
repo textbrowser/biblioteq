@@ -3857,7 +3857,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
-        <translation>Nemohu zjistit číslo položky. Číslo je nutné k provedení zápůjčky.</translation>
+        <translation type="obsolete">Nemohu zjistit číslo položky. Číslo je nutné k provedení zápůjčky.</translation>
     </message>
     <message>
         <source>Cancel Selected Request(s)</source>
@@ -4355,6 +4355,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5409,7 +5413,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation>BiblioteQ: Chyba</translation>
+        <translation type="obsolete">BiblioteQ: Chyba</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
