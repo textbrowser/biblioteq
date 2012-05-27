@@ -15,72 +15,73 @@ ICON		= icons.d\\book.png
 RC_FILE		= biblioteq.win.rc
 LIBS		+= -L"." -L"libs.win.d" -lsqlite3 -L"C:\\Program Files\\YAZ\\lib" -lyaz4
 
-FORMS           = cdinfo.ui \
-		  tracks.ui \
+FORMS           = adminsetup.ui \
 		  allinfo.ui \
-		  dvdinfo.ui \
-		  history.ui \
-		  maginfo.ui \
 		  bookinfo.ui \
-		  branch_s.ui \
-		  password.ui \
-		  userinfo.ui \
                   borrowers.ui \
-		  errordiag.ui \
-		  adminsetup.ui \
-                  mainwindow.ui \
+		  branch_s.ui \
+		  cdinfo.ui \
 		  copybrowser.ui \
 		  customquery.ui \
-		  z3950results.ui \
-		  videogameinfo.ui \
 		  dbenumerations.ui \
-		  members_browser.ui
+		  dvdinfo.ui \
+		  errordiag.ui \
+		  history.ui \
+		  maginfo.ui \
+                  mainwindow.ui \
+		  members_browser.ui \
+		  password.ui \
+		  tracks.ui \
+		  userinfo.ui \
+		  videogameinfo.ui \
+		  z3950results.ui
 
 UI_HEADERS_DIR  = include.d
 
-HEADERS		= include.d\\qtbook.h \
-                  include.d\\myqstring.h \
-		  include.d\\qtbook_cd.h \
-		  include.d\\main_table.h \
-		  include.d\\qtbook_dvd.h \
+HEADERS		= include.d\\bgraphicsscene.h \
+		  include.d\\borrowers_editor.h \
 		  include.d\\copy_editor.h \
-		  include.d\\qtbook_book.h \
-		  include.d\\qtbook_item.h \
-		  include.d\\z3950results.h \
-		  include.d\\bgraphicsscene.h \
                   include.d\\dbenumerations.h \
 		  include.d\\generic_thread.h \
+		  include.d\\hyperlinked_text_edit.h \
 		  include.d\\image_drop_site.h \
+		  include.d\\main_table.h \
+                  include.d\\myqstring.h \
+		  include.d\\qtbook_book.h \
+		  include.d\\qtbook_cd.h \
+		  include.d\\qtbook_dvd.h \
+		  include.d\\qtbook.h \
+		  include.d\\qtbook_item.h \
 		  include.d\\qtbook_magazine.h \
-		  include.d\\borrowers_editor.h \
 		  include.d\\qtbook_videogame.h \
-		  include.d\\hyperlinked_text_edit.h
+		  include.d\\z3950results.h
 
-SOURCES		= qtbook_a.cc \
-		  qtbook_b.cc \
-                  myqstring.cc \
-		  qtbook_cd.cc \
-		  main_table.cc \
-		  qtbook_dvd.cc \
+SOURCES		= bgraphicsscene.cc \
+		  borrowers_editor.cc \
 		  copy_editor.cc \
-		  qtbook_book.cc \
-		  qtbook_item.cc \
-		  z3950results.cc \
-		  bgraphicsscene.cc \
                   dbenumerations.cc \
 		  generic_thread.cc \
-		  misc_functions.cc \
-		  qtbook_journal.cc \
+		  hyperlinked_text_edit.cc \
 		  image_drop_site.cc \
-		  qtbook_magazine.cc \
-		  borrowers_editor.cc \
-		  qtbook_videogame.cc \
+		  main_table.cc \
+		  misc_functions.cc \
+                  myqstring.cc \
 		  numeric_table_item.cc \
-		  hyperlinked_text_edit.cc
+		  qtbook_a.cc \
+		  qtbook_b.cc \
+		  qtbook_book.cc \
+		  qtbook_cd.cc \
+		  qtbook_dvd.cc \
+		  qtbook_item.cc \
+		  qtbook_journal.cc \
+		  qtbook_magazine.cc \
+		  qtbook_videogame.cc \
+		  z3950results.cc
 
 TRANSLATIONS    = translations.d\\biblioteq_cs_CZ.ts \
 		  translations.d\\biblioteq_de_DE.ts \
 		  translations.d\\biblioteq_el_GR.ts \
+		  translations.d\\biblioteq_fr_FR.ts \
                   translations.d\\biblioteq_nl_BE.ts \
                   translations.d\\biblioteq_nl_NL.ts
 
