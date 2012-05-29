@@ -618,3 +618,9 @@ ALTER TABLE book_backup RENAME TO book;
 /* Release 6.53 */
 
 ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
+
+/* Release 6.56 */
+
+ALTER TABLE member ADD comments TEXT;
+ALTER TABLE member ADD general_registration_number TEXT;
+ALTER TABLE member ADD memberclass TEXT;

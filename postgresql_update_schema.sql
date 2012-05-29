@@ -873,3 +873,7 @@ GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_patron;
 REVOKE ALL ON admin FROM biblioteq_patron;
 
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
+
+/* Release 6.56 */
+
+ALTER TABLE member ADD comments TEXT, ADD general_registration_number TEXT, ADD memberclass TEXT;

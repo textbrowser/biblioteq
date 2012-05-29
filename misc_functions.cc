@@ -1978,12 +1978,10 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 
   if(version >= "6.46")
     {
-      QString querystr("");
       QSqlQuery query(db);
 
-      querystr = "ALTER TABLE member ADD expiration_date "
-	"VARCHAR(32) NOT NULL DEFAULT '01/01/3000'";
-      query.exec(querystr);
+      query.exec("ALTER TABLE member ADD expiration_date "
+		 "VARCHAR(32) NOT NULL DEFAULT '01/01/3000'");
     }
 
   if(version >= "6.51" ||
@@ -2013,35 +2011,35 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 
       if(record.field("id").requiredStatus() == QSqlField::Required)
 	{
-	  querystr = "CREATE TABLE book_backup"
-	    "("
-	    "id		 VARCHAR(32) UNIQUE,"
-	    "myoid		 BIGINT NOT NULL,"
-	    "title		 TEXT NOT NULL,"
-	    "edition		 VARCHAR(8) NOT NULL,"
-	    "author		 TEXT NOT NULL,"
-	    "pdate		 VARCHAR(32) NOT NULL,"
-	    "publisher	 TEXT NOT NULL,"
-	    "place		 TEXT NOT NULL,"
-	    "category	 TEXT NOT NULL,"
-	    "price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
-	    "description	 TEXT NOT NULL,"
-	    "language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	    "monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	    "quantity	 INTEGER NOT NULL DEFAULT 1,"
-	    "binding_type	 VARCHAR(32) NOT NULL,"
-	    "location	 TEXT NOT NULL,"
-	    "isbn13		 VARCHAR(16) UNIQUE,"
-	    "lccontrolnumber	 VARCHAR(64),"
-	    "callnumber	 VARCHAR(64),"
-	    "deweynumber	 VARCHAR(64),"
-	    "front_cover	 BYTEA,"
-	    "back_cover	 BYTEA,"
-	    "marc_tags	 TEXT,"
-	    "keyword		 TEXT,"
-	    "type		 VARCHAR(16) NOT NULL DEFAULT 'Book'"
-	    ")";
-	  query.exec(querystr);
+	  query.exec
+	    ("CREATE TABLE book_backup"
+	     "("
+	     "id		 VARCHAR(32) UNIQUE,"
+	     "myoid		 BIGINT NOT NULL,"
+	     "title		 TEXT NOT NULL,"
+	     "edition		 VARCHAR(8) NOT NULL,"
+	     "author		 TEXT NOT NULL,"
+	     "pdate		 VARCHAR(32) NOT NULL,"
+	     "publisher	 TEXT NOT NULL,"
+	     "place		 TEXT NOT NULL,"
+	     "category	 TEXT NOT NULL,"
+	     "price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	     "description	 TEXT NOT NULL,"
+	     "language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	     "monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	     "quantity	 INTEGER NOT NULL DEFAULT 1,"
+	     "binding_type	 VARCHAR(32) NOT NULL,"
+	     "location	 TEXT NOT NULL,"
+	     "isbn13		 VARCHAR(16) UNIQUE,"
+	     "lccontrolnumber	 VARCHAR(64),"
+	     "callnumber	 VARCHAR(64),"
+	     "deweynumber	 VARCHAR(64),"
+	     "front_cover	 BYTEA,"
+	     "back_cover	 BYTEA,"
+	     "marc_tags	 TEXT,"
+	     "keyword		 TEXT,"
+	     "type		 VARCHAR(16) NOT NULL DEFAULT 'Book'"
+	     ")");
 	  query.exec("INSERT INTO book_backup SELECT "
 		     "id, "
 		     "myoid, "
@@ -2075,11 +2073,18 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 
   if(version >= "6.53")
     {
-      QString querystr("");
       QSqlQuery query(db);
 
-      querystr = "ALTER TABLE member ADD overdue_fees "
-	"NUMERIC(10, 2) NOT NULL DEFAULT 0.00";
-      query.exec(querystr);
+      query.exec("ALTER TABLE member ADD overdue_fees "
+		 "NUMERIC(10, 2) NOT NULL DEFAULT 0.00");
+    }
+
+  if(version >= "6.56")
+    {
+      QSqlQuery query(db);
+
+      query.exec("ALTER TABLE member ADD comments TEXT");
+      query.exec("ALTER TABLE member ADD general_registration_number TEXT");
+      query.exec("ALTER TABLE member ADD memberclass TEXT");
     }
 }

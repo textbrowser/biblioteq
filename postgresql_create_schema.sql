@@ -251,7 +251,10 @@ CREATE TABLE member
 	zip		 VARCHAR(16) NOT NULL,
 	email		 VARCHAR(128),
 	expiration_date	 VARCHAR(32) NOT NULL,
-	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00
+	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	comments	 TEXT,
+	general_registration_number	 TEXT,
+	memberclass	 TEXT
 );
 
 CREATE TABLE member_history
