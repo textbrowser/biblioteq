@@ -697,6 +697,7 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
 
+
   QRegExp rx1("\\w+");
   QValidator *validator1 = 0;
 
@@ -1909,6 +1910,9 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
   userinfo_diag->userinfo.overduefees->setValue(0.00);
+  userinfo_diag->userinfo.comments->clear();
+  userinfo_diag->userinfo.memberclass->clear();
+  userinfo_diag->userinfo.generalregistrationnumber->clear();
   userinfo_diag->memberProperties["membersince"] =
     userinfo_diag->userinfo.membersince->date().toString
     (Qt::SystemLocaleShortDate);
@@ -1933,6 +1937,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.prevTool->setVisible(false);
   userinfo_diag->userinfo.nextTool->setVisible(false);
   userinfo_diag->userinfo.memberid->selectAll();
+  userinfo_diag->userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->userinfo.memberid->setFocus();
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
@@ -1974,10 +1979,10 @@ void qtbook::slotSaveUser(void)
 
   if(engUserinfoTitle.contains("New"))
     {
-      if(userinfo_diag->userinfo.memberid->text().length() < 7)
+      if(userinfo_diag->userinfo.memberid->text().length() <= 5)
 	{
 	  QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
-				tr("The Member ID must be at least seven "
+				tr("The Member ID must be at least five "
 				   "characters long."));
 	  userinfo_diag->userinfo.memberid->setFocus();
 	  return;
@@ -2099,64 +2104,84 @@ void qtbook::slotSaveUser(void)
 		    "(memberid, membersince, dob, sex, "
 		    "first_name, middle_init, last_name, "
 		    "telephone_num, street, city, "
-		    "state_abbr, zip, email, expiration_date, overdue_fees) "
+		    "state_abbr, zip, email, expiration_date, overdue_fees, "
+		    "comments, general_registration_number, memberclass) "
 		    "VALUES "
 		    "(?, ?, ?, ?, "
 		    "?, ?, ?, "
-		    "?, ?, ?, "
+		    "?, ?, ?, ?, ?, ?, "
 		    "?, ?, ?, ?, ?)");
-      query.bindValue(0, userinfo_diag->userinfo.memberid->text());
+      query.bindValue(0, userinfo_diag->userinfo.memberid->text().trimmed());
       query.bindValue(1, userinfo_diag->userinfo.membersince->
 		      date().toString("MM/dd/yyyy"));
       query.bindValue(2, userinfo_diag->userinfo.dob->date().
 		      toString("MM/dd/yyyy"));
       query.bindValue(3, userinfo_diag->userinfo.sex->currentText());
-      query.bindValue(4, userinfo_diag->userinfo.firstName->text());
-      query.bindValue(5, userinfo_diag->userinfo.middle->text());
-      query.bindValue(6, userinfo_diag->userinfo.lastName->text());
+      query.bindValue(4, userinfo_diag->userinfo.firstName->text().trimmed());
+      query.bindValue(5, userinfo_diag->userinfo.middle->text().trimmed());
+      query.bindValue(6, userinfo_diag->userinfo.lastName->text().trimmed());
       query.bindValue(7, userinfo_diag->userinfo.telephoneNumber->text());
-      query.bindValue(8, userinfo_diag->userinfo.street->text());
-      query.bindValue(9, userinfo_diag->userinfo.city->text());
+      query.bindValue(8, userinfo_diag->userinfo.street->text().trimmed());
+      query.bindValue(9, userinfo_diag->userinfo.city->text().trimmed());
       query.bindValue(10, userinfo_diag->userinfo.state->currentText());
       query.bindValue(11, userinfo_diag->userinfo.zip->text());
-      query.bindValue(12, userinfo_diag->userinfo.email->text());
+      query.bindValue(12, userinfo_diag->userinfo.email->text().trimmed());
       query.bindValue(13, userinfo_diag->userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
       query.bindValue(14, userinfo_diag->userinfo.overduefees->value());
+      query.bindValue
+	(15, userinfo_diag->userinfo.comments->toPlainText().trimmed());
+      query.bindValue
+	(16, userinfo_diag->userinfo.generalregistrationnumber->text().
+	 trimmed());
+      query.bindValue(17, userinfo_diag->userinfo.memberclass->text().
+		      trimmed());
     }
   else
     {
       query.prepare("UPDATE member SET "
 		    "membersince = ?, "
-		    "dob = ?, sex = ?, "
+		    "dob = ?, "
+		    "sex = ?, "
 		    "first_name = ?, "
 		    "middle_init = ?, "
 		    "last_name = ?, "
 		    "telephone_num = ?, "
 		    "street = ?, "
 		    "city = ?, "
-		    "state_abbr = ?, zip = ?, email = ?, "
+		    "state_abbr = ?, "
+		    "zip = ?, "
+		    "email = ?, "
 		    "expiration_date = ?, "
-		    "overdue_fees = ? "
+		    "overdue_fees = ?, "
+		    "comments = ?, "
+		    "general_registration_number = ?, "
+		    "memberclass = ? "
 		    "WHERE memberid = ?");
       query.bindValue(0, userinfo_diag->userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
       query.bindValue(1, userinfo_diag->userinfo.dob->date().
 		      toString("MM/dd/yyyy"));
       query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
-      query.bindValue(3, userinfo_diag->userinfo.firstName->text());
-      query.bindValue(4, userinfo_diag->userinfo.middle->text());
-      query.bindValue(5, userinfo_diag->userinfo.lastName->text());
+      query.bindValue(3, userinfo_diag->userinfo.firstName->text().trimmed());
+      query.bindValue(4, userinfo_diag->userinfo.middle->text().trimmed());
+      query.bindValue(5, userinfo_diag->userinfo.lastName->text().trimmed());
       query.bindValue(6, userinfo_diag->userinfo.telephoneNumber->text());
-      query.bindValue(7, userinfo_diag->userinfo.street->text());
-      query.bindValue(8, userinfo_diag->userinfo.city->text());
+      query.bindValue(7, userinfo_diag->userinfo.street->text().trimmed());
+      query.bindValue(8, userinfo_diag->userinfo.city->text().trimmed());
       query.bindValue(9, userinfo_diag->userinfo.state->currentText());
       query.bindValue(10, userinfo_diag->userinfo.zip->text());
-      query.bindValue(11, userinfo_diag->userinfo.email->text());
+      query.bindValue(11, userinfo_diag->userinfo.email->text().trimmed());
       query.bindValue(12, userinfo_diag->userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
       query.bindValue(13, userinfo_diag->userinfo.overduefees->value());
-      query.bindValue(14, userinfo_diag->userinfo.memberid->text());
+      query.bindValue(14, userinfo_diag->userinfo.comments->toPlainText().
+		      trimmed());
+      query.bindValue(15, userinfo_diag->userinfo.generalregistrationnumber->
+		      text().trimmed());
+      query.bindValue(16, userinfo_diag->userinfo.memberclass->text().
+		      trimmed());
+      query.bindValue(17, userinfo_diag->userinfo.memberid->text().trimmed());
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -2261,28 +2286,34 @@ void qtbook::slotSaveUser(void)
       userinfo_diag->memberProperties["sex"] =
 	userinfo_diag->userinfo.sex->currentText();
       userinfo_diag->memberProperties["first_name"] =
-	userinfo_diag->userinfo.firstName->text();
+	userinfo_diag->userinfo.firstName->text().trimmed();
       userinfo_diag->memberProperties["middle_init"] =
-	userinfo_diag->userinfo.middle->text();
+	userinfo_diag->userinfo.middle->text().trimmed();
       userinfo_diag->memberProperties["last_name"] =
-	userinfo_diag->userinfo.lastName->text();
+	userinfo_diag->userinfo.lastName->text().trimmed();
       userinfo_diag->memberProperties["telephone_num"] =
 	userinfo_diag->userinfo.telephoneNumber->text();
       userinfo_diag->memberProperties["street"] =
-	userinfo_diag->userinfo.street->text();
+	userinfo_diag->userinfo.street->text().trimmed();
       userinfo_diag->memberProperties["city"] =
-	userinfo_diag->userinfo.city->text();
+	userinfo_diag->userinfo.city->text().trimmed();
       userinfo_diag->memberProperties["state_abbr"] =
 	userinfo_diag->userinfo.state->currentText();
       userinfo_diag->memberProperties["zip"] =
 	userinfo_diag->userinfo.zip->text();
       userinfo_diag->memberProperties["email"] =
-	userinfo_diag->userinfo.email->text();
+	userinfo_diag->userinfo.email->text().trimmed();
       userinfo_diag->memberProperties["expiration_date"] =
 	userinfo_diag->userinfo.expirationdate->date().toString
 	(Qt::SystemLocaleShortDate);
       userinfo_diag->memberProperties["overdue_fees"] =
 	QString::number(userinfo_diag->userinfo.overduefees->value());
+      userinfo_diag->memberProperties["comments"] =
+	userinfo_diag->userinfo.comments->toPlainText().trimmed();
+      userinfo_diag->memberProperties["general_registration_number"] =
+	userinfo_diag->userinfo.generalregistrationnumber->text().trimmed();
+      userinfo_diag->memberProperties["memberclass"] =
+	userinfo_diag->userinfo.memberclass->text().trimmed();
 
       if(engUserinfoTitle.contains("Modify"))
 	{
@@ -4418,6 +4449,13 @@ void qtbook::slotModifyBorrower(void)
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->userinfo.overduefees->setValue(var.toDouble());
+	  else if(fieldname == "comments")
+	    userinfo_diag->userinfo.comments->setPlainText(var.toString());
+	  else if(fieldname == "general_registration_number")
+	    userinfo_diag->userinfo.generalregistrationnumber->setText
+	      (var.toString());
+	  else if(fieldname == "memberclass")
+	    userinfo_diag->userinfo.memberclass->setText(var.toString());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||
@@ -4440,6 +4478,7 @@ void qtbook::slotModifyBorrower(void)
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   engUserinfoTitle = "Modify Member";
   userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo_diag->userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->userinfo.membersince->setFocus();
   userinfo_diag->userinfo.memberid->setPalette
     (userinfo_diag->userinfo.telephoneNumber->palette());

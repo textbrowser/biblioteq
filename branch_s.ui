@@ -58,18 +58,12 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_5">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QFrame" name="file_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
          <layout class="QHBoxLayout">
           <item>
            <widget class="QLabel" name="label_2">
@@ -109,12 +103,6 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0" rowspan="2">

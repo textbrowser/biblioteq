@@ -90,23 +90,24 @@ class qtbook: public QMainWindow
       if(memberProperties["sex"] != userinfo.sex->currentText())
 	list << "sex";
 
-      if(memberProperties["first_name"] != userinfo.firstName->text())
+      if(memberProperties["first_name"] != userinfo.firstName->text().
+	 trimmed())
 	list << "first_name";
 
-      if(memberProperties["middle_init"] != userinfo.middle->text())
+      if(memberProperties["middle_init"] != userinfo.middle->text().trimmed())
 	list << "middle_init";
 
-      if(memberProperties["last_name"] != userinfo.lastName->text())
+      if(memberProperties["last_name"] != userinfo.lastName->text().trimmed())
 	list << "last_name";
 
       if(memberProperties["telephone_num"] !=
 	 userinfo.telephoneNumber->text())
 	list << "telephone_num";
 
-      if(memberProperties["street"] != userinfo.street->text())
+      if(memberProperties["street"] != userinfo.street->text().trimmed())
 	list << "street";
 
-      if(memberProperties["city"] != userinfo.city->text())
+      if(memberProperties["city"] != userinfo.city->text().trimmed())
 	list << "city";
 
       if(memberProperties["state_abbr"] != userinfo.state->currentText())
@@ -126,6 +127,18 @@ class qtbook: public QMainWindow
       if(memberProperties["overdue_fees"] !=
 	 QString::number(userinfo.overduefees->value()))
 	list << "overdue_fees";
+
+      if(memberProperties["comments"] != userinfo.comments->toPlainText().
+	 trimmed())
+	list << "comments";
+
+      if(memberProperties["general_registration_number"] !=
+	 userinfo.generalregistrationnumber->text().trimmed())
+	list << "general_registration_number";
+
+      if(memberProperties["memberclass"] !=
+	 userinfo.memberclass->text().trimmed())
+	list << "memberclass";
 
       while(!list.isEmpty())
 	str += list.takeFirst() + ", ";

@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>622</width>
-         <height>942</height>
+         <width>632</width>
+         <height>963</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -45,12 +45,6 @@
         </property>
         <item>
          <widget class="QFrame" name="frame">
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
           <layout class="QFormLayout" name="formLayout">
            <item row="0" column="0">
             <widget class="QLabel" name="label">
