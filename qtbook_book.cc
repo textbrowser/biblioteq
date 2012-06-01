@@ -2935,7 +2935,7 @@ void qtbook_book::slotProxyAuthenticationRequired
 
       ui_p.setupUi(&dialog);
 #ifdef Q_WS_MAC
-      dialog.setAttribute(Qt::WA_MacMetalStyle, false);
+      dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
       ui_p.messageLabel->setText
 	(QString(tr("The proxy %1:%2 is requesting "
