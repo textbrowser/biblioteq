@@ -227,6 +227,8 @@ class qtbook: public QMainWindow
   QSqlDatabase getDB(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
+  QHash<QString, QString> z3950Proxy(void) const;
+  QHash<QString, QString> amazonProxy(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
   QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   static void quit(void);
@@ -247,7 +249,9 @@ class qtbook: public QMainWindow
   QString engUserinfoTitle;
   QString previousTypeFilter;
   QStringList deletedAdmins;
+  QHash<QString, QString> m_z3950Proxy;
   QHash<QString, QString> amazonImages;
+  QHash<QString, QString> m_amazonProxy;
   QHash<QString, QString> selectedBranch;
   QMap<QString, QHash<QString, QString> > branches;
   QMap<QString, QHash<QString, QString> > z3950Maps;

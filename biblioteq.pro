@@ -30,6 +30,7 @@ FORMS           = adminsetup.ui \
 		  mainwindow.ui \
 		  members_browser.ui \
 		  password.ui \
+		  passwordPrompt.ui \
 		  tracks.ui \
 		  userinfo.ui \
 		  videogameinfo.ui \

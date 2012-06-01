@@ -2369,11 +2369,13 @@ void qtbook::readGlobalSetup(QString &error)
 {
   int i = 0;
   int j = 0;
-  enum enumtype {Z3950_CONFIGURATION,
-		 BRANCHES,
+  enum enumtype {AMAZON_BACK_COVER_IMAGES,
 		 AMAZON_FRONT_COVER_IMAGES,
-		 AMAZON_BACK_COVER_IMAGES,
-		 UNKNOWN};
+		 AMAZON_PROXY,
+		 BRANCHES,
+		 UNKNOWN,
+		 Z3950_CONFIGURATION,
+		 Z3950_PROXY};
   QString str = "";
   QString filename = "";
   enumtype type = UNKNOWN;
@@ -2431,6 +2433,10 @@ void qtbook::readGlobalSetup(QString &error)
 	      type = AMAZON_FRONT_COVER_IMAGES;
 	    else if(str == "[Amazon Back Cover Images]")
 	      type = AMAZON_BACK_COVER_IMAGES;
+	    else if(str == "[Amazon Proxy]")
+	      type = AMAZON_PROXY;
+	    else if(str == "[Z39.50 Proxy]")
+	      type = Z3950_PROXY;
 	    else
 	      type = UNKNOWN;
 
@@ -2551,6 +2557,42 @@ void qtbook::readGlobalSetup(QString &error)
 			  amazonImages["back_cover_host"] = str;
 			else if(!amazonImages.contains("back_cover_path"))
 			  amazonImages["back_cover_path"] = str;
+
+			break;
+		      }
+		    case AMAZON_PROXY:
+		      {
+			if(str.startsWith("#"))
+			  break;
+
+			if(!m_amazonProxy.contains("type"))
+			  m_amazonProxy["type"] = str;
+			else if(!m_amazonProxy.contains("host"))
+			  m_amazonProxy["host"] = str;
+			else if(!m_amazonProxy.contains("port"))
+			  m_amazonProxy["port"] = str;
+			else if(!m_amazonProxy.contains("user"))
+			  m_amazonProxy["user"] = str;
+			else if(!m_amazonProxy.contains("password"))
+			  m_amazonProxy["password"] = str;
+
+			break;
+		      }
+		    case Z3950_PROXY:
+		      {
+			if(str.startsWith("#"))
+			  break;
+
+			if(!m_z3950Proxy.contains("type"))
+			  m_z3950Proxy["type"] = str;
+			else if(!m_z3950Proxy.contains("host"))
+			  m_z3950Proxy["host"] = str;
+			else if(!m_z3950Proxy.contains("port"))
+			  m_z3950Proxy["port"] = str;
+			else if(!m_z3950Proxy.contains("user"))
+			  m_z3950Proxy["user"] = str;
+			else if(!m_z3950Proxy.contains("password"))
+			  m_z3950Proxy["password"] = str;
 
 			break;
 		      }
@@ -8331,4 +8373,22 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 
       items.clear();
     }
+}
+
+/*
+** -- amazonProxy() --
+*/
+
+QHash<QString, QString> qtbook::amazonProxy(void) const
+{
+  return m_amazonProxy;
+}
+
+/*
+** -- z3950Proxy() --
+*/
+
+QHash<QString, QString> qtbook::z3950Proxy(void) const
+{
+  return m_z3950Proxy;
 }

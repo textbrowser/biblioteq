@@ -4,6 +4,8 @@
 
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QNetworkProxy>
+#include <QAuthenticator>
 
 /*
 ** Includes book-specific methods.
@@ -16,6 +18,7 @@
 #include "qtbook.h"
 #include "qtbook_book.h"
 #include "borrowers_editor.h"
+#include "ui_passwordPrompt.h"
 
 extern qtbook *qmain;
 extern QApplication *qapp;
@@ -2672,6 +2675,16 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
+  /*
+  ** This is required to resolve an odd error.
+  */
+
+  QNetworkReply *reply = manager->get
+    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+  if(reply)
+    reply->deleteLater();
+
   QPushButton *pb = qobject_cast<QPushButton *> (sender());
 
   if(pb == id.dwnldFront)
@@ -2694,7 +2707,65 @@ void qtbook_book::slotDownloadImage(void)
        qmain->getAmazonHash()["back_cover_path"].replace
        ("%", id.id->text().trimmed()));
 
-  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+  connect(manager,
+	  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+					     QAuthenticator *)),
+	  this,
+	  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+					       QAuthenticator *)));
+
+  QString type;
+  QNetworkProxy proxy;
+  QHash<QString, QString> hash(qmain->amazonProxy());
+
+  if(hash.contains("type"))
+    type = hash["type"].toLower().trimmed();
+
+  if(type == "none")
+    proxy.setType(QNetworkProxy::NoProxy);
+  else
+    {
+      if(type == "http" || type == "socks5")
+	{
+	  if(type == "http")
+	    proxy.setType(QNetworkProxy::HttpProxy);
+	  else
+	    proxy.setType(QNetworkProxy::Socks5Proxy);
+
+	  quint16 port = 0;
+	  QString host("");
+	  QString user("");
+	  QString password("");
+
+	  host = hash["host"];
+	  port = hash["port"].toUShort();
+	  user = hash["user"];
+	  password = hash["password"];
+	  proxy.setHostName(host);
+	  proxy.setPort(port);
+
+	  if(!user.isEmpty())
+	    proxy.setUser(user);
+
+	  if(!password.isEmpty())
+	    proxy.setPassword(password);
+
+	  manager->setProxy(proxy);
+	}
+      else if(type == "system")
+	{
+	  QNetworkProxyQuery query(url);
+	  QList<QNetworkProxy> list
+	    (QNetworkProxyFactory::systemProxyForQuery(query));
+
+	  if(!list.isEmpty())
+	    proxy = list.at(0);
+
+	  manager->setProxy(proxy);
+	}
+    }
+
+  reply = manager->get(QNetworkRequest(url));
 
   if(!reply)
     {
@@ -2848,4 +2919,34 @@ void qtbook_book::duplicate(const QString &p_oid, const int state)
   oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
   engWindowTitle = "Create";
+}
+
+/*
+** -- slotProxyAuthenticationRequired() --
+*/
+
+void qtbook_book::slotProxyAuthenticationRequired
+(const QNetworkProxy &proxy, QAuthenticator *authenticator)
+{
+  if(authenticator)
+    {
+      QDialog dialog(this);
+      Ui_passwordDialog ui_p;
+
+      ui_p.setupUi(&dialog);
+#ifdef Q_WS_MAC
+      dialog.setAttribute(Qt::WA_MacMetalStyle, false);
+#endif
+      ui_p.messageLabel->setText
+	(QString(tr("The proxy %1:%2 is requesting "
+		    "credentials.").
+		 arg(proxy.hostName()).
+		 arg(proxy.port())));
+
+      if(dialog.exec() == QDialog::Accepted)
+	{
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
+	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	}
+    }
 }

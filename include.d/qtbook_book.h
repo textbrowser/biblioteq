@@ -72,6 +72,8 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotCancelImageDownload(void);
   void slotDataTransferProgress(qint64, qint64);
   void slotPopulateCopiesEditor(void);
+  void slotProxyAuthenticationRequired(const QNetworkProxy &,
+				       QAuthenticator *);
 };
 
 #endif
