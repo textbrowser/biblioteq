@@ -41,7 +41,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
-  if((menu = new(std::nothrow) QMenu()) == 0)
+  if((menu = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
@@ -50,10 +50,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((validator2 = new(std::nothrow) QRegExpValidator(rx2, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene1 = new(std::nothrow) QGraphicsScene()) == 0)
+  if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene2 = new(std::nothrow) QGraphicsScene()) == 0)
+  if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)

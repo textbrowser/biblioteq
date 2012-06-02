@@ -670,7 +670,9 @@ void copy_editor::slotSaveCopies(void)
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  copies.clear();
+
+  while(!copies.isEmpty())
+    delete copies.takeFirst();
 
   if(!qmain->getDB().rollback())
     qmain->addError(QString(tr("Database Error")),
@@ -688,7 +690,9 @@ void copy_editor::slotSaveCopies(void)
 
   if(!qmain->getDB().commit())
     {
-      copies.clear();
+      while(!copies.isEmpty())
+	delete copies.takeFirst();
+
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Commit failure.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -721,7 +725,9 @@ void copy_editor::slotSaveCopies(void)
   */
 
   bitem->setOldQ(copies.size());
-  copies.clear();
+
+  while(!copies.isEmpty())
+    delete copies.takeFirst();
 }
 
 /*

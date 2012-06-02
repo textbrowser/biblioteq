@@ -76,33 +76,49 @@ void generic_thread::run(void)
       {
 	size_t i = 0;
 	const char *rec = 0;
+	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
-	ZOOM_connection zoomConnection = ZOOM_connection_new
-	  ((qmain->getZ3950Maps()[z3950Name].value("Address") + ":" +
-	    qmain->getZ3950Maps()[z3950Name].value("Port") + "/" +
-	    qmain->getZ3950Maps()[z3950Name].value("Database")).
-	   toUtf8().constData(), 0);
+	ZOOM_connection zoomConnection = 0;
+	QHash<QString, QString> proxy(qmain->z3950Proxy());
 
-	ZOOM_connection_option_set(zoomConnection,
-				   "preferredRecordSyntax", "MARC21");
+	ZOOM_options_set
+	  (options,
+	   "databaseName",
+	   qmain->getZ3950Maps()[z3950Name].value("Database").
+	   toAscii().constData());
+	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
+
+	if(proxy.contains("host") && proxy.contains("port"))
+	  {
+	    QString value
+	      (QString("%1:%2").arg(proxy["host"]).arg(proxy["port"]));
+
+	    ZOOM_options_set(options, "proxy", value.toAscii().constData());
+	  }
 
 	if(!qmain->getZ3950Maps()[z3950Name].value("Userid").isEmpty())
-	  ZOOM_connection_option_set
-	    (zoomConnection,
+	  ZOOM_options_set
+	    (options,
 	     "user",
-	     qmain->getZ3950Maps()[z3950Name].value("Userid").toUtf8().
+	     qmain->getZ3950Maps()[z3950Name].value("Userid").toAscii().
 	     constData());
 
 	if(!qmain->getZ3950Maps()[z3950Name].value("Password").isEmpty())
-	  ZOOM_connection_option_set
-	    (zoomConnection,
+	  ZOOM_options_set
+	    (options,
 	     "password",
-	     qmain->getZ3950Maps()[z3950Name].value("Password").
-	     toUtf8().constData());
+	     qmain->getZ3950Maps()[z3950Name].value("Password").toAscii().
+	     constData());
 
+	zoomConnection = ZOOM_connection_create(options);
+	ZOOM_connection_connect
+	  (zoomConnection, (qmain->getZ3950Maps()[z3950Name].value("Address") +
+			    ":" +
+			    qmain->getZ3950Maps()[z3950Name].value("Port")).
+	   toAscii().constData(), 0);
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   z3950SearchStr.toUtf8().constData());
+	   z3950SearchStr.toAscii().constData());
 
 	QString format = qmain->getZ3950Maps()[z3950Name].value("Format").
 	  trimmed().toLower();
@@ -135,6 +151,7 @@ void generic_thread::run(void)
 	    errorStr = tr("Z39.50 Empty Results Set");
 	  }
 
+	ZOOM_options_destroy(options);
 	ZOOM_connection_destroy(zoomConnection);
 	break;
       }

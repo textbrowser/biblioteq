@@ -251,16 +251,16 @@ qtbook::qtbook(void):QMainWindow()
   if((db_enumerations = new(std::nothrow) dbenumerations()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu1 = new(std::nothrow) QMenu()) == 0)
+  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu2 = new(std::nothrow) QMenu()) == 0)
+  if((menu2 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu3 = new(std::nothrow) QMenu()) == 0)
+  if((menu3 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu4 = new(std::nothrow) QMenu()) == 0)
+  if((menu4 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(menu1->addAction(tr("Add &Book")),
@@ -2583,16 +2583,10 @@ void qtbook::readGlobalSetup(QString &error)
 			if(str.startsWith("#"))
 			  break;
 
-			if(!m_z3950Proxy.contains("type"))
-			  m_z3950Proxy["type"] = str;
-			else if(!m_z3950Proxy.contains("host"))
+			if(!m_z3950Proxy.contains("host"))
 			  m_z3950Proxy["host"] = str;
 			else if(!m_z3950Proxy.contains("port"))
 			  m_z3950Proxy["port"] = str;
-			else if(!m_z3950Proxy.contains("user"))
-			  m_z3950Proxy["user"] = str;
-			else if(!m_z3950Proxy.contains("password"))
-			  m_z3950Proxy["password"] = str;
 
 			break;
 		      }
