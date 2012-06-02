@@ -2393,6 +2393,11 @@ void qtbook_book::slotQuery(void)
 		      else
 			str = str.mid(0, str.indexOf("$c")).trimmed();
 
+		      if(str.contains("$b "))
+			str.remove("$b ");
+		      else if(str.contains("$b"))
+			str.remove("$b");
+
 		      if(str.endsWith(","))
 			str = str.mid(0, str.length() - 1).trimmed();
 
