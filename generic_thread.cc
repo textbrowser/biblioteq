@@ -137,8 +137,8 @@ void generic_thread::run(void)
 
 	ZOOM_resultset_destroy(zoomResultSet);
 
-	const char *errmsg = 0;
-	const char *addinfo = 0;
+	const char *errmsg;
+	const char *addinfo;
 
 	if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
 	  {

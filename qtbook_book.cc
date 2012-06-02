@@ -1969,7 +1969,7 @@ void qtbook_book::slotQuery(void)
 #ifndef Q_WS_MAC
 	  qapp->processEvents();
 #endif
-	  thread->msleep(10);
+	  thread->msleep(100);
 	}
 
       working.hide();
