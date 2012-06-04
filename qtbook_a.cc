@@ -3306,16 +3306,15 @@ void qtbook::slotDisplaySummary(void)
 
       if(frontImage.isNull())
 	frontImage = QImage("icons.d/no_image.png");
-      else
-	frontImage = frontImage.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      frontImage = frontImage.scaled
+	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
       if(backImage.isNull())
 	backImage = QImage("icons.d/no_image.png");
-      else
-	backImage = backImage.scaled
-	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
+      backImage = backImage.scaled
+	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())
@@ -6229,7 +6228,7 @@ void qtbook::slotPrintView(void)
 #endif
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  html += "<table>";
+  html += "<table border=1>";
   html += "<tr>";
 
   for(int i = 0; i < ui.table->columnCount(); i++)
@@ -6754,8 +6753,6 @@ QMainWindow *qtbook::getMembersBrowser(void) const
 
 void qtbook::slotPrintReservationHistory(void)
 {
-  int i = 0;
-  int j = 0;
   QString html = "<html>";
   QPrinter printer;
   QPrintDialog dialog(&printer, history_diag);
@@ -6781,19 +6778,28 @@ void qtbook::slotPrintReservationHistory(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   html = tr("Reservation History") + "<br><br>";
+  html += "<table border=1>";
+  html += "<tr>";
 
-  for(i = 0; i < history.table->rowCount(); i++)
+  for(int i = 0; i < history.table->columnCount(); i++)
+    if(!history.table->isColumnHidden(i))
+      html += "<th>" + history.table->horizontalHeaderItem(i)->text() +
+	"</th>";
+
+  html += "</tr>";
+
+  for(int i = 0; i < history.table->rowCount(); i++)
     {
-      for(j = 0; j < history.table->columnCount(); j++)
-	if(!history.table->isColumnHidden(j))
-	  html += "<b>" + history.table->horizontalHeaderItem(j)->text() +
-	    ":</b> " + history.table->item(i, j)->text() + "<br>";
+      html += "<tr>";
 
-      html = html.trimmed();
-      html += "<br>";
+      for(int j = 0; j < history.table->columnCount(); j++)
+	if(!history.table->isColumnHidden(j))
+	  html += "<td>" + history.table->item(i, j)->text() + "</td>";
+
+      html += "</tr>";
     }
 
-  html = html.trimmed();
+  html += "</table>";
   html += "</html>";
   qapp->restoreOverrideCursor();
   printer.setPageSize(QPrinter::Letter);
@@ -8361,7 +8367,25 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 							      takeFirst())))
 	  if(oid == item->data(0).toString())
 	    {
-	      item->setPixmap(QPixmap::fromImage(image));
+	      QImage l_image(image);
+
+	      l_image = l_image.scaled
+		(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+	      QPixmap pixmap(QPixmap::fromImage(l_image));
+
+	      if(!pixmap.isNull())
+		item->setPixmap(pixmap);
+	      else
+		{
+		  QImage l_image("icons.d/no_image.png");
+
+		  l_image = l_image.scaled
+		    (126, 187, Qt::IgnoreAspectRatio,
+		     Qt::SmoothTransformation);
+		  item->setPixmap(QPixmap::fromImage(l_image));
+		}
+
 	      break;
 	    }
 
