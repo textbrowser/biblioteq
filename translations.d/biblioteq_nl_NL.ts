@@ -334,6 +334,26 @@
         <source>Overdue Fees</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -521,7 +541,7 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation>Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van ongeldige data.</translation>
+        <translation type="obsolete">Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van ongeldige data.</translation>
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
@@ -557,7 +577,7 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation>Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van database fouten.</translation>
+        <translation type="obsolete">Enige of alle Terugbreng-Datums zijn niet geactualiseerd omwille van database fouten.</translation>
     </message>
     <message>
         <source>Please select the copy that has been returned.</source>
@@ -621,6 +641,14 @@
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2863,6 +2891,25 @@
     </message>
 </context>
 <context>
+    <name>passwordDialog</name>
+    <message>
+        <source>BiblioteQ: Proxy Authentication Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Paswoord</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>.</source>
@@ -3438,7 +3485,7 @@
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation>De Klant-ID moet minsten uit zeven karakters bestaan.</translation>
+        <translation type="obsolete">De Klant-ID moet minsten uit zeven karakters bestaan.</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
@@ -3474,7 +3521,7 @@
     </message>
     <message>
         <source> due to insufficient resources.</source>
-        <translation>wegens onvoldoende capaciteit.</translation>
+        <translation type="obsolete">wegens onvoldoende capaciteit.</translation>
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
@@ -3934,6 +3981,14 @@
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -3943,7 +3998,7 @@
     </message>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Any</source>
@@ -4039,7 +4094,7 @@
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Een Z39.50 gegeven zou nog niet bestaan voor</translation>
+        <translation type="obsolete">Een Z39.50 gegeven zou nog niet bestaan voor</translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Class Number</source>
@@ -4443,6 +4498,14 @@
     </message>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5571,7 +5634,7 @@
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+        <translation type="obsolete">Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
     </message>
     <message>
         <source>Location</source>
@@ -5655,7 +5718,7 @@
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation>Niet mogelijk om een &quot;dialoog object&quot; te maken wegens te weinig bronnen.</translation>
+        <translation type="obsolete">Niet mogelijk om een &quot;dialoog object&quot; te maken wegens te weinig bronnen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5907,6 +5970,14 @@
     </message>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -338,6 +338,26 @@
         <source>Overdue Fees</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -625,11 +645,11 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli neplatnosti datumu.</translation>
+        <translation type="obsolete">Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli neplatnosti datumu.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation>Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli chybám při databázovém zpracování.</translation>
+        <translation type="obsolete">Jedno nebo více dat vrácení nemohlo být aktualizováno kvůli chybám při databázovém zpracování.</translation>
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
@@ -637,6 +657,14 @@
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3182,6 +3210,25 @@ webová adresa</translation>
     </message>
 </context>
 <context>
+    <name>passwordDialog</name>
+    <message>
+        <source>BiblioteQ: Proxy Authentication Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Heslo</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>BiblioteQ has exited.</source>
@@ -3517,7 +3564,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation>Kód zapůjčitele musí mít aspoň sedm znaků.</translation>
+        <translation type="obsolete">Kód zapůjčitele musí mít aspoň sedm znaků.</translation>
     </message>
     <message>
         <source>The Member ID </source>
@@ -3629,7 +3676,7 @@ webová adresa</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
-        <translation>kvůli nedostatečné paměti.</translation>
+        <translation type="obsolete">kvůli nedostatečné paměti.</translation>
     </message>
     <message>
         <source>Please select a member to delete.</source>
@@ -4361,6 +4408,14 @@ webová adresa</translation>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4754,11 +4809,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Záznam Z39.50 patrně neexistuje pro</translation>
+        <translation type="obsolete">Záznam Z39.50 patrně neexistuje pro</translation>
     </message>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -4962,6 +5017,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6510,7 +6573,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation>Není k dispozici dostatek systémových prostředků pro vytvoření dialogového okna.</translation>
+        <translation type="obsolete">Není k dispozici dostatek systémových prostředků pro vytvoření dialogového okna.</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
@@ -6530,7 +6593,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Není k dispozici dostatek systémových prostředků pro vytvoření programového vlákna.</translation>
+        <translation type="obsolete">Není k dispozici dostatek systémových prostředků pro vytvoření programového vlákna.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -6670,6 +6733,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

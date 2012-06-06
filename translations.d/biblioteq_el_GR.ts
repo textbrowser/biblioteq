@@ -338,6 +338,26 @@
         <source>Overdue Fees</source>
         <translation>Εκπρόθεσμες αμοιβές</translation>
     </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -625,11 +645,11 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω άκυρων ημερομηνίων.</translation>
+        <translation type="obsolete">Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω άκυρων ημερομηνίων.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω σφαλμάτων στη βάση δεδομένων.</translation>
+        <translation type="obsolete">Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω σφαλμάτων στη βάση δεδομένων.</translation>
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
@@ -638,6 +658,14 @@
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
         <translation>BiblioteQ: Κατάσταση αντικειμένου δανεισμού</translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3165,6 +3193,25 @@ URL</source>
     </message>
 </context>
 <context>
+    <name>passwordDialog</name>
+    <message>
+        <source>BiblioteQ: Proxy Authentication Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Κωδικός</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>BiblioteQ has exited.</source>
@@ -3500,7 +3547,7 @@ URL</source>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation>Ο αριθμός ταυτότητας του μέλους πρέπει να έχει τουλάχιστον επτά χαρακτήρες.</translation>
+        <translation type="obsolete">Ο αριθμός ταυτότητας του μέλους πρέπει να έχει τουλάχιστον επτά χαρακτήρες.</translation>
     </message>
     <message>
         <source>The Member ID </source>
@@ -3612,7 +3659,7 @@ URL</source>
     </message>
     <message>
         <source> due to insufficient resources.</source>
-        <translation> due to insufficient resources.</translation>
+        <translation type="obsolete"> due to insufficient resources.</translation>
     </message>
     <message>
         <source>Please select a member to delete.</source>
@@ -4342,6 +4389,14 @@ URL</source>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4735,11 +4790,11 @@ URL</source>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Η Z39.50 εγγραφή δεν υπάρχει για </translation>
+        <translation type="obsolete">Η Z39.50 εγγραφή δεν υπάρχει για </translation>
     </message>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -4944,6 +4999,14 @@ URL</source>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
         <translation>BiblioteQ: Αντιγραφή εγγραφής βιβλίου</translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6491,7 +6554,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation>Αδυναμία δημιουργίας του &quot;dialog&quot; αντικειμένου από ανεπαρκή δεδομένα.</translation>
+        <translation type="obsolete">Αδυναμία δημιουργίας του &quot;dialog&quot; αντικειμένου από ανεπαρκή δεδομένα.</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
@@ -6511,7 +6574,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Αδυναμία δημιουργίας a thread λόγω ανεπαρκών πόρων.</translation>
+        <translation type="obsolete">Αδυναμία δημιουργίας a thread λόγω ανεπαρκών πόρων.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
@@ -6652,6 +6715,14 @@ URL</source>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
         <translation>BiblioteQ: Αντιγραφή εγγραφής περιοδικού</translation>
+    </message>
+    <message>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a thread because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

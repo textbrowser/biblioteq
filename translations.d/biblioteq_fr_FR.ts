@@ -334,6 +334,26 @@
         <source>Overdue Fees</source>
         <translation>Arriérés de paiement</translation>
     </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Registration Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -521,7 +541,7 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
-        <translation>Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause de dates invalides.</translation>
+        <translation type="obsolete">Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause de dates invalides.</translation>
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
@@ -557,7 +577,7 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
-        <translation>Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause d&apos;erreurs de la base de données.</translation>
+        <translation type="obsolete">Certaines ou toutes les dates limites n&apos;ont pas été mises à jour à cause d&apos;erreurs de la base de données.</translation>
     </message>
     <message>
         <source>Please select the copy that has been returned.</source>
@@ -618,6 +638,14 @@
     <message>
         <source>BiblioteQ: Item Reservation Status</source>
         <translation>BiblioteQ : état de réservation de l&apos;article</translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2836,6 +2864,25 @@ minmal de jours.</translation>
     </message>
 </context>
 <context>
+    <name>passwordDialog</name>
+    <message>
+        <source>BiblioteQ: Proxy Authentication Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Mot de passe</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>.</source>
@@ -3392,7 +3439,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
-        <translation>L&apos;ID de membre doit comporter une longueur d&apos;au moins 7 caractères.</translation>
+        <translation type="obsolete">L&apos;ID de membre doit comporter une longueur d&apos;au moins 7 caractères.</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
@@ -3428,7 +3475,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
-        <translation> en raison de ressources insuffisantes.</translation>
+        <translation type="obsolete"> en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
@@ -3866,6 +3913,14 @@ minmal de jours.</translation>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -3875,7 +3930,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Any</source>
@@ -3971,7 +4026,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Il se peut qu&apos;il n&apos;existe pas encore d&apos;article Z39.50 pour </translation>
+        <translation type="obsolete">Il se peut qu&apos;il n&apos;existe pas encore d&apos;article Z39.50 pour </translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Class Number</source>
@@ -4372,6 +4427,14 @@ minmal de jours.</translation>
     <message>
         <source>BiblioteQ: Duplicate Book Entry</source>
         <translation>BiblioteQ : dupliquer l&apos;article « Livre »</translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5495,7 +5558,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Impossible de créer un fil d&apos;exécution en raison de ressources insuffisantes.</translation>
+        <translation type="obsolete">Impossible de créer un fil d&apos;exécution en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>Location</source>
@@ -5579,7 +5642,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
-        <translation>Impossible de créer un objet « Boîte de dialogue » en raison de ressources insuffisantes.</translation>
+        <translation type="obsolete">Impossible de créer un objet « Boîte de dialogue » en raison de ressources insuffisantes.</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
@@ -5832,6 +5895,14 @@ minmal de jours.</translation>
     <message>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
         <translation>BiblioteQ : dupliquer un article « Magazine »</translation>
+    </message>
+    <message>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a thread because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
