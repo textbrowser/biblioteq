@@ -1941,10 +1941,18 @@ void qtbook_book::slotQuery(void)
       working.show();
       working.update();
 
-      if(!id.id->text().isEmpty())
-	searchstr = QString("@attr 1=7 %1").arg(id.id->text());
-      else
-	searchstr = QString("@attr 1=7 %1").arg(id.isbn13->text());
+      QStringList isbns;
+
+      isbns << id.id->text()
+	    << id.isbn13->text();
+
+      if(isbns.at(0).isEmpty())
+	isbns.replace(0, isbns.at(1));
+      else if(isbns.at(1).isEmpty())
+	isbns.replace(1, isbns.at(0));
+
+      searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
+	arg(isbns.at(1));
 
       bool found = false;
 
@@ -2509,9 +2517,7 @@ void qtbook_book::slotQuery(void)
       else if(errorstr.isEmpty() && thread->getZ3950Results().isEmpty())
 	QMessageBox::critical
 	  (this, tr("BiblioteQ: Z39.50 Query Error"),
-	   tr("A Z39.50 entry may not yet exist for ") +
-	   (id.id->text().isEmpty() ? id.isbn13->text() : id.id->text()) +
-	   tr("."));
+	   tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
       else
 	etype = thread->getEType();
 

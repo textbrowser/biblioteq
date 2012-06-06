@@ -1862,13 +1862,13 @@ void qtbook_magazine::slotQuery(void)
 		  qmain->addError
 		    (QString(tr("Memory Error")),
 		     QString(tr("Unable to create a \"dialog\" object "
-				"due to insufficient resources.")),
+				"because of insufficient resources.")),
 		     QString(""),
 		     __FILE__, __LINE__);
 		  QMessageBox::critical
 		    (this, tr("BiblioteQ: Memory Error"),
 		     tr("Unable to create a \"dialog\" object "
-			"due to insufficient resources."));
+			"because of insufficient resources."));
 		}
 	    }
 	  else
@@ -1885,7 +1885,7 @@ void qtbook_magazine::slotQuery(void)
   else
     {
       etype = tr("Memory Error");
-      errorstr = tr("Unable to create a thread due to insufficient "
+      errorstr = tr("Unable to create a thread because of insufficient "
 		    "resources.");
     }
 

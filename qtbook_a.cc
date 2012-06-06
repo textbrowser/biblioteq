@@ -2652,10 +2652,10 @@ void qtbook::readGlobalSetup(QString &error)
   else
     {
       error = QString(tr("Unable to read ")) + filename +
-	QString(tr(" due to insufficient resources."));
+	QString(tr(" because of insufficient resources."));
       addError(QString(tr("File Error")),
 	       QString(tr("Unable to read ")) + filename +
-	       QString(tr(" due to insufficient resources.")),
+	       QString(tr(" because of insufficient resources.")),
 	       QString(""),
 	       __FILE__, __LINE__);
     }
