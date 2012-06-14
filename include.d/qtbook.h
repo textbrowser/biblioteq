@@ -44,6 +44,7 @@ using namespace std;
 #include "ui_customquery.h"
 #include "qtbook_magazine.h"
 #include "qtbook_videogame.h"
+#include "callnum_table_item.h"
 #include "numeric_table_item.h"
 #include "ui_members_browser.h"
 

@@ -59,6 +59,7 @@ HEADERS		= include.d\\bgraphicsscene.h \
 
 SOURCES		= bgraphicsscene.cc \
 		  borrowers_editor.cc \
+		  callnum_table_item.cc \
 		  copy_editor.cc \
                   dbenumerations.cc \
 		  generic_thread.cc \

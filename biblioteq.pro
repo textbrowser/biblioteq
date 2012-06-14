@@ -58,6 +58,7 @@ HEADERS		= include.d/bgraphicsscene.h \
 
 SOURCES		= bgraphicsscene.cc \
 		  borrowers_editor.cc \
+		  callnum_table_item.cc \
 		  copy_editor.cc \
 		  dbenumerations.cc \
 		  generic_thread.cc \
@@ -90,9 +91,9 @@ PROJECTNAME	= BiblioteQ
 
 biblioteq.path		= /usr/local/biblioteq
 biblioteq.files		= BiblioteQ
-conf.path		= /usr/local/share
+conf.path		= /usr/local/biblioteq
 conf.files		= biblioteq.conf
-icons.path		= /usr/local/biblioteq/icons.d
+icons.path		= /usr/local/biblioteq
 icons.files		= icons.d
 postinstall.path	= /usr/local/biblioteq
 postinstall.extra	= find /usr/local/biblioteq -name .svn -exec rm -rf {} \\; 2>/dev/null; echo

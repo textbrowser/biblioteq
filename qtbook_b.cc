@@ -2884,6 +2884,11 @@ int qtbook::populateTable(const int search_type_arg,
 		  item = new(std::nothrow) numeric_table_item
 		    (query.value(j).toInt());
 	      }
+	    else if(query.record().fieldName(j) == "callnumber")
+	      {
+		str = query.value(j).toString();
+		item = new(std::nothrow) callnum_table_item(str);
+	      }
 	    else if(query.record().fieldName(j) == "front_cover")
 	      {
 		QIcon icon;
