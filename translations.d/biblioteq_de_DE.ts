@@ -4374,7 +4374,7 @@ URL</source>
         <translation type="unfinished">Bitte wähle zumindest eine Ausleihe zur Bearbeitung aus.</translation>
     </message>
     <message>
-        <location filename="../include.d/qtbook.h" line="163"/>
+        <location filename="../include.d/qtbook.h" line="164"/>
         <location filename="../qtbook_a.cc" line="1243"/>
         <location filename="../qtbook_a.cc" line="1426"/>
         <location filename="../qtbook_a.cc" line="1698"/>
@@ -4389,7 +4389,7 @@ URL</source>
         <translation type="unfinished">BiblioteQ: Anfrage</translation>
     </message>
     <message>
-        <location filename="../include.d/qtbook.h" line="164"/>
+        <location filename="../include.d/qtbook.h" line="165"/>
         <source>You have unsaved data. Continue closing?
 %1</source>
         <translation type="unfinished"></translation>
@@ -4644,7 +4644,7 @@ URL</source>
         <location filename="../qtbook_a.cc" line="7228"/>
         <location filename="../qtbook_a.cc" line="7250"/>
         <location filename="../qtbook_a.cc" line="7257"/>
-        <location filename="../qtbook_b.cc" line="2944"/>
+        <location filename="../qtbook_b.cc" line="2949"/>
         <source>Memory Error</source>
         <translation type="unfinished">Fehler in der Speicherkapazität</translation>
     </message>
@@ -4654,7 +4654,7 @@ URL</source>
         <location filename="../qtbook_a.cc" line="7055"/>
         <location filename="../qtbook_a.cc" line="7229"/>
         <location filename="../qtbook_a.cc" line="7258"/>
-        <location filename="../qtbook_b.cc" line="2945"/>
+        <location filename="../qtbook_b.cc" line="2950"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished">Kann nicht genügend Speicherkapazität für das Ausleih-Objekt erhalten. Dieses ist ein ernstes Problem!</translation>
     </message>
@@ -4879,7 +4879,7 @@ URL</source>
     </message>
     <message>
         <location filename="../qtbook_b.cc" line="2671"/>
-        <location filename="../qtbook_b.cc" line="2995"/>
+        <location filename="../qtbook_b.cc" line="3000"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished"></translation>
     </message>
