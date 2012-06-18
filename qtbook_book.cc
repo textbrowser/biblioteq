@@ -2686,16 +2686,6 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  /*
-  ** This is required to resolve an odd error.
-  */
-
-  QNetworkReply *reply = manager->get
-    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
-
-  if(reply)
-    reply->deleteLater();
-
   QPushButton *pb = qobject_cast<QPushButton *> (sender());
 
   if(pb == id.dwnldFront)
@@ -2718,13 +2708,6 @@ void qtbook_book::slotDownloadImage(void)
        qmain->getAmazonHash()["back_cover_path"].replace
        ("%", id.id->text().trimmed()));
 
-  connect(manager,
-	  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-					     QAuthenticator *)),
-	  this,
-	  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-					       QAuthenticator *)));
-
   QString type;
   QNetworkProxy proxy;
   QHash<QString, QString> hash(qmain->amazonProxy());
@@ -2736,6 +2719,26 @@ void qtbook_book::slotDownloadImage(void)
     proxy.setType(QNetworkProxy::NoProxy);
   else
     {
+      if(type == "http" || type == "socks5" || type == "system")
+	{
+	  /*
+	  ** This is required to resolve an odd error.
+	  */
+
+	  QNetworkReply *reply = manager->get
+	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	  if(reply)
+	    reply->deleteLater();
+
+	  connect(manager,
+		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						     QAuthenticator *)),
+		  this,
+		  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						       QAuthenticator *)));
+	}
+
       if(type == "http" || type == "socks5")
 	{
 	  if(type == "http")
@@ -2776,12 +2779,13 @@ void qtbook_book::slotDownloadImage(void)
 	}
     }
 
-  reply = manager->get(QNetworkRequest(url));
+  QNetworkReply *reply = manager->get(QNetworkRequest(url));
 
   if(!reply)
     {
       manager->deleteLater();
       imgbuffer->deleteLater();
+      return;
     }
 
   connect(reply, SIGNAL(readyRead(void)),
