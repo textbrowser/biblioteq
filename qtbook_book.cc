@@ -944,13 +944,9 @@ void qtbook_book::slotGo(void)
 	"WHERE ";
 
       if(!engWindowTitle.isEmpty())
-	{
-	  if(id.isbnAvailableCheckBox->isChecked())
-	    searchstr.append("id LIKE '%" + id.id->text().trimmed() +
-			     "%' AND ");
-	  else
-	    searchstr.append("id IS NULL AND ");
-	}
+	if(!id.id->text().trimmed().isEmpty())
+	  searchstr.append("id LIKE '%" + id.id->text().trimmed() +
+			   "%' AND ");
 
       QString E("");
 
@@ -962,13 +958,9 @@ void qtbook_book::slotGo(void)
 		       "%' AND ");
 
       if(!engWindowTitle.isEmpty())
-	{
-	  if(id.isbnAvailableCheckBox->isChecked())
-	    searchstr.append("isbn13 LIKE '%" +
-			     id.isbn13->text().trimmed() + "%' AND ");
-	  else
-	    searchstr.append("isbn13 IS NULL AND ");
-	}
+	if(!id.isbn13->text().trimmed().isEmpty())
+	  searchstr.append("isbn13 LIKE '%" +
+			   id.isbn13->text().trimmed() + "%' AND ");
 
       searchstr.append("COALESCE(lccontrolnumber, '') LIKE " + E + "'%" +
 		       myqstring::escape(id.lcnum->text().trimmed()) +
@@ -1120,6 +1112,7 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.isbnAvailableCheckBox->setCheckable(false);
 
   if(field.isEmpty() && value.isEmpty())
     {
