@@ -96,8 +96,8 @@ conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 doc.path		= /Applications/BiblioteQ.d/doc.d
 doc.files		= doc.d/*.pdf doc.d/TO-DO
-icons.path		= /Applications/BiblioteQ.d/icons.d
-icons.files		= icons.d/*
+icons.path		= /Applications/BiblioteQ.d
+icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
