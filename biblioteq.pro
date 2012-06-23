@@ -89,8 +89,8 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
-biblioteq.path		= /usr/local/biblioteq
-biblioteq.files		= BiblioteQ
+biblioteqinstall.path	= /usr/local/biblioteq
+biblioteqinstall.files	= BiblioteQ
 conf.path		= /usr/local/biblioteq
 conf.files		= biblioteq.conf
 icons.path		= /usr/local/biblioteq
@@ -105,7 +105,7 @@ translations.files	= translations.d/*.qm
 QMAKE_STRIP	= echo
 INSTALLS	= icons \
                   translations \
-                  biblioteq \
+                  biblioteqinstall \
                   conf \
                   sh \
                   postinstall

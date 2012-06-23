@@ -90,8 +90,8 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
 
-biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
-biblioteq.files		= BiblioteQ.app/*
+biblioteqinstall.path	= /Applications/BiblioteQ.d/BiblioteQ.app
+biblioteqinstall.files	= BiblioteQ.app/*
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
 doc.path		= /Applications/BiblioteQ.d/doc.d
@@ -117,5 +117,5 @@ INSTALLS	= preinstall \
 		  icons \
 		  sql \
 		  translations \
-                  biblioteq \
+                  biblioteqinstall \
 		  postinstall
