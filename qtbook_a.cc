@@ -3625,6 +3625,12 @@ void qtbook::slotConnectDB(void)
 		 br.userid->text().trimmed() +
 		 tr("."));
 	    }
+	  else
+	    {
+	      QSqlQuery query(db);
+
+	      query.exec("SET ROLE biblioteq_patron");
+	    }
 	}
     }
   else
@@ -6941,7 +6947,7 @@ void qtbook::slotSavePassword(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   misc_functions::savePassword(pass.userid->text(), db,
-			       pass.password->text(), errorstr);
+			       pass.password->text(), errorstr, roles);
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())

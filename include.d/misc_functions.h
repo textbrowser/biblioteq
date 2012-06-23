@@ -61,7 +61,7 @@ class misc_functions
   static void grantPrivs(const QString &, const QString &,
 			 const QSqlDatabase &, QString &);
   static void savePassword(const QString &, const QSqlDatabase &,
-			   const QString &, QString &);
+			   const QString &, QString &, const QString &);
   static void saveQuantity(const QSqlDatabase &, const QString &,
 			   const int, const QString &, QString &);
   static void updateColumn(QTableWidget *, const int, const QString &,

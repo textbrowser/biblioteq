@@ -165,20 +165,11 @@ void misc_functions::grantPrivs(const QString &userid,
     {
       if(roles.contains("administrator") || roles.contains("membership"))
 	{
-	  if(qmain->getRoles().contains("administrator") ||
-	     qmain->getRoles().contains("membership"))
-	    query.exec("SET ROLE NONE");
-
-	  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+	  querystr = QString("ALTER ROLE %1 CREATEROLE").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
 	    errorstr = query.lastError().text();
-
-	  if(qmain->getRoles().contains("administrator"))
-	    query.exec("SET ROLE biblioteq_administrator");
-	  else if(qmain->getRoles().contains("membership"))
-	    query.exec("SET ROLE biblioteq_membership");
 	}
     }
   else
@@ -207,6 +198,7 @@ void misc_functions::revokeAll(const QString &userid,
 
   if(count > 0)
     {
+#if 0
       objectlist << "admin"
 		 << "book"
 		 << "book_copy_info"
@@ -252,15 +244,13 @@ void misc_functions::revokeAll(const QString &userid,
 		 << "videogame_platforms"
 		 << "videogame_ratings";
 
-      query.exec("SET ROLE NONE");
-
       while(!objectlist.isEmpty())
 	{
 	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
 	    (objectlist.takeFirst()).arg(userid);
 	  (void) query.exec(querystr);
 	}
-
+#endif
       objectlist << "biblioteq_administrator"
 		 << "biblioteq_circulation"
 		 << "biblioteq_librarian"
@@ -282,14 +272,12 @@ void misc_functions::revokeAll(const QString &userid,
 	errorstr = query.lastError().text();
       else
 	{
-	  querystr = QString("ALTER USER %1 NOCREATEUSER").arg(userid);
+	  querystr = QString("ALTER ROLE %1 NOCREATEROLE").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
 	    errorstr = query.lastError().text();
 	}
-
-      query.exec("SET ROLE biblioteq_administrator");
     }
 }
 
@@ -323,27 +311,18 @@ void misc_functions::DBAccount(const QString &userid,
 
       if(count == 0)
 	{
-	  if(qmain->getRoles().contains("administrator") ||
-	     qmain->getRoles().contains("membership"))
-	    query.exec("SET ROLE NONE");
-
 	  if(roles.contains("administrator") || roles.contains("membership"))
 	    querystr = QString
-	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
-	       "createuser").arg(userid);
+	      ("CREATE ROLE %1 ENCRYPTED PASSWORD 'tempPass' "
+	       "CREATEROLE").arg(userid);
 	  else
 	    querystr = QString
-	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
+	      ("CREATE ROLE %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
 
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
 	    errorstr = query.lastError().text();
-
-	  if(qmain->getRoles().contains("administrator"))
-	    query.exec("SET ROLE biblioteq_administrator");
-	  else if(qmain->getRoles().contains("membership"))
-	    query.exec("SET ROLE biblioteq_membership");
 
 	  if(!errorstr.isEmpty())
 	    return;
@@ -512,6 +491,7 @@ void misc_functions::DBAccount(const QString &userid,
 
   if(action == DELETE_USER || action == UPDATE_USER)
     {
+#if 0
       objectlist << "admin"
 		 << "book"
 		 << "book_copy_info"
@@ -561,29 +541,20 @@ void misc_functions::DBAccount(const QString &userid,
       ** Revoke old privileges.
       */
 
-      if(qmain->getRoles().contains("administrator") ||
-	 qmain->getRoles().contains("membership"))
-	query.exec("SET ROLE NONE");
-
       while(!objectlist.isEmpty())
 	{
 	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
 	    (objectlist.takeFirst()).arg(userid);
 	  (void) query.exec(querystr);
 	}
-
+#endif
       if(action == DELETE_USER)
 	{
-	  (void) query.exec(QString("DROP USER %1").arg(userid));
+	  (void) query.exec(QString("DROP ROLE %1").arg(userid));
 
 	  if(errorstr.isEmpty() && query.lastError().isValid())
 	    errorstr = query.lastError().text();
 	}
-
-      if(qmain->getRoles().contains("administrator"))
-	query.exec("SET ROLE biblioteq_administrator");
-      else if(qmain->getRoles().contains("membership"))
-	query.exec("SET ROLE biblioteq_membership");
     }
 }
 
@@ -593,7 +564,8 @@ void misc_functions::DBAccount(const QString &userid,
 
 void misc_functions::savePassword(const QString &userid,
 				  const QSqlDatabase &db,
-				  const QString &password, QString &errorstr)
+				  const QString &password, QString &errorstr,
+				  const QString &role)
 {
   QString querystr = "";
   QSqlQuery query(db);
@@ -603,12 +575,29 @@ void misc_functions::savePassword(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  querystr = QString("ALTER USER %1 ENCRYPTED "
+  query.exec("SET ROLE NONE");
+  querystr = QString("ALTER ROLE %1 WITH ENCRYPTED "
 		     "PASSWORD '%2'").arg(userid).arg(password);
-  (void) query.exec(querystr);
 
-  if(query.lastError().isValid())
+  if(!query.exec(querystr))
     errorstr = query.lastError().text();
+
+  if(!role.isEmpty())
+    {
+      if(role.contains("administrator"))
+	query.exec("SET ROLE biblioteq_administrator");
+
+      if(role.contains("circulation"))
+	query.exec("SET ROLE biblioteq_circulation");
+
+      if(role.contains("librarian"))
+	query.exec("SET ROLE biblioteq_librarian");
+
+      if(role.contains("membership"))
+	query.exec("SET ROLE biblioteq_membership");
+    }
+  else
+    query.exec("SET ROLE biblioteq_patron");
 }
 
 /*

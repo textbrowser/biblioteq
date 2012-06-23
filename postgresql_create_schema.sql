@@ -1,4 +1,4 @@
-CREATE USER xbook_admin PASSWORD 'xbook_admin' CREATEUSER;
+CREATE ROLE xbook_admin PASSWORD 'xbook_admin' CREATEROLE;
 
 CREATE TABLE book
 (
@@ -439,7 +439,7 @@ CREATE TABLE videogame_ratings
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
 CREATE ROLE biblioteq_librarian INHERIT;
-CREATE ROLE biblioteq_membership CREATEUSER INHERIT;
+CREATE ROLE biblioteq_membership CREATEROLE INHERIT;
 CREATE ROLE biblioteq_patron NOINHERIT;
 
 GRANT biblioteq_circulation TO biblioteq_administrator WITH ADMIN OPTION;
