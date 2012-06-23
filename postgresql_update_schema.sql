@@ -877,3 +877,8 @@ GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
 /* Release 6.56 */
 
 ALTER TABLE member ADD comments TEXT, ADD general_registration_number TEXT, ADD memberclass TEXT;
+
+/* Release 6.57 */
+
+ALTER ROLE biblioteq_administrator INHERIT SUPERUSER;
+ALTER ROLE biblioteq_membership CREATEUSER INHERIT;
