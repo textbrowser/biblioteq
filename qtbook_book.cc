@@ -2296,8 +2296,11 @@ void qtbook_book::slotQuery(void)
 			  str = str.remove("d").remove("h").remove("n").
 			    remove("r").remove("s").remove("t").trimmed();
 
-			  if(str.toInt() >= 1)
-			    id.edition->setCurrentIndex(str.toInt() - 1);
+			  if(id.edition->findText(str) > -1)
+			    id.edition->setCurrentIndex
+			      (id.edition->findText(str));
+			  else
+			    id.edition->setCurrentIndex(0);
 			}
 		    }
 		  else if(str.startsWith("260 "))
