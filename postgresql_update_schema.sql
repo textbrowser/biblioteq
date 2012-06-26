@@ -881,4 +881,17 @@ ALTER TABLE member ADD comments TEXT, ADD general_registration_number TEXT, ADD 
 /* Release 6.57 */
 
 ALTER ROLE biblioteq_administrator INHERIT SUPERUSER;
-ALTER ROLE biblioteq_membership CREATEROLE INHERIT;
+ALTER ROLE biblioteq_membership CREATEUSER INHERIT;
+CREATE ROLE biblioteq_circulation_librarian INHERIT;
+CREATE ROLE biblioteq_circulation_membership INHERIT;
+CREATE ROLE biblioteq_librarian_membership INHERIT;
+CREATE ROLE biblioteq_circulation_librarian_membership INHERIT;
+GRANT biblioteq_circulation TO biblioteq_circulation_librarian WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_circulation_librarian WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;

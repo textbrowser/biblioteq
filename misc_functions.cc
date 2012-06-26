@@ -165,7 +165,7 @@ void misc_functions::grantPrivs(const QString &userid,
     {
       if(roles.contains("administrator") || roles.contains("membership"))
 	{
-	  querystr = QString("ALTER ROLE %1 CREATEROLE").arg(userid);
+	  querystr = QString("ALTER ROLE %1 CREATEUSER").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
@@ -272,7 +272,7 @@ void misc_functions::revokeAll(const QString &userid,
 	errorstr = query.lastError().text();
       else
 	{
-	  querystr = QString("ALTER ROLE %1 NOCREATEROLE").arg(userid);
+	  querystr = QString("ALTER ROLE %1 NOCREATEUSER").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
@@ -313,11 +313,11 @@ void misc_functions::DBAccount(const QString &userid,
 	{
 	  if(roles.contains("administrator") || roles.contains("membership"))
 	    querystr = QString
-	      ("CREATE ROLE %1 ENCRYPTED PASSWORD 'tempPass' "
-	       "CREATEROLE").arg(userid);
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
+	       "CREATEUSER").arg(userid);
 	  else
 	    querystr = QString
-	      ("CREATE ROLE %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
+	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
 
 	  (void) query.exec(querystr);
 
@@ -550,7 +550,7 @@ void misc_functions::DBAccount(const QString &userid,
 #endif
       if(action == DELETE_USER)
 	{
-	  (void) query.exec(QString("DROP ROLE %1").arg(userid));
+	  (void) query.exec(QString("DROP USER %1").arg(userid));
 
 	  if(errorstr.isEmpty() && query.lastError().isValid())
 	    errorstr = query.lastError().text();
@@ -565,7 +565,7 @@ void misc_functions::DBAccount(const QString &userid,
 void misc_functions::savePassword(const QString &userid,
 				  const QSqlDatabase &db,
 				  const QString &password, QString &errorstr,
-				  const QString &role)
+				  const QString &roles)
 {
   QString querystr = "";
   QSqlQuery query(db);
@@ -582,19 +582,31 @@ void misc_functions::savePassword(const QString &userid,
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
 
-  if(!role.isEmpty())
+  if(!roles.isEmpty())
     {
-      if(role.contains("administrator"))
+      if(roles.contains("administrator"))
 	query.exec("SET ROLE biblioteq_administrator");
-
-      if(role.contains("circulation"))
-	query.exec("SET ROLE biblioteq_circulation");
-
-      if(role.contains("librarian"))
-	query.exec("SET ROLE biblioteq_librarian");
-
-      if(role.contains("membership"))
-	query.exec("SET ROLE biblioteq_membership");
+      else
+	{
+	  if(roles.contains("circulation") &&
+	     roles.contains("librarian") &&
+	     roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
+	  else if(roles.contains("circulation") && roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian");
+	  else if(roles.contains("circulation") && roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_membership");
+	  else if(roles.contains("librarian") && roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_librarian_membership");
+	  else if(roles.contains("circulation"))
+	    query.exec("SET ROLE biblioteq_circulation");
+	  else if(roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_librarian");
+	  else if(roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_membership");
+	  else
+	    query.exec("SET ROLE biblioteq_patron");
+	}
     }
   else
     query.exec("SET ROLE biblioteq_patron");

@@ -3596,14 +3596,36 @@ void qtbook::slotConnectDB(void)
 		{
 		  QSqlQuery query(db);
 
-		  if(roles.contains("administrator"))
-		    query.exec("SET ROLE biblioteq_administrator");
-		  else if(roles.contains("circulation"))
-		    query.exec("SET ROLE biblioteq_circulation");
-		  else if(roles.contains("librarian"))
-		    query.exec("SET ROLE biblioteq_librarian");
-		  else if(roles.contains("membership"))
-		    query.exec("SET ROLE biblioteq_membership");
+		  if(!roles.isEmpty())
+		    {
+		      if(roles.contains("administrator"))
+			query.exec("SET ROLE biblioteq_administrator");
+		      else
+			{
+			  if(roles.contains("circulation") &&
+			     roles.contains("librarian") &&
+			     roles.contains("membership"))
+			    query.exec
+			      ("SET ROLE biblioteq_circulation_librarian_membership");
+			  else if(roles.contains("circulation") &&
+				  roles.contains("librarian"))
+			    query.exec("SET ROLE biblioteq_circulation_librarian");
+			  else if(roles.contains("circulation") &&
+				  roles.contains("membership"))
+			    query.exec("SET ROLE biblioteq_circulation_membership");
+			  else if(roles.contains("librarian") &&
+				  roles.contains("membership"))
+			    query.exec("SET ROLE biblioteq_librarian_membership");
+			  else if(roles.contains("circulation"))
+			    query.exec("SET ROLE biblioteq_circulation");
+			  else if(roles.contains("librarian"))
+			    query.exec("SET ROLE biblioteq_librarian");
+			  else if(roles.contains("membership"))
+			    query.exec("SET ROLE biblioteq_membership");
+			  else
+			    query.exec("SET ROLE biblioteq_patron");
+			}
+		    }
 		  else
 		    query.exec("SET ROLE biblioteq_patron");
 		}
