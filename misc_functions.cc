@@ -165,7 +165,7 @@ void misc_functions::grantPrivs(const QString &userid,
     {
       if(roles.contains("administrator") || roles.contains("membership"))
 	{
-	  querystr = QString("ALTER ROLE %1 CREATEUSER").arg(userid);
+	  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
@@ -272,7 +272,7 @@ void misc_functions::revokeAll(const QString &userid,
 	errorstr = query.lastError().text();
       else
 	{
-	  querystr = QString("ALTER ROLE %1 NOCREATEUSER").arg(userid);
+	  querystr = QString("ALTER USER %1 NOCREATEUSER").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
@@ -576,13 +576,15 @@ void misc_functions::savePassword(const QString &userid,
     return; // Users are not supported.
 
   query.exec("SET ROLE NONE");
-  querystr = QString("ALTER ROLE %1 WITH ENCRYPTED "
+  querystr = QString("ALTER USER %1 WITH ENCRYPTED "
 		     "PASSWORD '%2'").arg(userid).arg(password);
 
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
 
-  setRole(db, errorstr, roles);
+  QString unused("");
+
+  setRole(db, unused, roles);
 }
 
 /*
