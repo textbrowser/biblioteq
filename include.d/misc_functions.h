@@ -53,6 +53,9 @@ class misc_functions
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
   static void center(QMainWindow *, QMainWindow *);
+  static void setRole(const QSqlDatabase &,
+		      QString &,
+		      const QString &);
   static void DBAccount(const QString &, const QSqlDatabase &,
 			const int, QString &,
 			const QString & = "");

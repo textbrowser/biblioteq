@@ -3594,40 +3594,25 @@ void qtbook::slotConnectDB(void)
 		}
 	      else
 		{
-		  QSqlQuery query(db);
+		  misc_functions::setRole(db, errorstr, roles);
 
-		  if(!roles.isEmpty())
+		  if(!errorstr.isEmpty())
 		    {
-		      if(roles.contains("administrator"))
-			query.exec("SET ROLE biblioteq_administrator");
-		      else
-			{
-			  if(roles.contains("circulation") &&
-			     roles.contains("librarian") &&
-			     roles.contains("membership"))
-			    query.exec
-			      ("SET ROLE biblioteq_circulation_librarian_membership");
-			  else if(roles.contains("circulation") &&
-				  roles.contains("librarian"))
-			    query.exec("SET ROLE biblioteq_circulation_librarian");
-			  else if(roles.contains("circulation") &&
-				  roles.contains("membership"))
-			    query.exec("SET ROLE biblioteq_circulation_membership");
-			  else if(roles.contains("librarian") &&
-				  roles.contains("membership"))
-			    query.exec("SET ROLE biblioteq_librarian_membership");
-			  else if(roles.contains("circulation"))
-			    query.exec("SET ROLE biblioteq_circulation");
-			  else if(roles.contains("librarian"))
-			    query.exec("SET ROLE biblioteq_librarian");
-			  else if(roles.contains("membership"))
-			    query.exec("SET ROLE biblioteq_membership");
-			  else
-			    query.exec("SET ROLE biblioteq_patron");
-			}
+		      error = true;
+		      addError(QString(tr("Database Error")),
+			       QString(tr("Unable to set "
+					  "the role for ")) +
+			       br.userid->text().trimmed() +
+			       tr("."),
+			       errorstr,
+			       __FILE__, __LINE__);
+		      QMessageBox::critical
+			(branch_diag, tr("BiblioteQ: Database Error"),
+			 QString(tr("Unable to set the role "
+				    "for ")) +
+			 br.userid->text().trimmed() +
+			 tr("."));
 		    }
-		  else
-		    query.exec("SET ROLE biblioteq_patron");
 		}
 	    }
 	  else if(br.adminCheck->isChecked())
@@ -3651,7 +3636,23 @@ void qtbook::slotConnectDB(void)
 	    {
 	      QSqlQuery query(db);
 
-	      query.exec("SET ROLE biblioteq_patron");
+	      if(!query.exec("SET ROLE biblioteq_patron"))
+		{
+		  error = true;
+		  addError(QString(tr("Database Error")),
+			   QString(tr("Unable to set "
+				      "the role for ")) +
+			   br.userid->text().trimmed() +
+			   tr("."),
+			   errorstr,
+			   __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (branch_diag, tr("BiblioteQ: Database Error"),
+		     QString(tr("Unable to set the role "
+				"for ")) +
+		     br.userid->text().trimmed() +
+		     tr("."));
+		}
 	    }
 	}
     }

@@ -582,34 +582,7 @@ void misc_functions::savePassword(const QString &userid,
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
 
-  if(!roles.isEmpty())
-    {
-      if(roles.contains("administrator"))
-	query.exec("SET ROLE biblioteq_administrator");
-      else
-	{
-	  if(roles.contains("circulation") &&
-	     roles.contains("librarian") &&
-	     roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
-	  else if(roles.contains("circulation") && roles.contains("librarian"))
-	    query.exec("SET ROLE biblioteq_circulation_librarian");
-	  else if(roles.contains("circulation") && roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_circulation_membership");
-	  else if(roles.contains("librarian") && roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_librarian_membership");
-	  else if(roles.contains("circulation"))
-	    query.exec("SET ROLE biblioteq_circulation");
-	  else if(roles.contains("librarian"))
-	    query.exec("SET ROLE biblioteq_librarian");
-	  else if(roles.contains("membership"))
-	    query.exec("SET ROLE biblioteq_membership");
-	  else
-	    query.exec("SET ROLE biblioteq_patron");
-	}
-    }
-  else
-    query.exec("SET ROLE biblioteq_patron");
+  setRole(db, errorstr, roles);
 }
 
 /*
@@ -2088,4 +2061,52 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
       query.exec("ALTER TABLE member ADD general_registration_number TEXT");
       query.exec("ALTER TABLE member ADD memberclass TEXT");
     }
+}
+
+/*
+** -- setRole() --
+*/
+
+void misc_functions::setRole(const QSqlDatabase &db,
+			     QString &errorstr,
+			     const QString &roles)
+{
+  QSqlQuery query(db);
+
+  errorstr = "";
+
+  if(db.driverName() == "QSQLITE")
+    return; // Users are not supported.
+
+  if(!roles.isEmpty())
+    {
+      if(roles.contains("administrator"))
+	query.exec("SET ROLE biblioteq_administrator");
+      else
+	{
+	  if(roles.contains("circulation") &&
+	     roles.contains("librarian") &&
+	     roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
+	  else if(roles.contains("circulation") && roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_circulation_librarian");
+	  else if(roles.contains("circulation") && roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_circulation_membership");
+	  else if(roles.contains("librarian") && roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_librarian_membership");
+	  else if(roles.contains("circulation"))
+	    query.exec("SET ROLE biblioteq_circulation");
+	  else if(roles.contains("librarian"))
+	    query.exec("SET ROLE biblioteq_librarian");
+	  else if(roles.contains("membership"))
+	    query.exec("SET ROLE biblioteq_membership");
+	  else
+	    query.exec("SET ROLE biblioteq_patron");
+	}
+    }
+  else
+    query.exec("SET ROLE biblioteq_patron");
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
 }
