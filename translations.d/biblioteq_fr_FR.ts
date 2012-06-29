@@ -3921,6 +3921,10 @@ minmal de jours.</translation>
         <source> because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unable to set the role for </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
