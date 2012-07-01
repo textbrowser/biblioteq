@@ -340,23 +340,23 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Γενικά</translation>
     </message>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Σχόλια</translation>
     </message>
     <message>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατηγορία</translation>
     </message>
     <message>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Είδος</translation>
     </message>
     <message>
         <source>General Registration Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Γενικός αριθμός εγγραφής</translation>
     </message>
 </context>
 <context>
@@ -661,11 +661,11 @@
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω άκυρων ημερομηνίων.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated because of database errors.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ορισμένες ή όλες ημερομηνίες λήξης δανεισμού δεν έχουν αναβαθμιστεί λόγω σφαλμάτων στη βάση δεδομένων.</translation>
     </message>
 </context>
 <context>
@@ -1115,7 +1115,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Περιοχή αντίτυπου (%1)</translation>
     </message>
 </context>
 <context>
@@ -3196,26 +3196,26 @@ URL</source>
     <name>passwordDialog</name>
     <message>
         <source>BiblioteQ: Proxy Authentication Required</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ: Proxy Authentication Απαιτείται</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ετικέτα κειμένου</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Όνομα χρήστη</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Κωδικός</translation>
+        <translation>Κωδικός</translation>
     </message>
 </context>
 <context>
     <name>qtbook</name>
     <message>
         <source>BiblioteQ has exited.</source>
-        <translation>BiblioteQ has exited.</translation>
+        <translation>Έχει γίνει έξοδος του BiblioteQ.</translation>
     </message>
     <message>
         <source> in file </source>
@@ -4379,7 +4379,7 @@ URL</source>
     </message>
     <message>
         <source>Granting privileges...</source>
-        <translation>Χορήγηση προνομίων</translation>
+        <translation>Χορήγηση προνομίων...</translation>
     </message>
     <message>
         <source>Unable to grant privileges to all of the members.</source>
@@ -4387,19 +4387,15 @@ URL</source>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία καθορισμού του αριθμού (ID) των επιλεγμένων αντικειμένων. Η ταξινόμηση τους απαιτεί τον αριθμό (ID).</translation>
     </message>
     <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο αριθμός ταυτότητας του μέλους πρέπει να έχει τουλάχιστον πέντε χαρακτήρες.</translation>
     </message>
     <message>
         <source> because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to set the role for </source>
-        <translation type="unfinished"></translation>
+        <translation> λόγω των ανεπαρκών πόρων.</translation>
     </message>
 </context>
 <context>
@@ -5006,11 +5002,11 @@ URL</source>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Η Ζ39.50 εγγραφή δε μπορεί να δημιουργηθεί για τα συγκεκριμένα ISBN(s).</translation>
     </message>
     <message>
         <source>The proxy %1:%2 is requesting credentials.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο proxy %1:%2 ζητά διαπιστευτήρια.</translation>
     </message>
 </context>
 <context>
@@ -6722,11 +6718,11 @@ URL</source>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας του &quot;dialog&quot; αντικειμένου από ανεπαρκή δεδομένα.</translation>
     </message>
     <message>
         <source>Unable to create a thread because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία δημιουργίας ενός θέματος λόγω ανεπαρκών πόρων.</translation>
     </message>
 </context>
 <context>
