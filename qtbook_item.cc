@@ -22,6 +22,10 @@
 
 qtbook_item::qtbook_item(void)
 {
+  row = -1;
+  oldq = -1;
+  isQueryEnabled = false;
+  parentWid = 0;
 }
 
 /*
@@ -31,6 +35,9 @@ qtbook_item::qtbook_item(void)
 qtbook_item::qtbook_item(const int rowArg)
 {
   row = rowArg;
+  oldq = -1;
+  isQueryEnabled = false;
+  parentWid = 0;
 }
 
 /*
