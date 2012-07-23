@@ -117,7 +117,8 @@ int qtbook::populateTable(const int search_type_arg,
 	    QString checkAvailability("");
 
 	    if(typefilter == "All Available")
-	      checkAvailability = " HAVING availability > 0 ";
+	      checkAvailability =
+		" HAVING (quantity - COUNT(item_borrower_vw.item_oid)) > 0 ";
 
 	    searchstr = QString
 	      ("SELECT DISTINCT book.title, "
