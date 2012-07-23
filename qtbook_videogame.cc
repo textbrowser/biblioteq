@@ -271,7 +271,8 @@ void qtbook_videogame::slotGo(void)
 	  else if(newq > oldq)
 	    if(QMessageBox::question
 	       (this, tr("BiblioteQ: Question"),
-		tr("Would you like to modify copy information?"),
+		tr("You have increased the number of copies. "
+		   "Would you like to modify copy information?"),
 		QMessageBox::Yes | QMessageBox::No,
 		QMessageBox::No) == QMessageBox::Yes)
 	      slotPopulateCopiesEditor();

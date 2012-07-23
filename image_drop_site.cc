@@ -140,9 +140,14 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
       if(image.width() > width() ||
 	 image.height() > height())
-	pixmap = QPixmap().fromImage(image).scaled
-	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
-	   Qt::SmoothTransformation);
+	{
+	  pixmap = QPixmap().fromImage(image);
+
+	  if(!pixmap.isNull())
+	    pixmap = pixmap.scaled
+	      (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	       Qt::SmoothTransformation);
+	}
       else
 	pixmap = QPixmap().fromImage(image);
 
@@ -258,8 +263,14 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
   if(image.width() > width() ||
      image.height() > height())
-    pixmap = QPixmap().fromImage(image).scaled
-      (size() - 0.05 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    {
+      pixmap = QPixmap().fromImage(image);
+
+      if(!pixmap.isNull())
+	pixmap = pixmap.scaled
+	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
+    }
   else
     pixmap = QPixmap().fromImage(image);
 
@@ -286,9 +297,13 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
     scene()->addPixmap(QPixmap().fromImage(image));
   else
     {
-      pixmap = QPixmap().fromImage(image).scaled
-	(size() - 0.05 * size(), Qt::KeepAspectRatio,
-	 Qt::SmoothTransformation);
+      pixmap = QPixmap().fromImage(image);
+
+      if(!pixmap.isNull())
+	pixmap = pixmap.scaled
+	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
+
       scene()->addPixmap(pixmap);
     }
 

@@ -33,7 +33,9 @@ void main_table::setColumns(const QString &username,
 {
   QStringList list;
 
-  if(type == "All" || type == "All Overdue" ||
+  if(type == "All" ||
+     type == "All Available" ||
+     type == "All Overdue" ||
      type == "All Requested" ||
      type == "All Reserved")
     {
@@ -202,7 +204,9 @@ void main_table::setColumns(const QString &username,
   setColumnCount(list.size());
   setHorizontalHeaderLabels(list);
 
-  if(type != "All" && type != "All Overdue" &&
+  if(type != "All" &&
+     type != "All Available" &&
+     type != "All Overdue" &&
      type != "All Requested" &&
      type != "All Reserved")
     {

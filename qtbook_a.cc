@@ -742,7 +742,9 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
-      if(typefilter != "All" && typefilter != "All Overdue" &&
+      if(typefilter != "All" &&
+	 typefilter != "All Available" &&
+	 typefilter != "All Overdue" &&
 	 typefilter != "All Requested" &&
 	 typefilter != "All Reserved")
 	{
@@ -3307,14 +3309,17 @@ void qtbook::slotDisplaySummary(void)
       if(frontImage.isNull())
 	frontImage = QImage("icons.d/no_image.png");
 
-      frontImage = frontImage.scaled
-	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+      if(!frontImage.isNull())
+	frontImage = frontImage.scaled
+	  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
       if(backImage.isNull())
 	backImage = QImage("icons.d/no_image.png");
 
-      backImage = backImage.scaled
-	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+      if(!backImage.isNull())
+	backImage = backImage.scaled
+	  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
       qapp->restoreOverrideCursor();
 
       if(!frontImage.isNull())
@@ -4714,6 +4719,7 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 	      (QIcon("icons.d/32x32/remove_request.png"));
 	  }
 	else if(roles.isEmpty() && (typefilter == "All" ||
+				    typefilter == "All Available" ||
 				    typefilter == "Books" ||
 				    typefilter == "DVDs" ||
 				    typefilter == "Journals" ||
@@ -7794,6 +7800,7 @@ void qtbook::prepareFilter(void)
 
   if(db.driverName() == "QSQLITE")
     tmplist << "All"
+	    << "All Available"
 	    << "All Overdue"
 	    << "All Reserved"
 	    << "Books"
@@ -7802,9 +7809,11 @@ void qtbook::prepareFilter(void)
 	    << "Magazines"
 	    << "Music CDs"
 	    << "Video Games";
-  else if(roles.isEmpty() || roles.contains("administrator") ||
+  else if(roles.isEmpty() ||
+	  roles.contains("administrator") ||
 	  roles.contains("circulation"))
     tmplist << "All"
+	    << "All Available"
 	    << "All Overdue"
 	    << "All Requested"
 	    << "All Reserved"
@@ -7816,6 +7825,7 @@ void qtbook::prepareFilter(void)
 	    << "Video Games";
   else
     tmplist << "All"
+	    << "All Available"
 	    << "Books"
 	    << "DVDs"
 	    << "Journals"
@@ -7823,8 +7833,7 @@ void qtbook::prepareFilter(void)
 	    << "Music CDs"
 	    << "Video Games";
 
-  while(ui.typefilter->count() > 0)
-    ui.typefilter->removeItem(0);
+  ui.typefilter->clear();
 
   for(int i = 0; i < tmplist.size(); i++)
     ui.typefilter->addItem(tr(tmplist[i].toAscii().constData()),
@@ -8398,8 +8407,10 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 	    {
 	      QImage l_image(image);
 
-	      l_image = l_image.scaled
-		(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	      if(!l_image.isNull())
+		l_image = l_image.scaled
+		  (126, 187, Qt::IgnoreAspectRatio,
+		   Qt::SmoothTransformation);
 
 	      QPixmap pixmap(QPixmap::fromImage(l_image));
 
@@ -8409,9 +8420,11 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 		{
 		  QImage l_image("icons.d/no_image.png");
 
-		  l_image = l_image.scaled
-		    (126, 187, Qt::IgnoreAspectRatio,
-		     Qt::SmoothTransformation);
+		  if(!l_image.isNull())
+		    l_image = l_image.scaled
+		      (126, 187, Qt::IgnoreAspectRatio,
+		       Qt::SmoothTransformation);
+
 		  item->setPixmap(QPixmap::fromImage(l_image));
 		}
 
