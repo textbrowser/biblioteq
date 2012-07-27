@@ -71,6 +71,7 @@ qtbook *qmain = 0;
 ** -- Global Variables --
 */
 
+QString qtbook::s_locale = "";
 QApplication *qapp = 0;
 
 /*
@@ -117,9 +118,19 @@ int main(int argc, char *argv[])
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  qtbook::s_locale = settings.value("locale").toString();
+
+  if(!(qtbook::s_locale == "cs_CZ" ||
+       qtbook::s_locale == "de_DE" ||
+       qtbook::s_locale == "el_GR" ||
+       qtbook::s_locale == "fr_FR" ||
+       qtbook::s_locale == "nl_BE" ||
+       qtbook::s_locale == "nl_NL"))
+    qtbook::s_locale = QLocale::system().name();
+
   QTranslator qtTranslator;
 
-  qtTranslator.load("qt_" + QLocale::system().name(), "translations.d");
+  qtTranslator.load("qt_" + qtbook::s_locale, "translations.d");
   qapp->installTranslator(&qtTranslator);
 
   QTranslator myappTranslator;
@@ -697,6 +708,44 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotChangeView(bool)));
   ui.menu_View->addAction(action);
 
+  QActionGroup *group3 = 0;
+
+  if((group3 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  group3->setExclusive(true);
+  (action = group3->addAction(tr("&Czech")))->setCheckable(true);
+  action->setData("cs_CZ");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("Dutch (&Belgium)")))->setCheckable(true);
+  action->setData("nl_BE");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("Dutch (&Netherlands)")))->setCheckable(true);
+  action->setData("nl_NL");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&English")))->setCheckable(true);
+  action->setData("C");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&French")))->setCheckable(true);
+  action->setData("fr_FR");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&German")))->setCheckable(true);
+  action->setData("de_DE");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("G&reek")))->setCheckable(true);
+  action->setData("el_GR");
+  ui.menu_Language->addAction(action);
+
+  foreach(QAction *action, ui.menu_Language->actions())
+    {
+      if(s_locale == action->data().toString())
+	action->setChecked(true);
+
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotLanguageChanged(void)));
+    }
 
   QRegExp rx1("\\w+");
   QValidator *validator1 = 0;
@@ -2935,6 +2984,7 @@ void qtbook::slotSaveConfig(void)
      isChecked());
   settings.setValue("global_font", font().toString());
   settings.setValue("last_category", getTypeFilterString());
+  settings.setValue("locale", s_locale);
 
   if(ui.actionPreserveGeometry->isChecked())
     settings.setValue("main_window_geometry", saveGeometry());
@@ -3557,7 +3607,7 @@ void qtbook::slotConnectDB(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("The current database driver that you're using "
 			"does not support transactions. "
-			"Please upgrade your database and/or driver.")),
+			"Please upgradie your database and/or driver.")),
 	     db.lastError().text(),
 	     __FILE__, __LINE__);
 	  QMessageBox::critical
@@ -8451,4 +8501,18 @@ QHash<QString, QString> qtbook::amazonProxy(void) const
 QHash<QString, QString> qtbook::z3950Proxy(void) const
 {
   return m_z3950Proxy;
+}
+
+/*
+** -- slotLanguageChanged() --
+*/
+
+void qtbook::slotLanguageChanged(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(action && action->isChecked())
+    {
+      s_locale = action->data().toString();
+    }
 }

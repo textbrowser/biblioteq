@@ -396,7 +396,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -480,6 +480,11 @@
       <string>Preferred &amp;Z39.50 Site</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menu_Language">
+     <property name="title">
+      <string>&amp;Language</string>
+     </property>
+    </widget>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
@@ -491,6 +496,7 @@
     <addaction name="actionResetErrorLogOnDisconnect"/>
     <addaction name="separator"/>
     <addaction name="menuEntriesPerPage"/>
+    <addaction name="menu_Language"/>
     <addaction name="menuPreferredZ3950Server"/>
     <addaction name="separator"/>
     <addaction name="actionSaveSettings"/>
@@ -1119,6 +1125,67 @@
   <action name="action_Video_Game">
    <property name="text">
     <string>&amp;Video Game</string>
+   </property>
+  </action>
+  <action name="actionCzech">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Czech</string>
+   </property>
+  </action>
+  <action name="action_English">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;English</string>
+   </property>
+  </action>
+  <action name="action_German">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;German</string>
+   </property>
+  </action>
+  <action name="actionG_reek">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>G&amp;reek</string>
+   </property>
+  </action>
+  <action name="action_French">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;French</string>
+   </property>
+  </action>
+  <action name="action_Dutch">
+   <property name="text">
+    <string>&amp;Dutch</string>
+   </property>
+  </action>
+  <action name="actionDutch_Belgium">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dutch (&amp;Belgium)</string>
+   </property>
+  </action>
+  <action name="actionDutch_Netherlands">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dutch (&amp;Netherlands)</string>
    </property>
   </action>
  </widget>

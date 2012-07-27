@@ -60,6 +60,8 @@ class qtbook: public QMainWindow
   Q_OBJECT
 
  public:
+  static QString s_locale;
+
   class userinfo_diag_class: public QDialog
   {
   public:
@@ -356,6 +358,7 @@ class qtbook: public QMainWindow
   void slotClearSqliteMenu(bool);
   void slotGrantPrivileges(void);
   void slotInsertVideoGame(void);
+  void slotLanguageChanged(void);
   void slotShowAdminDialog(void);
   void slotShowCustomQuery(void);
   void slotShowErrorDialog(void);
