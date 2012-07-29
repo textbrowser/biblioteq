@@ -567,3 +567,24 @@ void borrowers_editor::setGlobalFonts(const QFont &font)
   foreach(QWidget *widget, findChildren<QWidget *>())
     widget->setFont(font);
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void borrowers_editor::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  bd.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}

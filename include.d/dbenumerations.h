@@ -24,6 +24,7 @@ class dbenumerations: public QMainWindow
 
  private:
   Ui_dbEnumerations ui;
+  void changeEvent(QEvent *event);
   void populateWidgets(void);
 
  private slots:

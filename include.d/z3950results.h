@@ -31,8 +31,6 @@ class z3950results: public QDialog
   Ui_z3950ResultsDialog ui;
   void keyPressEvent(QKeyEvent *event);
   void setGlobalFonts(const QFont &);
-
- protected:
   void closeEvent(QCloseEvent *);
 
  private slots:

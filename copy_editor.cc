@@ -885,3 +885,24 @@ void copy_editor::setGlobalFonts(const QFont &font)
   foreach(QWidget *widget, findChildren<QWidget *>())
     widget->setFont(font);
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void copy_editor::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  cb.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}

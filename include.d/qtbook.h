@@ -61,6 +61,8 @@ class qtbook: public QMainWindow
 
  public:
   static QString s_locale;
+  static QTranslator *s_qtTranslator;
+  static QTranslator *s_appTranslator;
 
   class userinfo_diag_class: public QDialog
   {
@@ -156,7 +158,24 @@ class qtbook: public QMainWindow
       return !str.isEmpty();
     }
 
-  protected:
+  private:
+    void changeEvent(QEvent *event)
+    {
+      if(event)
+	switch(event->type())
+	  {
+	  case QEvent::LanguageChange:
+	    {
+	      userinfo.retranslateUi(this);
+	      break;
+	    }
+	  default:
+	    break;
+	  }
+
+      QDialog::changeEvent(event);
+    }
+
     void closeEvent(QCloseEvent *e)
     {
       QString str("");
@@ -285,7 +304,9 @@ class qtbook: public QMainWindow
   void cdModify(const int);
   void adminSetup(void);
   void readConfig(void);
+  void closeEvent(QCloseEvent *);
   void deleteItem(const QString &, const QString &);
+  void changeEvent(QEvent *);
   void initialUpdate(void);
   void prepareFilter(void);
   void emptyContainers(void);
@@ -295,9 +316,6 @@ class qtbook: public QMainWindow
   void resetMembersBrowser(void);
   void createSqliteMenuActions(void);
   void prepareRequestToolButton(const QString &);
-
- protected:
-  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotExit(void);

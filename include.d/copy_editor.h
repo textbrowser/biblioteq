@@ -54,13 +54,12 @@ class copy_editor: public QDialog
   qtbook_item *bitem;
   Ui_copybrowser cb;
   QList<copy_class *> copies;
-  void keyPressEvent(QKeyEvent *event);
+  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
+  void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);
   void clearCopiesList(void);
   QString saveCopies(void);
-
- protected:
-  void closeEvent(QCloseEvent *);
 
  private slots:
   void slotDeleteCopy(void);

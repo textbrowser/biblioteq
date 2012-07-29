@@ -38,8 +38,6 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
  private:
   QString engWindowTitle;
   Ui_dvdDialog dvd;
-
- protected:
   void closeEvent(QCloseEvent *);
 
  private slots:

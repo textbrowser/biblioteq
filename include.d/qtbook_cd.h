@@ -42,8 +42,6 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
-
- protected:
   void closeEvent(QCloseEvent *);
 
  private slots:

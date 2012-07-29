@@ -36,11 +36,10 @@ class borrowers_editor: public QDialog
   QString itemType;
   qtbook_item *bitem;
   Ui_checkedOutDialog bd;
-  void keyPressEvent(QKeyEvent *event);
-  void setGlobalFonts(const QFont &);
-
- protected:
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
+  void keyPressEvent(QKeyEvent *);
+  void setGlobalFonts(const QFont &);
 
  private slots:
   void slotSave(void);

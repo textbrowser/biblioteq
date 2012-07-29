@@ -851,3 +851,24 @@ void dbenumerations::slotSave(void)
   else
     populateWidgets();
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void dbenumerations::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ui.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}

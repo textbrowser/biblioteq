@@ -52,8 +52,6 @@ class qtbook_book: public QMainWindow, public qtbook_item
   generic_thread *thread;
   Ui_informationDialog id;
   qtbook_item_working_dialog *httpProgress;
-
- protected:
   void closeEvent(QCloseEvent *);
 
  private slots:

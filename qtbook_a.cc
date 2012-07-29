@@ -72,6 +72,8 @@ qtbook *qmain = 0;
 */
 
 QString qtbook::s_locale = "";
+QTranslator *qtbook::s_qtTranslator = 0;
+QTranslator *qtbook::s_appTranslator = 0;
 QApplication *qapp = 0;
 
 /*
@@ -118,6 +120,12 @@ int main(int argc, char *argv[])
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((qtbook::s_qtTranslator = new(std::nothrow) QTranslator(0)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((qtbook::s_appTranslator = new(std::nothrow) QTranslator(0)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   qtbook::s_locale = settings.value("locale").toString();
 
   if(!(qtbook::s_locale == "cs_CZ" ||
@@ -128,16 +136,11 @@ int main(int argc, char *argv[])
        qtbook::s_locale == "nl_NL"))
     qtbook::s_locale = QLocale::system().name();
 
-  QTranslator qtTranslator;
-
-  qtTranslator.load("qt_" + qtbook::s_locale, "translations.d");
-  qapp->installTranslator(&qtTranslator);
-
-  QTranslator myappTranslator;
-
-  myappTranslator.load("biblioteq_" + QLocale::system().name(),
-		       "translations.d");
-  qapp->installTranslator(&myappTranslator);
+  qtbook::s_qtTranslator->load("qt_" + qtbook::s_locale, "translations.d");
+  qapp->installTranslator(qtbook::s_qtTranslator);
+  qtbook::s_appTranslator->load("biblioteq_" + qtbook::s_locale,
+				"translations.d");
+  qapp->installTranslator(qtbook::s_appTranslator);
   qapp->connect(qapp, SIGNAL(lastWindowClosed()), qapp, SLOT(quit(void)));
 
   if((qmain = new(std::nothrow) qtbook()) == 0)
@@ -724,7 +727,7 @@ qtbook::qtbook(void):QMainWindow()
   action->setData("nl_NL");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&English")))->setCheckable(true);
-  action->setData("C");
+  action->setData("en_US");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&French")))->setCheckable(true);
   action->setData("fr_FR");
@@ -8514,5 +8517,40 @@ void qtbook::slotLanguageChanged(void)
   if(action && action->isChecked())
     {
       s_locale = action->data().toString();
+      qapp->removeTranslator(s_qtTranslator);
+      qapp->removeTranslator(s_appTranslator);
+      s_qtTranslator->load("qt_" + s_locale, "translations.d");
+      qapp->installTranslator(s_qtTranslator);
+      s_appTranslator->load("biblioteq_" + s_locale, "translations.d");
+      qapp->installTranslator(s_appTranslator);
     }
+}
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ab.retranslateUi(admin_diag);
+	  al.retranslateUi(all_diag);
+	  bb.retranslateUi(members_diag);
+	  br.retranslateUi(branch_diag);
+	  cq.retranslateUi(customquery_diag);
+	  history.retranslateUi(history_diag);
+	  er.retranslateUi(error_diag);
+	  pass.retranslateUi(pass_diag);
+	  ui.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
 }
