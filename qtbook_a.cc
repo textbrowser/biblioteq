@@ -1119,7 +1119,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - 2012 Mr. Megas.<br>"
+	     "Copyright (c) 2006 - 2012 Rogue.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) Jonas Rask Design.<br>"
 	     "Qt version %2."
@@ -7849,50 +7849,87 @@ void qtbook::slotRequest(void)
 
 void qtbook::prepareFilter(void)
 {
-  QStringList tmplist;
+  QStringList tmplist1;
+  QStringList tmplist2;
 
   if(db.driverName() == "QSQLITE")
-    tmplist << "All"
-	    << "All Available"
-	    << "All Overdue"
-	    << "All Reserved"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    {
+      tmplist1 << "All"
+	       << "All Available"
+	       << "All Overdue"
+	       << "All Reserved"
+	       << "Books"
+	       << "DVDs"
+	       << "Journals"
+	       << "Magazines"
+	       << "Music CDs"
+	       << "Video Games";
+      tmplist2 << tr("All")
+	       << tr("All Available")
+	       << tr("All Overdue")
+	       << tr("All Reserved")
+	       << tr("Books")
+	       << tr("DVDs")
+	       << tr("Journals")
+	       << tr("Magazines")
+	       << tr("Music CDs")
+	       << tr("Video Games");
+    }
   else if(roles.isEmpty() ||
 	  roles.contains("administrator") ||
 	  roles.contains("circulation"))
-    tmplist << "All"
-	    << "All Available"
-	    << "All Overdue"
-	    << "All Requested"
-	    << "All Reserved"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    {
+      tmplist1 << "All"
+	       << "All Available"
+	       << "All Overdue"
+	       << "All Requested"
+	       << "All Reserved"
+	       << "Books"
+	       << "DVDs"
+	       << "Journals"
+	       << "Magazines"
+	       << "Music CDs"
+	       << "Video Games";
+      tmplist2 << tr("All")
+	       << tr("All Available")
+	       << tr("All Overdue")
+	       << tr("All Requested")
+	       << tr("All Reserved")
+	       << tr("Books")
+	       << tr("DVDs")
+	       << tr("Journals")
+	       << tr("Magazines")
+	       << tr("Music CDs")
+	       << tr("Video Games");
+    }
   else
-    tmplist << "All"
-	    << "All Available"
-	    << "Books"
-	    << "DVDs"
-	    << "Journals"
-	    << "Magazines"
-	    << "Music CDs"
-	    << "Video Games";
+    {
+      tmplist1 << "All"
+	       << "All Available"
+	       << "Books"
+	       << "DVDs"
+	       << "Journals"
+	       << "Magazines"
+	       << "Music CDs"
+	       << "Video Games";
+      tmplist2 << tr("All")
+	       << tr("All Available")
+	       << tr("Books")
+	       << tr("DVDs")
+	       << tr("Journals")
+	       << tr("Magazines")
+	       << tr("Music CDs")
+	       << tr("Video Games");
+    }
 
   ui.typefilter->clear();
 
-  for(int i = 0; i < tmplist.size(); i++)
-    ui.typefilter->addItem(tr(tmplist[i].toAscii().constData()),
-			   QVariant(tmplist[i]));
+  for(int i = 0; i < tmplist1.size(); i++)
+    ui.typefilter->addItem(tmplist2[i],
+			   QVariant(tmplist1[i]));
 
-  tmplist.clear();
+  tmplist1.clear();
+  tmplist2.clear();
 }
 
 /*
@@ -8546,6 +8583,11 @@ void qtbook::changeEvent(QEvent *event)
 	  er.retranslateUi(error_diag);
 	  pass.retranslateUi(pass_diag);
 	  ui.retranslateUi(this);
+	  ui.table->resetTable
+	    (db.userName(),
+	     ui.typefilter->itemData(ui.typefilter->currentIndex()).toString(),
+	     roles);
+	  prepareFilter();
 	  break;
 	}
       default:
