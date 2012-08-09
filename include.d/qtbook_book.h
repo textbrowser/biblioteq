@@ -24,6 +24,7 @@
 #include "ui_borrowers.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
+#include "ui_passwordPrompt.h"
 
 class copy_editor;
 class generic_thread;
@@ -44,15 +45,18 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QDialog *m_proxyDialog;
   QString cb_orig_ss;
   QString dt_orig_ss;
   QString engWindowTitle;
   QPalette white_pal;
   QPalette te_orig_pal;
   generic_thread *thread;
+  Ui_passwordDialog ui_p;
   Ui_informationDialog id;
   qtbook_item_working_dialog *httpProgress;
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotGo(void);

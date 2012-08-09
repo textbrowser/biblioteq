@@ -41,6 +41,7 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   Ui_vgDialog vg;
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotGo(void);

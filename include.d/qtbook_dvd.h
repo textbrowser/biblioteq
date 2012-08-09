@@ -39,6 +39,7 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   Ui_dvdDialog dvd;
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotGo(void);

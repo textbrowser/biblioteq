@@ -18,7 +18,6 @@
 #include "qtbook.h"
 #include "qtbook_book.h"
 #include "borrowers_editor.h"
-#include "ui_passwordPrompt.h"
 
 extern qtbook *qmain;
 extern QApplication *qapp;
@@ -59,6 +58,13 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  ui_p.setupUi(m_proxyDialog);
+#ifdef Q_WS_MAC
+  m_proxyDialog->setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   parentWid = parentArg;
   oid = oidArg;
   row = rowArg;
@@ -2941,23 +2947,38 @@ void qtbook_book::slotProxyAuthenticationRequired
 {
   if(authenticator)
     {
-      QDialog dialog(this);
-      Ui_passwordDialog ui_p;
-
-      ui_p.setupUi(&dialog);
-#ifdef Q_WS_MAC
-      dialog.setAttribute(Qt::WA_MacMetalStyle, true);
-#endif
       ui_p.messageLabel->setText
 	(QString(tr("The proxy %1:%2 is requesting "
 		    "credentials.").
 		 arg(proxy.hostName()).
 		 arg(proxy.port())));
 
-      if(dialog.exec() == QDialog::Accepted)
+      if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
 	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
 	}
     }
+}
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_book::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  id.retranslateUi(this);
+	  ui_p.retranslateUi(m_proxyDialog);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
 }

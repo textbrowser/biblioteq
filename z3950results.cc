@@ -207,3 +207,24 @@ void z3950results::keyPressEvent(QKeyEvent *event)
 
   QDialog::keyPressEvent(event);
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void z3950results::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ui.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}

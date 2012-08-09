@@ -1819,3 +1819,24 @@ void qtbook_dvd::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate DVD Entry"));
   engWindowTitle = "Create";
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_dvd::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  dvd.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}

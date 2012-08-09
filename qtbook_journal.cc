@@ -75,3 +75,24 @@ void qtbook_journal::closeEvent(QCloseEvent *e)
   qmain->removeJournal(this);
   QMainWindow::closeEvent(e);
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_journal::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ma.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}

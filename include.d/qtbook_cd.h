@@ -43,6 +43,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotGo(void);

@@ -52,6 +52,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   Ui_magDialog ma;
   generic_thread *thread;
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  protected slots:
   void slotGo(void);
@@ -73,6 +74,7 @@ class qtbook_journal: public qtbook_magazine
 		 const int);
   ~qtbook_journal();
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotCancel(void);

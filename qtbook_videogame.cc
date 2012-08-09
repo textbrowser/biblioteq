@@ -1643,3 +1643,24 @@ void qtbook_videogame::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate Video Game Entry"));
   engWindowTitle = "Create";
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_videogame::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  vg.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}

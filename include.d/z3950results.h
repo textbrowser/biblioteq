@@ -29,9 +29,10 @@ class z3950results: public QDialog
   QStringList records;
   qtbook_magazine *magazine;
   Ui_z3950ResultsDialog ui;
-  void keyPressEvent(QKeyEvent *event);
+  void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);
   void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *);
 
  private slots:
   void slotClose(void);

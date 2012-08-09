@@ -2394,3 +2394,24 @@ void qtbook_magazine::duplicate(const QString &p_oid, const int state)
 
   engWindowTitle = "Create";
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_magazine::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  ma.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}

@@ -2216,3 +2216,25 @@ void qtbook_cd::duplicate(const QString &p_oid, const int state)
   setWindowTitle(tr("BiblioteQ: Duplicate Music CD Entry"));
   engWindowTitle = "Create";
 }
+
+/*
+** -- changeEvent() --
+*/
+
+void qtbook_cd::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  cd.retranslateUi(this);
+	  trd.retranslateUi(tracks_diag);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QMainWindow::changeEvent(event);
+}
