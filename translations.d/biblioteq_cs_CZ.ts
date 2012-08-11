@@ -2337,63 +2337,63 @@ webová adresa</translation>
     </message>
     <message>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="obsolete">2</translation>
     </message>
     <message>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="obsolete">3</translation>
     </message>
     <message>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="obsolete">4</translation>
     </message>
     <message>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="obsolete">5</translation>
     </message>
     <message>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="obsolete">6</translation>
     </message>
     <message>
         <source>7</source>
-        <translation>7</translation>
+        <translation type="obsolete">7</translation>
     </message>
     <message>
         <source>8</source>
-        <translation>8</translation>
+        <translation type="obsolete">8</translation>
     </message>
     <message>
         <source>9</source>
-        <translation>9</translation>
+        <translation type="obsolete">9</translation>
     </message>
     <message>
         <source>10</source>
-        <translation>10</translation>
+        <translation type="obsolete">10</translation>
     </message>
     <message>
         <source>11</source>
-        <translation>11</translation>
+        <translation type="obsolete">11</translation>
     </message>
     <message>
         <source>12</source>
-        <translation>12</translation>
+        <translation type="obsolete">12</translation>
     </message>
     <message>
         <source>13</source>
-        <translation>13</translation>
+        <translation type="obsolete">13</translation>
     </message>
     <message>
         <source>14</source>
-        <translation>14</translation>
+        <translation type="obsolete">14</translation>
     </message>
     <message>
         <source>15</source>
-        <translation>15</translation>
+        <translation type="obsolete">15</translation>
     </message>
     <message>
         <source>16</source>
-        <translation>16</translation>
+        <translation type="obsolete">16</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -2825,6 +2825,42 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>G&amp;reek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Dutch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3356,19 +3392,19 @@ webová adresa</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="obsolete">Všechno</translation>
+        <translation type="unfinished">Všechno</translation>
     </message>
     <message>
         <source>All Overdue</source>
-        <translation type="obsolete">Všechny prošlé půjčky</translation>
+        <translation type="unfinished">Všechny prošlé půjčky</translation>
     </message>
     <message>
         <source>All Requested</source>
-        <translation type="obsolete">Všechny požadované</translation>
+        <translation type="unfinished">Všechny požadované</translation>
     </message>
     <message>
         <source>All Reserved</source>
-        <translation type="obsolete">Všechny vypůjčené</translation>
+        <translation type="unfinished">Všechny vypůjčené</translation>
     </message>
     <message>
         <source>Type</source>
@@ -3512,27 +3548,27 @@ webová adresa</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="obsolete">Videohry</translation>
+        <translation type="unfinished">Videohry</translation>
     </message>
     <message>
         <source>Books</source>
-        <translation type="obsolete">Knihy</translation>
+        <translation type="unfinished">Knihy</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="obsolete">DVD disky</translation>
+        <translation type="unfinished">DVD disky</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="obsolete">Hudební CD</translation>
+        <translation type="unfinished">Hudební CD</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation type="obsolete">Časopisy</translation>
+        <translation type="unfinished">Časopisy</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="obsolete">Magazíny</translation>
+        <translation type="unfinished">Magazíny</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -4420,6 +4456,42 @@ webová adresa</translation>
         <source>Unable to set the role for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Netherlands)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>G&amp;reek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Available</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4553,7 +4625,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Chcete změnit onformace o kopii?</translation>
+        <translation type="obsolete">Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -5031,6 +5103,10 @@ webová adresa</translation>
         <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -5156,7 +5232,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Chcete změnit onformace o kopii?</translation>
+        <translation type="obsolete">Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -5630,6 +5706,10 @@ webová adresa</translation>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
@@ -5763,7 +5843,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Chcete změnit onformace o kopii?</translation>
+        <translation type="obsolete">Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -6149,6 +6229,10 @@ webová adresa</translation>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -6293,7 +6377,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Chcete změnit onformace o kopii?</translation>
+        <translation type="obsolete">Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -6747,6 +6831,10 @@ webová adresa</translation>
         <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6868,7 +6956,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Chcete změnit onformace o kopii?</translation>
+        <translation type="obsolete">Chcete změnit onformace o kopii?</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -7224,6 +7312,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

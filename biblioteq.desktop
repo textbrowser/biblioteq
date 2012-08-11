@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=BiblioteQ
+Comment=BiblioteQ
+Exec=/usr/local/biblioteq/biblioteq.sh
+Icon=/usr/local/biblioteq/icons.d/book.png
+Terminal=false
+Type=Application
+Categories=
+MimeType=text/html;/text/xml;application/xhtml_xml;
+StartupNotify=true

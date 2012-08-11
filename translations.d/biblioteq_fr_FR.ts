@@ -2127,63 +2127,63 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>2</source>
-        <translation>2</translation>
+        <translation type="obsolete">2</translation>
     </message>
     <message>
         <source>3</source>
-        <translation>3</translation>
+        <translation type="obsolete">3</translation>
     </message>
     <message>
         <source>4</source>
-        <translation>4</translation>
+        <translation type="obsolete">4</translation>
     </message>
     <message>
         <source>5</source>
-        <translation>5</translation>
+        <translation type="obsolete">5</translation>
     </message>
     <message>
         <source>6</source>
-        <translation>6</translation>
+        <translation type="obsolete">6</translation>
     </message>
     <message>
         <source>7</source>
-        <translation>7</translation>
+        <translation type="obsolete">7</translation>
     </message>
     <message>
         <source>8</source>
-        <translation>8</translation>
+        <translation type="obsolete">8</translation>
     </message>
     <message>
         <source>9</source>
-        <translation>9</translation>
+        <translation type="obsolete">9</translation>
     </message>
     <message>
         <source>10</source>
-        <translation>10</translation>
+        <translation type="obsolete">10</translation>
     </message>
     <message>
         <source>11</source>
-        <translation>11</translation>
+        <translation type="obsolete">11</translation>
     </message>
     <message>
         <source>12</source>
-        <translation>12</translation>
+        <translation type="obsolete">12</translation>
     </message>
     <message>
         <source>13</source>
-        <translation>13</translation>
+        <translation type="obsolete">13</translation>
     </message>
     <message>
         <source>14</source>
-        <translation>14</translation>
+        <translation type="obsolete">14</translation>
     </message>
     <message>
         <source>15</source>
-        <translation>15</translation>
+        <translation type="obsolete">15</translation>
     </message>
     <message>
         <source>16</source>
-        <translation>16</translation>
+        <translation type="obsolete">16</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -2524,6 +2524,42 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Video Game</source>
         <translation>Jeu &amp;vidéo</translation>
+    </message>
+    <message>
+        <source>&amp;Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>G&amp;reek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Dutch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Netherlands)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3925,6 +3961,82 @@ minmal de jours.</translation>
         <source>Unable to set the role for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Netherlands)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>G&amp;reek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Overdue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Livres</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Journaux</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Magazines</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">CD de musique</translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Jeux vidéo</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4134,7 +4246,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
+        <translation type="obsolete">Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
@@ -4440,6 +4552,10 @@ minmal de jours.</translation>
         <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -4657,7 +4773,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
+        <translation type="obsolete">Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Audio</source>
@@ -4943,6 +5059,10 @@ minmal de jours.</translation>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
         <translation>BiblioteQ : dupliquer l&apos;article « CD de musique »</translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
@@ -5128,7 +5248,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
+        <translation type="obsolete">Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
@@ -5390,6 +5510,10 @@ minmal de jours.</translation>
         <source>Keywords:</source>
         <translation>Mots clés :</translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -5622,7 +5746,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
+        <translation type="obsolete">Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
@@ -5908,6 +6032,10 @@ minmal de jours.</translation>
         <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6077,7 +6205,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
-        <translation>Voulez-vous modifier les informations concernant une copie ?</translation>
+        <translation type="obsolete">Voulez-vous modifier les informations concernant une copie ?</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
@@ -6310,6 +6438,10 @@ minmal de jours.</translation>
     <message>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
         <translation>BiblioteQ : dupliquer un&apos;article « Jeu vidéo »</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
