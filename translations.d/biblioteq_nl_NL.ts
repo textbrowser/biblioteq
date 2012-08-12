@@ -4105,6 +4105,10 @@
         <source>All Requested</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>You have selected a new language. Please restart BiblioteQ.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>

@@ -8588,6 +8588,11 @@ void qtbook::changeEvent(QEvent *event)
 	     ui.typefilter->itemData(ui.typefilter->currentIndex()).toString(),
 	     roles);
 	  prepareFilter();
+	  QMessageBox::information
+	    (this,
+	     tr("BiblioteQ: Information"),
+	     tr("You have selected a new language. Please restart "
+		"BiblioteQ."));
 	  break;
 	}
       default:

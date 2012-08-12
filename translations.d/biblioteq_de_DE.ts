@@ -4899,6 +4899,7 @@ URL</source>
     <message>
         <location filename="../qtbook_a.cc" line="2408"/>
         <location filename="../qtbook_a.cc" line="7657"/>
+        <location filename="../qtbook_a.cc" line="8593"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
@@ -5949,117 +5950,122 @@ URL</source>
         <source>Unable to cancel some or all of the selected requests.</source>
         <translation type="unfinished">Es können einige oder alle ausgewählten Anfragen nicht abgebrochen werden.</translation>
     </message>
+    <message>
+        <location filename="../qtbook_a.cc" line="8594"/>
+        <source>You have selected a new language. Please restart BiblioteQ.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
-        <location filename="../qtbook_book.cc" line="66"/>
-        <location filename="../qtbook_book.cc" line="842"/>
+        <location filename="../qtbook_book.cc" line="72"/>
+        <location filename="../qtbook_book.cc" line="848"/>
         <source>Quantity</source>
         <translation type="unfinished">Anzahl</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="116"/>
+        <location filename="../qtbook_book.cc" line="122"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Zurücksetzen des &amp;Titelbildes</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="118"/>
+        <location filename="../qtbook_book.cc" line="124"/>
         <source>Reset &amp;Back Cover Image</source>
         <translation type="unfinished">Zurpcksetzen des Bildes des &amp;Rückdeckels</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="120"/>
+        <location filename="../qtbook_book.cc" line="126"/>
         <source>Reset &amp;ISBN-10</source>
         <translation type="unfinished">Zurücksetzen der ISBN-1&amp;0 </translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="122"/>
+        <location filename="../qtbook_book.cc" line="128"/>
         <source>Reset &amp;ISBN-13</source>
         <translation type="unfinished">Zurücksetzen der ISBN-1&amp;3 </translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="124"/>
+        <location filename="../qtbook_book.cc" line="130"/>
         <source>Reset &amp;Edition</source>
         <translation type="unfinished">Zurücksetzen der &amp;Edition.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="126"/>
+        <location filename="../qtbook_book.cc" line="132"/>
         <source>Reset &amp;Author(s)</source>
         <translation type="unfinished">Zurücksetzen der &amp;Autorinnenschaft.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="128"/>
+        <location filename="../qtbook_book.cc" line="134"/>
         <source>Reset &amp;Book Binding Type</source>
         <translation type="unfinished">Zuücksetzen des Typs der Buchbindung</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="130"/>
+        <location filename="../qtbook_book.cc" line="136"/>
         <source>Reset &amp;LC Control Number</source>
         <translation type="unfinished">Zurücksetzen der &amp;LC Control Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="132"/>
+        <location filename="../qtbook_book.cc" line="138"/>
         <source>Reset &amp;Call Number</source>
         <translation type="unfinished">Zurücksetzen der &amp;Aufrufnummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="134"/>
+        <location filename="../qtbook_book.cc" line="140"/>
         <source>Reset &amp;Dewey Class Number</source>
         <translation type="unfinished">Zurücksetzen der &amp;Dewey Klassifizierungsnummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="136"/>
+        <location filename="../qtbook_book.cc" line="142"/>
         <source>Reset &amp;Title</source>
         <translation type="unfinished">Zurücksetzen des &amp;Titels</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="138"/>
+        <location filename="../qtbook_book.cc" line="144"/>
         <source>Reset &amp;Publication Date</source>
         <translation type="unfinished">Zurücksetzen des &amp;Datums der Veröffentlichung</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="140"/>
+        <location filename="../qtbook_book.cc" line="146"/>
         <source>Reset &amp;Publisher</source>
         <translation type="unfinished">Zurücksetzen des &amp;Verlages</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="142"/>
+        <location filename="../qtbook_book.cc" line="148"/>
         <source>Reset &amp;Place of Publication</source>
         <translation type="unfinished">Zurücksetzen des &amp;Ortes der Veröffentlichung</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="144"/>
+        <location filename="../qtbook_book.cc" line="150"/>
         <source>Reset &amp;Categories</source>
         <translation type="unfinished">Zurücksetzen der &amp;Kategorien</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="146"/>
+        <location filename="../qtbook_book.cc" line="152"/>
         <source>Reset &amp;Price</source>
         <translation type="unfinished">Zurücksetzen des &amp;Preises</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="148"/>
+        <location filename="../qtbook_book.cc" line="154"/>
         <source>Reset &amp;Language</source>
         <translation type="unfinished">Zurücksetzen der &amp;Sprache.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="150"/>
+        <location filename="../qtbook_book.cc" line="156"/>
         <source>Reset &amp;Monetary Units</source>
         <translation type="unfinished">Zurücksetzen der &amp;Währungseinheit</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="152"/>
+        <location filename="../qtbook_book.cc" line="158"/>
         <source>Reset &amp;Copies</source>
         <translation type="unfinished">Zurücksetzen der &amp;Kopien</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="154"/>
+        <location filename="../qtbook_book.cc" line="160"/>
         <source>Reset &amp;Location</source>
         <translation type="unfinished">Zurücksetzen des &amp;Ortes</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="156"/>
+        <location filename="../qtbook_book.cc" line="162"/>
         <source>Reset &amp;Abstract</source>
         <translation type="unfinished">Zurücksetzen der &amp;Zusammenfassung</translation>
     </message>
@@ -6068,15 +6074,15 @@ URL</source>
         <translation type="obsolete">Zurücksetzen der OFF&amp;SYSTEM URL</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="229"/>
-        <location filename="../qtbook_book.cc" line="230"/>
-        <location filename="../qtbook_book.cc" line="232"/>
-        <location filename="../qtbook_book.cc" line="233"/>
         <location filename="../qtbook_book.cc" line="235"/>
         <location filename="../qtbook_book.cc" line="236"/>
-        <location filename="../qtbook_book.cc" line="1357"/>
-        <location filename="../qtbook_book.cc" line="1368"/>
-        <location filename="../qtbook_book.cc" line="1385"/>
+        <location filename="../qtbook_book.cc" line="238"/>
+        <location filename="../qtbook_book.cc" line="239"/>
+        <location filename="../qtbook_book.cc" line="241"/>
+        <location filename="../qtbook_book.cc" line="242"/>
+        <location filename="../qtbook_book.cc" line="1363"/>
+        <location filename="../qtbook_book.cc" line="1374"/>
+        <location filename="../qtbook_book.cc" line="1391"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">UNBEKANNT</translation>
     </message>
@@ -6089,60 +6095,60 @@ URL</source>
         <translation type="obsolete">Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="196"/>
-        <location filename="../qtbook_book.cc" line="208"/>
-        <location filename="../qtbook_book.cc" line="221"/>
-        <location filename="../qtbook_book.cc" line="331"/>
-        <location filename="../qtbook_book.cc" line="468"/>
-        <location filename="../qtbook_book.cc" line="633"/>
-        <location filename="../qtbook_book.cc" line="645"/>
-        <location filename="../qtbook_book.cc" line="669"/>
-        <location filename="../qtbook_book.cc" line="681"/>
-        <location filename="../qtbook_book.cc" line="716"/>
-        <location filename="../qtbook_book.cc" line="726"/>
-        <location filename="../qtbook_book.cc" line="872"/>
-        <location filename="../qtbook_book.cc" line="911"/>
-        <location filename="../qtbook_book.cc" line="1305"/>
+        <location filename="../qtbook_book.cc" line="202"/>
+        <location filename="../qtbook_book.cc" line="214"/>
+        <location filename="../qtbook_book.cc" line="227"/>
+        <location filename="../qtbook_book.cc" line="337"/>
+        <location filename="../qtbook_book.cc" line="474"/>
+        <location filename="../qtbook_book.cc" line="639"/>
+        <location filename="../qtbook_book.cc" line="651"/>
+        <location filename="../qtbook_book.cc" line="675"/>
+        <location filename="../qtbook_book.cc" line="687"/>
+        <location filename="../qtbook_book.cc" line="722"/>
+        <location filename="../qtbook_book.cc" line="732"/>
+        <location filename="../qtbook_book.cc" line="878"/>
+        <location filename="../qtbook_book.cc" line="917"/>
+        <location filename="../qtbook_book.cc" line="1311"/>
         <source>Database Error</source>
         <translation type="unfinished">Datenbankfehler</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="332"/>
-        <location filename="../qtbook_book.cc" line="337"/>
+        <location filename="../qtbook_book.cc" line="338"/>
+        <location filename="../qtbook_book.cc" line="343"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished">Kann nicht das Maximum der Kopien-Anzahl der Ausleihe bestimmen.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="336"/>
-        <location filename="../qtbook_book.cc" line="472"/>
-        <location filename="../qtbook_book.cc" line="915"/>
-        <location filename="../qtbook_book.cc" line="1309"/>
+        <location filename="../qtbook_book.cc" line="342"/>
+        <location filename="../qtbook_book.cc" line="478"/>
+        <location filename="../qtbook_book.cc" line="921"/>
+        <location filename="../qtbook_book.cc" line="1315"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished">BiblioteQ: Datenbankfehler</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="347"/>
-        <location filename="../qtbook_book.cc" line="383"/>
-        <location filename="../qtbook_book.cc" line="400"/>
-        <location filename="../qtbook_book.cc" line="411"/>
-        <location filename="../qtbook_book.cc" line="422"/>
-        <location filename="../qtbook_book.cc" line="433"/>
-        <location filename="../qtbook_book.cc" line="445"/>
-        <location filename="../qtbook_book.cc" line="456"/>
-        <location filename="../qtbook_book.cc" line="1918"/>
-        <location filename="../qtbook_book.cc" line="2656"/>
+        <location filename="../qtbook_book.cc" line="353"/>
+        <location filename="../qtbook_book.cc" line="389"/>
+        <location filename="../qtbook_book.cc" line="406"/>
+        <location filename="../qtbook_book.cc" line="417"/>
+        <location filename="../qtbook_book.cc" line="428"/>
+        <location filename="../qtbook_book.cc" line="439"/>
+        <location filename="../qtbook_book.cc" line="451"/>
+        <location filename="../qtbook_book.cc" line="462"/>
+        <location filename="../qtbook_book.cc" line="1924"/>
+        <location filename="../qtbook_book.cc" line="2662"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Nutzerin Fehler</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="348"/>
+        <location filename="../qtbook_book.cc" line="354"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Es scheint dass Du die Anzahl der Kopien versuchst zu verringern, während es noch reservierte Kopien gibt.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="358"/>
-        <location filename="../qtbook_book.cc" line="1831"/>
-        <location filename="../qtbook_book.cc" line="1982"/>
+        <location filename="../qtbook_book.cc" line="364"/>
+        <location filename="../qtbook_book.cc" line="1837"/>
+        <location filename="../qtbook_book.cc" line="1988"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ: Frage</translation>
     </message>
@@ -6151,125 +6157,125 @@ URL</source>
         <translation type="obsolete">Möchtest Du die Kopie Informationen bearbeiten?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="469"/>
-        <location filename="../qtbook_book.cc" line="473"/>
+        <location filename="../qtbook_book.cc" line="475"/>
+        <location filename="../qtbook_book.cc" line="479"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished">Die Datenbank Transaktion kann nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="384"/>
+        <location filename="../qtbook_book.cc" line="390"/>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
         <translation type="unfinished">Bitte vervollständige beides, die ISBN-10 und die ISBN-13.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="158"/>
+        <location filename="../qtbook_book.cc" line="164"/>
         <source>Reset &amp;MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="160"/>
+        <location filename="../qtbook_book.cc" line="166"/>
         <source>Reset &amp;Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="197"/>
+        <location filename="../qtbook_book.cc" line="203"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="209"/>
+        <location filename="../qtbook_book.cc" line="215"/>
         <source>Unable to retrieve the monetary units.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="222"/>
+        <location filename="../qtbook_book.cc" line="228"/>
         <source>Unable to retrieve the book locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="359"/>
+        <location filename="../qtbook_book.cc" line="365"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="401"/>
+        <location filename="../qtbook_book.cc" line="407"/>
         <source>Please complete the Author(s) field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld der Autorenschaft.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="412"/>
+        <location filename="../qtbook_book.cc" line="418"/>
         <source>Please complete the Title field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld des Titels.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="423"/>
+        <location filename="../qtbook_book.cc" line="429"/>
         <source>Please complete the Publisher field.</source>
         <translation type="unfinished">Bitte vervollständige des Feld des Verlages.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="434"/>
+        <location filename="../qtbook_book.cc" line="440"/>
         <source>Please complete the Place of Publication field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld des Erscheinungsortes.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="446"/>
+        <location filename="../qtbook_book.cc" line="452"/>
         <source>Please complete the Categories field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld der Kategorien.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="457"/>
+        <location filename="../qtbook_book.cc" line="463"/>
         <source>Please complete the Abstract field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld der Zusammenfassung.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="634"/>
+        <location filename="../qtbook_book.cc" line="640"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="646"/>
+        <location filename="../qtbook_book.cc" line="652"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="796"/>
+        <location filename="../qtbook_book.cc" line="802"/>
         <source>Type</source>
         <translation type="unfinished">Typ</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="916"/>
+        <location filename="../qtbook_book.cc" line="922"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren. Bitte überprüfe, dass der Eintrag nicht schon bereits besteht.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="670"/>
+        <location filename="../qtbook_book.cc" line="676"/>
         <source>Unable to purge unnecessary copy data.</source>
         <translation type="unfinished">Kann unnötige Kopie Daten nicht beseitigen.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="682"/>
-        <location filename="../qtbook_book.cc" line="727"/>
+        <location filename="../qtbook_book.cc" line="688"/>
+        <location filename="../qtbook_book.cc" line="733"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished">Kann die aktuelle Datenbank-Übertragung nicht durchführen.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="717"/>
+        <location filename="../qtbook_book.cc" line="723"/>
         <source>Unable to create initial copies.</source>
         <translation type="unfinished">Kann Initial Kopien nicht erstellen.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="780"/>
-        <location filename="../qtbook_book.cc" line="1171"/>
-        <location filename="../qtbook_book.cc" line="1392"/>
+        <location filename="../qtbook_book.cc" line="786"/>
+        <location filename="../qtbook_book.cc" line="1177"/>
+        <location filename="../qtbook_book.cc" line="1398"/>
         <source>BiblioteQ: Modify Book Entry (</source>
         <translation type="unfinished">BiblioteQ: Bearbeite Buch Eintrag (</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="781"/>
-        <location filename="../qtbook_book.cc" line="1172"/>
-        <location filename="../qtbook_book.cc" line="1195"/>
-        <location filename="../qtbook_book.cc" line="1393"/>
-        <location filename="../qtbook_book.cc" line="1403"/>
+        <location filename="../qtbook_book.cc" line="787"/>
+        <location filename="../qtbook_book.cc" line="1178"/>
+        <location filename="../qtbook_book.cc" line="1201"/>
+        <location filename="../qtbook_book.cc" line="1399"/>
+        <location filename="../qtbook_book.cc" line="1409"/>
         <source>)</source>
         <translation>)</translation>
     </message>
@@ -6294,102 +6300,102 @@ URL</source>
         <translation type="obsolete">Bücher</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="807"/>
+        <location filename="../qtbook_book.cc" line="813"/>
         <source>ISBN-10</source>
         <translation>ISBN-10</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="808"/>
+        <location filename="../qtbook_book.cc" line="814"/>
         <source>ID Number</source>
         <translation type="unfinished">ID Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="811"/>
+        <location filename="../qtbook_book.cc" line="817"/>
         <source>Title</source>
         <translation type="unfinished">Titel</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="814"/>
+        <location filename="../qtbook_book.cc" line="820"/>
         <source>Edition</source>
         <translation type="unfinished">Edition</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="817"/>
+        <location filename="../qtbook_book.cc" line="823"/>
         <source>Author(s)</source>
         <translation type="unfinished">Autorenschaft</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="820"/>
+        <location filename="../qtbook_book.cc" line="826"/>
         <source>Publication Date</source>
         <translation type="unfinished">Veröffentlichungsdatum</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="824"/>
+        <location filename="../qtbook_book.cc" line="830"/>
         <source>Publisher</source>
         <translation type="unfinished">Verlag</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="827"/>
+        <location filename="../qtbook_book.cc" line="833"/>
         <source>Place of Publication</source>
         <translation type="unfinished">Erscheinungsort</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="830"/>
+        <location filename="../qtbook_book.cc" line="836"/>
         <source>Categories</source>
         <translation type="unfinished">Kategorien</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="833"/>
+        <location filename="../qtbook_book.cc" line="839"/>
         <source>Price</source>
         <translation type="unfinished">Preis</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="836"/>
+        <location filename="../qtbook_book.cc" line="842"/>
         <source>Language</source>
         <translation type="unfinished">Sprache</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="839"/>
+        <location filename="../qtbook_book.cc" line="845"/>
         <source>Monetary Units</source>
         <translation type="unfinished">Währungseinheit</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="845"/>
+        <location filename="../qtbook_book.cc" line="851"/>
         <source>Book Binding Type</source>
         <translation type="unfinished">Typ der Buchbindung</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="848"/>
+        <location filename="../qtbook_book.cc" line="854"/>
         <source>Location</source>
         <translation type="unfinished">Ort</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="851"/>
+        <location filename="../qtbook_book.cc" line="857"/>
         <source>ISBN-13</source>
         <translation>ISBN-13</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="854"/>
+        <location filename="../qtbook_book.cc" line="860"/>
         <source>LC Control Number</source>
         <translation type="unfinished">LC Kontroll Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="857"/>
+        <location filename="../qtbook_book.cc" line="863"/>
         <source>Call Number</source>
         <translation type="unfinished">Aufruf Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="860"/>
+        <location filename="../qtbook_book.cc" line="866"/>
         <source>Dewey Class Number</source>
         <translation type="unfinished">Dewey Klassifizierungs-Nummer</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="863"/>
+        <location filename="../qtbook_book.cc" line="869"/>
         <source>Availability</source>
         <translation type="unfinished">Verfügbarkit</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="873"/>
+        <location filename="../qtbook_book.cc" line="879"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished">Erhalte Verfügbarkeit.</translation>
     </message>
@@ -6398,31 +6404,31 @@ URL</source>
         <translation type="obsolete">Kann die OID der Bücher nicht erhalten.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="911"/>
+        <location filename="../qtbook_book.cc" line="917"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Fehler in der Rückabwicklung.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="975"/>
-        <location filename="../qtbook_book.cc" line="1010"/>
+        <location filename="../qtbook_book.cc" line="981"/>
         <location filename="../qtbook_book.cc" line="1016"/>
         <location filename="../qtbook_book.cc" line="1022"/>
-        <location filename="../qtbook_book.cc" line="1036"/>
-        <location filename="../qtbook_book.cc" line="1095"/>
-        <location filename="../qtbook_book.cc" line="1096"/>
-        <location filename="../qtbook_book.cc" line="1098"/>
-        <location filename="../qtbook_book.cc" line="1099"/>
+        <location filename="../qtbook_book.cc" line="1028"/>
+        <location filename="../qtbook_book.cc" line="1042"/>
         <location filename="../qtbook_book.cc" line="1101"/>
         <location filename="../qtbook_book.cc" line="1102"/>
         <location filename="../qtbook_book.cc" line="1104"/>
         <location filename="../qtbook_book.cc" line="1105"/>
         <location filename="../qtbook_book.cc" line="1107"/>
         <location filename="../qtbook_book.cc" line="1108"/>
+        <location filename="../qtbook_book.cc" line="1110"/>
+        <location filename="../qtbook_book.cc" line="1111"/>
+        <location filename="../qtbook_book.cc" line="1113"/>
+        <location filename="../qtbook_book.cc" line="1114"/>
         <source>Any</source>
         <translation type="unfinished">Alle</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1082"/>
+        <location filename="../qtbook_book.cc" line="1088"/>
         <source>&amp;Search</source>
         <translation type="unfinished">&amp;Suche</translation>
     </message>
@@ -6431,45 +6437,45 @@ URL</source>
         <translation type="obsolete">Titelbild</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1124"/>
+        <location filename="../qtbook_book.cc" line="1130"/>
         <source>BiblioteQ: Database Book Search</source>
         <translation type="unfinished">BiblioteQ: Datenbank Buch-Suche</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1194"/>
-        <location filename="../qtbook_book.cc" line="1402"/>
+        <location filename="../qtbook_book.cc" line="1200"/>
+        <location filename="../qtbook_book.cc" line="1408"/>
         <source>BiblioteQ: View Book Details (</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Buch Details (</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="783"/>
-        <location filename="../qtbook_book.cc" line="1174"/>
-        <location filename="../qtbook_book.cc" line="1222"/>
-        <location filename="../qtbook_book.cc" line="1395"/>
+        <location filename="../qtbook_book.cc" line="789"/>
+        <location filename="../qtbook_book.cc" line="1180"/>
+        <location filename="../qtbook_book.cc" line="1228"/>
+        <location filename="../qtbook_book.cc" line="1401"/>
         <source>BiblioteQ: Modify Book Entry</source>
         <translation type="unfinished">BiblioteQ: Bearbeite den Bucheintrag (</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1197"/>
-        <location filename="../qtbook_book.cc" line="1256"/>
-        <location filename="../qtbook_book.cc" line="1405"/>
+        <location filename="../qtbook_book.cc" line="1203"/>
+        <location filename="../qtbook_book.cc" line="1262"/>
+        <location filename="../qtbook_book.cc" line="1411"/>
         <source>BiblioteQ: View Book Details</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Buch Details</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1279"/>
-        <location filename="../qtbook_book.cc" line="1489"/>
+        <location filename="../qtbook_book.cc" line="1285"/>
+        <location filename="../qtbook_book.cc" line="1495"/>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1306"/>
-        <location filename="../qtbook_book.cc" line="1310"/>
+        <location filename="../qtbook_book.cc" line="1312"/>
+        <location filename="../qtbook_book.cc" line="1316"/>
         <source>Unable to retrieve the selected book&apos;s data.</source>
         <translation type="unfinished">Kann die Daten der ausgewählten Bücher nicht erhalten.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1519"/>
+        <location filename="../qtbook_book.cc" line="1525"/>
         <source>BiblioteQ: Create Book Entry</source>
         <translation type="unfinished">BiblioteQ: Buch Eintrag erstellen</translation>
     </message>
@@ -6498,17 +6504,17 @@ URL</source>
         <translation type="obsolete">OFFSYSTEM URL</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1832"/>
+        <location filename="../qtbook_book.cc" line="1838"/>
         <source>You have unsaved data. Continue closing?</source>
         <translation type="unfinished">Es sind noch nicht gespeicherte Daten vorhanden. Weiter mit Schließen?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1919"/>
+        <location filename="../qtbook_book.cc" line="1925"/>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished">Um ein Z39.50 System abzufragen, muss entweder die ISBN-10 oder die ISBN-13 angegeben sein.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1928"/>
+        <location filename="../qtbook_book.cc" line="1934"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Daten erhalten</translation>
     </message>
@@ -6517,18 +6523,18 @@ URL</source>
         <translation type="obsolete">Es werden Informationen von dem Z39.50 System geladen. Bitte seien Sie geduldig.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1929"/>
+        <location filename="../qtbook_book.cc" line="1935"/>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="1983"/>
+        <location filename="../qtbook_book.cc" line="1989"/>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
         <translation type="unfinished">Sollen die vorhandenen Werte mit den vom Z39.50 System erhaltenen Werten überschrieben werden?</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2515"/>
-        <location filename="../qtbook_book.cc" line="2534"/>
+        <location filename="../qtbook_book.cc" line="2521"/>
+        <location filename="../qtbook_book.cc" line="2540"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished">BiblioteQ: Fehler in der Z39.50 Abfrage</translation>
     </message>
@@ -6541,142 +6547,142 @@ URL</source>
         <translation type="obsolete">.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2516"/>
+        <location filename="../qtbook_book.cc" line="2522"/>
         <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2524"/>
+        <location filename="../qtbook_book.cc" line="2530"/>
         <source>Memory Error</source>
         <translation type="unfinished">Fehler in der Speicherkapazität.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2525"/>
+        <location filename="../qtbook_book.cc" line="2531"/>
         <source>Unable to create a thread due to insufficient resources.</source>
         <translation type="unfinished">Aufgrund ungenügender Kapazität kann der Verlauf nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2531"/>
+        <location filename="../qtbook_book.cc" line="2537"/>
         <source>Z39.50 Query Error</source>
         <translation type="unfinished">Z39.50 Fehler in der Abfrage.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2535"/>
+        <location filename="../qtbook_book.cc" line="2541"/>
         <source>The Z39.50 entry could not be retrieved.</source>
         <translation type="unfinished">Der Z39.50 Eintrag konnte nicht geladen werden.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2546"/>
+        <location filename="../qtbook_book.cc" line="2552"/>
         <source>ISBN-10:</source>
         <translation>ISBN-10:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2548"/>
+        <location filename="../qtbook_book.cc" line="2554"/>
         <source>ISBN-13:</source>
         <translation>ISBN-13:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2550"/>
+        <location filename="../qtbook_book.cc" line="2556"/>
         <source>Edition:</source>
         <translation type="unfinished">Edition:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2552"/>
+        <location filename="../qtbook_book.cc" line="2558"/>
         <source>Author(s):</source>
         <translation type="unfinished">Autorenschaft:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2554"/>
+        <location filename="../qtbook_book.cc" line="2560"/>
         <source>Book Binding Type:</source>
         <translation type="unfinished">Typ der Buchbindung:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2556"/>
+        <location filename="../qtbook_book.cc" line="2562"/>
         <source>LC Control Number:</source>
         <translation type="unfinished">LC Kontroll-Nummer:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2558"/>
+        <location filename="../qtbook_book.cc" line="2564"/>
         <source>Call Number:</source>
         <translation type="unfinished">Aufruf-Nummer:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2560"/>
+        <location filename="../qtbook_book.cc" line="2566"/>
         <source>Dewey Class Number:</source>
         <translation type="unfinished">Nummer der Dewey Klassifizierung:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2567"/>
+        <location filename="../qtbook_book.cc" line="2573"/>
         <source>Title:</source>
         <translation type="unfinished">Titel:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2569"/>
+        <location filename="../qtbook_book.cc" line="2575"/>
         <source>Publication Date:</source>
         <translation type="unfinished">Erscheinungsdatum:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2571"/>
+        <location filename="../qtbook_book.cc" line="2577"/>
         <source>Publisher:</source>
         <translation type="unfinished">Verlag:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2573"/>
+        <location filename="../qtbook_book.cc" line="2579"/>
         <source>Place of Publication:</source>
         <translation type="unfinished">Erscheinungsort:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2575"/>
+        <location filename="../qtbook_book.cc" line="2581"/>
         <source>Categories:</source>
         <translation type="unfinished">Kategorien:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2577"/>
+        <location filename="../qtbook_book.cc" line="2583"/>
         <source>Price:</source>
         <translation type="unfinished">Preis:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2578"/>
+        <location filename="../qtbook_book.cc" line="2584"/>
         <source>Language:</source>
         <translation type="unfinished">Sprache:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2580"/>
+        <location filename="../qtbook_book.cc" line="2586"/>
         <source>Monetary Units:</source>
         <translation type="unfinished">Währungseinheit:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2582"/>
+        <location filename="../qtbook_book.cc" line="2588"/>
         <source>Copies:</source>
         <translation type="unfinished">Kopien:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2583"/>
+        <location filename="../qtbook_book.cc" line="2589"/>
         <source>Location:</source>
         <translation type="unfinished">Ort:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2585"/>
+        <location filename="../qtbook_book.cc" line="2591"/>
         <source>Abstract:</source>
         <translation type="unfinished">Zusammenfassung:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2587"/>
+        <location filename="../qtbook_book.cc" line="2593"/>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2589"/>
+        <location filename="../qtbook_book.cc" line="2595"/>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2931"/>
+        <location filename="../qtbook_book.cc" line="2937"/>
         <source>BiblioteQ: Duplicate Book Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2952"/>
+        <location filename="../qtbook_book.cc" line="2951"/>
         <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6685,53 +6691,53 @@ URL</source>
         <translation type="obsolete">OFFSYSTEM URL:</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2611"/>
+        <location filename="../qtbook_book.cc" line="2617"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2613"/>
+        <location filename="../qtbook_book.cc" line="2619"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Auswahl des Bildes des Rückendeckels</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2657"/>
+        <location filename="../qtbook_book.cc" line="2663"/>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
         <translation type="unfinished">Um ein Titelbild von Amazon herunterzuladen, muss die ISBN-10 angegeben sein.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2800"/>
+        <location filename="../qtbook_book.cc" line="2806"/>
         <source>BiblioteQ: Front Cover Image Download</source>
         <translation type="unfinished">BiblioteQ: Titelbild Download</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2801"/>
+        <location filename="../qtbook_book.cc" line="2807"/>
         <source>Downloading the front cover image. Please be patient...</source>
         <translation type="unfinished">Das Titelbild wird heruntergeladen. Bitte sei geduldig...</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2807"/>
+        <location filename="../qtbook_book.cc" line="2813"/>
         <source>BiblioteQ: Back Cover Image Download</source>
         <translation type="unfinished">BiblioteQ: Bild des Rückendeckels Herunterladen</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2808"/>
+        <location filename="../qtbook_book.cc" line="2814"/>
         <source>Downloading the back cover image. Please be patient...</source>
         <translation type="unfinished">Das Bild des Rückendeckels wird herunter geladen. Bitte sei geduldig...</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2843"/>
-        <location filename="../qtbook_book.cc" line="2862"/>
+        <location filename="../qtbook_book.cc" line="2849"/>
+        <location filename="../qtbook_book.cc" line="2868"/>
         <source>BiblioteQ: HTTP Warning</source>
         <translation type="unfinished">BiblioteQ: HTTP Warnmeldung</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2844"/>
+        <location filename="../qtbook_book.cc" line="2850"/>
         <source>The front cover image for the specified ISBN may not exist.</source>
         <translation type="unfinished">Das Titelbild der genannten ISBN könnte nicht existieren.</translation>
     </message>
     <message>
-        <location filename="../qtbook_book.cc" line="2863"/>
+        <location filename="../qtbook_book.cc" line="2869"/>
         <source>The back cover image for the specified ISBN may not exist.</source>
         <translation type="unfinished">Das Bild des Rückendeckels der genannten ISBN könnte nicht exisitieren.</translation>
     </message>
