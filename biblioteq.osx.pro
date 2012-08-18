@@ -15,8 +15,8 @@ INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.icns
 LIBS		+= -lsqlite3 \
 		   -L/usr/local/lib -lyaz \
-		   -L/Library/PostgreSQL/9.1/lib \
-		   -lpq.5 -lcrypto.1.0.0 -lssl.1.0.0
+                   -L/Library/PostgreSQL/9.1/lib -lpq.5 \
+                   -lcrypto.1.0.0 -lssl.1.0.0
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
@@ -103,6 +103,14 @@ icons.path		= /Applications/BiblioteQ.d
 icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= /opt/QtSDK/Desktop/Qt/474/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
+aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
+aftermacdeployqt1.extra = cp -p /Library/PostgreSQL/9.1/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
+aftermacdeployqt2.path  = BiblioteQ.app/Contents/lib
+aftermacdeployqt2.extra = cp -p /Library/PostgreSQL/9.1/lib/libssl.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
+aftermacdeployqt3.path  = BiblioteQ.app/Contents/lib
+aftermacdeployqt3.extra = cp -p /Library/PostgreSQL/9.1/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/Frameworks/.
+aftermacdeployqt4.path  = BiblioteQ.app/Contents/lib
+aftermacdeployqt4.extra = cp -p /Library/PostgreSQL/9.1/lib/libssl.1.0.0.dylib ./BiblioteQ.app/Contents/Frameworks/.
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
@@ -115,6 +123,10 @@ translations.files	= translations.d/*.qm
 QMAKE_STRIP	= echo
 INSTALLS	= preinstall \
 		  macdeployqt \
+                  aftermacdeployqt1 \
+                  aftermacdeployqt2 \
+                  aftermacdeployqt3 \
+                  aftermacdeployqt4 \
 		  conf \
 		  doc \
 		  icons \
