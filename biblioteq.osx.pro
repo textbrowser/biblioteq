@@ -13,7 +13,10 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror -mtune=generic -O3
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -L/usr/local/lib -lyaz -lsqlite3
+LIBS		+= -lsqlite3 \
+		   -L/usr/local/lib -lyaz \
+		   -L/Library/PostgreSQL/9.1/lib \
+		   -lpq.5 -lcrypto.1.0.0 -lssl.1.0.0
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
@@ -99,7 +102,7 @@ doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d
 icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
-macdeployqt.extra	= macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
+macdeployqt.extra	= /opt/QtSDK/Desktop/Qt/474/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
