@@ -129,6 +129,7 @@ INSTALLS	= preinstall \
                   aftermacdeployqt2 \
                   aftermacdeployqt3 \
                   aftermacdeployqt4 \
+                  aftermacdeployqt5 \
                   aftermacdeployqt6 \
 		  conf \
 		  doc \
