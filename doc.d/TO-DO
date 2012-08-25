@@ -353,3 +353,5 @@
      to the user's home directory. (Done)
 194. Allow patrons to opt-out of reservation histories. (TBD)
 195. Dates should not be retrieved from local services. (TBD)
+196. Users should only be allowed to view their reservation histories.
+     Create temporary views?

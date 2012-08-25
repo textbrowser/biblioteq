@@ -116,13 +116,13 @@ void misc_functions::grantPrivs(const QString &userid,
 				const QSqlDatabase &db,
 				QString &errorstr)
 {
-  QString querystr = "";
-  QSqlQuery query(db);
-
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
+
+  QString querystr = "";
+  QSqlQuery query(db);
 
   if(!query.lastError().isValid())
     {
@@ -184,15 +184,15 @@ void misc_functions::revokeAll(const QString &userid,
 			       const QSqlDatabase &db,
 			       QString &errorstr)
 {
-  int count = 0;
-  QString querystr = "";
-  QSqlQuery query(db);
-  QStringList objectlist;
-
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
+
+  int count = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+  QStringList objectlist;
 
   count = userCount(userid, db, errorstr);
 
@@ -291,15 +291,15 @@ void misc_functions::DBAccount(const QString &userid,
 			       QString &errorstr,
 			       const QString &roles)
 {
-  int count = 0;
-  QString querystr = "";
-  QSqlQuery query(db);
-  QStringList objectlist;
-
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
+
+  int count = 0;
+  QString querystr = "";
+  QSqlQuery query(db);
+  QStringList objectlist;
 
   if(action == CREATE_USER)
     {
@@ -567,13 +567,13 @@ void misc_functions::savePassword(const QString &userid,
 				  const QString &password, QString &errorstr,
 				  const QString &roles)
 {
-  QString querystr = "";
-  QSqlQuery query(db);
-
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
+
+  QString querystr = "";
+  QSqlQuery query(db);
 
   query.exec("SET ROLE NONE");
   querystr = QString("ALTER USER %1 WITH ENCRYPTED "
@@ -1381,10 +1381,11 @@ int misc_functions::sqliteQuerySize(const QString &querystr,
 				    const char *file, const int line)
 {
   int count = 0;
-  QSqlQuery query(db);
 
   if(db.driverName() != "QSQLITE")
     return count; // SQLite only.
+
+  QSqlQuery query(db);
 
   if(query.exec(querystr))
     while(query.next())
@@ -1477,15 +1478,16 @@ bool misc_functions::isRequested(const QSqlDatabase &db,
 				 QString &errorstr)
 {
   bool isRequested = false;
-  QString str = "";
-  QString itemType = "";
-  QString querystr = "";
-  QSqlQuery query(db);
 
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return isRequested; // Requests are not supported.
+
+  QString str = "";
+  QString itemType = "";
+  QString querystr = "";
+  QSqlQuery query(db);
 
   itemType = itemTypeArg;
   querystr = QString("SELECT COUNT(myoid) FROM item_request "
@@ -1866,11 +1868,12 @@ qint64 misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 					 QString &errorstr)
 {
   qint64 value = -1;
-  QString querystr("");
-  QSqlQuery query(db);
 
   if(db.driverName() != "QSQLITE")
     return value;
+
+  QString querystr("");
+  QSqlQuery query(db);
 
   errorstr = "";
   querystr = "INSERT INTO sequence VALUES (NULL)";
@@ -2073,12 +2076,12 @@ void misc_functions::setRole(const QSqlDatabase &db,
 			     QString &errorstr,
 			     const QString &roles)
 {
-  QSqlQuery query(db);
-
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
+
+  QSqlQuery query(db);
 
   if(!roles.isEmpty())
     {
@@ -2092,7 +2095,8 @@ void misc_functions::setRole(const QSqlDatabase &db,
 	    query.exec("SET ROLE biblioteq_circulation_librarian_membership");
 	  else if(roles.contains("circulation") && roles.contains("librarian"))
 	    query.exec("SET ROLE biblioteq_circulation_librarian");
-	  else if(roles.contains("circulation") && roles.contains("membership"))
+	  else if(roles.contains("circulation") &&
+		  roles.contains("membership"))
 	    query.exec("SET ROLE biblioteq_circulation_membership");
 	  else if(roles.contains("librarian") && roles.contains("membership"))
 	    query.exec("SET ROLE biblioteq_librarian_membership");

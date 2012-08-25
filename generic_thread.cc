@@ -16,8 +16,6 @@ generic_thread::generic_thread(QObject *parent):QThread(parent)
   type = -1;
   eType = "";
   errorStr = "";
-  list.clear();
-  outputListBool.clear();
   setTerminationEnabled(true);
   z3950Name = "";
 }

@@ -453,7 +453,7 @@ void copy_editor::slotCheckoutCopy(void)
 		"copy_number, "
 		"reserved_by, "
 		"type) "
-		"VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
   query.bindValue(0, ioid);
   query.bindValue(1, memberid);
   query.bindValue(2, checkedout);
@@ -489,7 +489,7 @@ void copy_editor::slotCheckoutCopy(void)
 		"returned_date, "
 		"reserved_by, "
 		"type) "
-		"VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
   query.bindValue(0, memberid);
   query.bindValue(1, ioid);
   query.bindValue(2, copyid);

@@ -7776,7 +7776,7 @@ void qtbook::slotRequest(void)
 	  itemType = misc_functions::getColumnString(ui.table, i,
 						     tr("Type"));
 	  querystr = "INSERT INTO item_request (item_oid, memberid, "
-	    "requestdate, type) VALUES(?, ?, ?, ?)";
+	    "requestdate, type) VALUES (?, ?, ?, ?)";
 	  query.prepare(querystr);
 	  query.bindValue(0, oid);
 	  query.bindValue(1, db.userName());
