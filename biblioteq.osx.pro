@@ -100,7 +100,7 @@ doc.files		= doc.d/*.pdf doc.d/TO-DO
 icons.path		= /Applications/BiblioteQ.d
 icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
-macdeployqt.extra	= /opt/QtSDK/Desktop/Qt/474/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
+macdeployqt.extra	= /opt/QtSDK/Desktop/Qt/4.8.1/gcc/bin/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
 aftermacdeployqt1.extra = cp -p /Library/PostgreSQL/9.1/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
 aftermacdeployqt2.path  = BiblioteQ.app/Contents/lib
