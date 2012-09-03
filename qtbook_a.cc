@@ -289,6 +289,8 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu1->addAction(tr("Add Music &CD")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
   // menu1->addAction(tr("Add &Newspaper"));
+  connect(menu1->addAction(tr("Add &Photograph Collection")),
+	  SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
   connect(menu1->addAction(tr("Add &Video Game")),
 	  SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
   // menu1->addAction(tr("Add &VHS"));
