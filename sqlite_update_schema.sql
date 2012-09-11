@@ -624,3 +624,43 @@ ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00;
 ALTER TABLE member ADD comments TEXT;
 ALTER TABLE member ADD general_registration_number TEXT;
 ALTER TABLE member ADD memberclass TEXT;
+
+/* Release 6.59 */
+
+CREATE TABLE photograph_collection
+(
+	id		 TEXT PRIMARY KEY NOT NULL,
+	myoid		 BIGINT NOT NULL,
+	title		 TEXT NOT NULL,
+	about		 TEXT,
+	notes		 TEXT,
+	image		 BYTEA,
+	image_scaled	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+);
+
+CREATE TABLE photograph
+(
+	id			  TEXT NOT NULL,
+	myoid			  BIGINT UNIQUE,
+	collection_oid		  BIGINT NOT NULL,
+	title			  TEXT NOT NULL,
+	creators		  TEXT NOT NULL,
+	pdate			  VARCHAR(32) NOT NULL,
+	quantity		  INTEGER NOT NULL DEFAULT 1,
+	medium			  TEXT NOT NULL,
+	reproduction_number  	  TEXT NOT NULL,
+	copyright		  TEXT NOT NULL,
+	callnumber		  VARCHAR(64),
+	other_number		  TEXT,
+	location		  TEXT NOT NULL,
+	notes			  TEXT,
+	subjects		  TEXT,
+	format			  TEXT,
+	image			  BYTEA,
+	image_scaled		  BYTEA,
+	PRIMARY KEY(id, collection_oid),
+	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
+				    DELETE CASCADE
+);
+

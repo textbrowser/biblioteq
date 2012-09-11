@@ -895,3 +895,63 @@ GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_circulation TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+
+/* Release 6.59 */
+
+CREATE TABLE photograph_collection
+(
+	id		 TEXT PRIMARY KEY NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
+	title		 TEXT NOT NULL,
+	about		 TEXT,
+	notes		 TEXT,
+	image		 BYTEA,
+	image_scaled	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+);
+
+CREATE TABLE photograph
+(
+	id			  TEXT NOT NULL,
+	myoid			  BIGSERIAL UNIQUE,
+	collection_oid		  BIGINT NOT NULL,
+	title			  TEXT NOT NULL,
+	creators		  TEXT NOT NULL,
+	pdate			  VARCHAR(32) NOT NULL,
+	quantity		  INTEGER NOT NULL DEFAULT 1,
+	medium			  TEXT NOT NULL,
+	reproduction_number  	  TEXT NOT NULL,
+	copyright		  TEXT NOT NULL,
+	callnumber		  VARCHAR(64),
+	other_number		  TEXT,
+	location		  TEXT NOT NULL,
+	notes			  TEXT,
+	subjects		  TEXT,
+	format			  TEXT,
+	image			  BYTEA,
+	image_scaled		  BYTEA,
+	PRIMARY KEY(id, collection_oid),
+	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
+				    DELETE CASCADE
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_administrator;
+GRANT SELECT ON photograph TO biblioteq_circulation;
+GRANT SELECT ON photograph_collection TO biblioteq_circulation;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_circulation;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_librarian;
+GRANT SELECT ON photograph TO biblioteq_membership;
+GRANT SELECT ON photograph_collection TO biblioteq_membership;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON photograph TO biblioteq_patron;
+GRANT SELECT ON photograph_collection TO biblioteq_patron;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_patron;

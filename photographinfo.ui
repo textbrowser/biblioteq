@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>1096</width>
-         <height>1060</height>
+         <y>-162</y>
+         <width>1094</width>
+         <height>1082</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -115,43 +115,53 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_2">
                 <property name="text">
                  <string>Title</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
+              <item row="1" column="1">
                <widget class="QLineEdit" name="title_collection"/>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label">
                 <property name="text">
                  <string>About</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="1">
                <widget class="QTextEdit" name="about_collection">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_3">
                 <property name="text">
                  <string>Notes</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QTextEdit" name="notes_collection">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="id_collection"/>
               </item>
              </layout>
             </item>
@@ -328,44 +338,14 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_4">
-                <property name="text">
-                 <string>Title</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="title_item"/>
-              </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label_12">
                 <property name="text">
                  <string>Creator(s)</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="hyperlinked_text_edit" name="creators_item">
-                <property name="readOnly">
-                 <bool>false</bool>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                </property>
-                <property name="openLinks">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_13">
-                <property name="text">
-                 <string>Publication Date</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <layout class="QHBoxLayout" name="_3">
                 <item>
                  <widget class="QDateEdit" name="publication_date">
@@ -389,80 +369,63 @@
                 </item>
                </layout>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_5">
+              <item row="11" column="0">
+               <widget class="QLabel" name="label_8">
                 <property name="text">
-                 <string>Medium</string>
+                 <string>Notes</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="medium_item"/>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_6">
-                <property name="text">
-                 <string>Reproduction Number</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QTextEdit" name="reproduction_number_item">
-                <property name="acceptRichText">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>Copyright</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
+              <item row="7" column="1">
                <widget class="QTextEdit" name="copyright_item">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="8" column="0">
                <widget class="QLabel" name="label_17">
                 <property name="text">
                  <string>Call Number</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="8" column="1">
                <widget class="QLineEdit" name="callnum_item">
                 <property name="maxLength">
                  <number>64</number>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item row="9" column="0">
                <widget class="QLabel" name="label_18">
                 <property name="text">
                  <string>Other Number</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
-               <widget class="QLineEdit" name="other_number_item">
-                <property name="maxLength">
-                 <number>64</number>
+              <item row="6" column="1">
+               <widget class="QTextEdit" name="reproduction_number_item">
+                <property name="acceptRichText">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Copyright</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
                <widget class="QLabel" name="label_19">
                 <property name="text">
                  <string>Location</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="10" column="1">
                <layout class="QHBoxLayout" name="_4">
                 <item>
                  <widget class="QComboBox" name="location"/>
@@ -482,28 +445,45 @@
                 </item>
                </layout>
               </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_8">
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_5">
                 <property name="text">
-                 <string>Notes</string>
+                 <string>Medium</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Reproduction Number</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Title</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="title_item"/>
+              </item>
+              <item row="11" column="1">
                <widget class="QTextEdit" name="notes_item">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
+              <item row="12" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="text">
                  <string>Subjects</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="1">
+              <item row="12" column="1">
                <widget class="hyperlinked_text_edit" name="subjects_item">
                 <property name="readOnly">
                  <bool>false</bool>
@@ -516,14 +496,37 @@
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="medium_item"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="hyperlinked_text_edit" name="creators_item">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                </property>
+                <property name="openLinks">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Publication Date</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>Format</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="1">
+              <item row="13" column="1">
                <widget class="hyperlinked_text_edit" name="format_item">
                 <property name="readOnly">
                  <bool>false</bool>
@@ -535,6 +538,57 @@
                  <bool>false</bool>
                 </property>
                </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QLineEdit" name="other_number_item">
+                <property name="maxLength">
+                 <number>64</number>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Copies</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QSpinBox" name="quantity">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="id_item"/>
               </item>
              </layout>
             </item>
@@ -581,25 +635,6 @@
         <property name="icon">
          <iconset>
           <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="queryButton">
-        <property name="minimumSize">
-         <size>
-          <width>170</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&amp;Z39.50 Query</string>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::MenuButtonPopup</enum>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -687,6 +722,7 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>thumbnail_collection</tabstop>
   <tabstop>select_image_collection</tabstop>
+  <tabstop>id_collection</tabstop>
   <tabstop>title_collection</tabstop>
   <tabstop>about_collection</tabstop>
   <tabstop>notes_collection</tabstop>
@@ -695,9 +731,11 @@
   <tabstop>nextPageButton</tabstop>
   <tabstop>thumbnail_collection_2</tabstop>
   <tabstop>select_image_item</tabstop>
+  <tabstop>id_item</tabstop>
   <tabstop>title_item</tabstop>
   <tabstop>creators_item</tabstop>
   <tabstop>publication_date</tabstop>
+  <tabstop>quantity</tabstop>
   <tabstop>medium_item</tabstop>
   <tabstop>reproduction_number_item</tabstop>
   <tabstop>copyright_item</tabstop>
@@ -708,7 +746,6 @@
   <tabstop>subjects_item</tabstop>
   <tabstop>format_item</tabstop>
   <tabstop>okButton</tabstop>
-  <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>

@@ -200,6 +200,43 @@ CREATE TABLE magazine_copy_info
 	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE
 );
 
+CREATE TABLE photograph_collection
+(
+	id		 TEXT PRIMARY KEY NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
+	title		 TEXT NOT NULL,
+	about		 TEXT,
+	notes		 TEXT,
+	image		 BYTEA,
+	image_scaled	 BYTEA,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+);
+
+CREATE TABLE photograph
+(
+	id			  TEXT NOT NULL,
+	myoid			  BIGSERIAL UNIQUE,
+	collection_oid		  BIGINT NOT NULL,
+	title			  TEXT NOT NULL,
+	creators		  TEXT NOT NULL,
+	pdate			  VARCHAR(32) NOT NULL,
+	quantity		  INTEGER NOT NULL DEFAULT 1,
+	medium			  TEXT NOT NULL,
+	reproduction_number  	  TEXT NOT NULL,
+	copyright		  TEXT NOT NULL,
+	callnumber		  VARCHAR(64),
+	other_number		  TEXT,
+	location		  TEXT NOT NULL,
+	notes			  TEXT,
+	subjects		  TEXT,
+	format			  TEXT,
+	image			  BYTEA,
+	image_scaled		  BYTEA,
+	PRIMARY KEY(id, collection_oid),
+	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
+				    DELETE CASCADE
+);
+
 CREATE TABLE videogame
 (
 	id		 VARCHAR(32) PRIMARY KEY NOT NULL,
@@ -484,6 +521,8 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO biblioteq_administrator;
@@ -502,6 +541,8 @@ GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, USAGE ON item_request_myoid_seq TO biblioteq_administrator;
@@ -541,6 +582,10 @@ GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON member TO biblioteq_circulation;
 GRANT SELECT ON monetary_units TO biblioteq_circulation;
+GRANT SELECT ON photograph TO biblioteq_circulation;
+GRANT SELECT ON photograph_collection TO biblioteq_circulation;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON videogame TO biblioteq_circulation;
 GRANT SELECT ON videogame_copy_info TO biblioteq_circulation;
 GRANT SELECT ON videogame_copy_info_myoid_seq TO biblioteq_circulation;
@@ -570,6 +615,8 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON photograph_collection TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO biblioteq_librarian;
@@ -577,6 +624,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO biblioteq_librarian
 GRANT SELECT ON admin TO biblioteq_librarian;
 GRANT SELECT ON item_borrower_vw TO biblioteq_librarian;
 GRANT SELECT ON item_request TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_librarian;
@@ -587,9 +635,10 @@ GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_libraria
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_librarian;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_membership;
 GRANT SELECT ON admin TO biblioteq_membership;
@@ -623,6 +672,10 @@ GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON minimum_days TO biblioteq_membership;
 GRANT SELECT ON monetary_units TO biblioteq_membership;
+GRANT SELECT ON photograph TO biblioteq_membership;
+GRANT SELECT ON photograph_collection TO biblioteq_membership;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON videogame TO biblioteq_membership;
 GRANT SELECT ON videogame_copy_info TO biblioteq_membership;
 GRANT SELECT ON videogame_copy_info_myoid_seq TO biblioteq_membership;
@@ -662,6 +715,10 @@ GRANT SELECT ON magazine_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON member_history TO biblioteq_patron;
 GRANT SELECT ON member_history_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON monetary_units TO biblioteq_patron;
+GRANT SELECT ON photograph TO biblioteq_patron;
+GRANT SELECT ON photograph_collection TO biblioteq_patron;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON videogame TO biblioteq_patron;
 GRANT SELECT ON videogame_copy_info TO biblioteq_patron;
 GRANT SELECT ON videogame_copy_info_myoid_seq TO biblioteq_patron;

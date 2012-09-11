@@ -234,6 +234,43 @@ BEGIN									\
 		type = old.type;					\
 END;									\
 									\
+CREATE TABLE photograph_collection					\
+(									\
+        id		 TEXT PRIMARY KEY NOT NULL,			\
+	myoid		 BIGINT UNIQUE,					\
+	title		 TEXT NOT NULL,					\
+	about		 TEXT,						\
+	notes		 TEXT,						\
+	image		 BYTEA,						\
+	image_scaled	 BYTEA,						\
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection' \
+);									\
+									\
+CREATE TABLE photograph							\
+(									\
+        id                        TEXT NOT NULL,			\
+	myoid			  BIGINT UNIQUE,			\
+	collection_oid		  BIGINT NOT NULL,			\
+	title			  TEXT NOT NULL,			\
+	creators		  TEXT NOT NULL,			\
+	pdate			  VARCHAR(32) NOT NULL,			\
+	quantity		  INTEGER NOT NULL DEFAULT 1,		\
+	medium			  TEXT NOT NULL,			\
+	reproduction_number  	  TEXT NOT NULL,			\
+	copyright		  TEXT NOT NULL,			\
+	callnumber		  VARCHAR(64),				\
+	other_number		  TEXT,					\
+	location		  TEXT NOT NULL,			\
+	notes			  TEXT,					\
+	subjects		  TEXT,					\
+	format			  TEXT,					\
+	image			  BYTEA,				\
+	image_scaled		  BYTEA,				\
+	PRIMARY KEY(id, collection_oid),				\
+	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON \
+				   DELETE CASCADE			\
+);									\
+									\
 CREATE TABLE videogame							\
 (									\
 	id		 VARCHAR(32) NOT NULL PRIMARY KEY,		\
