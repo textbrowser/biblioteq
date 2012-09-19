@@ -293,8 +293,12 @@ void dbenumerations::populateWidgets(void)
 		{
 		  QStringList list;
 
-		  list << tr("Book") << tr("DVD") << tr("Journal")
-		       << tr("Magazine") << tr("Music CD")
+		  list << tr("Book")
+		       << tr("DVD")
+		       << tr("Journal")
+		       << tr("Magazine")
+		       << tr("Music CD")
+		       << tr("Photograph Collection")
 		       << tr("Video Game");
 		  item1->addItems(list);
 
@@ -308,8 +312,10 @@ void dbenumerations::populateWidgets(void)
 		    item1->setCurrentIndex(2);
 		  else if(pairList.at(j).first == "Magazine")
 		    item1->setCurrentIndex(3);
-		  else if(pairList.at(j).first == "Video Game")
+		  else if(pairList.at(j).first == "Photograph Collection")
 		    item1->setCurrentIndex(5);
+		  else if(pairList.at(j).first == "Video Game")
+		    item1->setCurrentIndex(6);
 
 		  list.clear();
 		  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
@@ -395,8 +401,13 @@ void dbenumerations::slotAdd(void)
 	{
 	  QStringList list;
 
-	  list << tr("Book") << tr("DVD") << tr("Journal")
-	       << tr("Magazine") << tr("Music CD") << tr("Video Game");
+	  list << tr("Book")
+	       << tr("DVD")
+	       << tr("Journal")
+	       << tr("Magazine")
+	       << tr("Music CD")
+	       << tr("Photograph Collection")
+	       << tr("Video Game");
 	  item1->addItems(list);
 	  list.clear();
 	  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |

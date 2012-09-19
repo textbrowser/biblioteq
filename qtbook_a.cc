@@ -308,6 +308,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
   connect(menu2->addAction(tr("&Music CD Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
+  connect(menu2->addAction(tr("&Photograph Collection Search")),
+	  SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
   connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
@@ -7865,6 +7867,7 @@ void qtbook::prepareFilter(void)
 	       << "Journals"
 	       << "Magazines"
 	       << "Music CDs"
+	       << "Photograph Collections"
 	       << "Video Games";
       tmplist2 << tr("All")
 	       << tr("All Available")
@@ -7875,6 +7878,7 @@ void qtbook::prepareFilter(void)
 	       << tr("Journals")
 	       << tr("Magazines")
 	       << tr("Music CDs")
+	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
   else if(roles.isEmpty() ||
@@ -7891,6 +7895,7 @@ void qtbook::prepareFilter(void)
 	       << "Journals"
 	       << "Magazines"
 	       << "Music CDs"
+	       << "Photograph Collections"
 	       << "Video Games";
       tmplist2 << tr("All")
 	       << tr("All Available")
@@ -7902,6 +7907,7 @@ void qtbook::prepareFilter(void)
 	       << tr("Journals")
 	       << tr("Magazines")
 	       << tr("Music CDs")
+	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
   else
@@ -7913,6 +7919,7 @@ void qtbook::prepareFilter(void)
 	       << "Journals"
 	       << "Magazines"
 	       << "Music CDs"
+	       << "Photograph Collections"
 	       << "Video Games";
       tmplist2 << tr("All")
 	       << tr("All Available")
@@ -7921,6 +7928,7 @@ void qtbook::prepareFilter(void)
 	       << tr("Journals")
 	       << tr("Magazines")
 	       << tr("Music CDs")
+	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
 

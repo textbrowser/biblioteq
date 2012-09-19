@@ -316,7 +316,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -371,6 +371,7 @@
      <addaction name="action_Journal"/>
      <addaction name="action_Magazine"/>
      <addaction name="actionMusic_CD"/>
+     <addaction name="action_Photograph_Collection"/>
      <addaction name="action_Video_Game"/>
     </widget>
     <addaction name="menu_Add_Item"/>
@@ -1106,6 +1107,11 @@
    </property>
    <property name="text">
     <string>Dutch (&amp;Netherlands)</string>
+   </property>
+  </action>
+  <action name="action_Photograph_Collection">
+   <property name="text">
+    <string>&amp;Photograph Collection</string>
    </property>
   </action>
  </widget>

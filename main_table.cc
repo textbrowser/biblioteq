@@ -110,50 +110,6 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Type"));
       list.append("MYOID");
     }
-  else if(type == "Video Games")
-    {
-      list.append(tr("Title"));
-      list.append(tr("Game Rating"));
-      list.append(tr("Platform"));
-      list.append(tr("Mode"));
-      list.append(tr("Publisher"));
-      list.append(tr("Release Date"));
-      list.append(tr("Place of Publication"));
-      list.append(tr("Genres"));
-      list.append(tr("Language"));
-      list.append(tr("UPC"));
-      list.append(tr("Price"));
-      list.append(tr("Monetary Units"));
-      list.append(tr("Quantity"));
-      list.append(tr("Location"));
-      list.append(tr("Availability"));
-      list.append(tr("Total Reserved"));
-      list.append(tr("Type"));
-      list.append("MYOID");
-    }
-  else if(type == "Music CDs")
-    {
-      list.append(tr("Title"));
-      list.append(tr("Artist"));
-      list.append(tr("Format"));
-      list.append(tr("Recording Label"));
-      list.append(tr("Release Date"));
-      list.append(tr("Number of Discs"));
-      list.append(tr("Runtime"));
-      list.append(tr("Categories"));
-      list.append(tr("Language"));
-      list.append(tr("Catalog Number"));
-      list.append(tr("Price"));
-      list.append(tr("Monetary Units"));
-      list.append(tr("Quantity"));
-      list.append(tr("Location"));
-      list.append(tr("Audio"));
-      list.append(tr("Recording Type"));
-      list.append(tr("Availability"));
-      list.append(tr("Total Reserved"));
-      list.append(tr("Type"));
-      list.append("MYOID");
-    }
   else if(type == "DVDs")
     {
       list.append(tr("Title"));
@@ -195,6 +151,58 @@ void main_table::setColumns(const QString &username,
       list.append(tr("LC Control Number"));
       list.append(tr("Call Number"));
       list.append(tr("Dewey Number"));
+      list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
+      list.append(tr("Type"));
+      list.append("MYOID");
+    }
+  else if(type == "Music CDs")
+    {
+      list.append(tr("Title"));
+      list.append(tr("Artist"));
+      list.append(tr("Format"));
+      list.append(tr("Recording Label"));
+      list.append(tr("Release Date"));
+      list.append(tr("Number of Discs"));
+      list.append(tr("Runtime"));
+      list.append(tr("Categories"));
+      list.append(tr("Language"));
+      list.append(tr("Catalog Number"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
+      list.append(tr("Audio"));
+      list.append(tr("Recording Type"));
+      list.append(tr("Availability"));
+      list.append(tr("Total Reserved"));
+      list.append(tr("Type"));
+      list.append("MYOID");
+    }
+  else if(type == "Photograph Collections")
+    {
+      list.append(tr("ID"));
+      list.append(tr("Title"));
+      list.append(tr("About"));
+      list.append(tr("Type"));
+      list.append("MYOID");
+    }
+  else if(type == "Video Games")
+    {
+      list.append(tr("Title"));
+      list.append(tr("Game Rating"));
+      list.append(tr("Platform"));
+      list.append(tr("Mode"));
+      list.append(tr("Publisher"));
+      list.append(tr("Release Date"));
+      list.append(tr("Place of Publication"));
+      list.append(tr("Genres"));
+      list.append(tr("Language"));
+      list.append(tr("UPC"));
+      list.append(tr("Price"));
+      list.append(tr("Monetary Units"));
+      list.append(tr("Quantity"));
+      list.append(tr("Location"));
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
