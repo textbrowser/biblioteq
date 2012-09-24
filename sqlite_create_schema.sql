@@ -246,7 +246,7 @@ CREATE TABLE photograph_collection
 	notes		 TEXT,
 	image		 BYTEA,
 	image_scaled	 BYTEA,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+	type		 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection'
 );
 
 CREATE TABLE photograph
@@ -385,7 +385,7 @@ FROM	 item_borrower;
 CREATE TABLE locations
 (
 	location	 TEXT NOT NULL,
-	type		 VARCHAR(16),
+	type		 VARCHAR(32),
 	PRIMARY KEY(location, type)
 );
 

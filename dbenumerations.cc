@@ -743,6 +743,14 @@ void dbenumerations::slotSave(void)
 		  {
 		    query.prepare("INSERT INTO locations "
 				  "(location, type) VALUES "
+				  "(?, 'Photograph Collection')");
+		    query.bindValue(0,
+				    tablewidget->item(j, 1)->text().trimmed());
+		  }
+		else if(index == 6)
+		  {
+		    query.prepare("INSERT INTO locations "
+				  "(location, type) VALUES "
 				  "(?, 'Video Game')");
 		    query.bindValue(0,
 				    tablewidget->item(j, 1)->text().trimmed());

@@ -898,6 +898,8 @@ GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH AD
 
 /* Release 6.59 */
 
+ALTER TABLE locations ALTER COLUMN type TYPE VARCHAR(32);
+
 CREATE TABLE photograph_collection
 (
 	id		 TEXT PRIMARY KEY NOT NULL,
@@ -907,7 +909,7 @@ CREATE TABLE photograph_collection
 	notes		 TEXT,
 	image		 BYTEA,
 	image_scaled	 BYTEA,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+	type		 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection'
 );
 
 CREATE TABLE photograph

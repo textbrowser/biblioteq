@@ -2071,6 +2071,17 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
     {
       QSqlQuery query(db);
 
+      query.exec("CREATE TABLE locations_backup "
+		 "("
+		 "location	 TEXT NOT NULL, "
+		 "type		 VARCHAR(32), "
+		 "PRIMARY KEY(location, type) "
+		 ")");
+      query.exec("INSERT INTO locations_backup SELECT "
+		 "location, "
+		 "type FROM locations");
+      query.exec("DROP TABLE locations");
+      query.exec("ALTER TABLE locations_backup RENAME TO locations");
       query.exec("CREATE TABLE photograph_collection "
 		 "("
 		 "id             TEXT PRIMARY KEY NOT NULL, "
@@ -2080,7 +2091,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		 "notes		 TEXT, "
 		 "image		 BYTEA, "
 		 "image_scaled	 BYTEA, "
-		 "type		 VARCHAR(16) NOT NULL DEFAULT "
+		 "type		 VARCHAR(32) NOT NULL DEFAULT "
 		 "'Photograph Collection' "
 		 ")");
       query.exec("CREATE TABLE photograph "

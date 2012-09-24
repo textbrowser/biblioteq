@@ -627,6 +627,19 @@ ALTER TABLE member ADD memberclass TEXT;
 
 /* Release 6.59 */
 
+CREATE TABLE locations_backup
+(
+	location	 TEXT NOT NULL,
+	type		 VARCHAR(32),
+	PRIMARY KEY(location, type)
+);
+
+INSERT INTO locations_backup SELECT
+location,
+type FROM locations;
+DROP TABLE locations;
+ALTER TABLE locations_backup RENAME TO locations;
+
 CREATE TABLE photograph_collection
 (
 	id		 TEXT PRIMARY KEY NOT NULL,
@@ -636,7 +649,7 @@ CREATE TABLE photograph_collection
 	notes		 TEXT,
 	image		 BYTEA,
 	image_scaled	 BYTEA,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Photograph Collection'
+	type		 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection'
 );
 
 CREATE TABLE photograph
@@ -663,4 +676,3 @@ CREATE TABLE photograph
 	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
 				    DELETE CASCADE
 );
-
