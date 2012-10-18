@@ -26,20 +26,6 @@
 */
 
 /*
-** -- C Includes --
-*/
-
-extern "C"
-{
-#include <math.h>
-#ifdef Q_OS_WIN32
-#include "sqlite3/sqlite3.h"
-#else
-#include <sqlite3.h>
-#endif
-}
-
-/*
 ** -- Qt Includes --
 */
 
@@ -56,6 +42,20 @@ extern "C"
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QDesktopWidget>
+
+/*
+** -- C Includes --
+*/
+
+extern "C"
+{
+#include <math.h>
+#ifdef Q_OS_WIN32
+#include <sqlite3/sqlite3.h>
+#else
+#include <sqlite3.h>
+#endif
+}
 
 /*
 ** -- Local Includes --
