@@ -33,7 +33,8 @@ file /r .\release\plugins
 
 file /r .\release\translations.d
 file .\release\*.dll
-file .\libraries.win32.d\*.d\*.dll
+file .\libraries.win32.d\sqlite3.d\*.dll
+file .\libraries.win32.d\yaz.d\*.dll
 file .\sqlite3.exe
 file .\release\BiblioteQ.exe
 
