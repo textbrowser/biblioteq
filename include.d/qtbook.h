@@ -381,7 +381,9 @@ class qtbook: public QMainWindow
   void slotShowCustomQuery(void);
   void slotShowErrorDialog(void);
   void slotVideoGameSearch(void);
+  void slotInsertPhotograph(void);
   void slotListOverdueItems(void);
+  void slotPhotographSearch(void);
   void slotRefreshAdminList(void);
   void slotResetLoginDialog(void);
   void slotShowConnectionDB(void);

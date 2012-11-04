@@ -8615,3 +8615,19 @@ void qtbook::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
+
+/*
+** -- slotInsertPhotograph() --
+*/
+
+void qtbook::slotInsertPhotograph(void)
+{
+}
+
+/*
+** -- slotPhotographSearch() --
+*/
+
+void qtbook::slotPhotographSearch(void)
+{
+}
