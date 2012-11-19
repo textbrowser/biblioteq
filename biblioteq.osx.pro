@@ -56,6 +56,7 @@ HEADERS		= include.d/bgraphicsscene.h \
 		  include.d/qtbook.h \
 		  include.d/qtbook_item.h \
 		  include.d/qtbook_magazine.h \
+		  include.d/qtbook_photographcollection.h \
 		  include.d/qtbook_videogame.h \
 		  include.d/z3950results.h
 
@@ -79,6 +80,7 @@ SOURCES		= bgraphicsscene.cc \
 		  qtbook_item.cc \
 		  qtbook_journal.cc \
 		  qtbook_magazine.cc \
+		  qtbook_photographcollection.cc \
 		  qtbook_videogame.cc \
 		  z3950results.cc
 

@@ -369,6 +369,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertMag(void)));
+  connect(ui.action_Photograph_Collection,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotInsertPhotograph(void)));
   connect(ui.action_Video_Game,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -1291,6 +1295,7 @@ void qtbook::slotModify(void)
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   qtbook_videogame *videogame = 0;
+  qtbook_photographcollection *photograph = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
@@ -1326,6 +1331,7 @@ void qtbook::slotModify(void)
       journal = 0;
       magazine = 0;
       videogame = 0;
+      photograph = 0;
 
       if(type.toLower() == "cd")
 	{
@@ -1424,6 +1430,27 @@ void qtbook::slotModify(void)
 	  if(magazine)
 	    magazine->modify(EDITABLE);
 	}
+      else if(type.toLower() == "photograph collection")
+	{
+	  foreach(QWidget *w, qapp->topLevelWidgets())
+	    {
+	      qtbook_photographcollection *p =
+		qobject_cast<qtbook_photographcollection *> (w);
+
+	      if(p && p->getID() == oid)
+		{
+		  photograph = p;
+		  break;
+		}
+	    }
+
+	  if(!photograph)
+	    photograph = new(std::nothrow) qtbook_photographcollection
+	      (this, oid, i);
+
+	  if(photograph)
+	    photograph->modify(EDITABLE);
+	}
       else if(type.toLower() == "video game")
 	{
 	  foreach(QWidget *w, qapp->topLevelWidgets())
@@ -1477,6 +1504,7 @@ void qtbook::slotViewDetails(void)
   qtbook_magazine *magazine = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
   qtbook_videogame *videogame = 0;
+  qtbook_photographcollection *photograph = 0;
 
   if(list.isEmpty())
     {
@@ -1509,6 +1537,7 @@ void qtbook::slotViewDetails(void)
       journal = 0;
       magazine = 0;
       videogame = 0;
+      photograph = 0;
 
       if(type.toLower() == "cd")
 	{
@@ -1605,6 +1634,27 @@ void qtbook::slotViewDetails(void)
 
 	  if(magazine)
 	    magazine->modify(VIEW_ONLY);
+	}
+      else if(type.toLower() == "photograph collection")
+	{
+	  foreach(QWidget *w, qapp->topLevelWidgets())
+	    {
+	      qtbook_photographcollection *p =
+		qobject_cast<qtbook_photographcollection *> (w);
+
+	      if(p && p->getID() == oid)
+		{
+		  photograph = p;
+		  break;
+		}
+	    }
+
+	  if(!photograph)
+	    photograph = new(std::nothrow) qtbook_photographcollection
+	      (this, oid, i);
+
+	  if(photograph)
+	    photograph->modify(VIEW_ONLY);
 	}
       else if(type.toLower() == "video game")
 	{
@@ -5159,6 +5209,15 @@ void qtbook::replaceMagazine(const QString &id, qtbook_magazine *magazine)
 }
 
 /*
+** -- removePhotographCollection() --
+*/
+
+void qtbook::removePhotographCollection(qtbook_photographcollection *pc)
+{
+  Q_UNUSED(pc);
+}
+
+/*
 ** -- removeVideoGame() --
 */
 
@@ -5353,6 +5412,23 @@ void qtbook::slotInsertMag(void)
 
   if(magazine)
     magazine->insert();
+}
+
+/*
+** -- slotInsertPhotograph() --
+*/
+
+void qtbook::slotInsertPhotograph(void)
+{
+  QString id("");
+  qtbook_photographcollection *photograph = 0;
+
+  m_idCt += 1;
+  id = QString("insert_%1").arg(m_idCt);
+  photograph = new(std::nothrow) qtbook_photographcollection(this, id, -1);
+
+  if(photograph)
+    photograph->insert();
 }
 
 /*
@@ -5677,6 +5753,53 @@ void qtbook::slotMagSearch(void)
     {
       magazine->raise();
       magazine->search();
+    }
+}
+
+/*
+** -- pcSearch() --
+*/
+
+void qtbook::pcSearch(const QString &field, const QString &value)
+{
+  qtbook_photographcollection *photograph =
+    new(std::nothrow) qtbook_photographcollection(this, "", -1);
+
+  if(photograph)
+    {
+      photograph->search(field, value);
+      photograph->deleteLater();
+    }
+}
+
+/*
+** -- slotPhotographSearch() --
+*/
+
+void qtbook::slotPhotographSearch(void)
+{
+  qtbook_photographcollection *photograph = 0;
+
+  foreach(QWidget *w, qapp->topLevelWidgets())
+    {
+      qtbook_photographcollection *p =
+	qobject_cast<qtbook_photographcollection *> (w);
+
+      if(p && p->getID() == "search")
+	{
+	  photograph = p;
+	  break;
+	}
+    }
+
+  if(!photograph)
+    photograph = new(std::nothrow) qtbook_photographcollection
+      (this, "search", -1);
+
+  if(photograph)
+    {
+      photograph->raise();
+      photograph->search();
     }
 }
 
@@ -8614,20 +8737,4 @@ void qtbook::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
-}
-
-/*
-** -- slotInsertPhotograph() --
-*/
-
-void qtbook::slotInsertPhotograph(void)
-{
-}
-
-/*
-** -- slotPhotographSearch() --
-*/
-
-void qtbook::slotPhotographSearch(void)
-{
 }

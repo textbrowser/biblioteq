@@ -47,13 +47,7 @@ using namespace std;
 #include "callnum_table_item.h"
 #include "numeric_table_item.h"
 #include "ui_members_browser.h"
-
-class qtbook_cd;
-class qtbook_dvd;
-class qtbook_book;
-class qtbook_journal;
-class qtbook_magazine;
-class qtbook_videogame;
+#include "qtbook_photographcollection.h"
 
 class qtbook: public QMainWindow
 {
@@ -216,6 +210,7 @@ class qtbook: public QMainWindow
   void removeCD(qtbook_cd *);
   void showMain(void);
   void cdSearch(const QString &, const QString &);
+  void pcSearch(const QString &, const QString &);
   void vgSearch(const QString &, const QString &);
   void dvdSearch(const QString &, const QString &);
   void magSearch(const QString &, const QString &);
@@ -238,6 +233,7 @@ class qtbook: public QMainWindow
   void updateItemWindows(void);
   void updateMembersBrowser(void);
   void updateMembersBrowser(const QString &);
+  void removePhotographCollection(qtbook_photographcollection *);
   void updateReservationHistoryBrowser(const QString &, const QString &,
 				       const QString &, const QString &,
 				       const QString &);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>informationDialog</class>
- <widget class="QMainWindow" name="informationDialog">
+ <class>pcDialog</class>
+ <widget class="QMainWindow" name="pcDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-162</y>
+         <y>0</y>
          <width>1094</width>
-         <height>1082</height>
+         <height>1090</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -167,7 +167,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QGroupBox" name="specificGroup">
+          <widget class="QGroupBox" name="collectionGroup">
            <property name="title">
             <string>Collection Items</string>
            </property>
@@ -271,13 +271,13 @@
             </item>
            </layout>
           </widget>
-          <widget class="QGroupBox" name="generalGroup">
+          <widget class="QGroupBox" name="itemGroup">
            <property name="title">
             <string>Item Information</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="image_drop_site" name="thumbnail_collection_2">
+             <widget class="image_drop_site" name="thumbnail_item">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -483,34 +483,8 @@
                 </property>
                </widget>
               </item>
-              <item row="12" column="1">
-               <widget class="hyperlinked_text_edit" name="subjects_item">
-                <property name="readOnly">
-                 <bool>false</bool>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                </property>
-                <property name="openLinks">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
               <item row="5" column="1">
                <widget class="QLineEdit" name="medium_item"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="hyperlinked_text_edit" name="creators_item">
-                <property name="readOnly">
-                 <bool>false</bool>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                </property>
-                <property name="openLinks">
-                 <bool>false</bool>
-                </property>
-               </widget>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_13">
@@ -523,19 +497,6 @@
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>Format</string>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="1">
-               <widget class="hyperlinked_text_edit" name="format_item">
-                <property name="readOnly">
-                 <bool>false</bool>
-                </property>
-                <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-                </property>
-                <property name="openLinks">
-                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -589,6 +550,36 @@
               </item>
               <item row="0" column="1">
                <widget class="QLineEdit" name="id_item"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QTextEdit" name="creators_item">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="1">
+               <widget class="QTextEdit" name="subjects_item">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="1">
+               <widget class="QTextEdit" name="format_item">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -708,11 +699,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>hyperlinked_text_edit</class>
-   <extends>QTextBrowser</extends>
-   <header>hyperlinked_text_edit.h</header>
-  </customwidget>
-  <customwidget>
    <class>image_drop_site</class>
    <extends>QGraphicsView</extends>
    <header>image_drop_site.h</header>
@@ -729,7 +715,7 @@
   <tabstop>graphicsView</tabstop>
   <tabstop>previousPageButton</tabstop>
   <tabstop>nextPageButton</tabstop>
-  <tabstop>thumbnail_collection_2</tabstop>
+  <tabstop>thumbnail_item</tabstop>
   <tabstop>select_image_item</tabstop>
   <tabstop>id_item</tabstop>
   <tabstop>title_item</tabstop>
