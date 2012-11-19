@@ -1970,6 +1970,7 @@ void qtbook::slotResizeColumns(void)
 {
   qapp->setOverrideCursor(Qt::WaitCursor);
   ui.table->resizeColumnsToContents();
+  ui.table->horizontalHeader()->setStretchLastSection(true);
   qapp->restoreOverrideCursor();
 }
 

@@ -21,6 +21,7 @@ main_table::main_table(QWidget *parent):QTableWidget(parent)
   horizontalHeader()->setMovable(true);
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
+  horizontalHeader()->setStretchLastSection(true);
   verticalHeader()->setResizeMode(QHeaderView::Fixed);
 }
 
@@ -181,8 +182,8 @@ void main_table::setColumns(const QString &username,
     }
   else if(type == "Photograph Collections")
     {
-      list.append(tr("ID"));
       list.append(tr("Title"));
+      list.append(tr("ID"));
       list.append(tr("About"));
       list.append(tr("Type"));
       list.append("MYOID");
@@ -269,6 +270,7 @@ void main_table::resetTable(const QString &username, const QString &type,
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   resizeColumnsToContents();
+  horizontalHeader()->setStretchLastSection(true);
   clearSelection();
   setCurrentItem(0);
 }
