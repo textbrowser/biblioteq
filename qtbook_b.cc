@@ -2951,7 +2951,8 @@ int qtbook::populateTable(const int search_type_arg,
 	  {
 	    item = 0;
 
-	    if(query.record().fieldName(j) != "front_cover")
+	    if(query.record().fieldName(j) != "front_cover" &&
+	       query.record().fieldName(j) != "image_scaled")
 	      {
 		if(query.record().fieldName(j).contains("date") ||
 		   query.record().fieldName(j).contains("membersince"))
@@ -2998,7 +2999,8 @@ int qtbook::populateTable(const int search_type_arg,
 		str = query.value(j).toString();
 		item = new(std::nothrow) callnum_table_item(str);
 	      }
-	    else if(query.record().fieldName(j) == "front_cover")
+	    else if(query.record().fieldName(j) == "front_cover" ||
+		    query.record().fieldName(j) == "image_scaled")
 	      {
 		QIcon icon;
 		QImage image;
@@ -3057,7 +3059,8 @@ int qtbook::populateTable(const int search_type_arg,
 		if(query.record().fieldName(j) == "myoid")
 		  updateRows(str, i, itemType);
 	      }
-	    else if(query.record().fieldName(j) != "front_cover")
+	    else if(query.record().fieldName(j) != "front_cover" &&
+		    query.record().fieldName(j) != "image_scaled")
 	      addError(QString(tr("Memory Error")),
 		       QString(tr("Unable to allocate "
 				  "memory for the \"item\" "
