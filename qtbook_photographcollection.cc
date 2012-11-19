@@ -29,8 +29,6 @@ qtbook_photographcollection::qtbook_photographcollection
  const int rowArg):QMainWindow()
 {
   QMenu *menu = 0;
-  QRegExp rx("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-	     "[0-9][0-9]");
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
@@ -166,7 +164,6 @@ void qtbook_photographcollection::updateWindow(const int state)
       engWindowTitle = "View";
     }
 
-  pc.thumbnail_collection->setVisible(true);
   setWindowTitle(str);
 }
 
@@ -194,6 +191,18 @@ void qtbook_photographcollection::modify(const int state)
 	(pc.id_collection, QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(pc.title_collection, QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.id_item, QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.title_item, QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.creators_item->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.medium_item, QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.reproduction_number_item->viewport(), QColor(255, 248, 220));
+      misc_functions::highlightWidget
+	(pc.copyright_item->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -221,7 +230,6 @@ void qtbook_photographcollection::modify(const int state)
 
 void qtbook_photographcollection::insert(void)
 {
-  slotReset();
   pc.okButton->setText(tr("&Save"));
   pc.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -229,6 +237,18 @@ void qtbook_photographcollection::insert(void)
     (pc.id_collection, QColor(255, 248, 220));
   misc_functions::highlightWidget
     (pc.title_collection, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.id_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.title_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.creators_item->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.medium_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.reproduction_number_item->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (pc.copyright_item->viewport(), QColor(255, 248, 220));
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   engWindowTitle = "Create";
   pc.id_collection->setFocus();
