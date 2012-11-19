@@ -3353,6 +3353,24 @@ void qtbook::slotDisplaySummary(void)
 	    (ui.table, i, tr("Place of Publication"));
 	  summary += "<br>";
 	}
+      else if(type == "Photograph Collection")
+	{
+	  summary += "<b>" +
+	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
+	    "</b>";
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString(ui.table, i, tr("ID"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString(ui.table, i,
+						     tr("ID Number"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	}
       else if(type == "Video Game")
 	{
 	  summary += "<b>" +
@@ -5519,6 +5537,20 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
 	    }
 	}
     }
+  else if(itemType == "photographcollection")
+    {
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_photographcollection *photograph =
+	    qobject_cast<qtbook_photographcollection *> (w);
+
+	  if(photograph && photograph->getID() == oid)
+	    {
+	      removePhotographCollection(photograph);
+	      break;
+	    }
+	}
+    }
   else if(itemType == "videogame")
     {
       foreach(QWidget *w, qapp->topLevelWidgets())
@@ -5921,6 +5953,20 @@ void qtbook::updateRows(const QString &oid, const int row,
 	    }
 	}
     }
+  else if(itemType == "photographcollection")
+    {
+      foreach(QWidget *w, qapp->topLevelWidgets())
+	{
+	  qtbook_photographcollection *photograph =
+	    qobject_cast<qtbook_photographcollection *> (w);
+
+	  if(photograph && photograph->getID() == oid)
+	    {
+	      photograph->updateRow(row);
+	      break;
+	    }
+	}
+    }
   else if(itemType == "videogame")
     {
       foreach(QWidget *w, qapp->topLevelWidgets())
@@ -6185,6 +6231,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "member_history"
 	     << "minimum_days"
 	     << "monetary_units"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
@@ -6215,6 +6263,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "member_history"
 	     << "minimum_days"
 	     << "monetary_units"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
@@ -6245,6 +6295,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "member_history"
 	     << "minimum_days"
 	     << "monetary_units"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
@@ -6272,6 +6324,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "magazine_copy_info"
 	     << "minimum_days"
 	     << "monetary_units"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
@@ -6299,6 +6353,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "member"
 	     << "minimum_days"
 	     << "monetary_units"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
@@ -6315,6 +6371,8 @@ void qtbook::slotShowCustomQuery(void)
 	     << "journal_copy_info"
 	     << "magazine"
 	     << "magazine_copy_info"
+	     << "photograph"
+	     << "photograph_collection"
 	     << "videogame"
 	     << "videogame_copy_info";
 
@@ -8520,6 +8578,7 @@ void qtbook::slotDuplicate(void)
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   qtbook_videogame *video_game = 0;
+  qtbook_photographcollection *photograph = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
 
   if(list.isEmpty())
@@ -8590,6 +8649,14 @@ void qtbook::slotDuplicate(void)
 
 	  if(magazine)
 	    magazine->duplicate(id, EDITABLE);
+	}
+      else if(type.toLower() == "photograph collection")
+	{
+	  photograph = new(std::nothrow) qtbook_photographcollection
+	    (this, oid, i);
+
+	  if(photograph)
+	    photograph->duplicate(id, EDITABLE);
 	}
       else if(type.toLower() == "video game")
 	{
