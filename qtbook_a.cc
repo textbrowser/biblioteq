@@ -414,7 +414,7 @@ qtbook::qtbook(void):QMainWindow()
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   branch_diag->setModal(true);
-  connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
+  connect(ui.table->horizontalHeader(), SIGNAL(sectionPressed(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  this, SLOT(slotUpdateIndicesAfterSort(int)));
@@ -1925,6 +1925,8 @@ void qtbook::slotResizeColumnsAfterSort(void)
       qapp->setOverrideCursor(Qt::WaitCursor);
       parent = object->parent();
       (static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
+      (static_cast<QTableWidget *> (parent))->horizontalHeader()->
+	setStretchLastSection(true);
       qapp->restoreOverrideCursor();
     }
 }
