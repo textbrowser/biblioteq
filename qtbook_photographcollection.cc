@@ -474,6 +474,43 @@ void qtbook_photographcollection::slotQuery(void)
 
 void qtbook_photographcollection::slotPrint(void)
 {
+  html = "";
+  html += "<b>" + tr("Collection ID:") + "</b> " +
+    pc.id_collection->text().trimmed() + "<br>";
+  html += "<b>" + tr("Collection Title:") + "</b> " +
+    pc.title_collection->text().trimmed() + "<br>";
+  html += "<b>" + tr("About:") + "</b> " +
+    pc.about_collection->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Collection Nodes:") + "</b> " +
+    pc.notes_collection->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item ID:") + "</b> " +
+    pc.id_item->text().trimmed() + "<br>";
+  html += "<b>" + tr("Item Title:") + "</b> " +
+    pc.title_item->text().trimmed() + "<br>";
+  html += "<b>" + tr("Item Creator(s):") + "</b> " +
+    pc.creators_item->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Publication Date:") + "</b> " +
+    pc.publication_date->date().toString(Qt::SystemLocaleShortDate) + "<br>";
+  html += "<b>" + tr("Item Copies:") + "</b> " +
+    pc.quantity->text() + "<br>";
+  html += "<b>" + tr("Item Medium:") + "</b> " +
+    pc.medium_item->text().trimmed() + "<br>";
+  html += "<b>" + tr("Item Reproduction Number:") + "</b> " +
+    pc.reproduction_number_item->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Copyright:") + "</b> " +
+    pc.copyright_item->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Call Number:") + "</b> " +
+    pc.call_number_item->text().trimmed() + "<br>";
+  html += "<b>" + tr("Item Other Number:") + "</b> " +
+    pc.other_number_item->text().trimmed() + "<br>";
+  html += "<b>" + tr("Item Location:") + "</b> " +
+    pc.location->currentText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Notes:") + "</b> " +
+    pc.notes_item->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Subjects:") + "</b> " +
+    pc.subjects_item->toPlainText().trimmed() + "<br>";
+  html += "<b>" + tr("Item Format:") + "</b> " +
+    pc.format_item->toPlainText().trimmed() + "<br>";
   print(this);
 }
 
