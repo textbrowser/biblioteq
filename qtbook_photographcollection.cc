@@ -320,6 +320,79 @@ void qtbook_photographcollection::slotReset(void)
 	  pc.notes_collection->clear();
 	  pc.notes_collection->setFocus();
 	}
+      else if(action == actions[5])
+	pc.thumbnail_item->clear();
+      else if(action == actions[6])
+	{
+	  pc.id_item->clear();
+	  pc.id_item->setFocus();
+	}
+      else if(action == actions[7])
+	{
+	  pc.title_item->clear();
+	  pc.title_item->setFocus();
+	}
+      else if(action == actions[8])
+	{
+	  pc.creators_item->clear();
+	  pc.creators_item->setFocus();
+	}
+      else if(action == actions[9])
+	{
+	  pc.publication_date->setDate
+	    (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	  pc.publication_date->setFocus();
+	}
+      else if(action == actions[10])
+	{
+	  pc.quantity->setValue(1);
+	  pc.quantity->setFocus();
+	}
+      else if(action == actions[11])
+	{
+	  pc.medium_item->clear();
+	  pc.medium_item->setFocus();
+	}
+      else if(action == actions[12])
+	{
+	  pc.reproduction_number_item->clear();
+	  pc.reproduction_number_item->setFocus();
+	}
+      else if(action == actions[13])
+	{
+	  pc.copyright_item->clear();
+	  pc.copyright_item->setFocus();
+	}
+      else if(action == actions[14])
+	{
+	  pc.call_number_item->clear();
+	  pc.call_number_item->setFocus();
+	}
+      else if(action == actions[15])
+	{
+	  pc.other_number_item->clear();
+	  pc.other_number_item->setFocus();
+	}
+      else if(action == actions[16])
+	{
+	  pc.location->setCurrentIndex(0);
+	  pc.location->setFocus();
+	}
+      else if(action == actions[17])
+	{
+	  pc.notes_item->clear();
+	  pc.notes_item->setFocus();
+	}
+      else if(action == actions[18])
+	{
+	  pc.subjects_item->clear();
+	  pc.subjects_item->setFocus();
+	}
+      else if(action == actions[19])
+	{
+	  pc.format_item->clear();
+	  pc.format_item->setFocus();
+	}
 
       actions.clear();
     }
@@ -334,6 +407,22 @@ void qtbook_photographcollection::slotReset(void)
       pc.title_collection->clear();
       pc.about_collection->clear();
       pc.notes_collection->clear();
+      pc.thumbnail_item->clear();
+      pc.id_item->clear();
+      pc.title_item->clear();
+      pc.creators_item->clear();
+      pc.publication_date->setDate
+	(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+      pc.quantity->setValue(1);
+      pc.medium_item->clear();
+      pc.reproduction_number_item->clear();
+      pc.copyright_item->clear();
+      pc.call_number_item->clear();
+      pc.other_number_item->clear();
+      pc.location->setCurrentIndex(0);
+      pc.notes_item->clear();
+      pc.subjects_item->clear();
+      pc.format_item->clear();
       pc.id_collection->setFocus();
     }
 }

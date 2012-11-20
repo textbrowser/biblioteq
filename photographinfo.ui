@@ -391,7 +391,7 @@
                </widget>
               </item>
               <item row="8" column="1">
-               <widget class="QLineEdit" name="callnum_item">
+               <widget class="QLineEdit" name="call_number_item">
                 <property name="maxLength">
                  <number>64</number>
                 </property>
@@ -725,7 +725,7 @@
   <tabstop>medium_item</tabstop>
   <tabstop>reproduction_number_item</tabstop>
   <tabstop>copyright_item</tabstop>
-  <tabstop>callnum_item</tabstop>
+  <tabstop>call_number_item</tabstop>
   <tabstop>other_number_item</tabstop>
   <tabstop>location</tabstop>
   <tabstop>notes_item</tabstop>
