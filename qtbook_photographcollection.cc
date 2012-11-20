@@ -153,6 +153,7 @@ void qtbook_photographcollection::search
 {
   Q_UNUSED(field);
   Q_UNUSED(value);
+  pc.addItemButton->setVisible(false);
   pc.thumbnail_collection->setVisible(false);
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
@@ -180,6 +181,7 @@ void qtbook_photographcollection::updateWindow(const int state)
   if(state == qtbook::EDITABLE)
     {
       pc.okButton->setVisible(true);
+      pc.addItemButton->setVisible(true);
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
@@ -188,6 +190,7 @@ void qtbook_photographcollection::updateWindow(const int state)
   else
     {
       pc.okButton->setVisible(false);
+      pc.addItemButton->setVisible(false);
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
 	pc.id_collection->text() + tr(")");
@@ -214,6 +217,7 @@ void qtbook_photographcollection::modify(const int state)
       setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
       engWindowTitle = "Modify";
       pc.okButton->setVisible(true);
+      pc.addItemButton->setEnabled(true);
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
       pc.select_image_item->setVisible(true);
@@ -239,6 +243,7 @@ void qtbook_photographcollection::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
       engWindowTitle = "View";
       pc.okButton->setVisible(false);
+      pc.addItemButton->setEnabled(false);
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
       pc.select_image_item->setVisible(false);
@@ -261,6 +266,7 @@ void qtbook_photographcollection::modify(const int state)
 void qtbook_photographcollection::insert(void)
 {
   pc.okButton->setText(tr("&Save"));
+  pc.addItemButton->setEnabled(false);
   pc.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
   misc_functions::highlightWidget

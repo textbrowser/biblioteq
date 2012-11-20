@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-226</y>
          <width>1094</width>
          <height>1090</height>
         </rect>
@@ -630,6 +630,29 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="addItemButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Add Item</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
@@ -732,6 +755,7 @@
   <tabstop>subjects_item</tabstop>
   <tabstop>format_item</tabstop>
   <tabstop>okButton</tabstop>
+  <tabstop>addItemButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
