@@ -1836,8 +1836,12 @@ void qtbook::slotDelete(void)
 	continue;
 
       str = ui.table->item(i, col)->text();
-      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
-      itemType = itemType.toLower().remove(" ");
+      itemType = misc_functions::getColumnString(ui.table, i, tr("Type")).
+	toLower();
+
+      if(itemType != "photograph collection")
+	itemType = itemType.remove(" ");
+
       query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
       query.bindValue(0, str);
 
