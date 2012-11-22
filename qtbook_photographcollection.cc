@@ -206,7 +206,6 @@ void qtbook_photographcollection::updateWindow(const int state)
 
 void qtbook_photographcollection::modify(const int state)
 {
-  QString str = "";
   QString fieldname = "";
   QString searchstr = "";
   QVariant var;
@@ -254,7 +253,49 @@ void qtbook_photographcollection::modify(const int state)
       actions.clear();
     }
 
-  str = oid;
+  searchstr = "SELECT id, "
+    "title, "
+    "about, "
+    "nodes, "
+    "image "
+    "FROM "
+    "photograph_collection "
+    "WHERE myoid = ";
+  searchstr.append(oid);
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!query.exec(searchstr) || !query.next())
+    {
+      qapp->restoreOverrideCursor();
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to retrieve the selected photograph "
+				 "collection's data.")),
+		      query.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to retrieve the selected photograph "
+			       "collection's data."));
+      return;
+    }
+  else
+    {
+      qapp->restoreOverrideCursor();
+
+      for(int i = 0; i < query.record().count(); i++)
+	{
+	  var = query.record().field(i).value();
+	  fieldname = query.record().fieldName(i);
+
+	  if(fieldname == "title")
+	    pc.title_collection->setText(var.toString());
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	textfield->setCursorPosition(0);
+
+      storeData(this);
+      showNormal();
+    }
+
   pc.id_collection->setFocus();
   raise();
 }
