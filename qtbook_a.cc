@@ -1841,6 +1841,8 @@ void qtbook::slotDelete(void)
 
       if(itemType != "photograph collection")
 	itemType = itemType.remove(" ");
+      else
+	itemType = itemType.replace(" ", "_");
 
       query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
       query.bindValue(0, str);
