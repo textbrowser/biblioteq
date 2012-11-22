@@ -3431,8 +3431,10 @@ void qtbook::slotDisplaySummary(void)
       qapp->setOverrideCursor(Qt::WaitCursor);
       frontImage = misc_functions::getImage(oid, "front_cover", type,
 					    db);
-      backImage = misc_functions::getImage(oid, "back_cover", type,
-					   db);
+
+      if(type != "Photograph Collection")
+	backImage = misc_functions::getImage(oid, "back_cover", type,
+					     db);
 
       /*
       ** The size of no_image.png is 126x187.
@@ -3445,12 +3447,15 @@ void qtbook::slotDisplaySummary(void)
 	frontImage = frontImage.scaled
 	  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-      if(backImage.isNull())
-	backImage = QImage("icons.d/no_image.png");
+      if(type != "Photograph Collection")
+	{
+	  if(backImage.isNull())
+	    backImage = QImage("icons.d/no_image.png");
 
-      if(!backImage.isNull())
-	backImage = backImage.scaled
-	  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	  if(!backImage.isNull())
+	    backImage = backImage.scaled
+	      (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	}
 
       qapp->restoreOverrideCursor();
 
@@ -3462,13 +3467,16 @@ void qtbook::slotDisplaySummary(void)
       else
 	ui.frontImage->clear();
 
-      if(!backImage.isNull())
+      if(type != "Photograph Collection")
 	{
-	  ui.backImage->setVisible(true);
-	  ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	  if(!backImage.isNull())
+	    {
+	      ui.backImage->setVisible(true);
+	      ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	    }
+	  else
+	    ui.backImage->clear();
 	}
-      else
-	ui.backImage->clear();
     }
   else
     {

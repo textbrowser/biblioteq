@@ -256,7 +256,7 @@ void qtbook_photographcollection::modify(const int state)
   searchstr = "SELECT id, "
     "title, "
     "about, "
-    "nodes, "
+    "notes, "
     "image "
     "FROM "
     "photograph_collection "
@@ -285,8 +285,14 @@ void qtbook_photographcollection::modify(const int state)
 	  var = query.record().field(i).value();
 	  fieldname = query.record().fieldName(i);
 
-	  if(fieldname == "title")
+	  if(fieldname == "id")
+	    pc.id_collection->setText(var.toString());
+	  else if(fieldname == "title")
 	    pc.title_collection->setText(var.toString());
+	  else if(fieldname == "about")
+	    pc.about_collection->setPlainText(var.toString());
+	  else if(fieldname == "notes")
+	    pc.notes_collection->setPlainText(var.toString());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
