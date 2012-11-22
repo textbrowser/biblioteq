@@ -206,8 +206,9 @@ void qtbook_photographcollection::updateWindow(const int state)
 
 void qtbook_photographcollection::modify(const int state)
 {
-  QString fieldname = "";
-  QString searchstr = "";
+  QString str("");
+  QString fieldname("");
+  QString searchstr("");
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -286,7 +287,26 @@ void qtbook_photographcollection::modify(const int state)
 	  fieldname = query.record().fieldName(i);
 
 	  if(fieldname == "id")
-	    pc.id_collection->setText(var.toString());
+	    {
+	      pc.id_collection->setText(var.toString());
+
+	      if(state == qtbook::EDITABLE)
+		{
+		  str = QString
+		    (tr("BiblioteQ: Modify Photograph Collection Entry (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "Modify";
+		}
+	      else
+		{
+		  str = QString(tr("BiblioteQ: View Photograph Collection "
+				   "Details (")) +
+		    var.toString() + tr(")");
+		  engWindowTitle = "View";
+		}
+
+	      setWindowTitle(str);
+	    }
 	  else if(fieldname == "title")
 	    pc.title_collection->setText(var.toString());
 	  else if(fieldname == "about")
