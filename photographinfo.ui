@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-226</y>
-         <width>1094</width>
-         <height>1090</height>
+         <y>0</y>
+         <width>1096</width>
+         <height>1121</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -202,57 +202,14 @@
                </spacer>
               </item>
               <item>
-               <widget class="QToolButton" name="previousPageButton">
-                <property name="toolTip">
-                 <string>Previous Page</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/previous.png</normaloff>icons.d/16x16/previous.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>16</width>
-                  <height>16</height>
-                 </size>
-                </property>
-                <property name="autoRaise">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="pagesLabel">
+               <widget class="QLabel" name="label_16">
                 <property name="text">
-                 <string>1</string>
-                </property>
-                <property name="textFormat">
-                 <enum>Qt::RichText</enum>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <string>Page</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="nextPageButton">
-                <property name="toolTip">
-                 <string>Next Page</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/next.png</normaloff>icons.d/16x16/next.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>16</width>
-                  <height>16</height>
-                 </size>
-                </property>
-                <property name="autoRaise">
-                 <bool>true</bool>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="page"/>
               </item>
               <item>
                <spacer name="horizontalSpacer">
@@ -736,8 +693,7 @@
   <tabstop>about_collection</tabstop>
   <tabstop>notes_collection</tabstop>
   <tabstop>graphicsView</tabstop>
-  <tabstop>previousPageButton</tabstop>
-  <tabstop>nextPageButton</tabstop>
+  <tabstop>page</tabstop>
   <tabstop>thumbnail_item</tabstop>
   <tabstop>select_image_item</tabstop>
   <tabstop>id_item</tabstop>
