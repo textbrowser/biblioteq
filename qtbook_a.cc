@@ -3421,7 +3421,7 @@ void qtbook::slotDisplaySummary(void)
       tmpstr = misc_functions::getColumnString(ui.table, i,
 					       tr("Availability"));
 
-      if(!tmpstr.isEmpty())
+      if(!tmpstr.isEmpty() && type != "Photograph Collection")
 	{
 	  if(tmpstr.toInt() > 0)
 	    summary += tr("Available") + "<br>";

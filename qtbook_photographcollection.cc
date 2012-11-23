@@ -50,6 +50,10 @@ qtbook_photographcollection::qtbook_photographcollection
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
+  connect(pc.select_image_collection, SIGNAL(clicked(void)),
+	  this, SLOT(slotSelectImage(void)));
+  connect(pc.select_image_item, SIGNAL(clicked(void)),
+	  this, SLOT(slotSelectImage(void)));
   connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(pc.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
@@ -263,6 +267,7 @@ void qtbook_photographcollection::modify(const int state)
     "photograph_collection "
     "WHERE myoid = ";
   searchstr.append(oid);
+  pc.okButton->setText(tr("&Save"));
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(searchstr) || !query.next())
@@ -279,8 +284,6 @@ void qtbook_photographcollection::modify(const int state)
     }
   else
     {
-      qapp->restoreOverrideCursor();
-
       for(int i = 0; i < query.record().count(); i++)
 	{
 	  var = query.record().field(i).value();
@@ -313,7 +316,95 @@ void qtbook_photographcollection::modify(const int state)
 	    pc.about_collection->setPlainText(var.toString());
 	  else if(fieldname == "notes")
 	    pc.notes_collection->setPlainText(var.toString());
+	  else if(fieldname == "image")
+	    {
+	      if(!query.record().field(i).isNull())
+		{
+		  pc.thumbnail_collection->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray()));
+
+		  if(pc.thumbnail_collection->image.isNull())
+		    pc.thumbnail_collection->loadFromData(var.toByteArray());
+		}
+	    }
 	}
+
+      if(query.exec(QString("SELECT id, "
+			    "title, "
+			    "creators, "
+			    "pdate, "
+			    "quantity, "
+			    "medium, "
+			    "reproduction_number, "
+			    "copyright, "
+			    "callnumber, "
+			    "other_number, "
+			    "location, "
+			    "notes, "
+			    "subjects, "
+			    "format, "
+			    "image "
+			    "FROM photograph "
+			    "WHERE collection_oid = %1 "
+			    "ORDER BY myoid LIMIT 1").
+		    arg(oid)))
+	if(query.next())
+	  for(int i = 0; i < query.record().count(); i++)
+	    {
+	      var = query.record().field(i).value();
+	      fieldname = query.record().fieldName(i);
+
+	      if(fieldname == "id")
+		pc.id_item->setText(var.toString());
+	      else if(fieldname == "title")
+		pc.title_item->setText(var.toString());
+	      else if(fieldname == "creators")
+		pc.creators_item->setPlainText(var.toString());
+	      else if(fieldname == "pdate")
+		pc.publication_date->setDate
+		  (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      else if(fieldname == "quantity")
+		pc.quantity->setValue(var.toInt());
+	      else if(fieldname == "medium")
+		pc.medium_item->setText(var.toString());
+	      else if(fieldname == "reproduction_number")
+		pc.reproduction_number_item->setPlainText(var.toString());
+	      else if(fieldname == "copyright")
+		pc.copyright_item->setPlainText(var.toString());
+	      else if(fieldname == "callnumber")
+		pc.call_number_item->setText(var.toString());
+	      else if(fieldname == "other_number")
+		pc.other_number_item->setText(var.toString());
+	      else if(fieldname == "location")
+		{
+		  if(pc.location->findText(var.toString()) > -1)
+		    pc.location->setCurrentIndex
+		      (pc.location->findText(var.toString()));
+		  else
+		    pc.location->setCurrentIndex
+		      (pc.location->findText(tr("UNKNOWN")));
+		}
+	      else if(fieldname == "notes")
+		pc.notes_item->setPlainText(var.toString());
+	      else if(fieldname == "subjects")
+		pc.subjects_item->setPlainText(var.toString());
+	      else if(fieldname == "format")
+		pc.format_item->setPlainText(var.toString());
+	      else if(fieldname == "image")
+		{
+		  if(!query.record().field(i).isNull())
+		    {
+		      pc.thumbnail_item->loadFromData
+			(QByteArray::fromBase64(var.toByteArray()));
+
+		      if(pc.thumbnail_collection->image.isNull())
+			pc.thumbnail_item->loadFromData
+			  (var.toByteArray());
+		    }
+		}
+	    }
+
+      qapp->restoreOverrideCursor();
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
