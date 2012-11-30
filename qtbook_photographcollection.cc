@@ -146,6 +146,40 @@ qtbook_photographcollection::~qtbook_photographcollection()
 
 void qtbook_photographcollection::slotGo(void)
 {
+  QString str("");
+
+  if(engWindowTitle.contains("Create") ||
+     engWindowTitle.contains("Modify"))
+    {
+      str = pc.id_collection->text().trimmed();
+      pc.id_collection->setText(str);
+
+      if(pc.id_collection->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the collection's "
+				   "ID field."));
+	  pc.id_collection->setFocus();
+	  return;
+	}
+
+      str = pc.title_collection->text().trimmed();
+      pc.title_collection->setText(str);
+
+      if(pc.title_collection->text().isEmpty())
+	{
+	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				tr("Please complete the collection's "
+				   "Title field."));
+	  pc.title_collection->setFocus();
+	  return;
+	}
+
+      pc.about_collection->setPlainText
+	(pc.about_collection->toPlainText().trimmed());
+      pc.notes_collection->setPlainText
+	(pc.notes_collection->toPlainText().trimmed());
+    }
 }
 
 /*
