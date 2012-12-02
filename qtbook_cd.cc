@@ -484,6 +484,7 @@ void qtbook_cd::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.front_image->image.save
 	    (&buffer, cd.front_image->imageFormat.toAscii(), 100);
@@ -499,6 +500,7 @@ void qtbook_cd::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.back_image->image.save
 	    (&buffer, cd.back_image->imageFormat.toAscii(), 100);

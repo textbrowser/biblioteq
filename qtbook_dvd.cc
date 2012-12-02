@@ -525,6 +525,7 @@ void qtbook_dvd::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.front_image->image.save
 	    (&buffer, dvd.front_image->imageFormat.toAscii(), 100);
@@ -540,6 +541,7 @@ void qtbook_dvd::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.back_image->image.save
 	    (&buffer, dvd.back_image->imageFormat.toAscii(), 100);

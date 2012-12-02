@@ -442,6 +442,7 @@ void qtbook_videogame::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  vg.front_image->image.save
 	    (&buffer, vg.front_image->imageFormat.toAscii(), 100);
@@ -457,6 +458,7 @@ void qtbook_videogame::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  vg.back_image->image.save
 	    (&buffer, vg.back_image->imageFormat.toAscii(), 100);

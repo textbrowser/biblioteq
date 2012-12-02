@@ -147,6 +147,7 @@ qtbook_photographcollection::~qtbook_photographcollection()
 void qtbook_photographcollection::slotGo(void)
 {
   QString str("");
+  QString errorstr("");
 
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
@@ -179,6 +180,109 @@ void qtbook_photographcollection::slotGo(void)
 	(pc.about_collection->toPlainText().trimmed());
       pc.notes_collection->setPlainText
 	(pc.notes_collection->toPlainText().trimmed());
+
+      QSqlQuery query(qmain->getDB());
+
+      if(engWindowTitle.contains("Modify"))
+	query.prepare("UPDATE photograph_collection SET "
+		      "id = ?, "
+		      "title = ?, "
+		      "about = ?, "
+		      "notes = ?, "
+		      "image = ?, "
+		      "image_scaled = ? "
+		      "WHERE "
+		      "myoid = ?");
+      else if(qmain->getDB().driverName() != "QSQLITE")
+	query.prepare("INSERT INTO photograph_collection "
+		      "(id, title, about, notes, image, "
+		      "image_scaled) VALUES ("
+		      "?, ?, ?, ?, ?, ?)");
+      else
+	query.prepare("INSERT INTO photograph_collection "
+		      "(id, title, about, notes, image, "
+		      "image_scaled, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+      query.bindValue(0, pc.id_collection->text());
+      query.bindValue(1, pc.title_collection->text());
+      query.bindValue(2, pc.about_collection->toPlainText().trimmed());
+      query.bindValue(3, pc.notes_collection->toPlainText().trimmed());
+
+      if(!pc.thumbnail_collection->image.isNull())
+	{
+	  QImage image;
+	  QByteArray bytes;
+	  QBuffer buffer(&bytes);
+
+	  buffer.open(QIODevice::WriteOnly);
+	  pc.thumbnail_collection->image.save
+	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
+	  query.bindValue(4, bytes.toBase64());
+	  buffer.close();
+	  bytes.clear();
+	  image = pc.thumbnail_collection->image;
+	  image = image.scaled
+	    (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	  buffer.open(QIODevice::WriteOnly);
+	  image.save
+	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
+	  query.bindValue(5, bytes.toBase64());
+	}
+      else
+	{
+	  pc.thumbnail_collection->imageFormat = "";
+	  query.bindValue(4, QVariant());
+	  query.bindValue(5, QVariant());
+	}
+
+      if(engWindowTitle.contains("Modify"))
+	query.bindValue(6, oid);
+      else if(qmain->getDB().driverName() == "QSQLITE")
+	{
+	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
+							   errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.bindValue(6, value);
+	  else
+	    qmain->addError(QString(tr("Database Error")),
+			    QString(tr("Unable to generate a unique "
+				       "integer.")),
+			    errorstr);
+	}
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      if(!query.exec())
+	{
+	  qapp->restoreOverrideCursor();
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Unable to create or update the entry.")),
+			  query.lastError().text(), __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+      else
+	{
+	  qapp->setOverrideCursor(Qt::WaitCursor);
+	}
+
+      return;
+
+    db_rollback:
+
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      if(!qmain->getDB().rollback())
+	qmain->addError
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
+
+      qapp->restoreOverrideCursor();
+      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create or update the entry. "
+			       "Please verify that "
+			       "the entry does not already exist."));
     }
 }
 

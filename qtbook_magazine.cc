@@ -499,6 +499,7 @@ void qtbook_magazine::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  ma.front_image->image.save
 	    (&buffer, ma.front_image->imageFormat.toAscii(), 100);
@@ -514,6 +515,7 @@ void qtbook_magazine::slotGo(void)
 	{
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+
 	  buffer.open(QIODevice::WriteOnly);
 	  ma.back_image->image.save
 	    (&buffer, ma.back_image->imageFormat.toAscii(), 100);
