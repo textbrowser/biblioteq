@@ -810,6 +810,21 @@ QString misc_functions::getAvailability(const QString &oid,
 
 QString misc_functions::getColumnString(const QTableWidget *table,
 					const int row,
+					const int column)
+{
+  QTableWidgetItem *item = 0;
+
+  if((item = table->item(row, column)))
+    return item->text();
+  else
+    return QString();
+}
+/*
+** -- getColumnString() --
+*/
+
+QString misc_functions::getColumnString(const QTableWidget *table,
+					const int row,
 					const QString &columnName)
 {
   int i = 0;

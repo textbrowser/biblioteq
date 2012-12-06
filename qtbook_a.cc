@@ -1290,7 +1290,7 @@ void qtbook::slotModify(void)
   qtbook_cd *cd = 0;
   qtbook_dvd *dvd = 0;
   QModelIndex index;
-  QTableWidget *table = ui.table;
+  main_table *table = ui.table;
   qtbook_book *book = 0;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
@@ -1323,8 +1323,10 @@ void qtbook::slotModify(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(table, i, "MYOID");
-      type = misc_functions::getColumnString(table, i, tr("Type"));
+      oid = misc_functions::getColumnString
+	(table, i, table->columnNumber("MYOID"));
+      type = misc_functions::getColumnString
+	(table, i, table->columnNumber("Type"));
       cd = 0;
       dvd = 0;
       book = 0;
@@ -1499,7 +1501,7 @@ void qtbook::slotViewDetails(void)
   qtbook_dvd *dvd = 0;
   QModelIndex index;
   qtbook_book *book = 0;
-  QTableWidget *table = ui.table;
+  main_table *table = ui.table;
   qtbook_journal *journal = 0;
   qtbook_magazine *magazine = 0;
   QModelIndexList list = table->selectionModel()->selectedRows();
@@ -1529,8 +1531,10 @@ void qtbook::slotViewDetails(void)
   foreach(index, list)
     {
       i = index.row();
-      oid = misc_functions::getColumnString(table,i, "MYOID");
-      type = misc_functions::getColumnString(table, i, tr("Type"));
+      oid = misc_functions::getColumnString
+	(table, i, table->columnNumber("MYOID"));
+      type = misc_functions::getColumnString
+	(table, i, table->columnNumber("Type"));
       cd = 0;
       dvd = 0;
       book = 0;
@@ -1727,7 +1731,7 @@ void qtbook::slotDelete(void)
       return;
     }
 
-  col = misc_functions::getColumnNumber(ui.table, "MYOID");
+  col = ui.table->columnNumber("MYOID");
 
   foreach(index, list)
     {
@@ -1736,8 +1740,10 @@ void qtbook::slotDelete(void)
       if(ui.table->item(i, col) == 0)
 	continue;
 
-      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
+      oid = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+      itemType = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
 
       if(oid.isEmpty() || itemType.isEmpty())
 	{
@@ -1836,7 +1842,8 @@ void qtbook::slotDelete(void)
 	continue;
 
       str = ui.table->item(i, col)->text();
-      itemType = misc_functions::getColumnString(ui.table, i, tr("Type")).
+      itemType = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type")).
 	toLower();
 
       if(itemType != "photograph collection")
@@ -1961,8 +1968,10 @@ void qtbook::slotUpdateIndicesAfterSort(int column)
 
   for(i = 0; i < ui.table->rowCount(); i++)
     {
-      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
-      itemType = misc_functions::getColumnString(ui.table, i, tr("Type"));
+      oid = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
+      itemType = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
       itemType = itemType.toLower().remove(" ");
       updateRows(oid, i, itemType);
     }
@@ -2900,7 +2909,8 @@ void qtbook::slotRemoveMember(void)
       return;
     }
 
-  memberid = misc_functions::getColumnString(bb.table, row, tr("Member ID"));
+  memberid = misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
@@ -3151,7 +3161,7 @@ void qtbook::slotSceneSelectionChanged(void)
 	if((item = items.takeFirst()))
 	  oids.append(item->data(0).toString());
 
-      int column = misc_functions::getColumnNumber(ui.table, tr("MYOID"));
+      int column = ui.table->columnNumber("MYOID");
 
       for(int i = 0; i < ui.table->rowCount(); i++)
 	if(ui.table->item(i, column) &&
@@ -3183,7 +3193,8 @@ void qtbook::slotDisplaySummary(void)
   if(ui.itemSummary->width() > 0 && ui.table->currentRow() > -1)
     {
       i = ui.table->currentRow();
-      oid = misc_functions::getColumnString(ui.table, i, "MYOID");
+      oid = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("MYOID"));
 
       if(ui.stackedWidget->currentIndex() == 1)
 	{
@@ -3198,7 +3209,8 @@ void qtbook::slotDisplaySummary(void)
 	  for(int ii = 0; ii < tableItems.size(); ii++)
 	    {
 	      QString oid = misc_functions::getColumnString
-		(ui.table, tableItems.at(ii)->row(), "MYOID");
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("MYOID"));
 
 	      for(int jj = 0; jj < items.size(); jj++)
 		if(oid == items.at(jj)->data(0).toString())
@@ -3218,73 +3230,87 @@ void qtbook::slotDisplaySummary(void)
 	  ui.graphicsView->scene()->setSelectionArea(painterPath);
 	}
 
-      type = misc_functions::getColumnString(ui.table, i, tr("Type"));
+      type = misc_functions::getColumnString
+	(ui.table, i, ui.table->columnNumber("Type"));
       summary = "<html>";
 
       if(type == "Book")
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
+	    misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
 	    "</b>";
 	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   tr("ISBN-10"));
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("ISBN-10"));
 
 	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     tr("ID Number"));
+	    tmpstr = misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";
-	  summary += misc_functions::getColumnString(ui.table, i,
-						     tr("Publication Date"));
-	  summary += "<br>";
-	  summary += misc_functions::getColumnString(ui.table, i,
-						     tr("Publisher"));
+	  summary += misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
 	  summary += "<br>";
 	  summary += misc_functions::getColumnString
-	    (ui.table, i, tr("Place of Publication"));
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+	  summary += "<br>";
+	  summary += misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Place of Publication"));
 	  summary += "<br>";
 	}
       else if(type == "CD")
 	{
 	  summary += "<b>" +
-	    misc_functions::getColumnString(ui.table, i, tr("Title")) +
+	    misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Title")) +
 	    "</b>";
 	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   tr("Catalog Number"));
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Catalog Number"));
 
 	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     tr("ID Number"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = "<br>";
-
-	  summary += tmpstr;
-	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   tr("Publication Date"));
-
-	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     tr("Release Date"));
+	    tmpstr = misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("ID Number"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
 
 	  summary += tmpstr;
 	  summary += "<br>";
-	  tmpstr = misc_functions::getColumnString(ui.table, i,
-						   tr("Publisher"));
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publication Date"));
 
 	  if(tmpstr.isEmpty())
-	    tmpstr = misc_functions::getColumnString(ui.table, i,
-						     tr("Recording Label"));
+	    tmpstr = misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Release Date"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = "<br>";
+
+	  summary += tmpstr;
+	  summary += "<br>";
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Publisher"));
+
+	  if(tmpstr.isEmpty())
+	    tmpstr = misc_functions::getColumnString
+	      (ui.table, i,
+	       ui.table->columnNumber("Recording Label"));
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
@@ -4183,6 +4209,7 @@ void qtbook::resetMembersBrowser(void)
   bb.table->setRowCount(0);
   bb.table->scrollToTop();
   bb.table->horizontalScrollBar()->setValue(0);
+  m_bbColumnHeaderIndexes.clear();
   list.append(tr("Member ID"));
   list.append(tr("First Name"));
   list.append(tr("Last Name"));
@@ -4194,12 +4221,32 @@ void qtbook::resetMembersBrowser(void)
   list.append(tr("Journals Reserved"));
   list.append(tr("Magazines Reserved"));
   list.append(tr("Video Games Reserved"));
+  m_bbColumnHeaderIndexes["Member ID"] = 0;
+  m_bbColumnHeaderIndexes["First Name"] = 1;
+  m_bbColumnHeaderIndexes["Last Name"] = 2;
+  m_bbColumnHeaderIndexes["Member Since"] = 3;
+  m_bbColumnHeaderIndexes["Expiration Date"] = 4;
+  m_bbColumnHeaderIndexes["Books Reserved"] = 5;
+  m_bbColumnHeaderIndexes["CDs Reserved"] = 6;
+  m_bbColumnHeaderIndexes["DVDs Reserved"] = 7;
+  m_bbColumnHeaderIndexes["Journals Reserved"] = 8;
+  m_bbColumnHeaderIndexes["Magazines Reserved"] = 9;
+  m_bbColumnHeaderIndexes["Video Games Reserved"] = 10;
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   bb.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
+}
+
+/*
+** -- getBBColumnIndexes() --
+*/
+
+QHash<QString, int> qtbook::getBBColumnIndexes(void) const
+{
+  return m_bbColumnHeaderIndexes;
 }
 
 /*

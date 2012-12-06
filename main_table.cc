@@ -32,7 +32,10 @@ main_table::main_table(QWidget *parent):QTableWidget(parent)
 void main_table::setColumns(const QString &username,
 			    const QString &type, const QString &roles)
 {
+  int i = 0;
   QStringList list;
+
+  m_columnHeaderIndexes.clear();
 
   if(type == "All" ||
      type == "All Available" ||
@@ -46,11 +49,16 @@ void main_table::setColumns(const QString &username,
 	    {
 	      list.append(tr("Borrower"));
 	      list.append(tr("Member ID"));
+	      m_columnHeaderIndexes["Borrower"] = i; i++;
+	      m_columnHeaderIndexes["Member ID"] = i; i++;
 	    }
 
 	  list.append(tr("Barcode"));
 	  list.append(tr("Reservation Date"));
 	  list.append(tr("Due Date"));
+	  m_columnHeaderIndexes["Barcode"] = i; i++;
+	  m_columnHeaderIndexes["Reservation Date"] = i; i++;
+	  m_columnHeaderIndexes["Due Date"] = i; i++;
 	}
       else if(type == "All Requested")
 	{
@@ -58,9 +66,12 @@ void main_table::setColumns(const QString &username,
 	    {
 	      list.append(tr("Borrower"));
 	      list.append(tr("Member ID"));
+	      m_columnHeaderIndexes["Borrower"] = i; i++;
+	      m_columnHeaderIndexes["Member ID"] = i; i++;
 	    }
 
 	  list.append(tr("Request Date"));
+	  m_columnHeaderIndexes["Request Date"] = i; i++;
 	}
 
       list.append(tr("Title"));
@@ -73,18 +84,35 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Monetary Units"));
       list.append(tr("Quantity"));
       list.append(tr("Location"));
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["ID Number"] = i; i++;
+      m_columnHeaderIndexes["Publisher"] = i; i++;
+      m_columnHeaderIndexes["Publication Date"] = i; i++;
+      m_columnHeaderIndexes["Categories"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
 
       if(type != "All Requested")
 	{
 	  list.append(tr("Availability"));
 	  list.append(tr("Total Reserved"));
+	  m_columnHeaderIndexes["Availability"] = i; i++;
+	  m_columnHeaderIndexes["Total Reserved"] = i; i++;
 	}
 
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
 
       if(type == "All Requested")
-	list.append("REQUESTOID");
+	{
+	  list.append("REQUESTOID");
+	  m_columnHeaderIndexes["REQUESTOID"] = i; i++;
+	}
     }
   else if(type == "Books")
     {
@@ -110,6 +138,28 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["Author(s)"] = i; i++;
+      m_columnHeaderIndexes["Publisher"] = i; i++;
+      m_columnHeaderIndexes["Publication Date"] = i; i++;
+      m_columnHeaderIndexes["Place of Publication"] = i; i++;
+      m_columnHeaderIndexes["Edition"] = i; i++;
+      m_columnHeaderIndexes["Categories"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["ISBN-10"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Book Binding Type"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
+      m_columnHeaderIndexes["ISBN-13"] = i; i++;
+      m_columnHeaderIndexes["LC Control Number"] = i; i++;
+      m_columnHeaderIndexes["Call Number"] = i; i++;
+      m_columnHeaderIndexes["Dewey Class Number"] = i; i++;
+      m_columnHeaderIndexes["Availability"] = i; i++;
+      m_columnHeaderIndexes["Total Reserved"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
   else if(type == "DVDs")
     {
@@ -133,6 +183,26 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["Format"] = i; i++;
+      m_columnHeaderIndexes["Studio"] = i; i++;
+      m_columnHeaderIndexes["Release Date"] = i; i++;
+      m_columnHeaderIndexes["Number of Discs"] = i; i++;
+      m_columnHeaderIndexes["Runtime"] = i; i++;
+      m_columnHeaderIndexes["Categories"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["UPC"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
+      m_columnHeaderIndexes["Rating"] = i; i++;
+      m_columnHeaderIndexes["Region"] = i; i++;
+      m_columnHeaderIndexes["Aspect Ratio"] = i; i++;
+      m_columnHeaderIndexes["Availability"] = i; i++;
+      m_columnHeaderIndexes["Total Reserved"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
   else if(type == "Journals" || type == "Magazines")
     {
@@ -156,6 +226,26 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["Publisher"] = i; i++;
+      m_columnHeaderIndexes["Publication Date"] = i; i++;
+      m_columnHeaderIndexes["Place of Publication"] = i; i++;
+      m_columnHeaderIndexes["Volume"] = i; i++;
+      m_columnHeaderIndexes["Issue"] = i; i++;
+      m_columnHeaderIndexes["Categories"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["ISSN"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
+      m_columnHeaderIndexes["LC Control Number"] = i; i++;
+      m_columnHeaderIndexes["Call Number"] = i; i++;
+      m_columnHeaderIndexes["Dewey Number"] = i; i++;
+      m_columnHeaderIndexes["Availability"] = i; i++;
+      m_columnHeaderIndexes["Total Reserved"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
   else if(type == "Music CDs")
     {
@@ -179,6 +269,26 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["Artist"] = i; i++;
+      m_columnHeaderIndexes["Format"] = i; i++;
+      m_columnHeaderIndexes["Recording Label"] = i; i++;
+      m_columnHeaderIndexes["Release Date"] = i; i++;
+      m_columnHeaderIndexes["Number of Discs"] = i; i++;
+      m_columnHeaderIndexes["Runtime"] = i; i++;
+      m_columnHeaderIndexes["Categories"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["Catalog Number"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
+      m_columnHeaderIndexes["Audio"] = i; i++;
+      m_columnHeaderIndexes["Recording Type"] = i; i++;
+      m_columnHeaderIndexes["Availability"] = i; i++;
+      m_columnHeaderIndexes["Total Reserved"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
   else if(type == "Photograph Collections")
     {
@@ -187,6 +297,11 @@ void main_table::setColumns(const QString &username,
       list.append(tr("About"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["ID"] = i; i++;
+      m_columnHeaderIndexes["About"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
   else if(type == "Video Games")
     {
@@ -208,6 +323,24 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes["Title"] = i; i++;
+      m_columnHeaderIndexes["Game Rating"] = i; i++;
+      m_columnHeaderIndexes["Platform"] = i; i++;
+      m_columnHeaderIndexes["Mode"] = i; i++;
+      m_columnHeaderIndexes["Publisher"] = i; i++;
+      m_columnHeaderIndexes["Release Date"] = i; i++;
+      m_columnHeaderIndexes["Place of Publication"] = i; i++;
+      m_columnHeaderIndexes["Genres"] = i; i++;
+      m_columnHeaderIndexes["Language"] = i; i++;
+      m_columnHeaderIndexes["UPC"] = i; i++;
+      m_columnHeaderIndexes["Price"] = i; i++;
+      m_columnHeaderIndexes["Monetary Units"] = i; i++;
+      m_columnHeaderIndexes["Quantity"] = i; i++;
+      m_columnHeaderIndexes["Location"] = i; i++;
+      m_columnHeaderIndexes["Availability"] = i; i++;
+      m_columnHeaderIndexes["Total Reserved"] = i; i++;
+      m_columnHeaderIndexes["Type"] = i; i++;
+      m_columnHeaderIndexes["MYOID"] = i; i++;
     }
 
   setColumnCount(list.size());
@@ -344,4 +477,13 @@ void main_table::parseStates(const QHash<QString, QString> &states)
 
       hiddenColumns[states.keys().at(i)] = intList;
     }
+}
+
+/*
+** -- columnNumber() --
+*/
+
+int main_table::columnNumber(const QString &name)
+{
+  return m_columnHeaderIndexes.value(name);
 }

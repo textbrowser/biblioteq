@@ -18,6 +18,7 @@ class main_table: public QTableWidget
 
  public:
   main_table(QWidget *);
+  int columnNumber(const QString &);
   void resetTable(const QString &, const QString &, const QString &);
   void parseStates(const QHash<QString, QString> &);
   void recordColumnHidden(const QString &, const QString &, const int,
@@ -25,6 +26,7 @@ class main_table: public QTableWidget
   QHash<QString, QString> friendlyStates(void) const;
 
  private:
+  QHash<QString, int> m_columnHeaderIndexes;
   QHash<QString, QList<int> > hiddenColumns;
   void setColumns(const QString &, const QString &, const QString &);
 };

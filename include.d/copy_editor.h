@@ -53,6 +53,7 @@ class copy_editor: public QDialog
   QSpinBox *spinbox;
   qtbook_item *bitem;
   Ui_copybrowser cb;
+  QHash<QString, int> m_columnHeaderIndexes;
   QList<copy_class *> copies;
   void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);

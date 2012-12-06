@@ -88,6 +88,9 @@ class misc_functions
   static QString getAbstractInfo(const QString &,
 				 const QString &,
 				 const QSqlDatabase &);
+  static QString getColumnString(const QTableWidget *,
+				 const int,
+				 const int);
   static QString getColumnString(const QTableWidget *, const int,
 				 const QString &);
   static QString getAvailability(const QString &, const QSqlDatabase &,

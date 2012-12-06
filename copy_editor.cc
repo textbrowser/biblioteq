@@ -74,7 +74,8 @@ void copy_editor::slotDeleteCopy(void)
       return;
     }
 
-  copyid = misc_functions::getColumnString(cb.table, row, tr("Barcode"));
+  copyid = misc_functions::getColumnString
+    (cb.table, row, m_columnHeaderIndexes.value("Barcode"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   isCheckedOut = misc_functions::isCopyCheckedOut(qmain->getDB(),
 						  copyid,
@@ -188,6 +189,12 @@ void copy_editor::populateCopiesEditor(void)
   list.append(tr("Availability"));
   list.append("ITEM_OID");
   list.append("Copy Number");
+  m_columnHeaderIndexes.clear();
+  m_columnHeaderIndexes["Title"] = 0;
+  m_columnHeaderIndexes["Barcode"] = 1;
+  m_columnHeaderIndexes["Availability"] = 2;
+  m_columnHeaderIndexes["ITEM_OID"] = 3;
+  m_columnHeaderIndexes["Copy Number"] = 4;
   cb.table->setColumnCount(list.size());
   cb.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -410,16 +417,14 @@ void copy_editor::slotCheckoutCopy(void)
     }
 
   memberid = misc_functions::getColumnString
-    (qmain->getBB().table, memberrow, QString(tr("Member ID")));
-
-  /*
-  ** The "Copy Number" does not require tr().
-  */
-
-  copynumber = misc_functions::getColumnString(cb.table, copyrow,
-					       QString("Copy Number"));
-  copyid = misc_functions::getColumnString(cb.table, copyrow,
-					   QString(tr("Barcode")));
+    (qmain->getBB().table, memberrow,
+     qmain->getBBColumnIndexes().value("Member ID"));
+  copynumber = misc_functions::getColumnString
+    (cb.table, copyrow,
+     m_columnHeaderIndexes.value("Copy Number"));
+  copyid = misc_functions::getColumnString
+    (cb.table, copyrow,
+     m_columnHeaderIndexes.value("Barcode"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   available = misc_functions::isCopyAvailable(qmain->getDB(), ioid, copyid,
 					      itemType, errorstr);
