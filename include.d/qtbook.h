@@ -269,6 +269,7 @@ class qtbook: public QMainWindow
   QString previousTypeFilter;
   QStringList deletedAdmins;
   QHash<QString, int> m_bbColumnHeaderIndexes;
+  QHash<QString, int> m_historyColumnHeaderIndexes;
   QHash<QString, QString> m_z3950Proxy;
   QHash<QString, QString> amazonImages;
   QHash<QString, QString> m_amazonProxy;

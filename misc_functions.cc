@@ -882,6 +882,31 @@ int misc_functions::getColumnNumber(const QTableWidget *table,
 */
 
 void misc_functions::updateColumn(QTableWidget *table,
+				  const int row, int column,
+				  const QString &value)
+{
+  if(!table || !table->item(row, column))
+    return;
+
+  bool sortingEnabled = false;
+
+  if(table->isSortingEnabled())
+    sortingEnabled = true;
+
+  if(sortingEnabled)
+    table->setSortingEnabled(false);
+
+  table->item(row, column)->setText(value);
+
+  if(sortingEnabled)
+    table->setSortingEnabled(true);
+}
+
+/*
+** -- updateColumn() --
+*/
+
+void misc_functions::updateColumn(QTableWidget *table,
 				  const int row, const QString &columnName,
 				  const QString &value)
 {
