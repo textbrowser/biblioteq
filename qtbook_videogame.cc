@@ -53,7 +53,8 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   isQueryEnabled = false;
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, tr("Quantity")).toInt();
+    (qmain->getUI().table, row,
+     qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -228,7 +229,6 @@ void qtbook_videogame::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = 0;
 
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
@@ -606,68 +606,67 @@ void qtbook_videogame::slotGo(void)
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "Video Games") &&
-		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID") &&
-		 misc_functions::getColumnString(qmain->getUI().table,
-						 row, tr("Type")) ==
+		 oid == misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		 misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("Type")) ==
 		 "Video Game")
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
+		  QStringList names(qmain->getUI().table->columnNames());
+
+		  for(i = 0; i < names.count(); i++)
 		    {
-		      column = qmain->getUI().table->horizontalHeaderItem(i);
-
-		      if(column == 0)
-			continue;
-
-		      if(column->text() == tr("UPC") ||
-			 column->text() == tr("ID Number"))
+		      if(names.at(i) == "UPC" ||
+			 names.at(i) == "ID Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.id->text());
-		      else if(column->text() == tr("Title"))
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.title->text());
-		      else if(column->text() == tr("Game Rating"))
+		      else if(names.at(i) == "Game Rating")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.rating->currentText().trimmed());
-		      else if(column->text() == tr("Release Date") ||
-			      column->text() == tr("Publication Date"))
+		      else if(names.at(i) == "Release Date" ||
+			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.release_date->date().toString
 			   (Qt::SystemLocaleShortDate));
-		      else if(column->text() == tr("Publisher"))
+		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.publisher->toPlainText());
-		      else if(column->text() == tr("Place of Publication"))
+		      else if(names.at(i) == "Place of Publication")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.place->toPlainText());
-		      else if(column->text() == tr("Genres") ||
-			      column->text() == tr("Categories"))
+		      else if(names.at(i) == "Genres" ||
+			      names.at(i) == "Categories")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.genre->toPlainText().trimmed());
-		      else if(column->text() == tr("Price"))
+		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.price->cleanText());
-		      else if(column->text() == tr("Language"))
+		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.language->currentText().trimmed());
-		      else if(column->text() == tr("Monetary Units"))
+		      else if(names.at(i) == "Monetary Units")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.monetary_units->currentText().trimmed());
-		      else if(column->text() == tr("Quantity"))
+		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.quantity->text());
-		      else if(column->text() == tr("Platform"))
+		      else if(names.at(i) == "Platform")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.platform->currentText().trimmed());
-		      else if(column->text() == tr("Location"))
+		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.location->currentText().trimmed());
-		      else if(column->text() == tr("Mode"))
+		      else if(names.at(i) == "Mode")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.mode->currentText().trimmed());
-		      else if(column->text() == tr("Availability"))
+		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability

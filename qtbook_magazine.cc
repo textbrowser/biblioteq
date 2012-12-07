@@ -57,7 +57,8 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   subType = "Magazine";
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, tr("Quantity")).toInt();
+    (qmain->getUI().table, row,
+     qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -266,7 +267,6 @@ void qtbook_magazine::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = 0;
 
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
@@ -702,72 +702,71 @@ void qtbook_magazine::slotGo(void)
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "Journals" ||
 		  qmain->getTypeFilterString() == "Magazines") &&
-		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID") &&
-		 misc_functions::getColumnString(qmain->getUI().table,
-						 row, tr("Type")) == subType)
+		 oid == misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		 misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("Type")) == subType)
 
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
+		  QStringList names(qmain->getUI().table->columnNames());
+
+		  for(i = 0; i < names.count(); i++)
 		    {
-		      column = qmain->getUI().table->horizontalHeaderItem(i);
-
-		      if(column == 0)
-			continue;
-
-		      if(column->text() == tr("ISSN") ||
-			 column->text() == tr("ID Number"))
+		      if(names.at(i) == "ISSN" ||
+			 names.at(i) == "ID Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.id->text());
-		      else if(column->text() == tr("Title"))
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.title->text());
-		      else if(column->text() == tr("Publication Date"))
+		      else if(names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publication_date->date().toString
 			   (Qt::SystemLocaleShortDate));
-		      else if(column->text() == tr("Publisher"))
+		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publisher->toPlainText());
-		      else if(column->text() == tr("Place of Publication"))
+		      else if(names.at(i) == "Place of Publication")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.place->toPlainText());
-		      else if(column->text() == tr("Categories"))
+		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.category->toPlainText().trimmed());
-		      else if(column->text() == tr("Price"))
+		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.price->cleanText());
-		      else if(column->text() == tr("Language"))
+		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.language->currentText().trimmed());
-		      else if(column->text() == tr("Monetary Units"))
+		      else if(names.at(i) == "Monetary Units")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.monetary_units->currentText().trimmed());
-		      else if(column->text() == tr("Quantity"))
+		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.quantity->text());
-		      else if(column->text() == tr("Location"))
+		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.location->currentText().trimmed());
-		      else if(column->text() == tr("Volume"))
+		      else if(names.at(i) == "Volume")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.volume->text());
-		      else if(column->text() == tr("Issue"))
+		      else if(names.at(i) == "Issue")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.issue->text());
-		      else if(column->text() == tr("LC Control Number"))
+		      else if(names.at(i) == "LC Control Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.lcnum->text());
-		      else if(column->text() == tr("Call Number"))
+		      else if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.callnum->text());
-		      else if(column->text() == tr("Dewey Number"))
+		      else if(names.at(i) == "Dewey Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.deweynum->text());
-		      else if(column->text() == tr("Availability"))
+		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability

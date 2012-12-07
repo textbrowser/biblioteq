@@ -4555,18 +4555,25 @@ void qtbook::updateMembersBrowser(void)
 	     errorstr, __FILE__, __LINE__);
   else
     {
-      misc_functions::updateColumn(bb.table, row, tr("Books Reserved"),
-				   counts["numbooks"]);
-      misc_functions::updateColumn(bb.table, row, tr("CDs Reserved"),
-				   counts["numcds"]);
-      misc_functions::updateColumn(bb.table, row, tr("DVDs Reserved"),
-				   counts["numdvds"]);
-      misc_functions::updateColumn(bb.table, row, tr("Journals Reserved"),
-				   counts["numjournals"]);
-      misc_functions::updateColumn(bb.table, row, tr("Magazines Reserved"),
-				   counts["nummagazines"]);
-      misc_functions::updateColumn(bb.table, row, tr("Video Games Reserved"),
-				   counts["numvideogames"]);
+      misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
+	 counts["numbooks"]);
+      misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
+	 counts["numcds"]);
+      misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
+	 counts["numdvds"]);
+      misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
+	 counts["numjournals"]);
+      misc_functions::updateColumn
+	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
+	 counts["nummagazines"]);
+      misc_functions::updateColumn
+	(bb.table, row,
+	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
+	 counts["numvideogames"]);
       counts.clear();
 
       if(history_diag->isVisible())
@@ -7300,8 +7307,8 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 
 		misc_functions::updateColumn
 		  (history.table, i,
-		   tr("Returned Date"), date.toString
-		   (Qt::SystemLocaleShortDate));
+		   m_historyColumnHeaderIndexes.indexOf("Returned Date"),
+		   date.toString(Qt::SystemLocaleShortDate));
 		break;
 	      }
 	  }

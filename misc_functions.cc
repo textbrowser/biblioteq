@@ -903,46 +903,6 @@ void misc_functions::updateColumn(QTableWidget *table,
 }
 
 /*
-** -- updateColumn() --
-*/
-
-void misc_functions::updateColumn(QTableWidget *table,
-				  const int row, const QString &columnName,
-				  const QString &value)
-{
-  int i = 0;
-  bool sortingEnabled = false;
-  QTableWidgetItem *column = 0;
-
-  if(row >= 0 && row < table->rowCount())
-    {
-      if(table->isSortingEnabled())
-	sortingEnabled = true;
-
-      for(i = 0; i < table->columnCount(); i++)
-	{
-	  column = table->horizontalHeaderItem(i);
-
-	  if(column == 0)
-	    continue;
-
-	  if(column->text().toLower() == columnName.toLower())
-	    {
-	      if(sortingEnabled)
-		table->setSortingEnabled(false);
-
-	      table->item(row, i)->setText(value);
-
-	      if(sortingEnabled)
-		table->setSortingEnabled(true);
-
-	      break;
-	    }
-	}
-    }
-}
-
-/*
 ** -- isCheckedOut() --
 */
 
