@@ -75,7 +75,7 @@ void copy_editor::slotDeleteCopy(void)
     }
 
   copyid = misc_functions::getColumnString
-    (cb.table, row, m_columnHeaderIndexes.value("Barcode"));
+    (cb.table, row, m_columnHeaderIndexes.indexOf("Barcode"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   isCheckedOut = misc_functions::isCopyCheckedOut(qmain->getDB(),
 						  copyid,
@@ -190,11 +190,11 @@ void copy_editor::populateCopiesEditor(void)
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
-  m_columnHeaderIndexes["Title"] = 0;
-  m_columnHeaderIndexes["Barcode"] = 1;
-  m_columnHeaderIndexes["Availability"] = 2;
-  m_columnHeaderIndexes["ITEM_OID"] = 3;
-  m_columnHeaderIndexes["Copy Number"] = 4;
+  m_columnHeaderIndexes.append("Title");
+  m_columnHeaderIndexes.append("Barcode");
+  m_columnHeaderIndexes.append("Availability");
+  m_columnHeaderIndexes.append("ITEM_OID");
+  m_columnHeaderIndexes.append("Copy Number");
   cb.table->setColumnCount(list.size());
   cb.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -418,13 +418,13 @@ void copy_editor::slotCheckoutCopy(void)
 
   memberid = misc_functions::getColumnString
     (qmain->getBB().table, memberrow,
-     qmain->getBBColumnIndexes().value("Member ID"));
+     qmain->getBBColumnIndexes().indexOf("Member ID"));
   copynumber = misc_functions::getColumnString
     (cb.table, copyrow,
-     m_columnHeaderIndexes.value("Copy Number"));
+     m_columnHeaderIndexes.indexOf("Copy Number"));
   copyid = misc_functions::getColumnString
     (cb.table, copyrow,
-     m_columnHeaderIndexes.value("Barcode"));
+     m_columnHeaderIndexes.indexOf("Barcode"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   available = misc_functions::isCopyAvailable(qmain->getDB(), ioid, copyid,
 					      itemType, errorstr);

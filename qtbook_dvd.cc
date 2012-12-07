@@ -53,7 +53,8 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   isQueryEnabled = false;
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, tr("Quantity")).toInt();
+    (qmain->getUI().table, row,
+     qmain->getUI().table->columnNumber("Quantity")).toInt();
   dvd.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -250,7 +251,6 @@ void qtbook_dvd::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = 0;
 
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
@@ -686,73 +686,72 @@ void qtbook_dvd::slotGo(void)
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "DVDs") &&
-		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID") &&
-		 misc_functions::getColumnString(qmain->getUI().table,
-						 row, tr("Type")) == "DVD")
+		 oid == misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		 misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("Type")) == "DVD")
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
+		  QStringList names(qmain->getUI().table->columnNames());
+
+		  for(i = 0; i < names.count(); i++)
 		    {
-		      column = qmain->getUI().table->horizontalHeaderItem(i);
-
-		      if(column == 0)
-			continue;
-
-		      if(column->text() == tr("UPC") ||
-			 column->text() == tr("ID Number"))
+		      if(names.at(i) == "UPC" ||
+			 names.at(i) == "ID Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.id->text());
-		      else if(column->text() == tr("Rating"))
+		      else if(names.at(i) == "Rating")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.rating->currentText().trimmed());
-		      else if(column->text() == tr("Number of Discs"))
+		      else if(names.at(i) == "Number of Discs")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.no_of_discs->text());
-		      else if(column->text() == tr("Runtime"))
+		      else if(names.at(i) == "Runtime")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.runtime->text());
-		      else if(column->text() == tr("Format"))
+		      else if(names.at(i) == "Format")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.format->text());
-		      else if(column->text() == tr("Region"))
+		      else if(names.at(i) == "Region")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.region->currentText().trimmed());
-		      else if(column->text() == tr("Aspect Ratio"))
+		      else if(names.at(i) == "Aspect Ratio")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.aspectratio->currentText().trimmed());
-		      else if(column->text() == tr("Title"))
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.title->text());
-		      else if(column->text() == tr("Release Date") ||
-			      column->text() == tr("Publication Date"))
+		      else if(names.at(i) == "Release Date" ||
+			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.release_date->date().toString
 			   (Qt::SystemLocaleShortDate));
-		      else if(column->text() == tr("Studio") ||
-			      column->text() == tr("Publisher"))
+		      else if(names.at(i) == "Studio" ||
+			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.studio->toPlainText());
-		      else if(column->text() == tr("Categories"))
+		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.category->toPlainText().trimmed());
-		      else if(column->text() == tr("Price"))
+		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.price->cleanText());
-		      else if(column->text() == tr("Language"))
+		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.language->currentText().trimmed());
-		      else if(column->text() == tr("Monetary Units"))
+		      else if(names.at(i) == "Monetary Units")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.monetary_units->currentText().trimmed());
-		      else if(column->text() == tr("Quantity"))
+		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.quantity->text());
-		      else if(column->text() == tr("Location"))
+		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.location->currentText().trimmed());
-		      else if(column->text() == tr("Availability"))
+		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability

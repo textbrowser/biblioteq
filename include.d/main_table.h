@@ -23,10 +23,11 @@ class main_table: public QTableWidget
   void parseStates(const QHash<QString, QString> &);
   void recordColumnHidden(const QString &, const QString &, const int,
 			  const bool);
+  QStringList columnNames(void) const;
   QHash<QString, QString> friendlyStates(void) const;
 
  private:
-  QHash<QString, int> m_columnHeaderIndexes;
+  QVector<QString> m_columnHeaderIndexes;
   QHash<QString, QList<int> > hiddenColumns;
   void setColumns(const QString &, const QString &, const QString &);
 };

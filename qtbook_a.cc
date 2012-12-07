@@ -820,9 +820,9 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	      ui.table->horizontalHeaderItem(i)->text() == "REQUESTOID")
 	continue;
 
-      if((action = new(std::nothrow) QAction
-	  (ui.table->horizontalHeaderItem(i)->text(),
-	   ui.configTool)) == 0)
+      if((action = new(std::nothrow) QAction(ui.table->
+					     horizontalHeaderItem(i)->text(),
+					     ui.configTool)) == 0)
 	continue;
 
       action->setCheckable(true);
@@ -2910,7 +2910,7 @@ void qtbook::slotRemoveMember(void)
     }
 
   memberid = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
@@ -4245,17 +4245,17 @@ void qtbook::resetMembersBrowser(void)
   list.append(tr("Journals Reserved"));
   list.append(tr("Magazines Reserved"));
   list.append(tr("Video Games Reserved"));
-  m_bbColumnHeaderIndexes["Member ID"] = 0;
-  m_bbColumnHeaderIndexes["First Name"] = 1;
-  m_bbColumnHeaderIndexes["Last Name"] = 2;
-  m_bbColumnHeaderIndexes["Member Since"] = 3;
-  m_bbColumnHeaderIndexes["Expiration Date"] = 4;
-  m_bbColumnHeaderIndexes["Books Reserved"] = 5;
-  m_bbColumnHeaderIndexes["CDs Reserved"] = 6;
-  m_bbColumnHeaderIndexes["DVDs Reserved"] = 7;
-  m_bbColumnHeaderIndexes["Journals Reserved"] = 8;
-  m_bbColumnHeaderIndexes["Magazines Reserved"] = 9;
-  m_bbColumnHeaderIndexes["Video Games Reserved"] = 10;
+  m_bbColumnHeaderIndexes.append("Member ID");
+  m_bbColumnHeaderIndexes.append("First Name");
+  m_bbColumnHeaderIndexes.append("Last Name");
+  m_bbColumnHeaderIndexes.append("Member Since");
+  m_bbColumnHeaderIndexes.append("Expiration Date");
+  m_bbColumnHeaderIndexes.append("Books Reserved");
+  m_bbColumnHeaderIndexes.append("CDs Reserved");
+  m_bbColumnHeaderIndexes.append("DVDs Reserved");
+  m_bbColumnHeaderIndexes.append("Journals Reserved");
+  m_bbColumnHeaderIndexes.append("Magazines Reserved");
+  m_bbColumnHeaderIndexes.append("Video Games Reserved");
   bb.table->setColumnCount(list.size());
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -4268,7 +4268,7 @@ void qtbook::resetMembersBrowser(void)
 ** -- getBBColumnIndexes() --
 */
 
-QHash<QString, int> qtbook::getBBColumnIndexes(void) const
+QVector<QString> qtbook::getBBColumnIndexes(void) const
 {
   return m_bbColumnHeaderIndexes;
 }
@@ -4543,7 +4543,7 @@ void qtbook::updateMembersBrowser(void)
     return;
 
   memberid = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = misc_functions::getItemsReservedCounts(db, memberid, errorstr);
   qapp->restoreOverrideCursor();
@@ -4605,30 +4605,31 @@ void qtbook::updateMembersBrowser(const QString &memberid)
       for(i = 0; i < bb.table->rowCount(); i++)
 	{
 	  str = misc_functions::getColumnString
-	    (bb.table, i, m_bbColumnHeaderIndexes.value("Member ID"));
+	    (bb.table, i, m_bbColumnHeaderIndexes.indexOf("Member ID"));
 
 	  if(str == memberid)
 	    {
 	      misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.value("Books Reserved"),
+		(bb.table, i,
+		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
 		 counts["numbooks"]);
 	      misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.value("CDs Reserved"),
+		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
 		 counts["numcds"]);
 	      misc_functions::updateColumn
-		(bb.table, i, m_bbColumnHeaderIndexes.value("DVDs Reserved"),
+		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
 		 counts["numdvds"]);
 	      misc_functions::updateColumn
 		(bb.table, i,
-		 m_bbColumnHeaderIndexes.value("Journals Reserved"),
+		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
 		 counts["numjournals"]);
 	      misc_functions::updateColumn
 		(bb.table, i,
-		 m_bbColumnHeaderIndexes.value("Magazines Reserved"),
+		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
 		 counts["nummagazines"]);
 	      misc_functions::updateColumn
 		(bb.table, i,
-		 m_bbColumnHeaderIndexes.value("Video Games Reserved"),
+		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
 		 counts["numvideogames"]);
 	      break;
 	    }
@@ -4661,7 +4662,7 @@ void qtbook::slotModifyBorrower(void)
     }
 
   str = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   searchstr = "SELECT * FROM member WHERE memberid = '";
   searchstr.append(str);
   searchstr.append("'");
@@ -4816,7 +4817,7 @@ void qtbook::slotCheckout(void)
       bool expired = true;
       QString memberid =
 	misc_functions::getColumnString
-	(bb.table, row1, m_bbColumnHeaderIndexes.value("Member ID"));
+	(bb.table, row1, m_bbColumnHeaderIndexes.indexOf("Member ID"));
 
       qapp->setOverrideCursor(Qt::WaitCursor);
       expired = misc_functions::hasMemberExpired(db, memberid, errorstr);
@@ -6129,7 +6130,7 @@ void qtbook::slotListReservedItems(void)
     }
 
   memberid = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
   members_diag->raise();
 }
@@ -6146,7 +6147,7 @@ void qtbook::slotListOverdueItems(void)
   if(members_diag->isVisible())
     memberid = misc_functions::getColumnString
       (bb.table, row,
-       m_bbColumnHeaderIndexes.value("Member ID"));
+       m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else if(roles.isEmpty())
     memberid = db.userName();
 
@@ -6687,19 +6688,20 @@ void qtbook::slotPrintReserved(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   itemsReserved = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Books Reserved")).toInt() +
-    misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("CDs Reserved")).toInt() +
-    misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("DVDs Reserved")).toInt() +
-    misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Journals Reserved")).
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved")).
     toInt() +
     misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Magazines Reserved")).
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved")).toInt() +
+    misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved")).toInt() +
+    misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved")).
     toInt() +
     misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Video Games Reserved")).
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved")).
+    toInt() +
+    misc_functions::getColumnString
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
     toInt();
   qapp->restoreOverrideCursor();
 
@@ -6712,13 +6714,13 @@ void qtbook::slotPrintReserved(void)
     }
 
   memberid = misc_functions::getColumnString
-    (bb.table, row, m_bbColumnHeaderIndexes.value("Member ID"));
+    (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   memberinfo["firstname"] = misc_functions::getColumnString
     (bb.table, row,
-     m_bbColumnHeaderIndexes.value("First Name"));
+     m_bbColumnHeaderIndexes.indexOf("First Name"));
   memberinfo["lastname"] = misc_functions::getColumnString
     (bb.table, row,
-     m_bbColumnHeaderIndexes.value("Last Name"));
+     m_bbColumnHeaderIndexes.indexOf("Last Name"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   itemsList = misc_functions::getReservedItems(memberid, db, errorstr);
   qapp->restoreOverrideCursor();
@@ -6859,7 +6861,7 @@ void qtbook::slotShowHistory(void)
 			      "history.type ").arg(list[i]).arg
 	    (misc_functions::getColumnString(bb.table, row,
 					     m_bbColumnHeaderIndexes.
-					     value("Member ID")));
+					     indexOf("Member ID")));
 	else
 	  {
 	    if(db.driverName() != "QSQLITE")
@@ -6886,7 +6888,7 @@ void qtbook::slotShowHistory(void)
 		 "history.type ").arg
 		(misc_functions::getColumnString(bb.table, row,
 						 m_bbColumnHeaderIndexes.
-						 value("Member ID")));
+						 indexOf("Member ID")));
 	    else
 	      querystr += QString
 		("SELECT "
@@ -6911,7 +6913,7 @@ void qtbook::slotShowHistory(void)
 		 "history.type ").arg
 		(misc_functions::getColumnString(bb.table, row,
 						 m_bbColumnHeaderIndexes.
-						 value("Member ID")));
+						 indexOf("Member ID")));
 	  }
 
 	if(i != list.size() - 1)
@@ -7035,15 +7037,15 @@ void qtbook::slotShowHistory(void)
   list.append(tr("Lender"));
   list.append("MYOID");
   m_historyColumnHeaderIndexes.clear();
-  m_historyColumnHeaderIndexes["Title"] = 0;
-  m_historyColumnHeaderIndexes["ID Number"] = 1;
-  m_historyColumnHeaderIndexes["Barcode"] = 2;
-  m_historyColumnHeaderIndexes["Type"] = 3;
-  m_historyColumnHeaderIndexes["Reservation Date"] = 4;
-  m_historyColumnHeaderIndexes["Original Due Date"] = 5;
-  m_historyColumnHeaderIndexes["Returned Date"] = 6;
-  m_historyColumnHeaderIndexes["Lender"] = 7;
-  m_historyColumnHeaderIndexes["MYOID"] = 8;
+  m_historyColumnHeaderIndexes.append("Title");
+  m_historyColumnHeaderIndexes.append("ID Number");
+  m_historyColumnHeaderIndexes.append("Barcode");
+  m_historyColumnHeaderIndexes.append("Type");
+  m_historyColumnHeaderIndexes.append("Reservation Date");
+  m_historyColumnHeaderIndexes.append("Original Due Date");
+  m_historyColumnHeaderIndexes.append("Returned Date");
+  m_historyColumnHeaderIndexes.append("Lender");
+  m_historyColumnHeaderIndexes.append("MYOID");
   history.table->setColumnCount(list.size());
   history.table->setHorizontalHeaderLabels(list);
   history.table->setColumnHidden(history.table->columnCount() - 1, true);
@@ -7273,7 +7275,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
     if(history.table->rowCount() > 0 &&
        misc_functions::getColumnString(history.table, 0,
 				       m_historyColumnHeaderIndexes.
-				       value("Member ID")) ==
+				       indexOf("Member ID")) ==
        memberid)
       {
 	qapp->setOverrideCursor(Qt::WaitCursor);
@@ -7282,13 +7284,13 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 	  {
 	    value1 = misc_functions::getColumnString
 	      (history.table, i,
-	       m_historyColumnHeaderIndexes.value("MYOID"));
+	       m_historyColumnHeaderIndexes.indexOf("MYOID"));
 	    value2 = misc_functions::getColumnString
 	      (history.table, i,
-	       m_historyColumnHeaderIndexes.value("Barcode"));
+	       m_historyColumnHeaderIndexes.indexOf("Barcode"));
 	    value3 = misc_functions::getColumnString
 	      (history.table, i,
-	       m_historyColumnHeaderIndexes.value("Type")).
+	       m_historyColumnHeaderIndexes.indexOf("Type")).
 	      toLower().remove(" ");
 
 	    if(value1 == ioid && value2 == copyid && value3 == itemType)

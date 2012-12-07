@@ -55,7 +55,8 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   isQueryEnabled = false;
   parentWid = parentArg;
   oldq = misc_functions::getColumnString
-    (qmain->getUI().table, row, tr("Quantity")).toInt();
+    (qmain->getUI().table, row,
+     qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -236,7 +237,6 @@ void qtbook_cd::slotGo(void)
   QString errorstr = "";
   QString searchstr = "";
   QSqlQuery query(qmain->getDB());
-  QTableWidgetItem *column = 0;
 
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
@@ -645,73 +645,72 @@ void qtbook_cd::slotGo(void)
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "Music CDs") &&
-		 oid == misc_functions::getColumnString(qmain->getUI().table,
-							row, "MYOID") &&
-		 misc_functions::getColumnString(qmain->getUI().table,
-						 row, tr("Type")) == "CD")
+		 oid == misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		 misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("Type")) == "CD")
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
 
-		  for(i = 0; i < qmain->getUI().table->columnCount(); i++)
+		  QStringList names(qmain->getUI().table->columnNames());
+
+		  for(i = 0; i < names.count(); i++)
 		    {
-		      column = qmain->getUI().table->horizontalHeaderItem(i);
-
-		      if(column == 0)
-			continue;
-
-		      if(column->text() == tr("Catalog Number") ||
-			 column->text() == tr("ID Number"))
+		      if(names.at(i) == "Catalog Number" ||
+			 names.at(i) == "ID Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.id->text());
-		      else if(column->text() == tr("Title"))
+		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.title->text());
-		      else if(column->text() == tr("Format"))
+		      else if(names.at(i) == "Format")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.format->currentText().trimmed());
-		      else if(column->text() == tr("Artist"))
+		      else if(names.at(i) == "Artist")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.artist->toPlainText());
-		      else if(column->text() == tr("Number of Discs"))
+		      else if(names.at(i) == "Number of Discs")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.no_of_discs->text());
-		      else if(column->text() == tr("Runtime"))
+		      else if(names.at(i) == "Runtime")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.runtime->text());
-		      else if(column->text() == tr("Release Date") ||
-			      column->text() == tr("Publication Date"))
+		      else if(names.at(i) == "Release Date" ||
+			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.release_date->date().toString
 			   (Qt::SystemLocaleShortDate));
-		      else if(column->text() == tr("Recording Label") ||
-			      column->text() == tr("Publisher"))
+		      else if(names.at(i) == "Recording Label" ||
+			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.recording_label->toPlainText());
-		      else if(column->text() == tr("Categories"))
+		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.category->toPlainText().trimmed());
-		      else if(column->text() == tr("Price"))
+		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.price->cleanText());
-		      else if(column->text() == tr("Language"))
+		      else if(names.at(i) == "Language")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.language->currentText().trimmed());
-		      else if(column->text() == tr("Monetary Units"))
+		      else if(names.at(i) == "Monetary Units")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.monetary_units->currentText().trimmed());
-		      else if(column->text() == tr("Quantity"))
+		      else if(names.at(i) == "Quantity")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.quantity->text());
-		      else if(column->text() == tr("Location"))
+		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.location->currentText().trimmed());
-		      else if(column->text() == tr("Recording Type"))
+		      else if(names.at(i) == "Recording Type")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.recording_type->currentText().trimmed());
-		      else if(column->text() == tr("Audio"))
+		      else if(names.at(i) == "Audio")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.audio->currentText().trimmed());
-		      else if(column->text() == tr("Availability"))
+		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
 			    (misc_functions::getAvailability

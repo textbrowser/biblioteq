@@ -35,7 +35,7 @@ class borrowers_editor: public QDialog
   QString ioid;
   QString itemType;
   qtbook_item *bitem;
-  QHash<QString, int> m_columnHeaderIndexes;
+  QVector<QString> m_columnHeaderIndexes;
   Ui_checkedOutDialog bd;
   void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);

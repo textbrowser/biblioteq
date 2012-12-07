@@ -244,8 +244,8 @@ class qtbook: public QMainWindow
   QMainWindow *getMembersBrowser(void) const;
   QSqlDatabase getDB(void) const;
   Ui_mainWindow getUI(void) const;
+  QVector<QString> getBBColumnIndexes(void) const;
   Ui_membersBrowser getBB(void) const;
-  QHash<QString, int> getBBColumnIndexes(void) const;
   QHash<QString, QString> z3950Proxy(void) const;
   QHash<QString, QString> amazonProxy(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
@@ -268,8 +268,8 @@ class qtbook: public QMainWindow
   QString engUserinfoTitle;
   QString previousTypeFilter;
   QStringList deletedAdmins;
-  QHash<QString, int> m_bbColumnHeaderIndexes;
-  QHash<QString, int> m_historyColumnHeaderIndexes;
+  QVector<QString> m_bbColumnHeaderIndexes;
+  QVector<QString> m_historyColumnHeaderIndexes;
   QHash<QString, QString> m_z3950Proxy;
   QHash<QString, QString> amazonImages;
   QHash<QString, QString> m_amazonProxy;

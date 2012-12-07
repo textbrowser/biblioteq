@@ -113,15 +113,15 @@ void borrowers_editor::showUsers(void)
       list.append(tr("Copy Due Date"));
       list.append(tr("Lender"));
       list.append("MYOID");
-      m_columnHeaderIndexes["Copy Number"] = 0;
-      m_columnHeaderIndexes["Barcode"] = 1;
-      m_columnHeaderIndexes["Member ID"] = 2;
-      m_columnHeaderIndexes["First Name"] = 3;
-      m_columnHeaderIndexes["Last Name"] = 4;
-      m_columnHeaderIndexes["Reservation Date"] = 5;
-      m_columnHeaderIndexes["Copy Due Date"] = 6;
-      m_columnHeaderIndexes["Lender"] = 7;
-      m_columnHeaderIndexes["MYOID"] = 8;
+      m_columnHeaderIndexes.append("Copy Number");
+      m_columnHeaderIndexes.append("Barcode");
+      m_columnHeaderIndexes.append("Member ID");
+      m_columnHeaderIndexes.append("First Name");
+      m_columnHeaderIndexes.append("Last Name");
+      m_columnHeaderIndexes.append("Reservation Date");
+      m_columnHeaderIndexes.append("Copy Due Date");
+      m_columnHeaderIndexes.append("Lender");
+      m_columnHeaderIndexes.append("MYOID");
     }
   else
     {
@@ -129,10 +129,10 @@ void borrowers_editor::showUsers(void)
       list.append(tr("Barcode"));
       list.append(tr("Reservation Date"));
       list.append(tr("Copy Due Date"));
-      m_columnHeaderIndexes["Copy Number"] = 0;
-      m_columnHeaderIndexes["Barcode"] = 1;
-      m_columnHeaderIndexes["Reservation Date"] = 2;
-      m_columnHeaderIndexes["Copy Due Date"] = 3;
+      m_columnHeaderIndexes.append("Copy Number");
+      m_columnHeaderIndexes.append("Barcode");
+      m_columnHeaderIndexes.append("Reservation Date");
+      m_columnHeaderIndexes.append("Copy Due Date");
     }
 
   bd.table->setColumnCount(list.size());
@@ -361,7 +361,7 @@ void borrowers_editor::slotEraseBorrower(void)
     }
 
   oid = misc_functions::getColumnString
-    (bd.table, row, m_columnHeaderIndexes.value("MYOID"));
+    (bd.table, row, m_columnHeaderIndexes.indexOf("MYOID"));
 
   if(oid.isEmpty())
     {
@@ -402,10 +402,10 @@ void borrowers_editor::slotEraseBorrower(void)
 
       copyid = misc_functions::getColumnString
 	(bd.table, row,
-	 m_columnHeaderIndexes.value("Barcode"));
+	 m_columnHeaderIndexes.indexOf("Barcode"));
       memberid = misc_functions::getColumnString
 	(bd.table, row,
-	 m_columnHeaderIndexes.value("Member ID"));
+	 m_columnHeaderIndexes.indexOf("Member ID"));
       query.prepare("UPDATE member_history SET returned_date = ? "
 		    "WHERE item_oid = ? AND copyid = ? AND "
 		    "memberid = ?");
@@ -497,7 +497,7 @@ void borrowers_editor::slotSave(void)
   for(i = 0; i < bd.table->rowCount(); i++)
     {
       oid = misc_functions::getColumnString
-	(bd.table, i, m_columnHeaderIndexes.value("MYOID"));
+	(bd.table, i, m_columnHeaderIndexes.indexOf("MYOID"));
 
       if(!oid.isEmpty())
 	{
