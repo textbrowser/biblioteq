@@ -812,12 +812,12 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	 typefilter != "All Requested" &&
 	 typefilter != "All Reserved")
 	{
-	  if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
-	     ui.table->horizontalHeaderItem(i)->text() == tr("Type"))
+	  if(ui.table->columnNames().at(i) == "MYOID" ||
+	     ui.table->columnNames().at(i) == "Type")
 	    continue;
 	}
-      else if(ui.table->horizontalHeaderItem(i)->text() == "MYOID" ||
-	      ui.table->horizontalHeaderItem(i)->text() == "REQUESTOID")
+      else if(ui.table->columnNames().at(i) == "MYOID" ||
+	      ui.table->columnNames().at(i) == "REQUESTOID")
 	continue;
 
       if((action = new(std::nothrow) QAction(ui.table->
@@ -2086,7 +2086,6 @@ void qtbook::slotSaveUser(void)
   QString checksum = "";
   QString errorstr = "";
   QSqlQuery query(db);
-  QTableWidgetItem *column = 0;
 
   str = userinfo_diag->userinfo.memberid->text().trimmed();
   userinfo_diag->userinfo.memberid->setText(str);
@@ -2449,24 +2448,19 @@ void qtbook::slotSaveUser(void)
 	{
 	  bb.table->setSortingEnabled(false);
 
-	  for(i = 0; i < bb.table->columnCount(); i++)
+	  for(i = 0; i < m_bbColumnHeaderIndexes.count(); i++)
 	    {
-	      column = bb.table->horizontalHeaderItem(i);
-
-	      if(column == 0)
-		continue;
-
-	      if(column->text() == tr("First Name"))
+	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.firstName->text());
-	      else if(column->text() == tr("Last Name"))
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Last Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.lastName->text());
-	      else if(column->text() == tr("Member Since"))
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Member Since")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.membersince->date().
 		   toString(Qt::SystemLocaleShortDate));
-	      else if(column->text() == tr("Expiration Date"))
+	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.expirationdate->
 		   date().toString(Qt::SystemLocaleShortDate));
@@ -3119,20 +3113,12 @@ void qtbook::slotSaveConfig(void)
 void qtbook::slotShowColumns(void)
 {
   int i = 0;
-  QTableWidgetItem *column = 0;
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  for(i = 0; i < ui.table->columnCount(); i++)
-    {
-      column = ui.table->horizontalHeaderItem(i);
-
-      if(column == 0)
-	continue;
-
-      if(column->text() == tr("Publisher"))
-	ui.table->setColumnHidden(i, false);
-    }
+  for(i = 0; i < ui.table->columnNames().count(); i++)
+    if(ui.table->columnNames().at(i) == "Publisher")
+      ui.table->setColumnHidden(i, false);
 
   qapp->restoreOverrideCursor();
 }
@@ -4216,6 +4202,12 @@ void qtbook::resetAdminBrowser(void)
   list.append(tr("Membership"));
   ab.table->setColumnCount(list.size());
   ab.table->setHorizontalHeaderLabels(list);
+  m_abColumnHeaderIndexes.clear();
+  m_abColumnHeaderIndexes.append("ID");
+  m_abColumnHeaderIndexes.append("Administrator");
+  m_abColumnHeaderIndexes.append("Circulation");
+  m_abColumnHeaderIndexes.append("Librarian");
+  m_abColumnHeaderIndexes.append("Membership");
   list.clear();
 }
 
@@ -7659,8 +7651,7 @@ void qtbook::slotRefreshAdminList(void)
 		else if((checkBox = new(std::nothrow) QCheckBox()) != 0)
 		  {
 		    ab.table->setCellWidget(i, j, checkBox);
-		    columnname = ab.table->horizontalHeaderItem
-		      (j)->text().toLower();
+		    columnname = m_abColumnHeaderIndexes.value(j).toLower();
 
 		    if(str.toLower().contains(columnname))
 		      checkBox->setChecked(true);
@@ -7861,7 +7852,7 @@ void qtbook::slotSaveAdministrators(void)
 	    checkBox = static_cast<QCheckBox *> (ab.table->cellWidget(i, j));
 
 	    if(checkBox->isChecked())
-	      str += ab.table->horizontalHeaderItem(j)->text().toLower() +
+	      str += m_abColumnHeaderIndexes.value(j).toLower() +
 		" ";
 	  }
 

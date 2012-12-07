@@ -268,6 +268,7 @@ class qtbook: public QMainWindow
   QString engUserinfoTitle;
   QString previousTypeFilter;
   QStringList deletedAdmins;
+  QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
   QVector<QString> m_historyColumnHeaderIndexes;
   QHash<QString, QString> m_z3950Proxy;
