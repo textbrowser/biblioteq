@@ -63,12 +63,22 @@ QString misc_functions::getAbstractInfo(const QString &oid,
 					const QSqlDatabase &db)
 {
   QString str = "";
-  QString type = typeArg.toLower().remove(" ");
+  QString type(typeArg.toLower());
   QString querystr = "";
   QSqlQuery query(db);
 
-  querystr = QString("SELECT description FROM %1 WHERE myoid = %2").arg
-    (type).arg(oid);
+  if(type == "photograph collection")
+    {
+      type = type.replace(" ", "_");
+      querystr = QString("SELECT about FROM %1 WHERE myoid = %2").arg
+	(type).arg(oid);
+    }
+  else
+    {
+      type = type.remove(" ");
+      querystr = QString("SELECT description FROM %1 WHERE myoid = %2").arg
+	(type).arg(oid);
+    }
 
   if(query.exec(querystr))
     if(query.next())
@@ -87,9 +97,14 @@ QImage misc_functions::getImage(const QString &oid,
 				const QSqlDatabase &db)
 {
   QImage image = QImage();
-  QString type = typeArg.toLower().remove(" ");
+  QString type(typeArg.toLower());
   QString querystr = "";
   QSqlQuery query(db);
+
+  if(type == "photograph collection")
+    type = type.replace(" ", "_");
+  else
+    type = type.remove(" ");
 
   querystr = QString("SELECT %1 FROM %2 WHERE myoid = %3").arg
     (which).arg(type).arg(oid);
@@ -1213,7 +1228,12 @@ QString misc_functions::getOID(const QString &idArg,
   QSqlQuery query(db);
 
   id = idArg;
-  itemType = itemTypeArg.toLower().remove(" ");
+  itemType = itemTypeArg.toLower();
+
+  if(itemType == "photograph collection")
+    itemType = itemType.replace(" ", "_");
+  else
+    itemType = itemType.remove(" ");
 
   if(itemType == "journal" || itemType == "magazine")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
@@ -2087,6 +2107,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		 "id             TEXT PRIMARY KEY NOT NULL, "
 		 "myoid		 BIGINT UNIQUE, "
 		 "title		 TEXT NOT NULL, "
+		 "location       TEXT NOT NULL, "
 		 "about		 TEXT, "
 		 "notes		 TEXT, "
 		 "image		 BYTEA, "
@@ -2108,7 +2129,6 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		 "copyright		  TEXT NOT NULL, "
 		 "callnumber		  VARCHAR(64), "
 		 "other_number		  TEXT, "
-		 "location		  TEXT NOT NULL, "
 		 "notes			  TEXT, "
 		 "subjects		  TEXT, "
 		 "format		  TEXT, "

@@ -3452,16 +3452,20 @@ void qtbook::slotDisplaySummary(void)
       summary = summary.remove("<br><br>");
       summary += misc_functions::getAbstractInfo(oid, type, db);
       summary += "<br>";
-      tmpstr = misc_functions::getColumnString
-	(ui.table, i,
-	 ui.table->columnNumber("Availability"));
 
-      if(!tmpstr.isEmpty() && type != "Photograph Collection")
+      if(type != "Photograph Collection")
 	{
-	  if(tmpstr.toInt() > 0)
-	    summary += tr("Available") + "<br>";
-	  else
-	    summary += tr("Unavailable") + "<br>";
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i,
+	     ui.table->columnNumber("Availability"));
+
+	  if(!tmpstr.isEmpty())
+	    {
+	      if(tmpstr.toInt() > 0)
+		summary += tr("Available") + "<br>";
+	      else
+		summary += tr("Unavailable") + "<br>";
+	    }
 	}
 
       summary += misc_functions::getColumnString
@@ -3471,8 +3475,13 @@ void qtbook::slotDisplaySummary(void)
       ui.summary->setText(summary);
       ui.summary->setVisible(true);
       qapp->setOverrideCursor(Qt::WaitCursor);
-      frontImage = misc_functions::getImage(oid, "front_cover", type,
-					    db);
+
+      if(type != "Photograph Collection")
+	frontImage = misc_functions::getImage(oid, "front_cover", type,
+					      db);
+      else
+	frontImage = misc_functions::getImage(oid, "image_scaled", type,
+					      db);
 
       if(type != "Photograph Collection")
 	backImage = misc_functions::getImage(oid, "back_cover", type,

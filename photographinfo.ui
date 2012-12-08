@@ -131,28 +131,28 @@
               <item row="1" column="1">
                <widget class="QLineEdit" name="title_collection"/>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label">
                 <property name="text">
                  <string>About</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QTextEdit" name="about_collection">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_3">
                 <property name="text">
                  <string>Notes</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QTextEdit" name="notes_collection">
                 <property name="acceptRichText">
                  <bool>false</bool>
@@ -168,6 +168,33 @@
               </item>
               <item row="0" column="1">
                <widget class="QLineEdit" name="id_collection"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>Location</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <layout class="QHBoxLayout" name="_4">
+                <item>
+                 <widget class="QComboBox" name="location"/>
+                </item>
+                <item>
+                 <spacer>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -332,7 +359,7 @@
                 </item>
                </layout>
               </item>
-              <item row="11" column="0">
+              <item row="10" column="0">
                <widget class="QLabel" name="label_8">
                 <property name="text">
                  <string>Notes</string>
@@ -381,33 +408,6 @@
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_19">
-                <property name="text">
-                 <string>Location</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="1">
-               <layout class="QHBoxLayout" name="_4">
-                <item>
-                 <widget class="QComboBox" name="location"/>
-                </item>
-                <item>
-                 <spacer>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="text">
@@ -432,14 +432,14 @@
               <item row="1" column="1">
                <widget class="QLineEdit" name="title_item"/>
               </item>
-              <item row="11" column="1">
+              <item row="10" column="1">
                <widget class="QTextEdit" name="notes_item">
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_9">
                 <property name="text">
                  <string>Subjects</string>
@@ -456,7 +456,7 @@
                 </property>
                </widget>
               </item>
-              <item row="13" column="0">
+              <item row="12" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>Format</string>
@@ -524,7 +524,7 @@
                 </property>
                </widget>
               </item>
-              <item row="12" column="1">
+              <item row="11" column="1">
                <widget class="QTextEdit" name="subjects_item">
                 <property name="readOnly">
                  <bool>false</bool>
@@ -534,7 +534,7 @@
                 </property>
                </widget>
               </item>
-              <item row="13" column="1">
+              <item row="12" column="1">
                <widget class="QTextEdit" name="format_item">
                 <property name="readOnly">
                  <bool>false</bool>
@@ -696,6 +696,7 @@
   <tabstop>select_image_collection</tabstop>
   <tabstop>id_collection</tabstop>
   <tabstop>title_collection</tabstop>
+  <tabstop>location</tabstop>
   <tabstop>about_collection</tabstop>
   <tabstop>notes_collection</tabstop>
   <tabstop>graphicsView</tabstop>
@@ -712,7 +713,6 @@
   <tabstop>copyright_item</tabstop>
   <tabstop>call_number_item</tabstop>
   <tabstop>other_number_item</tabstop>
-  <tabstop>location</tabstop>
   <tabstop>notes_item</tabstop>
   <tabstop>subjects_item</tabstop>
   <tabstop>format_item</tabstop>

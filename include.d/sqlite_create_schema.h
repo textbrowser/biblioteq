@@ -239,6 +239,7 @@ CREATE TABLE photograph_collection					\
         id		 TEXT PRIMARY KEY NOT NULL,			\
 	myoid		 BIGINT UNIQUE,					\
 	title		 TEXT NOT NULL,					\
+        location         TEXT NOT NULL,					\
 	about		 TEXT,						\
 	notes		 TEXT,						\
 	image		 BYTEA,						\
@@ -260,7 +261,6 @@ CREATE TABLE photograph							\
 	copyright		  TEXT NOT NULL,			\
 	callnumber		  VARCHAR(64),				\
 	other_number		  TEXT,					\
-	location		  TEXT NOT NULL,			\
 	notes			  TEXT,					\
 	subjects		  TEXT,					\
 	format			  TEXT,					\

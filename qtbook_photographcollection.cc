@@ -66,6 +66,8 @@ qtbook_photographcollection::qtbook_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Collection &Location")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &About")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &Notes")),
@@ -91,8 +93,6 @@ qtbook_photographcollection::qtbook_photographcollection
   connect(menu->addAction(tr("Reset Item &Call Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Item &Other Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Item &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -187,6 +187,7 @@ void qtbook_photographcollection::slotGo(void)
 	query.prepare("UPDATE photograph_collection SET "
 		      "id = ?, "
 		      "title = ?, "
+		      "location = ?, "
 		      "about = ?, "
 		      "notes = ?, "
 		      "image = ?, "
@@ -195,19 +196,20 @@ void qtbook_photographcollection::slotGo(void)
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare("INSERT INTO photograph_collection "
-		      "(id, title, about, notes, image, "
-		      "image_scaled) VALUES ("
+		      "(id, title, location, about, notes, image, "
+		      "image_scaled) VALUES (?"
 		      "?, ?, ?, ?, ?, ?)");
       else
 	query.prepare("INSERT INTO photograph_collection "
-		      "(id, title, about, notes, image, "
+		      "(id, title, location, about, notes, image, "
 		      "image_scaled, myoid) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?)");
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
       query.bindValue(0, pc.id_collection->text());
       query.bindValue(1, pc.title_collection->text());
-      query.bindValue(2, pc.about_collection->toPlainText().trimmed());
-      query.bindValue(3, pc.notes_collection->toPlainText().trimmed());
+      query.bindValue(2, pc.location->currentText());
+      query.bindValue(3, pc.about_collection->toPlainText().trimmed());
+      query.bindValue(4, pc.notes_collection->toPlainText().trimmed());
 
       if(!pc.thumbnail_collection->image.isNull())
 	{
@@ -218,7 +220,7 @@ void qtbook_photographcollection::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  pc.thumbnail_collection->image.save
 	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
-	  query.bindValue(4, bytes.toBase64());
+	  query.bindValue(5, bytes.toBase64());
 	  buffer.close();
 	  bytes.clear();
 	  image = pc.thumbnail_collection->image;
@@ -227,24 +229,24 @@ void qtbook_photographcollection::slotGo(void)
 	  buffer.open(QIODevice::WriteOnly);
 	  image.save
 	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
-	  query.bindValue(5, bytes.toBase64());
+	  query.bindValue(6, bytes.toBase64());
 	}
       else
 	{
 	  pc.thumbnail_collection->imageFormat = "";
-	  query.bindValue(4, QVariant());
 	  query.bindValue(5, QVariant());
+	  query.bindValue(6, QVariant());
 	}
 
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(6, oid);
+	query.bindValue(7, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
 							   errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(6, value);
+	    query.bindValue(7, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -300,6 +302,9 @@ void qtbook_photographcollection::slotGo(void)
 		      else if(names.at(i) == "Title")
 			qmain->getUI().table->item(row, i)->setText
 			  (pc.title_collection->text());
+		      else if(names.at(i) == "Location")
+			qmain->getUI().table->item(row, i)->setText
+			  (pc.location->currentText());
 		      else if(names.at(i) == "About")
 			qmain->getUI().table->item(row, i)->setText
 			  (pc.about_collection->toPlainText().trimmed());
@@ -367,6 +372,47 @@ void qtbook_photographcollection::slotGo(void)
 			       "Please verify that "
 			       "the entry does not already exist."));
     }
+  else
+    {
+      QString searchstr("");
+
+      searchstr = "SELECT photograph_collection.id, "
+	"photograph_collection.title, "
+	"photograph_collection.location, "
+	"photograph_collection.about, "
+	"photograph_collection.type, "
+	"photograph_collection.myoid, "
+	"photograph_collection.image_scaled "
+	"FROM photograph_collection "
+	"WHERE ";
+      searchstr.append("id LIKE '%" + pc.id_collection->text().trimmed() +
+		       "%' AND ");
+
+      QString E("");
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	E = "E";
+
+      searchstr.append("title LIKE " + E + "'%" +
+		       myqstring::escape(pc.title_collection->
+					 text().trimmed()) +
+		       "%' AND ");
+      searchstr.append("COALESCE(about, '') LIKE " + E + "'%" +
+		       myqstring::escape
+		       (pc.about_collection->toPlainText().trimmed()) +
+		       "%' AND ");
+      searchstr.append("COALESCE(notes, '') LIKE " + E + "'%" +
+		       myqstring::escape
+		       (pc.notes_collection->toPlainText().trimmed()) +
+		       "%'");
+
+      /*
+      ** Search the database.
+      */
+
+      (void) qmain->populateTable
+	(qtbook::POPULATE_SEARCH, "Photograph Collections", searchstr);
+    }
 }
 
 /*
@@ -383,6 +429,9 @@ void qtbook_photographcollection::search
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
   pc.itemGroup->setVisible(false);
+
+  if(pc.location->findText(tr("Any")) == -1)
+    pc.location->insertItem(0, tr("Any"));
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();
 
@@ -482,6 +531,7 @@ void qtbook_photographcollection::modify(const int state)
 
   searchstr = "SELECT id, "
     "title, "
+    "location, "
     "about, "
     "notes, "
     "image "
@@ -534,6 +584,15 @@ void qtbook_photographcollection::modify(const int state)
 	    }
 	  else if(fieldname == "title")
 	    pc.title_collection->setText(var.toString());
+	  else if(fieldname == "location")
+	    {
+	      if(pc.location->findText(var.toString()) > -1)
+		pc.location->setCurrentIndex
+		  (pc.location->findText(var.toString()));
+	      else
+		pc.location->setCurrentIndex
+		  (pc.location->findText(tr("UNKNOWN")));
+	    }
 	  else if(fieldname == "about")
 	    pc.about_collection->setPlainText(var.toString());
 	  else if(fieldname == "notes")
@@ -561,7 +620,6 @@ void qtbook_photographcollection::modify(const int state)
 			    "copyright, "
 			    "callnumber, "
 			    "other_number, "
-			    "location, "
 			    "notes, "
 			    "subjects, "
 			    "format, "
@@ -597,15 +655,6 @@ void qtbook_photographcollection::modify(const int state)
 		pc.call_number_item->setText(var.toString());
 	      else if(fieldname == "other_number")
 		pc.other_number_item->setText(var.toString());
-	      else if(fieldname == "location")
-		{
-		  if(pc.location->findText(var.toString()) > -1)
-		    pc.location->setCurrentIndex
-		      (pc.location->findText(var.toString()));
-		  else
-		    pc.location->setCurrentIndex
-		      (pc.location->findText(tr("UNKNOWN")));
-		}
 	      else if(fieldname == "notes")
 		pc.notes_item->setPlainText(var.toString());
 	      else if(fieldname == "subjects")
@@ -720,49 +769,49 @@ void qtbook_photographcollection::slotReset(void)
 	}
       else if(action == actions[8])
 	{
+	  pc.location->setCurrentIndex(0);
+	  pc.location->setFocus();
+	}
+      else if(action == actions[9])
+	{
 	  pc.creators_item->clear();
 	  pc.creators_item->setFocus();
 	}
-      else if(action == actions[9])
+      else if(action == actions[10])
 	{
 	  pc.publication_date->setDate
 	    (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 	  pc.publication_date->setFocus();
 	}
-      else if(action == actions[10])
+      else if(action == actions[11])
 	{
 	  pc.quantity->setValue(1);
 	  pc.quantity->setFocus();
 	}
-      else if(action == actions[11])
+      else if(action == actions[12])
 	{
 	  pc.medium_item->clear();
 	  pc.medium_item->setFocus();
 	}
-      else if(action == actions[12])
+      else if(action == actions[13])
 	{
 	  pc.reproduction_number_item->clear();
 	  pc.reproduction_number_item->setFocus();
 	}
-      else if(action == actions[13])
+      else if(action == actions[14])
 	{
 	  pc.copyright_item->clear();
 	  pc.copyright_item->setFocus();
 	}
-      else if(action == actions[14])
+      else if(action == actions[15])
 	{
 	  pc.call_number_item->clear();
 	  pc.call_number_item->setFocus();
 	}
-      else if(action == actions[15])
+      else if(action == actions[16])
 	{
 	  pc.other_number_item->clear();
 	  pc.other_number_item->setFocus();
-	}
-      else if(action == actions[16])
-	{
-	  pc.location->setCurrentIndex(0);
-	  pc.location->setFocus();
 	}
       else if(action == actions[17])
 	{
@@ -865,6 +914,8 @@ void qtbook_photographcollection::slotPrint(void)
     pc.id_collection->text().trimmed() + "<br>";
   html += "<b>" + tr("Collection Title:") + "</b> " +
     pc.title_collection->text().trimmed() + "<br>";
+  html += "<b>" + tr("Collection Location:") + "</b> " +
+    pc.location->currentText().trimmed() + "<br>";
   html += "<b>" + tr("About:") + "</b> " +
     pc.about_collection->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Collection Nodes:") + "</b> " +
@@ -889,8 +940,6 @@ void qtbook_photographcollection::slotPrint(void)
     pc.call_number_item->text().trimmed() + "<br>";
   html += "<b>" + tr("Item Other Number:") + "</b> " +
     pc.other_number_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Location:") + "</b> " +
-    pc.location->currentText().trimmed() + "<br>";
   html += "<b>" + tr("Item Notes:") + "</b> " +
     pc.notes_item->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Item Subjects:") + "</b> " +
