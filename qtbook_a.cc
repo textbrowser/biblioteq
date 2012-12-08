@@ -5368,6 +5368,18 @@ void qtbook::replaceVideoGame(const QString &id,
 }
 
 /*
+** -- replacePhotographCollection() --
+*/
+
+void qtbook::replacePhotographCollection
+(const QString &id,
+ qtbook_photographcollection *photograph)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(photograph);
+}
+
+/*
 ** -- updateItemWindows() --
 */
 

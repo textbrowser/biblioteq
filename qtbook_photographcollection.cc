@@ -264,7 +264,90 @@ void qtbook_photographcollection::slotGo(void)
 	}
       else
 	{
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  qapp->restoreOverrideCursor();
+
+	  if(engWindowTitle.contains("Modify"))
+	    {
+	      str = QString(tr("BiblioteQ: Modify Photograph Collection "
+			       "Entry (")) +
+		pc.id_collection->text() + tr(")");
+	      setWindowTitle(str);
+	      engWindowTitle = "Modify";
+
+	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Overdue" ||
+		  qmain->getTypeFilterString() == "All Requested" ||
+		  qmain->getTypeFilterString() == "All Reserved" ||
+		  qmain->getTypeFilterString() == "Photograph Collections") &&
+		 oid == misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		 misc_functions::getColumnString
+		 (qmain->getUI().table,
+		  row, qmain->getUI().table->columnNumber("Type")) ==
+		 "Photograph Collection")
+		{
+		  qmain->getUI().table->setSortingEnabled(false);
+
+		  QStringList names(qmain->getUI().table->columnNames());
+
+		  for(int i = 0; i < names.count(); i++)
+		    {
+		      if(names.at(i) == "ID" ||
+			 names.at(i) == "ID Number")
+			qmain->getUI().table->item(row, i)->setText
+			  (pc.id_collection->text());
+		      else if(names.at(i) == "Title")
+			qmain->getUI().table->item(row, i)->setText
+			  (pc.title_collection->text());
+		      else if(names.at(i) == "About")
+			qmain->getUI().table->item(row, i)->setText
+			  (pc.about_collection->toPlainText().trimmed());
+		    }
+
+		  qmain->getUI().table->setSortingEnabled(true);
+
+		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+		    textfield->setCursorPosition(0);
+
+		  qmain->slotResizeColumns();
+		  qmain->slotDisplaySummary();
+		  qmain->updateSceneItem(oid, pc.thumbnail_collection->image);
+		}
+	    }
+	  else
+	    {
+	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      oid = misc_functions::getOID(pc.id_collection->text(),
+					   "Photograph Collection",
+					   qmain->getDB(),
+					   errorstr);
+	      qapp->restoreOverrideCursor();
+
+	      if(!errorstr.isEmpty())
+		{
+		  qmain->addError(QString(tr("Database Error")),
+				  QString(tr("Unable to retrieve the "
+					     "photograph collection's OID.")),
+				  errorstr, __FILE__, __LINE__);
+		  QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+					tr("Unable to retrieve the "
+					   "photograph collection's OID."));
+		}
+	      else
+		qmain->replacePhotographCollection(oid, this);
+
+	      updateWindow(qtbook::EDITABLE);
+
+	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
+		(void) qmain->populateTable
+		  (qtbook::POPULATE_ALL, "Photograph Collections",
+		   QString(""));
+
+	      raise();
+	    }
+
+	  storeData(this);
 	}
 
       return;
@@ -307,6 +390,7 @@ void qtbook_photographcollection::search
   actions.clear();
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
   engWindowTitle = "Search";
+  pc.okButton->setText(tr("&Search"));
   pc.id_collection->setFocus();
   misc_functions::center(this, parentWid);
   show();

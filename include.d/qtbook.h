@@ -234,6 +234,8 @@ class qtbook: public QMainWindow
   void updateMembersBrowser(void);
   void updateMembersBrowser(const QString &);
   void removePhotographCollection(qtbook_photographcollection *);
+  void replacePhotographCollection(const QString &,
+				   qtbook_photographcollection *);
   void updateReservationHistoryBrowser(const QString &, const QString &,
 				       const QString &, const QString &,
 				       const QString &);
