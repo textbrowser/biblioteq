@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1096</width>
-         <height>1121</height>
+         <width>1091</width>
+         <height>1092</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -55,6 +55,12 @@
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <widget class="image_drop_site" name="thumbnail_collection">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>150</width>
