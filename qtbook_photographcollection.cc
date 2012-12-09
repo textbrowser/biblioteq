@@ -197,7 +197,7 @@ void qtbook_photographcollection::slotGo(void)
       else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare("INSERT INTO photograph_collection "
 		      "(id, title, location, about, notes, image, "
-		      "image_scaled) VALUES (?"
+		      "image_scaled) VALUES (?, "
 		      "?, ?, ?, ?, ?, ?)");
       else
 	query.prepare("INSERT INTO photograph_collection "
@@ -397,6 +397,12 @@ void qtbook_photographcollection::slotGo(void)
 		       myqstring::escape(pc.title_collection->
 					 text().trimmed()) +
 		       "%' AND ");
+
+      if(pc.location->currentIndex() != 0)
+	searchstr.append("location = " + E + "'" +
+			 myqstring::escape
+			 (pc.location->currentText().trimmed()) + "' AND ");
+
       searchstr.append("COALESCE(about, '') LIKE " + E + "'%" +
 		       myqstring::escape
 		       (pc.about_collection->toPlainText().trimmed()) +
@@ -429,9 +435,9 @@ void qtbook_photographcollection::search
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
   pc.itemGroup->setVisible(false);
-
-  if(pc.location->findText(tr("Any")) == -1)
-    pc.location->insertItem(0, tr("Any"));
+  pc.location->removeItem(0);
+  pc.location->insertItem(0, tr("Any"));
+  pc.location->setCurrentIndex(0);
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();
 
@@ -518,7 +524,7 @@ void qtbook_photographcollection::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
       engWindowTitle = "View";
       pc.okButton->setVisible(false);
-      pc.addItemButton->setEnabled(false);
+      pc.addItemButton->setVisible(false);
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
       pc.select_image_item->setVisible(false);
