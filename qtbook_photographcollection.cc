@@ -435,8 +435,10 @@ void qtbook_photographcollection::search
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
   pc.itemGroup->setVisible(false);
-  pc.location->removeItem(0);
-  pc.location->insertItem(0, tr("Any"));
+
+  if(pc.location->findText(tr("Any")) == -1)
+    pc.location->insertItem(0, tr("Any"));
+
   pc.location->setCurrentIndex(0);
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();
@@ -753,30 +755,30 @@ void qtbook_photographcollection::slotReset(void)
 	}
       else if(action == actions[3])
 	{
+	  pc.location->setCurrentIndex(0);
+	  pc.location->setFocus();
+	}
+      else if(action == actions[4])
+	{
 	  pc.about_collection->clear();
 	  pc.about_collection->setFocus();
 	}
-      else if(action == actions[4])
+      else if(action == actions[5])
 	{
 	  pc.notes_collection->clear();
 	  pc.notes_collection->setFocus();
 	}
-      else if(action == actions[5])
-	pc.thumbnail_item->clear();
       else if(action == actions[6])
+	pc.thumbnail_item->clear();
+      else if(action == actions[7])
 	{
 	  pc.id_item->clear();
 	  pc.id_item->setFocus();
 	}
-      else if(action == actions[7])
+      else if(action == actions[8])
 	{
 	  pc.title_item->clear();
 	  pc.title_item->setFocus();
-	}
-      else if(action == actions[8])
-	{
-	  pc.location->setCurrentIndex(0);
-	  pc.location->setFocus();
 	}
       else if(action == actions[9])
 	{
