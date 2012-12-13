@@ -2,19 +2,18 @@ purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
-QT		+= sql network
-CONFIG		+= qt release thread warn_on app_bundle
+QT		+= network sql
+CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 QMAKE_LFLAGS_RELEASE =
 QMAKE_LFLAGS_RPATH =
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror -mtune=generic -O3
+QMAKE_CXXFLAGS_RELEASE += -Wall -Werror -Wextra -mtune=generic -O3
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include
 ICON		= icons.d/book.icns
-LIBS		+= -lsqlite3 \
-		   -L/usr/local/lib -lyaz
+LIBS		+= -lsqlite3 -L/usr/local/lib -lyaz
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \

@@ -2,13 +2,13 @@ purge.commands = del *~ && del include.d\\*~ && del doc.d\\*~
 
 TEMPLATE	= app
 LANGUAGE	= C++
-QT		+= sql network
+QT		+= network sql
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
-QMAKE_CXXFLAGS	+= -Wall -Wextra -Werror
+QMAKE_CXXFLAGS	+= -Wall -Werror -Wextra
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ.exe
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror
+QMAKE_CXXFLAGS_RELEASE += -Wall -Werror -Wextra
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d include.win32.d
 ICON		= icons.d\\book.png
