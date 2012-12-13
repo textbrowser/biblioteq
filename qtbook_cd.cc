@@ -822,7 +822,7 @@ void qtbook_cd::slotGo(void)
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      if(cd.format->currentText() != tr("Any"))
+      if(cd.format->currentIndex() != 0)
 	searchstr.append("cdformat = " + E + "'" +
 			 myqstring::escape(cd.format->currentText().
 					   trimmed()) +
@@ -840,12 +840,12 @@ void qtbook_cd::slotGo(void)
 	searchstr.append("cdruntime = '" + cd.runtime->text() +
 			 "' AND ");
 
-      if(cd.audio->currentText() != tr("Any"))
+      if(cd.audio->currentIndex() != 0)
 	searchstr.append("cdaudio = '" +
 			 cd.audio->currentText().trimmed() +
 			 "' AND ");
 
-      if(cd.recording_type->currentText() != tr("Any"))
+      if(cd.recording_type->currentIndex() != 0)
 	searchstr.append("cdrecording = '" +
 			 cd.recording_type->currentText().trimmed() +
 			 "' AND ");
@@ -874,13 +874,13 @@ void qtbook_cd::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(cd.language->currentText() != tr("Any"))
+      if(cd.language->currentIndex() != 0)
 	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(cd.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(cd.monetary_units->currentText() != tr("Any"))
+      if(cd.monetary_units->currentIndex() != 0)
 	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (cd.monetary_units->currentText().trimmed()) +
@@ -897,7 +897,7 @@ void qtbook_cd::slotGo(void)
       if(cd.quantity->value() != 0)
 	searchstr.append(" AND quantity = " + cd.quantity->text());
 
-      if(cd.location->currentText() != tr("Any"))
+      if(cd.location->currentIndex() != 0)
 	searchstr.append(" AND location = " + E + "'" +
 			 myqstring::escape
 			 (cd.location->currentText().trimmed()) + "' ");
@@ -942,25 +942,12 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.quantity->setValue(0);
   cd.no_of_discs->setMinimum(0);
   cd.no_of_discs->setValue(0);
-
-  if(cd.audio->findText(tr("Any")) == -1)
-    cd.audio->insertItem(0, tr("Any"));
-
-  if(cd.recording_type->findText(tr("Any")) == -1)
-    cd.recording_type->insertItem(0, tr("Any"));
-
-  if(cd.format->findText(tr("Any")) == -1)
-    cd.format->insertItem(0, tr("Any"));
-
-  if(cd.language->findText(tr("Any")) == -1)
-    cd.language->insertItem(0, tr("Any"));
-
-  if(cd.monetary_units->findText(tr("Any")) == -1)
-    cd.monetary_units->insertItem(0, tr("Any"));
-
-  if(cd.location->findText(tr("Any")) == -1)
-    cd.location->insertItem(0, tr("Any"));
-
+  cd.audio->insertItem(0, tr("Any"));
+  cd.recording_type->insertItem(0, tr("Any"));
+  cd.format->insertItem(0, tr("Any"));
+  cd.language->insertItem(0, tr("Any"));
+  cd.monetary_units->insertItem(0, tr("Any"));
+  cd.location->insertItem(0, tr("Any"));
   cd.audio->setCurrentIndex(0);
   cd.location->setCurrentIndex(0);
   cd.language->setCurrentIndex(0);

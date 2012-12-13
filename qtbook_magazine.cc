@@ -956,13 +956,13 @@ void qtbook_magazine::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(ma.language->currentText() != tr("Any"))
+      if(ma.language->currentIndex() != 0)
 	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(ma.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(ma.monetary_units->currentText() != tr("Any"))
+      if(ma.monetary_units->currentIndex() != 0)
 	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (ma.monetary_units->currentText().trimmed()) +
@@ -975,7 +975,7 @@ void qtbook_magazine::slotGo(void)
       if(ma.quantity->value() != 0)
 	searchstr.append("AND quantity = " + ma.quantity->text() + " ");
 
-      if(ma.location->currentText() != tr("Any"))
+      if(ma.location->currentIndex() != 0)
 	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (ma.location->currentText().trimmed()) + "' ");
@@ -1034,20 +1034,9 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.volume->setValue(-1);
   ma.issue->setMinimum(-1);
   ma.issue->setValue(-1);
-
-  /*
-  ** Add "any".
-  */
-
-  if(ma.language->findText(tr("Any")) == -1)
-    ma.language->insertItem(0, tr("Any"));
-
-  if(ma.monetary_units->findText(tr("Any")) == -1)
-    ma.monetary_units->insertItem(0, tr("Any"));
-
-  if(ma.location->findText(tr("Any")) == -1)
-    ma.location->insertItem(0, tr("Any"));
-
+  ma.language->insertItem(0, tr("Any"));
+  ma.monetary_units->insertItem(0, tr("Any"));
+  ma.location->insertItem(0, tr("Any"));
   ma.location->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);

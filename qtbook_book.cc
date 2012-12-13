@@ -979,7 +979,7 @@ void qtbook_book::slotGo(void)
 		       myqstring::escape(id.deweynum->text().trimmed()) +
 		       "%' AND ");
 
-      if(id.edition->currentText() != tr("Any"))
+      if(id.edition->currentIndex() != 0)
 	searchstr.append("edition = '" +
 			 id.edition->currentText().trimmed() +
 			 "' AND ");
@@ -1014,19 +1014,19 @@ void qtbook_book::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(id.language->currentText() != tr("Any"))
+      if(id.language->currentIndex() != 0)
 	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(id.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(id.monetary_units->currentText() != tr("Any"))
+      if(id.monetary_units->currentIndex() != 0)
 	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (id.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      if(id.binding->currentText() != tr("Any"))
+      if(id.binding->currentIndex() != 0)
 	searchstr.append("binding_type = " + E + "'" +
 			 myqstring::escape(id.binding->currentText().
 					   trimmed()) +
@@ -1040,7 +1040,7 @@ void qtbook_book::slotGo(void)
       if(id.quantity->value() != 0)
 	searchstr.append("AND quantity = " + id.quantity->text() + " ");
 
-      if(id.location->currentText() != tr("Any"))
+      if(id.location->currentIndex() != 0)
 	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (id.location->currentText().trimmed()) + "' ");
@@ -1094,26 +1094,11 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.price->setValue(-0.01);
   id.quantity->setMinimum(0);
   id.quantity->setValue(0);
-
-  /*
-  ** Add "any".
-  */
-
-  if(id.edition->findText(tr("Any")) == -1)
-    id.edition->insertItem(0, tr("Any"));
-
-  if(id.language->findText(tr("Any")) == -1)
-    id.language->insertItem(0, tr("Any"));
-
-  if(id.monetary_units->findText(tr("Any")) == -1)
-    id.monetary_units->insertItem(0, tr("Any"));
-
-  if(id.binding->findText(tr("Any")) == -1)
-    id.binding->insertItem(0, tr("Any"));
-
-  if(id.location->findText(tr("Any")) == -1)
-    id.location->insertItem(0, tr("Any"));
-
+  id.edition->insertItem(0, tr("Any"));
+  id.language->insertItem(0, tr("Any"));
+  id.monetary_units->insertItem(0, tr("Any"));
+  id.binding->insertItem(0, tr("Any"));
+  id.location->insertItem(0, tr("Any"));
   id.location->setCurrentIndex(0);
   id.edition->setCurrentIndex(0);
   id.language->setCurrentIndex(0);

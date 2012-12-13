@@ -776,7 +776,7 @@ void qtbook_videogame::slotGo(void)
 		       myqstring::escape(vg.title->text().trimmed()) +
 		       "%' AND ");
 
-      if(vg.rating->currentText() != tr("Any"))
+      if(vg.rating->currentIndex() != 0)
 	searchstr.append("vgrating = " + E + "'" +
 			 myqstring::escape(vg.rating->currentText().
 					   trimmed()) +
@@ -813,19 +813,19 @@ void qtbook_videogame::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(vg.language->currentText() != tr("Any"))
+      if(vg.language->currentIndex() != 0)
 	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(vg.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(vg.monetary_units->currentText() != tr("Any"))
+      if(vg.monetary_units->currentIndex() != 0)
 	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (vg.monetary_units->currentText().trimmed()) +
 			 "' AND ");
 
-      if(vg.platform->currentText() != tr("Any"))
+      if(vg.platform->currentIndex() != 0)
 	searchstr.append("vgplatform = " + E + "'" +
 			 myqstring::escape(vg.rating->currentText().
 					   trimmed()) +
@@ -838,12 +838,12 @@ void qtbook_videogame::slotGo(void)
       if(vg.quantity->value() != 0)
 	searchstr.append("AND quantity = " + vg.quantity->text() + " ");
 
-      if(vg.location->currentText() != tr("Any"))
+      if(vg.location->currentIndex() != 0)
 	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (vg.location->currentText().trimmed()) + "' ");
 
-      if(vg.mode->currentText() != tr("Any"))
+      if(vg.mode->currentIndex() != 0)
 	searchstr.append("AND vgmode = " + E + "'" +
 			 myqstring::escape
 			 (vg.mode->currentText().trimmed()) + "' ");
@@ -886,29 +886,12 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);
   vg.quantity->setValue(0);
-
-  /*
-  ** Add "any".
-  */
-
-  if(vg.rating->findText(tr("Any")) == -1)
-    vg.rating->insertItem(0, tr("Any"));
-
-  if(vg.language->findText(tr("Any")) == -1)
-    vg.language->insertItem(0, tr("Any"));
-
-  if(vg.monetary_units->findText(tr("Any")) == -1)
-    vg.monetary_units->insertItem(0, tr("Any"));
-
-  if(vg.platform->findText(tr("Any")) == -1)
-    vg.platform->insertItem(0, tr("Any"));
-
-  if(vg.location->findText(tr("Any")) == -1)
-    vg.location->insertItem(0, tr("Any"));
-
-  if(vg.mode->findText(tr("Any")) == -1)
-    vg.mode->insertItem(0, tr("Any"));
-
+  vg.rating->insertItem(0, tr("Any"));
+  vg.language->insertItem(0, tr("Any"));
+  vg.monetary_units->insertItem(0, tr("Any"));
+  vg.platform->insertItem(0, tr("Any"));
+  vg.location->insertItem(0, tr("Any"));
+  vg.mode->insertItem(0, tr("Any"));
   vg.location->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
   vg.language->setCurrentIndex(0);

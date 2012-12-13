@@ -867,7 +867,7 @@ void qtbook_dvd::slotGo(void)
       searchstr.append("dvdformat LIKE " + E + "'%").append
 	(myqstring::escape(dvd.format->text().trimmed())).append("%' AND ");
 
-      if(dvd.aspectratio->currentText() != tr("Any"))
+      if(dvd.aspectratio->currentIndex() != 0)
 	searchstr.append("dvdaspectratio = '" +
 			 dvd.aspectratio->currentText().trimmed() +
 			 "' AND ");
@@ -887,13 +887,13 @@ void qtbook_dvd::slotGo(void)
 	searchstr.append("dvdruntime = '" + dvd.runtime->text() +
 			 "' AND ");
 
-      if(dvd.rating->currentText() != tr("Any"))
+      if(dvd.rating->currentIndex() != 0)
 	searchstr.append("dvdrating = " + E + "'" +
 			 myqstring::escape(dvd.rating->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(dvd.region->currentText() != tr("Any"))
+      if(dvd.region->currentIndex() != 0)
 	searchstr.append("dvdregion = " + E + "'" +
 			 myqstring::escape(dvd.region->currentText().
 					   trimmed()) +
@@ -925,13 +925,13 @@ void qtbook_dvd::slotGo(void)
 	  searchstr.append(" AND ");
 	}
 
-      if(dvd.language->currentText() != tr("Any"))
+      if(dvd.language->currentIndex() != 0)
 	searchstr.append("language = " + E + "'" +
 			 myqstring::escape(dvd.language->currentText().
 					   trimmed()) +
 			 "' AND ");
 
-      if(dvd.monetary_units->currentText() != tr("Any"))
+      if(dvd.monetary_units->currentIndex() != 0)
 	searchstr.append("monetary_units = " + E + "'" +
 			 myqstring::escape
 			 (dvd.monetary_units->currentText().trimmed()) +
@@ -948,7 +948,7 @@ void qtbook_dvd::slotGo(void)
       if(dvd.quantity->value() != 0)
 	searchstr.append("AND quantity = " + dvd.quantity->text() + " ");
 
-      if(dvd.location->currentText() != tr("Any"))
+      if(dvd.location->currentIndex() != 0)
 	searchstr.append("AND location = " + E + "'" +
 			 myqstring::escape
 			 (dvd.location->currentText().trimmed()) + "' ");
@@ -993,25 +993,12 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.quantity->setValue(0);
   dvd.no_of_discs->setMinimum(0);
   dvd.no_of_discs->setValue(0);
-
-  if(dvd.language->findText(tr("Any")) == -1)
-    dvd.language->insertItem(0, tr("Any"));
-
-  if(dvd.monetary_units->findText(tr("Any")) == -1)
-    dvd.monetary_units->insertItem(0, tr("Any"));
-
-  if(dvd.location->findText(tr("Any")) == -1)
-    dvd.location->insertItem(0, tr("Any"));
-
-  if(dvd.rating->findText(tr("Any")) == -1)
-    dvd.rating->insertItem(0, tr("Any"));
-
-  if(dvd.region->findText(tr("Any")) == -1)
-    dvd.region->insertItem(0, tr("Any"));
-
-  if(dvd.aspectratio->findText(tr("Any")) == -1)
-    dvd.aspectratio->insertItem(0, tr("Any"));
-
+  dvd.language->insertItem(0, tr("Any"));
+  dvd.monetary_units->insertItem(0, tr("Any"));
+  dvd.location->insertItem(0, tr("Any"));
+  dvd.rating->insertItem(0, tr("Any"));
+  dvd.region->insertItem(0, tr("Any"));
+  dvd.aspectratio->insertItem(0, tr("Any"));
   dvd.location->setCurrentIndex(0);
   dvd.language->setCurrentIndex(0);
   dvd.monetary_units->setCurrentIndex(0);

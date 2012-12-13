@@ -435,10 +435,7 @@ void qtbook_photographcollection::search
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
   pc.itemGroup->setVisible(false);
-
-  if(pc.location->findText(tr("Any")) == -1)
-    pc.location->insertItem(0, tr("Any"));
-
+  pc.location->insertItem(0, tr("Any"));
   pc.location->setCurrentIndex(0);
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();

@@ -1223,28 +1223,12 @@ void qtbook::slotSearch(void)
        QString(tr("Unable to retrieve the locations.")),
        errorstr, __FILE__, __LINE__);
 
-  /*
-  ** Add "any" and "UNKNOWN".
-  */
-
-  if(al.language->findText(tr("Any")) == -1)
-    al.language->insertItem(0, tr("Any"));
-
-  if(al.monetary_units->findText(tr("Any")) == -1)
-    al.monetary_units->insertItem(0, tr("Any"));
-
-  if(al.location->findText(tr("Any")) == -1)
-    al.location->insertItem(0, tr("Any"));
-
-  if(al.language->findText(tr("UNKNOWN")) == -1)
-    al.language->addItem(tr("UNKNOWN"));
-
-  if(al.monetary_units->findText(tr("UNKNOWN")) == -1)
-    al.monetary_units->addItem(tr("UNKNOWN"));
-
-  if(al.location->findText(tr("UNKNOWN")) == -1)
-    al.location->addItem(tr("UNKNOWN"));
-
+  al.language->insertItem(0, tr("Any"));
+  al.monetary_units->insertItem(0, tr("Any"));
+  al.location->insertItem(0, tr("Any"));
+  al.language->addItem(tr("UNKNOWN"));
+  al.monetary_units->addItem(tr("UNKNOWN"));
+  al.location->addItem(tr("UNKNOWN"));
   al.location->setCurrentIndex(0);
   al.language->setCurrentIndex(0);
   al.monetary_units->setCurrentIndex(0);
@@ -5352,7 +5336,8 @@ void qtbook::replaceMagazine(const QString &id, qtbook_magazine *magazine)
 
 void qtbook::removePhotographCollection(qtbook_photographcollection *pc)
 {
-  Q_UNUSED(pc);
+  if(pc)
+    pc->deleteLater();
 }
 
 /*
@@ -5443,6 +5428,8 @@ void qtbook::emptyContainers(void)
       qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
       qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
       qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
+      qtbook_photographcollection *photograph =
+	qobject_cast<qtbook_photographcollection *> (w);
 
       if(cd)
 	cd->deleteLater();
@@ -5461,6 +5448,9 @@ void qtbook::emptyContainers(void)
 
       if(videogame)
 	videogame->deleteLater();
+
+      if(photograph)
+	photograph->deleteLater();
     }
 
   qapp->restoreOverrideCursor();
@@ -5733,13 +5723,13 @@ void qtbook::slotBookSearch(void)
     }
 
   if(!book)
-    book = new(std::nothrow) qtbook_book(this, "search", -1);
-
-  if(book)
     {
+      book = new(std::nothrow) qtbook_book(this, "search", -1);
       book->raise();
       book->search();
     }
+  else
+    book->raise();
 }
 
 /*
@@ -5777,13 +5767,13 @@ void qtbook::slotCDSearch(void)
     }
 
   if(!cd)
-    cd = new(std::nothrow) qtbook_cd(this, "search", -1);
-
-  if(cd)
     {
+      cd = new(std::nothrow) qtbook_cd(this, "search", -1);
       cd->raise();
       cd->search();
     }
+  else
+    cd->raise();
 }
 
 /*
@@ -5821,13 +5811,13 @@ void qtbook::slotDVDSearch(void)
     }
 
   if(!dvd)
-    dvd = new(std::nothrow) qtbook_dvd(this, "search", -1);
-
-  if(dvd)
     {
+      dvd = new(std::nothrow) qtbook_dvd(this, "search", -1);
       dvd->raise();
       dvd->search();
     }
+  else
+    dvd->raise();
 }
 
 /*
@@ -5865,13 +5855,13 @@ void qtbook::slotJournSearch(void)
     }
 
   if(!journal)
-    journal = new(std::nothrow) qtbook_journal(this, "search", -1);
-
-  if(journal)
     {
+      journal = new(std::nothrow) qtbook_journal(this, "search", -1);
       journal->raise();
       journal->search();
     }
+  else
+    journal->raise();
 }
 
 /*
@@ -5910,14 +5900,14 @@ void qtbook::slotMagSearch(void)
     }
 
   if(!magazine)
-    magazine = new(std::nothrow) qtbook_magazine
-      (this, "search", -1, "magazine");
-
-  if(magazine)
     {
+      magazine = new(std::nothrow) qtbook_magazine
+	(this, "search", -1, "magazine");
       magazine->raise();
       magazine->search();
     }
+  else
+    magazine->raise();
 }
 
 /*
@@ -5957,14 +5947,14 @@ void qtbook::slotPhotographSearch(void)
     }
 
   if(!photograph)
-    photograph = new(std::nothrow) qtbook_photographcollection
-      (this, "search", -1);
-
-  if(photograph)
     {
+      photograph = new(std::nothrow) qtbook_photographcollection
+	(this, "search", -1);
       photograph->raise();
       photograph->search();
     }
+  else
+    photograph->raise();
 }
 
 /*
@@ -6003,14 +5993,14 @@ void qtbook::slotVideoGameSearch(void)
     }
 
   if(!videogame)
-    videogame = new(std::nothrow) qtbook_videogame
-      (this, "search", -1);
-
-  if(videogame)
     {
+      videogame = new(std::nothrow) qtbook_videogame
+	(this, "search", -1);
       videogame->raise();
       videogame->search();
     }
+  else
+    videogame->raise();
 }
 
 /*
