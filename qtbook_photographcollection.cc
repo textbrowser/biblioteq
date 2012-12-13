@@ -441,6 +441,10 @@ void qtbook_photographcollection::search
   QList<QAction *> actions = pc.resetButton->menu()->actions();
 
   actions[0]->setVisible(false);
+
+  for(int i = 6; i < actions.size(); i++)
+    actions.at(i)->setVisible(false);
+
   actions.clear();
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
   engWindowTitle = "Search";
