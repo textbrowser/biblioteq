@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-159</y>
          <width>1091</width>
-         <height>1092</height>
+         <height>1014</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -280,53 +280,6 @@
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="_5">
-              <item>
-               <spacer>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="select_image_item">
-                <property name="minimumSize">
-                 <size>
-                  <width>105</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>&amp;Select</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item>
              <layout class="QGridLayout" name="gridLayout_2">
               <item row="2" column="0">
                <widget class="QLabel" name="label_12">
@@ -339,6 +292,9 @@
                <layout class="QHBoxLayout" name="_3">
                 <item>
                  <widget class="QDateEdit" name="publication_date">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                   <property name="calendarPopup">
                    <bool>true</bool>
                   </property>
@@ -368,6 +324,9 @@
               </item>
               <item row="7" column="1">
                <widget class="QTextEdit" name="copyright_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
@@ -385,6 +344,9 @@
                 <property name="maxLength">
                  <number>64</number>
                 </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="9" column="0">
@@ -396,6 +358,9 @@
               </item>
               <item row="6" column="1">
                <widget class="QTextEdit" name="reproduction_number_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
@@ -430,10 +395,17 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="title_item"/>
+               <widget class="QLineEdit" name="title_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
               </item>
               <item row="10" column="1">
                <widget class="QTextEdit" name="notes_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
@@ -447,7 +419,11 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QLineEdit" name="medium_item"/>
+               <widget class="QLineEdit" name="medium_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
               </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_13">
@@ -468,6 +444,9 @@
                 <property name="maxLength">
                  <number>64</number>
                 </property>
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item row="4" column="0">
@@ -481,6 +460,9 @@
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
                  <widget class="QSpinBox" name="quantity">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
                   <property name="minimum">
                    <number>1</number>
                   </property>
@@ -512,35 +494,39 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="id_item"/>
+               <widget class="QLineEdit" name="id_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
               </item>
               <item row="2" column="1">
                <widget class="QTextEdit" name="creators_item">
                 <property name="readOnly">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                 <set>Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
               <item row="11" column="1">
                <widget class="QTextEdit" name="subjects_item">
                 <property name="readOnly">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                 <set>Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
               <item row="12" column="1">
                <widget class="QTextEdit" name="format_item">
                 <property name="readOnly">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="textInteractionFlags">
-                 <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                 <set>Qt::TextSelectableByMouse</set>
                 </property>
                </widget>
               </item>
@@ -702,7 +688,6 @@
   <tabstop>graphicsView</tabstop>
   <tabstop>page</tabstop>
   <tabstop>thumbnail_item</tabstop>
-  <tabstop>select_image_item</tabstop>
   <tabstop>id_item</tabstop>
   <tabstop>title_item</tabstop>
   <tabstop>creators_item</tabstop>

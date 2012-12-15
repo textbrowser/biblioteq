@@ -34,6 +34,7 @@ FORMS           = adminsetup.ui \
 		  members_browser.ui \
 		  password.ui \
 		  passwordPrompt.ui \
+		  photograph.ui \
 		  photographinfo.ui \
 		  tracks.ui \
 		  userinfo.ui \
