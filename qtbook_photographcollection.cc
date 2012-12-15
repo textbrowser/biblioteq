@@ -123,8 +123,8 @@ qtbook_photographcollection::qtbook_photographcollection
   if(pc.location->findText(tr("UNKNOWN")) == -1)
     pc.location->addItem(tr("UNKNOWN"));
 
-  resize(0.90 * parentWid->size().width(),
-	 0.90 * parentWid->size().height());
+  resize(0.95 * parentWid->size().width(),
+	 0.95 * parentWid->size().height());
   pc.splitter->setStretchFactor(0, 0);
   pc.splitter->setStretchFactor(1, 1);
   pc.splitter->setStretchFactor(2, 0);
