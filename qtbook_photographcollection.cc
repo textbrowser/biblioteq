@@ -52,8 +52,6 @@ qtbook_photographcollection::qtbook_photographcollection
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
-  connect(pc.select_image_item, SIGNAL(clicked(void)),
-	  this, SLOT(slotSelectImage(void)));
   connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(pc.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
@@ -504,7 +502,6 @@ void qtbook_photographcollection::modify(const int state)
       pc.addItemButton->setEnabled(true);
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
-      pc.select_image_item->setVisible(true);
       misc_functions::highlightWidget
 	(pc.id_collection, QColor(255, 248, 220));
       misc_functions::highlightWidget
@@ -530,7 +527,6 @@ void qtbook_photographcollection::modify(const int state)
       pc.addItemButton->setVisible(false);
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
-      pc.select_image_item->setVisible(false);
 
       QList<QAction *> actions = pc.resetButton->menu()->actions();
 
