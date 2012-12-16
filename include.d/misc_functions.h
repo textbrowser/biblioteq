@@ -52,7 +52,7 @@ class misc_functions
 			       QString &errorstr);
   static bool isCopyCheckedOut(const QSqlDatabase &, const QString &,
 			       const QString &, const QString &, QString &);
-  static void center(QMainWindow *, QMainWindow *);
+  static void center(QWidget *, QMainWindow *);
   static void setRole(const QSqlDatabase &,
 		      QString &,
 		      const QString &);

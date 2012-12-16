@@ -39,6 +39,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
 
  private:
   QDialog *photo_diag;
+  QString m_itemOid;
   QString engWindowTitle;
   Ui_pcDialog pc;
   bgraphicsscene *scene;
@@ -56,9 +57,10 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotReset(void);
   void slotCancel(void);
   void slotAddItem(void);
-  void slotSaveItem(void);
   void slotClosePhoto(void);
+  void slotInsertItem(void);
   void slotModifyItem(void);
+  void slotUpdateItem(void);
   void slotSelectImage(void);
   void slotSceneSelectionChanged(void);
 };

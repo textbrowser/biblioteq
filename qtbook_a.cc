@@ -2054,6 +2054,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->userinfo.memberid->setFocus();
   userinfo_diag->updateGeometry();
+  misc_functions::center(userinfo_diag, members_diag);
   userinfo_diag->show();
 }
 

@@ -1424,7 +1424,7 @@ int misc_functions::sqliteQuerySize(const QString &querystr,
 ** -- center() --
 */
 
-void misc_functions::center(QMainWindow *child, QMainWindow *parent)
+void misc_functions::center(QWidget *child, QMainWindow *parent)
 {
   int X = 0;
   int Y = 0;
