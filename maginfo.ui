@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>972</width>
-         <height>1542</height>
+         <height>1549</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -371,6 +371,9 @@
               <property name="horizontalScrollBarPolicy">
                <enum>Qt::ScrollBarAlwaysOff</enum>
               </property>
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -561,6 +564,9 @@
             </item>
             <item row="10" column="1">
              <widget class="QTextEdit" name="description">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
@@ -568,6 +574,9 @@
             </item>
             <item row="4" column="1">
              <widget class="hyperlinked_text_edit" name="category">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -581,6 +590,9 @@
             </item>
             <item row="3" column="1">
              <widget class="hyperlinked_text_edit" name="place">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
@@ -605,6 +617,9 @@
             </item>
             <item row="11" column="1">
              <widget class="QTextEdit" name="marc_tags">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
@@ -619,6 +634,9 @@
             </item>
             <item row="12" column="1">
              <widget class="hyperlinked_text_edit" name="keyword">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>

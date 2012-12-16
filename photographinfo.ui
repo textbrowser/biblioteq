@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-184</y>
          <width>1096</width>
          <height>1055</height>
         </rect>
@@ -140,6 +140,9 @@
               </item>
               <item row="3" column="1">
                <widget class="QTextEdit" name="about_collection">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
@@ -154,6 +157,9 @@
               </item>
               <item row="4" column="1">
                <widget class="QTextEdit" name="notes_collection">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
                 </property>
@@ -317,6 +323,9 @@
               </item>
               <item row="7" column="1">
                <widget class="QTextEdit" name="copyright_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -351,6 +360,9 @@
               </item>
               <item row="6" column="1">
                <widget class="QTextEdit" name="reproduction_number_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -396,6 +408,9 @@
               </item>
               <item row="10" column="1">
                <widget class="QTextEdit" name="notes_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -495,6 +510,9 @@
               </item>
               <item row="2" column="1">
                <widget class="QTextEdit" name="creators_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -505,6 +523,9 @@
               </item>
               <item row="11" column="1">
                <widget class="QTextEdit" name="subjects_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -515,6 +536,9 @@
               </item>
               <item row="12" column="1">
                <widget class="QTextEdit" name="format_item">
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>

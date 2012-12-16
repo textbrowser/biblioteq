@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1014</width>
-         <height>1340</height>
+         <height>1347</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -283,6 +283,9 @@
             </item>
             <item row="2" column="1">
              <widget class="hyperlinked_text_edit" name="developer">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -356,6 +359,9 @@
               </property>
               <property name="horizontalScrollBarPolicy">
                <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="tabChangesFocus">
+               <bool>true</bool>
               </property>
               <property name="readOnly">
                <bool>false</bool>
@@ -547,6 +553,9 @@
             </item>
             <item row="10" column="1">
              <widget class="QTextEdit" name="description">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
@@ -554,6 +563,9 @@
             </item>
             <item row="4" column="1">
              <widget class="hyperlinked_text_edit" name="genre">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -574,6 +586,9 @@
             </item>
             <item row="3" column="1">
              <widget class="hyperlinked_text_edit" name="place">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="textInteractionFlags">
                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
               </property>
@@ -591,6 +606,9 @@
             </item>
             <item row="11" column="1">
              <widget class="hyperlinked_text_edit" name="keyword">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>

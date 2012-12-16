@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1013</width>
-         <height>1138</height>
+         <height>1145</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -358,6 +358,9 @@
             </item>
             <item row="2" column="1">
              <widget class="hyperlinked_text_edit" name="actors">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -371,6 +374,9 @@
             </item>
             <item row="3" column="1">
              <widget class="hyperlinked_text_edit" name="directors">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -444,6 +450,9 @@
               </property>
               <property name="horizontalScrollBarPolicy">
                <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="tabChangesFocus">
+               <bool>true</bool>
               </property>
               <property name="readOnly">
                <bool>false</bool>
@@ -635,6 +644,9 @@
             </item>
             <item row="9" column="1">
              <widget class="QTextEdit" name="description">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="acceptRichText">
                <bool>false</bool>
               </property>
@@ -642,6 +654,9 @@
             </item>
             <item row="3" column="1">
              <widget class="hyperlinked_text_edit" name="category">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
@@ -662,6 +677,9 @@
             </item>
             <item row="10" column="1">
              <widget class="hyperlinked_text_edit" name="keyword">
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
               <property name="readOnly">
                <bool>false</bool>
               </property>
