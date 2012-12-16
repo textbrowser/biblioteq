@@ -33,6 +33,7 @@ qtbook_photographcollection::qtbook_photographcollection
   QMenu *menu = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
+  QGraphicsScene *scene3 = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -41,6 +42,9 @@ qtbook_photographcollection::qtbook_photographcollection
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((scene3 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
@@ -73,6 +77,8 @@ qtbook_photographcollection::qtbook_photographcollection
   photo_diag->setWindowModality(Qt::WindowModal);
   updateFont(qapp->font(), static_cast<QWidget *> (photo_diag));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
+	  this, SLOT(slotSelectImage(void)));
+  connect(photo.select_image_item, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
   connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(pc.cancelButton, SIGNAL(clicked(void)), this,
@@ -117,6 +123,7 @@ qtbook_photographcollection::qtbook_photographcollection
 
   pc.thumbnail_collection->setScene(scene1);
   pc.thumbnail_item->setScene(scene2);
+  photo.thumbnail_item->setScene(scene3);
 
   if(pc.location->findText(tr("UNKNOWN")) == -1)
     pc.location->addItem(tr("UNKNOWN"));
@@ -885,13 +892,13 @@ void qtbook_photographcollection::slotSelectImage(void)
 	}
       else
 	{
-	  pc.thumbnail_item->clear();
-	  pc.thumbnail_item->image = QImage(dialog.selectedFiles().at(0));
-	  pc.thumbnail_item->imageFormat = dialog.selectedFiles().at(0).mid
+	  photo.thumbnail_item->clear();
+	  photo.thumbnail_item->image = QImage(dialog.selectedFiles().at(0));
+	  photo.thumbnail_item->imageFormat = dialog.selectedFiles().at(0).mid
 	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
-	  pc.thumbnail_item->scene()->addPixmap
-	    (QPixmap().fromImage(pc.thumbnail_item->image));
-	  pc.thumbnail_item->scene()->items().at(0)->setFlags
+	  photo.thumbnail_item->scene()->addPixmap
+	    (QPixmap().fromImage(photo.thumbnail_item->image));
+	  photo.thumbnail_item->scene()->items().at(0)->setFlags
 	    (QGraphicsItem::ItemIsSelectable);
 	}
     }
@@ -922,6 +929,7 @@ void qtbook_photographcollection::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  pc.retranslateUi(this);
+	  photo.retranslateUi(photo_diag);
 	  break;
 	}
       default:
