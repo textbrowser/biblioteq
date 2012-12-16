@@ -80,34 +80,6 @@ qtbook_photographcollection::qtbook_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Image")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &ID")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Title")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Creator(s)")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Publication Date")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Copies")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Medium")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Reproduction Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Copyright")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Call Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Other Number")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Notes")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Subjects")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Item &Format")),
-	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   pc.resetButton->setMenu(menu);
 
   QString errorstr("");
@@ -777,74 +749,6 @@ void qtbook_photographcollection::slotReset(void)
 	  pc.notes_collection->clear();
 	  pc.notes_collection->setFocus();
 	}
-      else if(action == actions[6])
-	pc.thumbnail_item->clear();
-      else if(action == actions[7])
-	{
-	  pc.id_item->clear();
-	  pc.id_item->setFocus();
-	}
-      else if(action == actions[8])
-	{
-	  pc.title_item->clear();
-	  pc.title_item->setFocus();
-	}
-      else if(action == actions[9])
-	{
-	  pc.creators_item->clear();
-	  pc.creators_item->setFocus();
-	}
-      else if(action == actions[10])
-	{
-	  pc.publication_date->setDate
-	    (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-	  pc.publication_date->setFocus();
-	}
-      else if(action == actions[11])
-	{
-	  pc.quantity->setValue(1);
-	  pc.quantity->setFocus();
-	}
-      else if(action == actions[12])
-	{
-	  pc.medium_item->clear();
-	  pc.medium_item->setFocus();
-	}
-      else if(action == actions[13])
-	{
-	  pc.reproduction_number_item->clear();
-	  pc.reproduction_number_item->setFocus();
-	}
-      else if(action == actions[14])
-	{
-	  pc.copyright_item->clear();
-	  pc.copyright_item->setFocus();
-	}
-      else if(action == actions[15])
-	{
-	  pc.call_number_item->clear();
-	  pc.call_number_item->setFocus();
-	}
-      else if(action == actions[16])
-	{
-	  pc.other_number_item->clear();
-	  pc.other_number_item->setFocus();
-	}
-      else if(action == actions[17])
-	{
-	  pc.notes_item->clear();
-	  pc.notes_item->setFocus();
-	}
-      else if(action == actions[18])
-	{
-	  pc.subjects_item->clear();
-	  pc.subjects_item->setFocus();
-	}
-      else if(action == actions[19])
-	{
-	  pc.format_item->clear();
-	  pc.format_item->setFocus();
-	}
 
       actions.clear();
     }
@@ -859,22 +763,7 @@ void qtbook_photographcollection::slotReset(void)
       pc.title_collection->clear();
       pc.about_collection->clear();
       pc.notes_collection->clear();
-      pc.thumbnail_item->clear();
-      pc.id_item->clear();
-      pc.title_item->clear();
-      pc.creators_item->clear();
-      pc.publication_date->setDate
-	(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-      pc.quantity->setValue(1);
-      pc.medium_item->clear();
-      pc.reproduction_number_item->clear();
-      pc.copyright_item->clear();
-      pc.call_number_item->clear();
-      pc.other_number_item->clear();
       pc.location->setCurrentIndex(0);
-      pc.notes_item->clear();
-      pc.subjects_item->clear();
-      pc.format_item->clear();
       pc.id_collection->setFocus();
     }
 }
