@@ -61,10 +61,6 @@ class qtbook_item
   void updateFont(const QFont &, QWidget *);
   QString getID(void) const;
 
- private:
-  QMap<QString, QImage> imageValues;
-  QMap<QString, QString> widgetValues;
-
  protected:
   int row;
   int oldq;
@@ -72,6 +68,8 @@ class qtbook_item
   QString oid;
   QString html;
   QMainWindow *parentWid;
+  QMap<QString, QImage> imageValues;
+  QMap<QString, QString> widgetValues;
   bool hasDataChanged(QMainWindow *) const;
   void print(QWidget *);
   void storeData(QMainWindow *);

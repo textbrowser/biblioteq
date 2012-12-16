@@ -15,6 +15,7 @@
 */
 
 #include "qtbook.h"
+#include "bgraphicsscene.h"
 #include "qtbook_photographcollection.h"
 
 extern qtbook *qmain;
@@ -45,12 +46,25 @@ qtbook_photographcollection::qtbook_photographcollection
   if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((scene = new(std::nothrow) bgraphicsscene()) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  connect(scene,
+	  SIGNAL(selectionChanged(void)),
+	  this,
+	  SLOT(slotSceneSelectionChanged(void)));
   oid = oidArg;
   row = rowArg;
   isQueryEnabled = false;
   parentWid = parentArg;
   pc.setupUi(this);
   photo.setupUi(photo_diag);
+  pc.graphicsView->setScene(scene);
+  pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+  pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
+  pc.graphicsView->setSceneRect(0, 0,
+				5 * 150,
+				25 / 5 * 200);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
   photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
@@ -176,6 +190,7 @@ void qtbook_photographcollection::slotGo(void)
 	(pc.about_collection->toPlainText().trimmed());
       pc.notes_collection->setPlainText
 	(pc.notes_collection->toPlainText().trimmed());
+      qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
@@ -189,6 +204,8 @@ void qtbook_photographcollection::slotGo(void)
 	     tr("Unable to create a database transaction."));
 	  return;
 	}
+      else
+	qapp->restoreOverrideCursor();
 
       QSqlQuery query(qmain->getDB());
 
@@ -373,7 +390,7 @@ void qtbook_photographcollection::slotGo(void)
 	      raise();
 	    }
 
-	  storeData(this);
+	  storeData();
 	}
 
       return;
@@ -529,6 +546,9 @@ void qtbook_photographcollection::modify(const int state)
 	(pc.id_collection, QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(pc.title_collection, QColor(255, 248, 220));
+      pc.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
+      connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
+	      this, SLOT(slotModifyItem(void)));
     }
   else
     {
@@ -572,6 +592,8 @@ void qtbook_photographcollection::modify(const int state)
     }
   else
     {
+      qapp->restoreOverrideCursor();
+
       for(int i = 0; i < query.record().count(); i++)
 	{
 	  var = query.record().field(i).value();
@@ -628,6 +650,8 @@ void qtbook_photographcollection::modify(const int state)
 
       int pages = 1;
 
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
       if(query.exec(QString("SELECT COUNT(*) "
 			    "FROM photograph "
 			    "WHERE collection_id = %1").
@@ -635,82 +659,17 @@ void qtbook_photographcollection::modify(const int state)
 	if(query.next())
 	  pages = qCeil(query.value(0).toDouble() / 25.0);
 
+      qapp->restoreOverrideCursor();
+
       for(int i = 1; i <= pages; i++)
 	pc.page->addItem(QString::number(i));
 
       showPhotographs(pc.page->currentText().toInt());
 
-      if(query.exec(QString("SELECT id, "
-			    "title, "
-			    "creators, "
-			    "pdate, "
-			    "quantity, "
-			    "medium, "
-			    "reproduction_number, "
-			    "copyright, "
-			    "callnumber, "
-			    "other_number, "
-			    "notes, "
-			    "subjects, "
-			    "format, "
-			    "image "
-			    "FROM photograph "
-			    "WHERE collection_oid = %1 "
-			    "ORDER BY id LIMIT 1").
-		    arg(oid)))
-	if(query.next())
-	  for(int i = 0; i < query.record().count(); i++)
-	    {
-	      var = query.record().field(i).value();
-	      fieldname = query.record().fieldName(i);
-
-	      if(fieldname == "id")
-		pc.id_item->setText(var.toString());
-	      else if(fieldname == "title")
-		pc.title_item->setText(var.toString());
-	      else if(fieldname == "creators")
-		pc.creators_item->setPlainText(var.toString());
-	      else if(fieldname == "pdate")
-		pc.publication_date->setDate
-		  (QDate::fromString(var.toString(), "MM/dd/yyyy"));
-	      else if(fieldname == "quantity")
-		pc.quantity->setValue(var.toInt());
-	      else if(fieldname == "medium")
-		pc.medium_item->setText(var.toString());
-	      else if(fieldname == "reproduction_number")
-		pc.reproduction_number_item->setPlainText(var.toString());
-	      else if(fieldname == "copyright")
-		pc.copyright_item->setPlainText(var.toString());
-	      else if(fieldname == "callnumber")
-		pc.call_number_item->setText(var.toString());
-	      else if(fieldname == "other_number")
-		pc.other_number_item->setText(var.toString());
-	      else if(fieldname == "notes")
-		pc.notes_item->setPlainText(var.toString());
-	      else if(fieldname == "subjects")
-		pc.subjects_item->setPlainText(var.toString());
-	      else if(fieldname == "format")
-		pc.format_item->setPlainText(var.toString());
-	      else if(fieldname == "image")
-		{
-		  if(!query.record().field(i).isNull())
-		    {
-		      pc.thumbnail_item->loadFromData
-			(QByteArray::fromBase64(var.toByteArray()));
-
-		      if(pc.thumbnail_collection->image.isNull())
-			pc.thumbnail_item->loadFromData
-			  (var.toByteArray());
-		    }
-		}
-	    }
-
-      qapp->restoreOverrideCursor();
-
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
 
-      storeData(this);
+      storeData();
       showNormal();
     }
 
@@ -735,7 +694,7 @@ void qtbook_photographcollection::insert(void)
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   engWindowTitle = "Create";
   pc.id_collection->setFocus();
-  storeData(this);
+  storeData();
   show();
 }
 
@@ -980,7 +939,7 @@ void qtbook_photographcollection::showPhotographs(const int page)
 {
   QSqlQuery query(qmain->getDB());
 
-  if(query.exec(QString("SELECT image_scaled FROM "
+  if(query.exec(QString("SELECT image_scaled, myoid FROM "
 			"photograph WHERE "
 			"collection_oid = %1 "
 			"ORDER BY id "
@@ -988,9 +947,53 @@ void qtbook_photographcollection::showPhotographs(const int page)
 			"OFFSET %2").
 		arg(oid).
 		arg(25 * (page - 1))))
-    while(query.next())
-      {
-      }
+    {
+      pc.graphicsView->scene()->clear();
+      pc.graphicsView->resetTransform();
+      pc.graphicsView->verticalScrollBar()->setValue(0);
+      pc.graphicsView->horizontalScrollBar()->setValue(0);
+
+      int rowIdx = 0;
+      int columnIdx = 0;
+
+      while(query.next())
+	{
+	  QImage image;
+	  QGraphicsPixmapItem *pixmapItem = 0;
+
+	  image.loadFromData
+	    (QByteArray::fromBase64(query.value(0).
+				    toByteArray()));
+
+	  if(image.isNull())
+	    image.loadFromData(query.value(0).toByteArray());
+
+	  if(image.isNull())
+	    image = QImage("icons.d/no_image.png");
+
+	  /*
+	  ** The size of no_image.png is 126x187.
+	  */
+
+	  if(!image.isNull())
+	    image = image.scaled
+	      (126, 187, Qt::IgnoreAspectRatio,
+	       Qt::SmoothTransformation);
+
+	  pixmapItem = pc.graphicsView->scene()->addPixmap
+	    (QPixmap().fromImage(image));
+	  pixmapItem->setPos(150 * columnIdx, 200 * rowIdx);
+	  pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+	  pixmapItem->setData(0, query.value(1));
+	  columnIdx += 1;
+
+	  if(columnIdx >= 5)
+	    {
+	      rowIdx += 1;
+	      columnIdx = 0;
+	    }
+	}
+    }
 }
 
 /*
@@ -1120,6 +1123,7 @@ void qtbook_photographcollection::slotSaveItem(void)
   else
     qapp->restoreOverrideCursor();
 
+  int pages = 1;
   QString errorstr("");
   QSqlQuery query(qmain->getDB());
 
@@ -1128,16 +1132,16 @@ void qtbook_photographcollection::slotSaveItem(void)
 		  "(id, collection_oid, title, creators, pdate, "
 		  "quantity, medium, reproduction_number, "
 		  "copyright, callnumber, other_number, notes, subjects, "
-		  "format, image, image_scaled)"
-		  "(?, ?, ?, ?, ?, ?, ?, ?, "
+		  "format, image, image_scaled) "
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
 		  "?, ?, ?, ?, ?, ?, ?, ?)");
   else
     query.prepare("INSERT INTO photograph "
 		  "(id, collection_oid, title, creators, pdate, "
 		  "quantity, medium, reproduction_number, "
 		  "copyright, callnumber, other_number, notes, subjects, "
-		  "format, image, image_scaled, myoid)"
-		  "(?, ?, ?, ?, ?, ?, ?, ?, "
+		  "format, image, image_scaled, myoid) "
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
 		  "?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   query.bindValue(0, photo.id_item->text());
@@ -1223,6 +1227,22 @@ void qtbook_photographcollection::slotSaveItem(void)
       qapp->restoreOverrideCursor();
     }
 
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(query.exec(QString("SELECT COUNT(*) "
+			"FROM photograph "
+			"WHERE collection_id = %1").
+		arg(oid)))
+    if(query.next())
+      pages = qCeil(query.value(0).toDouble() / 25.0);
+
+  qapp->restoreOverrideCursor();
+  pc.page->clear();
+
+  for(int i = 1; i <= pages; i++)
+    pc.page->addItem(QString::number(i));
+
+  showPhotographs(pc.page->currentText().toInt());
   return;
 
  db_rollback:
@@ -1238,4 +1258,153 @@ void qtbook_photographcollection::slotSaveItem(void)
 			tr("Unable to create or update the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
+}
+
+/*
+** -- slotSceneSelectionChanged() --
+*/
+
+void qtbook_photographcollection::slotSceneSelectionChanged(void)
+{
+  QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
+
+  if(items.isEmpty())
+    {
+      pc.thumbnail_item->clear();
+      pc.id_item->clear();
+      pc.title_item->clear();
+      pc.creators_item->clear();
+      pc.publication_date->setDate
+	(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+      pc.quantity->setValue(1);
+      pc.medium_item->clear();
+      pc.reproduction_number_item->clear();
+      pc.copyright_item->clear();
+      pc.call_number_item->clear();
+      pc.other_number_item->clear();
+      pc.notes_item->clear();
+      pc.subjects_item->clear();
+      pc.format_item->clear();
+      return;
+    }
+
+  QGraphicsPixmapItem *item = 0;
+
+  if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
+							takeFirst())))
+    {
+      QSqlQuery query(qmain->getDB());
+
+      if(query.exec(QString("SELECT id, "
+			    "title, "
+			    "creators, "
+			    "pdate, "
+			    "quantity, "
+			    "medium, "
+			    "reproduction_number, "
+			    "copyright, "
+			    "callnumber, "
+			    "other_number, "
+			    "notes, "
+			    "subjects, "
+			    "format, "
+			    "image "
+			    "FROM photograph "
+			    "WHERE collection_oid = %1 AND "
+			    "myoid = %2").
+		    arg(oid).
+		    arg(item->data(0).toString())))
+	if(query.next())
+	  for(int i = 0; i < query.record().count(); i++)
+	    {
+	      QString fieldname(query.record().fieldName(i));
+	      QVariant var(query.record().field(i).value());
+
+	      if(fieldname == "id")
+		pc.id_item->setText(var.toString());
+	      else if(fieldname == "title")
+		pc.title_item->setText(var.toString());
+	      else if(fieldname == "creators")
+		pc.creators_item->setPlainText(var.toString());
+	      else if(fieldname == "pdate")
+		pc.publication_date->setDate
+		  (QDate::fromString(var.toString(), "MM/dd/yyyy"));
+	      else if(fieldname == "quantity")
+		pc.quantity->setValue(var.toInt());
+	      else if(fieldname == "medium")
+		pc.medium_item->setText(var.toString());
+	      else if(fieldname == "reproduction_number")
+		pc.reproduction_number_item->setPlainText(var.toString());
+	      else if(fieldname == "copyright")
+		pc.copyright_item->setPlainText(var.toString());
+	      else if(fieldname == "callnumber")
+		pc.call_number_item->setText(var.toString());
+	      else if(fieldname == "other_number")
+		pc.other_number_item->setText(var.toString());
+	      else if(fieldname == "notes")
+		pc.notes_item->setPlainText(var.toString());
+	      else if(fieldname == "subjects")
+		pc.subjects_item->setPlainText(var.toString());
+	      else if(fieldname == "format")
+		pc.format_item->setPlainText(var.toString());
+	      else if(fieldname == "image")
+		{
+		  if(!query.record().field(i).isNull())
+		    {
+		      pc.thumbnail_item->loadFromData
+			(QByteArray::fromBase64(var.toByteArray()));
+
+		      if(pc.thumbnail_collection->image.isNull())
+			pc.thumbnail_item->loadFromData
+			  (var.toByteArray());
+		    }
+		}
+	    }
+    }
+}
+
+/*
+** -- slotModifyItem() --
+*/
+
+void qtbook_photographcollection::slotModifyItem(void)
+{
+}
+
+/*
+** -- storeData() --
+*/
+
+void qtbook_photographcollection::storeData(void)
+{
+  QString classname = "";
+  QString objectname = "";
+  QList<QWidget *> list;
+
+  widgetValues.clear();
+  list << pc.thumbnail_collection
+       << pc.id_collection
+       << pc.title_collection
+       << pc.location
+       << pc.about_collection
+       << pc.notes_collection;
+
+  foreach(QWidget *widget, list)
+    {
+      classname = widget->metaObject()->className();
+      objectname = widget->objectName();
+
+      if(classname == "QLineEdit")
+	widgetValues[objectname] =
+	  (static_cast<QLineEdit *> (widget))->text().trimmed();
+      else if(classname == "QComboBox")
+	widgetValues[objectname] =
+	  (static_cast<QComboBox *> (widget))->currentText().trimmed();
+      else if(classname == "QTextEdit")
+	widgetValues[objectname] =
+	  (static_cast<QTextEdit *> (widget))->toPlainText().trimmed();
+      else if(classname == "image_drop_site")
+	imageValues[objectname] =
+	  (static_cast<image_drop_site *> (widget))->image;
+    }
 }

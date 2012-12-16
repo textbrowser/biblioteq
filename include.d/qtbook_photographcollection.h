@@ -20,6 +20,7 @@
 #include "ui_photographinfo.h"
 
 class copy_editor;
+class bgraphicsscene;
 class borrowers_editor;
 
 class qtbook_photographcollection: public QMainWindow, public qtbook_item
@@ -40,8 +41,10 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   QDialog *photo_diag;
   QString engWindowTitle;
   Ui_pcDialog pc;
+  bgraphicsscene *scene;
   Ui_photographDialog photo;
   bool verifyItemFields(void);
+  void storeData(void);
   void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
   void showPhotographs(const int);
@@ -55,7 +58,9 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotAddItem(void);
   void slotSaveItem(void);
   void slotClosePhoto(void);
+  void slotModifyItem(void);
   void slotSelectImage(void);
+  void slotSceneSelectionChanged(void);
 };
 
 #endif

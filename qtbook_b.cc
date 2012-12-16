@@ -3007,7 +3007,6 @@ int qtbook::populateTable(const int search_type_arg,
 	    else if(query.record().fieldName(j) == "front_cover" ||
 		    query.record().fieldName(j) == "image_scaled")
 	      {
-		QIcon icon;
 		QImage image;
 
 		image.loadFromData

@@ -139,6 +139,7 @@ void qtbook_item::storeData(QMainWindow *window)
   QString classname = "";
   QString objectname = "";
 
+  imageValues.clear();
   widgetValues.clear();
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
