@@ -17,7 +17,8 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const int quantityArg, const QString &ioidArg,
 			 QSpinBox *spinboxArg,
 			 const QFont &font,
-			 const QString &itemTypeArg): QDialog(parent)
+			 const QString &itemTypeArg,
+			 const QString &uniqueIdArg): QDialog(parent)
 {
   if(parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
@@ -35,8 +36,13 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   itemType = itemTypeArg;
   showForLending = showForLendingArg;
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  setWindowTitle
-    (tr("BiblioteQ: Copy Browser (%1)").arg(ioid));
+
+  if(!uniqueIdArg.trimmed().isEmpty())
+    setWindowTitle
+      (tr("BiblioteQ: Copy Browser (%1)").arg(uniqueIdArg));
+  else
+    setWindowTitle(tr("BiblioteQ: Copy Browser"));
+
   setGlobalFonts(font);
 }
 

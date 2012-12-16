@@ -4,6 +4,7 @@
 
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QtCore/qmath.h>
 
 /*
 ** Includes photograph collection-specific methods.
@@ -41,15 +42,22 @@ qtbook_photographcollection::qtbook_photographcollection
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   oid = oidArg;
   row = rowArg;
   isQueryEnabled = false;
   parentWid = parentArg;
   pc.setupUi(this);
+  photo.setupUi(photo_diag);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
+  photo.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
+  photo_diag->setWindowModality(Qt::WindowModal);
+  updateFont(qapp->font(), static_cast<QWidget *> (photo_diag));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
   connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -58,6 +66,8 @@ qtbook_photographcollection::qtbook_photographcollection
   connect(pc.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(pc.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(pc.addItemButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotAddItem(void)));
   connect(menu->addAction(tr("Reset Collection &Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &ID")),
@@ -128,6 +138,18 @@ qtbook_photographcollection::qtbook_photographcollection
   pc.splitter->setStretchFactor(2, 0);
   misc_functions::center(this, parentWid);
   misc_functions::hideAdminFields(this, qmain->getRoles());
+  misc_functions::highlightWidget
+    (photo.id_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (photo.title_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (photo.creators_item->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (photo.medium_item, QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (photo.reproduction_number_item->viewport(), QColor(255, 248, 220));
+  misc_functions::highlightWidget
+    (photo.copyright_item->viewport(), QColor(255, 248, 220));
 }
 
 /*
@@ -506,18 +528,6 @@ void qtbook_photographcollection::modify(const int state)
 	(pc.id_collection, QColor(255, 248, 220));
       misc_functions::highlightWidget
 	(pc.title_collection, QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.id_item, QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.title_item, QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.creators_item->viewport(), QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.medium_item, QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.reproduction_number_item->viewport(), QColor(255, 248, 220));
-      misc_functions::highlightWidget
-	(pc.copyright_item->viewport(), QColor(255, 248, 220));
     }
   else
     {
@@ -615,6 +625,20 @@ void qtbook_photographcollection::modify(const int state)
 	    }
 	}
 
+      int pages = 1;
+
+      if(query.exec(QString("SELECT COUNT(*) "
+			    "FROM photograph "
+			    "WHERE collection_id = %1").
+		    arg(oid)))
+	if(query.next())
+	  pages = qCeil(query.value(0).toDouble() / 25.0);
+
+      for(int i = 1; i <= pages; i++)
+	pc.page->addItem(QString::number(i));
+
+      showPhotographs(pc.page->currentText().toInt());
+
       if(query.exec(QString("SELECT id, "
 			    "title, "
 			    "creators, "
@@ -707,18 +731,6 @@ void qtbook_photographcollection::insert(void)
     (pc.id_collection, QColor(255, 248, 220));
   misc_functions::highlightWidget
     (pc.title_collection, QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.id_item, QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.title_item, QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.creators_item->viewport(), QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.medium_item, QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.reproduction_number_item->viewport(), QColor(255, 248, 220));
-  misc_functions::highlightWidget
-    (pc.copyright_item->viewport(), QColor(255, 248, 220));
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   engWindowTitle = "Create";
   pc.id_collection->setFocus();
@@ -1040,4 +1052,34 @@ void qtbook_photographcollection::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+/*
+** -- showPhotographs() --
+*/
+
+void qtbook_photographcollection::showPhotographs(const int page)
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(query.exec(QString("SELECT image_scaled FROM "
+			"photograph WHERE "
+			"collection_oid = %1 LIMIT 25 "
+			"OFFSET %2").
+		arg(oid).
+		arg(25 * (page - 1))))
+    while(query.next())
+      {
+      }
+}
+
+/*
+** -- slotAddItem() --
+*/
+
+void qtbook_photographcollection::slotAddItem(void)
+{
+  photo_diag->resize(photo_diag->width(),
+		     0.95 * size().height());
+  photo_diag->show();
 }

@@ -15,6 +15,7 @@
 */
 
 #include "qtbook_item.h"
+#include "ui_photograph.h"
 #include "misc_functions.h"
 #include "ui_photographinfo.h"
 
@@ -36,10 +37,13 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QDialog *photo_diag;
   QString engWindowTitle;
   Ui_pcDialog pc;
+  Ui_photographDialog photo;
   void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void showPhotographs(const int);
 
  private slots:
   void slotGo(void);
@@ -47,6 +51,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotQuery(void);
   void slotReset(void);
   void slotCancel(void);
+  void slotAddItem(void);
   void slotSelectImage(void);
 };
 

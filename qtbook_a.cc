@@ -4885,7 +4885,7 @@ void qtbook::slotCheckout(void)
 	      if(itemid.isEmpty())
 		itemid = misc_functions::getColumnString
 		  (ui.table, row2,
-		   ui.table->columnNumber("MYOID"));
+		   ui.table->columnNumber("ISBN-13"));
 	    }
 	  else if(type.toLower() == "dvd")
 	    itemid = misc_functions::getColumnString
@@ -4918,17 +4918,12 @@ void qtbook::slotCheckout(void)
 	    itemid = misc_functions::getColumnString
 	      (ui.table, row2, "id");
 
-	  if(itemid.isEmpty())
-	    QMessageBox::critical
-	      (members_diag, tr("BiblioteQ: Error"),
-	       tr("Unable to determine the selected item's "
-		  "id. In order to reserve the item, its "
-		  "id must be known."));
-	  else if((copyeditor = new(std::nothrow) copy_editor
-		   (members_diag, item, true,
-		    quantity, oid,
-		    static_cast<QSpinBox *> (0),
-		    font(), type)) != 0)
+	  if((copyeditor = new(std::nothrow)
+	      copy_editor(members_diag, item,
+			  true,
+			  quantity, oid,
+			  static_cast<QSpinBox *> (0),
+			  font(), type, itemid)) != 0)
 	    copyeditor->populateCopiesEditor();
 	}
     }

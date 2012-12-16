@@ -31,9 +31,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-159</y>
-         <width>1091</width>
-         <height>1014</height>
+         <y>0</y>
+         <width>1096</width>
+         <height>1055</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -206,21 +206,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QGraphicsView" name="graphicsView">
-              <property name="viewportUpdateMode">
-               <enum>QGraphicsView::FullViewportUpdate</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <widget class="QLabel" name="itemsCountLabel">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
               <item>
                <spacer name="horizontalSpacer_5">
                 <property name="orientation">
@@ -258,6 +244,13 @@
                </spacer>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QGraphicsView" name="graphicsView">
+              <property name="viewportUpdateMode">
+               <enum>QGraphicsView::FullViewportUpdate</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -685,8 +678,8 @@
   <tabstop>location</tabstop>
   <tabstop>about_collection</tabstop>
   <tabstop>notes_collection</tabstop>
-  <tabstop>graphicsView</tabstop>
   <tabstop>page</tabstop>
+  <tabstop>graphicsView</tabstop>
   <tabstop>thumbnail_item</tabstop>
   <tabstop>id_item</tabstop>
   <tabstop>title_item</tabstop>

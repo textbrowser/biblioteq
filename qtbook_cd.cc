@@ -2026,7 +2026,7 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
        static_cast<qtbook_item *> (this),
        false,
        cd.quantity->value(), oid,
-       cd.quantity, font(), "CD")) != 0)
+       cd.quantity, font(), "CD", cd.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 
