@@ -41,6 +41,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   Ui_pcDialog pc;
   Ui_photographDialog photo;
+  bool verifyItemFields(void);
   void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
   void showPhotographs(const int);
@@ -52,6 +53,8 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotReset(void);
   void slotCancel(void);
   void slotAddItem(void);
+  void slotSaveItem(void);
+  void slotClosePhoto(void);
   void slotSelectImage(void);
 };
 
