@@ -855,7 +855,7 @@ void qtbook_photographcollection::slotPrint(void)
   html += "<b>" + tr("Item Creator(s):") + "</b> " +
     pc.creators_item->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Item Publication Date:") + "</b> " +
-    pc.publication_date->date().toString(Qt::SystemLocaleShortDate) + "<br>";
+    pc.publication_date->date().toString(Qt::ISODate) + "<br>";
   html += "<b>" + tr("Item Copies:") + "</b> " +
     pc.quantity->text() + "<br>";
   html += "<b>" + tr("Item Medium:") + "</b> " +

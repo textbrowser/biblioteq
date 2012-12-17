@@ -634,7 +634,7 @@ void qtbook_videogame::slotGo(void)
 			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.release_date->date().toString
-			   (Qt::SystemLocaleShortDate));
+			   (Qt::ISODate));
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (vg.publisher->toPlainText());
@@ -787,8 +787,7 @@ void qtbook_videogame::slotGo(void)
 					 trimmed()) + "%' "
 		       "AND ");
 
-      if(vg.release_date->date().toString
-	 ("MM/yyyy") != "01/7999")
+      if(vg.release_date->date().toString("MM/yyyy") != "01/7999")
 	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
 			 vg.release_date->date().toString
 			 ("MM/yyyy") +
@@ -881,7 +880,6 @@ void qtbook_videogame::search(const QString &field, const QString &value)
   vg.okButton->setText(tr("&Search"));
   vg.release_date->setDate(QDate::fromString("01/7999",
 					     "MM/yyyy"));
-  vg.release_date->setDisplayFormat("MM/yyyy");
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);
@@ -1540,7 +1538,7 @@ void qtbook_videogame::slotPrint(void)
 
   html += "<b>" + tr("Title:") + "</b> " + vg.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + vg.release_date->date().
-    toString(Qt::SystemLocaleShortDate) + "<br>";
+    toString(Qt::ISODate) + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     vg.publisher->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Place of Publication:") + "</b> " +

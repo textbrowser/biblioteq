@@ -290,13 +290,13 @@ void borrowers_editor::showUsers(void)
 	      {
 		date = QDate::fromString(query.value(j).toString(),
 					 "MM/dd/yyyy");
-		str = date.toString(Qt::SystemLocaleShortDate);
+		str = date.toString(Qt::ISODate);
 	      }
 	    else if((j == 2 || j == 3) && state != qtbook::EDITABLE)
 	      {
 		date = QDate::fromString(query.value(j).toString(),
 					 "MM/dd/yyyy");
-		str = date.toString(Qt::SystemLocaleShortDate);
+		str = date.toString(Qt::ISODate);
 	      }
 	    else
 	      str = query.value(j).toString();
@@ -526,7 +526,7 @@ void borrowers_editor::slotSave(void)
 		    misc_functions::updateColumn
 		    (qmain->getUI().table,
 		    bitem->getRow(), tr("Due Date"),
-		    dueDate->date().toString(Qt::SystemLocaleShortDate));
+		    dueDate->date().toString(Qt::ISODate));
 		  */
 		}
 	    }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>433</width>
-    <height>647</height>
+    <height>683</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,6 +58,9 @@
            </property>
            <property name="readOnly">
             <bool>false</bool>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
            </property>
            <property name="calendarPopup">
             <bool>true</bool>
@@ -163,6 +166,9 @@
           <widget class="QDateEdit" name="dob">
            <property name="readOnly">
             <bool>false</bool>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
            </property>
            <property name="calendarPopup">
             <bool>true</bool>
@@ -566,6 +572,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QDateEdit" name="expirationdate">
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
+           </property>
            <property name="calendarPopup">
             <bool>true</bool>
            </property>

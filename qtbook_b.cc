@@ -2965,7 +2965,7 @@ int qtbook::populateTable(const int search_type_arg,
 		    QDate date(QDate::fromString(query.value(j).toString(),
 						 "MM/dd/yyyy"));
 
-		    str = date.toString(Qt::SystemLocaleShortDate);
+		    str = date.toString(Qt::ISODate);
 		  }
 		else
 		  str = query.value(j).toString();

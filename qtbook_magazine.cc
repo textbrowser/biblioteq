@@ -726,7 +726,7 @@ void qtbook_magazine::slotGo(void)
 		      else if(names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publication_date->date().toString
-			   (Qt::SystemLocaleShortDate));
+			   (Qt::ISODate));
 		      else if(names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
 			  (ma.publisher->toPlainText());
@@ -1024,7 +1024,6 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.okButton->setText(tr("&Search"));
   ma.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
-  ma.publication_date->setDisplayFormat("MM/yyyy");
   ma.id->setCursorPosition(0);
   ma.price->setMinimum(-0.01);
   ma.price->setValue(-0.01);
@@ -1913,7 +1912,7 @@ void qtbook_magazine::slotPrint(void)
 
   html += "<b>" + tr("Title:") + "</b> " + ma.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Publication Date:") + "</b> " +
-    ma.publication_date->date().toString(Qt::SystemLocaleShortDate) + "<br>";
+    ma.publication_date->date().toString(Qt::ISODate) + "<br>";
   html += "<b>" + tr("Publisher:") + "</b> " +
     ma.publisher->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Place of Publication:") + "</b> " +

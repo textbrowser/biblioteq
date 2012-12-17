@@ -548,11 +548,11 @@ void copy_editor::slotCheckoutCopy(void)
     misc_functions::updateColumn
     (qmain->getUI().table, bitem->getRow(), tr("Due Date"),
     QDate::fromString(duedate, "MM/dd/yyyy").
-    toString(Qt::SystemLocaleShortDate));
+    toString(Qt::ISODate));
     misc_functions::updateColumn
     (qmain->getUI().table, bitem->getRow(), tr("Reservation Date"),
     QDate::fromString(checkedout, "MM/dd/yyyy").toString
-    (Qt::SystemLocaleShortDate));
+    (Qt::ISODate));
     misc_functions::updateColumn
     (qmain->getUI().table, bitem->getRow(), tr("Member ID"),
     memberid);

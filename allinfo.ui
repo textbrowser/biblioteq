@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>622</width>
-         <height>949</height>
+         <height>942</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -78,7 +78,7 @@
              <item>
               <widget class="QDateEdit" name="publication_date">
                <property name="displayFormat">
-                <string>MM/yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>

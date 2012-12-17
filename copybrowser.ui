@@ -54,6 +54,9 @@
            </item>
            <item>
             <widget class="QDateEdit" name="dueDate">
+             <property name="displayFormat">
+              <string>yyyy-MM-dd</string>
+             </property>
              <property name="calendarPopup">
               <bool>true</bool>
              </property>

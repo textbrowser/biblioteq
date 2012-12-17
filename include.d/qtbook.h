@@ -78,12 +78,11 @@ class qtbook: public QMainWindow
       QStringList list;
 
       if(memberProperties["membersince"] !=
-	 userinfo.membersince->date().toString
-	 (Qt::SystemLocaleShortDate))
+	 userinfo.membersince->date().toString(Qt::ISODate))
 	list << "membersince";
 
       if(memberProperties["dob"] !=
-	 userinfo.dob->date().toString(Qt::SystemLocaleShortDate))
+	 userinfo.dob->date().toString(Qt::ISODate))
 	list << "dob";
 
       if(memberProperties["sex"] != userinfo.sex->currentText())
@@ -119,8 +118,7 @@ class qtbook: public QMainWindow
 	list << "email";
 
       if(memberProperties["expiration_date"] !=
-	 userinfo.expirationdate->date().toString
-	 (Qt::SystemLocaleShortDate))
+	 userinfo.expirationdate->date().toString(Qt::ISODate))
 	list << "expiration_date";
 
       if(memberProperties["overdue_fees"] !=

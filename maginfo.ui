@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>972</width>
-         <height>1549</height>
+         <height>1542</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -336,6 +336,9 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="publication_date">
+                <property name="displayFormat">
+                 <string>yyyy-MM-dd</string>
+                </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
                 </property>
@@ -783,14 +786,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>hyperlinked_text_edit</class>
-   <extends>QTextBrowser</extends>
-   <header>hyperlinked_text_edit.h</header>
-  </customwidget>
-  <customwidget>
    <class>image_drop_site</class>
    <extends>QGraphicsView</extends>
    <header>image_drop_site.h</header>
+  </customwidget>
+  <customwidget>
+   <class>hyperlinked_text_edit</class>
+   <extends>QTextBrowser</extends>
+   <header>hyperlinked_text_edit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

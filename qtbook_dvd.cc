@@ -728,7 +728,7 @@ void qtbook_dvd::slotGo(void)
 			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (dvd.release_date->date().toString
-			   (Qt::SystemLocaleShortDate));
+			   (Qt::ISODate));
 		      else if(names.at(i) == "Studio" ||
 			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
@@ -984,7 +984,6 @@ void qtbook_dvd::search(const QString &field, const QString &value)
   dvd.okButton->setText(tr("&Search"));
   dvd.release_date->setDate(QDate::fromString("01/7999",
 					     "MM/yyyy"));
-  dvd.release_date->setDisplayFormat("MM/yyyy");
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
   dvd.price->setMinimum(-0.01);
@@ -1724,7 +1723,7 @@ void qtbook_dvd::slotPrint(void)
   html += "<b>" + tr("Title:") + "</b> " +
     dvd.title->text().trimmed() + "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + dvd.release_date->date().
-    toString(Qt::SystemLocaleShortDate) + "<br>";
+    toString(Qt::ISODate) + "<br>";
   html += "<b>" + tr("Studio:") + "</b> " +
     dvd.studio->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Category:") + "</b> " +

@@ -681,7 +681,7 @@ void qtbook_cd::slotGo(void)
 			      names.at(i) == "Publication Date")
 			qmain->getUI().table->item(row, i)->setText
 			  (cd.release_date->date().toString
-			   (Qt::SystemLocaleShortDate));
+			   (Qt::ISODate));
 		      else if(names.at(i) == "Recording Label" ||
 			      names.at(i) == "Publisher")
 			qmain->getUI().table->item(row, i)->setText
@@ -933,7 +933,6 @@ void qtbook_cd::search(const QString &field, const QString &value)
   cd.okButton->setText(tr("&Search"));
   cd.release_date->setDate(QDate::fromString("01/7999",
 					     "MM/yyyy"));
-  cd.release_date->setDisplayFormat("MM/yyyy");
   cd.runtime->setTime(QTime(0, 0, 0));
   cd.runtime->setMinimumTime(QTime(0, 0, 0));
   cd.price->setMinimum(-0.01);
@@ -2120,7 +2119,7 @@ void qtbook_cd::slotPrint(void)
   html += "<b>" + tr("Title:") + "</b> " + cd.title->text().trimmed() +
     "<br>";
   html += "<b>" + tr("Release Date:") + "</b> " + cd.release_date->date().
-    toString(Qt::SystemLocaleShortDate) + "<br>";
+    toString(Qt::ISODate) + "<br>";
   html += "<b>" + tr("Recording Label:") + "</b> " + cd.recording_label->
     toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Categories:") + "</b> " +

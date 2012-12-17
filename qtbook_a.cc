@@ -2029,10 +2029,10 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.generalregistrationnumber->clear();
   userinfo_diag->memberProperties["membersince"] =
     userinfo_diag->userinfo.membersince->date().toString
-    (Qt::SystemLocaleShortDate);
+    (Qt::ISODate);
   userinfo_diag->memberProperties["dob"] =
     userinfo_diag->userinfo.dob->date().toString
-    (Qt::SystemLocaleShortDate);
+    (Qt::ISODate);
   userinfo_diag->memberProperties["sex"] =
     userinfo_diag->userinfo.sex->currentText();
   userinfo_diag->memberProperties["state_abbr"] =
@@ -2043,7 +2043,7 @@ void qtbook::slotAddBorrower(void)
     userinfo_diag->userinfo.telephoneNumber->text();
   userinfo_diag->memberProperties["expiration_date"] =
     userinfo_diag->userinfo.expirationdate->date().toString
-    (Qt::SystemLocaleShortDate);
+    (Qt::ISODate);
   userinfo_diag->memberProperties["overdue_fees"] =
     QString::number(userinfo_diag->userinfo.overduefees->value());
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
@@ -2393,10 +2393,10 @@ void qtbook::slotSaveUser(void)
       qapp->restoreOverrideCursor();
       userinfo_diag->memberProperties["membersince"] =
 	userinfo_diag->userinfo.membersince->date().toString
-	(Qt::SystemLocaleShortDate);
+	(Qt::ISODate);
       userinfo_diag->memberProperties["dob"] =
 	userinfo_diag->userinfo.dob->date().toString
-	(Qt::SystemLocaleShortDate);
+	(Qt::ISODate);
       userinfo_diag->memberProperties["sex"] =
 	userinfo_diag->userinfo.sex->currentText();
       userinfo_diag->memberProperties["first_name"] =
@@ -2419,7 +2419,7 @@ void qtbook::slotSaveUser(void)
 	userinfo_diag->userinfo.email->text().trimmed();
       userinfo_diag->memberProperties["expiration_date"] =
 	userinfo_diag->userinfo.expirationdate->date().toString
-	(Qt::SystemLocaleShortDate);
+	(Qt::ISODate);
       userinfo_diag->memberProperties["overdue_fees"] =
 	QString::number(userinfo_diag->userinfo.overduefees->value());
       userinfo_diag->memberProperties["comments"] =
@@ -2444,11 +2444,11 @@ void qtbook::slotSaveUser(void)
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Member Since")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.membersince->date().
-		   toString(Qt::SystemLocaleShortDate));
+		   toString(Qt::ISODate));
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.expirationdate->
-		   date().toString(Qt::SystemLocaleShortDate));
+		   date().toString(Qt::ISODate));
 	    }
 
 	  bb.table->setSortingEnabled(true);
@@ -4408,7 +4408,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 		QDate date(QDate::fromString(query.value(j).toString(),
 					     "MM/dd/yyyy"));
 
-		str = date.toString(Qt::SystemLocaleShortDate);
+		str = date.toString(Qt::ISODate);
 	      }
 	    else
 	      str = query.value(j).toString();
@@ -4750,7 +4750,7 @@ void qtbook::slotModifyBorrower(void)
 	     fieldname.contains("membersince"))
 	    userinfo_diag->memberProperties[fieldname] =
 	      QDate::fromString(var.toString(), "MM/dd/yyyy").
-	      toString(Qt::SystemLocaleShortDate);
+	      toString(Qt::ISODate);
 	  else
 	    userinfo_diag->memberProperties[fieldname] = var.toString();
 	}
@@ -7093,7 +7093,7 @@ void qtbook::slotShowHistory(void)
 		QDate date(QDate::fromString(query.value(j).toString(),
 					     "MM/dd/yyyy"));
 
-		str = date.toString(Qt::SystemLocaleShortDate);
+		str = date.toString(Qt::ISODate);
 	      }
 	    else
 	      str = query.value(j).toString();
@@ -7307,7 +7307,7 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 		misc_functions::updateColumn
 		  (history.table, i,
 		   m_historyColumnHeaderIndexes.indexOf("Returned Date"),
-		   date.toString(Qt::SystemLocaleShortDate));
+		   date.toString(Qt::ISODate));
 		break;
 	      }
 	  }

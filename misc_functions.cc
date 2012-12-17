@@ -724,7 +724,7 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
 	  QObject::tr("Type: ") + query.value(2).toString() + "<br>" +
 	  QObject::tr("Title: ") + query.value(3).toString() + "<br>" +
 	  QObject::tr("Due Date: ") +
-	  date.toString(Qt::SystemLocaleShortDate);
+	  date.toString(Qt::ISODate);
 	list.append(str);
       }
 
