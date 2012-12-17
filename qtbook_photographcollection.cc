@@ -69,6 +69,7 @@ qtbook_photographcollection::qtbook_photographcollection
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
 				25 / 5 * 200);
+  pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_WS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
   photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
@@ -1532,10 +1533,11 @@ void qtbook_photographcollection::slotUpdateItem(void)
   query.bindValue(11, photo.subjects_item->toPlainText().trimmed());
   query.bindValue(12, photo.format_item->toPlainText().trimmed());
 
+  QByteArray bytes;
+
   if(!photo.thumbnail_item->image.isNull())
     {
       QImage image;
-      QByteArray bytes;
       QBuffer buffer(&bytes);
 
       buffer.open(QIODevice::WriteOnly);
@@ -1586,6 +1588,22 @@ void qtbook_photographcollection::slotUpdateItem(void)
 	}
 
       qapp->restoreOverrideCursor();
+      pc.id_item->setText(photo.id_item->text());
+      pc.title_item->setText(photo.title_item->text());
+      pc.creators_item->setPlainText(photo.creators_item->toPlainText());
+      pc.publication_date->setDate
+	(photo.publication_date->date());
+      pc.quantity->setValue(photo.quantity->value());
+      pc.medium_item->setText(photo.medium_item->text());
+      pc.reproduction_number_item->setPlainText
+	(photo.reproduction_number_item->toPlainText());
+      pc.copyright_item->setPlainText(photo.copyright_item->toPlainText());
+      pc.call_number_item->setText(photo.call_number_item->text());
+      pc.other_number_item->setText(photo.other_number_item->text());
+      pc.notes_item->setPlainText(photo.notes_item->toPlainText());
+      pc.subjects_item->setPlainText(photo.subjects_item->toPlainText());
+      pc.format_item->setPlainText(photo.format_item->toPlainText());
+      pc.thumbnail_item->loadFromData(bytes);
     }
 
   return;

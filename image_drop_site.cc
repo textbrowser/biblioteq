@@ -22,6 +22,7 @@ image_drop_site::image_drop_site(QWidget *parent)
   imageFormat = "";
   doubleclicked = false;
   setAcceptDrops(true);
+  m_isReadOnly = false;
 }
 
 /*
@@ -30,6 +31,14 @@ image_drop_site::image_drop_site(QWidget *parent)
 
 void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
+  if(m_isReadOnly)
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QString filename = "";
 
 #if defined(Q_WS_WIN)
@@ -64,6 +73,14 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
 void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
+  if(m_isReadOnly)
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QString filename = "";
 
 #if defined(Q_WS_WIN)
@@ -98,6 +115,14 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 void image_drop_site::dropEvent(QDropEvent *event)
 {
+  if(m_isReadOnly)
+    {
+      if(event)
+	event->ignore();
+
+      return;
+    }
+
   QPixmap pixmap;
   QString imgf("");
   QString filename("");
@@ -163,9 +188,13 @@ void image_drop_site::dropEvent(QDropEvent *event)
 void image_drop_site::keyPressEvent(QKeyEvent *event)
 {
   if(event)
-    if((event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) &&
-       !scene()->selectedItems().isEmpty())
-      clear();
+    {
+      if(!m_isReadOnly)
+	if((event->key() == Qt::Key_Delete ||
+	    event->key() == Qt::Key_Backspace) &&
+	   !scene()->selectedItems().isEmpty())
+	  clear();
+    }
 }
 
 /*
@@ -309,4 +338,13 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 
   doubleclicked = !doubleclicked;
   scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+}
+
+/*
+** -- setReadOnly() --
+*/
+
+void image_drop_site::setReadOnly(const bool readOnly)
+{
+  m_isReadOnly = readOnly;
 }
