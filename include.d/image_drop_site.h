@@ -28,12 +28,12 @@ class image_drop_site: public QGraphicsView
   QImage image;
   QString imageFormat;
   void clear(void);
+  void setImage(const QImage &);
   void setReadOnly(const bool);
   void loadFromData(const QByteArray &);
   image_drop_site(QWidget *);
 
  private:
-  bool m_isReadOnly;
   bool doubleclicked;
   void dropEvent(QDropEvent *);
   void dragMoveEvent(QDragMoveEvent *);

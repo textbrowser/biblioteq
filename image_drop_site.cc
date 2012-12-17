@@ -22,7 +22,6 @@ image_drop_site::image_drop_site(QWidget *parent)
   imageFormat = "";
   doubleclicked = false;
   setAcceptDrops(true);
-  m_isReadOnly = false;
 }
 
 /*
@@ -31,14 +30,6 @@ image_drop_site::image_drop_site(QWidget *parent)
 
 void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
-  if(m_isReadOnly)
-    {
-      if(event)
-	event->ignore();
-
-      return;
-    }
-
   QString filename = "";
 
 #if defined(Q_WS_WIN)
@@ -73,14 +64,6 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
 void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
-  if(m_isReadOnly)
-    {
-      if(event)
-	event->ignore();
-
-      return;
-    }
-
   QString filename = "";
 
 #if defined(Q_WS_WIN)
@@ -115,14 +98,6 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 void image_drop_site::dropEvent(QDropEvent *event)
 {
-  if(m_isReadOnly)
-    {
-      if(event)
-	event->ignore();
-
-      return;
-    }
-
   QPixmap pixmap;
   QString imgf("");
   QString filename("");
@@ -176,8 +151,13 @@ void image_drop_site::dropEvent(QDropEvent *event)
       else
 	pixmap = QPixmap().fromImage(image);
 
+      while(!scene()->items().isEmpty())
+	scene()->removeItem(scene()->items().first());
+
       scene()->addPixmap(pixmap);
-      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+      if(acceptDrops())
+	scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
 }
 
@@ -187,14 +167,10 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
 void image_drop_site::keyPressEvent(QKeyEvent *event)
 {
-  if(event)
-    {
-      if(!m_isReadOnly)
-	if((event->key() == Qt::Key_Delete ||
-	    event->key() == Qt::Key_Backspace) &&
-	   !scene()->selectedItems().isEmpty())
-	  clear();
-    }
+  if(acceptDrops())
+    if(event)
+      if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
+	clear();
 }
 
 /*
@@ -204,7 +180,7 @@ void image_drop_site::keyPressEvent(QKeyEvent *event)
 void image_drop_site::clear(void)
 {
   image = QImage();
-  imageFormat = "";
+  imageFormat.clear();
   doubleclicked = false;
 
   while(!scene()->items().isEmpty())
@@ -221,13 +197,18 @@ QString image_drop_site::determineFormat(const QByteArray &bytes) const
 {
   QString imgf("");
 
-  if(bytes.size() >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
-     bytes[3] == 'G')
+  if(bytes.size() >= 4 &&
+     tolower(bytes[1]) == 'p' &&
+     tolower(bytes[2]) == 'n' &&
+     tolower(bytes[3]) == 'g')
     imgf = "PNG";
-  else if(bytes.size() >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
-	  bytes[8] == 'I' && bytes[9] == 'F')
+  else if(bytes.size() >= 10 &&
+	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
+	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
     imgf = "JPG";
-  else if(bytes.size() >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
+  else if(bytes.size() >= 2 &&
+	  tolower(bytes[0]) == 'b' &&
+	  tolower(bytes[1]) == 'm')
     imgf = "BMP";
   else // Guess!
     imgf = "JPG";
@@ -303,8 +284,13 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
   else
     pixmap = QPixmap().fromImage(image);
 
+  while(!scene()->items().isEmpty())
+    scene()->removeItem(scene()->items().first());
+
   scene()->addPixmap(pixmap);
-  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  if(acceptDrops())
+    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 /*
@@ -337,7 +323,9 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
     }
 
   doubleclicked = !doubleclicked;
-  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  if(acceptDrops())
+    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 /*
@@ -346,5 +334,38 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
 
 void image_drop_site::setReadOnly(const bool readOnly)
 {
-  m_isReadOnly = readOnly;
+  setAcceptDrops(!readOnly);
+}
+
+/*
+** -- setImage() --
+*/
+
+void image_drop_site::setImage(const QImage &image)
+{
+  QPixmap pixmap;
+
+  doubleclicked = false;
+  this->image = image;
+
+  if(this->image.width() > width() ||
+     this->image.height() > height())
+    {
+      pixmap = QPixmap().fromImage(this->image);
+
+      if(!pixmap.isNull())
+	pixmap = pixmap.scaled
+	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
+    }
+  else
+    pixmap = QPixmap().fromImage(this->image);
+
+  while(!scene()->items().isEmpty())
+    scene()->removeItem(scene()->items().first());
+
+  scene()->addPixmap(pixmap);
+
+  if(acceptDrops())
+    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }

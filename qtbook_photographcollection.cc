@@ -1533,13 +1533,13 @@ void qtbook_photographcollection::slotUpdateItem(void)
   query.bindValue(11, photo.subjects_item->toPlainText().trimmed());
   query.bindValue(12, photo.format_item->toPlainText().trimmed());
 
-  QByteArray bytes;
-
   if(!photo.thumbnail_item->image.isNull())
     {
       QImage image;
-      QBuffer buffer(&bytes);
+      QBuffer buffer;
+      QByteArray bytes;
 
+      buffer.setBuffer(&bytes);
       buffer.open(QIODevice::WriteOnly);
       photo.thumbnail_item->image.save
 	(&buffer, photo.thumbnail_item->imageFormat.toAscii(), 100);
@@ -1603,7 +1603,7 @@ void qtbook_photographcollection::slotUpdateItem(void)
       pc.notes_item->setPlainText(photo.notes_item->toPlainText());
       pc.subjects_item->setPlainText(photo.subjects_item->toPlainText());
       pc.format_item->setPlainText(photo.format_item->toPlainText());
-      pc.thumbnail_item->loadFromData(bytes);
+      pc.thumbnail_item->setImage(photo.thumbnail_item->image);
     }
 
   return;
