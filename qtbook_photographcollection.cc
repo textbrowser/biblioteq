@@ -30,6 +30,8 @@ qtbook_photographcollection::qtbook_photographcollection
  const QString &oidArg,
  const int rowArg):QMainWindow()
 {
+  pc.setupUi(this);
+
   QMenu *menu = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
@@ -50,7 +52,7 @@ qtbook_photographcollection::qtbook_photographcollection
   if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((scene = new(std::nothrow) bgraphicsscene()) == 0)
+  if((scene = new(std::nothrow) bgraphicsscene(pc.graphicsView)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,
@@ -61,11 +63,8 @@ qtbook_photographcollection::qtbook_photographcollection
   row = rowArg;
   isQueryEnabled = false;
   parentWid = parentArg;
-  pc.setupUi(this);
   photo.setupUi(photo_diag);
   pc.graphicsView->setScene(scene);
-  pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-  pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
 				25 / 5 * 200);
@@ -656,21 +655,27 @@ void qtbook_photographcollection::modify(const int state)
 
       int pages = 1;
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      if(!engWindowTitle.contains("Create"))
+	{
+	  qapp->setOverrideCursor(Qt::WaitCursor);
 
-      if(query.exec(QString("SELECT COUNT(*) "
-			    "FROM photograph "
-			    "WHERE collection_id = %1").
-		    arg(oid)))
-	if(query.next())
-	  pages = qCeil(query.value(0).toDouble() / 25.0);
+	  if(query.exec(QString("SELECT COUNT(*) "
+				"FROM photograph "
+				"WHERE collection_id = %1").
+			arg(oid)))
+	    if(query.next())
+	      pages = qCeil(query.value(0).toDouble() / 25.0);
 
-      qapp->restoreOverrideCursor();
+	  qapp->restoreOverrideCursor();
+	}
+
+      pc.page->clear();
 
       for(int i = 1; i <= pages; i++)
 	pc.page->addItem(QString::number(i));
 
-      showPhotographs(pc.page->currentText().toInt());
+      if(!engWindowTitle.contains("Create"))
+	showPhotographs(pc.page->currentText().toInt());
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);

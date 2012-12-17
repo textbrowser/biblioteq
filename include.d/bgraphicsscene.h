@@ -7,6 +7,7 @@
 
 #include <QGraphicsScene>
 
+class QKeyEvent;
 class QGraphicsSceneMouseEvent;
 
 class bgraphicsscene: public QGraphicsScene
@@ -14,12 +15,15 @@ class bgraphicsscene: public QGraphicsScene
   Q_OBJECT
 
  public:
-  bgraphicsscene(void);
+  bgraphicsscene(QObject *parent);
+  ~bgraphicsscene();
 
  private:
-  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *mouseEvent);
+  void keyPressEvent(QKeyEvent *);
+  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
 
  signals:
+  void deleteKeyPressed(void);
   void itemDoubleClicked(void);
 };
 

@@ -380,7 +380,7 @@ qtbook::qtbook(void):QMainWindow()
 
   bgraphicsscene *scene = 0;
 
-  if((scene = new(std::nothrow) bgraphicsscene()) == 0)
+  if((scene = new(std::nothrow) bgraphicsscene(ui.graphicsView)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,

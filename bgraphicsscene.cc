@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QKeyEvent>
 #include <QGraphicsSceneMouseEvent>
 
 /*
@@ -14,7 +15,15 @@
 ** -- bgraphicsscene() --
 */
 
-bgraphicsscene::bgraphicsscene(void):QGraphicsScene(0)
+bgraphicsscene::bgraphicsscene(QObject *parent):QGraphicsScene(parent)
+{
+}
+
+/*
+** -- ~bgraphicsscene() --
+*/
+
+bgraphicsscene::~bgraphicsscene()
 {
 }
 
@@ -22,11 +31,22 @@ bgraphicsscene::bgraphicsscene(void):QGraphicsScene(0)
 ** -- mouseDoubleClickEvent() --
 */
 
-void bgraphicsscene::mouseDoubleClickEvent
-(QGraphicsSceneMouseEvent *mouseEvent)
+void bgraphicsscene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-  QGraphicsScene::mouseDoubleClickEvent(mouseEvent);
+  QGraphicsScene::mouseDoubleClickEvent(event);
 
-  if(itemAt(mouseEvent->scenePos()))
+  if(event && itemAt(event->scenePos()))
     emit itemDoubleClicked();
+}
+
+/*
+** -- keyPressEvent() --
+*/
+
+void bgraphicsscene::keyPressEvent(QKeyEvent *event)
+{
+  QGraphicsScene::keyPressEvent(event);
+
+  if(event && event->key() == Qt::Key_Delete)
+    emit deleteKeyPressed();
 }
