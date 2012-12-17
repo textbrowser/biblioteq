@@ -3472,6 +3472,8 @@ void qtbook::slotDisplaySummary(void)
 	backImage = misc_functions::getImage(oid, "back_cover", type,
 					     db);
 
+      qapp->restoreOverrideCursor();
+
       /*
       ** The size of no_image.png is 126x187.
       */
@@ -3493,8 +3495,6 @@ void qtbook::slotDisplaySummary(void)
 	      (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 	}
 
-      qapp->restoreOverrideCursor();
-
       if(!frontImage.isNull())
 	{
 	  ui.frontImage->setVisible(true);
@@ -3513,6 +3513,8 @@ void qtbook::slotDisplaySummary(void)
 	  else
 	    ui.backImage->clear();
 	}
+      else
+	ui.backImage->clear();
     }
   else
     {
