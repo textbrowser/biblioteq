@@ -32,7 +32,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
 			      const int);
   ~qtbook_photographcollection();
   void insert(void);
-  void modify(const int);
+  void modify(const int, const QString & = "");
   void search(const QString & = "", const QString & = "");
   void duplicate(const QString &, const int);
   void updateWindow(const int);

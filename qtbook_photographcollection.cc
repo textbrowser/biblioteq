@@ -531,7 +531,8 @@ void qtbook_photographcollection::updateWindow(const int state)
 ** -- modify() --
 */
 
-void qtbook_photographcollection::modify(const int state)
+void qtbook_photographcollection::modify(const int state,
+					 const QString &behavior)
 {
   QString str("");
   QString fieldname("");
@@ -541,8 +542,14 @@ void qtbook_photographcollection::modify(const int state)
 
   if(state == qtbook::EDITABLE)
     {
-      setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
-      engWindowTitle = "Modify";
+      if(behavior.isEmpty())
+	{
+	  setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
+	  engWindowTitle = "Modify";
+	}
+      else
+	engWindowTitle = behavior;
+
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
       pc.resetButton->setVisible(true);
@@ -557,8 +564,14 @@ void qtbook_photographcollection::modify(const int state)
     }
   else
     {
-      setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
-      engWindowTitle = "View";
+      if(behavior.isEmpty())
+	{
+	  setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
+	  engWindowTitle = "View";
+	}
+      else
+	engWindowTitle = behavior;
+
       pc.okButton->setVisible(false);
       pc.addItemButton->setVisible(false);
       pc.resetButton->setVisible(false);
@@ -608,22 +621,26 @@ void qtbook_photographcollection::modify(const int state)
 	    {
 	      pc.id_collection->setText(var.toString());
 
-	      if(state == qtbook::EDITABLE)
+	      if(behavior.isEmpty())
 		{
-		  str = QString
-		    (tr("BiblioteQ: Modify Photograph Collection Entry (")) +
-		    var.toString() + tr(")");
-		  engWindowTitle = "Modify";
-		}
-	      else
-		{
-		  str = QString(tr("BiblioteQ: View Photograph Collection "
-				   "Details (")) +
-		    var.toString() + tr(")");
-		  engWindowTitle = "View";
-		}
+		  if(state == qtbook::EDITABLE)
+		    {
+		      str = QString
+			(tr("BiblioteQ: Modify Photograph Collection "
+			    "Entry (")) +
+			var.toString() + tr(")");
+		      engWindowTitle = "Modify";
+		    }
+		  else
+		    {
+		      str = QString(tr("BiblioteQ: View Photograph "
+				       "Collection Details (")) +
+			var.toString() + tr(")");
+		      engWindowTitle = "View";
+		    }
 
-	      setWindowTitle(str);
+		  setWindowTitle(str);
+		}
 	    }
 	  else if(fieldname == "title")
 	    pc.title_collection->setText(var.toString());
@@ -915,10 +932,9 @@ void qtbook_photographcollection::slotSelectImage(void)
 void qtbook_photographcollection::duplicate
 (const QString &p_oid, const int state)
 {
-  modify(state); // Initial population.
+  modify(state, "Create"); // Initial population.
   oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
-  engWindowTitle = "Create";
 }
 
 /*
