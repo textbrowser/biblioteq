@@ -58,6 +58,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotCancel(void);
   void slotAddItem(void);
   void slotClosePhoto(void);
+  void slotDeleteItem(void);
   void slotInsertItem(void);
   void slotModifyItem(void);
   void slotUpdateItem(void);

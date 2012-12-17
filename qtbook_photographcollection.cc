@@ -56,6 +56,10 @@ qtbook_photographcollection::qtbook_photographcollection
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,
+	  SIGNAL(deleteKeyPressed(void)),
+	  this,
+	  SLOT(slotDeleteItem(void)));
+  connect(scene,
 	  SIGNAL(selectionChanged(void)),
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
@@ -65,6 +69,8 @@ qtbook_photographcollection::qtbook_photographcollection
   parentWid = parentArg;
   photo.setupUi(photo_diag);
   pc.graphicsView->setScene(scene);
+  pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+  pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
 				25 / 5 * 200);
@@ -1036,6 +1042,23 @@ void qtbook_photographcollection::slotAddItem(void)
   photo_diag->resize(photo_diag->width(),
 		     0.95 * size().height());
   misc_functions::center(photo_diag, this);
+  photo.thumbnail_item->clear();
+  photo.id_item->clear();
+  photo.title_item->clear();
+  photo.creators_item->clear();
+  photo.publication_date->setDate(QDate::fromString("01/01/2000",
+						    "MM/dd/yyyy"));
+  photo.quantity->setValue(1);
+  photo.medium_item->clear();
+  photo.reproduction_number_item->clear();
+  photo.copyright_item->clear();
+  photo.call_number_item->clear();
+  photo.other_number_item->clear();
+  photo.notes_item->clear();
+  photo.subjects_item->clear();
+  photo.format_item->clear();
+  photo.scrollArea->ensureVisible(0, 0);
+  photo.id_item->setFocus();
   photo_diag->show();
 }
 
@@ -1464,6 +1487,8 @@ void qtbook_photographcollection::slotModifyItem(void)
   photo_diag->resize(photo_diag->width(),
 		     0.95 * size().height());
   misc_functions::center(photo_diag, this);
+  photo.id_item->setFocus();
+  photo.scrollArea->ensureVisible(0, 0);
   photo_diag->show();
 }
 
@@ -1642,4 +1667,63 @@ void qtbook_photographcollection::slotUpdateItem(void)
 			tr("Unable to update the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
+}
+
+/*
+** -- slotDeleteItem() --
+*/
+
+void qtbook_photographcollection::slotDeleteItem(void)
+{
+  QList<QGraphicsItem *> items(pc.graphicsView->scene()->selectedItems());
+
+  if(items.isEmpty())
+    return;
+  else
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Are you sure that you wish to permanently "
+				  "delete the selected item(s)?"),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::No)
+	return;
+    }
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  while(!items.isEmpty())
+    {
+      QGraphicsPixmapItem *item = 0;
+
+      if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
+							    takeFirst())))
+	{
+	  QString itemOid(item->data(0).toString());
+	  QSqlQuery query(qmain->getDB());
+
+	  query.prepare("DELETE FROM photograph WHERE "
+			"collection_oid = ? AND myoid = ?");
+	  query.bindValue(0, oid);
+	  query.bindValue(1, itemOid);
+	  query.exec();
+	}
+    }
+
+  int pages = 1;
+  QSqlQuery query(qmain->getDB());
+
+  if(query.exec(QString("SELECT COUNT(*) "
+			"FROM photograph "
+			"WHERE collection_id = %1").
+		arg(oid)))
+    if(query.next())
+      pages = qCeil(query.value(0).toDouble() / 25.0);
+
+  qapp->restoreOverrideCursor();
+  pc.page->clear();
+
+  for(int i = 1; i <= pages; i++)
+    pc.page->addItem(QString::number(i));
+
+  showPhotographs(pc.page->currentText().toInt());
 }
