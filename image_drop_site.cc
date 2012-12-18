@@ -278,7 +278,7 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
-	  (size() - 0.05 * size(), Qt::KeepAspectRatio,
+	  (0.50 * size(), Qt::KeepAspectRatio,
 	   Qt::SmoothTransformation);
     }
   else
