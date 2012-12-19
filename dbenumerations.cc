@@ -116,8 +116,8 @@ void dbenumerations::show(QMainWindow *parent, const bool populate)
   static bool resized = false;
 
   if(!resized)
-    resize(0.75 * parent->size().width(),
-	   0.75 * parent->size().height());
+    resize(0.95 * parent->size().width(),
+	   0.95 * parent->size().height());
 
   resized = true;
   misc_functions::center(this, parent);
@@ -332,12 +332,16 @@ void dbenumerations::populateWidgets(void)
 		    delete item2;
 		}
 	    }
+
+	  ui.locationsTable->resizeColumnToContents(0);
 	}
       else if(tablewidget == ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < list.size(); j++)
 	    if(tablewidget->item(j, 1))
 	      tablewidget->item(j, 1)->setText(list.at(j));
+
+	  ui.minimumDaysTable->resizeColumnToContents(0);
 	}
 
       list.clear();

@@ -6505,7 +6505,8 @@ void qtbook::slotShowCustomQuery(void)
       cq.tables_t->setHeaderLabels(QStringList()
 				   << tr("Table Name")
 				   << tr("Column")
-				   << tr("Column Type"));
+				   << tr("Column Type")
+				   << tr("NULL"));
 
 
       for(i = 0; i < list.size(); i++)
@@ -6531,6 +6532,11 @@ void qtbook::slotShowCustomQuery(void)
 		field = rec.field(rec.fieldName(j));
 		item2->setText(1, rec.fieldName(j));
 		item2->setText(2, QVariant::typeToName(field.type()));
+
+		if(field.requiredStatus() == QSqlField::Required)
+		  item2->setText(3, tr("No"));
+		else
+		  item2->setText(3, "");
 	      }
 	  }
 	else

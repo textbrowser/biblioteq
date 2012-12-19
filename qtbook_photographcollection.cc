@@ -698,7 +698,11 @@ void qtbook_photographcollection::modify(const int state,
 	pc.page->addItem(QString::number(i));
 
       if(!engWindowTitle.contains("Create"))
-	showPhotographs(pc.page->currentText().toInt());
+	{
+	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  showPhotographs(pc.page->currentText().toInt());
+	  qapp->restoreOverrideCursor();
+	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
@@ -1045,13 +1049,13 @@ void qtbook_photographcollection::slotAddItem(void)
   photo.thumbnail_item->clear();
   photo.id_item->clear();
   photo.title_item->clear();
-  photo.creators_item->clear();
+  photo.creators_item->setPlainText("N/A");
   photo.publication_date->setDate(QDate::fromString("01/01/2000",
 						    "MM/dd/yyyy"));
   photo.quantity->setValue(1);
-  photo.medium_item->clear();
-  photo.reproduction_number_item->clear();
-  photo.copyright_item->clear();
+  photo.medium_item->setText("N/A");
+  photo.reproduction_number_item->setPlainText("N/A");
+  photo.copyright_item->setPlainText("N/A");
   photo.call_number_item->clear();
   photo.other_number_item->clear();
   photo.notes_item->clear();
@@ -1297,7 +1301,9 @@ void qtbook_photographcollection::slotInsertItem(void)
   for(int i = 1; i <= pages; i++)
     pc.page->addItem(QString::number(i));
 
+  qapp->setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
+  qapp->restoreOverrideCursor();
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyItem(void)));
@@ -1689,10 +1695,26 @@ void qtbook_photographcollection::slotDeleteItem(void)
 	return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QProgressDialog progress(this);
+
+#ifdef Q_WS_MAC
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.setLabelText(tr("Deleting the selected item(s)..."));
+  progress.setMaximum(items.size());
+  progress.setMinimum(0);
+  progress.show();
+  progress.update();
+
+  int i = 0;
 
   while(!items.isEmpty())
     {
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
       QGraphicsPixmapItem *item = 0;
 
       if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
@@ -1707,6 +1729,11 @@ void qtbook_photographcollection::slotDeleteItem(void)
 	  query.bindValue(1, itemOid);
 	  query.exec();
 	}
+
+      progress.update();
+#ifndef Q_WS_MAC
+      qapp->processEvents();
+#endif
     }
 
   int pages = 1;
@@ -1719,11 +1746,11 @@ void qtbook_photographcollection::slotDeleteItem(void)
     if(query.next())
       pages = qCeil(query.value(0).toDouble() / 25.0);
 
-  qapp->restoreOverrideCursor();
   pc.page->clear();
 
   for(int i = 1; i <= pages; i++)
     pc.page->addItem(QString::number(i));
 
   showPhotographs(pc.page->currentText().toInt());
+  progress.hide();
 }
