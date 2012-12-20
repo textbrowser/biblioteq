@@ -11,16 +11,17 @@
      (Done)
 9.   Create a mechanism for determining the uniqueness of members. (Done)
 10.  Provide support for:
-	a. Magazines (Done)
-	b. Newspapers (TBD)
-	c. DVDs (Done)
-	d. Music CDs (Done)
-	e. Video Games (Done)
-	f. Cassette Tapes (TBD)
-    	g. Vinyl Records (TBD)
-	h. Books (Done)
+        a. Books (Done)
+	b. DVDs (Done)
+	c. Cassette Tapes (TBD)
+	d. Journals (Done)
+	e. Magazines (Done)
+	f. Music CDs (Done)
+	g. Newspapers (TBD)
+	h. Photograph Collections (Done)
 	i. VHS (TBD)
-	j. Journals (Done)
+	j. Vinyl Records (TBD)
+	k. Video Games (Done)
 11.  Finish the availability column. (Done)
 12.  Implement a generic search. (Done)
      Fields included:
@@ -293,7 +294,7 @@
 161. Allow the user to cancel an image download. (Done)
 162. Integrate the administrator privileges documentation into the
      application. (Done)
-163. Provide an option for downloading OFFSYSTEM files. (NO)
+163. Provide an option for downloading OFFSYSTEM files. (No)
 164. Warn the user of unsaved changes in the Members Browser. (Done)
 165. Implement the closeEvent for progress dialogs that must not be
      dismissed. (Done)
@@ -354,4 +355,4 @@
 194. Allow patrons to opt-out of reservation histories. (TBD)
 195. Dates should not be retrieved from local services. (TBD)
 196. Users should only be allowed to view their reservation histories.
-     Create temporary views?
+     Create temporary views? (TBD)

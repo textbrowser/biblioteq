@@ -834,6 +834,7 @@ QString misc_functions::getColumnString(const QTableWidget *table,
   else
     return QString();
 }
+
 /*
 ** -- getColumnString() --
 */
