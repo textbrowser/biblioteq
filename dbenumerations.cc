@@ -16,7 +16,7 @@ extern QApplication *qapp;
 dbenumerations::dbenumerations(void):QMainWindow()
 {
   ui.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   connect(ui.saveButton,

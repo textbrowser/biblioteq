@@ -62,7 +62,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   ui_p.setupUi(m_proxyDialog);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   m_proxyDialog->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   parentWid = parentArg;
@@ -72,7 +72,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     (qmain->getUI().table, row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
@@ -1956,7 +1956,7 @@ void qtbook_book::slotQuery(void)
 
       while(thread->isRunning())
 	{
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 	  qapp->processEvents();
 #endif
 	  thread->msleep(100);
@@ -2589,7 +2589,7 @@ void qtbook_book::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

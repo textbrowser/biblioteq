@@ -75,7 +75,7 @@ qtbook_photographcollection::qtbook_photographcollection
 				5 * 150,
 				25 / 5 * 200);
   pc.thumbnail_item->setReadOnly(true);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
   photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
@@ -890,7 +890,7 @@ void qtbook_photographcollection::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
@@ -1697,7 +1697,7 @@ void qtbook_photographcollection::slotDeleteItem(void)
 
   QProgressDialog progress(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   progress.setModal(true);
@@ -1731,7 +1731,7 @@ void qtbook_photographcollection::slotDeleteItem(void)
 	}
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }

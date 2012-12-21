@@ -58,7 +58,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
     (qmain->getUI().table, row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
   tracks_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
@@ -1359,7 +1359,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   QProgressDialog progress(tracks_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   querystr = "SELECT albumnum, songnum, songtitle, runtime "
@@ -1506,7 +1506,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -1649,7 +1649,7 @@ void qtbook_cd::slotSaveTracks(void)
   QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -1751,7 +1751,7 @@ void qtbook_cd::slotSaveTracks(void)
 	    progress.setValue(i + 1);
 
 	  progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 	  qapp->processEvents();
 #endif
 	}
@@ -2148,7 +2148,7 @@ void qtbook_cd::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

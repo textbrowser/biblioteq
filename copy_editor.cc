@@ -26,7 +26,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
     setWindowModality(Qt::WindowModal);
 
   cb.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   bitem = bitemArg;
@@ -183,7 +183,7 @@ void copy_editor::populateCopiesEditor(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress1.setAttribute(Qt::WA_MacMetalStyle, true);
   progress2.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
@@ -268,7 +268,7 @@ void copy_editor::populateCopiesEditor(void)
 	progress1.setValue(i + 1);
 
       progress1.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -371,7 +371,7 @@ void copy_editor::populateCopiesEditor(void)
 	progress2.setValue(i + 1);
 
       progress2.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
       if(terminate)
@@ -753,7 +753,7 @@ QString copy_editor::saveCopies(void)
   copy_class *copy = 0;
   QProgressDialog progress(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
@@ -832,7 +832,7 @@ QString copy_editor::saveCopies(void)
 	    progress.setValue(i + 1);
 
 	  progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 	  qapp->processEvents();
 #endif
 	}

@@ -56,7 +56,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
     (qmain->getUI().table, row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
@@ -1571,7 +1571,7 @@ void qtbook_videogame::slotSelectImage(void)
   QFileDialog dialog(this);
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

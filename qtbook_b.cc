@@ -38,7 +38,7 @@ int qtbook::populateTable(const int search_type_arg,
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -3087,7 +3087,7 @@ int qtbook::populateTable(const int search_type_arg,
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -3126,7 +3126,7 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.nextPageButton->setEnabled(true);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   ui.table->hide();
   ui.table->show();
 #endif

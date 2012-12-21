@@ -19,7 +19,7 @@ borrowers_editor::borrowers_editor(QWidget *parent,
 {
   setWindowModality(Qt::WindowModal);
   bd.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   ioid = ioidArg;
@@ -92,7 +92,7 @@ void borrowers_editor::showUsers(void)
   QProgressDialog progress1(this);
   QProgressDialog progress2(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress1.setAttribute(Qt::WA_MacMetalStyle, true);
   progress2.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
@@ -205,7 +205,7 @@ void borrowers_editor::showUsers(void)
 	progress1.setValue(i + 1);
 
       progress1.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -326,7 +326,7 @@ void borrowers_editor::showUsers(void)
 	progress2.setValue(i + 1);
 
       progress2.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
       if(terminate)
@@ -483,7 +483,7 @@ void borrowers_editor::slotSave(void)
   QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   progress.setModal(true);
@@ -536,7 +536,7 @@ void borrowers_editor::slotSave(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }

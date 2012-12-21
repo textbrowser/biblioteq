@@ -30,7 +30,7 @@
 */
 
 #include <QtDebug>
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <QMacStyle>
 #endif
 #include <QSettings>
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 	  settings.remove(settings.allKeys().at(i));
     }
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   QApplication::setStyle(new QMacStyle());
 #endif
 
@@ -346,7 +346,7 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu4->addAction(tr("Reset &Availability")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   connect(ui.action_Book,
@@ -400,7 +400,7 @@ qtbook::qtbook(void):QMainWindow()
   ab.setupUi(admin_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
@@ -1086,7 +1086,7 @@ void qtbook::showMain(void)
 
   initialUpdate();
   show();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
   setGlobalFonts(qapp->font());
 #endif
   slotResizeColumns();
@@ -1124,7 +1124,7 @@ void qtbook::slotAbout(void)
 {
   QMessageBox mb(this);
 
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
   mb.setFont(qapp->font());
 #endif
   mb.setWindowTitle(tr("BiblioteQ: About"));
@@ -1704,7 +1704,7 @@ void qtbook::slotDelete(void)
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -1852,7 +1852,7 @@ void qtbook::slotDelete(void)
 	}
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -2510,7 +2510,7 @@ void qtbook::readGlobalSetup(QString &error)
 	    statusBar()->showMessage(tr("Processing the global "
 					"configuration file."));
 
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 	  qapp->processEvents();
 #endif
 	  thread->wait(100);
@@ -2796,7 +2796,7 @@ void qtbook::readConfig(void)
   else
     ui.actionPreserveGeometry->setChecked(false);
 
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
   font = qapp->font();
 
   if(settings.contains("global_font"))
@@ -4305,7 +4305,7 @@ void qtbook::slotPopulateMembersBrowser(void)
   QProgressDialog progress(members_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   str = "SELECT member.memberid, "
@@ -4436,7 +4436,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -4446,7 +4446,7 @@ void qtbook::slotPopulateMembersBrowser(void)
   bb.table->setRowCount(i);
   bb.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   bb.table->hide();
   bb.table->show();
 #endif
@@ -4463,7 +4463,7 @@ void qtbook::slotGrantPrivileges(void)
   QProgressDialog progress(members_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   progress.setModal(true);
@@ -4499,7 +4499,7 @@ void qtbook::slotGrantPrivileges(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -6275,7 +6275,7 @@ void qtbook::slotSetFonts(void)
 {
   QFontDialog dialog(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
@@ -6630,7 +6630,7 @@ void qtbook::slotPrintView(void)
   QPrintDialog dialog(&printer, this);
   QTextDocument document;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -6687,7 +6687,7 @@ void qtbook::slotPrintReserved(void)
   QTextDocument document;
   QMap<QString, QString> memberinfo;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -6833,7 +6833,7 @@ void qtbook::slotShowHistory(void)
   QProgressDialog progress(history_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -7123,7 +7123,7 @@ void qtbook::slotShowHistory(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -7184,7 +7184,7 @@ void qtbook::slotPrintReservationHistory(void)
   QPrintDialog dialog(&printer, history_diag);
   QTextDocument document;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -7428,7 +7428,7 @@ void qtbook::slotSelectDatabaseFile(void)
 {
   QFileDialog dialog(branch_diag);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
@@ -7539,7 +7539,7 @@ void qtbook::slotDeleteAdmin(void)
 	deletedAdmins.append(str);
 
       ab.table->removeRow(row);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
       ab.table->hide();
       ab.table->show();
 #endif
@@ -7602,7 +7602,7 @@ void qtbook::slotRefreshAdminList(void)
   QProgressDialog progress(admin_diag);
   QTableWidgetItem *item = 0;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   querystr = "SELECT username, roles FROM admin ORDER BY username";
@@ -7696,7 +7696,7 @@ void qtbook::slotRefreshAdminList(void)
 	progress.setValue(i + 1);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -7727,7 +7727,7 @@ void qtbook::slotSaveAdministrators(void)
   QStringList tmplist;
   QProgressDialog progress(admin_diag);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   /*
@@ -7967,7 +7967,7 @@ void qtbook::slotSaveAdministrators(void)
 	}
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -8043,7 +8043,7 @@ void qtbook::slotRequest(void)
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
@@ -8161,7 +8161,7 @@ void qtbook::slotRequest(void)
 	progress.setValue(ct);
 
       progress.update();
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
       qapp->processEvents();
 #endif
     }
@@ -8461,7 +8461,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
   bool error = true;
   QFileDialog dialog(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
@@ -8629,7 +8629,7 @@ void qtbook::slotExportAsCSV(void)
 {
   QFileDialog dialog(this);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);

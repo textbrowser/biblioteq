@@ -20,7 +20,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
   ui.setupUi(this);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 
