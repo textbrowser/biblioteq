@@ -2476,17 +2476,22 @@ void qtbook::readGlobalSetup(void)
     {
       settings.beginGroup(settings.childGroups().at(i));
 
-      if(settings.group() == "Branch")
+      if(settings.group() == "Amazon Back Cover Images")
 	{
-	  QHash<QString, QString> hash;
-
-	  hash["branch_name"] = settings.value("database_name", "").toString();
-	  hash["hostname"] = settings.value("hostname", "").toString();
-	  hash["database_type"] = settings.value("database_type", "").
+	  amazonImages["back_cover_host"] = settings.value("host", "").
 	    toString();
-	  hash["port"] = settings.value("port", "").toString();
-	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").toString();
-	  branches[settings.group()] = hash;
+	  amazonImages["back_cover_path"] = settings.value("path", "").
+	    toString();
+	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
+	    toString();
+	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
+	    toString();
+	  amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
+	    toString();
+	  amazonImages["back_proxy_username"] = settings.value
+	    ("proxy_username", "").toString();
+	  amazonImages["back_proxy_password"] = settings.value
+	    ("proxy_password", "").toString();
 	}
       else if(settings.group() == "Amazon Front Cover Images")
 	{
@@ -2505,22 +2510,32 @@ void qtbook::readGlobalSetup(void)
 	  amazonImages["front_proxy_password"] = settings.value
 	    ("proxy_password", "").toString();
 	}
-      else if(settings.group() == "Amazon Back Cover Images")
+      else if(settings.group().startsWith("Branch"))
 	{
-	  amazonImages["back_cover_host"] = settings.value("host", "").
+	  QHash<QString, QString> hash;
+
+	  hash["branch_name"] = settings.value("database_name", "").toString();
+	  hash["hostname"] = settings.value("hostname", "").toString();
+	  hash["database_type"] = settings.value("database_type", "").
 	    toString();
-	  amazonImages["back_cover_path"] = settings.value("path", "").
-	    toString();
-	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
-	    toString();
-	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
-	    toString();
-	  amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
-	    toString();
-	  amazonImages["back_proxy_username"] = settings.value
-	    ("proxy_username", "").toString();
-	  amazonImages["back_proxy_password"] = settings.value
-	    ("proxy_password", "").toString();
+	  hash["port"] = settings.value("port", "").toString();
+	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").toString();
+	  branches[settings.value("database_name", "").toString()] = hash;
+	}
+      else if(settings.group().startsWith("Z39.50"))
+	{
+	  QHash<QString, QString> hash;
+
+	  hash["Name"] = settings.value("name", "").toString();
+	  hash["Address"] = settings.value("hostname", "").toString();
+	  hash["Port"] = settings.value("port", "").toString();
+	  hash["Database"] = settings.value("database_name", "").toString();
+	  hash["Format"] = settings.value("format", "").toString();
+	  hash["Userid"] = settings.value("username", "").toString();
+	  hash["Password"] = settings.value("password", "").toString();
+	  hash["proxy_host"] = settings.value("proxy_host", "").toString();
+	  hash["proxy_port"] = settings.value("proxy_port", "").toString();
+	  z3950Maps[settings.value("name", "").toString()] = hash;
 	}
 
       settings.endGroup();
@@ -2549,15 +2564,14 @@ void qtbook::readGlobalSetup(void)
 
   if(z3950Maps.isEmpty())
     {
-      /*
-      tmphash["Name"] = "Library of Congress";
-      tmphash["Address"] = "z3950.loc.gov";
-      tmphash["Port"] = "7090";
-      tmphash["Database"] = "Voyager";
-      tmphash["Format"] = "marc8,utf-8";
-      z3950Maps["Library of Congress"] = tmphash;
-      tmphash.clear();
-      */
+      QHash<QString, QString> hash;
+
+      hash["Name"] = "Library of Congress";
+      hash["Address"] = "z3950.loc.gov";
+      hash["Port"] = "7090";
+      hash["Database"] = "Voyager";
+      hash["Format"] = "marc8,utf-8";
+      z3950Maps["Library of Congress"] = hash;
     }
 }
 
