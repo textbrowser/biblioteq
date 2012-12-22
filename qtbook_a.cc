@@ -1047,13 +1047,7 @@ void qtbook::showMain(void)
   if(settings.contains("mainwindowState"))
     restoreState(settings.value("mainwindowState").toByteArray());
 
-  /*
-  ** Configure the global settings file.
-  */
-
-  QString error("");
-
-  readGlobalSetup(error);
+  readGlobalSetup();
 
   /*
   ** Perform additional user interface duties.
@@ -1090,10 +1084,6 @@ void qtbook::showMain(void)
   setGlobalFonts(qapp->font());
 #endif
   slotResizeColumns();
-
-  if(!error.isEmpty())
-    QMessageBox::critical(this, tr("BiblioteQ: File Error"),
-			  error);
 }
 
 /*
@@ -2474,299 +2464,100 @@ void qtbook::slotSaveUser(void)
 ** -- readGlobalSetup() --
 */
 
-void qtbook::readGlobalSetup(QString &error)
+void qtbook::readGlobalSetup(void)
 {
-  int i = 0;
-  int j = 0;
-  enum enumtype {AMAZON_BACK_COVER_IMAGES,
-		 AMAZON_FRONT_COVER_IMAGES,
-		 AMAZON_PROXY,
-		 BRANCHES,
-		 UNKNOWN,
-		 Z3950_CONFIGURATION,
-		 Z3950_PROXY};
-  QString str = "";
-  QString filename = "";
-  enumtype type = UNKNOWN;
-  generic_thread *thread = 0;
-  QHash<QString, QString> tmphash;
-
 #ifdef Q_OS_WIN32
-  filename = "biblioteq.conf";
+  QSettings settings("biblioteq.conf", QSettings::IniFormat);
 #else
-  filename.append(CONFIGFILE);
+  QSettings settings(CONFIGFILE, QSettings::IniFormat);
 #endif
 
-  if((thread = new(std::nothrow) generic_thread(this)) != 0)
+  for(int i = 0; i < settings.childGroups().size(); i++)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
-      thread->setFilename(filename);
-      thread->setType(generic_thread::READ_GLOBAL_CONFIG_FILE);
-      thread->start();
+      settings.beginGroup(settings.childGroups().at(i));
 
-      while(thread->isRunning())
+      if(settings.group() == "Branch")
 	{
-	  if(statusBar() != 0)
-	    statusBar()->showMessage(tr("Processing the global "
-					"configuration file."));
+	  QHash<QString, QString> hash;
 
-#ifndef Q_OS_MAC
-	  qapp->processEvents();
-#endif
-	  thread->wait(100);
+	  hash["branch_name"] = settings.value("database_name", "").toString();
+	  hash["hostname"] = settings.value("hostname", "").toString();
+	  hash["database_type"] = settings.value("database_type", "").
+	    toString();
+	  hash["port"] = settings.value("port", "").toString();
+	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").toString();
+	  branches[settings.group()] = hash;
+	}
+      else if(settings.group() == "Amazon Front Cover Images")
+	{
+	  amazonImages["front_cover_host"] = settings.value("host", "").
+	    toString();
+	  amazonImages["front_cover_path"] = settings.value("path", "").
+	    toString();
+	  amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
+	    toString();
+	  amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
+	    toString();
+	  amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
+	    toString();
+	  amazonImages["front_proxy_username"] = settings.value
+	    ("proxy_username", "").toString();
+	  amazonImages["front_proxy_password"] = settings.value
+	    ("proxy_password", "").toString();
+	}
+      else if(settings.group() == "Amazon Back Cover Images")
+	{
+	  amazonImages["back_cover_host"] = settings.value("host", "").
+	    toString();
+	  amazonImages["back_cover_path"] = settings.value("path", "").
+	    toString();
+	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
+	    toString();
+	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
+	    toString();
+	  amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
+	    toString();
+	  amazonImages["back_proxy_username"] = settings.value
+	    ("proxy_username", "").toString();
+	  amazonImages["back_proxy_password"] = settings.value
+	    ("proxy_password", "").toString();
 	}
 
-      if(!thread->getErrorStr().isEmpty())
-	{
-	  if(statusBar() != 0)
-	    statusBar()->clearMessage();
-
-	  addError(QString(tr("File Error")),
-		   thread->getErrorStr(),
-		   thread->getErrorStr(), __FILE__, __LINE__);
-	}
-      else
-	for(i = 0; i < thread->getList().size(); i++)
-	  {
-	    tmphash.clear();
-	    str = thread->getList().at(i);
-
-	    if(str.isEmpty() || str.startsWith("#"))
-	      continue;
-
-	    if(str == "[Z39.50 Configuration]")
-	      type = Z3950_CONFIGURATION;
-	    else if(str == "[Branches]")
-	      type = BRANCHES;
-	    else if(str == "[Amazon Front Cover Images]")
-	      type = AMAZON_FRONT_COVER_IMAGES;
-	    else if(str == "[Amazon Back Cover Images]")
-	      type = AMAZON_BACK_COVER_IMAGES;
-	    else if(str == "[Amazon Proxy]")
-	      type = AMAZON_PROXY;
-	    else if(str == "[Z39.50 Proxy]")
-	      type = Z3950_PROXY;
-	    else
-	      type = UNKNOWN;
-
-	    if(type != UNKNOWN)
-	      for(j = i + 1; j < thread->getList().size(); j++)
-		{
-		  str = thread->getList().at(j);
-
-		  if(str.isEmpty() || str.startsWith("["))
-		    break;
-
-		  switch(type)
-		    {
-		    case Z3950_CONFIGURATION:
-		      {
-			if(!tmphash.contains("Name"))
-			  {
-			    if(str.startsWith("#"))
-			      break;
-
-			    tmphash["Name"] = str;
-			  }
-			else if(!tmphash.contains("Address"))
-			  {
-			    if(str.startsWith("#"))
-			      break;
-
-			    tmphash["Address"] = str;
-			  }
-			else if(!tmphash.contains("Port"))
-			  {
-			    if(str.startsWith("#"))
-			      break;
-
-			    tmphash["Port"] = str;
-			  }
-			else if(!tmphash.contains("Database"))
-			  {
-			    if(str.startsWith("#"))
-			      break;
-
-			    tmphash["Database"] = str;
-			  }
-			else if(!tmphash.contains("Format"))
-			  {
-			    if(str.startsWith("#"))
-			      break;
-
-			    tmphash["Format"] = str;
-			  }
-			else if(!tmphash.contains("Userid"))
-			  {
-			    if(str.startsWith("#"))
-			      str = "";
-
-			    tmphash["Userid"] = str;
-			  }
-			else
-			  {
-			    if(str.startsWith("#"))
-			      str = "";
-
-			    tmphash["Password"] = str;
-			    z3950Maps[tmphash["Name"]] = tmphash;
-			    tmphash.clear();
-			  }
-
-			break;
-		      }
-		    case BRANCHES:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!tmphash.contains("branch_name"))
-			  tmphash["branch_name"] = str;
-			else if(!tmphash.contains("hostname"))
-			  tmphash["hostname"] = str;
-			else if(!tmphash.contains("database_type"))
-			  tmphash["database_type"] = str;
-			else if(!tmphash.contains("database_port"))
-			  tmphash["database_port"] = str;
-			else if(!tmphash.contains("ssl_enabled"))
-			  {
-			    tmphash["ssl_enabled"] = str;
-
-			    if(!branches.contains(tmphash["branch_name"]))
-			      branches[tmphash["branch_name"]] = tmphash;
-
-			    if(br.branch_name->
-			       findText(tmphash["branch_name"]) == -1)
-			      br.branch_name->addItem
-				(tmphash["branch_name"]);
-
-			    tmphash.clear();
-			  }
-
-			break;
-		      }
-		    case AMAZON_FRONT_COVER_IMAGES:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!amazonImages.contains("front_cover_host"))
-			  amazonImages["front_cover_host"] = str;
-			else if(!amazonImages.contains("front_cover_path"))
-			  amazonImages["front_cover_path"] = str;
-
-			break;
-		      }
-		    case AMAZON_BACK_COVER_IMAGES:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!amazonImages.contains("back_cover_host"))
-			  amazonImages["back_cover_host"] = str;
-			else if(!amazonImages.contains("back_cover_path"))
-			  amazonImages["back_cover_path"] = str;
-
-			break;
-		      }
-		    case AMAZON_PROXY:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!m_amazonProxy.contains("type"))
-			  m_amazonProxy["type"] = str;
-			else if(!m_amazonProxy.contains("host"))
-			  m_amazonProxy["host"] = str;
-			else if(!m_amazonProxy.contains("port"))
-			  m_amazonProxy["port"] = str;
-			else if(!m_amazonProxy.contains("user"))
-			  m_amazonProxy["user"] = str;
-			else if(!m_amazonProxy.contains("password"))
-			  m_amazonProxy["password"] = str;
-
-			break;
-		      }
-		    case Z3950_PROXY:
-		      {
-			if(str.startsWith("#"))
-			  break;
-
-			if(!m_z3950Proxy.contains("host"))
-			  m_z3950Proxy["host"] = str;
-			else if(!m_z3950Proxy.contains("port"))
-			  m_z3950Proxy["port"] = str;
-
-			break;
-		      }
-		    default:
-		      break;
-		    }
-		}
-	  }
-
-      tmphash.clear();
-
-      if(br.branch_name->count() == 0)
-	{
-	  tmphash["branch_name"] = "local_db";
-	  tmphash["hostname"] = "127.0.0.1";
-	  tmphash["database_type"] = "sqlite";
-	  tmphash["database_port"] = "-1";
-	  tmphash["ssl_enabled"] = "false";
-
-	  if(!branches.contains(tmphash["branch_name"]))
-	    branches[tmphash["branch_name"]] = tmphash;
-
-	  if(br.branch_name->
-	     findText(tmphash["branch_name"]) == -1)
-	    br.branch_name->addItem(tmphash["branch_name"]);
-
-	  tmphash.clear();
-	}
-
-      if(z3950Maps.isEmpty())
-	{
-	  tmphash["Name"] = "Library of Congress";
-	  tmphash["Address"] = "z3950.loc.gov";
-	  tmphash["Port"] = "7090";
-	  tmphash["Database"] = "Voyager";
-	  tmphash["Format"] = "marc8,utf-8";
-	  z3950Maps["Library of Congress"] = tmphash;
-	  tmphash.clear();
-	}
-
-      if(!amazonImages.contains("front_cover_host"))
-	amazonImages["front_cover_host"] = "images.amazon.com";
-
-      if(!amazonImages.contains("front_cover_path"))
-	amazonImages["front_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
-
-      if(!amazonImages.contains("back_cover_host"))
-	amazonImages["back_cover_host"] = "images.amazon.com";
-
-      if(!amazonImages.contains("back_cover_path"))
-	amazonImages["back_cover_path"] = "/images/P/%.01._SCLZZZZZZZ_.jpg";
-
-      if(statusBar() != 0)
-	statusBar()->clearMessage();
-
-      qapp->restoreOverrideCursor();
-
-      if(!thread->getErrorStr().isEmpty())
-	error = thread->getErrorStr();
-
-      thread->deleteLater();
+      settings.endGroup();
     }
-  else
+
+  QStringList list(branches.keys());
+
+  for(int i = 0; i < list.size(); i++)
+    br.branch_name->addItem(list.at(i));
+
+  if(br.branch_name->count() == 0)
     {
-      error = QString(tr("Unable to read ")) + filename +
-	QString(tr(" because of insufficient resources."));
-      addError(QString(tr("File Error")),
-	       QString(tr("Unable to read ")) + filename +
-	       QString(tr(" because of insufficient resources.")),
-	       QString(""),
-	       __FILE__, __LINE__);
+      QHash<QString, QString> hash;
+
+      hash["branch_name"] = "local_db";
+      hash["hostname"] = "127.0.0.1";
+      hash["database_type"] = "sqlite";
+      hash["port"] = "-1";
+      hash["ssl_enabled"] = "false";
+
+      if(!branches.contains(hash["branch_name"]))
+	branches[hash["branch_name"]] = hash;
+
+      br.branch_name->addItem(hash["branch_name"]);
+    }
+
+  if(z3950Maps.isEmpty())
+    {
+      /*
+      tmphash["Name"] = "Library of Congress";
+      tmphash["Address"] = "z3950.loc.gov";
+      tmphash["Port"] = "7090";
+      tmphash["Database"] = "Voyager";
+      tmphash["Format"] = "marc8,utf-8";
+      z3950Maps["Library of Congress"] = tmphash;
+      tmphash.clear();
+      */
     }
 }
 
@@ -3703,7 +3494,7 @@ void qtbook::slotConnectDB(void)
       db.setDatabaseName(br.branch_name->currentText());
       db.setUserName(br.userid->text().trimmed());
       db.setPassword(br.password->text());
-      db.setPort(tmphash["database_port"].toInt());
+      db.setPort(tmphash["port"].toInt());
     }
 
   if(tmphash["database_type"] != "sqlite")
@@ -8886,24 +8677,6 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 
       items.clear();
     }
-}
-
-/*
-** -- amazonProxy() --
-*/
-
-QHash<QString, QString> qtbook::amazonProxy(void) const
-{
-  return m_amazonProxy;
-}
-
-/*
-** -- z3950Proxy() --
-*/
-
-QHash<QString, QString> qtbook::z3950Proxy(void) const
-{
-  return m_z3950Proxy;
 }
 
 /*

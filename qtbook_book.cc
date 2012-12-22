@@ -2695,10 +2695,12 @@ void qtbook_book::slotDownloadImage(void)
 
   QString type;
   QNetworkProxy proxy;
-  QHash<QString, QString> hash(qmain->amazonProxy());
+  QHash<QString, QString> hash(qmain->getAmazonHash());
 
-  if(hash.contains("type"))
-    type = hash["type"].toLower().trimmed();
+  if(hash.contains("front_proxy_type"))
+    type = hash["front_proxy_type"].toLower().trimmed();
+  else if(hash.contains("back_proxy_type"))
+    type = hash["back_proxy_type"].toLower().trimmed();
 
   if(type == "none")
     proxy.setType(QNetworkProxy::NoProxy);
@@ -2736,10 +2738,21 @@ void qtbook_book::slotDownloadImage(void)
 	  QString user("");
 	  QString password("");
 
-	  host = hash["host"];
-	  port = hash["port"].toUShort();
-	  user = hash["user"];
-	  password = hash["password"];
+	  if(pb == id.dwnldFront)
+	    {
+	      host = hash["front_proxy_host"];
+	      port = hash["front_proxy_port"].toUShort();
+	      user = hash["front_proxy_username"];
+	      password = hash["front_proxy_password"];
+	    }
+	  else
+	    {
+	      host = hash["back_proxy_host"];
+	      port = hash["back_proxy_port"].toUShort();
+	      user = hash["back_proxy_username"];
+	      password = hash["back_proxy_password"];
+	    }
+
 	  proxy.setHostName(host);
 	  proxy.setPort(port);
 

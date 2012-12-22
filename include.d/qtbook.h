@@ -246,8 +246,6 @@ class qtbook: public QMainWindow
   Ui_mainWindow getUI(void) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_membersBrowser getBB(void) const;
-  QHash<QString, QString> z3950Proxy(void) const;
-  QHash<QString, QString> amazonProxy(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
   QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   static void quit(void);
@@ -271,9 +269,7 @@ class qtbook: public QMainWindow
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
   QVector<QString> m_historyColumnHeaderIndexes;
-  QHash<QString, QString> m_z3950Proxy;
   QHash<QString, QString> amazonImages;
-  QHash<QString, QString> m_amazonProxy;
   QHash<QString, QString> selectedBranch;
   QMap<QString, QHash<QString, QString> > branches;
   QMap<QString, QHash<QString, QString> > z3950Maps;
@@ -310,7 +306,7 @@ class qtbook: public QMainWindow
   void initialUpdate(void);
   void prepareFilter(void);
   void emptyContainers(void);
-  void readGlobalSetup(QString &);
+  void readGlobalSetup(void);
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);

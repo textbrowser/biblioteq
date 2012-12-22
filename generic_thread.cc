@@ -77,7 +77,7 @@ void generic_thread::run(void)
 	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = 0;
-	QHash<QString, QString> proxy(qmain->z3950Proxy());
+	QHash<QString, QString> proxy(qmain->getZ3950Maps().value(z3950Name));
 
 	ZOOM_options_set
 	  (options,
@@ -86,10 +86,11 @@ void generic_thread::run(void)
 	   toAscii().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
-	if(proxy.contains("host") && proxy.contains("port"))
+	if(proxy.contains("proxy_host") && proxy.contains("proxy_port"))
 	  {
-	    QString value
-	      (QString("%1:%2").arg(proxy["host"]).arg(proxy["port"]));
+	    QString value(QString("%1:%2").
+			  arg(proxy["proxy_host"]).
+			  arg(proxy["proxy_port"]));
 
 	    ZOOM_options_set(options, "proxy", value.toAscii().constData());
 	  }
