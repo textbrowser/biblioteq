@@ -86,7 +86,8 @@ void generic_thread::run(void)
 	   toAscii().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
-	if(proxy.contains("proxy_host") && proxy.contains("proxy_port"))
+	if(!proxy.value("proxy_host").isEmpty() &&
+	   !proxy.value("proxy_port").isEmpty())
 	  {
 	    QString value(QString("%1:%2").
 			  arg(proxy["proxy_host"]).

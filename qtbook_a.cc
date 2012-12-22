@@ -2479,63 +2479,72 @@ void qtbook::readGlobalSetup(void)
       if(settings.group() == "Amazon Back Cover Images")
 	{
 	  amazonImages["back_cover_host"] = settings.value("host", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["back_cover_path"] = settings.value("path", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["back_proxy_username"] = settings.value
-	    ("proxy_username", "").toString();
+	    ("proxy_username", "").toString().trimmed();
 	  amazonImages["back_proxy_password"] = settings.value
-	    ("proxy_password", "").toString();
+	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group() == "Amazon Front Cover Images")
 	{
 	  amazonImages["front_cover_host"] = settings.value("host", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["front_cover_path"] = settings.value("path", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
-	    toString();
+	    toString().trimmed();
 	  amazonImages["front_proxy_username"] = settings.value
-	    ("proxy_username", "").toString();
+	    ("proxy_username", "").toString().trimmed();
 	  amazonImages["front_proxy_password"] = settings.value
-	    ("proxy_password", "").toString();
+	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group().startsWith("Branch"))
 	{
 	  QHash<QString, QString> hash;
 
-	  hash["branch_name"] = settings.value("database_name", "").toString();
-	  hash["hostname"] = settings.value("hostname", "").toString();
+	  hash["branch_name"] = settings.value("database_name", "").
+	    toString().trimmed();
+	  hash["hostname"] = settings.value("hostname", "").
+	    toString().trimmed();
 	  hash["database_type"] = settings.value("database_type", "").
-	    toString();
-	  hash["port"] = settings.value("port", "").toString();
-	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").toString();
-	  branches[settings.value("database_name", "").toString()] = hash;
+	    toString().trimmed();
+	  hash["port"] = settings.value("port", "").toString().trimmed();
+	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").
+	    toString().trimmed();
+	  branches[settings.value("database_name", "").
+		   toString().trimmed()] = hash;
 	}
       else if(settings.group().startsWith("Z39.50"))
 	{
 	  QHash<QString, QString> hash;
 
-	  hash["Name"] = settings.value("name", "").toString();
-	  hash["Address"] = settings.value("hostname", "").toString();
-	  hash["Port"] = settings.value("port", "").toString();
-	  hash["Database"] = settings.value("database_name", "").toString();
-	  hash["Format"] = settings.value("format", "").toString();
-	  hash["Userid"] = settings.value("username", "").toString();
-	  hash["Password"] = settings.value("password", "").toString();
-	  hash["proxy_host"] = settings.value("proxy_host", "").toString();
-	  hash["proxy_port"] = settings.value("proxy_port", "").toString();
-	  z3950Maps[settings.value("name", "").toString()] = hash;
+	  hash["Name"] = settings.value("name", "").toString().trimmed();
+	  hash["Address"] = settings.value("hostname", "").
+	    toString().trimmed();
+	  hash["Port"] = settings.value("port", "").toString().trimmed();
+	  hash["Database"] = settings.value("database_name", "").
+	    toString().trimmed();
+	  hash["Format"] = settings.value("format", "").toString().trimmed();
+	  hash["Userid"] = settings.value("username", "").toString().trimmed();
+	  hash["Password"] = settings.value("password", "").
+	    toString().trimmed();
+	  hash["proxy_host"] = settings.value("proxy_host", "").
+	    toString().trimmed();
+	  hash["proxy_port"] = settings.value("proxy_port", "").
+	    toString().trimmed();
+	  z3950Maps[settings.value("name", "").toString().trimmed()] = hash;
 	}
 
       settings.endGroup();
