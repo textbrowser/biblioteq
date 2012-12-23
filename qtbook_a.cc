@@ -1391,11 +1391,16 @@ void qtbook::slotModify(void)
 	    {
 	      qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
 
-	      if(m && m->getID() == oid)
-		{
-		  magazine = m;
-		  break;
-		}
+	      /*
+	      ** The class qtbook_journal inherits qtbook_magazine.
+	      */
+
+	      if(!qobject_cast<qtbook_journal *> (w))
+		if(m && m->getID() == oid)
+		  {
+		    magazine = m;
+		    break;
+		  }
 	    }
 
 	  if(!magazine)
@@ -1599,11 +1604,16 @@ void qtbook::slotViewDetails(void)
 	    {
 	      qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
 
-	      if(m && m->getID() == oid)
-		{
-		  magazine = m;
-		  break;
-		}
+	      /*
+	      ** The class qtbook_journal inherits qtbook_magazine.
+	      */
+
+	      if(!qobject_cast<qtbook_journal *> (w))
+		if(m && m->getID() == oid)
+		  {
+		    magazine = m;
+		    break;
+		  }
 	    }
 
 	  if(!magazine)
@@ -5214,8 +5224,9 @@ void qtbook::updateItemWindows(void)
       if(journal)
 	journal->updateWindow(EDITABLE);
 
-      if(magazine)
-	magazine->updateWindow(EDITABLE);
+      if(!qobject_cast<qtbook_journal *> (w))
+	if(magazine)
+	  magazine->updateWindow(EDITABLE);
 
       if(videogame)
 	videogame->updateWindow(EDITABLE);
@@ -5255,8 +5266,9 @@ void qtbook::emptyContainers(void)
       if(journal)
 	journal->deleteLater();
 
-      if(magazine)
-	magazine->deleteLater();
+      if(!qobject_cast<qtbook_journal *> (w))
+	if(magazine)
+	  magazine->deleteLater();
 
       if(videogame)
 	videogame->deleteLater();
@@ -5464,11 +5476,16 @@ void qtbook::deleteItem(const QString &oid, const QString &itemType)
 	{
 	  qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
 
-	  if(magazine && magazine->getID() == oid)
-	    {
-	      removeMagazine(magazine);
-	      break;
-	    }
+	  /*
+	  ** The class qtbook_journal inherits qtbook_magazine.
+	  */
+
+	  if(!qobject_cast<qtbook_journal *> (w))
+	    if(magazine && magazine->getID() == oid)
+	      {
+		removeMagazine(magazine);
+		break;
+	      }
 	}
     }
   else if(itemType == "photographcollection")
@@ -5704,11 +5721,16 @@ void qtbook::slotMagSearch(void)
     {
       qtbook_magazine *m = qobject_cast<qtbook_magazine *> (w);
 
-      if(m && m->getID() == "search")
-	{
-	  magazine = m;
-	  break;
-	}
+      /*
+      ** The class qtbook_journal inherits qtbook_magazine.
+      */
+
+      if(!qobject_cast<qtbook_journal *> (w))
+	if(m && m->getID() == "search")
+	  {
+	    magazine = m;
+	    break;
+	  }
     }
 
   if(!magazine)
@@ -5880,11 +5902,16 @@ void qtbook::updateRows(const QString &oid, const int row,
 	{
 	  qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
 
-	  if(magazine && magazine->getID() == oid)
-	    {
-	      magazine->updateRow(row);
-	      break;
-	    }
+	  /*
+	  ** The class qtbook_journal inherits qtbook_magazine.
+	  */
+
+	  if(!qobject_cast<qtbook_journal *> (w))
+	    if(magazine && magazine->getID() == oid)
+	      {
+		magazine->updateRow(row);
+		break;
+	      }
 	}
     }
   else if(itemType == "photographcollection")
