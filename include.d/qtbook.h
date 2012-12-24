@@ -239,6 +239,7 @@ class qtbook: public QMainWindow
 				       const QString &);
   QString getRoles(void) const;
   QString getAdminID(void) const;
+  QString getPreferredSRUSite(void) const;
   QString getTypeFilterString(void) const;
   QString getPreferredZ3950Site(void) const;
   QMainWindow *getMembersBrowser(void) const;
@@ -247,6 +248,7 @@ class qtbook: public QMainWindow
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_membersBrowser getBB(void) const;
   QHash<QString, QString> getAmazonHash(void) const;
+  QMap<QString, QHash<QString, QString> > getSRUMaps(void) const;
   QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
   static void quit(void);
   static void quit(const char *, const char *, const int);
@@ -271,6 +273,7 @@ class qtbook: public QMainWindow
   QVector<QString> m_historyColumnHeaderIndexes;
   QHash<QString, QString> amazonImages;
   QHash<QString, QString> selectedBranch;
+  QMap<QString, QHash<QString, QString> > sruMaps;
   QMap<QString, QHash<QString, QString> > branches;
   QMap<QString, QHash<QString, QString> > z3950Maps;
   QLabel *error_bar_label;

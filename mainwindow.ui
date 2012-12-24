@@ -316,7 +316,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -406,6 +406,11 @@
       <string>&amp;Language</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menuPreferredSRUSite">
+     <property name="title">
+      <string>Preferred &amp;SRU Site</string>
+     </property>
+    </widget>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
@@ -418,6 +423,7 @@
     <addaction name="separator"/>
     <addaction name="menuEntriesPerPage"/>
     <addaction name="menu_Language"/>
+    <addaction name="menuPreferredSRUSite"/>
     <addaction name="menuPreferredZ3950Server"/>
     <addaction name="separator"/>
     <addaction name="actionSaveSettings"/>
@@ -1112,6 +1118,11 @@
   <action name="action_Photograph_Collection">
    <property name="text">
     <string>&amp;Photograph Collection</string>
+   </property>
+  </action>
+  <action name="actionNone">
+   <property name="text">
+    <string>None</string>
    </property>
   </action>
  </widget>

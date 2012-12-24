@@ -1058,9 +1058,33 @@ void qtbook::showMain(void)
   if((group1 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  for(int i = 0; i < getZ3950Maps().size(); i++)
+  for(int i = 0; i < getSRUMaps().size(); i++)
     {
       QAction *action = group1->addAction
+	(getSRUMaps().values()[i]["Name"]);
+
+      if(!action)
+	continue;
+
+      action->setCheckable(true);
+
+      if(i == 0)
+	action->setChecked(true);
+
+      ui.menuPreferredSRUSite->addAction(action);
+    }
+
+  if(ui.menuPreferredSRUSite->actions().isEmpty())
+    ui.menuPreferredSRUSite->addAction(tr("None"));
+
+  QActionGroup *group2 = 0;
+
+  if((group2 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  for(int i = 0; i < getZ3950Maps().size(); i++)
+    {
+      QAction *action = group2->addAction
 	(getZ3950Maps().values()[i]["Name"]);
 
       if(!action)
@@ -1073,6 +1097,9 @@ void qtbook::showMain(void)
 
       ui.menuPreferredZ3950Server->addAction(action);
     }
+
+  if(ui.menuPreferredZ3950Server->actions().isEmpty())
+    ui.menuPreferredZ3950Server->addAction(tr("None"));
 
   /*
   ** Initial update.
@@ -2522,39 +2549,60 @@ void qtbook::readGlobalSetup(void)
 	}
       else if(settings.group().startsWith("Branch"))
 	{
-	  QHash<QString, QString> hash;
+	  if(!settings.value("database_name", "").
+	     toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
 
-	  hash["branch_name"] = settings.value("database_name", "").
-	    toString().trimmed();
-	  hash["hostname"] = settings.value("hostname", "").
-	    toString().trimmed();
-	  hash["database_type"] = settings.value("database_type", "").
-	    toString().trimmed();
-	  hash["port"] = settings.value("port", "").toString().trimmed();
-	  hash["ssl_enabled"] = settings.value("ssl_enabled", "").
-	    toString().trimmed();
-	  branches[settings.value("database_name", "").
-		   toString().trimmed()] = hash;
+	      hash["branch_name"] = settings.value("database_name", "").
+		toString().trimmed();
+	      hash["hostname"] = settings.value("hostname", "").
+		toString().trimmed();
+	      hash["database_type"] = settings.value("database_type", "").
+		toString().trimmed();
+	      hash["port"] = settings.value("port", "").toString().trimmed();
+	      hash["ssl_enabled"] = settings.value("ssl_enabled", "").
+		toString().trimmed();
+	      branches[settings.value("database_name", "").
+		       toString().trimmed()] = hash;
+	    }
+	}
+      else if(settings.group().startsWith("SRU"))
+	{
+	  if(!settings.value("name", "").toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
+
+	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["URL"] = settings.value("URL", "").toString().trimmed();
+	      sruMaps[settings.value("name", "").toString().trimmed()] = hash;
+	    }
 	}
       else if(settings.group().startsWith("Z39.50"))
 	{
-	  QHash<QString, QString> hash;
+	  if(!settings.value("name", "").toString().trimmed().isEmpty())
+	    {
+	      QHash<QString, QString> hash;
 
-	  hash["Name"] = settings.value("name", "").toString().trimmed();
-	  hash["Address"] = settings.value("hostname", "").
-	    toString().trimmed();
-	  hash["Port"] = settings.value("port", "").toString().trimmed();
-	  hash["Database"] = settings.value("database_name", "").
-	    toString().trimmed();
-	  hash["Format"] = settings.value("format", "").toString().trimmed();
-	  hash["Userid"] = settings.value("username", "").toString().trimmed();
-	  hash["Password"] = settings.value("password", "").
-	    toString().trimmed();
-	  hash["proxy_host"] = settings.value("proxy_host", "").
-	    toString().trimmed();
-	  hash["proxy_port"] = settings.value("proxy_port", "").
-	    toString().trimmed();
-	  z3950Maps[settings.value("name", "").toString().trimmed()] = hash;
+	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["Address"] = settings.value("hostname", "").
+		toString().trimmed();
+	      hash["Port"] = settings.value("port", "").toString().trimmed();
+	      hash["Database"] = settings.value("database_name", "").
+		toString().trimmed();
+	      hash["Format"] = settings.value("format", "").
+		toString().trimmed();
+	      hash["Userid"] = settings.value("username", "").
+		toString().trimmed();
+	      hash["Password"] = settings.value("password", "").
+		toString().trimmed();
+	      hash["proxy_host"] = settings.value("proxy_host", "").
+		toString().trimmed();
+	      hash["proxy_port"] = settings.value("proxy_port", "").
+		toString().trimmed();
+	      z3950Maps[settings.value("name", "").toString().trimmed()] =
+		hash;
+	    }
 	}
 
       settings.endGroup();
@@ -2651,6 +2699,20 @@ void qtbook::readConfig(void)
   states.clear();
 
   bool found = false;
+
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(settings.value("preferred_sru_site").toString().trimmed() ==
+       ui.menuPreferredSRUSite->actions()[i]->text())
+      {
+	found = true;
+	ui.menuPreferredSRUSite->actions()[i]->setChecked(true);
+	break;
+      }
+
+  if(!found && !ui.menuPreferredSRUSite->actions().isEmpty())
+    ui.menuPreferredSRUSite->actions()[0]->setChecked(true);
+
+  found = false;
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(settings.value("preferred_z3950_site").toString().trimmed() ==
@@ -2899,6 +2961,15 @@ void qtbook::slotSaveConfig(void)
 	      }
 	}
     }
+
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
+      {
+	settings.setValue
+	  ("preferred_sru_site",
+	   ui.menuPreferredSRUSite->actions()[i]->text().trimmed());
+	break;
+      }
 
   for(int i = 0; i < ui.menuPreferredZ3950Server->actions().size(); i++)
     if(ui.menuPreferredZ3950Server->actions()[i]->isChecked())
@@ -8272,6 +8343,19 @@ void qtbook::slotPageClicked(const QString &link)
 }
 
 /*
+** -- getPreferredSRUSite() --
+*/
+
+QString qtbook::getPreferredSRUSite(void) const
+{
+  for(int i = 0; i < ui.menuPreferredSRUSite->actions().size(); i++)
+    if(ui.menuPreferredSRUSite->actions()[i]->isChecked())
+      return ui.menuPreferredSRUSite->actions()[i]->text();
+
+  return "";
+}
+
+/*
 ** -- getPreferredZ3950Site() --
 */
 
@@ -8786,4 +8870,13 @@ void qtbook::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+/*
+** -- getSRUMaps() --
+*/
+
+QMap<QString, QHash<QString, QString> > qtbook::getSRUMaps(void) const
+{
+  return sruMaps;
 }
