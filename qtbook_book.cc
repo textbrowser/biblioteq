@@ -242,35 +242,61 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if(id.location->findText(tr("UNKNOWN")) == -1)
     id.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = 0;
+  id.queryButton->setMenu(new QMenu(this));
+  id.queryButton->setStyleSheet
+    ("QToolButton::menu-button {"
+     "width: 0px;}");
 
-  if((actionGroup = new(std::nothrow) QActionGroup(this)) == 0)
+  QMenu *menu1 = 0;
+  QMenu *menu2 = 0;
+
+  menu1 = new QMenu(tr("&SRU"), this);
+  menu2 = new QMenu(tr("&Z39.50"), this);
+
+  id.queryButton->menu()->addMenu(menu1);
+  id.queryButton->menu()->addMenu(menu2);
+
+  QActionGroup *actionGroup1 = 0;
+
+  if((actionGroup1 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  bool found = false;
-  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+  QMap<QString, QHash<QString, QString> > hashes(qmain->getSRUMaps());
 
   for(int i = 0; i < hashes.size(); i++)
     {
-      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      QAction *action = actionGroup1->addAction(hashes.keys().at(i));
 
       if(!action)
 	continue;
 
-      action->setCheckable(true);
-      id.queryButton->addAction(action);
-
-      if(qmain->getPreferredZ3950Site() == action->text())
-	{
-	  found = true;
-	  action->setChecked(true);
-	}
+      menu1->addAction(action);
     }
 
-  if(id.queryButton->actions().isEmpty())
-    id.queryButton->setPopupMode(QToolButton::DelayedPopup);
-  else if(!found)
-    id.queryButton->actions()[0]->setChecked(true);
+  if(menu1->actions().isEmpty())
+    menu1->addAction(tr("None"));
+
+  hashes.clear();
+
+  QActionGroup *actionGroup2 = 0;
+
+  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  hashes = qmain->getZ3950Maps();
+
+  for(int i = 0; i < hashes.size(); i++)
+    {
+      QAction *action = actionGroup2->addAction(hashes.keys().at(i));
+
+      if(!action)
+	continue;
+
+      menu2->addAction(action);
+    }
+
+  if(menu2->actions().isEmpty())
+    menu2->addAction(tr("None"));
 
   hashes.clear();
 

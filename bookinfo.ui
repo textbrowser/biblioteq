@@ -834,9 +834,6 @@
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
