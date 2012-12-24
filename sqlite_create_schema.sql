@@ -20,7 +20,7 @@ CREATE TABLE book
 	quantity	 INTEGER NOT NULL DEFAULT 1,
 	binding_type	 VARCHAR(32) NOT NULL,
 	location	 TEXT NOT NULL,
-	isbn13		 VARCHAR(16) UNIQUE,
+	isbn13		 VARCHAR(32) UNIQUE,
 	lccontrolnumber	 VARCHAR(64),
 	callnumber	 VARCHAR(64),
 	deweynumber	 VARCHAR(64),

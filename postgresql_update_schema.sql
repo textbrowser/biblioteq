@@ -898,6 +898,7 @@ GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH AD
 
 /* Release 6.59 */
 
+ALTER TABLE book ALTER COLUMN isbn13 TYPE VARCHAR(32);
 ALTER TABLE locations ALTER COLUMN type TYPE VARCHAR(32);
 
 CREATE TABLE photograph_collection

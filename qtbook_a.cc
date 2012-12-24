@@ -2629,6 +2629,17 @@ void qtbook::readGlobalSetup(void)
       br.branch_name->addItem(hash["branch_name"]);
     }
 
+  if(sruMaps.isEmpty())
+    {
+      QHash<QString, QString> hash;
+
+      hash["Name"] = "Library of Congress";
+      hash["URL"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
+	"version=1.1&query=bath.isbn=%1&recordSchema=marcxml&"
+	"startRecord=1&maximumRecords=1";
+      sruMaps["Library of Congress"] = hash;
+    }
+
   if(z3950Maps.isEmpty())
     {
       QHash<QString, QString> hash;

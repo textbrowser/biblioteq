@@ -32,21 +32,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   QMainWindow()
 {
   QMenu *menu = 0;
-  QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9X]");
-  QRegExp rx2("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
-	      "[0-9][0-9][0-9]");
-  QValidator *validator1 = 0;
-  QValidator *validator2 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((validator2 = new(std::nothrow) QRegExpValidator(rx2, this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
@@ -79,7 +68,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
-  connect(id.queryButton, SIGNAL(clicked(void)), this,
+  connect(id.sruQueryButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotQuery(void)));
+  connect(id.z3950QueryButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotQuery(void)));
   connect(id.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
@@ -102,7 +93,11 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
-	  id.queryButton,
+	  id.sruQueryButton,
+	  SLOT(setEnabled(bool)));
+  connect(id.isbnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  id.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
@@ -178,8 +173,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SLOT(slotCancelImageDownload(void)));
   connect(httpProgress, SIGNAL(rejected(void)), this,
 	  SLOT(slotCancelImageDownload(void)));
-  id.id->setValidator(validator1);
-  id.isbn13->setValidator(validator2);
   id.resetButton->setMenu(menu);
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
@@ -242,25 +235,16 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if(id.location->findText(tr("UNKNOWN")) == -1)
     id.location->addItem(tr("UNKNOWN"));
 
-  id.queryButton->setMenu(new QMenu(this));
-  id.queryButton->setStyleSheet
-    ("QToolButton::menu-button {"
-     "width: 0px;}");
-
-  QMenu *menu1 = 0;
-  QMenu *menu2 = 0;
-
-  menu1 = new QMenu(tr("&SRU"), this);
-  menu2 = new QMenu(tr("&Z39.50"), this);
-
-  id.queryButton->menu()->addMenu(menu1);
-  id.queryButton->menu()->addMenu(menu2);
-
   QActionGroup *actionGroup1 = 0;
+  QActionGroup *actionGroup2 = 0;
 
   if((actionGroup1 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  bool found = false;
   QMap<QString, QHash<QString, QString> > hashes(qmain->getSRUMaps());
 
   for(int i = 0; i < hashes.size(); i++)
@@ -270,19 +254,23 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
       if(!action)
 	continue;
 
-      menu1->addAction(action);
+      action->setCheckable(true);
+      id.sruQueryButton->addAction(action);
+
+      if(qmain->getPreferredSRUSite() == action->text())
+	{
+	  found = true;
+	  action->setChecked(true);
+	}
     }
 
-  if(menu1->actions().isEmpty())
-    menu1->addAction(tr("None"));
+  if(id.sruQueryButton->actions().isEmpty())
+    id.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+  else if(!found)
+    id.sruQueryButton->actions()[0]->setChecked(true);
 
   hashes.clear();
-
-  QActionGroup *actionGroup2 = 0;
-
-  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
+  found = false;
   hashes = qmain->getZ3950Maps();
 
   for(int i = 0; i < hashes.size(); i++)
@@ -292,11 +280,20 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
       if(!action)
 	continue;
 
-      menu2->addAction(action);
+      action->setCheckable(true);
+      id.z3950QueryButton->addAction(action);
+
+      if(qmain->getPreferredZ3950Site() == action->text())
+	{
+	  found = true;
+	  action->setChecked(true);
+	}
     }
 
-  if(menu2->actions().isEmpty())
-    menu2->addAction(tr("None"));
+  if(id.z3950QueryButton->actions().isEmpty())
+    id.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
+  else if(!found)
+    id.z3950QueryButton->actions()[0]->setChecked(true);
 
   hashes.clear();
 
@@ -1111,7 +1108,8 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.keyword->clear();
   id.copiesButton->setVisible(false);
   id.showUserButton->setVisible(false);
-  id.queryButton->setVisible(false);
+  id.sruQueryButton->setVisible(false);
+  id.z3950QueryButton->setVisible(false);
   id.okButton->setText(tr("&Search"));
   id.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
@@ -1174,7 +1172,8 @@ void qtbook_book::updateWindow(const int state)
       id.copiesButton->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
-      id.queryButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
@@ -1197,7 +1196,8 @@ void qtbook_book::updateWindow(const int state)
       id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
-      id.queryButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
@@ -1239,7 +1239,8 @@ void qtbook_book::modify(const int state)
       id.copiesButton->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
-      id.queryButton->setVisible(true);
+      id.sruQueryButton->setVisible(true);
+      id.z3950QueryButton->setVisible(true);
       id.resetButton->setVisible(true);
       id.frontButton->setVisible(true);
       id.backButton->setVisible(true);
@@ -1273,7 +1274,8 @@ void qtbook_book::modify(const int state)
       id.copiesButton->setVisible(false);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
-      id.queryButton->setVisible(false);
+      id.sruQueryButton->setVisible(false);
+      id.z3950QueryButton->setVisible(false);
       id.resetButton->setVisible(false);
       id.frontButton->setVisible(false);
       id.backButton->setVisible(false);
@@ -1500,7 +1502,8 @@ void qtbook_book::insert(void)
   id.marc_tags->clear();
   id.keyword->clear();
   id.copiesButton->setEnabled(false);
-  id.queryButton->setVisible(true);
+  id.sruQueryButton->setVisible(true);
+  id.z3950QueryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
   id.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -1964,12 +1967,12 @@ void qtbook_book::slotQuery(void)
 
       bool found = false;
 
-      for(i = 0; i < id.queryButton->actions().size(); i++)
-	if(id.queryButton->actions().at(i)->isChecked())
+      for(i = 0; i < id.z3950QueryButton->actions().size(); i++)
+	if(id.z3950QueryButton->actions().at(i)->isChecked())
 	  {
 	    found = true;
 	    thread->setZ3950Name
-	      (id.queryButton->actions().at(i)->text());
+	      (id.z3950QueryButton->actions().at(i)->text());
 	    break;
 	  }
 

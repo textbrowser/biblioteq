@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>972</width>
-         <height>1549</height>
+         <width>966</width>
+         <height>1533</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -706,7 +706,7 @@
          </size>
         </property>
         <property name="text">
-         <string>SRU / &amp;Z39.50 Query</string>
+         <string>&amp;Z39.50 Query</string>
         </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
