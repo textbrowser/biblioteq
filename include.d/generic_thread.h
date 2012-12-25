@@ -37,12 +37,14 @@ class generic_thread: public QThread
   void run(void);
   void msleep(const int);
   void setType(const int);
+  void setSRUName(const QString &);
   void setFilename(const QString &);
   void setZ3950Name(const QString &);
   void setOutputList(const QList<bool> &);
   void setZ3950SearchString(const QString &);
   QString getEType(void) const;
   QString getErrorStr(void) const;
+  QByteArray getSRUResults(void) const;
   QStringList getList(void) const;
   QStringList getZ3950Results(void) const;
 
@@ -51,11 +53,17 @@ class generic_thread: public QThread
   QString eType;
   QString errorStr;
   QString filename;
+  QString m_sruName;
   QString z3950Name;
   QString z3950SearchStr;
+  QByteArray m_sruResults;
   QList<bool> outputListBool;
   QStringList list;
   QStringList z3950Results;
+
+ private slots:
+  void slotReadyRead(void);
+  void slotDownloadFinished(void);
 };
 
 #endif

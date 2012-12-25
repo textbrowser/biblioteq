@@ -1,4 +1,12 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QNetworkProxy>
+#include <QNetworkReply>
+#include <QNetworkAccessManager>
+
+/*
 ** -- Local Includes --
 */
 
@@ -17,6 +25,7 @@ generic_thread::generic_thread(QObject *parent):QThread(parent)
   eType = "";
   errorStr = "";
   setTerminationEnabled(true);
+  m_sruName = "";
   z3950Name = "";
 }
 
@@ -82,6 +91,87 @@ void generic_thread::run(void)
 
 	if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
 	  return;
+
+	QUrl url;
+	QString type("");
+	QNetworkProxy proxy;
+	QHash<QString, QString> hash(qmain->getSRUMaps()[m_sruName]);
+
+	url = QUrl::fromUserInput(hash["URL"]);
+
+	if(hash.contains("proxy_type"))
+	  type = hash["proxy_type"].toLower().trimmed();
+	else if(hash.contains("proxy_type"))
+	  type = hash["proxy_type"].toLower().trimmed();
+
+	if(type == "none")
+	  proxy.setType(QNetworkProxy::NoProxy);
+	else
+	  {
+	    if(type == "http" || type == "socks5" || type == "system")
+	      {
+		/*
+		** This is required to resolve an odd error.
+		*/
+
+		QNetworkReply *reply = manager->get
+		  (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+		if(reply)
+		  reply->deleteLater();
+	      }
+
+	    if(type == "http" || type == "socks5")
+	      {
+		if(type == "http")
+		  proxy.setType(QNetworkProxy::HttpProxy);
+		else
+		  proxy.setType(QNetworkProxy::Socks5Proxy);
+
+		quint16 port = 0;
+		QString host("");
+		QString user("");
+		QString password("");
+
+		host = hash["proxy_host"];
+		port = hash["proxy_port"].toUShort();
+		user = hash["proxy_username"];
+		password = hash["proxy_password"];
+		proxy.setHostName(host);
+		proxy.setPort(port);
+
+		if(!user.isEmpty())
+		  proxy.setUser(user);
+
+		if(!password.isEmpty())
+		  proxy.setPassword(password);
+
+		manager->setProxy(proxy);
+	      }
+	    else if(type == "system")
+	      {
+		QNetworkProxyQuery query(url);
+		QList<QNetworkProxy> list
+		  (QNetworkProxyFactory::systemProxyForQuery(query));
+
+		if(!list.isEmpty())
+		  proxy = list.at(0);
+
+		manager->setProxy(proxy);
+	      }
+	  }
+
+	QNetworkReply *reply = manager->get(QNetworkRequest(url));
+
+	if(!reply)
+	  manager->deleteLater();
+	else
+	  {
+	    connect(reply, SIGNAL(readyRead(void)),
+		    this, SLOT(slotReadyRead(void)));
+	    connect(reply, SIGNAL(finished(void)),
+		    this, SLOT(slotDownloadFinished(void)));
+	  }
 
 	break;
       }
@@ -266,4 +356,46 @@ void generic_thread::msleep(const int msecs)
 void generic_thread::setZ3950Name(const QString &name)
 {
   z3950Name = name;
+}
+
+/*
+** -- setSRUName() --
+*/
+
+void generic_thread::setSRUName(const QString &name)
+{
+  m_sruName = name;
+}
+
+/*
+** -- slotReadyRead() --
+*/
+
+void generic_thread::slotReadyRead(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    m_sruResults.append(reply->readAll());
+}
+
+/*
+** -- slotDownloadFinished() --
+*/
+
+void generic_thread::slotDownloadFinished(void)
+{
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+
+  if(manager)
+    manager->deleteLater();
+}
+
+/*
+** -- getSRUResults() --
+*/
+
+QByteArray generic_thread::getSRUResults(void) const
+{
+  return m_sruResults;
 }
