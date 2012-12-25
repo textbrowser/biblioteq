@@ -72,6 +72,17 @@ void generic_thread::run(void)
       }
     case SRU_QUERY:
       {
+	QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+
+	if(manager)
+	  return;
+
+	if(manager->findChild<QNetworkReply *> ())
+	  return;
+
+	if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+	  return;
+
 	break;
       }
     case Z3950_QUERY:

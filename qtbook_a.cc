@@ -2633,10 +2633,16 @@ void qtbook::readGlobalSetup(void)
     {
       QHash<QString, QString> hash;
 
+      /*
+      ** %1 = isbn
+      ** %2 = ISBN
+      ** %3 = 1
+      */
+
       hash["Name"] = "Library of Congress";
       hash["URL"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
-	"version=1.1&query=bath.isbn=%1&recordSchema=marcxml&"
-	"startRecord=1&maximumRecords=1";
+	"version=1.1&query=bath.%1=%2&recordSchema=marcxml&"
+	"startRecord=1&maximumRecords=%3";
       sruMaps["Library of Congress"] = hash;
     }
 
