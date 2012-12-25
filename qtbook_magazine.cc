@@ -1767,7 +1767,7 @@ void qtbook_magazine::slotQuery(void)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query a Z39.50 system, the ISSN "
+	 tr("In order to query a Z39.50 site, the ISSN "
 	    "must be provided."));
       ma.id->setFocus();
       return;
@@ -1778,7 +1778,7 @@ void qtbook_magazine::slotQuery(void)
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
-			      "system. Please be patient..."));
+			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);

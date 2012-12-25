@@ -61,11 +61,12 @@ class qtbook_book: public QMainWindow, public qtbook_item
  private slots:
   void slotGo(void);
   void slotPrint(void);
-  void slotQuery(void);
   void slotReset(void);
   void slotCancel(void);
+  void slotSRUQuery(void);
   void slotReadyRead(void);
   void slotShowUsers(void);
+  void slotZ3950Query(void);
   void slotSelectImage(void);
   void slotDownloadImage(void);
   void slotDownloadFinished(void);

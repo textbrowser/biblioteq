@@ -70,6 +70,10 @@ void generic_thread::run(void)
 	qf.close();
 	break;
       }
+    case SRU_QUERY:
+      {
+	break;
+      }
     case Z3950_QUERY:
       {
 	size_t i = 0;

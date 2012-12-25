@@ -69,9 +69,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(id.sruQueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
+	  SLOT(slotSRUQuery(void)));
   connect(id.z3950QueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
+	  SLOT(slotZ3950Query(void)));
   connect(id.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
   connect(id.copiesButton, SIGNAL(clicked()), this,
@@ -1910,17 +1910,24 @@ void qtbook_book::slotShowUsers(void)
 }
 
 /*
-** -- slotQuery() --
+** -- slotSRUQuery() --
 */
 
-void qtbook_book::slotQuery(void)
+void qtbook_book::slotSRUQuery(void)
+{
+}
+
+/*
+** -- slotZ3950Query() --
+*/
+
+void qtbook_book::slotZ3950Query(void)
 {
   if(findChild<generic_thread *> ())
     return;
 
   int i = 0;
   int j = 0;
-  QRegExp reg("[A-Z]{1}");
   QString str = "";
   QString etype = "";
   QString errorstr = "";
@@ -1945,7 +1952,7 @@ void qtbook_book::slotQuery(void)
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
-			      "system. Please be patient..."));
+			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
       working.setCancelButton(0);
@@ -1999,7 +2006,7 @@ void qtbook_book::slotQuery(void)
 	  if(QMessageBox::question
 	     (this, tr("BiblioteQ: Question"),
 	      tr("Replace existing values with those retrieved "
-		 "from the Z39.50 system?"),
+		 "from the Z39.50 site?"),
 	      QMessageBox::Yes | QMessageBox::No,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
