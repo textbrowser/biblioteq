@@ -1184,7 +1184,7 @@ void qtbook_book::updateWindow(const int state)
 
       if(!id.id->text().trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: Modify Book Entry (")) +
-	  id.id->text() + tr(")");
+	  id.id->text().trimmed() + tr(")");
       else
 	str = tr("BiblioteQ: Modify Book Entry");
 
@@ -1208,7 +1208,7 @@ void qtbook_book::updateWindow(const int state)
 
       if(!id.id->text().trimmed().isEmpty())
 	str = QString(tr("BiblioteQ: View Book Details (")) +
-	  id.id->text() + tr(")");
+	  id.id->text().trimmed() + tr(")");
       else
 	str = tr("BiblioteQ: View Book Details");
 
@@ -1904,7 +1904,7 @@ void qtbook_book::slotShowUsers(void)
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
       (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
-       id.quantity->value(), oid, id.id->text(), font(), "Book",
+       id.quantity->value(), oid, id.id->text().trimmed(), font(), "Book",
        state)) != 0)
     borrowerseditor->showUsers();
 }
@@ -1915,6 +1915,100 @@ void qtbook_book::slotShowUsers(void)
 
 void qtbook_book::slotSRUQuery(void)
 {
+  if(findChild<generic_thread *> ())
+    return;
+
+  if(!(id.id->text().trimmed().length() == 10 ||
+       id.isbn13->text().trimmed().length() == 13))
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query an SRU site, either the ISBN-10 "
+	    "or ISBN-13 must be provided."));
+      id.id->setFocus();
+      return;
+    }
+
+  QString etype("");
+  QString errorstr("");
+
+  if((thread = new(std::nothrow) generic_thread(this)) != 0)
+    {
+      qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
+
+      working.setModal(true);
+      working.setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+      working.setLabelText(tr("Downloading information from the SRU "
+			      "site. Please be patient..."));
+      working.setMaximum(0);
+      working.setMinimum(0);
+      working.setCancelButton(0);
+      working.show();
+      working.update();
+
+      bool found = false;
+      QString name("");
+
+      for(int i = 0; i < id.sruQueryButton->actions().size(); i++)
+	if(id.sruQueryButton->actions().at(i)->isChecked())
+	  {
+	    found = true;
+	    name = id.sruQueryButton->actions().at(i)->text();
+	    break;
+	  }
+
+      if(!found)
+	name = qmain->getPreferredSRUSite();
+
+      QString searchstr("");
+      QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
+
+      searchstr = hash["url_isbn"];
+      searchstr.replace("%1", id.id->text().trimmed());
+      searchstr.replace("%2", id.isbn13->text().trimmed());
+      thread->setSRUName(name);
+      thread->setType(generic_thread::SRU_QUERY);
+      thread->setSRUSearchString(searchstr);
+      thread->start();
+
+      while(thread->isRunning())
+	{
+#ifndef Q_OS_MAC
+	  qapp->processEvents();
+#endif
+	  thread->msleep(100);
+	}
+
+      working.hide();
+
+      if((errorstr = thread->getErrorStr()).isEmpty() &&
+	 !thread->getSRUResults().isEmpty())
+	{
+	}
+      else if(errorstr.isEmpty() && thread->getSRUResults().isEmpty())
+	QMessageBox::critical
+	  (this, tr("BiblioteQ: SRU Query Error"),
+	   tr("An SRU entry may not yet exist for the provided ISBN(s)."));
+      else
+	etype = thread->getEType();
+
+      thread->deleteLater();
+    }
+  else
+    {
+      etype = tr("Memory Error");
+      errorstr = tr("Unable to create a thread due to "
+		    "insufficient resources.");
+    }
+
+  if(!errorstr.isEmpty())
+    {
+      qmain->addError(QString(tr("Z39.50 Query Error")), etype, errorstr,
+		      __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, tr("BiblioteQ: Z39.50 Query Error"),
+	 tr("The Z39.50 entry could not be retrieved."));
+    }
 }
 
 /*
@@ -1941,7 +2035,7 @@ void qtbook_book::slotZ3950Query(void)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query a Z39.50 system, either the ISBN-10 "
+	 tr("In order to query a Z39.50 site, either the ISBN-10 "
 	    "or ISBN-13 must be provided."));
       id.id->setFocus();
       return;
@@ -1961,8 +2055,8 @@ void qtbook_book::slotZ3950Query(void)
 
       QStringList isbns;
 
-      isbns << id.id->text()
-	    << id.isbn13->text();
+      isbns << id.id->text().trimmed()
+	    << id.isbn13->text().trimmed();
 
       if(isbns.at(0).isEmpty())
 	isbns.replace(0, isbns.at(1));

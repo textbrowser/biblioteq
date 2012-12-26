@@ -1827,7 +1827,7 @@ void qtbook_magazine::slotQuery(void)
 	      if(QMessageBox::question
 		 (this, tr("BiblioteQ: Question"),
 		  tr("Replace existing values with those retrieved "
-		     "from the Z39.50 system?"),
+		     "from the Z39.50 site?"),
 		  QMessageBox::Yes | QMessageBox::No,
 		  QMessageBox::No) == QMessageBox::Yes)
 		{

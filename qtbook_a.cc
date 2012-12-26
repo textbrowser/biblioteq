@@ -2574,7 +2574,10 @@ void qtbook::readGlobalSetup(void)
 	      QHash<QString, QString> hash;
 
 	      hash["Name"] = settings.value("name", "").toString().trimmed();
-	      hash["URL"] = settings.value("URL", "").toString().trimmed();
+	      hash["url_isbn"] = settings.value
+		("url_isbn", "").toString().trimmed();
+	      hash["url_issn"] = settings.value
+		("url_issn", "").toString().trimmed();
 	      sruMaps[settings.value("name", "").toString().trimmed()] = hash;
 	    }
 	}
@@ -2640,9 +2643,9 @@ void qtbook::readGlobalSetup(void)
       */
 
       hash["Name"] = "Library of Congress";
-      hash["URL"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
-	"version=1.1&query=bath.%1=%2&recordSchema=marcxml&"
-	"startRecord=1&maximumRecords=%3";
+      hash["url_isbn"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
+	"version=1.1&query=bath.isbn=%1 or bath.isbn=%2&"
+	"recordSchema=marcxml&startRecord=1&maximumRecords=1";
       sruMaps["Library of Congress"] = hash;
     }
 
