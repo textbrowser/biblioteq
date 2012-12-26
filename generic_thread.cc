@@ -25,9 +25,9 @@ generic_thread::generic_thread(QObject *parent):QThread(parent)
   m_type = -1;
   m_eType = "";
   m_errorStr = "";
-  setTerminationEnabled(true);
   m_sruName = "";
   m_z3950Name = "";
+  setTerminationEnabled(true);
 }
 
 /*
@@ -85,7 +85,7 @@ void generic_thread::run(void)
 	QMutex mutex;
 
 	mutex.lock();
-	m_sruCondition.wait(&mutex);
+	m_sruCondition.wait(&mutex, 30000);
 	mutex.unlock();
 	break;
       }

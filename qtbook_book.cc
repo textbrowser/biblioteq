@@ -6,6 +6,7 @@
 #include <QSqlRecord>
 #include <QNetworkProxy>
 #include <QAuthenticator>
+#include <QXmlStreamReader>
 
 /*
 ** Includes book-specific methods.
@@ -1984,6 +1985,479 @@ void qtbook_book::slotSRUQuery(void)
       if((errorstr = thread->getErrorStr()).isEmpty() &&
 	 !thread->getSRUResults().isEmpty())
 	{
+	  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+				   tr("Replace existing values with "
+				      "those retrieved "
+				      "from the SRU site?"),
+				   QMessageBox::Yes | QMessageBox::No,
+				   QMessageBox::No) == QMessageBox::Yes)
+	    {
+	      id.edition->setCurrentIndex(0);
+	      id.edition->setStyleSheet
+		("background-color: rgb(162, 205, 90)");
+	      id.marc_tags->setText
+		(thread->getSRUResults());
+	      misc_functions::highlightWidget
+		(id.marc_tags->viewport(), QColor(162, 205, 90));
+
+	      QXmlStreamReader reader(thread->getSRUResults());
+
+	      while(!reader.atEnd())
+		if(reader.readNextStartElement())
+		  if(reader.name() == "datafield")
+		    {
+		      QString tag(reader.attributes().value("tag").
+				  toString().trimmed());
+
+		      if(tag == "100" || tag == "700")
+			id.author->clear();
+		      else if(tag == "260")
+			id.place->clear();
+		      else if(tag == "650")
+			id.category->clear();
+		    }
+
+	      reader.clear();
+	      reader.addData(thread->getSRUResults());
+
+	      while(!reader.atEnd())
+		if(reader.readNextStartElement())
+		  {
+		    if(reader.name() == "datafield")
+		      {
+			QString tag(reader.attributes().value("tag").
+				    toString().trimmed());
+
+			if(tag == "010")
+			  {
+			    /*
+			    ** $a - LC control number (NR)
+			    ** $b - NUCMC control number (R)
+			    ** $z - Canceled/invalid LC control number (R)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a")
+				    {
+				      str.append(reader.readElementText());
+				      break;
+				    }
+				}
+			      else
+				break;
+
+			    str = str.trimmed();
+			    id.lcnum->setText(str);
+			    misc_functions::highlightWidget
+			      (id.lcnum, QColor(162, 205, 90));
+			  }
+			else if(tag == "020")
+			  {
+			    /*
+			    ** $a - International Standard Book Number (NR)
+			    ** $c - Terms of availability (NR)
+			    ** $z - Canceled/invalid ISBN (R)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				str.append(reader.readElementText());
+			      else
+				break;
+
+			    if(str.toLower().contains("hardcover"))
+			      {
+				id.binding->setCurrentIndex(0);
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
+			    else if(str.toLower().contains("pbk."))
+			      {
+				id.binding->setCurrentIndex(1);
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
+
+			    if(str.contains(" ") && str.indexOf(" ") == 10)
+			      {
+				str = str.mid(0, 10).trimmed();
+				id.id->setText(str);
+				misc_functions::highlightWidget
+				  (id.id, QColor(162, 205, 90));
+			      }
+			    else if(str.contains(" ") &&
+				    str.indexOf(" ") == 13)
+			      {
+				str = str.mid(0, 13).trimmed();
+				id.isbn13->setText(str);
+				misc_functions::highlightWidget
+				  (id.isbn13, QColor(162, 205, 90));
+			      }
+			    else if(str.length() == 10)
+			      {
+				id.id->setText(str);
+				misc_functions::highlightWidget
+				  (id.id, QColor(162, 205, 90));
+			      }
+			  }
+			else if(tag == "050")
+			  {
+			    /*
+			    ** $a - Classification number (R)
+			    ** $b - Item number (NR)
+			    ** $3 - Materials specified (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a" ||
+				     reader.attributes().value("code").
+				     toString().trimmed() == "b")
+				    str.append(reader.readElementText());
+				}
+			      else
+				break;
+
+			    id.callnum->setText(str);
+			    misc_functions::highlightWidget
+			      (id.callnum, QColor(162, 205, 90));
+			  }
+			else if(tag == "082")
+			  {
+			    /*
+			    ** $a - Classification number (R)
+			    ** $b - Item number (NR)
+			    ** $m - Standard or optional designation (NR)
+			    ** $q - Assigning agency (NR)
+			    ** $2 - Edition number (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a" ||
+				     reader.attributes().value("code").
+				     toString().trimmed() == "b" ||
+				     reader.attributes().value("code").
+				     toString().trimmed() == "m" ||
+				     reader.attributes().value("code").
+				     toString().trimmed() == "q")
+				    str.append(reader.readElementText());
+				}
+			      else
+				break;
+
+			    id.deweynum->setText(str);
+			    misc_functions::highlightWidget
+			      (id.deweynum, QColor(162, 205, 90));
+			  }
+			else if(tag == "100" || tag == "700")
+			  {
+			    /*
+			    ** $a - Personal name (NR)
+			    ** $b - Numeration (NR)
+			    ** $c - Titles and words associated with a name (R)
+			    ** $d - Dates associated with a name (NR)
+			    ** $e - Relator term (R)
+			    ** $f - Date of a work (NR)
+			    ** $g - Miscellaneous information (NR)
+			    ** $j - Attribution qualifier (R)
+			    ** $k - Form subheading (R)
+			    ** $l - Language of a work (NR)
+			    ** $n - Number of part/section of a work (R)
+			    ** $p - Name of part/section of a work (R)
+			    ** $q - Fuller form of name (NR)
+			    ** $t - Title of a work (NR)
+			    ** $u - Affiliation (NR)
+			    ** $0 - Authority record control number (R)
+			    ** $4 - Relator code (R)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a")
+				    {
+				      str.append(reader.readElementText());
+				      break;
+				    }
+				}
+			      else
+				break;
+
+			    if(str.endsWith(","))
+			      str = str.mid(0, str.length() - 1).trimmed();
+
+			    if(!id.author->toPlainText().contains(str))
+			      {
+				if(tag == "100")
+				  id.author->setPlainText(str);
+				else if(!id.author->toPlainText().isEmpty())
+				  id.author->setPlainText
+				    (id.author->toPlainText() + "\n" +
+				     str);
+				else
+				  id.author->setPlainText(str);
+
+				misc_functions::highlightWidget
+				  (id.author->viewport(),
+				   QColor(162, 205, 90));
+			      }
+			  }
+			else if(tag == "245")
+			  {
+			    /*
+			    ** $a - Title (NR)
+			    ** $b - Remainder of title (NR)
+			    ** $c - Statement of responsibility, etc. (NR)
+			    ** $f - Inclusive dates (NR)
+			    ** $g - Bulk dates (NR)
+			    ** $h - Medium (NR)
+			    ** $k - Form (R)
+			    ** $n - Number of part/section of a work (R)
+			    ** $p - Name of part/section of a work (R)
+			    ** $s - Version (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str;
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a" ||
+				     reader.attributes().value("code").
+				     toString().trimmed() == "b")
+				    str.append(reader.readElementText());
+				}
+			      else
+				break;
+
+			    str = str.mid
+			      (0, str.lastIndexOf('/')).trimmed();
+			    id.title->setText(str);
+			    misc_functions::highlightWidget
+			      (id.title, QColor(162, 205, 90));
+			  }
+			else if(tag == "250")
+			  {
+			    /*
+			    ** $a - Edition statement (NR)
+			    ** $b - Remainder of edition statement (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a")
+				    {
+				      str.append(reader.readElementText());
+				      break;
+				    }
+				}
+			      else
+				break;
+
+			    str = str.mid(0, str.indexOf(" ")).trimmed();
+
+			    int i = 0;
+
+			    for(i = 0; i < str.size(); i++)
+			      if(!str.at(i).isDigit())
+				break;
+
+			    str = str.mid(0, i);
+
+			    if(id.edition->findText(str) > -1)
+			      id.edition->setCurrentIndex
+				(id.edition->findText(str));
+			    else
+			      id.edition->setCurrentIndex(0);
+			  }
+			else if(tag == "260")
+			  {
+			    /*
+			    ** $a - Place of publication, distribution,
+			    **      etc. (R)
+			    ** $b - Name of publisher, distributor, etc. (R)
+			    ** $c - Date of publication, distribution, etc. (R)
+			    ** $e - Place of manufacture (R)
+			    ** $f - Manufacturer (R)
+			    ** $g - Date of manufacture (R)
+			    ** $3 - Materials specified (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString date("");
+			    QString place("");
+			    QString publisher("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a")
+				    place = reader.readElementText();
+				  else if(reader.attributes().value("code").
+					  toString().trimmed() == "b")
+				    publisher = reader.readElementText();
+				  else if(reader.attributes().value("code").
+					  toString().trimmed() == "c")
+				    date = reader.readElementText();
+				}
+			      else
+				break;
+
+			    id.publication_date->setDate
+			      (QDate::fromString("01/01/" + date,
+						 "MM/dd/yyyy"));
+			    id.publication_date->setStyleSheet
+			      ("background-color: rgb(162, 205, 90)");
+			    place = place.mid(0, place.lastIndexOf(" ")).
+			      trimmed();
+
+			    if(!place.isEmpty())
+			      if(!place[place.length() - 1].isLetter())
+				place = place.remove(place.length() - 1, 1).
+				  trimmed();
+
+			    id.place->setPlainText(place);
+			    misc_functions::highlightWidget
+			      (id.place->viewport(), QColor(162, 205, 90));
+
+			    if(publisher.endsWith(","))
+			      publisher = publisher.mid
+				(0, publisher.length() - 1).trimmed();
+
+			    id.publisher->setPlainText(publisher);
+			    misc_functions::highlightWidget
+			      (id.publisher->viewport(),
+			       QColor(162, 205, 90));
+			  }
+			else if(tag == "300")
+			  {
+			    /*
+			    ** $a - Extent (R)
+			    ** $b - Other physical details (NR)
+			    ** $c - Dimensions (R)
+			    ** $e - Accompanying material (NR)
+			    ** $f - Type of unit (R)
+			    ** $g - Size of unit (R)
+			    ** $3 - Materials specified (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R)
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				str.append(reader.readElementText());
+			      else
+				break;
+
+			    id.description->setPlainText(str);
+			    misc_functions::highlightWidget
+			      (id.description->viewport(),
+			       QColor(162, 205, 90));
+			  }
+			else if(tag == "650")
+			  {
+			    /*
+			    ** $a - Topical term or geographic name entry
+			    **      element (NR)
+			    ** $b - Topical term following geographic name
+			    **      entry element (NR)
+			    ** $c - Location of event (NR)
+			    ** $d - Active dates (NR)
+			    ** $e - Relator term (R)
+			    ** $4 - Relator code (R)
+			    ** $v - Form subdivision (R)
+			    ** $x - General subdivision (R)
+			    ** $y - Chronological subdivision (R)
+			    ** $z - Geographic subdivision (R)
+			    ** $0 - Authority record control number (R)
+			    ** $2 - Source of heading or term (NR)
+			    ** $3 - Materials specified (NR)
+			    ** $6 - Linkage (NR)
+			    ** $8 - Field link and sequence number (R) 
+			    */
+
+			    QString str("");
+
+			    while(reader.readNextStartElement())
+			      if(reader.name() == "subfield")
+				{
+				  if(reader.attributes().value("code").
+				     toString().trimmed() == "a")
+				    {
+				      str.append(reader.readElementText());
+				      break;
+				    }
+				}
+			      else
+				break;
+
+			    if(!str.isEmpty())
+			      {
+				if(!str[str.length() - 1].isPunct())
+				  str += ".";
+
+				if(!id.category->toPlainText().contains(str))
+				  {
+				    if(!id.category->toPlainText().isEmpty())
+				      id.category->setPlainText
+					(id.category->toPlainText() + "\n" +
+					 str);
+				    else
+				      id.category->setPlainText(str);
+
+				    misc_functions::highlightWidget
+				      (id.category->viewport(),
+				       QColor(162, 205, 90));
+				  }
+			      }
+			  }
+		      }
+		  }
+
+	      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+		textfield->setCursorPosition(0);
+	    }
 	}
       else if(errorstr.isEmpty() && thread->getSRUResults().isEmpty())
 	QMessageBox::critical
