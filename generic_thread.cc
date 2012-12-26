@@ -22,12 +22,12 @@ extern qtbook *qmain;
 
 generic_thread::generic_thread(QObject *parent):QThread(parent)
 {
-  type = -1;
-  eType = "";
-  errorStr = "";
+  m_type = -1;
+  m_eType = "";
+  m_errorStr = "";
   setTerminationEnabled(true);
   m_sruName = "";
-  z3950Name = "";
+  m_z3950Name = "";
 }
 
 /*
@@ -36,9 +36,9 @@ generic_thread::generic_thread(QObject *parent):QThread(parent)
 
 generic_thread::~generic_thread()
 {
-  list.clear();
-  z3950Results.clear();
-  outputListBool.clear();
+  m_list.clear();
+  m_z3950Results.clear();
+  m_outputListBool.clear();
 }
 
 /*
@@ -51,7 +51,7 @@ void generic_thread::run(void)
   ** Some of this could have been implemented with Qt signals.
   */
 
-  switch(type)
+  switch(m_type)
     {
     case READ_GLOBAL_CONFIG_FILE:
       {
@@ -59,13 +59,13 @@ void generic_thread::run(void)
 	myqstring str = "";
 	QTextStream qts;
 
-	qf.setFileName(filename);
+	qf.setFileName(m_filename);
 
 	if(!qf.open(QIODevice::ReadOnly))
 	  {
-	    errorStr = tr("Unable to read ");
-	    errorStr.append(filename);
-	    errorStr.append(tr(". This file is required by BiblioteQ."));
+	    m_errorStr = tr("Unable to read ");
+	    m_errorStr.append(m_filename);
+	    m_errorStr.append(tr(". This file is required by BiblioteQ."));
 	    return;
 	  }
 
@@ -74,7 +74,7 @@ void generic_thread::run(void)
 	while(!qts.atEnd())
 	  {
 	    str = str.prepConfigString(qts.readLine().trimmed(), true);
-	    list.append(str);
+	    m_list.append(str);
 	  }
 
 	qf.close();
@@ -96,12 +96,13 @@ void generic_thread::run(void)
 	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = 0;
-	QHash<QString, QString> proxy(qmain->getZ3950Maps().value(z3950Name));
+	QHash<QString, QString> proxy(qmain->getZ3950Maps().
+				      value(m_z3950Name));
 
 	ZOOM_options_set
 	  (options,
 	   "databaseName",
-	   qmain->getZ3950Maps()[z3950Name].value("Database").
+	   qmain->getZ3950Maps()[m_z3950Name].value("Database").
 	   toAscii().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
@@ -115,31 +116,32 @@ void generic_thread::run(void)
 	    ZOOM_options_set(options, "proxy", value.toAscii().constData());
 	  }
 
-	if(!qmain->getZ3950Maps()[z3950Name].value("Userid").isEmpty())
+	if(!qmain->getZ3950Maps()[m_z3950Name].value("Userid").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "user",
-	     qmain->getZ3950Maps()[z3950Name].value("Userid").toAscii().
+	     qmain->getZ3950Maps()[m_z3950Name].value("Userid").toAscii().
 	     constData());
 
-	if(!qmain->getZ3950Maps()[z3950Name].value("Password").isEmpty())
+	if(!qmain->getZ3950Maps()[m_z3950Name].value("Password").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "password",
-	     qmain->getZ3950Maps()[z3950Name].value("Password").toAscii().
+	     qmain->getZ3950Maps()[m_z3950Name].value("Password").toAscii().
 	     constData());
 
 	zoomConnection = ZOOM_connection_create(options);
 	ZOOM_connection_connect
-	  (zoomConnection, (qmain->getZ3950Maps()[z3950Name].value("Address") +
+	  (zoomConnection, (qmain->getZ3950Maps()[m_z3950Name].
+			    value("Address") +
 			    ":" +
-			    qmain->getZ3950Maps()[z3950Name].value("Port")).
+			    qmain->getZ3950Maps()[m_z3950Name].value("Port")).
 	   toAscii().constData(), 0);
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   z3950SearchStr.toAscii().constData());
+	   m_z3950SearchStr.toAscii().constData());
 
-	QString format = qmain->getZ3950Maps()[z3950Name].value("Format").
+	QString format = qmain->getZ3950Maps()[m_z3950Name].value("Format").
 	  trimmed().toLower();
 
 	if(format.isEmpty())
@@ -151,7 +153,7 @@ void generic_thread::run(void)
 				     format.toAscii().constData(), 0)) != 0)
 	  {
 	    i += 1;
-	    z3950Results.append(QString::fromUtf8(rec));
+	    m_z3950Results.append(QString::fromUtf8(rec));
 	  }
 
 	ZOOM_resultset_destroy(zoomResultSet);
@@ -161,13 +163,13 @@ void generic_thread::run(void)
 
 	if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
 	  {
-	    eType = errmsg;
-	    errorStr = addinfo;
+	    m_eType = errmsg;
+	    m_errorStr = addinfo;
 	  }
-	else if(z3950Results.isEmpty())
+	else if(m_z3950Results.isEmpty())
 	  {
-	    eType = tr("Z39.50 Empty Results Set");
-	    errorStr = tr("Z39.50 Empty Results Set");
+	    m_eType = tr("Z39.50 Empty Results Set");
+	    m_errorStr = tr("Z39.50 Empty Results Set");
 	  }
 
 	ZOOM_options_destroy(options);
@@ -185,7 +187,7 @@ void generic_thread::run(void)
 
 QStringList generic_thread::getList(void) const
 {
-  return list;
+  return m_list;
 }
 
 /*
@@ -194,46 +196,46 @@ QStringList generic_thread::getList(void) const
 
 QString generic_thread::getErrorStr(void) const
 {
-  return errorStr;
+  return m_errorStr;
 }
 
 /*
 ** -- setType() --
 */
 
-void generic_thread::setType(const int type_arg)
+void generic_thread::setType(const int type)
 {
-  type = type_arg;
+  m_type = type;
 }
 
 /*
 ** -- setOutput() --
 */
 
-void generic_thread::setOutputList(const QList<bool> &list_arg)
+void generic_thread::setOutputList(const QList<bool> &list)
 {
   int i = 0;
 
-  for(i = 0; i < list_arg.size(); i++)
-    outputListBool.append(list_arg.at(i));
+  for(i = 0; i < list.size(); i++)
+    m_outputListBool.append(list.at(i));
 }
 
 /*
 ** -- setFilename() --
 */
 
-void generic_thread::setFilename(const QString &filename_arg)
+void generic_thread::setFilename(const QString &filename)
 {
-  filename = filename_arg;
+  m_filename = filename;
 }
 
 /*
 ** -- setZ3950SearchString() --
 */
 
-void generic_thread::setZ3950SearchString(const QString &z3950SearchStr_arg)
+void generic_thread::setZ3950SearchString(const QString &z3950SearchStr)
 {
-  z3950SearchStr = z3950SearchStr_arg;
+  m_z3950SearchStr = z3950SearchStr;
 }
 
 /*
@@ -242,7 +244,7 @@ void generic_thread::setZ3950SearchString(const QString &z3950SearchStr_arg)
 
 QStringList generic_thread::getZ3950Results(void) const
 {
-  return z3950Results;
+  return m_z3950Results;
 }
 
 /*
@@ -251,7 +253,7 @@ QStringList generic_thread::getZ3950Results(void) const
 
 QString generic_thread::getEType(void) const
 {
-  return eType;
+  return m_eType;
 }
 
 /*
@@ -269,7 +271,7 @@ void generic_thread::msleep(const int msecs)
 
 void generic_thread::setZ3950Name(const QString &name)
 {
-  z3950Name = name;
+  m_z3950Name = name;
 }
 
 /*
@@ -305,7 +307,7 @@ void generic_thread::setSRUSearchString(const QString &sruSearchStr)
 
 void generic_thread::start(void)
 {
-  if(type == SRU_QUERY)
+  if(m_type == SRU_QUERY)
     {
       QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
 

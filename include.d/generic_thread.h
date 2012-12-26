@@ -52,18 +52,18 @@ class generic_thread: public QThread
   QStringList getZ3950Results(void) const;
 
  private:
-  int type;
-  QString eType;
-  QString errorStr;
-  QString filename;
+  int m_type;
+  QString m_eType;
+  QString m_errorStr;
+  QString m_filename;
   QString m_sruName;
-  QString z3950Name;
+  QString m_z3950Name;
   QString m_sruSearchStr;
-  QString z3950SearchStr;
+  QString m_z3950SearchStr;
   QByteArray m_sruResults;
-  QList<bool> outputListBool;
-  QStringList list;
-  QStringList z3950Results;
+  QList<bool> m_outputListBool;
+  QStringList m_list;
+  QStringList m_z3950Results;
   QWaitCondition m_sruCondition;
 
  private slots:
