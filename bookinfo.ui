@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1112</width>
-         <height>1552</height>
+         <height>1545</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -967,6 +967,7 @@
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>okButton</tabstop>
+  <tabstop>sruQueryButton</tabstop>
   <tabstop>z3950QueryButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>printButton</tabstop>

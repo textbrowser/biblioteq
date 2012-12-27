@@ -67,7 +67,9 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
-  connect(ma.queryButton, SIGNAL(clicked(void)), this,
+  connect(ma.sruQueryButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotQuery(void)));
+  connect(ma.z3950QueryButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotQuery(void)));
   connect(ma.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
@@ -193,23 +195,53 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if(ma.location->findText(tr("UNKNOWN")) == -1)
     ma.location->addItem(tr("UNKNOWN"));
 
-  QActionGroup *actionGroup = 0;
+  QActionGroup *actionGroup1 = 0;
+  QActionGroup *actionGroup2 = 0;
 
-  if((actionGroup = new(std::nothrow) QActionGroup(this)) == 0)
+  if((actionGroup1 = new(std::nothrow) QActionGroup(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   bool found = false;
-  QMap<QString, QHash<QString, QString> > hashes(qmain->getZ3950Maps());
+  QMap<QString, QHash<QString, QString> > hashes(qmain->getSRUMaps());
 
   for(int i = 0; i < hashes.size(); i++)
     {
-      QAction *action = actionGroup->addAction(hashes.keys().at(i));
+      QAction *action = actionGroup1->addAction(hashes.keys().at(i));
 
       if(!action)
 	continue;
 
       action->setCheckable(true);
-      ma.queryButton->addAction(action);
+      ma.sruQueryButton->addAction(action);
+
+      if(qmain->getPreferredSRUSite() == action->text())
+	{
+	  found = true;
+	  action->setChecked(true);
+	}
+    }
+
+  if(ma.sruQueryButton->actions().isEmpty())
+    ma.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+  else if(!found)
+    ma.sruQueryButton->actions()[0]->setChecked(true);
+
+  found = false;
+  hashes.clear();
+  hashes = qmain->getZ3950Maps();
+
+  for(int i = 0; i < hashes.size(); i++)
+    {
+      QAction *action = actionGroup2->addAction(hashes.keys().at(i));
+
+      if(!action)
+	continue;
+
+      action->setCheckable(true);
+      ma.z3950QueryButton->addAction(action);
 
       if(qmain->getPreferredZ3950Site() == action->text())
 	{
@@ -218,10 +250,10 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	}
     }
 
-  if(ma.queryButton->actions().isEmpty())
-    ma.queryButton->setPopupMode(QToolButton::DelayedPopup);
+  if(ma.z3950QueryButton->actions().isEmpty())
+    ma.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
   else if(!found)
-    ma.queryButton->actions()[0]->setChecked(true);
+    ma.z3950QueryButton->actions()[0]->setChecked(true);
 
   hashes.clear();
 
@@ -1020,7 +1052,8 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.category->clear();
   ma.copiesButton->setVisible(false);
   ma.showUserButton->setVisible(false);
-  ma.queryButton->setVisible(false);
+  ma.sruQueryButton->setVisible(false);
+  ma.z3950QueryButton->setVisible(false);
   ma.okButton->setText(tr("&Search"));
   ma.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
@@ -1085,7 +1118,8 @@ void qtbook_magazine::updateWindow(const int state)
     {
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
-      ma.queryButton->setVisible(true);
+      ma.sruQueryButton->setVisible(true);
+      ma.z3950QueryButton->setVisible(true);
       ma.okButton->setVisible(true);
       ma.resetButton->setVisible(true);
       ma.frontButton->setVisible(true);
@@ -1103,7 +1137,8 @@ void qtbook_magazine::updateWindow(const int state)
     {
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
-      ma.queryButton->setVisible(false);
+      ma.sruQueryButton->setVisible(false);
+      ma.z3950QueryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);
       ma.frontButton->setVisible(false);
@@ -1145,7 +1180,8 @@ void qtbook_magazine::modify(const int state)
       engWindowTitle = "Modify";
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
-      ma.queryButton->setVisible(true);
+      ma.sruQueryButton->setVisible(true);
+      ma.z3950QueryButton->setVisible(true);
       ma.okButton->setVisible(true);
       ma.resetButton->setVisible(true);
       ma.frontButton->setVisible(true);
@@ -1174,7 +1210,8 @@ void qtbook_magazine::modify(const int state)
       engWindowTitle = "Modify";
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
-      ma.queryButton->setVisible(false);
+      ma.sruQueryButton->setVisible(false);
+      ma.z3950QueryButton->setVisible(false);
       ma.okButton->setVisible(false);
       ma.resetButton->setVisible(false);
       ma.frontButton->setVisible(false);
@@ -1418,7 +1455,8 @@ void qtbook_magazine::insert(void)
   ma.category->setPlainText("N/A");
   ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
-  ma.queryButton->setVisible(true);
+  ma.sruQueryButton->setVisible(true);
+  ma.z3950QueryButton->setVisible(false);
   ma.okButton->setText(tr("&Save"));
   ma.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -1787,12 +1825,12 @@ void qtbook_magazine::slotQuery(void)
 
       bool found = false;
 
-      for(i = 0; i < ma.queryButton->actions().size(); i++)
-	if(ma.queryButton->actions().at(i)->isChecked())
+      for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
+	if(ma.z3950QueryButton->actions().at(i)->isChecked())
 	  {
 	    found = true;
 	    thread->setZ3950Name
-	      (ma.queryButton->actions().at(i)->text());
+	      (ma.z3950QueryButton->actions().at(i)->text());
 	    break;
 	  }
 
@@ -2403,4 +2441,13 @@ void qtbook_magazine::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+/*
+** -- populateDisplayAfterSRU() --
+*/
+
+void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
+{
+  Q_UNUSED(data);
 }

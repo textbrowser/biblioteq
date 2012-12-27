@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>966</width>
-         <height>1533</height>
+         <width>972</width>
+         <height>1542</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -698,7 +698,23 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="queryButton">
+       <widget class="QToolButton" name="sruQueryButton">
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;SRU Query</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="z3950QueryButton">
         <property name="minimumSize">
          <size>
           <width>170</width>
@@ -824,7 +840,8 @@
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>okButton</tabstop>
-  <tabstop>queryButton</tabstop>
+  <tabstop>sruQueryButton</tabstop>
+  <tabstop>z3950QueryButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>

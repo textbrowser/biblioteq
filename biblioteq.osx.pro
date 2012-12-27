@@ -34,6 +34,7 @@ FORMS           = adminsetup.ui \
 		  passwordPrompt.ui \
 		  photograph.ui \
 		  photographinfo.ui \
+		  sruResults.ui \
 		  tracks.ui \
 		  userinfo.ui \
 		  videogameinfo.ui \
@@ -58,6 +59,7 @@ HEADERS		= include.d/bgraphicsscene.h \
 		  include.d/qtbook_magazine.h \
 		  include.d/qtbook_photographcollection.h \
 		  include.d/qtbook_videogame.h \
+		  include.d/sruResults.h \
 		  include.d/z3950results.h
 
 SOURCES		= bgraphicsscene.cc \
@@ -82,6 +84,7 @@ SOURCES		= bgraphicsscene.cc \
 		  qtbook_magazine.cc \
 		  qtbook_photographcollection.cc \
 		  qtbook_videogame.cc \
+		  sruResults.cc \
 		  z3950results.cc
 
 TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
