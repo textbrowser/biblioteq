@@ -71,6 +71,8 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
+resize(0.95 * parent->size().width(),
+       0.95 * parent->size().height());
   exec();
 }
 
@@ -105,7 +107,7 @@ void z3950results::slotSelectRecord(void)
 void z3950results::slotUpdateQueryText(void)
 {
   QString title("");
-  QStringList list(records[ui.list->currentRow()].split("\n"));
+  QStringList list(records.value(ui.list->currentRow()).split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     if(list.at(i).startsWith("245 "))

@@ -1,4 +1,10 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QXmlStreamReader>
+
+/*
 ** -- Local Includes --
 */
 
@@ -9,20 +15,66 @@
 ** -- sruresults() --
 */
 
-sruresults::sruresults(QWidget *parent, const QByteArray &data,
+sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
 		       qtbook_magazine *magazine_arg,
 		       const QFont &font):
   QDialog(parent)
 {
   int row = 0;
 
-  m_data = data;
+  m_records = list;
   magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
   ui.setupUi(this);
 #ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
+  for(int i = 0; i < m_records.size(); i++)
+    {
+      QString issn("");
+      QXmlStreamReader reader(m_records.at(i));
+
+      while(!reader.atEnd())
+	if(reader.readNextStartElement())
+	  {
+	    if(reader.name().toString().toLower().trimmed() == "datafield")
+	      {
+		QString tag(reader.attributes().value("tag").
+			    toString().trimmed());
+
+		if(tag == "022")
+		  {
+		    /*
+		    ** $a - International Standard Serial Number (NR)
+		    */
+
+		    while(reader.readNextStartElement())
+		      if(reader.name().toString().toLower().
+			 trimmed() == "subfield")
+			{
+			  if(reader.attributes().value("code").
+			     toString().trimmed() == "a")
+			    {
+			      issn.append(reader.readElementText());
+			      break;
+			    }
+			}
+		      else
+			break;
+		  }
+	      }
+	  }
+
+      if(issn == magazine_arg->dialog().id->text())
+	row = i;
+
+      if(!issn.isEmpty())
+	ui.list->addItem(issn);
+      else
+	ui.list->addItem
+	  (QString(tr("Record #")) + QString::number(i + 1));
+    }
+
   connect(ui.list, SIGNAL(currentRowChanged(int)), this,
 	  SLOT(slotUpdateQueryText(void)));
   connect(ui.okButton, SIGNAL(clicked(void)), this,
@@ -33,6 +85,8 @@ sruresults::sruresults(QWidget *parent, const QByteArray &data,
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
+  resize(0.95 * parent->size().width(),
+	 0.95 * parent->size().height());
   exec();
 }
 
@@ -42,7 +96,7 @@ sruresults::sruresults(QWidget *parent, const QByteArray &data,
 
 sruresults::~sruresults()
 {
-  records.clear();
+  m_records.clear();
 }
 
 /*
@@ -63,64 +117,54 @@ void sruresults::slotSelectRecord(void)
 void sruresults::slotUpdateQueryText(void)
 {
   QString title("");
-  QStringList list(records[ui.list->currentRow()].split("\n"));
+  QXmlStreamReader reader(m_records.value(ui.list->currentRow()));
 
-  for(int i = 0; i < list.size(); i++)
-    if(list.at(i).startsWith("245 "))
-      {
-	/*
-	** $a - Title (NR)
-	** $b - Remainder of title (NR)
-	** $c - Statement of responsibility, etc. (NR)
-	** $f - Inclusive dates (NR)
-	** $g - Bulk dates (NR)
-	** $h - Medium (NR)
-	** $k - Form (R)
-	** $n - Number of part/section of a work (R)
-	** $p - Name of part/section of a work (R)
-	** $s - Version (NR)
-	** $6 - Linkage (NR)
-	** $8 - Field link and sequence number (R)
-	*/
+  /*
+  ** $a - Title (NR)
+  ** $b - Remainder of title (NR)
+  ** $c - Statement of responsibility, etc. (NR)
+  ** $f - Inclusive dates (NR)
+  ** $g - Bulk dates (NR)
+  ** $h - Medium (NR)
+  ** $k - Form (R)
+  ** $n - Number of part/section of a work (R)
+  ** $p - Name of part/section of a work (R)
+  ** $s - Version (NR)
+  ** $6 - Linkage (NR)
+  ** $8 - Field link and sequence number (R)
+  */
 
-	title = list.at(i);
-	title = title.mid(title.indexOf("$a") + 2).trimmed();
-	title = title.remove(" $b").trimmed();
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      if(reader.name().toString().toLower().trimmed() == "datafield")
+	{
+	  QString tag(reader.attributes().value("tag").toString().trimmed());
 
-	QStringList subfields;
-
-	subfields << "$c"
-		  << "$f"
-		  << "$g"
-		  << "$h"
-		  << "$k"
-		  << "$n"
-		  << "$p"
-		  << "$s"
-		  << "$6"
-		  << "$8";
-
-	while(!subfields.isEmpty())
-	  if(title.contains(subfields.first()))
+	  if(tag == "245")
 	    {
-	      title = title.mid
-		(0, title.indexOf(subfields.first())).trimmed();
-	      break;
+	      while(reader.readNextStartElement())
+		if(reader.name().toString().toLower().
+		   trimmed() == "subfield")
+		  {
+		    if(reader.attributes().value("code").
+		       toString().trimmed() == "a" ||
+		       reader.attributes().value("code").
+		       toString().trimmed() == "b")
+		      title.append(reader.readElementText());
+		  }
+		else
+		  break;
 	    }
-	  else
-	    subfields.takeFirst();
+	}
 
-	title = title.mid(0, title.lastIndexOf('/')).trimmed();
+  title = title.mid(0, title.lastIndexOf('/')).trimmed();
 
-	if(!title.isEmpty() && title[title.length() - 1].isPunct())
-	  title = title.remove(title.length() - 1, 1).trimmed();
-
-	break;
-      }
+  if(!title.isEmpty() && title[title.length() - 1].isPunct())
+    title = title.remove(title.length() - 1, 1).trimmed();
 
   ui.title->setText(title);
   ui.title->setCursorPosition(0);
-  ui.textarea->setPlainText(records[ui.list->currentRow()]);
+  ui.textarea->setPlainText(m_records[ui.list->currentRow()]);
 }
 
 /*

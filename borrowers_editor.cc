@@ -305,15 +305,12 @@ void borrowers_editor::showUsers(void)
 	      {
 		if(bd.table->cellWidget(row, j) != 0)
 		  {
-		    static_cast<QDateEdit *> (bd.table->cellWidget
-					      (row, j))->setDate
-		      (QDate::fromString(str, "MM/dd/yyyy"));
-		    static_cast<QDateEdit *> (bd.table->cellWidget
-					      (row, j))->setMinimumDate
-		      (tomorrow);
-		    static_cast<QDateEdit *> (bd.table->cellWidget
-					      (row, j))->setEnabled
-		      (true);
+		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
+		      setDate(QDate::fromString(str, "MM/dd/yyyy"));
+		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
+		      setMinimumDate(tomorrow);
+		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
+		      setEnabled(true);
 		  }
 	      }
 	    else if(bd.table->item(row, j) != 0)

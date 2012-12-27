@@ -22,14 +22,13 @@ class sruresults: public QDialog
   Q_OBJECT
 
  public:
-  sruresults(QWidget *, const QByteArray &, qtbook_magazine *,
+  sruresults(QWidget *, const QList<QByteArray> &, qtbook_magazine *,
 	     const QFont &);
   ~sruresults();
 
  private:
-  QByteArray m_data;
-  QStringList records;
   qtbook_magazine *magazine;
+  QList<QByteArray> m_records;
   Ui_sruResultsDialog ui;
   void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);

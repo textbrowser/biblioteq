@@ -18,6 +18,7 @@
 */
 
 #include "qtbook.h"
+#include "sruResults.h"
 #include "qtbook_magazine.h"
 #include "borrowers_editor.h"
 
@@ -68,9 +69,9 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
   connect(ma.sruQueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
+	  SLOT(slotSRUQuery(void)));
   connect(ma.z3950QueryButton, SIGNAL(clicked(void)), this,
-	  SLOT(slotQuery(void)));
+	  SLOT(slotZ3950Query(void)));
   connect(ma.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
   connect(ma.copiesButton, SIGNAL(clicked(void)), this,
@@ -1785,10 +1786,10 @@ void qtbook_magazine::slotShowUsers(void)
 }
 
 /*
-** -- slotQuery() --
+** -- slotZ3950Query() --
 */
 
-void qtbook_magazine::slotQuery(void)
+void qtbook_magazine::slotZ3950Query(void)
 {
   if(findChild<generic_thread *> ())
     return;
@@ -2450,4 +2451,155 @@ void qtbook_magazine::changeEvent(QEvent *event)
 void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 {
   Q_UNUSED(data);
+}
+
+/*
+** -- slotSRUQuery() --
+*/
+
+void qtbook_magazine::slotSRUQuery(void)
+{
+  if(findChild<generic_thread *> ())
+    return;
+
+  if(ma.id->text().trimmed().length() != 9)
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("In order to query an SRU site, the ISSN "
+	    "must be provided."));
+      ma.id->setFocus();
+      return;
+    }
+
+  QString etype = "";
+  QString errorstr = "";
+  sruresults *dialog = 0;
+  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
+
+  if((thread = new(std::nothrow) generic_thread(this)) != 0)
+    {
+      working.setModal(true);
+      working.setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+      working.setLabelText(tr("Downloading information from the SRU "
+			      "site. Please be patient..."));
+      working.setMaximum(0);
+      working.setMinimum(0);
+      working.setCancelButton(0);
+      working.show();
+      working.update();
+
+      bool found = false;
+      QString name("");
+
+      for(int i = 0; i < ma.sruQueryButton->actions().size(); i++)
+	if(ma.sruQueryButton->actions().at(i)->isChecked())
+	  {
+	    found = true;
+	    name = ma.sruQueryButton->actions().at(i)->text();
+	    break;
+	  }
+
+      if(!found)
+	name = qmain->getPreferredSRUSite();
+
+      QString searchstr("");
+      QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
+
+      searchstr = hash["url_issn"];
+      searchstr.replace("%1", ma.id->text().trimmed());
+      thread->setSRUName(name);
+      thread->setType(generic_thread::SRU_QUERY);
+      thread->setSRUSearchString(searchstr);
+      thread->start();
+
+      while(thread->isRunning())
+	{
+#ifndef Q_OS_MAC
+	  qapp->processEvents();
+#endif
+	  thread->msleep(100);
+	}
+
+      working.hide();
+
+      if(working.wasCanceled())
+	{
+	  thread->deleteLater();
+	  return;
+	}
+
+      if((errorstr = thread->getErrorStr()).isEmpty())
+	{
+	  QByteArray bytes(thread->getSRUResults());
+	  QList<QByteArray> list;
+
+	  while(bytes.indexOf("<record") >= 0)
+	    {
+	      list.append(bytes.mid(bytes.indexOf("<record"),
+				    bytes.indexOf("</record>") -
+				    bytes.indexOf("<record") + 9));
+	      bytes.remove(bytes.indexOf("<record"),
+			   bytes.indexOf("</record>") -
+			   bytes.indexOf("<record") + 9);
+	    }
+
+	  if(list.size() == 1)
+	    {
+	      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+				       tr("Replace existing values with "
+					  "those retrieved "
+					  "from the SRU site?"),
+				       QMessageBox::Yes | QMessageBox::No,
+				       QMessageBox::No) == QMessageBox::Yes)
+		populateDisplayAfterSRU(list[0]);
+	    }
+	  else if(list.size() > 1)
+	    {
+	      /*
+	      ** Display a selection dialog.
+	      */
+
+	      if((dialog = new(std::nothrow)
+		  sruresults(static_cast<QWidget *> (this), list,
+			     this, font())) == 0)
+		{
+		  qmain->addError
+		    (QString(tr("Memory Error")),
+		     QString(tr("Unable to create a \"dialog\" object "
+				"because of insufficient resources.")),
+		     QString(""),
+		     __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (this, tr("BiblioteQ: Memory Error"),
+		     tr("Unable to create a \"dialog\" object "
+			"because of insufficient resources."));
+		}
+	    }
+	  else
+	    QMessageBox::critical
+	      (this, tr("BiblioteQ: SRU Query Error"),
+	       tr("An SRU entry may not yet exist for ") +
+	       ma.id->text() + tr("."));
+	}
+      else
+	etype = thread->getEType();
+
+      thread->deleteLater();
+    }
+  else
+    {
+      etype = tr("Memory Error");
+      errorstr = tr("Unable to create a thread because of insufficient "
+		    "resources.");
+    }
+
+  if(!errorstr.isEmpty())
+    {
+      qmain->addError(QString(tr("SRU Query Error")), etype, errorstr,
+		      __FILE__, __LINE__);
+      QMessageBox::critical
+	(this, tr("BiblioteQ: SRU Query Error"),
+	 tr("The SRU entry could not be retrieved."));
+    }
 }

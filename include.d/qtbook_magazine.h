@@ -58,10 +58,11 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
  protected slots:
   void slotGo(void);
   void slotPrint(void);
-  void slotQuery(void);
   void slotReset(void);
   void slotCancel(void);
+  void slotSRUQuery(void);
   void slotShowUsers(void);
+  void slotZ3950Query(void);
   void slotSelectImage(void);
   void slotPopulateCopiesEditor(void);
 };
