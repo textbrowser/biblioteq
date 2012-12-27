@@ -106,7 +106,7 @@ sruresults::~sruresults()
 void sruresults::slotSelectRecord(void)
 {
   close();
-  magazine->populateDisplayAfterSRU(ui.textarea->toHtml().toUtf8());
+  magazine->populateDisplayAfterSRU(m_records.value(ui.list->currentRow()));
   deleteLater();
 }
 
