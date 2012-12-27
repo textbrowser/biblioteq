@@ -125,7 +125,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
 #endif
 
   imgf = determineFormat(filename);
-  image = QImage(filename, imgf.toAscii().data());
+  image = QImage(filename, imgf.toLatin1().data());
 
   if(!image.isNull())
     {
@@ -269,7 +269,7 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
   doubleclicked = false;
   imageFormat = determineFormat(bytes);
-  image.loadFromData(bytes, imageFormat.toAscii().data());
+  image.loadFromData(bytes, imageFormat.toLatin1().data());
 
   if(image.width() > width() ||
      image.height() > height())

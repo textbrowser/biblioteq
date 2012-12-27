@@ -5,6 +5,7 @@
 #include <QMutex>
 #include <QNetworkProxy>
 #include <QNetworkReply>
+#include <QXmlStreamReader>
 #include <QNetworkAccessManager>
 
 /*
@@ -103,7 +104,7 @@ void generic_thread::run(void)
 	  (options,
 	   "databaseName",
 	   qmain->getZ3950Maps()[m_z3950Name].value("Database").
-	   toAscii().constData());
+	   toLatin1().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
 	if(!proxy.value("proxy_host").isEmpty() &&
@@ -113,21 +114,21 @@ void generic_thread::run(void)
 			  arg(proxy["proxy_host"]).
 			  arg(proxy["proxy_port"]));
 
-	    ZOOM_options_set(options, "proxy", value.toAscii().constData());
+	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
 
 	if(!qmain->getZ3950Maps()[m_z3950Name].value("Userid").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "user",
-	     qmain->getZ3950Maps()[m_z3950Name].value("Userid").toAscii().
+	     qmain->getZ3950Maps()[m_z3950Name].value("Userid").toLatin1().
 	     constData());
 
 	if(!qmain->getZ3950Maps()[m_z3950Name].value("Password").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "password",
-	     qmain->getZ3950Maps()[m_z3950Name].value("Password").toAscii().
+	     qmain->getZ3950Maps()[m_z3950Name].value("Password").toLatin1().
 	     constData());
 
 	zoomConnection = ZOOM_connection_create(options);
@@ -136,10 +137,10 @@ void generic_thread::run(void)
 			    value("Address") +
 			    ":" +
 			    qmain->getZ3950Maps()[m_z3950Name].value("Port")).
-	   toAscii().constData(), 0);
+	   toLatin1().constData(), 0);
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
-	   m_z3950SearchStr.toAscii().constData());
+	   m_z3950SearchStr.toLatin1().constData());
 
 	QString format = qmain->getZ3950Maps()[m_z3950Name].value("Format").
 	  trimmed().toLower();
@@ -150,7 +151,7 @@ void generic_thread::run(void)
 	  format.prepend("render; charset=");
 
 	while((rec = ZOOM_record_get(ZOOM_resultset_record(zoomResultSet, i),
-				     format.toAscii().constData(), 0)) != 0)
+				     format.toLatin1().constData(), 0)) != 0)
 	  {
 	    i += 1;
 	    m_z3950Results.append(QString::fromUtf8(rec));
@@ -424,5 +425,20 @@ void generic_thread::slotReadyRead(void)
 
 void generic_thread::slotDownloadFinished(void)
 {
+  /*
+  ** Verify that the SRU data contains at least one record.
+  */
+
+  QXmlStreamReader reader(m_sruResults);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      if(reader.name().toString().trimmed().toLower() == "numberofrecords")
+	if(reader.readElementText().trimmed().toInt() <= 0)
+	  {
+	    m_sruResults.clear();
+	    break;
+	  }
+
   m_sruCondition.wakeAll();
 }

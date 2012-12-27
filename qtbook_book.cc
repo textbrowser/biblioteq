@@ -620,7 +620,7 @@ void qtbook_book::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  id.front_image->image.save
-	    (&buffer, id.front_image->imageFormat.toAscii(), 100);
+	    (&buffer, id.front_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(18, bytes.toBase64());
 	}
       else
@@ -636,7 +636,7 @@ void qtbook_book::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  id.back_image->image.save
-	    (&buffer, id.back_image->imageFormat.toAscii(), 100);
+	    (&buffer, id.back_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(19, bytes.toBase64());
 	}
       else
@@ -2004,7 +2004,8 @@ void qtbook_book::slotSRUQuery(void)
 
 	      while(!reader.atEnd())
 		if(reader.readNextStartElement())
-		  if(reader.name() == "datafield")
+		  if(reader.name().toString().toLower().
+		     trimmed() == "datafield")
 		    {
 		      QString tag(reader.attributes().value("tag").
 				  toString().trimmed());
@@ -2023,7 +2024,8 @@ void qtbook_book::slotSRUQuery(void)
 	      while(!reader.atEnd())
 		if(reader.readNextStartElement())
 		  {
-		    if(reader.name() == "datafield")
+		    if(reader.name().toString().toLower().
+		       trimmed() == "datafield")
 		      {
 			QString tag(reader.attributes().value("tag").
 				    toString().trimmed());
@@ -2040,7 +2042,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a")
@@ -2070,7 +2073,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				str.append(reader.readElementText());
 			      else
 				break;
@@ -2123,7 +2127,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a" ||
@@ -2153,7 +2158,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a" ||
@@ -2199,7 +2205,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a")
@@ -2250,7 +2257,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str;
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a" ||
@@ -2279,7 +2287,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a")
@@ -2327,7 +2336,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString publisher("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a")
@@ -2385,7 +2395,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				str.append(reader.readElementText());
 			      else
 				break;
@@ -2420,7 +2431,8 @@ void qtbook_book::slotSRUQuery(void)
 			    QString str("");
 
 			    while(reader.readNextStartElement())
-			      if(reader.name() == "subfield")
+			      if(reader.name().toString().toLower().
+				 trimmed() == "subfield")
 				{
 				  if(reader.attributes().value("code").
 				     toString().trimmed() == "a")

@@ -445,7 +445,7 @@ void qtbook_videogame::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  vg.front_image->image.save
-	    (&buffer, vg.front_image->imageFormat.toAscii(), 100);
+	    (&buffer, vg.front_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(15, bytes.toBase64());
 	}
       else
@@ -461,7 +461,7 @@ void qtbook_videogame::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  vg.back_image->image.save
-	    (&buffer, vg.back_image->imageFormat.toAscii(), 100);
+	    (&buffer, vg.back_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(16, bytes.toBase64());
 	}
       else

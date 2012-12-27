@@ -528,7 +528,7 @@ void qtbook_dvd::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.front_image->image.save
-	    (&buffer, dvd.front_image->imageFormat.toAscii(), 100);
+	    (&buffer, dvd.front_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(19, bytes.toBase64());
 	}
       else
@@ -544,7 +544,7 @@ void qtbook_dvd::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  dvd.back_image->image.save
-	    (&buffer, dvd.back_image->imageFormat.toAscii(), 100);
+	    (&buffer, dvd.back_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(20, bytes.toBase64());
 	}
       else

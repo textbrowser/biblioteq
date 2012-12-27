@@ -487,7 +487,7 @@ void qtbook_cd::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.front_image->image.save
-	    (&buffer, cd.front_image->imageFormat.toAscii(), 100);
+	    (&buffer, cd.front_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(17, bytes.toBase64());
 	}
       else
@@ -503,7 +503,7 @@ void qtbook_cd::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  cd.back_image->image.save
-	    (&buffer, cd.back_image->imageFormat.toAscii(), 100);
+	    (&buffer, cd.back_image->imageFormat.toLatin1(), 100);
 	  query.bindValue(18, bytes.toBase64());
 	}
       else

@@ -256,7 +256,7 @@ void qtbook_photographcollection::slotGo(void)
 
 	  buffer.open(QIODevice::WriteOnly);
 	  pc.thumbnail_collection->image.save
-	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
+	    (&buffer, pc.thumbnail_collection->imageFormat.toLatin1(), 100);
 	  query.bindValue(5, bytes.toBase64());
 	  buffer.close();
 	  bytes.clear();
@@ -265,7 +265,7 @@ void qtbook_photographcollection::slotGo(void)
 	    (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 	  buffer.open(QIODevice::WriteOnly);
 	  image.save
-	    (&buffer, pc.thumbnail_collection->imageFormat.toAscii(), 100);
+	    (&buffer, pc.thumbnail_collection->imageFormat.toLatin1(), 100);
 	  query.bindValue(6, bytes.toBase64());
 	}
       else
@@ -1226,7 +1226,7 @@ void qtbook_photographcollection::slotInsertItem(void)
 
       buffer.open(QIODevice::WriteOnly);
       photo.thumbnail_item->image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toAscii(), 100);
+	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
       query.bindValue(14, bytes.toBase64());
       buffer.close();
       bytes.clear();
@@ -1235,7 +1235,7 @@ void qtbook_photographcollection::slotInsertItem(void)
 	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
       buffer.open(QIODevice::WriteOnly);
       image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toAscii(), 100);
+	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
       query.bindValue(15, bytes.toBase64());
     }
   else
@@ -1594,7 +1594,7 @@ void qtbook_photographcollection::slotUpdateItem(void)
       buffer.setBuffer(&bytes);
       buffer.open(QIODevice::WriteOnly);
       photo.thumbnail_item->image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toAscii(), 100);
+	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
       query.bindValue(13, bytes.toBase64());
       buffer.close();
       bytes.clear();
@@ -1603,7 +1603,7 @@ void qtbook_photographcollection::slotUpdateItem(void)
 	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
       buffer.open(QIODevice::WriteOnly);
       image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toAscii(), 100);
+	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
       query.bindValue(14, bytes.toBase64());
     }
   else
