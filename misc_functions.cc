@@ -827,6 +827,9 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 					const int row,
 					const int column)
 {
+  if(column < 0 || row < 0 || !table)
+    return QString();
+
   QTableWidgetItem *item = 0;
 
   if((item = table->item(row, column)))
@@ -843,6 +846,9 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 					const int row,
 					const QString &columnName)
 {
+  if(columnName.isEmpty() || row < 0 || !table)
+    return QString();
+
   int i = 0;
   QString str = "";
   QTableWidgetItem *column = 0;
@@ -872,6 +878,9 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 int misc_functions::getColumnNumber(const QTableWidget *table,
 				    const QString &columnName)
 {
+  if(columnName.isEmpty() || !table)
+    return -1;
+
   int i = 0;
   int num = -1;
   QTableWidgetItem *column = 0;
@@ -901,7 +910,7 @@ void misc_functions::updateColumn(QTableWidget *table,
 				  const int row, int column,
 				  const QString &value)
 {
-  if(!table || !table->item(row, column))
+  if(column < 0 || row < 0 || !table || !table->item(row, column))
     return;
 
   bool sortingEnabled = false;

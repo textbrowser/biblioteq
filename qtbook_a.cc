@@ -2636,16 +2636,13 @@ void qtbook::readGlobalSetup(void)
     {
       QHash<QString, QString> hash;
 
-      /*
-      ** %1 = isbn
-      ** %2 = ISBN
-      ** %3 = 1
-      */
-
       hash["Name"] = "Library of Congress";
       hash["url_isbn"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
 	"version=1.1&query=bath.isbn=%1 or bath.isbn=%2&"
 	"recordSchema=marcxml&startRecord=1&maximumRecords=1";
+      hash["url_issn"] = "http://www.loc.gov/z39voy?operation="
+	"searchRetrieve&version=1.1&query=bath.issn=%1&"
+	"recordSchema=marcxml&startRecord=1&maximumRecords=100";
       sruMaps["Library of Congress"] = hash;
     }
 
@@ -3349,7 +3346,6 @@ void qtbook::slotDisplaySummary(void)
 	  summary += "<br>";
 	}
 
-      summary = summary.remove("<br><br>");
       summary += misc_functions::getAbstractInfo(oid, type, db);
       summary += "<br>";
 
@@ -3371,6 +3367,7 @@ void qtbook::slotDisplaySummary(void)
       summary += misc_functions::getColumnString
 	(ui.table, i,
 	 ui.table->columnNumber("Location"));
+      summary.replace("<br><br>", "<br>");
       summary += "</html>";
       ui.summary->setText(summary);
       ui.summary->setVisible(true);

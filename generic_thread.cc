@@ -86,7 +86,7 @@ void generic_thread::run(void)
 	QMutex mutex;
 
 	mutex.lock();
-	m_sruCondition.wait(&mutex, 30000);
+	m_sruCondition.wait(&mutex, 10000);
 	mutex.unlock();
 	break;
       }
