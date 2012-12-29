@@ -1985,7 +1985,7 @@ void qtbook_book::slotSRUQuery(void)
   if(!id.isbn13->text().trimmed().isEmpty())
     searchstr.replace("%2", id.isbn13->text().trimmed());
   else
-    searchstr.replace("%1", id.id->text().trimmed());
+    searchstr.replace("%2", id.id->text().trimmed());
 
   searchstr.remove('"');
 
