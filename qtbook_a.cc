@@ -7988,8 +7988,8 @@ void qtbook::slotRequest(void)
 
   if(!roles.isEmpty())
     isRequesting = false;
-  else if(ui.typefilter->itemData
-	  (ui.typefilter->currentIndex()).toString() == "All Requested")
+  else if(ui.typefilter->itemData(ui.typefilter->currentIndex()).
+	  toString() == "All Requested")
     isRequesting = false;
 
   if(isRequesting)
@@ -8798,11 +8798,10 @@ void qtbook::slotDuplicate(void)
 
 void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 {
-  QList<QGraphicsItem *> items(ui.graphicsView->scene()->selectedItems());
+  QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
 
   if(!items.isEmpty())
     {
-      QStringList oids;
       QGraphicsPixmapItem *item = 0;
 
       while(!items.isEmpty())

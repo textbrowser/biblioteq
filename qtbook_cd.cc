@@ -641,6 +641,7 @@ void qtbook_cd::slotGo(void)
 	      setWindowTitle(str);
 
 	      if((qmain->getTypeFilterString() == "All" ||
+		  qmain->getTypeFilterString() == "All Available" ||
 		  qmain->getTypeFilterString() == "All Overdue" ||
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
@@ -730,9 +731,10 @@ void qtbook_cd::slotGo(void)
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
-		  qmain->slotDisplaySummary();
-		  qmain->updateSceneItem(oid, cd.front_image->image);
 		}
+
+	      qmain->slotDisplaySummary();
+	      qmain->updateSceneItem(oid, cd.front_image->image);
 	    }
 	  else
 	    {
