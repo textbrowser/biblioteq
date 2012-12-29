@@ -20,7 +20,7 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
 		       const QFont &font):
   QDialog(parent)
 {
-  int row = 0;
+  int row = -1;
 
   m_records = list;
   magazine = magazine_arg;
@@ -65,8 +65,9 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
 	      }
 	  }
 
-      if(issn == magazine_arg->dialog().id->text())
-	row = i;
+      if(row == -1)
+	if(issn == magazine_arg->dialog().id->text())
+	  row = i;
 
       if(!issn.isEmpty())
 	ui.list->addItem(issn);
@@ -81,6 +82,10 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
 	  SLOT(slotSelectRecord(void)));
   connect(ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
+
+  if(row == -1)
+    row = 0;
+
   ui.list->setCurrentRow(row);
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);

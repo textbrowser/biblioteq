@@ -15,7 +15,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   QDialog(parent)
 {
   int i = 0;
-  int row = 0;
+  int row = -1;
 
   magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
@@ -45,8 +45,9 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	    if(issn.length() >= 9)
 	      issn = issn.mid(0, 9).trimmed();
 
-	    if(magazine_arg->dialog().id->text() == issn)
-	      row = i;
+	    if(row == -1)
+	      if(magazine_arg->dialog().id->text() == issn)
+		row = i;
 
 	    break;
 	  }
@@ -67,6 +68,10 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	  SLOT(slotSelectRecord(void)));
   connect(ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
+
+  if(row == -1)
+    row = 0;
+
   ui.list->setCurrentRow(row);
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
