@@ -28,6 +28,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   Q_OBJECT
 
  public:
+  static const int PHOTOGRAPHS_PER_PAGE = 25;
   qtbook_photographcollection(QMainWindow *, const QString &,
 			      const int);
   ~qtbook_photographcollection();
@@ -62,6 +63,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotInsertItem(void);
   void slotModifyItem(void);
   void slotUpdateItem(void);
+  void slotPageChanged(const QString &);
   void slotSelectImage(void);
   void slotSceneSelectionChanged(void);
 };

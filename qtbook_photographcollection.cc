@@ -73,7 +73,7 @@ qtbook_photographcollection::qtbook_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
-				25 / 5 * 200);
+				PHOTOGRAPHS_PER_PAGE / 5 * 200);
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -108,6 +108,8 @@ qtbook_photographcollection::qtbook_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset Collection &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
+	  this, SLOT(slotPageChanged(const QString &)));
   pc.resetButton->setMenu(menu);
 
   QString errorstr("");
@@ -686,18 +688,21 @@ void qtbook_photographcollection::modify(const int state,
 
 	  if(query.exec(QString("SELECT COUNT(*) "
 				"FROM photograph "
-				"WHERE collection_id = %1").
+				"WHERE collection_oid = %1").
 			arg(oid)))
 	    if(query.next())
-	      pages = qCeil(query.value(0).toDouble() / 25.0);
+	      pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
 
 	  qapp->restoreOverrideCursor();
 	}
 
+      pc.page->blockSignals(true);
       pc.page->clear();
 
       for(int i = 1; i <= pages; i++)
 	pc.page->addItem(QString::number(i));
+
+      pc.page->blockSignals(false);
 
       if(!engWindowTitle.contains("Create"))
 	{
@@ -983,10 +988,11 @@ void qtbook_photographcollection::showPhotographs(const int page)
 			"photograph WHERE "
 			"collection_oid = %1 "
 			"ORDER BY id "
-			"LIMIT 25 "
-			"OFFSET %2").
+			"LIMIT %2 "
+			"OFFSET %3").
 		arg(oid).
-		arg(25 * (page - 1))))
+		arg(PHOTOGRAPHS_PER_PAGE).
+		arg(PHOTOGRAPHS_PER_PAGE * (page - 1))))
     {
       pc.graphicsView->scene()->clear();
       pc.graphicsView->resetTransform();
@@ -1293,17 +1299,19 @@ void qtbook_photographcollection::slotInsertItem(void)
 
   if(query.exec(QString("SELECT COUNT(*) "
 			"FROM photograph "
-			"WHERE collection_id = %1").
+			"WHERE collection_oid = %1").
 		arg(oid)))
     if(query.next())
-      pages = qCeil(query.value(0).toDouble() / 25.0);
+      pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
 
   qapp->restoreOverrideCursor();
+  pc.page->blockSignals(true);
   pc.page->clear();
 
   for(int i = 1; i <= pages; i++)
     pc.page->addItem(QString::number(i));
 
+  pc.page->blockSignals(false);
   qapp->setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
   qapp->restoreOverrideCursor();
@@ -1744,16 +1752,27 @@ void qtbook_photographcollection::slotDeleteItem(void)
 
   if(query.exec(QString("SELECT COUNT(*) "
 			"FROM photograph "
-			"WHERE collection_id = %1").
+			"WHERE collection_oid = %1").
 		arg(oid)))
     if(query.next())
-      pages = qCeil(query.value(0).toDouble() / 25.0);
+      pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
 
+  pc.page->blockSignals(true);
   pc.page->clear();
 
   for(int i = 1; i <= pages; i++)
     pc.page->addItem(QString::number(i));
 
+  pc.page->blockSignals(false);
   showPhotographs(pc.page->currentText().toInt());
   progress.hide();
+}
+
+/*
+** -- slotPageChanged() --
+*/
+
+void qtbook_photographcollection::slotPageChanged(const QString &text)
+{
+  showPhotographs(text.toInt());
 }
