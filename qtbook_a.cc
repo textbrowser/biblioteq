@@ -2518,7 +2518,7 @@ void qtbook::readGlobalSetup(void)
 	  amazonImages["back_cover_host"] = settings.value("host", "").
 	    toString().trimmed();
 	  amazonImages["back_cover_path"] = settings.value("path", "").
-	    toString().trimmed();
+	    toString().trimmed().remove('"');
 	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
 	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
@@ -2535,7 +2535,7 @@ void qtbook::readGlobalSetup(void)
 	  amazonImages["front_cover_host"] = settings.value("host", "").
 	    toString().trimmed();
 	  amazonImages["front_cover_path"] = settings.value("path", "").
-	    toString().trimmed();
+	    toString().trimmed().remove('"');
 	  amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
 	  amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
