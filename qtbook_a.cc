@@ -2575,9 +2575,9 @@ void qtbook::readGlobalSetup(void)
 
 	      hash["Name"] = settings.value("name", "").toString().trimmed();
 	      hash["url_isbn"] = settings.value
-		("url_isbn", "").toString().trimmed();
+		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value
-		("url_issn", "").toString().trimmed();
+		("url_issn", "").toString().trimmed().remove('"');
 	      sruMaps[settings.value("name", "").toString().trimmed()] = hash;
 	    }
 	}
@@ -2594,7 +2594,7 @@ void qtbook::readGlobalSetup(void)
 	      hash["Database"] = settings.value("database_name", "").
 		toString().trimmed();
 	      hash["Format"] = settings.value("format", "").
-		toString().trimmed();
+		toString().trimmed().remove('"');
 	      hash["Userid"] = settings.value("username", "").
 		toString().trimmed();
 	      hash["Password"] = settings.value("password", "").

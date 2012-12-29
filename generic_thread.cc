@@ -26,7 +26,6 @@ generic_thread::generic_thread(QObject *parent):QThread(parent)
   m_type = -1;
   m_eType = "";
   m_errorStr = "";
-  m_sruName = "";
   m_z3950Name = "";
   setTerminationEnabled(true);
 }
@@ -81,15 +80,6 @@ void generic_thread::run(void)
 	qf.close();
 	break;
       }
-    case SRU_QUERY:
-      {
-	QMutex mutex;
-
-	mutex.lock();
-	m_sruCondition.wait(&mutex, 10000);
-	mutex.unlock();
-	break;
-      }
     case Z3950_QUERY:
       {
 	size_t i = 0;
@@ -97,14 +87,13 @@ void generic_thread::run(void)
 	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = 0;
-	QHash<QString, QString> proxy(qmain->getZ3950Maps().
-				      value(m_z3950Name));
+	QHash<QString, QString> proxy
+	  (qmain->getZ3950Maps().value(m_z3950Name));
 
 	ZOOM_options_set
 	  (options,
 	   "databaseName",
-	   qmain->getZ3950Maps()[m_z3950Name].value("Database").
-	   toLatin1().constData());
+	   proxy.value("Database").toLatin1().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
 	if(!proxy.value("proxy_host").isEmpty() &&
@@ -117,33 +106,27 @@ void generic_thread::run(void)
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
 
-	if(!qmain->getZ3950Maps()[m_z3950Name].value("Userid").isEmpty())
+	if(!proxy.value("Userid").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "user",
-	     qmain->getZ3950Maps()[m_z3950Name].value("Userid").toLatin1().
-	     constData());
+	     proxy.value("Userid").toLatin1().constData());
 
-	if(!qmain->getZ3950Maps()[m_z3950Name].value("Password").isEmpty())
+	if(!proxy.value("Password").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "password",
-	     qmain->getZ3950Maps()[m_z3950Name].value("Password").toLatin1().
-	     constData());
+	     proxy.value("Password").toLatin1().constData());
 
 	zoomConnection = ZOOM_connection_create(options);
 	ZOOM_connection_connect
-	  (zoomConnection, (qmain->getZ3950Maps()[m_z3950Name].
-			    value("Address") +
-			    ":" +
-			    qmain->getZ3950Maps()[m_z3950Name].value("Port")).
-	   toLatin1().constData(), 0);
+	  (zoomConnection, (proxy.value("Address") + ":" +
+			    proxy.value("Port")).toLatin1().constData(), 0);
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
 	   m_z3950SearchStr.toLatin1().constData());
 
-	QString format = qmain->getZ3950Maps()[m_z3950Name].value("Format").
-	  trimmed().toLower();
+	QString format = proxy.value("Format").trimmed().toLower();
 
 	if(format.isEmpty())
 	  format = "render";
@@ -273,172 +256,4 @@ void generic_thread::msleep(const int msecs)
 void generic_thread::setZ3950Name(const QString &name)
 {
   m_z3950Name = name;
-}
-
-/*
-** -- setSRUName() --
-*/
-
-void generic_thread::setSRUName(const QString &name)
-{
-  m_sruName = name;
-}
-
-/*
-** -- getSRUResults() --
-*/
-
-QByteArray generic_thread::getSRUResults(void) const
-{
-  return m_sruResults;
-}
-
-/*
-** -- setSRUSearchString() --
-*/
-
-void generic_thread::setSRUSearchString(const QString &sruSearchStr)
-{
-  m_sruSearchStr = sruSearchStr;
-}
-
-/*
-** -- start() --
-*/
-
-void generic_thread::start(void)
-{
-  if(m_type == SRU_QUERY)
-    {
-      QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
-
-      if(manager)
-	return;
-
-      if(manager->findChild<QNetworkReply *> ())
-	return;
-
-      if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-	return;
-
-      QUrl url(QUrl::fromUserInput(m_sruSearchStr));
-      QString type("");
-      QNetworkProxy proxy;
-      QHash<QString, QString> hash(qmain->getSRUMaps()[m_sruName]);
-
-      if(hash.contains("proxy_type"))
-	type = hash["proxy_type"].toLower().trimmed();
-      else if(hash.contains("proxy_type"))
-	type = hash["proxy_type"].toLower().trimmed();
-
-      if(type == "none")
-	proxy.setType(QNetworkProxy::NoProxy);
-      else
-	{
-	  if(type == "http" || type == "socks5" || type == "system")
-	    {
-	      /*
-	      ** This is required to resolve an odd error.
-	      */
-
-	      QNetworkReply *reply = manager->get
-		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
-
-	      if(reply)
-		reply->deleteLater();
-	    }
-
-	  if(type == "http" || type == "socks5")
-	    {
-	      if(type == "http")
-		proxy.setType(QNetworkProxy::HttpProxy);
-	      else
-		proxy.setType(QNetworkProxy::Socks5Proxy);
-
-	      quint16 port = 0;
-	      QString host("");
-	      QString user("");
-	      QString password("");
-
-	      host = hash["proxy_host"];
-	      port = hash["proxy_port"].toUShort();
-	      user = hash["proxy_username"];
-	      password = hash["proxy_password"];
-	      proxy.setHostName(host);
-	      proxy.setPort(port);
-
-	      if(!user.isEmpty())
-		proxy.setUser(user);
-
-	      if(!password.isEmpty())
-		proxy.setPassword(password);
-
-	      manager->setProxy(proxy);
-	    }
-	  else if(type == "system")
-	    {
-	      QNetworkProxyQuery query(url);
-	      QList<QNetworkProxy> list
-		(QNetworkProxyFactory::systemProxyForQuery(query));
-
-	      if(!list.isEmpty())
-		proxy = list.at(0);
-
-	      manager->setProxy(proxy);
-	    }
-	}
-
-      QNetworkReply *reply = manager->get(QNetworkRequest(url));
-
-      if(!reply)
-	{
-	  manager->deleteLater();
-	  return;
-	}
-      else
-	{
-	  connect(reply, SIGNAL(readyRead(void)),
-		  this, SLOT(slotReadyRead(void)));
-	  connect(reply, SIGNAL(finished(void)),
-		  this, SLOT(slotDownloadFinished(void)));
-	}
-    }
-
-  QThread::start();
-}
-
-/*
-** -- slotReadyRead() --
-*/
-
-void generic_thread::slotReadyRead(void)
-{
-  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(reply)
-    m_sruResults.append(reply->readAll());
-}
-
-/*
-** -- slotDownloadFinished() --
-*/
-
-void generic_thread::slotDownloadFinished(void)
-{
-  /*
-  ** Verify that the SRU data contains at least one record.
-  */
-
-  QXmlStreamReader reader(m_sruResults);
-
-  while(!reader.atEnd())
-    if(reader.readNextStartElement())
-      if(reader.name().toString().trimmed().toLower() == "numberofrecords")
-	if(reader.readElementText().trimmed().toInt() <= 0)
-	  {
-	    m_sruResults.clear();
-	    break;
-	  }
-
-  m_sruCondition.wakeAll();
 }

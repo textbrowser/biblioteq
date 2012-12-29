@@ -51,6 +51,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   QPalette white_pal;
   QPalette te_orig_pal;
+  QByteArray m_sruResults;
   generic_thread *thread;
   Ui_passwordDialog ui_p;
   Ui_informationDialog id;
@@ -68,11 +69,13 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotShowUsers(void);
   void slotZ3950Query(void);
   void slotSelectImage(void);
+  void slotSRUReadyRead(void);
   void slotDownloadImage(void);
   void slotDownloadFinished(void);
   void slotConvertISBN10to13(void);
   void slotConvertISBN13to10(void);
   void slotCancelImageDownload(void);
+  void slotSRUDownloadFinished(void);
   void slotDataTransferProgress(qint64, qint64);
   void slotPopulateCopiesEditor(void);
   void slotProxyAuthenticationRequired(const QNetworkProxy &,

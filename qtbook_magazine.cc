@@ -4,6 +4,8 @@
 
 #include <QSqlField>
 #include <QSqlRecord>
+#include <QNetworkProxy>
+#include <QNetworkAccessManager>
 
 /*
 ** Includes magazine-specific methods.
@@ -2459,147 +2461,225 @@ void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 
 void qtbook_magazine::slotSRUQuery(void)
 {
-  if(findChild<generic_thread *> ())
-    return;
-
   if(ma.id->text().trimmed().length() != 9)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, the ISSN "
-	    "must be provided."));
+	 tr("In order to query an SRU site, the "
+	    "ISSN must be provided."));
       ma.id->setFocus();
       return;
     }
 
-  QString etype = "";
-  QString errorstr = "";
-  sruresults *dialog = 0;
-  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
 
-  if((thread = new(std::nothrow) generic_thread(this)) != 0)
+  if(manager)
+    return;
+
+  if(manager->findChild<QNetworkReply *> ())
+    return;
+
+  if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+    return;
+
+  qtbook_item_working_dialog *working = 0;
+
+  if((working = new(std::nothrow)
+      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
     {
-      working.setModal(true);
-      working.setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-      working.setLabelText(tr("Downloading information from the SRU "
-			      "site. Please be patient..."));
-      working.setMaximum(0);
-      working.setMinimum(0);
-      working.setCancelButton(0);
-      working.show();
-      working.update();
-
-      bool found = false;
-      QString name("");
-
-      for(int i = 0; i < ma.sruQueryButton->actions().size(); i++)
-	if(ma.sruQueryButton->actions().at(i)->isChecked())
-	  {
-	    found = true;
-	    name = ma.sruQueryButton->actions().at(i)->text();
-	    break;
-	  }
-
-      if(!found)
-	name = qmain->getPreferredSRUSite();
-
-      QString searchstr("");
-      QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
-
-      searchstr = hash["url_issn"];
-      searchstr.replace("%1", ma.id->text().trimmed());
-      thread->setSRUName(name);
-      thread->setType(generic_thread::SRU_QUERY);
-      thread->setSRUSearchString(searchstr);
-      thread->start();
-
-      while(thread->isRunning())
-	{
-#ifndef Q_OS_MAC
-	  qapp->processEvents();
-#endif
-	  thread->msleep(100);
-	}
-
-      working.hide();
-
-      if(working.wasCanceled())
-	{
-	  thread->deleteLater();
-	  return;
-	}
-
-      if((errorstr = thread->getErrorStr()).isEmpty())
-	{
-	  QByteArray bytes(thread->getSRUResults());
-	  QList<QByteArray> list;
-
-	  while(bytes.indexOf("<record") >= 0)
-	    {
-	      list.append(bytes.mid(bytes.indexOf("<record"),
-				    bytes.indexOf("</record>") -
-				    bytes.indexOf("<record") + 9));
-	      bytes.remove(bytes.indexOf("<record"),
-			   bytes.indexOf("</record>") -
-			   bytes.indexOf("<record") + 9);
-	    }
-
-	  if(list.size() == 1)
-	    {
-	      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-				       tr("Replace existing values with "
-					  "those retrieved "
-					  "from the SRU site?"),
-				       QMessageBox::Yes | QMessageBox::No,
-				       QMessageBox::No) == QMessageBox::Yes)
-		populateDisplayAfterSRU(list[0]);
-	    }
-	  else if(list.size() > 1)
-	    {
-	      /*
-	      ** Display a selection dialog.
-	      */
-
-	      if((dialog = new(std::nothrow)
-		  sruresults(static_cast<QWidget *> (this), list,
-			     this, font())) == 0)
-		{
-		  qmain->addError
-		    (QString(tr("Memory Error")),
-		     QString(tr("Unable to create a \"dialog\" object "
-				"because of insufficient resources.")),
-		     QString(""),
-		     __FILE__, __LINE__);
-		  QMessageBox::critical
-		    (this, tr("BiblioteQ: Memory Error"),
-		     tr("Unable to create a \"dialog\" object "
-			"because of insufficient resources."));
-		}
-	    }
-	  else
-	    QMessageBox::critical
-	      (this, tr("BiblioteQ: SRU Query Error"),
-	       tr("An SRU entry may not yet exist for ") +
-	       ma.id->text() + tr("."));
-	}
-      else
-	etype = thread->getEType();
-
-      thread->deleteLater();
+      manager->deleteLater();
+      return;
     }
+
+  working->setObjectName("sru_dialog");
+  working->setModal(true);
+  working->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  working->setLabelText(tr("Downloading information from the SRU "
+			   "site. Please be patient..."));
+  working->setMaximum(0);
+  working->setMinimum(0);
+  working->setCancelButton(0);
+  working->show();
+  working->update();
+
+  bool found = false;
+  QString name("");
+
+  for(int i = 0; i < ma.sruQueryButton->actions().size(); i++)
+    if(ma.sruQueryButton->actions().at(i)->isChecked())
+      {
+	found = true;
+	name = ma.sruQueryButton->actions().at(i)->text();
+	break;
+      }
+
+  if(!found)
+    name = qmain->getPreferredSRUSite();
+
+  QString searchstr("");
+  QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
+
+  searchstr = hash["url_issn"];
+  searchstr.replace("%1", ma.id->text().trimmed());
+  searchstr.remove('"');
+
+  QUrl url(QUrl::fromUserInput(searchstr));
+  QString type("");
+  QNetworkProxy proxy;
+
+  if(hash.contains("proxy_type"))
+    type = hash["proxy_type"].toLower().trimmed();
+  else if(hash.contains("proxy_type"))
+    type = hash["proxy_type"].toLower().trimmed();
+
+  if(type == "none")
+    proxy.setType(QNetworkProxy::NoProxy);
   else
     {
-      etype = tr("Memory Error");
-      errorstr = tr("Unable to create a thread because of insufficient "
-		    "resources.");
+      if(type == "http" || type == "socks5" || type == "system")
+	{
+	  /*
+	  ** This is required to resolve an odd error.
+	  */
+
+	  QNetworkReply *reply = manager->get
+	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+
+	  if(reply)
+	    reply->deleteLater();
+	}
+
+      if(type == "http" || type == "socks5")
+	{
+	  if(type == "http")
+	    proxy.setType(QNetworkProxy::HttpProxy);
+	  else
+	    proxy.setType(QNetworkProxy::Socks5Proxy);
+
+	  quint16 port = 0;
+	  QString host("");
+	  QString user("");
+	  QString password("");
+
+	  host = hash["proxy_host"];
+	  port = hash["proxy_port"].toUShort();
+	  user = hash["proxy_username"];
+	  password = hash["proxy_password"];
+	  proxy.setHostName(host);
+	  proxy.setPort(port);
+
+	  if(!user.isEmpty())
+	    proxy.setUser(user);
+
+	  if(!password.isEmpty())
+	    proxy.setPassword(password);
+
+	  manager->setProxy(proxy);
+	}
+      else if(type == "system")
+	{
+	  QNetworkProxyQuery query(url);
+	  QList<QNetworkProxy> list
+	    (QNetworkProxyFactory::systemProxyForQuery(query));
+
+	  if(!list.isEmpty())
+	    proxy = list.at(0);
+
+	  manager->setProxy(proxy);
+	}
     }
 
-  if(!errorstr.isEmpty())
+  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+
+  if(!reply)
+    manager->deleteLater();
+  else
     {
-      qmain->addError(QString(tr("SRU Query Error")), etype, errorstr,
-		      __FILE__, __LINE__);
-      QMessageBox::critical
-	(this, tr("BiblioteQ: SRU Query Error"),
-	 tr("The SRU entry could not be retrieved."));
+      m_sruResults.clear();
+      connect(reply, SIGNAL(readyRead(void)),
+	      this, SLOT(slotSRUReadyRead(void)));
+      connect(reply, SIGNAL(finished(void)),
+	      this, SLOT(slotSRUDownloadFinished(void)));
     }
+}
+
+/*
+** -- slotSRUDownloadFinished() --
+*/
+
+void qtbook_magazine::slotSRUDownloadFinished(void)
+{
+  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+
+  if(manager)
+    manager->deleteLater();
+
+  qtbook_item_working_dialog *dialog =
+    findChild<qtbook_item_working_dialog *> ("sru_dialog");
+
+  if(dialog)
+    dialog->deleteLater();
+
+  QList<QByteArray> list;
+
+  while(m_sruResults.indexOf("<record") >= 0)
+    {
+      list.append(m_sruResults.mid(m_sruResults.indexOf("<record"),
+				   m_sruResults.indexOf("</record>") -
+				   m_sruResults.indexOf("<record") + 9));
+      m_sruResults.remove(m_sruResults.indexOf("<record"),
+			  m_sruResults.indexOf("</record>") -
+			  m_sruResults.indexOf("<record") + 9);
+    }
+
+  if(list.size() == 1)
+    {
+      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			       tr("Replace existing values with "
+				  "those retrieved "
+				  "from the SRU site?"),
+			       QMessageBox::Yes | QMessageBox::No,
+			       QMessageBox::No) == QMessageBox::Yes)
+	populateDisplayAfterSRU(list[0]);
+    }
+  else if(list.size() > 1)
+    {
+      /*
+      ** Display a selection dialog.
+      */
+
+      sruresults *dialog = 0;
+
+      if((dialog = new(std::nothrow) sruresults(static_cast<QWidget *> (this),
+						list, this, font())) == 0)
+	{
+	  qmain->addError
+	    (QString(tr("Memory Error")),
+	     QString(tr("Unable to create a \"dialog\" object "
+			"because of insufficient resources.")),
+	     QString(""),
+	     __FILE__, __LINE__);
+	  QMessageBox::critical
+	    (this, tr("BiblioteQ: Memory Error"),
+	     tr("Unable to create a \"dialog\" object "
+		"because of insufficient resources."));
+	}
+    }
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("An SRU entry may not yet exist for ") +
+       ma.id->text() + tr("."));
+}
+
+/*
+** -- slotSRUReadyRead() --
+*/
+
+void qtbook_magazine::slotSRUReadyRead(void)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    m_sruResults.append(reply->readAll());
 }

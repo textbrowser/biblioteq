@@ -85,8 +85,8 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
-  resize(0.95 * parent->size().width(),
-	 0.95 * parent->size().height());
+  resize(0.75 * parent->size().width(),
+	 0.75 * parent->size().height());
   exec();
 }
 

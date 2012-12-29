@@ -50,6 +50,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   QPalette white_pal;
   QPalette cb_orig_pal;
   QPalette te_orig_pal;
+  QByteArray m_sruResults;
   Ui_magDialog ma;
   generic_thread *thread;
   void closeEvent(QCloseEvent *);
@@ -64,6 +65,8 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void slotShowUsers(void);
   void slotZ3950Query(void);
   void slotSelectImage(void);
+  void slotSRUReadyRead(void);
+  void slotSRUDownloadFinished(void);
   void slotPopulateCopiesEditor(void);
 };
 
