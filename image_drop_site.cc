@@ -15,9 +15,8 @@
 ** -- image_drop_site() --
 */
 
-image_drop_site::image_drop_site(QWidget *parent)
+image_drop_site::image_drop_site(QWidget *parent):QGraphicsView(parent)
 {
-  (void) parent;
   image = QImage();
   imageFormat = "";
   doubleclicked = false;
@@ -368,4 +367,13 @@ void image_drop_site::setImage(const QImage &image)
 
   if(acceptDrops())
     scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+}
+
+/*
+** -- dragLeaveEvent() --
+*/
+
+void image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
+{
+  Q_UNUSED(event);
 }

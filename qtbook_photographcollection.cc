@@ -514,7 +514,7 @@ void qtbook_photographcollection::updateWindow(const int state)
   if(state == qtbook::EDITABLE)
     {
       pc.okButton->setVisible(true);
-      pc.addItemButton->setVisible(true);
+      pc.addItemButton->setEnabled(true);
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
@@ -523,7 +523,7 @@ void qtbook_photographcollection::updateWindow(const int state)
   else
     {
       pc.okButton->setVisible(false);
-      pc.addItemButton->setVisible(false);
+      pc.addItemButton->setEnabled(false);
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
 	pc.id_collection->text() + tr(")");
@@ -1047,7 +1047,8 @@ void qtbook_photographcollection::slotAddItem(void)
 		     0.95 * size().height());
   misc_functions::center(photo_diag, this);
   photo.thumbnail_item->clear();
-  photo.id_item->clear();
+  photo.id_item->setText
+    (QString::number(QDateTime::currentMSecsSinceEpoch()));
   photo.title_item->clear();
   photo.creators_item->setPlainText("N/A");
   photo.publication_date->setDate(QDate::fromString("01/01/2000",
