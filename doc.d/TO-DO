@@ -356,3 +356,6 @@
 195. Dates should not be retrieved from local services. (TBD)
 196. Users should only be allowed to view their reservation histories.
      Create temporary views? (TBD)
+197. After an item has been added, the item's row must be updated. One
+     issue with this requirement is that the item may not be listed
+     in the main table and so its row number will not be available. (TBD)
