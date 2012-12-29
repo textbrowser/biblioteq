@@ -3265,6 +3265,16 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = misc_functions::getColumnString
 	      (ui.table, i,
 	       ui.table->columnNumber("ID Number"));
+	  else
+	    {
+	      tmpstr += QString(" Vol. %1, No. %2").
+		arg(misc_functions::getColumnString(ui.table, i,
+						    ui.table->
+						    columnNumber("Volume"))).
+		arg(misc_functions::getColumnString(ui.table, i,
+						    ui.table->
+						    columnNumber("Issue")));
+	    }
 
 	  if(tmpstr.isEmpty())
 	    tmpstr = "<br>";
