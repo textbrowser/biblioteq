@@ -1989,8 +1989,6 @@ void qtbook_book::slotSRUQuery(void)
   else
     searchstr.replace("%2", id.id->text().trimmed());
 
-  searchstr.remove('"');
-
   QUrl url(QUrl::fromUserInput(searchstr));
   QString type("");
   QNetworkProxy proxy;
@@ -2060,7 +2058,10 @@ void qtbook_book::slotSRUQuery(void)
   QNetworkReply *reply = manager->get(QNetworkRequest(url));
 
   if(!reply)
-    manager->deleteLater();
+    {
+      manager->deleteLater();
+      working->deleteLater();
+    }
   else
     {
       m_sruResults.clear();

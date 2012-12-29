@@ -3377,7 +3377,10 @@ void qtbook::slotDisplaySummary(void)
       summary += misc_functions::getColumnString
 	(ui.table, i,
 	 ui.table->columnNumber("Location"));
-      summary.replace("<br><br>", "<br>");
+
+      while(summary.contains("<br><br>"))
+	summary.replace("<br><br>", "<br>");
+
       summary += "</html>";
       ui.summary->setText(summary);
       ui.summary->setVisible(true);

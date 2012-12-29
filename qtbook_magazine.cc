@@ -2523,7 +2523,6 @@ void qtbook_magazine::slotSRUQuery(void)
 
   searchstr = hash["url_issn"];
   searchstr.replace("%1", ma.id->text().trimmed());
-  searchstr.remove('"');
 
   QUrl url(QUrl::fromUserInput(searchstr));
   QString type("");
@@ -2594,7 +2593,10 @@ void qtbook_magazine::slotSRUQuery(void)
   QNetworkReply *reply = manager->get(QNetworkRequest(url));
 
   if(!reply)
-    manager->deleteLater();
+    {
+      manager->deleteLater();
+      working->deleteLater();
+    }
   else
     {
       m_sruResults.clear();
