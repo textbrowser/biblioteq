@@ -830,7 +830,7 @@ void qtbook_dvd::slotGo(void)
     }
   else
     {
-      searchstr = "SELECT dvd.title, "
+      searchstr = "SELECT DISTINCT dvd.title, "
 	"dvd.dvdformat, "
 	"dvd.studio, "
 	"dvd.rdate, "

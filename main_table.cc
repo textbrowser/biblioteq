@@ -294,12 +294,14 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Title"));
       list.append(tr("ID"));
       list.append(tr("Location"));
+      list.append(tr("Photograph Count"));
       list.append(tr("About"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
       m_columnHeaderIndexes.append("ID");
       m_columnHeaderIndexes.append("Location");
+      m_columnHeaderIndexes.append("Photograph Count");
       m_columnHeaderIndexes.append("About");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");

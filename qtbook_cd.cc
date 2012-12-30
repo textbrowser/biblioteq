@@ -789,7 +789,7 @@ void qtbook_cd::slotGo(void)
     }
   else
     {
-      searchstr = "SELECT cd.title, "
+      searchstr = "SELECT DISTINCT cd.title, "
 	"cd.artist, "
 	"cd.cdformat, "
 	"cd.recording_label, "

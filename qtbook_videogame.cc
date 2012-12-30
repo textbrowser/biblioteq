@@ -746,7 +746,7 @@ void qtbook_videogame::slotGo(void)
     }
   else
     {
-      searchstr = "SELECT videogame.title, "
+      searchstr = "SELECT DISTINCT videogame.title, "
 	"videogame.vgrating, "
 	"videogame.vgplatform, "
 	"videogame.vgmode, "

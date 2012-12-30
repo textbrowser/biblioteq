@@ -2288,12 +2288,15 @@ int qtbook::populateTable(const int search_type_arg,
 	    searchstr = "SELECT DISTINCT photograph_collection.title, "
 	      "photograph_collection.id, "
 	      "photograph_collection.location, "
+	      "COUNT(photograph.myoid) AS photograph_count, "
 	      "photograph_collection.about, "
 	      "photograph_collection.type, "
 	      "photograph_collection.myoid, "
 	      "photograph_collection.image_scaled "
 	      "FROM "
 	      "photograph_collection "
+	      "LEFT JOIN photograph "
+	      "ON photograph_collection.myoid = photograph.collection_oid "
 	      "ORDER BY "
 	      "photograph_collection.title" +
 	      limitStr + offsetStr;
@@ -2774,7 +2777,7 @@ int qtbook::populateTable(const int search_type_arg,
 	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
-	    searchstr += limitStr + offsetStr;
+	    searchstr += limitStr + offsetStr;qDebug()<<searchstr;
 	  }
 
 	break;
@@ -2987,7 +2990,8 @@ int qtbook::populateTable(const int search_type_arg,
 	       query.record().fieldName(j) == "cddiskcount" ||
 	       query.record().fieldName(j) == "dvddiskcount" ||
 	       query.record().fieldName(j) == "availability" ||
-	       query.record().fieldName(j) == "total_reserved")
+	       query.record().fieldName(j) == "total_reserved" ||
+	       query.record().fieldName(j) == "photograph_count")
 	      {
 		if(query.record().fieldName(j) == "price")
 		  {

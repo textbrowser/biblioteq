@@ -952,7 +952,7 @@ void qtbook_book::slotGo(void)
     }
   else
     {
-      searchstr = "SELECT book.title, "
+      searchstr = "SELECT DISTINCT book.title, "
 	"book.author, "
 	"book.publisher, book.pdate, book.place, book.edition, "
 	"book.category, book.language, book.id, "

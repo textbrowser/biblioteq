@@ -912,7 +912,7 @@ void qtbook_magazine::slotGo(void)
     }
   else
     {
-      searchstr = QString("SELECT %1.title, "
+      searchstr = QString("SELECT DISTINCT %1.title, "
 			  "%1.publisher, %1.pdate, %1.place, "
 			  "%1.issuevolume, "
 			  "%1.issueno, "

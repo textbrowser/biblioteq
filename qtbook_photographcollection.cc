@@ -429,16 +429,20 @@ void qtbook_photographcollection::slotGo(void)
     {
       QString searchstr("");
 
-      searchstr = "SELECT photograph_collection.id, "
-	"photograph_collection.title, "
+      searchstr = "SELECT DISTINCT photograph_collection.title, "
+	"photograph_collection.id, "
 	"photograph_collection.location, "
+	"COUNT(photograph.myoid) AS photograph_count, "
 	"photograph_collection.about, "
 	"photograph_collection.type, "
 	"photograph_collection.myoid, "
 	"photograph_collection.image_scaled "
-	"FROM photograph_collection "
+	"FROM photograph_collection LEFT JOIN "
+	"photograph "
+	"ON photograph_collection.myoid = photograph.collection_oid "
 	"WHERE ";
-      searchstr.append("id LIKE '%" + pc.id_collection->text().trimmed() +
+      searchstr.append("photograph_collection.id LIKE '%" +
+		       pc.id_collection->text().trimmed() +
 		       "%' AND ");
 
       QString E("");
@@ -446,21 +450,23 @@ void qtbook_photographcollection::slotGo(void)
       if(qmain->getDB().driverName() != "QSQLITE")
 	E = "E";
 
-      searchstr.append("title LIKE " + E + "'%" +
+      searchstr.append("photograph_collection.title LIKE " + E + "'%" +
 		       myqstring::escape(pc.title_collection->
 					 text().trimmed()) +
 		       "%' AND ");
 
       if(pc.location->currentIndex() != 0)
-	searchstr.append("location = " + E + "'" +
+	searchstr.append("photograph_collection.location = " + E + "'" +
 			 myqstring::escape
 			 (pc.location->currentText().trimmed()) + "' AND ");
 
-      searchstr.append("COALESCE(about, '') LIKE " + E + "'%" +
+      searchstr.append("COALESCE(photograph_collection.about, '') LIKE " +
+		       E + "'%" +
 		       myqstring::escape
 		       (pc.about_collection->toPlainText().trimmed()) +
 		       "%' AND ");
-      searchstr.append("COALESCE(notes, '') LIKE " + E + "'%" +
+      searchstr.append("COALESCE(photograph_collection.notes, '') LIKE " +
+		       E + "'%" +
 		       myqstring::escape
 		       (pc.notes_collection->toPlainText().trimmed()) +
 		       "%'");
