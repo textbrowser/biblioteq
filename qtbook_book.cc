@@ -3188,6 +3188,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
     {
       dialog->hide();
       dialog->deleteLater();
+      update();
     }
 
   /*
