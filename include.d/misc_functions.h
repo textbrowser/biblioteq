@@ -41,6 +41,7 @@ class misc_functions
   static int getMemberMatchCount(const QString &, const QString &,
 				 const QSqlDatabase &,
 				 QString &);
+  static bool isGnome(void);
   static bool isRequested(const QSqlDatabase &, const QString &,
 			  const QString &, QString &);
   static bool isCheckedOut(const QSqlDatabase &, const QString &,

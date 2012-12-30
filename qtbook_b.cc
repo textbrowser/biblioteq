@@ -2777,7 +2777,7 @@ int qtbook::populateTable(const int search_type_arg,
 	      searchstr.remove(searchstr.lastIndexOf("LIMIT"),
 			       searchstr.length());
 
-	    searchstr += limitStr + offsetStr;qDebug()<<searchstr;
+	    searchstr += limitStr + offsetStr;
 	  }
 
 	break;

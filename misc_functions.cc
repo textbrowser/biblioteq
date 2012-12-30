@@ -2260,3 +2260,17 @@ void misc_functions::setRole(const QSqlDatabase &db,
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
 }
+
+/*
+** -- isGnome() --
+*/
+
+bool misc_functions::isGnome(void)
+{
+  QString session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
+
+  if(session == "gnome" || session == "ubuntu")
+    return true;
+  else
+    return false;
+}

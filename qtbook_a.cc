@@ -2680,7 +2680,11 @@ void qtbook::readConfig(void)
   if(settings.contains("main_window_geometry"))
     {
       ui.actionPreserveGeometry->setChecked(true);
-      restoreGeometry(settings.value("main_window_geometry").toByteArray());
+
+      if(misc_functions::isGnome())
+	setGeometry(settings.value("main_window_geometry").toRect());
+      else
+	restoreGeometry(settings.value("main_window_geometry").toByteArray());
     }
   else
     ui.actionPreserveGeometry->setChecked(false);
@@ -2949,7 +2953,12 @@ void qtbook::slotSaveConfig(void)
   settings.setValue("locale", s_locale);
 
   if(ui.actionPreserveGeometry->isChecked())
-    settings.setValue("main_window_geometry", saveGeometry());
+    {
+      if(misc_functions::isGnome())
+	settings.setValue("main_window_geometry", geometry());
+      else
+	settings.setValue("main_window_geometry", saveGeometry());
+    }
   else
     settings.remove("main_window_geometry");
 
@@ -4728,6 +4737,16 @@ void qtbook::slotCheckout(void)
   copy_editor *copyeditor = 0;
   qtbook_item *item = 0;
 
+  type = misc_functions::getColumnString
+    (ui.table, row2, ui.table->columnNumber("Type"));
+
+  if(type == "Photograph Collection")
+    {
+      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			    tr("Photographs may not be reserved."));
+      return;
+    }
+
   if(row1 > -1)
     {
       /*
@@ -4766,8 +4785,6 @@ void qtbook::slotCheckout(void)
 
       oid = misc_functions::getColumnString
 	(ui.table, row2, ui.table->columnNumber("MYOID"));
-      type = misc_functions::getColumnString
-	(ui.table, row2, ui.table->columnNumber("Type"));
       qapp->setOverrideCursor(Qt::WaitCursor);
       availability = misc_functions::getAvailability
 	(oid, db, type, errorstr).toInt();
@@ -6131,10 +6148,23 @@ void qtbook::slotReserveCopy(void)
       return;
     }
 
-  oid = misc_functions::getColumnString
-    (ui.table, row, ui.table->columnNumber("MYOID"));
   type = misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("Type"));
+
+  if(type == "Photograph Collection")
+    {
+      if(members_diag->isVisible())
+	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+			      tr("Photographs may not be reserved."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+			      tr("Photographs may not be reserved."));
+
+      return;
+    }
+
+  oid = misc_functions::getColumnString
+    (ui.table, row, ui.table->columnNumber("MYOID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   availability = misc_functions::getAvailability
     (oid, db, type, errorstr).toInt();
