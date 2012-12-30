@@ -3185,7 +3185,10 @@ void qtbook_book::slotSRUDownloadFinished(void)
     findChild<qtbook_item_working_dialog *> ("sru_dialog");
 
   if(dialog)
-    dialog->deleteLater();
+    {
+      dialog->hide();
+      dialog->deleteLater();
+    }
 
   /*
   ** Verify that the SRU data contains at least one record.

@@ -1462,7 +1462,7 @@ void qtbook_magazine::insert(void)
   ma.place->setPlainText("N/A");
   ma.copiesButton->setEnabled(false);
   ma.sruQueryButton->setVisible(true);
-  ma.z3950QueryButton->setVisible(false);
+  ma.z3950QueryButton->setVisible(true);
   ma.okButton->setText(tr("&Save"));
   ma.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
@@ -1889,9 +1889,9 @@ void qtbook_magazine::slotZ3950Query(void)
 	      ** Display a selection dialog.
 	      */
 
-	      if((dialog = new(std::nothrow) z3950results
-		  (static_cast<QWidget *> (this), list,
-		   this, font())) == 0)
+	      if((dialog = new(std::nothrow)
+		  z3950results(static_cast<QWidget *> (this), list,
+			       this, font())) == 0)
 		{
 		  qmain->addError
 		    (QString(tr("Memory Error")),
@@ -2549,8 +2549,228 @@ void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		misc_functions::highlightWidget
 		  (ma.callnum, QColor(162, 205, 90));
 	      }
+	    else if(tag == "082")
+	      {
+		/*
+		** $a - Classification number (R)
+		** $b - Item number (NR)
+		** $m - Standard or optional designation (NR)
+		** $q - Assigning agency (NR)
+		** $2 - Edition number (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "m" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "q")
+			str.append(reader.readElementText());
+		    }
+		  else
+		    break;
+
+		ma.deweynum->setText(str);
+		misc_functions::highlightWidget
+		  (ma.deweynum, QColor(162, 205, 90));
+	      }
+	    else if(tag == "245")
+	      {
+		/*
+		** $a - Title (NR)
+		** $b - Remainder of title (NR)
+		** $c - Statement of responsibility, etc. (NR)
+		** $f - Inclusive dates (NR)
+		** $g - Bulk dates (NR)
+		** $h - Medium (NR)
+		** $k - Form (R)
+		** $n - Number of part/section of a work (R)
+		** $p - Name of part/section of a work (R)
+		** $s - Version (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b")
+			str.append(reader.readElementText());
+		    }
+		  else
+		    break;
+
+		str = str.mid(0, str.lastIndexOf('/')).trimmed();
+		ma.title->setText(str.trimmed());
+		misc_functions::highlightWidget
+		  (ma.title, QColor(162, 205, 90));
+	      }
+	    else if(tag == "260")
+	      {
+		/*
+		** $a - Place of publication, distribution, etc. (R)
+		** $b - Name of publisher, distributor, etc. (R)
+		** $c - Date of publication, distribution, etc. (R)
+		** $e - Place of manufacture (R)
+		** $f - Manufacturer (R)
+		** $g - Date of manufacture (R)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString date("");
+		QString place("");
+		QString publisher("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			place = reader.readElementText();
+		      else if(reader.attributes().value("code").
+			      toString().trimmed() == "b")
+			publisher = reader.readElementText();
+		      else if(reader.attributes().value("code").
+			      toString().trimmed() == "c")
+			date = reader.readElementText();
+		    }
+		  else
+		    break;
+
+		ma.publication_date->setDate
+		  (QDate::fromString("01/01/" + date,
+				     "MM/dd/yyyy"));
+		ma.publication_date->setStyleSheet
+		  ("background-color: rgb(162, 205, 90)");
+		place = place.mid(0, place.lastIndexOf(" ")).
+		  trimmed();
+
+		if(!place.isEmpty())
+		  if(!place[place.length() - 1].isLetter())
+		    place = place.remove(place.length() - 1, 1).
+		      trimmed();
+
+		ma.place->setPlainText(place);
+		misc_functions::highlightWidget
+		  (ma.place->viewport(), QColor(162, 205, 90));
+
+		if(publisher.endsWith(","))
+		  publisher = publisher.mid
+		    (0, publisher.length() - 1).trimmed();
+
+		ma.publisher->setPlainText(publisher);
+		misc_functions::highlightWidget
+		  (ma.publisher->viewport(), QColor(162, 205, 90));
+	      }
+	    else if(tag == "300")
+	      {
+		/*
+		** $a - Extent (R)
+		** $b - Other physical details (NR)
+		** $c - Dimensions (R)
+		** $e - Accompanying material (NR)
+		** $f - Type of unit (R)
+		** $g - Size of unit (R)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    str.append(reader.readElementText());
+		  else
+		    break;
+
+		ma.description->setPlainText(str);
+		misc_functions::highlightWidget
+		  (ma.description->viewport(), QColor(162, 205, 90));
+	      }
+	    else if(tag == "650")
+	      {
+		/*
+		** $a - Topical term or geographic name entry
+		**      element (NR)
+		** $b - Topical term following geographic name entry
+		**      element (NR)
+		** $c - Location of event (NR)
+		** $d - Active dates (NR)
+		** $e - Relator term (R)
+		** $4 - Relator code (R)
+		** $v - Form subdivision (R)
+		** $x - General subdivision (R)
+		** $y - Chronological subdivision (R)
+		** $z - Geographic subdivision (R)
+		** $0 - Authority record control number (R)
+		** $2 - Source of heading or term (NR)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R) 
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			{
+			  str.append(reader.readElementText());
+			  break;
+			}
+		    }
+		  else
+		    break;
+
+		if(!str.isEmpty())
+		  {
+		    if(!str[str.length() - 1].isPunct())
+		      str += ".";
+
+		    if(!ma.category->toPlainText().contains(str))
+		      {
+			if(!ma.category->toPlainText().isEmpty())
+			  ma.category->setPlainText
+			    (ma.category->toPlainText() + "\n" +
+			     str);
+			else
+			  ma.category->setPlainText(str);
+
+			misc_functions::highlightWidget
+			  (ma.category->viewport(),
+			   QColor(162, 205, 90));
+		      }
+		  }
+	      }
 	  }
       }
+
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+    textfield->setCursorPosition(0);
 }
 
 /*
@@ -2718,7 +2938,11 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
     findChild<qtbook_item_working_dialog *> ("sru_dialog");
 
   if(dialog)
-    dialog->deleteLater();
+    {
+      dialog->hide();
+      dialog->deleteLater();
+      update();
+    }
 
   QList<QByteArray> list;
 

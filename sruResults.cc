@@ -163,10 +163,6 @@ void sruresults::slotUpdateQueryText(void)
 	}
 
   title = title.mid(0, title.lastIndexOf('/')).trimmed();
-
-  if(!title.isEmpty() && title[title.length() - 1].isPunct())
-    title = title.remove(title.length() - 1, 1).trimmed();
-
   ui.title->setText(title);
   ui.title->setCursorPosition(0);
   ui.textarea->setPlainText(m_records[ui.list->currentRow()]);
