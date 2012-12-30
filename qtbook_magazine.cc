@@ -5,6 +5,7 @@
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QNetworkProxy>
+#include <QXmlStreamReader>
 #include <QNetworkAccessManager>
 
 /*
@@ -2454,7 +2455,102 @@ void qtbook_magazine::changeEvent(QEvent *event)
 
 void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 {
-  Q_UNUSED(data);
+  if(!data.isEmpty())
+    {
+      ma.marc_tags->setText(data);
+      misc_functions::highlightWidget
+	(ma.marc_tags->viewport(), QColor(162, 205, 90));
+    }
+
+  QXmlStreamReader reader(data);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      if(reader.name().toString().toLower().
+	 trimmed() == "datafield")
+	{
+	  QString tag(reader.attributes().value("tag").
+		      toString().trimmed());
+
+	  if(tag == "260")
+	    ma.place->clear();
+	  else if(tag == "650")
+	    ma.category->clear();
+	}
+
+  reader.clear();
+  reader.addData(data);
+
+  while(!reader.atEnd())
+    if(reader.readNextStartElement())
+      {
+	if(reader.name().toString().toLower().
+	   trimmed() == "datafield")
+	  {
+	    QString tag(reader.attributes().value("tag").
+			toString().trimmed());
+
+	    if(tag == "010")
+	      {
+		/*
+		** $a - LC control number (NR)
+		** $b - NUCMC control number (R)
+		** $z - Canceled/invalid LC control number (R)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a")
+			{
+			  str.append(reader.readElementText());
+			  break;
+			}
+		    }
+		  else
+		    break;
+
+		str = str.trimmed();
+		ma.lcnum->setText(str);
+		misc_functions::highlightWidget
+		  (ma.lcnum, QColor(162, 205, 90));
+	      }
+	    else if(tag == "050")
+	      {
+		/*
+		** $a - Classification number (R)
+		** $b - Item number (NR)
+		** $3 - Materials specified (NR)
+		** $6 - Linkage (NR)
+		** $8 - Field link and sequence number (R)
+		*/
+
+		QString str("");
+
+		while(reader.readNextStartElement())
+		  if(reader.name().toString().toLower().
+		     trimmed() == "subfield")
+		    {
+		      if(reader.attributes().value("code").
+			 toString().trimmed() == "a" ||
+			 reader.attributes().value("code").
+			 toString().trimmed() == "b")
+			str.append(reader.readElementText());
+		    }
+		  else
+		    break;
+
+		ma.callnum->setText(str);
+		misc_functions::highlightWidget
+		  (ma.callnum, QColor(162, 205, 90));
+	      }
+	  }
+      }
 }
 
 /*
