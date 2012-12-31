@@ -2297,6 +2297,14 @@ int qtbook::populateTable(const int search_type_arg,
 	      "photograph_collection "
 	      "LEFT JOIN photograph "
 	      "ON photograph_collection.myoid = photograph.collection_oid "
+	      "GROUP BY "
+	      "photograph_collection.title, "
+	      "photograph_collection.id, "
+	      "photograph_collection.location, "
+	      "photograph_collection.about, "
+	      "photograph_collection.type, "
+	      "photograph_collection.myoid, "
+	      "photograph_collection.image_scaled "
 	      "ORDER BY "
 	      "photograph_collection.title" +
 	      limitStr + offsetStr;
