@@ -15,12 +15,12 @@
     <message>
         <location filename="../misc_functions.cc" line="705"/>
         <source>Barcode: </source>
-        <translation type="unfinished">Strichcode:</translation>
+        <translation>Strichcode:</translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="707"/>
         <source> Location: </source>
-        <translation type="unfinished">Ort: </translation>
+        <translation> Ort: </translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="709"/>
@@ -30,27 +30,27 @@
     <message>
         <location filename="../misc_functions.cc" line="710"/>
         <source>Title: </source>
-        <translation type="unfinished">Titel:</translation>
+        <translation>Titel:</translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="711"/>
         <source>Due Date: </source>
-        <translation type="unfinished">Fälligkeitsdatum: </translation>
+        <translation>Fälligkeitsdatum: </translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="801"/>
         <source>NULL availability value.</source>
-        <translation type="unfinished">NULL Verfügbarkeitswert</translation>
+        <translation>NULL Verfügbarkeitswert</translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="1395"/>
         <source>Database Error</source>
-        <translation type="unfinished">Datenbankfehler</translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../misc_functions.cc" line="1396"/>
         <source>Unable to determine the query size.</source>
-        <translation type="unfinished">Die Ergebnisse der Anfrage können nicht bestimmt werden.</translation>
+        <translation>Die Ergebnisse der Anfrage können nicht bestimmt werden.</translation>
     </message>
 </context>
 <context>
@@ -58,12 +58,12 @@
     <message>
         <location filename="../userinfo.ui" line="14"/>
         <source>BiblioteQ: Borrower Information</source>
-        <translation type="unfinished">BiblioteQ: Ausleiher Information</translation>
+        <translation>BiblioteQ: Ausleiher Information</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="28"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="266"/>
@@ -323,67 +323,67 @@
     <message>
         <location filename="../userinfo.ui" line="34"/>
         <source>Member ID</source>
-        <translation type="unfinished">Mitgliedsnummer</translation>
+        <translation>Mitgliedsnummer</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="533"/>
         <source>Telephone Number</source>
-        <translation type="unfinished">Telefon-Nummer</translation>
+        <translation>Telefon-Nummer</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="228"/>
         <source>Street</source>
-        <translation type="unfinished">Straße</translation>
+        <translation>Straße</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="156"/>
         <source>Date of Birth</source>
-        <translation type="unfinished">Geburtsdatum</translation>
+        <translation>Geburtsdatum</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="242"/>
         <source>City</source>
-        <translation type="unfinished">Stadt</translation>
+        <translation>Stadt</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="256"/>
         <source>State &amp; ZIP Code</source>
-        <translation type="unfinished">PLZ und Ort</translation>
+        <translation>PLZ und Ort</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="99"/>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation>Nachname</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="48"/>
         <source>Member Since</source>
-        <translation type="unfinished">Mitglied seit</translation>
+        <translation>Mitglied seit</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="85"/>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation>Vorname</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="113"/>
         <source>Middle Initial</source>
-        <translation type="unfinished">Mittel-Initiale.</translation>
+        <translation>Mittel-Initiale</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="190"/>
         <source>Sex</source>
-        <translation type="unfinished">Geschlecht</translation>
+        <translation>Geschlecht</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="200"/>
         <source>Female</source>
-        <translation type="unfinished">Weiblich</translation>
+        <translation>Weiblich</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="205"/>
         <source>Male</source>
-        <translation type="unfinished">Männlich</translation>
+        <translation>Männlich</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -392,57 +392,57 @@
     <message>
         <location filename="../userinfo.ui" line="547"/>
         <source>E-Mail Address</source>
-        <translation type="unfinished">E-Mail-Adresse</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="561"/>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Auslauf-Datum</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="592"/>
         <source>Overdue Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebühren für Überfälligkeit</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="618"/>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentare</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="657"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seite</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="663"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klasse</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="673"/>
         <source>General Registration Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Generelle Registrations-Nummer</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="705"/>
         <source>Previous Member</source>
-        <translation type="unfinished">Vorheriges Mitglied</translation>
+        <translation>Vorheriges Mitglied</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="747"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="764"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="../userinfo.ui" line="788"/>
         <source>Next Member</source>
-        <translation type="unfinished">Nächstes Mitglied</translation>
+        <translation>Nächstes Mitglied</translation>
     </message>
 </context>
 <context>
@@ -450,76 +450,76 @@
     <message>
         <location filename="../adminsetup.ui" line="14"/>
         <source>BiblioteQ: Administrator Browser</source>
-        <translation type="unfinished">BiblioteQ: Administratorin Ansicht</translation>
+        <translation>BiblioteQ: Administrator Ansicht</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="50"/>
         <source>Item Creation</source>
-        <translation type="unfinished">Ausleihe Erstellen</translation>
+        <translation>Ausleihe Erstellen</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="57"/>
         <source>Item Deletion</source>
-        <translation type="unfinished">Ausleihe Löschen</translation>
+        <translation>Ausleihe Löschen</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="64"/>
         <source>Item Returns</source>
-        <translation type="unfinished">Ausleihe Rückgabe</translation>
+        <translation>Ausleihe Rückgabe</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="71"/>
         <source>Item Reservations</source>
-        <translation type="unfinished">Ausleihe Reservieren</translation>
+        <translation>Ausleihe Reservieren</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="78"/>
         <source>Item Updates</source>
-        <translation type="unfinished">Ausleihe Aktualisieren</translation>
+        <translation>Ausleihe Aktualisieren</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="85"/>
         <source>Member Creation</source>
-        <translation type="unfinished">Nutzerin Anlegen</translation>
+        <translation>Nutzer anlegen</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="92"/>
         <source>Member Deletion</source>
-        <translation type="unfinished">Nutzerin Löschen</translation>
+        <translation>Nutzer löschen</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="99"/>
         <source>Member Updates</source>
-        <translation type="unfinished">Nutzerin Aktualisieren</translation>
+        <translation>Nutzer aktualisieren</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="106"/>
         <source>Reservation Histories</source>
-        <translation type="unfinished">Ausleih-Historie</translation>
+        <translation>Ausleih-Historie</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="113"/>
         <location filename="../adminsetup.ui" line="407"/>
         <source>Administrator</source>
-        <translation type="unfinished">Administratorin</translation>
+        <translation>Administrator</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="240"/>
         <location filename="../adminsetup.ui" line="412"/>
         <source>Circulation</source>
-        <translation type="unfinished">Zirkulation</translation>
+        <translation>Zirkulation</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="286"/>
         <location filename="../adminsetup.ui" line="417"/>
         <source>Librarian</source>
-        <translation type="unfinished">Bibliothekarin</translation>
+        <translation>Bibliothekar</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="332"/>
         <location filename="../adminsetup.ui" line="422"/>
         <source>Membership</source>
-        <translation type="unfinished">Nutzung</translation>
+        <translation>Nutzung</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="402"/>
@@ -529,22 +529,22 @@
     <message>
         <location filename="../adminsetup.ui" line="436"/>
         <source>Add Administrator</source>
-        <translation type="unfinished">Administratorin hinzufügen</translation>
+        <translation>Administrator hinzufügen</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="456"/>
         <source>Delete Selected Administrator</source>
-        <translation type="unfinished">Lösche ausgewählte Administratorin</translation>
+        <translation>Lösche ausgewählten Administrator</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="476"/>
         <source>Save Changes</source>
-        <translation type="unfinished">Änderungen speichern</translation>
+        <translation>Änderungen speichern</translation>
     </message>
     <message>
         <location filename="../adminsetup.ui" line="506"/>
         <source>Refresh Table</source>
-        <translation type="unfinished">Aktualisiere die Tabelle</translation>
+        <translation>Aktualisiere die Tabelle</translation>
     </message>
     <message>
         <source>Refresh List</source>
@@ -553,7 +553,7 @@
     <message>
         <location filename="../adminsetup.ui" line="539"/>
         <source>Close Browser</source>
-        <translation type="unfinished">Browser Schließen</translation>
+        <translation>Browser Schließen</translation>
     </message>
 </context>
 <context>
@@ -561,17 +561,17 @@
     <message>
         <location filename="../allinfo.ui" line="14"/>
         <source>BiblioteQ: General Database Search</source>
-        <translation type="unfinished">BiblioteQ: Allgemeine Datenbankabfrage</translation>
+        <translation>BiblioteQ: Allgemeine Datenbankabfrage</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="52"/>
         <source>ID Number</source>
-        <translation type="unfinished">ID-Nummer</translation>
+        <translation>ID-Nummer</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="62"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -584,77 +584,77 @@
     <message>
         <location filename="../allinfo.ui" line="72"/>
         <source>Publication Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum der Veröffentlichung</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="81"/>
         <source>MM/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">MM/jjjj</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="106"/>
         <source>Publisher</source>
-        <translation type="unfinished">Verlegerin</translation>
+        <translation>Verleger</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="116"/>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="133"/>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="162"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="189"/>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währung</translation>
+        <translation>Währung</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="206"/>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="223"/>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation>Kopien</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="260"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="287"/>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlüsselworte</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="304"/>
         <source>Available</source>
-        <translation type="unfinished">Verfügbar</translation>
+        <translation>Verfügbar</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="348"/>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Suche</translation>
+        <translation>&amp;Suche</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="365"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../allinfo.ui" line="381"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -662,7 +662,7 @@
     <message>
         <location filename="../borrowers_editor.cc" line="61"/>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation type="unfinished">BiblioteQ: Ausleihe - Status der Reservierung</translation>
+        <translation>BiblioteQ: Ausleihe - Status der Reservierung</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="62"/>
@@ -672,81 +672,81 @@
     <message>
         <location filename="../borrowers_editor.cc" line="64"/>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">BiblioteQ: Ausleihe - Status der Reservierung</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="106"/>
         <location filename="../borrowers_editor.cc" line="118"/>
         <source>Copy Number</source>
-        <translation type="unfinished">Kopie-Nummer</translation>
+        <translation>Kopie-Nummer</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="107"/>
         <location filename="../borrowers_editor.cc" line="119"/>
         <location filename="../borrowers_editor.cc" line="389"/>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="108"/>
         <location filename="../borrowers_editor.cc" line="391"/>
         <source>Member ID</source>
-        <translation type="unfinished">Nutzerin ID</translation>
+        <translation>Nutzer ID</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="109"/>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation>Vorname</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="110"/>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation>Nachname</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="111"/>
         <location filename="../borrowers_editor.cc" line="120"/>
         <source>Reservation Date</source>
-        <translation type="unfinished">Datum der Reservierung</translation>
+        <translation>Datum der Reservierung</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="112"/>
         <location filename="../borrowers_editor.cc" line="121"/>
         <source>Copy Due Date</source>
-        <translation type="unfinished">Kopiere Fälligkeitsdatum</translation>
+        <translation>Kopiere Fälligkeitsdatum</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="113"/>
         <source>Lender</source>
-        <translation type="unfinished">Leiherin</translation>
+        <translation>Leiher</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="143"/>
         <location filename="../borrowers_editor.cc" line="238"/>
         <location filename="../borrowers_editor.cc" line="471"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished">BiblioteQ: Fortschrittsanzeige</translation>
+        <translation>BiblioteQ: Fortschrittsanzeige</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="144"/>
         <source>Constructing objects...</source>
-        <translation type="unfinished">Erstelle die Objekte...</translation>
+        <translation>Erstelle die Objekte...</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="164"/>
         <location filename="../borrowers_editor.cc" line="184"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Speicherfehler</translation>
+        <translation>Speicherfehler</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="165"/>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kein ausreichender Speicher vorhanden für &quot;Datumseingabe&quot;. Dieses is ein ernstes Problem!</translation>
+        <translation>Kein ausreichender Speicher vorhanden für &quot;Datumseingabe&quot;. Dieses is ein ernstes Problem!</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="185"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Kein ausreichender Speicher vorhanden für das &quot;Ausleihobjekt&quot;. Dieses ist ein ernstes Problem!</translation>
+        <translation>Kein ausreichender Speicher vorhanden für das &quot;Ausleihobjekt&quot;. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="232"/>
@@ -754,44 +754,44 @@
         <location filename="../borrowers_editor.cc" line="401"/>
         <location filename="../borrowers_editor.cc" line="499"/>
         <source>Database Error</source>
-        <translation type="unfinished">Datenbankfehler</translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="233"/>
         <source>Unable to retrieve borrower data.</source>
-        <translation type="unfinished">Kann die Daten der Ausleiherin nicht bekommen.</translation>
+        <translation>Kann die Daten der Ausleiherin nicht bekommen.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="239"/>
         <source>Retrieving borrower data...</source>
-        <translation type="unfinished">Erhalte die Daten der Ausleiherin...</translation>
+        <translation>Erhalte die Daten der Ausleiherin...</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="344"/>
         <location filename="../borrowers_editor.cc" line="353"/>
         <location filename="../borrowers_editor.cc" line="527"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished">BiblioteQ: Nutzungsfehler</translation>
+        <translation>BiblioteQ: Nutzungsfehler</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="345"/>
         <source>Please select the copy that has been returned.</source>
-        <translation type="unfinished">Bitte wählen die zurückgegebene Kopie aus.</translation>
+        <translation>Bitte wählen die zurückgegebene Kopie aus.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="354"/>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Es scheint, dass das ausgewählte Objekt nicht reserviert wurde.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="528"/>
         <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von ungültigen Daten.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="533"/>
         <source>Some or all of the Due Dates were not updated because of database errors.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Einige oder alle Fälligkeitsdaten wurden nicht aktualisiert aufgrund von Datenbank-Fehlern.</translation>
     </message>
     <message>
         <source>To modify a copy&apos;s reservation status, you must first select it.</source>
@@ -800,39 +800,39 @@
     <message>
         <location filename="../borrowers_editor.cc" line="359"/>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished">BiblioteQ: Frage</translation>
+        <translation>BiblioteQ: Frage</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="360"/>
         <source>Are you sure that the copy has been returned?</source>
-        <translation type="unfinished">Bist Du sicher, dass die Kopie zurückgegeben wurde?</translation>
+        <translation>Bist Du sicher, dass die Kopie zurückgegeben wurde?</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="374"/>
         <location filename="../borrowers_editor.cc" line="378"/>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation type="unfinished">Kann den Reservierungsstatus der ausgewählten Kopie nicht verändern.</translation>
+        <translation>Kann den Reservierungsstatus der ausgewählten Kopie nicht verändern.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="377"/>
         <location filename="../borrowers_editor.cc" line="532"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished">BiblioteQ: Datenbankfehler</translation>
+        <translation>BiblioteQ: Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="402"/>
         <source>Unable to modify the returned date of the selected copy.</source>
-        <translation type="unfinished">Kann das Rückgabedatum der ausgewählten Kopie nicht verändern.</translation>
+        <translation>Kann das Rückgabedatum der ausgewählten Kopie nicht verändern.</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="472"/>
         <source>Updating the due date(s)...</source>
-        <translation type="unfinished">Aktualisiere die Rückgabedaten...</translation>
+        <translation>Aktualisiere die Rückgabedaten...</translation>
     </message>
     <message>
         <location filename="../borrowers_editor.cc" line="500"/>
         <source>Unable to update the due date.</source>
-        <translation type="unfinished">Kann die Rückgabedaten nicht aktualisieren.</translation>
+        <translation>Kann die Rückgabedaten nicht aktualisieren.</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
@@ -848,47 +848,47 @@
     <message>
         <location filename="../branch_s.ui" line="14"/>
         <source>BiblioteQ: Branch Selection</source>
-        <translation type="unfinished">BiblioteQ: Bereichsauswahl</translation>
+        <translation>BiblioteQ: Bereichsauswahl</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="26"/>
         <source>Branch Name</source>
-        <translation type="unfinished">Name des Bereichs</translation>
+        <translation>Name des Bereichs</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="81"/>
         <source>&amp;Select SQLite Database</source>
-        <translation type="unfinished">&amp;Wähle die SQLite Datenbank</translation>
+        <translation>&amp;Wähle die SQLite Datenbank</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="121"/>
         <source>Userid</source>
-        <translation type="unfinished">ID der Nutzerin</translation>
+        <translation>ID des Nutzers</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="133"/>
         <source>Administrator</source>
-        <translation type="unfinished">Administratorin</translation>
+        <translation>Administrator</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="142"/>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="197"/>
         <source>&amp;Connect</source>
-        <translation type="unfinished">&amp;Verbinde</translation>
+        <translation>&amp;Verbinde</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="214"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../branch_s.ui" line="234"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -901,53 +901,53 @@
     <message>
         <location filename="../cdinfo.ui" line="53"/>
         <source>Cover Images</source>
-        <translation type="unfinished">Umschlagbilder</translation>
+        <translation>Umschlagbilder</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="65"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished">Titelbild</translation>
+        <translation>Titelbild</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="87"/>
         <location filename="../cdinfo.ui" line="141"/>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation>&amp;Auswahl</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="119"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished">Bild des Rückendeckels</translation>
+        <translation>Bild des Rückendeckels</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="168"/>
         <source>Specific Information</source>
-        <translation type="unfinished">Spezifische Information</translation>
+        <translation>Spezifische Information</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="174"/>
         <source>Catalog Number</source>
-        <translation type="unfinished">Katalog Nummer</translation>
+        <translation>Katalog Nummer</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="188"/>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="222"/>
         <source>Artist</source>
-        <translation type="unfinished">Künstlerin</translation>
+        <translation>Künstlerin</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="248"/>
         <source>Number of Discs</source>
-        <translation type="unfinished">Anzahl der Scheiben</translation>
+        <translation>Anzahl der Scheiben</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="282"/>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="291"/>
@@ -957,17 +957,17 @@
     <message>
         <location filename="../cdinfo.ui" line="298"/>
         <source>&amp;Compute</source>
-        <translation type="unfinished">&amp;Ausführen</translation>
+        <translation>&amp;Ausführen</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="324"/>
         <source>Audio</source>
-        <translation type="unfinished">Audio</translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="337"/>
         <source>Mono</source>
-        <translation type="unfinished">Mono</translation>
+        <translation>Mono</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="342"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../cdinfo.ui" line="365"/>
         <source>Recording Type</source>
-        <translation type="unfinished">Aufzeichnungstyp</translation>
+        <translation>Aufzeichnungstyp</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="378"/>
@@ -992,32 +992,32 @@
     <message>
         <location filename="../cdinfo.ui" line="406"/>
         <source>Tracks</source>
-        <translation type="unfinished">Spuren</translation>
+        <translation>Spuren</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="415"/>
         <source>&amp;Show Tracks</source>
-        <translation type="unfinished">&amp;Zeige Spuren</translation>
+        <translation>&amp;Zeige Spuren</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="455"/>
         <source>General Information</source>
-        <translation type="unfinished">Allgemeine Information</translation>
+        <translation>Allgemeine Information</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="461"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="471"/>
         <source>Release Date</source>
-        <translation type="unfinished">Veröffentlichungsdatum</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="729"/>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlüsselworte</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -1026,52 +1026,52 @@
     <message>
         <location filename="../cdinfo.ui" line="502"/>
         <source>Recording Label</source>
-        <translation type="unfinished">Audioverlag</translation>
+        <translation>Audioverlag</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="528"/>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="535"/>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="564"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="595"/>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währung</translation>
+        <translation>Währung</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="612"/>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation>Kopien</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="636"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished">&amp;Kopien</translation>
+        <translation>&amp;Kopien</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="647"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished">&amp;Reservierungsstatus</translation>
+        <translation>&amp;Reservierungsstatus</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="675"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="702"/>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -1087,22 +1087,22 @@ Web-Adresse</translation>
     <message>
         <location filename="../cdinfo.ui" line="801"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished">&amp;Z39.50 Anfrage</translation>
+        <translation>&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="818"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="837"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
         <location filename="../cdinfo.ui" line="854"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -1110,67 +1110,67 @@ Web-Adresse</translation>
     <message>
         <location filename="../borrowers.ui" line="20"/>
         <source>BiblioteQ: Current Borrowers</source>
-        <translation type="unfinished">BiblioteQ: Aktuelle Ausleiherinnen</translation>
+        <translation>BiblioteQ: Aktuelle Ausleiher</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="61"/>
         <source>Copy Number</source>
-        <translation type="unfinished">Nummer der Kopie</translation>
+        <translation>Nummer der Kopie</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="66"/>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="71"/>
         <source>Member ID</source>
-        <translation type="unfinished">ID der Nutzerin</translation>
+        <translation>ID der Nutzerin</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="76"/>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation>Vorname</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="81"/>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation>Nachname</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="86"/>
         <source>Reservation Date</source>
-        <translation type="unfinished">Reservierungsdatum</translation>
+        <translation>Reservierungsdatum</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="91"/>
         <source>Due Date</source>
-        <translation type="unfinished">Fälligkeitsdatum</translation>
+        <translation>Fälligkeitsdatum</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="96"/>
         <source>Lender</source>
-        <translation type="unfinished">Leiherin</translation>
+        <translation>Leiherin</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="101"/>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="136"/>
         <source>&amp;Return</source>
-        <translation type="unfinished">&amp;Zurück</translation>
+        <translation>&amp;Zurück</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="153"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <location filename="../borrowers.ui" line="176"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -1199,29 +1199,29 @@ Web-Adresse</translation>
         <location filename="../copy_editor.cc" line="599"/>
         <location filename="../copy_editor.cc" line="609"/>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished">BiblioteQ: Fehler der Nutzerin</translation>
+        <translation type="unfinished">BiblioteQ: Fehler des Nutzers</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="66"/>
         <source>Please select the copy that you intend to delete.</source>
-        <translation type="unfinished">Bitte wähle die Kopie, die Du löschen möchtest.</translation>
+        <translation>Bitte wähle die Kopie, die Du löschen möchtest.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="73"/>
         <source>You must have at least one copy.</source>
-        <translation type="unfinished">Du musst zumindest eine Kopie haben.</translation>
+        <translation>Du musst zumindest eine Kopie haben.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="77"/>
         <location filename="../copy_editor.cc" line="187"/>
         <location filename="../copy_editor.cc" line="422"/>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="98"/>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation type="unfinished">Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
+        <translation>Es scheint, dass Deine zum Löschen ausgewählte Kopie reserviert ist.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="104"/>
@@ -1238,13 +1238,13 @@ Web-Adresse</translation>
         <location filename="../copy_editor.cc" line="806"/>
         <location filename="../copy_editor.cc" line="815"/>
         <source>Database Error</source>
-        <translation type="unfinished">Datenbankfehler</translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="105"/>
         <location filename="../copy_editor.cc" line="109"/>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished">Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
+        <translation>Der Reservierungsstatus der ausgewählten Kopie kann nicht bestimmt werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="108"/>
@@ -1254,179 +1254,179 @@ Web-Adresse</translation>
         <location filename="../copy_editor.cc" line="683"/>
         <location filename="../copy_editor.cc" line="701"/>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished">BiblioteQ: Datenbankfehler</translation>
+        <translation>BiblioteQ: Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="138"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="163"/>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kann die Mindest-Anzahl an Tagen nicht ermitteln.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="168"/>
         <source>&amp;Reserve</source>
-        <translation type="unfinished">&amp;Reservieren</translation>
+        <translation>&amp;Reservieren</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="186"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="188"/>
         <source>Availability</source>
-        <translation type="unfinished">Verfügbarkeit</translation>
+        <translation>Verfügbarkeit</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="207"/>
         <location filename="../copy_editor.cc" line="296"/>
         <location filename="../copy_editor.cc" line="765"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished">BiblioteQ: Fortschrittsanzeige</translation>
+        <translation>BiblioteQ: Fortschrittsanzeige</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="208"/>
         <source>Constructing objects...</source>
-        <translation type="unfinished">Konstruiere die Objekte...</translation>
+        <translation>Konstruiere die Objekte...</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="248"/>
         <location filename="../copy_editor.cc" line="651"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Fehler in der Speicherkapazität</translation>
+        <translation>Fehler in der Speicherkapazität</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="249"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Nicht genügend Speicher für das &quot;Ausleih&quot;-Objekt. Dieses ist ein ernstes Problem!</translation>
+        <translation>Nicht genügend Speicher für das &quot;Ausleih&quot;-Objekt. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="291"/>
         <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht bezogen werden.</translation>
+        <translation>Die Daten der Kopie können nicht bezogen werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="297"/>
         <source>Retrieving copy information...</source>
-        <translation type="unfinished">Bezug der Kopie Informationen..</translation>
+        <translation>Bezug der Kopie Informationen..</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="395"/>
         <source>Please select a copy to reserve.</source>
-        <translation type="unfinished">Bitte wähle eine Kopie für die Reservierung aus</translation>
+        <translation>Bitte wähle eine Kopie für die Reservierung aus.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="401"/>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation type="unfinished">Es scheint, dass die ausgewählte Kopie nicht verfügbar ist oder nicht exisitiert.</translation>
+        <translation>Es scheint, dass die ausgewählte Kopie nicht verfügbar ist oder nicht exisitiert.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="408"/>
         <source>Please select a future Due Date.</source>
-        <translation type="unfinished">Bitte wähle ein Fälligkeitsdatum in der Zukunft.</translation>
+        <translation>Bitte wähle ein Fälligkeitsdatum in der Zukunft.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="413"/>
         <source>Member ID</source>
-        <translation type="unfinished">ID der Nutzerin</translation>
+        <translation>ID des Nutzers</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="431"/>
         <location filename="../copy_editor.cc" line="435"/>
         <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation type="unfinished">Die Verfügbarkeit der ausgewählten Kopie kann nicht bestimmt werden.</translation>
+        <translation>Die Verfügbarkeit der ausgewählten Kopie kann nicht bestimmt werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="442"/>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation type="unfinished">Die ausgewählte Kope ist nicht verfügbar oder reserviert.</translation>
+        <translation>Die ausgewählte Kope ist nicht verfügbar oder reserviert.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="471"/>
         <location filename="../copy_editor.cc" line="474"/>
         <source>Unable to create a reserve record.</source>
-        <translation type="unfinished">Die Reservierungseingabe kann nicht erstellt werden.</translation>
+        <translation>Die Reservierungseingabe kann nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="504"/>
         <source>Unable to create a history record.</source>
-        <translation type="unfinished">Die Einabe zur Historie kann nicht erstellt werden</translation>
+        <translation>Die Einabe zur Historie kann nicht erstellt werden</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="597"/>
         <location filename="../copy_editor.cc" line="607"/>
         <source>Row number </source>
-        <translation type="unfinished">Spaltennummer</translation>
+        <translation>Spaltennummer</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="598"/>
         <source> contains an empty Barcode.</source>
-        <translation type="unfinished">enthält einen leeren Strichcode.</translation>
+        <translation>enthält einen leeren Strichcode.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="608"/>
         <source> contains a duplicate Barcode.</source>
-        <translation type="unfinished">enthält ein Dublikat als Strichcode.</translation>
+        <translation>enthält ein Dublikat als Strichcode.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="629"/>
         <location filename="../copy_editor.cc" line="632"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished">Die Datenbank-Transaktion kann nicht erstellt werden.</translation>
+        <translation>Die Datenbank-Transaktion kann nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="652"/>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
+        <translation>Nicht genügend Speicherkapazität für das &quot;Kopie&quot; Objekt. Dieses ist ein ernstes Problem!</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="666"/>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished">Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
+        <translation>Die Häufigkeit der Ausleihe kann nicht gespeichert werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="679"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Fehler in der Rückabwicklung.</translation>
+        <translation>Fehler in der Rückabwicklung.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="684"/>
         <source>Unable to save the copy data.</source>
-        <translation type="unfinished">Die Daten der Kopie können nicht gespeichert werden.</translation>
+        <translation>Die Daten der Kopie können nicht gespeichert werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="697"/>
         <source>Commit failure.</source>
-        <translation type="unfinished">Übertragungsfehler.</translation>
+        <translation>Übertragungsfehler.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="702"/>
         <source>Unable to commit the copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
+        <translation>Die &quot;Kopie&quot;-Daten können nicht übertragen werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="757"/>
         <source>Unable to purge copy data.</source>
-        <translation type="unfinished">Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
+        <translation>Die &quot;Kopie&quot; Daten können nicht entfernt werden.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="766"/>
         <source>Saving the copy data...</source>
-        <translation type="unfinished">Speichere die Kopie-Daten...</translation>
+        <translation>Speichere die Kopie-Daten...</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="807"/>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
         <location filename="../copy_editor.cc" line="816"/>
         <source>Unable to create copy data.</source>
-        <translation type="unfinished">Kopie-Daten können nicht erstellt werden.</translation>
+        <translation>Kopie-Daten können nicht erstellt werden.</translation>
     </message>
 </context>
 <context>
@@ -1434,12 +1434,12 @@ Web-Adresse</translation>
     <message>
         <location filename="../copybrowser.ui" line="20"/>
         <source>BiblioteQ: Copies Browser</source>
-        <translation type="unfinished">BiblioteQ: Kopien Browser</translation>
+        <translation>BiblioteQ: Kopien Browser</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="51"/>
         <source>Due Date</source>
-        <translation type="unfinished">Fälligkeitsdatum</translation>
+        <translation>Fälligkeitsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -1448,42 +1448,42 @@ Web-Adresse</translation>
     <message>
         <location filename="../copybrowser.ui" line="108"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="113"/>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="118"/>
         <source>Availability</source>
-        <translation type="unfinished">Verfügbarkeit</translation>
+        <translation>Verfügbarkeit</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="123"/>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="128"/>
         <source>Copy Number</source>
-        <translation type="unfinished">Kopie Anzahl</translation>
+        <translation>Kopie Anzahl</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="166"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Speichern</translation>
+        <translation>&amp;Speichern</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="183"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation>&amp;Löschen</translation>
     </message>
     <message>
         <location filename="../copybrowser.ui" line="200"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -1491,7 +1491,7 @@ Web-Adresse</translation>
     <message>
         <location filename="../customquery.ui" line="14"/>
         <source>BiblioteQ: Custom Query</source>
-        <translation type="unfinished">BiblioteQ: Individuelle Anfrage</translation>
+        <translation>BiblioteQ: Individuelle Anfrage</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please also note that retrieving image information may burden the query.</source>
@@ -1500,27 +1500,27 @@ Web-Adresse</translation>
     <message>
         <location filename="../customquery.ui" line="28"/>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dieses Menü ist für fortgeschrittene Nutzer, die eine tiefergehende Kenntnis von SQL und dem Datenbank-Layout von BiblioteQ haben. Bitte beachte, dass die Suche nach Bilder-Informationen (font_cover, back_cover) die Suchdauer erheblich überfordern kann.</translation>
     </message>
     <message>
         <location filename="../customquery.ui" line="48"/>
         <source>Database Tables</source>
-        <translation type="unfinished">Datenbank Tabellen</translation>
+        <translation>Datenbank Tabellen</translation>
     </message>
     <message>
         <location filename="../customquery.ui" line="74"/>
         <source>Query Statement</source>
-        <translation type="unfinished">Suchanfrage</translation>
+        <translation>Suchanfrage</translation>
     </message>
     <message>
         <location filename="../customquery.ui" line="108"/>
         <source>Execute</source>
-        <translation type="unfinished">Ausführen</translation>
+        <translation>Ausführen</translation>
     </message>
     <message>
         <location filename="../customquery.ui" line="125"/>
         <source>Close</source>
-        <translation type="unfinished">Schließen</translation>
+        <translation>Schließen</translation>
     </message>
 </context>
 <context>
@@ -1533,233 +1533,233 @@ Web-Adresse</translation>
     <message>
         <location filename="../dbenumerations.ui" line="43"/>
         <source>CD Formats</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">CD Formate</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="68"/>
         <source>Add CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge ein CD Format hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="85"/>
         <source>Remove CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne ein CD Format</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="277"/>
         <source>DVD Regions</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Regionen</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="302"/>
         <source>Add DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge DVD Regionen hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="319"/>
         <source>Remove DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne DVD Region</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="605"/>
         <source>Reservations Minimum Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimum an Reservierungstagen</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="613"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="618"/>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="623"/>
         <source>3</source>
-        <translation type="unfinished">3</translation>
+        <translation>3</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="628"/>
         <source>4</source>
-        <translation type="unfinished">4</translation>
+        <translation>4</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="633"/>
         <source>5</source>
-        <translation type="unfinished">5</translation>
+        <translation>5</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="638"/>
         <source>6</source>
-        <translation type="unfinished">6</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="446"/>
         <location filename="../dbenumerations.ui" line="643"/>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="648"/>
         <source>Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Tage</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="653"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Bücher</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="669"/>
         <source>DVDs</source>
-        <translation type="unfinished"></translation>
+        <translation>DVDs</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="685"/>
         <source>Journals</source>
-        <translation type="unfinished"></translation>
+        <translation>Journale</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="701"/>
         <source>Magazines</source>
-        <translation type="unfinished"></translation>
+        <translation>Magazine</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="717"/>
         <source>Music CDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Musik CDs</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="733"/>
         <source>Video Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiele</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="877"/>
         <source>Video Game Ratings</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiel-Bewertungen</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="902"/>
         <source>Add Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge eine Videospiel-Bewertung hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="919"/>
         <source>Remove Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne eine Videospiel-Bewertung</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="121"/>
         <source>DVD Aspect Ratios</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Seitenverhältnis</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="146"/>
         <source>Add DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge DVD Seitenverhältnis hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="163"/>
         <source>Remove DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne DVD Seitenverhältnis</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="360"/>
         <source>Languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachen</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="385"/>
         <source>Add Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge Sprache hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="402"/>
         <source>Remove Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne Sprache</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="527"/>
         <source>Monetary Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Währungseinheit</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="552"/>
         <source>Add Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge Währungseinheit hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="569"/>
         <source>Remove Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne Währungseinheit</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="199"/>
         <source>DVD Ratings</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Bewertungen</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="224"/>
         <source>Add DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge DVD Bewertung hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="241"/>
         <source>Remove DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne DVD Bewertung</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="438"/>
         <source>Locations</source>
-        <translation type="unfinished"></translation>
+        <translation>Orte</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="451"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="474"/>
         <source>Add Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge Ort hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="491"/>
         <source>Remove Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne Ort</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="799"/>
         <source>Video Game Platforms</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiel Plattform</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="824"/>
         <source>Add Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge Videospiel-Plattform hinzu</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="841"/>
         <source>Remove Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne Videospiel-Plattform</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="961"/>
         <source>Save Changes</source>
-        <translation type="unfinished">Änderungen speichern</translation>
+        <translation>Änderungen speichern</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="988"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
     <message>
         <location filename="../dbenumerations.ui" line="1021"/>
         <source>Close Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe den Browser</translation>
     </message>
 </context>
 <context>
@@ -1783,99 +1783,99 @@ Web-Adresse</translation>
         <location filename="../dbenumerations.cc" line="826"/>
         <location filename="../dbenumerations.cc" line="839"/>
         <source>Database Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankfehler</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="265"/>
         <source>Unable to retrieve the </source>
-        <translation type="unfinished"></translation>
+        <translation>Kann folgendes nicht erreichen:</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="266"/>
         <location filename="../dbenumerations.cc" line="676"/>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation>.</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="296"/>
         <location filename="../dbenumerations.cc" line="398"/>
         <source>Book</source>
-        <translation type="unfinished"></translation>
+        <translation>Buch</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="296"/>
         <location filename="../dbenumerations.cc" line="398"/>
         <source>DVD</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="296"/>
         <location filename="../dbenumerations.cc" line="398"/>
         <source>Journal</source>
-        <translation type="unfinished"></translation>
+        <translation>Journal</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="297"/>
         <location filename="../dbenumerations.cc" line="399"/>
         <source>Magazine</source>
-        <translation type="unfinished"></translation>
+        <translation>Magazin</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="297"/>
         <location filename="../dbenumerations.cc" line="399"/>
         <source>Music CD</source>
-        <translation type="unfinished"></translation>
+        <translation>Musik-CD</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="298"/>
         <location filename="../dbenumerations.cc" line="399"/>
         <source>Video Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiel</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="367"/>
         <source>CD Format</source>
-        <translation type="unfinished"></translation>
+        <translation>CD Format</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="372"/>
         <source>DVD Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Seitenverhältnis</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="377"/>
         <source>DVD Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Bewertung</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="382"/>
         <source>DVD Region</source>
-        <translation type="unfinished"></translation>
+        <translation>DVD Region</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="387"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="426"/>
         <source>Monetary Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Währungseinheit</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="431"/>
         <source>Video Game Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiel Plattform</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="436"/>
         <source>Video Game Rating</source>
-        <translation type="unfinished"></translation>
+        <translation>Videospiel-Bewertung</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="535"/>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine Datenbank Transaktion kann nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="545"/>
@@ -1930,7 +1930,7 @@ Web-Adresse</translation>
     <message>
         <location filename="../dbenumerations.cc" line="609"/>
         <source>cd format</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">CD Format</translation>
     </message>
     <message>
         <location filename="../dbenumerations.cc" line="615"/>
@@ -2030,63 +2030,63 @@ Web-Adresse</translation>
     <message>
         <location filename="../dvdinfo.ui" line="53"/>
         <source>Cover Images</source>
-        <translation type="unfinished">Umschlagbilder</translation>
+        <translation>Umschlagbilder</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="65"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished">Titelbild</translation>
+        <translation>Titelbild</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="87"/>
         <location filename="../dvdinfo.ui" line="141"/>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation>&amp;Auswahl</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="119"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished">Bild des Rückendeckels</translation>
+        <translation>Bild des Rückendeckels</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="168"/>
         <source>Specific Information</source>
-        <translation type="unfinished">Spezielle Informationen</translation>
+        <translation>Spezielle Informationen</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="174"/>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="unfinished">UPC</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="188"/>
         <source>Rating</source>
-        <translation type="unfinished">Bewertung</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="219"/>
         <source>Actor(s)</source>
-        <translation type="unfinished">Schauspielerinnen</translation>
+        <translation>Schauspieler</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="226"/>
         <source>Director(s)</source>
-        <translation type="unfinished">Direktorinnen</translation>
+        <translation>Direktor(en)</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="233"/>
         <source>Number of Discs</source>
-        <translation type="unfinished">Anzahl der Scheiben</translation>
+        <translation>Anzahl der Scheiben</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="267"/>
         <source>Runtime</source>
-        <translation type="unfinished">Laufzeit</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="274"/>
         <source>Format</source>
-        <translation type="unfinished">Format</translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="284"/>
@@ -2096,7 +2096,7 @@ Web-Adresse</translation>
     <message>
         <location filename="../dvdinfo.ui" line="311"/>
         <source>Aspect Ratio</source>
-        <translation type="unfinished">Seitenverhältnis</translation>
+        <translation>Seitenverhältnis</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="340"/>
@@ -2106,22 +2106,22 @@ Web-Adresse</translation>
     <message>
         <location filename="../dvdinfo.ui" line="389"/>
         <source>General Information</source>
-        <translation type="unfinished">Allgemeine Iinformationen</translation>
+        <translation>Allgemeine Iinformationen</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="395"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="405"/>
         <source>Release Date</source>
-        <translation type="unfinished">Veröffentlichungsdatum</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="659"/>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Stichworte</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -2135,47 +2135,47 @@ Web-Adresse</translation>
     <message>
         <location filename="../dvdinfo.ui" line="462"/>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="469"/>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="498"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="525"/>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währung</translation>
+        <translation>Währung</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="542"/>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation>Kopien</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="566"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished">&amp;Kopien</translation>
+        <translation>&amp;Kopien</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="577"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished">&amp;Reservierungsstatus</translation>
+        <translation>&amp;Reservierungsstatus</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="605"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="632"/>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -2190,22 +2190,22 @@ URL</source>
     <message>
         <location filename="../dvdinfo.ui" line="731"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished">&amp;Z39.50 Anfrage</translation>
+        <translation>&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="748"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="767"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
         <location filename="../dvdinfo.ui" line="784"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -2213,52 +2213,52 @@ URL</source>
     <message>
         <location filename="../errordiag.ui" line="14"/>
         <source>BiblioteQ: Error Log</source>
-        <translation type="unfinished">BiblioteQ: Fehlerdialog</translation>
+        <translation>BiblioteQ: Fehlerdialog</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="56"/>
         <source>Event Time</source>
-        <translation type="unfinished">Ereigniszeit</translation>
+        <translation>Ereigniszeit</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="61"/>
         <source>Event Type</source>
-        <translation type="unfinished">Ereignistyp</translation>
+        <translation>Ereignistyp</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="66"/>
         <source>Summary</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="71"/>
         <source>Full Description</source>
-        <translation type="unfinished">Vollständige Beschreibung</translation>
+        <translation>Vollständige Beschreibung</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="76"/>
         <source>File</source>
-        <translation type="unfinished">Datei</translation>
+        <translation>Datei</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="81"/>
         <source>Line Number</source>
-        <translation type="unfinished">Zeilennummer</translation>
+        <translation>Zeilennummer</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="119"/>
         <source>&amp;To Clipboard</source>
-        <translation type="unfinished">&amp;Zur Zwischenablage</translation>
+        <translation>&amp;Zur Zwischenablage</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="136"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../errordiag.ui" line="153"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -2266,12 +2266,12 @@ URL</source>
     <message>
         <location filename="../generic_thread.cc" line="58"/>
         <source>Unable to read </source>
-        <translation type="unfinished">Kann nicht gelesen werden</translation>
+        <translation>Kann nicht gelesen werden</translation>
     </message>
     <message>
         <location filename="../generic_thread.cc" line="60"/>
         <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished">. Diese Datei wird von BiblioteQ benötigt.</translation>
+        <translation>. Diese Datei wird von BiblioteQ benötigt.</translation>
     </message>
     <message>
         <location filename="../generic_thread.cc" line="150"/>
@@ -2289,37 +2289,37 @@ URL</source>
     <message>
         <location filename="../history.ui" line="14"/>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
-        <translation type="unfinished">BiblioteQ: Reservierungs-Historie der Nutzerin</translation>
+        <translation>BiblioteQ: Reservierungs-Historie des Nutzers</translation>
     </message>
     <message>
         <location filename="../history.ui" line="56"/>
         <source>Member ID</source>
-        <translation type="unfinished">ID der Nutzerin</translation>
+        <translation>ID des Nutzers</translation>
     </message>
     <message>
         <location filename="../history.ui" line="61"/>
         <source>First Name</source>
-        <translation type="unfinished">Vorname</translation>
+        <translation>Vorname</translation>
     </message>
     <message>
         <location filename="../history.ui" line="66"/>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation>Nachname</translation>
     </message>
     <message>
         <location filename="../history.ui" line="71"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../history.ui" line="76"/>
         <source>ID Number</source>
-        <translation type="unfinished">ID Nummer</translation>
+        <translation>ID Nummer</translation>
     </message>
     <message>
         <location filename="../history.ui" line="81"/>
         <source>Barcode</source>
-        <translation type="unfinished">Strichcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../history.ui" line="86"/>
@@ -2329,52 +2329,52 @@ URL</source>
     <message>
         <location filename="../history.ui" line="91"/>
         <source>Reservation Date</source>
-        <translation type="unfinished">Reservierungsdatum</translation>
+        <translation>Reservierungsdatum</translation>
     </message>
     <message>
         <location filename="../history.ui" line="96"/>
         <source>Due Date</source>
-        <translation type="unfinished">Fälligkeitsdatum</translation>
+        <translation>Fälligkeitsdatum</translation>
     </message>
     <message>
         <location filename="../history.ui" line="101"/>
         <source>Returned Date</source>
-        <translation type="unfinished">Rückgabedatum</translation>
+        <translation>Rückgabedatum</translation>
     </message>
     <message>
         <location filename="../history.ui" line="106"/>
         <source>Lender</source>
-        <translation type="unfinished">Leiherin</translation>
+        <translation>Entleiher</translation>
     </message>
     <message>
         <location filename="../history.ui" line="111"/>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation>MYOID</translation>
     </message>
     <message>
         <location filename="../history.ui" line="124"/>
         <source>Previous Member</source>
-        <translation type="unfinished">Vorherige Nutzerin</translation>
+        <translation>Vorheriger Nutzer</translation>
     </message>
     <message>
         <location filename="../history.ui" line="163"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished">&amp;Erneut Laden</translation>
+        <translation>&amp;Erneut Laden</translation>
     </message>
     <message>
         <location filename="../history.ui" line="180"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
         <location filename="../history.ui" line="197"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="../history.ui" line="221"/>
         <source>Next Member</source>
-        <translation type="unfinished">Nächste Nutzerin</translation>
+        <translation>Nächster Nutzer</translation>
     </message>
 </context>
 <context>
@@ -2387,34 +2387,34 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="53"/>
         <source>Cover Images</source>
-        <translation type="unfinished">Umschlagbilder</translation>
+        <translation>Umschlagbilder</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="65"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished">Titelbild</translation>
+        <translation>Titelbild</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="93"/>
         <location filename="../bookinfo.ui" line="170"/>
         <source>&amp;Download</source>
-        <translation type="unfinished">&amp;Herunterladen</translation>
+        <translation>&amp;Herunterladen</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="110"/>
         <location filename="../bookinfo.ui" line="193"/>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation>&amp;Auswahl</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="142"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished">Bild des Rückendeckels</translation>
+        <translation>Bild des Rückendeckels</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="220"/>
         <source>Specific Information</source>
-        <translation type="unfinished">Spezifische Informationen</translation>
+        <translation>Spezifische Informationen</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="226"/>
@@ -2442,7 +2442,7 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="298"/>
         <source>Edition</source>
-        <translation type="unfinished">Edition</translation>
+        <translation>Edition</translation>
     </message>
     <message>
         <source>1st</source>
@@ -2547,52 +2547,52 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="329"/>
         <source>Author(s)</source>
-        <translation type="unfinished">Autorinnen</translation>
+        <translation>Autor(en)</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="349"/>
         <source>Book Binding Type</source>
-        <translation type="unfinished">Typ der Buchbindung</translation>
+        <translation>Typ der Buchbindung</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="365"/>
         <source>Hardcover</source>
-        <translation type="unfinished">Festeinband</translation>
+        <translation>Festeinband</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="370"/>
         <source>Paperback</source>
-        <translation type="unfinished">Taschenbuch</translation>
+        <translation>Taschenbuch</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="393"/>
         <source>LC Control Number</source>
-        <translation type="unfinished">LC Kontroll Nummer</translation>
+        <translation>LC Kontroll Nummer</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="407"/>
         <source>Call Number</source>
-        <translation type="unfinished">Aufruf Nummer</translation>
+        <translation>Aufruf Nummer</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="421"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished">Dewey Klassifizierungs-Nummer</translation>
+        <translation>Dewey Klassifizierungs-Nummer</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="438"/>
         <source>General Information</source>
-        <translation type="unfinished">Allgemeine Informationen</translation>
+        <translation>Allgemeine Informationen</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="718"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="447"/>
         <source>Publication Date</source>
-        <translation type="unfinished">Veröffentlichungsdatum</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="251"/>
@@ -2611,52 +2611,52 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="478"/>
         <source>Publisher</source>
-        <translation type="unfinished">Verlag</translation>
+        <translation>Verlag</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="504"/>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="511"/>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="540"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="567"/>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währung</translation>
+        <translation>Währung</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="711"/>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation>Kopien</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="601"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished">&amp;Kopien</translation>
+        <translation>&amp;Kopien</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="612"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished">&amp;Reservierungsstatus</translation>
+        <translation>&amp;Reservierungsstatus</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="640"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="667"/>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -2666,7 +2666,7 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="694"/>
         <source>Place of Publication</source>
-        <translation type="unfinished">Platz der Veröffentlichung</translation>
+        <translation>Platz der Veröffentlichung</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="725"/>
@@ -2676,7 +2676,7 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="752"/>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Stichworte</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="794"/>
@@ -2686,22 +2686,22 @@ URL</source>
     <message>
         <location filename="../bookinfo.ui" line="811"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished">&amp;Z39.50 Anfrage</translation>
+        <translation>&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="830"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="846"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
         <location filename="../bookinfo.ui" line="863"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -2744,38 +2744,38 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="53"/>
         <source>Cover Images</source>
-        <translation type="unfinished">Umschlagbilder</translation>
+        <translation>Umschlagbilder</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="65"/>
         <source>Front Cover Image</source>
-        <translation type="unfinished">Titelbild</translation>
+        <translation>Titelbild</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="87"/>
         <location filename="../maginfo.ui" line="141"/>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Auswahl</translation>
+        <translation>&amp;Auswahl</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="119"/>
         <source>Back Cover Image</source>
-        <translation type="unfinished">Bild des Rückendeckels</translation>
+        <translation>Bild des Rückendeckels</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="168"/>
         <source>Specific Information</source>
-        <translation type="unfinished">Spezifische Informationen</translation>
+        <translation>Spezifische Informationen</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="174"/>
         <source>Issue (Number)</source>
-        <translation type="unfinished">Ausgabe (Nummer)</translation>
+        <translation>Ausgabe (Nummer)</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="181"/>
         <source>LC Control Number</source>
-        <translation type="unfinished">LC Kontroll Nummer</translation>
+        <translation>LC Kontroll Nummer</translation>
     </message>
     <message>
         <source>ISSN (9999-9999)</source>
@@ -2784,32 +2784,32 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="273"/>
         <source>Volume</source>
-        <translation type="unfinished">Ausgabe</translation>
+        <translation>Ausgabe</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="280"/>
         <source>Call Number</source>
-        <translation type="unfinished">Aufruf Nummer</translation>
+        <translation>Aufruf Nummer</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="287"/>
         <source>Dewey Class Number</source>
-        <translation type="unfinished">Dewey Klassifizierungs-Nummer</translation>
+        <translation>Dewey Klassifizierungs-Nummer</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="315"/>
         <source>General Information</source>
-        <translation type="unfinished">Allgemeine Informationen</translation>
+        <translation>Allgemeine Informationen</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="321"/>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="331"/>
         <source>Publication Date</source>
-        <translation type="unfinished">Veröffentlichungsdatum</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <source>MM/dd/yyyy</source>
@@ -2823,52 +2823,52 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="362"/>
         <source>Publisher</source>
-        <translation type="unfinished">Verlag</translation>
+        <translation>Verlag</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="388"/>
         <source>Categories</source>
-        <translation type="unfinished">Kategorien</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="395"/>
         <source>Price</source>
-        <translation type="unfinished">Preis</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="424"/>
         <source>Language</source>
-        <translation type="unfinished">Sprache</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="451"/>
         <source>Monetary Units</source>
-        <translation type="unfinished">Währung</translation>
+        <translation>Währung</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="468"/>
         <source>Copies</source>
-        <translation type="unfinished">Kopien</translation>
+        <translation>Kopien</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="492"/>
         <source>&amp;Copies</source>
-        <translation type="unfinished">&amp;Kopien</translation>
+        <translation>&amp;Kopien</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="503"/>
         <source>&amp;Reservation Status</source>
-        <translation type="unfinished">&amp;Reservierungsstatus</translation>
+        <translation>&amp;Reservierungsstatus</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="531"/>
         <source>Location</source>
-        <translation type="unfinished">Ort</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="558"/>
         <source>Abstract</source>
-        <translation type="unfinished">Zusammenfassung</translation>
+        <translation>Zusammenfassung</translation>
     </message>
     <message>
         <source>OFFSYSTEM
@@ -2878,7 +2878,7 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="595"/>
         <source>Place of Publication</source>
-        <translation type="unfinished">Erscheinungsort</translation>
+        <translation>Erscheinungsort</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="602"/>
@@ -2888,7 +2888,7 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="616"/>
         <source>Keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Stichworte</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="671"/>
@@ -2898,22 +2898,22 @@ URL</source>
     <message>
         <location filename="../maginfo.ui" line="688"/>
         <source>&amp;Z39.50 Query</source>
-        <translation type="unfinished">&amp;Z39.50 Anfrage</translation>
+        <translation>&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="704"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished">&amp;Zurücksetzen</translation>
+        <translation>&amp;Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="723"/>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Drucken</translation>
+        <translation>&amp;Drucken</translation>
     </message>
     <message>
         <location filename="../maginfo.ui" line="740"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Schließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
 </context>
 <context>
@@ -2991,107 +2991,107 @@ URL</source>
     <message>
         <location filename="../mainwindow.ui" line="242"/>
         <source>Previous Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige Seite</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="275"/>
         <source>Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Seite</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="324"/>
         <source>&amp;Help</source>
-        <translation type="unfinished">&amp;Hilfe</translation>
+        <translation>&amp;Hilfe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="330"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished">&amp;Werkzeuge</translation>
+        <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="340"/>
         <source>&amp;File</source>
-        <translation type="unfinished">&amp;Datei</translation>
+        <translation>&amp;Datei</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="344"/>
         <source>&amp;Recent SQLite Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte SQLite Dateien</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="359"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Eingabe</translation>
+        <translation>&amp;Eingabe</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="363"/>
         <source>&amp;Add Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Füge Objekt hinzu</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="383"/>
         <source>&amp;View</source>
-        <translation type="unfinished">&amp;Ansicht</translation>
+        <translation>&amp;Ansicht</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="391"/>
         <source>&amp;Options</source>
-        <translation type="unfinished">&amp;Optionen</translation>
+        <translation>&amp;Optionen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="395"/>
         <source>E&amp;ntries per Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Einträge pro Seite</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="400"/>
         <source>Preferred &amp;Z39.50 Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevorzugte &amp;Z39.50 Seite</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="405"/>
         <source>&amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="435"/>
         <source>Connect Toobar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="457"/>
         <source>Edit Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Ediere Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="480"/>
         <source>Reservations Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Werkzeugleiste Reservierungen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="501"/>
         <source>Search Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Werkzeugleiste Suche</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="521"/>
         <source>Configurations Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Werkzeugleiste Konfiguration</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="539"/>
         <source>Exit Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exit Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="601"/>
         <source>&amp;Populate View on Connect</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fülle die Ansicht bei Verbindung</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="654"/>
         <source>Exit Bibliote&amp;Q</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schließe BiblioteQ</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="657"/>
@@ -3101,32 +3101,32 @@ URL</source>
     <message>
         <location filename="../mainwindow.ui" line="720"/>
         <source>&amp;Refresh View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ansicht Aktualisieren</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="744"/>
         <source>Select &amp;Global Font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wähle Globale Schriftart</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="755"/>
         <source>Populate View on Item &amp;Creation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fülle die Ansicht bei Objekterstellung</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="821"/>
         <source>Print Current View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Drucke derzeitige Ansicht</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="910"/>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Behalte die Größe des Hauptfensters immer bei</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="961"/>
         <source>&amp;New SQLite Database</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erstelle neue SQLite Datenbank</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="964"/>
@@ -3552,33 +3552,33 @@ URL</source>
         <location filename="../main_table.cc" line="46"/>
         <location filename="../main_table.cc" line="58"/>
         <source>Borrower</source>
-        <translation>Zapůjčitel</translation>
+        <translation>Entleiher</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="47"/>
         <location filename="../main_table.cc" line="59"/>
         <source>Member ID</source>
-        <translation>Kód zapůjčitele</translation>
+        <translation>Mitglieds ID</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="50"/>
         <source>Barcode</source>
-        <translation>Čarový kód</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="51"/>
         <source>Reservation Date</source>
-        <translation>Datum vypůjčení</translation>
+        <translation>Reservierungsdatum</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="52"/>
         <source>Due Date</source>
-        <translation>Zapůjčeno do</translation>
+        <translation>Fälligkeitsdatum</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="62"/>
         <source>Request Date</source>
-        <translation>Datum vypůjčení</translation>
+        <translation>Anfragedatum</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="65"/>
@@ -3588,12 +3588,12 @@ URL</source>
         <location filename="../main_table.cc" line="159"/>
         <location filename="../main_table.cc" line="182"/>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="66"/>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation>ID Nummer</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="67"/>
@@ -3601,14 +3601,14 @@ URL</source>
         <location filename="../main_table.cc" line="119"/>
         <location filename="../main_table.cc" line="183"/>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation>Verlag</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="68"/>
         <location filename="../main_table.cc" line="93"/>
         <location filename="../main_table.cc" line="184"/>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="69"/>
@@ -3617,7 +3617,7 @@ URL</source>
         <location filename="../main_table.cc" line="165"/>
         <location filename="../main_table.cc" line="188"/>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="70"/>
@@ -3627,7 +3627,7 @@ URL</source>
         <location filename="../main_table.cc" line="166"/>
         <location filename="../main_table.cc" line="189"/>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="71"/>
@@ -3637,7 +3637,7 @@ URL</source>
         <location filename="../main_table.cc" line="168"/>
         <location filename="../main_table.cc" line="191"/>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation>Preis</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="72"/>
@@ -3647,7 +3647,7 @@ URL</source>
         <location filename="../main_table.cc" line="169"/>
         <location filename="../main_table.cc" line="192"/>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation>Währungseinheit</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="73"/>
@@ -3657,7 +3657,7 @@ URL</source>
         <location filename="../main_table.cc" line="170"/>
         <location filename="../main_table.cc" line="193"/>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation>Menge</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="74"/>
@@ -3667,7 +3667,7 @@ URL</source>
         <location filename="../main_table.cc" line="171"/>
         <location filename="../main_table.cc" line="194"/>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="78"/>
@@ -3677,7 +3677,7 @@ URL</source>
         <location filename="../main_table.cc" line="175"/>
         <location filename="../main_table.cc" line="198"/>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation>Verfügbarkeit</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="79"/>
@@ -3687,7 +3687,7 @@ URL</source>
         <location filename="../main_table.cc" line="176"/>
         <location filename="../main_table.cc" line="199"/>
         <source>Total Reserved</source>
-        <translation type="unfinished"></translation>
+        <translation>Total Reserviert</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="82"/>
@@ -3713,12 +3713,12 @@ URL</source>
         <location filename="../main_table.cc" line="121"/>
         <location filename="../main_table.cc" line="185"/>
         <source>Place of Publication</source>
-        <translation>Místo vydání</translation>
+        <translation>Erscheinungsort</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="95"/>
         <source>Edition</source>
-        <translation>Vydání</translation>
+        <translation>Edition</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="98"/>
@@ -3728,7 +3728,7 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="102"/>
         <source>Book Binding Type</source>
-        <translation>Vazba knihy</translation>
+        <translation>Buchbindung</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="104"/>
@@ -3739,18 +3739,18 @@ URL</source>
         <location filename="../main_table.cc" line="105"/>
         <location filename="../main_table.cc" line="195"/>
         <source>LC Control Number</source>
-        <translation>Kontrolní číslo LC</translation>
+        <translation>LC Kontrollnumer</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="106"/>
         <location filename="../main_table.cc" line="196"/>
         <source>Call Number</source>
-        <translation>Aufruf Nummer</translation>
+        <translation type="unfinished">Aufruf Nummer</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="107"/>
         <source>Dewey Class Number</source>
-        <translation>Klasifikace Dewey</translation>
+        <translation>Dewey Klassifizierungsnummer</translation>
     </message>
     <message>
         <source>Video Games</source>
@@ -3759,29 +3759,29 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="116"/>
         <source>Game Rating</source>
-        <translation>Hodnocení hry</translation>
+        <translation>Spiel Bewertung</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="117"/>
         <source>Platform</source>
-        <translation>Platforma</translation>
+        <translation>Plattform</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="118"/>
         <source>Mode</source>
-        <translation>Mód</translation>
+        <translation>Modus</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="120"/>
         <location filename="../main_table.cc" line="140"/>
         <location filename="../main_table.cc" line="162"/>
         <source>Release Date</source>
-        <translation>Datum vydání</translation>
+        <translation>Veröffentlichungsdatum</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="122"/>
         <source>Genres</source>
-        <translation>Žánr</translation>
+        <translation type="unfinished">Genre</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="124"/>
@@ -3796,45 +3796,45 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="137"/>
         <source>Artist</source>
-        <translation>Umělec</translation>
+        <translation>Künstler</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="138"/>
         <location filename="../main_table.cc" line="160"/>
         <source>Format</source>
-        <translation>Formát</translation>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="139"/>
         <source>Recording Label</source>
-        <translation>Nahrávací společnost</translation>
+        <translation>Aufnahme Verlag</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="141"/>
         <location filename="../main_table.cc" line="163"/>
         <source>Number of Discs</source>
-        <translation>Počet disků</translation>
+        <translation>Anzahl an Discs</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="142"/>
         <location filename="../main_table.cc" line="164"/>
         <source>Runtime</source>
-        <translation>Doba záznamu</translation>
+        <translation>Laufzeit</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="145"/>
         <source>Catalog Number</source>
-        <translation>Katalogové číslo</translation>
+        <translation>K</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="150"/>
         <source>Audio</source>
-        <translation>Zvuk</translation>
+        <translation>Katalog Nummer</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="151"/>
         <source>Recording Type</source>
-        <translation>Druh nahrávky</translation>
+        <translation>Aufnahme Typ</translation>
     </message>
     <message>
         <source>DVDs</source>
@@ -3848,7 +3848,7 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="172"/>
         <source>Rating</source>
-        <translation>Hodnocení</translation>
+        <translation>Bewertung</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="173"/>
@@ -3858,7 +3858,7 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="174"/>
         <source>Aspect Ratio</source>
-        <translation>Poměr stran obrazu</translation>
+        <translation>Seitenverhältnis</translation>
     </message>
     <message>
         <source>Journals</source>
@@ -3871,12 +3871,12 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="186"/>
         <source>Volume</source>
-        <translation>Svazek</translation>
+        <translation>Ausgabe</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="187"/>
         <source>Issue</source>
-        <translation>Číslo vydání</translation>
+        <translation>Heft</translation>
     </message>
     <message>
         <location filename="../main_table.cc" line="190"/>
@@ -3886,7 +3886,7 @@ URL</source>
     <message>
         <location filename="../main_table.cc" line="197"/>
         <source>Dewey Number</source>
-        <translation>Klasifikace Dewey</translation>
+        <translation>Dewey Klassifizierungsnummer</translation>
     </message>
 </context>
 <context>
@@ -3894,29 +3894,29 @@ URL</source>
     <message>
         <location filename="../members_browser.ui" line="14"/>
         <source>BiblioteQ: Members Browser</source>
-        <translation type="unfinished">BiblioteQ: Browser der Nutzerinnen</translation>
+        <translation>BiblioteQ: Browser der Nutzerinnen</translation>
     </message>
     <message>
         <location filename="../members_browser.ui" line="30"/>
         <source>Filter</source>
-        <translation type="unfinished">Filter</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="../members_browser.ui" line="38"/>
         <location filename="../members_browser.ui" line="95"/>
         <source>Member ID</source>
-        <translation type="unfinished">ID der Nutzerin</translation>
+        <translation>ID der Nutzerin</translation>
     </message>
     <message>
         <location filename="../members_browser.ui" line="43"/>
         <location filename="../members_browser.ui" line="105"/>
         <source>Last Name</source>
-        <translation type="unfinished">Nachname</translation>
+        <translation>Nachname</translation>
     </message>
     <message>
         <location filename="../members_browser.ui" line="61"/>
         <source>Apply Filter</source>
-        <translation type="unfinished">Bestätige Filter</translation>
+        <translation>Bestätige Filter</translation>
     </message>
     <message>
         <location filename="../members_browser.ui" line="100"/>
