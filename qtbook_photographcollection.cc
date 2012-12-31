@@ -32,12 +32,16 @@ qtbook_photographcollection::qtbook_photographcollection
 {
   pc.setupUi(this);
 
-  QMenu *menu = 0;
+  QMenu *menu1 = 0;
+  QMenu *menu2 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QGraphicsScene *scene3 = 0;
 
-  if((menu = new(std::nothrow) QMenu(this)) == 0)
+  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((menu2 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((scene1 = new(std::nothrow) QGraphicsScene(this)) == 0)
@@ -96,21 +100,29 @@ qtbook_photographcollection::qtbook_photographcollection
 	  SLOT(slotAddItem(void)));
   connect(photo.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePhoto(void)));
-  connect(menu->addAction(tr("Reset Collection &Image")),
+  connect(menu1->addAction(tr("Reset Collection &Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Collection &ID")),
+  connect(menu1->addAction(tr("Reset Collection &ID")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Collection &Title")),
+  connect(menu1->addAction(tr("Reset Collection &Title")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Collection &Location")),
+  connect(menu1->addAction(tr("Reset Collection &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Collection &About")),
+  connect(menu1->addAction(tr("Reset Collection &About")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset Collection &Notes")),
+  connect(menu1->addAction(tr("Reset Collection &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu2->addAction(tr("&All")),
+	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
+  connect(menu2->addAction(tr("&Current Page")),
+	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
 	  this, SLOT(slotPageChanged(const QString &)));
-  pc.resetButton->setMenu(menu);
+  connect(pc.exportPhotographsToolButton,
+	  SIGNAL(clicked(void)),
+	  this, SLOT(slotExportPhotographs(void)));
+  pc.resetButton->setMenu(menu1);
+  pc.exportPhotographsToolButton->setMenu(menu2);
 
   QString errorstr("");
 
@@ -1784,4 +1796,41 @@ void qtbook_photographcollection::slotDeleteItem(void)
 void qtbook_photographcollection::slotPageChanged(const QString &text)
 {
   showPhotographs(text.toInt());
+}
+
+/*
+** -- slotExportPhotographs() --
+*/
+
+void qtbook_photographcollection::slotExportPhotographs(void)
+{
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photographs "
+			   "Export"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted &&
+     dialog.selectedFiles().size() > 0)
+    {
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      QAction *action = qobject_cast<QAction *> (sender());
+
+      if(!action ||
+	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
+	misc_functions::exportPhotographs(qmain->getDB(), oid, -1,
+					  dialog.selectedFiles().value(0));
+      else
+	misc_functions::exportPhotographs
+	  (qmain->getDB(), oid, pc.page->currentText().toInt(),
+	   dialog.selectedFiles().value(0));
+
+      qapp->restoreOverrideCursor();
+    }
 }

@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1094</width>
-         <height>1013</height>
+         <height>1006</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -632,6 +632,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="exportPhotographsToolButton">
+        <property name="text">
+         <string>&amp;Export Photographs</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::MenuButtonPopup</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
@@ -718,6 +728,7 @@
   <tabstop>okButton</tabstop>
   <tabstop>addItemButton</tabstop>
   <tabstop>resetButton</tabstop>
+  <tabstop>exportPhotographsToolButton</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>

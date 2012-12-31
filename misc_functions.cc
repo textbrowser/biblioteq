@@ -2274,3 +2274,67 @@ bool misc_functions::isGnome(void)
   else
     return false;
 }
+
+/*
+** -- exportPhotographs() --
+*/
+
+void misc_functions::exportPhotographs(const QSqlDatabase &db,
+				       const QString &collectionOid,
+				       const int pageOffset,
+				       const QString &destinationPath)
+{
+  Q_UNUSED(destinationPath);
+  QSqlQuery query(db);
+
+  if(pageOffset <= 0)
+    {
+      query.prepare("SELECT image, id FROM photograph WHERE "
+		    "collection_oid = ? AND image IS NOT NULL");
+      query.bindValue(0, collectionOid);
+    }
+  else
+    {
+      query.prepare("SELECT image, id FROM "
+		    "photograph WHERE "
+		    "collection_oid = ? "
+		    "ORDER BY id "
+		    "LIMIT ? "
+		    "OFFSET ?");
+      query.bindValue(0, collectionOid);
+      query.bindValue(1, qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE);
+      query.bindValue
+	(2,
+	 qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE * (pageOffset - 1));
+    }
+
+  if(query.exec())
+    while(query.next())
+      {
+	QImage image;
+	QByteArray bytes
+	  (QByteArray::fromBase64(query.value(0).toByteArray()));
+	const char *format = 0;
+
+	if(bytes.size() >= 4 &&
+	   tolower(bytes[1]) == 'p' &&
+	   tolower(bytes[2]) == 'n' &&
+	   tolower(bytes[3]) == 'g')
+	  format = "PNG";
+	else if(bytes.size() >= 10 &&
+		tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
+		tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
+	  format = "JPG";
+	else if(bytes.size() >= 2 &&
+		tolower(bytes[0]) == 'b' &&
+		tolower(bytes[1]) == 'm')
+	  format = "BMP";
+	else // Guess!
+	  format = "JPG";
+
+	image.loadFromData(bytes, format);
+	image.save
+	  (destinationPath + QDir::separator() + query.value(1).toString(),
+	   format, 100);
+      }
+}

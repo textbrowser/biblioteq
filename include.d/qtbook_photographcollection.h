@@ -65,6 +65,7 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   void slotUpdateItem(void);
   void slotPageChanged(const QString &);
   void slotSelectImage(void);
+  void slotExportPhotographs(void);
   void slotSceneSelectionChanged(void);
 };
 

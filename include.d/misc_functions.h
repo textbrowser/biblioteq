@@ -72,6 +72,10 @@ class misc_functions
 			   const QString &);
   static void hideAdminFields(QMainWindow *, const QString &);
   static void highlightWidget(QWidget *, const QColor &);
+  static void exportPhotographs(const QSqlDatabase &,
+				const QString &,
+				const int,
+				const QString &);
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &,
 				  const QString &, QString &);
