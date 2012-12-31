@@ -2333,8 +2333,10 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
 	  format = "JPG";
 
 	image.loadFromData(bytes, format);
-	image.save
-	  (destinationPath + QDir::separator() + query.value(1).toString(),
-	   format, 100);
+
+	if(!image.isNull())
+	  image.save
+	    (destinationPath + QDir::separator() + query.value(1).toString(),
+	     format, 100);
       }
 }
