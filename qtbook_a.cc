@@ -3322,6 +3322,12 @@ void qtbook::slotDisplaySummary(void)
 	    tmpstr = "<br>";
 
 	  summary += tmpstr;
+	  tmpstr = misc_functions::getColumnString
+	    (ui.table, i, ui.table->columnNumber("Photograph Count"));
+
+	  if(!tmpstr.isEmpty())
+	    summary += "<br>" + QString(tr("%1 Photograph(s)")).arg(tmpstr);
+
 	  summary += "<br>";
 	}
       else if(type == "Video Game")

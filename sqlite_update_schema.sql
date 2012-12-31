@@ -2,6 +2,11 @@
 ** Please do not load this file in its entirety.
 */
 
+/*
+** As of version 6.46, BiblioteQ will automatically update
+** SQLite databases.
+*/
+
 /* Release 4.04 */
 
 ALTER TABLE book ADD offsystem_url TEXT;
