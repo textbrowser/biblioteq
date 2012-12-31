@@ -2284,18 +2284,17 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
 				       const int pageOffset,
 				       const QString &destinationPath)
 {
-  Q_UNUSED(destinationPath);
   QSqlQuery query(db);
 
   if(pageOffset <= 0)
     {
-      query.prepare("SELECT image, id FROM photograph WHERE "
+      query.prepare("SELECT image FROM photograph WHERE "
 		    "collection_oid = ? AND image IS NOT NULL");
       query.bindValue(0, collectionOid);
     }
   else
     {
-      query.prepare("SELECT image, id FROM "
+      query.prepare("SELECT image FROM "
 		    "photograph WHERE "
 		    "collection_oid = ? "
 		    "ORDER BY id "
@@ -2309,34 +2308,42 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
     }
 
   if(query.exec())
-    while(query.next())
-      {
-	QImage image;
-	QByteArray bytes
-	  (QByteArray::fromBase64(query.value(0).toByteArray()));
-	const char *format = 0;
+    {
+      int i = 0;
 
-	if(bytes.size() >= 4 &&
-	   tolower(bytes[1]) == 'p' &&
-	   tolower(bytes[2]) == 'n' &&
-	   tolower(bytes[3]) == 'g')
-	  format = "PNG";
-	else if(bytes.size() >= 10 &&
-		tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
-		tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
-	  format = "JPG";
-	else if(bytes.size() >= 2 &&
-		tolower(bytes[0]) == 'b' &&
-		tolower(bytes[1]) == 'm')
-	  format = "BMP";
-	else // Guess!
-	  format = "JPG";
+      while(query.next())
+	{
+	  QImage image;
+	  QByteArray bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  const char *format = 0;
 
-	image.loadFromData(bytes, format);
+	  if(bytes.size() >= 4 &&
+	     tolower(bytes[1]) == 'p' &&
+	     tolower(bytes[2]) == 'n' &&
+	     tolower(bytes[3]) == 'g')
+	    format = "PNG";
+	  else if(bytes.size() >= 10 &&
+		  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
+		  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
+	    format = "JPG";
+	  else if(bytes.size() >= 2 &&
+		  tolower(bytes[0]) == 'b' &&
+		  tolower(bytes[1]) == 'm')
+	    format = "BMP";
+	  else // Guess!
+	    format = "JPG";
 
-	if(!image.isNull())
-	  image.save
-	    (destinationPath + QDir::separator() + query.value(1).toString(),
-	     format, 100);
-      }
+	  image.loadFromData(bytes, format);
+
+	  if(!image.isNull())
+	    {
+	      i += 1;
+	      image.save
+		(destinationPath + QDir::separator() +
+		 QString("biblioteq_photograph_export_%1.%2").
+		 arg(i).arg(format), format, 100);
+	    }
+	}
+    }
 }
