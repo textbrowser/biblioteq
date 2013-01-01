@@ -2289,8 +2289,12 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
   if(pageOffset <= 0)
     {
       query.prepare("SELECT image FROM photograph WHERE "
-		    "collection_oid = ? AND image IS NOT NULL");
+		    "collection_oid = ? AND image IS NOT NULL "
+		    "UNION "
+		    "SELECT image FROM photograph_collection WHERE "
+		    "myoid = ? AND image IS NOT NULL");
       query.bindValue(0, collectionOid);
+      query.bindValue(1, collectionOid);
     }
   else
     {
@@ -2299,17 +2303,23 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
 		    "collection_oid = ? "
 		    "ORDER BY id "
 		    "LIMIT ? "
-		    "OFFSET ?");
+		    "OFFSET ? "
+		    "UNION "
+		    "SELECT image FROM "
+		    "photograph_collection WHERE "
+		    "collection_oid = ?");
       query.bindValue(0, collectionOid);
       query.bindValue(1, qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE);
       query.bindValue
 	(2,
 	 qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE * (pageOffset - 1));
+      query.bindValue(2, collectionOid);
     }
 
   if(query.exec())
     {
       int i = 0;
+      qint64 id = QDateTime::currentMSecsSinceEpoch();
 
       while(query.next())
 	{
@@ -2341,8 +2351,8 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
 	      i += 1;
 	      image.save
 		(destinationPath + QDir::separator() +
-		 QString("biblioteq_photograph_export_%1.%2").
-		 arg(i).arg(format), format, 100);
+		 QString("%1_%2.%3").arg(id).arg(i).arg(format).toLower(),
+		 format, 100);
 	    }
 	}
     }
