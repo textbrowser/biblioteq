@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>990</width>
+    <width>1088</width>
     <height>1602</height>
    </rect>
   </property>
@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>972</width>
-         <height>1542</height>
+         <width>1064</width>
+         <height>1533</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -171,7 +171,7 @@
             <item row="2" column="0">
              <widget class="QLabel" name="label_6">
               <property name="text">
-               <string>Issue (Number)</string>
+               <string>Issue Number</string>
               </property>
              </widget>
             </item>
