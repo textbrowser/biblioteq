@@ -20,19 +20,23 @@ d) Log into your PostgreSQL database and load the postgresql_create_schema.sql f
 
 2. BiblioteQ Installation
 
-	2.1 OS X and Windows Installation
+	2.1 OS X Installation
 
-	OS X and Windows users are urged to download the appropriate installers. After an installer has been downloaded, double-click on the appropriate icon and follow the on-screen instructions.
+	Please copy the contents of the OS X bundle to the desired folder.
 
 	2.2 Unix Installation
 
-	Installing BiblioteQ on platforms that lack installers involves several operations. First, please resolve the following software prerequisites:
+	Installing BiblioteQ on platforms that lack installers involves several operations. First, please 	resolve the following software prerequisites:
 a) Qt 4.7.4, or higher, must be installed. Please download the software from http://qt.nokia.com/downloads. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin. You may compile Qt with the PostgreSQL driver via ./configure -v -qt-sql-psql -I /usr/local/include/postgresql -L /usr/local/lib/postgresql. The include and library directories may be different depending upon your environment.
 b) YAZ 4.2.x, or higher, must be installed. Please download the software from http://www.indexdata.com/yaz.
 c) If you intend to use PostgreSQL, the PostgreSQL database package must be installed. Please download the software from http://www.postgresql.org/download.
 d) If you intend to use SQLite, the SQLite 3.5.6 package must be installed. Please download the software from http://www.sqlite.org/download.html.
 e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make.
 f) Finally, execute sudo make install.
+
+	2.3 Windows Installation
+
+	Windows users are urged to download the appropriate installer. After an installer has been 	downloaded, double-click on the appropriate icon and follow the on-screen instructions.
 
 3. Configuring BiblioteQ
 
@@ -66,5 +70,5 @@ f) Finally, execute sudo make install.
 
 6. SQLite Database Removal
 
-	Delete the SQLite database file.
+	Delete the desired SQLite database file(s).
 
