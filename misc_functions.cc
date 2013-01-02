@@ -2298,22 +2298,19 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
     }
   else
     {
-      query.prepare("SELECT image FROM "
-		    "photograph WHERE "
-		    "collection_oid = ? "
-		    "ORDER BY id "
+      query.prepare("SELECT image FROM photograph WHERE "
+		    "collection_oid = ? AND image IS NOT NULL "
 		    "LIMIT ? "
 		    "OFFSET ? "
 		    "UNION "
-		    "SELECT image FROM "
-		    "photograph_collection WHERE "
-		    "collection_oid = ?");
+		    "SELECT image FROM photograph_collection WHERE "
+		    "myoid = ? AND image IS NOT NULL");
       query.bindValue(0, collectionOid);
       query.bindValue(1, qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE);
       query.bindValue
 	(2,
 	 qtbook_photographcollection::PHOTOGRAPHS_PER_PAGE * (pageOffset - 1));
-      query.bindValue(2, collectionOid);
+      query.bindValue(3, collectionOid);
     }
 
   if(query.exec())
