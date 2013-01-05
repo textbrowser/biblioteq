@@ -884,9 +884,9 @@ void qtbook_photographcollection::slotPrint(void)
     pc.title_collection->text().trimmed() + "<br>";
   html += "<b>" + tr("Collection Location:") + "</b> " +
     pc.location->currentText().trimmed() + "<br>";
-  html += "<b>" + tr("About:") + "</b> " +
+  html += "<b>" + tr("Collection About:") + "</b> " +
     pc.about_collection->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Collection Nodes:") + "</b> " +
+  html += "<b>" + tr("Collection Notes:") + "</b> " +
     pc.notes_collection->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("Item ID:") + "</b> " +
     pc.id_item->text().trimmed() + "<br>";
