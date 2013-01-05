@@ -30,8 +30,6 @@ qtbook_photographcollection::qtbook_photographcollection
  const QString &oidArg,
  const int rowArg):QMainWindow()
 {
-  pc.setupUi(this);
-
   QMenu *menu1 = 0;
   QMenu *menu2 = 0;
   QGraphicsScene *scene1 = 0;
@@ -56,13 +54,11 @@ qtbook_photographcollection::qtbook_photographcollection
   if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  pc.setupUi(this);
+
   if((scene = new(std::nothrow) bgraphicsscene(pc.graphicsView)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  connect(scene,
-	  SIGNAL(deleteKeyPressed(void)),
-	  this,
-	  SLOT(slotDeleteItem(void)));
   connect(scene,
 	  SIGNAL(selectionChanged(void)),
 	  this,
@@ -506,6 +502,7 @@ void qtbook_photographcollection::search
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
   pc.itemGroup->setVisible(false);
+  pc.exportPhotographsToolButton->setVisible(false);
   pc.location->insertItem(0, tr("Any"));
   pc.location->setCurrentIndex(0);
 
@@ -570,6 +567,15 @@ void qtbook_photographcollection::modify(const int state,
 
   if(state == qtbook::EDITABLE)
     {
+      disconnect(scene,
+		 SIGNAL(deleteKeyPressed(void)),
+		 this,
+		 SLOT(slotDeleteItem(void)));
+      connect(scene,
+	      SIGNAL(deleteKeyPressed(void)),
+	      this,
+	      SLOT(slotDeleteItem(void)));
+
       if(behavior.isEmpty())
 	{
 	  setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
@@ -758,6 +764,10 @@ void qtbook_photographcollection::insert(void)
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
   engWindowTitle = "Create";
   pc.id_collection->setFocus();
+  pc.page->blockSignals(true);
+  pc.page->clear();
+  pc.page->addItem("1");
+  pc.page->blockSignals(false);
   storeData();
   show();
 }
@@ -969,6 +979,7 @@ void qtbook_photographcollection::duplicate
 (const QString &p_oid, const int state)
 {
   modify(state, "Create"); // Initial population.
+  pc.addItemButton->setEnabled(false);
   oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
 }
