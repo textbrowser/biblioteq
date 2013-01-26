@@ -354,6 +354,10 @@
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -449,10 +453,6 @@
         <translation>Titel</translation>
     </message>
     <message>
-        <source>MM/yyyy</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
         <translation>&amp;Sluiten</translation>
     </message>
@@ -511,6 +511,10 @@
     <message>
         <source>Available</source>
         <translation type="unfinished">Beschikbaar</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -747,7 +751,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiest</translation>
+        <translation type="obsolete">Artiest</translation>
     </message>
     <message>
         <source>Copies</source>
@@ -853,6 +857,14 @@
         <source>Recording Type</source>
         <translation>Opname Type</translation>
     </message>
+    <message>
+        <source>Artist(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -945,7 +957,7 @@
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation type="obsolete">Klant ID</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -1087,6 +1099,10 @@
         <source>BiblioteQ: Copy Browser (%1)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1129,6 +1145,10 @@
     <message>
         <source>BiblioteQ: Copies Browser</source>
         <translation>BiblioteQ: Kopieën Browser</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1535,6 +1555,10 @@
         <source>Database Error</source>
         <translation>Database Fout</translation>
     </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dvdDialog</name>
@@ -1677,6 +1701,10 @@
     <message>
         <source>Monetary Units</source>
         <translation>Munteenheid</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1982,6 +2010,14 @@
         <source>ISBNs</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -2115,10 +2151,22 @@
     </message>
     <message>
         <source>Issue (Number)</source>
-        <translation>Uitgave (Nummer)</translation>
+        <translation type="obsolete">Uitgave (Nummer)</translation>
     </message>
     <message>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issue Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2588,6 +2636,18 @@
         <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred &amp;SRU Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -2791,6 +2851,18 @@
         <source>Total Reserved</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Photograph Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -2946,6 +3018,204 @@
     </message>
 </context>
 <context>
+    <name>pcDialog</name>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>About Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Selecteer</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Locatie</translation>
+    </message>
+    <message>
+        <source>Collection Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Format</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Kopieën</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Photographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="unfinished">&amp;Afdrukken</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
+    </message>
+</context>
+<context>
+    <name>photographDialog</name>
+    <message>
+        <source>BiblioteQ: Photograph Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Selecteer</translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Format</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Kopieën</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>.</source>
@@ -2977,7 +3247,7 @@
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source> %1 </source>
@@ -2993,7 +3263,7 @@
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>An error occurred while attempting to update the database account for </source>
@@ -3193,7 +3463,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Expiration Date</source>
@@ -3209,7 +3479,7 @@
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Platenmaatschappij</translation>
+        <translation type="obsolete">Platenmaatschappij</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
@@ -3361,7 +3631,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Unable to remove the patron account </source>
@@ -3369,7 +3639,7 @@
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
@@ -3381,7 +3651,7 @@
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation type="obsolete">Plaats van Uitgave</translation>
     </message>
     <message>
         <source>The main table does not contain enough information for item deletion.</source>
@@ -3417,7 +3687,7 @@
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Onleesbaar</translation>
+        <translation type="obsolete">Onleesbaar</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
@@ -3441,7 +3711,7 @@
     </message>
     <message>
         <source>File Error</source>
-        <translation>Bestands Fout</translation>
+        <translation type="obsolete">Bestands Fout</translation>
     </message>
     <message>
         <source>Full Description</source>
@@ -3541,7 +3811,7 @@
     </message>
     <message>
         <source>Processing the global configuration file.</source>
-        <translation>Uitvoeren van het algemene configuratie bestand.</translation>
+        <translation type="obsolete">Uitvoeren van het algemene configuratie bestand.</translation>
     </message>
     <message>
         <source>Unable to retrieve administrator data for table populating.</source>
@@ -3581,7 +3851,7 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation type="obsolete">Datum van Uitgave</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -3593,7 +3863,7 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>Insert &amp;DVD</source>
@@ -3685,7 +3955,7 @@
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
-        <translation>BiblioteQ: Bestands  Fout</translation>
+        <translation type="obsolete">BiblioteQ: Bestands  Fout</translation>
     </message>
     <message>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
@@ -3729,7 +3999,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>Please select at least one item to view.</source>
@@ -3821,7 +4091,7 @@
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation type="obsolete">Uitgave Datum</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -3861,7 +4131,7 @@
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation type="obsolete">Catalogus Nummer</translation>
     </message>
     <message>
         <source>The function misc_functions::userCount() failed for </source>
@@ -3885,7 +4155,7 @@
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
@@ -3967,7 +4237,7 @@
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
@@ -4014,15 +4284,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4109,6 +4371,38 @@
         <source>You have selected a new language. Please restart BiblioteQ.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4126,7 +4420,7 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
@@ -4134,7 +4428,7 @@
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Om een Z39.50 syteem aanvraag te doen moet U of het ISBN-10 of ISBN-13 ingeven.</translation>
+        <translation type="obsolete">Om een Z39.50 syteem aanvraag te doen moet U of het ISBN-10 of ISBN-13 ingeven.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -4142,15 +4436,15 @@
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Type Boekbinding</translation>
+        <translation type="obsolete">Type Boekbinding</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation type="obsolete">Prijs</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -4202,7 +4496,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -4210,7 +4504,7 @@
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation type="obsolete">LC Controle Nummer</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
@@ -4234,11 +4528,11 @@
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation type="obsolete">Aanroep Nummer</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Classificatie Nummer</translation>
+        <translation type="obsolete">Dewey Classificatie Nummer</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
@@ -4258,7 +4552,7 @@
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -4274,7 +4568,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -4282,7 +4576,7 @@
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation type="obsolete">Uitgave Plaats</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -4294,7 +4588,7 @@
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
+        <translation type="obsolete">Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
@@ -4366,7 +4660,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Book Entry</source>
@@ -4386,11 +4680,11 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation type="obsolete">Datum van Uitgave</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
@@ -4446,7 +4740,7 @@
     </message>
     <message>
         <source>Author(s)</source>
-        <translation>Auteur(s)</translation>
+        <translation type="obsolete">Auteur(s)</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
@@ -4478,7 +4772,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -4490,15 +4784,15 @@
     </message>
     <message>
         <source>Edition</source>
-        <translation>Editie</translation>
+        <translation type="obsolete">Editie</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation type="obsolete">Categorieën</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
+        <translation type="obsolete">Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected book&apos;s data.</source>
@@ -4538,7 +4832,7 @@
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry (</source>
@@ -4570,11 +4864,11 @@
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
@@ -4632,6 +4926,42 @@
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -4645,7 +4975,7 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -4653,15 +4983,15 @@
     </message>
     <message>
         <source>Audio</source>
-        <translation>Audio</translation>
+        <translation type="obsolete">Audio</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation type="obsolete">Prijs</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -4717,7 +5047,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
@@ -4729,7 +5059,7 @@
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Platenmaatschappij</translation>
+        <translation type="obsolete">Platenmaatschappij</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
@@ -4753,7 +5083,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiest</translation>
+        <translation type="obsolete">Artiest</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -4765,7 +5095,7 @@
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -4781,7 +5111,7 @@
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -4789,7 +5119,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Unable to create track data.</source>
@@ -4881,7 +5211,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
@@ -4905,11 +5235,11 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum Uitgave</translation>
+        <translation type="obsolete">Datum Uitgave</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -4933,7 +5263,7 @@
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation type="obsolete">Duur</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
@@ -4973,7 +5303,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -4993,11 +5323,11 @@
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation type="obsolete">Aantal Discs</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation type="obsolete">Categorieën</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
@@ -5037,7 +5367,7 @@
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation type="obsolete">Uitgave Datum</translation>
     </message>
     <message>
         <source>Track Title</source>
@@ -5045,7 +5375,7 @@
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -5069,7 +5399,7 @@
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
+        <translation type="obsolete">Catalogus Nummer</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
@@ -5097,7 +5427,7 @@
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Opname Type</translation>
+        <translation type="obsolete">Opname Type</translation>
     </message>
     <message>
         <source>Catalog Number:</source>
@@ -5152,7 +5482,7 @@
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -5160,7 +5490,7 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -5168,11 +5498,11 @@
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation type="obsolete">Prijs</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5200,11 +5530,11 @@
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Beeldformaat</translation>
+        <translation type="obsolete">Beeldformaat</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Please complete the Format field.</source>
@@ -5248,7 +5578,7 @@
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Please complete the Studio field.</source>
@@ -5268,7 +5598,7 @@
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -5276,19 +5606,19 @@
     </message>
     <message>
         <source>Rating</source>
-        <translation>Rating</translation>
+        <translation type="obsolete">Rating</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Regio</translation>
+        <translation type="obsolete">Regio</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -5352,7 +5682,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
@@ -5380,7 +5710,7 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation type="obsolete">Datum van Uitgave</translation>
     </message>
     <message>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
@@ -5388,7 +5718,7 @@
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5408,7 +5738,7 @@
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Duur</translation>
+        <translation type="obsolete">Duur</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -5452,7 +5782,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -5464,11 +5794,11 @@
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
+        <translation type="obsolete">Aantal Discs</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation type="obsolete">Categorieën</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd regions.</source>
@@ -5500,7 +5830,7 @@
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation type="obsolete">Uitgave Datum</translation>
     </message>
     <message>
         <source>Keyword:</source>
@@ -5508,7 +5838,7 @@
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>Aspect Ratio:</source>
@@ -5622,11 +5952,11 @@
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -5638,15 +5968,15 @@
     </message>
     <message>
         <source>Issue</source>
-        <translation>Issue</translation>
+        <translation type="obsolete">Issue</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation type="obsolete">Prijs</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5678,7 +6008,7 @@
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Dewey Nummer</translation>
+        <translation type="obsolete">Dewey Nummer</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
@@ -5702,7 +6032,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -5714,7 +6044,7 @@
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Controle Nummer</translation>
+        <translation type="obsolete">LC Controle Nummer</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
@@ -5738,7 +6068,7 @@
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
+        <translation type="obsolete">Aanroep Nummer</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
@@ -5754,7 +6084,7 @@
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -5770,7 +6100,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -5778,7 +6108,7 @@
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
+        <translation type="obsolete">Plaats van Uitgave</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Journal Entry</source>
@@ -5786,7 +6116,7 @@
     </message>
     <message>
         <source>Volume</source>
-        <translation>Volume</translation>
+        <translation type="obsolete">Volume</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -5798,7 +6128,7 @@
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
+        <translation type="obsolete">Wilt u de bestaande gegevens vervangen met deze teruggevonden in het Z39.50 systeem?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
@@ -5866,7 +6196,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details</source>
@@ -5882,11 +6212,11 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation type="obsolete">Datum van Uitgave</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5954,11 +6284,11 @@
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation>Om een Z39.50 syteem aanvraag te doen moet U het ISSN  ingeven.</translation>
+        <translation type="obsolete">Om een Z39.50 syteem aanvraag te doen moet U het ISSN  ingeven.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -5970,7 +6300,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation type="obsolete">Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details</source>
@@ -5978,7 +6308,7 @@
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
+        <translation type="obsolete">Downloaden van Informatie van het Z39.50 systeem. Even geduld a.u.b. ...</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
@@ -6014,7 +6344,7 @@
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>Volume:</source>
@@ -6116,6 +6446,317 @@
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>qtbook_photographcollection</name>
+    <message>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?</source>
+        <translation type="unfinished">U heeft onopgeslagen data. Toch afsluiten?</translation>
+    </message>
+    <message>
+        <source>Collection ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection About:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Medium:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copyright:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Call Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Other Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Subjects:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Verwijderen van geselecteerde item(s)...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6129,11 +6770,11 @@
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Mode</translation>
+        <translation type="obsolete">Mode</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -6141,7 +6782,7 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -6153,11 +6794,11 @@
     </message>
     <message>
         <source>Price</source>
-        <translation>Prijs</translation>
+        <translation type="obsolete">Prijs</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -6193,7 +6834,7 @@
     </message>
     <message>
         <source>Platform</source>
-        <translation>Platform</translation>
+        <translation type="obsolete">Platform</translation>
     </message>
     <message>
         <source>Reset &amp;Game Rating</source>
@@ -6201,7 +6842,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -6225,7 +6866,7 @@
     </message>
     <message>
         <source>Genres</source>
-        <translation>Genres</translation>
+        <translation type="obsolete">Genres</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -6241,7 +6882,7 @@
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -6249,7 +6890,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation>Locatie</translation>
+        <translation type="obsolete">Locatie</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -6257,11 +6898,11 @@
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Uitgave Plaats</translation>
+        <translation type="obsolete">Uitgave Plaats</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Game Rating</translation>
+        <translation type="obsolete">Game Rating</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -6309,7 +6950,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Video Game Entry</source>
@@ -6333,11 +6974,11 @@
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum van Uitgave</translation>
+        <translation type="obsolete">Datum van Uitgave</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Uitgever</translation>
+        <translation type="obsolete">Uitgever</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry (</source>
@@ -6409,7 +7050,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Aantal</translation>
+        <translation type="obsolete">Aantal</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -6425,7 +7066,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>Categorieën</translation>
+        <translation type="obsolete">Categorieën</translation>
     </message>
     <message>
         <source>Developer(s):</source>
@@ -6461,11 +7102,11 @@
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
+        <translation type="obsolete">Uitgave Datum</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details (</source>
@@ -6522,6 +7163,40 @@
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sruResultsDialog</name>
+    <message>
+        <source>BiblioteQ: SRU Query Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation type="unfinished">&amp;Records Teruggevonden</translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation type="unfinished">Record &amp;Inhoud</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Selecteer</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Annuleren</translation>
+    </message>
+</context>
+<context>
+    <name>sruresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Record #</translation>
     </message>
 </context>
 <context>
@@ -6696,6 +7371,10 @@
     <message>
         <source>Single Player</source>
         <translation>Single Player</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

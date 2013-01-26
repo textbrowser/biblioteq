@@ -354,6 +354,10 @@
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -450,7 +454,7 @@
     </message>
     <message>
         <source>MM/yyyy</source>
-        <translation>MM/aaaa</translation>
+        <translation type="obsolete">MM/aaaa</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -511,6 +515,10 @@
     <message>
         <source>Available</source>
         <translation>Disponible(s</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -743,7 +751,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiste</translation>
+        <translation type="obsolete">Artiste</translation>
     </message>
     <message>
         <source>Copies</source>
@@ -849,6 +857,14 @@
         <source>Recording Type</source>
         <translation>Type d&apos;enregistrement</translation>
     </message>
+    <message>
+        <source>Artist(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -941,7 +957,7 @@
     </message>
     <message>
         <source>Member ID</source>
-        <translation>ID de membre</translation>
+        <translation type="obsolete">ID de membre</translation>
     </message>
     <message>
         <source>Commit failure.</source>
@@ -1081,7 +1097,7 @@
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ : explorateur de copies</translation>
+        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
@@ -1129,6 +1145,10 @@
     <message>
         <source>BiblioteQ: Copies Browser</source>
         <translation>BiblioteQ : explorateur de copies</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1540,6 +1560,10 @@ minmal de jours.</translation>
         <source> </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dvdDialog</name>
@@ -1682,6 +1706,10 @@ minmal de jours.</translation>
     <message>
         <source>Monetary Units</source>
         <translation>Unités monétaires</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1983,6 +2011,14 @@ minmal de jours.</translation>
         <source>ISBNs</source>
         <translation>ISBN</translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -2112,11 +2148,23 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Issue (Number)</source>
-        <translation>Numéro (publication)</translation>
+        <translation type="obsolete">Numéro (publication)</translation>
     </message>
     <message>
         <source>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</source>
         <translation>ISSN ([0-9]{4}-[0-9]{3}[0-9X])</translation>
+    </message>
+    <message>
+        <source>Issue Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2561,6 +2609,18 @@ minmal de jours.</translation>
         <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred &amp;SRU Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -2764,6 +2824,18 @@ minmal de jours.</translation>
         <source>Total Reserved</source>
         <translation>Total réservé</translation>
     </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Photograph Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -2919,6 +2991,204 @@ minmal de jours.</translation>
     </message>
 </context>
 <context>
+    <name>pcDialog</name>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>About Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Sélectionner</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Emplacement</translation>
+    </message>
+    <message>
+        <source>Collection Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Cote</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Date de publication</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Format</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Copies</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished">&amp;Ajouter un article</translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">&amp;Réinitialiser</translation>
+    </message>
+    <message>
+        <source>&amp;Export Photographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="unfinished">&amp;Imprimer</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>photographDialog</name>
+    <message>
+        <source>BiblioteQ: Photograph Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Sélectionner</translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Cote</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Date de publication</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Format</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Copies</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>.</source>
@@ -2950,7 +3220,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>CUP</translation>
+        <translation type="obsolete">CUP</translation>
     </message>
     <message>
         <source> %1 </source>
@@ -2966,7 +3236,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>An error occurred while attempting to update the database account for </source>
@@ -3158,7 +3428,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Expiration Date</source>
@@ -3170,7 +3440,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Label d&apos;enregistrement</translation>
+        <translation type="obsolete">Label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
@@ -3314,7 +3584,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Unable to remove the patron account </source>
@@ -3322,7 +3592,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
@@ -3334,7 +3604,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Lieu de publication</translation>
+        <translation type="obsolete">Lieu de publication</translation>
     </message>
     <message>
         <source>The main table does not contain enough information for item deletion.</source>
@@ -3370,7 +3640,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Impossible de lire </translation>
+        <translation type="obsolete">Impossible de lire </translation>
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
@@ -3395,7 +3665,7 @@ minmal de jours.</translation>
     <message>
         <source>File Error</source>
         <translatorcomment>Erreur de fichier</translatorcomment>
-        <translation>Erreur de fichier</translation>
+        <translation type="obsolete">Erreur de fichier</translation>
     </message>
     <message>
         <source>Full Description</source>
@@ -3495,7 +3765,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Processing the global configuration file.</source>
-        <translation>Traitement du fichier de configuration global.</translation>
+        <translation type="obsolete">Traitement du fichier de configuration global.</translation>
     </message>
     <message>
         <source>Unable to retrieve administrator data for table populating.</source>
@@ -3535,7 +3805,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
@@ -3547,7 +3817,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
@@ -3627,7 +3897,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
-        <translation>BiblioteQ : erreur de fichier</translation>
+        <translation type="obsolete">BiblioteQ : erreur de fichier</translation>
     </message>
     <message>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
@@ -3667,7 +3937,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>Please select at least one item to view.</source>
@@ -3751,7 +4021,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Date de parution</translation>
+        <translation type="obsolete">Date de parution</translation>
     </message>
     <message>
         <source>Administrator</source>
@@ -3791,7 +4061,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Numéro de catalogue</translation>
+        <translation type="obsolete">Numéro de catalogue</translation>
     </message>
     <message>
         <source>The function misc_functions::userCount() failed for </source>
@@ -3815,7 +4085,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>Please select a member to modify.</source>
@@ -3899,7 +4169,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation>MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
@@ -3946,15 +4216,7 @@ minmal de jours.</translation>
         <translation>Impossible d&apos;accorder des privilèges à tous les membres.</translation>
     </message>
     <message>
-        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4041,6 +4303,38 @@ minmal de jours.</translation>
         <source>You have selected a new language. Please restart BiblioteQ.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
@@ -4058,7 +4352,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
@@ -4066,7 +4360,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Pour pouvoir interroger un système Z39.50, il faut indiquer soit l&apos;ISBN-10 soit l&apos;ISBN-13.</translation>
+        <translation type="obsolete">Pour pouvoir interroger un système Z39.50, il faut indiquer soit l&apos;ISBN-10 soit l&apos;ISBN-13.</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -4074,15 +4368,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Type de reliure</translation>
+        <translation type="obsolete">Type de reliure</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prix</translation>
+        <translation type="obsolete">Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -4134,7 +4428,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -4142,7 +4436,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>Numéro de contrôle LC</translation>
+        <translation type="obsolete">Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
@@ -4166,11 +4460,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Cote</translation>
+        <translation type="obsolete">Cote</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Numéro de classification Dewey</translation>
+        <translation type="obsolete">Numéro de classification Dewey</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
@@ -4190,7 +4484,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Numéro d&apos;ID</translation>
+        <translation type="obsolete">Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -4206,7 +4500,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -4214,7 +4508,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Lieu de publication</translation>
+        <translation type="obsolete">Lieu de publication</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -4226,7 +4520,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
+        <translation type="obsolete">Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
@@ -4298,7 +4592,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Book Entry</source>
@@ -4318,11 +4612,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
@@ -4378,7 +4672,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Author(s)</source>
-        <translation>Auteur(s)</translation>
+        <translation type="obsolete">Auteur(s)</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
@@ -4406,7 +4700,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -4418,15 +4712,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Édition</translation>
+        <translation type="obsolete">Édition</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation type="obsolete">Catégories</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
+        <translation type="obsolete">Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected book&apos;s data.</source>
@@ -4466,7 +4760,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Unités monétaires</translation>
+        <translation type="obsolete">Unités monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry (</source>
@@ -4498,11 +4792,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
@@ -4560,6 +4854,42 @@ minmal de jours.</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -4573,7 +4903,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -4581,15 +4911,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation>Audio</translation>
+        <translation type="obsolete">Audio</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prix</translation>
+        <translation type="obsolete">Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -4645,7 +4975,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
@@ -4657,7 +4987,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Label d&apos;enregistrement</translation>
+        <translation type="obsolete">Label d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
@@ -4681,7 +5011,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artiste</translation>
+        <translation type="obsolete">Artiste</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -4693,7 +5023,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -4709,7 +5039,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Numéro d&apos;ID</translation>
+        <translation type="obsolete">Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -4717,7 +5047,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Unable to create track data.</source>
@@ -4809,7 +5139,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
@@ -4833,11 +5163,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -4861,7 +5191,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Durée d&apos;exécution</translation>
+        <translation type="obsolete">Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
@@ -4901,7 +5231,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -4921,11 +5251,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Nombre de disques</translation>
+        <translation type="obsolete">Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation type="obsolete">Catégories</translation>
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
@@ -4965,7 +5295,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Date de parution</translation>
+        <translation type="obsolete">Date de parution</translation>
     </message>
     <message>
         <source>Track Title</source>
@@ -4973,7 +5303,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Unités monétaires</translation>
+        <translation type="obsolete">Unités monétaires</translation>
     </message>
     <message>
         <source>Format:</source>
@@ -4997,7 +5327,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Numéro de catalogue</translation>
+        <translation type="obsolete">Numéro de catalogue</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
@@ -5025,7 +5355,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Type d&apos;enregistrement</translation>
+        <translation type="obsolete">Type d&apos;enregistrement</translation>
     </message>
     <message>
         <source>Catalog Number:</source>
@@ -5080,7 +5410,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>CUP</translation>
+        <translation type="obsolete">CUP</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -5088,7 +5418,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -5096,11 +5426,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prix</translation>
+        <translation type="obsolete">Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5128,11 +5458,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Rapport hauteur / largeur</translation>
+        <translation type="obsolete">Rapport hauteur / largeur</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Please complete the Format field.</source>
@@ -5176,7 +5506,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="obsolete">Format</translation>
     </message>
     <message>
         <source>Please complete the Studio field.</source>
@@ -5196,7 +5526,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Numéro d&apos;ID</translation>
+        <translation type="obsolete">Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -5204,19 +5534,19 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Note</translation>
+        <translation type="obsolete">Note</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Région</translation>
+        <translation type="obsolete">Région</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -5280,7 +5610,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
@@ -5308,7 +5638,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
@@ -5316,7 +5646,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5336,7 +5666,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Durée d&apos;exécution</translation>
+        <translation type="obsolete">Durée d&apos;exécution</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -5380,7 +5710,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -5392,11 +5722,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Nombre de disques</translation>
+        <translation type="obsolete">Nombre de disques</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation type="obsolete">Catégories</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd regions.</source>
@@ -5428,11 +5758,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Date de parution</translation>
+        <translation type="obsolete">Date de parution</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Unités monétaires</translation>
+        <translation type="obsolete">Unités monétaires</translation>
     </message>
     <message>
         <source>Aspect Ratio:</source>
@@ -5546,11 +5876,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -5562,15 +5892,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Numéro</translation>
+        <translation type="obsolete">Numéro</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prix</translation>
+        <translation type="obsolete">Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5602,7 +5932,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Numéro Dewey</translation>
+        <translation type="obsolete">Numéro Dewey</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
@@ -5626,7 +5956,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -5638,7 +5968,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>Numéro de contrôle LC</translation>
+        <translation type="obsolete">Numéro de contrôle LC</translation>
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
@@ -5662,7 +5992,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Cote</translation>
+        <translation type="obsolete">Cote</translation>
     </message>
     <message>
         <source>LC Control Number:</source>
@@ -5678,7 +6008,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Numéro d&apos;ID</translation>
+        <translation type="obsolete">Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -5694,7 +6024,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -5702,7 +6032,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Lieu de publication</translation>
+        <translation type="obsolete">Lieu de publication</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Journal Entry</source>
@@ -5710,7 +6040,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Volume</source>
-        <translation>Volume</translation>
+        <translation type="obsolete">Volume</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -5722,7 +6052,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
+        <translation type="obsolete">Remplacer les valeurs existantes avec celles extraites du système Z39.50 ?</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
@@ -5790,7 +6120,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details</source>
@@ -5806,11 +6136,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5878,11 +6208,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation>Pour pouvoir interroger un système Z39.50, il faut indiquer l&apos;ISSN.</translation>
+        <translation type="obsolete">Pour pouvoir interroger un système Z39.50, il faut indiquer l&apos;ISSN.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -5894,7 +6224,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation type="obsolete">Catégories</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details</source>
@@ -5902,7 +6232,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
+        <translation type="obsolete">Téléchargement d&apos;informations depuis le système Z39.50. Veuillez patienter...</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
@@ -5938,7 +6268,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Unités monétaires</translation>
+        <translation type="obsolete">Unités monétaires</translation>
     </message>
     <message>
         <source>Volume:</source>
@@ -6040,6 +6370,317 @@ minmal de jours.</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>qtbook_photographcollection</name>
+    <message>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">INCONNU</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ : erreur de l&apos;utilisateur</translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Impossible de créer une transaction de base de données.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Impossible de générer un entier unique.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished">Impossible de créer ou mettre à jour l&apos;article.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Retour en arrière impossible.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Quelconque</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Chercher</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?</source>
+        <translation type="unfinished">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+    </message>
+    <message>
+        <source>Collection ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection About:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Medium:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copyright:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Call Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Other Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Subjects:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Voulez-vous vraiment supprimer définitivement l&apos;article ou les articles sélectionnés ?</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Suppression de l&apos;article ou des articles sélectionnés...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
@@ -6053,11 +6694,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>CUP</translation>
+        <translation type="obsolete">CUP</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Mode</translation>
+        <translation type="obsolete">Mode</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -6065,7 +6706,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -6077,11 +6718,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Prix</translation>
+        <translation type="obsolete">Prix</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -6117,7 +6758,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Plate-forme</translation>
+        <translation type="obsolete">Plate-forme</translation>
     </message>
     <message>
         <source>Reset &amp;Game Rating</source>
@@ -6125,7 +6766,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Disponibilité</translation>
+        <translation type="obsolete">Disponibilité</translation>
     </message>
     <message>
         <source>Publisher:</source>
@@ -6149,7 +6790,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation>Genres</translation>
+        <translation type="obsolete">Genres</translation>
     </message>
     <message>
         <source>Language:</source>
@@ -6165,7 +6806,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Numéro d&apos;ID</translation>
+        <translation type="obsolete">Numéro d&apos;ID</translation>
     </message>
     <message>
         <source>Price:</source>
@@ -6173,7 +6814,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Emplacement</translation>
+        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -6181,11 +6822,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Lieu de publication</translation>
+        <translation type="obsolete">Lieu de publication</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Note du jeu</translation>
+        <translation type="obsolete">Note du jeu</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
@@ -6233,7 +6874,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="obsolete">Langue</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Video Game Entry</source>
@@ -6257,11 +6898,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Date de publication</translation>
+        <translation type="obsolete">Date de publication</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Éditeur</translation>
+        <translation type="obsolete">Éditeur</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry (</source>
@@ -6333,7 +6974,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Quantité</translation>
+        <translation type="obsolete">Quantité</translation>
     </message>
     <message>
         <source>&amp;Search</source>
@@ -6349,7 +6990,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation type="obsolete">Catégories</translation>
     </message>
     <message>
         <source>Developer(s):</source>
@@ -6385,11 +7026,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Date de parution</translation>
+        <translation type="obsolete">Date de parution</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Unités monétaires</translation>
+        <translation type="obsolete">Unités monétaires</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details (</source>
@@ -6446,6 +7087,40 @@ minmal de jours.</translation>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sruResultsDialog</name>
+    <message>
+        <source>BiblioteQ: SRU Query Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation type="unfinished">&amp;Enregistrements extraits</translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation type="unfinished">&amp;Contenu de l&apos;enregistrement</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Sélectionner</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Annuler</translation>
+    </message>
+</context>
+<context>
+    <name>sruresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Enregistrement n°</translation>
     </message>
 </context>
 <context>
@@ -6620,6 +7295,10 @@ minmal de jours.</translation>
     <message>
         <source>Single Player</source>
         <translation>Joueur solo</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

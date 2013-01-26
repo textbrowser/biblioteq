@@ -358,6 +358,10 @@
         <source>General Registration Number</source>
         <translation>Γενικός αριθμός εγγραφής</translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -518,7 +522,7 @@
     </message>
     <message>
         <source>MM/yyyy</source>
-        <translation>μμ/εεεε</translation>
+        <translation type="obsolete">μμ/εεεε</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -527,6 +531,10 @@
     <message>
         <source>Available</source>
         <translation>Διαθέσιμο</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -743,7 +751,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation>Καλλιτέχνης</translation>
+        <translation type="obsolete">Καλλιτέχνης</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -878,6 +886,14 @@ URL</source>
     <message>
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
+    </message>
+    <message>
+        <source>Artist(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1031,7 +1047,7 @@ URL</source>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>AT μέλους (ID)</translation>
+        <translation type="obsolete">AT μέλους (ID)</translation>
     </message>
     <message>
         <source>Unable to determine the selected copy&apos;s availability.</source>
@@ -1111,7 +1127,7 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser</source>
-        <translation type="obsolete">BiblioteQ: Περιοχή αντίτυπου</translation>
+        <translation type="unfinished">BiblioteQ: Περιοχή αντίτυπου</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
@@ -1163,6 +1179,10 @@ URL</source>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1573,6 +1593,10 @@ URL</source>
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation>Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποθήκευσης των στοιχείων της  βάσης δεδομένων.</translation>
     </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dvdDialog</name>
@@ -1725,6 +1749,10 @@ URL</source>
     <message>
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2148,6 +2176,14 @@ URL</source>
         <source>ISBNs</source>
         <translation>ISBNs</translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -2207,7 +2243,7 @@ URL</source>
     </message>
     <message>
         <source>Issue (Number)</source>
-        <translation>Τεύχος (αριθμός)</translation>
+        <translation type="obsolete">Τεύχος (αριθμός)</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -2326,6 +2362,18 @@ URL</source>
     <message>
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
+    </message>
+    <message>
+        <source>Issue Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2846,6 +2894,18 @@ URL</source>
         <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred &amp;SRU Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3089,6 +3149,18 @@ URL</source>
         <source>Total Reserved</source>
         <translation>Συνολικά δανεισμένα</translation>
     </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Photograph Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3245,6 +3317,204 @@ URL</source>
     <message>
         <source>Password</source>
         <translation>Κωδικός</translation>
+    </message>
+</context>
+<context>
+    <name>pcDialog</name>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>About Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">Επι&amp;λογή</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Τοποθεσία</translation>
+    </message>
+    <message>
+        <source>Collection Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Αριθμός τηλεφώνου</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Ημερομηνία έκδοσης</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Μορφοποίηση</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Αντίτυπα</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished">&amp;Προσθήκη αντικειμένου</translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">Επα&amp;ναφορά</translation>
+    </message>
+    <message>
+        <source>&amp;Export Photographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="unfinished">&amp;Εκτύπωση</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
+    </message>
+</context>
+<context>
+    <name>photographDialog</name>
+    <message>
+        <source>BiblioteQ: Photograph Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">Επι&amp;λογή</translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Αριθμός τηλεφώνου</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Ημερομηνία έκδοσης</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Μορφοποίηση</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Αντίτυπα</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
     </message>
 </context>
 <context>
@@ -3675,11 +3945,11 @@ URL</source>
     </message>
     <message>
         <source>Processing the global configuration file.</source>
-        <translation>Επεξεργασία του γενικού αρχείου ρυθμίσεων.</translation>
+        <translation type="obsolete">Επεξεργασία του γενικού αρχείου ρυθμίσεων.</translation>
     </message>
     <message>
         <source>File Error</source>
-        <translation>Σφάλμα αρχείου</translation>
+        <translation type="obsolete">Σφάλμα αρχείου</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -3687,11 +3957,11 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
-        <translation>BiblioteQ: Σφάλμα αρχείου</translation>
+        <translation type="obsolete">BiblioteQ: Σφάλμα αρχείου</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Αδυναμία ανάγνωσης</translation>
+        <translation type="obsolete">Αδυναμία ανάγνωσης</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
@@ -3727,7 +3997,7 @@ URL</source>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3735,7 +4005,7 @@ URL</source>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -3743,39 +4013,39 @@ URL</source>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Τόπος έκδοσης</translation>
+        <translation type="obsolete">Τόπος έκδοσης</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Αριθμός καταλόγου</translation>
+        <translation type="obsolete">Αριθμός καταλόγου</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Εταιρία ηχογράφησης</translation>
+        <translation type="obsolete">Εταιρία ηχογράφησης</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Παραγωγή</translation>
+        <translation type="obsolete">Παραγωγή</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Available</source>
@@ -3787,7 +4057,7 @@ URL</source>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
@@ -3919,7 +4189,7 @@ URL</source>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
@@ -4375,7 +4645,7 @@ URL</source>
     </message>
     <message>
         <source>MYOID</source>
-        <translation>MYOID</translation>
+        <translation type="obsolete">MYOID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
@@ -4423,7 +4693,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
-        <translation>Αδυναμία καθορισμού του αριθμού (ID) των επιλεγμένων αντικειμένων. Η ταξινόμηση τους απαιτεί τον αριθμό (ID).</translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του αριθμού (ID) των επιλεγμένων αντικειμένων. Η ταξινόμηση τους απαιτεί τον αριθμό (ID).</translation>
     </message>
     <message>
         <source>The Member ID must be at least five characters long.</source>
@@ -4431,7 +4701,7 @@ URL</source>
     </message>
     <message>
         <source> because of insufficient resources.</source>
-        <translation> λόγω των ανεπαρκών πόρων.</translation>
+        <translation type="obsolete"> λόγω των ανεπαρκών πόρων.</translation>
     </message>
     <message>
         <source>&amp;Czech</source>
@@ -4477,12 +4747,44 @@ URL</source>
         <source>You have selected a new language. Please restart BiblioteQ.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -4694,79 +4996,79 @@ URL</source>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Αριθμός</translation>
+        <translation type="obsolete">ID Αριθμός</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation type="obsolete">Τίτλος</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Αρ.Έκδοσης</translation>
+        <translation type="obsolete">Αρ.Έκδοσης</translation>
     </message>
     <message>
         <source>Author(s)</source>
-        <translation>Συγγραφέας (-εις)</translation>
+        <translation type="obsolete">Συγγραφέας (-εις)</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Τόπος έκδοσης</translation>
+        <translation type="obsolete">Τόπος έκδοσης</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Τύπος βιβλιοδεσίας</translation>
+        <translation type="obsolete">Τύπος βιβλιοδεσίας</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Αριθμός ελέγχου</translation>
+        <translation type="obsolete">LC Αριθμός ελέγχου</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Αριθμός τηλεφώνου</translation>
+        <translation type="obsolete">Αριθμός τηλεφώνου</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Dewey Αριθμός τάξης</translation>
+        <translation type="obsolete">Dewey Αριθμός τάξης</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -4850,7 +5152,7 @@ URL</source>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Η προβολή του αποτελέσματος στο ερώτημα για το σύστημα Z39.50 απαιτεί το ISBN-10 ή ISBN-13 του βιβλίου.</translation>
+        <translation type="obsolete">Η προβολή του αποτελέσματος στο ερώτημα για το σύστημα Z39.50 απαιτεί το ISBN-10 ή ISBN-13 του βιβλίου.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
@@ -4862,7 +5164,7 @@ URL</source>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Αντικατάσταση των πληροφοριών από την επανάκτηση δεδομένων του συστήματος Z39.50;</translation>
+        <translation type="obsolete">Αντικατάσταση των πληροφοριών από την επανάκτηση δεδομένων του συστήματος Z39.50;</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
@@ -5026,7 +5328,7 @@ URL</source>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>An unknown error occurred.</source>
@@ -5062,7 +5364,7 @@ URL</source>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
+        <translation type="obsolete">Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -5092,12 +5394,48 @@ URL</source>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -5301,79 +5639,79 @@ URL</source>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Αριθμός καταλόγου</translation>
+        <translation type="obsolete">Αριθμός καταλόγου</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Αριθμός</translation>
+        <translation type="obsolete">ID Αριθμός</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation type="obsolete">Τίτλος</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Μορφοποίηση</translation>
+        <translation type="obsolete">Μορφοποίηση</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Καλλιτέχνης</translation>
+        <translation type="obsolete">Καλλιτέχνης</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Αριθμός δίσκων</translation>
+        <translation type="obsolete">Αριθμός δίσκων</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Διάρκεια</translation>
+        <translation type="obsolete">Διάρκεια</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Εταιρία ηχογράφησης</translation>
+        <translation type="obsolete">Εταιρία ηχογράφησης</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Τύπος ηχογράφησης</translation>
+        <translation type="obsolete">Τύπος ηχογράφησης</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation>Ήχος</translation>
+        <translation type="obsolete">Ήχος</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5629,7 +5967,7 @@ URL</source>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -5700,7 +6038,7 @@ URL</source>
     <name>qtbook_dvd</name>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -5920,79 +6258,79 @@ URL</source>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Αριθμός</translation>
+        <translation type="obsolete">ID Αριθμός</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Βαθμολογία</translation>
+        <translation type="obsolete">Βαθμολογία</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Αριθμός δίσκων</translation>
+        <translation type="obsolete">Αριθμός δίσκων</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Διάρκεια</translation>
+        <translation type="obsolete">Διάρκεια</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Μορφοποίηση</translation>
+        <translation type="obsolete">Μορφοποίηση</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Περιοχή</translation>
+        <translation type="obsolete">Περιοχή</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Κιν Κάδρο</translation>
+        <translation type="obsolete">Κιν Κάδρο</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation type="obsolete">Τίτλος</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Παραγωγή</translation>
+        <translation type="obsolete">Παραγωγή</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -6172,7 +6510,7 @@ URL</source>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -6242,7 +6580,7 @@ URL</source>
     <name>qtbook_magazine</name>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -6450,71 +6788,71 @@ URL</source>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Αριθμός</translation>
+        <translation type="obsolete">ID Αριθμός</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation type="obsolete">Τίτλος</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Τόπος έκδοσης</translation>
+        <translation type="obsolete">Τόπος έκδοσης</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>Volume</source>
-        <translation>Τόμος</translation>
+        <translation type="obsolete">Τόμος</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Τεύχος</translation>
+        <translation type="obsolete">Τεύχος</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>LC Αριθμός ελέγχου</translation>
+        <translation type="obsolete">LC Αριθμός ελέγχου</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Αριθμός τηλεφώνου</translation>
+        <translation type="obsolete">Αριθμός τηλεφώνου</translation>
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Dewey Αριθμός</translation>
+        <translation type="obsolete">Dewey Αριθμός</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -6626,7 +6964,7 @@ URL</source>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation>Η προβολή του αποτελέσματος στο ερώτημα για το σύστημα Z39.50 απαιτεί το ISSN.</translation>
+        <translation type="obsolete">Η προβολή του αποτελέσματος στο ερώτημα για το σύστημα Z39.50 απαιτεί το ISSN.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
@@ -6638,7 +6976,7 @@ URL</source>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Αντικατάσταση των πληροφοριών από την επανάκτηση δεδομένων του συστήματος Z39.50;</translation>
+        <translation type="obsolete">Αντικατάσταση των πληροφοριών από την επανάκτηση δεδομένων του συστήματος Z39.50;</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -6758,7 +7096,7 @@ URL</source>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
@@ -6786,7 +7124,7 @@ URL</source>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation>Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
+        <translation type="obsolete">Κατέβασμα πληροφοριών από το σύστημα Z39.50. Παρακαλώ περιμένετε...</translation>
     </message>
     <message>
         <source>MARC Tags:</source>
@@ -6820,12 +7158,323 @@ URL</source>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>qtbook_photographcollection</name>
+    <message>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">Άγνωστο</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Σφάλμα χρήσης</translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished">Αδυναμία δημιουργίας ή αναβάθμισης της εγγραφής.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Αδυναμία δέσμευσης της τρέχουσας βάσης δεδομένων.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback αποτυχία.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Αδυναμία δημιουργίας ή αναβάθμισης της εγγραφής. Παρακαλώ να γίνει έλεγχος για το άν η εγγραφή υπάρχει.</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Κάθε</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Αναζήτηση</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Ερώτημα</translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?</source>
+        <translation type="unfinished">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+    </message>
+    <message>
+        <source>Collection ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection About:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Medium:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copyright:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Call Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Other Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Subjects:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Είστε σίγουροι ότι επιθυμείτε τη διαγραφή των επιλεγμένων αντικειμένων;</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Πρόοδος εργασιών</translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Διαγραφή επιλεγμένων αντικειμένων...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
     <message>
         <source>Quantity</source>
-        <translation>Ποσότητα</translation>
+        <translation type="obsolete">Ποσότητα</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -7025,71 +7674,71 @@ URL</source>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Αριθμός</translation>
+        <translation type="obsolete">ID Αριθμός</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation type="obsolete">Τίτλος</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Βαθμολογία παιχνιδιού</translation>
+        <translation type="obsolete">Βαθμολογία παιχνιδιού</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Ημερομηνία διάθεσης</translation>
+        <translation type="obsolete">Ημερομηνία διάθεσης</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Ημερομηνία έκδοσης</translation>
+        <translation type="obsolete">Ημερομηνία έκδοσης</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Εκδότης</translation>
+        <translation type="obsolete">Εκδότης</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Τόπος έκδοσης</translation>
+        <translation type="obsolete">Τόπος έκδοσης</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation>Θέμα</translation>
+        <translation type="obsolete">Θέμα</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Κατηγορία</translation>
+        <translation type="obsolete">Κατηγορία</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Τιμή</translation>
+        <translation type="obsolete">Τιμή</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="obsolete">Γλώσσα</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Νομισματική μονάδα</translation>
+        <translation type="obsolete">Νομισματική μονάδα</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Είδος</translation>
+        <translation type="obsolete">Είδος</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation type="obsolete">Τοποθεσία</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Διαθεσιμότητα</translation>
+        <translation type="obsolete">Διαθεσιμότητα</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -7261,7 +7910,7 @@ URL</source>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="obsolete">Τύπος</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game ratings.</source>
@@ -7302,6 +7951,40 @@ URL</source>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sruResultsDialog</name>
+    <message>
+        <source>BiblioteQ: SRU Query Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation type="unfinished">&amp;Περιεχόμενα εγγραφής</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">Επι&amp;λογή</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Άκυρο</translation>
+    </message>
+</context>
+<context>
+    <name>sruresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Εγγραφή #</translation>
     </message>
 </context>
 <context>
@@ -7486,6 +8169,10 @@ URL</source>
     <message>
         <source>Keywords</source>
         <translation>Λέξεις κλειδιά</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

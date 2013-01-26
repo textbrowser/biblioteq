@@ -358,6 +358,10 @@
         <source>General Registration Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -518,7 +522,7 @@
     </message>
     <message>
         <source>MM/yyyy</source>
-        <translation>MM/yyyy</translation>
+        <translation type="obsolete">MM/yyyy</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -527,6 +531,10 @@
     <message>
         <source>Available</source>
         <translation type="unfinished">Dostupná</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -743,7 +751,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation>Umělec</translation>
+        <translation type="obsolete">Umělec</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -877,6 +885,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1031,7 +1047,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Kód zapůjčitele</translation>
+        <translation type="obsolete">Kód zapůjčitele</translation>
     </message>
     <message>
         <source>Unable to determine the selected copy&apos;s availability.</source>
@@ -1113,6 +1129,10 @@ webová adresa</translation>
         <source>BiblioteQ: Copy Browser (%1)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>copybrowser</name>
@@ -1159,6 +1179,10 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1570,6 +1594,10 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>dvdDialog</name>
@@ -1721,6 +1749,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2145,6 +2177,14 @@ webová adresa</translation>
         <source>ISBNs</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -2204,7 +2244,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Issue (Number)</source>
-        <translation>Vydání</translation>
+        <translation type="obsolete">Vydání</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -2322,6 +2362,18 @@ webová adresa</translation>
     </message>
     <message>
         <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Issue Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2863,6 +2915,18 @@ webová adresa</translation>
         <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Preferred &amp;SRU Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3106,6 +3170,18 @@ webová adresa</translation>
         <source>Total Reserved</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Photograph Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3262,6 +3338,204 @@ webová adresa</translation>
     <message>
         <source>Password</source>
         <translation type="unfinished">Heslo</translation>
+    </message>
+</context>
+<context>
+    <name>pcDialog</name>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>About Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Vybrat</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Umístění</translation>
+    </message>
+    <message>
+        <source>Collection Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Telefonní číslo</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Datum vydání</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Formát</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Kopie</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Add Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">&amp;Vyčistit</translation>
+    </message>
+    <message>
+        <source>&amp;Export Photographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="unfinished">&amp;Tisk</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
+    <name>photographDialog</name>
+    <message>
+        <source>BiblioteQ: Photograph Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Vybrat</translation>
+    </message>
+    <message>
+        <source>Creator(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Telefonní číslo</translation>
+    </message>
+    <message>
+        <source>Other Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reproduction Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
+    </message>
+    <message>
+        <source>Subjects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished">Datum vydání</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Formát</translation>
+    </message>
+    <message>
+        <source>Copies</source>
+        <translation type="unfinished">Kopie</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
     </message>
 </context>
 <context>
@@ -3692,11 +3966,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Processing the global configuration file.</source>
-        <translation>Čtu globální konfiguraní soubor.</translation>
+        <translation type="obsolete">Čtu globální konfiguraní soubor.</translation>
     </message>
     <message>
         <source>File Error</source>
-        <translation>Chyba souboru</translation>
+        <translation type="obsolete">Chyba souboru</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
@@ -3704,11 +3978,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: File Error</source>
-        <translation>BiblioteQ: chyba souboru</translation>
+        <translation type="obsolete">BiblioteQ: chyba souboru</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Čtení selhalo</translation>
+        <translation type="obsolete">Čtení selhalo</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
@@ -3744,7 +4018,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Title</source>
@@ -3752,7 +4026,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -3760,39 +4034,39 @@ webová adresa</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Místo vydání</translation>
+        <translation type="obsolete">Místo vydání</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Katalogové číslo</translation>
+        <translation type="obsolete">Katalogové číslo</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Nahrávací společnost</translation>
+        <translation type="obsolete">Nahrávací společnost</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Available</source>
@@ -3804,7 +4078,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
@@ -3936,7 +4210,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
@@ -4394,7 +4668,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>MYOID</source>
-        <translation type="unfinished">Moje ID</translation>
+        <translation type="obsolete">Moje ID</translation>
     </message>
     <message>
         <source>BiblioteQ: Export Table View as CSV</source>
@@ -4441,15 +4715,7 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to determine the selected item&apos;s id. In order to reserve the item, its id must be known.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4496,12 +4762,44 @@ webová adresa</translation>
         <source>You have selected a new language. Please restart BiblioteQ.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -4713,79 +5011,79 @@ webová adresa</translation>
     </message>
     <message>
         <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
+        <translation type="obsolete">ISBN-10</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation type="obsolete">Číslo</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation type="obsolete">Titul</translation>
     </message>
     <message>
         <source>Edition</source>
-        <translation>Vydání</translation>
+        <translation type="obsolete">Vydání</translation>
     </message>
     <message>
         <source>Author(s)</source>
-        <translation>Autor</translation>
+        <translation type="obsolete">Autor</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Místo vydání</translation>
+        <translation type="obsolete">Místo vydání</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation type="obsolete">Kategorie</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation type="obsolete">Cena</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation type="obsolete">Měnová jednotka</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
-        <translation>Vazba knihy</translation>
+        <translation type="obsolete">Vazba knihy</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
+        <translation type="obsolete">ISBN-13</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>Kontrolní číslo LC</translation>
+        <translation type="obsolete">Kontrolní číslo LC</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Telefonní číslo</translation>
+        <translation type="obsolete">Telefonní číslo</translation>
     </message>
     <message>
         <source>Dewey Class Number</source>
-        <translation>Klasifikace Dewey</translation>
+        <translation type="obsolete">Klasifikace Dewey</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -4869,7 +5167,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Pro provedení Z39.50 dotazu je nutné vyplněné ISBN-10 nebo ISBN-13.</translation>
+        <translation type="obsolete">Pro provedení Z39.50 dotazu je nutné vyplněné ISBN-10 nebo ISBN-13.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
@@ -4881,7 +5179,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
+        <translation type="obsolete">Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
@@ -5045,7 +5343,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>An unknown error occurred.</source>
@@ -5080,10 +5378,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloading information from the Z39.50 system. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5111,12 +5405,48 @@ webová adresa</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -5320,79 +5650,79 @@ webová adresa</translation>
     </message>
     <message>
         <source>Catalog Number</source>
-        <translation>Katalogové číslo</translation>
+        <translation type="obsolete">Katalogové číslo</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation type="obsolete">Číslo</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation type="obsolete">Titul</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Formát</translation>
+        <translation type="obsolete">Formát</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Umělec</translation>
+        <translation type="obsolete">Umělec</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Počet disků</translation>
+        <translation type="obsolete">Počet disků</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Doba záznamu</translation>
+        <translation type="obsolete">Doba záznamu</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Recording Label</source>
-        <translation>Nahrávací společnost</translation>
+        <translation type="obsolete">Nahrávací společnost</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation type="obsolete">Kategorie</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation type="obsolete">Cena</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation type="obsolete">Měnová jednotka</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Recording Type</source>
-        <translation>Druh nahrávky</translation>
+        <translation type="obsolete">Druh nahrávky</translation>
     </message>
     <message>
         <source>Audio</source>
-        <translation>Zvuk</translation>
+        <translation type="obsolete">Zvuk</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -5648,7 +5978,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -5719,7 +6049,7 @@ webová adresa</translation>
     <name>qtbook_dvd</name>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -5939,79 +6269,79 @@ webová adresa</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation type="obsolete">Číslo</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Hodnocení</translation>
+        <translation type="obsolete">Hodnocení</translation>
     </message>
     <message>
         <source>Number of Discs</source>
-        <translation>Počet disků</translation>
+        <translation type="obsolete">Počet disků</translation>
     </message>
     <message>
         <source>Runtime</source>
-        <translation>Doba záznamu</translation>
+        <translation type="obsolete">Doba záznamu</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation>Formát</translation>
+        <translation type="obsolete">Formát</translation>
     </message>
     <message>
         <source>Region</source>
-        <translation>Region</translation>
+        <translation type="obsolete">Region</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
-        <translation>Poměr stran obrazu</translation>
+        <translation type="obsolete">Poměr stran obrazu</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation type="obsolete">Titul</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Studio</source>
-        <translation>Studio</translation>
+        <translation type="obsolete">Studio</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation type="obsolete">Kategorie</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation type="obsolete">Cena</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation type="obsolete">Měnová jednotka</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -6191,7 +6521,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
@@ -6261,7 +6591,7 @@ webová adresa</translation>
     <name>qtbook_magazine</name>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -6469,71 +6799,71 @@ webová adresa</translation>
     </message>
     <message>
         <source>ISSN</source>
-        <translation>ISSN</translation>
+        <translation type="obsolete">ISSN</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation type="obsolete">Číslo</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation type="obsolete">Titul</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Místo vydání</translation>
+        <translation type="obsolete">Místo vydání</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation type="obsolete">Kategorie</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation type="obsolete">Cena</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation type="obsolete">Měnová jednotka</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Volume</source>
-        <translation>Svazek</translation>
+        <translation type="obsolete">Svazek</translation>
     </message>
     <message>
         <source>Issue</source>
-        <translation>Číslo vydání</translation>
+        <translation type="obsolete">Číslo vydání</translation>
     </message>
     <message>
         <source>LC Control Number</source>
-        <translation>Kontrolní číslo LC</translation>
+        <translation type="obsolete">Kontrolní číslo LC</translation>
     </message>
     <message>
         <source>Call Number</source>
-        <translation>Telefonní číslo</translation>
+        <translation type="obsolete">Telefonní číslo</translation>
     </message>
     <message>
         <source>Dewey Number</source>
-        <translation>Klasifikace Dewey</translation>
+        <translation type="obsolete">Klasifikace Dewey</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -6645,7 +6975,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
-        <translation>Pro provedení Z39.50 dotazu je nutné vyplněné ISSN.</translation>
+        <translation type="obsolete">Pro provedení Z39.50 dotazu je nutné vyplněné ISSN.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
@@ -6657,7 +6987,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
-        <translation>Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
+        <translation type="obsolete">Nahradit stávající údaje výsledkem dotazu Z39.50?</translation>
     </message>
     <message>
         <source>Memory Error</source>
@@ -6777,7 +7107,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
@@ -6801,10 +7131,6 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading information from the Z39.50 system. Please be patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6839,12 +7165,323 @@ webová adresa</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>qtbook_photographcollection</name>
+    <message>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Chyba databáze</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">NEZNÁMÁ</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: chyba uživatele</translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Nemohu nastartovat databázovou transakci.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: chyba databáze</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished">Nemohu vytvořit nebo aktualizovat záznam.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Nemohu potvrdit databázovou transakci.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Chyba při rušení transakce.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Nemohu vytvořit nebo aktualizovat záznam. Ověřte, prosím, zda záznam už neexistuje.</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Jakýkoliv</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Hledat</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Dotaz</translation>
+    </message>
+    <message>
+        <source>You have unsaved data. Continue closing?</source>
+        <translation type="unfinished">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+    </message>
+    <message>
+        <source>Collection ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection About:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Medium:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copyright:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Call Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Other Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Subjects:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Jste si jistý(á), že chcete nadobro smazat vybrané položky?</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: indikátor postupu</translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Mažu vybrané položky...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
     <message>
         <source>Quantity</source>
-        <translation>Množství</translation>
+        <translation type="obsolete">Množství</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
@@ -7044,71 +7681,71 @@ webová adresa</translation>
     </message>
     <message>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>Číslo</translation>
+        <translation type="obsolete">Číslo</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titul</translation>
+        <translation type="obsolete">Titul</translation>
     </message>
     <message>
         <source>Game Rating</source>
-        <translation>Hodnocení hry</translation>
+        <translation type="obsolete">Hodnocení hry</translation>
     </message>
     <message>
         <source>Release Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publication Date</source>
-        <translation>Datum vydání</translation>
+        <translation type="obsolete">Datum vydání</translation>
     </message>
     <message>
         <source>Publisher</source>
-        <translation>Vydavatel</translation>
+        <translation type="obsolete">Vydavatel</translation>
     </message>
     <message>
         <source>Place of Publication</source>
-        <translation>Místo vydání</translation>
+        <translation type="obsolete">Místo vydání</translation>
     </message>
     <message>
         <source>Genres</source>
-        <translation>Žánr</translation>
+        <translation type="obsolete">Žánr</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation>Kategorie</translation>
+        <translation type="obsolete">Kategorie</translation>
     </message>
     <message>
         <source>Price</source>
-        <translation>Cena</translation>
+        <translation type="obsolete">Cena</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="obsolete">Jazyk</translation>
     </message>
     <message>
         <source>Monetary Units</source>
-        <translation>Měnová jednotka</translation>
+        <translation type="obsolete">Měnová jednotka</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation>Platforma</translation>
+        <translation type="obsolete">Platforma</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation>Umístění</translation>
+        <translation type="obsolete">Umístění</translation>
     </message>
     <message>
         <source>Mode</source>
-        <translation>Mód</translation>
+        <translation type="obsolete">Mód</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Dostupnost</translation>
+        <translation type="obsolete">Dostupnost</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
@@ -7280,7 +7917,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game ratings.</source>
@@ -7321,6 +7958,40 @@ webová adresa</translation>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>sruResultsDialog</name>
+    <message>
+        <source>BiblioteQ: SRU Query Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Records Retrieved</source>
+        <translation type="unfinished">&amp;Získané záznamy</translation>
+    </message>
+    <message>
+        <source>Record &amp;Contents</source>
+        <translation type="unfinished">&amp;Obsah záznamu</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
+    </message>
+    <message>
+        <source>&amp;Select</source>
+        <translation type="unfinished">&amp;Vybrat</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Storno</translation>
+    </message>
+</context>
+<context>
+    <name>sruresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Záznam č.</translation>
     </message>
 </context>
 <context>
@@ -7504,6 +8175,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>Keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
