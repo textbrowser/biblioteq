@@ -1,5 +1,6 @@
 /*
-** Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011, 2012 Alexis Megas
+** Copyright (c) 2006, 2007, 2008, 2009, 2010, 2011, 2012, Eternity
+** Alexis Megas
 ** All rights reserved.
 **
 ** Redistribution and use in source and binary forms, with or without
@@ -1148,7 +1149,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - 2012 Elephants and Tigers.<br>"
+	     "Copyright (c) 2006 - Eternity, Monsters.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) Jonas Rask Design.<br>"
 	     "Qt version %2."
@@ -3423,7 +3424,7 @@ void qtbook::slotDisplaySummary(void)
 
       if(!frontImage.isNull())
 	frontImage = frontImage.scaled
-	  (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(type != "Photograph Collection")
 	{
@@ -3432,7 +3433,7 @@ void qtbook::slotDisplaySummary(void)
 
 	  if(!backImage.isNull())
 	    backImage = backImage.scaled
-	      (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	}
 
       if(!frontImage.isNull())
@@ -8852,7 +8853,7 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 
 	      if(!l_image.isNull())
 		l_image = l_image.scaled
-		  (126, 187, Qt::IgnoreAspectRatio,
+		  (126, 187, Qt::KeepAspectRatio,
 		   Qt::SmoothTransformation);
 
 	      QPixmap pixmap(QPixmap::fromImage(l_image));
@@ -8865,7 +8866,7 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
 
 		  if(!l_image.isNull())
 		    l_image = l_image.scaled
-		      (126, 187, Qt::IgnoreAspectRatio,
+		      (126, 187, Qt::KeepAspectRatio,
 		       Qt::SmoothTransformation);
 
 		  item->setPixmap(QPixmap::fromImage(l_image));

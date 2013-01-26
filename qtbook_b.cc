@@ -3037,7 +3037,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		if(!image.isNull())
 		  image = image.scaled
-		    (126, 187, Qt::IgnoreAspectRatio,
+		    (126, 187, Qt::KeepAspectRatio,
 		     Qt::SmoothTransformation);
 
 		pixmapItem = ui.graphicsView->scene()->addPixmap

@@ -272,7 +272,7 @@ void qtbook_photographcollection::slotGo(void)
 	  bytes.clear();
 	  image = pc.thumbnail_collection->image;
 	  image = image.scaled
-	    (126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	    (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	  buffer.open(QIODevice::WriteOnly);
 	  image.save
 	    (&buffer, pc.thumbnail_collection->imageFormat.toLatin1(), 100);
@@ -1053,7 +1053,7 @@ void qtbook_photographcollection::showPhotographs(const int page)
 
 	  if(!image.isNull())
 	    image = image.scaled
-	      (126, 187, Qt::IgnoreAspectRatio,
+	      (126, 187, Qt::KeepAspectRatio,
 	       Qt::SmoothTransformation);
 
 	  pixmapItem = pc.graphicsView->scene()->addPixmap
@@ -1271,7 +1271,7 @@ void qtbook_photographcollection::slotInsertItem(void)
       bytes.clear();
       image = photo.thumbnail_item->image;
       image = image.scaled
-	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
       buffer.open(QIODevice::WriteOnly);
       image.save
 	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
@@ -1642,7 +1642,7 @@ void qtbook_photographcollection::slotUpdateItem(void)
       bytes.clear();
       image = photo.thumbnail_item->image;
       image = image.scaled
-	(126, 187, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
       buffer.open(QIODevice::WriteOnly);
       image.save
 	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
