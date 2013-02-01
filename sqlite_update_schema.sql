@@ -719,7 +719,7 @@ CREATE TABLE photograph_collection
 CREATE TABLE photograph
 (
 	id			  TEXT NOT NULL,
-	myoid			  BIGINT UNIQUE,
+	myoid			  BIGINT NOT NULL,
 	collection_oid		  BIGINT NOT NULL,
 	title			  TEXT NOT NULL,
 	creators		  TEXT NOT NULL,
