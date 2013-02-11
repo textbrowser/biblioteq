@@ -36,6 +36,7 @@ FORMS           = adminsetup.ui \
 		  passwordPrompt.ui \
 		  photograph.ui \
 		  photographinfo.ui \
+		  photographview.ui \
 		  sruResults.ui \
 		  tracks.ui \
 		  userinfo.ui \

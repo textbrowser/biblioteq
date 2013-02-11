@@ -16,6 +16,7 @@
 
 #include "qtbook.h"
 #include "bgraphicsscene.h"
+#include "ui_photographview.h"
 #include "qtbook_photographcollection.h"
 
 extern qtbook *qmain;
@@ -68,6 +69,11 @@ qtbook_photographcollection::qtbook_photographcollection
   isQueryEnabled = false;
   parentWid = parentArg;
   photo.setupUi(photo_diag);
+  pc.graphicsView->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(pc.graphicsView,
+	  SIGNAL(customContextMenuRequested(const QPoint &)),
+	  this,
+	  SLOT(slotViewContextMenu(const QPoint &)));
   pc.graphicsView->setScene(scene);
   pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
@@ -1843,5 +1849,102 @@ void qtbook_photographcollection::slotExportPhotographs(void)
 	   dialog.selectedFiles().value(0));
 
       qapp->restoreOverrideCursor();
+    }
+}
+
+/*
+** -- slotViewContextMenu() --
+*/
+
+void qtbook_photographcollection::slotViewContextMenu(const QPoint &pos)
+{
+  QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+    (pc.graphicsView->itemAt(pos));
+
+  if(item)
+    {
+      QMenu menu(this);
+      QAction *action = 0;
+
+      action = menu.addAction(tr("&View Photograph"),
+			      this,
+			      SLOT(slotViewPhotograph(void)));
+
+      if(action)
+	{
+	  action->setData(pos);
+	  menu.exec(QCursor::pos());
+	}
+    }
+}
+
+/*
+** -- slotViewPhotograph() --
+*/
+
+void qtbook_photographcollection::slotViewPhotograph(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QPoint pos(action->data().toPoint());
+  QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
+    (pc.graphicsView->itemAt(pos));
+
+  if(item)
+    {
+      QMainWindow *mainWindow = 0;
+      Ui_photographView ui;
+
+      if((mainWindow = new(std::nothrow) QMainWindow(this)) != 0)
+	{
+	  mainWindow->setAttribute(Qt::WA_DeleteOnClose, true);
+	  ui.setupUi(mainWindow);
+	  connect(ui.closeButton,
+		  SIGNAL(clicked(void)),
+		  mainWindow,
+		  SLOT(close(void)));
+
+	  QGraphicsScene *scene = 0;
+
+	  if((scene = new(std::nothrow) QGraphicsScene(ui.view)) != 0)
+	    {
+	      ui.view->setScene(scene);
+
+	      QSqlQuery query(qmain->getDB());
+
+	      qapp->setOverrideCursor(Qt::WaitCursor);
+
+	      if(query.exec(QString("SELECT image FROM "
+				    "photograph WHERE "
+				    "collection_oid = %1 AND "
+				    "myoid = %2").
+			    arg(oid).
+			    arg(item->data(0).toLongLong())))
+		if(query.next())
+		  {
+		    QImage image;
+		    QGraphicsPixmapItem *pixmapItem = 0;
+
+		    image.loadFromData
+		      (QByteArray::fromBase64(query.value(0).
+					      toByteArray()));
+
+		    if(image.isNull())
+		      image.loadFromData(query.value(0).toByteArray());
+
+		    if(image.isNull())
+		      image = QImage("icons.d/no_image.png");
+
+		    pixmapItem = scene->addPixmap
+		      (QPixmap().fromImage(image));
+		    mainWindow->show();
+		  }
+
+	      qapp->restoreOverrideCursor();
+	    }
+	}
     }
 }
