@@ -1926,7 +1926,6 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 		if(query.next())
 		  {
 		    QImage image;
-		    QGraphicsPixmapItem *pixmapItem = 0;
 
 		    image.loadFromData
 		      (QByteArray::fromBase64(query.value(0).
@@ -1938,8 +1937,7 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 		    if(image.isNull())
 		      image = QImage("icons.d/no_image.png");
 
-		    pixmapItem = scene->addPixmap
-		      (QPixmap().fromImage(image));
+		    scene->addPixmap(QPixmap().fromImage(image));
 		    mainWindow->show();
 		  }
 
