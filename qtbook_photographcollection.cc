@@ -1938,6 +1938,7 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 		      image = QImage("icons.d/no_image.png");
 
 		    scene->addPixmap(QPixmap().fromImage(image));
+		    misc_functions::center(mainWindow, this);
 		    mainWindow->show();
 		  }
 
