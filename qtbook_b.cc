@@ -3089,11 +3089,12 @@ int qtbook::populateTable(const int search_type_arg,
       if(query.isValid())
 	if(pixmapItem)
 	  for(int ii = 0; ii < query.record().count(); ii++)
-	    if(query.record().fieldName(ii) == "myoid")
-	      {
+	    {
+	      if(query.record().fieldName(ii) == "myoid")
 		pixmapItem->setData(0, query.value(ii));
-		break;
-	      }
+	      else if(query.record().fieldName(ii) == "type")
+		pixmapItem->setData(1, query.value(ii));
+	    }
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);

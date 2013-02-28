@@ -775,7 +775,7 @@ void qtbook_dvd::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, dvd.front_image->image);
+	      qmain->updateSceneItem(oid, "DVD", dvd.front_image->image);
 	    }
 	  else
 	    {

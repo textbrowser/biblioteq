@@ -3048,20 +3048,28 @@ void qtbook::slotSceneSelectionChanged(void)
   if(!items.isEmpty())
     {
       QStringList oids;
+      QStringList types;
       QGraphicsItem *item = 0;
 
       while(!items.isEmpty())
 	if((item = items.takeFirst()))
-	  oids.append(item->data(0).toString());
+	  {
+	    oids.append(item->data(0).toString());
+	    types.append(item->data(1).toString());
+	  }
 
-      int column = ui.table->columnNumber("MYOID");
+      int column1 = ui.table->columnNumber("MYOID");
+      int column2 = ui.table->columnNumber("Type");
 
       for(int i = 0; i < ui.table->rowCount(); i++)
-	if(ui.table->item(i, column) &&
-	   oids.contains(ui.table->item(i, column)->text()))
+	if(ui.table->item(i, column1) &&
+	   oids.contains(ui.table->item(i, column1)->text()) &&
+	   ui.table->item(i, column2) &&
+	   types.contains(ui.table->item(i, column2)->text()))
 	  ui.table->selectRow(i);
 
       oids.clear();
+      types.clear();
     }
 }
 
@@ -3104,9 +3112,13 @@ void qtbook::slotDisplaySummary(void)
 	      QString oid = misc_functions::getColumnString
 		(ui.table, tableItems.at(ii)->row(),
 		 ui.table->columnNumber("MYOID"));
+	      QString type =  misc_functions::getColumnString
+		(ui.table, tableItems.at(ii)->row(),
+		 ui.table->columnNumber("Type"));
 
 	      for(int jj = 0; jj < items.size(); jj++)
-		if(oid == items.at(jj)->data(0).toString())
+		if(oid == items.at(jj)->data(0).toString() &&
+		   type == items.at(jj)->data(1).toString())
 		  {
 		    QRectF rect;
 
@@ -8095,45 +8107,49 @@ void qtbook::slotRequest(void)
 	    oid = "-1";
 	}
 
-      if(isRequesting)
-	{
-	  itemType = misc_functions::getColumnString
-	    (ui.table, i,
-	     ui.table->columnNumber("Type"));
-	  querystr = "INSERT INTO item_request (item_oid, memberid, "
-	    "requestdate, type) VALUES (?, ?, ?, ?)";
-	  query.prepare(querystr);
-	  query.bindValue(0, oid);
-	  query.bindValue(1, db.userName());
-	  query.bindValue(2, now.toString("MM/dd/yyyy"));
-	  query.bindValue(3, itemType);
-	}
-      else
-	{
-	  querystr = "DELETE FROM item_request WHERE myoid = ?";
-	  query.prepare(querystr);
-	  query.bindValue(0, oid);
-	}
+      itemType = misc_functions::getColumnString
+	(ui.table, i,
+	 ui.table->columnNumber("Type"));
 
-      if(!query.exec())
+      if(itemType != "Photograph Collection")
 	{
-	  error = true;
-
 	  if(isRequesting)
-	    addError(QString(tr("Database Error")),
-		     QString(tr("Unable to request the item.")),
-		     query.lastError().text(), __FILE__, __LINE__);
+	    {
+	      querystr = "INSERT INTO item_request (item_oid, memberid, "
+		"requestdate, type) VALUES (?, ?, ?, ?)";
+	      query.prepare(querystr);
+	      query.bindValue(0, oid);
+	      query.bindValue(1, db.userName());
+	      query.bindValue(2, now.toString("MM/dd/yyyy"));
+	      query.bindValue(3, itemType);
+	    }
 	  else
-	    addError(QString(tr("Database Error")),
-		     QString(tr("Unable to cancel the request.")),
-		     query.lastError().text(), __FILE__, __LINE__);
-	}
-      else
-	{
-	  numcompleted += 1;
+	    {
+	      querystr = "DELETE FROM item_request WHERE myoid = ?";
+	      query.prepare(querystr);
+	      query.bindValue(0, oid);
+	    }
 
-	  if(!isRequesting)
-	    deleteItem(oid, itemType);
+	  if(!query.exec())
+	    {
+	      error = true;
+
+	      if(isRequesting)
+		addError(QString(tr("Database Error")),
+			 QString(tr("Unable to request the item.")),
+			 query.lastError().text(), __FILE__, __LINE__);
+	      else
+		addError(QString(tr("Database Error")),
+			 QString(tr("Unable to cancel the request.")),
+			 query.lastError().text(), __FILE__, __LINE__);
+	    }
+	  else
+	    {
+	      numcompleted += 1;
+
+	      if(!isRequesting)
+		deleteItem(oid, itemType);
+	    }
 	}
 
       if(i + 1 <= progress.maximum())
@@ -8836,7 +8852,8 @@ void qtbook::slotDuplicate(void)
 ** -- updateSceneItem() --
 */
 
-void qtbook::updateSceneItem(const QString &oid, const QImage &image)
+void qtbook::updateSceneItem(const QString &oid, const QString &type,
+			     const QImage &image)
 {
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
 
@@ -8847,7 +8864,8 @@ void qtbook::updateSceneItem(const QString &oid, const QImage &image)
       while(!items.isEmpty())
 	if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
 							      takeFirst())))
-	  if(oid == item->data(0).toString())
+	  if(oid == item->data(0).toString() &&
+	     type == item->data(1).toString())
 	    {
 	      QImage l_image(image);
 

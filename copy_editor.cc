@@ -578,8 +578,15 @@ void copy_editor::slotCheckoutCopy(void)
   ** Update the main window's summary panel, if necessary.
   */
 
-  if(ioid == misc_functions::getColumnString(qmain->getUI().table,
-					     bitem->getRow(), "MYOID"))
+  if(ioid ==
+     misc_functions::getColumnString(qmain->getUI().table,
+				     bitem->getRow(),
+				     "MYOID") &&
+     itemType ==
+     misc_functions::getColumnString(qmain->getUI().table,
+				     bitem->getRow(),
+				     qmain->getUI().table->
+				     columnNumber("Type")))
     qmain->slotDisplaySummary();
 }
 

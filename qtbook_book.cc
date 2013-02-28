@@ -916,7 +916,7 @@ void qtbook_book::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, id.front_image->image);
+	      qmain->updateSceneItem(oid, "Book", id.front_image->image);
 	    }
 	  else
 	    {

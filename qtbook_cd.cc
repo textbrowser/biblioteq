@@ -734,7 +734,7 @@ void qtbook_cd::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, cd.front_image->image);
+	      qmain->updateSceneItem(oid, "CD", cd.front_image->image);
 	    }
 	  else
 	    {

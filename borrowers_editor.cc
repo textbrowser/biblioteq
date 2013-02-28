@@ -452,7 +452,12 @@ void borrowers_editor::slotEraseBorrower(void)
       if(ioid ==
 	 misc_functions::getColumnString(qmain->getUI().table,
 					 bitem->getRow(),
-					 "MYOID"))
+					 "MYOID") &&
+	 itemType ==
+	 misc_functions::getColumnString(qmain->getUI().table,
+					 bitem->getRow(),
+					 qmain->getUI().table->
+					 columnNumber("Type")))
 	qmain->slotDisplaySummary();
     }
 }

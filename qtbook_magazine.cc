@@ -827,7 +827,7 @@ void qtbook_magazine::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, ma.front_image->image);
+	      qmain->updateSceneItem(oid, subType, ma.front_image->image);
 	    }
 	  else
 	    {

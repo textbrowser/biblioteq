@@ -385,7 +385,8 @@ void qtbook_photographcollection::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, pc.thumbnail_collection->image);
+	      qmain->updateSceneItem(oid, "Photograph Collection",
+				     pc.thumbnail_collection->image);
 	    }
 	  else
 	    {

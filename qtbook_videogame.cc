@@ -691,7 +691,8 @@ void qtbook_videogame::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, vg.front_image->image);
+	      qmain->updateSceneItem(oid, "Video Game",
+				     vg.front_image->image);
 	    }
 	  else
 	    {
