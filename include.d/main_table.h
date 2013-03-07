@@ -23,6 +23,7 @@ class main_table: public QTableWidget
   void parseStates(const QHash<QString, QString> &);
   void recordColumnHidden(const QString &, const QString &, const int,
 			  const bool);
+  void setColumnNames(const QStringList &);
   QStringList columnNames(void) const;
   QHash<QString, QString> friendlyStates(void) const;
 

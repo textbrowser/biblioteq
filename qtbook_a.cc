@@ -813,12 +813,12 @@ void qtbook::addConfigOptions(const QString &typefilter)
 	 typefilter != "All Requested" &&
 	 typefilter != "All Reserved")
 	{
-	  if(ui.table->columnNames().at(i) == "MYOID" ||
-	     ui.table->columnNames().at(i) == "Type")
+	  if(ui.table->columnNames().value(i) == "MYOID" ||
+	     ui.table->columnNames().value(i) == "Type")
 	    continue;
 	}
-      else if(ui.table->columnNames().at(i) == "MYOID" ||
-	      ui.table->columnNames().at(i) == "REQUESTOID")
+      else if(ui.table->columnNames().value(i) == "MYOID" ||
+	      ui.table->columnNames().value(i) == "REQUESTOID")
 	continue;
 
       if((action = new(std::nothrow) QAction(ui.table->

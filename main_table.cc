@@ -499,3 +499,13 @@ QStringList main_table::columnNames(void) const
 {
   return m_columnHeaderIndexes.toList();
 }
+
+/*
+** -- setColumnNames() --
+*/
+
+void main_table::setColumnNames(const QStringList &list)
+{
+  for(int i = 0; i < list.size(); i++)
+    m_columnHeaderIndexes.append(list.at(i));
+}

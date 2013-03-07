@@ -34,7 +34,7 @@ int qtbook::populateTable(const int search_type_arg,
   QString itemType = "";
   QString searchstr = "";
   QStringList types;
-  QStringList tmplist;
+  QStringList tmplist; // Used for custom queries.
   QProgressDialog progress(this);
   QTableWidgetItem *item = 0;
 
@@ -3120,6 +3120,7 @@ int qtbook::populateTable(const int search_type_arg,
 
       ui.table->setColumnCount(tmplist.size());
       ui.table->setHorizontalHeaderLabels(tmplist);
+      ui.table->setColumnNames(tmplist);
       tmplist.clear();
       addConfigOptions("Custom");
     }
