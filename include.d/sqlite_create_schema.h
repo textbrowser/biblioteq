@@ -78,6 +78,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  songnum		 INTEGER NOT NULL DEFAULT 1,		\
 	  songtitle	 VARCHAR(256) NOT NULL,				\
 	  runtime		 VARCHAR(32) NOT NULL,			\
+	  artist         TEXT NOT NULL DEFAULT 'UNKNOWN',		\
+	  composer       TEXT NOT NULL DEFAULT 'UNKNOWN',		\
 	  PRIMARY KEY(item_oid, albumnum, songnum)			\
 	  );								\
 									\

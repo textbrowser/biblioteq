@@ -958,3 +958,7 @@ GRANT SELECT ON photograph TO biblioteq_patron;
 GRANT SELECT ON photograph_collection TO biblioteq_patron;
 GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON photograph_myoid_seq TO biblioteq_patron;
+
+/* Release 6.63 */
+
+ALTER TABLE cd_songs ADD artist TEXT NOT NULL DEFAULT 'UNKNOWN', ADD composer TEXT NOT NULL DEFAULT 'UNKNOWN';

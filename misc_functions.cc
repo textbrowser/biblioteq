@@ -2210,6 +2210,16 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		     ")");
 	}
     }
+
+  if(version >= "6.63")
+    {
+      QSqlQuery query(db);
+
+      query.exec("ALTER TABLE cd_songs ADD artist TEXT "
+		 "NOT NULL DEFAULT 'UNKNOWN'");
+      query.exec("ALTER TABLE cd_songs ADD composer TEXT "
+		 "NOT NULL DEFAULT 'UNKNOWN'");
+    }
 }
 
 /*
