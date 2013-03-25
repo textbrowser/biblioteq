@@ -38,6 +38,7 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QAction *composer_action;
   QDialog *tracks_diag;
   QString engWindowTitle;
   Ui_cdDialog cd;

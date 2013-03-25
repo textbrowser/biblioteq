@@ -245,14 +245,14 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
+            <item row="4" column="0">
              <widget class="QLabel" name="label_5">
               <property name="text">
                <string>Number of Discs</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
+            <item row="4" column="1">
              <layout class="QHBoxLayout">
               <item>
                <widget class="QSpinBox" name="no_of_discs">
@@ -279,14 +279,14 @@
               </item>
              </layout>
             </item>
-            <item row="4" column="0">
+            <item row="5" column="0">
              <widget class="QLabel" name="label_6">
               <property name="text">
                <string>Runtime</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
+            <item row="5" column="1">
              <layout class="QHBoxLayout">
               <item>
                <widget class="QTimeEdit" name="runtime">
@@ -321,14 +321,14 @@
               </item>
              </layout>
             </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="label_18">
               <property name="text">
                <string>Audio</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <layout class="QHBoxLayout">
               <item>
                <widget class="QComboBox" name="audio">
@@ -362,14 +362,14 @@
               </item>
              </layout>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="label_17">
               <property name="text">
                <string>Recording Type</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <layout class="QHBoxLayout">
               <item>
                <widget class="QComboBox" name="recording_type">
@@ -403,14 +403,27 @@
               </item>
              </layout>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="tracks_lbl">
               <property name="text">
                <string>Tracks</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="9" column="0">
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="8" column="1">
              <layout class="QHBoxLayout">
               <item>
                <widget class="QPushButton" name="tracksButton">
@@ -438,18 +451,15 @@
               </item>
              </layout>
             </item>
-            <item row="8" column="0">
-             <spacer>
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+            <item row="3" column="0">
+             <widget class="QLabel" name="composer_label">
+              <property name="text">
+               <string>Composer</string>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QTextEdit" name="composer"/>
             </item>
            </layout>
           </widget>
@@ -916,6 +926,7 @@
   <tabstop>id</tabstop>
   <tabstop>format</tabstop>
   <tabstop>artist</tabstop>
+  <tabstop>composer</tabstop>
   <tabstop>no_of_discs</tabstop>
   <tabstop>runtime</tabstop>
   <tabstop>computeButton</tabstop>

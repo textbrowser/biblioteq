@@ -103,6 +103,10 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Artist")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  composer_action = menu->addAction(tr("Reset &Composer"));
+  connect(composer_action, SIGNAL(triggered(void)),
+	  this, SLOT(slotReset(void)));
+  composer_action->setVisible(false);
   connect(menu->addAction(tr("Reset &Number of Discs")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Runtime")),
@@ -140,6 +144,8 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   cd.queryButton->setVisible(isQueryEnabled);
   cd.resetButton->setMenu(menu);
   cd.id->setValidator(validator1);
+  cd.composer->setVisible(false);
+  cd.composer_label->setVisible(false);
 
   QString errorstr("");
 
@@ -839,6 +845,12 @@ void qtbook_cd::slotGo(void)
 	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
 	("%')");
       searchstr.append(") AND ");
+      searchstr.append("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+		       "cd_songs.item_oid = cd.myoid AND ");
+      searchstr.append("cd_songs.composer LIKE " + E + "'%").append
+	(myqstring::escape(cd.composer->toPlainText().trimmed())).append
+	("%')");
+      searchstr.append(" AND ");
 
       if(cd.no_of_discs->value() > 0)
 	searchstr.append("cddiskcount = ").append
@@ -925,6 +937,9 @@ void qtbook_cd::slotGo(void)
 
 void qtbook_cd::search(const QString &field, const QString &value)
 {
+  composer_action->setVisible(true);
+  cd.composer->setVisible(true);
+  cd.composer_label->setVisible(true);
   cd.id->clear();
   cd.artist->clear();
   cd.title->clear();
@@ -1847,10 +1862,15 @@ void qtbook_cd::slotReset(void)
 	}
       else if(action == actions[5])
 	{
+	  cd.composer->clear();
+	  cd.composer->setFocus();
+	}
+      else if(action == actions[6])
+	{
 	  cd.no_of_discs->setValue(cd.no_of_discs->minimum());
 	  cd.no_of_discs->setFocus();
 	}
-      else if(action == actions[6])
+      else if(action == actions[7])
 	{
 	  if(engWindowTitle.contains("Search"))
 	    cd.runtime->setTime(QTime(0, 0, 0));
@@ -1859,22 +1879,22 @@ void qtbook_cd::slotReset(void)
 
 	  cd.runtime->setFocus();
 	}
-      else if(action == actions[7])
+      else if(action == actions[8])
 	{
 	  cd.audio->setCurrentIndex(0);
 	  cd.audio->setFocus();
 	}
-      else if(action == actions[8])
+      else if(action == actions[9])
 	{
 	  cd.recording_type->setCurrentIndex(0);
 	  cd.recording_type->setFocus();
 	}
-      else if(action == actions[9])
+      else if(action == actions[10])
 	{
 	  cd.title->clear();
 	  cd.title->setFocus();
 	}
-      else if(action == actions[10])
+      else if(action == actions[11])
 	{
 	  if(engWindowTitle.contains("Search"))
 	    cd.release_date->setDate
@@ -1885,7 +1905,7 @@ void qtbook_cd::slotReset(void)
 
 	  cd.release_date->setFocus();
 	}
-      else if(action == actions[11])
+      else if(action == actions[12])
 	{
 	  if(engWindowTitle.contains("Search"))
 	    cd.recording_label->clear();
@@ -1894,7 +1914,7 @@ void qtbook_cd::slotReset(void)
 
 	  cd.recording_label->setFocus();
 	}
-      else if(action == actions[12])
+      else if(action == actions[13])
 	{
 	  if(engWindowTitle.contains("Search"))
 	    cd.category->clear();
@@ -1903,32 +1923,32 @@ void qtbook_cd::slotReset(void)
 
 	  cd.category->setFocus();
 	}
-      else if(action == actions[13])
+      else if(action == actions[14])
 	{
 	  cd.price->setValue(cd.price->minimum());
 	  cd.price->setFocus();
 	}
-      else if(action == actions[14])
+      else if(action == actions[15])
 	{
 	  cd.language->setCurrentIndex(0);
 	  cd.language->setFocus();
 	}
-      else if(action == actions[15])
+      else if(action == actions[16])
 	{
 	  cd.monetary_units->setCurrentIndex(0);
 	  cd.monetary_units->setFocus();
 	}
-      else if(action == actions[16])
+      else if(action == actions[17])
 	{
 	  cd.quantity->setValue(cd.quantity->minimum());
 	  cd.quantity->setFocus();
 	}
-      else if(action == actions[17])
+      else if(action == actions[18])
 	{
 	  cd.location->setCurrentIndex(0);
 	  cd.location->setFocus();
 	}
-      else if(action == actions[18])
+      else if(action == actions[19])
 	{
 	  if(engWindowTitle.contains("Search"))
 	    cd.description->clear();
@@ -1937,7 +1957,7 @@ void qtbook_cd::slotReset(void)
 
 	  cd.description->setFocus();
 	}
-      else if(action == actions[19])
+      else if(action == actions[20])
 	{
 	  cd.keyword->clear();
 	  cd.keyword->setFocus();
@@ -1999,6 +2019,7 @@ void qtbook_cd::slotReset(void)
       cd.front_image->clear();
       cd.back_image->clear();
       cd.keyword->clear();
+      cd.composer->clear();
       cd.id->setFocus();
     }
 }
