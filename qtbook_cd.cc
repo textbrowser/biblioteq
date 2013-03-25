@@ -830,9 +830,15 @@ void qtbook_cd::slotGo(void)
 					   trimmed()) +
 			 "' AND ");
 
-      searchstr.append("artist LIKE " + E + "'%").append
+      searchstr.append("(artist LIKE " + E + "'%").append
 	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
-	("%' AND ");
+	("%' OR ");
+      searchstr.append("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+		       "cd_songs.item_oid = cd.myoid AND ");
+      searchstr.append("cd_songs.artist LIKE " + E + "'%").append
+	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
+	("%')");
+      searchstr.append(") AND ");
 
       if(cd.no_of_discs->value() > 0)
 	searchstr.append("cddiskcount = ").append
@@ -1364,10 +1370,12 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
 #ifdef Q_OS_MAC
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
-  querystr = "SELECT albumnum, songnum, songtitle, runtime "
+  querystr = "SELECT albumnum, songnum, songtitle, runtime, "
+    "artist, composer "
     "FROM cd_songs WHERE item_oid = ";
   querystr.append(oid);
-  querystr.append(" ORDER BY albumnum, songnum, songtitle, runtime");
+  querystr.append(" ORDER BY albumnum, songnum, songtitle, runtime, "
+		  "artist, composer");
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec(querystr))
@@ -1397,6 +1405,8 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   list.append(tr("Track Number"));
   list.append(tr("Track Title"));
   list.append(tr("Track Runtime"));
+  list.append(tr("Artist"));
+  list.append(tr("Composer"));
   trd.table->setColumnCount(list.size());
   trd.table->setHorizontalHeaderLabels(list);
   list.clear();
@@ -1558,12 +1568,16 @@ void qtbook_cd::slotInsertTrack(void)
   for(i = 1; i <= cd.no_of_discs->value(); i++)
     list.append(QString::number(i));
 
-  for(i = 0; i < 4; i++)
+  for(i = 0; i < trd.table->columnCount(); i++)
     {
       if(i == 1)
 	str = "1";
       else if(i == 2)
-	str = "Title";
+	str = tr("Title");
+      else if(i == 4 || i == 5)
+	str = tr("UNKNOWN");
+      else
+	str.clear();
 
       if(i == 0)
 	{
@@ -1719,10 +1733,12 @@ void qtbook_cd::slotSaveTracks(void)
 			"albumnum, "
 			"songnum, "
 			"songtitle, "
-			"runtime"
+			"runtime, "
+			"artist, "
+			"composer "
 			") "
 			"VALUES (?, "
-			"?, ?, ?, ?)");
+			"?, ?, ?, ?, ?, ?)");
 	  query.bindValue(0, oid);
 
 	  if(trd.table->cellWidget(i, 0) != 0)
@@ -1737,9 +1753,15 @@ void qtbook_cd::slotSaveTracks(void)
 	    query.bindValue(3, trd.table->item(i, 2)->text().trimmed());
 
 	  if(trd.table->cellWidget(i, 3) != 0)
-	    query.bindValue(4, static_cast<QTimeEdit *>
-			    (trd.table->cellWidget(i, 3))->time().toString
-			    ("hh:mm:ss"));
+	    query.bindValue
+	      (4, static_cast<QTimeEdit *> (trd.table->cellWidget(i, 3))->time().
+	       toString("hh:mm:ss"));
+
+	  if(trd.table->item(i, 4) != 0)
+	    query.bindValue(5, trd.table->item(i, 4)->text().trimmed());
+
+	  if(trd.table->item(i, 2) != 0)
+	    query.bindValue(6, trd.table->item(i, 5)->text().trimmed());
 
 	  if(!query.exec())
 	    {
