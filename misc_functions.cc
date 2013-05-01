@@ -2318,7 +2318,12 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
   if(query.exec())
     {
       int i = 0;
+#if QT_VERSION >= 0x040700
       qint64 id = QDateTime::currentMSecsSinceEpoch();
+#else
+      QDateTime dateTime(QDateTime::currentDateTime());
+      qint64 id = static_cast<qint64> (dateTime.toTime_t());
+#endif
 
       while(query.next())
 	{
