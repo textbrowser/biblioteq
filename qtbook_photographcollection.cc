@@ -1092,8 +1092,14 @@ void qtbook_photographcollection::slotAddItem(void)
 		     0.95 * size().height());
   misc_functions::center(photo_diag, this);
   photo.thumbnail_item->clear();
-  photo.id_item->setText
-    (QString::number(QDateTime::currentMSecsSinceEpoch()));
+#if QT_VERSION >= 0x040700
+  photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
+#else
+  QDateTime dateTime(QDateTime::currentDateTime());
+
+  photo.id_item->setText(QString::
+                         number(static_cast<qint64> (dateTime.toTime_t())));
+#endif
   photo.title_item->clear();
   photo.creators_item->setPlainText("N/A");
   photo.publication_date->setDate(QDate::fromString("01/01/2000",
