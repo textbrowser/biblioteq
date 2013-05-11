@@ -2635,7 +2635,7 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $2 - Source of heading or term (NR)
 		      ** $3 - Materials specified (NR)
 		      ** $6 - Linkage (NR)
-		      ** $8 - Field link and sequence number (R) 
+		      ** $8 - Field link and sequence number (R)
 		      */
 
 		      str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -3647,7 +3647,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			** $2 - Source of heading or term (NR)
 			** $3 - Materials specified (NR)
 			** $6 - Linkage (NR)
-			** $8 - Field link and sequence number (R) 
+			** $8 - Field link and sequence number (R)
 			*/
 
 			QString str("");

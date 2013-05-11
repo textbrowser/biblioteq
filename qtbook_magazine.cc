@@ -2295,7 +2295,7 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $2 - Source of heading or term (NR)
 	  ** $3 - Materials specified (NR)
 	  ** $6 - Linkage (NR)
-	  ** $8 - Field link and sequence number (R) 
+	  ** $8 - Field link and sequence number (R)
 	  */
 
 	  str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -2727,7 +2727,7 @@ void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		** $2 - Source of heading or term (NR)
 		** $3 - Materials specified (NR)
 		** $6 - Linkage (NR)
-		** $8 - Field link and sequence number (R) 
+		** $8 - Field link and sequence number (R)
 		*/
 
 		QString str("");

@@ -52,7 +52,7 @@ static int callnum_lt(QString m, QString n)
   qDebug() << "result: " << res1 << " " << res2 << endl;
   qDebug() << "matches: " << endl;
 
-  for(int i = 1; i <= 6; i++) 
+  for(int i = 1; i <= 6; i++)
     qDebug() << match1.cap(i) << " " << match2.cap(i) << endl;
 #endif
 
