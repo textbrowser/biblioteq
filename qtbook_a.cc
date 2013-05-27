@@ -1011,6 +1011,8 @@ void qtbook::adminSetup(void)
       bb.deleteButton->setEnabled(true);
       bb.modifyButton->setEnabled(true);
     }
+
+  resetAdminBrowser();
 }
 
 /*
@@ -2121,7 +2123,7 @@ void qtbook::slotSaveUser(void)
 
   if(engUserinfoTitle.contains("New"))
     {
-      if(userinfo_diag->userinfo.memberid->text().length() <= 5)
+      if(userinfo_diag->userinfo.memberid->text().length() < 5)
 	{
 	  QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 				tr("The Member ID must be at least five "
