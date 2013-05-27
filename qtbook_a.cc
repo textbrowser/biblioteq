@@ -1160,8 +1160,10 @@ void qtbook::slotAbout(void)
 	     "http://biblioteq.sourceforge.net</a> for "
 	     "project information.<br>"
 	     "For release notes, please visit "
-	     "<a href=\"http://biblioteq.sourceforge.net/news.html\">"
-	     "http://biblioteq.sourceforge.net/news.html</a>.<br></html>").
+	     "<a href=\"http://biblioteq.sourceforge.net/"
+	     "release_notes.html\">"
+	     "http://biblioteq.sourceforge.net/"
+	     "release_notes.html</a>.<br></html>").
      arg(BIBLIOTEQ_VERSION).
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
