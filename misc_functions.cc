@@ -424,7 +424,6 @@ void misc_functions::DBAccount(const QString &userid,
 		  (void) query.exec(querystr);
 		}
 	    }
-
 	  else if(str.contains("membership"))
 	    {
 	      (void) query.exec(QString("GRANT %1 "
