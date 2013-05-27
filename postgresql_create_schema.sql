@@ -623,6 +623,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_platforms TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO biblioteq_librarian;
+GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
 GRANT SELECT ON admin TO biblioteq_librarian;
 GRANT SELECT ON item_borrower_vw TO biblioteq_librarian;
 GRANT SELECT ON item_request TO biblioteq_librarian;

@@ -658,7 +658,7 @@
                </item>
                <item row="0" column="1">
                 <property name="text">
-                 <string/>
+                 <string>21</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -674,7 +674,7 @@
                </item>
                <item row="1" column="1">
                 <property name="text">
-                 <string/>
+                 <string>14</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -690,7 +690,7 @@
                </item>
                <item row="2" column="1">
                 <property name="text">
-                 <string/>
+                 <string>21</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -706,7 +706,7 @@
                </item>
                <item row="3" column="1">
                 <property name="text">
-                 <string/>
+                 <string>21</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -722,7 +722,7 @@
                </item>
                <item row="4" column="1">
                 <property name="text">
-                 <string/>
+                 <string>14</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
@@ -738,7 +738,7 @@
                </item>
                <item row="5" column="1">
                 <property name="text">
-                 <string/>
+                 <string>14</string>
                 </property>
                 <property name="flags">
                  <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>

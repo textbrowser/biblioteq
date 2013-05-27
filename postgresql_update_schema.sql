@@ -962,3 +962,7 @@ GRANT SELECT ON photograph_myoid_seq TO biblioteq_patron;
 /* Release 6.63 */
 
 ALTER TABLE cd_songs ADD artist TEXT NOT NULL DEFAULT 'UNKNOWN', ADD composer TEXT NOT NULL DEFAULT 'UNKNOWN';
+
+/* Release 6.64 */
+
+GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;

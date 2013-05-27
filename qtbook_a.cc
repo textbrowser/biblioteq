@@ -7250,6 +7250,7 @@ void qtbook::slotBranchChanged(void)
     {
       br.stackedWidget->setCurrentIndex(1);
       br.userid->setFocus();
+      br.userid->selectAll();
     }
 
   tmphash.clear();
