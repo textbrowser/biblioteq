@@ -326,7 +326,9 @@ void misc_functions::DBAccount(const QString &userid,
 
       if(count == 0)
 	{
-	  if(roles.contains("administrator") || roles.contains("membership"))
+	  QString str(roles);
+
+	  if(str.contains("administrator") || str.contains("membership"))
 	    querystr = QString
 	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
 	       "CREATEUSER").arg(userid);
@@ -342,67 +344,37 @@ void misc_functions::DBAccount(const QString &userid,
 	  if(!errorstr.isEmpty())
 	    return;
 
-	  if(errorstr.isEmpty())
+	  if(str.isEmpty() || str == "none")
+	    str = "biblioteq_patron";
+	  else
 	    {
-	      if(roles.contains("administrator"))
-		{
-		  (void) query.exec(QString("GRANT biblioteq_administrator "
-					    "TO %1 WITH ADMIN OPTION").
-				    arg(userid));
-
-		  if(query.lastError().isValid())
-		    errorstr = query.lastError().text();
-		}
+	      str.replace(" ", "_");
+	      str.prepend("biblioteq_");
 	    }
 
-	  if(errorstr.isEmpty())
+	  if(str.contains("administrator"))
 	    {
-	      if(roles.contains("circulation"))
-		{
-		  (void) query.exec(QString("GRANT biblioteq_circulation "
-					    "TO %1").arg(userid));
-
-		  if(query.lastError().isValid())
-		    errorstr = query.lastError().text();
-		}
+	      (void) query.exec(QString("GRANT biblioteq_administrator "
+					"TO %1 WITH ADMIN OPTION").
+				arg(userid));
+	      goto done_label;
 	    }
 
-	  if(errorstr.isEmpty())
+	  if(str.contains("membership"))
 	    {
-	      if(roles.contains("librarian"))
-		{
-		  (void) query.exec(QString("GRANT biblioteq_librarian "
-					    "TO %1").arg(userid));
-
-		  if(query.lastError().isValid())
-		    errorstr = query.lastError().text();
-		}
+	      (void) query.exec(QString("GRANT %1 "
+					"TO %2 WITH ADMIN OPTION").
+				arg(str).arg(userid));
+	      goto done_label;
 	    }
 
-	  if(errorstr.isEmpty())
-	    {
-	      if(roles.contains("membership"))
-		{
-		  (void) query.exec(QString("GRANT biblioteq_membership "
-					    "TO %1 WITH ADMIN OPTION").
-				    arg(userid));
+	  (void) query.exec(QString("GRANT %1 "
+				    "TO %2").arg(str).arg(userid));
 
-		  if(query.lastError().isValid())
-		    errorstr = query.lastError().text();
-		}
-	    }
+	done_label:
 
-	  if(errorstr.isEmpty())
-	    {
-	      if(roles.isEmpty())
-		{
-		  (void) query.exec(QString("GRANT biblioteq_patron "
-					    "TO %1").arg(userid));
-
-		  if(query.lastError().isValid())
-		    errorstr = query.lastError().text();
-		}
-	    }
+	  if(query.lastError().isValid())
+	    errorstr = query.lastError().text();
 
 	  return;
 	}
@@ -412,20 +384,17 @@ void misc_functions::DBAccount(const QString &userid,
 
   if(action == UPDATE_USER)
     {
-      if(roles.contains("administrator"))
-	objectlist << "biblioteq_administrator";
+      QString str(roles);
 
-      if(roles.contains("circulation"))
-	objectlist << "biblioteq_circulation";
+      if(str.isEmpty() || str == "none")
+	str = "biblioteq_patron";
+      else
+	{
+	  str.replace(" ", "_");
+	  str.prepend("biblioteq_");
+	}
 
-      if(roles.contains("librarian"))
-	objectlist << "biblioteq_librarian";
-
-      if(roles.contains("membership"))
-	objectlist << "biblioteq_membership";
-
-      if(roles.isEmpty())
-	objectlist << "biblioteq_patron";
+      objectlist << str;
 
       while(!objectlist.isEmpty())
 	{
@@ -443,64 +412,37 @@ void misc_functions::DBAccount(const QString &userid,
 
       if(errorstr.isEmpty())
 	{
-	  if(roles.contains("administrator"))
+	  if(str.contains("administrator"))
 	    {
 	      (void) query.exec(QString("GRANT biblioteq_administrator "
 					"TO %1 WITH ADMIN OPTION").
 				arg(userid));
 
-	      if(query.lastError().isValid())
-		errorstr = query.lastError().text();
+	      if(!query.lastError().isValid())
+		{
+		  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+		  (void) query.exec(querystr);
+		}
 	    }
-	}
 
-      if(errorstr.isEmpty())
-	{
-	  if(roles.contains("circulation"))
+	  else if(str.contains("membership"))
 	    {
-	      (void) query.exec(QString("GRANT biblioteq_circulation "
-					"TO %1").arg(userid));
+	      (void) query.exec(QString("GRANT %1 "
+					"TO %2 WITH ADMIN OPTION").
+				arg(str).arg(userid));
 
-	      if(query.lastError().isValid())
-		errorstr = query.lastError().text();
+	      if(!query.lastError().isValid())
+		{
+		  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+		  (void) query.exec(querystr);
+		}
 	    }
-	}
+	  else
+	    (void) query.exec(QString("GRANT %1 "
+				      "TO %2").arg(str).arg(userid));
 
-      if(errorstr.isEmpty())
-	{
-	  if(roles.contains("librarian"))
-	    {
-	      (void) query.exec(QString("GRANT biblioteq_librarian "
-					"TO %1").arg(userid));
-
-	      if(query.lastError().isValid())
-		errorstr = query.lastError().text();
-	    }
-	}
-
-      if(errorstr.isEmpty())
-	{
-	  if(roles.contains("membership"))
-	    {
-	      (void) query.exec(QString("GRANT biblioteq_membership "
-					"TO %1 WITH ADMIN OPTION").
-				arg(userid));
-
-	      if(query.lastError().isValid())
-		errorstr = query.lastError().text();
-	    }
-	}
-
-      if(errorstr.isEmpty())
-	{
-	  if(roles.isEmpty())
-	    {
-	      (void) query.exec(QString("GRANT biblioteq_patron "
-					"TO %1").arg(userid));
-
-	      if(query.lastError().isValid())
-		errorstr = query.lastError().text();
-	    }
+	  if(query.lastError().isValid())
+	    errorstr = query.lastError().text();
 	}
     }
 
