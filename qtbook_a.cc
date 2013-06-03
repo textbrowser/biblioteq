@@ -3798,8 +3798,6 @@ void qtbook::slotConnectDB(void)
     }
   else
     {
-      db.exec("PRAGMA foreign_keys = ON");
-
       if(!error)
 	roles = "administrator";
     }

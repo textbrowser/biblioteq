@@ -34,7 +34,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  myoid		 BIGINT NOT NULL,				\
 	  copyid		 VARCHAR(64) NOT NULL,			\
 	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid)					\
+	  PRIMARY KEY(item_oid, copyid),				\
+	  FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE \
   );									\
 									\
 CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
@@ -80,7 +81,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  runtime		 VARCHAR(32) NOT NULL,			\
 	  artist         TEXT NOT NULL DEFAULT 'UNKNOWN',		\
 	  composer       TEXT NOT NULL DEFAULT 'UNKNOWN',		\
-	  PRIMARY KEY(item_oid, albumnum, songnum)			\
+	  PRIMARY KEY(item_oid, albumnum, songnum),			\
+	  FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
 	  );								\
 									\
 CREATE TABLE cd_copy_info						\
@@ -89,7 +91,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  myoid		 BIGINT NOT NULL,				\
 	  copyid		 VARCHAR(64) NOT NULL,			\
 	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid)					\
+	  PRIMARY KEY(item_oid, copyid),				\
+	  FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
 	  );								\
 									\
 CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd			\
@@ -135,7 +138,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  myoid		 BIGINT NOT NULL,				\
 	  copyid		 VARCHAR(64) NOT NULL,			\
 	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid)					\
+	  PRIMARY KEY(item_oid, copyid),				\
+	  FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE \
 	  );								\
 									\
 CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd			\
@@ -180,7 +184,8 @@ item_oid	 BIGINT NOT NULL,					\
 	  myoid		 BIGINT NOT NULL,				\
 	  copyid		 VARCHAR(64) NOT NULL,			\
 	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid)					\
+	  PRIMARY KEY(item_oid, copyid),				\
+	  FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE \
 	  );								\
 									\
 CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
@@ -225,7 +230,8 @@ CREATE TABLE magazine_copy_info						\
 	myoid		 BIGINT NOT NULL,				\
 	copyid		 VARCHAR(64) NOT NULL,				\
 	copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	PRIMARY KEY(item_oid, copyid)					\
+	PRIMARY KEY(item_oid, copyid),				        \
+	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE \
 );									\
 									\
 CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
@@ -304,7 +310,8 @@ CREATE TABLE videogame_copy_info					\
 	myoid		 BIGINT NOT NULL,				\
 	copyid		 VARCHAR(64) NOT NULL,				\
 	copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	PRIMARY KEY(item_oid, copyid)					\
+	PRIMARY KEY(item_oid, copyid),				        \
+	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE \
 );									\
 									\
 CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame	\
@@ -361,7 +368,8 @@ CREATE TABLE member_history						\
 	returned_date	 VARCHAR(32) NOT NULL,				\
 	myoid		 INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
 	reserved_by	 VARCHAR(128) NOT NULL,				\
-	type		 VARCHAR(16) NOT NULL				\
+	type		 VARCHAR(16) NOT NULL,				\
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE \
 );									\
 									\
 CREATE TRIGGER member_history_trigger AFTER DELETE ON member		\
