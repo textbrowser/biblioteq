@@ -23,7 +23,6 @@ setOutPath $INSTDIR
 file *.sql
 file .\qt.conf
 file .\biblioteq.conf
-file .\Microsoft.VC90.CRT.manifest
 file /r .\release\doc.d
 file /r .\release\icons.d
 file /r .\release\plugins
@@ -35,7 +34,7 @@ file /r .\release\translations.d
 file .\release\*.dll
 file .\libraries.win32.d\sqlite3.d\*.dll
 file .\libraries.win32.d\yaz.d\*.dll
-file .\sqlite3.exe
+file .\libraries.win32.d\yaz.d\Microsoft.VC90.CRT.manifest
 file .\release\BiblioteQ.exe
 
 # Add an icon to the Desktop.
