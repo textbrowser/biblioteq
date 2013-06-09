@@ -18,11 +18,19 @@ main_table::main_table(QWidget *parent):QTableWidget(parent)
 {
   setDragEnabled(false);
   setAcceptDrops(false);
+#if QT_VERSION >= 0x050000
+  horizontalHeader()->setSectionsMovable(true);
+#else
   horizontalHeader()->setMovable(true);
+#endif
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
   horizontalHeader()->setStretchLastSection(true);
+#if QT_VERSION >= 0x050000
+  verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
   verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
 }
 
 /*

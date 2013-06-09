@@ -35,7 +35,11 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   spinbox = spinboxArg;
   itemType = itemTypeArg;
   showForLending = showForLendingArg;
+#if QT_VERSION >= 0x050000
+  cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
   cb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
 
   if(!uniqueIdArg.trimmed().isEmpty())
     setWindowTitle

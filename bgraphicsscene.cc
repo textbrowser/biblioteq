@@ -35,7 +35,11 @@ void bgraphicsscene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
   QGraphicsScene::mouseDoubleClickEvent(event);
 
+#if QT_VERSION < 0x050000
   if(event && itemAt(event->scenePos()))
+#else
+  if(event && itemAt(event->scenePos(), QTransform()))
+#endif
     emit itemDoubleClicked();
 }
 

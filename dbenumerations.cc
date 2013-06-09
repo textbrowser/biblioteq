@@ -103,8 +103,15 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
+#if QT_VERSION >= 0x050000
+  ui.locationsTable->verticalHeader()->setSectionResizeMode
+    (QHeaderView::Fixed);
+  ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
+    (QHeaderView::Fixed);
+#else
   ui.locationsTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   ui.minimumDaysTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
 }
 
 /*

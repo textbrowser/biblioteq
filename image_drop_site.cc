@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QMimeData>
 #include <QtDebug>
 
 /*

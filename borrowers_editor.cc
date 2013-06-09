@@ -53,7 +53,11 @@ borrowers_editor::borrowers_editor(QWidget *parent,
 
   connect(bd.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCurrentBorrowers(void)));
+#if QT_VERSION >= 0x050000
+  bd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
   bd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
   setGlobalFonts(font);
 
   if(!uniqueidArg.isEmpty())

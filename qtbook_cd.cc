@@ -65,7 +65,11 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(tracks_diag);
+#if QT_VERSION >= 0x050000
+  trd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
   updateFont(qapp->font(), static_cast<QWidget *> (tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));

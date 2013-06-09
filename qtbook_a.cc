@@ -32,7 +32,9 @@
 
 #include <QtDebug>
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
 #include <QMacStyle>
+#endif
 #endif
 #include <QSettings>
 #include <QSqlField>
@@ -115,7 +117,9 @@ int main(int argc, char *argv[])
     }
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   QApplication::setStyle(new QMacStyle());
+#endif
 #endif
 
   /*
@@ -599,10 +603,17 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotExportAsCSV(void)));
+#if QT_VERSION >= 0x050000
+  ab.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  bb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  er.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  history.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+#else
   ab.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   bb.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+#endif
   ui.createTool->setMenu(menu1);
   ui.searchTool->setMenu(menu2);
   ui.configTool->setMenu(menu3);
@@ -6543,8 +6554,13 @@ void qtbook::slotShowCustomQuery(void)
 
       for(i = 0; i < cq.tables_t->columnCount(); i++)
 	{
+#if QT_VERSION >= 0x050000
+	  cq.tables_t->header()->setSectionResizeMode
+	    (i, QHeaderView::ResizeToContents);
+#else
 	  cq.tables_t->header()->setResizeMode
 	    (i, QHeaderView::ResizeToContents);
+#endif
 	  cq.tables_t->resizeColumnToContents(i);
 	}
 
