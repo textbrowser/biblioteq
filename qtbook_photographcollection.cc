@@ -82,8 +82,10 @@ qtbook_photographcollection::qtbook_photographcollection
 				PHOTOGRAPHS_PER_PAGE / 5 * 200);
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
   photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   photo_diag->setWindowModality(Qt::WindowModal);
@@ -934,7 +936,9 @@ void qtbook_photographcollection::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -1753,7 +1757,9 @@ void qtbook_photographcollection::slotDeleteItem(void)
   QProgressDialog progress(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -1831,7 +1837,9 @@ void qtbook_photographcollection::slotExportPhotographs(void)
   QFileDialog dialog(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setDirectory(QDir::homePath());

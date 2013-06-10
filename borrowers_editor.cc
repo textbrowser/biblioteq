@@ -20,7 +20,9 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   setWindowModality(Qt::WindowModal);
   bd.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   ioid = ioidArg;
   quantity = quantityArg;
@@ -97,8 +99,10 @@ void borrowers_editor::showUsers(void)
   QProgressDialog progress2(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress1.setAttribute(Qt::WA_MacMetalStyle, true);
   progress2.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   bd.table->clear();
   bd.table->setCurrentItem(0);
@@ -490,7 +494,9 @@ void borrowers_editor::slotSave(void)
   QProgressDialog progress(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));

@@ -17,7 +17,9 @@ dbenumerations::dbenumerations(void):QMainWindow()
 {
   ui.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   connect(ui.saveButton,
 	  SIGNAL(clicked(void)),

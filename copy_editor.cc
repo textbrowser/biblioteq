@@ -27,7 +27,9 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 
   cb.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   bitem = bitemArg;
   ioid = ioidArg;
@@ -188,8 +190,10 @@ void copy_editor::populateCopiesEditor(void)
   QProgressDialog progress2(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress1.setAttribute(Qt::WA_MacMetalStyle, true);
   progress2.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   cb.table->clear();
   cb.table->setColumnCount(0);
@@ -765,7 +769,9 @@ QString copy_editor::saveCopies(void)
   QProgressDialog progress(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 			"item_oid = ?").arg(itemType.toLower().remove(" ")));

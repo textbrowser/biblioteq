@@ -57,7 +57,9 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -1575,7 +1577,9 @@ void qtbook_videogame::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());

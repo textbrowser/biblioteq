@@ -39,7 +39,9 @@ int qtbook::populateTable(const int search_type_arg,
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   int limit = 0;

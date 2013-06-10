@@ -46,6 +46,12 @@
 #include <QLibraryInfo>
 #include <QDesktopWidget>
 
+#ifdef Q_OS_MAC
+#if QT_VERSION >= 0x050000
+#include "CocoaInitializer.h"
+#endif
+#endif
+
 /*
 ** -- C Includes --
 */
@@ -128,6 +134,16 @@ int main(int argc, char *argv[])
 
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION >= 0x050000
+  /*
+  ** Eliminate warnings.
+  */
+
+  CocoaInitializer ci;
+#endif
+#endif
 
   if((qtbook::s_qtTranslator = new(std::nothrow) QTranslator(0)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -352,7 +368,9 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   ui.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   connect(ui.action_Book,
 	  SIGNAL(triggered(void)),
@@ -406,6 +424,7 @@ qtbook::qtbook(void):QMainWindow()
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
@@ -414,6 +433,7 @@ qtbook::qtbook(void):QMainWindow()
   customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
   admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
   pass_diag->setModal(true);
@@ -1748,7 +1768,9 @@ void qtbook::slotDelete(void)
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   if(list.isEmpty())
@@ -4272,7 +4294,9 @@ void qtbook::slotPopulateMembersBrowser(void)
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   str = "SELECT member.memberid, "
     "member.first_name, "
@@ -4430,7 +4454,9 @@ void qtbook::slotGrantPrivileges(void)
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -6280,7 +6306,9 @@ void qtbook::slotSetFonts(void)
   QFontDialog dialog(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
   dialog.setCurrentFont(QFont());
@@ -6640,9 +6668,10 @@ void qtbook::slotPrintView(void)
   QTextDocument document;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
-
+#endif
   qapp->setOverrideCursor(Qt::WaitCursor);
   html += "<table border=1>";
   html += "<tr>";
@@ -6697,7 +6726,9 @@ void qtbook::slotPrintReserved(void)
   QMap<QString, QString> memberinfo;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   if(row < 0)
@@ -6843,7 +6874,9 @@ void qtbook::slotShowHistory(void)
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   if(members_diag->isVisible())
@@ -7194,7 +7227,9 @@ void qtbook::slotPrintReservationHistory(void)
   QTextDocument document;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   if(history.table->rowCount() == 0)
@@ -7439,7 +7474,9 @@ void qtbook::slotSelectDatabaseFile(void)
   QFileDialog dialog(branch_diag);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
@@ -7613,7 +7650,9 @@ void qtbook::slotRefreshAdminList(void)
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   querystr = "SELECT username, roles FROM admin ORDER BY username";
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -7738,7 +7777,9 @@ void qtbook::slotSaveAdministrators(void)
   QProgressDialog progress(admin_diag);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   /*
   ** 1. Prohibit duplicate administrator ids and administrators
@@ -8054,7 +8095,9 @@ void qtbook::slotRequest(void)
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   if(!roles.isEmpty())
@@ -8489,7 +8532,9 @@ void qtbook::slotDisplayNewSqliteDialog(void)
   QFileDialog dialog(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());
@@ -8657,7 +8702,9 @@ void qtbook::slotExportAsCSV(void)
   QFileDialog dialog(this);
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
   dialog.setDirectory(QDir::homePath());

@@ -88,6 +88,9 @@ SOURCES		= bgraphicsscene.cc \
 		  sruResults.cc \
 		  z3950results.cc
 
+OBJECTIVE_HEADERS += include.d/Cocoainitializer.h
+OBJECTIVE_SOURCES += Cocoainitializer.mm
+
 TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
 		  translations.d/biblioteq_de_DE.ts \
 		  translations.d/biblioteq_el_GR.ts \

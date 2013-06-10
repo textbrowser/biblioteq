@@ -53,7 +53,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   m_proxyDialog->setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   parentWid = parentArg;
   oid = oidArg;
@@ -63,7 +65,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   updateFont(qapp->font(), static_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -2781,7 +2785,9 @@ void qtbook_book::slotSelectImage(void)
   QPushButton *button = qobject_cast<QPushButton *> (sender());
 
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());

@@ -21,7 +21,9 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   setWindowModality(Qt::WindowModal);
   ui.setupUi(this);
 #ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
 #endif
 
   for(i = 0; i < list.count(); i++)
