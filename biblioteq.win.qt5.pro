@@ -1,3 +1,4 @@
+cache()
 purge.commands = del *~ && del include.d\\*~ && del doc.d\\*~
 
 TEMPLATE	= app

@@ -1,3 +1,4 @@
+cache()
 purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 
 TEMPLATE	= app
