@@ -10,6 +10,7 @@ QMAKE_CXXFLAGS	+= -Wall -Werror -Wextra
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CXXFLAGS_RELEASE += -Wall -Werror -Wextra
+QMAKE_DISTCLEAN	+= .qmake.cache
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d include.win32.d
 ICON		= icons.d\\book.png
