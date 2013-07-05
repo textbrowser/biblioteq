@@ -6,6 +6,7 @@ LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
+QMAKE_DISTCLEAN += .qmake.cache
 QMAKE_LFLAGS_RELEASE =
 QMAKE_LFLAGS_RPATH =
 QMAKE_CLEAN	+= BiblioteQ

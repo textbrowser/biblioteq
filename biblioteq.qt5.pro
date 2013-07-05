@@ -9,6 +9,7 @@ DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
 QMAKE_CXXFLAGS	+= -Wall -Werror -Wextra
 QMAKE_CXXFLAGS_RELEASE -= -O
 QMAKE_CLEAN	+= BiblioteQ
+QMAKE_DISTCLEAN	+= .qmake.cache
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include
