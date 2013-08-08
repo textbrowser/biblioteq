@@ -212,6 +212,7 @@ void misc_functions::revokeAll(const QString &userid,
 #if 0
       objectlist << "admin"
 		 << "book"
+		 << "book_binding_types"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
 		 << "book_myoid_seq"
@@ -450,6 +451,7 @@ void misc_functions::DBAccount(const QString &userid,
 #if 0
       objectlist << "admin"
 		 << "book"
+		 << "book_binding_types"
 		 << "book_copy_info"
 		 << "book_copy_info_myoid_seq"
 		 << "book_myoid_seq"

@@ -173,106 +173,94 @@ void dbenumerations::populateWidgets(void)
   clear();
 
   QString errorstr("");
-  QString forerror("");
   QStringList list;
+  QStringList tables;
   QList<QPair<QString, QString> > pairList;
 
-  for(int i = 0; i < 10; i++)
+  tables << "book_binding_types"
+	 << "cd_formats"
+	 << "dvd_aspect_ratios"
+	 << "dvd_ratings"
+	 << "dvd_regions"
+	 << "languages"
+	 << "locations"
+	 << "minimum_days"
+	 << "monetary_units"
+	 << "videogame_platforms"
+	 << "videogame_ratings";
+
+  for(int i = 0; i < 11; i++)
     {
       QListWidget *listwidget = 0;
       QTableWidget *tablewidget = 0;
 
       if(i == 0)
-	listwidget = ui.cdFormatsList;
+	{
+	}
       else if(i == 1)
-	listwidget = ui.dvdAspectRatiosList;
+	listwidget = ui.cdFormatsList;
       else if(i == 2)
-	listwidget = ui.dvdRatingsList;
+	listwidget = ui.dvdAspectRatiosList;
       else if(i == 3)
-	listwidget = ui.dvdRegionsList;
+	listwidget = ui.dvdRatingsList;
       else if(i == 4)
-	listwidget = ui.languagesList;
+	listwidget = ui.dvdRegionsList;
       else if(i == 5)
-	tablewidget = ui.locationsTable;
+	listwidget = ui.languagesList;
       else if(i == 6)
-	tablewidget = ui.minimumDaysTable;
+	tablewidget = ui.locationsTable;
       else if(i == 7)
-	listwidget = ui.monetaryUnitsList;
+	tablewidget = ui.minimumDaysTable;
       else if(i == 8)
-	listwidget = ui.videoGamePlatformsList;
+	listwidget = ui.monetaryUnitsList;
       else if(i == 9)
+	listwidget = ui.videoGamePlatformsList;
+      else if(i == 10)
 	listwidget = ui.videoGameRatingsList;
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(i == 0)
 	{
-	  forerror = "cd formats";
-	  list = misc_functions::getCDFormats(qmain->getDB(),
-					      errorstr);
 	}
       else if(i == 1)
-	{
-	  forerror = "dvd aspect ratios";
-	  list = misc_functions::getDVDAspectRatios(qmain->getDB(),
-						    errorstr);
-	}
+	list = misc_functions::getCDFormats(qmain->getDB(),
+					    errorstr);
       else if(i == 2)
-	{
-	  forerror = "dvd ratings";
-	  list = misc_functions::getDVDRatings(qmain->getDB(),
-					       errorstr);
-	}
+	list = misc_functions::getDVDAspectRatios(qmain->getDB(),
+						  errorstr);
       else if(i == 3)
-	{
-	  forerror = "dvd regions";
-	  list = misc_functions::getDVDRegions(qmain->getDB(),
-					       errorstr);
-	}
+	list = misc_functions::getDVDRatings(qmain->getDB(),
+					     errorstr);
       else if(i == 4)
-	{
-	  forerror = "languages";
-	  list = misc_functions::getLanguages(qmain->getDB(),
-					      errorstr);
-	}
+	list = misc_functions::getDVDRegions(qmain->getDB(),
+					     errorstr);
       else if(i == 5)
-	{
-	  forerror = "locations";
-	  pairList = misc_functions::getLocations(qmain->getDB(),
-						  errorstr);
-	}
+	list = misc_functions::getLanguages(qmain->getDB(),
+					    errorstr);
       else if(i == 6)
-	{
-	  forerror = "minimum days";
-	  list = misc_functions::getMinimumDays(qmain->getDB(),
+	pairList = misc_functions::getLocations(qmain->getDB(),
 						errorstr);
-	}
       else if(i == 7)
-	{
-	  forerror = "monetary units";
-	  list = misc_functions::getMonetaryUnits(qmain->getDB(),
-						  errorstr);
-	}
+	list = misc_functions::getMinimumDays(qmain->getDB(),
+					      errorstr);
       else if(i == 8)
-	{
-	  forerror = "video game platforms";
-	  list = misc_functions::getVideoGamePlatforms(qmain->getDB(),
-						       errorstr);
-	}
+	list = misc_functions::getMonetaryUnits(qmain->getDB(),
+						errorstr);
       else if(i == 9)
-	{
-	  forerror = "video game ratings";
-	  list = misc_functions::getVideoGameRatings(qmain->getDB(),
+	list = misc_functions::getVideoGamePlatforms(qmain->getDB(),
 						     errorstr);
-	}
+      else if(i == 10)
+	list = misc_functions::getVideoGameRatings(qmain->getDB(),
+						   errorstr);
 
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError
 	  (QString(tr("Database Error")),
-	   QString(tr("Unable to retrieve the ")) +
-	   forerror + tr("."),
+	   QString(tr("Unable to retrieve the contents of ")) +
+	   tables.at(i) + tr("."),
 	   errorstr, __FILE__, __LINE__);
       else if(listwidget)
 	while(!list.isEmpty())
@@ -512,44 +500,30 @@ void dbenumerations::slotRemove(void)
 void dbenumerations::slotSave(void)
 {
   bool error = false;
-  QString table("");
-  QString forerror("");
   QString querystr("");
+  QStringList tables;
   QSqlQuery query(qmain->getDB());
   QListWidget *listwidget = 0;
   QTableWidget *tablewidget = 0;
 
   qapp->setOverrideCursor(Qt::WaitCursor);
+  tables << "book_binding_types"
+	 << "cd_formats"
+	 << "dvd_aspect_ratios"
+	 << "dvd_ratings"
+	 << "dvd_regions"
+	 << "languages"
+	 << "locations"
+	 << "minimum_days"
+	 << "monetary_units"
+	 << "videogame_platforms"
+	 << "videogame_ratings";
 
-  for(int i = 0; i < 10; i++)
+  for(int i = 0; i < tables.size(); i++)
     {
-      table = "";
-      forerror = "";
       listwidget = 0;
       tablewidget = 0;
-
-      if(i == 0)
-	querystr = "DELETE FROM cd_formats";
-      else if(i == 1)
-	querystr = "DELETE FROM dvd_aspect_ratios";
-      else if(i == 2)
-	querystr = "DELETE FROM dvd_ratings";
-      else if(i == 3)
-	querystr = "DELETE FROM dvd_regions";
-      else if(i == 4)
-	querystr = "DELETE FROM languages";
-      else if(i == 5)
-	querystr = "DELETE FROM locations";
-      else if(i == 6)
-	querystr = "DELETE FROM minimum_days";
-      else if(i == 7)
-	querystr = "DELETE FROM monetary_units";
-      else if(i == 8)
-	querystr = "DELETE FROM videogame_platforms";
-      else if(i == 9)
-	querystr = "DELETE FROM videogame_ratings";
-      else
-	continue;
+      querystr = QString("DELETE FROM %1").arg(tables.at(i));
 
       if(!qmain->getDB().transaction())
 	{
@@ -563,130 +537,47 @@ void dbenumerations::slotSave(void)
 
       if(!query.exec(querystr))
 	{
-	  if(i == 0)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the cd formats.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 1)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the dvd aspect ratios.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 2)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the dvd ratings.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 3)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the dvd regions.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 4)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the languages.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 5)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the locations.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 6)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the minimum days.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 7)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the monetary units.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 8)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the video game platforms.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-	  else if(i == 9)
-	    qmain->addError
-	      (QString(tr("Database Error")),
-	       QString(tr("An error occurred while attempting to "
-			  "remove the video game ratings.")),
-	       query.lastError().text(), __FILE__, __LINE__);
-
+	  qmain->addError
+	    (QString(tr("Database Error")),
+	     QString(tr("An error occurred while attempting to "
+			"remove entries from the %1 table.").
+		     arg(tables.at(i))),
+	     query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
       if(i == 0)
 	{
-	  table = "cd_formats";
-	  forerror = tr("cd format");
-	  listwidget = ui.cdFormatsList;
 	}
       else if(i == 1)
-	{
-	  table = "dvd_aspect_ratios";
-	  forerror = tr("dvd aspect ratio");
-	  listwidget = ui.dvdAspectRatiosList;
-	}
+	listwidget = ui.cdFormatsList;
       else if(i == 2)
-	{
-	  table = "dvd_ratings";
-	  forerror = tr("dvd rating");
-	  listwidget = ui.dvdRatingsList;
-	}
+	listwidget = ui.dvdAspectRatiosList;
       else if(i == 3)
-	{
-	  table = "dvd_regions";
-	  forerror = tr("dvd region");
-	  listwidget = ui.dvdRegionsList;
-	}
+	listwidget = ui.dvdRatingsList;
       else if(i == 4)
-	{
-	  table = "languages";
-	  forerror = tr("language");
-	  listwidget = ui.languagesList;
-	}
+	listwidget = ui.dvdRegionsList;
       else if(i == 5)
-	tablewidget = ui.locationsTable;
+	listwidget = ui.languagesList;
       else if(i == 6)
-	tablewidget = ui.minimumDaysTable;
+	tablewidget = ui.locationsTable;
       else if(i == 7)
-	{
-	  table = "monetary_units";
-	  forerror = tr("monetary unit");
-	  listwidget = ui.monetaryUnitsList;
-	}
+	tablewidget = ui.minimumDaysTable;
       else if(i == 8)
-	{
-	  table = "videogame_platforms";
-	  forerror = tr("video game platform");
-	  listwidget = ui.videoGamePlatformsList;
-	}
+	listwidget = ui.monetaryUnitsList;
       else if(i == 9)
-	{
-	  table = "videogame_ratings";
-	  forerror = tr("video game rating");
-	  listwidget = ui.videoGameRatingsList;
-	}
+	listwidget = ui.videoGamePlatformsList;
+      else if(i == 10)
+	listwidget = ui.videoGameRatingsList;
 
       if(listwidget)
 	{
 	  for(int j = 0; j < listwidget->count(); j++)
 	    if(listwidget->item(j))
 	      {
-		query.prepare(QString("INSERT INTO %1 VALUES (?)").arg
-			      (table));
+		query.prepare
+		  (QString("INSERT INTO %1 VALUES (?)").
+		   arg(tables.at(i)));
 		query.bindValue(0,
 				listwidget->item(j)->text().trimmed());
 
@@ -694,8 +585,8 @@ void dbenumerations::slotSave(void)
 		  {
 		    qmain->addError
 		      (QString(tr("Database Error")),
-		       QString(tr("Unable to create the ")) +
-		       forerror + tr(" ") +
+		       QString(tr("Unable to create an entry in ")) +
+		       tables.at(i) + tr("for ") +
 		       listwidget->item(j)->text().trimmed() +
 		       QString(tr(".")),
 		       query.lastError().text(), __FILE__, __LINE__);

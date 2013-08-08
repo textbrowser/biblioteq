@@ -966,3 +966,16 @@ ALTER TABLE cd_songs ADD artist TEXT NOT NULL DEFAULT 'UNKNOWN', ADD composer TE
 /* Release 6.64 */
 
 GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
+
+/* Release 6.66 */
+
+CREATE TABLE book_binding_types
+(
+	binding_type	TEXT NOT NULL PRIMARY KEY
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;
+GRANT SELECT ON book_binding_types TO biblioteq_circulation;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
+GRANT SELECT ON book_binding_types TO biblioteq_membership;
+GRANT SELECT ON book_binding_types TO biblioteq_patron;

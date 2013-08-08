@@ -422,6 +422,11 @@ SELECT	 item_oid,
 	 type
 FROM	 item_borrower;
 
+CREATE TABLE book_binding_types
+(
+	binding_type	TEXT NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE cd_formats
 (
 	cd_format	 TEXT NOT NULL PRIMARY KEY
@@ -502,6 +507,7 @@ GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH AD
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_administrator;
@@ -555,6 +561,7 @@ GRANT DELETE, SELECT ON item_request TO biblioteq_circulation;
 GRANT INSERT, SELECT, UPDATE ON member_history TO biblioteq_circulation;
 GRANT SELECT ON admin TO biblioteq_circulation;
 GRANT SELECT ON book TO biblioteq_circulation;
+GRANT SELECT ON book_binding_types TO biblioteq_circulation;
 GRANT SELECT ON book_copy_info TO biblioteq_circulation;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON book_myoid_seq TO biblioteq_circulation;
@@ -599,6 +606,7 @@ GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_circulation;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_librarian;
@@ -646,6 +654,7 @@ GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_membership;
 GRANT SELECT ON admin TO biblioteq_membership;
 GRANT SELECT ON book TO biblioteq_membership;
+GRANT SELECT ON book_binding_types TO biblioteq_membership;
 GRANT SELECT ON book_copy_info TO biblioteq_membership;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON book_myoid_seq TO biblioteq_membership;
@@ -688,6 +697,7 @@ GRANT SELECT ON videogame_ratings TO biblioteq_membership;
 
 GRANT DELETE, INSERT, SELECT ON item_request TO biblioteq_patron;
 GRANT SELECT ON book TO biblioteq_patron;
+GRANT SELECT ON book_binding_types TO biblioteq_patron;
 GRANT SELECT ON book_copy_info TO biblioteq_patron;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON book_myoid_seq TO biblioteq_patron;
