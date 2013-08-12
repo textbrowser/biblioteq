@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>929</width>
-    <height>731</height>
+    <width>1118</width>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,776 +21,849 @@
    <layout class="QHBoxLayout">
     <item>
      <widget class="QFrame" name="frame">
-      <layout class="QVBoxLayout" name="verticalLayout_7">
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
        <item>
-        <widget class="QSplitter" name="splitter_5">
+        <widget class="QSplitter" name="splitter_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <widget class="QSplitter" name="splitter_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <widget class="QSplitter" name="splitter_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QWidget" name="layoutWidget_1">
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>CD Formats</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="cdFormatsList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item>
-                <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addCdFormat">
-                 <property name="toolTip">
-                  <string>Add CD Format</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeCdFormat">
-                 <property name="toolTip">
-                  <string>Remove CD Format</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_8">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_2">
-            <layout class="QVBoxLayout" name="verticalLayout_5">
-             <item>
-              <widget class="QLabel" name="label_5">
-               <property name="text">
-                <string>DVD Aspect Ratios</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="dvdAspectRatiosList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <spacer name="horizontalSpacer_9">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addDvdAspectRatio">
-                 <property name="toolTip">
-                  <string>Add DVD Aspect Ratio</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeDvdAspectRatio">
-                 <property name="toolTip">
-                  <string>Remove DVD Aspect Ratio</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_10">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_3">
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>DVD Ratings</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="dvdRatingsList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <spacer name="horizontalSpacer_11">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addDvdRating">
-                 <property name="toolTip">
-                  <string>Add DVD Rating</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeDvdRating">
-                 <property name="toolTip">
-                  <string>Remove DVD Rating</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_12">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_4">
-            <layout class="QVBoxLayout" name="verticalLayout_13">
-             <item>
-              <widget class="QLabel" name="label_13">
-               <property name="text">
-                <string>DVD Regions</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="dvdRegionsList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_13">
-               <item>
-                <spacer name="horizontalSpacer_25">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addDvdRegion">
-                 <property name="toolTip">
-                  <string>Add DVD Region</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeDvdRegion">
-                 <property name="toolTip">
-                  <string>Remove DVD Region</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_26">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </widget>
-          <widget class="QSplitter" name="splitter_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <widget class="QWidget" name="layoutWidget_5">
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Languages</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="languagesList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addLanguage">
-                 <property name="toolTip">
-                  <string>Add Language</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeLanguage">
-                 <property name="toolTip">
-                  <string>Remove Language</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_4">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_6">
-            <layout class="QVBoxLayout" name="_3">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Locations</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTableWidget" name="locationsTable">
-               <column>
-                <property name="text">
-                 <string>Type</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Location</string>
-                </property>
-               </column>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout">
-               <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addLocation">
-                 <property name="toolTip">
-                  <string>Add Location</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeLocation">
-                 <property name="toolTip">
-                  <string>Remove Location</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_7">
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Monetary Units</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QListWidget" name="monetaryUnitsList"/>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <spacer name="horizontalSpacer_5">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QToolButton" name="addMonetaryUnit">
-                 <property name="toolTip">
-                  <string>Add Monetary Unit</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="removeMonetaryUnit">
-                 <property name="toolTip">
-                  <string>Remove Monetary Unit</string>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
-                 </property>
-                 <property name="iconSize">
-                  <size>
-                   <width>16</width>
-                   <height>16</height>
-                  </size>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_6">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="layoutWidget_8">
-            <layout class="QVBoxLayout" name="verticalLayout_14">
-             <item>
-              <widget class="QLabel" name="label_14">
-               <property name="text">
-                <string>Reservations Minimum Days</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTableWidget" name="minimumDaysTable">
-               <row>
-                <property name="text">
-                 <string>1</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>2</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>3</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>4</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>5</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>6</string>
-                </property>
-               </row>
-               <column>
-                <property name="text">
-                 <string>Type</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>Days</string>
-                </property>
-               </column>
-               <item row="0" column="0">
-                <property name="text">
-                 <string>Books</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="0" column="1">
-                <property name="text">
-                 <string>21</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="1" column="0">
-                <property name="text">
-                 <string>DVDs</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="1" column="1">
-                <property name="text">
-                 <string>14</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="2" column="0">
-                <property name="text">
-                 <string>Journals</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="2" column="1">
-                <property name="text">
-                 <string>21</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="3" column="0">
-                <property name="text">
-                 <string>Magazines</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="3" column="1">
-                <property name="text">
-                 <string>21</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="4" column="0">
-                <property name="text">
-                 <string>Music CDs</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="4" column="1">
-                <property name="text">
-                 <string>14</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="5" column="0">
-                <property name="text">
-                 <string>Video Games</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
-                </property>
-               </item>
-               <item row="5" column="1">
-                <property name="text">
-                 <string>14</string>
-                </property>
-                <property name="flags">
-                 <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_16">
-               <item>
-                <spacer name="horizontalSpacer_31">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QLabel" name="emptyLabel">
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_32">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </widget>
-         </widget>
          <widget class="QSplitter" name="splitter">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <widget class="QWidget" name="layoutWidget_11">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Book Binding Types</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="bookBindingsList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addBookBinding">
+                <property name="toolTip">
+                 <string>Add CD Format</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeBookBinding">
+                <property name="toolTip">
+                 <string>Remove CD Format</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_14">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_1">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>CD Formats</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="cdFormatsList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addCdFormat">
+                <property name="toolTip">
+                 <string>Add CD Format</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeCdFormat">
+                <property name="toolTip">
+                 <string>Remove CD Format</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_8">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_2">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>DVD Aspect Ratios</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="dvdAspectRatiosList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <spacer name="horizontalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addDvdAspectRatio">
+                <property name="toolTip">
+                 <string>Add DVD Aspect Ratio</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeDvdAspectRatio">
+                <property name="toolTip">
+                 <string>Remove DVD Aspect Ratio</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_3">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>DVD Ratings</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="dvdRatingsList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <spacer name="horizontalSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addDvdRating">
+                <property name="toolTip">
+                 <string>Add DVD Rating</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeDvdRating">
+                <property name="toolTip">
+                 <string>Remove DVD Rating</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+         <widget class="QSplitter" name="splitter_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="layoutWidget_4">
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>DVD Regions</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="dvdRegionsList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <spacer name="horizontalSpacer_25">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addDvdRegion">
+                <property name="toolTip">
+                 <string>Add DVD Region</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeDvdRegion">
+                <property name="toolTip">
+                 <string>Remove DVD Region</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_26">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_5">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Languages</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="languagesList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addLanguage">
+                <property name="toolTip">
+                 <string>Add Language</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeLanguage">
+                <property name="toolTip">
+                 <string>Remove Language</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_6">
+           <layout class="QVBoxLayout" name="_3">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Locations</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="locationsTable">
+              <column>
+               <property name="text">
+                <string>Type</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Location</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addLocation">
+                <property name="toolTip">
+                 <string>Add Location</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeLocation">
+                <property name="toolTip">
+                 <string>Remove Location</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="layoutWidget_7">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Monetary Units</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="monetaryUnitsList"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QToolButton" name="addMonetaryUnit">
+                <property name="toolTip">
+                 <string>Add Monetary Unit</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="removeMonetaryUnit">
+                <property name="toolTip">
+                 <string>Remove Monetary Unit</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+         <widget class="QSplitter" name="splitter_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="layoutWidget_8">
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Reservations Minimum Days</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="minimumDaysTable">
+              <row>
+               <property name="text">
+                <string>1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>2</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>3</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>4</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>5</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>6</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Type</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Days</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>Books</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="0" column="1">
+               <property name="text">
+                <string>21</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="1" column="0">
+               <property name="text">
+                <string>DVDs</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="1" column="1">
+               <property name="text">
+                <string>14</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="2" column="0">
+               <property name="text">
+                <string>Journals</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="2" column="1">
+               <property name="text">
+                <string>21</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="3" column="0">
+               <property name="text">
+                <string>Magazines</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="3" column="1">
+               <property name="text">
+                <string>21</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="4" column="0">
+               <property name="text">
+                <string>Music CDs</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="4" column="1">
+               <property name="text">
+                <string>14</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="5" column="0">
+               <property name="text">
+                <string>Video Games</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsEnabled</set>
+               </property>
+              </item>
+              <item row="5" column="1">
+               <property name="text">
+                <string>14</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_16">
+              <item>
+               <spacer name="horizontalSpacer_31">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="emptyLabel">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_32">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="layoutWidget_9">
            <layout class="QVBoxLayout" name="verticalLayout_16">
             <item>
@@ -1042,6 +1115,9 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
+  <tabstop>bookBindingsList</tabstop>
+  <tabstop>addBookBinding</tabstop>
+  <tabstop>removeBookBinding</tabstop>
   <tabstop>cdFormatsList</tabstop>
   <tabstop>addCdFormat</tabstop>
   <tabstop>removeCdFormat</tabstop>
