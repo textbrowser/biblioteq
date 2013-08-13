@@ -100,6 +100,8 @@ class misc_functions
 				 const QString &);
   static QString getAvailability(const QString &, const QSqlDatabase &,
 				 const QString &, QString &);
+  static QStringList getBookBindingTypes(const QSqlDatabase &,
+					 QString &);
   static QStringList getCDFormats(const QSqlDatabase &,
 				  QString &);
   static QStringList getLanguages(const QSqlDatabase &,

@@ -26,7 +26,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 #endif
 #endif
 
-  for(i = 0; i < list.count(); i++)
+  for(i = 0; i < list.size(); i++)
     {
       QString issn("");
       QStringList parsedList(list.at(i).split("\n"));

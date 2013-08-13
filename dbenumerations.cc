@@ -33,6 +33,14 @@ dbenumerations::dbenumerations(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReload(void)));
+  connect(ui.addBookBinding,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAdd(void)));
+  connect(ui.removeBookBinding,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotRemove(void)));
   connect(ui.addCdFormat,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -189,14 +197,13 @@ void dbenumerations::populateWidgets(void)
 	 << "videogame_platforms"
 	 << "videogame_ratings";
 
-  for(int i = 0; i < 11; i++)
+  for(int i = 0; i < tables.size(); i++)
     {
       QListWidget *listwidget = 0;
       QTableWidget *tablewidget = 0;
 
       if(i == 0)
-	{
-	}
+	listwidget = ui.bookBindingsList;
       else if(i == 1)
 	listwidget = ui.cdFormatsList;
       else if(i == 2)
@@ -221,8 +228,8 @@ void dbenumerations::populateWidgets(void)
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       if(i == 0)
-	{
-	}
+	list = misc_functions::getBookBindingTypes(qmain->getDB(),
+						   errorstr);
       else if(i == 1)
 	list = misc_functions::getCDFormats(qmain->getDB(),
 					    errorstr);
@@ -368,7 +375,12 @@ void dbenumerations::slotAdd(void)
   QListWidget *list = 0;
   QListWidgetItem *listItem = 0;
 
-  if(toolButton == ui.addCdFormat)
+  if(toolButton == ui.addBookBinding)
+    {
+      list = ui.bookBindingsList;
+      listItem = new(std::nothrow) QListWidgetItem(tr("Book Binding"));
+    }
+  else if(toolButton == ui.addCdFormat)
     {
       list = ui.cdFormatsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("CD Format"));
@@ -470,7 +482,9 @@ void dbenumerations::slotRemove(void)
   QToolButton *toolButton = qobject_cast<QToolButton *>
     (sender());
 
-  if(toolButton == ui.removeCdFormat)
+  if(toolButton == ui.removeBookBinding)
+    list = ui.bookBindingsList;
+  else if(toolButton == ui.removeCdFormat)
     list = ui.cdFormatsList;
   else if(toolButton == ui.removeDvdAspectRatio)
     list = ui.dvdAspectRatiosList;
@@ -547,8 +561,7 @@ void dbenumerations::slotSave(void)
 	}
 
       if(i == 0)
-	{
-	}
+	listwidget = ui.bookBindingsList;
       else if(i == 1)
 	listwidget = ui.cdFormatsList;
       else if(i == 2)

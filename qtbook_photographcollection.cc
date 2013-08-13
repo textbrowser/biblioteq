@@ -361,7 +361,7 @@ void qtbook_photographcollection::slotGo(void)
 
 		  QStringList names(qmain->getUI().table->columnNames());
 
-		  for(int i = 0; i < names.count(); i++)
+		  for(int i = 0; i < names.size(); i++)
 		    {
 		      if(names.at(i) == "ID" ||
 			 names.at(i) == "ID Number")

@@ -191,6 +191,18 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   QString errorstr("");
 
   qapp->setOverrideCursor(Qt::WaitCursor);
+  id.binding->addItems
+    (misc_functions::getBookBindingTypes(qmain->getDB(),
+					 errorstr));
+  qapp->restoreOverrideCursor();
+
+  if(!errorstr.isEmpty())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to retrieve the book binding types.")),
+       errorstr, __FILE__, __LINE__);
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
   id.language->addItems
     (misc_functions::getLanguages(qmain->getDB(),
 				  errorstr));
@@ -230,6 +242,9 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   id.front_image->setScene(scene1);
   id.back_image->setScene(scene2);
   httpProgress->setModal(true);
+
+  if(id.binding->findText(tr("UNKNOWN")) == -1)
+    id.binding->addItem(tr("UNKNOWN"));
 
   if(id.language->findText(tr("UNKNOWN")) == -1)
     id.language->addItem(tr("UNKNOWN"));
@@ -838,7 +853,7 @@ void qtbook_book::slotGo(void)
 
 		  QStringList names(qmain->getUI().table->columnNames());
 
-		  for(i = 0; i < names.count(); i++)
+		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(names.at(i) == "ISBN-10" ||
 			 names.at(i) == "ID Number")

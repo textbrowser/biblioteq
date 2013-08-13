@@ -360,16 +360,6 @@
                   <property name="frame">
                    <bool>true</bool>
                   </property>
-                  <item>
-                   <property name="text">
-                    <string>Hardcover</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Paperback</string>
-                   </property>
-                  </item>
                  </widget>
                 </item>
                 <item>

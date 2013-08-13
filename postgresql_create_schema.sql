@@ -424,7 +424,7 @@ FROM	 item_borrower;
 
 CREATE TABLE book_binding_types
 (
-	binding_type	TEXT NOT NULL PRIMARY KEY
+	binding_type	 TEXT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE cd_formats

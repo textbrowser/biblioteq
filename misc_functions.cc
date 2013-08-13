@@ -2163,6 +2163,16 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
       query.exec("ALTER TABLE cd_songs ADD composer TEXT "
 		 "NOT NULL DEFAULT 'UNKNOWN'");
     }
+
+  if(version >= "6.66")
+    {
+      QSqlQuery query(db);
+
+      query.exec("CREATE TABLE book_binding_types "
+		 "( "
+		 "binding_type	TEXT NOT NULL PRIMARY KEY "
+		 ")");
+    }
 }
 
 /*
@@ -2304,4 +2314,30 @@ void misc_functions::exportPhotographs(const QSqlDatabase &db,
 	    }
 	}
     }
+}
+
+/*
+** -- getBookBindingTypes() --
+*/
+
+QStringList misc_functions::getBookBindingTypes(const QSqlDatabase &db,
+						QString &errorstr)
+{
+  QString querystr("");
+  QSqlQuery query(db);
+  QStringList types;
+
+  errorstr = "";
+  querystr = "SELECT binding_type FROM book_binding_types "
+    "WHERE LENGTH(TRIM(binding_type)) > 0 "
+    "ORDER BY binding_type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      types.append(query.value(0).toString());
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return types;
 }

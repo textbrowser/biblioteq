@@ -700,7 +700,7 @@ void qtbook_dvd::slotGo(void)
 
 		  QStringList names(qmain->getUI().table->columnNames());
 
-		  for(i = 0; i < names.count(); i++)
+		  for(i = 0; i < names.size(); i++)
 		    {
 		      if(names.at(i) == "UPC" ||
 			 names.at(i) == "ID Number")

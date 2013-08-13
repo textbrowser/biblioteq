@@ -971,7 +971,7 @@ GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
 
 CREATE TABLE book_binding_types
 (
-	binding_type	TEXT NOT NULL PRIMARY KEY
+	binding_type	 TEXT NOT NULL PRIMARY KEY
 );
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;

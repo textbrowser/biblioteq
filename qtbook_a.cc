@@ -1182,7 +1182,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - Eternity, Monsters.<br>"
+	     "Copyright (c) 2006 - Eternity, Misfits.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) Jonas Rask Design.<br>"
 	     "Qt version %2."
@@ -2498,7 +2498,7 @@ void qtbook::slotSaveUser(void)
 	{
 	  bb.table->setSortingEnabled(false);
 
-	  for(i = 0; i < m_bbColumnHeaderIndexes.count(); i++)
+	  for(i = 0; i < m_bbColumnHeaderIndexes.size(); i++)
 	    {
 	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
 		bb.table->item(row, i)->setText
@@ -3060,7 +3060,7 @@ void qtbook::slotShowColumns(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  for(i = 0; i < ui.table->columnNames().count(); i++)
+  for(i = 0; i < ui.table->columnNames().size(); i++)
     if(ui.table->columnNames().at(i) == "Publisher")
       ui.table->setColumnHidden(i, false);
 
