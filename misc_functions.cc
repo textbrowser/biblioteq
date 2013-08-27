@@ -2168,7 +2168,7 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
     {
       QSqlQuery query(db);
 
-      query.exec("ALTER TABLE book ADD condition TEXT");
+      query.exec("ALTER TABLE book ADD condition, originality TEXT");
       query.exec("CREATE TABLE book_binding_types "
 		 "( "
 		 "binding_type	TEXT NOT NULL PRIMARY KEY "

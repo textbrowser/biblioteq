@@ -160,7 +160,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Location")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu->addAction(tr("Reset &Condition")),
+  connect(menu->addAction(tr("Reset &Originality")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -559,7 +559,7 @@ void qtbook_book::slotGo(void)
 		      "place = ?, "
 		      "marc_tags = ?, "
 		      "keyword = ?, "
-		      "condition = ? "
+		      "originality = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -571,7 +571,7 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags, keyword, condition) "
+		      "place, marc_tags, keyword, originality) "
 		      "VALUES (?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -586,7 +586,7 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags, keyword, condition, myoid) "
+		      "place, marc_tags, keyword, originality, myoid) "
 		      "VALUES (?, ?, ?, ?, "
 		      "?, ?, ?, ?, "
 		      "?, ?, "
@@ -670,7 +670,7 @@ void qtbook_book::slotGo(void)
       query.bindValue(20, id.place->toPlainText().trimmed());
       query.bindValue(21, id.marc_tags->toPlainText().trimmed());
       query.bindValue(22, id.keyword->toPlainText().trimmed());
-      query.bindValue(23, id.condition->currentText().trimmed());
+      query.bindValue(23, id.originality->currentText().trimmed());
 
       if(engWindowTitle.contains("Modify"))
 	query.bindValue(24, oid);
@@ -915,9 +915,9 @@ void qtbook_book::slotGo(void)
 		      else if(names.at(i) == "Dewey Class Number")
 			qmain->getUI().table->item(row, i)->setText
 			  (id.deweynum->text());
-		      else if(names.at(i) == "Condition")
+		      else if(names.at(i) == "Originality")
 			qmain->getUI().table->item(row, i)->setText
-			  (id.condition->currentText());
+			  (id.originality->currentText());
 		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
@@ -993,7 +993,7 @@ void qtbook_book::slotGo(void)
 	"book.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
-	"book.condition, "
+	"book.originality, "
 	"book.type, "
 	"book.myoid, "
 	"book.front_cover "
@@ -1107,10 +1107,10 @@ void qtbook_book::slotGo(void)
 		       (id.keyword->toPlainText().trimmed()) +
 		       "%' ");
 
-      if(id.condition->currentIndex() != 0)
-	searchstr.append("AND condition = " + E + "'" +
+      if(id.originality->currentIndex() != 0)
+	searchstr.append("AND originality = " + E + "'" +
 			 myqstring::escape
-			 (id.condition->currentText().trimmed()) + "' ");
+			 (id.originality->currentText().trimmed()) + "' ");
 
       /*
       ** Search the database.
@@ -1346,7 +1346,7 @@ void qtbook_book::modify(const int state)
     "back_cover, "
     "marc_tags, "
     "keyword, "
-    "condition "
+    "originality "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -1483,13 +1483,13 @@ void qtbook_book::modify(const int state)
 	    id.callnum->setText(var.toString());
 	  else if(fieldname == "deweynumber")
 	    id.deweynum->setText(var.toString());
-	  else if(fieldname == "condition")
+	  else if(fieldname == "originality")
 	    {
-	      if(id.condition->findText(var.toString()) > -1)
-		id.condition->setCurrentIndex
-		  (id.condition->findText(var.toString()));
+	      if(id.originality->findText(var.toString()) > -1)
+		id.originality->setCurrentIndex
+		  (id.originality->findText(var.toString()));
 	      else
-		id.condition->setCurrentIndex(0);
+		id.originality->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "front_cover")
 	    {
@@ -1728,8 +1728,8 @@ void qtbook_book::slotReset(void)
 	}
       else if(action == actions[20])
 	{
-	  id.condition->setCurrentIndex(0);
-	  id.condition->setFocus();
+	  id.originality->setCurrentIndex(0);
+	  id.originality->setFocus();
 	}
       else if(action == actions[21])
 	{
@@ -1805,7 +1805,7 @@ void qtbook_book::slotReset(void)
       id.callnum->clear();
       id.deweynum->clear();
       id.location->setCurrentIndex(0);
-      id.condition->setCurrentIndex(0);
+      id.originality->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
       id.price->setValue(id.price->minimum());
       id.language->setCurrentIndex(0);
@@ -2809,8 +2809,8 @@ void qtbook_book::slotPrint(void)
   html += "<b>" + tr("Copies:") + "</b> " + id.quantity->text() + "<br>";
   html += "<b>" + tr("Location:") + "</b> " +
     id.location->currentText() + "<br>";
-  html += "<b>" + tr("Condition:") + "</b> " +
-    id.condition->currentText() + "<br>";
+  html += "<b>" + tr("Originality:") + "</b> " +
+    id.originality->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     id.description->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("MARC Tags:") + "</b> " +

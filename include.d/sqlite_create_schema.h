@@ -26,6 +26,7 @@ id		 VARCHAR(32) UNIQUE,					\
     marc_tags    TEXT,							\
     keyword      TEXT,							\
     condition    TEXT,							\
+    originality  TEXT,							\
     type		 VARCHAR(16) NOT NULL DEFAULT 'Book'		\
     );									\
 									\
