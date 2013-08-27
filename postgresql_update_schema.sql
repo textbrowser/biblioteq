@@ -969,6 +969,8 @@ GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
 
 /* Release 6.66 */
 
+ALTER TABLE book ADD condition TEXT;
+
 CREATE TABLE book_binding_types
 (
 	binding_type	 TEXT NOT NULL PRIMARY KEY
