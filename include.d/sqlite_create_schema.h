@@ -34,8 +34,10 @@ CREATE TABLE book_copy_info						\
 (									\
 item_oid	 BIGINT NOT NULL,					\
 	  myoid		 BIGINT NOT NULL,				\
-	  copyid		 VARCHAR(64) NOT NULL,			\
+	  copyid	 VARCHAR(64) NOT NULL,				\
 	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
+          condition      TEXT,						\
+          originality    TEXT,						\
 	  PRIMARY KEY(item_oid, copyid),				\
 	  FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE \
   );									\

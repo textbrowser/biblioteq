@@ -37,6 +37,8 @@ CREATE TABLE book_copy_info
 	myoid		 BIGSERIAL UNIQUE,
 	copyid		 VARCHAR(64) NOT NULL,
 	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	condition	 TEXT,
+	originality	 TEXT,
 	PRIMARY KEY(item_oid, copyid),
 	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE
 );

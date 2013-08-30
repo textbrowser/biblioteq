@@ -970,6 +970,7 @@ GRANT DELETE, SELECT ON member_history TO biblioteq_librarian;
 /* Release 6.66 */
 
 ALTER TABLE book ADD condition TEXT, ADD originality TEXT;
+ALTER TABLE book_copy_info ADD condition TEXT, ADD originality TEXT;
 
 CREATE TABLE book_binding_types
 (
