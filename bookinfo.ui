@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1112</width>
-         <height>1545</height>
+         <width>1115</width>
+         <height>1527</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -428,6 +428,13 @@
             <string>General Information</string>
            </property>
            <layout class="QGridLayout">
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Language</string>
+              </property>
+             </widget>
+            </item>
             <item row="6" column="1">
              <layout class="QHBoxLayout">
               <item>
@@ -550,13 +557,6 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Language</string>
-              </property>
-             </widget>
-            </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_4">
               <property name="text">
@@ -657,14 +657,14 @@
               </item>
              </layout>
             </item>
-            <item row="11" column="0">
+            <item row="12" column="0">
              <widget class="QLabel" name="label_7">
               <property name="text">
                <string>Abstract</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="1">
+            <item row="12" column="1">
              <widget class="QTextEdit" name="description">
               <property name="tabChangesFocus">
                <bool>true</bool>
@@ -724,14 +724,14 @@
               </property>
              </widget>
             </item>
-            <item row="12" column="0">
+            <item row="13" column="0">
              <widget class="QLabel" name="label_19">
               <property name="text">
                <string>MARC Tags</string>
               </property>
              </widget>
             </item>
-            <item row="12" column="1">
+            <item row="13" column="1">
              <widget class="QTextEdit" name="marc_tags">
               <property name="tabChangesFocus">
                <bool>true</bool>
@@ -741,7 +741,7 @@
               </property>
              </widget>
             </item>
-            <item row="13" column="1">
+            <item row="14" column="1">
              <widget class="hyperlinked_text_edit" name="keyword">
               <property name="tabChangesFocus">
                <bool>true</bool>
@@ -757,7 +757,7 @@
               </property>
              </widget>
             </item>
-            <item row="13" column="0">
+            <item row="14" column="0">
              <widget class="QLabel" name="label_21">
               <property name="text">
                <string>Keywords</string>
@@ -794,6 +794,79 @@
               </item>
               <item>
                <spacer>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="label_23">
+              <property name="text">
+               <string>Condition</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QComboBox" name="condition">
+                <item>
+                 <property name="text">
+                  <string>As New</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Binding Copy</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Book Club</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Ex-Library</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Fair</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Fine</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Good</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Poor</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Very Good</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spacer">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -997,6 +1070,7 @@
   <tabstop>showUserButton</tabstop>
   <tabstop>location</tabstop>
   <tabstop>originality</tabstop>
+  <tabstop>condition</tabstop>
   <tabstop>description</tabstop>
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>

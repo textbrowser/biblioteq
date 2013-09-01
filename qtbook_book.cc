@@ -162,6 +162,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Originality")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Condition")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Abstract")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &MARC Tags")),
@@ -559,7 +561,8 @@ void qtbook_book::slotGo(void)
 		      "place = ?, "
 		      "marc_tags = ?, "
 		      "keyword = ?, "
-		      "originality = ? "
+		      "originality = ?, "
+		      "condition = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -571,8 +574,8 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags, keyword, originality) "
-		      "VALUES (?, ?, ?, ?, "
+		      "place, marc_tags, keyword, originality, condition) "
+		      "VALUES (?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -586,9 +589,10 @@ void qtbook_book::slotGo(void)
 		      "isbn13, lccontrolnumber, callnumber, "
 		      "deweynumber, front_cover, "
 		      "back_cover, "
-		      "place, marc_tags, keyword, originality, myoid) "
+		      "place, marc_tags, keyword, originality, condition, "
+		      "myoid) "
 		      "VALUES (?, ?, ?, ?, "
-		      "?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, "
@@ -671,9 +675,10 @@ void qtbook_book::slotGo(void)
       query.bindValue(21, id.marc_tags->toPlainText().trimmed());
       query.bindValue(22, id.keyword->toPlainText().trimmed());
       query.bindValue(23, id.originality->currentText().trimmed());
+      query.bindValue(24, id.condition->currentText().trimmed());
 
       if(engWindowTitle.contains("Modify"))
-	query.bindValue(24, oid);
+	query.bindValue(25, oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = misc_functions::getSqliteUniqueId(qmain->getDB(),
@@ -681,7 +686,7 @@ void qtbook_book::slotGo(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      query.bindValue(24, value);
+	      query.bindValue(25, value);
 	      oid = QString::number(value);
 	    }
 	  else
@@ -917,7 +922,10 @@ void qtbook_book::slotGo(void)
 			  (id.deweynum->text());
 		      else if(names.at(i) == "Originality")
 			qmain->getUI().table->item(row, i)->setText
-			  (id.originality->currentText());
+			  (id.originality->currentText().trimmed());
+		      else if(names.at(i) == "Condition")
+			qmain->getUI().table->item(row, i)->setText
+			  (id.condition->currentText().trimmed());
 		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(row, i)->setText
@@ -994,6 +1002,7 @@ void qtbook_book::slotGo(void)
 	"AS availability, "
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
 	"book.originality, "
+	"book.condition, "
 	"book.type, "
 	"book.myoid, "
 	"book.front_cover "
@@ -1112,6 +1121,11 @@ void qtbook_book::slotGo(void)
 			 myqstring::escape
 			 (id.originality->currentText().trimmed()) + "' ");
 
+      if(id.condition->currentIndex() != 0)
+	searchstr.append("AND condition = " + E + "'" +
+			 myqstring::escape
+			 (id.condition->currentText().trimmed()) + "' ");
+
       /*
       ** Search the database.
       */
@@ -1157,11 +1171,15 @@ void qtbook_book::search(const QString &field, const QString &value)
   id.monetary_units->insertItem(0, tr("Any"));
   id.binding->insertItem(0, tr("Any"));
   id.location->insertItem(0, tr("Any"));
+  id.originality->insertItem(0, tr("Any"));
+  id.condition->insertItem(0, tr("Any"));
   id.location->setCurrentIndex(0);
   id.edition->setCurrentIndex(0);
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.originality->setCurrentIndex(0);
+  id.condition->setCurrentIndex(0);
   id.isbnAvailableCheckBox->setCheckable(false);
 
   if(field.isEmpty() && value.isEmpty())
@@ -1346,7 +1364,8 @@ void qtbook_book::modify(const int state)
     "back_cover, "
     "marc_tags, "
     "keyword, "
-    "originality "
+    "originality, "
+    "condition "
     "FROM book WHERE myoid = ";
   searchstr.append(str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -1490,6 +1509,14 @@ void qtbook_book::modify(const int state)
 		  (id.originality->findText(var.toString()));
 	      else
 		id.originality->setCurrentIndex(0);
+	    }
+	  else if(fieldname == "condition")
+	    {
+	      if(id.condition->findText(var.toString()) > -1)
+		id.condition->setCurrentIndex
+		  (id.condition->findText(var.toString()));
+	      else
+		id.condition->setCurrentIndex(0);
 	    }
 	  else if(fieldname == "front_cover")
 	    {
@@ -1733,6 +1760,11 @@ void qtbook_book::slotReset(void)
 	}
       else if(action == actions[21])
 	{
+	  id.condition->setCurrentIndex(0);
+	  id.condition->setFocus();
+	}
+      else if(action == actions[22])
+	{
 	  if(!engWindowTitle.contains("Search"))
 	    id.description->setPlainText("N/A");
 	  else
@@ -1741,13 +1773,13 @@ void qtbook_book::slotReset(void)
 	  id.description->viewport()->setPalette(te_orig_pal);
 	  id.description->setFocus();
 	}
-      else if(action == actions[22])
+      else if(action == actions[23])
 	{
 	  id.marc_tags->clear();
 	  id.marc_tags->viewport()->setPalette(white_pal);
 	  id.marc_tags->setFocus();
 	}
-      else if(action == actions[23])
+      else if(action == actions[24])
 	{
 	  id.keyword->clear();
 	  id.keyword->setFocus();
@@ -1806,6 +1838,7 @@ void qtbook_book::slotReset(void)
       id.deweynum->clear();
       id.location->setCurrentIndex(0);
       id.originality->setCurrentIndex(0);
+      id.condition->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
       id.price->setValue(id.price->minimum());
       id.language->setCurrentIndex(0);
@@ -2811,6 +2844,8 @@ void qtbook_book::slotPrint(void)
     id.location->currentText() + "<br>";
   html += "<b>" + tr("Originality:") + "</b> " +
     id.originality->currentText() + "<br>";
+  html += "<b>" + tr("Condition:") + "</b> " +
+    id.condition->currentText() + "<br>";
   html += "<b>" + tr("Abstract:") + "</b> " +
     id.description->toPlainText().trimmed() + "<br>";
   html += "<b>" + tr("MARC Tags:") + "</b> " +

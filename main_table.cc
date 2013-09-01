@@ -144,6 +144,7 @@ void main_table::setColumns(const QString &username,
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
       list.append(tr("Originality"));
+      list.append(tr("Condition"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -167,6 +168,7 @@ void main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Availability");
       m_columnHeaderIndexes.append("Total Reserved");
       m_columnHeaderIndexes.append("Originality");
+      m_columnHeaderIndexes.append("Condition");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
