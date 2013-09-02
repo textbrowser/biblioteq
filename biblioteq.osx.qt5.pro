@@ -19,6 +19,7 @@ LIBS		+= -lsqlite3 -L/usr/local/lib -lyaz
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
+		  bookcopybrowser.ui \
 		  bookinfo.ui \
                   borrowers.ui \
 		  branch_s.ui \

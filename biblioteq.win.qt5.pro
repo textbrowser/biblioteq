@@ -21,6 +21,7 @@ LIBS		+= -L"." \
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
+		  bookcopybrowser.ui \
 		  bookinfo.ui \
                   borrowers.ui \
 		  branch_s.ui \
