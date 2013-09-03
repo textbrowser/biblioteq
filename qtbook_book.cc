@@ -1959,15 +1959,15 @@ void qtbook_book::slotCancel(void)
 
 void qtbook_book::slotPopulateCopiesEditor(void)
 {
-  copy_editor *copyeditor = 0;
+  copy_editor_book *copyeditor = 0;
 
-  if((copyeditor = new(std::nothrow) copy_editor
+  if((copyeditor = new(std::nothrow) copy_editor_book
       (static_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        id.quantity->value(), oid,
        id.quantity, font(),
-       "Book", id.id->text().trimmed())) != 0)
+       id.id->text().trimmed())) != 0)
     copyeditor->populateCopiesEditor();
 }
 

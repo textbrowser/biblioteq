@@ -3,30 +3,22 @@
 */
 
 #include "qtbook.h"
-#include "copy_editor.h"
+#include "copy_editor_book.h"
 
 extern qtbook *qmain;
 extern QApplication *qapp;
 
 /*
-** -- copy_editor() --
+** -- copy_editor_book() --
 */
 
-copy_editor::copy_editor(QWidget *parent): QDialog(parent)
-{
-}
-
-/*
-** -- copy_editor() --
-*/
-
-copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
-			 const bool showForLendingArg,
-			 const int quantityArg, const QString &ioidArg,
-			 QSpinBox *spinboxArg,
-			 const QFont &font,
-			 const QString &itemTypeArg,
-			 const QString &uniqueIdArg): QDialog(parent)
+copy_editor_book::copy_editor_book
+(QWidget *parent, qtbook_item *bitemArg,
+ const bool showForLendingArg,
+ const int quantityArg, const QString &ioidArg,
+ QSpinBox *spinboxArg,
+ const QFont &font,
+ const QString &uniqueIdArg): copy_editor(parent)
 {
   if(parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
@@ -43,7 +35,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
   ioid = ioidArg;
   quantity = quantityArg;
   spinbox = spinboxArg;
-  itemType = itemTypeArg;
+  itemType = "Book";
   showForLending = showForLendingArg;
 #if QT_VERSION >= 0x050000
   cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
@@ -61,10 +53,10 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 }
 
 /*
-** -- ~copy_editor() --
+** -- ~copy_editor_book() --
 */
 
-copy_editor::~copy_editor()
+copy_editor_book::~copy_editor_book()
 {
   clearCopiesList();
 }
@@ -73,7 +65,7 @@ copy_editor::~copy_editor()
 ** -- slotDeleteCopy() --
 */
 
-void copy_editor::slotDeleteCopy(void)
+void copy_editor_book::slotDeleteCopy(void)
 {
   int row = cb.table->currentRow();
   bool isCheckedOut = false;
@@ -139,7 +131,7 @@ void copy_editor::slotDeleteCopy(void)
 ** -- populateCopiesEditor() --
 */
 
-void copy_editor::populateCopiesEditor(void)
+void copy_editor_book::populateCopiesEditor(void)
 {
   int i = 0;
   int j = 0;
@@ -209,12 +201,16 @@ void copy_editor::populateCopiesEditor(void)
   list.append(tr("Title"));
   list.append(tr("Barcode"));
   list.append(tr("Availability"));
+  list.append(tr("Originality"));
+  list.append(tr("Condition"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
   m_columnHeaderIndexes.append("Title");
   m_columnHeaderIndexes.append("Barcode");
   m_columnHeaderIndexes.append("Availability");
+  m_columnHeaderIndexes.append("Originality");
+  m_columnHeaderIndexes.append("Condition");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   cb.table->setColumnCount(list.size());
@@ -243,7 +239,41 @@ void copy_editor::populateCopiesEditor(void)
   for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < cb.table->columnCount(); j++)
-	if((item = new(std::nothrow) QTableWidgetItem()) != 0)
+	if(j == 3 || j == 4)
+	  {
+	    QComboBox *combobox = new(std::nothrow)
+	      QComboBox();
+
+	    if(combobox)
+	      {
+		QStringList list;
+
+		if(j == 3)
+		  list << tr("Black & White Copy")
+		       << tr("Color Copy")
+		       << tr("Original");
+		else
+		  list << tr("As New")
+		       << tr("Binding Copy")
+		       << tr("Book Club")
+		       << tr("Ex-Library")
+		       << tr("Fair")
+		       << tr("Fine")
+		       << tr("Good")
+		       << tr("Poor")
+		       << tr("Very Good");
+
+		combobox->addItems(list);
+		cb.table->setCellWidget(i, j, combobox);
+	      }
+	    else
+	      qmain->addError(QString(tr("Memory Error")),
+			      QString(tr("Unable to allocate memory for the "
+					 "\"combobox\" object. "
+					 "This is a serious problem!")),
+			      QString(""), __FILE__, __LINE__);
+	  }
+	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
 	    if(showForLending)
 	      item->setFlags(0);
@@ -265,7 +295,7 @@ void copy_editor::populateCopiesEditor(void)
 		else
 		  item->setText("1");
 	      }
-	    else if(j == 3)
+	    else if(j == 5)
 	      item->setText(ioid);
 	    else
 	      item->setText("");
@@ -295,6 +325,8 @@ void copy_editor::populateCopiesEditor(void)
     ("SELECT %1.title, "
      "%1_copy_info.copyid, "
      "(1 - COUNT(item_borrower_vw.copyid)), "
+     "%1_copy_info.originality, "
+     "%1_copy_info.condition, "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
      "FROM "
@@ -309,6 +341,8 @@ void copy_editor::populateCopiesEditor(void)
      "%1.myoid = %2 "
      "GROUP BY %1.title, "
      "%1_copy_info.copyid, "
+     "%1_copy_info.originality, "
+     "%1_copy_info.condition, "
      "%1_copy_info.item_oid, "
      "%1_copy_info.copy_number "
      "ORDER BY %1_copy_info.copy_number").arg
@@ -345,7 +379,7 @@ void copy_editor::populateCopiesEditor(void)
     {
       if(query.isValid())
 	{
-	  row = query.value(4).toInt() - 1;
+	  row = query.value(6).toInt() - 1;
 
 	  for(j = 0; j < cb.table->columnCount(); j++)
 	    if(cb.table->item(row, j) != 0)
@@ -379,6 +413,19 @@ void copy_editor::populateCopiesEditor(void)
 
 		cb.table->resizeColumnToContents(j);
 	      }
+	    else if(cb.table->cellWidget(row, j) != 0)
+	      {
+		QComboBox *combobox = qobject_cast<QComboBox *>
+		  (cb.table->cellWidget(row, j));
+
+		if(combobox)
+		  {
+		    str = query.value(j).toString();
+
+		    if(combobox->findText(str) > -1)
+		      combobox->setCurrentIndex(combobox->findText(str));
+		  }
+	      }
 	    else
 	      terminate = true;
 	}
@@ -399,220 +446,14 @@ void copy_editor::populateCopiesEditor(void)
 }
 
 /*
-** -- slotCheckoutCopy() --
-*/
-
-void copy_editor::slotCheckoutCopy(void)
-{
-  int copyrow = cb.table->currentRow();
-  int memberrow = qmain->getBB().table->currentRow();
-  bool available = false;
-  QDate now = QDate::currentDate();
-  QString name = "";
-  QString copyid = "";
-  QString duedate = cb.dueDate->date().toString("MM/dd/yyyy");
-  QString errorstr = "";
-  QString memberid = "";
-  QString checkedout = now.toString("MM/dd/yyyy");
-  QString copynumber = "";
-  QString availability = "";
-  QSqlQuery query(qmain->getDB());
-
-  if(copyrow < 0 || cb.table->item(copyrow, 1) == 0)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select a copy to reserve."));
-      return;
-    }
-  else if((cb.table->item(copyrow, 1)->flags() & Qt::ItemIsEnabled) == 0)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("It appears that the copy you've selected "
-			       "is either unavailable or does not exist."));
-      return;
-    }
-  else if(cb.dueDate->date() <= now)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("Please select a future Due Date."));
-      return;
-    }
-
-  memberid = misc_functions::getColumnString
-    (qmain->getBB().table, memberrow,
-     qmain->getBBColumnIndexes().indexOf("Member ID"));
-  copynumber = misc_functions::getColumnString
-    (cb.table, copyrow,
-     m_columnHeaderIndexes.indexOf("Copy Number"));
-  copyid = misc_functions::getColumnString
-    (cb.table, copyrow,
-     m_columnHeaderIndexes.indexOf("Barcode"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
-  available = misc_functions::isCopyAvailable(qmain->getDB(), ioid, copyid,
-					      itemType, errorstr);
-  qapp->restoreOverrideCursor();
-
-  if(!available && errorstr.length() > 0)
-    {
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to determine the selected copy's "
-				 "availability.")),
-		      errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to determine the selected copy's "
-			       "availability."));
-      return;
-    }
-  else if(!available)
-    {
-      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-			    tr("The copy that you have selected is either "
-			       "unavailable or is reserved."));
-      return;
-    }
-
-  query.prepare("INSERT INTO item_borrower "
-		"(item_oid, "
-		"memberid, "
-		"reserved_date, "
-		"duedate, "
-		"copyid, "
-		"copy_number, "
-		"reserved_by, "
-		"type) "
-		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  query.bindValue(0, ioid);
-  query.bindValue(1, memberid);
-  query.bindValue(2, checkedout);
-  query.bindValue(3, duedate);
-  query.bindValue(4, copyid);
-  query.bindValue(5, copynumber);
-  query.bindValue(6, qmain->getAdminID());
-  query.bindValue(7, itemType);
-  qapp->setOverrideCursor(Qt::WaitCursor);
-
-  if(!query.exec())
-    {
-      qapp->restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a reserve record.")),
-		      query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to create a reserve record."));
-      return;
-    }
-
-  /*
-  ** Record the reservation in the member's history
-  ** table.
-  */
-
-  query.prepare("INSERT INTO member_history "
-		"(memberid, "
-		"item_oid, "
-		"copyid, "
-		"reserved_date, "
-		"duedate, "
-		"returned_date, "
-		"reserved_by, "
-		"type) "
-		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  query.bindValue(0, memberid);
-  query.bindValue(1, ioid);
-  query.bindValue(2, copyid);
-  query.bindValue(3, checkedout);
-  query.bindValue(4, duedate);
-  query.bindValue(5, QString("N/A"));
-  query.bindValue(6, qmain->getAdminID());
-  query.bindValue(7, itemType);
-
-  if(!query.exec())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Unable to create a history record.")),
-		    query.lastError().text(), __FILE__, __LINE__);
-
-  /*
-  ** Update the Reserved Items count on the Members Browser.
-  */
-
-  qmain->updateMembersBrowser();
-  qapp->restoreOverrideCursor();
-
-  /*
-  ** Update the availability column.
-  */
-
-  /*
-    availability = misc_functions::getColumnString
-    (qmain->getUI().table, bitem->getRow(), tr("Availability"));
-
-    if(availability != "0")
-    availability.setNum(availability.toInt() - 1);
-
-    misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Availability"), availability);
-  */
-
-  /*
-  ** Update some additional columns.
-  */
-
-  /*
-    if(misc_functions::getColumnString(qmain->getUI().table, bitem->getRow(),
-    tr("Barcode")) == copyid)
-    {
-    misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Due Date"),
-    QDate::fromString(duedate, "MM/dd/yyyy").
-    toString(Qt::ISODate));
-    misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Reservation Date"),
-    QDate::fromString(checkedout, "MM/dd/yyyy").toString
-    (Qt::ISODate));
-    misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Member ID"),
-    memberid);
-    qapp->setOverrideCursor(Qt::WaitCursor);
-    name = misc_functions::getMemberName(qmain->getDB(), memberid,
-    errorstr);
-    qapp->restoreOverrideCursor();
-
-    if(errorstr.length() > 0)
-    qmain->addError(QString(tr("Database Error")),
-    QString(tr("Unable to determine the selected copy's "
-    "availability.")),
-    errorstr, __FILE__, __LINE__);
-
-    misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(), tr("Borrower"), name);
-    }
-  */
-
-  slotCloseCopyEditor();
-
-  /*
-  ** Update the main window's summary panel, if necessary.
-  */
-
-  if(ioid ==
-     misc_functions::getColumnString(qmain->getUI().table,
-				     bitem->getRow(),
-				     "MYOID") &&
-     itemType ==
-     misc_functions::getColumnString(qmain->getUI().table,
-				     bitem->getRow(),
-				     qmain->getUI().table->
-				     columnNumber("Type")))
-    qmain->slotDisplaySummary();
-}
-
-/*
 ** -- slotSaveCopies() --
 */
 
-void copy_editor::slotSaveCopies(void)
+void copy_editor_book::slotSaveCopies(void)
 {
   int i = 0;
+  QComboBox *combobox1 = 0;
+  QComboBox *combobox2 = 0;
   QString str = "";
   QString errormsg = "";
   QString errorstr = "";
@@ -671,14 +512,19 @@ void copy_editor::slotSaveCopies(void)
 
   for(i = 0; i < cb.table->rowCount(); i++)
     {
+      combobox1 = qobject_cast<QComboBox *> (cb.table->cellWidget(i, 3));
+      combobox2 = qobject_cast<QComboBox *> (cb.table->cellWidget(i, 4));
       item1 = cb.table->item(i, 1);
-      item2 = cb.table->item(i, 3);
+      item2 = cb.table->item(i, 5);
 
-      if(item1 == 0 || item2 == 0)
+      if(combobox1 == 0 || combobox2 == 0 || item1 == 0 || item2 == 0)
 	continue;
 
-      if((copy = new(std::nothrow) copy_class(item1->text().trimmed(),
-					      item2->text())) != 0)
+      if((copy = new(std::nothrow) copy_class
+	  (combobox2->currentText().trimmed(),
+	   item1->text().trimmed(),
+	   item2->text(),
+	   combobox1->currentText().trimmed())) != 0)
 	copies.append(copy);
       else
 	qmain->addError
@@ -765,10 +611,53 @@ void copy_editor::slotSaveCopies(void)
 }
 
 /*
+** -- keyPressEvent() --
+*/
+
+void copy_editor_book::keyPressEvent(QKeyEvent *event)
+{
+  if(event && event->key() == Qt::Key_Escape)
+    slotCloseCopyEditor();
+
+  QDialog::keyPressEvent(event);
+}
+
+/*
+** -- closeEvent() --
+*/
+
+void copy_editor_book::closeEvent(QCloseEvent *e)
+{
+  slotCloseCopyEditor();
+  QDialog::closeEvent(e);
+}
+
+/*
+** -- changeEvent() --
+*/
+
+void copy_editor_book::changeEvent(QEvent *event)
+{
+  if(event)
+    switch(event->type())
+      {
+      case QEvent::LanguageChange:
+	{
+	  cb.retranslateUi(this);
+	  break;
+	}
+      default:
+	break;
+      }
+
+  QDialog::changeEvent(event);
+}
+
+/*
 ** -- saveCopies() --
 */
 
-QString copy_editor::saveCopies(void)
+QString copy_editor_book::saveCopies(void)
 {
   int i = 0;
   QString lastError = "";
@@ -812,21 +701,23 @@ QString copy_editor::saveCopies(void)
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, copy_number, "
-				  "copyid) "
-				  "VALUES (?, "
+				  "copyid, originality, condition) "
+				  "VALUES (?, ?, ?, "
 				  "?, ?)").arg
 			  (itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, copy_number, "
-				  "copyid, myoid) "
-				  "VALUES (?, "
+				  "copyid, originality, condition, myoid) "
+				  "VALUES (?, ?, ?, "
 				  "?, ?, ?)").arg
 			  (itemType.toLower().remove(" ")));
 
 	  query.bindValue(0, copy->itemoid);
 	  query.bindValue(1, i + 1);
 	  query.bindValue(2, copy->copyid);
+	  query.bindValue(3, copy->originality);
+	  query.bindValue(4, copy->condition);
 
 	  if(qmain->getDB().driverName() == "QSQLITE")
 	    {
@@ -837,7 +728,7 @@ QString copy_editor::saveCopies(void)
 							errorstr);
 
 	      if(errorstr.isEmpty())
-		query.bindValue(3, value);
+		query.bindValue(5, value);
 	      else
 		qmain->addError(QString(tr("Database Error")),
 				QString(tr("Unable to generate a unique "
@@ -866,79 +757,4 @@ QString copy_editor::saveCopies(void)
     }
 
   return lastError;
-}
-
-/*
-** -- keyPressEvent() --
-*/
-
-void copy_editor::keyPressEvent(QKeyEvent *event)
-{
-  if(event && event->key() == Qt::Key_Escape)
-    slotCloseCopyEditor();
-
-  QDialog::keyPressEvent(event);
-}
-
-/*
-** -- slotCloseCopyEditor() --
-*/
-
-void copy_editor::slotCloseCopyEditor(void)
-{
-  clearCopiesList();
-  deleteLater();
-}
-
-/*
-** -- clearCopiesList() --
-*/
-
-void copy_editor::clearCopiesList(void)
-{
-  while(!copies.isEmpty())
-    delete copies.takeFirst();
-}
-
-/*
-** -- closeEvent() --
-*/
-
-void copy_editor::closeEvent(QCloseEvent *e)
-{
-  slotCloseCopyEditor();
-  QDialog::closeEvent(e);
-}
-
-/*
-** -- setGlobalFonts() --
-*/
-
-void copy_editor::setGlobalFonts(const QFont &font)
-{
-  setFont(font);
-
-  foreach(QWidget *widget, findChildren<QWidget *>())
-    widget->setFont(font);
-}
-
-/*
-** -- changeEvent() --
-*/
-
-void copy_editor::changeEvent(QEvent *event)
-{
-  if(event)
-    switch(event->type())
-      {
-      case QEvent::LanguageChange:
-	{
-	  cb.retranslateUi(this);
-	  break;
-	}
-      default:
-	break;
-      }
-
-  QDialog::changeEvent(event);
 }

@@ -18,7 +18,7 @@
 ** -- Local Includes --
 */
 
-#include "copy_editor.h"
+#include "copy_editor_book.h"
 #include "qtbook_item.h"
 #include "ui_bookinfo.h"
 #include "ui_borrowers.h"
@@ -26,7 +26,7 @@
 #include "misc_functions.h"
 #include "ui_passwordPrompt.h"
 
-class copy_editor;
+class copy_editor_book;
 class generic_thread;
 class borrowers_editor;
 

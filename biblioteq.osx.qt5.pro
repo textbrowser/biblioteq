@@ -49,6 +49,7 @@ UI_HEADERS_DIR  = include.d
 HEADERS		= include.d/bgraphicsscene.h \
 		  include.d/borrowers_editor.h \
 		  include.d/copy_editor.h \
+		  include.d/copy_editor_book.h \
                   include.d/dbenumerations.h \
 		  include.d/generic_thread.h \
 		  include.d/hyperlinked_text_edit.h \
@@ -70,6 +71,7 @@ SOURCES		= bgraphicsscene.cc \
 		  borrowers_editor.cc \
 		  callnum_table_item.cc \
 		  copy_editor.cc \
+		  copy_editor_book.cc \
                   dbenumerations.cc \
 		  generic_thread.cc \
 		  hyperlinked_text_edit.cc \
