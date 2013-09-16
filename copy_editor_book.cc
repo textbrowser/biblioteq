@@ -264,6 +264,10 @@ void copy_editor_book::populateCopiesEditor(void)
 		       << tr("Very Good");
 
 		combobox->addItems(list);
+
+		if(j == 3)
+		  combobox->setCurrentIndex(2);
+
 		cb.table->setCellWidget(i, j, combobox);
 	      }
 	    else

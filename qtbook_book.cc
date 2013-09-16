@@ -1508,7 +1508,7 @@ void qtbook_book::modify(const int state)
 		id.originality->setCurrentIndex
 		  (id.originality->findText(var.toString()));
 	      else
-		id.originality->setCurrentIndex(0);
+		id.originality->setCurrentIndex(2);
 	    }
 	  else if(fieldname == "condition")
 	    {
@@ -1755,7 +1755,11 @@ void qtbook_book::slotReset(void)
 	}
       else if(action == actions[20])
 	{
-	  id.originality->setCurrentIndex(0);
+	  if(engWindowTitle.contains("Search"))
+	    id.originality->setCurrentIndex(0);
+	  else
+	    id.originality->setCurrentIndex(2);
+
 	  id.originality->setFocus();
 	}
       else if(action == actions[21])
@@ -1837,7 +1841,12 @@ void qtbook_book::slotReset(void)
       id.callnum->clear();
       id.deweynum->clear();
       id.location->setCurrentIndex(0);
-      id.originality->setCurrentIndex(0);
+
+      if(engWindowTitle.contains("Search"))
+	id.originality->setCurrentIndex(0);
+      else
+	id.originality->setCurrentIndex(2);
+
       id.condition->setCurrentIndex(0);
       id.edition->setCurrentIndex(0);
       id.price->setValue(id.price->minimum());
