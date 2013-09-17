@@ -7,6 +7,7 @@ DROP FUNCTION IF EXISTS delete_magazine_history();
 DROP FUNCTION IF EXISTS delete_videogame_history();
 DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS book CASCADE;
+DROP TABLE IF EXISTS book_binding_types;
 DROP TABLE IF EXISTS book_copy_info;
 DROP TABLE IF EXISTS cd CASCADE;
 DROP TABLE IF EXISTS cd_copy_info;
