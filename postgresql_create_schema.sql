@@ -25,7 +25,7 @@ CREATE TABLE book
 	front_cover	 BYTEA,
 	back_cover	 BYTEA,
 	marc_tags	 TEXT,
-	keyword		 TEXT, 
+	keyword		 TEXT,
 	condition 	 TEXT,
 	originality 	 TEXT,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
