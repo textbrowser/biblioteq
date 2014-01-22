@@ -50,7 +50,7 @@ class copy_editor: public QDialog
   bool showForLending;
   QString ioid;
   QString itemType;
-  QWidget *parent;
+  QWidget *m_parent;
   QSpinBox *spinbox;
   qtbook_item *bitem;
   Ui_copybrowser cb;

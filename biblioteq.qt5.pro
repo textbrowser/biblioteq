@@ -6,10 +6,12 @@ LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 CONFIG		+= copy_dir_files qt release thread warn_on x11
 DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
-QMAKE_CXXFLAGS	+= -Wall -Werror -Wextra -Wstack-protector -fPIE -fstack-protector-all -pie
-QMAKE_CXXFLAGS_RELEASE -= -O
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wextra -Werror -Wstack-protector -fPIE -fstack-protector-all -pie
+QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
+			  -Woverloaded-virtual \
+			  -Wpointer-arith -Wstrict-overflow=4 \
+			  -Wstack-protector -fPIE -fstack-protector-all \
+			  -fwrapv -mtune=generic -pie
 QMAKE_DISTCLEAN	+= .qmake.cache
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d /usr/local/include

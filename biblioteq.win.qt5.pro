@@ -6,10 +6,13 @@ LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
-QMAKE_CXXFLAGS	+= -Wall -Werror -Wextra -pie
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CLEAN	+= BiblioteQ.exe
-QMAKE_CXXFLAGS_RELEASE += -Wall -Werror -Wextra -pie
+QMAKE_CXXFLAGS_RELEASE += -fwrapv -mtune=generic -pie -O3 \
+			  -Wall -Wcast-align -Wcast-qual \
+			  -Werror -Wextra \
+			  -Woverloaded-virtual -Wpointer-arith \
+			  -Wstrict-overflow=4
 QMAKE_DISTCLEAN	+= .qmake.cache
 QMAKE_EXTRA_TARGETS = purge
 INCLUDEPATH	+= include.d include.win32.d

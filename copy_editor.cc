@@ -14,6 +14,11 @@ extern QApplication *qapp;
 
 copy_editor::copy_editor(QWidget *parent): QDialog(parent)
 {
+  bitem = 0;
+  m_parent = parent;
+  quantity = 1;
+  showForLending = false;
+  spinbox = 0;
 }
 
 /*
@@ -28,7 +33,9 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 const QString &itemTypeArg,
 			 const QString &uniqueIdArg): QDialog(parent)
 {
-  if(parent == qmain->getMembersBrowser())
+  m_parent = parent;
+
+  if(m_parent == qmain->getMembersBrowser())
     setWindowModality(Qt::ApplicationModal);
   else
     setWindowModality(Qt::WindowModal);
