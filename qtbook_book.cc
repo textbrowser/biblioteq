@@ -2639,7 +2639,8 @@ void qtbook_book::slotZ3950Query(void)
 		      misc_functions::highlightWidget
 			(id.place->viewport(), QColor(162, 205, 90));
 
-		      if(str.mid(str.indexOf("$c") + 2, 4).contains("c"))
+		      if(str.mid(str.indexOf("$c") + 2, 4).toLower().
+			 contains("c"))
 			id.publication_date->setDate
 			  (QDate::fromString
 			   ("01/01/" +
@@ -3325,7 +3326,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 		 trimmed() == "datafield")
 		{
 		  QString tag(reader.attributes().value("tag").
-			      toString().trimmed());
+			      toString().toLower().trimmed());
 
 		  if(tag == "100" || tag == "700")
 		    id.author->clear();
@@ -3345,7 +3346,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 		   trimmed() == "datafield")
 		  {
 		    QString tag(reader.attributes().value("tag").
-				toString().trimmed());
+				toString().toLower().trimmed());
 
 		    if(tag == "010")
 		      {
@@ -3363,7 +3364,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a")
+				 toString().toLower().trimmed() == "a")
 				{
 				  str.append(reader.readElementText());
 				  break;
@@ -3448,9 +3449,9 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a" ||
+				 toString().toLower().trimmed() == "a" ||
 				 reader.attributes().value("code").
-				 toString().trimmed() == "b")
+				 toString().toLower().trimmed() == "b")
 				str.append(reader.readElementText());
 			    }
 			  else
@@ -3479,13 +3480,13 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a" ||
+				 toString().toLower().trimmed() == "a" ||
 				 reader.attributes().value("code").
-				 toString().trimmed() == "b" ||
+				 toString().toLower().trimmed() == "b" ||
 				 reader.attributes().value("code").
-				 toString().trimmed() == "m" ||
+				 toString().toLower().trimmed() == "m" ||
 				 reader.attributes().value("code").
-				 toString().trimmed() == "q")
+				 toString().toLower().trimmed() == "q")
 				str.append(reader.readElementText());
 			    }
 			  else
@@ -3526,7 +3527,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a")
+				 toString().toLower().trimmed() == "a")
 				{
 				  str.append(reader.readElementText());
 				  break;
@@ -3578,9 +3579,9 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a" ||
+				 toString().toLower().trimmed() == "a" ||
 				 reader.attributes().value("code").
-				 toString().trimmed() == "b")
+				 toString().toLower().trimmed() == "b")
 				str.append(reader.readElementText());
 			    }
 			  else
@@ -3608,7 +3609,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a")
+				 toString().toLower().trimmed() == "a")
 				{
 				  str.append(reader.readElementText());
 				  break;
@@ -3657,14 +3658,20 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a")
+				 toString().toLower().trimmed() == "a")
 				place = reader.readElementText();
 			      else if(reader.attributes().value("code").
-				      toString().trimmed() == "b")
+				      toString().toLower().trimmed() == "b")
 				publisher = reader.readElementText();
 			      else if(reader.attributes().value("code").
-				      toString().trimmed() == "c")
-				date = reader.readElementText();
+				      toString().toLower().trimmed() == "c")
+				{
+				  date = reader.readElementText().toLower();
+
+				  for(int i = date.length() - 1; i >= 0; i--)
+				    if(!date.at(i).isNumber())
+				      date.remove(i, 1);
+				}
 			    }
 			  else
 			    break;
@@ -3752,7 +3759,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			     trimmed() == "subfield")
 			    {
 			      if(reader.attributes().value("code").
-				 toString().trimmed() == "a")
+				 toString().toLower().trimmed() == "a")
 				{
 				  str.append(reader.readElementText());
 				  break;
