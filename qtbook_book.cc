@@ -2325,6 +2325,9 @@ void qtbook_book::slotZ3950Query(void)
 			      id.binding->setStyleSheet
 				("background-color: rgb(162, 205, 90)");
 			    }
+			  else if(id.binding->findText(tr("UNKNOWN")))
+			    id.binding->setCurrentIndex
+			      (id.binding->findText(tr("UNKNOWN")));
 			}
 		      else if(str.toLower().contains("pbk."))
 			{
@@ -2335,7 +2338,13 @@ void qtbook_book::slotZ3950Query(void)
 			      id.binding->setStyleSheet
 				("background-color: rgb(162, 205, 90)");
 			    }
+			  else if(id.binding->findText(tr("UNKNOWN")))
+			    id.binding->setCurrentIndex
+			      (id.binding->findText(tr("UNKNOWN")));
 			}
+		      else if(id.binding->findText(tr("UNKNOWN")))
+			id.binding->setCurrentIndex
+			  (id.binding->findText(tr("UNKNOWN")));
 
 		      if(str.contains(" ") && str.indexOf(" ") == 10)
 			{
@@ -3414,6 +3423,9 @@ void qtbook_book::slotSRUDownloadFinished(void)
 				id.binding->setStyleSheet
 				  ("background-color: rgb(162, 205, 90)");
 			      }
+			    else if(id.binding->findText(tr("UNKNOWN")))
+			      id.binding->setCurrentIndex
+				(id.binding->findText(tr("UNKNOWN")));
 			  }
 			else if(str.toLower().contains("pbk."))
 			  {
@@ -3424,7 +3436,13 @@ void qtbook_book::slotSRUDownloadFinished(void)
 				id.binding->setStyleSheet
 				  ("background-color: rgb(162, 205, 90)");
 			      }
+			    else if(id.binding->findText(tr("UNKNOWN")))
+			      id.binding->setCurrentIndex
+				(id.binding->findText(tr("UNKNOWN")));
 			  }
+			else if(id.binding->findText(tr("UNKNOWN")))
+			  id.binding->setCurrentIndex
+			    (id.binding->findText(tr("UNKNOWN")));
 
 			if(str.contains(" ") && str.indexOf(" ") == 10)
 			  {
