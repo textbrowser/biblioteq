@@ -459,7 +459,7 @@ CREATE TABLE languages
 CREATE TABLE locations
 (
 	location	 TEXT NOT NULL,
-	type		 VARCHAR(32),
+	type		 VARCHAR(32) NOT NULL,
 	PRIMARY KEY(location, type)
 );
 
