@@ -2318,15 +2318,23 @@ void qtbook_book::slotZ3950Query(void)
 
 		      if(str.toLower().contains("hardcover"))
 			{
-			  id.binding->setCurrentIndex(0);
-			  id.binding->setStyleSheet
-			    ("background-color: rgb(162, 205, 90)");
+			  if(id.binding->findText("hardcover") > -1)
+			    {
+			      id.binding->setCurrentIndex
+				(id.binding->findText("hardcover"));
+			      id.binding->setStyleSheet
+				("background-color: rgb(162, 205, 90)");
+			    }
 			}
 		      else if(str.toLower().contains("pbk."))
 			{
-			  id.binding->setCurrentIndex(1);
-			  id.binding->setStyleSheet
-			    ("background-color: rgb(162, 205, 90)");
+			  if(id.binding->findText("pbk.") > -1)
+			    {
+			      id.binding->setCurrentIndex
+				(id.binding->findText("pbk."));
+			      id.binding->setStyleSheet
+				("background-color: rgb(162, 205, 90)");
+			    }
 			}
 
 		      if(str.contains(" ") && str.indexOf(" ") == 10)
@@ -3399,15 +3407,23 @@ void qtbook_book::slotSRUDownloadFinished(void)
 
 			if(str.toLower().contains("hardcover"))
 			  {
-			    id.binding->setCurrentIndex(0);
-			    id.binding->setStyleSheet
-			      ("background-color: rgb(162, 205, 90)");
+			    if(id.binding->findText("hardcover") > -1)
+			      {
+				id.binding->setCurrentIndex
+				  (id.binding->findText("hardcover"));
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
 			  }
 			else if(str.toLower().contains("pbk."))
 			  {
-			    id.binding->setCurrentIndex(1);
-			    id.binding->setStyleSheet
-			      ("background-color: rgb(162, 205, 90)");
+			    if(id.binding->findText("pbk.") > -1)
+			      {
+				id.binding->setCurrentIndex
+				  (id.binding->findText("pbk."));
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
 			  }
 
 			if(str.contains(" ") && str.indexOf(" ") == 10)
