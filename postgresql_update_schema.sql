@@ -982,3 +982,7 @@ GRANT SELECT ON book_binding_types TO biblioteq_circulation;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
 GRANT SELECT ON book_binding_types TO biblioteq_membership;
 GRANT SELECT ON book_binding_types TO biblioteq_patron;
+
+/* Release 6.67 */
+
+ALTER TABLE locations ALTER type SET NOT NULL;

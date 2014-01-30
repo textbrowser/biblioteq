@@ -2318,10 +2318,12 @@ void qtbook_book::slotZ3950Query(void)
 
 		      if(str.toLower().contains("hardcover"))
 			{
-			  if(id.binding->findText("hardcover") > -1)
+			  if(id.binding->findText("hardcover",
+						  Qt::MatchFixedString) > -1)
 			    {
 			      id.binding->setCurrentIndex
-				(id.binding->findText("hardcover"));
+				(id.binding->findText("hardcover",
+						      Qt::MatchFixedString));
 			      id.binding->setStyleSheet
 				("background-color: rgb(162, 205, 90)");
 			    }
@@ -2331,10 +2333,12 @@ void qtbook_book::slotZ3950Query(void)
 			}
 		      else if(str.toLower().contains("pbk."))
 			{
-			  if(id.binding->findText("pbk.") > -1)
+			  if(id.binding->findText("paperback",
+						  Qt::MatchFixedString) > -1)
 			    {
 			      id.binding->setCurrentIndex
-				(id.binding->findText("pbk."));
+				(id.binding->findText("paperback",
+						      Qt::MatchFixedString));
 			      id.binding->setStyleSheet
 				("background-color: rgb(162, 205, 90)");
 			    }
@@ -3416,10 +3420,14 @@ void qtbook_book::slotSRUDownloadFinished(void)
 
 			if(str.toLower().contains("hardcover"))
 			  {
-			    if(id.binding->findText("hardcover") > -1)
+			    if(id.binding->
+			       findText("hardcover",
+					Qt::MatchFixedString) > -1)
 			      {
 				id.binding->setCurrentIndex
-				  (id.binding->findText("hardcover"));
+				  (id.binding->
+				   findText("hardcover",
+					    Qt::MatchFixedString));
 				id.binding->setStyleSheet
 				  ("background-color: rgb(162, 205, 90)");
 			      }
@@ -3429,10 +3437,14 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			  }
 			else if(str.toLower().contains("pbk."))
 			  {
-			    if(id.binding->findText("pbk.") > -1)
+			    if(id.binding->
+			       findText("paperback",
+					Qt::MatchFixedString) > -1)
 			      {
 				id.binding->setCurrentIndex
-				  (id.binding->findText("pbk."));
+				  (id.binding->
+				   findText("paperback",
+					    Qt::MatchFixedString));
 				id.binding->setStyleSheet
 				  ("background-color: rgb(162, 205, 90)");
 			      }
