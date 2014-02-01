@@ -39,7 +39,9 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	    */
 
 	    issn = parsedList.at(j);
-	    issn = issn.mid(issn.indexOf("$a") + 2).trimmed();
+
+	    if(issn.indexOf("$a") > -1)
+	      issn = issn.mid(issn.indexOf("$a") + 2).trimmed();
 
 	    if(issn.contains(" "))
 	      issn = issn.mid(0, issn.indexOf(" ")).trimmed();
@@ -135,7 +137,10 @@ void z3950results::slotUpdateQueryText(void)
 	*/
 
 	title = list.at(i);
-	title = title.mid(title.indexOf("$a") + 2).trimmed();
+
+	if(title.indexOf("$a") > -1)
+	  title = title.mid(title.indexOf("$a") + 2).trimmed();
+
 	title = title.remove(" $b").trimmed();
 
 	QStringList subfields;
@@ -161,7 +166,9 @@ void z3950results::slotUpdateQueryText(void)
 	  else
 	    subfields.takeFirst();
 
-	title = title.mid(0, title.lastIndexOf('/')).trimmed();
+	if(title.lastIndexOf('/') > -1)
+	  title = title.mid(0, title.lastIndexOf('/')).trimmed();
+
 	break;
       }
 

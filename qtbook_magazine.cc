@@ -2023,7 +2023,8 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 	  QStringList subfields;
 
@@ -2052,7 +2053,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	   ** $8 - Field link and sequence number (R)
 	   */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 	  str = str.remove(" $b").trimmed();
 
 	  QStringList subfields;
@@ -2084,7 +2087,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 	  str = str.remove(" $b").remove
 	    (" $m").remove(" $q").trimmed();
 
@@ -2122,7 +2127,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 	  str = str.remove(" $b").trimmed();
 
 	  QStringList subfields;
@@ -2145,7 +2152,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	    else
 	      subfields.takeFirst();
 
-	  str = str.mid(0, str.lastIndexOf('/')).trimmed();
+	  if(str.lastIndexOf('/') > -1)
+	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
 	  ma.title->setText(str.trimmed());
 	  misc_functions::highlightWidget
 	    (ma.title, QColor(162, 205, 90));
@@ -2164,8 +2173,12 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  QString tmpstr = str.mid(str.indexOf("$a") + 2).
-	    trimmed();
+	  QString tmpstr = "";
+
+	  if(str.indexOf("$a") > -1)
+	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
+	  else
+	    tmpstr = str;
 
 	  QStringList subfields;
 
@@ -2190,8 +2203,10 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  for(j = 0; j < tmplist.size(); j++)
 	    {
 	      tmpstr = tmplist.at(j).trimmed();
-	      tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
-		trimmed();
+
+	      if(tmpstr.lastIndexOf(" ") > -1)
+		tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+		  trimmed();
 
 	      if(tmpstr.isEmpty())
 		continue;
@@ -2216,13 +2231,14 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  misc_functions::highlightWidget
 	    (ma.place->viewport(), QColor(162, 205, 90));
 
-	  if(str.mid(str.indexOf("$c") + 2, 4).contains("c"))
+	  if(str.indexOf("$c") > -1 &&
+	     str.mid(str.indexOf("$c") + 2, 4).contains("c"))
 	    ma.publication_date->setDate
 	      (QDate::fromString
 	       ("01/01/" +
 		str.mid(str.indexOf("$c") + 4, 4),
 		"MM/dd/yyyy"));
-	  else
+	  else if(str.indexOf("$c") > -1)
 	    ma.publication_date->setDate
 	      (QDate::fromString
 	       ("01/01/" +
@@ -2238,9 +2254,11 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  if(str.contains("$a"))
 	    {
 	      str = str.mid(0, str.indexOf("$a")).trimmed();
-	      str = str.mid(0, str.lastIndexOf(" ")).trimmed();
+
+	      if(str.lastIndexOf(" ") > -1)
+		str = str.mid(0, str.lastIndexOf(" ")).trimmed();
 	    }
-	  else
+	  else if(str.indexOf("$c") > -1)
 	    str = str.mid(0, str.indexOf("$c")).trimmed();
 
 	  if(str.endsWith(","))
@@ -2264,7 +2282,9 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 	  str = str.remove(" $b").trimmed();
 	  str = str.remove(" $c").trimmed();
 	  str = str.remove(" $e").trimmed();
@@ -2299,7 +2319,8 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
 	  ** $8 - Field link and sequence number (R)
 	  */
 
-	  str = str.mid(str.indexOf("$a") + 2).trimmed();
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 	  QStringList subfields;
 
@@ -2382,8 +2403,11 @@ void qtbook_magazine::slotSelectImage(void)
 	{
 	  ma.front_image->clear();
 	  ma.front_image->image = QImage(dialog.selectedFiles().at(0));
-	  ma.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
+	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
+	    ma.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
 	  ma.front_image->scene()->addPixmap
 	    (QPixmap().fromImage(ma.front_image->image));
 	  ma.front_image->scene()->items().at(0)->setFlags
@@ -2393,8 +2417,11 @@ void qtbook_magazine::slotSelectImage(void)
 	{
 	  ma.back_image->clear();
 	  ma.back_image->image = QImage(dialog.selectedFiles().at(0));
-	  ma.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
+	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
+	    ma.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
 	  ma.back_image->scene()->addPixmap
 	    (QPixmap().fromImage(ma.back_image->image));
 	  ma.back_image->scene()->items().at(0)->setFlags
@@ -2619,7 +2646,9 @@ void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 		  else
 		    break;
 
-		str = str.mid(0, str.lastIndexOf('/')).trimmed();
+		if(str.lastIndexOf('/') > -1)
+		  str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
 		ma.title->setText(str.trimmed());
 		misc_functions::highlightWidget
 		  (ma.title, QColor(162, 205, 90));
@@ -2664,8 +2693,10 @@ void qtbook_magazine::populateDisplayAfterSRU(const QByteArray &data)
 				     "MM/dd/yyyy"));
 		ma.publication_date->setStyleSheet
 		  ("background-color: rgb(162, 205, 90)");
-		place = place.mid(0, place.lastIndexOf(" ")).
-		  trimmed();
+
+		if(place.lastIndexOf(" ") > -1)
+		  place = place.mid(0, place.lastIndexOf(" ")).
+		    trimmed();
 
 		if(!place.isEmpty())
 		  if(!place[place.length() - 1].isLetter())
@@ -2949,7 +2980,8 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
 
   QList<QByteArray> list;
 
-  while(m_sruResults.indexOf("<record") >= 0)
+  while(m_sruResults.indexOf("<record") >= 0 &&
+	m_sruResults.indexOf("</record>") >= 0)
     {
       list.append(m_sruResults.mid(m_sruResults.indexOf("<record"),
 				   m_sruResults.indexOf("</record>") -

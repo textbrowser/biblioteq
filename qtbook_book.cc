@@ -2285,7 +2285,8 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 		      QStringList subfields;
 
@@ -2314,7 +2315,8 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 		      if(str.toLower().contains("hardcover"))
 			{
@@ -2381,7 +2383,9 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 		      str = str.remove(" $b").trimmed();
 
 		      QStringList subfields;
@@ -2413,7 +2417,9 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 		      str = str.remove(" $b").remove
 			(" $m").remove(" $q").trimmed();
 
@@ -2459,7 +2465,8 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 		      QStringList subfields;
 
@@ -2524,7 +2531,9 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 		      str = str.remove(" $b").trimmed();
 
 		      QStringList subfields;
@@ -2547,7 +2556,9 @@ void qtbook_book::slotZ3950Query(void)
 			else
 			  subfields.takeFirst();
 
-		      str = str.mid(0, str.lastIndexOf('/')).trimmed();
+		      if(str.lastIndexOf('/') > -1)
+			str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
 		      id.title->setText(str);
 		      misc_functions::highlightWidget
 			(id.title, QColor(162, 205, 90));
@@ -2561,7 +2572,8 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 		      QStringList subfields;
 
@@ -2576,7 +2588,8 @@ void qtbook_book::slotZ3950Query(void)
 			else
 			  subfields.takeFirst();
 
-		      str = str.mid(0, str.indexOf(" ")).trimmed();
+		      if(str.indexOf(" ") > -1)
+			str = str.mid(0, str.indexOf(" ")).trimmed();
 
 		      if(id.edition->findText(str) > -1)
 			id.edition->setCurrentIndex
@@ -2607,8 +2620,12 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      QString tmpstr = str.mid(str.indexOf("$a") + 2).
-			trimmed();
+		      QString tmpstr = "";
+
+		      if(str.indexOf("$a") > -1)
+			tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
+		      else
+			tmpstr = str;
 
 		      QStringList subfields;
 
@@ -2634,8 +2651,10 @@ void qtbook_book::slotZ3950Query(void)
 		      for(j = 0; j < tmplist.size(); j++)
 			{
 			  tmpstr = tmplist.at(j).trimmed();
-			  tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
-			    trimmed();
+
+			  if(tmpstr.lastIndexOf(" ") > -1)
+			    tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+			      trimmed();
 
 			  if(tmpstr.isEmpty())
 			    continue;
@@ -2660,14 +2679,15 @@ void qtbook_book::slotZ3950Query(void)
 		      misc_functions::highlightWidget
 			(id.place->viewport(), QColor(162, 205, 90));
 
-		      if(str.mid(str.indexOf("$c") + 2, 4).toLower().
+		      if(str.indexOf("$c") > -1 &&
+			 str.mid(str.indexOf("$c") + 2, 4).toLower().
 			 contains("c"))
 			id.publication_date->setDate
 			  (QDate::fromString
 			   ("01/01/" +
 			    str.mid(str.indexOf("$c") + 4, 4),
 			    "MM/dd/yyyy"));
-		      else
+		      else if(str.indexOf("$c") > -1)
 			id.publication_date->setDate
 			  (QDate::fromString
 			   ("01/01/" +
@@ -2683,9 +2703,11 @@ void qtbook_book::slotZ3950Query(void)
 		      if(str.contains("$a"))
 			{
 			  str = str.mid(0, str.indexOf("$a")).trimmed();
-			  str = str.mid(0, str.lastIndexOf(" ")).trimmed();
+
+			  if(str.lastIndexOf(" ") > -1)
+			    str = str.mid(0, str.lastIndexOf(" ")).trimmed();
 			}
-		      else
+		      else if(str.indexOf("$c") > -1)
 			str = str.mid(0, str.indexOf("$c")).trimmed();
 
 		      if(str.contains("$b "))
@@ -2714,7 +2736,9 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
+
 		      str = str.remove(" $b").trimmed();
 		      str = str.remove(" $c").trimmed();
 		      str = str.remove(" $e").trimmed();
@@ -2749,7 +2773,8 @@ void qtbook_book::slotZ3950Query(void)
 		      ** $8 - Field link and sequence number (R)
 		      */
 
-		      str = str.mid(str.indexOf("$a") + 2).trimmed();
+		      if(str.indexOf("$a") > -1)
+			str = str.mid(str.indexOf("$a") + 2).trimmed();
 
 		      QStringList subfields;
 
@@ -2917,8 +2942,11 @@ void qtbook_book::slotSelectImage(void)
 	{
 	  id.front_image->clear();
 	  id.front_image->image = QImage(dialog.selectedFiles().at(0));
-	  id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
+	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
+	    id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
+	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
 	  id.front_image->scene()->addPixmap
 	    (QPixmap().fromImage(id.front_image->image));
 	  id.front_image->scene()->items().at(0)->setFlags
@@ -2928,8 +2956,11 @@ void qtbook_book::slotSelectImage(void)
 	{
 	  id.back_image->clear();
 	  id.back_image->image = QImage(dialog.selectedFiles().at(0));
-	  id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
+	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
+	    id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
+	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+
 	  id.back_image->scene()->addPixmap
 	    (QPixmap().fromImage(id.back_image->image));
 	  id.back_image->scene()->items().at(0)->setFlags
@@ -3633,8 +3664,10 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			  else
 			    break;
 
-			str = str.mid
-			  (0, str.lastIndexOf('/')).trimmed();
+			if(str.lastIndexOf('/') > -1)
+			  str = str.mid
+			    (0, str.lastIndexOf('/')).trimmed();
+
 			id.title->setText(str);
 			misc_functions::highlightWidget
 			  (id.title, QColor(162, 205, 90));
@@ -3664,7 +3697,8 @@ void qtbook_book::slotSRUDownloadFinished(void)
 			  else
 			    break;
 
-			str = str.mid(0, str.indexOf(" ")).trimmed();
+			if(str.indexOf(" ") > -1)
+			  str = str.mid(0, str.indexOf(" ")).trimmed();
 
 			int i = 0;
 
@@ -3727,8 +3761,10 @@ void qtbook_book::slotSRUDownloadFinished(void)
 					     "MM/dd/yyyy"));
 			id.publication_date->setStyleSheet
 			  ("background-color: rgb(162, 205, 90)");
-			place = place.mid(0, place.lastIndexOf(" ")).
-			  trimmed();
+
+			if(place.lastIndexOf(" ") > -1)
+			  place = place.mid(0, place.lastIndexOf(" ")).
+			    trimmed();
 
 			if(!place.isEmpty())
 			  if(!place[place.length() - 1].isLetter())
