@@ -8653,6 +8653,11 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 		}
 	    }
 	}
+      else
+	QMessageBox::critical
+	  (this, tr("BiblioteQ: Database Error"),
+	   tr("An error occurred while attempting "
+	      "to create the specified SQLite database."));
     }
 }
 
