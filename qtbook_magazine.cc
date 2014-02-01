@@ -1806,7 +1806,6 @@ void qtbook_magazine::slotZ3950Query(void)
   QString errorstr = "";
   QString searchstr = "";
   QStringList list;
-  z3950results *dialog = 0;
   qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
 
   if(ma.id->text().trimmed().length() != 9)
@@ -1891,7 +1890,7 @@ void qtbook_magazine::slotZ3950Query(void)
 	      ** Display a selection dialog.
 	      */
 
-	      if((dialog = new(std::nothrow)
+	      if((new(std::nothrow)
 		  z3950results(static_cast<QWidget *> (this), list,
 			       this, font())) == 0)
 		{
@@ -2976,10 +2975,8 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
       ** Display a selection dialog.
       */
 
-      sruresults *dialog = 0;
-
-      if((dialog = new(std::nothrow) sruresults(static_cast<QWidget *> (this),
-						list, this, font())) == 0)
+      if((new(std::nothrow) sruresults(static_cast<QWidget *> (this),
+				       list, this, font())) == 0)
 	{
 	  qmain->addError
 	    (QString(tr("Memory Error")),
