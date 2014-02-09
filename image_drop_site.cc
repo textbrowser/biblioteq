@@ -222,15 +222,14 @@ QString image_drop_site::determineFormat(const QByteArray &bytes) const
 
 QString image_drop_site::determineFormat(const QString &filename) const
 {
-  char bytes[10];
+  QByteArray bytes(10, 0);
   QFile file(filename);
-  qint64 bytesRead = 0;
   QString imgf("");
-
-  (void) memset(bytes, 0, sizeof(bytes));
+  qint64 bytesRead = 0;
 
   if(file.open(QIODevice::ReadOnly) && (bytesRead =
-					file.read(bytes, sizeof(bytes))) > 0)
+					file.read(bytes.data(),
+						  sizeof(bytes))) > 0)
     {
       if(bytesRead >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
 	 bytes[3] == 'G')
