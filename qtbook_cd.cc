@@ -497,15 +497,19 @@ void qtbook_cd::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  cd.front_image->image.save
-	    (&buffer, cd.front_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(17, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      cd.front_image->image.save
+		(&buffer, cd.front_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(17, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(17, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  cd.front_image->imageFormat = "";
-	  query.bindValue(17, QVariant());
+	  query.bindValue(17, QVariant(QVariant::ByteArray));
 	}
 
       if(!cd.back_image->image.isNull())
@@ -513,15 +517,19 @@ void qtbook_cd::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  cd.back_image->image.save
-	    (&buffer, cd.back_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(18, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      cd.back_image->image.save
+		(&buffer, cd.back_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(18, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(18, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  cd.back_image->imageFormat = "";
-	  query.bindValue(18, QVariant());
+	  query.bindValue(18, QVariant(QVariant::ByteArray));
 	}
 
       query.bindValue(19, cd.keyword->toPlainText().trimmed());

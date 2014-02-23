@@ -445,15 +445,19 @@ void qtbook_videogame::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  vg.front_image->image.save
-	    (&buffer, vg.front_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(15, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      vg.front_image->image.save
+		(&buffer, vg.front_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(15, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(15, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  vg.front_image->imageFormat = "";
-	  query.bindValue(15, QVariant());
+	  query.bindValue(15, QVariant(QVariant::ByteArray));
 	}
 
       if(!vg.back_image->image.isNull())
@@ -461,15 +465,19 @@ void qtbook_videogame::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  vg.back_image->image.save
-	    (&buffer, vg.back_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(16, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      vg.back_image->image.save
+		(&buffer, vg.back_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(16, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(16, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  vg.back_image->imageFormat = "";
-	  query.bindValue(16, QVariant());
+	  query.bindValue(16, QVariant(QVariant::ByteArray));
 	}
 
       query.bindValue(17, vg.place->toPlainText().trimmed());

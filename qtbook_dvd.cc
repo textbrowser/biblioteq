@@ -528,15 +528,19 @@ void qtbook_dvd::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  dvd.front_image->image.save
-	    (&buffer, dvd.front_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(19, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      dvd.front_image->image.save
+		(&buffer, dvd.front_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(19, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(19, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  dvd.front_image->imageFormat = "";
-	  query.bindValue(19, QVariant());
+	  query.bindValue(19, QVariant(QVariant::ByteArray));
 	}
 
       if(!dvd.back_image->image.isNull())
@@ -544,15 +548,19 @@ void qtbook_dvd::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  dvd.back_image->image.save
-	    (&buffer, dvd.back_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(20, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      dvd.back_image->image.save
+		(&buffer, dvd.back_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(20, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(20, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  dvd.back_image->imageFormat = "";
-	  query.bindValue(20, QVariant());
+	  query.bindValue(20, QVariant(QVariant::ByteArray));
 	}
 
       query.bindValue(21, dvd.keyword->toPlainText().trimmed());

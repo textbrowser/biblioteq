@@ -272,25 +272,37 @@ void qtbook_photographcollection::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  pc.thumbnail_collection->image.save
-	    (&buffer, pc.thumbnail_collection->imageFormat.toLatin1(), 100);
-	  query.bindValue(5, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      pc.thumbnail_collection->image.save
+		(&buffer, pc.thumbnail_collection->imageFormat.toLatin1(),
+		 100);
+	      query.bindValue(5, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(5, QVariant(QVariant::ByteArray));
+
 	  buffer.close();
 	  bytes.clear();
 	  image = pc.thumbnail_collection->image;
 	  image = image.scaled
 	    (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	  buffer.open(QIODevice::WriteOnly);
-	  image.save
-	    (&buffer, pc.thumbnail_collection->imageFormat.toLatin1(), 100);
-	  query.bindValue(6, bytes.toBase64());
+
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      image.save
+		(&buffer, pc.thumbnail_collection->imageFormat.toLatin1(),
+		 100);
+	      query.bindValue(6, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(6, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  pc.thumbnail_collection->imageFormat = "";
-	  query.bindValue(5, QVariant());
-	  query.bindValue(6, QVariant());
+	  query.bindValue(5, QVariant(QVariant::ByteArray));
+	  query.bindValue(6, QVariant(QVariant::ByteArray));
 	}
 
       if(engWindowTitle.contains("Modify"))
@@ -1280,25 +1292,35 @@ void qtbook_photographcollection::slotInsertItem(void)
       QByteArray bytes;
       QBuffer buffer(&bytes);
 
-      buffer.open(QIODevice::WriteOnly);
-      photo.thumbnail_item->image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
-      query.bindValue(14, bytes.toBase64());
+      if(buffer.open(QIODevice::WriteOnly))
+	{
+	  photo.thumbnail_item->image.save
+	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  query.bindValue(14, bytes.toBase64());
+	}
+      else
+	query.bindValue(14, QVariant(QVariant::ByteArray));
+
       buffer.close();
       bytes.clear();
       image = photo.thumbnail_item->image;
       image = image.scaled
 	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      buffer.open(QIODevice::WriteOnly);
-      image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
-      query.bindValue(15, bytes.toBase64());
+
+      if(buffer.open(QIODevice::WriteOnly))
+	{
+	  image.save
+	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  query.bindValue(15, bytes.toBase64());
+	}
+      else
+	query.bindValue(15, QVariant(QVariant::ByteArray));
     }
   else
     {
       photo.thumbnail_item->imageFormat = "";
-      query.bindValue(14, QVariant());
-      query.bindValue(15, QVariant());
+      query.bindValue(14, QVariant(QVariant::ByteArray));
+      query.bindValue(15, QVariant(QVariant::ByteArray));
     }
 
   if(qmain->getDB().driverName() == "QSQLITE")
@@ -1651,25 +1673,36 @@ void qtbook_photographcollection::slotUpdateItem(void)
       QByteArray bytes;
 
       buffer.setBuffer(&bytes);
-      buffer.open(QIODevice::WriteOnly);
-      photo.thumbnail_item->image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
-      query.bindValue(13, bytes.toBase64());
+
+      if(buffer.open(QIODevice::WriteOnly))
+	{
+	  photo.thumbnail_item->image.save
+	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  query.bindValue(13, bytes.toBase64());
+	}
+      else
+	query.bindValue(13, QVariant(QVariant::ByteArray));
+
       buffer.close();
       bytes.clear();
       image = photo.thumbnail_item->image;
       image = image.scaled
 	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      buffer.open(QIODevice::WriteOnly);
-      image.save
-	(&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
-      query.bindValue(14, bytes.toBase64());
+
+      if(buffer.open(QIODevice::WriteOnly))
+	{
+	  image.save
+	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  query.bindValue(14, bytes.toBase64());
+	}
+      else
+	query.bindValue(14, QVariant(QVariant::ByteArray));
     }
   else
     {
       photo.thumbnail_item->imageFormat = "";
-      query.bindValue(13, QVariant());
-      query.bindValue(14, QVariant());
+      query.bindValue(13, QVariant(QVariant::ByteArray));
+      query.bindValue(14, QVariant(QVariant::ByteArray));
     }
 
   query.bindValue(15, oid);

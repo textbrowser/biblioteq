@@ -644,15 +644,19 @@ void qtbook_book::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  id.front_image->image.save
-	    (&buffer, id.front_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(18, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      id.front_image->image.save
+		(&buffer, id.front_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(18, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(18, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  id.front_image->imageFormat = "";
-	  query.bindValue(18, QVariant());
+	  query.bindValue(18, QVariant(QVariant::ByteArray));
 	}
 
       if(!id.back_image->image.isNull())
@@ -660,15 +664,19 @@ void qtbook_book::slotGo(void)
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
 
-	  buffer.open(QIODevice::WriteOnly);
-	  id.back_image->image.save
-	    (&buffer, id.back_image->imageFormat.toLatin1(), 100);
-	  query.bindValue(19, bytes.toBase64());
+	  if(buffer.open(QIODevice::WriteOnly))
+	    {
+	      id.back_image->image.save
+		(&buffer, id.back_image->imageFormat.toLatin1(), 100);
+	      query.bindValue(19, bytes.toBase64());
+	    }
+	  else
+	    query.bindValue(19, QVariant(QVariant::ByteArray));
 	}
       else
 	{
 	  id.back_image->imageFormat = "";
-	  query.bindValue(19, QVariant());
+	  query.bindValue(19, QVariant(QVariant::ByteArray));
 	}
 
       query.bindValue(20, id.place->toPlainText().trimmed());
@@ -3017,7 +3025,11 @@ void qtbook_book::slotDownloadImage(void)
   else
     imgbuffer->setProperty("which", "back");
 
-  imgbuffer->open(QIODevice::WriteOnly);
+  if(!imgbuffer->open(QIODevice::WriteOnly))
+    {
+      manager->deleteLater();
+      imgbuffer->deleteLater();
+    }
 
   QUrl url;
 
