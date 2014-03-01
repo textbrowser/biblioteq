@@ -82,11 +82,9 @@ static int callnum_lt(QString m, QString n)
       else // Different call letters.
 	return match1.cap(1).toUpper() < match2.cap(1).toUpper();
     }
-  else
-    {
-      qDebug() << "Call number regex match failed." << endl;
-      return m < n;
-    }
+
+  qDebug() << "Call number regex match failed." << endl;
+  return m < n;
 }
 
 bool callnum_table_item::operator <(const QTableWidgetItem &other) const
