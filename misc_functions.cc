@@ -24,11 +24,11 @@ extern qtbook *qmain;
 ** -- userCount() --
 */
 
-int misc_functions::userCount(const QString &userid,
-			      const QSqlDatabase &db,
-			      QString &errorstr)
+qint64 misc_functions::userCount(const QString &userid,
+				 const QSqlDatabase &db,
+				 QString &errorstr)
 {
-  int count = 0;
+  qint64 count = 0;
   QString querystr = "";
   QSqlQuery query(db);
 
@@ -43,7 +43,7 @@ int misc_functions::userCount(const QString &userid,
 
   if(query.exec(querystr))
     if(query.next())
-      count = query.value(0).toInt();
+      count = query.value(0).toLongLong();
 
   if(query.lastError().isValid())
     {
@@ -200,7 +200,7 @@ void misc_functions::revokeAll(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  int count = 0;
+  qint64 count = 0;
   QString querystr = "";
   QSqlQuery query(db);
   QStringList objectlist;
@@ -312,7 +312,7 @@ void misc_functions::DBAccount(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  int count = 0;
+  qint64 count = 0;
   QString querystr = "";
   QSqlQuery query(db);
   QStringList objectlist;
@@ -681,12 +681,12 @@ QStringList misc_functions::getReservedItems(const QString &memberid,
 ** -- getMemberMatchCount() --
 */
 
-int misc_functions::getMemberMatchCount(const QString &checksum,
-					const QString &memberid,
-					const QSqlDatabase &db,
-					QString &errorstr)
+qint64 misc_functions::getMemberMatchCount(const QString &checksum,
+					   const QString &memberid,
+					   const QSqlDatabase &db,
+					   QString &errorstr)
 {
-  int count = 0;
+  qint64 count = 0;
   QString querystr = "";
   QSqlQuery query(db);
 
@@ -703,7 +703,7 @@ int misc_functions::getMemberMatchCount(const QString &checksum,
 
   if(query.exec())
     if(query.next())
-      count = query.value(0).toInt();
+      count = query.value(0).toLongLong();
 
   if(query.lastError().isValid())
     {
@@ -1046,7 +1046,7 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   if(query.exec())
     if(query.next())
-      if(query.value(0).toInt() >= 1)
+      if(query.value(0).toLongLong() >= 1)
 	isAvailable = true;
 
   if(query.lastError().isValid())
@@ -1857,7 +1857,7 @@ qint64 misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 
       if(query.exec(querystr))
 	if(query.next())
-	  value = query.value(0).toInt();
+	  value = query.value(0).toLongLong();
     }
 
   if(query.lastError().isValid())
@@ -1904,7 +1904,7 @@ bool misc_functions::hasMemberExpired(const QSqlDatabase &db,
 	  }
 	else
 	  {
-	    if(query.value(0).toInt() < 0)
+	    if(query.value(0).toLongLong() < 0)
 	      expired = true;
 	    else
 	      expired = false;

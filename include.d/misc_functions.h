@@ -29,7 +29,7 @@ class misc_functions
   static const int CREATE_USER = 100;
   static const int DELETE_USER = 200;
   static const int UPDATE_USER = 300;
-  static int userCount(const QString &, const QSqlDatabase &, QString &);
+  static qint64 userCount(const QString &, const QSqlDatabase &, QString &);
   static int getMinimumDays(const QSqlDatabase &,
 			    const QString &,
 			    QString &);
@@ -38,9 +38,9 @@ class misc_functions
 			     const char *, const int);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
-  static int getMemberMatchCount(const QString &, const QString &,
-				 const QSqlDatabase &,
-				 QString &);
+  static qint64 getMemberMatchCount(const QString &, const QString &,
+				    const QSqlDatabase &,
+				    QString &);
   static bool isGnome(void);
   static bool isRequested(const QSqlDatabase &, const QString &,
 			  const QString &, QString &);

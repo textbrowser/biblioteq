@@ -80,8 +80,8 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
-  resize(0.75 * parent->size().width(),
-	 0.75 * parent->size().height());
+  resize(qRound(0.75 * parent->size().width()),
+	 qRound(0.75 * parent->size().height()));
   exec();
 }
 

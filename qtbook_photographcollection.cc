@@ -150,8 +150,8 @@ qtbook_photographcollection::qtbook_photographcollection
   if(pc.location->findText(tr("UNKNOWN")) == -1)
     pc.location->addItem(tr("UNKNOWN"));
 
-  resize(0.95 * parentWid->size().width(),
-	 0.95 * parentWid->size().height());
+  resize(qRound(0.95 * parentWid->size().width()),
+	 qRound(0.95 * parentWid->size().height()));
   pc.splitter->setStretchFactor(0, 0);
   pc.splitter->setStretchFactor(1, 1);
   pc.splitter->setStretchFactor(2, 0);
@@ -1105,7 +1105,7 @@ void qtbook_photographcollection::slotAddItem(void)
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotInsertItem(void)));
   photo_diag->resize(photo_diag->width(),
-		     0.95 * size().height());
+		     qRound(0.95 * size().height()));
   misc_functions::center(photo_diag, this);
   photo.thumbnail_item->clear();
 #if QT_VERSION >= 0x040700
@@ -1572,7 +1572,7 @@ void qtbook_photographcollection::slotModifyItem(void)
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotUpdateItem(void)));
   photo_diag->resize(photo_diag->width(),
-		     0.95 * size().height());
+		     qRound(0.95 * size().height()));
   misc_functions::center(photo_diag, this);
   photo.id_item->setFocus();
   photo.scrollArea->ensureVisible(0, 0);

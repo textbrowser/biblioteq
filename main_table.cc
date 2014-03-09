@@ -443,8 +443,8 @@ void main_table::recordColumnHidden(const QString &username,
       if(!hiddenColumns[indexstr].contains(index))
 	hiddenColumns[indexstr].append(index);
     }
-  else
-    (int) hiddenColumns[indexstr].removeAll(index);
+  else if(hiddenColumns.contains(indexstr))
+    hiddenColumns[indexstr].removeAll(index);
 }
 
 /*

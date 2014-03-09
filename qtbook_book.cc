@@ -336,8 +336,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   ** Prepare the form.
   */
 
-  resize(0.95 * parentWid->size().width(),
-	 0.95 * parentWid->size().height());
+  resize(qRound(0.95 * parentWid->size().width()),
+	 qRound(0.95 * parentWid->size().height()));
   id.splitter->setStretchFactor(0, 0);
   id.splitter->setStretchFactor(1, 1);
   id.splitter->setStretchFactor(2, 0);
@@ -3231,8 +3231,8 @@ void qtbook_book::slotDataTransferProgress(qint64 bytesread,
 {
   if(httpProgress->isVisible())
     {
-      httpProgress->setMaximum(totalbytes);
-      httpProgress->setValue(bytesread);
+      httpProgress->setMaximum(static_cast<int> (totalbytes));
+      httpProgress->setValue(static_cast<int> (bytesread));
     }
 }
 

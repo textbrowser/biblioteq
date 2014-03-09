@@ -1292,8 +1292,8 @@ void qtbook::slotSearch(void)
   static bool resized = false;
 
   if(!resized)
-    all_diag->resize(0.75 * size().width(),
-		     0.75 * size().height());
+    all_diag->resize(qRound(0.75 * size().width()),
+		     qRound(0.75 * size().height()));
 
   resized = true;
   misc_functions::center(all_diag, this);
@@ -2130,7 +2130,7 @@ void qtbook::slotSaveUser(void)
 {
   int i = 0;
   int row = bb.table->currentRow();
-  int count = -1;
+  qint64 count = -1;
   QString str = "";
   QString checksum = "";
   QString errorstr = "";
@@ -2167,8 +2167,10 @@ void qtbook::slotSaveUser(void)
 	}
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      int ucount = misc_functions::userCount
+
+      qint64 ucount = misc_functions::userCount
 	(userinfo_diag->userinfo.memberid->text(), db, errorstr);
+
       qapp->restoreOverrideCursor();
 
       if(ucount > 0)
@@ -4267,8 +4269,8 @@ void qtbook::slotShowMembersBrowser(void)
   static bool resized = false;
 
   if(!resized)
-    members_diag->resize(0.75 * size().width(),
-			 0.75 * size().height());
+    members_diag->resize(qRound(0.75 * size().width()),
+			 qRound(0.75 * size().height()));
 
   resized = true;
   misc_functions::center(members_diag, this);
@@ -5100,8 +5102,8 @@ void qtbook::slotShowErrorDialog(void)
   static bool resized = false;
 
   if(!resized)
-    error_diag->resize(0.75 * size().width(),
-		       0.75 * size().height());
+    error_diag->resize(qRound(0.75 * size().width()),
+		       qRound(0.75 * size().height()));
 
   resized = true;
   misc_functions::center(error_diag, this);
@@ -6597,8 +6599,8 @@ void qtbook::slotShowCustomQuery(void)
   static bool resized = false;
 
   if(!resized)
-    customquery_diag->resize(0.75 * size().width(),
-			     0.75 * size().height());
+    customquery_diag->resize(qRound(0.75 * size().width()),
+			     qRound(0.75 * size().height()));
 
   resized = true;
   misc_functions::center(customquery_diag, this);
@@ -7183,8 +7185,8 @@ void qtbook::slotShowHistory(void)
       static bool resized = false;
 
       if(!resized)
-	history_diag->resize(0.75 * members_diag->size().width(),
-			     0.75 * members_diag->size().height());
+	history_diag->resize(qRound(0.75 * members_diag->size().width()),
+			     qRound(0.75 * members_diag->size().height()));
 
       resized = true;
       misc_functions::center(history_diag, members_diag);
@@ -7194,8 +7196,8 @@ void qtbook::slotShowHistory(void)
       static bool resized = false;
 
       if(!resized)
-	history_diag->resize(0.75 * size().width(),
-			     0.75 * size().height());
+	history_diag->resize(qRound(0.75 * size().width()),
+			     qRound(0.75 * size().height()));
 
       resized = true;
       misc_functions::center(history_diag, this);
@@ -7496,8 +7498,8 @@ void qtbook::slotShowAdminDialog(void)
   static bool resized = false;
 
   if(!resized)
-    admin_diag->resize(0.85 * size().width(),
-		       0.85 * size().height());
+    admin_diag->resize(qRound(0.85 * size().width()),
+		       qRound(0.85 * size().height()));
 
   resized = true;
   misc_functions::center(admin_diag, this);
@@ -7764,7 +7766,7 @@ void qtbook::slotSaveAdministrators(void)
 {
   int i = 0;
   int j = 0;
-  int ucount = 0;
+  qint64 ucount = 0;
   bool adminCreated = false;
   QString str = "";
   QString adminStr = "";
