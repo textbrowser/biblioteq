@@ -1,24 +1,26 @@
 purge.commands = del *~ && del include.d\\*~ && del doc.d\\*~
 
-TEMPLATE	= app
-LANGUAGE	= C++
-QT		+= network sql
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
-QMAKE_CXXFLAGS_RELEASE -= -O2
+LANGUAGE	= C++
+QT		+= network sql
+TEMPLATE	= app
+
 QMAKE_CLEAN	+= BiblioteQ.exe
-QMAKE_CXXFLAGS_RELEASE += -fwrapv -mtune=generic -pie -O3 \
-			  -Wall -Wcast-align -Wcast-qual \
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual \
 			  -Werror -Wextra \
 			  -Woverloaded-virtual -Wpointer-arith \
-			  -Wstrict-overflow=4
+			  -Wstrict-overflow=4 \
+			  -fwrapv -mtune=generic -pie
 QMAKE_EXTRA_TARGETS = purge
-INCLUDEPATH	+= include.d include.win32.d
+
 ICON		= icons.d\\book.png
-RC_FILE		= biblioteq.win.rc
+INCLUDEPATH	+= include.d include.win32.d
 LIBS		+= -L"." \
 		   -L"libraries.win32.d\\sqlite3.d" \
 		   -L"libraries.win32.d\\yaz.d" -lsqlite3 -lyaz4
+RC_FILE		= biblioteq.win.rc
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
@@ -103,5 +105,5 @@ TRANSLATIONS    = translations.d\\biblioteq_cs_CZ.ts \
                   translations.d\\biblioteq_nl_BE.ts \
                   translations.d\\biblioteq_nl_NL.ts
 
-TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
+TARGET		= BiblioteQ

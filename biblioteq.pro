@@ -1,19 +1,22 @@
 purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 
-TEMPLATE	= app
-LANGUAGE	= C++
-QT		+= network sql
 CONFIG		+= copy_dir_files qt release thread warn_on x11
 DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
+LANGUAGE	= C++
+QT		+= network sql
+TEMPLATE	= app
+
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=4 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
 QMAKE_EXTRA_TARGETS = purge
-INCLUDEPATH	+= include.d /usr/local/include
+
 ICON		= icons.d/book.png
+INCLUDEPATH	+= include.d /usr/local/include
 LIBS		+= -Wl,-R/usr/local/lib -lsqlite3 -lyaz
 
 FORMS           = adminsetup.ui \
@@ -99,8 +102,8 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
                   translations.d/biblioteq_nl_BE.ts \
                   translations.d/biblioteq_nl_NL.ts
 
-TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
+TARGET		= BiblioteQ
 
 biblioteq.path		= /usr/local/biblioteq
 biblioteq.files		= BiblioteQ
@@ -115,7 +118,6 @@ sh.files		= biblioteq.sh
 translations.path	= /usr/local/biblioteq/translations.d
 translations.files	= translations.d/*.qm
 
-QMAKE_STRIP	= echo
 INSTALLS	= icons \
                   translations \
                   biblioteq \

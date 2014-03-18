@@ -1,22 +1,22 @@
 purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
 
-TEMPLATE	= app
-LANGUAGE	= C++
-QT		+= network sql
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
-QMAKE_LFLAGS_RELEASE =
-QMAKE_LFLAGS_RPATH =
+LANGUAGE	= C++
+QT		+= network sql
+TEMPLATE	= app
+
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
+QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=4 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic -pie -O3
+			  -fwrapv -mtune=generic -pie
 QMAKE_EXTRA_TARGETS = purge
-INCLUDEPATH	+= include.d /usr/local/include
+
 ICON		= icons.d/book.icns
+INCLUDEPATH	+= include.d /usr/local/include
 LIBS		+= -lsqlite3 -L/usr/local/lib -lyaz
 
 FORMS           = adminsetup.ui \
@@ -102,8 +102,8 @@ TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
                   translations.d/biblioteq_nl_BE.ts \
                   translations.d/biblioteq_nl_NL.ts
 
-TARGET		= BiblioteQ
 PROJECTNAME	= BiblioteQ
+TARGET		= BiblioteQ
 
 biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 biblioteq.files		= BiblioteQ.app/*
@@ -142,7 +142,6 @@ sql.files		= *.sql
 translations.path	= /Applications/BiblioteQ.d/translations.d
 translations.files	= translations.d/*.qm
 
-QMAKE_STRIP	= echo
 INSTALLS	= preinstall \
 		  macdeployqt \
                   aftermacdeployqt1 \
