@@ -2008,7 +2008,7 @@ void misc_functions::setRole(const QSqlDatabase &db,
 
 bool misc_functions::isGnome(void)
 {
-  QString session(qgetenv("DESKTOP_SESSION").toLower().trimmed().constData());
+  QByteArray session(qgetenv("DESKTOP_SESSION").toLower().trimmed());
 
   if(session == "gnome" || session == "ubuntu")
     return true;
