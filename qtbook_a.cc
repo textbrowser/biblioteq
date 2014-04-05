@@ -123,7 +123,10 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  QApplication::setStyle(new QMacStyle());
+  QMacStyle *style = new(std::nothrow) QMacStyle();
+
+  if(style)
+    QApplication::setStyle(style);
 #endif
 #endif
 
