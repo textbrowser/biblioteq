@@ -2843,7 +2843,12 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.table->resetTable(db.userName(), "", roles);
 
-  int currentPage = offset / limit + 1;
+  int currentPage = 0;
+
+  if(limit == 0)
+    currentPage = 1;
+  else
+    currentPage = offset / limit + 1;
 
   if(limit == -1)
     currentPage = 1;

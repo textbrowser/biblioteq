@@ -3580,6 +3580,9 @@ void qtbook::slotShowPrev(void)
   else
     row -= 1;
 
+  if(row < 0)
+    row = 0;
+
   if(history_diag->isVisible())
     {
       table->clearSelection();
