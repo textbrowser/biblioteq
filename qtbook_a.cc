@@ -3698,8 +3698,6 @@ void qtbook::slotConnectDB(void)
     {
       db.setHostName(tmphash["hostname"]);
       db.setDatabaseName(br.branch_name->currentText());
-      db.setUserName(br.userid->text().trimmed());
-      db.setPassword(br.password->text());
       db.setPort(tmphash["port"].toInt());
     }
 
@@ -3708,7 +3706,15 @@ void qtbook::slotConnectDB(void)
       db.setConnectOptions("requiressl=1");
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  (void) db.open();
+
+  if(tmphash["database_type"] == "sqlite")
+    (void) db.open();
+  else
+    {
+      (void) db.open(br.userid->text().trimmed(), br.password->text());
+      br.password->clear();
+    }
+
   qapp->restoreOverrideCursor();
 
   if(!db.isOpen())
@@ -7383,10 +7389,9 @@ void qtbook::updateReservationHistoryBrowser(const QString &memberid,
 void qtbook::slotShowChangePassword(void)
 {
   pass.userid->setText(db.userName());
-  pass.currentpassword->clear();
   pass.password->clear();
   pass.passwordAgain->clear();
-  pass.currentpassword->setFocus();
+  pass.password->setFocus();
   pass_diag->show();
 }
 
@@ -7398,19 +7403,13 @@ void qtbook::slotSavePassword(void)
 {
   QString errorstr = "";
 
-  if(pass.currentpassword->text() != br.password->text())
-    {
-      QMessageBox::critical(pass_diag, tr("BiblioteQ: User Error"),
-			    tr("The current password is incorrect."));
-      pass.currentpassword->setFocus();
-      return;
-    }
-  else if(pass.password->text().length() < 8)
+  if(pass.password->text().length() < 8)
     {
       QMessageBox::critical
 	(pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The password must be at least eight characters "
 	    "long."));
+      pass.password->selectAll();
       pass.password->setFocus();
       return;
     }
@@ -7419,6 +7418,7 @@ void qtbook::slotSavePassword(void)
       QMessageBox::critical
 	(pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The passwords do not match. Please try again."));
+      pass.password->selectAll();
       pass.password->setFocus();
       return;
     }
@@ -7427,6 +7427,8 @@ void qtbook::slotSavePassword(void)
   misc_functions::savePassword(pass.userid->text(), db,
 			       pass.password->text(), errorstr, roles);
   qapp->restoreOverrideCursor();
+  pass.password->clear();
+  pass.passwordAgain->clear();
 
   if(!errorstr.isEmpty())
     {
@@ -7437,14 +7439,7 @@ void qtbook::slotSavePassword(void)
 			    tr("Unable to save the new password."));
     }
   else
-    {
-      /*
-      ** Update the password field with the new password.
-      */
-
-      br.password->setText(pass.password->text());
-      pass_diag->close();
-    }
+    pass_diag->close();
 }
 
 /*
