@@ -14,7 +14,7 @@ QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wpointer-arith -Wstrict-overflow=4 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
-QMAKE_DISTCLEAN	+= .qmake.cache
+QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= icons.d/book.png
