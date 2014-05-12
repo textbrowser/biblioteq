@@ -600,10 +600,10 @@ void qtbook_dvd::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      query.prepare(QString("DELETE FROM dvd_copy_info WHERE "
-				    "copy_number > ? AND "
-				    "item_oid = "
-				    "?"));
+	      query.prepare("DELETE FROM dvd_copy_info WHERE "
+			    "copy_number > ? AND "
+			    "item_oid = "
+			    "?");
 	      query.bindValue(0, dvd.quantity->text());
 	      query.bindValue(1, oid);
 
@@ -1095,7 +1095,6 @@ void qtbook_dvd::modify(const int state)
   int i = 0;
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -1155,35 +1154,35 @@ void qtbook_dvd::modify(const int state)
   dvd.no_of_discs->setMinimum(1);
   dvd.no_of_discs->setValue(1);
   str = oid;
-  searchstr = "SELECT id, "
-    "title, "
-    "dvdformat, "
-    "dvddiskcount, "
-    "dvdruntime, "
-    "rdate, "
-    "studio, "
-    "category, "
-    "price, "
-    "language, "
-    "monetary_units, "
-    "description, "
-    "quantity, "
-    "dvdactor, "
-    "dvddirector, "
-    "dvdrating, "
-    "dvdregion, "
-    "dvdaspectratio, "
-    "location, "
-    "front_cover, "
-    "back_cover, "
-    "keyword "
-    "FROM "
-    "dvd "
-    "WHERE myoid = ";
-  searchstr.append(str);
+  query.prepare("SELECT id, "
+		"title, "
+		"dvdformat, "
+		"dvddiskcount, "
+		"dvdruntime, "
+		"rdate, "
+		"studio, "
+		"category, "
+		"price, "
+		"language, "
+		"monetary_units, "
+		"description, "
+		"quantity, "
+		"dvdactor, "
+		"dvddirector, "
+		"dvdrating, "
+		"dvdregion, "
+		"dvdaspectratio, "
+		"location, "
+		"front_cover, "
+		"back_cover, "
+		"keyword "
+		"FROM "
+		"dvd "
+		"WHERE myoid = ?");
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       qmain->addError
