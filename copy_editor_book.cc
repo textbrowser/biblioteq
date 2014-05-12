@@ -241,8 +241,7 @@ void copy_editor_book::populateCopiesEditor(void)
       for(j = 0; j < cb.table->columnCount(); j++)
 	if(j == 3 || j == 4)
 	  {
-	    QComboBox *combobox = new(std::nothrow)
-	      QComboBox();
+	    QComboBox *combobox = new(std::nothrow) QComboBox();
 
 	    if(combobox)
 	      {

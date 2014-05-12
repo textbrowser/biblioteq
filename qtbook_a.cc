@@ -1349,7 +1349,8 @@ void qtbook::slotModify(void)
        (this, tr("BiblioteQ: Question"),
 	tr("Are you sure that you wish to modify the ") +
 	QString::number(list.size()) +
-	tr(" selected items?"),
+	tr(" selected items? BiblioteQ will exit if it's unable "
+	   "to acquire resources."),
 	QMessageBox::Yes | QMessageBox::No,
 	QMessageBox::No) == QMessageBox::No)
       {
@@ -1562,7 +1563,9 @@ void qtbook::slotViewDetails(void)
     if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			     tr("Are you sure that you wish to view the ") +
 			     QString::number(list.size()) +
-			     tr(" selected items?"),
+			     tr(" selected items? BiblioteQ will exit if "
+				"it's unable "
+				"to acquire resources."),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::No)
       {
@@ -5399,6 +5402,8 @@ void qtbook::updateItemWindows(void)
       qtbook_book *book = qobject_cast<qtbook_book *> (w);
       qtbook_journal *journal = qobject_cast<qtbook_journal *> (w);
       qtbook_magazine *magazine = qobject_cast<qtbook_magazine *> (w);
+      qtbook_photographcollection *photograph = qobject_cast
+	<qtbook_photographcollection *> (w);
       qtbook_videogame *videogame = qobject_cast<qtbook_videogame *> (w);
 
       if(cd)
@@ -5416,6 +5421,9 @@ void qtbook::updateItemWindows(void)
       if(!qobject_cast<qtbook_journal *> (w))
 	if(magazine)
 	  magazine->updateWindow(EDITABLE);
+
+      if(photograph)
+	photograph->updateWindow(EDITABLE);
 
       if(videogame)
 	videogame->updateWindow(EDITABLE);
@@ -8831,7 +8839,9 @@ void qtbook::slotDuplicate(void)
 			     tr("Are you sure that you wish to duplicate "
 				"the ") +
 			     QString::number(list.size()) +
-			     tr(" selected items?"),
+			     tr(" selected items? BiblioteQ will exit if "
+				"it's unable "
+				"to acquire resources."),
 			     QMessageBox::Yes | QMessageBox::No,
 			     QMessageBox::No) == QMessageBox::No)
       {

@@ -1958,7 +1958,7 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 
 	  QGraphicsScene *scene = 0;
 
-	  if((scene = new(std::nothrow) QGraphicsScene(ui.view)) != 0)
+	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
 	    {
 	      ui.view->setScene(scene);
 
