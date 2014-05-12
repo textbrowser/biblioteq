@@ -90,7 +90,6 @@ void borrowers_editor::showUsers(void)
   bool terminate = false;
   QString str = "";
   QString tmpStr = "";
-  QString querystr = "";
   QDateEdit *dateEdit = 0;
   QSqlQuery query(qmain->getDB());
   QStringList list;
@@ -222,35 +221,43 @@ void borrowers_editor::showUsers(void)
   bd.table->setRowCount(i);
 
   if(state == qtbook::EDITABLE)
-    querystr = QString
-      ("SELECT borrowers.copy_number, "
-       "borrowers.copyid, "
-       "member.memberid, "
-       "member.first_name, "
-       "member.last_name, "
-       "borrowers.reserved_date, "
-       "borrowers.duedate, "
-       "borrowers.reserved_by, "
-       "borrowers.myoid "
-       "FROM member member, "
-       "item_borrower borrowers "
-       "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 AND "
-       "borrowers.memberid = member.memberid "
-       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
+    {
+      query.prepare
+	("SELECT borrowers.copy_number, "
+	 "borrowers.copyid, "
+	 "member.memberid, "
+	 "member.first_name, "
+	 "member.last_name, "
+	 "borrowers.reserved_date, "
+	 "borrowers.duedate, "
+	 "borrowers.reserved_by, "
+	 "borrowers.myoid "
+	 "FROM member member, "
+	 "item_borrower borrowers "
+	 "WHERE borrowers.type = ? AND borrowers.item_oid = ? AND "
+	 "borrowers.memberid = member.memberid "
+	 "ORDER BY borrowers.copy_number");
+      query.bindValue(0, itemType);
+      query.bindValue(1, ioid);
+    }
   else
-    querystr = QString
-      ("SELECT borrowers.copy_number, "
-       "borrowers.copyid, "
-       "borrowers.reserved_date, "
-       "borrowers.duedate "
-       "FROM "
-       "item_borrower_vw borrowers "
-       "WHERE borrowers.type = '%1' AND borrowers.item_oid = %2 "
-       "ORDER BY borrowers.copy_number").arg(itemType).arg(ioid);
+    {
+      query.prepare
+	("SELECT borrowers.copy_number, "
+	 "borrowers.copyid, "
+	 "borrowers.reserved_date, "
+	 "borrowers.duedate "
+	 "FROM "
+	 "item_borrower_vw borrowers "
+	 "WHERE borrowers.type = ? AND borrowers.item_oid = ? "
+	 "ORDER BY borrowers.copy_number");
+      query.bindValue(0, itemType);
+      query.bindValue(1, ioid);
+    }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(querystr))
+  if(!query.exec())
     qmain->addError(QString(tr("Database Error")),
 		    QString(tr("Unable to retrieve borrower data.")),
 		    query.lastError().text(), __FILE__, __LINE__);
@@ -266,10 +273,17 @@ void borrowers_editor::showUsers(void)
   */
 
   if(qmain->getDB().driverName() == "QSQLITE")
-    progress2.setMaximum(misc_functions::sqliteQuerySize(querystr,
-							 qmain->getDB(),
-							 __FILE__,
-							 __LINE__));
+    {
+      if(query.lastError().isValid())
+	progress2.setMaximum(0);
+      else
+	progress2.setMaximum
+	  (misc_functions::sqliteQuerySize(query.lastQuery(),
+					   query.boundValues(),
+					   qmain->getDB(),
+					   __FILE__,
+					   __LINE__));
+    }
   else
     progress2.setMaximum(query.size());
 
@@ -382,9 +396,10 @@ void borrowers_editor::slotEraseBorrower(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
-  query.prepare(QString("DELETE FROM item_borrower WHERE "
-			"myoid = ? AND type = '%1'").arg(itemType));
+  query.prepare("DELETE FROM item_borrower WHERE "
+		"myoid = ? AND type = ?");
   query.bindValue(0, oid);
+  query.bindValue(1, itemType);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
