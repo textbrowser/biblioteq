@@ -1182,7 +1182,6 @@ void qtbook_magazine::modify(const int state)
   int i = 0;
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -1246,24 +1245,25 @@ void qtbook_magazine::modify(const int state)
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = oid;
-  searchstr = QString("SELECT title, "
-		      "publisher, pdate, place, issuevolume, "
-		      "category, language, id, "
-		      "price, monetary_units, quantity, "
-		      "issueno, "
-		      "location, lccontrolnumber, callnumber, "
-		      "deweynumber, description, "
-		      "front_cover, "
-		      "back_cover, "
-		      "marc_tags, "
-		      "keyword "
-		      "FROM "
-		      "%1 "
-		      "WHERE myoid = ").arg(subType);
-  searchstr.append(str);
+  query.prepare
+    (QString("SELECT title, "
+	     "publisher, pdate, place, issuevolume, "
+	     "category, language, id, "
+	     "price, monetary_units, quantity, "
+	     "issueno, "
+	     "location, lccontrolnumber, callnumber, "
+	     "deweynumber, description, "
+	     "front_cover, "
+	     "back_cover, "
+	     "marc_tags, "
+	     "keyword "
+	     "FROM "
+	     "%1 "
+	     "WHERE myoid = ?").arg(subType));
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
 
