@@ -582,7 +582,6 @@ void qtbook_photographcollection::modify(const int state,
 {
   QString str("");
   QString fieldname("");
-  QString searchstr("");
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -638,20 +637,20 @@ void qtbook_photographcollection::modify(const int state,
       actions.clear();
     }
 
-  searchstr = "SELECT id, "
-    "title, "
-    "location, "
-    "about, "
-    "notes, "
-    "image "
-    "FROM "
-    "photograph_collection "
-    "WHERE myoid = ";
-  searchstr.append(oid);
+  query.prepare("SELECT id, "
+		"title, "
+		"location, "
+		"about, "
+		"notes, "
+		"image "
+		"FROM "
+		"photograph_collection "
+		"WHERE myoid = ?");
+  query.bindValue(0, oid);
   pc.okButton->setText(tr("&Save"));
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
@@ -730,11 +729,12 @@ void qtbook_photographcollection::modify(const int state,
       if(!engWindowTitle.contains("Create"))
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  query.prepare("SELECT COUNT(*) "
+			"FROM photograph "
+			"WHERE collection_oid = ?");
+	  query.bindValue(0, oid);
 
-	  if(query.exec(QString("SELECT COUNT(*) "
-				"FROM photograph "
-				"WHERE collection_oid = %1").
-			arg(oid)))
+	  if(query.exec())
 	    if(query.next())
 	      pages = qCeil(query.value(0).toDouble() /
 			    PHOTOGRAPHS_PER_PAGE);
@@ -1038,15 +1038,17 @@ void qtbook_photographcollection::showPhotographs(const int page)
 {
   QSqlQuery query(qmain->getDB());
 
-  if(query.exec(QString("SELECT image_scaled, myoid FROM "
-			"photograph WHERE "
-			"collection_oid = %1 "
-			"ORDER BY id "
-			"LIMIT %2 "
-			"OFFSET %3").
-		arg(oid).
-		arg(PHOTOGRAPHS_PER_PAGE).
-		arg(PHOTOGRAPHS_PER_PAGE * (page - 1))))
+  query.prepare("SELECT image_scaled, myoid FROM "
+		"photograph WHERE "
+		"collection_oid = ? "
+		"ORDER BY id "
+		"LIMIT ? "
+		"OFFSET ?");
+  query.bindValue(0, oid);
+  query.bindValue(1, PHOTOGRAPHS_PER_PAGE);
+  query.bindValue(2, PHOTOGRAPHS_PER_PAGE * (page - 1));
+
+  if(query.exec())
     {
       pc.graphicsView->scene()->clear();
       pc.graphicsView->resetTransform();
@@ -1366,11 +1368,12 @@ void qtbook_photographcollection::slotInsertItem(void)
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
+  query.prepare("SELECT COUNT(*) "
+		"FROM photograph "
+		"WHERE collection_oid = ?");
+  query.bindValue(0, oid);
 
-  if(query.exec(QString("SELECT COUNT(*) "
-			"FROM photograph "
-			"WHERE collection_oid = %1").
-		arg(oid)))
+  if(query.exec())
     if(query.next())
       pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
 
@@ -1444,25 +1447,27 @@ void qtbook_photographcollection::slotSceneSelectionChanged(void)
 
       QSqlQuery query(qmain->getDB());
 
-      if(query.exec(QString("SELECT id, "
-			    "title, "
-			    "creators, "
-			    "pdate, "
-			    "quantity, "
-			    "medium, "
-			    "reproduction_number, "
-			    "copyright, "
-			    "callnumber, "
-			    "other_number, "
-			    "notes, "
-			    "subjects, "
-			    "format, "
-			    "image "
-			    "FROM photograph "
-			    "WHERE collection_oid = %1 AND "
-			    "myoid = %2").
-		    arg(oid).
-		    arg(item->data(0).toString())))
+      query.prepare("SELECT id, "
+		    "title, "
+		    "creators, "
+		    "pdate, "
+		    "quantity, "
+		    "medium, "
+		    "reproduction_number, "
+		    "copyright, "
+		    "callnumber, "
+		    "other_number, "
+		    "notes, "
+		    "subjects, "
+		    "format, "
+		    "image "
+		    "FROM photograph "
+		    "WHERE collection_oid = ? AND "
+		    "myoid = ?");
+      query.bindValue(0, oid);
+      query.bindValue(1, item->data(0).toString());
+
+      if(query.exec())
 	if(query.next())
 	  for(int i = 0; i < query.record().count(); i++)
 	    {
@@ -1834,10 +1839,12 @@ void qtbook_photographcollection::slotDeleteItem(void)
   int pages = 1;
   QSqlQuery query(qmain->getDB());
 
-  if(query.exec(QString("SELECT COUNT(*) "
-			"FROM photograph "
-			"WHERE collection_oid = %1").
-		arg(oid)))
+  query.prepare("SELECT COUNT(*) "
+		"FROM photograph "
+		"WHERE collection_oid = ?");
+  query.bindValue(0, oid);
+
+  if(query.exec())
     if(query.next())
       pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
 
@@ -1965,13 +1972,14 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 	      QSqlQuery query(qmain->getDB());
 
 	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      query.prepare("SELECT image FROM "
+			    "photograph WHERE "
+			    "collection_oid = ? AND "
+			    "myoid = ?");
+	      query.bindValue(0, oid);
+	      query.bindValue(1, item->data(0).toLongLong());
 
-	      if(query.exec(QString("SELECT image FROM "
-				    "photograph WHERE "
-				    "collection_oid = %1 AND "
-				    "myoid = %2").
-			    arg(oid).
-			    arg(item->data(0).toLongLong())))
+	      if(query.exec())
 		if(query.next())
 		  {
 		    QImage image;
