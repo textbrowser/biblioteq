@@ -569,10 +569,8 @@ void qtbook_cd::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      query.prepare(QString("DELETE FROM cd_copy_info WHERE "
-				    "copy_number > ? AND "
-				    "item_oid = "
-				    "?"));
+	      query.prepare("DELETE FROM cd_copy_info WHERE "
+			    "copy_number > ? AND item_oid = ?");
 	      query.bindValue(0, cd.quantity->text());
 	      query.bindValue(1, oid);
 
@@ -1076,7 +1074,6 @@ void qtbook_cd::modify(const int state)
   int i = 0;
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -1141,33 +1138,33 @@ void qtbook_cd::modify(const int state)
   cd.no_of_discs->setMinimum(1);
   cd.no_of_discs->setValue(1);
   str = oid;
-  searchstr = "SELECT id, "
-    "title, "
-    "cdformat, "
-    "artist, "
-    "cddiskcount, "
-    "cdruntime, "
-    "rdate, "
-    "recording_label, "
-    "category, "
-    "price, "
-    "language, "
-    "monetary_units, "
-    "description, "
-    "quantity, "
-    "cdaudio, "
-    "cdrecording, "
-    "location, "
-    "front_cover, "
-    "back_cover, "
-    "keyword "
-    "FROM "
-    "cd "
-    "WHERE myoid = ";
-  searchstr.append(str);
+  query.prepare("SELECT id, "
+		"title, "
+		"cdformat, "
+		"artist, "
+		"cddiskcount, "
+		"cdruntime, "
+		"rdate, "
+		"recording_label, "
+		"category, "
+		"price, "
+		"language, "
+		"monetary_units, "
+		"description, "
+		"quantity, "
+		"cdaudio, "
+		"cdrecording, "
+		"location, "
+		"front_cover, "
+		"back_cover, "
+		"keyword "
+		"FROM "
+		"cd "
+		"WHERE myoid = ?");
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       qmain->addError
@@ -1386,7 +1383,6 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   int i = -1;
   int j = 0;
   QString str = "";
-  QString querystr = "";
   QSpinBox *trackEdit = 0;
   QComboBox *comboBox = 0;
   QSqlQuery query(qmain->getDB());
@@ -1401,15 +1397,15 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  querystr = "SELECT albumnum, songnum, songtitle, runtime, "
-    "artist, composer "
-    "FROM cd_songs WHERE item_oid = ";
-  querystr.append(oid);
-  querystr.append(" ORDER BY albumnum, songnum, songtitle, runtime, "
-		  "artist, composer");
+  query.prepare("SELECT albumnum, songnum, songtitle, runtime, "
+		"artist, composer "
+		"FROM cd_songs WHERE item_oid = ? "
+		"ORDER BY albumnum, songnum, songtitle, runtime, "
+		"artist, composer");
+  query.bindValue(0, oid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(querystr))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
@@ -1460,9 +1456,16 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.setMinimum(0);
 
   if(qmain->getDB().driverName() == "QSQLITE")
-    progress.setMaximum(misc_functions::sqliteQuerySize(querystr,
-							qmain->getDB(),
-							__FILE__, __LINE__));
+    {
+      if(query.lastError().isValid())
+	progress.setMaximum(0);
+      else
+	progress.setMaximum
+	  (misc_functions::sqliteQuerySize(query.lastQuery(),
+					   query.boundValues(),
+					   qmain->getDB(),
+					   __FILE__, __LINE__));
+    }
   else
     progress.setMaximum(query.size());
 
@@ -1727,8 +1730,7 @@ void qtbook_cd::slotSaveTracks(void)
     }
 
   qapp->restoreOverrideCursor();
-  query.prepare(QString("DELETE FROM cd_songs WHERE "
-			"item_oid = ?"));
+  query.prepare("DELETE FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, oid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1787,7 +1789,8 @@ void qtbook_cd::slotSaveTracks(void)
 
 	  if(trd.table->cellWidget(i, 3) != 0)
 	    query.bindValue
-	      (4, static_cast<QTimeEdit *> (trd.table->cellWidget(i, 3))->time().
+	      (4, static_cast<QTimeEdit *> (trd.table->
+					    cellWidget(i, 3))->time().
 	       toString("hh:mm:ss"));
 
 	  if(trd.table->item(i, 4) != 0)
@@ -2130,14 +2133,13 @@ void qtbook_cd::slotComputeRuntime(void)
   int secs = 0;
   QTime sum(0, 0, 0);
   QTime time(0, 0, 0);
-  QString querystr = "";
   QSqlQuery query(qmain->getDB());
 
-  querystr = "SELECT runtime FROM cd_songs WHERE item_oid = ";
-  querystr.append(oid);
+  query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
+  query.bindValue(0, oid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(query.exec(querystr))
+  if(query.exec())
     while(query.next())
       {
 	time = QTime::fromString(query.value(0).toString(), "hh:mm:ss");
