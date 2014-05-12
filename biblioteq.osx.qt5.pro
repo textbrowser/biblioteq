@@ -19,7 +19,7 @@ QMAKE_EXTRA_TARGETS = purge
 
 ICON		= icons.d/book.icns
 INCLUDEPATH	+= include.d /usr/local/include
-LIBS		+= -lsqlite3 -L/usr/local/lib -lyaz
+LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lyaz
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \

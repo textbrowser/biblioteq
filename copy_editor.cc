@@ -237,6 +237,7 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->setColumnHidden(cb.table->columnCount() - 1, true);
   cb.table->setColumnHidden(cb.table->columnCount() - 2, true);
   updateGeometry();
+  show();
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
