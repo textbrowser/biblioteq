@@ -153,7 +153,6 @@ void copy_editor::populateCopiesEditor(void)
   int row = 0;
   bool terminate = false;
   QString str = "";
-  QString querystr = "";
   QSqlQuery query(qmain->getDB());
   QStringList list;
   QTableWidgetItem *item = 0;
@@ -238,7 +237,6 @@ void copy_editor::populateCopiesEditor(void)
   cb.table->setColumnHidden(cb.table->columnCount() - 1, true);
   cb.table->setColumnHidden(cb.table->columnCount() - 2, true);
   updateGeometry();
-  show();
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
@@ -298,31 +296,34 @@ void copy_editor::populateCopiesEditor(void)
 
   progress1.hide();
   cb.table->setRowCount(i);
-  querystr = QString
-    ("SELECT %1.title, "
-     "%1_copy_info.copyid, "
-     "(1 - COUNT(item_borrower_vw.copyid)), "
-     "%1_copy_info.item_oid, "
-     "%1_copy_info.copy_number "
-     "FROM "
-     "%1, "
-     "%1_copy_info LEFT JOIN item_borrower_vw ON "
-     "%1_copy_info.copyid = "
-     "item_borrower_vw.copyid AND "
-     "%1_copy_info.item_oid = "
-     "item_borrower_vw.item_oid AND "
-     "item_borrower_vw.type = '%3' "
-     "WHERE %1_copy_info.item_oid = %2 AND "
-     "%1.myoid = %2 "
-     "GROUP BY %1.title, "
-     "%1_copy_info.copyid, "
-     "%1_copy_info.item_oid, "
-     "%1_copy_info.copy_number "
-     "ORDER BY %1_copy_info.copy_number").arg
-    (itemType.toLower().remove(" ")).arg(ioid).arg(itemType);
+  query.prepare
+    (QString("SELECT %1.title, "
+	     "%1_copy_info.copyid, "
+	     "(1 - COUNT(item_borrower_vw.copyid)), "
+	     "%1_copy_info.item_oid, "
+	     "%1_copy_info.copy_number "
+	     "FROM "
+	     "%1, "
+	     "%1_copy_info LEFT JOIN item_borrower_vw ON "
+	     "%1_copy_info.copyid = "
+	     "item_borrower_vw.copyid AND "
+	     "%1_copy_info.item_oid = "
+	     "item_borrower_vw.item_oid AND "
+	     "item_borrower_vw.type = ? "
+	     "WHERE %1_copy_info.item_oid = ? AND "
+	     "%1.myoid = ? "
+	     "GROUP BY %1.title, "
+	     "%1_copy_info.copyid, "
+	     "%1_copy_info.item_oid, "
+	     "%1_copy_info.copy_number "
+	     "ORDER BY %1_copy_info.copy_number").
+     arg(itemType.toLower().remove(" ")));
+  query.bindValue(0, itemType);
+  query.bindValue(1, ioid);
+  query.bindValue(2, ioid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(querystr))
+  if(!query.exec())
     qmain->addError(QString(tr("Database Error")),
 		    QString(tr("Unable to retrieve copy data.")),
 		    query.lastError().text(), __FILE__, __LINE__);
@@ -338,9 +339,16 @@ void copy_editor::populateCopiesEditor(void)
   */
 
   if(qmain->getDB().driverName() == "QSQLITE")
-    progress2.setMaximum(misc_functions::sqliteQuerySize(querystr,
-							 qmain->getDB(),
-							 __FILE__, __LINE__));
+    {
+      if(query.lastError().isValid())
+	progress2.setMaximum(0);
+      else
+	progress2.setMaximum
+	  (misc_functions::sqliteQuerySize(query.lastQuery(),
+					   query.boundValues(),
+					   qmain->getDB(),
+					   __FILE__, __LINE__));
+    }
   else
     progress2.setMaximum(query.size());
 

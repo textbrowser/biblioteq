@@ -4910,8 +4910,8 @@ void qtbook::slotCheckout(void)
 	    itemid = misc_functions::getColumnString
 	      (ui.table, row2,
 	       ui.table->columnNumber("UPC"));
-	  else if(type.toLower() == "journal" || type.toLower() ==
-		  "magazine")
+	  else if(type.toLower() == "journal" ||
+		  type.toLower() == "magazine")
 	    itemid = misc_functions::getColumnString
 	      (ui.table, row2,
 	       ui.table->columnNumber("ISSN"));
@@ -4923,6 +4923,14 @@ void qtbook::slotCheckout(void)
 	    itemid = misc_functions::getColumnString
 	      (ui.table, row2,
 	       ui.table->columnNumber("UPC"));
+	  else
+	    {
+	      QMessageBox::critical
+		(members_diag, tr("BiblioteQ: User Error"),
+		 tr("Unable to determine the selected item's type."));
+	      delete item;
+	      return;
+	    }
 
 	  if(itemid.isEmpty())
 	    itemid = misc_functions::getColumnString
@@ -4943,7 +4951,12 @@ void qtbook::slotCheckout(void)
 			  quantity, oid,
 			  static_cast<QSpinBox *> (0),
 			  font(), type, itemid)) != 0)
-	    copyeditor->populateCopiesEditor();
+	    {
+	      copyeditor->populateCopiesEditor();
+	      copyeditor->exec();
+	    }
+
+	  delete item;
 	}
     }
 }
