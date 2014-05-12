@@ -723,10 +723,10 @@ void qtbook_book::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      query.prepare(QString("DELETE FROM book_copy_info WHERE "
-				    "copy_number > ? AND "
-				    "item_oid = "
-				    "?"));
+	      query.prepare("DELETE FROM book_copy_info WHERE "
+			    "copy_number > ? AND "
+			    "item_oid = "
+			    "?");
 	      query.bindValue(0, id.quantity->text());
 	      query.bindValue(1, oid);
 
@@ -1289,7 +1289,6 @@ void qtbook_book::modify(const int state)
   int i = 0;
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -1356,29 +1355,29 @@ void qtbook_book::modify(const int state)
   id.price->setMinimum(0.00);
   id.okButton->setText(tr("&Save"));
   str = oid;
-  searchstr = "SELECT title, "
-    "author, "
-    "publisher, pdate, place, edition, "
-    "category, language, id, "
-    "price, monetary_units, quantity, "
-    "binding_type, "
-    "location, "
-    "isbn13, "
-    "lccontrolnumber, "
-    "callnumber, "
-    "deweynumber, "
-    "description, "
-    "front_cover, "
-    "back_cover, "
-    "marc_tags, "
-    "keyword, "
-    "originality, "
-    "condition "
-    "FROM book WHERE myoid = ";
-  searchstr.append(str);
+  query.prepare("SELECT title, "
+		"author, "
+		"publisher, pdate, place, edition, "
+		"category, language, id, "
+		"price, monetary_units, quantity, "
+		"binding_type, "
+		"location, "
+		"isbn13, "
+		"lccontrolnumber, "
+		"callnumber, "
+		"deweynumber, "
+		"description, "
+		"front_cover, "
+		"back_cover, "
+		"marc_tags, "
+		"keyword, "
+		"originality, "
+		"condition "
+		"FROM book WHERE myoid = ?");
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       qmain->addError
