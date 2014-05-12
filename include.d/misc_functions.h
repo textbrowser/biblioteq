@@ -34,7 +34,12 @@ class misc_functions
 			    const QString &,
 			    QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
-  static int sqliteQuerySize(const QString &, const QSqlDatabase &,
+  static int sqliteQuerySize(const QString &,
+			     const QSqlDatabase &,
+			     const char *, const int);
+  static int sqliteQuerySize(const QString &,
+			     const QMap<QString, QVariant> &,
+			     const QSqlDatabase &,
 			     const char *, const int);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);

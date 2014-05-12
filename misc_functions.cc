@@ -1374,6 +1374,42 @@ int misc_functions::sqliteQuerySize(const QString &querystr,
 }
 
 /*
+** -- sqliteQuerySize() --
+*/
+
+int misc_functions::sqliteQuerySize
+(const QString &querystr,
+ const QMap<QString, QVariant> &boundValues,
+ const QSqlDatabase &db,
+ const char *file, const int line)
+{
+  int count = 0;
+
+  if(db.driverName() != "QSQLITE")
+    return count; // SQLite only.
+
+  QList<QVariant> list = boundValues.values();
+  QSqlQuery query(db);
+
+  query.prepare(querystr);
+
+  for(int i = 0; i < list.size(); i++)
+    query.bindValue(i, list.at(i));
+
+  if(query.exec())
+    while(query.next())
+      count += 1;
+
+  if(query.lastError().isValid())
+    qmain->addError
+      (QString(QObject::tr("Database Error")),
+       QString(QObject::tr("Unable to determine the query size.")),
+       query.lastError().text(), file, line);
+
+  return count;
+}
+
+/*
 ** -- center() --
 */
 
