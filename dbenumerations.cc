@@ -588,9 +588,8 @@ void dbenumerations::slotSave(void)
 	  for(int j = 0; j < listwidget->count(); j++)
 	    if(listwidget->item(j))
 	      {
-		query.prepare
-		  (QString("INSERT INTO %1 VALUES (?)").
-		   arg(tables.at(i)));
+		query.prepare(QString("INSERT INTO %1 VALUES (?)").
+			      arg(tables.at(i)));
 		query.bindValue(0,
 				listwidget->item(j)->text().trimmed());
 
