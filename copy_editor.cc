@@ -297,28 +297,27 @@ void copy_editor::populateCopiesEditor(void)
 
   progress1.hide();
   cb.table->setRowCount(i);
-  query.prepare
-    (QString("SELECT %1.title, "
-	     "%1_copy_info.copyid, "
-	     "(1 - COUNT(item_borrower_vw.copyid)), "
-	     "%1_copy_info.item_oid, "
-	     "%1_copy_info.copy_number "
-	     "FROM "
-	     "%1, "
-	     "%1_copy_info LEFT JOIN item_borrower_vw ON "
-	     "%1_copy_info.copyid = "
-	     "item_borrower_vw.copyid AND "
-	     "%1_copy_info.item_oid = "
-	     "item_borrower_vw.item_oid AND "
-	     "item_borrower_vw.type = ? "
-	     "WHERE %1_copy_info.item_oid = ? AND "
-	     "%1.myoid = ? "
-	     "GROUP BY %1.title, "
-	     "%1_copy_info.copyid, "
-	     "%1_copy_info.item_oid, "
-	     "%1_copy_info.copy_number "
-	     "ORDER BY %1_copy_info.copy_number").
-     arg(itemType.toLower().remove(" ")));
+  query.prepare(QString("SELECT %1.title, "
+			"%1_copy_info.copyid, "
+			"(1 - COUNT(item_borrower_vw.copyid)), "
+			"%1_copy_info.item_oid, "
+			"%1_copy_info.copy_number "
+			"FROM "
+			"%1, "
+			"%1_copy_info LEFT JOIN item_borrower_vw ON "
+			"%1_copy_info.copyid = "
+			"item_borrower_vw.copyid AND "
+			"%1_copy_info.item_oid = "
+			"item_borrower_vw.item_oid AND "
+			"item_borrower_vw.type = ? "
+			"WHERE %1_copy_info.item_oid = ? AND "
+			"%1.myoid = ? "
+			"GROUP BY %1.title, "
+			"%1_copy_info.copyid, "
+			"%1_copy_info.item_oid, "
+			"%1_copy_info.copy_number "
+			"ORDER BY %1_copy_info.copy_number").
+		arg(itemType.toLower().remove(" ")));
   query.bindValue(0, itemType);
   query.bindValue(1, ioid);
   query.bindValue(2, ioid);
