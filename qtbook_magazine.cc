@@ -1245,21 +1245,20 @@ void qtbook_magazine::modify(const int state)
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = oid;
-  query.prepare
-    (QString("SELECT title, "
-	     "publisher, pdate, place, issuevolume, "
-	     "category, language, id, "
-	     "price, monetary_units, quantity, "
-	     "issueno, "
-	     "location, lccontrolnumber, callnumber, "
-	     "deweynumber, description, "
-	     "front_cover, "
-	     "back_cover, "
-	     "marc_tags, "
-	     "keyword "
-	     "FROM "
-	     "%1 "
-	     "WHERE myoid = ?").arg(subType));
+  query.prepare(QString("SELECT title, "
+			"publisher, pdate, place, issuevolume, "
+			"category, language, id, "
+			"price, monetary_units, quantity, "
+			"issueno, "
+			"location, lccontrolnumber, callnumber, "
+			"deweynumber, description, "
+			"front_cover, "
+			"back_cover, "
+			"marc_tags, "
+			"keyword "
+			"FROM "
+			"%1 "
+			"WHERE myoid = ?").arg(subType));
   query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
