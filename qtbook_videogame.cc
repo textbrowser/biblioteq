@@ -988,7 +988,6 @@ void qtbook_videogame::modify(const int state)
   int i = 0;
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(qmain->getDB());
 
@@ -1042,25 +1041,25 @@ void qtbook_videogame::modify(const int state)
   vg.price->setMinimum(0.00);
   vg.okButton->setText(tr("&Save"));
   str = oid;
-  searchstr = "SELECT title, "
-    "vgrating, "
-    "vgplatform, "
-    "vgmode, "
-    "developer, "
-    "publisher, rdate, place, "
-    "genre, language, id, "
-    "price, monetary_units, quantity, "
-    "location, description, "
-    "front_cover, "
-    "back_cover, "
-    "keyword "
-    "FROM "
-    "videogame "
-    "WHERE myoid = ";
-  searchstr.append(str);
+  query.prepare("SELECT title, "
+		"vgrating, "
+		"vgplatform, "
+		"vgmode, "
+		"developer, "
+		"publisher, rdate, place, "
+		"genre, language, id, "
+		"price, monetary_units, quantity, "
+		"location, description, "
+		"front_cover, "
+		"back_cover, "
+		"keyword "
+		"FROM "
+		"videogame "
+		"WHERE myoid = ?");
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),

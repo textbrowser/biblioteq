@@ -736,8 +736,11 @@ void qtbook_photographcollection::modify(const int state,
 
 	  if(query.exec())
 	    if(query.next())
-	      pages = qCeil(query.value(0).toDouble() /
-			    PHOTOGRAPHS_PER_PAGE);
+	      {
+		int i = PHOTOGRAPHS_PER_PAGE;
+
+		pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+	      }
 
 	  qapp->restoreOverrideCursor();
 	  pages = qMax(1, pages);
@@ -1375,7 +1378,11 @@ void qtbook_photographcollection::slotInsertItem(void)
 
   if(query.exec())
     if(query.next())
-      pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
+      {
+	int i = PHOTOGRAPHS_PER_PAGE;
+
+	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+      }
 
   qapp->restoreOverrideCursor();
   pages = qMax(1, pages);
@@ -1846,7 +1853,11 @@ void qtbook_photographcollection::slotDeleteItem(void)
 
   if(query.exec())
     if(query.next())
-      pages = qCeil(query.value(0).toDouble() / PHOTOGRAPHS_PER_PAGE);
+      {
+	int i = PHOTOGRAPHS_PER_PAGE;
+
+	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+      }
 
   pages = qMax(1, pages);
   pc.page->blockSignals(true);
