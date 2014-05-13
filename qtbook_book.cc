@@ -2251,6 +2251,12 @@ void qtbook_book::slotZ3950Query(void)
 
       working.hide();
 
+      if(working.wasCanceled())
+	{
+	  thread->deleteLater();
+	  return;
+	}
+
       if((errorstr = thread->getErrorStr()).isEmpty() &&
 	 !thread->getZ3950Results().isEmpty())
 	{
@@ -3028,6 +3034,7 @@ void qtbook_book::slotDownloadImage(void)
     {
       manager->deleteLater();
       imgbuffer->deleteLater();
+      return;
     }
 
   QUrl url;

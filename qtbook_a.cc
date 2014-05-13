@@ -282,8 +282,8 @@ qtbook::qtbook(void):QMainWindow()
   if((customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((userinfo_diag = new(std::nothrow) userinfo_diag_class
-      (members_diag)) == 0)
+  if((userinfo_diag =
+      new(std::nothrow) userinfo_diag_class(members_diag)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
@@ -5764,8 +5764,12 @@ void qtbook::slotBookSearch(void)
   if(!book)
     {
       book = new(std::nothrow) qtbook_book(this, "search", -1);
-      book->raise();
-      book->search();
+
+      if(book)
+	{
+	  book->raise();
+	  book->search();
+	}
     }
   else
     book->raise();
@@ -5808,8 +5812,12 @@ void qtbook::slotCDSearch(void)
   if(!cd)
     {
       cd = new(std::nothrow) qtbook_cd(this, "search", -1);
-      cd->raise();
-      cd->search();
+
+      if(cd)
+	{
+	  cd->raise();
+	  cd->search();
+	}
     }
   else
     cd->raise();
@@ -5852,8 +5860,12 @@ void qtbook::slotDVDSearch(void)
   if(!dvd)
     {
       dvd = new(std::nothrow) qtbook_dvd(this, "search", -1);
-      dvd->raise();
-      dvd->search();
+
+      if(dvd)
+	{
+	  dvd->raise();
+	  dvd->search();
+	}
     }
   else
     dvd->raise();
@@ -5896,8 +5908,12 @@ void qtbook::slotJournSearch(void)
   if(!journal)
     {
       journal = new(std::nothrow) qtbook_journal(this, "search", -1);
-      journal->raise();
-      journal->search();
+
+      if(journal)
+	{
+	  journal->raise();
+	  journal->search();
+	}
     }
   else
     journal->raise();
@@ -5947,8 +5963,12 @@ void qtbook::slotMagSearch(void)
     {
       magazine = new(std::nothrow) qtbook_magazine
 	(this, "search", -1, "magazine");
-      magazine->raise();
-      magazine->search();
+
+      if(magazine)
+	{
+	  magazine->raise();
+	  magazine->search();
+	}
     }
   else
     magazine->raise();
@@ -5994,8 +6014,12 @@ void qtbook::slotPhotographSearch(void)
     {
       photograph = new(std::nothrow) qtbook_photographcollection
 	(this, "search", -1);
-      photograph->raise();
-      photograph->search();
+
+      if(photograph)
+	{
+	  photograph->raise();
+	  photograph->search();
+	}
     }
   else
     photograph->raise();
@@ -6040,8 +6064,12 @@ void qtbook::slotVideoGameSearch(void)
     {
       videogame = new(std::nothrow) qtbook_videogame
 	(this, "search", -1);
-      videogame->raise();
-      videogame->search();
+
+      if(videogame)
+	{
+	  videogame->raise();
+	  videogame->search();
+	}
     }
   else
     videogame->raise();
@@ -8449,7 +8477,8 @@ void qtbook::createSqliteMenuActions(void)
 	  continue;
 	}
 
-      QAction *action = new(std::nothrow) QAction(str, this);
+      QAction *action = new(std::nothrow) QAction
+	(str, ui.menu_Recent_SQLite_Files);
 
       if(!action)
 	continue;
@@ -8463,7 +8492,8 @@ void qtbook::createSqliteMenuActions(void)
   dups.clear();
   allKeys.clear();
 
-  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"), this);
+  QAction *action = new(std::nothrow) QAction(tr("&Clear Menu"),
+					      ui.menu_Recent_SQLite_Files);
 
   if(action)
     {
