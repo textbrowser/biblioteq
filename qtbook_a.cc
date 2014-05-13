@@ -1184,7 +1184,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - Eternity, Misfits.<br>"
+	     "Copyright (c) 2006 - eternity, Time.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) Jonas Rask Design.<br>"
 	     "Qt version %2."
@@ -1905,7 +1905,12 @@ void qtbook::slotDelete(void)
       else
 	itemType = itemType.replace(" ", "_");
 
-      query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").arg(itemType));
+      if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+	 itemType == "journal" || itemType == "magazine" ||
+	 itemType == "photograph_collection" || itemType == "videogame")
+	query.prepare(QString("DELETE FROM %1 WHERE myoid = ?").
+		      arg(itemType));
+
       query.bindValue(0, str);
 
       if(!query.exec())
@@ -2896,8 +2901,7 @@ void qtbook::slotRemoveMember(void)
     }
 
   qapp->restoreOverrideCursor();
-  query.prepare(QString("DELETE FROM member WHERE "
-			"memberid = ?"));
+  query.prepare("DELETE FROM member WHERE memberid = ?");
   query.bindValue(0, memberid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -4349,12 +4353,17 @@ void qtbook::slotPopulateMembersBrowser(void)
 	E = "E";
 
       if(bb.filtertype->currentText() == "Member ID")
-	str.append("member.memberid LIKE " + E + "'%");
+	{
+	  str.append("member.memberid LIKE " + E + "'%' || ");
+	  str.append("?");
+	}
       else
-	str.append("member.last_name LIKE " + E + "'%");
+	{
+	  str.append("member.last_name LIKE " + E + "'%' || ");
+	  str.append("?");
+	}
 
-      str.append(myqstring::escape(bb.filter->text().trimmed()));
-      str.append("%' ");
+      str.append("|| '%' ");
     }
 
   str.append("GROUP BY "
@@ -4364,9 +4373,14 @@ void qtbook::slotPopulateMembersBrowser(void)
 	     "member.membersince, "
 	     "member.expiration_date ");
   str.append("ORDER BY member.memberid");
+  query.prepare(str);
+
+  if(bb.filterBox->isChecked())
+    query.bindValue(0, myqstring::escape(bb.filter->text().trimmed()));
+
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(str))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -4388,7 +4402,9 @@ void qtbook::slotPopulateMembersBrowser(void)
     bb.table->setRowCount(query.size());
   else
     bb.table->setRowCount
-      (misc_functions::sqliteQuerySize(str, db, __FILE__, __LINE__));
+      (misc_functions::sqliteQuerySize(query.lastQuery(),
+				       query.boundValues(),
+				       db, __FILE__, __LINE__));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -4397,7 +4413,9 @@ void qtbook::slotPopulateMembersBrowser(void)
 
   if(db.driverName() == "QSQLITE")
     progress.setMaximum
-      (misc_functions::sqliteQuerySize(str, db, __FILE__, __LINE__));
+      (misc_functions::sqliteQuerySize(query.lastQuery(),
+				       query.boundValues(),
+				       db, __FILE__, __LINE__));
   else
     progress.setMaximum(query.size());
 
@@ -4653,7 +4671,6 @@ void qtbook::slotModifyBorrower(void)
   int row = bb.table->currentRow();
   QString str = "";
   QString fieldname = "";
-  QString searchstr = "";
   QVariant var;
   QSqlQuery query(db);
 
@@ -4666,12 +4683,11 @@ void qtbook::slotModifyBorrower(void)
 
   str = misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  searchstr = "SELECT * FROM member WHERE memberid = '";
-  searchstr.append(str);
-  searchstr.append("'");
+  query.prepare("SELECT * FROM member WHERE memberid = ?");
+  query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(searchstr) || !query.next())
+  if(!query.exec() || !query.next())
     {
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -6695,12 +6711,17 @@ void qtbook::slotExecuteCustomQuery(void)
       return;
     }
 
-  if(querystr.toLower().contains("alter") ||
-     querystr.toLower().contains("create") ||
-     querystr.toLower().contains("delete") ||
-     querystr.toLower().contains("drop") ||
-     querystr.toLower().contains("insert") ||
-     querystr.toLower().contains("update"))
+  if(querystr.toLower().contains("alter ") ||
+     querystr.toLower().contains("cluster ") ||
+     querystr.toLower().contains("create " ) ||
+     querystr.toLower().contains("delete ") ||
+     querystr.toLower().contains("drop ") ||
+     querystr.toLower().contains("grant ") ||
+     querystr.toLower().contains("insert ") ||
+     querystr.toLower().contains("lock ") ||
+     querystr.toLower().contains("revoke ") ||
+     querystr.toLower().contains("truncate ") ||
+     querystr.toLower().contains("update "))
     {
       QMessageBox::critical(customquery_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a non-destructive SQL "
@@ -7692,7 +7713,6 @@ void qtbook::slotRefreshAdminList(void)
   int i = -1;
   int j = 0;
   QString str = "";
-  QString querystr = "";
   QString columnname = "";
   QCheckBox *checkBox = 0;
   QSqlQuery query(db);
@@ -7705,10 +7725,10 @@ void qtbook::slotRefreshAdminList(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  querystr = "SELECT username, roles FROM admin ORDER BY username";
+  query.prepare("SELECT username, roles FROM admin ORDER BY username");
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(querystr))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -7821,7 +7841,6 @@ void qtbook::slotSaveAdministrators(void)
   QString str = "";
   QString adminStr = "";
   QString errorstr = "";
-  QString querystr = "";
   QCheckBox *checkBox = 0;
   QSqlQuery query(db);
   QStringList tmplist;
@@ -7904,10 +7923,10 @@ void qtbook::slotSaveAdministrators(void)
 
   for(i = 0; i < deletedAdmins.size(); i++)
     {
-      querystr = QString("DELETE FROM admin WHERE username = '%1'").arg
-	(deletedAdmins[i]);
+      query.prepare("DELETE FROM admin WHERE username = ?");
+      query.bindValue(0, deletedAdmins[i]);
 
-      if(!query.exec(querystr))
+      if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
 	  addError(QString(tr("Database Error")),
@@ -8139,7 +8158,6 @@ void qtbook::slotRequest(void)
   QDate now = QDate::currentDate();
   QString oid = "";
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
   QModelIndex index;
   QProgressDialog progress(this);
@@ -8228,9 +8246,8 @@ void qtbook::slotRequest(void)
 	{
 	  if(isRequesting)
 	    {
-	      querystr = "INSERT INTO item_request (item_oid, memberid, "
-		"requestdate, type) VALUES (?, ?, ?, ?)";
-	      query.prepare(querystr);
+	      query.prepare("INSERT INTO item_request (item_oid, memberid, "
+			    "requestdate, type) VALUES (?, ?, ?, ?)");
 	      query.bindValue(0, oid);
 	      query.bindValue(1, db.userName());
 	      query.bindValue(2, now.toString("MM/dd/yyyy"));
@@ -8238,8 +8255,7 @@ void qtbook::slotRequest(void)
 	    }
 	  else
 	    {
-	      querystr = "DELETE FROM item_request WHERE myoid = ?";
-	      query.prepare(querystr);
+	      query.prepare("DELETE FROM item_request WHERE myoid = ?");
 	      query.bindValue(0, oid);
 	    }
 
