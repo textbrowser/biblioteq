@@ -222,35 +222,34 @@ void borrowers_editor::showUsers(void)
 
   if(state == qtbook::EDITABLE)
     {
-      query.prepare
-	("SELECT borrowers.copy_number, "
-	 "borrowers.copyid, "
-	 "member.memberid, "
-	 "member.first_name, "
-	 "member.last_name, "
-	 "borrowers.reserved_date, "
-	 "borrowers.duedate, "
-	 "borrowers.reserved_by, "
-	 "borrowers.myoid "
-	 "FROM member member, "
-	 "item_borrower borrowers "
-	 "WHERE borrowers.type = ? AND borrowers.item_oid = ? AND "
-	 "borrowers.memberid = member.memberid "
-	 "ORDER BY borrowers.copy_number");
+      query.prepare("SELECT borrowers.copy_number, "
+		    "borrowers.copyid, "
+		    "member.memberid, "
+		    "member.first_name, "
+		    "member.last_name, "
+		    "borrowers.reserved_date, "
+		    "borrowers.duedate, "
+		    "borrowers.reserved_by, "
+		    "borrowers.myoid "
+		    "FROM member member, "
+		    "item_borrower borrowers "
+		    "WHERE borrowers.type = ? AND "
+		    "borrowers.item_oid = ? AND "
+		    "borrowers.memberid = member.memberid "
+		    "ORDER BY borrowers.copy_number");
       query.bindValue(0, itemType);
       query.bindValue(1, ioid);
     }
   else
     {
-      query.prepare
-	("SELECT borrowers.copy_number, "
-	 "borrowers.copyid, "
-	 "borrowers.reserved_date, "
-	 "borrowers.duedate "
-	 "FROM "
-	 "item_borrower_vw borrowers "
-	 "WHERE borrowers.type = ? AND borrowers.item_oid = ? "
-	 "ORDER BY borrowers.copy_number");
+      query.prepare("SELECT borrowers.copy_number, "
+		    "borrowers.copyid, "
+		    "borrowers.reserved_date, "
+		    "borrowers.duedate "
+		    "FROM "
+		    "item_borrower_vw borrowers "
+		    "WHERE borrowers.type = ? AND borrowers.item_oid = ? "
+		    "ORDER BY borrowers.copy_number");
       query.bindValue(0, itemType);
       query.bindValue(1, ioid);
     }
