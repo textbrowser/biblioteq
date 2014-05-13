@@ -359,3 +359,17 @@
 197. After an item has been added, the item's row must be updated. One
      issue with this requirement is that the item may not be listed
      in the main table and so its row number will not be available. (TBD)
+198. Bind values in SQL queries:
+     borrowers_editor.cc (Done)
+     copy_editor_book.cc (Done)
+     copy_editor.cc (Done)
+     dbenumerations.cc (Done)
+     misc_functions.cc (Done)
+     qtbook_a.cc (Done)
+     qtbook_b.cc
+     qtbook_book.cc (Done)
+     qtbook_cd.cc (Done)
+     qtbook_dvd.cc (Done)
+     qtbook_magazine.cc (Done)
+     qtbook_photographcollection.cc (Done)
+     qtbook_videogame.cc (Done)

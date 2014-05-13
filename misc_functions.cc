@@ -29,19 +29,20 @@ qint64 misc_functions::userCount(const QString &userid,
 				 QString &errorstr)
 {
   qint64 count = 0;
-  QString querystr = "";
   QSqlQuery query(db);
 
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
-    querystr = QString("SELECT COUNT(memberid) FROM member WHERE "
-		       "memberid = '%1'").arg(userid);
+    query.prepare("SELECT COUNT(memberid) FROM member WHERE "
+		  "memberid = ?");
   else
-    querystr = QString("SELECT COUNT(usename) FROM pg_user WHERE "
-		       "usename = '%1'").arg(userid);
+    query.prepare("SELECT COUNT(usename) FROM pg_user WHERE "
+		  "usename = ?");
 
-  if(query.exec(querystr))
+  query.bindValue(0, userid);
+
+  if(query.exec())
     if(query.next())
       count = query.value(0).toLongLong();
 
@@ -70,17 +71,21 @@ QString misc_functions::getAbstractInfo(const QString &oid,
   if(type == "photograph collection")
     {
       type = type.replace(" ", "_");
-      querystr = QString("SELECT about FROM %1 WHERE myoid = %2").arg
-	(type).arg(oid);
+      querystr = QString("SELECT about FROM %1 WHERE myoid = ?").arg
+	(type);
     }
-  else
+  else if(type == "book" || type == "cd" || type == "dvd" ||
+	  type == "journal" || type == "magazine" || type == "video game")
     {
       type = type.remove(" ");
-      querystr = QString("SELECT description FROM %1 WHERE myoid = %2").arg
-	(type).arg(oid);
+      querystr = QString("SELECT description FROM %1 WHERE myoid = ?").arg
+	(type);
     }
 
-  if(query.exec(querystr))
+  query.prepare(querystr);
+  query.bindValue(0, oid);
+
+  if(query.exec())
     if(query.next())
       str = query.value(0).toString();
 
@@ -98,7 +103,6 @@ QImage misc_functions::getImage(const QString &oid,
 {
   QImage image = QImage();
   QString type(typeArg.toLower());
-  QString querystr = "";
   QSqlQuery query(db);
 
   if(type == "photograph collection")
@@ -106,10 +110,18 @@ QImage misc_functions::getImage(const QString &oid,
   else
     type = type.remove(" ");
 
-  querystr = QString("SELECT %1 FROM %2 WHERE myoid = %3").arg
-    (which).arg(type).arg(oid);
+  if(type == "book" || type == "cd" || type == "dvd" || type == "journal" ||
+     type == "magazine" || type == "photograph_collection" ||
+     type == "videogame")
+    if(which == "back_cover" || which == "front_cover" ||
+       which == "image_scaled")
+      {
+	query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
+		      arg(which).arg(type));
+	query.bindValue(0, oid);
+      }
 
-  if(query.exec(querystr))
+  if(query.exec())
     if(query.next())
       {
 	image.loadFromData
@@ -730,17 +742,22 @@ QString misc_functions::getAvailability(const QString &oid,
 
   errorstr = "";
   itemType = itemTypeArg;
-  querystr = QString("SELECT %1.quantity - "
-		     "COUNT(item_borrower_vw.item_oid) "
-		     "FROM "
-		     "%1 LEFT JOIN item_borrower_vw ON "
-		     "%1.myoid = item_borrower_vw.item_oid AND "
-		     "item_borrower_vw.type = '%2' "
-		     "WHERE "
-		     "%1.myoid = ? "
-		     "GROUP BY %1.quantity, "
-		     "%1.myoid").arg(itemType.toLower().remove(" ")).arg
-    (itemType);
+
+  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+    querystr = QString("SELECT %1.quantity - "
+		       "COUNT(item_borrower_vw.item_oid) "
+		       "FROM "
+		       "%1 LEFT JOIN item_borrower_vw ON "
+		       "%1.myoid = item_borrower_vw.item_oid AND "
+		       "item_borrower_vw.type = '%2' "
+		       "WHERE "
+		       "%1.myoid = ? "
+		       "GROUP BY %1.quantity, "
+		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
+      (itemType);
+
   query.prepare(querystr);
   query.bindValue(0, oid);
 
@@ -882,15 +899,14 @@ bool misc_functions::isCheckedOut(const QSqlDatabase &db,
   bool isCheckedOut = false;
   QString str = "";
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
 
   errorstr = "";
   itemType = itemTypeArg;
-  querystr = QString("SELECT COUNT(myoid) FROM item_borrower_vw "
-		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
-  query.prepare(querystr);
+  query.prepare("SELECT COUNT(myoid) FROM item_borrower_vw "
+		"WHERE item_oid = ? AND type = ?");
   query.bindValue(0, oid);
+  query.bindValue(1, itemType);
 
   if(query.exec())
     {
@@ -925,17 +941,16 @@ bool misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   bool isCheckedOut = false;
   QString str = "";
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
 
   errorstr = "";
   itemType = itemTypeArg;
-  querystr = QString("SELECT count(copyid) FROM item_borrower_vw WHERE "
-		     "copyid = ? AND item_oid = ? AND "
-		     "type = '%1'").arg(itemType);
-  query.prepare(querystr);
+  query.prepare("SELECT count(copyid) FROM item_borrower_vw WHERE "
+		"copyid = ? AND item_oid = ? AND "
+		"type = ?");
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
+  query.bindValue(2, itemType);
 
   if(query.exec())
     {
@@ -972,8 +987,13 @@ void misc_functions::saveQuantity(const QSqlDatabase &db, const QString &oid,
 
   errorstr = "";
   itemType = itemTypeArg.toLower().remove(" ");
-  querystr = QString("UPDATE %1 SET quantity = ? WHERE "
-		     "myoid = ?").arg(itemType);
+
+  if(itemType == "book" || itemType == "cd" || itemType == "dvd" ||
+     itemType == "journal" || itemType == "magazine" ||
+     itemType == "videogame")
+    querystr = QString("UPDATE %1 SET quantity = ? WHERE "
+		       "myoid = ?").arg(itemType);
+
   query.prepare(querystr);
   query.bindValue(0, quantity);
   query.bindValue(1, oid);
@@ -994,15 +1014,14 @@ int misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 {
   int copy_number = -1;
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
 
   errorstr = "";
   itemType = itemTypeArg;
-  querystr = QString("SELECT MAX(copy_number) FROM item_borrower_vw "
-		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
-  query.prepare(querystr);
+  query.prepare("SELECT MAX(copy_number) FROM item_borrower_vw "
+		"WHERE item_oid = ? AND type = ?");
   query.bindValue(0, oid);
+  query.bindValue(1, itemType);
 
   if(query.exec())
     if(query.next())
@@ -1034,11 +1053,16 @@ bool misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   errorstr = "";
   itemType = itemTypeArg;
-  querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
-		     "WHERE copyid = ? AND item_oid = ? "
-		     "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
-		     "WHERE item_oid = ? AND type = '%2')").arg
-    (itemType.toLower().remove(" ")).arg(itemType);
+
+  if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
+     itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
+     itemType.toLower() == "magazine" || itemType.toLower() == "video game")
+    querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
+		       "WHERE copyid = ? AND item_oid = ? "
+		       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
+		       "WHERE item_oid = ? AND type = '%2')").arg
+      (itemType.toLower().remove(" ")).arg(itemType);
+
   query.prepare(querystr);
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
@@ -1194,7 +1218,8 @@ QString misc_functions::getOID(const QString &idArg,
   else if(itemType == "book")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
 		       "id IS NOT NULL").arg(itemType);
-  else
+  else if(itemType == "cd" || itemType == "dvd" ||
+	  itemType == "photograph_collection" || itemType == "videogame")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
 
   query.prepare(querystr);
@@ -1267,17 +1292,27 @@ void misc_functions::createInitialCopies(const QString &idArg,
     for(i = 0; i < numCopies; i++)
       {
 	if(db.driverName() != "QSQLITE")
-	  query.prepare(QString("INSERT INTO %1_copy_info "
-				"(item_oid, copy_number, "
-				"copyid) "
-				"VALUES (?, "
-				"?, ?)").arg(itemType));
+	  {
+	    if(itemType == "book" || itemType == "cd" ||
+	       itemType == "dvd" || itemType == "journal" ||
+	       itemType == "magazine" || itemType == "videogame")
+	      query.prepare(QString("INSERT INTO %1_copy_info "
+				    "(item_oid, copy_number, "
+				    "copyid) "
+				    "VALUES (?, "
+				    "?, ?)").arg(itemType));
+	  }
 	else
-	  query.prepare(QString("INSERT INTO %1_copy_info "
-				"(item_oid, copy_number, "
-				"copyid, myoid) "
-				"VALUES (?, "
-				"?, ?, ?)").arg(itemType));
+	  {
+	    if(itemType == "book" || itemType == "cd" ||
+	       itemType == "dvd" || itemType == "journal" ||
+	       itemType == "magazine" || itemType == "videogame")
+	      query.prepare(QString("INSERT INTO %1_copy_info "
+				    "(item_oid, copy_number, "
+				    "copyid, myoid) "
+				    "VALUES (?, "
+				    "?, ?, ?)").arg(itemType));
+	  }
 
 	query.bindValue(0, itemoid);
 	query.bindValue(1, i + 1);
@@ -1495,14 +1530,13 @@ bool misc_functions::isRequested(const QSqlDatabase &db,
 
   QString str = "";
   QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
 
   itemType = itemTypeArg;
-  querystr = QString("SELECT COUNT(myoid) FROM item_request "
-		     "WHERE item_oid = ? AND type = '%1'").arg(itemType);
-  query.prepare(querystr);
+  query.prepare("SELECT COUNT(myoid) FROM item_request "
+		"WHERE item_oid = ? AND type = ?");
   query.bindValue(0, oid);
+  query.bindValue(1, itemType);
 
   if(query.exec())
     {
@@ -1532,22 +1566,24 @@ QStringList misc_functions::getLocations(const QSqlDatabase &db,
 					 const QString &type,
 					 QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
   QStringList locations;
 
   errorstr = "";
 
   if(type.isEmpty())
-    querystr = "SELECT DISTINCT(location) FROM locations "
-      "WHERE LENGTH(TRIM(location)) > 0 "
-      "ORDER BY location";
+    query.prepare("SELECT DISTINCT(location) FROM locations "
+		  "WHERE LENGTH(TRIM(location)) > 0 "
+		  "ORDER BY location");
   else
-    querystr = QString("SELECT location FROM locations WHERE type = '%1' AND "
-		       "LENGTH(TRIM(location)) > 0 "
-		       "ORDER BY location").arg(type);
+    {
+      query.prepare("SELECT location FROM locations WHERE type = ? AND "
+		    "LENGTH(TRIM(location)) > 0 "
+		    "ORDER BY location");
+      query.bindValue(0, type);
+    }
 
-  if(query.exec(querystr))
+  if(query.exec())
     while(query.next())
       locations.append(query.value(0).toString());
 
@@ -1751,14 +1787,13 @@ int misc_functions::getMinimumDays(const QSqlDatabase &db,
 				   QString &errorstr)
 {
   int minimumdays = 1;
-  QString querystr("");
   QSqlQuery query(db);
 
   errorstr = "";
-  querystr = QString("SELECT days FROM minimum_days WHERE type = '%1'").
-    arg(type);
+  query.prepare("SELECT days FROM minimum_days WHERE type = ?");
+  query.bindValue(0, type);
 
-  if(query.exec(querystr))
+  if(query.exec())
     if(query.next())
       minimumdays = query.value(0).toInt();
 
