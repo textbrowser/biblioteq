@@ -1946,21 +1946,20 @@ bool misc_functions::hasMemberExpired(const QSqlDatabase &db,
 				      QString &errorstr)
 {
   bool expired = true;
-  QString querystr("");
   QSqlQuery query(db);
 
   errorstr = "";
 
   if(db.driverName() == "QSQLITE")
-    querystr = QString("SELECT expiration_date "
-		       "FROM member WHERE memberid = '%1'").
-      arg(memberid);
+    query.prepare("SELECT expiration_date "
+		  "FROM member WHERE memberid = ?");
   else
-    querystr = QString("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
-		       "current_date FROM member WHERE memberid = '%1'").
-      arg(memberid);
+    query.prepare("SELECT TO_DATE(expiration_date, 'mm/dd/yyyy') - "
+		  "current_date FROM member WHERE memberid = ?");
 
-  if(query.exec(querystr))
+  query.bindValue(0, memberid);
+
+  if(query.exec())
     if(query.next())
       {
 	if(db.driverName() == "QSQLITE")
