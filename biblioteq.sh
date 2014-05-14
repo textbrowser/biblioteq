@@ -2,7 +2,7 @@
 
 if [ -r /usr/local/biblioteq/BiblioteQ ] && [ -x /usr/local/biblioteq/BiblioteQ ]
 then
-    cd /usr/local/biblioteq && ./BiblioteQ &
+    cd /usr/local/biblioteq && exec ./BiblioteQ
     exit $?
 else
     exit 1

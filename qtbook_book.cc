@@ -2211,9 +2211,17 @@ void qtbook_book::slotZ3950Query(void)
       working.update();
 
       QStringList isbns;
+      bool isbn10User = false;
+      bool isbn13User = false;
 
       isbns << id.id->text().trimmed()
 	    << id.isbn13->text().trimmed();
+
+      if(id.id->text().trimmed().length() == 10)
+	isbn10User = true;
+
+      if(id.isbn13->text().trimmed().length() == 13)
+	isbn13User = true;
 
       if(isbns.at(0).isEmpty())
 	isbns.replace(0, isbns.at(1));
@@ -2343,8 +2351,12 @@ void qtbook_book::slotZ3950Query(void)
 				("background-color: rgb(162, 205, 90)");
 			    }
 			  else if(id.binding->findText(tr("UNKNOWN")))
-			    id.binding->setCurrentIndex
-			      (id.binding->findText(tr("UNKNOWN")));
+			    {
+			      id.binding->setCurrentIndex
+				(id.binding->findText(tr("UNKNOWN")));
+			      id.binding->setStyleSheet
+				("background-color: rgb(162, 205, 90)");
+			    }
 			}
 		      else if(str.toLower().contains("pbk."))
 			{
@@ -2358,32 +2370,51 @@ void qtbook_book::slotZ3950Query(void)
 				("background-color: rgb(162, 205, 90)");
 			    }
 			  else if(id.binding->findText(tr("UNKNOWN")))
-			    id.binding->setCurrentIndex
-			      (id.binding->findText(tr("UNKNOWN")));
+			    {
+			      id.binding->setCurrentIndex
+				(id.binding->findText(tr("UNKNOWN")));
+			      id.binding->setStyleSheet
+				("background-color: rgb(162, 205, 90)");
+			    }
 			}
 		      else if(id.binding->findText(tr("UNKNOWN")))
-			id.binding->setCurrentIndex
-			  (id.binding->findText(tr("UNKNOWN")));
+			{
+			  id.binding->setCurrentIndex
+			    (id.binding->findText(tr("UNKNOWN")));
+			  id.binding->setStyleSheet
+				("background-color: rgb(162, 205, 90)");
+			}
 
 		      if(str.contains(" ") && str.indexOf(" ") == 10)
 			{
 			  str = str.mid(0, 10).trimmed();
-			  id.id->setText(str);
-			  misc_functions::highlightWidget
-			    (id.id, QColor(162, 205, 90));
+
+			  if(!isbn10User)
+			    {
+			      id.id->setText(str);
+			      misc_functions::highlightWidget
+				(id.id, QColor(162, 205, 90));
+			    }
 			}
 		      else if(str.contains(" ") && str.indexOf(" ") == 13)
 			{
 			  str = str.mid(0, 13).trimmed();
-			  id.isbn13->setText(str);
-			  misc_functions::highlightWidget
-			    (id.isbn13, QColor(162, 205, 90));
+
+			  if(!isbn13User)
+			    {
+			      id.isbn13->setText(str);
+			      misc_functions::highlightWidget
+				(id.isbn13, QColor(162, 205, 90));
+			    }
 			}
 		      else if(str.length() == 10)
 			{
-			  id.id->setText(str);
-			  misc_functions::highlightWidget
-			    (id.id, QColor(162, 205, 90));
+			  if(!isbn10User)
+			    {
+			      id.id->setText(str);
+			      misc_functions::highlightWidget
+				(id.id, QColor(162, 205, 90));
+			    }
 			}
 		    }
 		  else if(str.startsWith("050 "))
@@ -3388,6 +3419,15 @@ void qtbook_book::slotSRUDownloadFinished(void)
 	  misc_functions::highlightWidget
 	    (id.marc_tags->viewport(), QColor(162, 205, 90));
 
+	  bool isbn10User = false;
+	  bool isbn13User = false;
+
+	  if(id.id->text().trimmed().length() == 10)
+	    isbn10User = true;
+
+	  if(id.isbn13->text().trimmed().length() == 13)
+	    isbn13User = true;
+
 	  QXmlStreamReader reader(m_sruResults);
 
 	  while(!reader.atEnd())
@@ -3481,8 +3521,12 @@ void qtbook_book::slotSRUDownloadFinished(void)
 				  ("background-color: rgb(162, 205, 90)");
 			      }
 			    else if(id.binding->findText(tr("UNKNOWN")))
-			      id.binding->setCurrentIndex
-				(id.binding->findText(tr("UNKNOWN")));
+			      {
+				id.binding->setCurrentIndex
+				  (id.binding->findText(tr("UNKNOWN")));
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
 			  }
 			else if(str.toLower().contains("pbk."))
 			  {
@@ -3498,33 +3542,52 @@ void qtbook_book::slotSRUDownloadFinished(void)
 				  ("background-color: rgb(162, 205, 90)");
 			      }
 			    else if(id.binding->findText(tr("UNKNOWN")))
-			      id.binding->setCurrentIndex
-				(id.binding->findText(tr("UNKNOWN")));
+			      {
+				id.binding->setCurrentIndex
+				  (id.binding->findText(tr("UNKNOWN")));
+				id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			      }
 			  }
 			else if(id.binding->findText(tr("UNKNOWN")))
-			  id.binding->setCurrentIndex
-			    (id.binding->findText(tr("UNKNOWN")));
+			  {
+			    id.binding->setCurrentIndex
+			      (id.binding->findText(tr("UNKNOWN")));
+			    id.binding->setStyleSheet
+				  ("background-color: rgb(162, 205, 90)");
+			  }
 
 			if(str.contains(" ") && str.indexOf(" ") == 10)
 			  {
 			    str = str.mid(0, 10).trimmed();
-			    id.id->setText(str);
-			    misc_functions::highlightWidget
-			      (id.id, QColor(162, 205, 90));
+
+			    if(!isbn10User)
+			      {
+				id.id->setText(str);
+				misc_functions::highlightWidget
+				  (id.id, QColor(162, 205, 90));
+			      }
 			  }
 			else if(str.contains(" ") &&
 				str.indexOf(" ") == 13)
 			  {
 			    str = str.mid(0, 13).trimmed();
-			    id.isbn13->setText(str);
-			    misc_functions::highlightWidget
-			      (id.isbn13, QColor(162, 205, 90));
+
+			    if(!isbn13User)
+			      {
+				id.isbn13->setText(str);
+				misc_functions::highlightWidget
+				  (id.isbn13, QColor(162, 205, 90));
+			      }
 			  }
 			else if(str.length() == 10)
 			  {
-			    id.id->setText(str);
-			    misc_functions::highlightWidget
-			      (id.id, QColor(162, 205, 90));
+			    if(!isbn10User)
+			      {
+				id.id->setText(str);
+				misc_functions::highlightWidget
+				  (id.id, QColor(162, 205, 90));
+			      }
 			  }
 		      }
 		    else if(tag == "050")
