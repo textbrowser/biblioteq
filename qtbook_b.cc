@@ -45,7 +45,7 @@ int qtbook::populateTable(const int search_type_arg,
 #endif
 
   int limit = 0;
-  int offset = m_queryOffset;
+  qint64 offset = m_queryOffset;
   QString limitStr("");
   QString offsetStr("");
 
@@ -2843,15 +2843,12 @@ int qtbook::populateTable(const int search_type_arg,
   else
     ui.table->resetTable(db.userName(), "", roles);
 
-  int currentPage = 0;
+  qint64 currentPage = 0;
 
-  if(limit == 0)
+  if(limit <= 0)
     currentPage = 1;
   else
     currentPage = offset / limit + 1;
-
-  if(limit == -1)
-    currentPage = 1;
 
   if(pagingType == NEW_PAGE)
     m_pages = 0;
@@ -2870,7 +2867,7 @@ int qtbook::populateTable(const int search_type_arg,
     {
       QString str("");
 
-      for(int ii = 1; ii <= m_pages; ii++)
+      for(qint64 ii = 1; ii <= m_pages; ii++)
 	if(ii == currentPage)
 	  str += QString(tr(" %1 ")).arg(currentPage);
 	else
@@ -2881,7 +2878,7 @@ int qtbook::populateTable(const int search_type_arg,
     }
   else
     {
-      int start = 2;
+      qint64 start = 2;
       QString str("");
 
       if(currentPage == 1)
@@ -2893,7 +2890,7 @@ int qtbook::populateTable(const int search_type_arg,
 	while(!(start <= currentPage && currentPage <= start + 6))
 	  start += 7;
 
-      for(int ii = start; ii <= start + 6; ii++)
+      for(qint64 ii = start; ii <= start + 6; ii++)
 	if(ii == currentPage && ii <= m_pages - 1)
 	  str += QString(tr(" %1 ")).arg(ii);
 	else if(ii <= m_pages - 1)

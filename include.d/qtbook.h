@@ -259,9 +259,9 @@ class qtbook: public QMainWindow
   void slotDisplaySummary(void);
 
  private:
-  int m_pages;
-  int m_queryOffset;
   int lastSearchType;
+  qint64 m_pages;
+  qint64 m_queryOffset;
   quint64 m_idCt;
   QString roles;
   QString lastCategory;
