@@ -1634,10 +1634,11 @@ void qtbook_dvd::closeEvent(QCloseEvent *e)
   if(engWindowTitle.contains("Create") ||
      engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
-      if(QMessageBox::question(this, tr("BiblioteQ: Question"),
-			       tr("You have unsaved data. Continue closing?"),
-			       QMessageBox::Yes | QMessageBox::No,
-			       QMessageBox::No) == QMessageBox::No)
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue closing?"),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
 	{
 	  if(e)
 	    e->ignore();

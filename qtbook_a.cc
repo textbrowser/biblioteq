@@ -3562,7 +3562,7 @@ void qtbook::slotShowNext(void)
       if(userinfo_diag->haveMemberChanges(str))
 	if(QMessageBox::question
 	   (userinfo_diag, tr("BiblioteQ: Question"),
-	    tr("You have unsaved data. Continue?\n%1").arg(str),
+	    tr("Your changes have not been saved. Continue?\n%1").arg(str),
 	    QMessageBox::Yes | QMessageBox::No,
 	    QMessageBox::No) == QMessageBox::No)
 	  return;
@@ -3606,7 +3606,7 @@ void qtbook::slotShowPrev(void)
       if(userinfo_diag->haveMemberChanges(str))
 	if(QMessageBox::question
 	   (userinfo_diag, tr("BiblioteQ: Question"),
-	    tr("You have unsaved data. Continue?\n%1").arg(str),
+	    tr("Your changes have not been saved. Continue?\n%1").arg(str),
 	    QMessageBox::Yes | QMessageBox::No,
 	    QMessageBox::No) == QMessageBox::No)
 	  return;

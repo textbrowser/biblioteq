@@ -175,7 +175,7 @@ class qtbook: public QMainWindow
       if(haveMemberChanges(str))
 	if(QMessageBox::question
 	   (this, tr("BiblioteQ: Question"),
-	    tr("You have unsaved data. Continue closing?\n%1").
+	    tr("Your changes have not been saved. Continue closing?\n%1").
 	    arg(str),
 	    QMessageBox::Yes | QMessageBox::No,
 	    QMessageBox::No) == QMessageBox::No)
