@@ -221,60 +221,6 @@ void misc_functions::revokeAll(const QString &userid,
 
   if(count > 0)
     {
-#if 0
-      objectlist << "admin"
-		 << "book"
-		 << "book_binding_types"
-		 << "book_copy_info"
-		 << "book_copy_info_myoid_seq"
-		 << "book_myoid_seq"
-		 << "cd"
-		 << "cd_copy_info"
-		 << "cd_copy_info_myoid_seq"
-		 << "cd_formats"
-		 << "cd_myoid_seq"
-		 << "cd_songs"
-		 << "dvd"
-		 << "dvd_aspect_ratios"
-		 << "dvd_copy_info"
-		 << "dvd_copy_info_myoid_seq"
-		 << "dvd_myoid_seq"
-		 << "dvd_ratings"
-		 << "dvd_regions"
-		 << "item_borrower"
-		 << "item_borrower_myoid_seq"
-		 << "item_borrower_vw"
-		 << "item_request"
-		 << "item_request_myoid_seq"
-		 << "journal"
-		 << "journal_copy_info"
-		 << "journal_copy_info_myoid_seq"
-		 << "journal_myoid_seq"
-		 << "languages"
-		 << "locations"
-		 << "magazine"
-		 << "magazine_copy_info"
-		 << "magazine_copy_info_myoid_seq"
-		 << "magazine_myoid_seq"
-		 << "member"
-		 << "member_history"
-		 << "member_history_myoid_seq"
-		 << "minimum_days"
-		 << "monetary_units"
-		 << "videogame"
-		 << "videogame_copy_info"
-		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq"
-		 << "videogame_platforms"
-		 << "videogame_ratings";
-
-      while(!objectlist.isEmpty())
-	{
-	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
-	    (objectlist.takeFirst()).arg(userid);
-	  (void) query.exec(querystr);
-	}
-#endif
       objectlist << "biblioteq_administrator"
 		 << "biblioteq_circulation"
 		 << "biblioteq_circulation_librarian"
@@ -460,64 +406,6 @@ void misc_functions::DBAccount(const QString &userid,
 
   if(action == DELETE_USER || action == UPDATE_USER)
     {
-#if 0
-      objectlist << "admin"
-		 << "book"
-		 << "book_binding_types"
-		 << "book_copy_info"
-		 << "book_copy_info_myoid_seq"
-		 << "book_myoid_seq"
-		 << "cd"
-		 << "cd_copy_info"
-		 << "cd_copy_info_myoid_seq"
-		 << "cd_formats"
-		 << "cd_myoid_seq"
-		 << "cd_songs"
-		 << "dvd"
-		 << "dvd_aspect_ratios"
-		 << "dvd_copy_info"
-		 << "dvd_copy_info_myoid_seq"
-		 << "dvd_myoid_seq"
-		 << "dvd_ratings"
-		 << "dvd_regions"
-		 << "item_borrower"
-		 << "item_borrower_myoid_seq"
-		 << "item_borrower_vw"
-		 << "item_request"
-		 << "item_request_myoid_seq"
-		 << "journal"
-		 << "journal_copy_info"
-		 << "journal_copy_info_myoid_seq"
-		 << "journal_myoid_seq"
-		 << "languages"
-		 << "locations"
-		 << "magazine"
-		 << "magazine_copy_info"
-		 << "magazine_copy_info_myoid_seq"
-		 << "magazine_myoid_seq"
-		 << "member"
-		 << "member_history"
-		 << "member_history_myoid_seq"
-		 << "minimum_days"
-		 << "monetary_units"
-		 << "videogame"
-		 << "videogame_copy_info"
-		 << "videogame_copy_info_myoid_seq"
-		 << "videogame_myoid_seq"
-		 << "videogame_platforms"
-		 << "videogame_ratings";
-
-      /*
-      ** Revoke old privileges.
-      */
-
-      while(!objectlist.isEmpty())
-	{
-	  querystr = QString("REVOKE ALL ON %1 FROM %2").arg
-	    (objectlist.takeFirst()).arg(userid);
-	  (void) query.exec(querystr);
-	}
-#endif
       if(action == DELETE_USER)
 	{
 	  (void) query.exec(QString("DROP USER %1").arg(userid));
@@ -1230,9 +1118,6 @@ QString misc_functions::getOID(const QString &idArg,
 
       for(i = 0; i < list.size(); i++)
 	query.bindValue(i, list[i]);
-
-      id = list[0];
-      list.clear();
     }
   else
     query.bindValue(0, id);
@@ -1276,7 +1161,7 @@ void misc_functions::createInitialCopies(const QString &idArg,
     return;
 
   if(itemType == "journal" || itemType == "magazine")
-    id = id.split(",")[0];
+    id = id.split(",").value(0);
   else if(itemType == "book")
     {
       if(itemoid.isEmpty())
