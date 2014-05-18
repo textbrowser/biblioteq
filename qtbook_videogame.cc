@@ -914,8 +914,12 @@ void qtbook_videogame::search(const QString &field, const QString &value)
     {
       QList<QAction *> actions = vg.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Video Game Search"));
       engWindowTitle = "Search";
@@ -1031,8 +1035,12 @@ void qtbook_videogame::modify(const int state)
 
       QList<QAction *> actions = vg.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
     }
 
@@ -1275,7 +1283,11 @@ void qtbook_videogame::slotReset(void)
     {
       QList<QAction *> actions = vg.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 19)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	vg.front_image->clear();
       else if(action == actions[1])
 	vg.back_image->clear();
