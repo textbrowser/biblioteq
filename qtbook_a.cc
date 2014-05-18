@@ -3902,7 +3902,9 @@ void qtbook::slotConnectDB(void)
     {
       ui.actionChangePassword->setEnabled(false);
       ui.menuEntriesPerPage->setEnabled(true);
-      ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
+
+      if(ui.menuEntriesPerPage->actions().size() >= 5)
+	ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
 
       /*
       ** Set the window's title.
@@ -3914,7 +3916,10 @@ void qtbook::slotConnectDB(void)
   else
     {
       ui.menuEntriesPerPage->setEnabled(true);
-      ui.menuEntriesPerPage->actions()[4]->setEnabled(false);
+
+      if(ui.menuEntriesPerPage->actions().size() >= 5)
+	ui.menuEntriesPerPage->actions()[4]->setEnabled(false);
+
       ui.actionChangePassword->setEnabled(true);
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
 	      SLOT(slotViewDetails(void)));
@@ -4076,7 +4081,10 @@ void qtbook::slotDisconnect(void)
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.menuEntriesPerPage->setEnabled(true);
-  ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
+
+  if(ui.menuEntriesPerPage->actions().size() >= 5)
+    ui.menuEntriesPerPage->actions()[4]->setEnabled(true);
+
   ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
     (false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
@@ -4120,7 +4128,8 @@ void qtbook::slotDisconnect(void)
 	}
     }
 
-  ui.menuEntriesPerPage->actions()[0]->setChecked(true);
+  if(!ui.menuEntriesPerPage->actions().isEmpty())
+    ui.menuEntriesPerPage->actions()[0]->setChecked(true);
 
   if(connected_bar_label != 0)
     {
@@ -5062,7 +5071,11 @@ void qtbook::slotReset(void)
 	{
 	  QList<QAction *> actions = al.resetButton->menu()->actions();
 
-	  if(action == actions[0])
+	  if(actions.size() < 13)
+	    {
+	      // Error.
+	    }
+	  else if(action == actions[0])
 	    {
 	      al.idnumber->clear();
 	      al.idnumber->setFocus();
