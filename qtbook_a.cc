@@ -2512,6 +2512,9 @@ void qtbook::slotSaveUser(void)
 
 	  for(i = 0; i < m_bbColumnHeaderIndexes.size(); i++)
 	    {
+	      if(!bb.table->item(row, i))
+		continue;
+
 	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
 		bb.table->item(row, i)->setText
 		  (userinfo_diag->userinfo.firstName->text());
