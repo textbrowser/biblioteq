@@ -174,7 +174,9 @@ void z3950results::slotUpdateQueryText(void)
 
   ui.title->setText(title);
   ui.title->setCursorPosition(0);
-  ui.textarea->setPlainText(records[ui.list->currentRow()]);
+
+  if(records.size() > ui.list->currentRow())
+    ui.textarea->setPlainText(records[ui.list->currentRow()]);
 }
 
 /*
