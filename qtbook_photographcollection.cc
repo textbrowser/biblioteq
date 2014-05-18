@@ -529,7 +529,8 @@ void qtbook_photographcollection::search
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();
 
-  actions[0]->setVisible(false);
+  if(!actions.isEmpty())
+    actions[0]->setVisible(false);
 
   for(int i = 6; i < actions.size(); i++)
     actions.at(i)->setVisible(false);
@@ -633,7 +634,9 @@ void qtbook_photographcollection::modify(const int state,
 
       QList<QAction *> actions = pc.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
+      if(!actions.isEmpty())
+	actions[0]->setVisible(false);
+
       actions.clear();
     }
 
@@ -809,7 +812,11 @@ void qtbook_photographcollection::slotReset(void)
     {
       QList<QAction *> actions = pc.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 6)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	pc.thumbnail_collection->clear();
       else if(action == actions[1])
 	{
