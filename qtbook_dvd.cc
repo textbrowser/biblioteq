@@ -1021,8 +1021,12 @@ void qtbook_dvd::search(const QString &field, const QString &value)
     {
       QList<QAction *> actions = dvd.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database DVD Search"));
       engWindowTitle = "Search";
@@ -1140,8 +1144,12 @@ void qtbook_dvd::modify(const int state)
 
       QList<QAction *> actions = dvd.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
     }
 
@@ -1416,7 +1424,11 @@ void qtbook_dvd::slotReset(void)
     {
       QList<QAction *> actions = dvd.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 22)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	dvd.front_image->clear();
       else if(action == actions[1])
 	dvd.back_image->clear();
