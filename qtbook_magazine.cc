@@ -1093,8 +1093,12 @@ void qtbook_magazine::search(const QString &field, const QString &value)
     {
       QList<QAction *> actions = ma.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
 
       if(subType == "Journal")
@@ -1234,8 +1238,12 @@ void qtbook_magazine::modify(const int state)
 
       QList<QAction *> actions = ma.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
     }
 
@@ -1525,7 +1533,11 @@ void qtbook_magazine::slotReset(void)
     {
       QList<QAction *> actions = ma.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 21)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	ma.front_image->clear();
       else if(action == actions[1])
 	ma.back_image->clear();
