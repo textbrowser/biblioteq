@@ -993,8 +993,12 @@ void qtbook_cd::search(const QString &field, const QString &value)
     {
       QList<QAction *> actions = cd.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
       cd.coverImages->setVisible(false);
       setWindowTitle(tr("BiblioteQ: Database Music CD Search"));
@@ -1123,8 +1127,12 @@ void qtbook_cd::modify(const int state)
 
       QList<QAction *> actions = cd.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
     }
 
@@ -1858,7 +1866,11 @@ void qtbook_cd::slotReset(void)
     {
       QList<QAction *> actions = cd.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 21)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	cd.front_image->clear();
       else if(action == actions[1])
 	cd.back_image->clear();
