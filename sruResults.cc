@@ -167,7 +167,7 @@ void sruresults::slotUpdateQueryText(void)
   title = title.mid(0, title.lastIndexOf('/')).trimmed();
   ui.title->setText(title);
   ui.title->setCursorPosition(0);
-  ui.textarea->setPlainText(m_records[ui.list->currentRow()]);
+  ui.textarea->setPlainText(m_records.value(ui.list->currentRow()));
 }
 
 /*
