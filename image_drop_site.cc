@@ -44,7 +44,7 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	}
 #elif defined(Q_OS_MAC)
   if(event)
-    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else
   if(event)
     filename = event->mimeData()->text().trimmed();
@@ -78,7 +78,7 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 	}
 #elif defined(Q_OS_MAC)
   if(event)
-    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else
   if(event)
     filename = event->mimeData()->text().trimmed();
@@ -114,7 +114,7 @@ void image_drop_site::dropEvent(QDropEvent *event)
 	}
 #elif defined(Q_OS_MAC)
   if(event)
-    filename = event->mimeData()->urls()[0].toLocalFile().trimmed();
+    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 #else
   if(event)
     {
@@ -229,7 +229,7 @@ QString image_drop_site::determineFormat(const QString &filename) const
 
   if(file.open(QIODevice::ReadOnly) && (bytesRead =
 					file.read(bytes.data(),
-						  sizeof(bytes))) > 0)
+						  bytes.length())) > 0)
     {
       if(bytesRead >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
 	 bytes[3] == 'G')
