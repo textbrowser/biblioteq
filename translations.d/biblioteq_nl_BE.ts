@@ -518,6 +518,61 @@
     </message>
 </context>
 <context>
+    <name>bookcopybrowser</name>
+    <message>
+        <source>BiblioteQ: Copies Browser</source>
+        <translation type="unfinished">BiblioteQ: Kopieën Browser</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>Copy Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Verwijderen</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
+    </message>
+</context>
+<context>
     <name>borrowers_editor</name>
     <message>
         <source>)</source>
@@ -865,6 +920,10 @@
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -1102,6 +1161,209 @@
     <message>
         <source>BiblioteQ: Copy Browser</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>copy_editor_book</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Selecteer hetgeen dat u wenst te verwijderen.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">U moet tenminste één kopie hebben.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Niet mogelijk om de uitleenstatus te bepalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Uitlenen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">De kopie data kan niet teruggevonden worden.</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Ophalen van kopie-info...</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Rij-nummer</translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished">bevat een lege barcode.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished">bevat een dubbele barcode.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om de kopie datum op te slaan.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Toewijsfout.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data toe te wijzen.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie data te louteren.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Opslaan van kopie-data...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data aan te maken.</translation>
     </message>
 </context>
 <context>
@@ -1368,13 +1630,21 @@
         <source>Add DVD Region</source>
         <translation>DVD Regios Toevoegen</translation>
     </message>
+    <message>
+        <source>Book Binding Types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <source>14</source>
+        <translation type="unfinished">14</translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
-    <message>
-        <source> </source>
-        <translation></translation>
-    </message>
     <message>
         <source>.</source>
         <translation>.</translation>
@@ -1397,11 +1667,11 @@
     </message>
     <message>
         <source>dvd aspect ratio</source>
-        <translation>DVD Beeldformaat</translation>
+        <translation type="obsolete">DVD Beeldformaat</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Ratings&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Ratings&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>Journal</source>
@@ -1409,7 +1679,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Taal&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; Taal&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -1421,7 +1691,7 @@
     </message>
     <message>
         <source>video game platform</source>
-        <translation>Video Game Platform</translation>
+        <translation type="obsolete">Video Game Platform</translation>
     </message>
     <message>
         <source>Video Game Platform</source>
@@ -1429,7 +1699,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Locaties&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; Locaties&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to create the minimum day (</source>
@@ -1441,7 +1711,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het &quot; Aantal Minimum Dagen&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  het &quot; Aantal Minimum Dagen&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>CD Format</source>
@@ -1449,7 +1719,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het &quot;DVD Beeldformaat&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  het &quot;DVD Beeldformaat&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -1461,15 +1731,15 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Platformen&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; Video Game Platformen&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to retrieve the </source>
-        <translation>Niet mogelijk om volgende op te halen:</translation>
+        <translation type="obsolete">Niet mogelijk om volgende op te halen:</translation>
     </message>
     <message>
         <source>video game rating</source>
-        <translation>Video Game Rating</translation>
+        <translation type="obsolete">Video Game Rating</translation>
     </message>
     <message>
         <source>Unable to create the location (</source>
@@ -1477,19 +1747,19 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; Munteenheid&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; Munteenheid&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>cd format</source>
-        <translation>CD Format</translation>
+        <translation type="obsolete">CD Format</translation>
     </message>
     <message>
         <source>dvd region</source>
-        <translation>DVD Regio</translation>
+        <translation type="obsolete">DVD Regio</translation>
     </message>
     <message>
         <source>dvd rating</source>
-        <translation>DVD Rating</translation>
+        <translation type="obsolete">DVD Rating</translation>
     </message>
     <message>
         <source>Magazine</source>
@@ -1501,7 +1771,7 @@
     </message>
     <message>
         <source>language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1513,7 +1783,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de CD Formats te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de CD Formats te verwijderen.</translation>
     </message>
     <message>
         <source>Video Game</source>
@@ -1521,7 +1791,7 @@
     </message>
     <message>
         <source>Unable to create the </source>
-        <translation>Niet mogelijk om dit aan te maken:</translation>
+        <translation type="obsolete">Niet mogelijk om dit aan te maken:</translation>
     </message>
     <message>
         <source>Music CD</source>
@@ -1537,15 +1807,15 @@
     </message>
     <message>
         <source>monetary unit</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Regios&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Regios&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Ratings&quot; te verwijderen.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de &quot; DVD Ratings&quot; te verwijderen.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -1557,6 +1827,26 @@
     </message>
     <message>
         <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1920,7 +2210,7 @@
     </message>
     <message>
         <source>Paperback</source>
-        <translation>Paperback</translation>
+        <translation type="obsolete">Paperback</translation>
     </message>
     <message>
         <source>&amp;Download</source>
@@ -1932,7 +2222,7 @@
     </message>
     <message>
         <source>Hardcover</source>
-        <translation>Hardcover</translation>
+        <translation type="obsolete">Hardcover</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -2016,6 +2306,62 @@
     </message>
     <message>
         <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2863,6 +3209,14 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -2975,7 +3329,7 @@
     </message>
     <message>
         <source>Current Password</source>
-        <translation>Huidig Paswoord</translation>
+        <translation type="obsolete">Huidig Paswoord</translation>
     </message>
     <message>
         <source>BiblioteQ: Password Selection</source>
@@ -3209,6 +3563,17 @@
     <message>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
+    </message>
+</context>
+<context>
+    <name>photographView</name>
+    <message>
+        <source>BiblioteQ: Photograph View</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -3647,7 +4012,7 @@
     </message>
     <message>
         <source> selected items?</source>
-        <translation>geselecteerde Item(s)?</translation>
+        <translation type="obsolete">geselecteerde Item(s)?</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -4199,7 +4564,7 @@
     </message>
     <message>
         <source>The current password is incorrect.</source>
-        <translation>Dit paswoord is niet correct.</translation>
+        <translation type="obsolete">Dit paswoord is niet correct.</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4208,16 +4573,6 @@
     <message>
         <source>Unable to retrieve the locations.</source>
         <translation>Onmogelijk om de Locaties te achterhalen.</translation>
-    </message>
-    <message>
-        <source>You have unsaved data. Continue closing?
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have unsaved data. Continue?
-%1</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one item to duplicate.</source>
@@ -4401,6 +4756,24 @@
     </message>
     <message>
         <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4780,7 +5153,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -4962,6 +5335,30 @@
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -4991,7 +5388,7 @@
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titel</translation>
+        <translation type="unfinished">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5083,7 +5480,7 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation type="obsolete">Artiest</translation>
+        <translation type="unfinished">Artiest</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -5311,7 +5708,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
@@ -5467,6 +5864,18 @@
     </message>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5790,7 +6199,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5924,6 +6333,10 @@
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -5933,7 +6346,11 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6296,7 +6713,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -6482,6 +6899,10 @@
         <source>An SRU entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
@@ -6623,7 +7044,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished">U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Collection ID:</source>
@@ -6755,6 +7176,14 @@
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7058,7 +7487,7 @@
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>U heeft onopgeslagen data. Toch afsluiten?</translation>
+        <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
@@ -7164,6 +7593,10 @@
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sruResultsDialog</name>
@@ -7236,6 +7669,14 @@
     <message>
         <source>Track Title</source>
         <translation>Titel</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Artiest</translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

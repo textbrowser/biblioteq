@@ -538,6 +538,61 @@
     </message>
 </context>
 <context>
+    <name>bookcopybrowser</name>
+    <message>
+        <source>BiblioteQ: Copies Browser</source>
+        <translation type="unfinished">BiblioteQ: Přehled kopií</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished">Zapůjčeno do</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Čarový kód</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Dostupnost</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">Moje ID</translation>
+    </message>
+    <message>
+        <source>Copy Number</source>
+        <translation type="unfinished">Číslo kopie</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Smazat</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
     <name>borrowers_editor</name>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
@@ -895,6 +950,10 @@ webová adresa</translation>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -1132,6 +1191,209 @@ webová adresa</translation>
     <message>
         <source>BiblioteQ: Copy Browser</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>copy_editor_book</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: chyba uživatele</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Prosím, vyberte kopii, kterou chcete smazat.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">Musíte mít alespoň jednu kopii.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Zdá se, že kopie, kterou chcete smazat je zrovna zapůjčená.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Chyba databáze</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Nemohu určit stav výpůjčky vybrané kopie.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: chyba databáze</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Zapůjčit</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titul</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Čarový kód</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Dostupnost</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: indikátor postupu</translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished">Vytváření objektů...</translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Chyba paměti</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Nemohu vyhradit paměť pro objekt &quot;item&quot;. To je vážný problém!</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">Nemohu zjistit informace o kopii (knihy).</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Nahrávám informace o kopii...</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Číslo řádku</translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished">obsahuje prázdný čarový kód.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished">obsahuje duplicitní čarový kód.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Nemohu nastartovat databázovou transakci.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Nemohu vyhradit paměť pro objekt &quot;kopie&quot;. To je vážný problém!</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Nemohu uložit počet položek.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Chyba při rušení transakce.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Nemohu uložit informace o kopii.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Chyba při potvrzení transakce.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Nemohu uložit data o kopii.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Nemohu vyčistit data o kopii.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Ukládám data o kopii...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Nemohu vytvořit data kopie.</translation>
     </message>
 </context>
 <context>
@@ -1407,16 +1669,24 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
         <source>Close Browser</source>
         <translation type="unfinished">Zavřít okno</translation>
     </message>
+    <message>
+        <source>Book Binding Types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <source>14</source>
+        <translation type="unfinished">14</translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
     <message>
         <source>Database Error</source>
         <translation type="unfinished">Chyba databáze</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the </source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>.</source>
@@ -1483,86 +1753,6 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
         <translation type="unfinished">Nemohu nastartovat databázovou transakci.</translation>
     </message>
     <message>
-        <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cd format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dvd aspect ratio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dvd rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>dvd region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>monetary unit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>video game platform</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>video game rating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to create the location (</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1596,6 +1786,26 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2053,11 +2263,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Hardcover</source>
-        <translation>tvrdé desky</translation>
+        <translation type="obsolete">tvrdé desky</translation>
     </message>
     <message>
         <source>Paperback</source>
-        <translation>papírová vazba</translation>
+        <translation type="obsolete">papírová vazba</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -2183,6 +2393,62 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3182,6 +3448,14 @@ webová adresa</translation>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3310,7 +3584,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Current Password</source>
-        <translation>Aktuální heslo</translation>
+        <translation type="obsolete">Aktuální heslo</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -3539,6 +3813,17 @@ webová adresa</translation>
     </message>
 </context>
 <context>
+    <name>photographView</name>
+    <message>
+        <source>BiblioteQ: Photograph View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>BiblioteQ has exited.</source>
@@ -3746,7 +4031,7 @@ webová adresa</translation>
     </message>
     <message>
         <source> selected items?</source>
-        <translation>vybrané položky?</translation>
+        <translation type="obsolete">vybrané položky?</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -4390,7 +4675,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>The current password is incorrect.</source>
-        <translation>Heslo ne nekorektní.</translation>
+        <translation type="obsolete">Heslo ne nekorektní.</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
@@ -4637,17 +4922,7 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have unsaved data. Continue closing?
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reset &amp;Keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have unsaved data. Continue?
-%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4792,6 +5067,24 @@ webová adresa</translation>
     </message>
     <message>
         <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5163,7 +5456,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
@@ -5441,6 +5734,30 @@ webová adresa</translation>
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -5658,7 +5975,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titul</translation>
+        <translation type="unfinished">Titul</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5666,7 +5983,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="obsolete">Umělec</translation>
+        <translation type="unfinished">Umělec</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5886,7 +6203,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -6042,6 +6359,18 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6429,7 +6758,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -6567,6 +6896,10 @@ webová adresa</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -6584,7 +6917,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6971,7 +7308,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
@@ -7201,6 +7538,10 @@ webová adresa</translation>
         <source>An SRU entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
@@ -7342,7 +7683,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>Collection ID:</source>
@@ -7474,6 +7815,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7837,7 +8186,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
+        <translation type="obsolete">Formulář obsahuje neuložená data. Pokračovat v zavírání?</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -7959,6 +8308,10 @@ webová adresa</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sruResultsDialog</name>
@@ -8031,6 +8384,14 @@ webová adresa</translation>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Umělec</translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

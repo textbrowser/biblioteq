@@ -538,6 +538,61 @@
     </message>
 </context>
 <context>
+    <name>bookcopybrowser</name>
+    <message>
+        <source>BiblioteQ: Copies Browser</source>
+        <translation type="unfinished">BiblioteQ: Αναζήτηση αντίτυπων</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished">Ημερομηνία λήξης δανεισμού</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Διαθεσιμότητα</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>Copy Number</source>
+        <translation type="unfinished">Αριθμός αντίτυπων</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Διαγραφή</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
+    </message>
+</context>
+<context>
     <name>borrowers_editor</name>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
@@ -895,6 +950,10 @@ URL</source>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -1132,6 +1191,209 @@ URL</source>
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
         <translation>BiblioteQ: Περιοχή αντίτυπου (%1)</translation>
+    </message>
+</context>
+<context>
+    <name>copy_editor_book</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished">BiblioteQ: Περιοχή αντίτυπου (%1)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished">BiblioteQ: Περιοχή αντίτυπου</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Σφάλμα χρήσης</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Παρακαλώ να γίνει επιλογή του αντίτυπου που χρειάζεται να διαγραφεί.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">Χρειάζεται να επιλεχθεί τουλάχιστον ένα αντίτυπο.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Το αντίτυπο που επιλέχθηκε για διαγραφή είναι δανεισμένο.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Δεν είναι δυνατόν να παρουσιαστεί η κατάσταση δανεισμού για το συγκεκριμένο αντίτυπο.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Σφάλμα βάσης δεδομένων</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished">Αδυναμία καθορισμού του ελάχιστου αριθμού των ημερών.</translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Δανεισμός</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Τίτλος</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Διαθεσιμότητα</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Πρόοδος εργασιών</translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished">Δημιουργόντας αντικείμενα...</translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Σφάλμα μνήμης</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Δεν είναι αρκετή η μνήμη για τη διεργασία του αντικειμένου. Αυτό είναι ένα σοβαρό πρόβλημα!</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">Δεν είναι δυνατή η εκ νέου μεταφορά δεδομένων.</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Ανάκτηση πληροφοριών αντίτυπου...</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Αριθμός γραμμής</translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished">περιλαμβάνει τα κενά Barcode.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished">περιλαμβάνει τα διπλά Barcode.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Δεν είναι αρκετή η μνήμη για το αντίτυπο του αντικειμένου. Αυτό είναι ένα σοβαρό πρόβλημα!</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Δεν είναι δυνατή η αποθήκευση της ποσότητας ειδών.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback αποτυχία.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Δεν είναι δυνατή η αποθήκευση των δεδομένων του αντίτυπου.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Commit αποτυχία.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Unable to commit the copy data.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Unable to commit the copy data.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Αποθήκευση δεδομένων αντίτυπου...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Αδυναμία παραγωγής ενός μοναδικού ακεραίου.</translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Δεν είναι δυνατή η δημιουργία δεδομένων του αντίτυπου.</translation>
     </message>
 </context>
 <context>
@@ -1406,6 +1668,18 @@ URL</source>
         <source>Close Browser</source>
         <translation>Κλείσιμο περιοχής</translation>
     </message>
+    <message>
+        <source>Book Binding Types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <source>14</source>
+        <translation type="unfinished">14</translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
@@ -1415,7 +1689,7 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the </source>
-        <translation>Αδυναμία καθορισμού του </translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του </translation>
     </message>
     <message>
         <source>.</source>
@@ -1483,83 +1757,83 @@ URL</source>
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους CD.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους CD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός κινηματογραφικού κάδρου.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός κινηματογραφικού κάδρου.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας DVD.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας DVD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής DVD.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής DVD.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας γλώσσας.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας γλώσσας.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας περιοχής.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ελάχιστων ημερών.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ελάχιστων ημερών.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής νομισματικής μονάδας.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής νομισματικής μονάδας.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους παιχνιδιού.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής ενός είδους παιχνιδιού.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation>Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας παιχνιδιού.</translation>
+        <translation type="obsolete">Ένα σφάλμα δημιουργήθηκε στην προσπάθεια διαγαφής μιας βαθμολογίας παιχνιδιού.</translation>
     </message>
     <message>
         <source>cd format</source>
-        <translation>είδος CD</translation>
+        <translation type="obsolete">είδος CD</translation>
     </message>
     <message>
         <source>dvd aspect ratio</source>
-        <translation>κινηματογραφικό κάδρο</translation>
+        <translation type="obsolete">κινηματογραφικό κάδρο</translation>
     </message>
     <message>
         <source>dvd rating</source>
-        <translation>βαθμολογία DVD</translation>
+        <translation type="obsolete">βαθμολογία DVD</translation>
     </message>
     <message>
         <source>dvd region</source>
-        <translation>περιοχή DVD</translation>
+        <translation type="obsolete">περιοχή DVD</translation>
     </message>
     <message>
         <source>language</source>
-        <translation>γλώσσα</translation>
+        <translation type="obsolete">γλώσσα</translation>
     </message>
     <message>
         <source>monetary unit</source>
-        <translation>νομισματική μονάδα</translation>
+        <translation type="obsolete">νομισματική μονάδα</translation>
     </message>
     <message>
         <source>video game platform</source>
-        <translation>είδος παιχνιδιού</translation>
+        <translation type="obsolete">είδος παιχνιδιού</translation>
     </message>
     <message>
         <source>video game rating</source>
-        <translation>βαθμολογία παιχνιδιού</translation>
+        <translation type="obsolete">βαθμολογία παιχνιδιού</translation>
     </message>
     <message>
         <source>Unable to create the </source>
-        <translation>Αδυναμία δημιουργίας του </translation>
+        <translation type="obsolete">Αδυναμία δημιουργίας του </translation>
     </message>
     <message>
         <source> </source>
-        <translation> </translation>
+        <translation type="obsolete"> </translation>
     </message>
     <message>
         <source>Unable to create the location (</source>
@@ -1595,6 +1869,26 @@ URL</source>
     </message>
     <message>
         <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2052,11 +2346,11 @@ URL</source>
     </message>
     <message>
         <source>Hardcover</source>
-        <translation>Σκληρό εξώφυλλο</translation>
+        <translation type="obsolete">Σκληρό εξώφυλλο</translation>
     </message>
     <message>
         <source>Paperback</source>
-        <translation>Χαρτόδετο έντυπο</translation>
+        <translation type="obsolete">Χαρτόδετο έντυπο</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -2182,6 +2476,62 @@ URL</source>
     </message>
     <message>
         <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3161,6 +3511,14 @@ URL</source>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -3289,7 +3647,7 @@ URL</source>
     </message>
     <message>
         <source>Current Password</source>
-        <translation>Τρέχων κωδικός</translation>
+        <translation type="obsolete">Τρέχων κωδικός</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -3518,6 +3876,17 @@ URL</source>
     </message>
 </context>
 <context>
+    <name>photographView</name>
+    <message>
+        <source>BiblioteQ: Photograph View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
+    </message>
+</context>
+<context>
     <name>qtbook</name>
     <message>
         <source>BiblioteQ has exited.</source>
@@ -3725,7 +4094,7 @@ URL</source>
     </message>
     <message>
         <source> selected items?</source>
-        <translation>επιλεγμένα αντικείμενα;</translation>
+        <translation type="obsolete">επιλεγμένα αντικείμενα;</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -4369,7 +4738,7 @@ URL</source>
     </message>
     <message>
         <source>The current password is incorrect.</source>
-        <translation>Ο συγκεκριμένος κωδικός δεν είναι σωστός.</translation>
+        <translation type="obsolete">Ο συγκεκριμένος κωδικός δεν είναι σωστός.</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
@@ -4614,7 +4983,7 @@ URL</source>
     <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;
 %1</translation>
     </message>
     <message>
@@ -4624,7 +4993,7 @@ URL</source>
     <message>
         <source>You have unsaved data. Continue?
 %1</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια;
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια;
 %1</translation>
     </message>
     <message>
@@ -4777,6 +5146,24 @@ URL</source>
     </message>
     <message>
         <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5148,7 +5535,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
@@ -5430,6 +5817,30 @@ URL</source>
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -5647,7 +6058,7 @@ URL</source>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Τίτλος</translation>
+        <translation type="unfinished">Τίτλος</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5655,7 +6066,7 @@ URL</source>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="obsolete">Καλλιτέχνης</translation>
+        <translation type="unfinished">Καλλιτέχνης</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5875,7 +6286,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -6031,6 +6442,18 @@ URL</source>
     </message>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6418,7 +6841,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -6556,6 +6979,10 @@ URL</source>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -6573,7 +7000,11 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6960,7 +7391,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
@@ -7194,6 +7625,10 @@ URL</source>
         <source>An SRU entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
@@ -7335,7 +7770,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>Collection ID:</source>
@@ -7467,6 +7902,14 @@ URL</source>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7830,7 +8273,7 @@ URL</source>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
+        <translation type="obsolete">Δεν έχουν αποθηκευτεί τα δεδομένα. Συνέχεια για κλείσιμο;</translation>
     </message>
     <message>
         <source>UPC:</source>
@@ -7952,6 +8395,10 @@ URL</source>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sruResultsDialog</name>
@@ -8024,6 +8471,14 @@ URL</source>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Καλλιτέχνης</translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -522,6 +522,61 @@
     </message>
 </context>
 <context>
+    <name>bookcopybrowser</name>
+    <message>
+        <source>BiblioteQ: Copies Browser</source>
+        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished">Date limite</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Code barre</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Disponibilité</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MYOID</source>
+        <translation type="unfinished">MYOID</translation>
+    </message>
+    <message>
+        <source>Copy Number</source>
+        <translation type="unfinished">Numéro de copie</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Supprimer</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>borrowers_editor</name>
     <message>
         <source>)</source>
@@ -865,6 +920,10 @@
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>checkedOutDialog</name>
@@ -1102,6 +1161,209 @@
     <message>
         <source>BiblioteQ: Copy Browser (%1)</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>copy_editor_book</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished">BiblioteQ : explorateur de copies</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ : erreur de l&apos;utilisateur</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Veuillez sélectionner la copie que vous projetez de supprimer.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">Vous devez avoir au moins une copie.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Il apparaît que la copie sélectionnée pour suppression est réservée.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Impossible de déterminer l&apos;état de réservation de la copie sélectionnée.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished">Impossible d&apos;extraire le nombre minimal de jours.</translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Réserver</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titre</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Code barre</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Disponibilité</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished">Construction des objets...</translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Erreur de mémoire</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">Impossible d&apos;extraire les données de copie.</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Extraction des informations concernant une copie...</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Numéro de ligne </translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished"> contient un code barre vide.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished"> contient un code barre en double.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Impossible de créer une transaction de base de données.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Impossible d&apos;allouer de la mémoire pour l&apos;objet « Copie ». Il s&apos;agit d&apos;un problème sérieux !</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Impossible d&apos;enregistrer la quantité de l&apos;article.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Retour en arrière impossible.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Impossible d&apos;enregistrer les données de la copie.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Validation impossible.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Impossible de valider les données de la copie.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Impossible de purger les données de la copie.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Enregistrement des données de la copies...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Impossible de générer un entier unique.</translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Impossible de créer les données de la copie.</translation>
     </message>
 </context>
 <context>
@@ -1368,6 +1630,18 @@
         <source>Add DVD Region</source>
         <translation>Ajouter une région de DVD</translation>
     </message>
+    <message>
+        <source>Book Binding Types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <source>14</source>
+        <translation type="unfinished">14</translation>
+    </message>
 </context>
 <context>
     <name>dbenumerations</name>
@@ -1397,11 +1671,11 @@
     </message>
     <message>
         <source>dvd aspect ratio</source>
-        <translation>rapport hauteur / largeur de dvd</translation>
+        <translation type="obsolete">rapport hauteur / largeur de dvd</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game ratings.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression de notes de jeux vidéo.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression de notes de jeux vidéo.</translation>
     </message>
     <message>
         <source>Journal</source>
@@ -1409,7 +1683,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des langues.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des langues.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
@@ -1421,7 +1695,7 @@
     </message>
     <message>
         <source>video game platform</source>
-        <translation>plate-forme de jeux vidéo</translation>
+        <translation type="obsolete">plate-forme de jeux vidéo</translation>
     </message>
     <message>
         <source>Video Game Platform</source>
@@ -1429,7 +1703,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des emplacements.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des emplacements.</translation>
     </message>
     <message>
         <source>Unable to create the minimum day (</source>
@@ -1441,7 +1715,7 @@
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression du nombre 
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression du nombre 
 minmal de jours.</translation>
     </message>
     <message>
@@ -1450,7 +1724,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur / largeur de DVD.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des rapports hauteur / largeur de DVD.</translation>
     </message>
     <message>
         <source>DVD Rating</source>
@@ -1462,15 +1736,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression de plates-formes de jeux vidéo.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression de plates-formes de jeux vidéo.</translation>
     </message>
     <message>
         <source>Unable to retrieve the </source>
-        <translation>Impossible d&apos;extraire le </translation>
+        <translation type="obsolete">Impossible d&apos;extraire le </translation>
     </message>
     <message>
         <source>video game rating</source>
-        <translation>note de jeu vidéo</translation>
+        <translation type="obsolete">note de jeu vidéo</translation>
     </message>
     <message>
         <source>Unable to create the location (</source>
@@ -1478,19 +1752,19 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des unités monétaires.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des unités monétaires.</translation>
     </message>
     <message>
         <source>cd format</source>
-        <translation>format de cd</translation>
+        <translation type="obsolete">format de cd</translation>
     </message>
     <message>
         <source>dvd region</source>
-        <translation>région de dvd</translation>
+        <translation type="obsolete">région de dvd</translation>
     </message>
     <message>
         <source>dvd rating</source>
-        <translation>note de dvd</translation>
+        <translation type="obsolete">note de dvd</translation>
     </message>
     <message>
         <source>Magazine</source>
@@ -1502,7 +1776,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>language</source>
-        <translation>langue</translation>
+        <translation type="obsolete">langue</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1514,7 +1788,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
-        <translation>Un erreur est survenue lors d&apos;une tentative de suppression des formats de CD.</translation>
+        <translation type="obsolete">Un erreur est survenue lors d&apos;une tentative de suppression des formats de CD.</translation>
     </message>
     <message>
         <source>Video Game</source>
@@ -1522,7 +1796,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to create the </source>
-        <translation>Impossible de créer le </translation>
+        <translation type="obsolete">Impossible de créer le </translation>
     </message>
     <message>
         <source>Music CD</source>
@@ -1538,15 +1812,15 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>monetary unit</source>
-        <translation>unité monétaire</translation>
+        <translation type="obsolete">unité monétaire</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd regions.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des régions de dvd.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des régions de dvd.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd ratings.</source>
-        <translation>Une erreur est survenue lors d&apos;une tentative de suppression des notes de dvd.</translation>
+        <translation type="obsolete">Une erreur est survenue lors d&apos;une tentative de suppression des notes de dvd.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -1557,11 +1831,27 @@ minmal de jours.</translation>
         <translation>Erreur de la base de données</translation>
     </message>
     <message>
-        <source> </source>
+        <source>Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Photograph Collection</source>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1925,7 +2215,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Paperback</source>
-        <translation>Livre broché</translation>
+        <translation type="obsolete">Livre broché</translation>
     </message>
     <message>
         <source>&amp;Download</source>
@@ -1937,7 +2227,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Hardcover</source>
-        <translation>Livre relié</translation>
+        <translation type="obsolete">Livre relié</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -2017,6 +2307,62 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2836,6 +3182,14 @@ minmal de jours.</translation>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>membersBrowser</name>
@@ -2948,7 +3302,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Current Password</source>
-        <translation>Mot de passe actuel</translation>
+        <translation type="obsolete">Mot de passe actuel</translation>
     </message>
     <message>
         <source>BiblioteQ: Password Selection</source>
@@ -3182,6 +3536,17 @@ minmal de jours.</translation>
     <message>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>photographView</name>
+    <message>
+        <source>BiblioteQ: Photograph View</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -3600,7 +3965,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source> selected items?</source>
-        <translation> articles sélectionnés ?</translation>
+        <translation type="obsolete"> articles sélectionnés ?</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -4129,7 +4494,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>The current password is incorrect.</source>
-        <translation>Le mot de passe actuel est incorrect.</translation>
+        <translation type="obsolete">Le mot de passe actuel est incorrect.</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4142,13 +4507,13 @@ minmal de jours.</translation>
     <message>
         <source>You have unsaved data. Continue closing?
 %1</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?
 %1</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?
 %1</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre ?
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre ?
 %1</translation>
     </message>
     <message>
@@ -4333,6 +4698,24 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4708,7 +5091,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -4890,6 +5273,30 @@ minmal de jours.</translation>
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_cd</name>
@@ -4919,7 +5326,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="obsolete">Titre</translation>
+        <translation type="unfinished">Titre</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
@@ -5011,7 +5418,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="obsolete">Artiste</translation>
+        <translation type="unfinished">Artiste</translation>
     </message>
     <message>
         <source>Audio:</source>
@@ -5239,7 +5646,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
@@ -5395,6 +5802,18 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5718,7 +6137,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5848,6 +6267,10 @@ minmal de jours.</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_journal</name>
@@ -5857,7 +6280,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6220,7 +6647,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -6406,6 +6833,10 @@ minmal de jours.</translation>
         <source>An SRU entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
@@ -6547,7 +6978,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation type="unfinished">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Collection ID:</source>
@@ -6679,6 +7110,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6982,7 +7421,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
-        <translation>Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
+        <translation type="obsolete">Vous avez des données non enregistrées. Poursuivre la fermeture ?</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
@@ -7088,6 +7527,10 @@ minmal de jours.</translation>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sruResultsDialog</name>
@@ -7160,6 +7603,14 @@ minmal de jours.</translation>
     <message>
         <source>Track Title</source>
         <translation>Titre de la piste</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Artiste</translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
