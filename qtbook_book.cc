@@ -183,14 +183,18 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   connect(httpProgress, SIGNAL(rejected(void)), this,
 	  SLOT(slotCancelImageDownload(void)));
   id.resetButton->setMenu(menu);
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  menu->actions()[2],
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  menu->actions()[3],
-	  SLOT(setEnabled(bool)));
+
+  if(menu->actions().size() >= 4)
+    {
+      connect(id.isbnAvailableCheckBox,
+	      SIGNAL(toggled(bool)),
+	      menu->actions()[2],
+	      SLOT(setEnabled(bool)));
+      connect(id.isbnAvailableCheckBox,
+	      SIGNAL(toggled(bool)),
+	      menu->actions()[3],
+	      SLOT(setEnabled(bool)));
+    }
 
   QString errorstr("");
 
@@ -1194,8 +1198,12 @@ void qtbook_book::search(const QString &field, const QString &value)
     {
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
       setWindowTitle(tr("BiblioteQ: Database Book Search"));
       engWindowTitle = "Search";
@@ -1346,8 +1354,12 @@ void qtbook_book::modify(const int state)
 
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
-      actions[0]->setVisible(false);
-      actions[1]->setVisible(false);
+      if(actions.size() >= 2)
+	{
+	  actions[0]->setVisible(false);
+	  actions[1]->setVisible(false);
+	}
+
       actions.clear();
     }
 
@@ -1631,7 +1643,11 @@ void qtbook_book::slotReset(void)
     {
       QList<QAction *> actions = id.resetButton->menu()->actions();
 
-      if(action == actions[0])
+      if(actions.size() < 25)
+	{
+	  // Error.
+	}
+      else if(action == actions[0])
 	id.front_image->clear();
       else if(action == actions[1])
 	id.back_image->clear();
