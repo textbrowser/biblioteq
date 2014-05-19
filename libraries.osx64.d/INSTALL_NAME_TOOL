@@ -4,6 +4,6 @@ install_name_tool -change @loader_path/../lib/libcrypto.1.0.0.dylib libcrypto.1.
 install_name_tool -change @loader_path/../lib/libcrypto.1.0.0.dylib libcrypto.1.0.0.dylib libpq.dylib
 install_name_tool -change @loader_path/../lib/libcrypto.1.0.0.dylib libcrypto.1.0.0.dylib libpq.5.dylib
 install_name_tool -change @loader_path/../lib/libcrypto.1.0.0.dylib libcrypto.1.0.0.dylib libpq.5.5.dylib
-install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libcrypto.1.0.0.dylib libpq.dylib
-install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libcrypto.1.0.0.dylib libpq.5.dylib
-install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libcrypto.1.0.0.dylib libpq.5.5.dylib
+install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libssl.1.0.0.dylib libpq.dylib
+install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libssl.1.0.0.dylib libpq.5.dylib
+install_name_tool -change @loader_path/../lib/libssl.1.0.0.dylib libssl.1.0.0.dylib libpq.5.5.dylib
