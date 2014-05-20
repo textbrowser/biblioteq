@@ -123,21 +123,9 @@ icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt1.extra = cp -p /Library/PostgreSQL/*/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt2.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt2.extra = cp -p /Library/PostgreSQL/*/lib/libssl.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt3.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt3.extra = cp -p /Library/PostgreSQL/*/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/lib/libcrypto.dylib
-aftermacdeployqt4.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt4.extra = cp -p /Library/PostgreSQL/*/lib/libssl.1.0.0.dylib ./BiblioteQ.app/Contents/lib/libssl.dylib
-aftermacdeployqt5.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt5.extra = cp -p /Library/PostgreSQL/*/lib/libcrypto.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt6.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt6.extra = cp -p /Library/PostgreSQL/*/lib/libssl.1.0.0.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt7.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt7.extra = cp -p /Library/PostgreSQL/*/lib/libpq.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt7.path  = BiblioteQ.app/Contents/Frameworks
-aftermacdeployqt7.extra = cp -p /Library/PostgreSQL/*/lib/libpq.5.dylib ./BiblioteQ.app/Contents/Frameworks/.
+aftermacdeployqt1.extra = cp libraries.osx64.d/*.dylib ./BiblioteQ.app/Contents/lib/.
+aftermacdeployqt2.path  = .
+aftermacdeployqt2.extra = install_name_tool -change /usr/lib/libpq.5.dylib @loader_path/../../lib/libpq.5.5.dylib BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
@@ -151,11 +139,6 @@ INSTALLS	= preinstall \
 		  macdeployqt \
                   aftermacdeployqt1 \
                   aftermacdeployqt2 \
-                  aftermacdeployqt3 \
-                  aftermacdeployqt4 \
-                  aftermacdeployqt5 \
-                  aftermacdeployqt6 \
-                  aftermacdeployqt7 \
 		  conf \
 		  doc1 \
 		  doc2 \
