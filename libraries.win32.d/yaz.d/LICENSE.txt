@@ -1,4 +1,4 @@
-Copyright (c) 1995-2013, Index Data.
+Copyright (c) 1995-2014, Index Data.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
