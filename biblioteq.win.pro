@@ -19,7 +19,7 @@ ICON		= icons.d\\book.png
 INCLUDEPATH	+= include.d include.win32.d
 LIBS		+= -L"." \
 		   -L"libraries.win32.d\\sqlite3.d" \
-		   -L"libraries.win32.d\\yaz.d" -lsqlite3 -lyaz4
+		   -L"libraries.win32.d\\yaz.d" -lsqlite3 -lyaz5
 RC_FILE		= biblioteq.win.rc
 
 FORMS           = adminsetup.ui \
