@@ -161,6 +161,7 @@ YAZ_EXPORT int cs_parse_host(const char *uri, const char **host,
 
 #define CS_FLAGS_BLOCKING 1
 #define CS_FLAGS_NUMERICHOST 2
+#define CS_FLAGS_DNS_NO_BLOCK 4
 
 YAZ_END_CDECL
 

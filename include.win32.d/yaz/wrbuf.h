@@ -242,10 +242,19 @@ YAZ_EXPORT int wrbuf_grow(WRBUF b, size_t minsize);
 #define wrbuf_buf(b) ((b)->buf)
 
 /** \brief returns WRBUF content as C-string
-    \param b WRBUF
+    \param b WRBUF (may not be NULL)
     \returns C-string
 */
 YAZ_EXPORT const char *wrbuf_cstr(WRBUF b);
+
+/** \brief returns WRBUF content as C-string or NULL
+    \param b WRBUF
+    \returns C-string or NULL
+
+    This function returns NULL if either b is NULL or length of buffer is 0
+*/
+YAZ_EXPORT
+const char *wrbuf_cstr_null(WRBUF b);
 
 #define wrbuf_putc(b, c) \
     ((void) ((b)->pos >= (b)->size ? wrbuf_grow(b, 1) : 0),  \

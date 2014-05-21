@@ -171,6 +171,7 @@ YAZ_EXPORT void odr_setelement(ODR o, const char *addinfo);
 YAZ_EXPORT const char *odr_getelement(ODR o);
 YAZ_EXPORT void odr_perror(ODR o, const char *message);
 YAZ_EXPORT void odr_setprint(ODR o, FILE *file);
+YAZ_EXPORT void odr_setprint_noclose(ODR o, FILE *file);
 YAZ_EXPORT ODR odr_createmem(int direction);
 YAZ_EXPORT void odr_reset(ODR o);
 YAZ_EXPORT void odr_destroy(ODR o);

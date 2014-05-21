@@ -37,7 +37,25 @@
 
 YAZ_BEGIN_CDECL
 
-/** \brief transforms RPN query to CQL output stream
+/** \brief transforms RPN query to CQL output stream (re-entrant)
+    \param ct CQL transform handle
+    \param addinfo for additional error info
+    \param pr print function
+    \param client_data opaque data to be passed to print handler
+    \param q RPN Query
+    \retval 0 success
+    \retval !=0 failure (error code)
+ */
+YAZ_EXPORT
+int cql_transform_rpn2cql_stream_r(cql_transform_t ct,
+                                   WRBUF addinfo,
+                                   void (*pr)(const char *buf,
+                                              void *client_data),
+                                   void *client_data,
+                                   Z_RPNQuery *q);
+
+
+/** \brief transforms RPN query to CQL output stream (NOT re-entrant)
     \param ct CQL transform handle
     \param pr print function
     \param client_data opaque data to be passed to print handler
@@ -52,7 +70,7 @@ int cql_transform_rpn2cql_stream(cql_transform_t ct,
                                  Z_RPNQuery *q);
 
 
-/** \brief transforms RPN query to CQL WRBUF
+/** \brief transforms RPN query to CQL WRBUF (NOT re-entrant)
     \param ct CQL transform handle
     \param w WRBUF handle for result
     \param q RPN Query
@@ -60,9 +78,7 @@ int cql_transform_rpn2cql_stream(cql_transform_t ct,
     \retval !=0 failure (error code)
  */
 YAZ_EXPORT
-int cql_transform_rpn2cql_wrbuf(cql_transform_t ct,
-                                WRBUF w,
-                                Z_RPNQuery *q);
+int cql_transform_rpn2cql_wrbuf(cql_transform_t ct, WRBUF w, Z_RPNQuery *q);
 
 /** \brief find a pattern that has a subset of attributes
     \param ct CQL transform handle

@@ -33,16 +33,16 @@
 #include <yaz/yconfig.h>
 
 /** \brief YAZ version as string */
-#define YAZ_VERSION "5.0.18"
+#define YAZ_VERSION "5.1.1"
 
 /** \brief YAZ version as integer (for comparison purposes) */
-#define YAZ_VERSIONL 0x50012
+#define YAZ_VERSIONL 0x50101
 
 /** \brief YAZ file version for YAZ DLL (resource) */
-#define YAZ_FILEVERSION 5,0,18,1
+#define YAZ_FILEVERSION 5,1,1,1
 
 /** \brief SHA1 ID for YAZ (Git) */
-#define YAZ_VERSION_SHA1 "7143bc8f77ac03fdb6f36f30b16cf64c2d6cc3e2"
+#define YAZ_VERSION_SHA1 "96b12227d0e350dab63f26a8bb1c8e2f7f834bf3"
 
 YAZ_BEGIN_CDECL
 

@@ -193,6 +193,14 @@ void yaz_set_esn(Z_RecordComposition **comp_p, const char *esn, NMEM nmem);
 YAZ_EXPORT
 Z_DefaultDiagFormat *yaz_decode_init_diag(int no, Z_InitResponse *initrs);
 
+/** \brief creates AttributeList with type=1(use) and string value
+    \param o ODR for encoding
+    \param name use-value
+    \returns attribute list with only one use-attribute
+*/
+YAZ_EXPORT
+Z_AttributeList *zget_AttributeList_use_string(ODR o, const char *name);
+
 YAZ_END_CDECL
 
 #include <yaz/prt-ext.h>

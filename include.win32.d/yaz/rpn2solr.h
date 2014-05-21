@@ -37,7 +37,23 @@
 
 YAZ_BEGIN_CDECL
 
-/** \brief transforms RPN query to SOLR output stream
+/** \brief transforms RPN query to SOLR output stream (re-entrant)
+    \param ct SOLR transform handle
+    \param addinfo additional info on error
+    \param pr print function
+    \param client_data opaque data to be passed to print handler
+    \param q RPN Query
+    \retval 0 success
+    \retval !=0 failure (error code)
+ */
+YAZ_EXPORT
+int solr_transform_rpn2solr_stream_r(solr_transform_t ct,
+                                     WRBUF addinfo,
+                                     void (*pr)(const char *buf, void *client_data),
+                                     void *client_data,
+                                     Z_RPNQuery *q);
+
+/** \brief transforms RPN query to SOLR output stream (NOT re-entrant)
     \param ct SOLR transform handle
     \param pr print function
     \param client_data opaque data to be passed to print handler
