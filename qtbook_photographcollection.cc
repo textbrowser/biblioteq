@@ -29,7 +29,7 @@ extern QApplication *qapp;
 qtbook_photographcollection::qtbook_photographcollection
 (QMainWindow *parentArg,
  const QString &oidArg,
- const int rowArg):QMainWindow()
+ const int rowArg):QMainWindow(), qtbook_item(rowArg)
 {
   QMenu *menu1 = 0;
   QMenu *menu2 = 0;

@@ -36,7 +36,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 				 const QString &oidArg,
 				 const int rowArg,
 				 const QString &subTypeArg):
-  QMainWindow()
+  QMainWindow(), qtbook_item(rowArg)
 {
   QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");

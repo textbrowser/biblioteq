@@ -27,7 +27,7 @@ extern QApplication *qapp;
 qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
 				   const QString &oidArg,
 				   const int rowArg):
-  QMainWindow()
+  QMainWindow(), qtbook_item(rowArg)
 {
   QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"

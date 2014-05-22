@@ -30,7 +30,7 @@ extern QApplication *qapp;
 qtbook_book::qtbook_book(QMainWindow *parentArg,
 			 const QString &oidArg,
 			 const int rowArg):
-  QMainWindow()
+  QMainWindow(), qtbook_item(rowArg)
 {
   QMenu *menu = 0;
   QGraphicsScene *scene1 = 0;

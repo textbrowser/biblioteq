@@ -27,7 +27,7 @@ extern QApplication *qapp;
 qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
 		       const QString &oidArg,
 		       const int rowArg):
-  QMainWindow()
+  QMainWindow(), qtbook_item(rowArg)
 {
   QMenu *menu = 0;
   QRegExp rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
