@@ -66,6 +66,8 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
   QString filename = "";
 
+  QGraphicsView::dragMoveEvent(event);
+
 #if defined(Q_OS_WIN32)
   if(event)
     for(int i = 0; i < event->mimeData()->formats().size(); i++)
@@ -170,7 +172,8 @@ void image_drop_site::keyPressEvent(QKeyEvent *event)
   if(acceptDrops())
     if(event)
       if(event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
-	clear();
+	if(!scene()->selectedItems().isEmpty())
+	  clear();
 }
 
 /*
@@ -296,10 +299,11 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 ** -- mouseDoubleClickEvent() --
 */
 
-void image_drop_site::mouseDoubleClickEvent(QMouseEvent *e)
+void image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  Q_UNUSED(e);
   QPixmap pixmap;
+
+  QGraphicsView::mouseDoubleClickEvent(event);
 
   if(image.width() < width() && image.height() < height())
     return;
@@ -375,5 +379,5 @@ void image_drop_site::setImage(const QImage &image)
 
 void image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
 {
-  Q_UNUSED(event);
+  QGraphicsView::dragLeaveEvent(event);
 }
