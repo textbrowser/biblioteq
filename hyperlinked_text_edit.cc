@@ -12,9 +12,9 @@ extern qtbook *qmain;
 ** -- hyperlinked_text_edit() --
 */
 
-hyperlinked_text_edit::hyperlinked_text_edit(QWidget *parent)
+hyperlinked_text_edit::hyperlinked_text_edit(QWidget *parent):
+  QTextBrowser(parent)
 {
-  Q_UNUSED(parent);
   connect(this, SIGNAL(anchorClicked(const QUrl &)),
 	  this, SLOT(slotAnchorClicked(const QUrl &)));
 }
