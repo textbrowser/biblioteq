@@ -1707,10 +1707,12 @@ QStringList misc_functions::getMinimumDays(const QSqlDatabase &db,
 
   if(query.exec(querystr))
     while(query.next())
-      if(query.value(0).toString() == "CD")
-	map["Music CD"] = query.value(1).toString();
-      else
-	map[query.value(0).toString()] = query.value(1).toString();
+      {
+	if(query.value(0).toString() == "CD")
+	  map["Music CD"] = query.value(1).toString();
+	else
+	  map[query.value(0).toString()] = query.value(1).toString();
+      }
 
   if(!map.contains("Book"))
     map["Book"] = "1";
