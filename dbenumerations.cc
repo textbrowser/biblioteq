@@ -13,7 +13,7 @@ extern QApplication *qapp;
 ** -- dbenumerations() --
 */
 
-dbenumerations::dbenumerations(void):QMainWindow()
+dbenumerations::dbenumerations(QWidget *parent):QMainWindow(parent)
 {
   ui.setupUi(this);
 #ifdef Q_OS_MAC

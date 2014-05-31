@@ -273,10 +273,10 @@ qtbook::qtbook(void):QMainWindow()
   if((admin_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((members_diag = new(std::nothrow) QMainWindow()) == 0)
+  if((members_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((history_diag = new(std::nothrow) QMainWindow()) == 0)
+  if((history_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
@@ -289,7 +289,7 @@ qtbook::qtbook(void):QMainWindow()
   if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((db_enumerations = new(std::nothrow) dbenumerations()) == 0)
+  if((db_enumerations = new(std::nothrow) dbenumerations(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu1 = new(std::nothrow) QMenu(this)) == 0)
@@ -3006,10 +3006,13 @@ void qtbook::slotSaveConfig(void)
 
   if(ui.actionPreserveGeometry->isChecked())
     {
-      if(misc_functions::isGnome())
-	settings.setValue("main_window_geometry", geometry());
-      else
-	settings.setValue("main_window_geometry", saveGeometry());
+      if(!isFullScreen())
+	{
+	  if(misc_functions::isGnome())
+	    settings.setValue("main_window_geometry", geometry());
+	  else
+	    settings.setValue("main_window_geometry", saveGeometry());
+	}
     }
   else
     settings.remove("main_window_geometry");

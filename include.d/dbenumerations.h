@@ -18,7 +18,7 @@ class dbenumerations: public QMainWindow
   Q_OBJECT
 
  public:
-  dbenumerations(void);
+  dbenumerations(QWidget *parent);
   void show(QMainWindow *parent, const bool populate);
   void clear(void);
 

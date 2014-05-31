@@ -8,12 +8,13 @@ QT		+= network printsupport sql widgets
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
+QMAKE_CXX	= clang++
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=4 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic -pie
+			  -fwrapv -mtune=generic
 QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
