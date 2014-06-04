@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>16x16/add.png</file>
+        <file>16x16/cancel.png</file>
+        <file>16x16/connected.png</file>
+        <file>16x16/convert.png</file>
+        <file>16x16/details.png</file>
+        <file>16x16/disconnected.png</file>
+        <file>16x16/down.png</file>
+        <file>16x16/edit.png</file>
+        <file>16x16/editcopy.png</file>
+        <file>16x16/edittracks.png</file>
+    </qresource>
+</RCC>
