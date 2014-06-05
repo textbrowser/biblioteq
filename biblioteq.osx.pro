@@ -120,8 +120,6 @@ aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
 aftermacdeployqt1.extra = cp libraries.osx64.d/*.dylib ./BiblioteQ.app/Contents/lib/.
 aftermacdeployqt2.path  = .
 aftermacdeployqt2.extra = install_name_tool -change /usr/lib/libpq.5.dylib @loader_path/../../lib/libpq.5.5.dylib BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
-postinstall.path	= /Applications/BiblioteQ.d
-postinstall.extra	= find /Applications/BiblioteQ.d -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 preinstall.path         = /Applications/BiblioteQ.d
 preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
 sql.path		= /Applications/BiblioteQ.d
@@ -133,10 +131,9 @@ INSTALLS	= preinstall \
 		  macdeployqt \
                   aftermacdeployqt1 \
                   aftermacdeployqt2 \
+		  biblioteq \
 		  conf \
 		  doc1 \
 		  doc2 \
 		  sql \
-		  translations \
-                  biblioteq \
-		  postinstall
+		  translations

@@ -3039,7 +3039,7 @@ int qtbook::populateTable(const int search_type_arg,
 		  image.loadFromData(query.value(j).toByteArray());
 
 		if(image.isNull())
-		  image = QImage("icons.d/no_image.png");
+		  image = QImage(":/no_image.png");
 
 		/*
 		** The size of no_image.png is 126x187.

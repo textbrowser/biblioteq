@@ -110,18 +110,12 @@ biblioteq.path		= /usr/local/biblioteq
 biblioteq.files		= BiblioteQ
 conf.path		= /usr/local/biblioteq
 conf.files		= biblioteq.conf
-icons.path		= /usr/local/biblioteq
-icons.files		= icons.d
-postinstall.path	= /usr/local/biblioteq
-postinstall.extra	= find /usr/local/biblioteq -name .svn -exec rm -rf {} \\; 2>/dev/null; echo
 sh.path			= /usr/local/biblioteq
 sh.files		= biblioteq.sh
 translations.path	= /usr/local/biblioteq/translations.d
 translations.files	= translations.d/*.qm
 
-INSTALLS	= icons \
-                  translations \
-                  biblioteq \
-                  conf \
-                  sh \
-                  postinstall
+INSTALLS	= biblioteq \
+		  conf \
+		  sh \
+                  translations
