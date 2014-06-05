@@ -16,6 +16,7 @@ QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -fwrapv -mtune=generic -pie
 QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
+QMAKE_STRIP	= echo
 
 ICON		= icons.d/book.png
 INCLUDEPATH	+= include.d /usr/local/include
