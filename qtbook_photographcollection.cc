@@ -560,6 +560,17 @@ void qtbook_photographcollection::updateWindow(const int state)
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
       engWindowTitle = "Modify";
+      disconnect(scene,
+		 SIGNAL(deleteKeyPressed(void)),
+		 this,
+		 SLOT(slotDeleteItem(void)));
+      connect(scene,
+	      SIGNAL(deleteKeyPressed(void)),
+	      this,
+	      SLOT(slotDeleteItem(void)));
+      pc.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
+      connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
+	      this, SLOT(slotModifyItem(void)));
     }
   else
     {
