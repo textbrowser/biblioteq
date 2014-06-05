@@ -994,25 +994,39 @@ void qtbook_photographcollection::slotSelectImage(void)
 	{
 	  pc.thumbnail_collection->clear();
 	  pc.thumbnail_collection->image =
-	    QImage(dialog.selectedFiles().at(0));
-	  pc.thumbnail_collection->imageFormat =
-	    dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	    QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    pc.thumbnail_collection->imageFormat =
+	      dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
 	  pc.thumbnail_collection->scene()->addPixmap
 	    (QPixmap().fromImage(pc.thumbnail_collection->image));
-	  pc.thumbnail_collection->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(pc.thumbnail_collection->scene()->items().size() > 0)
+	    pc.thumbnail_collection->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
       else
 	{
 	  photo.thumbnail_item->clear();
-	  photo.thumbnail_item->image = QImage(dialog.selectedFiles().at(0));
-	  photo.thumbnail_item->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  photo.thumbnail_item->image = QImage(dialog.selectedFiles().
+					       value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    photo.thumbnail_item->imageFormat = dialog.selectedFiles().
+	      value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
 	  photo.thumbnail_item->scene()->addPixmap
 	    (QPixmap().fromImage(photo.thumbnail_item->image));
-	  photo.thumbnail_item->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(photo.thumbnail_item->scene()->items().size() > 0)
+	    photo.thumbnail_item->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
     }
 }

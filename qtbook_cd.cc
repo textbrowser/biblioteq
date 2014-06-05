@@ -2247,24 +2247,36 @@ void qtbook_cd::slotSelectImage(void)
       if(button == cd.frontButton)
 	{
 	  cd.front_image->clear();
-	  cd.front_image->image = QImage(dialog.selectedFiles().at(0));
-	  cd.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  cd.front_image->image = QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    cd.front_image->imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
 	  cd.front_image->scene()->addPixmap
 	    (QPixmap().fromImage(cd.front_image->image));
-	  cd.front_image->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(cd.front_image->scene()->items().size() > 0)
+	    cd.front_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
       else
 	{
 	  cd.back_image->clear();
-	  cd.back_image->image = QImage(dialog.selectedFiles().at(0));
-	  cd.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	    (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  cd.back_image->image = QImage(dialog.selectedFiles().value(0));
+
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    cd.back_image->imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
+
 	  cd.back_image->scene()->addPixmap
 	    (QPixmap().fromImage(cd.back_image->image));
-	  cd.back_image->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(cd.back_image->scene()->items().size() > 0)
+	    cd.back_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
     }
 }

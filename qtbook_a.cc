@@ -2813,7 +2813,8 @@ void qtbook::readConfig(void)
   if(viewModeIndex < 0 || viewModeIndex > 1)
     viewModeIndex = 1;
 
-  if(!findChild<QActionGroup *> ("ViewModeMenu")->actions().isEmpty())
+  if(findChild<QActionGroup *> ("ViewModeMenu")->actions().
+     size() > viewModeIndex)
     findChild<QActionGroup *> ("ViewModeMenu")->
       actions().at(viewModeIndex)->setChecked(true);
 
@@ -7576,7 +7577,7 @@ void qtbook::slotSelectDatabaseFile(void)
   dialog.exec();
 
   if(dialog.result() == QDialog::Accepted)
-    br.filename->setText(dialog.selectedFiles().at(0));
+    br.filename->setText(dialog.selectedFiles().value(0));
 }
 
 /*
@@ -8638,8 +8639,8 @@ void qtbook::slotDisplayNewSqliteDialog(void)
       sqlite3 *ppDb = 0;
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      QFile::remove(dialog.selectedFiles().at(0));
-      rc = sqlite3_open_v2(dialog.selectedFiles().at(0).toUtf8(),
+      QFile::remove(dialog.selectedFiles().value(0));
+      rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
 			   &ppDb,
 			   SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE,
 			   0);
@@ -8709,7 +8710,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 		      QMessageBox::No) == QMessageBox::Yes)
 		    {
 		      slotDisconnect();
-		      br.filename->setText(dialog.selectedFiles().at(0));
+		      br.filename->setText(dialog.selectedFiles().value(0));
 		      slotConnectDB();
 		    }
 		}
@@ -8736,7 +8737,7 @@ void qtbook::slotDisplayNewSqliteDialog(void)
 
 	      if(found)
 		{
-		  br.filename->setText(dialog.selectedFiles().at(0));
+		  br.filename->setText(dialog.selectedFiles().value(0));
 		  slotConnectDB();
 		}
 	    }
@@ -8811,7 +8812,7 @@ void qtbook::slotExportAsCSV(void)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
-      QFile file(dialog.selectedFiles().at(0));
+      QFile file(dialog.selectedFiles().value(0));
 
       if(file.open(QIODevice::WriteOnly | QIODevice::Truncate |
 		   QIODevice::Text))

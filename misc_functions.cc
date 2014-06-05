@@ -676,14 +676,14 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 					const int column)
 {
   if(column < 0 || row < 0 || !table)
-    return QString();
+    return QString("");
 
   QTableWidgetItem *item = 0;
 
   if((item = table->item(row, column)))
     return item->text();
   else
-    return QString();
+    return QString("");
 }
 
 /*
@@ -695,7 +695,7 @@ QString misc_functions::getColumnString(const QTableWidget *table,
 					const QString &columnName)
 {
   if(columnName.isEmpty() || row < 0 || !table)
-    return QString();
+    return QString("");
 
   int i = 0;
   QString str = "";

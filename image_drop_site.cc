@@ -159,7 +159,8 @@ void image_drop_site::dropEvent(QDropEvent *event)
       scene()->addPixmap(pixmap);
 
       if(acceptDrops())
-	scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+	if(scene()->items().size() > 0)
+	  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
     }
 }
 
@@ -292,7 +293,8 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
   scene()->addPixmap(pixmap);
 
   if(acceptDrops())
-    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+    if(scene()->items().size() > 0)
+      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 /*
@@ -328,7 +330,8 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   doubleclicked = !doubleclicked;
 
   if(acceptDrops())
-    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+    if(scene()->items().size() > 0)
+      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 /*
@@ -370,7 +373,8 @@ void image_drop_site::setImage(const QImage &image)
   scene()->addPixmap(pixmap);
 
   if(acceptDrops())
-    scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+    if(scene()->items().size() > 0)
+      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
 }
 
 /*

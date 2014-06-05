@@ -3002,30 +3002,36 @@ void qtbook_book::slotSelectImage(void)
       if(button == id.frontButton)
 	{
 	  id.front_image->clear();
-	  id.front_image->image = QImage(dialog.selectedFiles().at(0));
+	  id.front_image->image = QImage(dialog.selectedFiles().value(0));
 
-	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
-	    id.front_image->imageFormat = dialog.selectedFiles().at(0).mid
-	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    id.front_image->imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
 
 	  id.front_image->scene()->addPixmap
 	    (QPixmap().fromImage(id.front_image->image));
-	  id.front_image->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(id.front_image->scene()->items().size() > 0)
+	    id.front_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
       else
 	{
 	  id.back_image->clear();
-	  id.back_image->image = QImage(dialog.selectedFiles().at(0));
+	  id.back_image->image = QImage(dialog.selectedFiles().value(0));
 
-	  if(dialog.selectedFiles().at(0).lastIndexOf(".") > -1)
-	    id.back_image->imageFormat = dialog.selectedFiles().at(0).mid
-	      (dialog.selectedFiles().at(0).lastIndexOf(".") + 1).toUpper();
+	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
+	    id.back_image->imageFormat = dialog.selectedFiles().value(0).mid
+	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
+	      toUpper();
 
 	  id.back_image->scene()->addPixmap
 	    (QPixmap().fromImage(id.back_image->image));
-	  id.back_image->scene()->items().at(0)->setFlags
-	    (QGraphicsItem::ItemIsSelectable);
+
+	  if(id.back_image->scene()->items().size() > 0)
+	    id.back_image->scene()->items().at(0)->setFlags
+	      (QGraphicsItem::ItemIsSelectable);
 	}
     }
 }
