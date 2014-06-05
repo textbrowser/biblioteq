@@ -14,8 +14,8 @@
    <string>BiblioteQ</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
@@ -87,8 +87,8 @@
                  <string>&amp;Select</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -141,8 +141,8 @@
                  <string>&amp;Select</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -487,8 +487,8 @@
                    <string>&amp;Copies</string>
                   </property>
                   <property name="icon">
-                   <iconset>
-                    <normaloff>icons.d/16x16/editcopy.png</normaloff>icons.d/16x16/editcopy.png</iconset>
+                   <iconset resource="icons.d/icons.qrc">
+                    <normaloff>:/16x16/editcopy.png</normaloff>:/16x16/editcopy.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -498,8 +498,8 @@
                    <string>&amp;Reservation Status</string>
                   </property>
                   <property name="icon">
-                   <iconset>
-                    <normaloff>icons.d/16x16/members.png</normaloff>icons.d/16x16/members.png</iconset>
+                   <iconset resource="icons.d/icons.qrc">
+                    <normaloff>:/16x16/members.png</normaloff>:/16x16/members.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -664,8 +664,8 @@
          <string>&amp;OK</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -681,8 +681,8 @@
          <string>&amp;Z39.50 Query</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
         </property>
        </widget>
       </item>
@@ -714,8 +714,8 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/fileprint.png</normaloff>icons.d/16x16/fileprint.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -731,8 +731,8 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -797,6 +797,8 @@
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

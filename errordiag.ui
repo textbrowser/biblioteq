@@ -14,8 +14,8 @@
    <string>BiblioteQ: Error Log</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
@@ -119,8 +119,8 @@
          <string>&amp;To Clipboard</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -136,8 +136,8 @@
          <string>&amp;Reset</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/reset.png</normaloff>icons.d/16x16/reset.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
         </property>
        </widget>
       </item>
@@ -153,8 +153,8 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -177,6 +177,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

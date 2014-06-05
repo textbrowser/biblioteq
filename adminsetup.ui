@@ -14,8 +14,8 @@
    <string>BiblioteQ: Administrator Browser</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -38,7 +38,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-14</y>
              <width>1099</width>
              <height>122</height>
             </rect>
@@ -120,7 +120,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -136,7 +136,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -149,7 +149,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -162,7 +162,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -175,7 +175,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -188,7 +188,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -201,7 +201,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -214,7 +214,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -227,7 +227,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -247,7 +247,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -260,7 +260,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -273,7 +273,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -293,7 +293,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -306,7 +306,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -319,7 +319,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -339,7 +339,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -352,7 +352,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -365,7 +365,7 @@
                <string/>
               </property>
               <property name="pixmap">
-               <pixmap>icons.d/16x16/ok.png</pixmap>
+               <pixmap resource="icons.d/icons.qrc">:/16x16/ok.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -436,8 +436,8 @@
          <string>Add Administrator</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/add.png</normaloff>:/32x32/add.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -456,8 +456,8 @@
          <string>Delete Selected Administrator</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/remove.png</normaloff>:/32x32/remove.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -479,8 +479,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/save.png</normaloff>icons.d/32x32/save.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/save.png</normaloff>:/32x32/save.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -506,8 +506,8 @@
          <string>Refresh Table</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -539,8 +539,8 @@
          <string>Close Browser</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/cancel.png</normaloff>:/32x32/cancel.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -567,6 +567,8 @@
   <tabstop>reloadButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

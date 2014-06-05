@@ -24,7 +24,6 @@ file *.sql
 file .\qt.conf
 file .\biblioteq.conf
 file /r .\release\doc.d
-file /r .\release\icons.d
 file /r .\release\plugins
 
 # The translations directory contains translation files

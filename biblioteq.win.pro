@@ -21,6 +21,7 @@ LIBS		+= -L"." \
 		   -L"libraries.win32.d\\sqlite3.d" \
 		   -L"libraries.win32.d\\yaz.d" -lsqlite3 -lyaz5
 RC_FILE		= biblioteq.win.rc
+RESOURCES	= icons.d\\icons.qrc
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \

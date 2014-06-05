@@ -14,8 +14,8 @@
    <string>BiblioteQ</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -242,8 +242,8 @@
              <string>Previous Page</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons.d/16x16/previous.png</normaloff>icons.d/16x16/previous.png</iconset>
+             <iconset resource="icons.d/icons.qrc">
+              <normaloff>:/16x16/previous.png</normaloff>:/16x16/previous.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -275,8 +275,8 @@
              <string>Next Page</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons.d/16x16/next.png</normaloff>icons.d/16x16/next.png</iconset>
+             <iconset resource="icons.d/icons.qrc">
+              <normaloff>:/16x16/next.png</normaloff>:/16x16/next.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -316,7 +316,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -363,8 +363,8 @@
       <string>&amp;Add Item</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons.d/16x16/add.png</normaloff>icons.d/16x16/add.png</iconset>
+      <iconset resource="icons.d/icons.qrc">
+       <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
      </property>
      <addaction name="action_Book"/>
      <addaction name="action_DVD"/>
@@ -561,8 +561,8 @@
   </widget>
   <action name="actionAbout">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/info.png</normaloff>icons.d/16x16/info.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/info.png</normaloff>:/16x16/info.png</iconset>
    </property>
    <property name="text">
     <string>&amp;About</string>
@@ -578,8 +578,8 @@
   </action>
   <action name="actionResizeColumns">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/resizecol.png</normaloff>icons.d/16x16/resizecol.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/resizecol.png</normaloff>:/16x16/resizecol.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Resize Columns to Contents</string>
@@ -587,8 +587,8 @@
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/filesave.png</normaloff>icons.d/16x16/filesave.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save Settings</string>
@@ -610,8 +610,8 @@
   </action>
   <action name="actionShowErrorDialog">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/log.png</normaloff>icons.d/16x16/log.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/log.png</normaloff>:/16x16/log.png</iconset>
    </property>
    <property name="text">
     <string>View Error &amp;Log</string>
@@ -630,8 +630,8 @@
   </action>
   <action name="actionConnect">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/connected.png</normaloff>icons.d/16x16/connected.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/connected.png</normaloff>:/16x16/connected.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Connect</string>
@@ -642,8 +642,8 @@
   </action>
   <action name="actionDisconnect">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/disconnected.png</normaloff>icons.d/16x16/disconnected.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/disconnected.png</normaloff>:/16x16/disconnected.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Disconnect</string>
@@ -654,8 +654,8 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/exit.png</normaloff>icons.d/16x16/exit.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/exit.png</normaloff>:/16x16/exit.png</iconset>
    </property>
    <property name="text">
     <string>Exit Bibliote&amp;Q</string>
@@ -666,8 +666,8 @@
   </action>
   <action name="actionDeleteEntry">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/eraser.png</normaloff>icons.d/16x16/eraser.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Delete Selected Item(s)</string>
@@ -678,8 +678,8 @@
   </action>
   <action name="actionModifyEntry">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/edit.png</normaloff>icons.d/16x16/edit.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/edit.png</normaloff>:/16x16/edit.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Modify Selected Item(s)</string>
@@ -690,8 +690,8 @@
   </action>
   <action name="actionMembersBrowser">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/members.png</normaloff>icons.d/16x16/members.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/members.png</normaloff>:/16x16/members.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Members Browser</string>
@@ -702,8 +702,8 @@
   </action>
   <action name="actionDatabaseSearch">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/find.png</normaloff>icons.d/16x16/find.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/find.png</normaloff>:/16x16/find.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Database Search</string>
@@ -720,8 +720,8 @@
   </action>
   <action name="actionRefreshTable">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/reload.png</normaloff>icons.d/16x16/reload.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Refresh View</string>
@@ -732,8 +732,8 @@
   </action>
   <action name="actionViewDetails">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/details.png</normaloff>icons.d/16x16/details.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/details.png</normaloff>:/16x16/details.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Selected Item(s)</string>
@@ -744,8 +744,8 @@
   </action>
   <action name="actionSetGlobalFonts">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/fonts.png</normaloff>icons.d/16x16/fonts.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/fonts.png</normaloff>:/16x16/fonts.png</iconset>
    </property>
    <property name="text">
     <string>Select &amp;Global Font</string>
@@ -764,8 +764,8 @@
   </action>
   <action name="connectTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/connect_established.png</normaloff>icons.d/32x32/connect_established.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/connect_established.png</normaloff>:/32x32/connect_established.png</iconset>
    </property>
    <property name="text">
     <string>Connect</string>
@@ -773,8 +773,8 @@
   </action>
   <action name="disconnectTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/connect_no.png</normaloff>icons.d/32x32/connect_no.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/connect_no.png</normaloff>:/32x32/connect_no.png</iconset>
    </property>
    <property name="text">
     <string>Disconnect</string>
@@ -782,8 +782,8 @@
   </action>
   <action name="detailsTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/details.png</normaloff>icons.d/32x32/details.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/details.png</normaloff>:/32x32/details.png</iconset>
    </property>
    <property name="text">
     <string>View Selected Item(s)</string>
@@ -791,8 +791,8 @@
   </action>
   <action name="createTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/add.png</normaloff>:/32x32/add.png</iconset>
    </property>
    <property name="text">
     <string>Add Item</string>
@@ -803,8 +803,8 @@
   </action>
   <action name="deleteTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/remove.png</normaloff>:/32x32/remove.png</iconset>
    </property>
    <property name="text">
     <string>Delete Selected Item(s)</string>
@@ -812,8 +812,8 @@
   </action>
   <action name="modifyTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/edit.png</normaloff>icons.d/32x32/edit.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/edit.png</normaloff>:/32x32/edit.png</iconset>
    </property>
    <property name="text">
     <string>Modify Selected Item(s)</string>
@@ -821,8 +821,8 @@
   </action>
   <action name="printTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/print.png</normaloff>:/32x32/print.png</iconset>
    </property>
    <property name="text">
     <string>Print Current View</string>
@@ -830,8 +830,8 @@
   </action>
   <action name="reserveTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/checkout.png</normaloff>icons.d/32x32/checkout.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/checkout.png</normaloff>:/32x32/checkout.png</iconset>
    </property>
    <property name="text">
     <string>Reserve Selected Item</string>
@@ -839,8 +839,8 @@
   </action>
   <action name="userTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/members.png</normaloff>icons.d/32x32/members.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/members.png</normaloff>:/32x32/members.png</iconset>
    </property>
    <property name="text">
     <string>Display Members Browser</string>
@@ -848,8 +848,8 @@
   </action>
   <action name="searchTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/find.png</normaloff>icons.d/32x32/find.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/find.png</normaloff>:/32x32/find.png</iconset>
    </property>
    <property name="text">
     <string>Database Search</string>
@@ -857,8 +857,8 @@
   </action>
   <action name="customQueryTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/customquery.png</normaloff>icons.d/32x32/customquery.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/customquery.png</normaloff>:/32x32/customquery.png</iconset>
    </property>
    <property name="text">
     <string>Custom Database Query</string>
@@ -866,8 +866,8 @@
   </action>
   <action name="refreshTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
    </property>
    <property name="text">
     <string>Refresh Table</string>
@@ -875,8 +875,8 @@
   </action>
   <action name="configTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/configure.png</normaloff>icons.d/32x32/configure.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/configure.png</normaloff>:/32x32/configure.png</iconset>
    </property>
    <property name="text">
     <string>Select Viewable Columns</string>
@@ -884,8 +884,8 @@
   </action>
   <action name="exitTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/exit.png</normaloff>icons.d/32x32/exit.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/exit.png</normaloff>:/32x32/exit.png</iconset>
    </property>
    <property name="text">
     <string>Exit BiblioteQ</string>
@@ -893,8 +893,8 @@
   </action>
   <action name="actionReservationHistory">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/history.png</normaloff>icons.d/32x32/history.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/history.png</normaloff>:/32x32/history.png</iconset>
    </property>
    <property name="text">
     <string>View Member's Reservation History</string>
@@ -902,8 +902,8 @@
   </action>
   <action name="actionChangePassword">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/password.png</normaloff>icons.d/32x32/password.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/password.png</normaloff>:/32x32/password.png</iconset>
    </property>
    <property name="text">
     <string>Change Password</string>
@@ -927,8 +927,8 @@
   </action>
   <action name="actionConfigureAdministratorPrivileges">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/identity.png</normaloff>icons.d/32x32/identity.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/identity.png</normaloff>:/32x32/identity.png</iconset>
    </property>
    <property name="text">
     <string>Configure Administrator Privileges</string>
@@ -936,8 +936,8 @@
   </action>
   <action name="actionRequests">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/request.png</normaloff>icons.d/32x32/request.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/request.png</normaloff>:/32x32/request.png</iconset>
    </property>
    <property name="text">
     <string>Item Requests</string>
@@ -961,8 +961,8 @@
   </action>
   <action name="action_New_SQLite_Database">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/filenew.png</normaloff>icons.d/16x16/filenew.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/filenew.png</normaloff>:/16x16/filenew.png</iconset>
    </property>
    <property name="text">
     <string>&amp;New SQLite Database</string>
@@ -973,8 +973,8 @@
   </action>
   <action name="actionDatabase_Enumerations">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/settings.png</normaloff>icons.d/32x32/settings.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/settings.png</normaloff>:/32x32/settings.png</iconset>
    </property>
    <property name="text">
     <string>Database Enumerations</string>
@@ -993,8 +993,8 @@
   </action>
   <action name="actionExport_Current_View">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/fileexport.png</normaloff>icons.d/16x16/fileexport.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Export Table View as CSV</string>
@@ -1002,8 +1002,8 @@
   </action>
   <action name="duplicateTool">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/32x32/duplicate.png</normaloff>icons.d/32x32/duplicate.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/32x32/duplicate.png</normaloff>:/32x32/duplicate.png</iconset>
    </property>
    <property name="text">
     <string>Duplicate</string>
@@ -1014,8 +1014,8 @@
   </action>
   <action name="actionDuplicateEntry">
    <property name="icon">
-    <iconset>
-     <normaloff>icons.d/16x16/editcopy.png</normaloff>icons.d/16x16/editcopy.png</iconset>
+    <iconset resource="icons.d/icons.qrc">
+     <normaloff>:/16x16/editcopy.png</normaloff>:/16x16/editcopy.png</iconset>
    </property>
    <property name="text">
     <string>D&amp;uplicate Selected Item(s)</string>
@@ -1140,6 +1140,8 @@
   <tabstop>previousPageButton</tabstop>
   <tabstop>nextPageButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

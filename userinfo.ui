@@ -14,8 +14,8 @@
    <string>BiblioteQ: Borrower Information</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <layout class="QVBoxLayout">
    <item>
@@ -720,8 +720,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/32x32/previous.png</normaloff>icons.d/32x32/previous.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/32x32/previous.png</normaloff>:/32x32/previous.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -759,8 +759,8 @@
         <string>&amp;Save</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
@@ -776,8 +776,8 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -803,8 +803,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/32x32/next.png</normaloff>icons.d/32x32/next.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/32x32/next.png</normaloff>:/32x32/next.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -846,6 +846,8 @@
   <tabstop>cancelButton</tabstop>
   <tabstop>nextTool</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

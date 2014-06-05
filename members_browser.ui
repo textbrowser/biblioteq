@@ -14,8 +14,8 @@
    <string>BiblioteQ: Members Browser</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout">
@@ -158,8 +158,8 @@
          <string>Add Member</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/add.png</normaloff>icons.d/32x32/add.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/add.png</normaloff>:/32x32/add.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -178,8 +178,8 @@
          <string>Delete Selected Member</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/remove.png</normaloff>icons.d/32x32/remove.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/remove.png</normaloff>:/32x32/remove.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -198,8 +198,8 @@
          <string>Modify Selected Member</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/edit.png</normaloff>icons.d/32x32/edit.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/edit.png</normaloff>:/32x32/edit.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -221,8 +221,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/history.png</normaloff>icons.d/32x32/history.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/history.png</normaloff>:/32x32/history.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -241,8 +241,8 @@
          <string>List Selected Member's Reserved Items</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/stamp.png</normaloff>icons.d/32x32/stamp.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/stamp.png</normaloff>:/32x32/stamp.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -264,8 +264,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/print.png</normaloff>icons.d/32x32/print.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/print.png</normaloff>:/32x32/print.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -291,8 +291,8 @@
          <string>Reserve Selected Item</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/checkout.png</normaloff>icons.d/32x32/checkout.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/checkout.png</normaloff>:/32x32/checkout.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -318,8 +318,8 @@
          <string>Grant Privileges</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/permissions.png</normaloff>icons.d/32x32/permissions.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/permissions.png</normaloff>:/32x32/permissions.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -338,8 +338,8 @@
          <string>List All Overdue Items</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/date.png</normaloff>icons.d/32x32/date.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/date.png</normaloff>:/32x32/date.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -358,8 +358,8 @@
          <string>Refresh Table</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/reload.png</normaloff>icons.d/32x32/reload.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -391,8 +391,8 @@
          <string>Close Browser</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/cancel.png</normaloff>icons.d/32x32/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/cancel.png</normaloff>:/32x32/cancel.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -428,6 +428,8 @@
   <tabstop>reloadButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -14,8 +14,8 @@
    <string>BiblioteQ</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1115</width>
-         <height>1527</height>
+         <width>1112</width>
+         <height>1545</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -93,8 +93,8 @@
                  <string>&amp;Download</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
                 </property>
                </widget>
               </item>
@@ -110,8 +110,8 @@
                  <string>&amp;Select</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -170,8 +170,8 @@
                  <string>&amp;Download</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/down.png</normaloff>icons.d/16x16/down.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/down.png</normaloff>:/16x16/down.png</iconset>
                 </property>
                </widget>
               </item>
@@ -193,8 +193,8 @@
                  <string>&amp;Select</string>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+                 <iconset resource="icons.d/icons.qrc">
+                  <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
               </item>
@@ -251,8 +251,8 @@
                     <string>From &amp;ISBN-13</string>
                    </property>
                    <property name="icon">
-                    <iconset>
-                     <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+                    <iconset resource="icons.d/icons.qrc">
+                     <normaloff>:/16x16/convert.png</normaloff>:/16x16/convert.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -280,8 +280,8 @@
                     <string>From &amp;ISBN-10</string>
                    </property>
                    <property name="icon">
-                    <iconset>
-                     <normaloff>icons.d/16x16/convert.png</normaloff>icons.d/16x16/convert.png</iconset>
+                    <iconset resource="icons.d/icons.qrc">
+                     <normaloff>:/16x16/convert.png</normaloff>:/16x16/convert.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -597,8 +597,8 @@
                    <string>&amp;Copies</string>
                   </property>
                   <property name="icon">
-                   <iconset>
-                    <normaloff>icons.d/16x16/editcopy.png</normaloff>icons.d/16x16/editcopy.png</iconset>
+                   <iconset resource="icons.d/icons.qrc">
+                    <normaloff>:/16x16/editcopy.png</normaloff>:/16x16/editcopy.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -608,8 +608,8 @@
                    <string>&amp;Reservation Status</string>
                   </property>
                   <property name="icon">
-                   <iconset>
-                    <normaloff>icons.d/16x16/members.png</normaloff>icons.d/16x16/members.png</iconset>
+                   <iconset resource="icons.d/icons.qrc">
+                    <normaloff>:/16x16/members.png</normaloff>:/16x16/members.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -921,8 +921,8 @@
          <string>&amp;OK</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
         </property>
        </widget>
       </item>
@@ -986,8 +986,8 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/fileprint.png</normaloff>icons.d/16x16/fileprint.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -1003,8 +1003,8 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -1081,6 +1081,8 @@
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

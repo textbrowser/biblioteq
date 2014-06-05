@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
+    	<file>book.png</file>
+	<file>no_image.png</file>
         <file>16x16/add.png</file>
         <file>16x16/cancel.png</file>
         <file>16x16/connected.png</file>
@@ -10,5 +12,58 @@
         <file>16x16/edit.png</file>
         <file>16x16/editcopy.png</file>
         <file>16x16/edittracks.png</file>
+        <file>16x16/eraser.png</file>
+        <file>16x16/exit.png</file>
+        <file>16x16/fileexport.png</file>
+        <file>16x16/filenew.png</file>
+        <file>16x16/fileopen.png</file>
+        <file>16x16/fileprint.png</file>
+        <file>16x16/filesave.png</file>
+        <file>16x16/find.png</file>
+        <file>16x16/fonts.png</file>
+        <file>16x16/gear.png</file>
+        <file>16x16/info.png</file>
+        <file>16x16/lock.png</file>
+        <file>16x16/log.png</file>
+        <file>16x16/members.png</file>
+        <file>16x16/next.png</file>
+        <file>16x16/ok.png</file>
+        <file>16x16/previous.png</file>
+        <file>16x16/reload.png</file>
+        <file>16x16/reset.png</file>
+        <file>16x16/resizecol.png</file>
+        <file>16x16/sum.png</file>
+        <file>16x16/unlock.png</file>
+	<file>32x32/add.png</file>
+	<file>32x32/cancel.png</file>
+	<file>32x32/checkout.png</file>
+	<file>32x32/configure.png</file>
+	<file>32x32/connect_established.png</file>
+	<file>32x32/connect_no.png</file>
+	<file>32x32/customquery.png</file>
+	<file>32x32/database.png</file>
+	<file>32x32/date.png</file>
+	<file>32x32/details.png</file>
+	<file>32x32/duplicate.png</file>
+	<file>32x32/edit.png</file>
+	<file>32x32/exit.png</file>
+	<file>32x32/fileopen.png</file>
+	<file>32x32/find.png</file>
+	<file>32x32/history.png</file>
+	<file>32x32/identity.png</file>
+	<file>32x32/log.png</file>
+	<file>32x32/members.png</file>
+	<file>32x32/next.png</file>
+	<file>32x32/password.png</file>
+	<file>32x32/permissions.png</file>
+	<file>32x32/previous.png</file>
+	<file>32x32/print.png</file>
+	<file>32x32/reload.png</file>
+	<file>32x32/remove.png</file>
+	<file>32x32/remove_request.png</file>
+	<file>32x32/request.png</file>
+	<file>32x32/save.png</file>
+	<file>32x32/settings.png</file>
+	<file>32x32/stamp.png</file>
     </qresource>
 </RCC>

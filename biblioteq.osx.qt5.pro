@@ -21,6 +21,7 @@ QMAKE_EXTRA_TARGETS = purge
 ICON		= icons.d/book.icns
 INCLUDEPATH	+= include.d /usr/local/include
 LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lyaz
+RESOURCES	= icons.d/icons.qrc
 
 FORMS           = adminsetup.ui \
 		  allinfo.ui \
@@ -119,8 +120,6 @@ doc1.path		= /Applications/BiblioteQ.d/doc.d
 doc1.files		= doc.d/*.pdf doc.d/*.txt doc.d/TO-DO
 doc2.path		= /Applications/BiblioteQ.d/doc.d/contributors.d
 doc2.files		= doc.d/contributors.d/*.docx doc.d/contributors.d/*.pdf
-icons.path		= /Applications/BiblioteQ.d
-icons.files		= icons.d
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
@@ -143,7 +142,6 @@ INSTALLS	= preinstall \
 		  conf \
 		  doc1 \
 		  doc2 \
-		  icons \
 		  sql \
 		  translations \
                   biblioteq \

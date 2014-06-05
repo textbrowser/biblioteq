@@ -340,7 +340,7 @@ qtbook::qtbook(void):QMainWindow()
   connect(menu2->addAction(tr("&Video Game Search")),
 	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
   menu3->setTearOffEnabled(true);
-  menu3->setWindowIcon(QIcon("icons.d/book.png"));
+  menu3->setWindowIcon(QIcon(":/book.png"));
   menu3->setWindowTitle(tr("BiblioteQ"));
   connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
@@ -921,7 +921,7 @@ void qtbook::adminSetup(void)
 
   if(status_bar_label != 0)
     {
-      status_bar_label->setPixmap(QPixmap("icons.d/16x16/unlock.png"));
+      status_bar_label->setPixmap(QPixmap(":/16x16/unlock.png"));
 
       if(roles.contains("administrator"))
 	status_bar_label->setToolTip(tr("Administrator Mode"));
@@ -1057,21 +1057,21 @@ void qtbook::showMain(void)
   if((connected_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       connected_bar_label->setPixmap
-	(QPixmap("icons.d/16x16/disconnected.png"));
+	(QPixmap(":/16x16/disconnected.png"));
       connected_bar_label->setToolTip(tr("Disconnected"));
       statusBar()->addPermanentWidget(connected_bar_label);
     }
 
   if((status_bar_label = new(std::nothrow) QLabel()) != 0)
     {
-      status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
+      status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
       status_bar_label->setToolTip(tr("Standard User Mode"));
       statusBar()->addPermanentWidget(status_bar_label);
     }
 
   if((error_bar_label = new(std::nothrow) QLabel()) != 0)
     {
-      error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
+      error_bar_label->setPixmap(QPixmap(":/16x16/ok.png"));
       error_bar_label->setToolTip(tr("Empty Error Log"));
       statusBar()->addPermanentWidget(error_bar_label);
     }
@@ -1200,7 +1200,7 @@ void qtbook::slotAbout(void)
      arg(BIBLIOTEQ_VERSION).
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
-  mb.setIconPixmap(QPixmap("./icons.d/book.png"));
+  mb.setIconPixmap(QPixmap(":/book.png"));
   mb.exec();
 }
 
@@ -3486,7 +3486,7 @@ void qtbook::slotDisplaySummary(void)
       */
 
       if(frontImage.isNull())
-	frontImage = QImage("icons.d/no_image.png");
+	frontImage = QImage(":/no_image.png");
 
       if(!frontImage.isNull())
 	frontImage = frontImage.scaled
@@ -3495,7 +3495,7 @@ void qtbook::slotDisplaySummary(void)
       if(type != "Photograph Collection")
 	{
 	  if(backImage.isNull())
-	    backImage = QImage("icons.d/no_image.png");
+	    backImage = QImage(":/no_image.png");
 
 	  if(!backImage.isNull())
 	    backImage = backImage.scaled
@@ -3886,7 +3886,7 @@ void qtbook::slotConnectDB(void)
 
   if(connected_bar_label != 0)
     {
-      connected_bar_label->setPixmap(QPixmap("icons.d/16x16/connected.png"));
+      connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
       connected_bar_label->setToolTip(tr("Connected"));
     }
 
@@ -4100,7 +4100,7 @@ void qtbook::slotDisconnect(void)
   ui.actionDatabase_Enumerations->setEnabled(false);
   ui.actionRequests->setEnabled(false);
   ui.actionRequests->setToolTip(tr("Item Requests"));
-  ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+  ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
   ui.graphicsView->scene()->clear();
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
@@ -4140,13 +4140,13 @@ void qtbook::slotDisconnect(void)
   if(connected_bar_label != 0)
     {
       connected_bar_label->setPixmap
-	(QPixmap("icons.d/16x16/disconnected.png"));
+	(QPixmap(":/16x16/disconnected.png"));
       connected_bar_label->setToolTip(tr("Disconnected"));
     }
 
   if(status_bar_label != 0)
     {
-      status_bar_label->setPixmap(QPixmap("icons.d/16x16/lock.png"));
+      status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
       status_bar_label->setToolTip(tr("Standard User Mode"));
     }
 
@@ -5007,7 +5007,7 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 	    ui.actionRequests->setEnabled(true);
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
-	      (QIcon("icons.d/32x32/remove_request.png"));
+	      (QIcon(":/32x32/remove_request.png"));
 	  }
 	else if(roles.isEmpty() && (typefilter == "All" ||
 				    typefilter == "All Available" ||
@@ -5019,20 +5019,20 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 				    typefilter == "Video Games"))
 	  {
 	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
-	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
 	else if(roles.isEmpty() && typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
-	      (QIcon("icons.d/32x32/remove_request.png"));
+	      (QIcon(":/32x32/remove_request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
 	else
 	  {
 	    ui.actionRequests->setToolTip(tr("Item Requests"));
-	    ui.actionRequests->setIcon(QIcon("icons.d/32x32/request.png"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
 	    ui.actionRequests->setEnabled(false);
 	  }
       }
@@ -5189,7 +5189,7 @@ void qtbook::addError(const QString &type, const QString &summary,
 
   if(error_bar_label != 0)
     {
-      error_bar_label->setPixmap(QPixmap("icons.d/16x16/log.png"));
+      error_bar_label->setPixmap(QPixmap(":/16x16/log.png"));
       error_bar_label->setToolTip(tr("Error Log Active"));
     }
 
@@ -5260,7 +5260,7 @@ void qtbook::slotResetErrorLog(void)
 
   if(error_bar_label != 0)
     {
-      error_bar_label->setPixmap(QPixmap("icons.d/16x16/ok.png"));
+      error_bar_label->setPixmap(QPixmap(":/16x16/ok.png"));
       error_bar_label->setToolTip(tr("Empty Error Log"));
     }
 }
@@ -9041,7 +9041,7 @@ void qtbook::updateSceneItem(const QString &oid, const QString &type,
 		item->setPixmap(pixmap);
 	      else
 		{
-		  QImage l_image("icons.d/no_image.png");
+		  QImage l_image(":/no_image.png");
 
 		  if(!l_image.isNull())
 		    l_image = l_image.scaled

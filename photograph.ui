@@ -14,8 +14,8 @@
    <string>BiblioteQ: Photograph Browser</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -73,8 +73,8 @@
             <string>&amp;Select</string>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>icons.d/16x16/fileopen.png</normaloff>icons.d/16x16/fileopen.png</iconset>
+            <iconset resource="icons.d/icons.qrc">
+             <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
            </property>
           </widget>
          </item>
@@ -368,8 +368,8 @@
         <string>&amp;Save</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/16x16/ok.png</normaloff>icons.d/16x16/ok.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
        </property>
       </widget>
      </item>
@@ -385,8 +385,8 @@
         <string>&amp;Close</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+        <iconset resource="icons.d/icons.qrc">
+         <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -434,6 +434,8 @@
   <tabstop>saveButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

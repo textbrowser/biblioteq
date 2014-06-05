@@ -14,8 +14,8 @@
    <string>BiblioteQ: Member's Reservation History</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>icons.d/book.png</normaloff>icons.d/book.png</iconset>
+   <iconset resource="icons.d/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
@@ -124,8 +124,8 @@
          <string>Previous Member</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/previous.png</normaloff>icons.d/32x32/previous.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/previous.png</normaloff>:/32x32/previous.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -163,8 +163,8 @@
          <string>&amp;Reload</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/reload.png</normaloff>icons.d/16x16/reload.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
         </property>
        </widget>
       </item>
@@ -180,8 +180,8 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/fileprint.png</normaloff>icons.d/16x16/fileprint.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
         </property>
        </widget>
       </item>
@@ -197,8 +197,8 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/16x16/cancel.png</normaloff>icons.d/16x16/cancel.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -221,8 +221,8 @@
          <string>Next Member</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons.d/32x32/next.png</normaloff>icons.d/32x32/next.png</iconset>
+         <iconset resource="icons.d/icons.qrc">
+          <normaloff>:/32x32/next.png</normaloff>:/32x32/next.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -241,6 +241,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.d/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

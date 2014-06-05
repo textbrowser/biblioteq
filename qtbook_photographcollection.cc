@@ -1082,7 +1082,7 @@ void qtbook_photographcollection::showPhotographs(const int page)
 	    image.loadFromData(query.value(0).toByteArray());
 
 	  if(image.isNull())
-	    image = QImage("icons.d/no_image.png");
+	    image = QImage(":/no_image.png");
 
 	  /*
 	  ** The size of no_image.png is 126x187.
@@ -2011,7 +2011,7 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 		      image.loadFromData(query.value(0).toByteArray());
 
 		    if(image.isNull())
-		      image = QImage("icons.d/no_image.png");
+		      image = QImage(":/no_image.png");
 
 		    scene->addPixmap(QPixmap().fromImage(image));
 		    misc_functions::center(mainWindow, this);
