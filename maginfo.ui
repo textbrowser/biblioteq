@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1072</width>
-         <height>1545</height>
+         <height>1552</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -83,6 +83,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="frontButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>&amp;Select</string>
                 </property>
@@ -137,6 +143,12 @@
               </item>
               <item>
                <widget class="QPushButton" name="backButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>105</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>&amp;Select</string>
                 </property>
@@ -684,7 +696,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -701,7 +713,7 @@
        <widget class="QToolButton" name="sruQueryButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -717,7 +729,7 @@
        <widget class="QToolButton" name="z3950QueryButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -733,7 +745,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -752,7 +764,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -769,7 +781,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>

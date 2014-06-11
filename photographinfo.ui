@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1094</width>
-         <height>1006</height>
+         <width>1097</width>
+         <height>981</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -579,7 +579,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -602,7 +602,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -619,7 +619,7 @@
        <widget class="QToolButton" name="resetButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -633,8 +633,14 @@
       </item>
       <item>
        <widget class="QToolButton" name="exportPhotographsToolButton">
+        <property name="minimumSize">
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="text">
-         <string>&amp;Export Photographs</string>
+         <string>&amp;Export Items</string>
         </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
@@ -645,7 +651,7 @@
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -662,7 +668,7 @@
        <widget class="QPushButton" name="cancelButton">
         <property name="minimumSize">
          <size>
-          <width>170</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
