@@ -10,7 +10,7 @@ QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Woverloaded-virtual \
-			  -Wpointer-arith -Wstrict-overflow=4 \
+			  -Wpointer-arith -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
 QMAKE_EXTRA_TARGETS = purge
