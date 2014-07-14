@@ -986,3 +986,8 @@ GRANT SELECT ON book_binding_types TO biblioteq_patron;
 /* Release 6.67 */
 
 ALTER TABLE locations ALTER type SET NOT NULL;
+
+/* Release 6.70 */
+
+ALTER TABLE member ALTER COLUMN sex TYPE VARCHAR(32);
+ALTER TABLE member ALTER zip SET DEFAULT 'N/A';

@@ -1908,6 +1908,10 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 		 "binding_type	TEXT NOT NULL PRIMARY KEY "
 		 ")");
     }
+
+  if(version >= "6.70")
+    {
+    }
 }
 
 /*

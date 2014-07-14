@@ -527,7 +527,7 @@
          <item>
           <widget class="QLineEdit" name="zip">
            <property name="maxLength">
-            <number>5</number>
+            <number>16</number>
            </property>
           </widget>
          </item>

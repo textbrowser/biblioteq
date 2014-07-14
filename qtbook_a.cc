@@ -692,8 +692,6 @@ qtbook::qtbook(void):QMainWindow()
 
   addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
-  userinfo_diag->userinfo.telephoneNumber->setInputMask("999-999-9999");
-  userinfo_diag->userinfo.zip->setInputMask("99999");
   userinfo_diag->userinfo.expirationdate->setMaximumDate
     (QDate(3000, 1, 1));
 
@@ -2092,7 +2090,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.street->clear();
   userinfo_diag->userinfo.city->clear();
   userinfo_diag->userinfo.state->setCurrentIndex(0);
-  userinfo_diag->userinfo.zip->setText("00000");
+  userinfo_diag->userinfo.zip->setText("N/A");
   userinfo_diag->userinfo.zip->setCursorPosition(0);
   userinfo_diag->userinfo.telephoneNumber->clear();
   userinfo_diag->userinfo.email->clear();
@@ -2228,10 +2226,10 @@ void qtbook::slotSaveUser(void)
       return;
     }
 
-  if(userinfo_diag->userinfo.zip->text().length() != 5)
+  if(userinfo_diag->userinfo.zip->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
-			    tr("Please provide a valid ZIP Code."));
+			    tr("Please provide a ZIP Code."));
       userinfo_diag->userinfo.zip->setFocus();
       return;
     }

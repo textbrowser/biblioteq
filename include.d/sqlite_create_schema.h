@@ -345,7 +345,7 @@ CREATE TABLE member							\
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,	\
 	membersince	 VARCHAR(32) NOT NULL,				\
 	dob		 VARCHAR(32) NOT NULL,				\
-	sex		 VARCHAR(8) NOT NULL DEFAULT 'Female',		\
+	sex		 VARCHAR(32) NOT NULL DEFAULT 'Female',		\
 	first_name	 VARCHAR(128) NOT NULL,				\
 	middle_init	 VARCHAR(1),					\
 	last_name	 VARCHAR(128) NOT NULL,				\
@@ -353,7 +353,7 @@ CREATE TABLE member							\
 	street		 VARCHAR(256) NOT NULL,				\
 	city		 VARCHAR(256) NOT NULL,				\
 	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',		\
-	zip		 VARCHAR(16) NOT NULL,				\
+	zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A',		\
 	email		 VARCHAR(128),					\
 	expiration_date  VARCHAR(32) NOT NULL,			        \
 	overdue_fees     NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
