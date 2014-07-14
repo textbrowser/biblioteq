@@ -27,7 +27,7 @@ d) Log into your PostgreSQL database and load the postgresql_create_schema.sql f
 	2.2 Unix Installation
 
 	Installing BiblioteQ on platforms that lack installers involves several operations. First, please 	resolve the following software prerequisites:
-a) Qt 4.8.4 must be installed. Qt 5.x is not yet supported. Please download the software from http://qt-project.org/downloads. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin. You may compile Qt with the PostgreSQL driver via ./configure -v -qt-sql-psql -I /usr/local/include/postgresql -L /usr/local/lib/postgresql. The include and library directories may be different depending upon your environment.
+a) Qt 4.8.x must be installed. Qt 5.x is also supported. Please download the software from http://qt-project.org/downloads. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin. You may compile Qt with the PostgreSQL driver via ./configure -v -qt-sql-psql -I /usr/local/include/postgresql -L /usr/local/lib/postgresql. The include and library directories may be different depending upon your environment.
 b) YAZ 4.2.x, or higher, must be installed. Please download the software from http://www.indexdata.com/yaz.
 c) If you intend to use PostgreSQL, the PostgreSQL database package must be installed. Please download the software from http://www.postgresql.org/download.
 d) If you intend to use SQLite, the SQLite 3.5.6 package must be installed. Please download the software from http://www.sqlite.org/download.html.
