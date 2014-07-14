@@ -9105,7 +9105,7 @@ void qtbook::changeEvent(QEvent *event)
 	  QMessageBox::information
 	    (this,
 	     tr("BiblioteQ: Information"),
-	     tr("You may selected a new language. Please restart "
+	     tr("You may have selected a new language. Please restart "
 		"BiblioteQ after saving your settings."));
 	  break;
 	}
