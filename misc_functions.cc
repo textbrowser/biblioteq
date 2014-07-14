@@ -1911,6 +1911,41 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 
   if(version >= "6.70")
     {
+      QSqlField field;
+      QSqlRecord record(db.record("member"));
+
+      field = record.field("zip");
+
+      if(field.defaultValue() != "'N/A'")
+	{
+	  QSqlQuery query(db);
+
+	  query.exec
+	    ("CREATE TABLE member_temporary "
+	     "("
+	     "memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,"
+	     "membersince	 VARCHAR(32) NOT NULL,"
+	     "dob		 VARCHAR(32) NOT NULL,"
+	     "sex		 VARCHAR(32) NOT NULL DEFAULT 'Female',"
+	     "first_name	 VARCHAR(128) NOT NULL,"
+	     "middle_init	 VARCHAR(1),"
+	     "last_name	 VARCHAR(128) NOT NULL,"
+	     "telephone_num	 VARCHAR(32),"
+	     "street		 VARCHAR(256) NOT NULL,"
+	     "city		 VARCHAR(256) NOT NULL,"
+	     "state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',"
+	     "zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A',"
+	     "email		 VARCHAR(128),"
+	     "expiration_date	 VARCHAR(32) NOT NULL,"
+	     "overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	     "comments	 TEXT,"
+	     "general_registration_number	 TEXT,"
+	     "memberclass	 TEXT"
+	     ")");
+	  query.exec("INSERT INTO member_temporary SELECT * FROM member");
+	  query.exec("DROP TABLE member");
+	  query.exec("ALTER TABLE member_temporary RENAME TO member");
+	}
     }
 }
 
