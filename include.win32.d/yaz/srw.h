@@ -212,7 +212,12 @@ typedef struct {
     char *srw_version;
     char *username; /* From HTTP header or request */
     char *password; /* From HTTP header or request  */
-    Z_SRW_extra_arg *extra_args; /* extraRequestData SRU GET/POST */
+
+    /* 1. SRU extraRequestData x-name=value for requests encoding */
+    /* 2. SRU extraRequestData x-name=value for requests decoding */
+    /* 3. SRU echoed data for response encoding */
+    Z_SRW_extra_arg *extra_args;
+
     char *extraResponseData_buf;
     int extraResponseData_len;
 } Z_SRW_PDU;
@@ -225,6 +230,7 @@ YAZ_EXPORT int yaz_ucp_codec(ODR o, void * pptr,
                              void *client_data, const char *ns);
 YAZ_EXPORT Z_SRW_PDU *yaz_srw_get_core_v_2_0(ODR o);
 YAZ_EXPORT Z_SRW_PDU *yaz_srw_get_pdu(ODR o, int which, const char *version);
+YAZ_EXPORT Z_SRW_PDU *yaz_srw_get_pdu_e(ODR o, int which, Z_SRW_PDU *req);
 YAZ_EXPORT Z_SRW_PDU *yaz_srw_get(ODR o, int which);
 YAZ_EXPORT Z_SRW_recordVersion *yaz_srw_get_record_versions(ODR o, int num);
 YAZ_EXPORT Z_SRW_extra_record *yaz_srw_get_extra_record(ODR o);
