@@ -156,7 +156,7 @@ END;									\
 									\
 CREATE TABLE journal							\
 (									\
-id		 VARCHAR(32) NOT NULL,					\
+id		 VARCHAR(32),						\
 	  myoid		 BIGINT NOT NULL,				\
 	  title		 TEXT NOT NULL,					\
 	  pdate		 VARCHAR(32) NOT NULL,				\
@@ -179,7 +179,7 @@ id		 VARCHAR(32) NOT NULL,					\
           marc_tags      TEXT,						\
           keyword        TEXT,						\
 	  type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',	\
-	  PRIMARY KEY(id, issuevolume, issueno)				\
+          UNIQUE (id, issueno, issuevolume)				\
 	  );								\
 									\
 CREATE TABLE journal_copy_info						\
@@ -202,7 +202,7 @@ END;									\
 									\
 CREATE TABLE magazine							\
 (									\
-id		 VARCHAR(32) NOT NULL,					\
+id		 VARCHAR(32),						\
 	  myoid		 BIGINT NOT NULL,				\
 	  title		 TEXT NOT NULL,					\
 	  pdate		 VARCHAR(32) NOT NULL,				\
@@ -225,7 +225,7 @@ id		 VARCHAR(32) NOT NULL,					\
           marc_tags      TEXT,						\
           keyword        TEXT,						\
 	  type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',	\
-	  PRIMARY KEY(id, issuevolume, issueno)				\
+          UNIQUE (id, issuevolume, issueno)				\
 );									\
 									\
 CREATE TABLE magazine_copy_info						\

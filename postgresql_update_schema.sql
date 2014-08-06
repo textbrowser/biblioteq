@@ -991,3 +991,12 @@ ALTER TABLE locations ALTER type SET NOT NULL;
 
 ALTER TABLE member ALTER COLUMN sex TYPE VARCHAR(32);
 ALTER TABLE member ALTER zip SET DEFAULT 'N/A';
+
+/* Release 6.71 */
+
+ALTER TABLE journal DROP CONSTRAINT journal_pkey;
+ALTER TABLE journal ALTER COLUMN id DROP NOT NULL;
+ALTER TABLE journal ADD CONSTRAINT journal_unique_key UNIQUE(id, issuevolume, issueno);
+ALTER TABLE magazine DROP CONSTRAINT magazine_pkey;
+ALTER TABLE magazine ALTER COLUMN id DROP NOT NULL;
+ALTER TABLE magazine ADD CONSTRAINT magazine_unique_key UNIQUE(id, issuevolume, issueno);

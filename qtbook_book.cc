@@ -104,22 +104,6 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
 	  SIGNAL(toggled(bool)),
 	  id.z3950QueryButton,
 	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  id.id,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  id.isbn13,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  id.isbn10to13,
-	  SLOT(setEnabled(bool)));
-  connect(id.isbnAvailableCheckBox,
-	  SIGNAL(toggled(bool)),
-	  id.isbn13to10,
-	  SLOT(setEnabled(bool)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Back Cover Image")),
@@ -1024,10 +1008,9 @@ void qtbook_book::slotGo(void)
 	"AND item_borrower_vw.type = 'Book' "
 	"WHERE ";
 
-      if(!engWindowTitle.isEmpty())
-	if(!id.id->text().trimmed().isEmpty())
-	  searchstr.append("id LIKE '%" + id.id->text().trimmed() +
-			   "%' AND ");
+      if(!id.id->text().trimmed().isEmpty())
+	searchstr.append("id LIKE '%" + id.id->text().trimmed() +
+			 "%' AND ");
 
       QString E("");
 
@@ -1501,7 +1484,7 @@ void qtbook_book::modify(const int state)
 	      id.id->setText(var.toString());
 	      setWindowTitle(str);
 
-	      if(query.record().isNull(i))
+	      if(query.isNull(i))
 		id.isbnAvailableCheckBox->setChecked(false);
 	      else
 		id.isbnAvailableCheckBox->setChecked(true);

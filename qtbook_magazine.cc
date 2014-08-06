@@ -130,9 +130,23 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(ma.backButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
+  connect(ma.issnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  ma.sruQueryButton,
+	  SLOT(setEnabled(bool)));
+  connect(ma.issnAvailableCheckBox,
+	  SIGNAL(toggled(bool)),
+	  ma.z3950QueryButton,
+	  SLOT(setEnabled(bool)));
   ma.id->setCursorPosition(0);
   ma.id->setValidator(validator1);
   ma.resetButton->setMenu(menu);
+
+  if(menu->actions().size() >= 3)
+    connect(ma.issnAvailableCheckBox,
+	    SIGNAL(toggled(bool)),
+	    menu->actions()[2],
+	    SLOT(setEnabled(bool)));
 
   QString errorstr("");
 
@@ -356,13 +370,14 @@ void qtbook_magazine::slotGo(void)
       str = ma.id->text().trimmed();
       ma.id->setText(str);
 
-      if(ma.id->text().length() != 9)
-	{
-	  QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				tr("Please complete the ISSN field."));
-	  ma.id->setFocus();
-	  return;
-	}
+      if(ma.issnAvailableCheckBox->isChecked())
+	if(ma.id->text().length() != 9)
+	  {
+	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				  tr("Please complete the ISSN field."));
+	    ma.id->setFocus();
+	    return;
+	  }
 
       str = ma.title->text().trimmed();
       ma.title->setText(str);
@@ -504,7 +519,11 @@ void qtbook_magazine::slotGo(void)
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
 		      (subType));
 
-      query.bindValue(0, ma.id->text());
+      if(ma.issnAvailableCheckBox->isChecked() && !ma.id->text().isEmpty())
+	query.bindValue(0, ma.id->text());
+      else
+	query.bindValue(0, QVariant::String);
+
       query.bindValue(1, ma.title->text());
       query.bindValue(2, ma.publication_date->date().toString("MM/dd/yyyy"));
       query.bindValue(3, ma.publisher->toPlainText());
@@ -652,10 +671,15 @@ void qtbook_magazine::slotGo(void)
 	      ** Create initial copies.
 	      */
 
-	      misc_functions::createInitialCopies
-		(ma.id->text() + "," + ma.volume->text() + "," +
-		 ma.issue->text(), ma.quantity->value(),
-		 qmain->getDB(), subType, errorstr);
+	      if(ma.id->text().isEmpty())
+		misc_functions::createInitialCopies
+		  (oid + "," + ma.volume->text() + "," + ma.issue->text(),
+		   ma.quantity->value(), qmain->getDB(), subType, errorstr);
+	      else
+		misc_functions::createInitialCopies
+		  (ma.id->text() + "," + ma.volume->text() + "," +
+		   ma.issue->text(), ma.quantity->value(),
+		   qmain->getDB(), subType, errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
@@ -679,6 +703,9 @@ void qtbook_magazine::slotGo(void)
 		  goto db_rollback;
 		}
 	    }
+
+	  if(!ma.issnAvailableCheckBox->isChecked())
+	    ma.id->clear();
 
 	  ma.id->setPalette(te_orig_pal);
 	  ma.category->viewport()->setPalette(te_orig_pal);
@@ -733,12 +760,23 @@ void qtbook_magazine::slotGo(void)
 
 	  if(engWindowTitle.contains("Modify"))
 	    {
-	      if(subType == "Journal")
-		str = QString(tr("BiblioteQ: Modify Journal Entry ("));
-	      else
-		str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
+	      if(!ma.id->text().isEmpty())
+		{
+		  if(subType == "Journal")
+		    str = QString(tr("BiblioteQ: Modify Journal Entry ("));
+		  else
+		    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
 
-	      str += ma.id->text() + tr(")");
+		  str += ma.id->text() + tr(")");
+		}
+	      else
+		{
+		  if(subType == "Journal")
+		    str = tr("BiblioteQ: Modify Journal Entry");
+		  else
+		    str = tr("BiblioteQ: Modify Magazine Entry");
+		}
+
 	      setWindowTitle(str);
 	      engWindowTitle = "Modify";
 
@@ -947,8 +985,10 @@ void qtbook_magazine::slotGo(void)
 			  "%1.myoid = item_borrower_vw.item_oid "
 			  "AND item_borrower_vw.type = '%1' "
 			  "WHERE %1.type = '%1' AND ").arg(subType);
-      searchstr.append("id LIKE '%" + ma.id->text().trimmed() +
-		       "%' AND ");
+
+      if(!ma.id->text().trimmed().isEmpty())
+	searchstr.append("id LIKE '%" + ma.id->text().trimmed() +
+			 "%' AND ");
 
       QString E("");
 
@@ -1088,6 +1128,7 @@ void qtbook_magazine::search(const QString &field, const QString &value)
   ma.location->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+  ma.issnAvailableCheckBox->setCheckable(false);
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1145,16 +1186,28 @@ void qtbook_magazine::updateWindow(const int state)
       ma.frontButton->setVisible(true);
       ma.backButton->setVisible(true);
 
-      if(subType == "Journal")
-	str = QString(tr("BiblioteQ: Modify Journal Entry ("));
-      else
-	str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
+      if(!ma.id->text().trimmed().isEmpty())
+	{
+	  if(subType == "Journal")
+	    str = QString(tr("BiblioteQ: Modify Journal Entry ("));
+	  else
+	    str = QString(tr("BiblioteQ: Modify Magazine Entry ("));
 
-      str += ma.id->text() + tr(")");
+	  str += ma.id->text() + tr(")");
+	}
+      else
+	{
+	  if(subType == "Journal")
+	    str = tr("BiblioteQ: Modify Journal Entry");
+	  else
+	    str = tr("BiblioteQ: Modify Magazine Entry");
+	}
+
       engWindowTitle = "Modify";
     }
   else
     {
+      ma.issnAvailableCheckBox->setCheckable(false);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
       ma.sruQueryButton->setVisible(false);
@@ -1164,12 +1217,23 @@ void qtbook_magazine::updateWindow(const int state)
       ma.frontButton->setVisible(false);
       ma.backButton->setVisible(false);
 
-      if(subType == "Journal")
-	str = QString(tr("BiblioteQ: View Journal Details ("));
-      else
-	str = QString(tr("BiblioteQ: View Magazine Details ("));
+      if(!ma.id->text().trimmed().isEmpty())
+	{
+	  if(subType == "Journal")
+	    str = QString(tr("BiblioteQ: View Journal Details ("));
+	  else
+	    str = QString(tr("BiblioteQ: View Magazine Details ("));
 
-      str += ma.id->text() + tr(")");
+	  str += ma.id->text() + tr(")");
+	}
+      else
+	{
+	  if(subType == "Journal")
+	    str = tr("BiblioteQ: View Journal Entry");
+	  else
+	    str = tr("BiblioteQ: View Magazine Entry");
+	}
+
       engWindowTitle = "View";
     }
 
@@ -1227,6 +1291,7 @@ void qtbook_magazine::modify(const int state)
 	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
 
       engWindowTitle = "Modify";
+      ma.issnAvailableCheckBox->setCheckable(false);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
       ma.sruQueryButton->setVisible(false);
@@ -1382,29 +1447,58 @@ void qtbook_magazine::modify(const int state)
 	    {
 	      if(state == qtbook::EDITABLE)
 		{
-		  if(subType == "Journal")
-		    str = QString(tr("BiblioteQ: Modify Journal Entry (")) +
-		      var.toString() + tr(")");
+		  if(!var.toString().trimmed().isEmpty())
+		    {
+		      if(subType == "Journal")
+			str =
+			  QString(tr("BiblioteQ: Modify Journal Entry (")) +
+			  var.toString() + tr(")");
+		      else
+			str =
+			  QString(tr("BiblioteQ: Modify Magazine Entry (")) +
+			  var.toString() + tr(")");
+		    }
 		  else
-		    str = QString(tr("BiblioteQ: Modify Magazine Entry (")) +
-		      var.toString() + tr(")");
+		    {
+		      if(subType == "Journal")
+			str = tr("BiblioteQ: Modify Journal Entry");
+		      else
+			str = tr("BiblioteQ: Modify Magazine Entry");
+		    }
 
 		  engWindowTitle = "Modify";
 		}
 	      else
 		{
-		  if(subType == "Journal")
-		    str = QString(tr("BiblioteQ: View Journal Details (")) +
-		      var.toString() + tr(")");
+		  if(!var.toString().trimmed().isEmpty())
+		    {
+		      if(subType == "Journal")
+			str =
+			  QString(tr("BiblioteQ: View Journal Details (")) +
+			  var.toString() + tr(")");
+		      else
+			str =
+			  QString(tr("BiblioteQ: View Magazine Details (")) +
+			  var.toString() + tr(")");
+		    }
 		  else
-		    str = QString(tr("BiblioteQ: View Magazine Details (")) +
-		      var.toString() + tr(")");
+		    {
+		      if(subType == "Journal")
+			str = tr("BiblioteQ: View Journal Details");
+		      else
+			str = tr("BiblioteQ: View Magazine Details");
+		    }
 
 		  engWindowTitle = "View";
 		}
 
 	      setWindowTitle(str);
 	      ma.id->setText(var.toString());
+
+	      if(query.isNull(i))
+		ma.issnAvailableCheckBox->setChecked(false);
+	      else
+		ma.issnAvailableCheckBox->setChecked(true);
 	    }
 	  else if(fieldname == "description")
 	    ma.description->setPlainText(var.toString());
