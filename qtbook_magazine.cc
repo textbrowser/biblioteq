@@ -500,7 +500,8 @@ void qtbook_magazine::slotGo(void)
 			      "VALUES (?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
+			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+			      "RETURNING myoid").arg
 		      (subType));
       else
 	query.prepare(QString("INSERT INTO %1 "
@@ -608,7 +609,10 @@ void qtbook_magazine::slotGo(void)
 							     errorstr);
 
 	    if(errorstr.isEmpty())
-	      query.bindValue(22, value);
+	      {
+		query.bindValue(22, value);
+		oid = QString::number(value);
+	      }
 	    else
 	      qmain->addError(QString(tr("Database Error")),
 			      QString(tr("Unable to generate a unique "
@@ -670,6 +674,12 @@ void qtbook_magazine::slotGo(void)
 	      /*
 	      ** Create initial copies.
 	      */
+
+	      if(qmain->getDB().driverName() != "QSQLITE")
+		{
+		  oid = query.next();
+		  oid = query.value(0).toString();
+		}
 
 	      if(ma.id->text().isEmpty())
 		misc_functions::createInitialCopies
@@ -879,41 +889,7 @@ void qtbook_magazine::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
-	      oid = misc_functions::getOID(ma.id->text() + "," +
-					   ma.volume->text() + "," +
-					   ma.issue->text(),
-					   subType,
-					   qmain->getDB(),
-					   errorstr);
-	      qapp->restoreOverrideCursor();
-
-	      if(!errorstr.isEmpty())
-		{
-		  if(subType == "Journal")
-		    {
-		      qmain->addError(QString(tr("Database Error")),
-				      QString(tr("Unable to retrieve the "
-						 "journal's OID.")),
-				      errorstr, __FILE__, __LINE__);
-		      QMessageBox::critical
-			(this, tr("BiblioteQ: Database Error"),
-			 QString(tr("Unable to retrieve the "
-				    "journal's OID.")));
-		    }
-		  else
-		    {
-		      qmain->addError(QString(tr("Database Error")),
-				      QString(tr("Unable to retrieve the "
-						 "magazine's OID.")),
-				      errorstr, __FILE__, __LINE__);
-		      QMessageBox::critical
-			(this, tr("BiblioteQ: Database Error"),
-			 QString(tr("Unable to retrieve the "
-				    "magazine's OID.")));
-		    }
-		}
-	      else if(subType == "Journal")
+	      if(subType == "Journal")
 		qmain->replaceJournal
 		  (oid, static_cast<qtbook_journal *> (this));
 	      else if(subType == "Magazine")

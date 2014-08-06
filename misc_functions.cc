@@ -1102,7 +1102,8 @@ QString misc_functions::getOID(const QString &idArg,
 
   if(itemType == "journal" || itemType == "magazine")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
-		       "issuevolume = ? AND issueno = ?").arg(itemType);
+		       "issuevolume = ? AND issueno = ? AND "
+		       "id IS NOT NULL").arg(itemType);
   else if(itemType == "book")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ? AND "
 		       "id IS NOT NULL").arg(itemType);
@@ -1161,12 +1162,22 @@ void misc_functions::createInitialCopies(const QString &idArg,
     return;
 
   if(itemType == "journal" || itemType == "magazine")
-    id = id.split(",").value(0);
+    {
+      if(itemoid.isEmpty())
+	/*
+	** If the id from getOID() is empty, createInitialCopies() was called
+	** with an oid.
+	*/
+
+	id = itemoid = id.split(",").value(0);
+      else
+	id = id.split(",").value(0);
+    }
   else if(itemType == "book")
     {
       if(itemoid.isEmpty())
 	/*
-	** If the id from getOID() is NULL, createInitialCopies() was called
+	** If the id from getOID() is empty, createInitialCopies() was called
 	** with an oid.
 	*/
 
@@ -1945,6 +1956,82 @@ void misc_functions::updateSQLiteDatabase(const QSqlDatabase &db)
 	  query.exec("INSERT INTO member_temporary SELECT * FROM member");
 	  query.exec("DROP TABLE member");
 	  query.exec("ALTER TABLE member_temporary RENAME TO member");
+	}
+    }
+
+  if(version >= "6.71")
+    {
+      QSqlField field;
+      QSqlRecord record(db.record("journal"));
+
+      field = record.field("id");
+
+      if(field.requiredStatus() == QSqlField::Required)
+	{
+	  QSqlQuery query(db);
+
+	  query.exec
+	    ("CREATE TABLE journal_temporary "
+	     "( "
+	     "id		 VARCHAR(32), "
+	     "myoid		 BIGINT NOT NULL, "
+	     "title		 TEXT NOT NULL,	"
+	     "pdate		 VARCHAR(32) NOT NULL, "
+	     "publisher	 TEXT NOT NULL, "
+	     "place		 TEXT NOT NULL, "
+	     "category	 TEXT NOT NULL, "
+	     "price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00, "
+	     "description	 TEXT NOT NULL, "
+	     "language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN', "
+	     "monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN', "
+	     "quantity	 INTEGER NOT NULL DEFAULT 1, "
+	     "location	 TEXT NOT NULL, "
+	     "issuevolume	 INTEGER NOT NULL DEFAULT 0, "
+	     "issueno		 INTEGER NOT NULL DEFAULT 0, "
+	     "lccontrolnumber	 VARCHAR(64), "
+	     "callnumber	 VARCHAR(64), "
+	     "deweynumber	 VARCHAR(64), "
+	     "front_cover	 BYTEA, "
+	     "back_cover	 BYTEA, "
+	     "marc_tags      TEXT, "
+	     "keyword        TEXT, "
+	     "type		 VARCHAR(16) NOT NULL DEFAULT 'Journal', "
+	     "UNIQUE (id, issueno, issuevolume) "
+	     ");");
+	  query.exec("INSERT INTO journal_temporary SELECT * FROM journal");
+	  query.exec("DROP TABLE journal");
+	  query.exec("ALTER TABLE journal_temporary RENAME TO journal");
+	  query.exec
+	    ("CREATE TABLE magazine_temporary "
+	     "( "
+	     "id		 VARCHAR(32), "
+	     "myoid		 BIGINT NOT NULL, "
+	     "title		 TEXT NOT NULL,	"
+	     "pdate		 VARCHAR(32) NOT NULL, "
+	     "publisher	 TEXT NOT NULL, "
+	     "place		 TEXT NOT NULL, "
+	     "category	 TEXT NOT NULL, "
+	     "price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00, "
+	     "description	 TEXT NOT NULL, "
+	     "language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN', "
+	     "monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN', "
+	     "quantity	 INTEGER NOT NULL DEFAULT 1, "
+	     "location	 TEXT NOT NULL, "
+	     "issuevolume	 INTEGER NOT NULL DEFAULT 0, "
+	     "issueno		 INTEGER NOT NULL DEFAULT 0, "
+	     "lccontrolnumber	 VARCHAR(64), "
+	     "callnumber	 VARCHAR(64), "
+	     "deweynumber	 VARCHAR(64), "
+	     "front_cover	 BYTEA, "
+	     "back_cover	 BYTEA, "
+	     "marc_tags      TEXT, "
+	     "keyword        TEXT, "
+	     "type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine', "
+	     "UNIQUE (id, issueno, issuevolume) "
+	     ");");
+	  query.exec("INSERT INTO magazine_temporary SELECT * FROM magazine");
+	  query.exec("DROP TABLE magazine");
+	  query.exec("ALTER TABLE magazine_temporary RENAME TO magazine");
 	}
     }
 }
