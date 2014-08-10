@@ -677,7 +677,7 @@ void qtbook_magazine::slotGo(void)
 
 	      if(qmain->getDB().driverName() != "QSQLITE")
 		{
-		  oid = query.next();
+		  query.next();
 		  oid = query.value(0).toString();
 		}
 

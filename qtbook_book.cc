@@ -750,7 +750,7 @@ void qtbook_book::slotGo(void)
 
 	      if(qmain->getDB().driverName() != "QSQLITE")
 		{
-		  oid = query.next();
+		  query.next();
 		  oid = query.value(0).toString();
 		}
 
