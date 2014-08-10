@@ -410,12 +410,20 @@ void qtbook_book::slotGo(void)
       id.isbn13->setText(str);
 
       if(id.isbnAvailableCheckBox->isChecked())
-	if(id.id->text().length() == 10)
-	  slotConvertISBN10to13();
+	{
+	  if(id.id->text().length() == 10)
+	    slotConvertISBN10to13();
+	}
+      else
+	id.id->clear();
 
       if(id.isbnAvailableCheckBox->isChecked())
-	if(id.isbn13->text().length() == 13)
-	  slotConvertISBN13to10();
+	{
+	  if(id.isbn13->text().length() == 13)
+	    slotConvertISBN13to10();
+	}
+      else
+	id.isbn13->clear();
 
       if(id.isbnAvailableCheckBox->isChecked())
 	if(id.id->text().length() != 10 ||

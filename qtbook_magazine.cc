@@ -371,13 +371,17 @@ void qtbook_magazine::slotGo(void)
       ma.id->setText(str);
 
       if(ma.issnAvailableCheckBox->isChecked())
-	if(ma.id->text().length() != 9)
-	  {
-	    QMessageBox::critical(this, tr("BiblioteQ: User Error"),
-				  tr("Please complete the ISSN field."));
-	    ma.id->setFocus();
-	    return;
-	  }
+	{
+	  if(ma.id->text().length() != 9)
+	    {
+	      QMessageBox::critical(this, tr("BiblioteQ: User Error"),
+				    tr("Please complete the ISSN field."));
+	      ma.id->setFocus();
+	      return;
+	    }
+	}
+      else
+	ma.id->clear();
 
       str = ma.title->text().trimmed();
       ma.title->setText(str);
