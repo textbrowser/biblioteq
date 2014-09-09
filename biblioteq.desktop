@@ -2,7 +2,7 @@
 Name=BiblioteQ
 Comment=BiblioteQ
 Exec=/usr/local/biblioteq/biblioteq.sh
-Icon=/usr/local/biblioteq/icons.d/book.png
+Icon=/usr/local/biblioteq/Icons/book.png
 Terminal=false
 Type=Application
 Categories=
