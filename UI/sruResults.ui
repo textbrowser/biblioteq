@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sruResultsDialog</class>
+ <widget class="QDialog" name="sruResultsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>625</width>
+    <height>375</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>BiblioteQ: SRU Query Results</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Icons/icons.qrc">
+    <normaloff>:/book.png</normaloff>:/book.png</iconset>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <layout class="QVBoxLayout">
+      <item>
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="childrenCollapsible">
+         <bool>false</bool>
+        </property>
+        <widget class="QGroupBox" name="recRet">
+         <property name="title">
+          <string>&amp;Records Retrieved</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QListWidget" name="list"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QGroupBox" name="recCont">
+         <property name="title">
+          <string>Record &amp;Contents</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Title</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="title"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textarea">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>5</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>39</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="minimumSize">
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>&amp;Select</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Icons/icons.qrc">
+         <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="minimumSize">
+        <size>
+         <width>105</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="icon">
+        <iconset resource="Icons/icons.qrc">
+         <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>list</tabstop>
+  <tabstop>title</tabstop>
+  <tabstop>textarea</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="Icons/icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

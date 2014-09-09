@@ -20,25 +20,25 @@ setOutPath $INSTDIR
 
 # Specify files to go in output path.
 
-file *.sql
+file SQL\*.sql
 file .\qt.conf
 file .\biblioteq.conf
-file /r .\release\doc.d
+file /r .\release\Documentation
 file /r .\release\plugins
 
-# The translations directory contains translation files
+# The Translations directory contains translation files
 # provided by both BiblioteQ and Qt.
 
-file /r .\release\translations.d
+file /r .\release\Translations
 file .\release\*.dll
-file .\libraries.win32.d\sqlite3.d\*.dll
-file .\libraries.win32.d\yaz.d\*.dll
-file .\libraries.win32.d\yaz.d\Microsoft.VC90.CRT.manifest
+file .\Libraries.win32\sqlite3.d\*.dll
+file .\Libraries.win32\yaz.d\*.dll
+file .\Libraries.win32\yaz.d\Microsoft.VC90.CRT.manifest
 file .\release\BiblioteQ.exe
 
 # Add an icon to the Desktop.
 
-CreateShortCut  "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\biblioteq.exe" "" "$INSTDIR\biblioteq.exe" 0
+CreateShortCut  "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\BiblioteQ.exe" "" "$INSTDIR\BiblioteQ.exe" 0
 
 # Define uninstaller name.
 

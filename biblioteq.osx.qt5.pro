@@ -1,5 +1,5 @@
 cache()
-purge.commands = rm -f *~ && rm -f include.d/*~ && rm -f doc.d/*~
+purge.commands = rm -f *~ && rm -f Include/*~ && rm -f Documentation/*~
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
@@ -19,96 +19,96 @@ QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 QMAKE_STRIP	= echo
 
-ICON		= icons.d/book.icns
-INCLUDEPATH	+= include.d /usr/local/include
+ICON		= Icons/book.icns
+INCLUDEPATH	+= Include /usr/local/include
 LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lyaz
-RESOURCES	= icons.d/icons.qrc
+RESOURCES	= Icons/icons.qrc
 
-FORMS           = adminsetup.ui \
-		  allinfo.ui \
-		  bookcopybrowser.ui \
-		  bookinfo.ui \
-                  borrowers.ui \
-		  branch_s.ui \
-		  cdinfo.ui \
-		  copybrowser.ui \
-		  customquery.ui \
-		  dbenumerations.ui \
-		  dvdinfo.ui \
-		  errordiag.ui \
-		  history.ui \
-		  maginfo.ui \
-                  mainwindow.ui \
-		  members_browser.ui \
-		  password.ui \
-		  passwordPrompt.ui \
-		  photograph.ui \
-		  photographinfo.ui \
-		  photographview.ui \
-		  sruResults.ui \
-		  tracks.ui \
-		  userinfo.ui \
-		  videogameinfo.ui \
-		  z3950results.ui
+FORMS           = UI/adminsetup.ui \
+		  UI/allinfo.ui \
+		  UI/bookcopybrowser.ui \
+		  UI/bookinfo.ui \
+                  UI/borrowers.ui \
+		  UI/branch_s.ui \
+		  UI/cdinfo.ui \
+		  UI/copybrowser.ui \
+		  UI/customquery.ui \
+		  UI/dbenumerations.ui \
+		  UI/dvdinfo.ui \
+		  UI/errordiag.ui \
+		  UI/history.ui \
+		  UI/maginfo.ui \
+                  UI/mainwindow.ui \
+		  UI/members_browser.ui \
+		  UI/password.ui \
+		  UI/passwordPrompt.ui \
+		  UI/photograph.ui \
+		  UI/photographinfo.ui \
+		  UI/photographview.ui \
+		  UI/sruResults.ui \
+		  UI/tracks.ui \
+		  UI/userinfo.ui \
+		  UI/videogameinfo.ui \
+		  UI/z3950results.ui
 
-UI_HEADERS_DIR  = include.d
+UI_HEADERS_DIR  = Include
 
-HEADERS		= include.d/bgraphicsscene.h \
-		  include.d/borrowers_editor.h \
-		  include.d/copy_editor.h \
-		  include.d/copy_editor_book.h \
-                  include.d/dbenumerations.h \
-		  include.d/generic_thread.h \
-		  include.d/hyperlinked_text_edit.h \
-		  include.d/image_drop_site.h \
-		  include.d/main_table.h \
-                  include.d/myqstring.h \
-		  include.d/qtbook_book.h \
-		  include.d/qtbook_cd.h \
-		  include.d/qtbook_dvd.h \
-		  include.d/qtbook.h \
-		  include.d/qtbook_item.h \
-		  include.d/qtbook_magazine.h \
-		  include.d/qtbook_photographcollection.h \
-		  include.d/qtbook_videogame.h \
-		  include.d/sruResults.h \
-		  include.d/z3950results.h
+HEADERS		= Include/bgraphicsscene.h \
+		  Include/borrowers_editor.h \
+		  Include/copy_editor.h \
+		  Include/copy_editor_book.h \
+                  Include/dbenumerations.h \
+		  Include/generic_thread.h \
+		  Include/hyperlinked_text_edit.h \
+		  Include/image_drop_site.h \
+		  Include/main_table.h \
+                  Include/myqstring.h \
+		  Include/qtbook_book.h \
+		  Include/qtbook_cd.h \
+		  Include/qtbook_dvd.h \
+		  Include/qtbook.h \
+		  Include/qtbook_item.h \
+		  Include/qtbook_magazine.h \
+		  Include/qtbook_photographcollection.h \
+		  Include/qtbook_videogame.h \
+		  Include/sruResults.h \
+		  Include/z3950results.h
 
-SOURCES		= bgraphicsscene.cc \
-		  borrowers_editor.cc \
-		  callnum_table_item.cc \
-		  copy_editor.cc \
-		  copy_editor_book.cc \
-                  dbenumerations.cc \
-		  generic_thread.cc \
-		  hyperlinked_text_edit.cc \
-		  image_drop_site.cc \
-		  main_table.cc \
-		  misc_functions.cc \
-                  myqstring.cc \
-		  numeric_table_item.cc \
-		  qtbook_a.cc \
-		  qtbook_b.cc \
-		  qtbook_book.cc \
-		  qtbook_cd.cc \
-		  qtbook_dvd.cc \
-		  qtbook_item.cc \
-		  qtbook_journal.cc \
-		  qtbook_magazine.cc \
-		  qtbook_photographcollection.cc \
-		  qtbook_videogame.cc \
-		  sruResults.cc \
-		  z3950results.cc
+SOURCES		= Source/bgraphicsscene.cc \
+                  Source/borrowers_editor.cc \
+                  Source/callnum_table_item.cc \
+                  Source/copy_editor.cc \
+		  Source/copy_editor_book.cc \
+                  Source/dbenumerations.cc \
+		  Source/generic_thread.cc \
+		  Source/hyperlinked_text_edit.cc \
+		  Source/image_drop_site.cc \
+		  Source/main_table.cc \
+		  Source/misc_functions.cc \
+                  Source/myqstring.cc \
+		  Source/numeric_table_item.cc \
+		  Source/qtbook_a.cc \
+		  Source/qtbook_b.cc \
+		  Source/qtbook_book.cc \
+		  Source/qtbook_cd.cc \
+		  Source/qtbook_dvd.cc \
+		  Source/qtbook_item.cc \
+		  Source/qtbook_journal.cc \
+		  Source/qtbook_magazine.cc \
+		  Source/qtbook_photographcollection.cc \
+		  Source/qtbook_videogame.cc \
+		  Source/sruResults.cc \
+		  Source/z3950results.cc
 
-OBJECTIVE_HEADERS += include.d/Cocoainitializer.h
-OBJECTIVE_SOURCES += Cocoainitializer.mm
+OBJECTIVE_HEADERS += Include/Cocoainitializer.h
+OBJECTIVE_SOURCES += Source/Cocoainitializer.mm
 
-TRANSLATIONS    = translations.d/biblioteq_cs_CZ.ts \
-		  translations.d/biblioteq_de_DE.ts \
-		  translations.d/biblioteq_el_GR.ts \
-		  translations.d/biblioteq_fr_FR.ts \
-                  translations.d/biblioteq_nl_BE.ts \
-                  translations.d/biblioteq_nl_NL.ts
+TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
+		  Translations/biblioteq_de_DE.ts \
+		  Translations/biblioteq_el_GR.ts \
+		  Translations/biblioteq_fr_FR.ts \
+                  Translations/biblioteq_nl_BE.ts \
+                  Translations/biblioteq_nl_NL.ts
 
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
@@ -117,14 +117,14 @@ biblioteq.path		= /Applications/BiblioteQ.d/BiblioteQ.app
 biblioteq.files		= BiblioteQ.app/*
 conf.path		= /Applications/BiblioteQ.d
 conf.files		= biblioteq.conf
-doc1.path		= /Applications/BiblioteQ.d/doc.d
-doc1.files		= doc.d/*.pdf doc.d/*.txt doc.d/TO-DO
-doc2.path		= /Applications/BiblioteQ.d/doc.d/contributors.d
-doc2.files		= doc.d/contributors.d/*.docx doc.d/contributors.d/*.pdf
+doc1.path		= /Applications/BiblioteQ.d/Documentation
+doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
+doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
+doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt1.extra = cp libraries.osx64.d/*.dylib ./BiblioteQ.app/Contents/lib/.
+aftermacdeployqt1.extra = cp Libraries.osx64/*.dylib ./BiblioteQ.app/Contents/lib/.
 aftermacdeployqt2.path  = .
 aftermacdeployqt2.extra = install_name_tool -change /usr/lib/libpq.5.dylib @loader_path/../../lib/libpq.5.5.dylib BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 preinstall.path         = /Applications/BiblioteQ.d
@@ -132,9 +132,9 @@ preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
 postinstall.path	= /Applications/BiblioteQ.d
 postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ.d/.
 sql.path		= /Applications/BiblioteQ.d
-sql.files		= *.sql
-translations.path	= /Applications/BiblioteQ.d/translations.d
-translations.files	= translations.d/*.qm
+sql.files		= SQL/*.sql
+translations.path	= /Applications/BiblioteQ.d/Translations
+translations.files	= Translations/*.qm
 
 INSTALLS	= preinstall \
 		  macdeployqt \
