@@ -5187,7 +5187,7 @@ URL</source>
         <translation type="unfinished">Bitte wähle zumindest eine Ausleihe zur Bearbeitung aus.</translation>
     </message>
     <message>
-        <location filename="../include.d/qtbook.h" line="177"/>
+        <location filename="../Include/qtbook.h" line="177"/>
         <location filename="../qtbook_a.cc" line="1349"/>
         <location filename="../qtbook_a.cc" line="1563"/>
         <location filename="../qtbook_a.cc" line="1870"/>
@@ -5202,7 +5202,7 @@ URL</source>
         <translation type="unfinished">BiblioteQ: Anfrage</translation>
     </message>
     <message>
-        <location filename="../include.d/qtbook.h" line="178"/>
+        <location filename="../Include/qtbook.h" line="178"/>
         <source>Your changes have not been saved. Continue closing?
 %1</source>
         <translation type="unfinished"></translation>
