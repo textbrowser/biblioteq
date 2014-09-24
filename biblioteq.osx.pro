@@ -1,4 +1,4 @@
-purge.commands = rm -f *~ && rm -f Include/*~ && rm -f Documentation/*~
+purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"

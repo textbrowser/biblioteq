@@ -1,5 +1,5 @@
 cache()
-purge.commands = del *~ && del Include\\*~ && del Documentation\\*~
+purge.commands = del *~ && del *\\*~
 
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=

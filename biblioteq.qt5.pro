@@ -1,5 +1,5 @@
 cache()
-purge.commands = rm -f *~ && rm -f Include/*~ && rm -f Documentation/*~
+purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on x11
 DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
