@@ -6967,6 +6967,7 @@ void qtbook::slotShowHistory(void)
   int i = -1;
   int j = 0;
   int row = bb.table->currentRow();
+  QString memberid("");
   QString str = "";
   QString querystr = "";
   QSqlQuery query(db);
@@ -6993,6 +6994,13 @@ void qtbook::slotShowHistory(void)
   list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
 
   if(!roles.isEmpty())
+    memberid = misc_functions::getColumnString(bb.table, row,
+					       m_bbColumnHeaderIndexes.
+					       indexOf("Member ID"));
+  else
+    memberid = db.userName();
+
+  if(!roles.isEmpty())
     for(i = 0; i < list.size(); i++)
       {
 	if(list[i] != "book")
@@ -7014,11 +7022,8 @@ void qtbook::slotShowHistory(void)
 			      "member member "
 			      "WHERE history.memberid = member.memberid AND "
 			      "%1.myoid = history.item_oid AND "
-			      "member.memberid = '%2' AND %1.type = "
-			      "history.type ").arg(list[i]).arg
-	    (misc_functions::getColumnString(bb.table, row,
-					     m_bbColumnHeaderIndexes.
-					     indexOf("Member ID")));
+			      "member.memberid = ? AND %1.type = "
+			      "history.type ").arg(list[i]);
 	else
 	  {
 	    if(db.driverName() != "QSQLITE")
@@ -7041,11 +7046,8 @@ void qtbook::slotShowHistory(void)
 		 "member member "
 		 "WHERE history.memberid = member.memberid AND "
 		 "book.myoid = history.item_oid AND "
-		 "member.memberid = '%1' AND book.type = "
-		 "history.type ").arg
-		(misc_functions::getColumnString(bb.table, row,
-						 m_bbColumnHeaderIndexes.
-						 indexOf("Member ID")));
+		 "member.memberid = ? AND book.type = "
+		 "history.type ");
 	    else
 	      querystr += QString
 		("SELECT "
@@ -7066,11 +7068,8 @@ void qtbook::slotShowHistory(void)
 		 "member member "
 		 "WHERE history.memberid = member.memberid AND "
 		 "book.myoid = history.item_oid AND "
-		 "member.memberid = '%1' AND book.type = "
-		 "history.type ").arg
-		(misc_functions::getColumnString(bb.table, row,
-						 m_bbColumnHeaderIndexes.
-						 indexOf("Member ID")));
+		 "member.memberid = ? AND book.type = "
+		 "history.type ");
 	  }
 
 	if(i != list.size() - 1)
@@ -7093,10 +7092,9 @@ void qtbook::slotShowHistory(void)
 			      "%1.myoid "
 			      "FROM member_history history, "
 			      "%1 %1 "
-			      "WHERE history.memberid = '%2' AND "
+			      "WHERE history.memberid = ? AND "
 			      "%1.myoid = history.item_oid AND %1.type = "
-			      "history.type ").arg(list[i]).arg
-	    (db.userName());
+			      "history.type ").arg(list[i]);
 	else
 	  {
 	    if(db.driverName() != "QSQLITE")
@@ -7114,9 +7112,9 @@ void qtbook::slotShowHistory(void)
 		 "book.myoid "
 		 "FROM member_history history, "
 		 "book book "
-		 "WHERE history.memberid = '%1' AND "
+		 "WHERE history.memberid = ? AND "
 		 "book.myoid = history.item_oid AND book.type = "
-		 "history.type ").arg(db.userName());
+		 "history.type ");
 	    else
 	      querystr += QString
 		("SELECT "
@@ -7132,9 +7130,9 @@ void qtbook::slotShowHistory(void)
 		 "book.myoid "
 		 "FROM member_history history, "
 		 "book book "
-		 "WHERE history.memberid = '%1' AND "
+		 "WHERE history.memberid = ? AND "
 		 "book.myoid = history.item_oid AND book.type = "
-		 "history.type ").arg(db.userName());
+		 "history.type ");
 	  }
 
 	if(i != list.size() - 1)
@@ -7142,9 +7140,16 @@ void qtbook::slotShowHistory(void)
       }
 
   querystr.append("ORDER BY 1");
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+  query.bindValue(1, memberid);
+  query.bindValue(2, memberid);
+  query.bindValue(3, memberid);
+  query.bindValue(4, memberid);
+  query.bindValue(5, memberid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!query.exec(querystr))
+  if(!query.exec())
     {
       qapp->restoreOverrideCursor();
       addError
@@ -7213,8 +7218,9 @@ void qtbook::slotShowHistory(void)
     history.table->setRowCount(query.size());
   else
     history.table->setRowCount
-      (misc_functions::sqliteQuerySize(querystr, db,
-				       __FILE__, __LINE__));
+      (misc_functions::sqliteQuerySize(query.lastQuery(),
+				       query.boundValues(),
+				       db, __FILE__, __LINE__));
 
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
@@ -7222,14 +7228,7 @@ void qtbook::slotShowHistory(void)
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
   progress.setMinimum(0);
-
-  if(db.driverName() == "QSQLITE")
-    progress.setMaximum
-      (misc_functions::sqliteQuerySize(querystr, db,
-				       __FILE__, __LINE__));
-  else
-    progress.setMaximum(query.size());
-
+  progress.setMaximum(history.table->rowCount());
   progress.show();
   progress.update();
   i = -1;
