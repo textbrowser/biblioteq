@@ -14,7 +14,7 @@
    <string>BiblioteQ: Photograph View</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -58,7 +58,7 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
@@ -86,7 +86,7 @@
   <tabstop>closeButton</tabstop>
  </tabstops>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -14,7 +14,7 @@
    <string>BiblioteQ: Database Enumerations Browser</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -64,7 +64,7 @@
                  <string>Add CD Format</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -81,7 +81,7 @@
                  <string>Remove CD Format</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -142,7 +142,7 @@
                  <string>Add CD Format</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -159,7 +159,7 @@
                  <string>Remove CD Format</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -220,7 +220,7 @@
                  <string>Add DVD Aspect Ratio</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -237,7 +237,7 @@
                  <string>Remove DVD Aspect Ratio</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -298,7 +298,7 @@
                  <string>Add DVD Rating</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -315,7 +315,7 @@
                  <string>Remove DVD Rating</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -381,7 +381,7 @@
                  <string>Add DVD Region</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -398,7 +398,7 @@
                  <string>Remove DVD Region</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -459,7 +459,7 @@
                  <string>Add Language</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -476,7 +476,7 @@
                  <string>Remove Language</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -548,7 +548,7 @@
                  <string>Add Location</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -565,7 +565,7 @@
                  <string>Remove Location</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -626,7 +626,7 @@
                  <string>Add Monetary Unit</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -643,7 +643,7 @@
                  <string>Remove Monetary Unit</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -897,7 +897,7 @@
                  <string>Add Video Game Platform</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -914,7 +914,7 @@
                  <string>Remove Video Game Platform</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -975,7 +975,7 @@
                  <string>Add Video Game Rating</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -992,7 +992,7 @@
                  <string>Remove Video Game Rating</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1034,7 +1034,7 @@
          <string>Save Changes</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/save.png</normaloff>:/32x32/save.png</iconset>
         </property>
         <property name="iconSize">
@@ -1061,7 +1061,7 @@
          <string>Refresh</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
         </property>
         <property name="iconSize">
@@ -1094,7 +1094,7 @@
          <string>Close Browser</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/cancel.png</normaloff>:/32x32/cancel.png</iconset>
         </property>
         <property name="iconSize">
@@ -1151,7 +1151,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

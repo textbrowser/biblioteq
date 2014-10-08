@@ -14,7 +14,7 @@
    <string>BiblioteQ</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -93,7 +93,7 @@
                  <string>&amp;Select</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Icons/icons.qrc">
+                 <iconset resource="../Icons/icons.qrc">
                   <normaloff>:/16x16/fileopen.png</normaloff>:/16x16/fileopen.png</iconset>
                 </property>
                </widget>
@@ -587,7 +587,7 @@
          <string>&amp;OK</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
         </property>
        </widget>
@@ -610,7 +610,7 @@
          <string>&amp;Add Item</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
         </property>
        </widget>
@@ -659,7 +659,7 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
         </property>
        </widget>
@@ -676,7 +676,7 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
@@ -739,7 +739,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

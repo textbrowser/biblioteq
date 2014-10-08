@@ -14,7 +14,7 @@
    <string>BiblioteQ</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -82,70 +82,92 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="itemSummary">
-          <property name="flat">
-           <bool>false</bool>
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
           </property>
-          <layout class="QVBoxLayout">
-           <item>
-            <widget class="QLabel" name="summary">
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="frontImage">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="backImage">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>47</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>336</width>
+             <height>464</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QGroupBox" name="itemSummary">
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout">
+               <item>
+                <widget class="QLabel" name="summary">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="frontImage">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="backImage">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>47</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -242,7 +264,7 @@
              <string>Previous Page</string>
             </property>
             <property name="icon">
-             <iconset resource="Icons/icons.qrc">
+             <iconset resource="../Icons/icons.qrc">
               <normaloff>:/16x16/previous.png</normaloff>:/16x16/previous.png</iconset>
             </property>
             <property name="iconSize">
@@ -275,7 +297,7 @@
              <string>Next Page</string>
             </property>
             <property name="icon">
-             <iconset resource="Icons/icons.qrc">
+             <iconset resource="../Icons/icons.qrc">
               <normaloff>:/16x16/next.png</normaloff>:/16x16/next.png</iconset>
             </property>
             <property name="iconSize">
@@ -316,7 +338,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -363,7 +385,7 @@
       <string>&amp;Add Item</string>
      </property>
      <property name="icon">
-      <iconset resource="Icons/icons.qrc">
+      <iconset resource="../Icons/icons.qrc">
        <normaloff>:/16x16/add.png</normaloff>:/16x16/add.png</iconset>
      </property>
      <addaction name="action_Book"/>
@@ -561,7 +583,7 @@
   </widget>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/info.png</normaloff>:/16x16/info.png</iconset>
    </property>
    <property name="text">
@@ -578,7 +600,7 @@
   </action>
   <action name="actionResizeColumns">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/resizecol.png</normaloff>:/16x16/resizecol.png</iconset>
    </property>
    <property name="text">
@@ -587,7 +609,7 @@
   </action>
   <action name="actionSaveSettings">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
    </property>
    <property name="text">
@@ -610,7 +632,7 @@
   </action>
   <action name="actionShowErrorDialog">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/log.png</normaloff>:/16x16/log.png</iconset>
    </property>
    <property name="text">
@@ -630,7 +652,7 @@
   </action>
   <action name="actionConnect">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/connected.png</normaloff>:/16x16/connected.png</iconset>
    </property>
    <property name="text">
@@ -642,7 +664,7 @@
   </action>
   <action name="actionDisconnect">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/disconnected.png</normaloff>:/16x16/disconnected.png</iconset>
    </property>
    <property name="text">
@@ -654,7 +676,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/exit.png</normaloff>:/16x16/exit.png</iconset>
    </property>
    <property name="text">
@@ -666,7 +688,7 @@
   </action>
   <action name="actionDeleteEntry">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
    </property>
    <property name="text">
@@ -678,7 +700,7 @@
   </action>
   <action name="actionModifyEntry">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/edit.png</normaloff>:/16x16/edit.png</iconset>
    </property>
    <property name="text">
@@ -690,7 +712,7 @@
   </action>
   <action name="actionMembersBrowser">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/members.png</normaloff>:/16x16/members.png</iconset>
    </property>
    <property name="text">
@@ -702,7 +724,7 @@
   </action>
   <action name="actionDatabaseSearch">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/find.png</normaloff>:/16x16/find.png</iconset>
    </property>
    <property name="text">
@@ -720,7 +742,7 @@
   </action>
   <action name="actionRefreshTable">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
    </property>
    <property name="text">
@@ -732,7 +754,7 @@
   </action>
   <action name="actionViewDetails">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/details.png</normaloff>:/16x16/details.png</iconset>
    </property>
    <property name="text">
@@ -744,7 +766,7 @@
   </action>
   <action name="actionSetGlobalFonts">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/fonts.png</normaloff>:/16x16/fonts.png</iconset>
    </property>
    <property name="text">
@@ -764,7 +786,7 @@
   </action>
   <action name="connectTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/connect_established.png</normaloff>:/32x32/connect_established.png</iconset>
    </property>
    <property name="text">
@@ -773,7 +795,7 @@
   </action>
   <action name="disconnectTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/connect_no.png</normaloff>:/32x32/connect_no.png</iconset>
    </property>
    <property name="text">
@@ -782,7 +804,7 @@
   </action>
   <action name="detailsTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/details.png</normaloff>:/32x32/details.png</iconset>
    </property>
    <property name="text">
@@ -791,7 +813,7 @@
   </action>
   <action name="createTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/add.png</normaloff>:/32x32/add.png</iconset>
    </property>
    <property name="text">
@@ -803,7 +825,7 @@
   </action>
   <action name="deleteTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/remove.png</normaloff>:/32x32/remove.png</iconset>
    </property>
    <property name="text">
@@ -812,7 +834,7 @@
   </action>
   <action name="modifyTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/edit.png</normaloff>:/32x32/edit.png</iconset>
    </property>
    <property name="text">
@@ -821,7 +843,7 @@
   </action>
   <action name="printTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/print.png</normaloff>:/32x32/print.png</iconset>
    </property>
    <property name="text">
@@ -830,7 +852,7 @@
   </action>
   <action name="reserveTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/checkout.png</normaloff>:/32x32/checkout.png</iconset>
    </property>
    <property name="text">
@@ -839,7 +861,7 @@
   </action>
   <action name="userTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/members.png</normaloff>:/32x32/members.png</iconset>
    </property>
    <property name="text">
@@ -848,7 +870,7 @@
   </action>
   <action name="searchTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/find.png</normaloff>:/32x32/find.png</iconset>
    </property>
    <property name="text">
@@ -857,7 +879,7 @@
   </action>
   <action name="customQueryTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/customquery.png</normaloff>:/32x32/customquery.png</iconset>
    </property>
    <property name="text">
@@ -866,7 +888,7 @@
   </action>
   <action name="refreshTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/reload.png</normaloff>:/32x32/reload.png</iconset>
    </property>
    <property name="text">
@@ -875,7 +897,7 @@
   </action>
   <action name="configTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/configure.png</normaloff>:/32x32/configure.png</iconset>
    </property>
    <property name="text">
@@ -884,7 +906,7 @@
   </action>
   <action name="exitTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/exit.png</normaloff>:/32x32/exit.png</iconset>
    </property>
    <property name="text">
@@ -893,7 +915,7 @@
   </action>
   <action name="actionReservationHistory">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/history.png</normaloff>:/32x32/history.png</iconset>
    </property>
    <property name="text">
@@ -902,7 +924,7 @@
   </action>
   <action name="actionChangePassword">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/password.png</normaloff>:/32x32/password.png</iconset>
    </property>
    <property name="text">
@@ -927,7 +949,7 @@
   </action>
   <action name="actionConfigureAdministratorPrivileges">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/identity.png</normaloff>:/32x32/identity.png</iconset>
    </property>
    <property name="text">
@@ -936,7 +958,7 @@
   </action>
   <action name="actionRequests">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/request.png</normaloff>:/32x32/request.png</iconset>
    </property>
    <property name="text">
@@ -961,7 +983,7 @@
   </action>
   <action name="action_New_SQLite_Database">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/filenew.png</normaloff>:/16x16/filenew.png</iconset>
    </property>
    <property name="text">
@@ -973,7 +995,7 @@
   </action>
   <action name="actionDatabase_Enumerations">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/settings.png</normaloff>:/32x32/settings.png</iconset>
    </property>
    <property name="text">
@@ -993,7 +1015,7 @@
   </action>
   <action name="actionExport_Current_View">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
@@ -1002,7 +1024,7 @@
   </action>
   <action name="duplicateTool">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/32x32/duplicate.png</normaloff>:/32x32/duplicate.png</iconset>
    </property>
    <property name="text">
@@ -1014,7 +1036,7 @@
   </action>
   <action name="actionDuplicateEntry">
    <property name="icon">
-    <iconset resource="Icons/icons.qrc">
+    <iconset resource="../Icons/icons.qrc">
      <normaloff>:/16x16/editcopy.png</normaloff>:/16x16/editcopy.png</iconset>
    </property>
    <property name="text">
@@ -1137,11 +1159,12 @@
   <tabstop>typefilter</tabstop>
   <tabstop>table</tabstop>
   <tabstop>graphicsView</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>previousPageButton</tabstop>
   <tabstop>nextPageButton</tabstop>
  </tabstops>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

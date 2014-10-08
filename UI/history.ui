@@ -14,7 +14,7 @@
    <string>BiblioteQ: Member's Reservation History</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -124,7 +124,7 @@
          <string>Previous Member</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/previous.png</normaloff>:/32x32/previous.png</iconset>
         </property>
         <property name="iconSize">
@@ -163,7 +163,7 @@
          <string>&amp;Reload</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/reload.png</normaloff>:/16x16/reload.png</iconset>
         </property>
        </widget>
@@ -180,7 +180,7 @@
          <string>&amp;Print</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/fileprint.png</normaloff>:/16x16/fileprint.png</iconset>
         </property>
        </widget>
@@ -197,7 +197,7 @@
          <string>&amp;Close</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
@@ -221,7 +221,7 @@
          <string>Next Member</string>
         </property>
         <property name="icon">
-         <iconset resource="Icons/icons.qrc">
+         <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/next.png</normaloff>:/32x32/next.png</iconset>
         </property>
         <property name="iconSize">
@@ -242,7 +242,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

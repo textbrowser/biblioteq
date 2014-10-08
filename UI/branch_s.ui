@@ -14,7 +14,7 @@
    <string>BiblioteQ: Branch Selection</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Icons/icons.qrc">
+   <iconset resource="../Icons/icons.qrc">
     <normaloff>:/book.png</normaloff>:/book.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -71,7 +71,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="Icons/icons.qrc">:/32x32/fileopen.png</pixmap>
+             <pixmap resource="../Icons/icons.qrc">:/32x32/fileopen.png</pixmap>
             </property>
            </widget>
           </item>
@@ -111,7 +111,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="Icons/icons.qrc">:/32x32/database.png</pixmap>
+             <pixmap resource="../Icons/icons.qrc">:/32x32/database.png</pixmap>
             </property>
            </widget>
           </item>
@@ -197,7 +197,7 @@
         <string>&amp;Connect</string>
        </property>
        <property name="icon">
-        <iconset resource="Icons/icons.qrc">
+        <iconset resource="../Icons/icons.qrc">
          <normaloff>:/16x16/ok.png</normaloff>:/16x16/ok.png</iconset>
        </property>
       </widget>
@@ -214,7 +214,7 @@
         <string>&amp;Reset</string>
        </property>
        <property name="icon">
-        <iconset resource="Icons/icons.qrc">
+        <iconset resource="../Icons/icons.qrc">
          <normaloff>:/16x16/reset.png</normaloff>:/16x16/reset.png</iconset>
        </property>
       </widget>
@@ -234,7 +234,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="Icons/icons.qrc">
+        <iconset resource="../Icons/icons.qrc">
          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
        </property>
       </widget>
@@ -267,7 +267,7 @@
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>
