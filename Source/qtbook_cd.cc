@@ -1761,6 +1761,7 @@ void qtbook_cd::slotSaveTracks(void)
   else
     {
       qapp->restoreOverrideCursor();
+      progress.setCancelButton(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the track data..."));

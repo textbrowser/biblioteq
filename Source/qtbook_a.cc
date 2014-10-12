@@ -1875,6 +1875,7 @@ void qtbook::slotDelete(void)
 	return;
       }
 
+  progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));
@@ -4506,6 +4507,7 @@ void qtbook::slotGrantPrivileges(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
+  progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Granting privileges..."));
@@ -7971,6 +7973,7 @@ void qtbook::slotSaveAdministrators(void)
     }
 
   qapp->restoreOverrideCursor();
+  progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Saving administrator information..."));
@@ -8225,13 +8228,14 @@ void qtbook::slotRequest(void)
 	  }
     }
 
+  progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
 
   if(isRequesting)
     progress.setLabelText(tr("Requesting the selected item(s)..."));
   else
-    progress.setLabelText(tr("Cancelling the selected request(s)..."));
+    progress.setLabelText(tr("Canceling the selected request(s)..."));
 
   progress.setMaximum(list.size());
   progress.setMinimum(0);

@@ -1840,6 +1840,7 @@ void qtbook_photographcollection::slotDeleteItem(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
+  progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Deleting the selected item(s)..."));

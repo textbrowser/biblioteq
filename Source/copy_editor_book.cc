@@ -697,6 +697,7 @@ QString copy_editor_book::saveCopies(void)
   else
     {
       qapp->restoreOverrideCursor();
+      progress.setCancelButton(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
       progress.setLabelText(tr("Saving the copy data..."));
