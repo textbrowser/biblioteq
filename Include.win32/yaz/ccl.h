@@ -78,6 +78,8 @@
 
 YAZ_BEGIN_CDECL
 
+#define YAZ_781 1
+
 #define CCL_ERR_OK                0
 #define CCL_ERR_TERM_EXPECTED     1
 #define CCL_ERR_RP_EXPECTED       2
