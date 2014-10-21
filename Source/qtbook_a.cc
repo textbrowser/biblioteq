@@ -4482,7 +4482,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 
   progress.hide();
   bb.table->setSortingEnabled(true);
-  bb.table->setRowCount(i);
+  bb.table->setRowCount(i); // Support cancellation.
   bb.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
 #ifdef Q_OS_MAC
@@ -7273,7 +7273,7 @@ void qtbook::slotShowHistory(void)
     }
 
   progress.hide();
-  history.table->setRowCount(i);
+  history.table->setRowCount(i); // Support cancellation.
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->horizontalHeader()->resizeSections
@@ -7841,7 +7841,7 @@ void qtbook::slotRefreshAdminList(void)
     }
 
   progress.hide();
-  ab.table->setRowCount(i);
+  ab.table->setRowCount(i); // Support cancellation.
   ab.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
   deletedAdmins.clear();

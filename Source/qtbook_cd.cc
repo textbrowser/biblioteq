@@ -1568,7 +1568,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.hide();
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
-  trd.table->setRowCount(i);
+  trd.table->setRowCount(i); // Support cancellation.
   trd.table->resizeColumnsToContents();
 }
 
