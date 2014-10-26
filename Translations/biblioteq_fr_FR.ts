@@ -2512,6 +2512,10 @@ minmal de jours.</translation>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="unfinished">ISSN</translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -2965,6 +2969,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3451,15 +3459,15 @@ minmal de jours.</translation>
         <translation type="unfinished">&amp;Réinitialiser</translation>
     </message>
     <message>
-        <source>&amp;Export Photographs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Print</source>
         <translation type="unfinished">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Items</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3641,7 +3649,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Cancelling the selected request(s)...</source>
-        <translation>Annulation de la ou des requêtes sélectionnées...</translation>
+        <translation type="obsolete">Annulation de la ou des requêtes sélectionnées...</translation>
     </message>
     <message>
         <source> in file </source>
@@ -3769,7 +3777,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Please provide a valid ZIP Code.</source>
-        <translation>Veuillez indiquer un code postal valide.</translation>
+        <translation type="obsolete">Veuillez indiquer un code postal valide.</translation>
     </message>
     <message>
         <source>Administrator Mode</source>
@@ -4665,10 +4673,6 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have selected a new language. Please restart BiblioteQ.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add &amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4716,6 +4720,22 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6747,7 +6767,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation>Impossible d&apos;extraire l&apos;OID du magazine.</translation>
+        <translation type="obsolete">Impossible d&apos;extraire l&apos;OID du magazine.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
@@ -6755,7 +6775,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation>Impossible d&apos;extraire l&apos;OID du journal.</translation>
+        <translation type="obsolete">Impossible d&apos;extraire l&apos;OID du journal.</translation>
     </message>
     <message>
         <source>Publication Date:</source>
@@ -6835,6 +6855,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

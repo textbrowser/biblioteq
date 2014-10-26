@@ -2642,6 +2642,10 @@ webová adresa</translation>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="unfinished">ISSN</translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -3193,6 +3197,10 @@ webová adresa</translation>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3721,16 +3729,16 @@ webová adresa</translation>
         <translation type="unfinished">&amp;Vyčistit</translation>
     </message>
     <message>
-        <source>&amp;Export Photographs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Print</source>
         <translation type="unfinished">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Zavřít</translation>
+    </message>
+    <message>
+        <source>&amp;Export Items</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4187,7 +4195,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Please provide a valid ZIP Code.</source>
-        <translation>Prosím, zadejte neprázdné PSČ.</translation>
+        <translation type="obsolete">Prosím, zadejte neprázdné PSČ.</translation>
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
@@ -4767,7 +4775,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Cancelling the selected request(s)...</source>
-        <translation>Rušení vybraných požadavků...</translation>
+        <translation type="obsolete">Rušení vybraných požadavků...</translation>
     </message>
     <message>
         <source>Unable to request the item.</source>
@@ -5034,10 +5042,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have selected a new language. Please restart BiblioteQ.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add &amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5085,6 +5089,22 @@ webová adresa</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7208,11 +7228,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation>Nemohu načíst údaje o ID časopisu.</translation>
+        <translation type="obsolete">Nemohu načíst údaje o ID časopisu.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation>Nemohu načíst údaje o ID magazínu.</translation>
+        <translation type="obsolete">Nemohu načíst údaje o ID magazínu.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -7540,6 +7560,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

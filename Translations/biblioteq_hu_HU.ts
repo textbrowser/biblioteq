@@ -4640,7 +4640,7 @@
     <message>
         <location line="+3"/>
         <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Magyar</translation>
     </message>
     <message>
         <location line="+3"/>

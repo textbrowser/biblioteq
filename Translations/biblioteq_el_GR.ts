@@ -2725,6 +2725,10 @@ URL</source>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="unfinished">ISSN</translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -3256,6 +3260,10 @@ URL</source>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -3784,16 +3792,16 @@ URL</source>
         <translation type="unfinished">Επα&amp;ναφορά</translation>
     </message>
     <message>
-        <source>&amp;Export Photographs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Print</source>
         <translation type="unfinished">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Κλείσιμο</translation>
+    </message>
+    <message>
+        <source>&amp;Export Items</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4250,7 +4258,7 @@ URL</source>
     </message>
     <message>
         <source>Please provide a valid ZIP Code.</source>
-        <translation>Παρακαλώ να γίνει η εισαγωγή του ταχυδρομικού κώδικα.</translation>
+        <translation type="obsolete">Παρακαλώ να γίνει η εισαγωγή του ταχυδρομικού κώδικα.</translation>
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
@@ -4830,7 +4838,7 @@ URL</source>
     </message>
     <message>
         <source>Cancelling the selected request(s)...</source>
-        <translation>Ακύρωση των επιλεγμένων διαθέσιμων αντικειμένων...</translation>
+        <translation type="obsolete">Ακύρωση των επιλεγμένων διαθέσιμων αντικειμένων...</translation>
     </message>
     <message>
         <source>Unable to request the item.</source>
@@ -5113,10 +5121,6 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have selected a new language. Please restart BiblioteQ.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add &amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5164,6 +5168,22 @@ URL</source>
     </message>
     <message>
         <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7291,11 +7311,11 @@ URL</source>
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation>Αδυναμία καθορισμού του OID περιοδικού.</translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του OID περιοδικού.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation>Αδυναμία καθορισμού του OID περιοδικού.</translation>
+        <translation type="obsolete">Αδυναμία καθορισμού του OID περιοδικού.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
@@ -7627,6 +7647,14 @@ URL</source>
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

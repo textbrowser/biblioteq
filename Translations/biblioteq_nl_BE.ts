@@ -2515,6 +2515,10 @@
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="unfinished">ISSN</translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -2992,6 +2996,10 @@
     </message>
     <message>
         <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3478,16 +3486,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export Photographs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Print</source>
         <translation type="unfinished">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Sluiten</translation>
+    </message>
+    <message>
+        <source>&amp;Export Items</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3672,7 +3680,7 @@
     </message>
     <message>
         <source>Cancelling the selected request(s)...</source>
-        <translation>Bezig met geselecteerde aanvragen te annuleren...</translation>
+        <translation type="obsolete">Bezig met geselecteerde aanvragen te annuleren...</translation>
     </message>
     <message>
         <source> in file </source>
@@ -3804,7 +3812,7 @@
     </message>
     <message>
         <source>Please provide a valid ZIP Code.</source>
-        <translation>Vul een geldige postcode in a.u.b.  .</translation>
+        <translation type="obsolete">Vul een geldige postcode in a.u.b.  .</translation>
     </message>
     <message>
         <source>Administrator Mode</source>
@@ -4723,10 +4731,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>You have selected a new language. Please restart BiblioteQ.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add &amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4774,6 +4778,22 @@
     </message>
     <message>
         <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6813,7 +6833,7 @@
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
-        <translation>Niet mogelijk om TIJDSCHRIFT - OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om TIJDSCHRIFT - OID op te halen.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
@@ -6821,7 +6841,7 @@
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
-        <translation>Niet mogelijk om KRANT - OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om KRANT - OID op te halen.</translation>
     </message>
     <message>
         <source>Publication Date:</source>
@@ -6901,6 +6921,14 @@
     </message>
     <message>
         <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
