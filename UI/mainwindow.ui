@@ -1116,6 +1116,14 @@
     <string>&amp;French</string>
    </property>
   </action>
+  <action name="action_Hungarian">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Hungarian</string>
+   </property>
+  </action>
   <action name="action_Dutch">
    <property name="text">
     <string>&amp;Dutch</string>

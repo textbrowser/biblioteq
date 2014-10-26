@@ -159,6 +159,7 @@ int main(int argc, char *argv[])
        qtbook::s_locale == "de_DE" ||
        qtbook::s_locale == "el_GR" ||
        qtbook::s_locale == "fr_FR" ||
+       qtbook::s_locale == "hu_HU" ||
        qtbook::s_locale == "nl_BE" ||
        qtbook::s_locale == "nl_NL"))
     qtbook::s_locale = QLocale::system().name();
@@ -775,6 +776,9 @@ qtbook::qtbook(void):QMainWindow()
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&French")))->setCheckable(true);
   action->setData("fr_FR");
+  ui.menu_Language->addAction(action);
+  (action = group3->addAction(tr("&Hungarian")))->setCheckable(true);
+  action->setData("hu_HU");
   ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&German")))->setCheckable(true);
   action->setData("de_DE");
