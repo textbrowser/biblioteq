@@ -118,7 +118,7 @@
     <message>
         <location line="+23"/>
         <source>Street</source>
-        <translation>Utca</translation>
+        <translation>Cím</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -128,7 +128,7 @@
     <message>
         <location line="+14"/>
         <source>State &amp; ZIP Code</source>
-        <translation>Város &amp; Irányitószám</translation>
+        <translation>Állam &amp; Irányitószám</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -893,12 +893,12 @@
     <message>
         <location filename="../UI/branch_s.ui" line="+14"/>
         <source>BiblioteQ: Branch Selection</source>
-        <translation>BiblioteQ: Ág Kiválasztás</translation>
+        <translation>BiblioteQ: Adatbázis Kiválasztás</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Branch Name</source>
-        <translation>Ág Neve</translation>
+        <translation>Adatbázis Típus</translation>
     </message>
     <message>
         <location line="+55"/>
@@ -2872,7 +2872,7 @@
     <message>
         <location line="+17"/>
         <source>&amp;SRU Query</source>
-        <translation>Z39.50 Lekérdezés</translation>
+        <translation>SRU Lekérdezés</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -3056,7 +3056,7 @@
     <message>
         <location line="+17"/>
         <source>&amp;SRU Query</source>
-        <translation>Z39.50 Lekérdezés</translation>
+        <translation>SRU Lekérdezés</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -4398,7 +4398,8 @@
         <location line="+1"/>
         <source>Your changes have not been saved. Continue closing?
 %1</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?
+%1</translation>
     </message>
     <message>
         <location filename="../Source/qtbook_a.cc" line="-8713"/>
@@ -4640,7 +4641,7 @@
     <message>
         <location line="+3"/>
         <source>&amp;Hungarian</source>
-        <translation type="unfinished">Magyar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4688,7 +4689,7 @@
         <location line="-3976"/>
         <location line="+3085"/>
         <source>Disconnected</source>
-        <translation>Kapcsolat Bontása</translation>
+        <translation>Nincs Kapcsolódva</translation>
     </message>
     <message>
         <location line="-3078"/>
@@ -4700,7 +4701,7 @@
         <location line="-3077"/>
         <location line="+4192"/>
         <source>Empty Error Log</source>
-        <translation>Hiba Napló Ürítése</translation>
+        <translation>Üres Hiba Napló</translation>
     </message>
     <message>
         <location line="-4188"/>
@@ -5256,7 +5257,7 @@
         <location line="+29"/>
         <location line="+20"/>
         <source>BiblioteQ: </source>
-        <translation>BiblioteQ</translation>
+        <translation>BiblioteQ: </translation>
     </message>
     <message>
         <location line="+51"/>
@@ -5449,7 +5450,7 @@
     <message>
         <location line="-1428"/>
         <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kökcsönözve?)</translation>
+        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -5517,7 +5518,7 @@
         <location line="+44"/>
         <location line="+4"/>
         <source>It appears that the item you selected is not available for reservation.</source>
-        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kökcsönözve?)</translation>
+        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
     </message>
     <message>
         <location line="+10"/>
