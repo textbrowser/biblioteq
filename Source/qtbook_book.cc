@@ -2900,7 +2900,8 @@ void qtbook_book::slotZ3950Query(void)
 		      __FILE__, __LINE__);
       QMessageBox::critical
 	(this, tr("BiblioteQ: Z39.50 Query Error"),
-	 tr("The Z39.50 entry could not be retrieved."));
+	 tr("The Z39.50 entry could not be retrieved. Please view the "
+	    "error log."));
     }
 }
 

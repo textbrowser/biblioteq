@@ -149,6 +149,9 @@ void generic_thread::run(void)
 	  {
 	    m_eType = errmsg;
 	    m_errorStr = addinfo;
+
+	    if(m_errorStr.isEmpty())
+	      m_errorStr = m_eType;
 	  }
 	else if(m_z3950Results.isEmpty())
 	  {
