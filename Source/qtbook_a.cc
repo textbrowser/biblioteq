@@ -7993,7 +7993,7 @@ void qtbook::slotSaveAdministrators(void)
   for(i = 0; i < ab.table->rowCount(); i++)
     {
       str = "";
-      adminStr = ab.table->item(i, 0)->text().trimmed();
+      adminStr = ab.table->item(i, 0)->text().toLower().trimmed();
 
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
