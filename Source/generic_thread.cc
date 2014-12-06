@@ -87,46 +87,46 @@ void generic_thread::run(void)
 	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
 	ZOOM_connection zoomConnection = 0;
-	QHash<QString, QString> proxy
+	QHash<QString, QString> hash
 	  (qmain->getZ3950Maps().value(m_z3950Name));
 
 	ZOOM_options_set
 	  (options,
 	   "databaseName",
-	   proxy.value("Database").toLatin1().constData());
+	   hash.value("Database").toLatin1().constData());
 	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
 
-	if(!proxy.value("proxy_host").isEmpty() &&
-	   !proxy.value("proxy_port").isEmpty())
+	if(!hash.value("proxy_host").isEmpty() &&
+	   !hash.value("proxy_port").isEmpty())
 	  {
 	    QString value(QString("%1:%2").
-			  arg(proxy["proxy_host"]).
-			  arg(proxy["proxy_port"]));
+			  arg(hash["proxy_host"]).
+			  arg(hash["proxy_port"]));
 
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }
 
-	if(!proxy.value("Userid").isEmpty())
+	if(!hash.value("Userid").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "user",
-	     proxy.value("Userid").toLatin1().constData());
+	     hash.value("Userid").toLatin1().constData());
 
-	if(!proxy.value("Password").isEmpty())
+	if(!hash.value("Password").isEmpty())
 	  ZOOM_options_set
 	    (options,
 	     "password",
-	     proxy.value("Password").toLatin1().constData());
+	     hash.value("Password").toLatin1().constData());
 
 	zoomConnection = ZOOM_connection_create(options);
 	ZOOM_connection_connect
-	  (zoomConnection, (proxy.value("Address") + ":" +
-			    proxy.value("Port")).toLatin1().constData(), 0);
+	  (zoomConnection, (hash.value("Address") + ":" +
+			    hash.value("Port")).toLatin1().constData(), 0);
  	zoomResultSet = ZOOM_connection_search_pqf
 	  (zoomConnection,
 	   m_z3950SearchStr.toLatin1().constData());
 
-	QString format = proxy.value("Format").trimmed().toLower();
+	QString format = hash.value("Format").trimmed().toLower();
 
 	if(format.isEmpty())
 	  format = "render";
