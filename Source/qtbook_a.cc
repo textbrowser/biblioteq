@@ -7748,7 +7748,8 @@ void qtbook::slotRefreshAdminList(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  query.prepare("SELECT username, roles FROM admin ORDER BY username");
+  query.prepare("SELECT username, LOWER(roles) "
+		"FROM admin ORDER BY username");
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -7910,8 +7911,8 @@ void qtbook::slotSaveAdministrators(void)
 	  return;
 	}
 
-      if(!tmplist.contains(ab.table->item(i, 0)->text().trimmed()))
-	tmplist.append(ab.table->item(i, 0)->text().trimmed());
+      if(!tmplist.contains(ab.table->item(i, 0)->text().toLower().trimmed()))
+	tmplist.append(ab.table->item(i, 0)->text().toLower().trimmed());
       else
 	{
 	  tmplist.clear();
@@ -7946,7 +7947,7 @@ void qtbook::slotSaveAdministrators(void)
 
   for(i = 0; i < deletedAdmins.size(); i++)
     {
-      query.prepare("DELETE FROM admin WHERE username = LOWER(?)");
+      query.prepare("DELETE FROM admin WHERE LOWER(username) = LOWER(?)");
       query.bindValue(0, deletedAdmins[i].toLower());
 
       if(!query.exec())
@@ -8037,16 +8038,18 @@ void qtbook::slotSaveAdministrators(void)
       if(ucount == 0)
 	{
 	  query.prepare("INSERT INTO admin (username, roles) "
-			"VALUES (?, ?)");
+			"VALUES (LOWER(?), LOWER(?))");
 	  query.bindValue(0, adminStr);
 	  query.bindValue(1, str);
 	}
       else
 	{
-	  query.prepare("UPDATE admin SET roles = ? WHERE "
-			"username = ?");
+	  query.prepare
+	    ("UPDATE admin SET roles = LOWER(?), username = LOWER(?) WHERE "
+	     "LOWER(username) = LOWER(?)");
 	  query.bindValue(0, str);
 	  query.bindValue(1, adminStr);
+	  query.bindValue(2, adminStr);
 	}
 
       if(!query.exec())

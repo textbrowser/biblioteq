@@ -23,6 +23,13 @@
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QLabel" name="label_32">
+         <property name="text">
+          <string>Please use lower-case IDs.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QSplitter" name="splitter">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -39,8 +46,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1203</width>
-             <height>127</height>
+             <width>1099</width>
+             <height>122</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
@@ -569,7 +576,7 @@
  </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
-  <include location="Icons/icons.qrc"/>
+  <include location="../Icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

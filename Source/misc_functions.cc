@@ -38,7 +38,7 @@ qint64 misc_functions::userCount(const QString &userid,
 		  "memberid = ?");
   else
     query.prepare("SELECT COUNT(usename) FROM pg_user WHERE "
-		  "usename = ?");
+		  "LOWER(usename) = LOWER(?)");
 
   query.bindValue(0, userid);
 
@@ -1057,7 +1057,8 @@ QString misc_functions::getRoles(const QSqlDatabase &db,
   QSqlQuery query(db);
 
   errorstr = "";
-  querystr = "SELECT roles FROM admin WHERE username = ?";
+  querystr = "SELECT LOWER(roles) FROM admin WHERE "
+    "LOWER(username) = LOWER(?)";
   query.prepare(querystr);
   query.bindValue(0, username);
 
