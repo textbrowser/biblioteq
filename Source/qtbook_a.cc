@@ -7665,7 +7665,7 @@ void qtbook::slotDeleteAdmin(void)
       return;
     }
 
-  str = ab.table->item(row, 0)->text().trimmed();
+  str = ab.table->item(row, 0)->text().toLower().trimmed();
 
   if((ab.table->item(row, 0)->flags() & Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
@@ -7946,21 +7946,21 @@ void qtbook::slotSaveAdministrators(void)
 
   for(i = 0; i < deletedAdmins.size(); i++)
     {
-      query.prepare("DELETE FROM admin WHERE username = ?");
-      query.bindValue(0, deletedAdmins[i]);
+      query.prepare("DELETE FROM admin WHERE username = LOWER(?)");
+      query.bindValue(0, deletedAdmins[i].toLower());
 
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
 	  addError(QString(tr("Database Error")),
 		   QString(tr("An error occurred while attempting to "
-			      "remove ")) + deletedAdmins[i] +
+			      "remove ")) + deletedAdmins[i].toLower() +
 		   QString(tr(".")),
 		   query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
-      misc_functions::DBAccount(deletedAdmins[i], db,
+      misc_functions::DBAccount(deletedAdmins[i].toLower(), db,
 				misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
@@ -7970,7 +7970,7 @@ void qtbook::slotSaveAdministrators(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("An error occurred while attempting to "
 			"remove the database account ")) +
-	     deletedAdmins[i] + QString(tr(".")),
+	     deletedAdmins[i].toLower() + QString(tr(".")),
 	     errorstr, __FILE__, __LINE__);
 	  goto db_rollback;
 	}
