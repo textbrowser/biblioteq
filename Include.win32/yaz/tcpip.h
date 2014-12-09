@@ -41,6 +41,9 @@ YAZ_EXPORT COMSTACK tcpip_type(int s, int flags, int protocol, void *vp);
 YAZ_EXPORT COMSTACK ssl_type(int s, int flags, int protocol, void *vp);
 YAZ_EXPORT COMSTACK yaz_tcpip_create(int s, int flags, int protocol,
                                      const char *connect_host);
+YAZ_EXPORT COMSTACK yaz_tcpip_create2(int s, int flags, int protocol,
+                                      const char *connect_host,
+                                      const char *bind_host);
 
 YAZ_END_CDECL
 

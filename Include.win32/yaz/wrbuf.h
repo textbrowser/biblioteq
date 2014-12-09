@@ -258,7 +258,7 @@ const char *wrbuf_cstr_null(WRBUF b);
 
 #define wrbuf_putc(b, c) \
     ((void) ((b)->pos >= (b)->size ? wrbuf_grow(b, 1) : 0),  \
-    (b)->buf[(b)->pos++] = (c), 0)
+    (b)->buf[(b)->pos++] = (c))
 
 
 /** \brief writes JSON text to WRBUF with escaping

@@ -360,6 +360,7 @@ int cql_transform(cql_transform_t ct,
 
     The result is written to a user-defined stream.
 */
+YAZ_EXPORT
 int cql_transform_r(cql_transform_t ct, struct cql_node *cn,
                     WRBUF addinfo,
                     void (*pr)(const char *buf, void *client_data),

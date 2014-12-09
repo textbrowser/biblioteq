@@ -484,6 +484,20 @@ struct json_node;
 
 YAZ_EXPORT int yaz_marc_read_json_node(yaz_marc_t mt, struct json_node *n);
 
+/** \brief check if MARC21 is UTF-8 encoded
+    \param charset that is given by user
+    \param marc_buf ISO2709 buf
+    \param sz ISO2709 size
+    \retval 1 is probably UTF-8
+    \retval 0 is not UTF-8
+*/
+YAZ_EXPORT
+int yaz_marc_check_marc21_coding(const char *charset,
+                                 const char *marc_buf, int sz);
+
+YAZ_EXPORT
+int yaz_opac_check_marc21_coding(const char *charset, Z_OPACRecord *r);
+
 YAZ_END_CDECL
 
 #endif
