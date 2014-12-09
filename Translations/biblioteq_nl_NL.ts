@@ -441,6 +441,10 @@
         <source>Item Returns</source>
         <translation>Teruggebrachte Items</translation>
     </message>
+    <message>
+        <source>Please use lower-case IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -5141,7 +5145,7 @@
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation> Z39.50 gegeven kon niet achterhaald worden.</translation>
+        <translation type="obsolete"> Z39.50 gegeven kon niet achterhaald worden.</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -5397,6 +5401,10 @@
     </message>
     <message>
         <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

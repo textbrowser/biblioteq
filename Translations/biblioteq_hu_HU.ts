@@ -39,7 +39,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+636"/>
+        <location line="+637"/>
         <location line="+36"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
@@ -456,7 +456,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+14"/>
+        <source>Please use lower-case IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
         <source>Item Creation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2516,7 +2521,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+90"/>
         <location line="+1"/>
         <source>Z39.50 Empty Results Set</source>
         <translation type="unfinished"></translation>
@@ -4388,7 +4393,7 @@
         <location line="+686"/>
         <location line="+44"/>
         <location line="+2744"/>
-        <location line="+1862"/>
+        <location line="+1865"/>
         <location line="+485"/>
         <location line="+213"/>
         <source>BiblioteQ: Question</source>
@@ -4402,7 +4407,7 @@
 %1</translation>
     </message>
     <message>
-        <location filename="../Source/qtbook_a.cc" line="-8713"/>
+        <location filename="../Source/qtbook_a.cc" line="-8716"/>
         <source>BiblioteQ has exited.</source>
         <translation>A BiblioteQ kilépett.</translation>
     </message>
@@ -4432,10 +4437,10 @@
         <location line="+13"/>
         <location line="+8"/>
         <location line="+682"/>
-        <location line="+3419"/>
+        <location line="+3420"/>
         <location line="+15"/>
         <location line="+59"/>
-        <location line="+26"/>
+        <location line="+28"/>
         <location line="+18"/>
         <location line="+18"/>
         <location line="+14"/>
@@ -4443,7 +4448,7 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-7867"/>
+        <location line="-7870"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -4641,7 +4646,7 @@
     <message>
         <location line="+3"/>
         <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Magyar</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4758,12 +4763,12 @@
         <location line="+576"/>
         <location line="+251"/>
         <location line="+366"/>
-        <location line="+229"/>
+        <location line="+230"/>
         <location line="+177"/>
         <location line="+21"/>
         <location line="+15"/>
         <location line="+60"/>
-        <location line="+26"/>
+        <location line="+28"/>
         <location line="+17"/>
         <location line="+18"/>
         <location line="+14"/>
@@ -4778,7 +4783,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7416"/>
+        <location line="-7419"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4849,16 +4854,16 @@
         <location line="+10"/>
         <location line="+151"/>
         <location line="+10"/>
-        <location line="+235"/>
+        <location line="+236"/>
         <location line="+13"/>
-        <location line="+286"/>
+        <location line="+288"/>
         <location line="+10"/>
         <location line="+699"/>
         <source>BiblioteQ: User Error</source>
         <translation>BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-7570"/>
+        <location line="-7573"/>
         <source>Please select at least one item to modify.</source>
         <translation>Jelöljön ki legalább egy módosítandó cikket.</translation>
     </message>
@@ -4870,28 +4875,28 @@
     <message>
         <location line="+2"/>
         <location line="+214"/>
-        <location line="+7358"/>
+        <location line="+7361"/>
         <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
         <translation> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
     </message>
     <message>
-        <location line="-7394"/>
+        <location line="-7397"/>
         <location line="+215"/>
         <location line="+65"/>
-        <location line="+7201"/>
+        <location line="+7204"/>
         <source>BiblioteQ: Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7480"/>
+        <location line="-7483"/>
         <location line="+215"/>
         <location line="+3218"/>
-        <location line="+4048"/>
+        <location line="+4051"/>
         <source>Unable to determine the selected item&apos;s type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7453"/>
+        <location line="-7456"/>
         <source>Please select at least one item to view.</source>
         <translation>Jelöljön ki legalább egy megtekintendő cikket.</translation>
     </message>
@@ -4953,9 +4958,9 @@
         <location line="+4"/>
         <location line="+4"/>
         <location line="+354"/>
-        <location line="+231"/>
+        <location line="+232"/>
         <location line="+176"/>
-        <location line="+196"/>
+        <location line="+198"/>
         <location line="+28"/>
         <location line="+163"/>
         <location line="+6"/>
@@ -4965,7 +4970,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-6912"/>
+        <location line="-6915"/>
         <source>Reserved items may not be deleted.</source>
         <translation>Kikölcsönzött cikkeket nem lehet törölni.</translation>
     </message>
@@ -4990,15 +4995,15 @@
         <location line="+2545"/>
         <location line="+87"/>
         <location line="+2718"/>
-        <location line="+538"/>
+        <location line="+539"/>
         <location line="+210"/>
-        <location line="+255"/>
+        <location line="+257"/>
         <location filename="../Source/qtbook_b.cc" line="+109"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-6352"/>
+        <location line="-6355"/>
         <source>Deleting the selected item(s)...</source>
         <translation>A kijelölt cikkek törlése...</translation>
     </message>
@@ -5073,22 +5078,22 @@
         <location line="+4"/>
         <location line="+610"/>
         <location line="+4"/>
-        <location line="+5029"/>
+        <location line="+5030"/>
         <location line="+4"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5551"/>
+        <location line="-5552"/>
         <location line="+27"/>
         <location line="+504"/>
         <location line="+26"/>
-        <location line="+5213"/>
+        <location line="+5216"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-5765"/>
+        <location line="-5768"/>
         <location line="+3"/>
         <source>Unable to save the member&apos;s information.</source>
         <translation type="unfinished"></translation>
@@ -5104,26 +5109,26 @@
         <location line="+8"/>
         <location line="+514"/>
         <location line="+8"/>
-        <location line="+5158"/>
+        <location line="+5161"/>
         <location line="+8"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5670"/>
+        <location line="-5673"/>
         <location line="+2070"/>
         <source>An error occurred while attempting to update the database account for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-1989"/>
-        <location line="+5599"/>
+        <location line="+5602"/>
         <location line="+969"/>
         <source>BiblioteQ: Information</source>
         <translation>BiblioteQ: Információ</translation>
     </message>
     <message>
-        <location line="-6567"/>
+        <location line="-6570"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
         <translation>Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
     </message>
@@ -5357,19 +5362,19 @@
     <message>
         <location line="+19"/>
         <location line="+2805"/>
-        <location line="+538"/>
+        <location line="+539"/>
         <location filename="../Source/qtbook_b.cc" line="+1"/>
         <source>Populating the table...</source>
         <translation>Táblázat kitöltése...</translation>
     </message>
     <message>
-        <location line="-3302"/>
+        <location line="-3303"/>
         <location line="+2185"/>
         <location line="+21"/>
         <location line="+586"/>
         <location line="+365"/>
         <location line="+9"/>
-        <location line="+166"/>
+        <location line="+167"/>
         <location line="+21"/>
         <location line="+7"/>
         <location filename="../Source/qtbook_b.cc" line="+159"/>
@@ -5377,17 +5382,17 @@
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-3359"/>
+        <location line="-3360"/>
         <location line="+2792"/>
         <location line="+365"/>
-        <location line="+175"/>
+        <location line="+176"/>
         <location line="+28"/>
         <location filename="../Source/qtbook_b.cc" line="+1"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3315"/>
+        <location line="-3316"/>
         <source>Granting privileges...</source>
         <translation>Jogosultságok adása..</translation>
     </message>
@@ -5697,12 +5702,12 @@
     </message>
     <message>
         <location line="+59"/>
-        <location line="+187"/>
+        <location line="+188"/>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-161"/>
+        <location line="-162"/>
         <source>To delete an entry, you must first select it.</source>
         <translation>Egy bejegyzés törléséhez először ki kell jelölni!</translation>
     </message>
@@ -5712,7 +5717,7 @@
         <translation>Adminisztrátorként nem törölheted a felhasználód!</translation>
     </message>
     <message>
-        <location line="+84"/>
+        <location line="+85"/>
         <location line="+5"/>
         <source>Unable to retrieve administrator data for table populating.</source>
         <translation type="unfinished"></translation>
@@ -5748,7 +5753,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+28"/>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished"></translation>
     </message>
@@ -6182,7 +6187,7 @@
         <location line="+3"/>
         <location line="+5"/>
         <location line="+3"/>
-        <location line="+1146"/>
+        <location line="+1147"/>
         <location line="+3"/>
         <location line="+18"/>
         <location line="+3"/>
@@ -6192,7 +6197,7 @@
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-3196"/>
+        <location line="-3197"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -6216,12 +6221,12 @@
         <location line="+11"/>
         <location line="+1524"/>
         <location line="+173"/>
-        <location line="+840"/>
+        <location line="+841"/>
         <source>BiblioteQ: User Error</source>
         <translation>BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-2653"/>
+        <location line="-2654"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
@@ -6229,12 +6234,12 @@
         <location line="+10"/>
         <location line="+1557"/>
         <location line="+324"/>
-        <location line="+1142"/>
+        <location line="+1143"/>
         <source>BiblioteQ: Question</source>
         <translation>BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3022"/>
+        <location line="-3023"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -6463,11 +6468,15 @@
     </message>
     <message>
         <location line="+4"/>
-        <source>The Z39.50 entry could not be retrieved.</source>
-        <translation>A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+11"/>
+        <source>The Z39.50 entry could not be retrieved.</source>
+        <translation type="obsolete">A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
+    </message>
+    <message>
+        <location line="+12"/>
         <source>ISBN-10:</source>
         <translation>ISBN-10:</translation>
     </message>

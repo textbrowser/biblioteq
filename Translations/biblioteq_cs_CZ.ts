@@ -449,6 +449,10 @@
         <source>Refresh Table</source>
         <translation type="unfinished">Znovu načíst tabulku</translation>
     </message>
+    <message>
+        <source>Please use lower-case IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -5520,7 +5524,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation>Záznam Z39.50 nebyl načten.</translation>
+        <translation type="obsolete">Záznam Z39.50 nebyl načten.</translation>
     </message>
     <message>
         <source>ISBN-10:</source>
@@ -5776,6 +5780,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

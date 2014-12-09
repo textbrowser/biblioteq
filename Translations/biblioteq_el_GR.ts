@@ -449,6 +449,10 @@
         <source>Refresh Table</source>
         <translation>Ανανέωση πίνακα</translation>
     </message>
+    <message>
+        <source>Please use lower-case IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -5599,7 +5603,7 @@ URL</source>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation>Η Z39.50 εγγραφή δεν μπορεί να ανακτηθεί.</translation>
+        <translation type="obsolete">Η Z39.50 εγγραφή δεν μπορεί να ανακτηθεί.</translation>
     </message>
     <message>
         <source>ISBN-10:</source>
@@ -5859,6 +5863,10 @@ URL</source>
     </message>
     <message>
         <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

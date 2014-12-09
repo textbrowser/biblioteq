@@ -441,6 +441,10 @@
         <source>Item Returns</source>
         <translation>Retours d&apos;articles</translation>
     </message>
+    <message>
+        <source>Please use lower-case IDs.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>allDialog</name>
@@ -5063,7 +5067,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation>Impossible d&apos;extraire l&apos;article Z39.50.</translation>
+        <translation type="obsolete">Impossible d&apos;extraire l&apos;article Z39.50.</translation>
     </message>
     <message>
         <source>Copies:</source>
@@ -5315,6 +5319,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
