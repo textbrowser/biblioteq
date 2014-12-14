@@ -142,21 +142,24 @@ void generic_thread::run(void)
 
 	ZOOM_resultset_destroy(zoomResultSet);
 
-	const char *errmsg;
-	const char *addinfo;
-
-	if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
+	if(i == 0)
 	  {
-	    m_eType = errmsg;
-	    m_errorStr = addinfo;
+	    const char *errmsg;
+	    const char *addinfo;
 
-	    if(m_errorStr.isEmpty())
-	      m_errorStr = m_eType;
-	  }
-	else if(m_z3950Results.isEmpty())
-	  {
-	    m_eType = tr("Z39.50 Empty Results Set");
-	    m_errorStr = tr("Z39.50 Empty Results Set");
+	    if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
+	      {
+		m_eType = errmsg;
+		m_errorStr = addinfo;
+
+		if(m_errorStr.isEmpty())
+		  m_errorStr = m_eType;
+	      }
+	    else if(m_z3950Results.isEmpty())
+	      {
+		m_eType = tr("Z39.50 Empty Results Set");
+		m_errorStr = tr("Z39.50 Empty Results Set");
+	      }
 	  }
 
 	ZOOM_options_destroy(options);
