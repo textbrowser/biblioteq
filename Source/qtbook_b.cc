@@ -2977,8 +2977,8 @@ int qtbook::populateTable(const int search_type_arg,
 	  {
 	    item = 0;
 
-	    if(query.record().fieldName(j) != "front_cover" &&
-	       query.record().fieldName(j) != "image_scaled")
+	    if(!query.record().fieldName(j).endsWith("front_cover") &&
+	       !query.record().fieldName(j).endsWith("image_scaled"))
 	      {
 		if(query.record().fieldName(j).contains("date") ||
 		   query.record().fieldName(j).contains("membersince"))
@@ -2999,19 +2999,19 @@ int qtbook::populateTable(const int search_type_arg,
 		  ui.table->setColumnCount(tmplist.size());
 		}
 
-	    if(query.record().fieldName(j) == "issue" ||
-	       query.record().fieldName(j) == "price" ||
-	       query.record().fieldName(j) == "volume" ||
-	       query.record().fieldName(j) == "quantity" ||
-	       query.record().fieldName(j) == "issueno" ||
-	       query.record().fieldName(j) == "issuevolume" ||
-	       query.record().fieldName(j) == "cddiskcount" ||
-	       query.record().fieldName(j) == "dvddiskcount" ||
-	       query.record().fieldName(j) == "availability" ||
-	       query.record().fieldName(j) == "total_reserved" ||
-	       query.record().fieldName(j) == "photograph_count")
+	    if(query.record().fieldName(j).endsWith("issue") ||
+	       query.record().fieldName(j).endsWith("price") ||
+	       query.record().fieldName(j).endsWith("volume") ||
+	       query.record().fieldName(j).endsWith("quantity") ||
+	       query.record().fieldName(j).endsWith("issueno") ||
+	       query.record().fieldName(j).endsWith("issuevolume") ||
+	       query.record().fieldName(j).endsWith("cddiskcount") ||
+	       query.record().fieldName(j).endsWith("dvddiskcount") ||
+	       query.record().fieldName(j).endsWith("availability") ||
+	       query.record().fieldName(j).endsWith("total_reserved") ||
+	       query.record().fieldName(j).endsWith("photograph_count"))
 	      {
-		if(query.record().fieldName(j) == "price")
+		if(query.record().fieldName(j).endsWith("price"))
 		  {
 		    item = new(std::nothrow) numeric_table_item
 		      (query.value(j).toDouble());
@@ -3021,13 +3021,13 @@ int qtbook::populateTable(const int search_type_arg,
 		  item = new(std::nothrow) numeric_table_item
 		    (query.value(j).toInt());
 	      }
-	    else if(query.record().fieldName(j) == "callnumber")
+	    else if(query.record().fieldName(j).endsWith("callnumber"))
 	      {
 		str = query.value(j).toString();
 		item = new(std::nothrow) callnum_table_item(str);
 	      }
-	    else if(query.record().fieldName(j) == "front_cover" ||
-		    query.record().fieldName(j) == "image_scaled")
+	    else if(query.record().fieldName(j).endsWith("front_cover") ||
+		    query.record().fieldName(j).endsWith("image_scaled"))
 	      {
 		QImage image;
 
@@ -3076,17 +3076,17 @@ int qtbook::populateTable(const int search_type_arg,
 
 		ui.table->setItem(i, j, item);
 
-		if(query.record().fieldName(j) == "type")
+		if(query.record().fieldName(j).endsWith("type"))
 		  {
 		    itemType = str;
 		    itemType = itemType.toLower().remove(" ");
 		  }
 
-		if(query.record().fieldName(j) == "myoid")
+		if(query.record().fieldName(j).endsWith("myoid"))
 		  updateRows(str, i, itemType);
 	      }
-	    else if(query.record().fieldName(j) != "front_cover" &&
-		    query.record().fieldName(j) != "image_scaled")
+	    else if(!query.record().fieldName(j).endsWith("front_cover") &&
+		    !query.record().fieldName(j).endsWith("image_scaled"))
 	      addError(QString(tr("Memory Error")),
 		       QString(tr("Unable to allocate "
 				  "memory for the \"item\" "
@@ -3100,9 +3100,9 @@ int qtbook::populateTable(const int search_type_arg,
 	if(pixmapItem)
 	  for(int ii = 0; ii < query.record().count(); ii++)
 	    {
-	      if(query.record().fieldName(ii) == "myoid")
+	      if(query.record().fieldName(ii).endsWith("myoid"))
 		pixmapItem->setData(0, query.value(ii));
-	      else if(query.record().fieldName(ii) == "type")
+	      else if(query.record().fieldName(ii).endsWith("type"))
 		pixmapItem->setData(1, query.value(ii));
 	    }
 
