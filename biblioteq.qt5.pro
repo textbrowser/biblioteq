@@ -2,7 +2,7 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on x11
-DEFINES		+= CONFIGFILE="'\"/usr/local/biblioteq/biblioteq.conf\"'"
+DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 TEMPLATE	= app
