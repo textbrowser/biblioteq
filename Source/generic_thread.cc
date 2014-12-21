@@ -89,12 +89,18 @@ void generic_thread::run(void)
 	ZOOM_connection zoomConnection = 0;
 	QHash<QString, QString> hash
 	  (qmain->getZ3950Maps().value(m_z3950Name));
+	QString recordSyntax(hash["RecordSyntax"].trimmed());
 
 	ZOOM_options_set
 	  (options,
 	   "databaseName",
 	   hash.value("Database").toLatin1().constData());
-	ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
+
+	if(recordSyntax.isEmpty())
+	  ZOOM_options_set(options, "preferredRecordSyntax", "MARC21");
+	else
+	  ZOOM_options_set(options, "preferredRecordSyntax", recordSyntax.
+			   toLatin1().constData());
 
 	if(!hash.value("proxy_host").isEmpty() &&
 	   !hash.value("proxy_port").isEmpty())

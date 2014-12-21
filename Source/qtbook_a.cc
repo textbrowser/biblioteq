@@ -2643,14 +2643,17 @@ void qtbook::readGlobalSetup(void)
 	    {
 	      QHash<QString, QString> hash;
 
-	      hash["Name"] = settings.value("name", "").toString().trimmed();
+	      hash["Name"] = settings.value("name", "Z39.50 Site").
+		toString().trimmed();
 	      hash["Address"] = settings.value("hostname", "").
 		toString().trimmed();
 	      hash["Port"] = settings.value("port", "").toString().trimmed();
 	      hash["Database"] = settings.value("database_name", "").
 		toString().trimmed();
-	      hash["Format"] = settings.value("format", "").
+	      hash["Format"] = settings.value("format", "marc8,utf-8").
 		toString().trimmed().remove('"');
+	      hash["RecordSyntax"] = settings.value
+		("record_syntax", "MARC21").toString().trimmed();
 	      hash["Userid"] = settings.value("username", "").
 		toString().trimmed();
 	      hash["Password"] = settings.value("password", "").
@@ -2659,8 +2662,8 @@ void qtbook::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
-	      z3950Maps[settings.value("name", "").toString().trimmed()] =
-		hash;
+	      z3950Maps[settings.value("name", "Z39.50 Site").
+			toString().trimmed()] = hash;
 	    }
 	}
 
@@ -2707,10 +2710,11 @@ void qtbook::readGlobalSetup(void)
       QHash<QString, QString> hash;
 
       hash["Name"] = "Library of Congress";
-      hash["Address"] = "z3950.loc.gov";
-      hash["Port"] = "7090";
-      hash["Database"] = "Voyager";
+      hash["Address"] = "lx2.loc.gov";
+      hash["Port"] = "210";
+      hash["Database"] = "LCDB";
       hash["Format"] = "marc8,utf-8";
+      hash["RecordSyntax"] = "MARC21";
       z3950Maps["Library of Congress"] = hash;
     }
 }
