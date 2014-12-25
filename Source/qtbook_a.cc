@@ -2276,24 +2276,25 @@ void qtbook::slotSaveUser(void)
       return;
     }
 
-  if(engUserinfoTitle.contains("New"))
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!db.transaction())
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
-
-      if(!db.transaction())
-	{
-	  qapp->restoreOverrideCursor();
-	  addError
-	    (QString(tr("Database Error")),
-	     QString(tr("Unable to create a database transaction.")),
-	     db.lastError().text(), __FILE__, __LINE__);
-	  QMessageBox::critical
-	    (userinfo_diag, tr("BiblioteQ: Database Error"),
-	     tr("Unable to create a database transaction."));
-	  return;
-	}
-
       qapp->restoreOverrideCursor();
+      addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to create a database transaction.")),
+	 db.lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical
+	(userinfo_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to create a database transaction."));
+      return;
+    }
+
+  qapp->restoreOverrideCursor();
+
+  if(engUserinfoTitle.contains("New"))
+    { 
       query.prepare("INSERT INTO member "
 		    "(memberid, membersince, dob, sex, "
 		    "first_name, middle_init, last_name, "
@@ -2382,11 +2383,10 @@ void qtbook::slotSaveUser(void)
 
   if(!query.exec())
     {
-      if(engUserinfoTitle.contains("New"))
-	if(!db.rollback())
-	  addError
-	    (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     db.lastError().text(), __FILE__, __LINE__);
+      if(!db.rollback())
+	addError
+	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+	   db.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -2460,8 +2460,23 @@ void qtbook::slotSaveUser(void)
 				    db, misc_functions::UPDATE_USER,
 				    errorstr);
 
+	  if(errorstr.trimmed().contains("not exist"))
+	    /*
+	    ** Attempt to create the account.
+	    */
+
+	    misc_functions::DBAccount(userinfo_diag->userinfo.memberid->text(),
+				      db, misc_functions::CREATE_USER,
+				      errorstr);
+
 	  if(!errorstr.isEmpty())
 	    {
+	      if(!db.rollback())
+		addError
+		  (QString(tr("Database Error")),
+		   QString(tr("Rollback failure.")),
+		   db.lastError().text(), __FILE__, __LINE__);
+
 	      qapp->restoreOverrideCursor();
 	      addError(QString(tr("Database Error")),
 		       QString(tr("An error occurred while attempting to "
@@ -2477,6 +2492,25 @@ void qtbook::slotSaveUser(void)
 		    "to update the database account %1.").
 		 arg(userinfo_diag->userinfo.memberid->text()));
 	      return;
+	    }
+	  else
+	    {
+	      if(!db.commit())
+		{
+		  addError
+		    (QString(tr("Database Error")),
+		     QString(tr("Unable to commit the current database "
+				"transaction.")),
+		     db.lastError().text(), __FILE__,
+		     __LINE__);
+		  db.rollback();
+		  qapp->restoreOverrideCursor();
+		  QMessageBox::critical(userinfo_diag,
+					tr("BiblioteQ: Database Error"),
+					tr("Unable to commit the current "
+					   "database transaction."));
+		  return;
+		}
 	    }
 	}
 
