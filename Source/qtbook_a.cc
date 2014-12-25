@@ -4567,7 +4567,7 @@ void qtbook::slotGrantPrivileges(void)
   progress.hide();
 
   if(error)
-    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+    QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
 			  tr("Unable to grant privileges to all of "
 			     "the members."));
 }
@@ -6350,9 +6350,16 @@ void qtbook::slotReserveCopy(void)
 	       QString(tr("Unable to determine the availability of "
 			  "the selected item.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
-			    tr("Unable to determine the availability of "
-			       "the selected item."));
+
+      if(members_diag->isVisible())
+	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+			      tr("Unable to determine the availability of "
+				 "the selected item."));
+      else
+	QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			      tr("Unable to determine the availability of "
+				 "the selected item."));
+
       return;
     }
 
