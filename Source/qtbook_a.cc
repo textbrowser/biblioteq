@@ -2461,13 +2461,23 @@ void qtbook::slotSaveUser(void)
 				    errorstr);
 
 	  if(!errorstr.isEmpty())
-	    addError(QString(tr("Database Error")),
-		     QString(tr("An error occurred while attempting to "
-				"update the database account "
-				"for ")) +
-		     userinfo_diag->userinfo.memberid->text() +
-		     QString(tr(".")),
-		     errorstr, __FILE__, __LINE__);
+	    {
+	      qapp->restoreOverrideCursor();
+	      addError(QString(tr("Database Error")),
+		       QString(tr("An error occurred while attempting to "
+				  "update the database account "
+				  "for ")) +
+		       userinfo_diag->userinfo.memberid->text() +
+		       QString(tr(".")),
+		       errorstr, __FILE__, __LINE__);
+	      QMessageBox::critical
+		(userinfo_diag,
+		 tr("BiblioteQ: Database Error"),
+		 tr("An error occurred while attempting "
+		    "to update the database account %1.").
+		 arg(userinfo_diag->userinfo.memberid->text()));
+	      return;
+	    }
 	}
 
       qapp->restoreOverrideCursor();
