@@ -2296,7 +2296,8 @@ void qtbook_book::slotZ3950Query(void)
 		if(list[i].startsWith("100 ") ||
 		   list[i].startsWith("700 "))
 		  id.author->clear();
-		else if(list[i].startsWith("260 "))
+		else if(list[i].startsWith("260 ") ||
+			list[i].startsWith("264 "))
 		  id.place->clear();
 		else if(list[i].startsWith("650 "))
 		  id.category->clear();
@@ -2658,15 +2659,16 @@ void qtbook_book::slotZ3950Query(void)
 			    id.edition->setCurrentIndex(0);
 			}
 		    }
-		  else if(str.startsWith("260 "))
+		  else if(str.startsWith("260 ") ||
+			  str.startsWith("264 "))
 		    {
 		      /*
 		      ** $a - Place of publication, distribution, etc. (R)
 		      ** $b - Name of publisher, distributor, etc. (R)
 		      ** $c - Date of publication, distribution, etc. (R)
-		      ** $e - Place of manufacture (R)
-		      ** $f - Manufacturer (R)
-		      ** $g - Date of manufacture (R)
+		      ** $e - Place of manufacture (R) (260)
+		      ** $f - Manufacturer (R) (260)
+		      ** $g - Date of manufacture (R) (260)
 		      ** $3 - Materials specified (NR)
 		      ** $6 - Linkage (NR)
 		      ** $8 - Field link and sequence number (R)
@@ -2681,14 +2683,21 @@ void qtbook_book::slotZ3950Query(void)
 
 		      QStringList subfields;
 
-		      subfields << "$b"
-				<< "$c"
-				<< "$e"
-				<< "$f"
-				<< "$g"
-				<< "$3"
-				<< "$6"
-				<< "$8";
+		      if(str.startsWith("260 "))
+			subfields << "$b"
+				  << "$c"
+				  << "$e"
+				  << "$f"
+				  << "$g"
+				  << "$3"
+				  << "$6"
+				  << "$8";
+		      else
+			subfields << "$b"
+				  << "$c"
+				  << "$3"
+				  << "$6"
+				  << "$8";
 
 		      while(!subfields.isEmpty())
 			if(tmpstr.contains(subfields.first()))

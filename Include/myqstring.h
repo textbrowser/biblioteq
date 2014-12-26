@@ -10,7 +10,7 @@ class myqstring: public QString
   myqstring(const char *);
   myqstring(const QString &);
   QString prepConfigString(const QString &, const bool = false);
-  static QString escape(const QString &);
+  static QString escape(const QString &, const bool = false);
 };
 
 #endif

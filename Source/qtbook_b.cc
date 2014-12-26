@@ -2376,6 +2376,8 @@ int qtbook::populateTable(const int search_type_arg,
       {
 	if(typefilter == "All")
 	  {
+	    bool casesensitive = al.casesensitive->isChecked();
+
 	    types.append("Book");
 	    types.append("CD");
 	    types.append("DVD");
@@ -2437,21 +2439,42 @@ int qtbook::populateTable(const int search_type_arg,
 		if(db.driverName() != "QSQLITE")
 		  E = "E";
 
-		str.append("(id IS NULL OR id LIKE " + E + "'%" +
-			   myqstring::escape(al.idnumber->text().trimmed()) +
-			   "%' ");
+		if(casesensitive)
+		  str.append
+		    ("(id IS NULL OR LOWER(id) LIKE " + E + "'%" +
+		     myqstring::escape(al.idnumber->text().trimmed(), true) +
+		     "%' ");
+		else
+		  str.append
+		    ("(id IS NULL OR id LIKE " + E + "'%" +
+		     myqstring::escape(al.idnumber->text().trimmed()) +
+		     "%' ");
 
 		if(type == "Book")
-		  str.append("OR isbn13 LIKE " + E + "'%" +
-			     myqstring::escape(al.idnumber->text().
-					       trimmed()) + "%')");
+		  {
+		    if(casesensitive)
+		      str.append("OR LOWER(isbn13) LIKE " + E + "'%" +
+				 myqstring::escape(al.idnumber->text().
+						   trimmed(), true) + "%')");
+		    else
+		      str.append("OR isbn13 LIKE " + E + "'%" +
+				 myqstring::escape(al.idnumber->text().
+						   trimmed()) + "%')");
+		  }
 		else
 		  str.append(")");
 
 		str.append(" AND ");
-		str.append("title LIKE " + E + "'%" +
-			   myqstring::escape(al.title->text().trimmed()) +
-			   "%'");
+
+		if(casesensitive)
+		  str.append
+		    ("LOWER(title) LIKE " + E + "'%" +
+		     myqstring::escape(al.title->text().trimmed(), true) +
+		     "%'");
+		else
+		  str.append("title LIKE " + E + "'%" +
+			     myqstring::escape(al.title->text().trimmed()) +
+			     "%'");
 
 		if(type != "Photograph Collection")
 		  {
@@ -2464,14 +2487,29 @@ int qtbook::populateTable(const int search_type_arg,
 			 al.publication_date->date().toString
 			 ("MM/yyyy") + "' AND ");
 
-		    str.append("category LIKE " + E + "'%" +
-			       myqstring::escape
-			       (al.category->toPlainText().trimmed()) +
-			       "%' AND ");
-		    str.append
-		      ("publisher LIKE " + E + "'%" +
-		       myqstring::escape(al.publisher->text().trimmed()) +
-		       "%' AND ");
+		    if(casesensitive)
+		      str.append("LOWER(category) LIKE " + E + "'%" +
+				 myqstring::escape
+				 (al.category->toPlainText().trimmed(),
+				  true) +
+				 "%' AND ");
+		    else
+		      str.append("category LIKE " + E + "'%" +
+				 myqstring::escape
+				 (al.category->toPlainText().trimmed()) +
+				 "%' AND ");
+
+		    if(casesensitive)
+		      str.append
+			("LOWER(publisher) LIKE " + E + "'%" +
+			 myqstring::escape(al.publisher->text().trimmed(),
+					   true) +
+			 "%' AND ");
+		    else
+		      str.append
+			("publisher LIKE " + E + "'%" +
+			 myqstring::escape(al.publisher->text().trimmed()) +
+			 "%' AND ");
 
 		    if(al.price->value() > -0.01)
 		      {
@@ -2481,35 +2519,81 @@ int qtbook::populateTable(const int search_type_arg,
 		      }
 
 		    if(al.language->currentIndex() != 0)
-		      str.append("language = " + E + "'" +
-				 myqstring::escape
-				 (al.language->currentText().trimmed()) +
-				 "' AND ");
+		      {
+			if(casesensitive)
+			  str.append("LOWER(language) = " + E + "'" +
+				     myqstring::escape
+				     (al.language->currentText().trimmed(),
+				      true) +
+				     "' AND ");
+			else
+			  str.append("language = " + E + "'" +
+				     myqstring::escape
+				     (al.language->currentText().trimmed()) +
+				     "' AND ");
+		      }
 
 		    if(al.monetary_units->currentIndex() != 0)
-		      str.append
-			("monetary_units = " + E + "'" +
-			 myqstring::escape(al.monetary_units->
-					   currentText().trimmed()) +
-			 "' AND ");
+		      {
+			if(casesensitive)
+			  str.append
+			    ("LOWER(monetary_units) = " + E + "'" +
+			     myqstring::escape(al.monetary_units->
+					       currentText().trimmed(),
+					       true) +
+			     "' AND ");
+			else
+			  str.append
+			    ("monetary_units = " + E + "'" +
+			     myqstring::escape(al.monetary_units->
+					       currentText().trimmed()) +
+			     "' AND ");
+		      }
 
-		    str.append
-		      ("description LIKE " + E + "'%" +
-		       myqstring::escape(al.description->
-					 toPlainText().trimmed()) + "%' ");
-		    str.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
-			       myqstring::escape
-			       (al.keyword->toPlainText().trimmed()) +
-			       "%' ");
+		    if(casesensitive)
+		      str.append
+			("LOWER(description) LIKE " + E + "'%" +
+			 myqstring::escape(al.description->
+					   toPlainText().trimmed(),
+					   true) + "%' ");
+		    else
+		      str.append
+			("description LIKE " + E + "'%" +
+			 myqstring::escape(al.description->
+					   toPlainText().trimmed()) + "%' ");
+
+		    if(casesensitive)
+		      str.append("AND COALESCE(LOWER(keyword), '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (al.keyword->toPlainText().trimmed(),
+				  true) +
+				 "%' ");
+		    else
+		      str.append("AND COALESCE(keyword, '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (al.keyword->toPlainText().trimmed()) +
+				 "%' ");
 
 		    if(al.quantity->value() != 0)
 		      str.append("AND quantity = " +
 				 al.quantity->text() + " ");
 
 		    if(al.location->currentIndex() != 0)
-		      str.append("AND location = " + E + "'" +
-				 myqstring::escape
-				 (al.location->currentText().trimmed()) + "' ");
+		      {
+			if(casesensitive)
+			  str.append
+			    ("AND LOWER(location) = " + E + "'" +
+			     myqstring::escape
+			     (al.location->currentText().trimmed(),
+			      true) + "' ");
+			else
+			  str.append
+			    ("AND location = " + E + "'" +
+			     myqstring::escape
+			     (al.location->currentText().trimmed()) + "' ");
+		      }
 
 		    str += QString("GROUP BY "
 				   "%1.title, "
