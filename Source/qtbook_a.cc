@@ -1203,7 +1203,7 @@ void qtbook::slotAbout(void)
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
-    (QPixmap(":/book.png").scaled(QSize(64, 64),
+    (QPixmap(":/book.png").scaled(QSize(128, 128),
 				  Qt::KeepAspectRatio,
 				  Qt::SmoothTransformation));
   mb.exec();
