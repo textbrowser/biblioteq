@@ -1188,7 +1188,7 @@ void qtbook::slotAbout(void)
     (QString("<html>BiblioteQ Version %1<br>"
 	     "Copyright (c) 2006 - present, guess who?<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
-	     "Library icon copyright (c) Jonas Rask Design.<br>"
+	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Qt version %2."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
@@ -1202,7 +1202,10 @@ void qtbook::slotAbout(void)
      arg(BIBLIOTEQ_VERSION).
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
-  mb.setIconPixmap(QPixmap(":/book.png"));
+  mb.setIconPixmap
+    (QPixmap(":/book.png").scaled(QSize(64, 64),
+				  Qt::KeepAspectRatio,
+				  Qt::SmoothTransformation));
   mb.exec();
 }
 
