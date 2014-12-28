@@ -2218,6 +2218,7 @@ void qtbook_book::slotZ3950Query(void)
       working.show();
       working.update();
 
+      QString recordSyntax("");
       QStringList isbns;
       bool isbn10User = false;
       bool isbn13User = false;
@@ -2245,13 +2246,19 @@ void qtbook_book::slotZ3950Query(void)
 	if(id.z3950QueryButton->actions().at(i)->isChecked())
 	  {
 	    found = true;
+	    recordSyntax = qmain->getZ3950Maps().value
+	      (id.z3950QueryButton->actions().at(i)->text())["RecordSyntax"];
 	    thread->setZ3950Name
 	      (id.z3950QueryButton->actions().at(i)->text());
 	    break;
 	  }
 
       if(!found)
-	thread->setZ3950Name(qmain->getPreferredZ3950Site());
+	{
+	  recordSyntax = qmain->getZ3950Maps().value
+	    (qmain->getPreferredZ3950Site())["RecordSyntax"];
+	  thread->setZ3950Name(qmain->getPreferredZ3950Site());
+	}
 
       thread->setType(generic_thread::Z3950_QUERY);
       thread->setZ3950SearchString(searchstr);
