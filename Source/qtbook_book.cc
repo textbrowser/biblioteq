@@ -2316,10 +2316,20 @@ void qtbook_book::slotZ3950Query(void)
 		  if(str.startsWith("010 "))
 		    {
 		      /*
+		      ** MARC21
 		      ** $a - LC control number (NR)
 		      ** $b - NUCMC control number (R)
 		      ** $z - Canceled/invalid LC control number (R)
 		      ** $8 - Field link and sequence number (R)
+		      */
+
+		      /*
+		      ** UNIMARC
+		      ** $a - Number (ISBN)
+		      ** $b - Qualification
+		      ** $d - Terms of Availability and/or Price
+		      ** $z - Erroneous ISBN
+		      ** $6 - Interfield Linking Data
 		      */
 
 		      if(str.indexOf("$a") > -1)
@@ -2327,9 +2337,15 @@ void qtbook_book::slotZ3950Query(void)
 
 		      QStringList subfields;
 
-		      subfields << "$b"
-				<< "$z"
-				<< "$8";
+		      if(recordSyntax == "MARC21")
+			subfields << "$b"
+				  << "$z"
+				  << "$8";
+		      else
+			subfields << "$b"
+				  << "$d"
+				  << "$z"
+				  << "$6";
 
 		      while(!subfields.isEmpty())
 			if(str.contains(subfields.first()))
