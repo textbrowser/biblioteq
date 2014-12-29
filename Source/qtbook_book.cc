@@ -2173,6 +2173,10 @@ void qtbook_book::slotSRUQuery(void)
 	      this, SLOT(slotSRUReadyRead(void)));
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotSRUDownloadFinished(void)));
+      connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+	      this, SLOT(slotSRUError(QNetworkReply::NetworkError)));
+      connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
+	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
     }
 }
 
@@ -3283,9 +3287,13 @@ void qtbook_book::slotDownloadFinished(void)
     httpProgress->hide();
 
   QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(manager)
     manager->deleteLater();
+
+  if(reply)
+    reply->deleteLater();
 
   QBuffer *imgbuffer = findChild<QBuffer *> ();
 
@@ -3447,9 +3455,13 @@ void qtbook_book::changeEvent(QEvent *event)
 void qtbook_book::slotSRUDownloadFinished(void)
 {
   QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(manager)
     manager->deleteLater();
+
+  if(reply)
+    reply->deleteLater();
 
   qtbook_item_working_dialog *dialog =
     findChild<qtbook_item_working_dialog *> ("sru_dialog");
@@ -3466,15 +3478,18 @@ void qtbook_book::slotSRUDownloadFinished(void)
   */
 
   QXmlStreamReader reader(m_sruResults);
+  int records = -1;
 
   while(!reader.atEnd())
     if(reader.readNextStartElement())
       if(reader.name().toString().trimmed().toLower() == "numberofrecords")
-	if(reader.readElementText().trimmed().toInt() <= 0)
-	  {
-	    m_sruResults.clear();
-	    break;
-	  }
+	{
+	  records = reader.readElementText().trimmed().toInt();
+	  break;
+	}
+
+  if(records <= 0)
+    m_sruResults.clear();
 
   if(!m_sruResults.isEmpty())
     {
@@ -4031,7 +4046,7 @@ void qtbook_book::slotSRUDownloadFinished(void)
 	    textfield->setCursorPosition(0);
 	}
     }
-  else
+  else if(records == 0)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("An SRU entry may not yet exist for the provided ISBN(s)."));
@@ -4047,4 +4062,34 @@ void qtbook_book::slotSRUReadyRead(void)
 
   if(reply)
     m_sruResults.append(reply->readAll());
+}
+
+/*
+** -- slotSRUError() --
+*/
+
+void qtbook_book::slotSRUError(QNetworkReply::NetworkError error)
+{
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
+
+  if(reply)
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("A network error (%1) occurred.").arg(reply->errorString()));
+  else
+    QMessageBox::critical
+      (this, tr("BiblioteQ: SRU Query Error"),
+       tr("A network error (%1) occurred.").arg(error));
+}
+
+/*
+** -- slotSRUSslErrors() --
+*/
+
+void qtbook_book::slotSRUSslErrors(const QList<QSslError> &list)
+{
+  Q_UNUSED(list);
+  QMessageBox::critical
+    (this, tr("BiblioteQ: SRU Query Error"),
+     tr("One or more SSL errors occurred. Please verify your settings."));
 }

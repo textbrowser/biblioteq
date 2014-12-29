@@ -3064,9 +3064,13 @@ void qtbook_magazine::slotSRUQuery(void)
 void qtbook_magazine::slotSRUDownloadFinished(void)
 {
   QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(manager)
     manager->deleteLater();
+
+  if(reply)
+    reply->deleteLater();
 
   qtbook_item_working_dialog *dialog =
     findChild<qtbook_item_working_dialog *> ("sru_dialog");
@@ -3126,7 +3130,7 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
     QMessageBox::critical
       (this, tr("BiblioteQ: SRU Query Error"),
        tr("An SRU entry may not yet exist for ") +
-       ma.id->text() + tr("."));
+       ma.id->text() + tr(" or a network error occurred."));
 }
 
 /*

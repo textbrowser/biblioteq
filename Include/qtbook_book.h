@@ -76,6 +76,8 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotConvertISBN13to10(void);
   void slotCancelImageDownload(void);
   void slotSRUDownloadFinished(void);
+  void slotSRUError(QNetworkReply::NetworkError error);
+  void slotSRUSslErrors(const QList<QSslError> &list);
   void slotDataTransferProgress(qint64, qint64);
   void slotPopulateCopiesEditor(void);
   void slotProxyAuthenticationRequired(const QNetworkProxy &,
