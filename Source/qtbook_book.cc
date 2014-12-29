@@ -2354,9 +2354,35 @@ void qtbook_book::slotZ3950Query(void)
 			else
 			  subfields.takeFirst();
 
-		      id.lcnum->setText(str);
-		      misc_functions::highlightWidget
-			(id.lcnum, QColor(162, 205, 90));
+		      if(recordSyntax == "MARC21")
+			{
+			  id.lcnum->setText(str);
+			  misc_functions::highlightWidget
+			    (id.lcnum, QColor(162, 205, 90));
+			}
+		      else
+			{
+			  str = str.remove("-");
+
+			  if(str.length() == 10)
+			    {
+			      if(!isbn10User)
+				{
+				  id.id->setText(str);
+				  misc_functions::highlightWidget
+				    (id.id, QColor(162, 205, 90));
+				}
+			    }
+			  else if(str.length() == 13)
+			    {
+			      if(!isbn13User)
+				{
+				  id.isbn13->setText(str);
+				  misc_functions::highlightWidget
+				    (id.isbn13, QColor(162, 205, 90));
+				}
+			    }
+			}
 		    }
 		  else if(str.startsWith("020 "))
 		    {
