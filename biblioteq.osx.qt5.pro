@@ -84,6 +84,7 @@ SOURCES		= Source/bgraphicsscene.cc \
 		  Source/hyperlinked_text_edit.cc \
 		  Source/image_drop_site.cc \
 		  Source/main_table.cc \
+		  Source/marc.cc \
 		  Source/misc_functions.cc \
                   Source/myqstring.cc \
 		  Source/numeric_table_item.cc \
