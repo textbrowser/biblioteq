@@ -1,3 +1,5 @@
+#include <QString>
+
 class marc
 {
  public:
