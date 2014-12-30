@@ -3,10 +3,26 @@
 class marc
 {
  public:
-  marc(const QString &protocol, const QString &recordSyntax);
+  enum PROTOCOL
+  {
+    SRU = 0,
+    Z3950
+  };
+
+  enum RECORD_SYNTAX
+  {
+    MARC21 = 0,
+    UNIMARC
+  };
+
+  marc(const PROTOCOL protocol, const RECORD_SYNTAX recordSyntax);
   ~marc();
+  void setData(const QString &data);
 
  private:
-  QString m_protocol;
-  QString m_recordSyntax;
+  PROTOCOL m_protocol;
+  QString m_data;
+  RECORD_SYNTAX m_recordSyntax;
+  void parseSRU(void);
+  void parseZ3950(void);
 };
