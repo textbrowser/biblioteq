@@ -462,6 +462,10 @@ void marc::parseBookSRUMarc21(void)
       }
 }
 
+void marc::parseBookSRUUnimarc(void)
+{
+}
+
 void marc::parseBookZ3950Marc21(void)
 {
   clear();
@@ -1276,12 +1280,18 @@ void marc::parseMagazineZ3950Marc21(void)
 {
 }
 
+void marc::parseMagazineZ3950Unimarc(void)
+{
+}
+
 void marc::parseSRU(void)
 {
   if(m_itemType == BOOK)
     {
       if(m_recordSyntax == MARC21)
 	parseBookSRUMarc21();
+      else
+	parseBookSRUUnimarc();
     }
 }
 
@@ -1298,6 +1308,8 @@ void marc::parseZ3950(void)
     {
       if(m_recordSyntax == MARC21)
 	parseMagazineZ3950Marc21();
+      else
+	parseMagazineZ3950Unimarc();
     }
 }
 

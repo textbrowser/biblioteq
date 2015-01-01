@@ -124,9 +124,11 @@ class marc
   RECORD_SYNTAX m_recordSyntax;
   void clear(void);
   void parseBookSRUMarc21(void);
+  void parseBookSRUUnimarc(void);
   void parseBookZ3950Marc21(void);
   void parseBookZ3950Unimarc(void);
   void parseMagazineZ3950Marc21(void);
+  void parseMagazineZ3950Unimarc(void);
   void parseSRU(void);
   void parseZ3950(void);
 };
