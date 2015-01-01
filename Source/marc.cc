@@ -1,6 +1,7 @@
 #include <QObject>
 #include <QStringList>
 #include <QXmlStreamReader>
+#include <QtDebug>
 
 #include "marc.h"
 
@@ -110,7 +111,7 @@ void marc::parseBookSRUMarc21(void)
 
 		if(str.toLower().contains("hardcover"))
 		  m_binding = QObject::tr("hardcover");
-		else if(str.toLower().contains("pbk."))
+		else if(str.toLower().contains("pbk"))
 		  m_binding = QObject::tr("paperback");
 		else
 		  m_binding = QObject::tr("UNKNOWN");
@@ -473,6 +474,8 @@ void marc::parseBookZ3950Marc21(void)
 
       if(str.startsWith("010 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - LC control number (NR)
 	  ** $b - NUCMC control number (R)
@@ -500,6 +503,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("020 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - International Standard Book Number (NR)
 	  ** $c - Terms of availability (NR)
@@ -513,7 +518,7 @@ void marc::parseBookZ3950Marc21(void)
 
 	  if(str.toLower().contains("hardcover"))
 	    m_binding = QObject::tr("hardcover");
-	  else if(str.toLower().contains("pbk."))
+	  else if(str.toLower().contains("pbk"))
 	    m_binding = QObject::tr("paperback");
 	  else
 	    m_binding = QObject::tr("UNKNOWN");
@@ -527,6 +532,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("050 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Classification number (R)
 	  ** $b - Item number (NR)
@@ -557,6 +564,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("082 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Classification number (R)
 	  ** $b - Item number (NR)
@@ -591,6 +600,8 @@ void marc::parseBookZ3950Marc21(void)
       else if(str.startsWith("100 ") ||
 	      str.startsWith("700 "))
 	{
+	  str.mid(4);
+
 	  /*
 	  ** $a - Personal name (NR)
 	  ** $b - Numeration (NR)
@@ -659,6 +670,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("245 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Title (NR)
 	  ** $b - Remainder of title (NR)
@@ -706,6 +719,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("250 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Edition statement (NR)
 	  ** $b - Remainder of edition statement (NR)
@@ -739,6 +754,8 @@ void marc::parseBookZ3950Marc21(void)
       else if(str.startsWith("260 ") ||
 	      str.startsWith("264 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Place of publication, distribution, etc. (R)
 	  ** $b - Name of publisher, distributor, etc. (R)
@@ -760,7 +777,7 @@ void marc::parseBookZ3950Marc21(void)
 
 	  QStringList subfields;
 
-	  if(str.startsWith("260 "))
+	  if(list[i].startsWith("260 "))
 	    subfields << "$b"
 		      << "$c"
 		      << "$e"
@@ -851,6 +868,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("300 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Extent (R)
 	  ** $b - Other physical details (NR)
@@ -878,6 +897,8 @@ void marc::parseBookZ3950Marc21(void)
 	}
       else if(str.startsWith("650 "))
 	{
+	  str = str.mid(4);
+
 	  /*
 	  ** $a - Topical term or geographic name entry
 	  **      element (NR)
@@ -942,6 +963,315 @@ void marc::parseBookZ3950Marc21(void)
     }
 }
 
+void marc::parseBookZ3950Unimarc(void)
+{
+  clear();
+
+  QStringList list(m_data.split("\n"));
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      QString str = list[i];
+
+      if(str.startsWith("010 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Number (ISMN)
+	  ** $b - Qualification
+	  ** $d - Terms of Availability and/or Price
+	  ** $z - Erroneous ISMN
+	  ** $6 - Interfield Linking Data
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  if(str.toLower().contains("hardcover"))
+	    m_binding = QObject::tr("hardcover");
+	  else if(str.toLower().contains("pbk"))
+	    m_binding = QObject::tr("paperback");
+	  else
+	    m_binding = QObject::tr("UNKNOWN");
+
+	  str = str.remove("#").remove("M-").remove("-");
+
+	  if(str.indexOf("$b") > -1)
+	    str = str.mid(0, str.indexOf("$b"));
+	  else if(str.indexOf("$d") > -1)
+	    str = str.mid(0, str.indexOf("$d"));
+	  else if(str.indexOf("$z") > -1)
+	    str = str.mid(0, str.indexOf("$z"));
+
+	  str = str.trimmed();
+
+	  if(str.length() == 10)
+	    m_isbn10 = str;
+	  else if(str.length() == 13)
+	    m_isbn13 = str;
+	}
+      else if(str.startsWith("200 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Title Proper
+	  ** $b - General Material Designation
+	  ** $c - Title Proper by Another Author
+	  ** $d - Parallel Title Proper
+	  ** $e - Other Title Information
+	  ** $f - First Statement of Responsibility
+	  ** $g - Subsequent Statement of Responsibility
+	  ** $h - Number of a Part
+	  ** $i - Name of a Part
+	  ** $v - Volume Designation
+	  ** $z - Language of Parallel Title Proper
+	  ** $5 - Institution to Which Field Applies
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $b").trimmed();
+
+	  QString author(str);
+
+	  while(author.indexOf("$f") > -1)
+	    {
+	      author = author.mid(author.indexOf("$f") + 2);
+
+	      if(author.indexOf("$") > -1)
+		author = author.mid(0, author.indexOf("$")).trimmed();
+
+	      if(!m_author.isEmpty())
+		m_author = m_author + "\n" + author;
+	      else
+		m_author = author;
+	    }
+
+	  QStringList subfields;
+
+	  subfields << "$c"
+		    << "$d"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$h"
+		    << "$i"
+		    << "$v"
+		    << "$z"
+		    << "$5";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  if(str.lastIndexOf('/') > -1)
+	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
+	  m_title = str;
+	}
+      else if(str.startsWith("205 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Edition Statement
+	  ** $b - Issue Statement
+	  ** $d - Parallel Edition Statement
+	  ** $f - Statement of Responsibility Relating to Edition
+	  ** $g - Subsequent Statement of Responsibility
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$d"
+		    << "$f"
+		    << "$g";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  if(str.indexOf(" ") > -1)
+	    str = str.mid(0, str.indexOf(" ")).trimmed();
+
+	  str = str.remove(".").remove("d").remove("h").remove("n").
+	    remove("r").remove("s").remove("t").trimmed();
+	  m_edition = str;
+	}
+      else if(str.startsWith("210 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Place of Publication, Distribution, etc.
+	  ** $b - Address of Publisher, Distributor, etc.
+	  ** $c - Name of Publisher, Distributor, etc.
+	  ** $d - Date of Publication, Distribution, etc.
+	  ** $e - Place of Manufacture
+	  ** $f - Address of Manufacturer
+	  ** $g - Name of Manufacturer
+	  ** $h - Date of Manufacture
+	  */
+
+	  QString tmpstr = "";
+
+	  if(str.indexOf("$a") > -1)
+	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
+	  else
+	    tmpstr = str;
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$c"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$h";
+
+	  while(!subfields.isEmpty())
+	    if(tmpstr.contains(subfields.first()))
+	      tmpstr = tmpstr.mid
+		(0, tmpstr.indexOf(subfields.takeFirst())).
+		trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  QStringList tmplist(tmpstr.split("$a"));
+
+	  for(int j = 0; j < tmplist.size(); j++)
+	    {
+	      tmpstr = tmplist.at(j).trimmed();
+
+	      if(tmpstr.lastIndexOf(" ") > -1)
+		tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+		  trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[0].isLetterOrNumber())
+		tmpstr = tmpstr.mid(1).trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[tmpstr.length() - 1].isLetter())
+		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
+		  trimmed();
+
+	      if(m_place.isEmpty())
+		m_place = tmpstr;
+	      else
+		m_place = m_place + "\n" + tmpstr;
+	    }
+
+	  if(str.indexOf("$d") > -1 &&
+	     str.mid(str.indexOf("$d") + 2, 4).toLower().
+	     contains("c"))
+	    m_publicationDate = QDate::fromString
+	      ("01/01/" +
+	       str.mid(str.indexOf("$d") + 4, 4),
+	       "MM/dd/yyyy");
+	  else if(str.indexOf("$d") > -1)
+	    m_publicationDate = QDate::fromString
+	      ("01/01/" +
+	       str.mid(str.indexOf("$d") + 3, 4),
+	       "MM/dd/yyyy");
+
+	  if(str.contains("$c"))
+	    str = str.mid(str.indexOf("$c") + 2).trimmed();
+
+	  if(str.indexOf("$") > -1)
+	    str = str.mid(0, str.indexOf("$")).trimmed();
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1).trimmed();
+
+	  m_publisher = str;
+	}
+      else if(str.startsWith("215 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Specific Material Designation and Extent of Item
+	  ** $c - Other Physical Details
+	  ** $d - Dimensions
+	  ** $e - Accompanying Material
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $c").trimmed();
+	  str = str.remove(" $d").trimmed();
+	  str = str.remove(" $e").trimmed();
+	  m_description = str;
+	}
+      else if(str.startsWith("606 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Entry Element
+	  ** $j - Form Subdivision
+	  ** $x - Topical Subdivision
+	  ** $y - Geographical Subdivision
+	  ** $z - Chronological Subdivision
+	  ** $2 - System Code
+	  ** $3 - Authority Record Number
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$j"
+		    << "$x"
+		    << "$y"
+		    << "$z"
+		    << "$2"
+		    << "$3";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  if(!str.isEmpty())
+	    {
+	      if(!str[str.length() - 1].isPunct())
+		str += ".";
+
+	      if(!m_category.contains(str))
+		{
+		  if(!m_category.isEmpty())
+		    m_category = m_category + "\n" + str;
+		  else
+		    m_category = str;
+		}
+	    }
+	}
+    }
+}
+
 void marc::parseMagazineZ3950Marc21(void)
 {
 }
@@ -961,6 +1291,8 @@ void marc::parseZ3950(void)
     {
       if(m_recordSyntax == MARC21)
 	parseBookZ3950Marc21();
+      else
+	parseBookZ3950Unimarc();
     }
   else
     {
