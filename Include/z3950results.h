@@ -22,10 +22,12 @@ class z3950results: public QDialog
   Q_OBJECT
 
  public:
-  z3950results(QWidget *, QStringList &, qtbook_magazine *, const QFont &);
+  z3950results(QWidget *, QStringList &, qtbook_magazine *, const QFont &,
+	       const QString &);
   ~z3950results();
 
  private:
+  QString m_recordSyntax;
   QStringList records;
   qtbook_magazine *magazine;
   Ui_z3950ResultsDialog ui;

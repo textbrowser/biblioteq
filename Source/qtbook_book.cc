@@ -2222,7 +2222,7 @@ void qtbook_book::slotZ3950Query(void)
       working.show();
       working.update();
 
-      QString recordSyntax("");
+      QString recordSyntax("MARC21");
       QStringList isbns;
       bool isbn10User = false;
       bool isbn13User = false;

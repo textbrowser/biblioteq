@@ -2,11 +2,11 @@
 ** -- Qt Includes --
 */
 
+#include <QNetworkAccessManager>
+#include <QNetworkProxy>
 #include <QSqlField>
 #include <QSqlRecord>
-#include <QNetworkProxy>
 #include <QXmlStreamReader>
-#include <QNetworkAccessManager>
 
 /*
 ** Includes magazine-specific methods.
@@ -20,10 +20,11 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
-#include "sruResults.h"
-#include "qtbook_magazine.h"
 #include "borrowers_editor.h"
+#include "marc.h"
+#include "qtbook.h"
+#include "qtbook_magazine.h"
+#include "sruResults.h"
 
 extern qtbook *qmain;
 extern QApplication *qapp;
@@ -1924,19 +1925,26 @@ void qtbook_magazine::slotZ3950Query(void)
       working.show();
       working.update();
 
+      QString recordSyntax("MARC21");
       bool found = false;
 
       for(i = 0; i < ma.z3950QueryButton->actions().size(); i++)
 	if(ma.z3950QueryButton->actions().at(i)->isChecked())
 	  {
 	    found = true;
+	    recordSyntax = qmain->getZ3950Maps().value
+	      (ma.z3950QueryButton->actions().at(i)->text())["RecordSyntax"];
 	    thread->setZ3950Name
 	      (ma.z3950QueryButton->actions().at(i)->text());
 	    break;
 	  }
 
       if(!found)
-	thread->setZ3950Name(qmain->getPreferredZ3950Site());
+	{
+	  recordSyntax = qmain->getZ3950Maps().value
+	    (qmain->getPreferredZ3950Site())["RecordSyntax"];
+	  thread->setZ3950Name(qmain->getPreferredZ3950Site());
+	}
 
       searchstr = QString("@attr 1=8 %1").arg(ma.id->text());
       thread->setType(generic_thread::Z3950_QUERY);
@@ -1971,7 +1979,7 @@ void qtbook_magazine::slotZ3950Query(void)
 		  QMessageBox::No) == QMessageBox::Yes)
 		{
 		  list = QString(thread->getZ3950Results()[0]).split("\n");
-		  populateDisplayAfterZ3950(list);
+		  populateDisplayAfterZ3950(list, recordSyntax);
 		  list.clear();
 		}
 	    }
@@ -1986,7 +1994,7 @@ void qtbook_magazine::slotZ3950Query(void)
 
 	      if((new(std::nothrow)
 		  z3950results(static_cast<QWidget *> (this), list,
-			       this, font())) == 0)
+			       this, font(), recordSyntax)) == 0)
 		{
 		  qmain->addError
 		    (QString(tr("Memory Error")),
@@ -2079,7 +2087,8 @@ void qtbook_magazine::slotPrint(void)
 ** -- populateDisplayAfterZ3950() --
 */
 
-void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
+void qtbook_magazine::populateDisplayAfterZ3950
+(const QStringList &list, const QString &recordSyntax)
 {
   int i = 0;
   int j = 0;
@@ -2089,13 +2098,30 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
   if(!list.isEmpty())
     ma.marc_tags->clear();
 
-  for(i = 0; i < list.size(); i++)
-    if(list[i].startsWith("260 "))
-      ma.place->clear();
-    else if(list[i].startsWith("650 "))
-      ma.category->clear();
-    else
-      str += list[i] + "\n";
+  if(recordSyntax == "MARC21")
+    {
+      for(i = 0; i < list.size(); i++)
+	{
+	  if(list[i].startsWith("260 "))
+	    ma.place->clear();
+	  else if(list[i].startsWith("650 "))
+	    ma.category->clear();
+
+	  str += list[i] + "\n";
+	}
+    }
+  else
+    {
+      for(i = 0; i < list.size(); i++)
+	{
+	  if(list[i].startsWith("210 "))
+	    ma.place->clear();
+	  else if(list[i].startsWith("606 "))
+	    ma.category->clear();
+
+	  str += list[i] + "\n";
+	}
+    }
 
   if(!str.isEmpty())
     ma.marc_tags->setPlainText(str.trimmed());
@@ -2103,6 +2129,71 @@ void qtbook_magazine::populateDisplayAfterZ3950(const QStringList &list)
   if(!list.isEmpty())
     misc_functions::highlightWidget
       (ma.marc_tags->viewport(), QColor(162, 205, 90));
+
+  if(recordSyntax == "UNIMARC")
+    {
+      marc m;
+
+      m.initialize(marc::MAGAZINE, marc::Z3950, marc::UNIMARC);
+      m.setData(str);
+      str = m.category();
+
+      if(!str.isEmpty())
+	{
+	  ma.category->setPlainText(str);
+	  misc_functions::highlightWidget
+	    (ma.category->viewport(),
+	     QColor(162, 205, 90));
+	}
+
+      str = m.description();
+
+      if(!str.isEmpty())
+	{
+	  ma.description->setPlainText(str);
+	  misc_functions::highlightWidget
+	    (ma.description->viewport(), QColor(162, 205, 90));
+	}
+
+      str = m.place();
+
+      if(!str.isEmpty())
+	{
+	  ma.place->setPlainText(str);
+	  misc_functions::highlightWidget
+	    (ma.place->viewport(), QColor(162, 205, 90));
+	}
+
+      if(!m.publicationDate().isNull())
+	{
+	  ma.publication_date->setDate(m.publicationDate());
+	  ma.publication_date->setStyleSheet
+	    ("background-color: rgb(162, 205, 90)");
+	}
+
+      str = m.publisher();
+
+      if(!str.isEmpty())
+	{
+	  ma.publisher->setPlainText(str);
+	  misc_functions::highlightWidget
+	    (ma.publisher->viewport(), QColor(162, 205, 90));
+	}
+
+      str = m.title();
+
+      if(!str.isEmpty())
+	{
+	  ma.title->setText(str.trimmed());
+	  misc_functions::highlightWidget
+	    (ma.title, QColor(162, 205, 90));
+	}
+
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	textfield->setCursorPosition(0);
+
+      return;
+    }
 
   for(i = 0; i < list.size(); i++)
     {

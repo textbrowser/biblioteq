@@ -11,13 +11,14 @@
 
 z3950results::z3950results(QWidget *parent, QStringList &list,
 			   qtbook_magazine *magazine_arg,
-			   const QFont &font):
+			   const QFont &font, const QString &recordSyntax):
   QDialog(parent)
 {
   int i = 0;
   int row = -1;
 
   magazine = magazine_arg;
+  m_recordSyntax = recordSyntax;
   setWindowModality(Qt::WindowModal);
   ui.setupUi(this);
 #ifdef Q_OS_MAC
@@ -50,7 +51,7 @@ z3950results::z3950results(QWidget *parent, QStringList &list,
 	      issn = issn.mid(0, 9).trimmed();
 
 	    if(row == -1)
-	      if(magazine_arg->dialog().id->text() == issn)
+	      if(magazine && magazine->dialog().id->text() == issn)
 		row = i;
 
 	    break;
@@ -104,7 +105,10 @@ void z3950results::slotSelectRecord(void)
 
   list = ui.textarea->toPlainText().split("\n");
   close();
-  magazine->populateDisplayAfterZ3950(list);
+
+  if(magazine)
+    magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
+
   list.clear();
   deleteLater();
 }

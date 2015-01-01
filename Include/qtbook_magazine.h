@@ -40,7 +40,8 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void duplicate(const QString &, const int);
   void updateWindow(const int);
   void populateDisplayAfterSRU(const QByteArray &);
-  void populateDisplayAfterZ3950(const QStringList &);
+  void populateDisplayAfterZ3950(const QStringList &,
+				 const QString &);
   Ui_magDialog dialog(void) const;
 
  protected:

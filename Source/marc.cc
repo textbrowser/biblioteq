@@ -1282,6 +1282,220 @@ void marc::parseMagazineZ3950Marc21(void)
 
 void marc::parseMagazineZ3950Unimarc(void)
 {
+  clear();
+
+  QStringList list(m_data.split("\n"));
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      QString str = list[i];
+
+      if(str.startsWith("200 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Title Proper
+	  ** $b - General Material Designation
+	  ** $c - Title Proper by Another Author
+	  ** $d - Parallel Title Proper
+	  ** $e - Other Title Information
+	  ** $f - First Statement of Responsibility
+	  ** $g - Subsequent Statement of Responsibility
+	  ** $h - Number of a Part
+	  ** $i - Name of a Part
+	  ** $v - Volume Designation
+	  ** $z - Language of Parallel Title Proper
+	  ** $5 - Institution to Which Field Applies
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$c"
+		    << "$d"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$h"
+		    << "$i"
+		    << "$v"
+		    << "$z"
+		    << "$5";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  if(str.lastIndexOf('/') > -1)
+	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
+
+	  m_title = str;
+	}
+      else if(str.startsWith("210 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Place of Publication, Distribution, etc.
+	  ** $b - Address of Publisher, Distributor, etc.
+	  ** $c - Name of Publisher, Distributor, etc.
+	  ** $d - Date of Publication, Distribution, etc.
+	  ** $e - Place of Manufacture
+	  ** $f - Address of Manufacturer
+	  ** $g - Name of Manufacturer
+	  ** $h - Date of Manufacture
+	  */
+
+	  QString tmpstr = "";
+
+	  if(str.indexOf("$a") > -1)
+	    tmpstr = str.mid(str.indexOf("$a") + 2).trimmed();
+	  else
+	    tmpstr = str;
+
+	  QStringList subfields;
+
+	  subfields << "$b"
+		    << "$c"
+		    << "$e"
+		    << "$f"
+		    << "$g"
+		    << "$h";
+
+	  while(!subfields.isEmpty())
+	    if(tmpstr.contains(subfields.first()))
+	      tmpstr = tmpstr.mid
+		(0, tmpstr.indexOf(subfields.takeFirst())).
+		trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  QStringList tmplist(tmpstr.split("$a"));
+
+	  for(int j = 0; j < tmplist.size(); j++)
+	    {
+	      tmpstr = tmplist.at(j).trimmed();
+
+	      if(tmpstr.lastIndexOf(" ") > -1)
+		tmpstr = tmpstr.mid(0, tmpstr.lastIndexOf(" ")).
+		  trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[0].isLetterOrNumber())
+		tmpstr = tmpstr.mid(1).trimmed();
+
+	      if(tmpstr.isEmpty())
+		continue;
+
+	      if(!tmpstr[tmpstr.length() - 1].isLetter())
+		tmpstr = tmpstr.remove(tmpstr.length() - 1, 1).
+		  trimmed();
+
+	      if(m_place.isEmpty())
+		m_place = tmpstr;
+	      else
+		m_place = m_place + "\n" + tmpstr;
+	    }
+
+	  if(str.indexOf("$d") > -1 &&
+	     str.mid(str.indexOf("$d") + 2, 4).toLower().
+	     contains("c"))
+	    m_publicationDate = QDate::fromString
+	      ("01/01/" +
+	       str.mid(str.indexOf("$d") + 4, 4),
+	       "MM/dd/yyyy");
+	  else if(str.indexOf("$d") > -1)
+	    m_publicationDate = QDate::fromString
+	      ("01/01/" +
+	       str.mid(str.indexOf("$d") + 3, 4),
+	       "MM/dd/yyyy");
+
+	  if(str.contains("$c"))
+	    str = str.mid(str.indexOf("$c") + 2).trimmed();
+
+	  if(str.indexOf("$") > -1)
+	    str = str.mid(0, str.indexOf("$")).trimmed();
+
+	  if(str.endsWith(","))
+	    str = str.mid(0, str.length() - 1).trimmed();
+
+	  m_publisher = str;
+	}
+      else if(str.startsWith("215 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Specific Material Designation and Extent of Item
+	  ** $c - Other Physical Details
+	  ** $d - Dimensions
+	  ** $e - Accompanying Material
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  str = str.remove(" $c").trimmed();
+	  str = str.remove(" $d").trimmed();
+	  str = str.remove(" $e").trimmed();
+	  m_description = str;
+	}
+      else if(str.startsWith("606 "))
+	{
+	  str = str.mid(4);
+
+	  /*
+	  ** $a - Entry Element
+	  ** $j - Form Subdivision
+	  ** $x - Topical Subdivision
+	  ** $y - Geographical Subdivision
+	  ** $z - Chronological Subdivision
+	  ** $2 - System Code
+	  ** $3 - Authority Record Number
+	  */
+
+	  if(str.indexOf("$a") > -1)
+	    str = str.mid(str.indexOf("$a") + 2).trimmed();
+
+	  QStringList subfields;
+
+	  subfields << "$j"
+		    << "$x"
+		    << "$y"
+		    << "$z"
+		    << "$2"
+		    << "$3";
+
+	  while(!subfields.isEmpty())
+	    if(str.contains(subfields.first()))
+	      str = str.mid
+		(0, str.indexOf(subfields.takeFirst())).trimmed();
+	    else
+	      subfields.takeFirst();
+
+	  if(!str.isEmpty())
+	    {
+	      if(!str[str.length() - 1].isPunct())
+		str += ".";
+
+	      if(!m_category.contains(str))
+		{
+		  if(!m_category.isEmpty())
+		    m_category = m_category + "\n" + str;
+		  else
+		    m_category = str;
+		}
+	    }
+	}
+    }
 }
 
 void marc::parseSRU(void)
