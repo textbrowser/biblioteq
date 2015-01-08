@@ -2376,7 +2376,7 @@ int qtbook::populateTable(const int search_type_arg,
       {
 	if(typefilter == "All")
 	  {
-	    bool casesensitive = al.casesensitive->isChecked();
+	    bool caseinsensitive = al.caseinsensitive->isChecked();
 
 	    types.append("Book");
 	    types.append("CD");
@@ -2439,7 +2439,7 @@ int qtbook::populateTable(const int search_type_arg,
 		if(db.driverName() != "QSQLITE")
 		  E = "E";
 
-		if(casesensitive)
+		if(caseinsensitive)
 		  str.append
 		    ("(id IS NULL OR LOWER(id) LIKE " + E + "'%" +
 		     myqstring::escape(al.idnumber->text().trimmed(), true) +
@@ -2452,7 +2452,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		if(type == "Book")
 		  {
-		    if(casesensitive)
+		    if(caseinsensitive)
 		      str.append("OR LOWER(isbn13) LIKE " + E + "'%" +
 				 myqstring::escape(al.idnumber->text().
 						   trimmed(), true) + "%')");
@@ -2466,7 +2466,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		str.append(" AND ");
 
-		if(casesensitive)
+		if(caseinsensitive)
 		  str.append
 		    ("LOWER(title) LIKE " + E + "'%" +
 		     myqstring::escape(al.title->text().trimmed(), true) +
@@ -2487,7 +2487,7 @@ int qtbook::populateTable(const int search_type_arg,
 			 al.publication_date->date().toString
 			 ("MM/yyyy") + "' AND ");
 
-		    if(casesensitive)
+		    if(caseinsensitive)
 		      str.append("LOWER(category) LIKE " + E + "'%" +
 				 myqstring::escape
 				 (al.category->toPlainText().trimmed(),
@@ -2499,7 +2499,7 @@ int qtbook::populateTable(const int search_type_arg,
 				 (al.category->toPlainText().trimmed()) +
 				 "%' AND ");
 
-		    if(casesensitive)
+		    if(caseinsensitive)
 		      str.append
 			("LOWER(publisher) LIKE " + E + "'%" +
 			 myqstring::escape(al.publisher->text().trimmed(),
@@ -2520,7 +2520,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		    if(al.language->currentIndex() != 0)
 		      {
-			if(casesensitive)
+			if(caseinsensitive)
 			  str.append("LOWER(language) = " + E + "'" +
 				     myqstring::escape
 				     (al.language->currentText().trimmed(),
@@ -2535,7 +2535,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		    if(al.monetary_units->currentIndex() != 0)
 		      {
-			if(casesensitive)
+			if(caseinsensitive)
 			  str.append
 			    ("LOWER(monetary_units) = " + E + "'" +
 			     myqstring::escape(al.monetary_units->
@@ -2550,7 +2550,7 @@ int qtbook::populateTable(const int search_type_arg,
 			     "' AND ");
 		      }
 
-		    if(casesensitive)
+		    if(caseinsensitive)
 		      str.append
 			("LOWER(description) LIKE " + E + "'%" +
 			 myqstring::escape(al.description->
@@ -2562,7 +2562,7 @@ int qtbook::populateTable(const int search_type_arg,
 			 myqstring::escape(al.description->
 					   toPlainText().trimmed()) + "%' ");
 
-		    if(casesensitive)
+		    if(caseinsensitive)
 		      str.append("AND COALESCE(LOWER(keyword), '') LIKE " +
 				 E + "'%" +
 				 myqstring::escape
@@ -2582,7 +2582,7 @@ int qtbook::populateTable(const int search_type_arg,
 
 		    if(al.location->currentIndex() != 0)
 		      {
-			if(casesensitive)
+			if(caseinsensitive)
 			  str.append
 			    ("AND LOWER(location) = " + E + "'" +
 			     myqstring::escape

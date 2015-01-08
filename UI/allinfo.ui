@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>616</width>
-         <height>936</height>
+         <width>622</width>
+         <height>945</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -340,9 +340,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QCheckBox" name="casesensitive">
+       <widget class="QCheckBox" name="caseinsensitive">
         <property name="text">
-         <string>Case-Sensitive</string>
+         <string>Case-Insensitive</string>
         </property>
        </widget>
       </item>
@@ -435,7 +435,7 @@
   <tabstop>location</tabstop>
   <tabstop>keyword</tabstop>
   <tabstop>available</tabstop>
-  <tabstop>casesensitive</tabstop>
+  <tabstop>caseinsensitive</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>cancelButton</tabstop>

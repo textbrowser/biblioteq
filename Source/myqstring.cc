@@ -42,13 +42,13 @@ QString myqstring::prepConfigString(const QString &str,
 */
 
 QString myqstring::escape(const QString &str,
-			  const bool casesensitive)
+			  const bool caseinsensitive)
 {
   QString mystr(str);
 
   mystr = mystr.replace("'", "''");
 
-  if(casesensitive)
+  if(caseinsensitive)
     mystr = mystr.toLower();
 
   return mystr.trimmed();

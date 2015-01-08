@@ -1239,7 +1239,7 @@ void qtbook::slotSearch(void)
   al.location->clear();
   al.keyword->clear();
   al.available->setChecked(false);
-  al.casesensitive->setChecked(false);
+  al.caseinsensitive->setChecked(false);
 
   /*
   ** Populate combination boxes.
