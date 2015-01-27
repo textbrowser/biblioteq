@@ -1149,6 +1149,19 @@ void qtbook::showMain(void)
   setGlobalFonts(qapp->font());
 #endif
   slotResizeColumns();
+
+#ifdef Q_OS_WIN32
+  QFileInfo fileInfo("biblioteq.conf");
+#else
+  QFileInfo fileInfo(CONFIGFILE);
+#endif
+
+  if(!fileInfo.isReadable())
+    QMessageBox::warning
+      (this, tr("BiblioteQ: Warning"),
+       tr("BiblioteQ was not able to discover the biblioteq.conf "
+	  "file. Default values will be assumed. The current working "
+	  "directory is %1.").arg(QDir::currentPath()));
 }
 
 /*

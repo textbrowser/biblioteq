@@ -125,10 +125,6 @@ doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
-aftermacdeployqt1.path  = BiblioteQ.app/Contents/lib
-aftermacdeployqt1.extra = cp Libraries.osx64/*.dylib ./BiblioteQ.app/Contents/lib/.
-aftermacdeployqt2.path  = .
-aftermacdeployqt2.extra = install_name_tool -change /usr/lib/libpq.5.dylib @loader_path/../../lib/libpq.5.5.dylib BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 preinstall.path         = /Applications/BiblioteQ.d
 preinstall.extra        = rm -rf /Applications/BiblioteQ.d/BiblioteQ.app/*
 postinstall.path	= /Applications/BiblioteQ.d
@@ -140,8 +136,6 @@ translations.files	= Translations/*.qm
 
 INSTALLS	= preinstall \
 		  macdeployqt \
-                  aftermacdeployqt1 \
-                  aftermacdeployqt2 \
 		  biblioteq \
 		  conf \
 		  doc1 \
