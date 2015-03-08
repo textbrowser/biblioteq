@@ -254,9 +254,6 @@ void qtbook::quit(const char *msg, const char *file, const int line)
 
 qtbook::qtbook(void):QMainWindow()
 {
-  QMenu *menu1 = 0;
-  QMenu *menu2 = 0;
-  QMenu *menu3 = 0;
   QMenu *menu4 = 0;
 
   m_idCt = 0;
@@ -293,56 +290,15 @@ qtbook::qtbook(void):QMainWindow()
   if((db_enumerations = new(std::nothrow) dbenumerations(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((menu1 = new(std::nothrow) QMenu(this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu2 = new(std::nothrow) QMenu(this)) == 0)
-    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
-
-  if((menu3 = new(std::nothrow) QMenu(this)) == 0)
+  if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((menu4 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  connect(menu1->addAction(tr("Add &Book")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
-  // menu1->addAction(tr("Add &Cassette Tape"));
-  connect(menu1->addAction(tr("Add &DVD")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
-  connect(menu1->addAction(tr("Add &Journal")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
-  connect(menu1->addAction(tr("Add &Magazine")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
-  connect(menu1->addAction(tr("Add Music &CD")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
-  // menu1->addAction(tr("Add &Newspaper"));
-  connect(menu1->addAction(tr("Add &Photograph Collection")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
-  connect(menu1->addAction(tr("Add &Video Game")),
-	  SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
-  // menu1->addAction(tr("Add &VHS"));
-  // menu1->addAction(tr("Add &Vinyl Record"));
-  connect(menu2->addAction(tr("&General Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
-  menu2->addSeparator();
-  connect(menu2->addAction(tr("&Book Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
-  connect(menu2->addAction(tr("&DVD Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
-  connect(menu2->addAction(tr("&Journal Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
-  connect(menu2->addAction(tr("&Magazine Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
-  connect(menu2->addAction(tr("&Music CD Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
-  connect(menu2->addAction(tr("&Photograph Collection Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
-  connect(menu2->addAction(tr("&Video Game Search")),
-	  SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
-  menu3->setTearOffEnabled(true);
-  menu3->setWindowIcon(QIcon(":/book.png"));
-  menu3->setWindowTitle(tr("BiblioteQ"));
+  m_configToolMenu->setTearOffEnabled(true);
+  m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
+  m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
   connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Title")),
@@ -637,9 +593,6 @@ qtbook::qtbook(void):QMainWindow()
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  ui.createTool->setMenu(menu1);
-  ui.searchTool->setMenu(menu2);
-  ui.configTool->setMenu(menu3);
   al.resetButton->setMenu(menu4);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
@@ -838,7 +791,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
   ** Delete existing actions, if any.
   */
 
-  ui.configTool->menu()->clear();
+  m_configToolMenu->clear();
 
   for(i = 0; i < ui.table->columnCount(); i++)
     {
@@ -863,7 +816,7 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
       action->setCheckable(true);
       action->setChecked(!ui.table->isColumnHidden(i));
-      ui.configTool->menu()->addAction(action);
+      m_configToolMenu->addAction(action);
       connect(action, SIGNAL(triggered(void)), this,
 	      SLOT(slotSetColumns(void)));
     }
@@ -879,13 +832,13 @@ void qtbook::slotSetColumns(void)
   QString typefilter = ui.typefilter->itemData
     (ui.typefilter->currentIndex()).toString();
 
-  for(i = 0; i < ui.configTool->menu()->actions().size(); i++)
+  for(i = 0; i < m_configToolMenu->actions().size(); i++)
     {
       ui.table->setColumnHidden
-	(i, !ui.configTool->menu()->actions().at(i)->isChecked());
+	(i, !m_configToolMenu->actions().at(i)->isChecked());
       ui.table->recordColumnHidden
 	(db.userName(),
-	 typefilter, i, !ui.configTool->menu()->actions().at(i)->
+	 typefilter, i, !m_configToolMenu->actions().at(i)->
 	 isChecked());
     }
 }
@@ -6466,9 +6419,57 @@ QHash<QString, QString> qtbook::getAmazonHash(void) const
 
 void qtbook::slotShowMenu(void)
 {
-  QAction *action = qobject_cast<QAction *> (sender());
+  if(sender() == ui.configTool)
+    m_configToolMenu->exec(QCursor::pos());
+  else if(sender() == ui.createTool)
+    {
+      QMenu menu(this);
 
-  action->menu()->exec(QCursor::pos());
+      connect(menu.addAction(tr("Add &Book")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
+      // menu.addAction(tr("Add &Cassette Tape"));
+      connect(menu.addAction(tr("Add &DVD")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
+      connect(menu.addAction(tr("Add &Journal")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
+      connect(menu.addAction(tr("Add &Magazine")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
+      connect(menu.addAction(tr("Add Music &CD")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
+      // menu.addAction(tr("Add &Newspaper"));
+      connect(menu.addAction(tr("Add &Photograph Collection")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
+      connect(menu.addAction(tr("Add &Video Game")),
+	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
+      // menu.addAction(tr("Add &VHS"));
+      // menu.addAction(tr("Add &Vinyl Record"));
+      menu.exec(QCursor::pos());
+    }
+  else if(sender() == ui.searchTool)
+    {
+      QMenu menu(this);
+
+      connect(menu.addAction(tr("&General Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
+      menu.addSeparator();
+      connect(menu.addAction(tr("&Book Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
+      connect(menu.addAction(tr("&DVD Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
+      connect(menu.addAction(tr("&Journal Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
+      connect(menu.addAction(tr("&Magazine Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
+      connect(menu.addAction(tr("&Music CD Search")),
+	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
+      connect
+	(menu.addAction(tr("&Photograph Collection Search")),
+	 SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
+      connect
+	(menu.addAction(tr("&Video Game Search")),
+	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
+      menu.exec(QCursor::pos());
+    }
 }
 
 /*

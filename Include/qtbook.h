@@ -201,6 +201,7 @@ class qtbook: public QMainWindow
 
   qtbook(void);
   ~qtbook();
+  QMenu *m_configToolMenu;
   int populateTable(const int, const QString &, const QString &,
 		    const int = NEW_PAGE);
   void addError(const QString &, const QString &, const QString & = "",
