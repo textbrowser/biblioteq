@@ -94,8 +94,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>336</width>
-             <height>464</height>
+             <width>326</width>
+             <height>456</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -338,7 +338,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -818,9 +818,6 @@
    </property>
    <property name="text">
     <string>Add Item</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="deleteTool">
