@@ -773,6 +773,8 @@ qtbook::qtbook(void):QMainWindow()
 				  QColor(255, 248, 220));
   misc_functions::highlightWidget(userinfo_diag->userinfo.zip,
 				  QColor(255, 248, 220));
+  ui.splitter->restoreState
+    (settings.value("main_splitter_state").toByteArray());
   ui.splitter->setCollapsible(1, false);
   ui.splitter->setStretchFactor(0, 0);
   ui.splitter->setStretchFactor(1, 1);
@@ -3003,6 +3005,7 @@ void qtbook::slotSaveConfig(void)
 {
   QSettings settings;
 
+  settings.setValue("main_splitter_state", ui.splitter->saveState());
   settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
   settings.setValue("populate_table_on_connect",
 		    ui.actionPopulateOnStart->isChecked());
