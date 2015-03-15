@@ -327,6 +327,7 @@ class qtbook: public QMainWindow
   void slotQuery(void);
   void slotReset(void);
   void slotResetAllSearch(void);
+  void slotResetGeneralSearch(void);
   void slotDelete(void);
   void slotModify(void);
   void slotSearch(void);

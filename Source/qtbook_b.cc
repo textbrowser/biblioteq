@@ -3540,3 +3540,25 @@ void qtbook::resetAllSearchWidgets(void)
   ui.searchType->setEnabled(true);
   ui.resetAllSearch->setVisible(false);
 }
+
+/*
+** -- slotResetGeneralSearch() --
+*/
+
+void qtbook::slotResetGeneralSearch(void)
+{
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.itemsCountLabel->setText(tr("0 Result(s)"));
+  ui.nextPageButton->setEnabled(false);
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
+  ui.table->resetTable(db.userName(), lastCategory, roles);
+
+  foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+    widget->setEnabled(true);
+
+  al.reset->setVisible(false);
+}

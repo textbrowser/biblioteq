@@ -405,10 +405,15 @@ qtbook::qtbook(void):QMainWindow()
 #endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
+  al.reset->setVisible(false);
   ui.resetAllSearch->setVisible(false);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   branch_diag->setModal(true);
+  connect(al.reset,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetGeneralSearch(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionPressed(int)),
 	  this, SLOT(slotResizeColumnsAfterSort(void)));
   connect(ui.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
@@ -2063,6 +2068,23 @@ void qtbook::slotResizeColumns(void)
 
 void qtbook::slotAllGo(void)
 {
+  al.idnumber->setEnabled(false);
+  al.title->setEnabled(false);
+  al.publication_date->setEnabled(false);
+  al.publisher->setEnabled(false);
+  al.category->setEnabled(false);
+  al.price->setEnabled(false);
+  al.language->setEnabled(false);
+  al.monetary_units->setEnabled(false);
+  al.description->setEnabled(false);
+  al.quantity->setEnabled(false);
+  al.location->setEnabled(false);
+  al.keyword->setEnabled(false);
+  al.available->setEnabled(false);
+  al.caseinsensitive->setEnabled(false);
+  al.okButton->setEnabled(false);
+  al.resetButton->setEnabled(false);
+  al.reset->setVisible(true);
   (void) populateTable(POPULATE_SEARCH, "All", QString(""));
 }
 
@@ -4178,6 +4200,11 @@ void qtbook::slotDisconnect(void)
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
   resetAllSearchWidgets();
+
+  foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+    widget->setEnabled(true);
+
+  al.reset->setVisible(false);
 
   if(db.isOpen())
     {
