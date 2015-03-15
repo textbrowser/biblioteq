@@ -26,7 +26,6 @@ int qtbook::populateTable(const int search_type_arg,
 			  const QString &searchstrArg, const int pagingType)
 {
   int i = -1;
-  int j = 0;
   int search_type = search_type_arg;
   QDate now = QDate::currentDate();
   QString str = "";
@@ -49,10 +48,10 @@ int qtbook::populateTable(const int search_type_arg,
   QString limitStr("");
   QString offsetStr("");
 
-  for(i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
-    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
+  for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)
+    if(ui.menuEntriesPerPage->actions()[ii]->isChecked())
       {
-	limit = ui.menuEntriesPerPage->actions()[i]->data().toInt();
+	limit = ui.menuEntriesPerPage->actions()[ii]->data().toInt();
 	break;
       }
 
@@ -2882,6 +2881,228 @@ int qtbook::populateTable(const int search_type_arg,
 
 	break;
       }
+    case POPULATE_SEARCH_BASIC:
+      {
+	types.append("Book");
+	types.append("CD");
+	types.append("DVD");
+	types.append("Journal");
+	types.append("Magazine");
+	types.append("Photograph Collection");
+	types.append("Video Game");
+	searchstr = "";
+
+	while(!types.isEmpty())
+	  {
+	    type = types.takeFirst();
+
+	    if(type == "Photograph Collection")
+	      str = "SELECT DISTINCT photograph_collection.title, "
+		"photograph_collection.id, "
+		"'', '', "
+		"'', "
+		"'', "
+		"0.00, '', "
+		"1, "
+		"photograph_collection.location, "
+		"0 AS availability, "
+		"0 AS total_reserved, "
+		"photograph_collection.type, "
+		"photograph_collection.myoid, "
+		"photograph_collection.image_scaled "
+		"FROM photograph_collection "
+		"WHERE ";
+	    else
+	      {
+		str = QString
+		  ("SELECT DISTINCT %1.title, "
+		   "%1.id, "
+		   "%1.publisher, %1.pdate, "
+		   "%1.category, "
+		   "%1.language, "
+		   "%1.price, %1.monetary_units, "
+		   "%1.quantity, "
+		   "%1.location, "
+		   "%1.quantity - "
+		   "COUNT(item_borrower_vw.item_oid) AS availability, "
+		   "COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+		   "%1.type, ").
+		  arg(type.toLower().remove(" "));
+		str += QString("%1.myoid, "
+			       "%1.front_cover "
+			       "FROM "
+			       "%1 LEFT JOIN item_borrower_vw ON "
+			       "%1.myoid = "
+			       "item_borrower_vw.item_oid "
+			       "AND item_borrower_vw.type = '%2' "
+			       "WHERE ").arg(type.toLower().remove(" ")).
+		  arg(type);
+	      }
+
+	    QString E("");
+
+	    if(db.driverName() != "QSQLITE")
+	      E = "E";
+
+	    if(ui.searchType->currentIndex() == 0) // Category
+	      {
+		if(type != "Photograph Collection")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(category), '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(category, '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+		else
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(about), '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(about, '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+	      }
+	    else if(ui.searchType->currentIndex() == 1) // ID
+	      {
+		if(ui.case_insensitive->isChecked())
+		  str.append
+		    ("(LOWER(id) LIKE " + E + "'%" +
+		     myqstring::escape(searchstrArg.toLower().trimmed()) +
+		     "%' ");
+		else
+		  str.append
+		    ("(id LIKE " + E + "'%" +
+		     myqstring::escape(searchstrArg.trimmed()) +
+		     "%' ");
+
+		if(type == "Book")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("OR LOWER(isbn13) LIKE " + E + "'%" +
+				 myqstring::escape(searchstrArg.toLower().
+						   trimmed()) + "%') ");
+		    else
+		      str.append("OR isbn13 LIKE " + E + "'%" +
+				 myqstring::escape(searchstrArg.
+						   trimmed()) + "%') ");
+		  }
+		else
+		  str.append(") ");
+	      }
+	    else if(ui.searchType->currentIndex() == 2) // Keyword
+	      {
+		if(type != "Photograph Collection")
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(keyword), '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(keyword, '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+		else
+		  {
+		    if(ui.case_insensitive->isChecked())
+		      str.append("COALESCE(LOWER(about), '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.toLower().trimmed()) +
+				 "%' ");
+		    else
+		      str.append("COALESCE(about, '') LIKE " +
+				 E + "'%" +
+				 myqstring::escape
+				 (searchstrArg.trimmed()) +
+				 "%' ");
+		  }
+	      }
+	    else // Title
+	      {
+		if(ui.case_insensitive->isChecked())
+		  str.append("LOWER(title) LIKE " + E + "'%" +
+			     myqstring::escape(searchstrArg.toLower().
+					       trimmed()) +
+			     "%' ");
+		else
+		  str.append("title LIKE " + E + "'%" +
+			     myqstring::escape(searchstrArg.trimmed()) +
+			     "%' ");
+	      }
+
+	    if(type != "Photograph Collection")
+	      str += QString("GROUP BY "
+			     "%1.title, "
+			     "%1.id, "
+			     "%1.publisher, %1.pdate, "
+			     "%1.category, "
+			     "%1.language, "
+			     "%1.price, "
+			     "%1.monetary_units, "
+			     "%1.quantity, "
+			     "%1.location, "
+			     "%1.keyword, "
+			     "%1.type, "
+			     "%1.myoid, "
+			     "%1.front_cover "
+			     ).arg(type.toLower().remove(" "));
+	    else
+	      str += "GROUP BY "
+		"photograph_collection.title, "
+		"photograph_collection.id, "
+		"photograph_collection.location, "
+		"photograph_collection.type, "
+		"photograph_collection.myoid, "
+		"photograph_collection.image_scaled ";
+
+	    if(type == "CD")
+	      {
+		str = str.replace("pdate", "rdate");
+		str = str.replace("publisher", "recording_label");
+	      }
+	    else if(type == "DVD")
+	      {
+		str = str.replace("pdate", "rdate");
+		str = str.replace("publisher", "studio");
+	      }
+	    else if(type == "Video Game")
+	      {
+		str = str.replace("pdate", "rdate");
+		str = str.replace("category", "genre");
+	      }
+
+	    if(type != "Video Game")
+	      str += "UNION ALL ";
+	    else
+	      str += " ";
+
+	    searchstr += str;
+	  }
+
+	searchstr += "ORDER BY 1 ";
+	searchstr += limitStr + offsetStr;
+	break;
+      }
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -2917,14 +3138,26 @@ int qtbook::populateTable(const int search_type_arg,
 
   qapp->restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
-  
+
+  bool found = false;
+
   for(int ii = 0; ii < ui.action_Category->menu()->actions().size(); ii++)
     if(typefilter ==
        ui.action_Category->menu()->actions().at(ii)->data().toString())
       {
+	found = true;
 	previousTypeFilter = typefilter;
+	ui.action_Category->menu()->setDefaultAction
+	  (ui.action_Category->menu()->actions().at(ii));
 	break;
       }
+
+  if(typefilter.isEmpty())
+    ui.action_Category->menu()->setDefaultAction
+      (ui.action_Category->menu()->actions().value(0));
+  else if(!found)
+    ui.action_Category->menu()->setDefaultAction
+      (ui.action_Category->menu()->actions().value(0));
 
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(db.userName(), typefilter, roles);
@@ -3061,7 +3294,7 @@ int qtbook::populateTable(const int search_type_arg,
       pixmapItem = 0;
 
       if(query.isValid())
-	for(j = 0; j < query.record().count(); j++)
+	for(int j = 0; j < query.record().count(); j++)
 	  {
 	    item = 0;
 
@@ -3243,4 +3476,17 @@ int qtbook::populateTable(const int search_type_arg,
   ui.table->show();
 #endif
   return 0;
+}
+
+/*
+** -- slotSearchBasic() --
+*/
+
+void qtbook::slotSearchBasic(void)
+{
+  if(!db.isOpen())
+    return;
+
+  ui.search->selectAll();
+  (void) populateTable(POPULATE_SEARCH_BASIC, "All", ui.search->text());
 }

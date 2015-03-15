@@ -531,6 +531,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotViewDetails(void)));
   connect(ui.createTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMenu(void)));
+  connect(ui.search, SIGNAL(returnPressed(void)), this,
+	  SLOT(slotSearchBasic(void)));
   connect(er.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetErrorLog(void)));
   connect(er.cancelButton, SIGNAL(clicked(void)),
@@ -4159,6 +4161,9 @@ void qtbook::slotDisconnect(void)
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
+  ui.searchType->setCurrentIndex(0);
+  ui.case_insensitive->setChecked(false);
+  ui.search->clear();
 
   if(db.isOpen())
     {

@@ -198,6 +198,7 @@ class qtbook: public QMainWindow
   static const int POPULATE_ALL = 1;
   static const int PREVIOUS_PAGE = 2;
   static const int POPULATE_SEARCH = 2;
+  static const int POPULATE_SEARCH_BASIC = 3;
 
   qtbook(void);
   ~qtbook();
@@ -327,6 +328,7 @@ class qtbook: public QMainWindow
   void slotDelete(void);
   void slotModify(void);
   void slotSearch(void);
+  void slotSearchBasic(void);
   void slotRefresh(void);
   void slotRequest(void);
   void slotAddAdmin(void);
