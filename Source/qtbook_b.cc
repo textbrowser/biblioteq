@@ -48,6 +48,13 @@ int qtbook::populateTable(const int search_type_arg,
   QString limitStr("");
   QString offsetStr("");
 
+  if(search_type != POPULATE_SEARCH_BASIC)
+    {
+      ui.case_insensitive->setChecked(false);
+      ui.search->clear();
+      ui.searchType->setCurrentIndex(0);
+    }
+
   for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)
     if(ui.menuEntriesPerPage->actions()[ii]->isChecked())
       {
@@ -2949,13 +2956,13 @@ int qtbook::populateTable(const int search_type_arg,
 		if(type != "Photograph Collection")
 		  {
 		    if(ui.case_insensitive->isChecked())
-		      str.append("COALESCE(LOWER(category), '') LIKE " +
+		      str.append("LOWER(category) LIKE " +
 				 E + "'%" +
 				 myqstring::escape
 				 (searchstrArg.toLower().trimmed()) +
 				 "%' ");
 		    else
-		      str.append("COALESCE(category, '') LIKE " +
+		      str.append("category LIKE " +
 				 E + "'%" +
 				 myqstring::escape
 				 (searchstrArg.trimmed()) +
@@ -3239,9 +3246,11 @@ int qtbook::populateTable(const int search_type_arg,
 
   m_queryOffset = offset;
 
-  if(typefilter != "All Overdue" &&
-     typefilter != "All Requested" &&
-     typefilter != "All Reserved")
+  if(search_type == POPULATE_SEARCH_BASIC)
+    lastSearchStr = searchstrArg;
+  else if(typefilter != "All Overdue" &&
+	  typefilter != "All Requested" &&
+	  typefilter != "All Reserved")
     lastSearchStr = searchstr;
   else
     lastSearchStr = searchstrArg;
@@ -3498,5 +3507,6 @@ void qtbook::slotSearchBasic(void)
     return;
 
   ui.search->selectAll();
-  (void) populateTable(POPULATE_SEARCH_BASIC, "All", ui.search->text());
+  (void) populateTable
+    (POPULATE_SEARCH_BASIC, "All", ui.search->text().trimmed());
 }

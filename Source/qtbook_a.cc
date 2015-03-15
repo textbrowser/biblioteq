@@ -258,6 +258,7 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu4 = 0;
 
   ui.setupUi(this);
+  lastSearchType = POPULATE_ALL;
   m_idCt = 0;
   previousTypeFilter = "";
 
