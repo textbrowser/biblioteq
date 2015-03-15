@@ -257,6 +257,7 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu3 = 0;
   QMenu *menu4 = 0;
 
+  ui.setupUi(this);
   m_idCt = 0;
   previousTypeFilter = "";
 
@@ -330,7 +331,6 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Availability")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -645,13 +645,21 @@ qtbook::qtbook(void):QMainWindow()
   previousTypeFilter = lastCategory;
   prepareFilter();
 
+  bool found = false;
+
   for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
     if(lastCategory ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
-	ui.action_Category->menu()->actions().at(i)->trigger();
+	found = true;
+	ui.action_Category->menu()->setDefaultAction
+	  (ui.action_Category->menu()->actions().at(i));
 	break;
       }
+
+  if(!found)
+    ui.action_Category->menu()->setDefaultAction
+      (ui.action_Category->menu()->actions().value(0));
 
   addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
@@ -839,9 +847,12 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
 void qtbook::slotSetColumns(void)
 {
+  if(!ui.action_Category->menu()->defaultAction())
+    return;
+
   int i = 0;
   QString typefilter = ui.action_Category->menu()->
-    activeAction()->data().toString();
+    defaultAction()->data().toString();
 
   for(i = 0; i < m_configToolMenu->actions().size(); i++)
     {
@@ -1949,10 +1960,13 @@ void qtbook::closeEvent(QCloseEvent *e)
 
 void qtbook::slotRefresh(void)
 {
+  if(!ui.action_Category->menu()->defaultAction())
+    return;
+
   if(db.isOpen())
     {
       QString str = "";
-      QVariant data(ui.action_Category->menu()->activeAction()->data().
+      QVariant data(ui.action_Category->menu()->defaultAction()->data().
 		    toString());
 
       if(data.toString() == "All Overdue" && roles.isEmpty())
@@ -4061,7 +4075,8 @@ void qtbook::slotConnectDB(void)
     if(lastCategory ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
-	ui.action_Category->menu()->actions().at(i)->trigger();
+	ui.action_Category->menu()->setDefaultAction
+	  (ui.action_Category->menu()->actions().at(i));
 	break;
       }
 
@@ -4200,7 +4215,8 @@ void qtbook::slotDisconnect(void)
     if(previousTypeFilter ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
-	ui.action_Category->menu()->actions().at(i)->trigger();
+	ui.action_Category->menu()->setDefaultAction
+	  (ui.action_Category->menu()->actions().at(i));
 	break;
       }
 
@@ -5091,6 +5107,11 @@ void qtbook::slotAutoPopOnFilter(QAction *action)
   if(!action)
     return;
 
+  disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+	     SLOT(slotAutoPopOnFilter(QAction *)));
+  ui.action_Category->menu()->setDefaultAction(action);
+  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
   prepareRequestToolButton(action->data().toString());
 
   /*
@@ -8293,7 +8314,8 @@ void qtbook::slotRequest(void)
 
   if(!roles.isEmpty())
     isRequesting = false;
-  else if(ui.action_Category->menu()->activeAction()->data().
+  else if(ui.action_Category->menu()->defaultAction() &&
+	  ui.action_Category->menu()->defaultAction()->data().
 	  toString() == "All Requested")
     isRequesting = false;
 
@@ -8521,6 +8543,8 @@ void qtbook::prepareFilter(void)
 	       << tr("Video Games");
     }
 
+  disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+	     SLOT(slotAutoPopOnFilter(QAction *)));
   ui.action_Category->menu()->clear();
 
   for(int i = 0; i < tmplist1.size(); i++)
@@ -8531,6 +8555,8 @@ void qtbook::prepareFilter(void)
 	action->setData(tmplist1[i]);
     }
 
+  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
   tmplist1.clear();
   tmplist2.clear();
 }
@@ -8715,7 +8741,10 @@ QString qtbook::getPreferredZ3950Site(void) const
 
 QString qtbook::getTypeFilterString(void) const
 {
-  return ui.action_Category->menu()->activeAction()->data().toString();
+  if(ui.action_Category->menu()->defaultAction())
+    return ui.action_Category->menu()->defaultAction()->data().toString();
+  else
+    return "All";
 }
 
 /*
@@ -9208,7 +9237,9 @@ void qtbook::changeEvent(QEvent *event)
 	  ui.retranslateUi(this);
 	  ui.table->resetTable
 	    (db.userName(),
-	     ui.action_Category->menu()->activeAction()->data().toString(),
+	     ui.action_Category->menu()->defaultAction() ?
+	     ui.action_Category->menu()->defaultAction()->data().toString() :
+	     "All",
 	     roles);
 	  prepareFilter();
 	  QMessageBox::information

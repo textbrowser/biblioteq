@@ -2895,11 +2895,13 @@ int qtbook::populateTable(const int search_type_arg,
       qapp->restoreOverrideCursor();
 
       if(!previousTypeFilter.isEmpty())
-	for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+	for(int ii = 0; ii < ui.action_Category->menu()->actions().size();
+	    ii++)
 	  if(previousTypeFilter ==
-	     ui.action_Category->menu()->actions().at(i)->data().toString())
+	     ui.action_Category->menu()->actions().at(ii)->data().toString())
 	    {
-	      ui.action_Category->menu()->actions().at(i)->trigger();
+	      ui.action_Category->menu()->setDefaultAction
+		(ui.action_Category->menu()->actions().at(ii));
 	      break;
 	    }
 
@@ -2916,7 +2918,7 @@ int qtbook::populateTable(const int search_type_arg,
   qapp->restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
   
-  for(int ii = 0; i < ui.action_Category->menu()->actions().size(); ii++)
+  for(int ii = 0; ii < ui.action_Category->menu()->actions().size(); ii++)
     if(typefilter ==
        ui.action_Category->menu()->actions().at(ii)->data().toString())
       {
