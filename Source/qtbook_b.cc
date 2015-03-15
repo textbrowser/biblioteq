@@ -49,11 +49,7 @@ int qtbook::populateTable(const int search_type_arg,
   QString offsetStr("");
 
   if(search_type != POPULATE_SEARCH_BASIC)
-    {
-      ui.case_insensitive->setChecked(false);
-      ui.search->clear();
-      ui.searchType->setCurrentIndex(0);
-    }
+    resetAllSearchWidgets();
 
   for(int ii = 0; ii < ui.menuEntriesPerPage->actions().size(); ii++)
     if(ui.menuEntriesPerPage->actions()[ii]->isChecked())
@@ -3506,7 +3502,41 @@ void qtbook::slotSearchBasic(void)
   if(!db.isOpen())
     return;
 
-  ui.search->selectAll();
+  ui.case_insensitive->setEnabled(false);
+  ui.resetAllSearch->setVisible(true);
+  ui.search->setEnabled(false);
+  ui.searchType->setEnabled(false);
   (void) populateTable
     (POPULATE_SEARCH_BASIC, "All", ui.search->text().trimmed());
+}
+
+/*
+** -- slotResetAllSearch() --
+*/
+
+void qtbook::slotResetAllSearch(void)
+{
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.itemsCountLabel->setText(tr("0 Result(s)"));
+  ui.nextPageButton->setEnabled(false);
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
+  ui.table->resetTable(db.userName(), lastCategory, roles);
+  resetAllSearchWidgets();
+}
+
+/*
+** -- resetAllSearchWidgets() --
+*/
+
+void qtbook::resetAllSearchWidgets(void)
+{
+  ui.case_insensitive->setEnabled(true);
+  ui.search->clear();
+  ui.search->setEnabled(true);
+  ui.searchType->setEnabled(true);
+  ui.resetAllSearch->setVisible(false);
 }

@@ -62,6 +62,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="resetAllSearch">
+        <property name="text">
+         <string>Reset</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -88,7 +95,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>321</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1167,6 +1174,7 @@
   <tabstop>searchType</tabstop>
   <tabstop>search</tabstop>
   <tabstop>case_insensitive</tabstop>
+  <tabstop>resetAllSearch</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>table</tabstop>
   <tabstop>graphicsView</tabstop>

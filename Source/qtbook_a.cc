@@ -365,6 +365,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertVideoGame(void)));
+  connect(ui.resetAllSearch,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetAllSearch(void)));
 
   bgraphicsscene *scene = 0;
 
@@ -401,6 +405,7 @@ qtbook::qtbook(void):QMainWindow()
 #endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
+  ui.resetAllSearch->setVisible(false);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   branch_diag->setModal(true);
@@ -642,6 +647,7 @@ qtbook::qtbook(void):QMainWindow()
   typefilter = lastCategory =
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
+  ui.graphicsView->scene()->clear();
   ui.table->resetTable(db.userName(), lastCategory, roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
@@ -4171,9 +4177,7 @@ void qtbook::slotDisconnect(void)
   bb.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
-  ui.searchType->setCurrentIndex(0);
-  ui.case_insensitive->setChecked(false);
-  ui.search->clear();
+  resetAllSearchWidgets();
 
   if(db.isOpen())
     {
@@ -4222,6 +4226,13 @@ void qtbook::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
+  ui.graphicsView->scene()->clear();
+  ui.graphicsView->resetTransform();
+  ui.graphicsView->verticalScrollBar()->setValue(0);
+  ui.graphicsView->horizontalScrollBar()->setValue(0);
+  ui.nextPageButton->setEnabled(false);
+  ui.pagesLabel->setText("1");
+  ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(db.userName(), previousTypeFilter, roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
@@ -5143,7 +5154,15 @@ void qtbook::slotAutoPopOnFilter(QAction *action)
       QString typefilter("");
 
       typefilter = action->data().toString();
+      ui.graphicsView->scene()->clear();
+      ui.graphicsView->resetTransform();
+      ui.graphicsView->verticalScrollBar()->setValue(0);
+      ui.graphicsView->horizontalScrollBar()->setValue(0);
+      ui.nextPageButton->setEnabled(false);
+      ui.pagesLabel->setText("1");
+      ui.previousPageButton->setEnabled(false);
       ui.table->resetTable(db.userName(), typefilter, "");
+      ui.itemsCountLabel->setText(tr("0 Results"));
     }
 }
 
@@ -9253,12 +9272,20 @@ void qtbook::changeEvent(QEvent *event)
 	  er.retranslateUi(error_diag);
 	  pass.retranslateUi(pass_diag);
 	  ui.retranslateUi(this);
+	  ui.graphicsView->scene()->clear();
+	  ui.graphicsView->resetTransform();
+	  ui.graphicsView->verticalScrollBar()->setValue(0);
+	  ui.graphicsView->horizontalScrollBar()->setValue(0);
+	  ui.nextPageButton->setEnabled(false);
+	  ui.pagesLabel->setText("1");
+	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
 	    (db.userName(),
 	     ui.action_Category->menu()->defaultAction() ?
 	     ui.action_Category->menu()->defaultAction()->data().toString() :
 	     "All",
 	     roles);
+	  ui.itemsCountLabel->setText(tr("0 Results"));
 	  prepareFilter();
 	  QMessageBox::information
 	    (this,

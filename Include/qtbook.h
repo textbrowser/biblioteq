@@ -315,6 +315,7 @@ class qtbook: public QMainWindow
   void readGlobalSetup(void);
   void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
+  void resetAllSearchWidgets(void);
   void resetMembersBrowser(void);
   void createSqliteMenuActions(void);
   void prepareRequestToolButton(const QString &);
@@ -325,6 +326,7 @@ class qtbook: public QMainWindow
   void slotAllGo(void);
   void slotQuery(void);
   void slotReset(void);
+  void slotResetAllSearch(void);
   void slotDelete(void);
   void slotModify(void);
   void slotSearch(void);
