@@ -64,6 +64,14 @@
            <bool>true</bool>
           </property>
           <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>259</width>
+             <height>473</height>
+            </rect>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QGroupBox" name="itemSummary">
@@ -143,11 +151,33 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QComboBox" name="typefilter">
-            <property name="sizeAdjustPolicy">
-             <enum>QComboBox::AdjustToContents</enum>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Search</string>
             </property>
            </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="searchType">
+            <item>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Keyword</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Title</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="search"/>
           </item>
           <item>
            <spacer name="horizontalSpacer_3">
@@ -328,7 +358,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -395,6 +425,8 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <addaction name="action_Category"/>
+    <addaction name="separator"/>
     <addaction name="actionMembersBrowser"/>
     <addaction name="actionViewDetails"/>
     <addaction name="separator"/>
@@ -1142,6 +1174,11 @@
     <string>None</string>
    </property>
   </action>
+  <action name="action_Category">
+   <property name="text">
+    <string>&amp;Category</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1152,7 +1189,8 @@
  </customwidgets>
  <tabstops>
   <tabstop>scrollArea</tabstop>
-  <tabstop>typefilter</tabstop>
+  <tabstop>searchType</tabstop>
+  <tabstop>search</tabstop>
   <tabstop>table</tabstop>
   <tabstop>graphicsView</tabstop>
   <tabstop>previousPageButton</tabstop>

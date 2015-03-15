@@ -2895,8 +2895,13 @@ int qtbook::populateTable(const int search_type_arg,
       qapp->restoreOverrideCursor();
 
       if(!previousTypeFilter.isEmpty())
-	ui.typefilter->setCurrentIndex
-	  (ui.typefilter->findData(QVariant(previousTypeFilter)));
+	for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+	  if(previousTypeFilter ==
+	     ui.action_Category->menu()->actions().at(i)->data().toString())
+	    {
+	      ui.action_Category->menu()->actions().at(i)->trigger();
+	      break;
+	    }
 
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the data required for "
@@ -2910,17 +2915,14 @@ int qtbook::populateTable(const int search_type_arg,
 
   qapp->restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
-
-  if(ui.typefilter->findData(QVariant(typefilter)) > -1)
-    previousTypeFilter = typefilter;
-
-  if(typefilter.isEmpty())
-    ui.typefilter->setCurrentIndex(0);
-  else if(ui.typefilter->findData(QVariant(typefilter)) > -1)
-    ui.typefilter->setCurrentIndex
-      (ui.typefilter->findData(QVariant(typefilter)));
-  else
-    ui.typefilter->setCurrentIndex(0);
+  
+  for(int ii = 0; i < ui.action_Category->menu()->actions().size(); ii++)
+    if(typefilter ==
+       ui.action_Category->menu()->actions().at(ii)->data().toString())
+      {
+	previousTypeFilter = typefilter;
+	break;
+      }
 
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(db.userName(), typefilter, roles);

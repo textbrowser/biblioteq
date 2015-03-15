@@ -254,6 +254,7 @@ void qtbook::quit(const char *msg, const char *file, const int line)
 
 qtbook::qtbook(void):QMainWindow()
 {
+  QMenu *menu3 = 0;
   QMenu *menu4 = 0;
 
   m_idCt = 0;
@@ -293,12 +294,16 @@ qtbook::qtbook(void):QMainWindow()
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((menu3 = new(std::nothrow) QMenu(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((menu4 = new(std::nothrow) QMenu(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_configToolMenu->setTearOffEnabled(true);
   m_configToolMenu->setWindowIcon(QIcon(":/book.png"));
   m_configToolMenu->setWindowTitle(tr("BiblioteQ"));
+  ui.action_Category->setMenu(menu3);
   connect(menu4->addAction(tr("Reset &ID Number")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu4->addAction(tr("Reset &Title")),
@@ -440,8 +445,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotRefresh(void)));
   connect(ui.actionRefreshTable, SIGNAL(triggered(void)), this,
 	  SLOT(slotRefresh(void)));
-  connect(ui.typefilter, SIGNAL(activated(int)), this,
-	  SLOT(slotAutoPopOnFilter(void)));
+  connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
+	  SLOT(slotAutoPopOnFilter(QAction *)));
   connect(ui.modifyTool, SIGNAL(triggered(void)), this,
 	  SLOT(slotModify(void)));
   connect(ui.actionModifyEntry, SIGNAL(triggered(void)), this,
@@ -640,9 +645,13 @@ qtbook::qtbook(void):QMainWindow()
   previousTypeFilter = lastCategory;
   prepareFilter();
 
-  if(ui.typefilter->findData(QVariant(lastCategory)) > -1)
-    ui.typefilter->setCurrentIndex
-      (ui.typefilter->findData(QVariant(lastCategory)));
+  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+    if(lastCategory ==
+       ui.action_Category->menu()->actions().at(i)->data().toString())
+      {
+	ui.action_Category->menu()->actions().at(i)->trigger();
+	break;
+      }
 
   addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
@@ -831,8 +840,8 @@ void qtbook::addConfigOptions(const QString &typefilter)
 void qtbook::slotSetColumns(void)
 {
   int i = 0;
-  QString typefilter = ui.typefilter->itemData
-    (ui.typefilter->currentIndex()).toString();
+  QString typefilter = ui.action_Category->menu()->
+    activeAction()->data().toString();
 
   for(i = 0; i < m_configToolMenu->actions().size(); i++)
     {
@@ -1943,7 +1952,8 @@ void qtbook::slotRefresh(void)
   if(db.isOpen())
     {
       QString str = "";
-      QVariant data(ui.typefilter->itemData(ui.typefilter->currentIndex()));
+      QVariant data(ui.action_Category->menu()->activeAction()->data().
+		    toString());
 
       if(data.toString() == "All Overdue" && roles.isEmpty())
 	str = db.userName();
@@ -4047,9 +4057,13 @@ void qtbook::slotConnectDB(void)
 
   found = false;
 
-  if(ui.typefilter->findData(QVariant(lastCategory)) > -1)
-    ui.typefilter->setCurrentIndex
-      (ui.typefilter->findData(QVariant(lastCategory)));
+  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+    if(lastCategory ==
+       ui.action_Category->menu()->actions().at(i)->data().toString())
+      {
+	ui.action_Category->menu()->actions().at(i)->trigger();
+	break;
+      }
 
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
@@ -4182,9 +4196,13 @@ void qtbook::slotDisconnect(void)
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
-  if(ui.typefilter->findData(QVariant(previousTypeFilter)) > -1)
-    ui.typefilter->setCurrentIndex
-      (ui.typefilter->findData(QVariant(previousTypeFilter)));
+  for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
+    if(previousTypeFilter ==
+       ui.action_Category->menu()->actions().at(i)->data().toString())
+      {
+	ui.action_Category->menu()->actions().at(i)->trigger();
+	break;
+      }
 
   addConfigOptions(previousTypeFilter);
   slotDisplaySummary();
@@ -5068,10 +5086,12 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 ** -- slotAutoPopOnFilter() --
 */
 
-void qtbook::slotAutoPopOnFilter(void)
+void qtbook::slotAutoPopOnFilter(QAction *action)
 {
-  prepareRequestToolButton
-    (ui.typefilter->itemData(ui.typefilter->currentIndex()).toString());
+  if(!action)
+    return;
+
+  prepareRequestToolButton(action->data().toString());
 
   /*
   ** Populate the main table only if we're connected to a database.
@@ -5083,8 +5103,7 @@ void qtbook::slotAutoPopOnFilter(void)
     {
       QString typefilter("");
 
-      typefilter = ui.typefilter->itemData(ui.typefilter->currentIndex()).
-	toString();
+      typefilter = action->data().toString();
       ui.table->resetTable(db.userName(), typefilter, "");
     }
 }
@@ -8274,7 +8293,7 @@ void qtbook::slotRequest(void)
 
   if(!roles.isEmpty())
     isRequesting = false;
-  else if(ui.typefilter->itemData(ui.typefilter->currentIndex()).
+  else if(ui.action_Category->menu()->activeAction()->data().
 	  toString() == "All Requested")
     isRequesting = false;
 
@@ -8502,11 +8521,15 @@ void qtbook::prepareFilter(void)
 	       << tr("Video Games");
     }
 
-  ui.typefilter->clear();
+  ui.action_Category->menu()->clear();
 
   for(int i = 0; i < tmplist1.size(); i++)
-    ui.typefilter->addItem(tmplist2[i],
-			   QVariant(tmplist1[i]));
+    {
+      QAction *action = ui.action_Category->menu()->addAction(tmplist2[i]);
+
+      if(action)
+	action->setData(tmplist1[i]);
+    }
 
   tmplist1.clear();
   tmplist2.clear();
@@ -8692,7 +8715,7 @@ QString qtbook::getPreferredZ3950Site(void) const
 
 QString qtbook::getTypeFilterString(void) const
 {
-  return ui.typefilter->itemData(ui.typefilter->currentIndex()).toString();
+  return ui.action_Category->menu()->activeAction()->data().toString();
 }
 
 /*
@@ -9185,7 +9208,7 @@ void qtbook::changeEvent(QEvent *event)
 	  ui.retranslateUi(this);
 	  ui.table->resetTable
 	    (db.userName(),
-	     ui.typefilter->itemData(ui.typefilter->currentIndex()).toString(),
+	     ui.action_Category->menu()->activeAction()->data().toString(),
 	     roles);
 	  prepareFilter();
 	  QMessageBox::information
