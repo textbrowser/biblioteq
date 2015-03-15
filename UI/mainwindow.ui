@@ -42,11 +42,14 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>535</height>
+          <width>200</width>
+          <height>539</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
+         <property name="margin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QGroupBox" name="itemSummary">
            <property name="flat">
@@ -344,7 +347,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
