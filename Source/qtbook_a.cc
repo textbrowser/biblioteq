@@ -656,12 +656,17 @@ qtbook::qtbook(void):QMainWindow()
 	found = true;
 	ui.action_Category->menu()->setDefaultAction
 	  (ui.action_Category->menu()->actions().at(i));
+	ui.categoryLabel->setText
+	  (ui.action_Category->menu()->actions().at(i)->text());
 	break;
       }
 
   if(!found)
-    ui.action_Category->menu()->setDefaultAction
-      (ui.action_Category->menu()->actions().value(0));
+    {
+      ui.action_Category->menu()->setDefaultAction
+	(ui.action_Category->menu()->actions().value(0));
+      ui.categoryLabel->setText(tr("All"));
+    }
 
   addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
@@ -4077,10 +4082,20 @@ void qtbook::slotConnectDB(void)
     if(lastCategory ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
+	found = true;
 	ui.action_Category->menu()->setDefaultAction
 	  (ui.action_Category->menu()->actions().at(i));
+	ui.categoryLabel->setText
+	  (ui.action_Category->menu()->actions().at(i)->text());
 	break;
       }
+
+  if(!found)
+    {
+      ui.action_Category->menu()->setDefaultAction
+	(ui.action_Category->menu()->actions().value(0));
+      ui.categoryLabel->setText(tr("All"));
+    }
 
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
@@ -4222,6 +4237,8 @@ void qtbook::slotDisconnect(void)
       {
 	ui.action_Category->menu()->setDefaultAction
 	  (ui.action_Category->menu()->actions().at(i));
+	ui.categoryLabel->setText
+	  (ui.action_Category->menu()->actions().at(i)->text());
 	break;
       }
 
@@ -5110,11 +5127,20 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 void qtbook::slotAutoPopOnFilter(QAction *action)
 {
   if(!action)
-    return;
+    {
+      if(db.isOpen())
+	ui.table->resetTable(db.userName(), "All", "");
+
+      ui.categoryLabel->setText(tr("All"));
+      return;
+    }
+  else
+    ui.categoryLabel->setText(action->text());
 
   disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
   ui.action_Category->menu()->setDefaultAction(action);
+  ui.categoryLabel->setText(action->text());
   connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   prepareRequestToolButton(action->data().toString());

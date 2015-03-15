@@ -3123,6 +3123,8 @@ int qtbook::populateTable(const int search_type_arg,
 	    {
 	      ui.action_Category->menu()->setDefaultAction
 		(ui.action_Category->menu()->actions().at(ii));
+	      ui.categoryLabel->setText
+		(ui.action_Category->menu()->actions().at(ii)->text());
 	      break;
 	    }
 
@@ -3149,15 +3151,23 @@ int qtbook::populateTable(const int search_type_arg,
 	previousTypeFilter = typefilter;
 	ui.action_Category->menu()->setDefaultAction
 	  (ui.action_Category->menu()->actions().at(ii));
+	ui.categoryLabel->setText
+	  (ui.action_Category->menu()->actions().at(ii)->text());
 	break;
       }
 
   if(typefilter.isEmpty())
-    ui.action_Category->menu()->setDefaultAction
-      (ui.action_Category->menu()->actions().value(0));
+    {
+      ui.action_Category->menu()->setDefaultAction
+	(ui.action_Category->menu()->actions().value(0));
+      ui.categoryLabel->setText(tr("All"));
+    }
   else if(!found)
-    ui.action_Category->menu()->setDefaultAction
-      (ui.action_Category->menu()->actions().value(0));
+    {
+      ui.action_Category->menu()->setDefaultAction
+	(ui.action_Category->menu()->actions().value(0));
+      ui.categoryLabel->setText(tr("All"));
+    }
 
   if(search_type != CUSTOM_QUERY)
     ui.table->resetTable(db.userName(), typefilter, roles);

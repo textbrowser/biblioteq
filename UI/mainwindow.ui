@@ -271,11 +271,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLabel" name="itemsCountLabel">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
+           <widget class="QLabel" name="categoryLabel"/>
           </item>
           <item>
            <spacer name="horizontalSpacer_5">
@@ -355,6 +351,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="itemsCountLabel">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
