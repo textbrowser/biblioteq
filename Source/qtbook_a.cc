@@ -854,14 +854,10 @@ void qtbook::addConfigOptions(const QString &typefilter)
 
 void qtbook::slotSetColumns(void)
 {
-  if(!ui.action_Category->menu()->defaultAction())
-    return;
+  QString typefilter = ui.action_Category->menu()->defaultAction() ?
+    ui.action_Category->menu()->defaultAction()->data().toString() : "All";
 
-  int i = 0;
-  QString typefilter = ui.action_Category->menu()->
-    defaultAction()->data().toString();
-
-  for(i = 0; i < m_configToolMenu->actions().size(); i++)
+  for(int i = 0; i < m_configToolMenu->actions().size(); i++)
     {
       ui.table->setColumnHidden
 	(i, !m_configToolMenu->actions().at(i)->isChecked());
@@ -1967,14 +1963,12 @@ void qtbook::closeEvent(QCloseEvent *e)
 
 void qtbook::slotRefresh(void)
 {
-  if(!ui.action_Category->menu()->defaultAction())
-    return;
-
   if(db.isOpen())
     {
       QString str = "";
-      QVariant data(ui.action_Category->menu()->defaultAction()->data().
-		    toString());
+      QVariant data(ui.action_Category->menu()->defaultAction() ?
+		    ui.action_Category->menu()->defaultAction()->data().
+		    toString() : "All");
 
       if(data.toString() == "All Overdue" && roles.isEmpty())
 	str = db.userName();
@@ -5127,22 +5121,14 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
 void qtbook::slotAutoPopOnFilter(QAction *action)
 {
   if(!action)
-    {
-      if(db.isOpen())
-	ui.table->resetTable(db.userName(), "All", "");
-
-      ui.categoryLabel->setText(tr("All"));
-      return;
-    }
-  else
-    ui.categoryLabel->setText(action->text());
+    return;
 
   disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
 	     SLOT(slotAutoPopOnFilter(QAction *)));
   ui.action_Category->menu()->setDefaultAction(action);
-  ui.categoryLabel->setText(action->text());
   connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
+  ui.categoryLabel->setText(action->text());
   prepareRequestToolButton(action->data().toString());
 
   /*
