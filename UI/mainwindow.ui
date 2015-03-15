@@ -20,6 +20,51 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="searchType">
+        <item>
+         <property name="text">
+          <string>Category</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Keyword</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Title</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="search"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="case_insensitive">
+        <property name="text">
+         <string>Case-Insensitive</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -43,7 +88,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>539</height>
+          <height>321</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -122,64 +167,6 @@
       </widget>
       <widget class="QGroupBox" name="groupBox_2">
        <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Search</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="searchType">
-            <item>
-             <property name="text">
-              <string>Category</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ID</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Keyword</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Title</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="search"/>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="case_insensitive">
-            <property name="text">
-             <string>Case-Insensitive</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
@@ -347,7 +334,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1180,6 +1167,7 @@
   <tabstop>searchType</tabstop>
   <tabstop>search</tabstop>
   <tabstop>case_insensitive</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>table</tabstop>
   <tabstop>graphicsView</tabstop>
   <tabstop>previousPageButton</tabstop>
