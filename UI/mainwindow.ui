@@ -64,6 +64,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="resetAllSearch">
+        <property name="toolTip">
+         <string>Clear the main table and reset the nearby search widgets.</string>
+        </property>
         <property name="text">
          <string>Reset</string>
         </property>
@@ -95,7 +98,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>278</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -341,7 +344,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

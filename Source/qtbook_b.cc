@@ -3470,6 +3470,22 @@ int qtbook::populateTable(const int search_type_arg,
       tmplist.clear();
       addConfigOptions("Custom");
     }
+  else if(search_type == POPULATE_SEARCH)
+    {
+      if(typefilter == "All")
+	if(ui.table->rowCount() == 0)
+	  {
+	    foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+	      widget->setEnabled(true);
+
+	    al.reset->setVisible(false);
+	  }
+    }
+  else if(search_type == POPULATE_SEARCH_BASIC)
+    {
+      if(ui.table->rowCount() == 0)
+	resetAllSearchWidgets();
+    }
 
   if(search_type != CUSTOM_QUERY)
     addConfigOptions(typefilter);
