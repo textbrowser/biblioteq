@@ -1220,6 +1220,16 @@ void qtbook::slotSearch(void)
 {
   if(!db.isOpen())
     return;
+  else if(!al.resetButton->isEnabled())
+    {
+      if(!all_diag->isVisible())
+	all_diag->updateGeometry();
+
+      misc_functions::center(all_diag, this);
+      all_diag->raise();
+      all_diag->show();
+      return;
+    }
 
   /*
   ** Hide certain fields if we're a regular user.

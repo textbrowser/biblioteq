@@ -3534,9 +3534,11 @@ void qtbook::slotResetAllSearch(void)
 
 void qtbook::resetAllSearchWidgets(void)
 {
+  ui.case_insensitive->setChecked(false);
   ui.case_insensitive->setEnabled(true);
   ui.search->clear();
   ui.search->setEnabled(true);
+  ui.searchType->setCurrentIndex(0);
   ui.searchType->setEnabled(true);
   ui.resetAllSearch->setVisible(false);
 }
@@ -3561,4 +3563,5 @@ void qtbook::slotResetGeneralSearch(void)
     widget->setEnabled(true);
 
   al.reset->setVisible(false);
+  slotSearch();
 }
