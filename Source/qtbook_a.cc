@@ -1061,9 +1061,14 @@ void qtbook::showMain(void)
       statusBar()->addPermanentWidget(status_bar_label);
     }
 
-  if((error_bar_label = new(std::nothrow) QLabel()) != 0)
+  if((error_bar_label = new(std::nothrow) QToolButton()) != 0)
     {
-      error_bar_label->setPixmap(QPixmap(":/16x16/ok.png"));
+      connect(error_bar_label,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotShowErrorDialog(void)));
+      error_bar_label->setAutoRaise(true);
+      error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
       error_bar_label->setToolTip(tr("Empty Error Log"));
       statusBar()->addPermanentWidget(error_bar_label);
     }
@@ -5329,7 +5334,7 @@ void qtbook::addError(const QString &type, const QString &summary,
 
   if(error_bar_label != 0)
     {
-      error_bar_label->setPixmap(QPixmap(":/16x16/log.png"));
+      error_bar_label->setIcon(QIcon(":/16x16/log.png"));
       error_bar_label->setToolTip(tr("Error Log Active"));
     }
 
@@ -5400,7 +5405,7 @@ void qtbook::slotResetErrorLog(void)
 
   if(error_bar_label != 0)
     {
-      error_bar_label->setPixmap(QPixmap(":/16x16/ok.png"));
+      error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
       error_bar_label->setToolTip(tr("Empty Error Log"));
     }
 }

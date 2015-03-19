@@ -279,7 +279,6 @@ class qtbook: public QMainWindow
   QMap<QString, QHash<QString, QString> > sruMaps;
   QMap<QString, QHash<QString, QString> > branches;
   QMap<QString, QHash<QString, QString> > z3950Maps;
-  QLabel *error_bar_label;
   QLabel *status_bar_label;
   QLabel *connected_bar_label;
   QDialog *pass_diag;
@@ -290,6 +289,7 @@ class qtbook: public QMainWindow
   QMainWindow *history_diag;
   QMainWindow *members_diag;
   QMainWindow *customquery_diag;
+  QToolButton *error_bar_label;
   QSqlDatabase db;
   Ui_allDialog al;
   Ui_mainWindow ui;
