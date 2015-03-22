@@ -104,13 +104,12 @@ void z3950results::slotSelectRecord(void)
   QStringList list;
 
   list = ui.textarea->toPlainText().split("\n");
-  close();
 
   if(magazine)
     magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
 
   list.clear();
-  deleteLater();
+  close();
 }
 
 /*
@@ -219,7 +218,7 @@ void z3950results::setGlobalFonts(const QFont &font)
 void z3950results::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
-    slotClose();
+    close();
 
   QDialog::keyPressEvent(event);
 }

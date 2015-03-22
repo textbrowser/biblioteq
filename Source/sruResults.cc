@@ -112,9 +112,8 @@ sruresults::~sruresults()
 
 void sruresults::slotSelectRecord(void)
 {
-  close();
   magazine->populateDisplayAfterSRU(m_records.value(ui.list->currentRow()));
-  deleteLater();
+  close();
 }
 
 /*
@@ -208,7 +207,7 @@ void sruresults::setGlobalFonts(const QFont &font)
 void sruresults::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
-    slotClose();
+    close();
 
   QDialog::keyPressEvent(event);
 }
