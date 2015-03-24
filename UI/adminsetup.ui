@@ -567,6 +567,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
+  <tabstop>scrollArea</tabstop>
   <tabstop>table</tabstop>
   <tabstop>addButton</tabstop>
   <tabstop>deleteButton</tabstop>

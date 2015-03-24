@@ -8,46 +8,47 @@
 */
 
 #include <iostream>
+
 using namespace std;
 
 /*
 ** -- Qt Includes --
 */
 
-#include <QMap>
 #include <QHash>
-#include <QtDebug>
 #include <QMainWindow>
+#include <QMap>
 #include <QMessageBox>
-#include <QStringList>
 #include <QSqlDatabase>
+#include <QStringList>
+#include <QtDebug>
 
 /*
 ** -- Local Includes --
 */
 
-#include "myqstring.h"
-#include "qtbook_cd.h"
-#include "qtbook_dvd.h"
-#include "ui_allinfo.h"
-#include "ui_history.h"
-#include "qtbook_book.h"
-#include "ui_branch_s.h"
-#include "ui_password.h"
-#include "ui_userinfo.h"
-#include "ui_errordiag.h"
-#include "ui_adminsetup.h"
-#include "ui_mainwindow.h"
+#include "callnum_table_item.h"
 #include "dbenumerations.h"
 #include "generic_thread.h"
 #include "misc_functions.h"
-#include "ui_customquery.h"
-#include "qtbook_magazine.h"
-#include "qtbook_videogame.h"
-#include "callnum_table_item.h"
+#include "myqstring.h"
 #include "numeric_table_item.h"
-#include "ui_members_browser.h"
+#include "qtbook_book.h"
+#include "qtbook_cd.h"
+#include "qtbook_dvd.h"
+#include "qtbook_magazine.h"
 #include "qtbook_photographcollection.h"
+#include "qtbook_videogame.h"
+#include "ui_adminsetup.h"
+#include "ui_allinfo.h"
+#include "ui_branch_s.h"
+#include "ui_customquery.h"
+#include "ui_errordiag.h"
+#include "ui_history.h"
+#include "ui_mainwindow.h"
+#include "ui_members_browser.h"
+#include "ui_password.h"
+#include "ui_userinfo.h"
 
 class qtbook: public QMainWindow
 {
@@ -55,8 +56,8 @@ class qtbook: public QMainWindow
 
  public:
   static QString s_locale;
-  static QTranslator *s_qtTranslator;
   static QTranslator *s_appTranslator;
+  static QTranslator *s_qtTranslator;
 
   class userinfo_diag_class: public QDialog
   {
@@ -70,8 +71,8 @@ class qtbook: public QMainWindow
     {
     }
 
-    Ui_UserInfo userinfo;
     QHash<QString, QString> memberProperties;
+    Ui_UserInfo userinfo;
 
     bool haveMemberChanges(QString &str)
     {
@@ -190,226 +191,227 @@ class qtbook: public QMainWindow
     }
   };
 
+  static const int CUSTOM_QUERY = 0;
   static const int EDITABLE = 0;
   static const int NEW_PAGE = 0;
   static const int NEXT_PAGE = 1;
-  static const int VIEW_ONLY = 1;
-  static const int CUSTOM_QUERY = 0;
   static const int POPULATE_ALL = 1;
-  static const int PREVIOUS_PAGE = 2;
   static const int POPULATE_SEARCH = 2;
   static const int POPULATE_SEARCH_BASIC = 3;
+  static const int PREVIOUS_PAGE = 2;
+  static const int VIEW_ONLY = 1;
 
   qtbook(void);
   ~qtbook();
   QMenu *m_configToolMenu;
-  int populateTable(const int, const QString &, const QString &,
-		    const int = NEW_PAGE);
+  QHash<QString, QString> getAmazonHash(void) const;
+  QMainWindow *getMembersBrowser(void) const;
+  QMap<QString, QHash<QString, QString> > getSRUMaps(void) const;
+  QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
+  QSqlDatabase getDB(void) const;
+  QString getAdminID(void) const;
+  QString getPreferredSRUSite(void) const;
+  QString getPreferredZ3950Site(void) const;
+  QString getRoles(void) const;
+  QString getTypeFilterString(void) const;
+  QVector<QString> getBBColumnIndexes(void) const;
+  Ui_mainWindow getUI(void) const;
+  Ui_membersBrowser getBB(void) const;
+  int populateTable(const int, const QString &,
+		    const QString &, const int = NEW_PAGE);
+  static void quit(const char *, const char *, const int);
+  static void quit(void);
   void addError(const QString &, const QString &, const QString & = "",
 		const char * = "", const int = 0);
-  void removeCD(qtbook_cd *);
-  void showMain(void);
-  void cdSearch(const QString &, const QString &);
-  void pcSearch(const QString &, const QString &);
-  void vgSearch(const QString &, const QString &);
-  void dvdSearch(const QString &, const QString &);
-  void magSearch(const QString &, const QString &);
-  void removeDVD(qtbook_dvd *);
-  void replaceCD(const QString &, qtbook_cd *);
-  void removeBook(qtbook_book *);
-  void replaceDVD(const QString &, qtbook_dvd *);
   void bookSearch(const QString &, const QString &);
-  void updateRows(const QString &, const int, const QString &);
+  void cdSearch(const QString &, const QString &);
+  void dvdSearch(const QString &, const QString &);
   void journSearch(const QString &, const QString &);
-  void replaceBook(const QString &, qtbook_book *);
+  void magSearch(const QString &, const QString &);
+  void pcSearch(const QString &, const QString &);
+  void removeBook(qtbook_book *);
+  void removeCD(qtbook_cd *);
+  void removeDVD(qtbook_dvd *);
   void removeJournal(qtbook_journal *);
   void removeMagazine(qtbook_magazine *);
-  void replaceJournal(const QString &, qtbook_journal *);
-  void setGlobalFonts(const QFont &);
-  void replaceMagazine(const QString &, qtbook_magazine *);
-  void removeVideoGame(qtbook_videogame *);
-  void updateSceneItem(const QString &oid, const QString &type,
-		       const QImage &image);
-  void replaceVideoGame(const QString &, qtbook_videogame *);
-  void updateItemWindows(void);
-  void updateMembersBrowser(void);
-  void updateMembersBrowser(const QString &);
   void removePhotographCollection(qtbook_photographcollection *);
+  void removeVideoGame(qtbook_videogame *);
+  void replaceBook(const QString &, qtbook_book *);
+  void replaceCD(const QString &, qtbook_cd *);
+  void replaceDVD(const QString &, qtbook_dvd *);
+  void replaceJournal(const QString &, qtbook_journal *);
+  void replaceMagazine(const QString &, qtbook_magazine *);
   void replacePhotographCollection(const QString &,
 				   qtbook_photographcollection *);
+  void replaceVideoGame(const QString &, qtbook_videogame *);
+  void setGlobalFonts(const QFont &);
+  void showMain(void);
+  void updateItemWindows(void);
+  void updateMembersBrowser(const QString &);
+  void updateMembersBrowser(void);
   void updateReservationHistoryBrowser(const QString &, const QString &,
 				       const QString &, const QString &,
 				       const QString &);
-  QString getRoles(void) const;
-  QString getAdminID(void) const;
-  QString getPreferredSRUSite(void) const;
-  QString getTypeFilterString(void) const;
-  QString getPreferredZ3950Site(void) const;
-  QMainWindow *getMembersBrowser(void) const;
-  QSqlDatabase getDB(void) const;
-  Ui_mainWindow getUI(void) const;
-  QVector<QString> getBBColumnIndexes(void) const;
-  Ui_membersBrowser getBB(void) const;
-  QHash<QString, QString> getAmazonHash(void) const;
-  QMap<QString, QHash<QString, QString> > getSRUMaps(void) const;
-  QMap<QString, QHash<QString, QString> > getZ3950Maps(void) const;
-  static void quit(void);
-  static void quit(const char *, const char *, const int);
+  void updateRows(const QString &, const int, const QString &);
+  void updateSceneItem(const QString &oid, const QString &type,
+		       const QImage &image);
+  void vgSearch(const QString &, const QString &);
 
  public slots:
-  void slotResizeColumns(void);
   void slotDisplaySummary(void);
+  void slotResizeColumns(void);
 
  private:
+  QDialog *branch_diag;
+  QDialog *pass_diag;
+  QHash<QString, QString> amazonImages;
+  QHash<QString, QString> selectedBranch;
+  QLabel *connected_bar_label;
+  QLabel *status_bar_label;
+  QMainWindow *admin_diag;
+  QMainWindow *all_diag;
+  QMainWindow *customquery_diag;
+  QMainWindow *error_diag;
+  QMainWindow *history_diag;
+  QMainWindow *members_diag;
+  QMap<QString, QHash<QString, QString> > branches;
+  QMap<QString, QHash<QString, QString> > sruMaps;
+  QMap<QString, QHash<QString, QString> > z3950Maps;
+  QSqlDatabase db;
+  QString engUserinfoTitle;
+  QString lastCategory;
+  QString lastSearchStr;
+  QString previousTypeFilter;
+  QString roles;
+  QStringList deletedAdmins;
+  QToolButton *error_bar_label;
+  QVector<QString> m_abColumnHeaderIndexes;
+  QVector<QString> m_bbColumnHeaderIndexes;
+  QVector<QString> m_historyColumnHeaderIndexes;
+  Ui_adminBrowser ab;
+  Ui_allDialog al;
+  Ui_branchSelect br;
+  Ui_customquery cq;
+  Ui_errordialog er;
+  Ui_historyDialog history;
+  Ui_mainWindow ui;
+  Ui_membersBrowser bb;
+  Ui_passSelect pass;
+  dbenumerations *db_enumerations;
   int lastSearchType;
   qint64 m_pages;
   qint64 m_queryOffset;
   quint64 m_idCt;
-  QString roles;
-  QString lastCategory;
-  QString lastSearchStr;
-  QString engUserinfoTitle;
-  QString previousTypeFilter;
-  QStringList deletedAdmins;
-  QVector<QString> m_abColumnHeaderIndexes;
-  QVector<QString> m_bbColumnHeaderIndexes;
-  QVector<QString> m_historyColumnHeaderIndexes;
-  QHash<QString, QString> amazonImages;
-  QHash<QString, QString> selectedBranch;
-  QMap<QString, QHash<QString, QString> > sruMaps;
-  QMap<QString, QHash<QString, QString> > branches;
-  QMap<QString, QHash<QString, QString> > z3950Maps;
-  QLabel *status_bar_label;
-  QLabel *connected_bar_label;
-  QDialog *pass_diag;
-  QDialog *branch_diag;
-  QMainWindow *all_diag;
-  QMainWindow *admin_diag;
-  QMainWindow *error_diag;
-  QMainWindow *history_diag;
-  QMainWindow *members_diag;
-  QMainWindow *customquery_diag;
-  QToolButton *error_bar_label;
-  QSqlDatabase db;
-  Ui_allDialog al;
-  Ui_mainWindow ui;
-  Ui_passSelect pass;
-  dbenumerations *db_enumerations;
-  Ui_customquery cq;
-  Ui_errordialog er;
-  Ui_adminBrowser ab;
-  Ui_branchSelect br;
-  Ui_historyDialog history;
-  Ui_membersBrowser bb;
   userinfo_diag_class *userinfo_diag;
-  void cleanup(void);
-  void cdModify(const int);
+  void addConfigOptions(const QString &);
   void adminSetup(void);
-  void readConfig(void);
-  void closeEvent(QCloseEvent *);
-  void deleteItem(const QString &, const QString &);
+  void cdModify(const int);
   void changeEvent(QEvent *);
+  void cleanup(void);
+  void closeEvent(QCloseEvent *);
+  void createSqliteMenuActions(void);
+  void deleteItem(const QString &, const QString &);
+  void emptyContainers(void);
   void initialUpdate(void);
   void prepareFilter(void);
-  void emptyContainers(void);
+  void prepareRequestToolButton(const QString &);
+  void readConfig(void);
   void readGlobalSetup(void);
-  void addConfigOptions(const QString &);
   void resetAdminBrowser(void);
   void resetAllSearchWidgets(void);
   void resetMembersBrowser(void);
-  void createSqliteMenuActions(void);
-  void prepareRequestToolButton(const QString &);
 
  private slots:
-  void slotExit(void);
   void slotAbout(void);
-  void slotAllGo(void);
-  void slotQuery(void);
-  void slotReset(void);
-  void slotResetAllSearch(void);
-  void slotResetGeneralSearch(void);
-  void slotDelete(void);
-  void slotModify(void);
-  void slotSearch(void);
-  void slotSearchBasic(void);
-  void slotRefresh(void);
-  void slotRequest(void);
   void slotAddAdmin(void);
-  void slotCheckout(void);
+  void slotAddBorrower(void);
+  void slotAdminCheckBoxClicked(int);
+  void slotAllGo(void);
+  void slotAutoPopOnFilter(QAction *action);
+  void slotBookSearch(void);
+  void slotBranchChanged(void);
   void slotCDSearch(void);
-  void slotInsertCD(void);
-  void slotNextPage(void);
-  void slotSaveUser(void);
-  void slotSetFonts(void);
-  void slotShowGrid(void);
-  void slotShowMenu(void);
-  void slotShowNext(void);
-  void slotShowPrev(void);
+  void slotCancelAddUser(void);
+  void slotChangeView(bool);
+  void slotCheckout(void);
+  void slotClearSqliteMenu(bool);
+  void slotCloseCustomQueryDialog(void);
+  void slotCloseMembersBrowser(void);
   void slotConnectDB(void);
   void slotCopyError(void);
   void slotDVDSearch(void);
-  void slotDuplicate(void);
-  void slotInsertMag(void);
-  void slotInsertDVD(void);
-  void slotMagSearch(void);
-  void slotPrintView(void);
-  void slotBookSearch(void);
-  void slotChangeView(bool);
-  void slotDisconnect(void);
-  void slotInsertBook(void);
-  void slotSaveConfig(void);
-  void slotSetColumns(void);
-  void slotAddBorrower(void);
+  void slotDelete(void);
   void slotDeleteAdmin(void);
-  void slotExportAsCSV(void);
-  void slotJournSearch(void);
-  void slotPageClicked(const QString &);
-  void slotViewDetails(void);
-  void slotReserveCopy(void);
-  void slotShowColumns(void);
-  void slotShowHistory(void);
-  void slotInsertJourn(void);
-  void slotPreviousPage(void);
-  void slotRemoveMember(void);
-  void slotSavePassword(void);
-  void slotCancelAddUser(void);
-  void slotBranchChanged(void);
-  void slotPrintReserved(void);
-  void slotResetErrorLog(void);
-  void slotModifyBorrower(void);
-  void slotSectionResized(int, int, int);
-  void slotAutoPopOnFilter(QAction *action);
-  void slotClearSqliteMenu(bool);
-  void slotGrantPrivileges(void);
-  void slotInsertVideoGame(void);
-  void slotLanguageChanged(void);
-  void slotShowAdminDialog(void);
-  void slotShowCustomQuery(void);
-  void slotShowErrorDialog(void);
-  void slotVideoGameSearch(void);
-  void slotInsertPhotograph(void);
-  void slotListOverdueItems(void);
-  void slotPhotographSearch(void);
-  void slotRefreshAdminList(void);
-  void slotResetLoginDialog(void);
-  void slotShowConnectionDB(void);
-  void slotListReservedItems(void);
-  void slotExecuteCustomQuery(void);
-  void slotSaveAdministrators(void);
-  void slotSelectDatabaseFile(void);
-  void slotShowChangePassword(void);
-  void slotShowDbEnumerations(void);
-  void slotShowMembersBrowser(void);
-  void slotSqliteFileSelected(bool);
-  void slotCloseMembersBrowser(void);
-  void slotAdminCheckBoxClicked(int);
-  void slotSceneSelectionChanged(void);
-  void slotCloseCustomQueryDialog(void);
+  void slotDisconnect(void);
   void slotDisplayNewSqliteDialog(void);
+  void slotDuplicate(void);
+  void slotExecuteCustomQuery(void);
+  void slotExit(void);
+  void slotExportAsCSV(void);
+  void slotGrantPrivileges(void);
+  void slotInsertBook(void);
+  void slotInsertCD(void);
+  void slotInsertDVD(void);
+  void slotInsertJourn(void);
+  void slotInsertMag(void);
+  void slotInsertPhotograph(void);
+  void slotInsertVideoGame(void);
+  void slotJournSearch(void);
+  void slotLanguageChanged(void);
+  void slotListOverdueItems(void);
+  void slotListReservedItems(void);
+  void slotMagSearch(void);
+  void slotModify(void);
+  void slotModifyBorrower(void);
+  void slotNextPage(void);
+  void slotPageClicked(const QString &);
+  void slotPhotographSearch(void);
   void slotPopulateMembersBrowser(void);
-  void slotResizeColumnsAfterSort(void);
-  void slotUpdateIndicesAfterSort(int);
+  void slotPreviousPage(void);
   void slotPrintReservationHistory(void);
+  void slotPrintReserved(void);
+  void slotPrintView(void);
+  void slotQuery(void);
+  void slotRefresh(void);
+  void slotRefreshAdminList(void);
+  void slotRemoveMember(void);
+  void slotRequest(void);
+  void slotReserveCopy(void);
+  void slotReset(void);
+  void slotResetAllSearch(void);
+  void slotResetErrorLog(void);
+  void slotResetGeneralSearch(void);
+  void slotResetLoginDialog(void);
+  void slotResizeColumnsAfterSort(void);
+  void slotRoleChanged(int index);
+  void slotSaveAdministrators(void);
+  void slotSaveConfig(void);
+  void slotSavePassword(void);
+  void slotSaveUser(void);
+  void slotSceneSelectionChanged(void);
+  void slotSearch(void);
+  void slotSearchBasic(void);
+  void slotSectionResized(int, int, int);
+  void slotSelectDatabaseFile(void);
+  void slotSetColumns(void);
+  void slotSetFonts(void);
+  void slotShowAdminDialog(void);
+  void slotShowChangePassword(void);
+  void slotShowColumns(void);
+  void slotShowConnectionDB(void);
+  void slotShowCustomQuery(void);
+  void slotShowDbEnumerations(void);
+  void slotShowErrorDialog(void);
+  void slotShowGrid(void);
+  void slotShowHistory(void);
+  void slotShowMembersBrowser(void);
+  void slotShowMenu(void);
+  void slotShowNext(void);
+  void slotShowPrev(void);
+  void slotSqliteFileSelected(bool);
+  void slotUpdateIndicesAfterSort(int);
+  void slotVideoGameSearch(void);
+  void slotViewDetails(void);
 };
 
 #endif

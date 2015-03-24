@@ -2,8 +2,8 @@
 ** -- Qt Includes --
 */
 
-#include <QtDebug>
 #include <QSqlRecord>
+#include <QtDebug>
 
 /*
 ** -- Local Includes --
@@ -3580,4 +3580,28 @@ void qtbook::slotResetGeneralSearch(void)
 
   al.reset->setVisible(false);
   slotSearch();
+}
+
+/*
+** -- slotRoleChanged() --
+*/
+
+void qtbook::slotRoleChanged(int index)
+{
+  if(index == 1)
+    {
+      br.password->setEnabled(false);
+      br.password->setText("xbook_guest");
+      br.userid->setEnabled(false);
+      br.userid->setText("xbook_guest");
+    }
+  else
+    {
+      br.password->clear();
+      br.password->setEnabled(true);
+      br.userid->clear();
+      br.userid->setEnabled(true);
+    }
+
+  br.userid->setFocus();
 }

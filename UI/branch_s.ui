@@ -125,13 +125,38 @@
           <item row="0" column="2">
            <layout class="QHBoxLayout">
             <item>
-             <widget class="QLineEdit" name="userid"/>
+             <widget class="QLineEdit" name="userid">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="inputMask">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>xbook_guest</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="adminCheck">
-              <property name="text">
-               <string>Administrator</string>
+             <widget class="QComboBox" name="role">
+              <property name="currentIndex">
+               <number>1</number>
               </property>
+              <item>
+               <property name="text">
+                <string>Administrator</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Guest</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Patron</string>
+               </property>
+              </item>
              </widget>
             </item>
            </layout>
@@ -145,6 +170,15 @@
           </item>
           <item row="1" column="2">
            <widget class="QLineEdit" name="password">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="inputMask">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>xbook_guest</string>
+            </property>
             <property name="echoMode">
              <enum>QLineEdit::Password</enum>
             </property>
@@ -257,10 +291,11 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>branch_name</tabstop>
   <tabstop>fileButton</tabstop>
   <tabstop>filename</tabstop>
   <tabstop>userid</tabstop>
-  <tabstop>adminCheck</tabstop>
+  <tabstop>role</tabstop>
   <tabstop>password</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>resetButton</tabstop>

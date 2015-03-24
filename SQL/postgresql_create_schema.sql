@@ -1,4 +1,4 @@
-CREATE USER xbook_admin PASSWORD 'xbook_admin' CREATEUSER;
+CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEUSER;
 
 CREATE TABLE book
 (
@@ -486,6 +486,7 @@ CREATE TABLE videogame_ratings
 
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
+CREATE ROLE biblioteq_guest NOINHERIT;
 CREATE ROLE biblioteq_librarian INHERIT;
 CREATE ROLE biblioteq_membership CREATEROLE INHERIT;
 CREATE ROLE biblioteq_patron NOINHERIT;
@@ -498,7 +499,6 @@ GRANT biblioteq_circulation TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_membership TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_patron TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_patron TO biblioteq_membership WITH ADMIN OPTION;
 GRANT biblioteq_circulation TO biblioteq_circulation_librarian WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_circulation_librarian WITH ADMIN OPTION;
 GRANT biblioteq_circulation TO biblioteq_circulation_membership WITH ADMIN OPTION;
@@ -608,6 +608,48 @@ GRANT SELECT ON videogame_ratings TO biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_circulation;
 GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_circulation;
+
+GRANT SELECT ON book TO biblioteq_guest;
+GRANT SELECT ON book_binding_types TO biblioteq_guest;
+GRANT SELECT ON book_copy_info TO biblioteq_guest;
+GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON book_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON cd TO biblioteq_guest;
+GRANT SELECT ON cd_copy_info TO biblioteq_guest;
+GRANT SELECT ON cd_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON cd_formats TO biblioteq_guest;
+GRANT SELECT ON cd_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON cd_songs TO biblioteq_guest;
+GRANT SELECT ON dvd TO biblioteq_guest;
+GRANT SELECT ON dvd_aspect_ratios TO biblioteq_guest;
+GRANT SELECT ON dvd_copy_info TO biblioteq_guest;
+GRANT SELECT ON dvd_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON dvd_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON dvd_ratings TO biblioteq_guest;
+GRANT SELECT ON dvd_regions TO biblioteq_guest;
+GRANT SELECT ON item_borrower_vw TO biblioteq_guest;
+GRANT SELECT ON journal TO biblioteq_guest;
+GRANT SELECT ON journal_copy_info TO biblioteq_guest;
+GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON journal_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON languages TO biblioteq_guest;
+GRANT SELECT ON locations TO biblioteq_guest;
+GRANT SELECT ON magazine TO biblioteq_guest;
+GRANT SELECT ON magazine_copy_info TO biblioteq_guest;
+GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON magazine_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON monetary_units TO biblioteq_guest;
+GRANT SELECT ON photograph TO biblioteq_guest;
+GRANT SELECT ON photograph_collection TO biblioteq_guest;
+GRANT SELECT ON photograph_collection_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON photograph_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON videogame TO biblioteq_guest;
+GRANT SELECT ON videogame_copy_info TO biblioteq_guest;
+GRANT SELECT ON videogame_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON videogame_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON videogame_platforms TO biblioteq_guest;
+GRANT SELECT ON videogame_ratings TO biblioteq_guest;
+REVOKE ALL ON admin FROM biblioteq_guest;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
@@ -745,5 +787,6 @@ GRANT SELECT ON videogame_ratings TO biblioteq_patron;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_patron;
 REVOKE ALL ON admin FROM biblioteq_patron;
 
+CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
 INSERT INTO admin VALUES ('xbook_admin', 'administrator');
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;

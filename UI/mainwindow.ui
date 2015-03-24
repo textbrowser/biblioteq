@@ -486,8 +486,8 @@
    <addaction name="connectTool"/>
    <addaction name="disconnectTool"/>
    <addaction name="actionChangePassword"/>
-   <addaction name="actionDatabase_Enumerations"/>
    <addaction name="actionConfigureAdministratorPrivileges"/>
+   <addaction name="actionDatabase_Enumerations"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
    <property name="windowTitle">

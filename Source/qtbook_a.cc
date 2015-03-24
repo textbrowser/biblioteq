@@ -29,21 +29,21 @@
 ** -- Qt Includes --
 */
 
-#include <QtDebug>
+#include <QClipboard>
+#include <QDesktopWidget>
+#include <QFontDialog>
+#include <QLibraryInfo>
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
 #include <QMacStyle>
 #endif
 #endif
 #include <QSettings>
-#include <QSqlField>
-#include <QClipboard>
 #include <QSqlDriver>
+#include <QSqlField>
 #include <QSqlRecord>
-#include <QFontDialog>
 #include <QTranslator>
-#include <QLibraryInfo>
-#include <QDesktopWidget>
+#include <QtDebug>
 
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000
@@ -69,8 +69,8 @@ extern "C"
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "bgraphicsscene.h"
+#include "qtbook.h"
 #include "sqlite_create_schema.h"
 
 /*
@@ -83,10 +83,10 @@ qtbook *qmain = 0;
 ** -- Global Variables --
 */
 
-QString qtbook::s_locale = "";
-QTranslator *qtbook::s_qtTranslator = 0;
-QTranslator *qtbook::s_appTranslator = 0;
 QApplication *qapp = 0;
+QString qtbook::s_locale = "";
+QTranslator *qtbook::s_appTranslator = 0;
+QTranslator *qtbook::s_qtTranslator = 0;
 
 /*
 ** -- main() --
@@ -506,6 +506,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotConnectDB(void)));
   connect(br.branch_name, SIGNAL(activated(int)), this,
 	  SLOT(slotBranchChanged(void)));
+  connect(br.role, SIGNAL(currentIndexChanged(int)), this,
+	  SLOT(slotRoleChanged(int)));
   connect(bb.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrintReserved(void)));
   connect(bb.addButton, SIGNAL(clicked(void)), this,
@@ -908,6 +910,7 @@ void qtbook::adminSetup(void)
   bb.printButton->setEnabled(true);
   bb.checkoutButton->setEnabled(true);
   bb.overdueButton->setEnabled(true);
+  ui.actionChangePassword->setEnabled(true);
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
 
@@ -3819,7 +3822,9 @@ void qtbook::slotConnectDB(void)
   else
     {
       (void) db.open(br.userid->text().trimmed(), br.password->text());
-      br.password->clear();
+
+      if(br.role->currentIndex() != 1)
+	br.password->clear();
     }
 
   qapp->restoreOverrideCursor();
@@ -3867,7 +3872,7 @@ void qtbook::slotConnectDB(void)
 
 	  if(errorstr.isEmpty())
 	    {
-	      if(br.adminCheck->isChecked() && roles.isEmpty())
+	      if(br.role->currentIndex() == 0 && roles.isEmpty())
 		{
 		  error = true;
 		  QMessageBox::critical
@@ -3877,7 +3882,7 @@ void qtbook::slotConnectDB(void)
 		     QString(tr(" does not have "
 				"administrator privileges.")));
 		}
-	      else if(!br.adminCheck->isChecked() && !roles.isEmpty())
+	      else if(br.role->currentIndex() != 0 && !roles.isEmpty())
 		{
 		  error = true;
 		  QMessageBox::critical
@@ -3887,7 +3892,12 @@ void qtbook::slotConnectDB(void)
 		}
 	      else
 		{
-		  misc_functions::setRole(db, errorstr, roles);
+		  if(br.role->currentIndex() == 0)
+		    misc_functions::setRole(db, errorstr, roles);
+		  else if(br.role->currentIndex() == 1)
+		    misc_functions::setRole(db, errorstr, "guest");
+		  else
+		    misc_functions::setRole(db, errorstr, "patron");
 
 		  if(!errorstr.isEmpty())
 		    {
@@ -3908,7 +3918,7 @@ void qtbook::slotConnectDB(void)
 		    }
 		}
 	    }
-	  else if(br.adminCheck->isChecked())
+	  else if(br.role->currentIndex() == 0)
 	    {
 	      error = true;
 	      addError(QString(tr("Database Error")),
@@ -3924,6 +3934,23 @@ void qtbook::slotConnectDB(void)
 			    "roles of ")) +
 		 br.userid->text().trimmed() +
 		 tr("."));
+	    }
+	  else if(br.role->currentIndex() == 1)
+	    {
+	      QSqlQuery query(db);
+
+	      if(!query.exec("SET ROLE biblioteq_guest"))
+		{
+		  error = true;
+		  addError(QString(tr("Database Error")),
+			   tr("Unable to set "
+			      "a guest role."),
+			   errorstr,
+			   __FILE__, __LINE__);
+		  QMessageBox::critical
+		    (branch_diag, tr("BiblioteQ: Database Error"),
+		     tr("Unable to set a guest role."));
+		}
 	    }
 	  else
 	    {
@@ -4031,12 +4058,12 @@ void qtbook::slotConnectDB(void)
       */
 
       setWindowTitle(tr("BiblioteQ: ") + selectedBranch["branch_name"] +
-		     QString(" (%1)").arg(br.userid->text().trimmed()));
+		     QString(" (%1)").arg(db.userName()));
     }
 
   prepareFilter();
 
-  if(br.adminCheck->isChecked() || db.driverName() == "QSQLITE")
+  if(br.role->currentIndex() == 0 || db.driverName() == "QSQLITE")
     {
       if(db.driverName() == "QSQLITE")
 	{
@@ -4075,12 +4102,21 @@ void qtbook::slotConnectDB(void)
 
       adminSetup();
     }
+  else if(br.role->currentIndex() == 1)
+    {
+      /*
+      ** Guest.
+      */
+
+      ui.actionChangePassword->setEnabled(false);
+    }
   else
     {
       /*
       ** Patron.
       */
 
+      ui.actionChangePassword->setEnabled(true);
       ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
       ui.actionRequests->setEnabled(true);
       ui.actionReservationHistory->setEnabled(true);
@@ -5131,8 +5167,14 @@ void qtbook::prepareRequestToolButton(const QString &typefilter)
   if(db.driverName() != "QSQLITE")
     if(db.isOpen())
       {
-	if((roles == "administrator" || roles == "circulation") &&
-	   typefilter == "All Requested")
+	if(db.userName() == "xbook_guest")
+	  {
+	    ui.actionRequests->setToolTip(tr("Item Requests"));
+	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
+	    ui.actionRequests->setEnabled(false);
+	  }
+	else if((roles == "administrator" || roles == "circulation") &&
+		typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setEnabled(true);
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
@@ -6690,144 +6732,38 @@ void qtbook::slotShowCustomQuery(void)
 	     << "videogame_copy_info"
 	     << "videogame_platforms"
 	     << "videogame_ratings";
-      else if(roles.contains("administrator"))
-	list << "admin"
-	     << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "item_borrower"
-	     << "item_borrower_vw"
-	     << "item_request"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "member"
-	     << "member_history"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
-      else if(roles.contains("circulation"))
-	list << "admin"
-	     << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "item_borrower"
-	     << "item_borrower_vw"
-	     << "item_request"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "member"
-	     << "member_history"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
-      else if(roles.contains("librarian"))
-	list << "admin"
-	     << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "item_borrower_vw"
-	     << "item_request"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
-      else if(roles.contains("membership"))
-	list << "admin"
-	     << "book"
-	     << "book_copy_info"
-	     << "cd"
-	     << "cd_copy_info"
-	     << "cd_formats"
-	     << "cd_songs"
-	     << "dvd"
-	     << "dvd_aspect_ratios"
-	     << "dvd_copy_info"
-	     << "dvd_ratings"
-	     << "dvd_regions"
-	     << "item_borrower_vw"
-	     << "journal"
-	     << "journal_copy_info"
-	     << "languages"
-	     << "locations"
-	     << "magazine"
-	     << "magazine_copy_info"
-	     << "member"
-	     << "minimum_days"
-	     << "monetary_units"
-	     << "photograph"
-	     << "photograph_collection"
-	     << "videogame"
-	     << "videogame_copy_info"
-	     << "videogame_platforms"
-	     << "videogame_ratings";
       else
-	list << "book"
+	list << "admin"
+	     << "book"
 	     << "book_copy_info"
 	     << "cd"
 	     << "cd_copy_info"
+	     << "cd_formats"
 	     << "cd_songs"
 	     << "dvd"
+	     << "dvd_aspect_ratios"
 	     << "dvd_copy_info"
+	     << "dvd_ratings"
+	     << "dvd_regions"
+	     << "item_borrower"
+	     << "item_borrower_vw"
+	     << "item_request"
 	     << "journal"
 	     << "journal_copy_info"
+	     << "languages"
+	     << "locations"
 	     << "magazine"
 	     << "magazine_copy_info"
+	     << "member"
+	     << "member_history"
+	     << "minimum_days"
+	     << "monetary_units"
 	     << "photograph"
 	     << "photograph_collection"
 	     << "videogame"
-	     << "videogame_copy_info";
+	     << "videogame_copy_info"
+	     << "videogame_platforms"
+	     << "videogame_ratings";
 
       list.sort();
       cq.tables_t->setColumnCount(3);
@@ -7712,8 +7648,14 @@ void qtbook::slotSavePassword(void)
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
-  misc_functions::savePassword(pass.userid->text(), db,
-			       pass.password->text(), errorstr, roles);
+  misc_functions::savePassword
+    (pass.userid->text(), db, pass.password->text(), errorstr);
+
+  if(roles.isEmpty())
+    misc_functions::setRole(db, errorstr, "patron");
+  else
+    misc_functions::setRole(db, errorstr, roles);
+
   qapp->restoreOverrideCursor();
   pass.password->clear();
   pass.passwordAgain->clear();
@@ -7736,10 +7678,10 @@ void qtbook::slotSavePassword(void)
 
 void qtbook::slotResetLoginDialog(void)
 {
-  br.userid->clear();
-  br.password->clear();
   br.filename->clear();
-  br.adminCheck->setChecked(false);
+  br.role->setCurrentIndex(1);
+  br.password->setText("xbook_guest");
+  br.userid->setText("xbook_guest");
 
   int index = 0;
   QSettings settings;
@@ -8571,8 +8513,7 @@ void qtbook::prepareFilter(void)
 	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
-  else if(roles.isEmpty() ||
-	  roles.contains("administrator") ||
+  else if(roles.contains("administrator") ||
 	  roles.contains("circulation"))
     {
       tmplist1 << "All"
@@ -8602,24 +8543,56 @@ void qtbook::prepareFilter(void)
     }
   else
     {
-      tmplist1 << "All"
-	       << "All Available"
-	       << "Books"
-	       << "DVDs"
-	       << "Journals"
-	       << "Magazines"
-	       << "Music CDs"
-	       << "Photograph Collections"
-	       << "Video Games";
-      tmplist2 << tr("All")
-	       << tr("All Available")
-	       << tr("Books")
-	       << tr("DVDs")
-	       << tr("Journals")
-	       << tr("Magazines")
-	       << tr("Music CDs")
-	       << tr("Photograph Collections")
-	       << tr("Video Games");
+      if(db.userName() == "xbook_guest" ||
+	 roles == "librarian" ||
+	 roles == "membership")
+	{
+	  tmplist1 << "All"
+		   << "All Available"
+		   << "Books"
+		   << "DVDs"
+		   << "Journals"
+		   << "Magazines"
+		   << "Music CDs"
+		   << "Photograph Collections"
+		   << "Video Games";
+	  tmplist2 << tr("All")
+		   << tr("All Available")
+		   << tr("Books")
+		   << tr("DVDs")
+		   << tr("Journals")
+		   << tr("Magazines")
+		   << tr("Music CDs")
+		   << tr("Photograph Collections")
+		   << tr("Video Games");
+	}
+      else
+	{
+	  tmplist1 << "All"
+		   << "All Available"
+		   << "All Overdue"
+		   << "All Requested"
+		   << "All Reserved"
+		   << "Books"
+		   << "DVDs"
+		   << "Journals"
+		   << "Magazines"
+		   << "Music CDs"
+		   << "Photograph Collections"
+		   << "Video Games";
+	  tmplist2 << tr("All")
+		   << tr("All Available")
+		   << tr("All Overdue")
+		   << tr("All Requested")
+		   << tr("All Reserved")
+		   << tr("Books")
+		   << tr("DVDs")
+		   << tr("Journals")
+		   << tr("Magazines")
+		   << tr("Music CDs")
+		   << tr("Photograph Collections")
+		   << tr("Video Games");
+	}
     }
 
   disconnect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,

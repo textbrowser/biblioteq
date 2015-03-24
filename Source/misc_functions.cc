@@ -422,8 +422,7 @@ void misc_functions::DBAccount(const QString &userid,
 
 void misc_functions::savePassword(const QString &userid,
 				  const QSqlDatabase &db,
-				  const QString &password, QString &errorstr,
-				  const QString &roles)
+				  const QString &password, QString &errorstr)
 {
   errorstr = "";
 
@@ -439,10 +438,6 @@ void misc_functions::savePassword(const QString &userid,
 
   if(!query.exec(querystr))
     errorstr = query.lastError().text();
-
-  QString unused("");
-
-  setRole(db, unused, roles);
 }
 
 /*
@@ -2075,12 +2070,14 @@ void misc_functions::setRole(const QSqlDatabase &db,
 	    query.exec("SET ROLE biblioteq_librarian");
 	  else if(roles.contains("membership"))
 	    query.exec("SET ROLE biblioteq_membership");
-	  else
+	  else if(roles.contains("patron"))
 	    query.exec("SET ROLE biblioteq_patron");
+	  else
+	    query.exec("SET ROLE biblioteq_guest");
 	}
     }
   else
-    query.exec("SET ROLE biblioteq_patron");
+    query.exec("SET ROLE biblioteq_guest");
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
