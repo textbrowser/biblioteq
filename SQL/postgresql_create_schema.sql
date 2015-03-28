@@ -280,7 +280,7 @@ CREATE TABLE videogame_copy_info
 
 CREATE TABLE member
 (
-	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,
+	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
 	membersince	 VARCHAR(32) NOT NULL,
 	dob		 VARCHAR(32) NOT NULL,
 	sex		 VARCHAR(32) NOT NULL DEFAULT 'Female',
@@ -311,6 +311,13 @@ CREATE TABLE member_history
 	myoid		 BIGSERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+);
+
+CREATE TABLE member_history_dnt
+(
+	memberid	VARCHAR(16) NOT NULL PRIMARY KEY,
+	dnt		INTEGER NOT NULL DEFAULT 1,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
@@ -742,6 +749,8 @@ GRANT SELECT ON videogame_platforms TO biblioteq_membership;
 GRANT SELECT ON videogame_ratings TO biblioteq_membership;
 
 GRANT DELETE, INSERT, SELECT ON item_request TO biblioteq_patron;
+GRANT SELECT ON member_history_dnt TO biblioteq_circulation;
+GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
 GRANT SELECT ON book TO biblioteq_patron;
 GRANT SELECT ON book_binding_types TO biblioteq_patron;
 GRANT SELECT ON book_copy_info TO biblioteq_patron;

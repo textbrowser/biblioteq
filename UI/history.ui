@@ -20,6 +20,16 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
     <item>
+     <widget class="QCheckBox" name="dnt">
+      <property name="text">
+       <string>&amp;Do not track history.</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout">
        <item>
@@ -241,6 +251,15 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>dnt</tabstop>
+  <tabstop>table</tabstop>
+  <tabstop>prevTool</tabstop>
+  <tabstop>reloadButton</tabstop>
+  <tabstop>printButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>nextTool</tabstop>
+ </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
  </resources>

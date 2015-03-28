@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS magazine CASCADE;
 DROP TABLE IF EXISTS magazine_copy_info;
 DROP TABLE IF EXISTS member;
 DROP TABLE IF EXISTS member_history;
+DROP TABLE IF EXISTS member_history_dnt;
 DROP TABLE IF EXISTS minimum_days;
 DROP TABLE IF EXISTS monetary_units;
 DROP TABLE IF EXISTS photograph;

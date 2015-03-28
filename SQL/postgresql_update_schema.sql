@@ -1003,6 +1003,7 @@ ALTER TABLE magazine ADD CONSTRAINT magazine_unique_key UNIQUE(id, issuevolume, 
 
 /* Release 10.01 */
 
+ALTER TABLE member ALTER COLUMN memberid DROP DEFAULT;
 CREATE ROLE biblioteq_guest NOINHERIT;
 GRANT SELECT ON book TO biblioteq_guest;
 GRANT SELECT ON book_binding_types TO biblioteq_guest;
@@ -1047,3 +1048,13 @@ GRANT SELECT ON videogame_ratings TO biblioteq_guest;
 REVOKE ALL ON admin FROM biblioteq_guest;
 REVOKE biblioteq_patron FROM biblioteq_membership;
 CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
+
+CREATE TABLE member_history_dnt
+(
+	memberid	VARCHAR(16) NOT NULL,
+	dnt		INTEGER NOT NULL DEFAULT 1,
+	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
+);
+
+GRANT SELECT ON member_history_dnt TO biblioteq_circulation;
+GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
