@@ -851,14 +851,16 @@ void qtbook_cd::slotGo(void)
       searchstr.append("(artist LIKE " + E + "'%").append
 	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
 	("%' OR ");
-      searchstr.append("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
-		       "cd_songs.item_oid = cd.myoid AND ");
+      searchstr.append
+	("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+	 "cd_songs.item_oid = cd.myoid AND ");
       searchstr.append("cd_songs.artist LIKE " + E + "'%").append
 	(myqstring::escape(cd.artist->toPlainText().trimmed())).append
 	("%')");
       searchstr.append(") AND ");
-      searchstr.append("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
-		       "cd_songs.item_oid = cd.myoid AND ");
+      searchstr.append
+	("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+	 "cd_songs.item_oid = cd.myoid AND ");
       searchstr.append("cd_songs.composer LIKE " + E + "'%").append
 	(myqstring::escape(cd.composer->toPlainText().trimmed())).append
 	("%')");
@@ -1146,6 +1148,7 @@ void qtbook_cd::modify(const int state)
   cd.no_of_discs->setMinimum(1);
   cd.no_of_discs->setValue(1);
   str = oid;
+  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"cdformat, "
@@ -1405,6 +1408,7 @@ void qtbook_cd::slotPopulateTracksBrowser(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
+  query.setForwardOnly(true);
   query.prepare("SELECT albumnum, songnum, songtitle, runtime, "
 		"artist, composer "
 		"FROM cd_songs WHERE item_oid = ? "
@@ -2149,6 +2153,7 @@ void qtbook_cd::slotComputeRuntime(void)
   QTime time(0, 0, 0);
   QSqlQuery query(qmain->getDB());
 
+  query.setForwardOnly(true);
   query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, oid);
   qapp->setOverrideCursor(Qt::WaitCursor);

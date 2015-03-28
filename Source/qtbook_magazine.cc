@@ -1299,6 +1299,7 @@ void qtbook_magazine::modify(const int state)
   ma.volume->setMinimum(0);
   ma.issue->setMinimum(0);
   str = oid;
+  query.setForwardOnly(true);
   query.prepare(QString("SELECT title, "
 			"publisher, pdate, place, issuevolume, "
 			"category, language, id, "

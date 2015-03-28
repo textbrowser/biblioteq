@@ -4553,6 +4553,7 @@ void qtbook::slotPopulateMembersBrowser(void)
 	     "member.membersince, "
 	     "member.expiration_date ");
   str.append("ORDER BY member.memberid");
+  query.setForwardOnly(true);
   query.prepare(str);
 
   if(bb.filterBox->isChecked())
@@ -4864,6 +4865,7 @@ void qtbook::slotModifyBorrower(void)
 
   str = misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+  query.setForwardOnly(true);
   query.prepare("SELECT * FROM member WHERE memberid = ?");
   query.bindValue(0, str);
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -7277,6 +7279,7 @@ void qtbook::slotShowHistory(void)
       }
 
   querystr.append("ORDER BY 1");
+  query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
@@ -7885,6 +7888,7 @@ void qtbook::slotRefreshAdminList(void)
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
+  query.setForwardOnly(true);
   query.prepare("SELECT username, LOWER(roles) "
 		"FROM admin ORDER BY username");
   qapp->setOverrideCursor(Qt::WaitCursor);

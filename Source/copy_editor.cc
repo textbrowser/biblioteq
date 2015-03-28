@@ -297,6 +297,7 @@ void copy_editor::populateCopiesEditor(void)
 
   progress1.hide();
   cb.table->setRowCount(i); // Support cancellation.
+  query.setForwardOnly(true);
   query.prepare(QString("SELECT %1.title, "
 			"%1_copy_info.copyid, "
 			"(1 - COUNT(item_borrower_vw.copyid)), "

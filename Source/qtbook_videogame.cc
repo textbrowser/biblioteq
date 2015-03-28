@@ -1049,6 +1049,7 @@ void qtbook_videogame::modify(const int state)
   vg.price->setMinimum(0.00);
   vg.okButton->setText(tr("&Save"));
   str = oid;
+  query.setForwardOnly(true);
   query.prepare("SELECT title, "
 		"vgrating, "
 		"vgplatform, "

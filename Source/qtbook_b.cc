@@ -3114,6 +3114,8 @@ int qtbook::populateTable(const int search_type_arg,
 
   QSqlQuery query(db);
 
+  query.setForwardOnly(true);
+
   if(!query.exec(searchstr))
     {
       qapp->restoreOverrideCursor();
@@ -3541,7 +3543,12 @@ void qtbook::slotResetAllSearch(void)
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(db.userName(), lastCategory, roles);
+  ui.table->scrollToTop();
+  ui.table->horizontalScrollBar()->setValue(0);
+  ui.table->clearSelection();
+  ui.table->setCurrentItem(0);
   resetAllSearchWidgets();
+  slotDisplaySummary();
 }
 
 /*
@@ -3574,6 +3581,11 @@ void qtbook::slotResetGeneralSearch(void)
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(db.userName(), lastCategory, roles);
+  ui.table->scrollToTop();
+  ui.table->horizontalScrollBar()->setValue(0);
+  ui.table->clearSelection();
+  ui.table->setCurrentItem(0);
+  slotDisplaySummary();
 
   foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
     widget->setEnabled(true);

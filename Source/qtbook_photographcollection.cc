@@ -651,6 +651,7 @@ void qtbook_photographcollection::modify(const int state,
       actions.clear();
     }
 
+  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"location, "
@@ -1074,6 +1075,7 @@ void qtbook_photographcollection::showPhotographs(const int page)
 {
   QSqlQuery query(qmain->getDB());
 
+  query.setForwardOnly(true);
   query.prepare("SELECT image_scaled, myoid FROM "
 		"photograph WHERE "
 		"collection_oid = ? "
@@ -1293,6 +1295,8 @@ void qtbook_photographcollection::slotInsertItem(void)
   QString errorstr("");
   QSqlQuery query(qmain->getDB());
 
+  query.setForwardOnly(true);
+
   if(qmain->getDB().driverName() != "QSQLITE")
     query.prepare("INSERT INTO photograph "
 		  "(id, collection_oid, title, creators, pdate, "
@@ -1487,6 +1491,7 @@ void qtbook_photographcollection::slotSceneSelectionChanged(void)
 
       QSqlQuery query(qmain->getDB());
 
+      query.setForwardOnly(true);
       query.prepare("SELECT id, "
 		    "title, "
 		    "creators, "
@@ -1880,6 +1885,7 @@ void qtbook_photographcollection::slotDeleteItem(void)
   int pages = 1;
   QSqlQuery query(qmain->getDB());
 
+  query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
@@ -2017,6 +2023,7 @@ void qtbook_photographcollection::slotViewPhotograph(void)
 	      QSqlQuery query(qmain->getDB());
 
 	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      query.setForwardOnly(true);
 	      query.prepare("SELECT image FROM "
 			    "photograph WHERE "
 			    "collection_oid = ? AND "

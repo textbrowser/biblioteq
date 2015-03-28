@@ -1359,6 +1359,7 @@ void qtbook_book::modify(const int state)
   id.price->setMinimum(0.00);
   id.okButton->setText(tr("&Save"));
   str = oid;
+  query.setForwardOnly(true);
   query.prepare("SELECT title, "
 		"author, "
 		"publisher, pdate, place, edition, "

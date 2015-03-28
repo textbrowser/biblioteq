@@ -1162,6 +1162,7 @@ void qtbook_dvd::modify(const int state)
   dvd.no_of_discs->setMinimum(1);
   dvd.no_of_discs->setValue(1);
   str = oid;
+  query.setForwardOnly(true);
   query.prepare("SELECT id, "
 		"title, "
 		"dvdformat, "

@@ -219,6 +219,7 @@ void borrowers_editor::showUsers(void)
 
   progress1.hide();
   bd.table->setRowCount(i); // Support cancellation.
+  query.setForwardOnly(true);
 
   if(state == qtbook::EDITABLE)
     {
