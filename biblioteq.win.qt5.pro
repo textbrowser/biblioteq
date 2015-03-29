@@ -9,8 +9,7 @@ LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 
 QMAKE_CLEAN	+= BiblioteQ.exe
-QMAKE_CXXFLAGS_RELEASE -= -O2
-QMAKE_CXXFLAGS_RELEASE += -Os -Wall -Wcast-align -Wcast-qual \
+QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual \
 			  -Werror -Wextra \
 			  -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
