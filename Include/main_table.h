@@ -5,10 +5,10 @@
 ** -- Qt Includes --
 */
 
-#include <QHash>
-#include <QScrollBar>
-#include <QHeaderView>
 #include <QApplication>
+#include <QHash>
+#include <QHeaderView>
+#include <QScrollBar>
 #include <QTableWidget>
 #include <QTableWidgetItem>
 
@@ -18,18 +18,18 @@ class main_table: public QTableWidget
 
  public:
   main_table(QWidget *);
-  int columnNumber(const QString &);
-  void resetTable(const QString &, const QString &, const QString &);
-  void parseStates(const QHash<QString, QString> &);
-  void recordColumnHidden(const QString &, const QString &, const int,
-			  const bool);
-  void setColumnNames(const QStringList &);
-  QStringList columnNames(void) const;
   QHash<QString, QString> friendlyStates(void) const;
+  QStringList columnNames(void) const;
+  int columnNumber(const QString &);
+  void parseStates(const QHash<QString, QString> &);
+  void recordColumnHidden
+    (const QString &, const QString &, const int, const bool);
+  void resetTable(const QString &, const QString &, const QString &);
+  void setColumnNames(const QStringList &);
 
  private:
-  QVector<QString> m_columnHeaderIndexes;
   QHash<QString, QList<int> > hiddenColumns;
+  QVector<QString> m_columnHeaderIndexes;
   void setColumns(const QString &, const QString &, const QString &);
 };
 

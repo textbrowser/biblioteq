@@ -386,6 +386,7 @@ class qtbook: public QMainWindow
   void slotRoleChanged(int index);
   void slotSaveAdministrators(void);
   void slotSaveConfig(void);
+  void slotSaveDnt(bool state);
   void slotSavePassword(void);
   void slotSaveUser(void);
   void slotSceneSelectionChanged(void);

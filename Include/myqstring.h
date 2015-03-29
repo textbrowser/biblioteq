@@ -7,8 +7,8 @@
 class myqstring: public QString
 {
  public:
-  myqstring(const char *);
   myqstring(const QString &);
+  myqstring(const char *);
   QString prepConfigString(const QString &, const bool = false);
   static QString escape(const QString &, const bool = false);
 };

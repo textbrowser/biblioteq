@@ -502,6 +502,8 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotShowPrev(void)));
   connect(history.cancelButton, SIGNAL(clicked(void)),
 	  history_diag, SLOT(close(void)));
+  connect(history.dnt, SIGNAL(toggled(bool)),
+	  this, SLOT(slotSaveDnt(bool)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotConnectDB(void)));
   connect(br.branch_name, SIGNAL(activated(int)), this,
@@ -7103,22 +7105,45 @@ void qtbook::slotCopyError(void)
 
 void qtbook::slotShowHistory(void)
 {
+  QProgressDialog progress(history_diag);
+  QSqlQuery query(db);
+  QString errorstr("");
+  QString memberid("");
+  QString querystr = "";
+  QString str = "";
+  QStringList list;
+  QTableWidgetItem *item = 0;
   int i = -1;
   int j = 0;
   int row = bb.table->currentRow();
-  QString memberid("");
-  QString str = "";
-  QString querystr = "";
-  QSqlQuery query(db);
-  QStringList list;
-  QProgressDialog progress(history_diag);
-  QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   progress.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
+
+  if(db.driverName() == "QPSQL" && roles.isEmpty())
+    {
+      qapp->setOverrideCursor(Qt::WaitCursor);
+
+      bool dnt = misc_functions::dnt(db, db.userName(), errorstr);
+
+      if(errorstr.isEmpty())
+	{
+	  history.dnt->setChecked(dnt);
+	  history.dnt->setEnabled(true);
+	}
+      else
+	history.dnt->setEnabled(false);
+
+      qapp->restoreOverrideCursor();
+    }
+  else
+    {
+      history.dnt->setChecked(true);
+      history.dnt->setEnabled(false);
+    }
 
   if(members_diag->isVisible())
     if(row < 0)

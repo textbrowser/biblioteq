@@ -5,23 +5,23 @@
 ** -- Qt Includes --
 */
 
-#include <QMenu>
 #include <QDialog>
 #include <QMainWindow>
+#include <QMenu>
 #include <QStringList>
 
 /*
 ** -- Local Includes --
 */
 
+#include "misc_functions.h"
 #include "qtbook_item.h"
 #include "ui_photograph.h"
-#include "misc_functions.h"
 #include "ui_photographinfo.h"
 
-class copy_editor;
 class bgraphicsscene;
 class borrowers_editor;
+class copy_editor;
 
 class qtbook_photographcollection: public QMainWindow, public qtbook_item
 {
@@ -32,43 +32,43 @@ class qtbook_photographcollection: public QMainWindow, public qtbook_item
   qtbook_photographcollection(QMainWindow *, const QString &,
 			      const int);
   ~qtbook_photographcollection();
+  void duplicate(const QString &, const int);
   void insert(void);
   void modify(const int, const QString & = "");
   void search(const QString & = "", const QString & = "");
-  void duplicate(const QString &, const int);
   void updateWindow(const int);
 
  private:
   QDialog *photo_diag;
-  QString m_itemOid;
   QString engWindowTitle;
+  QString m_itemOid;
   Ui_pcDialog pc;
-  bgraphicsscene *scene;
   Ui_photographDialog photo;
+  bgraphicsscene *scene;
   bool verifyItemFields(void);
-  void storeData(void);
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void showPhotographs(const int);
+  void storeData(void);
 
  private slots:
+  void slotAddItem(void);
+  void slotCancel(void);
+  void slotClosePhoto(void);
+  void slotDeleteItem(void);
+  void slotExportPhotographs(void);
   void slotGo(void);
+  void slotInsertItem(void);
+  void slotModifyItem(void);
+  void slotPageChanged(const QString &);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
-  void slotCancel(void);
-  void slotAddItem(void);
-  void slotClosePhoto(void);
-  void slotDeleteItem(void);
-  void slotInsertItem(void);
-  void slotModifyItem(void);
-  void slotUpdateItem(void);
-  void slotPageChanged(const QString &);
-  void slotSelectImage(void);
-  void slotViewPhotograph(void);
-  void slotViewContextMenu(const QPoint &);
-  void slotExportPhotographs(void);
   void slotSceneSelectionChanged(void);
+  void slotSelectImage(void);
+  void slotUpdateItem(void);
+  void slotViewContextMenu(const QPoint &);
+  void slotViewPhotograph(void);
 };
 
 #endif

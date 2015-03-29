@@ -5,22 +5,22 @@
 ** -- Qt Includes --
 */
 
-#include <QMenu>
 #include <QDialog>
 #include <QMainWindow>
+#include <QMenu>
 #include <QStringList>
 
 /*
 ** -- Local Includes --
 */
 
-#include "ui_dvdinfo.h"
 #include "copy_editor.h"
-#include "qtbook_item.h"
 #include "misc_functions.h"
+#include "qtbook_item.h"
+#include "ui_dvdinfo.h"
 
-class copy_editor;
 class borrowers_editor;
+class copy_editor;
 
 class qtbook_dvd: public QMainWindow, public qtbook_item
 {
@@ -29,27 +29,27 @@ class qtbook_dvd: public QMainWindow, public qtbook_item
  public:
   qtbook_dvd(QMainWindow *, const QString &, const int);
   ~qtbook_dvd();
+  void duplicate(const QString &, const int);
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void duplicate(const QString &, const int);
   void updateWindow(const int);
 
  private:
   QString engWindowTitle;
   Ui_dvdDialog dvd;
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
 
  private slots:
+  void slotCancel(void);
   void slotGo(void);
+  void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
-  void slotCancel(void);
-  void slotShowUsers(void);
   void slotSelectImage(void);
-  void slotPopulateCopiesEditor(void);
+  void slotShowUsers(void);
 };
 
 #endif

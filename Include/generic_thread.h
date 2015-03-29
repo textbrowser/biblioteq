@@ -7,9 +7,9 @@
 
 #include <QFile>
 #include <QString>
-#include <QThread>
 #include <QStringList>
 #include <QTextStream>
+#include <QThread>
 #include <QWaitCondition>
 
 /*
@@ -34,28 +34,28 @@ class generic_thread: public QThread
 
   generic_thread(QObject *);
   ~generic_thread();
-  void run(void);
-  void msleep(const int);
-  void setType(const int);
-  void setFilename(const QString &);
-  void setZ3950Name(const QString &);
-  void setOutputList(const QList<bool> &);
-  void setZ3950SearchString(const QString &);
   QString getEType(void) const;
   QString getErrorStr(void) const;
   QStringList getList(void) const;
   QStringList getZ3950Results(void) const;
+  void msleep(const int);
+  void run(void);
+  void setFilename(const QString &);
+  void setOutputList(const QList<bool> &);
+  void setType(const int);
+  void setZ3950Name(const QString &);
+  void setZ3950SearchString(const QString &);
 
  private:
-  int m_type;
+  QList<bool> m_outputListBool;
   QString m_eType;
   QString m_errorStr;
   QString m_filename;
   QString m_z3950Name;
   QString m_z3950SearchStr;
-  QList<bool> m_outputListBool;
   QStringList m_list;
   QStringList m_z3950Results;
+  int m_type;
 };
 
 #endif

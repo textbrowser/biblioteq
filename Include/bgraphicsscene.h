@@ -7,8 +7,8 @@
 
 #include <QGraphicsScene>
 
-class QKeyEvent;
 class QGraphicsSceneMouseEvent;
+class QKeyEvent;
 
 class bgraphicsscene: public QGraphicsScene
 {

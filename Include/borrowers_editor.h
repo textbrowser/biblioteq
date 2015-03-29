@@ -13,10 +13,10 @@
 ** -- Local Includes --
 */
 
+#include "misc_functions.h"
 #include "qtbook.h"
 #include "qtbook_item.h"
 #include "ui_borrowers.h"
-#include "misc_functions.h"
 
 class borrowers_editor: public QDialog
 {
@@ -30,22 +30,22 @@ class borrowers_editor: public QDialog
   void showUsers(void);
 
  private:
-  int state;
-  int quantity;
   QString ioid;
   QString itemType;
-  qtbook_item *bitem;
   QVector<QString> m_columnHeaderIndexes;
   Ui_checkedOutDialog bd;
-  void closeEvent(QCloseEvent *);
+  int quantity;
+  int state;
+  qtbook_item *bitem;
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);
 
  private slots:
-  void slotSave(void);
-  void slotEraseBorrower(void);
   void slotCloseCurrentBorrowers(void);
+  void slotEraseBorrower(void);
+  void slotSave(void);
 };
 
 #endif

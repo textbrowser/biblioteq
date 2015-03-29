@@ -3617,3 +3617,25 @@ void qtbook::slotRoleChanged(int index)
 
   br.userid->setFocus();
 }
+
+/*
+** -- slotSaveDnt() --
+*/
+
+void qtbook::slotSaveDnt(bool state)
+{
+  QSqlQuery query(db);
+
+  query.prepare("INSERT INTO member_history_dnt "
+		"(dnt, memberid) "
+		"VALUES (?, ?)");
+  query.bindValue(0, QVariant(state).toInt());
+  query.bindValue(1, db.userName());
+  query.exec();
+  query.prepare("UPDATE member_history_dnt "
+		"SET dnt = ? "
+		"WHERE memberid = ?");
+  query.bindValue(0, QVariant(state).toInt());
+  query.bindValue(1, db.userName());
+  query.exec();
+}

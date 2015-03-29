@@ -6,19 +6,20 @@
 */
 
 #include <iostream>
+
 using namespace std;
 
 /*
 ** -- Qt Includes --
 */
 
-#include <QUrl>
-#include <QKeyEvent>
-#include <QDropEvent>
 #include <QApplication>
+#include <QDragEnterEvent>
+#include <QDropEvent>
 #include <QGraphicsItem>
 #include <QGraphicsView>
-#include <QDragEnterEvent>
+#include <QKeyEvent>
+#include <QUrl>
 
 class image_drop_site: public QGraphicsView
 {
@@ -27,22 +28,22 @@ class image_drop_site: public QGraphicsView
  public:
   QImage image;
   QString imageFormat;
+  image_drop_site(QWidget *);
   void clear(void);
+  void loadFromData(const QByteArray &);
   void setImage(const QImage &);
   void setReadOnly(const bool);
-  void loadFromData(const QByteArray &);
-  image_drop_site(QWidget *);
 
  private:
   bool doubleclicked;
-  void dropEvent(QDropEvent *);
-  void dragMoveEvent(QDragMoveEvent *);
-  void keyPressEvent(QKeyEvent *);
+  QString determineFormat(const QByteArray &) const;
+  QString determineFormat(const QString &) const;
   void dragEnterEvent(QDragEnterEvent *);
   void dragLeaveEvent(QDragLeaveEvent *);
+  void dragMoveEvent(QDragMoveEvent *);
+  void dropEvent(QDropEvent *);
+  void keyPressEvent(QKeyEvent *);
   void mouseDoubleClickEvent(QMouseEvent *);
-  QString determineFormat(const QString &) const;
-  QString determineFormat(const QByteArray &) const;
 };
 
 #endif

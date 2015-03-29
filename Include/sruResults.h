@@ -6,8 +6,8 @@
 */
 
 #include <QDialog>
-#include <QWidget>
 #include <QStringList>
+#include <QWidget>
 
 /*
 ** -- Local Includes --
@@ -27,13 +27,13 @@ class sruresults: public QDialog
   ~sruresults();
 
  private:
-  qtbook_magazine *magazine;
   QList<QByteArray> m_records;
   Ui_sruResultsDialog ui;
+  qtbook_magazine *magazine;
+  void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);
-  void closeEvent(QCloseEvent *);
-  void changeEvent(QEvent *);
 
  private slots:
   void slotClose(void);

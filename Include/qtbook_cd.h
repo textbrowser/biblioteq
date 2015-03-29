@@ -15,11 +15,11 @@
 ** -- Local Includes --
 */
 
+#include "copy_editor.h"
+#include "misc_functions.h"
+#include "qtbook_item.h"
 #include "ui_cdinfo.h"
 #include "ui_tracks.h"
-#include "copy_editor.h"
-#include "qtbook_item.h"
-#include "misc_functions.h"
 
 class copy_editor;
 
@@ -31,10 +31,10 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   qtbook_cd(QMainWindow *,
 	    const QString &, const int);
   ~qtbook_cd();
+  void duplicate(const QString &, const int);
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void duplicate(const QString &, const int);
   void updateWindow(const int);
 
  private:
@@ -43,24 +43,24 @@ class qtbook_cd: public QMainWindow, public qtbook_item
   QString engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
 
  private slots:
+  void slotCancel(void);
+  void slotCloseTracksBrowser(void);
+  void slotComputeRuntime(void);
+  void slotDeleteTrack(void);
   void slotGo(void);
+  void slotInsertTrack(void);
+  void slotPopulateCopiesEditor(void);
+  void slotPopulateTracksBrowser(void);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
-  void slotCancel(void);
-  void slotShowUsers(void);
   void slotSaveTracks(void);
-  void slotDeleteTrack(void);
-  void slotInsertTrack(void);
   void slotSelectImage(void);
-  void slotComputeRuntime(void);
-  void slotCloseTracksBrowser(void);
-  void slotPopulateCopiesEditor(void);
-  void slotPopulateTracksBrowser(void);
+  void slotShowUsers(void);
 };
 
 #endif

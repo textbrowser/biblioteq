@@ -5,9 +5,9 @@
 ** -- Qt Includes --
 */
 
-#include <QMenu>
 #include <QDialog>
 #include <QMainWindow>
+#include <QMenu>
 #include <QStringList>
 
 /*
@@ -15,13 +15,13 @@
 */
 
 #include "copy_editor.h"
+#include "misc_functions.h"
 #include "qtbook_item.h"
 #include "ui_borrowers.h"
-#include "misc_functions.h"
 #include "ui_videogameinfo.h"
 
-class copy_editor;
 class borrowers_editor;
+class copy_editor;
 
 class qtbook_videogame: public QMainWindow, public qtbook_item
 {
@@ -31,27 +31,27 @@ class qtbook_videogame: public QMainWindow, public qtbook_item
   qtbook_videogame(QMainWindow *, const QString &,
 		   const int);
   ~qtbook_videogame();
+  void duplicate(const QString &, const int);
   void insert(void);
   void modify(const int);
   void search(const QString & = "", const QString & = "");
-  void duplicate(const QString &, const int);
   void updateWindow(const int);
 
  private:
   QString engWindowTitle;
   Ui_vgDialog vg;
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
 
  private slots:
+  void slotCancel(void);
   void slotGo(void);
+  void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
-  void slotCancel(void);
-  void slotShowUsers(void);
   void slotSelectImage(void);
-  void slotPopulateCopiesEditor(void);
+  void slotShowUsers(void);
 };
 
 #endif

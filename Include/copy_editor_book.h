@@ -6,18 +6,18 @@
 */
 
 #include <QDialog>
-#include <QString>
-#include <QSpinBox>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QSpinBox>
+#include <QString>
 
 /*
 ** -- Local Includes --
 */
 
 #include "copy_editor.h"
-#include "qtbook_item.h"
 #include "misc_functions.h"
+#include "qtbook_item.h"
 #include "ui_bookcopybrowser.h"
 
 class copy_editor_book: public copy_editor
@@ -53,19 +53,19 @@ class copy_editor_book: public copy_editor
     QString originality;
   };
 
-  int quantity;
-  bool showForLending;
+  QList<copy_class *> copies;
+  QSpinBox *spinbox;
   QString ioid;
   QString itemType;
-  QWidget *parent;
-  QSpinBox *spinbox;
-  qtbook_item *bitem;
-  Ui_bookcopybrowser cb;
   QVector<QString> m_columnHeaderIndexes;
-  QList<copy_class *> copies;
+  QWidget *parent;
+  Ui_bookcopybrowser cb;
+  bool showForLending;
+  int quantity;
+  qtbook_item *bitem;
   QString saveCopies(void);
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *);
 
  private slots:

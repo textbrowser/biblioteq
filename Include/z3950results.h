@@ -6,8 +6,8 @@
 */
 
 #include <QDialog>
-#include <QWidget>
 #include <QStringList>
+#include <QWidget>
 
 /*
 ** -- Local Includes --
@@ -29,12 +29,12 @@ class z3950results: public QDialog
  private:
   QString m_recordSyntax;
   QStringList records;
-  qtbook_magazine *magazine;
   Ui_z3950ResultsDialog ui;
+  qtbook_magazine *magazine;
+  void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *);
   void setGlobalFonts(const QFont &);
-  void closeEvent(QCloseEvent *);
-  void changeEvent(QEvent *);
 
  private slots:
   void slotClose(void);

@@ -19,8 +19,8 @@ class dbenumerations: public QMainWindow
 
  public:
   dbenumerations(QWidget *parent);
-  void show(QMainWindow *parent, const bool populate);
   void clear(void);
+  void show(QMainWindow *parent, const bool populate);
 
  private:
   Ui_dbEnumerations ui;
@@ -29,10 +29,10 @@ class dbenumerations: public QMainWindow
 
  private slots:
   void slotAdd(void);
-  void slotSave(void);
   void slotClose(void);
   void slotReload(void);
   void slotRemove(void);
+  void slotSave(void);
 };
 
 #endif

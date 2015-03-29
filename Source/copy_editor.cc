@@ -420,19 +420,20 @@ void copy_editor::populateCopiesEditor(void)
 
 void copy_editor::slotCheckoutCopy(void)
 {
-  int copyrow = cb.table->currentRow();
-  int memberrow = qmain->getBB().table->currentRow();
-  bool available = false;
   QDate now = QDate::currentDate();
-  QString name = "";
+  QSqlQuery query(qmain->getDB());
+  QString availability = "";
+  QString checkedout = now.toString("MM/dd/yyyy");
   QString copyid = "";
+  QString copynumber = "";
   QString duedate = cb.dueDate->date().toString("MM/dd/yyyy");
   QString errorstr = "";
   QString memberid = "";
-  QString checkedout = now.toString("MM/dd/yyyy");
-  QString copynumber = "";
-  QString availability = "";
-  QSqlQuery query(qmain->getDB());
+  QString name = "";
+  bool available = false;
+  bool dnt = true;
+  int copyrow = cb.table->currentRow();
+  int memberrow = qmain->getBB().table->currentRow();
 
   if(copyrow < 0 || cb.table->item(copyrow, 1) == 0)
     {
@@ -523,29 +524,34 @@ void copy_editor::slotCheckoutCopy(void)
   ** table.
   */
 
-  query.prepare("INSERT INTO member_history "
-		"(memberid, "
-		"item_oid, "
-		"copyid, "
-		"reserved_date, "
-		"duedate, "
-		"returned_date, "
-		"reserved_by, "
-		"type) "
-		"VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  query.bindValue(0, memberid);
-  query.bindValue(1, ioid);
-  query.bindValue(2, copyid);
-  query.bindValue(3, checkedout);
-  query.bindValue(4, duedate);
-  query.bindValue(5, QString("N/A"));
-  query.bindValue(6, qmain->getAdminID());
-  query.bindValue(7, itemType);
+  dnt = misc_functions::dnt(qmain->getDB(), memberid, errorstr);
 
-  if(!query.exec())
-    qmain->addError(QString(tr("Database Error")),
-		    QString(tr("Unable to create a history record.")),
-		    query.lastError().text(), __FILE__, __LINE__);
+  if(!dnt)
+    {
+      query.prepare("INSERT INTO member_history "
+		    "(memberid, "
+		    "item_oid, "
+		    "copyid, "
+		    "reserved_date, "
+		    "duedate, "
+		    "returned_date, "
+		    "reserved_by, "
+		    "type) "
+		    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+      query.bindValue(0, memberid);
+      query.bindValue(1, ioid);
+      query.bindValue(2, copyid);
+      query.bindValue(3, checkedout);
+      query.bindValue(4, duedate);
+      query.bindValue(5, QString("N/A"));
+      query.bindValue(6, qmain->getAdminID());
+      query.bindValue(7, itemType);
+
+      if(!query.exec())
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to create a history record.")),
+			query.lastError().text(), __FILE__, __LINE__);
+    }
 
   /*
   ** Update the Reserved Items count on the Members Browser.

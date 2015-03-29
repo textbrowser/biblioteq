@@ -3,16 +3,16 @@
 */
 
 #include <QDate>
-#include <QtDebug>
 #include <QSqlField>
 #include <QSqlIndex>
+#include <QtDebug>
 
 /*
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "misc_functions.h"
+#include "qtbook.h"
 
 extern qtbook *qmain;
 
@@ -2231,4 +2231,36 @@ QStringList misc_functions::getBookBindingTypes(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return types;
+}
+
+/*
+** -- dnt() --
+*/
+
+bool misc_functions::dnt(const QSqlDatabase &db,
+			 const QString &memberid,
+			 QString &errorstr)
+{
+  if(db.driverName() == "QSQLITE")
+    return true;
+
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList types;
+  bool dnt = true;
+
+  errorstr = "";
+  querystr = "SELECT dnt FROM member_history_dnt WHERE memberid = ?";
+  query.setForwardOnly(true);
+  query.prepare(querystr);
+  query.bindValue(0, memberid);
+
+  if(query.exec())
+    while(query.next())
+      dnt = query.value(0).toBool();
+
+  if(query.lastError().isValid())
+    errorstr = query.lastError().text();
+
+  return dnt;
 }

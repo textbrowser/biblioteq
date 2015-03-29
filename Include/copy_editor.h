@@ -6,17 +6,17 @@
 */
 
 #include <QDialog>
-#include <QString>
-#include <QSpinBox>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QSpinBox>
+#include <QString>
 
 /*
 ** -- Local Includes --
 */
 
-#include "qtbook_item.h"
 #include "misc_functions.h"
+#include "qtbook_item.h"
 #include "ui_copybrowser.h"
 
 class copy_editor: public QDialog
@@ -46,19 +46,19 @@ class copy_editor: public QDialog
     QString itemoid;
   };
 
-  int quantity;
-  bool showForLending;
+  QList<copy_class *> copies;
+  QSpinBox *spinbox;
   QString ioid;
   QString itemType;
-  QWidget *m_parent;
-  QSpinBox *spinbox;
-  qtbook_item *bitem;
-  Ui_copybrowser cb;
   QVector<QString> m_columnHeaderIndexes;
-  QList<copy_class *> copies;
+  QWidget *m_parent;
+  Ui_copybrowser cb;
+  bool showForLending;
+  int quantity;
+  qtbook_item *bitem;
   QString saveCopies(void);
-  void closeEvent(QCloseEvent *);
   void changeEvent(QEvent *);
+  void closeEvent(QCloseEvent *);
   void keyPressEvent(QKeyEvent *);
 
  protected:
@@ -69,9 +69,9 @@ class copy_editor: public QDialog
   void slotCloseCopyEditor(void);
 
  private slots:
+  void slotCheckoutCopy(void);
   void slotDeleteCopy(void);
   void slotSaveCopies(void);
-  void slotCheckoutCopy(void);
 };
 
 #endif

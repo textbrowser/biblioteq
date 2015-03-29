@@ -12,14 +12,14 @@
 */
 
 #include <QFont>
-#include <QString>
-#include <QWidget>
-#include <QPrinter>
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QPrintDialog>
-#include <QTextDocument>
+#include <QPrinter>
 #include <QProgressDialog>
+#include <QString>
+#include <QTextDocument>
+#include <QWidget>
 
 class qtbook_item_working_dialog: public QProgressDialog
 {
@@ -51,25 +51,25 @@ class qtbook_item_working_dialog: public QProgressDialog
 class qtbook_item
 {
  public:
-  qtbook_item(void);
   qtbook_item(const int);
+  qtbook_item(void);
   ~qtbook_item();
-  int getRow(void) const;
-  int getOldQ(void) const;
-  void setOldQ(const int);
-  void updateRow(const int);
-  void updateFont(const QFont &, QWidget *);
   QString getID(void) const;
+  int getOldQ(void) const;
+  int getRow(void) const;
+  void setOldQ(const int);
+  void updateFont(const QFont &, QWidget *);
+  void updateRow(const int);
 
  protected:
-  int row;
-  int oldq;
-  bool isQueryEnabled;
-  QString oid;
-  QString html;
   QMainWindow *parentWid;
   QMap<QString, QImage> imageValues;
   QMap<QString, QString> widgetValues;
+  QString html;
+  QString oid;
+  bool isQueryEnabled;
+  int oldq;
+  int row;
   bool hasDataChanged(QMainWindow *) const;
   void print(QWidget *);
   void storeData(QMainWindow *);
