@@ -1056,6 +1056,7 @@ CREATE TABLE member_history_dnt
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
+GRANT DELETE, INSERT, SELECT ON member_history_dnt TO biblioteq_administrator;
 GRANT SELECT ON member_history_dnt TO biblioteq_circulation;
+GRANT DELETE ON member_history_dnt TO biblioteq_membership;
 GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
-REVOKE INSERT, SELECT, UPDATE ON member_history_dnt FROM biblioteq_administrator;
