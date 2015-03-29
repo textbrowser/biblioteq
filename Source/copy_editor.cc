@@ -2,11 +2,11 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "copy_editor.h"
+#include "qtbook.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- copy_editor() --

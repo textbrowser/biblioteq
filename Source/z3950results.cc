@@ -2,8 +2,8 @@
 ** -- Local Includes --
 */
 
-#include "z3950results.h"
 #include "qtbook_magazine.h"
+#include "z3950results.h"
 
 /*
 ** -- z3950results() --

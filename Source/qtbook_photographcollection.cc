@@ -14,13 +14,13 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "bgraphicsscene.h"
-#include "ui_photographview.h"
+#include "qtbook.h"
 #include "qtbook_photographcollection.h"
+#include "ui_photographview.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- qtbook_photographcollection() --

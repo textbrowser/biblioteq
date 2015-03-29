@@ -2,8 +2,8 @@
 ** -- Qt Includes --
 */
 
-#include <QKeyEvent>
 #include <QGraphicsSceneMouseEvent>
+#include <QKeyEvent>
 
 /*
 ** -- Local Includes --

@@ -2,9 +2,9 @@
 ** -- Local Includes --
 */
 
+#include "hyperlinked_text_edit.h"
 #include "qtbook.h"
 #include "qtbook_book.h"
-#include "hyperlinked_text_edit.h"
 
 extern qtbook *qmain;
 

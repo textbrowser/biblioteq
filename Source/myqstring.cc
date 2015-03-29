@@ -1,5 +1,5 @@
-#include "qtbook.h"
 #include "myqstring.h"
+#include "qtbook.h"
 
 extern qtbook *qmain;
 

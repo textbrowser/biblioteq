@@ -2,12 +2,12 @@
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "dbenumerations.h"
 #include "misc_functions.h"
+#include "qtbook.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- dbenumerations() --

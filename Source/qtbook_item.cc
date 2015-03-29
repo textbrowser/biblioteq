@@ -2,10 +2,10 @@
 ** -- Qt Includes --
 */
 
-#include <QSpinBox>
 #include <QComboBox>
 #include <QDateEdit>
 #include <QLineEdit>
+#include <QSpinBox>
 #include <QTextEdit>
 #include <QTimeEdit>
 
@@ -13,8 +13,8 @@
 ** -- Local Includes --
 */
 
-#include "qtbook_item.h"
 #include "hyperlinked_text_edit.h"
+#include "qtbook_item.h"
 
 /*
 ** -- qtbook_item() --

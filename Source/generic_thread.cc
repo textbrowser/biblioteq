@@ -3,17 +3,17 @@
 */
 
 #include <QMutex>
+#include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QXmlStreamReader>
-#include <QNetworkAccessManager>
 
 /*
 ** -- Local Includes --
 */
 
-#include "qtbook.h"
 #include "generic_thread.h"
+#include "qtbook.h"
 
 extern qtbook *qmain;
 

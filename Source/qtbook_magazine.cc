@@ -26,8 +26,8 @@
 #include "qtbook_magazine.h"
 #include "sruResults.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- qtbook_magazine() --

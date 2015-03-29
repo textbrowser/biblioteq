@@ -74,12 +74,6 @@ extern "C"
 #include "sqlite_create_schema.h"
 
 /*
-** -- Local Variables --
-*/
-
-qtbook *qmain = 0;
-
-/*
 ** -- Global Variables --
 */
 
@@ -87,6 +81,7 @@ QApplication *qapp = 0;
 QString qtbook::s_locale = "";
 QTranslator *qtbook::s_appTranslator = 0;
 QTranslator *qtbook::s_qtTranslator = 0;
+qtbook *qmain = 0;
 
 /*
 ** -- main() --

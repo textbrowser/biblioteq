@@ -21,8 +21,8 @@
 #include "qtbook.h"
 #include "qtbook_book.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- qtbook_book() --

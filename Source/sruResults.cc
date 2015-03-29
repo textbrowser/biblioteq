@@ -8,8 +8,8 @@
 ** -- Local Includes --
 */
 
-#include "sruResults.h"
 #include "qtbook_magazine.h"
+#include "sruResults.h"
 
 /*
 ** -- sruresults() --

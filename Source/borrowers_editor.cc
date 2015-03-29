@@ -1,10 +1,10 @@
 #include "borrowers_editor.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
-** -- borrowers_editor() --
+** -- Borrowers_editor() --
 */
 
 borrowers_editor::borrowers_editor(QWidget *parent,

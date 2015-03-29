@@ -6,9 +6,9 @@
 ** -- Qt Includes --
 */
 
-#include <QString>
-#include <QRegExp>
 #include <QDebug>
+#include <QRegExp>
+#include <QString>
 #include <QTableWidgetItem>
 
 /*

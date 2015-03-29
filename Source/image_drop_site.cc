@@ -9,8 +9,8 @@
 ** -- Local Includes --
 */
 
-#include "qtbook_book.h"
 #include "image_drop_site.h"
+#include "qtbook_book.h"
 
 /*
 ** -- image_drop_site() --

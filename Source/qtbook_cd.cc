@@ -13,12 +13,12 @@
 ** -- Local Includes --
 */
 
+#include "borrowers_editor.h"
 #include "qtbook.h"
 #include "qtbook_cd.h"
-#include "borrowers_editor.h"
 
-extern qtbook *qmain;
 extern QApplication *qapp;
+extern qtbook *qmain;
 
 /*
 ** -- qtbook_cd() --
