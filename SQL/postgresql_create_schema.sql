@@ -565,6 +565,7 @@ GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON videogame_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON videogame_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, USAGE ON item_request_myoid_seq TO biblioteq_administrator;
+REVOKE INSERT, SELECT, UPDATE ON member_history_dnt FROM biblioteq_administrator;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_circulation;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_circulation;

@@ -1058,3 +1058,4 @@ CREATE TABLE member_history_dnt
 
 GRANT SELECT ON member_history_dnt TO biblioteq_circulation;
 GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
+REVOKE INSERT, SELECT, UPDATE ON member_history_dnt FROM biblioteq_administrator;
