@@ -538,7 +538,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT ON member_history_dnt TO biblioteq_administrator;
+GRANT DELETE, SELECT ON member_history_dnt TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_administrator;
