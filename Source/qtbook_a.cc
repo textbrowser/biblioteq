@@ -401,7 +401,6 @@ qtbook::qtbook(void):QMainWindow()
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
   al.reset->setVisible(false);
-  ui.resetAllSearch->setVisible(false);
   pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   branch_diag->setModal(true);
@@ -7560,8 +7559,8 @@ void qtbook::slotBranchChanged(void)
   else
     {
       br.stackedWidget->setCurrentIndex(1);
-      br.userid->setFocus();
       br.userid->selectAll();
+      br.okButton->setFocus();
     }
 
   tmphash.clear();

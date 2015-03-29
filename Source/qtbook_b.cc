@@ -3486,7 +3486,11 @@ int qtbook::populateTable(const int search_type_arg,
   else if(search_type == POPULATE_SEARCH_BASIC)
     {
       if(ui.table->rowCount() == 0)
-	resetAllSearchWidgets();
+	{
+	  ui.case_insensitive->setEnabled(true);
+	  ui.search->setEnabled(true);
+	  ui.searchType->setEnabled(true);
+	}
     }
 
   if(search_type != CUSTOM_QUERY)
@@ -3521,7 +3525,6 @@ void qtbook::slotSearchBasic(void)
     return;
 
   ui.case_insensitive->setEnabled(false);
-  ui.resetAllSearch->setVisible(true);
   ui.search->setEnabled(false);
   ui.searchType->setEnabled(false);
   (void) populateTable
@@ -3538,7 +3541,7 @@ void qtbook::slotResetAllSearch(void)
   ui.graphicsView->resetTransform();
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
-  ui.itemsCountLabel->setText(tr("0 Result(s)"));
+  ui.itemsCountLabel->setText(tr("0 Results"));
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
@@ -3563,7 +3566,6 @@ void qtbook::resetAllSearchWidgets(void)
   ui.search->setEnabled(true);
   ui.searchType->setCurrentIndex(0);
   ui.searchType->setEnabled(true);
-  ui.resetAllSearch->setVisible(false);
 }
 
 /*
@@ -3576,7 +3578,7 @@ void qtbook::slotResetGeneralSearch(void)
   ui.graphicsView->resetTransform();
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
-  ui.itemsCountLabel->setText(tr("0 Result(s)"));
+  ui.itemsCountLabel->setText(tr("0 Results"));
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
