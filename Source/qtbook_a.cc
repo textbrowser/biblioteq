@@ -253,6 +253,9 @@ qtbook::qtbook(void):QMainWindow()
   QMenu *menu4 = 0;
 
   ui.setupUi(this);
+  connected_bar_label = 0;
+  error_bar_label = 0;
+  status_bar_label = 0;
   lastSearchType = POPULATE_ALL;
   m_idCt = 0;
   previousTypeFilter = "";
@@ -1045,6 +1048,15 @@ void qtbook::adminSetup(void)
 
 void qtbook::showMain(void)
 {
+  if(connected_bar_label)
+    connected_bar_label->deleteLater();
+
+  if(error_bar_label)
+    error_bar_label->deleteLater();
+
+  if(status_bar_label)
+    status_bar_label->deleteLater();
+
   if((connected_bar_label = new(std::nothrow) QLabel()) != 0)
     {
       connected_bar_label->setPixmap
