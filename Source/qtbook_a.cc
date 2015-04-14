@@ -551,6 +551,8 @@ qtbook::qtbook(void):QMainWindow()
 	  error_diag, SLOT(close(void)));
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
+  connect(br.password, SIGNAL(returnPressed(void)), this,
+	  SLOT(slotConnectDB(void)));
   connect(bb.grantButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotGrantPrivileges(void)));
   connect(ui.configTool, SIGNAL(triggered(void)), this,
