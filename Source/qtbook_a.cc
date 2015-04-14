@@ -2918,10 +2918,10 @@ void qtbook::readConfig(void)
   if(viewModeIndex < 0 || viewModeIndex > 1)
     viewModeIndex = 1;
 
-  if(findChild<QActionGroup *> ("ViewModeMenu")->actions().
-     size() > viewModeIndex)
-    findChild<QActionGroup *> ("ViewModeMenu")->
-      actions().at(viewModeIndex)->setChecked(true);
+  QActionGroup *ag = findChild<QActionGroup *> ("ViewModeMenu");
+
+  if(ag && ag->actions().size() > viewModeIndex)
+    ag->actions().at(viewModeIndex)->setChecked(true);
 
   ui.stackedWidget->setCurrentIndex(viewModeIndex);
 
@@ -6687,11 +6687,16 @@ void qtbook::setGlobalFonts(const QFont &font)
 	widget->adjustSize();
     }
 
-  menuBar()->setFont(font);
+  QMenuBar *mb = menuBar();
 
-  foreach(QMenu *menu, menuBar()->findChildren<QMenu *>())
-    foreach(QAction *action, menu->actions())
-      action->setFont(font);
+  if(mb)
+    {
+      mb->setFont(font);
+
+      foreach(QMenu *menu, mb->findChildren<QMenu *>())
+	foreach(QAction *action, menu->actions())
+	action->setFont(font);
+    }
 
   qapp->restoreOverrideCursor();
 }
