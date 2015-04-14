@@ -1409,13 +1409,14 @@ void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
     }
 
   foreach(QToolButton *button, window->findChildren<QToolButton *>())
-    foreach(QAction *action, button->menu()->findChildren<QAction *>())
-      {
-	str = action->text().toLower();
+    if(button->menu())
+      foreach(QAction *action, button->menu()->findChildren<QAction *>())
+	{
+	  str = action->text().toLower();
 
-	if(str.contains("price") || str.contains("monetary"))
-	  action->setVisible(showWidgets);
-      }
+	  if(str.contains("price") || str.contains("monetary"))
+	    action->setVisible(showWidgets);
+	}
 }
 
 /*
