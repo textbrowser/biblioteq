@@ -59,6 +59,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   Ui_passwordDialog ui_p;
   generic_thread *thread;
   qtbook_item_working_dialog *httpProgress;
+  qtbook_item_working_dialog *m_sruWorking;
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);
 

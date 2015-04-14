@@ -60,6 +60,17 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_sruWorking = new(std::nothrow)
+      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_sruWorking->setModal(true);
+  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  m_sruWorking->setLabelText(tr("Downloading information from the SRU "
+				"site. Please be patient..."));
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->setCancelButton(0);
   oid = oidArg;
   row = rowArg;
   subType = "Magazine";
@@ -3021,22 +3032,10 @@ void qtbook_magazine::slotSRUQuery(void)
   if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
-  qtbook_item_working_dialog *working = 0;
-
-  if((working = new(std::nothrow)
-      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
-    return;
-
-  working->setObjectName("sru_dialog");
-  working->setModal(true);
-  working->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  working->setLabelText(tr("Downloading information from the SRU "
-			   "site. Please be patient..."));
-  working->setMaximum(0);
-  working->setMinimum(0);
-  working->setCancelButton(0);
-  working->show();
-  working->update();
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->show();
+  m_sruWorking->update();
 
   bool found = false;
   QString name("");
@@ -3126,9 +3125,7 @@ void qtbook_magazine::slotSRUQuery(void)
 
   QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
 
-  if(!reply)
-    working->deleteLater();
-  else
+  if(reply)
     {
       m_sruResults.clear();
       connect(reply, SIGNAL(readyRead(void)),
@@ -3136,6 +3133,8 @@ void qtbook_magazine::slotSRUQuery(void)
       connect(reply, SIGNAL(finished(void)),
 	      this, SLOT(slotSRUDownloadFinished(void)));
     }
+  else
+    m_sruWorking->hide();
 }
 
 /*
@@ -3149,15 +3148,8 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
-  qtbook_item_working_dialog *dialog =
-    findChild<qtbook_item_working_dialog *> ("sru_dialog");
-
-  if(dialog)
-    {
-      dialog->hide();
-      dialog->deleteLater();
-      update();
-    }
+  m_sruWorking->hide();
+  update();
 
   QList<QByteArray> list;
 

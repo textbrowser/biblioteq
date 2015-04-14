@@ -55,6 +55,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   QString subType;
   Ui_magDialog ma;
   generic_thread *thread;
+  qtbook_item_working_dialog *m_sruWorking;
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);
 

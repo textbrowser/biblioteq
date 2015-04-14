@@ -58,6 +58,17 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_sruWorking = new(std::nothrow)
+      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  m_sruWorking->setModal(true);
+  m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
+  m_sruWorking->setLabelText(tr("Downloading information from the SRU "
+				"site. Please be patient..."));
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->setCancelButton(0);
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -2044,22 +2055,10 @@ void qtbook_book::slotSRUQuery(void)
   if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
-  qtbook_item_working_dialog *working = 0;
-
-  if((working = new(std::nothrow)
-      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
-    return;
-
-  working->setObjectName("sru_dialog");
-  working->setModal(true);
-  working->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
-  working->setLabelText(tr("Downloading information from the SRU "
-			   "site. Please be patient..."));
-  working->setMaximum(0);
-  working->setMinimum(0);
-  working->setCancelButton(0);
-  working->show();
-  working->update();
+  m_sruWorking->setMaximum(0);
+  m_sruWorking->setMinimum(0);
+  m_sruWorking->show();
+  m_sruWorking->update();
 
   bool found = false;
   QString name("");
@@ -2158,9 +2157,7 @@ void qtbook_book::slotSRUQuery(void)
 
   QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
 
-  if(!reply)
-    working->deleteLater();
-  else
+  if(reply)
     {
       m_sruResults.clear();
       connect(reply, SIGNAL(readyRead(void)),
@@ -2172,6 +2169,8 @@ void qtbook_book::slotSRUQuery(void)
       connect(reply, SIGNAL(sslErrors(const QList<QSslError> &)),
 	      this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
     }
+  else
+    m_sruWorking->hide();
 }
 
 /*
@@ -2917,15 +2916,8 @@ void qtbook_book::slotSRUDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
-  qtbook_item_working_dialog *dialog =
-    findChild<qtbook_item_working_dialog *> ("sru_dialog");
-
-  if(dialog)
-    {
-      dialog->hide();
-      dialog->deleteLater();
-      update();
-    }
+  m_sruWorking->hide();
+  update();
 
   /*
   ** Verify that the SRU data contains at least one record.
