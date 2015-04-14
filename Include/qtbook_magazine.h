@@ -8,6 +8,7 @@
 #include <QDialog>
 #include <QMainWindow>
 #include <QMenu>
+#include <QNetworkAccessManager>
 #include <QStringList>
 
 /*
@@ -45,6 +46,7 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
 
  protected:
   QByteArray m_sruResults;
+  QNetworkAccessManager *m_sruManager;
   QPalette cb_orig_pal;
   QPalette te_orig_pal;
   QPalette white_pal;

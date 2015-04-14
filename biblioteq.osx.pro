@@ -13,6 +13,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
 QMAKE_EXTRA_TARGETS = purge
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 QMAKE_STRIP	= echo
 
 ICON		= Icons/book.icns

@@ -49,7 +49,13 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_imageManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   ui_p.setupUi(m_proxyDialog);
@@ -2035,25 +2041,14 @@ void qtbook_book::slotSRUQuery(void)
       return;
     }
 
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
-
-  if(manager)
-    return;
-
-  if(manager->findChild<QNetworkReply *> ())
-    return;
-
-  if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+  if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
   qtbook_item_working_dialog *working = 0;
 
   if((working = new(std::nothrow)
       qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
-    {
-      manager->deleteLater();
-      return;
-    }
+    return;
 
   working->setObjectName("sru_dialog");
   working->setModal(true);
@@ -2114,7 +2109,7 @@ void qtbook_book::slotSRUQuery(void)
 	  ** This is required to resolve an odd error.
 	  */
 
-	  QNetworkReply *reply = manager->get
+	  QNetworkReply *reply = m_sruManager->get
 	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	  if(reply)
@@ -2146,7 +2141,7 @@ void qtbook_book::slotSRUQuery(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  manager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -2157,17 +2152,14 @@ void qtbook_book::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  manager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
     }
 
-  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+  QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
 
   if(!reply)
-    {
-      manager->deleteLater();
-      working->deleteLater();
-    }
+    working->deleteLater();
   else
     {
       m_sruResults.clear();
@@ -2619,41 +2611,18 @@ void qtbook_book::slotDownloadImage(void)
       return;
     }
 
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
-
-  if(imgbuffer)
+  if(m_imageManager->findChild<QNetworkReply *> ())
     return;
-
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
-
-  if(manager)
-    return;
-
-  if(manager->findChild<QNetworkReply *> ())
-    return;
-
-  if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
-    return;
-
-  if((imgbuffer = new(std::nothrow) QBuffer(this)) == 0)
-    {
-      manager->deleteLater();
-      return;
-    }
 
   QPushButton *pb = qobject_cast<QPushButton *> (sender());
 
   if(pb == id.dwnldFront)
-    imgbuffer->setProperty("which", "front");
+    m_imageBuffer.setProperty("which", "front");
   else
-    imgbuffer->setProperty("which", "back");
+    m_imageBuffer.setProperty("which", "back");
 
-  if(!imgbuffer->open(QIODevice::WriteOnly))
-    {
-      manager->deleteLater();
-      imgbuffer->deleteLater();
-      return;
-    }
+  if(!m_imageBuffer.open(QIODevice::WriteOnly))
+    return;
 
   QUrl url;
 
@@ -2687,13 +2656,13 @@ void qtbook_book::slotDownloadImage(void)
 	  ** This is required to resolve an odd error.
 	  */
 
-	  QNetworkReply *reply = manager->get
+	  QNetworkReply *reply = m_imageManager->get
 	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	  if(reply)
 	    reply->deleteLater();
 
-	  connect(manager,
+	  connect(m_imageManager,
 		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
 						     QAuthenticator *)),
 		  this,
@@ -2737,7 +2706,7 @@ void qtbook_book::slotDownloadImage(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  manager->setProxy(proxy);
+	  m_imageManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -2748,16 +2717,15 @@ void qtbook_book::slotDownloadImage(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  manager->setProxy(proxy);
+	  m_imageManager->setProxy(proxy);
 	}
     }
 
-  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+  QNetworkReply *reply = m_imageManager->get(QNetworkRequest(url));
 
   if(!reply)
     {
-      manager->deleteLater();
-      imgbuffer->deleteLater();
+      m_imageBuffer.close();
       return;
     }
 
@@ -2796,58 +2764,47 @@ void qtbook_book::slotDownloadFinished(void)
   if(httpProgress->isVisible())
     httpProgress->hide();
 
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(manager)
-    manager->deleteLater();
 
   if(reply)
     reply->deleteLater();
 
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
-
-  if(imgbuffer)
+  if(m_imageBuffer.property("which") == "front")
     {
-      if(imgbuffer->property("which") == "front")
+      if(m_imageBuffer.data().size() > 1000)
 	{
-	  if(imgbuffer->data().size() > 1000)
-	    {
-	      id.front_image->clear();
-	      id.front_image->loadFromData(imgbuffer->data());
-	    }
-
-	  if(imgbuffer->data().size() < 1000)
-	    {
-	      imgbuffer->deleteLater();
-	      QMessageBox::warning
-		(this, tr("BiblioteQ: HTTP Warning"),
-		 tr("The front cover image for the specified "
-		    "ISBN may not exist."));
-	    }
-	  else
-	    imgbuffer->deleteLater();
+	  id.front_image->clear();
+	  id.front_image->loadFromData(m_imageBuffer.data());
 	}
-      else
-	{
-	  if(imgbuffer->data().size() > 1000)
-	    {
-	      id.back_image->clear();
-	      id.back_image->loadFromData(imgbuffer->data());
-	    }
 
-	  if(imgbuffer->data().size() < 1000)
-	    {
-	      imgbuffer->deleteLater();
-	      QMessageBox::warning
-		(this, tr("BiblioteQ: HTTP Warning"),
-		 tr("The back cover image for the specified ISBN "
-		    "may not exist."));
-	    }
-	  else
-	    imgbuffer->deleteLater();
+      if(m_imageBuffer.data().size() < 1000)
+	{
+	  m_imageBuffer.close();
+	  QMessageBox::warning
+	    (this, tr("BiblioteQ: HTTP Warning"),
+	     tr("The front cover image for the specified "
+		"ISBN may not exist."));
 	}
     }
+  else
+    {
+      if(m_imageBuffer.data().size() > 1000)
+	{
+	  id.back_image->clear();
+	  id.back_image->loadFromData(m_imageBuffer.data());
+	}
+
+      if(m_imageBuffer.data().size() < 1000)
+	{
+	  m_imageBuffer.close();
+	  QMessageBox::warning
+	    (this, tr("BiblioteQ: HTTP Warning"),
+	     tr("The back cover image for the specified ISBN "
+		"may not exist."));
+	}
+    }
+
+  m_imageBuffer.close();
 }
 
 /*
@@ -2870,15 +2827,12 @@ void qtbook_book::slotDataTransferProgress(qint64 bytesread,
 
 void qtbook_book::slotCancelImageDownload(void)
 {
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
+  QNetworkReply *reply = m_imageManager->findChild<QNetworkReply *> ();
 
-  if(imgbuffer)
-    imgbuffer->deleteLater();
+  if(reply)
+    reply->abort();
 
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
-
-  if(manager)
-    manager->deleteLater();
+  m_imageBuffer.close();
 }
 
 /*
@@ -2887,16 +2841,10 @@ void qtbook_book::slotCancelImageDownload(void)
 
 void qtbook_book::slotReadyRead(void)
 {
-  QBuffer *imgbuffer = findChild<QBuffer *> ();
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
+  QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
-  if(manager)
-    {
-      QNetworkReply *reply = manager->findChild<QNetworkReply *> ();
-
-      if(reply && imgbuffer)
-	imgbuffer->write(reply->readAll());
-    }
+  if(reply)
+    m_imageBuffer.write(reply->readAll());
 }
 
 /*
@@ -2964,11 +2912,7 @@ void qtbook_book::changeEvent(QEvent *event)
 
 void qtbook_book::slotSRUDownloadFinished(void)
 {
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(manager)
-    manager->deleteLater();
 
   if(reply)
     reply->deleteLater();

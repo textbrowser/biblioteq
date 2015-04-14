@@ -57,6 +57,9 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+    qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
   oid = oidArg;
   row = rowArg;
   subType = "Magazine";
@@ -3015,25 +3018,14 @@ void qtbook_magazine::slotSRUQuery(void)
       return;
     }
 
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
-
-  if(manager)
-    return;
-
-  if(manager->findChild<QNetworkReply *> ())
-    return;
-
-  if((manager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+  if(m_sruManager->findChild<QNetworkReply *> ())
     return;
 
   qtbook_item_working_dialog *working = 0;
 
   if((working = new(std::nothrow)
       qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
-    {
-      manager->deleteLater();
-      return;
-    }
+    return;
 
   working->setObjectName("sru_dialog");
   working->setModal(true);
@@ -3085,7 +3077,7 @@ void qtbook_magazine::slotSRUQuery(void)
 	  ** This is required to resolve an odd error.
 	  */
 
-	  QNetworkReply *reply = manager->get
+	  QNetworkReply *reply = m_sruManager->get
 	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
 	  if(reply)
@@ -3117,7 +3109,7 @@ void qtbook_magazine::slotSRUQuery(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  manager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -3128,17 +3120,14 @@ void qtbook_magazine::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  manager->setProxy(proxy);
+	  m_sruManager->setProxy(proxy);
 	}
     }
 
-  QNetworkReply *reply = manager->get(QNetworkRequest(url));
+  QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
 
   if(!reply)
-    {
-      manager->deleteLater();
-      working->deleteLater();
-    }
+    working->deleteLater();
   else
     {
       m_sruResults.clear();
@@ -3155,11 +3144,7 @@ void qtbook_magazine::slotSRUQuery(void)
 
 void qtbook_magazine::slotSRUDownloadFinished(void)
 {
-  QNetworkAccessManager *manager = findChild<QNetworkAccessManager *> ();
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
-
-  if(manager)
-    manager->deleteLater();
 
   if(reply)
     reply->deleteLater();

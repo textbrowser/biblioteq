@@ -45,8 +45,11 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void updateWindow(const int);
 
  private:
+  QBuffer m_imageBuffer;
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
+  QNetworkAccessManager *m_imageManager;
+  QNetworkAccessManager *m_sruManager;
   QPalette te_orig_pal;
   QPalette white_pal;
   QString cb_orig_ss;
