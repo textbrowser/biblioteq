@@ -164,7 +164,6 @@ int main(int argc, char *argv[])
   qtbook::s_appTranslator->load("biblioteq_" + qtbook::s_locale,
 				"Translations");
   qapp->installTranslator(qtbook::s_appTranslator);
-  qapp->connect(qapp, SIGNAL(lastWindowClosed()), qapp, SLOT(quit(void)));
 
   if((qmain = new(std::nothrow) qtbook()) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -175,13 +174,7 @@ int main(int argc, char *argv[])
   ** Enter an endless loop.
   */
 
-  qapp->exec();
-
-  /*
-  ** Return.
-  */
-
-  return EXIT_SUCCESS;
+  return qapp->exec();
 }
 
 /*
@@ -200,9 +193,8 @@ void qtbook::quit(void)
 
   if(qapp != 0)
     qapp->quit();
-
-  qDebug() << tr("BiblioteQ has exited.");
-  exit(EXIT_SUCCESS);
+  else
+    exit(EXIT_FAILURE);
 }
 
 /*
@@ -211,14 +203,8 @@ void qtbook::quit(void)
 
 void qtbook::cleanup(void)
 {
-  if(qapp != 0 && isVisible())
-    qapp->setOverrideCursor(Qt::WaitCursor);
-
   if(db.isOpen())
     db.close();
-
-  if(qapp != 0 && isVisible())
-    qapp->restoreOverrideCursor();
 }
 
 /*
@@ -240,7 +226,7 @@ void qtbook::quit(const char *msg, const char *file, const int line)
   if(qmain != 0)
     qmain->cleanup();
 
-  exit(EXIT_SUCCESS);
+  exit(EXIT_FAILURE);
 }
 
 /*
