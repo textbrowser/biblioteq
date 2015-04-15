@@ -2060,8 +2060,8 @@ void qtbook_book::slotSRUQuery(void)
   m_sruWorking->show();
   m_sruWorking->update();
 
-  bool found = false;
   QString name("");
+  bool found = false;
 
   for(int i = 0; i < id.sruQueryButton->actions().size(); i++)
     if(id.sruQueryButton->actions().at(i)->isChecked())
@@ -2074,8 +2074,8 @@ void qtbook_book::slotSRUQuery(void)
   if(!found)
     name = qmain->getPreferredSRUSite();
 
-  QString searchstr("");
   QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
+  QString searchstr("");
 
   searchstr = hash["url_isbn"];
 
@@ -2089,9 +2089,9 @@ void qtbook_book::slotSRUQuery(void)
   else
     searchstr.replace("%2", id.id->text().trimmed());
 
-  QUrl url(QUrl::fromUserInput(searchstr));
-  QString type("");
   QNetworkProxy proxy;
+  QString type("");
+  QUrl url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
     type = hash["proxy_type"].toLower().trimmed();
