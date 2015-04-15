@@ -604,7 +604,7 @@ void marc::parseBookZ3950Marc21(void)
       else if(str.startsWith("100 ") ||
 	      str.startsWith("700 "))
 	{
-	  str.mid(4);
+	  str = str.mid(4);
 
 	  /*
 	  ** $a - Personal name (NR)
