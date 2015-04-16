@@ -640,8 +640,8 @@ void copy_editor_book::keyPressEvent(QKeyEvent *event)
 
 void copy_editor_book::closeEvent(QCloseEvent *e)
 {
+  Q_UNUSED(e);
   slotCloseCopyEditor();
-  QDialog::closeEvent(e);
 }
 
 /*

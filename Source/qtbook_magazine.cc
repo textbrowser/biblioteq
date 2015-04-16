@@ -1867,7 +1867,6 @@ void qtbook_magazine::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeMagazine(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

@@ -186,8 +186,8 @@ void z3950results::slotUpdateQueryText(void)
 
 void z3950results::closeEvent(QCloseEvent *e)
 {
+  Q_UNUSED(e);
   slotClose();
-  QDialog::closeEvent(e);
 }
 
 /*

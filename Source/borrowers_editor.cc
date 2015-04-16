@@ -600,8 +600,8 @@ void borrowers_editor::keyPressEvent(QKeyEvent *event)
 
 void borrowers_editor::closeEvent(QCloseEvent *e)
 {
+  Q_UNUSED(e);
   slotCloseCurrentBorrowers();
-  QDialog::closeEvent(e);
 }
 
 /*

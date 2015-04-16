@@ -2084,7 +2084,6 @@ void qtbook_cd::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeCD(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

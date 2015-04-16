@@ -1484,7 +1484,6 @@ void qtbook_videogame::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeVideoGame(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

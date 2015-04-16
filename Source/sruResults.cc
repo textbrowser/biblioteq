@@ -175,8 +175,8 @@ void sruresults::slotUpdateQueryText(void)
 
 void sruresults::closeEvent(QCloseEvent *e)
 {
+  Q_UNUSED(e);
   slotClose();
-  QDialog::closeEvent(e);
 }
 
 /*

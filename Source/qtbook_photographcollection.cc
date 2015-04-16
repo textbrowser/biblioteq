@@ -896,7 +896,6 @@ void qtbook_photographcollection::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removePhotographCollection(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

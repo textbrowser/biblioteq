@@ -74,7 +74,6 @@ void qtbook_journal::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeJournal(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

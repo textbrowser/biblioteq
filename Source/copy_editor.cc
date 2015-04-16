@@ -929,8 +929,8 @@ void copy_editor::clearCopiesList(void)
 
 void copy_editor::closeEvent(QCloseEvent *e)
 {
+  Q_UNUSED(e);
   slotCloseCopyEditor();
-  QDialog::closeEvent(e);
 }
 
 /*

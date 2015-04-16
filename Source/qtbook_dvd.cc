@@ -1660,7 +1660,6 @@ void qtbook_dvd::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeDVD(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*

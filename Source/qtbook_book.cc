@@ -2006,7 +2006,6 @@ void qtbook_book::closeEvent(QCloseEvent *e)
 	}
 
   qmain->removeBook(this);
-  QMainWindow::closeEvent(e);
 }
 
 /*
