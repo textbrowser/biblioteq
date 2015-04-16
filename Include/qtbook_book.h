@@ -8,6 +8,9 @@
 #include <QBuffer>
 #include <QDialog>
 #include <QFileDialog>
+#if QT_VERSION < 0x050000
+#include <QHttp>
+#endif
 #include <QMainWindow>
 #include <QMenu>
 #include <QNetworkAccessManager>
@@ -48,6 +51,10 @@ class qtbook_book: public QMainWindow, public qtbook_item
   QBuffer m_imageBuffer;
   QByteArray m_sruResults;
   QDialog *m_proxyDialog;
+#if QT_VERSION < 0x050000
+  QHttp *m_imageHttp;
+  QHttp *m_sruHttp;
+#endif
   QNetworkAccessManager *m_imageManager;
   QNetworkAccessManager *m_sruManager;
   QPalette te_orig_pal;
@@ -60,8 +67,11 @@ class qtbook_book: public QMainWindow, public qtbook_item
   generic_thread *thread;
   qtbook_item_working_dialog *httpProgress;
   qtbook_item_working_dialog *m_sruWorking;
+  bool useHttp(void) const;
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);
+  void downloadFinished(void);
+  void sruDownloadFinished(void);
 
  private slots:
   void slotCancel(void);
@@ -69,6 +79,7 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotConvertISBN10to13(void);
   void slotConvertISBN13to10(void);
   void slotDataTransferProgress(qint64, qint64);
+  void slotDownloadFinished(bool error);
   void slotDownloadFinished(void);
   void slotDownloadImage(void);
   void slotGo(void);
@@ -76,11 +87,14 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotPrint(void);
   void slotProxyAuthenticationRequired
     (const QNetworkProxy &, QAuthenticator *);
+  void slotReadyRead(const QHttpResponseHeader &resp);
   void slotReadyRead(void);
   void slotReset(void);
+  void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
+  void slotSRUReadyRead(const QHttpResponseHeader &resp);
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);
