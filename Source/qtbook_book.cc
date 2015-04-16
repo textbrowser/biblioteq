@@ -3399,7 +3399,7 @@ bool qtbook_book::useHttp(void) const
 {
 #if QT_VERSION < 0x050000
 #ifdef Q_OS_MAC
-  if(QSysInfo::MacintoshVersion == QSysInfo::MV_10_6)
+  if(QSysInfo::MacintoshVersion <= QSysInfo::MV_10_6)
     return true;
   else
     return false;

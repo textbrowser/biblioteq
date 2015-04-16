@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QAuthenticator>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QSqlField>
@@ -57,8 +58,22 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_sruManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
+  if((m_proxyDialog = new(std::nothrow) QDialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if(useHttp())
+    {
+#if QT_VERSION < 0x050000
+      if((m_sruHttp = new(std::nothrow) QHttp(this)) == 0)
+	qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+#endif
+    }
+  else
+    {
+      if((m_sruManager = new(std::nothrow)
+	  QNetworkAccessManager(this)) == 0)
+	qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
+    }
 
   if((m_sruWorking = new(std::nothrow)
       qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
@@ -3029,8 +3044,18 @@ void qtbook_magazine::slotSRUQuery(void)
       return;
     }
 
-  if(m_sruManager->findChild<QNetworkReply *> ())
-    return;
+  if(useHttp())
+    {
+#if QT_VERSION < 0x050000
+      if(m_sruHttp->currentId() != 0)
+	return;
+#endif
+    }
+  else
+    {
+      if(m_sruManager->findChild<QNetworkReply *> ())
+	return;
+    }
 
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
@@ -3072,15 +3097,40 @@ void qtbook_magazine::slotSRUQuery(void)
     {
       if(type == "http" || type == "socks5" || type == "system")
 	{
-	  /*
-	  ** This is required to resolve an odd error.
-	  */
+	  if(useHttp())
+	    {
+#if QT_VERSION < 0x050000
+	      connect
+		(m_sruHttp,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
+#endif
+	    }
+	  else
+	    {
+	      /*
+	      ** This is required to resolve an odd error.
+	      */
 
-	  QNetworkReply *reply = m_sruManager->get
-	    (QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+	      QNetworkReply *reply = m_sruManager->get
+		(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
 
-	  if(reply)
-	    reply->deleteLater();
+	      if(reply)
+		reply->deleteLater();
+
+	      connect
+		(m_sruManager,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
+	    }
 	}
 
       if(type == "http" || type == "socks5")
@@ -3108,7 +3158,14 @@ void qtbook_magazine::slotSRUQuery(void)
 	  if(!password.isEmpty())
 	    proxy.setPassword(password);
 
-	  m_sruManager->setProxy(proxy);
+	  if(useHttp())
+	    {
+#if QT_VERSION < 0x050000
+	      m_sruHttp->setProxy(proxy);
+#endif
+	    }
+	  else
+	    m_sruManager->setProxy(proxy);
 	}
       else if(type == "system")
 	{
@@ -3119,22 +3176,60 @@ void qtbook_magazine::slotSRUQuery(void)
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
 
-	  m_sruManager->setProxy(proxy);
+	  if(useHttp())
+	    {
+#if QT_VERSION < 0x050000
+	      m_sruHttp->setProxy(proxy);
+#endif
+	    }
+	  else
+	    m_sruManager->setProxy(proxy);
 	}
     }
 
-  QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
-
-  if(reply)
+  if(useHttp())
     {
+#if QT_VERSION < 0x050000
+      if(url.port() == -1)
+	url.setPort(80);
+
+      m_sruHttp->abort();
       m_sruResults.clear();
-      connect(reply, SIGNAL(readyRead(void)),
-	      this, SLOT(slotSRUReadyRead(void)));
-      connect(reply, SIGNAL(finished(void)),
-	      this, SLOT(slotSRUDownloadFinished(void)));
+      connect(m_sruHttp, SIGNAL(done(bool)),
+	      this, SLOT(slotSRUDownloadFinished(bool)),
+	      Qt::UniqueConnection);
+      connect(m_sruHttp, SIGNAL(readyRead(const QHttpResponseHeader &)),
+	      this, SLOT(slotSRUReadyRead(const QHttpResponseHeader &)),
+	      Qt::UniqueConnection);
+      m_sruHttp->setHost(url.host(), url.port());
+      m_sruHttp->get(url.toEncoded());
+#endif
     }
   else
-    m_sruWorking->hide();
+    {
+      QNetworkReply *reply = m_sruManager->get(QNetworkRequest(url));
+
+      if(reply)
+	{
+	  m_sruResults.clear();
+	  connect(reply, SIGNAL(readyRead(void)),
+		  this, SLOT(slotSRUReadyRead(void)));
+	  connect(reply, SIGNAL(finished(void)),
+		  this, SLOT(slotSRUDownloadFinished(void)));
+	}
+      else
+	m_sruWorking->hide();
+    }
+}
+
+/*
+** -- slotSRUDownloadFinished() --
+*/
+
+void qtbook_magazine::slotSRUDownloadFinished(bool error)
+{
+  Q_UNUSED(error);
+  sruDownloadFinished();
 }
 
 /*
@@ -3148,6 +3243,15 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
   if(reply)
     reply->deleteLater();
 
+  sruDownloadFinished();
+}
+
+/*
+** -- sruDownloadFinished() --
+*/
+
+void qtbook_magazine::sruDownloadFinished(void)
+{
   m_sruWorking->hide();
   update();
 
@@ -3206,10 +3310,63 @@ void qtbook_magazine::slotSRUDownloadFinished(void)
 ** -- slotSRUReadyRead() --
 */
 
+void qtbook_magazine::slotSRUReadyRead(const QHttpResponseHeader &resp)
+{
+  Q_UNUSED(resp);
+  m_sruResults.append(m_sruHttp->readAll());
+}
+
+/*
+** -- slotSRUReadyRead() --
+*/
+
 void qtbook_magazine::slotSRUReadyRead(void)
 {
   QNetworkReply *reply = qobject_cast<QNetworkReply *> (sender());
 
   if(reply)
     m_sruResults.append(reply->readAll());
+}
+
+/*
+** -- slotProxyAuthenticationRequired() --
+*/
+
+void qtbook_magazine::slotProxyAuthenticationRequired
+(const QNetworkProxy &proxy, QAuthenticator *authenticator)
+{
+  if(authenticator)
+    {
+      ui_p.messageLabel->setText
+	(QString(tr("The proxy %1:%2 is requesting "
+		    "credentials.").
+		 arg(proxy.hostName()).
+		 arg(proxy.port())));
+
+      if(m_proxyDialog->exec() == QDialog::Accepted)
+	{
+	  authenticator->setUser(ui_p.usernameLineEdit->text());
+	  authenticator->setPassword(ui_p.passwordLineEdit->text());
+	}
+    }
+}
+
+/*
+** -- useHttp() --
+*/
+
+bool qtbook_magazine::useHttp(void) const
+{
+#if QT_VERSION < 0x050000
+#ifdef Q_OS_MAC
+  if(QSysInfo::MacintoshVersion <= QSysInfo::MV_10_6)
+    return true;
+  else
+    return false;
+#else
+  return false;
+#endif
+#else
+  return false;
+#endif
 }
