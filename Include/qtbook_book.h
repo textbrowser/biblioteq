@@ -87,14 +87,18 @@ class qtbook_book: public QMainWindow, public qtbook_item
   void slotPrint(void);
   void slotProxyAuthenticationRequired
     (const QNetworkProxy &, QAuthenticator *);
+#if QT_VERSION < 0x050000
   void slotReadyRead(const QHttpResponseHeader &resp);
+#endif
   void slotReadyRead(void);
   void slotReset(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
   void slotSRUError(QNetworkReply::NetworkError error);
   void slotSRUQuery(void);
+#if QT_VERSION < 0x050000
   void slotSRUReadyRead(const QHttpResponseHeader &resp);
+#endif
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
   void slotSelectImage(void);

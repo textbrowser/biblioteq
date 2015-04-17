@@ -81,7 +81,9 @@ class qtbook_magazine: public QMainWindow, public qtbook_item
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
   void slotSRUQuery(void);
+#if QT_VERSION < 0x050000
   void slotSRUReadyRead(const QHttpResponseHeader &resp);
+#endif
   void slotSRUReadyRead(void);
   void slotSelectImage(void);
   void slotShowUsers(void);

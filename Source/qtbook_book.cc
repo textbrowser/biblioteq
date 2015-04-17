@@ -3023,11 +3023,13 @@ void qtbook_book::slotCancelImageDownload(void)
 ** -- slotReadyRead() --
 */
 
+#if QT_VERSION < 0x050000
 void qtbook_book::slotReadyRead(const QHttpResponseHeader &resp)
 {
   Q_UNUSED(resp);
   m_imageBuffer.write(m_imageHttp->readAll());
 }
+#endif
 
 /*
 ** -- slotReadyRead() --
@@ -3342,11 +3344,13 @@ void qtbook_book::sruDownloadFinished(void)
 ** -- slotSRUReadyRead() --
 */
 
+#if QT_VERSION < 0x050000
 void qtbook_book::slotSRUReadyRead(const QHttpResponseHeader &resp)
 {
   Q_UNUSED(resp);
   m_sruResults.append(m_sruHttp->readAll());
 }
+#endif
 
 /*
 ** -- slotSRUReadyRead() --

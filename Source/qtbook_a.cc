@@ -235,6 +235,33 @@ void qtbook::quit(const char *msg, const char *file, const int line)
 
 qtbook::qtbook(void):QMainWindow()
 {
+  bool anomaly = false;
+
+#if QT_VERSION < 0x050000
+#ifdef Q_OS_MAC
+  if(QSysInfo::MacintoshVersion <= QSysInfo::MV_10_6)
+    anomaly = false;
+  else
+    anomaly = true;
+#endif
+#endif
+
+  if(anomaly)
+    {
+      QNetworkAccessManager manager;
+      QNetworkReply *reply = 0;
+
+      /*
+      ** We need to perform this before a PostgreSQL database connection is
+      ** made. Otherwise, the connection may be severed later.
+      ** The anomaly occurs on OS X 10.7.4 and Qt 4.8.6.
+      */
+
+      reply = manager.get
+	(QNetworkRequest(QUrl::fromUserInput("http://0.0.0.0")));
+      reply->deleteLater();
+    }
+
   QMenu *menu3 = 0;
   QMenu *menu4 = 0;
 
@@ -7565,7 +7592,6 @@ void qtbook::slotBranchChanged(void)
     {
       br.stackedWidget->setCurrentIndex(1);
       br.userid->selectAll();
-      br.okButton->setFocus();
     }
 
   tmphash.clear();

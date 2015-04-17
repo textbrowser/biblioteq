@@ -3309,11 +3309,13 @@ void qtbook_magazine::sruDownloadFinished(void)
 ** -- slotSRUReadyRead() --
 */
 
+#if QT_VERSION < 0x050000
 void qtbook_magazine::slotSRUReadyRead(const QHttpResponseHeader &resp)
 {
   Q_UNUSED(resp);
   m_sruResults.append(m_sruHttp->readAll());
 }
+#endif
 
 /*
 ** -- slotSRUReadyRead() --
