@@ -169,6 +169,7 @@ sqlite3_soft_heap_limit64
 sqlite3_sourceid
 sqlite3_sql
 sqlite3_status
+sqlite3_status64
 sqlite3_step
 sqlite3_stmt_busy
 sqlite3_stmt_readonly
