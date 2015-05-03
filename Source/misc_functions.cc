@@ -411,7 +411,7 @@ void misc_functions::DBAccount(const QString &userid,
     {
       if(action == DELETE_USER)
 	{
-	  (void) query.exec(QString("DROP USER %1").arg(userid));
+	  (void) query.exec(QString("DROP USER IF EXISTS %1").arg(userid));
 
 	  if(errorstr.isEmpty() && query.lastError().isValid())
 	    errorstr = query.lastError().text();
