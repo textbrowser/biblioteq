@@ -337,6 +337,7 @@ class qtbook: public QMainWindow
   void slotClearSqliteMenu(bool);
   void slotCloseCustomQueryDialog(void);
   void slotCloseMembersBrowser(void);
+  void slotClosePasswordDialog(void);
   void slotConnectDB(void);
   void slotCopyError(void);
   void slotDVDSearch(void);

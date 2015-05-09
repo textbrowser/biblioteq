@@ -584,8 +584,10 @@ qtbook::qtbook(void):QMainWindow()
 	  SLOT(slotExecuteCustomQuery(void)));
   connect(pass.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSavePassword(void)));
-  connect(pass.cancelButton, SIGNAL(clicked(void)), pass_diag,
-	  SLOT(close(void)));
+  connect(pass.cancelButton, SIGNAL(clicked(void)), this,
+	  SLOT(slotClosePasswordDialog(void)));
+  connect(pass_diag, SIGNAL(finished(int)), this,
+	  SLOT(slotClosePasswordDialog(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetLoginDialog(void)));
   connect(br.fileButton, SIGNAL(clicked(void)), this,
@@ -9377,4 +9379,15 @@ void qtbook::changeEvent(QEvent *event)
 QMap<QString, QHash<QString, QString> > qtbook::getSRUMaps(void) const
 {
   return sruMaps;
+}
+
+/*
+** -- slotClosePasswordDialog() --
+*/
+
+void qtbook::slotClosePasswordDialog(void)
+{
+  pass.password->clear();
+  pass.userid->clear();
+  pass_diag->setVisible(false);
 }
