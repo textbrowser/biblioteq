@@ -50,12 +50,15 @@ void image_drop_site::dragEnterEvent(QDragEnterEvent *event)
     filename = event->mimeData()->text().trimmed();
 #endif
 
-  QString imgf = determineFormat(filename);
+  if(event)
+    {
+      QString imgf = determineFormat(filename);
 
-  if(imgf == "BMP" ||
-     imgf == "JPG" || imgf == "JPEG" ||
-     imgf == "PNG")
-    event->acceptProposedAction();
+      if(imgf == "BMP" ||
+	 imgf == "JPG" || imgf == "JPEG" ||
+	 imgf == "PNG")
+	event->acceptProposedAction();
+    }
 }
 
 /*
@@ -86,12 +89,15 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
     filename = event->mimeData()->text().trimmed();
 #endif
 
-  QString imgf = determineFormat(filename);
+  if(event)
+    {
+      QString imgf = determineFormat(filename);
 
-  if(imgf == "BMP" ||
-     imgf == "JPG" || imgf == "JPEG" ||
-     imgf == "PNG")
-    event->acceptProposedAction();
+      if(imgf == "BMP" ||
+	 imgf == "JPG" || imgf == "JPEG" ||
+	 imgf == "PNG")
+	event->acceptProposedAction();
+    }
 }
 
 /*
