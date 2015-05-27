@@ -325,14 +325,14 @@ void borrowers_editor::showUsers(void)
 
 	    if(j == 6 && state == qtbook::EDITABLE)
 	      {
-		if(static_cast<QDateEdit *> (bd.table->cellWidget(row, j)))
+		QDateEdit *de =
+		  static_cast<QDateEdit *> (bd.table->cellWidget(row, j));
+
+		if(de)
 		  {
-		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
-		      setDate(QDate::fromString(str, "MM/dd/yyyy"));
-		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
-		      setMinimumDate(tomorrow);
-		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
-		      setEnabled(true);
+		    de->setDate(QDate::fromString(str, "MM/dd/yyyy"));
+		    de->setEnabled(true);
+		    de->setMinimumDate(tomorrow);
 		  }
 	      }
 	    else if(bd.table->item(row, j) != 0)
