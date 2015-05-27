@@ -223,8 +223,10 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   if(dvd.region->findText(tr("UNKNOWN")) == -1)
     dvd.region->addItem(tr("UNKNOWN"));
 
-  resize(qRound(0.95 * parentWid->size().width()),
-	 qRound(0.95 * parentWid->size().height()));
+  if(parentWid)
+    resize(qRound(0.95 * parentWid->size().width()),
+	   qRound(0.95 * parentWid->size().height()));
+
   dvd.splitter->setStretchFactor(0, 0);
   dvd.splitter->setStretchFactor(1, 1);
   dvd.splitter->setStretchFactor(2, 0);

@@ -117,6 +117,9 @@ void qtbook_item::print(QWidget *parent)
 
 void qtbook_item::updateFont(const QFont &font, QWidget *window)
 {
+  if(!window)
+    return;
+
   window->setFont(font);
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
@@ -138,6 +141,9 @@ void qtbook_item::setOldQ(const int q)
 
 void qtbook_item::storeData(QMainWindow *window)
 {
+  if(!window)
+    return;
+
   QString classname = "";
   QString objectname = "";
 
@@ -186,6 +192,9 @@ void qtbook_item::storeData(QMainWindow *window)
 
 bool qtbook_item::hasDataChanged(QMainWindow *window) const
 {
+  if(!window)
+    return false;
+
   int i = 0;
   bool hasChanged = false;
   QString classname = "";

@@ -201,8 +201,10 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   if(vg.location->findText(tr("UNKNOWN")) == -1)
     vg.location->addItem(tr("UNKNOWN"));
 
-  resize(qRound(0.95 * parentWid->size().width()),
-	 qRound(0.95 * parentWid->size().height()));
+  if(parentWid)
+    resize(qRound(0.95 * parentWid->size().width()),
+	   qRound(0.95 * parentWid->size().height()));
+
   vg.splitter->setStretchFactor(0, 0);
   vg.splitter->setStretchFactor(1, 1);
   vg.splitter->setStretchFactor(2, 0);

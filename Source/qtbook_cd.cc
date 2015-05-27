@@ -219,8 +219,10 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   if(cd.format->findText(tr("UNKNOWN")) == -1)
     cd.format->addItem(tr("UNKNOWN"));
 
-  resize(qRound(0.95 * parentWid->size().width()),
-	 qRound(0.95 * parentWid->size().height()));
+  if(parentWid)
+    resize(qRound(0.95 * parentWid->size().width()),
+	   qRound(0.95 * parentWid->size().height()));
+
   cd.splitter->setStretchFactor(0, 0);
   cd.splitter->setStretchFactor(1, 1);
   cd.splitter->setStretchFactor(2, 0);

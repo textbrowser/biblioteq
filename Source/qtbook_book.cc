@@ -364,8 +364,10 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   ** Prepare the form.
   */
 
-  resize(qRound(0.95 * parentWid->size().width()),
-	 qRound(0.95 * parentWid->size().height()));
+  if(parentWid)
+    resize(qRound(0.95 * parentWid->size().width()),
+	   qRound(0.95 * parentWid->size().height()));
+
   id.splitter->setStretchFactor(0, 0);
   id.splitter->setStretchFactor(1, 1);
   id.splitter->setStretchFactor(2, 0);
