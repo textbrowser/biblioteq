@@ -596,7 +596,9 @@ void copy_editor_book::slotSaveCopies(void)
     }
 
   qapp->restoreOverrideCursor();
-  spinbox->setValue(copies.size());
+
+  if(spinbox)
+    spinbox->setValue(copies.size());
 
   /*
     qapp->setOverrideCursor(Qt::WaitCursor);
@@ -616,7 +618,8 @@ void copy_editor_book::slotSaveCopies(void)
     tr("Quantity"), str);
   */
 
-  bitem->setOldQ(copies.size());
+  if(bitem)
+    bitem->setOldQ(copies.size());
 
   while(!copies.isEmpty())
     delete copies.takeFirst();
@@ -711,6 +714,9 @@ QString copy_editor_book::saveCopies(void)
 	{
 	  copy = copies.at(i);
 
+	  if(!copy)
+	    goto CONTINUE;
+
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, copy_number, "
@@ -756,6 +762,8 @@ QString copy_editor_book::saveCopies(void)
 			      QString(tr("Unable to create copy data.")),
 			      query.lastError().text(), __FILE__, __LINE__);
 	    }
+
+	CONTINUE:
 
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
