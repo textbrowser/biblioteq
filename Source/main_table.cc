@@ -479,6 +479,8 @@ QHash<QString, QString> main_table::friendlyStates(void) const
 
 void main_table::parseStates(const QHash<QString, QString> &states)
 {
+  hiddenColumns.clear();
+
   for(int i = 0; i < states.keys().size(); i++)
     {
       QList<int> intList;
