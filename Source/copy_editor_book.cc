@@ -715,7 +715,7 @@ QString copy_editor_book::saveCopies(void)
 	  copy = copies.at(i);
 
 	  if(!copy)
-	    goto CONTINUE;
+	    goto continue_label;
 
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
@@ -763,7 +763,7 @@ QString copy_editor_book::saveCopies(void)
 			      query.lastError().text(), __FILE__, __LINE__);
 	    }
 
-	CONTINUE:
+	continue_label:
 
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);

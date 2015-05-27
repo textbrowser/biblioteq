@@ -616,7 +616,8 @@ void copy_editor::slotCheckoutCopy(void)
   ** Update the main window's summary panel, if necessary.
   */
 
-  if(ioid ==
+  if(bitem &&
+     ioid ==
      misc_functions::getColumnString(qmain->getUI().table,
 				     bitem->getRow(),
 				     "MYOID") &&
@@ -760,7 +761,9 @@ void copy_editor::slotSaveCopies(void)
     }
 
   qapp->restoreOverrideCursor();
-  spinbox->setValue(copies.size());
+
+  if(spinbox)
+    spinbox->setValue(copies.size());
 
   /*
     qapp->setOverrideCursor(Qt::WaitCursor);
@@ -780,7 +783,8 @@ void copy_editor::slotSaveCopies(void)
     tr("Quantity"), str);
   */
 
-  bitem->setOldQ(copies.size());
+  if(bitem)
+    bitem->setOldQ(copies.size());
 
   while(!copies.isEmpty())
     delete copies.takeFirst();
@@ -832,6 +836,9 @@ QString copy_editor::saveCopies(void)
 	{
 	  copy = copies.at(i);
 
+	  if(!copy)
+	    goto continue_label;
+
 	  if(qmain->getDB().driverName() != "QSQLITE")
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, copy_number, "
@@ -875,6 +882,8 @@ QString copy_editor::saveCopies(void)
 			      QString(tr("Unable to create copy data.")),
 			      query.lastError().text(), __FILE__, __LINE__);
 	    }
+
+	continue_label:
 
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
