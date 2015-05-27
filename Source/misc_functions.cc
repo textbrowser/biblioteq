@@ -1279,6 +1279,9 @@ QString misc_functions::getMemberName(const QSqlDatabase &db,
 void misc_functions::highlightWidget(QWidget *widget,
 				     const QColor &color)
 {
+  if(!widget)
+    return;
+
   QPalette pal;
 
   pal = widget->palette();
@@ -1384,6 +1387,9 @@ void misc_functions::center(QWidget *child, QMainWindow *parent)
 
 void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
 {
+  if(!window)
+    return;
+
   bool showWidgets = true;
   QString str = "";
 

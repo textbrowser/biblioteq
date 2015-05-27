@@ -5427,7 +5427,10 @@ void qtbook::addError(const QString &type, const QString &summary,
 	      item->setText(error.simplified());
 	  }
 	else if(i == 4)
-	  item->setText(file);
+	  {
+	    if(file)
+	      item->setText(file);
+	  }
 	else
 	  {
 	    str.setNum(line);
