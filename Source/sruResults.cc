@@ -68,8 +68,9 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
 	  }
 
       if(row == -1)
-	if(issn == magazine_arg->dialog().id->text())
-	  row = i;
+	if(magazine)
+	  if(issn == magazine->dialog().id->text())
+	    row = i;
 
       if(!issn.isEmpty())
 	ui.list->addItem(issn);
@@ -92,8 +93,11 @@ sruresults::sruresults(QWidget *parent, const QList<QByteArray> &list,
   ui.splitter->setStretchFactor(0,  0);
   ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
-  resize(qRound(0.75 * parent->size().width()),
-	 qRound(0.75 * parent->size().height()));
+
+  if(parent)
+    resize(qRound(0.75 * parent->size().width()),
+	   qRound(0.75 * parent->size().height()));
+
   exec();
 }
 
@@ -112,7 +116,9 @@ sruresults::~sruresults()
 
 void sruresults::slotSelectRecord(void)
 {
-  magazine->populateDisplayAfterSRU(m_records.value(ui.list->currentRow()));
+  if(magazine)
+    magazine->populateDisplayAfterSRU(m_records.value(ui.list->currentRow()));
+
   close();
 }
 
