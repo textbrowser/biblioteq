@@ -1356,9 +1356,12 @@ int misc_functions::sqliteQuerySize
 
 void misc_functions::center(QWidget *child, QMainWindow *parent)
 {
+  if(!child || !parent)
+    return;
+
+  QPoint p(0, 0);
   int X = 0;
   int Y = 0;
-  QPoint p(0, 0);
 
   p = parent->pos();
 

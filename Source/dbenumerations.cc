@@ -132,7 +132,7 @@ void dbenumerations::show(QMainWindow *parent, const bool populate)
 {
   static bool resized = false;
 
-  if(!resized)
+  if(parent && !resized)
     resize(qRound(0.95 * parent->size().width()),
 	   parent->size().height());
 
