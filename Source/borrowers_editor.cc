@@ -325,7 +325,7 @@ void borrowers_editor::showUsers(void)
 
 	    if(j == 6 && state == qtbook::EDITABLE)
 	      {
-		if(bd.table->cellWidget(row, j) != 0)
+		if(static_cast<QDateEdit *> (bd.table->cellWidget(row, j)))
 		  {
 		    static_cast<QDateEdit *> (bd.table->cellWidget(row, j))->
 		      setDate(QDate::fromString(str, "MM/dd/yyyy"));
@@ -472,7 +472,8 @@ void borrowers_editor::slotEraseBorrower(void)
       ** Update the main window's summary panel, if necessary.
       */
 
-      if(ioid ==
+      if(bitem &&
+	 ioid ==
 	 misc_functions::getColumnString(qmain->getUI().table,
 					 bitem->getRow(),
 					 "MYOID") &&
@@ -531,7 +532,7 @@ void borrowers_editor::slotSave(void)
 	{
 	  dueDate = static_cast<QDateEdit *> (bd.table->cellWidget(i, 6));
 
-	  if(dueDate->date() <= now)
+	  if(!dueDate || dueDate->date() <= now)
 	    error = true;
 	  else
 	    {
