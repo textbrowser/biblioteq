@@ -1222,7 +1222,7 @@ void qtbook::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
-	     "Copyright (c) 2006 - present, guess who?<br>"
+	     "Copyright (c) 2005 - present, guess who?<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Qt version %2."
