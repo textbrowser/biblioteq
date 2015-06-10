@@ -1,5 +1,5 @@
 /* This file is part of the YAZ toolkit.
- * Copyright (C) 1995-2009 Index Data.
+ * Copyright (C) 1995-2015 Index Data.
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -33,16 +33,16 @@
 #include <yaz/yconfig.h>
 
 /** \brief YAZ version as string */
-#define YAZ_VERSION "5.7.1"
+#define YAZ_VERSION "5.13.0"
 
 /** \brief YAZ version as integer (for comparison purposes) */
-#define YAZ_VERSIONL 0x50701
+#define YAZ_VERSIONL 0x50d00
 
 /** \brief YAZ file version for YAZ DLL (resource) */
-#define YAZ_FILEVERSION 5,7,1,1
+#define YAZ_FILEVERSION 5,13,0,1
 
 /** \brief SHA1 ID for YAZ (Git) */
-#define YAZ_VERSION_SHA1 "5e32cb44eba42ca45f4749d9c14d70a31edd62fc"
+#define YAZ_VERSION_SHA1 "6533da485c4fcf4bc1bb6d70d0b18b13602381ff"
 
 YAZ_BEGIN_CDECL
 

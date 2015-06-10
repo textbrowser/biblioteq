@@ -41,6 +41,7 @@ YAZ_BEGIN_CDECL
 #define YAZ_DAEMON_FORK 1
 #define YAZ_DAEMON_DEBUG 2
 #define YAZ_DAEMON_KEEPALIVE 4
+#define YAZ_DAEMON_LOG_REOPEN 8
 
 /** \brief daemon utility.
     \param progname program name for logging purposes.
@@ -61,6 +62,8 @@ YAZ_BEGIN_CDECL
 
     Flag YAZ_DAEMON_KEEPALIVE: Repeatedly calls work handler if it makes a
     "fatal" error.
+
+    Flag YAZ_DAEMON_KEEPALIVE: Re-opens yaz log if SIGHUP is received
 */
 YAZ_EXPORT
 int yaz_daemon(const char *progname,

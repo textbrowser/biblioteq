@@ -220,6 +220,13 @@ YAZ_EXPORT void log_event_end(void (*func)(int level, const char *msg,
 */
 YAZ_EXPORT void yaz_log_xml_errors(const char *prefix, int log_level);
 
+/** \brief Lock for YAZ log writes
+*/
+YAZ_EXPORT void yaz_log_lock(void);
+
+/** \brief Unlock for YAZ log writes
+*/
+YAZ_EXPORT void yaz_log_unlock(void);
 YAZ_END_CDECL
 
 #endif
