@@ -150,8 +150,8 @@ void generic_thread::run(void)
 
 	if(i == 0)
 	  {
-	    const char *errmsg;
 	    const char *addinfo;
+	    const char *errmsg;
 
 	    if(ZOOM_connection_error(zoomConnection, &errmsg, &addinfo) != 0)
 	      {
