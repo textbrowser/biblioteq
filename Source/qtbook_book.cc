@@ -2325,12 +2325,12 @@ void qtbook_book::slotZ3950Query(void)
 	isbn13User = true;
 
       if(isbns.at(0).isEmpty())
-	isbns.replace(0, isbns.at(1));
+	searchstr = QString("@attr 1=7 %1").arg(isbns.at(1));
       else if(isbns.at(1).isEmpty())
-	isbns.replace(1, isbns.at(0));
-
-      searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
-	arg(isbns.at(1));
+	searchstr = QString("@attr 1=7 %1").arg(isbns.at(0));
+      else
+	searchstr = QString("@attr 1=7 @or %1 %2").arg(isbns.at(0)).
+	  arg(isbns.at(1));
 
       bool found = false;
 
