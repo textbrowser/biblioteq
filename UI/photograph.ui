@@ -106,6 +106,12 @@
           <layout class="QHBoxLayout" name="_3">
            <item>
             <widget class="QDateEdit" name="publication_date">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="displayFormat">
               <string>yyyy-MM-dd</string>
              </property>

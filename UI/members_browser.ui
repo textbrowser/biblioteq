@@ -33,6 +33,9 @@
          </item>
          <item>
           <widget class="QComboBox" name="filtertype">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
            <item>
             <property name="text">
              <string>Member ID</string>
@@ -90,6 +93,9 @@
          <property name="cornerButtonEnabled">
           <bool>false</bool>
          </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
          <column>
           <property name="text">
            <string>Member ID</string>

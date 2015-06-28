@@ -283,7 +283,7 @@ CREATE TABLE member
 	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
 	membersince	 VARCHAR(32) NOT NULL,
 	dob		 VARCHAR(32) NOT NULL,
-	sex		 VARCHAR(32) NOT NULL DEFAULT 'Female',
+	sex		 VARCHAR(32) NOT NULL DEFAULT 'Private',
 	first_name	 VARCHAR(128) NOT NULL,
 	middle_init	 VARCHAR(1),
 	last_name	 VARCHAR(128) NOT NULL,

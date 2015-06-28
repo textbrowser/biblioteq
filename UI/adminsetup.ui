@@ -46,8 +46,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1099</width>
-             <height>122</height>
+             <width>987</width>
+             <height>127</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout">
@@ -404,6 +404,9 @@
           <property name="cornerButtonEnabled">
            <bool>false</bool>
           </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
           <column>
            <property name="text">
             <string>ID</string>

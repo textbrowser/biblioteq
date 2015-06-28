@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1072</width>
-         <height>1552</height>
+         <height>1545</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -364,6 +364,12 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="publication_date">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="displayFormat">
                  <string>yyyy-MM-dd</string>
                 </property>
@@ -462,7 +468,11 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="language"/>
+               <widget class="QComboBox" name="language">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>
@@ -493,6 +503,9 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToContents</enum>
               </property>
              </widget>
             </item>
@@ -569,7 +582,11 @@
             <item row="9" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="location"/>
+               <widget class="QComboBox" name="location">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>

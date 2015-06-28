@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1017</width>
-         <height>1347</height>
+         <height>1340</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -204,7 +204,11 @@
             <item row="1" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="rating"/>
+               <widget class="QComboBox" name="rating">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>
@@ -238,7 +242,11 @@
             <item row="3" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="platform"/>
+               <widget class="QComboBox" name="platform">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>
@@ -266,6 +274,9 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QComboBox" name="mode">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
                 <item>
                  <property name="text">
                   <string>Multiplayer</string>
@@ -337,6 +348,12 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="release_date">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="displayFormat">
                  <string>yyyy-MM-dd</string>
                 </property>
@@ -435,7 +452,11 @@
             <item row="6" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="language"/>
+               <widget class="QComboBox" name="language">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>
@@ -466,6 +487,9 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToContents</enum>
               </property>
              </widget>
             </item>
@@ -542,7 +566,11 @@
             <item row="9" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="location"/>
+               <widget class="QComboBox" name="location">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>

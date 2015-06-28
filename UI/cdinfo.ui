@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1022</width>
-         <height>1147</height>
+         <height>1140</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -209,7 +209,7 @@
                  <number>-1</number>
                 </property>
                 <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+                 <enum>QComboBox::AdjustToContents</enum>
                 </property>
                </widget>
               </item>
@@ -501,6 +501,12 @@
              <layout class="QHBoxLayout">
               <item>
                <widget class="QDateEdit" name="release_date">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="displayFormat">
                  <string>yyyy-MM-dd</string>
                 </property>
@@ -601,7 +607,7 @@
               <item>
                <widget class="QComboBox" name="language">
                 <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+                 <enum>QComboBox::AdjustToContents</enum>
                 </property>
                </widget>
               </item>
@@ -634,6 +640,9 @@
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::AdjustToContents</enum>
               </property>
              </widget>
             </item>
@@ -710,7 +719,11 @@
             <item row="8" column="1">
              <layout class="QHBoxLayout">
               <item>
-               <widget class="QComboBox" name="location"/>
+               <widget class="QComboBox" name="location">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer>

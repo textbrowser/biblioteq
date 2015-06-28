@@ -515,6 +515,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="locationsTable">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <column>
                <property name="text">
                 <string>Type</string>
@@ -687,6 +690,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="minimumDaysTable">
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
               <row>
                <property name="text">
                 <string>1</string>

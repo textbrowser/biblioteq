@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>435</width>
-    <height>685</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,6 +55,12 @@
           <widget class="QDateEdit" name="membersince">
            <property name="enabled">
             <bool>true</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
            <property name="readOnly">
             <bool>false</bool>
@@ -164,6 +170,12 @@
         <layout class="QHBoxLayout">
          <item>
           <widget class="QDateEdit" name="dob">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="readOnly">
             <bool>false</bool>
            </property>
@@ -201,6 +213,12 @@
         <layout class="QHBoxLayout">
          <item>
           <widget class="QComboBox" name="sex">
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
            <item>
             <property name="text">
              <string>Female</string>
@@ -209,6 +227,11 @@
            <item>
             <property name="text">
              <string>Male</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Private</string>
             </property>
            </item>
           </widget>
@@ -267,6 +290,9 @@
         <layout class="QHBoxLayout">
          <item>
           <widget class="QComboBox" name="state">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
            <item>
             <property name="text">
              <string>N/A</string>
@@ -572,6 +598,12 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QDateEdit" name="expirationdate">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="displayFormat">
             <string>yyyy-MM-dd</string>
            </property>

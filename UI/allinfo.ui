@@ -77,6 +77,12 @@
             <layout class="QHBoxLayout">
              <item>
               <widget class="QDateEdit" name="publication_date">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -169,7 +175,11 @@
            <item row="6" column="1">
             <layout class="QGridLayout">
              <item row="0" column="0">
-              <widget class="QComboBox" name="language"/>
+              <widget class="QComboBox" name="language">
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+              </widget>
              </item>
              <item row="0" column="1">
               <spacer>
@@ -200,6 +210,9 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QComboBox::AdjustToContents</enum>
              </property>
             </widget>
            </item>
@@ -270,7 +283,11 @@
            <item row="10" column="1">
             <layout class="QHBoxLayout">
              <item>
-              <widget class="QComboBox" name="location"/>
+              <widget class="QComboBox" name="location">
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::AdjustToContents</enum>
+               </property>
+              </widget>
              </item>
              <item>
               <spacer>

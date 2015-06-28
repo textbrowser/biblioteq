@@ -1060,3 +1060,7 @@ GRANT DELETE, SELECT ON member_history_dnt TO biblioteq_administrator;
 GRANT SELECT ON member_history_dnt TO biblioteq_circulation;
 GRANT DELETE ON member_history_dnt TO biblioteq_membership;
 GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
+
+/* Release 2015.07.04 */
+
+ALTER TABLE member ALTER sex SET DEFAULT 'Private';

@@ -2160,7 +2160,7 @@ void qtbook::slotAddBorrower(void)
   userinfo_diag->userinfo.lastName->clear();
   userinfo_diag->userinfo.middle->clear();
   userinfo_diag->userinfo.dob->setDate(now.addYears(-25));
-  userinfo_diag->userinfo.sex->setCurrentIndex(0);
+  userinfo_diag->userinfo.sex->setCurrentIndex(2); // Private
   userinfo_diag->userinfo.street->clear();
   userinfo_diag->userinfo.city->clear();
   userinfo_diag->userinfo.state->setCurrentIndex(0);
@@ -4939,7 +4939,7 @@ void qtbook::slotModifyBorrower(void)
 		userinfo_diag->userinfo.sex->setCurrentIndex
 		  (userinfo_diag->userinfo.sex->findText(var.toString()));
 	      else
-		userinfo_diag->userinfo.sex->setCurrentIndex(0);
+		userinfo_diag->userinfo.sex->setCurrentIndex(2); // Private
 	    }
 	  else if(fieldname == "first_name")
 	    userinfo_diag->userinfo.firstName->setText(var.toString());

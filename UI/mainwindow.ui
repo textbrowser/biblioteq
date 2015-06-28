@@ -30,6 +30,9 @@
       </item>
       <item>
        <widget class="QComboBox" name="searchType">
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToContents</enum>
+        </property>
         <item>
          <property name="text">
           <string>Category</string>
@@ -98,7 +101,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>278</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -233,6 +236,9 @@
               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                <bool>true</bool>
               </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
              </widget>
             </item>
            </layout>
@@ -344,7 +350,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>24</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
