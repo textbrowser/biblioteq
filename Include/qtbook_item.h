@@ -53,7 +53,7 @@ class qtbook_item
  public:
   qtbook_item(const int);
   qtbook_item(void);
-  ~qtbook_item();
+  virtual ~qtbook_item();
   QString getID(void) const;
   int getOldQ(void) const;
   int getRow(void) const;
