@@ -132,6 +132,7 @@ int main(int argc, char *argv[])
   if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  qapp->setStyleSheet("QStatusBar::item{border: 0px};");
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000
   /*
