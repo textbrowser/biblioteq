@@ -23,6 +23,8 @@
 
 class qtbook_item_working_dialog: public QProgressDialog
 {
+  Q_OBJECT
+
  public:
   qtbook_item_working_dialog(QMainWindow *parent):QProgressDialog(parent)
   {

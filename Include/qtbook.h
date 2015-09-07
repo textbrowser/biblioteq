@@ -50,6 +50,140 @@ using namespace std;
 #include "ui_password.h"
 #include "ui_userinfo.h"
 
+class userinfo_diag_class: public QDialog
+{
+  Q_OBJECT
+
+ public:
+  userinfo_diag_class(QMainWindow *parent):QDialog(parent)
+  {
+    userinfo.setupUi(this);
+  }
+
+  ~userinfo_diag_class()
+  {
+  }
+
+  QHash<QString, QString> memberProperties;
+  Ui_UserInfo userinfo;
+
+  bool haveMemberChanges(QString &str)
+  {
+    QStringList list;
+
+    if(memberProperties["membersince"] !=
+       userinfo.membersince->date().toString(Qt::ISODate))
+      list << "membersince";
+
+    if(memberProperties["dob"] !=
+       userinfo.dob->date().toString(Qt::ISODate))
+      list << "dob";
+
+    if(memberProperties["sex"] != userinfo.sex->currentText())
+      list << "sex";
+
+    if(memberProperties["first_name"] != userinfo.firstName->text().
+       trimmed())
+      list << "first_name";
+
+    if(memberProperties["middle_init"] != userinfo.middle->text().trimmed())
+      list << "middle_init";
+
+    if(memberProperties["last_name"] != userinfo.lastName->text().trimmed())
+      list << "last_name";
+
+    if(memberProperties["telephone_num"] !=
+       userinfo.telephoneNumber->text())
+      list << "telephone_num";
+
+    if(memberProperties["street"] != userinfo.street->text().trimmed())
+      list << "street";
+
+    if(memberProperties["city"] != userinfo.city->text().trimmed())
+      list << "city";
+
+    if(memberProperties["state_abbr"] != userinfo.state->currentText())
+      list << "state_abbr";
+
+    if(memberProperties["zip"] != userinfo.zip->text())
+      list << "zip";
+
+    if(memberProperties["email"] != userinfo.email->text())
+      list << "email";
+
+    if(memberProperties["expiration_date"] !=
+       userinfo.expirationdate->date().toString(Qt::ISODate))
+      list << "expiration_date";
+
+    if(memberProperties["overdue_fees"] !=
+       QString::number(userinfo.overduefees->value()))
+      list << "overdue_fees";
+
+    if(memberProperties["comments"] != userinfo.comments->toPlainText().
+       trimmed())
+      list << "comments";
+
+    if(memberProperties["general_registration_number"] !=
+       userinfo.generalregistrationnumber->text().trimmed())
+      list << "general_registration_number";
+
+    if(memberProperties["memberclass"] !=
+       userinfo.memberclass->text().trimmed())
+      list << "memberclass";
+
+    while(!list.isEmpty())
+      str += list.takeFirst() + ", ";
+
+    if(!str.isEmpty())
+      {
+	str.prepend("(");
+	str = str.mid(0, str.length() - 2);
+	str.append(")");
+      }
+
+    return !str.isEmpty();
+  }
+
+ private:
+  void changeEvent(QEvent *event)
+  {
+    if(event)
+      switch(event->type())
+	{
+	case QEvent::LanguageChange:
+	  {
+	    userinfo.retranslateUi(this);
+	    break;
+	  }
+	default:
+	  break;
+	}
+
+    QDialog::changeEvent(event);
+  }
+
+  void closeEvent(QCloseEvent *e)
+  {
+    QString str("");
+
+    if(haveMemberChanges(str))
+      if(QMessageBox::question
+	 (this, tr("BiblioteQ: Question"),
+	  tr("Your changes have not been saved. Continue closing?\n%1").
+	  arg(str),
+	  QMessageBox::Yes | QMessageBox::No,
+	  QMessageBox::No) == QMessageBox::No)
+	{
+	  if(e)
+	    e->ignore();
+
+	  return;
+	}
+
+    QDialog::closeEvent(e);
+  }
+};
+
 class qtbook: public QMainWindow
 {
   Q_OBJECT
@@ -58,139 +192,6 @@ class qtbook: public QMainWindow
   static QString s_locale;
   static QTranslator *s_appTranslator;
   static QTranslator *s_qtTranslator;
-
-  class userinfo_diag_class: public QDialog
-  {
-  public:
-    userinfo_diag_class(QMainWindow *parent):QDialog(parent)
-    {
-      userinfo.setupUi(this);
-    }
-
-    ~userinfo_diag_class()
-    {
-    }
-
-    QHash<QString, QString> memberProperties;
-    Ui_UserInfo userinfo;
-
-    bool haveMemberChanges(QString &str)
-    {
-      QStringList list;
-
-      if(memberProperties["membersince"] !=
-	 userinfo.membersince->date().toString(Qt::ISODate))
-	list << "membersince";
-
-      if(memberProperties["dob"] !=
-	 userinfo.dob->date().toString(Qt::ISODate))
-	list << "dob";
-
-      if(memberProperties["sex"] != userinfo.sex->currentText())
-	list << "sex";
-
-      if(memberProperties["first_name"] != userinfo.firstName->text().
-	 trimmed())
-	list << "first_name";
-
-      if(memberProperties["middle_init"] != userinfo.middle->text().trimmed())
-	list << "middle_init";
-
-      if(memberProperties["last_name"] != userinfo.lastName->text().trimmed())
-	list << "last_name";
-
-      if(memberProperties["telephone_num"] !=
-	 userinfo.telephoneNumber->text())
-	list << "telephone_num";
-
-      if(memberProperties["street"] != userinfo.street->text().trimmed())
-	list << "street";
-
-      if(memberProperties["city"] != userinfo.city->text().trimmed())
-	list << "city";
-
-      if(memberProperties["state_abbr"] != userinfo.state->currentText())
-	list << "state_abbr";
-
-      if(memberProperties["zip"] != userinfo.zip->text())
-	list << "zip";
-
-      if(memberProperties["email"] != userinfo.email->text())
-	list << "email";
-
-      if(memberProperties["expiration_date"] !=
-	 userinfo.expirationdate->date().toString(Qt::ISODate))
-	list << "expiration_date";
-
-      if(memberProperties["overdue_fees"] !=
-	 QString::number(userinfo.overduefees->value()))
-	list << "overdue_fees";
-
-      if(memberProperties["comments"] != userinfo.comments->toPlainText().
-	 trimmed())
-	list << "comments";
-
-      if(memberProperties["general_registration_number"] !=
-	 userinfo.generalregistrationnumber->text().trimmed())
-	list << "general_registration_number";
-
-      if(memberProperties["memberclass"] !=
-	 userinfo.memberclass->text().trimmed())
-	list << "memberclass";
-
-      while(!list.isEmpty())
-	str += list.takeFirst() + ", ";
-
-      if(!str.isEmpty())
-	{
-	  str.prepend("(");
-	  str = str.mid(0, str.length() - 2);
-	  str.append(")");
-	}
-
-      return !str.isEmpty();
-    }
-
-  private:
-    void changeEvent(QEvent *event)
-    {
-      if(event)
-	switch(event->type())
-	  {
-	  case QEvent::LanguageChange:
-	    {
-	      userinfo.retranslateUi(this);
-	      break;
-	    }
-	  default:
-	    break;
-	  }
-
-      QDialog::changeEvent(event);
-    }
-
-    void closeEvent(QCloseEvent *e)
-    {
-      QString str("");
-
-      if(haveMemberChanges(str))
-	if(QMessageBox::question
-	   (this, tr("BiblioteQ: Question"),
-	    tr("Your changes have not been saved. Continue closing?\n%1").
-	    arg(str),
-	    QMessageBox::Yes | QMessageBox::No,
-	    QMessageBox::No) == QMessageBox::No)
-	  {
-	    if(e)
-	      e->ignore();
-
-	    return;
-	  }
-
-      QDialog::closeEvent(e);
-    }
-  };
-
   static const int CUSTOM_QUERY = 0;
   static const int EDITABLE = 0;
   static const int NEW_PAGE = 0;

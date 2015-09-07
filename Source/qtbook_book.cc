@@ -49,6 +49,8 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  httpProgress->setWindowTitle(tr("BiblioteQ: Image Download"));
+
   if(useHttp())
     {
 #if QT_VERSION < 0x050000
