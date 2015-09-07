@@ -1187,6 +1187,7 @@ void qtbook_cd::modify(const int state)
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected CD's "
 			       "data."));
+      cd.id->setFocus();
       return;
     }
   else

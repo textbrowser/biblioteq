@@ -1375,6 +1375,7 @@ void qtbook_magazine::modify(const int state)
 			"data.")));
 	}
 
+      ma.id->setFocus();
       return;
     }
   else
