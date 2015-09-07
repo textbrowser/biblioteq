@@ -106,7 +106,6 @@ void image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 void image_drop_site::dropEvent(QDropEvent *event)
 {
-  QPixmap pixmap;
   QString imgf("");
   QString filename("");
 
@@ -145,6 +144,8 @@ void image_drop_site::dropEvent(QDropEvent *event)
 
       if(scene()->items().size() > 0)
 	scene()->removeItem(scene()->items().at(0));
+
+      QPixmap pixmap;
 
       if(image.width() > width() ||
 	 image.height() > height())
@@ -309,12 +310,7 @@ void image_drop_site::loadFromData(const QByteArray &bytes)
 
 void image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  QPixmap pixmap;
-
   QGraphicsView::mouseDoubleClickEvent(event);
-
-  if(image.width() < width() && image.height() < height())
-    return;
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
@@ -323,7 +319,7 @@ void image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
     scene()->addPixmap(QPixmap().fromImage(image));
   else
     {
-      pixmap = QPixmap().fromImage(image);
+      QPixmap pixmap(QPixmap().fromImage(image));
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
