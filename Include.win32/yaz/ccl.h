@@ -78,8 +78,6 @@
 
 YAZ_BEGIN_CDECL
 
-#define YAZ_781 1
-
 #define CCL_ERR_OK                0
 #define CCL_ERR_TERM_EXPECTED     1
 #define CCL_ERR_RP_EXPECTED       2
@@ -358,6 +356,7 @@ struct ccl_rpn_attr *ccl_parser_qual_search(CCL_parser cclp, const char *name,
 #define CCL_BIB1_STR_AND_LIST (-2)
 #define CCL_BIB1_STR_OR_LIST (-3)
 #define CCL_BIB1_STR_AUTO_GROUP (-4)
+#define CCL_BIB1_STR_SPLIT_LIST (-5)
 #define CCL_BIB1_REL_ORDER (-1)
 #define CCL_BIB1_REL_PORDER (-2)
 #define CCL_BIB1_REL_OMIT_EQUALS (-3)
