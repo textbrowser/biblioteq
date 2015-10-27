@@ -49,6 +49,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   if((httpProgress = new(std::nothrow) qtbook_item_working_dialog(this)) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  httpProgress->reset(); // Qt 5.5.x adjustment.
   httpProgress->setWindowTitle(tr("BiblioteQ: Image Download"));
 
   if(useHttp())
@@ -86,6 +87,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
       qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setModal(true);
   m_sruWorking->setWindowTitle(tr("BiblioteQ: SRU Data Retrieval"));
   m_sruWorking->setLabelText(tr("Downloading information from the SRU "
