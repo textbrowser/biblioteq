@@ -38,6 +38,7 @@
 #include <QMacStyle>
 #endif
 #endif
+#include <QPointer>
 #include <QSettings>
 #include <QSqlDriver>
 #include <QSqlField>
@@ -81,7 +82,7 @@ QApplication *qapp = 0;
 QString qtbook::s_locale = "";
 QTranslator *qtbook::s_appTranslator = 0;
 QTranslator *qtbook::s_qtTranslator = 0;
-qtbook *qmain = 0;
+QPointer<qtbook> qmain = 0;
 
 /*
 ** -- main() --
