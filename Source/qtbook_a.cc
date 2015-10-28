@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
   ** Enter an endless loop.
   */
 
-  return qapp->exec();
+  return QApplication::exec();
 }
 
 /*
@@ -190,10 +190,7 @@ void qtbook::quit(void)
       qmain->cleanup();
     }
 
-  if(qapp != 0)
-    qapp->quit();
-  else
-    exit(EXIT_FAILURE);
+  QApplication::quit();
 }
 
 /*
@@ -2010,7 +2007,7 @@ void qtbook::slotDelete(void)
 void qtbook::closeEvent(QCloseEvent *e)
 {
   slotExit();
-  QMainWindow::closeEvent(e);
+  Q_UNUSED(e);
 }
 
 /*
