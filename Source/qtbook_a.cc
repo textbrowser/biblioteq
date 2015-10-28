@@ -82,7 +82,7 @@ QApplication *qapp = 0;
 QString qtbook::s_locale = "";
 QTranslator *qtbook::s_appTranslator = 0;
 QTranslator *qtbook::s_qtTranslator = 0;
-QPointer<qtbook> qmain = 0;
+qtbook *qmain = 0;
 
 /*
 ** -- main() --
@@ -189,6 +189,8 @@ void qtbook::quit(void)
 	qmain->slotSaveConfig();
 
       qmain->cleanup();
+      qmain->deleteLater();
+      qmain = 0;
     }
 
   QApplication::quit();
@@ -221,7 +223,11 @@ void qtbook::quit(const char *msg, const char *file, const int line)
 	     << line << tr(".");
 
   if(qmain != 0)
-    qmain->cleanup();
+    {
+      qmain->cleanup();
+      qmain->deleteLater();
+      qmain = 0;
+    }
 
   exit(EXIT_FAILURE);
 }
