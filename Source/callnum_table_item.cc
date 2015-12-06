@@ -17,7 +17,7 @@
 
 #include "callnum_table_item.h"
 
-#undef CALLNUM_DEBUG
+#undef BIBLIOTEQ_CALLNUM_DEBUG
 
 callnum_table_item::callnum_table_item(const QString &str):
   QTableWidgetItem(str)
@@ -33,13 +33,13 @@ static int callnum_lt(QString m, QString n)
      "(?: *\\.([A-Za-z][0-9]+))?(?: *([A-Za-z][0-9]+))?(?: +([0-9]{4}))? *");
 
   // CAPTURE FIELDS - only the first two are required.
-  //   1. Call letters
-  //   2. Call number
-  //   3. Call number decimal places
+  //   1. Call letters.
+  //   2. Call number.
+  //   3. Call number decimal places.
   //   4. Cutter number 1  (these are sorted as decimals, so no need to
-  //      split the characters off - lexicographic works.
-  //   5. Cutter number 2
-  //   6. Year (space is required before it)
+  //      split the characters off - lexicographic works).
+  //   5. Cutter number 2.
+  //   6. Year (space is required before it).
   // (http://geography.about.com/library/congress/blhowto.htm)
 
   QRegExp match1(lc_regexp);
@@ -48,7 +48,7 @@ static int callnum_lt(QString m, QString n)
   bool res1 = match1.exactMatch(m);
   bool res2 = match2.exactMatch(n);
 
-#ifdef CALLNUM_DEBUG
+#ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "result: " << res1 << " " << res2 << endl;
   qDebug() << "matches: " << endl;
 
@@ -83,7 +83,9 @@ static int callnum_lt(QString m, QString n)
 	return match1.cap(1).toUpper() < match2.cap(1).toUpper();
     }
 
+#ifdef BIBLIOTEQ_CALLNUM_DEBUG
   qDebug() << "Call number regex match failed." << endl;
+#endif
   return m < n;
 }
 
