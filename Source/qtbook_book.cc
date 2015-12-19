@@ -84,7 +84,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
     }
 
   if((m_sruWorking = new(std::nothrow)
-      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
+      qtbook_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
@@ -113,7 +113,7 @@ qtbook_book::qtbook_book(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -2033,7 +2033,7 @@ void qtbook_book::slotPopulateCopiesEditor(void)
   copy_editor_book *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor_book
-      (static_cast<QWidget *> (this),
+      (qobject_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        id.quantity->value(), oid,
@@ -2057,7 +2057,7 @@ void qtbook_book::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
+      (qobject_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        id.quantity->value(), oid, id.id->text().trimmed(), font(), "Book",
        state)) != 0)
     borrowerseditor->showUsers();
@@ -2290,7 +2290,7 @@ void qtbook_book::slotZ3950Query(void)
   QString searchstr = "";
   QStringList list;
   QStringList tmplist;
-  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
+  qtbook_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
   if(!(id.id->text().trimmed().length() == 10 ||
        id.isbn13->text().trimmed().length() == 13))

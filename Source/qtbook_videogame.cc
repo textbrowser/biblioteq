@@ -61,7 +61,7 @@ qtbook_videogame::qtbook_videogame(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1507,7 +1507,7 @@ void qtbook_videogame::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (static_cast<QWidget *> (this),
+      (qobject_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        vg.quantity->value(), oid,
@@ -1530,7 +1530,7 @@ void qtbook_videogame::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
+      (qobject_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        vg.quantity->value(), oid, vg.id->text(), font(),
        "Video Game", state)) != 0)
     borrowerseditor->showUsers();

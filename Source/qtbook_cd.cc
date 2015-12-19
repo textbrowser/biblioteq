@@ -64,7 +64,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
   tracks_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(tracks_diag);
 #if QT_VERSION >= 0x050000
@@ -72,7 +72,7 @@ qtbook_cd::qtbook_cd(QMainWindow *parentArg,
 #else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (tracks_diag));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
   connect(cd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -1793,11 +1793,11 @@ void qtbook_cd::slotSaveTracks(void)
 	  query.bindValue(0, oid);
 
 	  if(trd.table->cellWidget(i, 0) != 0)
-	    query.bindValue(1, static_cast<QComboBox *>
+	    query.bindValue(1, qobject_cast<QComboBox *>
 			    (trd.table->cellWidget(i, 0))->currentText());
 
 	  if(trd.table->cellWidget(i, 1) != 0)
-	    query.bindValue(2, static_cast<QSpinBox *>
+	    query.bindValue(2, qobject_cast<QSpinBox *>
 			    (trd.table->cellWidget(i, 1))->value());
 
 	  if(trd.table->item(i, 2) != 0)
@@ -1805,8 +1805,8 @@ void qtbook_cd::slotSaveTracks(void)
 
 	  if(trd.table->cellWidget(i, 3) != 0)
 	    query.bindValue
-	      (4, static_cast<QTimeEdit *> (trd.table->
-					    cellWidget(i, 3))->time().
+	      (4, qobject_cast<QTimeEdit *> (trd.table->
+					     cellWidget(i, 3))->time().
 	       toString("hh:mm:ss"));
 
 	  if(trd.table->item(i, 4) != 0)
@@ -2107,7 +2107,7 @@ void qtbook_cd::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (static_cast<QWidget *> (this),
+      (qobject_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        cd.quantity->value(), oid,
@@ -2130,7 +2130,7 @@ void qtbook_cd::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
+      (qobject_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        cd.quantity->value(), oid, cd.id->text(), font(), "CD",
        state)) != 0)
     borrowerseditor->showUsers();

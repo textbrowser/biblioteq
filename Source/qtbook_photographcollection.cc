@@ -87,9 +87,9 @@ qtbook_photographcollection::qtbook_photographcollection
   photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   photo_diag->setWindowModality(Qt::WindowModal);
-  updateFont(qapp->font(), static_cast<QWidget *> (photo_diag));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (photo_diag));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
   connect(photo.select_image_item, SIGNAL(clicked(void)),
@@ -1657,16 +1657,16 @@ void qtbook_photographcollection::storeData(void)
 
       if(classname == "QLineEdit")
 	widgetValues[objectname] =
-	  (static_cast<QLineEdit *> (widget))->text().trimmed();
+	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QComboBox")
 	widgetValues[objectname] =
-	  (static_cast<QComboBox *> (widget))->currentText().trimmed();
+	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QTextEdit")
 	widgetValues[objectname] =
-	  (static_cast<QTextEdit *> (widget))->toPlainText().trimmed();
+	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "image_drop_site")
 	imageValues[objectname] =
-	  (static_cast<image_drop_site *> (widget))->image;
+	  (qobject_cast<image_drop_site *> (widget))->image;
     }
 }
 

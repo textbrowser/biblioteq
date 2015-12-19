@@ -76,7 +76,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
     }
 
   if((m_sruWorking = new(std::nothrow)
-      qtbook_item_working_dialog(static_cast<QMainWindow *> (this))) == 0)
+      qtbook_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
     qtbook::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_sruWorking->reset(); // Qt 5.5.x adjustment.
@@ -100,7 +100,7 @@ qtbook_magazine::qtbook_magazine(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1891,7 +1891,7 @@ void qtbook_magazine::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (static_cast<QWidget *> (this),
+      (qobject_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        ma.quantity->value(), oid,
@@ -1914,7 +1914,7 @@ void qtbook_magazine::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
+      (qobject_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        ma.quantity->value(), oid, ma.id->text(), font(), subType,
        state)) != 0)
     borrowerseditor->showUsers();
@@ -1934,7 +1934,7 @@ void qtbook_magazine::slotZ3950Query(void)
   QString errorstr = "";
   QString searchstr = "";
   QStringList list;
-  qtbook_item_working_dialog working(static_cast<QMainWindow *> (this));
+  qtbook_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
   if(ma.id->text().trimmed().length() != 9)
     {
@@ -2026,7 +2026,7 @@ void qtbook_magazine::slotZ3950Query(void)
 	      */
 
 	      if((new(std::nothrow)
-		  z3950results(static_cast<QWidget *> (this), list,
+		  z3950results(qobject_cast<QWidget *> (this), list,
 			       this, font(), recordSyntax)) == 0)
 		{
 		  qmain->addError
@@ -3287,7 +3287,7 @@ void qtbook_magazine::sruDownloadFinished(void)
       ** Display a selection dialog.
       */
 
-      if((new(std::nothrow) sruresults(static_cast<QWidget *> (this),
+      if((new(std::nothrow) sruresults(qobject_cast<QWidget *> (this),
 				       list, this, font())) == 0)
 	{
 	  qmain->addError

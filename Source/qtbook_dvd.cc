@@ -61,7 +61,7 @@ qtbook_dvd::qtbook_dvd(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), static_cast<QWidget *> (this));
+  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrint(void)));
@@ -1683,7 +1683,7 @@ void qtbook_dvd::slotPopulateCopiesEditor(void)
   copy_editor *copyeditor = 0;
 
   if((copyeditor = new(std::nothrow) copy_editor
-      (static_cast<QWidget *> (this),
+      (qobject_cast<QWidget *> (this),
        static_cast<qtbook_item *> (this),
        false,
        dvd.quantity->value(), oid,
@@ -1706,7 +1706,7 @@ void qtbook_dvd::slotShowUsers(void)
     state = qtbook::VIEW_ONLY;
 
   if((borrowerseditor = new(std::nothrow) borrowers_editor
-      (static_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
+      (qobject_cast<QWidget *> (this), static_cast<qtbook_item *> (this),
        dvd.quantity->value(), oid, dvd.id->text(), font(), "DVD",
        state)) != 0)
     borrowerseditor->showUsers();
