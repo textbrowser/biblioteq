@@ -2056,8 +2056,8 @@ void qtbook::slotResizeColumnsAfterSort(void)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
       parent = object->parent();
-      (static_cast<QTableWidget *> (parent))->resizeColumnsToContents();
-      (static_cast<QTableWidget *> (parent))->horizontalHeader()->
+      (qobject_cast<QTableWidget *> (parent))->resizeColumnsToContents();
+      (qobject_cast<QTableWidget *> (parent))->horizontalHeader()->
 	setStretchLastSection(true);
       qapp->restoreOverrideCursor();
     }
@@ -5178,7 +5178,7 @@ void qtbook::slotCheckout(void)
 	      copy_editor(members_diag, item,
 			  true,
 			  quantity, oid,
-			  static_cast<QSpinBox *> (0),
+			  0,
 			  font(), type, itemid)) != 0)
 	    {
 	      copyeditor->populateCopiesEditor();
@@ -7917,12 +7917,12 @@ void qtbook::slotAdminCheckBoxClicked(int state)
 	{
 	  for(i = 2; i < ab.table->columnCount(); i++)
 	    if(box->isChecked())
-	      (static_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
+	      (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, i)))->
 		setChecked(false);
 	}
       else
 	if(box->isChecked())
-	  (static_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
+	  (qobject_cast<QCheckBox *> (ab.table->cellWidget(row, 1)))->
 	    setChecked(false);
     }
 }
@@ -8094,13 +8094,13 @@ void qtbook::slotSaveAdministrators(void)
       if(ab.table->item(i, 0)->text().trimmed().isEmpty())
 	continue;
 
-      if(!(static_cast<QCheckBox *>
+      if(!(qobject_cast<QCheckBox *>
 	   (ab.table->cellWidget(i, 1))->isChecked() ||
-	   static_cast<QCheckBox *>
+	   qobject_cast<QCheckBox *>
 	   (ab.table->cellWidget(i, 2))->isChecked() ||
-	   static_cast<QCheckBox *>
+	   qobject_cast<QCheckBox *>
 	   (ab.table->cellWidget(i, 3))->isChecked() ||
-	   static_cast<QCheckBox *>
+	   qobject_cast<QCheckBox *>
 	   (ab.table->cellWidget(i, 4))->isChecked()))
 	{
 	  tmplist.clear();
@@ -8205,13 +8205,13 @@ void qtbook::slotSaveAdministrators(void)
       else if(adminStr == getAdminID())
 	continue; // Ignore current administrator.
 
-      if((static_cast<QCheckBox *> (ab.table->cellWidget(i, 1)))->
+      if((qobject_cast<QCheckBox *> (ab.table->cellWidget(i, 1)))->
 	 isChecked())
 	str = "administrator";
       else
 	for(j = 2; j < ab.table->columnCount(); j++)
 	  {
-	    checkBox = static_cast<QCheckBox *> (ab.table->cellWidget(i, j));
+	    checkBox = qobject_cast<QCheckBox *> (ab.table->cellWidget(i, j));
 
 	    if(checkBox->isChecked())
 	      str += m_abColumnHeaderIndexes.value(j).toLower() +

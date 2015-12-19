@@ -1403,7 +1403,7 @@ void misc_functions::hideAdminFields(QMainWindow *window, const QString &roles)
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
     {
-      str = (static_cast<QObject *> (widget))->objectName().toLower();
+      str = widget->objectName().toLower();
 
       if(str.contains("price") || str.contains("monetary"))
 	widget->setVisible(showWidgets);
