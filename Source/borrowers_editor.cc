@@ -18,17 +18,17 @@ borrowers_editor::borrowers_editor(QWidget *parent,
   QDialog(parent)
 {
   setWindowModality(Qt::WindowModal);
-  bd.setupUi(this);
+  m_bd.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  ioid = ioidArg;
-  quantity = quantityArg;
-  bitem = bitemArg;
-  state = stateArg;
-  itemType = itemTypeArg;
+  m_ioid = ioidArg;
+  m_quantity = quantityArg;
+  m_bitem = bitemArg;
+  m_state = stateArg;
+  m_itemType = itemTypeArg;
 
   /*
   ** Override the state, if necessary.
@@ -36,29 +36,29 @@ borrowers_editor::borrowers_editor(QWidget *parent,
 
   if(qmain->getRoles().contains("administrator") ||
      qmain->getRoles().contains("circulation"))
-    state = qtbook::EDITABLE;
+    m_state = qtbook::EDITABLE;
   else if(qmain->getRoles().contains("librarian"))
-    state = qtbook::VIEW_ONLY;
+    m_state = qtbook::VIEW_ONLY;
 
-  if(state == qtbook::EDITABLE)
+  if(m_state == qtbook::EDITABLE)
     {
-      connect(bd.saveButton, SIGNAL(clicked(void)), this,
+      connect(m_bd.saveButton, SIGNAL(clicked(void)), this,
 	      SLOT(slotSave(void)));
-      connect(bd.eraseButton, SIGNAL(clicked(void)), this,
+      connect(m_bd.eraseButton, SIGNAL(clicked(void)), this,
 	      SLOT(slotEraseBorrower(void)));
     }
   else
     {
-      bd.saveButton->setVisible(false);
-      bd.eraseButton->setVisible(false);
+      m_bd.saveButton->setVisible(false);
+      m_bd.eraseButton->setVisible(false);
     }
 
-  connect(bd.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_bd.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseCurrentBorrowers(void)));
 #if QT_VERSION >= 0x050000
-  bd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+  m_bd.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
-  bd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+  m_bd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
   setGlobalFonts(font);
 
@@ -84,18 +84,18 @@ borrowers_editor::~borrowers_editor()
 
 void borrowers_editor::showUsers(void)
 {
+  QDateEdit *dateEdit = 0;
+  QProgressDialog progress1(this);
+  QProgressDialog progress2(this);
+  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  QString tmpStr = "";
+  QStringList list;
+  QTableWidgetItem *item = 0;
+  bool terminate = false;
   int i = 0;
   int j = 0;
   int row = 0;
-  bool terminate = false;
-  QString str = "";
-  QString tmpStr = "";
-  QDateEdit *dateEdit = 0;
-  QSqlQuery query(qmain->getDB());
-  QStringList list;
-  QTableWidgetItem *item = 0;
-  QProgressDialog progress1(this);
-  QProgressDialog progress2(this);
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -103,13 +103,13 @@ void borrowers_editor::showUsers(void)
   progress2.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  bd.table->clear();
-  bd.table->setCurrentItem(0);
-  bd.table->setColumnCount(0);
-  bd.table->setRowCount(0);
+  m_bd.table->clear();
+  m_bd.table->setCurrentItem(0);
+  m_bd.table->setColumnCount(0);
+  m_bd.table->setRowCount(0);
   m_columnHeaderIndexes.clear();
 
-  if(state == qtbook::EDITABLE)
+  if(m_state == qtbook::EDITABLE)
     {
       list.append(tr("Copy Number"));
       list.append(tr("Barcode"));
@@ -142,19 +142,19 @@ void borrowers_editor::showUsers(void)
       m_columnHeaderIndexes.append("Copy Due Date");
     }
 
-  bd.table->setColumnCount(list.size());
-  bd.table->setHorizontalHeaderLabels(list);
+  m_bd.table->setColumnCount(list.size());
+  m_bd.table->setHorizontalHeaderLabels(list);
   list.clear();
-  bd.table->setRowCount(quantity);
-  bd.table->scrollToTop();
-  bd.table->horizontalScrollBar()->setValue(0);
+  m_bd.table->setRowCount(m_quantity);
+  m_bd.table->scrollToTop();
+  m_bd.table->horizontalScrollBar()->setValue(0);
 
   /*
   ** Hide the OID column.
   */
 
-  if(state == qtbook::EDITABLE)
-    bd.table->setColumnHidden(bd.table->columnCount() - 1, true);
+  if(m_state == qtbook::EDITABLE)
+    m_bd.table->setColumnHidden(m_bd.table->columnCount() - 1, true);
 
   if(!isVisible())
     updateGeometry();
@@ -163,19 +163,19 @@ void borrowers_editor::showUsers(void)
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
-  progress1.setMaximum(quantity);
+  progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
   progress1.show();
   progress1.update();
 
-  for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
+  for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     {
-      for(j = 0; j < bd.table->columnCount(); j++)
-	if(j == 6 && state == qtbook::EDITABLE)
+      for(j = 0; j < m_bd.table->columnCount(); j++)
+	if(j == 6 && m_state == qtbook::EDITABLE)
 	  {
 	    if((dateEdit = new(std::nothrow) QDateEdit()) != 0)
 	      {
-		bd.table->setCellWidget(i, j, dateEdit);
+		m_bd.table->setCellWidget(i, j, dateEdit);
 		dateEdit->setDate
 		  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
 		dateEdit->setCalendarPopup(true);
@@ -198,7 +198,7 @@ void borrowers_editor::showUsers(void)
 		item->setText(tmpStr);
 	      }
 
-	    bd.table->setItem(i, j, item);
+	    m_bd.table->setItem(i, j, item);
 	  }
 	else
 	  qmain->addError
@@ -218,10 +218,10 @@ void borrowers_editor::showUsers(void)
     }
 
   progress1.hide();
-  bd.table->setRowCount(i); // Support cancellation.
+  m_bd.table->setRowCount(i); // Support cancellation.
   query.setForwardOnly(true);
 
-  if(state == qtbook::EDITABLE)
+  if(m_state == qtbook::EDITABLE)
     {
       query.prepare("SELECT borrowers.copy_number, "
 		    "borrowers.copyid, "
@@ -238,8 +238,8 @@ void borrowers_editor::showUsers(void)
 		    "borrowers.item_oid = ? AND "
 		    "borrowers.memberid = member.memberid "
 		    "ORDER BY borrowers.copy_number");
-      query.bindValue(0, itemType);
-      query.bindValue(1, ioid);
+      query.bindValue(0, m_itemType);
+      query.bindValue(1, m_ioid);
     }
   else
     {
@@ -251,8 +251,8 @@ void borrowers_editor::showUsers(void)
 		    "item_borrower_vw borrowers "
 		    "WHERE borrowers.type = ? AND borrowers.item_oid = ? "
 		    "ORDER BY borrowers.copy_number");
-      query.bindValue(0, itemType);
-      query.bindValue(1, ioid);
+      query.bindValue(0, m_itemType);
+      query.bindValue(1, m_ioid);
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
@@ -299,7 +299,7 @@ void borrowers_editor::showUsers(void)
   while(i++, !progress2.wasCanceled() && query.next())
     {
       if(query.isValid())
-	for(j = 0; j < bd.table->columnCount(); j++)
+	for(j = 0; j < m_bd.table->columnCount(); j++)
 	  {
 	    if(query.value(0).isNull())
 	      row = i;
@@ -308,13 +308,13 @@ void borrowers_editor::showUsers(void)
 
 	    if(j == 0 && query.value(0).isNull())
 	      str = QString::number(i + 1);
-	    else if(j == 5 && state == qtbook::EDITABLE)
+	    else if(j == 5 && m_state == qtbook::EDITABLE)
 	      {
 		date = QDate::fromString(query.value(j).toString(),
 					 "MM/dd/yyyy");
 		str = date.toString(Qt::ISODate);
 	      }
-	    else if((j == 2 || j == 3) && state != qtbook::EDITABLE)
+	    else if((j == 2 || j == 3) && m_state != qtbook::EDITABLE)
 	      {
 		date = QDate::fromString(query.value(j).toString(),
 					 "MM/dd/yyyy");
@@ -323,10 +323,10 @@ void borrowers_editor::showUsers(void)
 	    else
 	      str = query.value(j).toString();
 
-	    if(j == 6 && state == qtbook::EDITABLE)
+	    if(j == 6 && m_state == qtbook::EDITABLE)
 	      {
 		QDateEdit *de =
-		  static_cast<QDateEdit *> (bd.table->cellWidget(row, j));
+		  qobject_cast<QDateEdit *> (m_bd.table->cellWidget(row, j));
 
 		if(de)
 		  {
@@ -335,8 +335,8 @@ void borrowers_editor::showUsers(void)
 		    de->setMinimumDate(tomorrow);
 		  }
 	      }
-	    else if(bd.table->item(row, j) != 0)
-	      bd.table->item(row, j)->setText(str);
+	    else if(m_bd.table->item(row, j) != 0)
+	      m_bd.table->item(row, j)->setText(str);
 	    else
 	      terminate = true;
 	  }
@@ -353,7 +353,7 @@ void borrowers_editor::showUsers(void)
     }
 
   progress2.hide();
-  bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  m_bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 /*
@@ -362,14 +362,14 @@ void borrowers_editor::showUsers(void)
 
 void borrowers_editor::slotEraseBorrower(void)
 {
-  int row = bd.table->currentRow();
-  QString oid = "";
+  QSqlQuery query(qmain->getDB());
+  QString availability = "";
   QString copyid = "";
   QString errorstr = "";
   QString memberid = "";
-  QString availability = "";
+  QString oid = "";
   QString returnedDate = QDateTime::currentDateTime().toString("MM/dd/yyyy");
-  QSqlQuery query(qmain->getDB());
+  int row = m_bd.table->currentRow();
 
   if(row < 0)
     {
@@ -380,7 +380,7 @@ void borrowers_editor::slotEraseBorrower(void)
     }
 
   oid = misc_functions::getColumnString
-    (bd.table, row, m_columnHeaderIndexes.indexOf("MYOID"));
+    (m_bd.table, row, m_columnHeaderIndexes.indexOf("MYOID"));
 
   if(oid.isEmpty())
     {
@@ -399,7 +399,7 @@ void borrowers_editor::slotEraseBorrower(void)
   query.prepare("DELETE FROM item_borrower WHERE "
 		"myoid = ? AND type = ?");
   query.bindValue(0, oid);
-  query.bindValue(1, itemType);
+  query.bindValue(1, m_itemType);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -421,16 +421,16 @@ void borrowers_editor::slotEraseBorrower(void)
       */
 
       copyid = misc_functions::getColumnString
-	(bd.table, row,
+	(m_bd.table, row,
 	 m_columnHeaderIndexes.indexOf("Barcode"));
       memberid = misc_functions::getColumnString
-	(bd.table, row,
+	(m_bd.table, row,
 	 m_columnHeaderIndexes.indexOf("Member ID"));
       query.prepare("UPDATE member_history SET returned_date = ? "
 		    "WHERE item_oid = ? AND copyid = ? AND "
 		    "memberid = ?");
       query.bindValue(0, returnedDate);
-      query.bindValue(1, ioid);
+      query.bindValue(1, m_ioid);
       query.bindValue(2, copyid);
       query.bindValue(3, memberid);
 
@@ -464,22 +464,22 @@ void borrowers_editor::slotEraseBorrower(void)
       ** Update the Reservation History panel, if necessary.
       */
 
-      qmain->updateReservationHistoryBrowser(memberid, ioid, copyid,
-					     itemType, returnedDate);
+      qmain->updateReservationHistoryBrowser(memberid, m_ioid, copyid,
+					     m_itemType, returnedDate);
       showUsers();
 
       /*
       ** Update the main window's summary panel, if necessary.
       */
 
-      if(bitem &&
-	 ioid ==
+      if(m_bitem &&
+	 m_ioid ==
 	 misc_functions::getColumnString(qmain->getUI().table,
-					 bitem->getRow(),
+					 m_bitem->getRow(),
 					 "MYOID") &&
-	 itemType ==
+	 m_itemType ==
 	 misc_functions::getColumnString(qmain->getUI().table,
-					 bitem->getRow(),
+					 m_bitem->getRow(),
 					 qmain->getUI().table->
 					 columnNumber("Type")))
 	qmain->slotDisplaySummary();
@@ -501,13 +501,13 @@ void borrowers_editor::slotCloseCurrentBorrowers(void)
 
 void borrowers_editor::slotSave(void)
 {
-  int i = 0;
-  bool error = false;
   QDate now = QDate::currentDate();
-  QString oid = "";
   QDateEdit *dueDate = 0;
-  QSqlQuery query(qmain->getDB());
   QProgressDialog progress(this);
+  QSqlQuery query(qmain->getDB());
+  QString oid = "";
+  bool error = false;
+  int i = 0;
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -518,19 +518,19 @@ void borrowers_editor::slotSave(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Updating the due date(s)..."));
-  progress.setMaximum(bd.table->rowCount());
+  progress.setMaximum(m_bd.table->rowCount());
   progress.setMinimum(0);
   progress.show();
   progress.update();
 
-  for(i = 0; i < bd.table->rowCount(); i++)
+  for(i = 0; i < m_bd.table->rowCount(); i++)
     {
       oid = misc_functions::getColumnString
-	(bd.table, i, m_columnHeaderIndexes.indexOf("MYOID"));
+	(m_bd.table, i, m_columnHeaderIndexes.indexOf("MYOID"));
 
       if(!oid.isEmpty())
 	{
-	  dueDate = static_cast<QDateEdit *> (bd.table->cellWidget(i, 6));
+	  dueDate = qobject_cast<QDateEdit *> (m_bd.table->cellWidget(i, 6));
 
 	  if(!dueDate || dueDate->date() <= now)
 	    error = true;
@@ -542,7 +542,7 @@ void borrowers_editor::slotSave(void)
 			    "type = ?");
 	      query.bindValue(0, dueDate->date().toString("MM/dd/yyyy"));
 	      query.bindValue(1, oid);
-	      query.bindValue(2, itemType);
+	      query.bindValue(2, m_itemType);
 
 	      if(!query.exec())
 		qmain->addError(QString(tr("Database Error")),
@@ -599,9 +599,9 @@ void borrowers_editor::keyPressEvent(QKeyEvent *event)
 ** -- closeEvent() --
 */
 
-void borrowers_editor::closeEvent(QCloseEvent *e)
+void borrowers_editor::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(e);
+  Q_UNUSED(event);
   slotCloseCurrentBorrowers();
 }
 
@@ -628,7 +628,7 @@ void borrowers_editor::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  bd.retranslateUi(this);
+	  m_bd.retranslateUi(this);
 	  break;
 	}
       default:

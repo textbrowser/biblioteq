@@ -19,8 +19,8 @@ class bgraphicsscene: public QGraphicsScene
   ~bgraphicsscene();
 
  private:
-  void keyPressEvent(QKeyEvent *);
-  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *);
+  void keyPressEvent(QKeyEvent *event);
+  void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
  signals:
   void deleteKeyPressed(void);
