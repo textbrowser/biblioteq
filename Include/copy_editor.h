@@ -37,25 +37,25 @@ class copy_editor: public QDialog
   public:
     copy_class(const QString &copyid_arg, const QString &itemoid_arg)
       {
-	copyid = copyid_arg;
-	itemoid = itemoid_arg;
+	m_copyid = copyid_arg;
+	m_itemoid = itemoid_arg;
       };
 
   public:
-    QString copyid;
-    QString itemoid;
+    QString m_copyid;
+    QString m_itemoid;
   };
 
-  QList<copy_class *> copies;
-  QSpinBox *spinbox;
-  QString ioid;
-  QString itemType;
+  QList<copy_class *> m_copies;
+  QSpinBox *m_spinbox;
+  QString m_ioid;
+  QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
-  Ui_copybrowser cb;
-  bool showForLending;
-  int quantity;
-  qtbook_item *bitem;
+  Ui_copybrowser m_cb;
+  bool m_showForLending;
+  int m_quantity;
+  qtbook_item *m_bitem;
   QString saveCopies(void);
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);
