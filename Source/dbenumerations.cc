@@ -15,112 +15,112 @@ extern qtbook *qmain;
 
 dbenumerations::dbenumerations(QWidget *parent):QMainWindow(parent)
 {
-  ui.setupUi(this);
+  m_ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  connect(ui.saveButton,
+  connect(m_ui.saveButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotSave(void)));
-  connect(ui.cancelButton,
+  connect(m_ui.cancelButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
-  connect(ui.reloadButton,
+  connect(m_ui.reloadButton,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotReload(void)));
-  connect(ui.addBookBinding,
+  connect(m_ui.addBookBinding,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeBookBinding,
+  connect(m_ui.removeBookBinding,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addCdFormat,
+  connect(m_ui.addCdFormat,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeCdFormat,
+  connect(m_ui.removeCdFormat,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addDvdAspectRatio,
+  connect(m_ui.addDvdAspectRatio,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeDvdAspectRatio,
+  connect(m_ui.removeDvdAspectRatio,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addDvdRating,
+  connect(m_ui.addDvdRating,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeDvdRating,
+  connect(m_ui.removeDvdRating,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addDvdRegion,
+  connect(m_ui.addDvdRegion,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeDvdRegion,
+  connect(m_ui.removeDvdRegion,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addLanguage,
+  connect(m_ui.addLanguage,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeLanguage,
+  connect(m_ui.removeLanguage,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addLocation,
+  connect(m_ui.addLocation,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeLocation,
+  connect(m_ui.removeLocation,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addMonetaryUnit,
+  connect(m_ui.addMonetaryUnit,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeMonetaryUnit,
+  connect(m_ui.removeMonetaryUnit,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addVideoGamePlatform,
+  connect(m_ui.addVideoGamePlatform,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeVideoGamePlatform,
+  connect(m_ui.removeVideoGamePlatform,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
-  connect(ui.addVideoGameRating,
+  connect(m_ui.addVideoGameRating,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAdd(void)));
-  connect(ui.removeVideoGameRating,
+  connect(m_ui.removeVideoGameRating,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotRemove(void)));
 #if QT_VERSION >= 0x050000
-  ui.locationsTable->verticalHeader()->setSectionResizeMode
+  m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
-  ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
+  m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
 #else
-  ui.locationsTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
-  ui.minimumDaysTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+  m_ui.locationsTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
+  m_ui.minimumDaysTable->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
 }
 
@@ -140,12 +140,12 @@ void dbenumerations::show(QMainWindow *parent, const bool populate)
   misc_functions::center(this, parent);
   raise();
   QMainWindow::show();
-  ui.emptyLabel->setMinimumHeight(ui.addCdFormat->height());
+  m_ui.emptyLabel->setMinimumHeight(m_ui.addCdFormat->height());
 
   if(populate)
     populateWidgets();
   else
-    ui.cdFormatsList->setFocus();
+    m_ui.cdFormatsList->setFocus();
 }
 
 /*
@@ -157,10 +157,10 @@ void dbenumerations::clear(void)
   foreach(QListWidget *listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
 
-  while(ui.locationsTable->rowCount() > 0)
-    ui.locationsTable->removeRow(0);
+  while(m_ui.locationsTable->rowCount() > 0)
+    m_ui.locationsTable->removeRow(0);
 
-  ui.minimumDaysTable->clearSelection();
+  m_ui.minimumDaysTable->clearSelection();
 }
 
 /*
@@ -180,10 +180,10 @@ void dbenumerations::populateWidgets(void)
 {
   clear();
 
+  QList<QPair<QString, QString> > pairList;
   QString errorstr("");
   QStringList list;
   QStringList tables;
-  QList<QPair<QString, QString> > pairList;
 
   tables << "book_binding_types"
 	 << "cd_formats"
@@ -203,27 +203,27 @@ void dbenumerations::populateWidgets(void)
       QTableWidget *tablewidget = 0;
 
       if(i == 0)
-	listwidget = ui.bookBindingsList;
+	listwidget = m_ui.bookBindingsList;
       else if(i == 1)
-	listwidget = ui.cdFormatsList;
+	listwidget = m_ui.cdFormatsList;
       else if(i == 2)
-	listwidget = ui.dvdAspectRatiosList;
+	listwidget = m_ui.dvdAspectRatiosList;
       else if(i == 3)
-	listwidget = ui.dvdRatingsList;
+	listwidget = m_ui.dvdRatingsList;
       else if(i == 4)
-	listwidget = ui.dvdRegionsList;
+	listwidget = m_ui.dvdRegionsList;
       else if(i == 5)
-	listwidget = ui.languagesList;
+	listwidget = m_ui.languagesList;
       else if(i == 6)
-	tablewidget = ui.locationsTable;
+	tablewidget = m_ui.locationsTable;
       else if(i == 7)
-	tablewidget = ui.minimumDaysTable;
+	tablewidget = m_ui.minimumDaysTable;
       else if(i == 8)
-	listwidget = ui.monetaryUnitsList;
+	listwidget = m_ui.monetaryUnitsList;
       else if(i == 9)
-	listwidget = ui.videoGamePlatformsList;
+	listwidget = m_ui.videoGamePlatformsList;
       else if(i == 10)
-	listwidget = ui.videoGameRatingsList;
+	listwidget = m_ui.videoGameRatingsList;
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -283,9 +283,9 @@ void dbenumerations::populateWidgets(void)
 		listwidget->addItem(item);
 	      }
 	  }
-      else if(tablewidget == ui.locationsTable)
+      else if(tablewidget == m_ui.locationsTable)
 	{
-	  ui.locationsTable->setRowCount(pairList.size());
+	  m_ui.locationsTable->setRowCount(pairList.size());
 
 	  for(int j = 0; j < pairList.size(); j++)
 	    {
@@ -324,8 +324,8 @@ void dbenumerations::populateWidgets(void)
 		  list.clear();
 		  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
 				  Qt::ItemIsSelectable);
-		  ui.locationsTable->setCellWidget(j, 0, item1);
-		  ui.locationsTable->setItem(j, 1, item2);
+		  m_ui.locationsTable->setCellWidget(j, 0, item1);
+		  m_ui.locationsTable->setItem(j, 1, item2);
 		}
 	      else
 		{
@@ -337,22 +337,22 @@ void dbenumerations::populateWidgets(void)
 		}
 	    }
 
-	  ui.locationsTable->resizeColumnToContents(0);
+	  m_ui.locationsTable->resizeColumnToContents(0);
 	}
-      else if(tablewidget == ui.minimumDaysTable)
+      else if(tablewidget == m_ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < list.size(); j++)
 	    if(tablewidget->item(j, 1))
 	      tablewidget->item(j, 1)->setText(list.at(j));
 
-	  ui.minimumDaysTable->resizeColumnToContents(0);
+	  m_ui.minimumDaysTable->resizeColumnToContents(0);
 	}
 
       list.clear();
       pairList.clear();
     }
 
-  ui.cdFormatsList->setFocus();
+  m_ui.cdFormatsList->setFocus();
 }
 
 /*
@@ -370,42 +370,41 @@ void dbenumerations::slotReload(void)
 
 void dbenumerations::slotAdd(void)
 {
-  QToolButton *toolButton = qobject_cast<QToolButton *>
-    (sender());
   QListWidget *list = 0;
   QListWidgetItem *listItem = 0;
+  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
 
-  if(toolButton == ui.addBookBinding)
+  if(toolButton == m_ui.addBookBinding)
     {
-      list = ui.bookBindingsList;
+      list = m_ui.bookBindingsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Book Binding"));
     }
-  else if(toolButton == ui.addCdFormat)
+  else if(toolButton == m_ui.addCdFormat)
     {
-      list = ui.cdFormatsList;
+      list = m_ui.cdFormatsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("CD Format"));
     }
-  else if(toolButton == ui.addDvdAspectRatio)
+  else if(toolButton == m_ui.addDvdAspectRatio)
     {
-      list = ui.dvdAspectRatiosList;
+      list = m_ui.dvdAspectRatiosList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Aspect Ratio"));
     }
-  else if(toolButton == ui.addDvdRating)
+  else if(toolButton == m_ui.addDvdRating)
     {
-      list = ui.dvdRatingsList;
+      list = m_ui.dvdRatingsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Rating"));
     }
-  else if(toolButton == ui.addDvdRegion)
+  else if(toolButton == m_ui.addDvdRegion)
     {
-      list = ui.dvdRegionsList;
+      list = m_ui.dvdRegionsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("DVD Region"));
     }
-  else if(toolButton == ui.addLanguage)
+  else if(toolButton == m_ui.addLanguage)
     {
-      list = ui.languagesList;
+      list = m_ui.languagesList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Language"));
     }
-  else if(toolButton == ui.addLocation)
+  else if(toolButton == m_ui.addLocation)
     {
       QComboBox *item1 = new(std::nothrow) QComboBox();
       QTableWidgetItem *item2 = new(std::nothrow) QTableWidgetItem();
@@ -425,14 +424,14 @@ void dbenumerations::slotAdd(void)
 	  list.clear();
 	  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
 			  Qt::ItemIsSelectable);
-	  ui.locationsTable->setRowCount(ui.locationsTable->rowCount() + 1);
-	  ui.locationsTable->setCellWidget(ui.locationsTable->rowCount() - 1,
+	  m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
+	  m_ui.locationsTable->setCellWidget(m_ui.locationsTable->rowCount() - 1,
 					   0,
 					   item1);
-	  ui.locationsTable->setItem(ui.locationsTable->rowCount() - 1,
+	  m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
 				     1,
 				     item2);
-	  ui.locationsTable->setCurrentCell(ui.locationsTable->rowCount() - 1,
+	  m_ui.locationsTable->setCurrentCell(m_ui.locationsTable->rowCount() - 1,
 					    0);
 	}
       else
@@ -444,19 +443,19 @@ void dbenumerations::slotAdd(void)
 	    delete item2;
 	}
     }
-  else if(toolButton == ui.addMonetaryUnit)
+  else if(toolButton == m_ui.addMonetaryUnit)
     {
-      list = ui.monetaryUnitsList;
+      list = m_ui.monetaryUnitsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Monetary Unit"));
     }
-  else if(toolButton == ui.addVideoGamePlatform)
+  else if(toolButton == m_ui.addVideoGamePlatform)
     {
-      list = ui.videoGamePlatformsList;
+      list = m_ui.videoGamePlatformsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Platform"));
     }
-  else if(toolButton == ui.addVideoGameRating)
+  else if(toolButton == m_ui.addVideoGameRating)
     {
-      list = ui.videoGameRatingsList;
+      list = m_ui.videoGameRatingsList;
       listItem = new(std::nothrow) QListWidgetItem(tr("Video Game Rating"));
     }
 
@@ -482,26 +481,26 @@ void dbenumerations::slotRemove(void)
   QToolButton *toolButton = qobject_cast<QToolButton *>
     (sender());
 
-  if(toolButton == ui.removeBookBinding)
-    list = ui.bookBindingsList;
-  else if(toolButton == ui.removeCdFormat)
-    list = ui.cdFormatsList;
-  else if(toolButton == ui.removeDvdAspectRatio)
-    list = ui.dvdAspectRatiosList;
-  else if(toolButton == ui.removeDvdRating)
-    list = ui.dvdRatingsList;
-  else if(toolButton == ui.removeDvdRegion)
-    list = ui.dvdRegionsList;
-  else if(toolButton == ui.removeLanguage)
-    list = ui.languagesList;
-  else if(toolButton == ui.removeLocation)
-    ui.locationsTable->removeRow(ui.locationsTable->currentRow());
-  else if(toolButton == ui.removeMonetaryUnit)
-    list = ui.monetaryUnitsList;
-  else if(toolButton == ui.removeVideoGamePlatform)
-    list = ui.videoGamePlatformsList;
-  else if(toolButton == ui.removeVideoGameRating)
-    list = ui.videoGameRatingsList;
+  if(toolButton == m_ui.removeBookBinding)
+    list = m_ui.bookBindingsList;
+  else if(toolButton == m_ui.removeCdFormat)
+    list = m_ui.cdFormatsList;
+  else if(toolButton == m_ui.removeDvdAspectRatio)
+    list = m_ui.dvdAspectRatiosList;
+  else if(toolButton == m_ui.removeDvdRating)
+    list = m_ui.dvdRatingsList;
+  else if(toolButton == m_ui.removeDvdRegion)
+    list = m_ui.dvdRegionsList;
+  else if(toolButton == m_ui.removeLanguage)
+    list = m_ui.languagesList;
+  else if(toolButton == m_ui.removeLocation)
+    m_ui.locationsTable->removeRow(m_ui.locationsTable->currentRow());
+  else if(toolButton == m_ui.removeMonetaryUnit)
+    list = m_ui.monetaryUnitsList;
+  else if(toolButton == m_ui.removeVideoGamePlatform)
+    list = m_ui.videoGamePlatformsList;
+  else if(toolButton == m_ui.removeVideoGameRating)
+    list = m_ui.videoGameRatingsList;
 
   if(list)
     delete list->takeItem(list->currentRow());
@@ -513,12 +512,12 @@ void dbenumerations::slotRemove(void)
 
 void dbenumerations::slotSave(void)
 {
-  bool error = false;
+  QListWidget *listwidget = 0;
+  QSqlQuery query(qmain->getDB());
   QString querystr("");
   QStringList tables;
-  QSqlQuery query(qmain->getDB());
-  QListWidget *listwidget = 0;
   QTableWidget *tablewidget = 0;
+  bool error = false;
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   tables << "book_binding_types"
@@ -561,27 +560,27 @@ void dbenumerations::slotSave(void)
 	}
 
       if(i == 0)
-	listwidget = ui.bookBindingsList;
+	listwidget = m_ui.bookBindingsList;
       else if(i == 1)
-	listwidget = ui.cdFormatsList;
+	listwidget = m_ui.cdFormatsList;
       else if(i == 2)
-	listwidget = ui.dvdAspectRatiosList;
+	listwidget = m_ui.dvdAspectRatiosList;
       else if(i == 3)
-	listwidget = ui.dvdRatingsList;
+	listwidget = m_ui.dvdRatingsList;
       else if(i == 4)
-	listwidget = ui.dvdRegionsList;
+	listwidget = m_ui.dvdRegionsList;
       else if(i == 5)
-	listwidget = ui.languagesList;
+	listwidget = m_ui.languagesList;
       else if(i == 6)
-	tablewidget = ui.locationsTable;
+	tablewidget = m_ui.locationsTable;
       else if(i == 7)
-	tablewidget = ui.minimumDaysTable;
+	tablewidget = m_ui.minimumDaysTable;
       else if(i == 8)
-	listwidget = ui.monetaryUnitsList;
+	listwidget = m_ui.monetaryUnitsList;
       else if(i == 9)
-	listwidget = ui.videoGamePlatformsList;
+	listwidget = m_ui.videoGamePlatformsList;
       else if(i == 10)
-	listwidget = ui.videoGameRatingsList;
+	listwidget = m_ui.videoGameRatingsList;
 
       if(listwidget)
 	{
@@ -606,7 +605,7 @@ void dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == ui.locationsTable)
+      else if(tablewidget == m_ui.locationsTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    if(tablewidget->cellWidget(j, 0) &&
@@ -687,7 +686,7 @@ void dbenumerations::slotSave(void)
 		  }
 	      }
 	}
-      else if(tablewidget == ui.minimumDaysTable)
+      else if(tablewidget == m_ui.minimumDaysTable)
 	{
 	  for(int j = 0; j < tablewidget->rowCount(); j++)
 	    if(tablewidget->item(j, 1))
@@ -798,7 +797,7 @@ void dbenumerations::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  ui.retranslateUi(this);
+	  m_ui.retranslateUi(this);
 	  break;
 	}
       default:

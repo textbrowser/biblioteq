@@ -24,10 +24,14 @@ class copy_editor: public QDialog
   Q_OBJECT
 
  public:
-  copy_editor(QWidget *);
-  copy_editor(QWidget *, qtbook_item *, const bool, const int,
-	      const QString &, QSpinBox *,
-	      const QFont &, const QString &, const QString &);
+  copy_editor(QWidget *parent);
+  copy_editor(QWidget *parent, qtbook_item *bitemArg,
+	      const bool showForLendingArg,
+	      const int quantityArg, const QString &ioidArg,
+	      QSpinBox *spinboxArg,
+	      const QFont &font,
+	      const QString &itemTypeArg,
+	      const QString &uniqueIdArg);
   virtual ~copy_editor();
   void populateCopiesEditor(void);
 
@@ -36,10 +40,10 @@ class copy_editor: public QDialog
   {
   public:
     copy_class(const QString &copyid_arg, const QString &itemoid_arg)
-      {
-	m_copyid = copyid_arg;
-	m_itemoid = itemoid_arg;
-      };
+    {
+      m_copyid = copyid_arg;
+      m_itemoid = itemoid_arg;
+    };
 
   public:
     QString m_copyid;
@@ -63,7 +67,7 @@ class copy_editor: public QDialog
 
  protected:
   void clearCopiesList(void);
-  void setGlobalFonts(const QFont &);
+  void setGlobalFonts(const QFont &font);
 
  protected slots:
   void slotCloseCopyEditor(void);

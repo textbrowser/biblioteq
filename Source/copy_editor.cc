@@ -12,7 +12,7 @@ extern qtbook *qmain;
 ** -- copy_editor() --
 */
 
-copy_editor::copy_editor(QWidget *parent): QDialog(parent)
+copy_editor::copy_editor(QWidget *parent):QDialog(parent)
 {
   m_bitem = 0;
   m_parent = parent;
@@ -31,7 +31,7 @@ copy_editor::copy_editor(QWidget *parent, qtbook_item *bitemArg,
 			 QSpinBox *spinboxArg,
 			 const QFont &font,
 			 const QString &itemTypeArg,
-			 const QString &uniqueIdArg): QDialog(parent)
+			 const QString &uniqueIdArg):QDialog(parent)
 {
   m_parent = parent;
 

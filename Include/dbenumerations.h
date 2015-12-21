@@ -23,7 +23,7 @@ class dbenumerations: public QMainWindow
   void show(QMainWindow *parent, const bool populate);
 
  private:
-  Ui_dbEnumerations ui;
+  Ui_dbEnumerations m_ui;
   void changeEvent(QEvent *event);
   void populateWidgets(void);
 

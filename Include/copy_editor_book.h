@@ -25,9 +25,12 @@ class copy_editor_book: public copy_editor
   Q_OBJECT
 
  public:
-  copy_editor_book(QWidget *, qtbook_item *, const bool, const int,
-		   const QString &, QSpinBox *,
-		   const QFont &, const QString &);
+  copy_editor_book(QWidget *parent, qtbook_item *bitemArg,
+		   const bool showForLendingArg,
+		   const int quantityArg, const QString &ioidArg,
+		   QSpinBox *spinboxArg,
+		   const QFont &font,
+		   const QString &uniqueIdArg);
   ~copy_editor_book();
   void populateCopiesEditor(void);
 
@@ -39,34 +42,34 @@ class copy_editor_book: public copy_editor
 	       const QString &copyid_arg,
 	       const QString &itemoid_arg,
 	       const QString &originality_arg)
-      {
-	condition = condition_arg;
-	copyid = copyid_arg;
-	itemoid = itemoid_arg;
-	originality = originality_arg;
-      };
+    {
+      m_condition = condition_arg;
+      m_copyid = copyid_arg;
+      m_itemoid = itemoid_arg;
+      m_originality = originality_arg;
+    };
 
   public:
-    QString condition;
-    QString copyid;
-    QString itemoid;
-    QString originality;
+    QString m_condition;
+    QString m_copyid;
+    QString m_itemoid;
+    QString m_originality;
   };
 
-  QList<copy_class *> copies;
-  QSpinBox *spinbox;
-  QString ioid;
-  QString itemType;
+  QList<copy_class *> m_copies;
+  QSpinBox *m_spinbox;
+  QString m_ioid;
+  QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
-  QWidget *parent;
-  Ui_bookcopybrowser cb;
+  QWidget *m_parent;
+  Ui_bookcopybrowser m_cb;
   bool showForLending;
   int quantity;
   qtbook_item *bitem;
   QString saveCopies(void);
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
-  void keyPressEvent(QKeyEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
+  void keyPressEvent(QKeyEvent *event);
 
  private slots:
   void slotDeleteCopy(void);

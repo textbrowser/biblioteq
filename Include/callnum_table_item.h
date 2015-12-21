@@ -14,8 +14,8 @@
 class callnum_table_item: public QTableWidgetItem
 {
  public:
-  callnum_table_item(const QString &);
-  bool operator <(const QTableWidgetItem &) const;
+  callnum_table_item(const QString &str);
+  bool operator <(const QTableWidgetItem &other) const;
 };
 
 #endif
