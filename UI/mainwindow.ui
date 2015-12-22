@@ -199,7 +199,7 @@
           <widget class="QWidget" name="page">
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="main_table" name="table">
+             <widget class="biblioteq_main_table" name="table">
               <property name="editTriggers">
                <set>QAbstractItemView::NoEditTriggers</set>
               </property>
@@ -1174,9 +1174,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>main_table</class>
+   <class>biblioteq_main_table</class>
    <extends>QTableWidget</extends>
-   <header>main_table.h</header>
+   <header>biblioteq_main_table.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

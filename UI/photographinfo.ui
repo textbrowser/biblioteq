@@ -54,7 +54,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="image_drop_site" name="thumbnail_collection">
+             <widget class="biblioteq_image_drop_site" name="thumbnail_collection">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -268,7 +268,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="image_drop_site" name="thumbnail_item">
+             <widget class="biblioteq_image_drop_site" name="thumbnail_item">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -715,9 +715,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>image_drop_site</class>
+   <class>biblioteq_image_drop_site</class>
    <extends>QGraphicsView</extends>
-   <header>image_drop_site.h</header>
+   <header>biblioteq_image_drop_site.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

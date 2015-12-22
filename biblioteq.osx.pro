@@ -50,53 +50,53 @@ FORMS           = UI/adminsetup.ui \
 
 UI_HEADERS_DIR  = Include
 
-HEADERS		= Include/bgraphicsscene.h \
-		  Include/borrowers_editor.h \
-		  Include/copy_editor.h \
-		  Include/copy_editor_book.h \
-                  Include/dbenumerations.h \
-		  Include/generic_thread.h \
-		  Include/hyperlinked_text_edit.h \
-		  Include/image_drop_site.h \
-		  Include/main_table.h \
-                  Include/myqstring.h \
-		  Include/qtbook_book.h \
-		  Include/qtbook_cd.h \
-		  Include/qtbook_dvd.h \
-		  Include/qtbook.h \
-		  Include/qtbook_item.h \
-		  Include/qtbook_magazine.h \
-		  Include/qtbook_photographcollection.h \
-		  Include/qtbook_videogame.h \
-		  Include/sruResults.h \
-		  Include/z3950results.h
+HEADERS		= Include/biblioteq.h \
+                  Include/biblioteq_bgraphicsscene.h \
+		  Include/biblioteq_book.h \
+		  Include/biblioteq_borrowers_editor.h \
+		  Include/biblioteq_cd.h \
+		  Include/biblioteq_copy_editor.h \
+		  Include/biblioteq_copy_editor_book.h \
+                  Include/biblioteq_dbenumerations.h \
+		  Include/biblioteq_dvd.h \
+                  Include/biblioteq_generic_thread.h \
+		  Include/biblioteq_hyperlinked_text_edit.h \
+		  Include/biblioteq_image_drop_site.h \
+		  Include/biblioteq_item.h \
+		  Include/biblioteq_magazine.h \
+		  Include/biblioteq_main_table.h \
+                  Include/biblioteq_myqstring.h \
+		  Include/biblioteq_photographcollection.h \
+		  Include/biblioteq_sruResults.h \
+		  Include/biblioteq_videogame.h \
+		  Include/biblioteq_z3950results.h
 
-SOURCES		= Source/bgraphicsscene.cc \
-		  Source/borrowers_editor.cc \
-		  Source/callnum_table_item.cc \
-		  Source/copy_editor.cc \
-		  Source/copy_editor_book.cc \
-                  Source/dbenumerations.cc \
-                  Source/generic_thread.cc \
-                  Source/hyperlinked_text_edit.cc \
-                  Source/image_drop_site.cc \
-                  Source/main_table.cc \
-		  Source/marc.cc \
-                  Source/misc_functions.cc \
-                  Source/myqstring.cc \
-                  Source/numeric_table_item.cc \
-                  Source/qtbook_a.cc \
-                  Source/qtbook_b.cc \
-                  Source/qtbook_book.cc \
-                  Source/qtbook_cd.cc \
-                  Source/qtbook_dvd.cc \
-		  Source/qtbook_item.cc \
-		  Source/qtbook_journal.cc \
-		  Source/qtbook_magazine.cc \
-		  Source/qtbook_photographcollection.cc \
-		  Source/qtbook_videogame.cc \
-		  Source/sruResults.cc \
-		  Source/z3950results.cc
+SOURCES		= Source/biblioteq_a.cc \
+                  Source/biblioteq_b.cc \
+                  Source/biblioteq_bgraphicsscene.cc \
+                  Source/biblioteq_book.cc \
+                  Source/biblioteq_borrowers_editor.cc \
+                  Source/biblioteq_callnum_table_item.cc \
+                  Source/biblioteq_cd.cc \
+                  Source/biblioteq_copy_editor.cc \
+                  Source/biblioteq_copy_editor_book.cc \
+                  Source/biblioteq_dbenumerations.cc \
+                  Source/biblioteq_dvd.cc \
+                  Source/biblioteq_generic_thread.cc \
+                  Source/biblioteq_hyperlinked_text_edit.cc \
+                  Source/biblioteq_image_drop_site.cc \
+                  Source/biblioteq_item.cc \
+                  Source/biblioteq_journal.cc \
+                  Source/biblioteq_magazine.cc \
+                  Source/biblioteq_main_table.cc \
+                  Source/biblioteq_marc.cc \
+                  Source/biblioteq_misc_functions.cc \
+                  Source/biblioteq_myqstring.cc \
+                  Source/biblioteq_numeric_table_item.cc \
+                  Source/biblioteq_photographcollection.cc \
+                  Source/biblioteq_sruResults.cc \
+                  Source/biblioteq_videogame.cc \
+                  Source/biblioteq_z3950results.cc
 
 TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_de_DE.ts \

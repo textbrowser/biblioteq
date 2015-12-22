@@ -54,7 +54,7 @@
            </property>
            <layout class="QVBoxLayout">
             <item>
-             <widget class="image_drop_site" name="front_image">
+             <widget class="biblioteq_image_drop_site" name="front_image">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -114,7 +114,7 @@
              </layout>
             </item>
             <item>
-             <widget class="image_drop_site" name="back_image">
+             <widget class="biblioteq_image_drop_site" name="back_image">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -305,7 +305,7 @@
              </layout>
             </item>
             <item row="2" column="1">
-             <widget class="hyperlinked_text_edit" name="developer">
+             <widget class="biblioteq_hyperlinked_text_edit" name="developer">
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
@@ -385,7 +385,7 @@
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="hyperlinked_text_edit" name="publisher">
+             <widget class="biblioteq_hyperlinked_text_edit" name="publisher">
               <property name="verticalScrollBarPolicy">
                <enum>Qt::ScrollBarAlwaysOff</enum>
               </property>
@@ -605,7 +605,7 @@
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="hyperlinked_text_edit" name="genre">
+             <widget class="biblioteq_hyperlinked_text_edit" name="genre">
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
@@ -628,7 +628,7 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="hyperlinked_text_edit" name="place">
+             <widget class="biblioteq_hyperlinked_text_edit" name="place">
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
@@ -648,7 +648,7 @@
              </widget>
             </item>
             <item row="11" column="1">
-             <widget class="hyperlinked_text_edit" name="keyword">
+             <widget class="biblioteq_hyperlinked_text_edit" name="keyword">
               <property name="tabChangesFocus">
                <bool>true</bool>
               </property>
@@ -796,14 +796,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>image_drop_site</class>
+   <class>biblioteq_image_drop_site</class>
    <extends>QGraphicsView</extends>
-   <header>image_drop_site.h</header>
+   <header>biblioteq_image_drop_site.h</header>
   </customwidget>
   <customwidget>
-   <class>hyperlinked_text_edit</class>
+   <class>biblioteq_hyperlinked_text_edit</class>
    <extends>QTextBrowser</extends>
-   <header>hyperlinked_text_edit.h</header>
+   <header>biblioteq_hyperlinked_text_edit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
