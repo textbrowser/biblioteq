@@ -2272,13 +2272,13 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	}
       else if(str.startsWith("050 "))
 	{
-	   /*
-	   ** $a - Classification number (R)
-	   ** $b - Item number (NR)
-	   ** $3 - Materials specified (NR)
-	   ** $6 - Linkage (NR)
-	   ** $8 - Field link and sequence number (R)
-	   */
+	  /*
+	  ** $a - Classification number (R)
+	  ** $b - Item number (NR)
+	  ** $3 - Materials specified (NR)
+	  ** $6 - Linkage (NR)
+	  ** $8 - Field link and sequence number (R)
+	  */
 
 	  if(str.indexOf("$a") > -1)
 	    str = str.mid(str.indexOf("$a") + 2).trimmed();
@@ -3113,13 +3113,13 @@ void biblioteq_magazine::slotSRUQuery(void)
 	    {
 #if QT_VERSION < 0x050000
 	      connect
-		(m_sruHttp,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
+		 (m_sruHttp,
+		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						     QAuthenticator *)),
+		  this,
+		  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						       QAuthenticator *)),
+		  Qt::UniqueConnection);
 #endif
 	    }
 	  else
