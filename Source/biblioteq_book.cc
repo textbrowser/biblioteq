@@ -2780,13 +2780,13 @@ void biblioteq_book::slotDownloadImage(void)
 	    {
 #if QT_VERSION < 0x050000
 	      connect
-		(m_imageHttp,
-		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						    QAuthenticator *)),
-		 this,
-		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						      QAuthenticator *)),
-		 Qt::UniqueConnection);
+		 (m_imageHttp,
+		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						     QAuthenticator *)),
+		  this,
+		  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						       QAuthenticator *)),
+		  Qt::UniqueConnection);
 #endif
 	    }
 	  else
@@ -3008,7 +3008,7 @@ void biblioteq_book::downloadFinished(void)
 */
 
 void biblioteq_book::slotDataTransferProgress(qint64 bytesread,
-					   qint64 totalbytes)
+					      qint64 totalbytes)
 {
   if(m_httpProgress->isVisible())
     {

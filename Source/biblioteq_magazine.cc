@@ -3113,13 +3113,13 @@ void biblioteq_magazine::slotSRUQuery(void)
 	    {
 #if QT_VERSION < 0x050000
 	      connect
-		 (m_sruHttp,
-		  SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
-						     QAuthenticator *)),
-		  this,
-		  SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
-						       QAuthenticator *)),
-		  Qt::UniqueConnection);
+		(m_sruHttp,
+		 SIGNAL(proxyAuthenticationRequired(const QNetworkProxy &,
+						    QAuthenticator *)),
+		 this,
+		 SLOT(slotProxyAuthenticationRequired(const QNetworkProxy &,
+						      QAuthenticator *)),
+		 Qt::UniqueConnection);
 #endif
 	    }
 	  else

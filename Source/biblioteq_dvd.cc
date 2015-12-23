@@ -1004,7 +1004,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.showUserButton->setVisible(false);
   dvd.okButton->setText(tr("&Search"));
   dvd.release_date->setDate(QDate::fromString("01/7999",
-					     "MM/yyyy"));
+					      "MM/yyyy"));
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
   dvd.price->setMinimum(-0.01);
