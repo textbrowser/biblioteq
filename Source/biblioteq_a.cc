@@ -386,7 +386,8 @@ biblioteq::biblioteq(void):QMainWindow()
 
   biblioteq_bgraphicsscene *scene = 0;
 
-  if((scene = new(std::nothrow) biblioteq_bgraphicsscene(ui.graphicsView)) == 0)
+  if((scene = new(std::nothrow)
+      biblioteq_bgraphicsscene(ui.graphicsView)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(scene,
@@ -5854,8 +5855,7 @@ void biblioteq::slotInsertMag(void)
 
   m_idCt += 1;
   id = QString("insert_%1").arg(m_idCt);
-  magazine = new(std::nothrow) biblioteq_magazine(this, id, -1,
-					       "magazine");
+  magazine = new(std::nothrow) biblioteq_magazine(this, id, -1, "magazine");
 
   if(magazine)
     magazine->insert();
@@ -9248,8 +9248,8 @@ void biblioteq::slotDuplicate(void)
       else if(type.toLower() == "magazine")
 	{
 	  magazine = new(std::nothrow) biblioteq_magazine(this,
-						       oid, i,
-						       "magazine");
+							  oid, i,
+							  "magazine");
 
 	  if(magazine)
 	    magazine->duplicate(id, EDITABLE);
@@ -9265,7 +9265,7 @@ void biblioteq::slotDuplicate(void)
       else if(type.toLower() == "video game")
 	{
 	  video_game = new(std::nothrow) biblioteq_videogame(this,
-							  oid, i);
+							     oid, i);
 
 	  if(video_game)
 	    video_game->duplicate(id, EDITABLE);
