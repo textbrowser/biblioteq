@@ -38,8 +38,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_book(QMainWindow *,
-		 const QString &, const int);
+  biblioteq_book(QMainWindow *, const QString &, const int);
   ~biblioteq_book();
   void duplicate(const QString &, const int);
   void insert(void);
@@ -68,8 +67,8 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   biblioteq_item_working_dialog *m_httpProgress;
   biblioteq_item_working_dialog *m_sruWorking;
   bool useHttp(void) const;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void downloadFinished(void);
   void sruDownloadFinished(void);
 

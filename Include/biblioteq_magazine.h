@@ -66,8 +66,8 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   biblioteq_generic_thread *m_thread;
   biblioteq_item_working_dialog *m_sruWorking;
   bool useHttp(void) const;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void sruDownloadFinished(void);
 
  protected slots:
@@ -98,8 +98,8 @@ class biblioteq_journal: public biblioteq_magazine
   biblioteq_journal(QMainWindow *, const QString &,
 		    const int);
   ~biblioteq_journal();
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotCancel(void);

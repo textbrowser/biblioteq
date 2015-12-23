@@ -31,12 +31,12 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  bitem = bitemArg;
+  m_bitem = bitemArg;
   m_ioid = ioidArg;
-  quantity = quantityArg;
+  m_quantity = quantityArg;
   m_spinbox = spinboxArg;
   m_itemType = "Book";
-  showForLending = showForLendingArg;
+  m_showForLending = showForLendingArg;
 #if QT_VERSION >= 0x050000
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
@@ -142,10 +142,10 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   int j = 0;
   int row = 0;
 
-  m_cb.dueDateFrame->setVisible(showForLending);
-  m_cb.deleteButton->setVisible(!showForLending);
+  m_cb.dueDateFrame->setVisible(m_showForLending);
+  m_cb.deleteButton->setVisible(!m_showForLending);
 
-  if(!showForLending)
+  if(!m_showForLending)
     {
       m_cb.saveButton->setText(tr("&Save"));
       connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
@@ -215,7 +215,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   m_cb.table->setColumnCount(list.size());
   m_cb.table->setHorizontalHeaderLabels(list);
   list.clear();
-  m_cb.table->setRowCount(quantity);
+  m_cb.table->setRowCount(m_quantity);
   m_cb.table->scrollToTop();
   m_cb.table->horizontalScrollBar()->setValue(0);
 
@@ -230,12 +230,12 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   progress1.setModal(true);
   progress1.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress1.setLabelText(tr("Constructing objects..."));
-  progress1.setMaximum(quantity);
+  progress1.setMaximum(m_quantity);
   progress1.setMinimum(0);
   progress1.show();
   progress1.update();
 
-  for(i = 0; i < quantity && !progress1.wasCanceled(); i++)
+  for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     {
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == 3 || j == 4)
@@ -277,7 +277,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	  }
 	else if((item = new(std::nothrow) QTableWidgetItem()) != 0)
 	  {
-	    if(showForLending)
+	    if(m_showForLending)
 	      item->setFlags(0);
 	    else if(j == 1)
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
@@ -292,7 +292,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	      }
 	    else if(j == 2)
 	      {
-		if(showForLending)
+		if(m_showForLending)
 		  item->setText("0");
 		else
 		  item->setText("1");
@@ -400,7 +400,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
 		if(query.value(2).toString() == "0")
 		  m_cb.table->item(row, j)->setFlags(0);
-		else if(showForLending)
+		else if(m_showForLending)
 		  {
 		    m_cb.table->item(row, j)->setFlags
 		      (Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -614,16 +614,16 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     errorstr, __FILE__, __LINE__);
 
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(),
+    (qmain->getUI().table, m_bitem->getRow(),
     tr("Availability"), availability);
     str.setNum(m_copies.size());
     biblioteq_misc_functions::updateColumn
-    (qmain->getUI().table, bitem->getRow(),
+    (qmain->getUI().table, m_bitem->getRow(),
     tr("Quantity"), str);
   */
 
-  if(bitem)
-    bitem->setOldQ(m_copies.size());
+  if(m_bitem)
+    m_bitem->setOldQ(m_copies.size());
 
   while(!m_copies.isEmpty())
     delete m_copies.takeFirst();

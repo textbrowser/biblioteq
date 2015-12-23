@@ -38,8 +38,8 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
  private:
   QString m_engWindowTitle;
   Ui_dvdDialog dvd;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotCancel(void);

@@ -162,7 +162,7 @@ class userinfo_diag_class: public QDialog
     QDialog::changeEvent(event);
   }
 
-  void closeEvent(QCloseEvent *e)
+  void closeEvent(QCloseEvent *event)
   {
     QString str("");
 
@@ -174,13 +174,13 @@ class userinfo_diag_class: public QDialog
 	  QMessageBox::Yes | QMessageBox::No,
 	  QMessageBox::No) == QMessageBox::No)
 	{
-	  if(e)
-	    e->ignore();
+	  if(event)
+	    event->ignore();
 
 	  return;
 	}
 
-    QDialog::closeEvent(e);
+    QDialog::closeEvent(event);
   }
 };
 
@@ -201,7 +201,6 @@ class biblioteq: public QMainWindow
   static const int POPULATE_SEARCH_BASIC = 3;
   static const int PREVIOUS_PAGE = 2;
   static const int VIEW_ONLY = 1;
-
   biblioteq(void);
   ~biblioteq();
   QMenu *m_configToolMenu;

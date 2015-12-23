@@ -29,8 +29,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 
  public:
   static const int PHOTOGRAPHS_PER_PAGE = 25;
-  biblioteq_photographcollection(QMainWindow *, const QString &,
-				 const int);
+  biblioteq_photographcollection(QMainWindow *, const QString &, const int);
   ~biblioteq_photographcollection();
   void duplicate(const QString &, const int);
   void insert(void);
@@ -46,8 +45,8 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   Ui_photographDialog photo;
   biblioteq_bgraphicsscene *m_scene;
   bool verifyItemFields(void);
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
   void showPhotographs(const int);
   void storeData(void);
 

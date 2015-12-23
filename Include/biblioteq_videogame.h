@@ -28,8 +28,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_videogame(QMainWindow *, const QString &,
-		      const int);
+  biblioteq_videogame(QMainWindow *, const QString &, const int);
   ~biblioteq_videogame();
   void duplicate(const QString &, const int);
   void insert(void);
@@ -40,8 +39,8 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
  private:
   QString m_engWindowTitle;
   Ui_vgDialog vg;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotCancel(void);

@@ -5,11 +5,11 @@
 ** -- Qt Includes --
 */
 
-#include <QMenu>
 #include <QDialog>
-#include <QMainWindow>
-#include <QStringList>
 #include <QGraphicsScene>
+#include <QMainWindow>
+#include <QMenu>
+#include <QStringList>
 
 /*
 ** -- Local Includes --
@@ -28,8 +28,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_cd(QMainWindow *,
-	       const QString &, const int);
+  biblioteq_cd(QMainWindow *, const QString &, const int);
   ~biblioteq_cd();
   void duplicate(const QString &, const int);
   void insert(void);
@@ -43,8 +42,8 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   QString m_engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
 
  private slots:
   void slotCancel(void);

@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
   biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale, "Translations");
   qapp->installTranslator(biblioteq::s_qtTranslator);
   biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
-				"Translations");
+				   "Translations");
   qapp->installTranslator(biblioteq::s_appTranslator);
 
   if((qmain = new(std::nothrow) biblioteq()) == 0)
@@ -5414,8 +5414,8 @@ void biblioteq::slotShowErrorDialog(void)
 */
 
 void biblioteq::addError(const QString &type, const QString &summary,
-		      const QString &error, const char *file,
-		      const int line)
+			 const QString &error, const char *file,
+			 const int line)
 {
   int i = 0;
   QString str = "";
@@ -5655,7 +5655,7 @@ void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
 */
 
 void biblioteq::replaceVideoGame(const QString &id,
-			      biblioteq_videogame *videogame)
+				 biblioteq_videogame *videogame)
 {
   Q_UNUSED(id);
   Q_UNUSED(videogame);
@@ -6150,7 +6150,8 @@ void biblioteq::slotDVDSearch(void)
 
 void biblioteq::journSearch(const QString &field, const QString &value)
 {
-  biblioteq_journal *journal = new(std::nothrow) biblioteq_journal(this, "", -1);
+  biblioteq_journal *journal = new(std::nothrow) biblioteq_journal
+    (this, "", -1);
 
   if(journal)
     {
@@ -6353,7 +6354,7 @@ void biblioteq::slotVideoGameSearch(void)
 */
 
 void biblioteq::updateRows(const QString &oid, const int row,
-			const QString &itemType)
+			   const QString &itemType)
 {
   if(itemType == "cd")
     {
@@ -7634,10 +7635,10 @@ void biblioteq::slotBranchChanged(void)
 */
 
 void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
-					     const QString &ioid,
-					     const QString &copyid,
-					     const QString &itemType,
-					     const QString &returnedDate)
+						const QString &ioid,
+						const QString &copyid,
+						const QString &itemType,
+						const QString &returnedDate)
 {
   int i = 0;
   QString value1 = "";
@@ -9149,7 +9150,7 @@ void biblioteq::slotExportAsCSV(void)
 */
 
 void biblioteq::slotSectionResized(int logicalIndex, int oldSize,
-				int newSize)
+				   int newSize)
 {
   Q_UNUSED(logicalIndex);
   Q_UNUSED(oldSize);
@@ -9289,7 +9290,7 @@ void biblioteq::slotDuplicate(void)
 */
 
 void biblioteq::updateSceneItem(const QString &oid, const QString &type,
-			     const QImage &image)
+				const QImage &image)
 {
   QList<QGraphicsItem *> items(ui.graphicsView->scene()->items());
 
