@@ -2998,7 +2998,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		if(ui.case_insensitive->isChecked())
 		  str.append
 		    ("(LOWER(id) LIKE " + E + "'%" +
-		     biblioteq_myqstring::escape(searchstrArg.toLower().trimmed()) +
+		     biblioteq_myqstring::
+		     escape(searchstrArg.toLower().trimmed()) +
 		     "%' ");
 		else
 		  str.append
@@ -3009,13 +3010,15 @@ int biblioteq::populateTable(const int search_type_arg,
 		if(type == "Book")
 		  {
 		    if(ui.case_insensitive->isChecked())
-		      str.append("OR LOWER(isbn13) LIKE " + E + "'%" +
-				 biblioteq_myqstring::escape(searchstrArg.toLower().
-						   trimmed()) + "%') ");
+		      str.append
+			("OR LOWER(isbn13) LIKE " + E + "'%" +
+			 biblioteq_myqstring::escape(searchstrArg.toLower().
+						     trimmed()) + "%') ");
 		    else
-		      str.append("OR isbn13 LIKE " + E + "'%" +
-				 biblioteq_myqstring::escape(searchstrArg.
-						   trimmed()) + "%') ");
+		      str.append
+			("OR isbn13 LIKE " + E + "'%" +
+			 biblioteq_myqstring::escape(searchstrArg.
+						     trimmed()) + "%') ");
 		  }
 		else
 		  str.append(") ");
@@ -3058,11 +3061,12 @@ int biblioteq::populateTable(const int search_type_arg,
 		if(ui.case_insensitive->isChecked())
 		  str.append("LOWER(title) LIKE " + E + "'%" +
 			     biblioteq_myqstring::escape(searchstrArg.toLower().
-					       trimmed()) +
+							 trimmed()) +
 			     "%' ");
 		else
 		  str.append("title LIKE " + E + "'%" +
-			     biblioteq_myqstring::escape(searchstrArg.trimmed()) +
+			     biblioteq_myqstring::
+			     escape(searchstrArg.trimmed()) +
 			     "%' ");
 	      }
 
