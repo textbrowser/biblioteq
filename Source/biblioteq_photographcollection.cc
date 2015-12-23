@@ -1000,7 +1000,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	{
 	  pc.thumbnail_collection->clear();
 	  pc.thumbnail_collection->m_image =
-	    QImage(dialog.selectedFiles().value(0));
+		 QImage(dialog.selectedFiles().value(0));
 
 	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
 	    pc.thumbnail_collection->m_imageFormat =
@@ -1019,7 +1019,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	{
 	  photo.thumbnail_item->clear();
 	  photo.thumbnail_item->m_image = QImage(dialog.selectedFiles().
-					       value(0));
+						 value(0));
 
 	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
 	    photo.thumbnail_item->m_imageFormat = dialog.selectedFiles().
