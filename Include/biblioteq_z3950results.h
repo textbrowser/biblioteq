@@ -22,22 +22,22 @@ class biblioteq_z3950results: public QDialog
   Q_OBJECT
 
  public:
-  biblioteq_z3950results(QWidget *,
-			 QStringList &,
-			 biblioteq_magazine *,
-			 const QFont &,
-			 const QString &);
+  biblioteq_z3950results(QWidget *parent,
+			 QStringList &list,
+			 biblioteq_magazine *magazine_arg,
+			 const QFont &font,
+			 const QString &recordSyntax);
   ~biblioteq_z3950results();
 
  private:
   QString m_recordSyntax;
-  QStringList records;
-  Ui_z3950ResultsDialog ui;
-  biblioteq_magazine *magazine;
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
-  void keyPressEvent(QKeyEvent *);
-  void setGlobalFonts(const QFont &);
+  QStringList m_records;
+  Ui_z3950ResultsDialog m_ui;
+  biblioteq_magazine *m_magazine;
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
+  void keyPressEvent(QKeyEvent *event);
+  void setGlobalFonts(const QFont &font);
 
  private slots:
   void slotClose(void);

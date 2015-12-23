@@ -803,11 +803,11 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
 QString biblioteq_copy_editor::saveCopies(void)
 {
-  int i = 0;
-  QString lastError = "";
-  QSqlQuery query(qmain->getDB());
-  copy_class *copy = 0;
   QProgressDialog progress(this);
+  QSqlQuery query(qmain->getDB());
+  QString lastError = "";
+  copy_class *copy = 0;
+  int i = 0;
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -945,9 +945,9 @@ void biblioteq_copy_editor::clearCopiesList(void)
 ** -- closeEvent() --
 */
 
-void biblioteq_copy_editor::closeEvent(QCloseEvent *e)
+void biblioteq_copy_editor::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(e);
+  Q_UNUSED(event);
   slotCloseCopyEditor();
 }
 

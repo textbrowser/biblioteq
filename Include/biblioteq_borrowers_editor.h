@@ -39,9 +39,9 @@ class biblioteq_borrowers_editor: public QDialog
   QString m_itemType;
   QVector<QString> m_columnHeaderIndexes;
   Ui_checkedOutDialog m_bd;
+  biblioteq_item *m_bitem;
   int m_quantity;
   int m_state;
-  biblioteq_item *m_bitem;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);

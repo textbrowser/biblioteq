@@ -44,7 +44,6 @@ static int callnum_lt(QString m, QString n)
 
   QRegExp match1(lc_regexp);
   QRegExp match2(match1); // Copy constructor should be faster than re-parse.
-
   bool res1 = match1.exactMatch(m);
   bool res2 = match2.exactMatch(n);
 

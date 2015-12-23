@@ -19,10 +19,10 @@ biblioteq_z3950results::biblioteq_z3950results
   int i = 0;
   int row = -1;
 
-  magazine = magazine_arg;
+  m_magazine = magazine_arg;
   m_recordSyntax = recordSyntax;
   setWindowModality(Qt::WindowModal);
-  ui.setupUi(this);
+  m_ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -53,35 +53,35 @@ biblioteq_z3950results::biblioteq_z3950results
 	      issn = issn.mid(0, 9).trimmed();
 
 	    if(row == -1)
-	      if(magazine && magazine->dialog().id->text() == issn)
+	      if(m_magazine && m_magazine->dialog().id->text() == issn)
 		row = i;
 
 	    break;
 	  }
 
       if(!issn.isEmpty())
-	ui.list->addItem(issn);
+	m_ui.list->addItem(issn);
       else
-	ui.list->addItem
+	m_ui.list->addItem
 	  (QString(tr("Record #")) + QString::number(i + 1));
 
-      records.append(list[i]);
+      m_records.append(list[i]);
     }
 
   list.clear();
-  connect(ui.list, SIGNAL(currentRowChanged(int)), this,
+  connect(m_ui.list, SIGNAL(currentRowChanged(int)), this,
 	  SLOT(slotUpdateQueryText(void)));
-  connect(ui.okButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectRecord(void)));
-  connect(ui.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
 
   if(row == -1)
     row = 0;
 
-  ui.list->setCurrentRow(row);
-  ui.splitter->setStretchFactor(0,  0);
-  ui.splitter->setStretchFactor(1,  1);
+  m_ui.list->setCurrentRow(row);
+  m_ui.splitter->setStretchFactor(0,  0);
+  m_ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
 
   if(parent)
@@ -97,7 +97,7 @@ biblioteq_z3950results::biblioteq_z3950results
 
 biblioteq_z3950results::~biblioteq_z3950results()
 {
-  records.clear();
+  m_records.clear();
 }
 
 /*
@@ -108,10 +108,10 @@ void biblioteq_z3950results::slotSelectRecord(void)
 {
   QStringList list;
 
-  list = ui.textarea->toPlainText().split("\n");
+  list = m_ui.textarea->toPlainText().split("\n");
 
-  if(magazine)
-    magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
+  if(m_magazine)
+    m_magazine->populateDisplayAfterZ3950(list, m_recordSyntax);
 
   list.clear();
   close();
@@ -124,7 +124,7 @@ void biblioteq_z3950results::slotSelectRecord(void)
 void biblioteq_z3950results::slotUpdateQueryText(void)
 {
   QString title("");
-  QStringList list(records.value(ui.list->currentRow()).split("\n"));
+  QStringList list(m_records.value(m_ui.list->currentRow()).split("\n"));
 
   for(int i = 0; i < list.size(); i++)
     if(list.at(i).startsWith("245 "))
@@ -180,18 +180,18 @@ void biblioteq_z3950results::slotUpdateQueryText(void)
 	break;
       }
 
-  ui.title->setText(title);
-  ui.title->setCursorPosition(0);
-  ui.textarea->setPlainText(records.value(ui.list->currentRow()));
+  m_ui.title->setText(title);
+  m_ui.title->setCursorPosition(0);
+  m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
 }
 
 /*
 ** -- closeEvent() --
 */
 
-void biblioteq_z3950results::closeEvent(QCloseEvent *e)
+void biblioteq_z3950results::closeEvent(QCloseEvent *event)
 {
-  Q_UNUSED(e);
+  Q_UNUSED(event);
   slotClose();
 }
 
@@ -239,7 +239,7 @@ void biblioteq_z3950results::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  ui.retranslateUi(this);
+	  m_ui.retranslateUi(this);
 	  break;
 	}
       default:

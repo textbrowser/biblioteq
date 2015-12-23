@@ -35,18 +35,18 @@ class biblioteq_item_working_dialog: public QProgressDialog
   }
 
  protected:
-  void closeEvent(QCloseEvent *e)
+  void closeEvent(QCloseEvent *event)
   {
-    if(e)
-      e->ignore();
+    if(event)
+      event->ignore();
   }
 
-  void keyPressEvent(QKeyEvent *e)
+  void keyPressEvent(QKeyEvent *event)
   {
-    if(e && e->key() == Qt::Key_Escape)
-      e->ignore();
+    if(event && event->key() == Qt::Key_Escape)
+      event->ignore();
     else
-      QProgressDialog::keyPressEvent(e);
+      QProgressDialog::keyPressEvent(event);
   }
 };
 
@@ -59,22 +59,22 @@ class biblioteq_item
   QString getID(void) const;
   int getOldQ(void) const;
   int getRow(void) const;
-  void setOldQ(const int);
-  void updateFont(const QFont &, QWidget *);
-  void updateRow(const int);
+  void setOldQ(const int q);
+  void updateFont(const QFont &font, QWidget *window);
+  void updateRow(const int rowArg);
 
  protected:
-  QMainWindow *parentWid;
-  QMap<QString, QImage> imageValues;
-  QMap<QString, QString> widgetValues;
-  QString html;
-  QString oid;
-  bool isQueryEnabled;
-  int oldq;
-  int row;
-  bool hasDataChanged(QMainWindow *) const;
-  void print(QWidget *);
-  void storeData(QMainWindow *);
+  QMainWindow *m_parentWid;
+  QMap<QString, QImage> m_imageValues;
+  QMap<QString, QString> m_widgetValues;
+  QString m_html;
+  QString m_oid;
+  bool m_isQueryEnabled;
+  int m_oldq;
+  int m_row;
+  bool hasDataChanged(QMainWindow *window) const;
+  void print(QWidget *parent);
+  void storeData(QMainWindow *window);
 };
 
 #endif

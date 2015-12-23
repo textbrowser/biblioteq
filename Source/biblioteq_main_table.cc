@@ -390,15 +390,15 @@ void biblioteq_main_table::setColumns(const QString &username,
 
   list.clear();
 
-  QString l_type(type);
   QString indexstr("");
+  QString l_type(type);
 
   indexstr.append(username);
   indexstr.append(l_type.replace(" ", "_"));
   indexstr.append("_header_state");
 
-  for(int i = 0; i < hiddenColumns[indexstr].size(); i++)
-    setColumnHidden(hiddenColumns[indexstr][i], true);
+  for(int i = 0; i < m_hiddenColumns[indexstr].size(); i++)
+    setColumnHidden(m_hiddenColumns[indexstr][i], true);
 }
 
 /*
@@ -435,8 +435,8 @@ void biblioteq_main_table::recordColumnHidden(const QString &username,
 					      const int index,
 					      const bool hidden)
 {
-  QString l_type(type);
   QString indexstr("");
+  QString l_type(type);
 
   indexstr.append(username);
   indexstr.append(l_type.replace(" ", "_"));
@@ -444,11 +444,11 @@ void biblioteq_main_table::recordColumnHidden(const QString &username,
 
   if(hidden)
     {
-      if(!hiddenColumns[indexstr].contains(index))
-	hiddenColumns[indexstr].append(index);
+      if(!m_hiddenColumns[indexstr].contains(index))
+	m_hiddenColumns[indexstr].append(index);
     }
-  else if(hiddenColumns.contains(indexstr))
-    hiddenColumns[indexstr].removeAll(index);
+  else if(m_hiddenColumns.contains(indexstr))
+    m_hiddenColumns[indexstr].removeAll(index);
 }
 
 /*
@@ -459,19 +459,19 @@ QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
 {
   QHash<QString, QString> states;
 
-  for(int i = 0; i < hiddenColumns.keys().size(); i++)
+  for(int i = 0; i < m_hiddenColumns.keys().size(); i++)
     {
       QString state("");
 
-      for(int j = 0; j < hiddenColumns[hiddenColumns.keys().at(i)].size();
+      for(int j = 0; j < m_hiddenColumns[m_hiddenColumns.keys().at(i)].size();
 	  j++)
 	state += QString::number
-	  (hiddenColumns[hiddenColumns.keys().at(i)].at(j)).append(",");
+	  (m_hiddenColumns[m_hiddenColumns.keys().at(i)].at(j)).append(",");
 
       if(state.endsWith(","))
 	state = state.mid(0, state.length() - 1);
 
-      states[hiddenColumns.keys().at(i)] = state;
+      states[m_hiddenColumns.keys().at(i)] = state;
     }
 
   return states;
@@ -483,7 +483,7 @@ QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
 
 void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 {
-  hiddenColumns.clear();
+  m_hiddenColumns.clear();
 
   for(int i = 0; i < states.keys().size(); i++)
     {
@@ -496,7 +496,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 	if(strList.at(j).toInt() >= 0)
 	  intList.append(strList.at(j).toInt());
 
-      hiddenColumns[states.keys().at(i)] = intList;
+      m_hiddenColumns[states.keys().at(i)] = intList;
     }
 }
 
@@ -504,7 +504,7 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 ** -- columnNumber() --
 */
 
-int biblioteq_main_table::columnNumber(const QString &name)
+int biblioteq_main_table::columnNumber(const QString &name) const
 {
   return m_columnHeaderIndexes.indexOf(name);
 }

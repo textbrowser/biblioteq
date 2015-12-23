@@ -38,7 +38,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  QString engWindowTitle;
+  QString m_engWindowTitle;
   Ui_vgDialog vg;
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);

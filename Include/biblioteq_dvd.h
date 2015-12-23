@@ -36,7 +36,7 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  QString engWindowTitle;
+  QString m_engWindowTitle;
   Ui_dvdDialog dvd;
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);

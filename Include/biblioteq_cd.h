@@ -29,7 +29,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
 
  public:
   biblioteq_cd(QMainWindow *,
-	    const QString &, const int);
+	       const QString &, const int);
   ~biblioteq_cd();
   void duplicate(const QString &, const int);
   void insert(void);
@@ -38,9 +38,9 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  QAction *composer_action;
-  QDialog *tracks_diag;
-  QString engWindowTitle;
+  QAction *m_composer_action;
+  QDialog *m_tracks_diag;
+  QString m_engWindowTitle;
   Ui_cdDialog cd;
   Ui_tracksDialog trd;
   void changeEvent(QEvent *);

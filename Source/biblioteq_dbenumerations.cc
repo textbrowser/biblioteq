@@ -425,15 +425,18 @@ void biblioteq_dbenumerations::slotAdd(void)
 	  list.clear();
 	  item2->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled |
 			  Qt::ItemIsSelectable);
-	  m_ui.locationsTable->setRowCount(m_ui.locationsTable->rowCount() + 1);
-	  m_ui.locationsTable->setCellWidget(m_ui.locationsTable->rowCount() - 1,
-					   0,
-					   item1);
+	  m_ui.locationsTable->setRowCount
+	    (m_ui.locationsTable->rowCount() + 1);
+	  m_ui.locationsTable->setCellWidget
+	    (m_ui.locationsTable->rowCount() - 1,
+	     0,
+	     item1);
 	  m_ui.locationsTable->setItem(m_ui.locationsTable->rowCount() - 1,
-				     1,
-				     item2);
-	  m_ui.locationsTable->setCurrentCell(m_ui.locationsTable->rowCount() - 1,
-					    0);
+				       1,
+				       item2);
+	  m_ui.locationsTable->setCurrentCell
+	    (m_ui.locationsTable->rowCount() - 1,
+	     0);
 	}
       else
 	{

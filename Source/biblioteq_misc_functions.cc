@@ -28,8 +28,8 @@ qint64 biblioteq_misc_functions::userCount(const QString &userid,
 					   const QSqlDatabase &db,
 					   QString &errorstr)
 {
-  qint64 count = 0;
   QSqlQuery query(db);
+  qint64 count = 0;
 
   errorstr = "";
   query.setForwardOnly(true);
@@ -64,10 +64,10 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
 						  const QString &typeArg,
 						  const QSqlDatabase &db)
 {
+  QSqlQuery query(db);
+  QString querystr = "";
   QString str = "";
   QString type(typeArg.toLower());
-  QString querystr = "";
-  QSqlQuery query(db);
 
   if(type == "photograph collection")
     {
@@ -104,8 +104,8 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
 					  const QSqlDatabase &db)
 {
   QImage image = QImage();
-  QString type(typeArg.toLower());
   QSqlQuery query(db);
+  QString type(typeArg.toLower());
 
   if(type == "photograph collection")
     type = type.replace(" ", "_");
@@ -151,9 +151,9 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
+  QSqlQuery query(db);
   QString querystr = "";
   QString str(roles);
-  QSqlQuery query(db);
 
   if(str.isEmpty() || str == "none")
     str = "biblioteq_patron";
@@ -215,10 +215,10 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  qint64 count = 0;
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
   QStringList objectlist;
+  qint64 count = 0;
 
   count = userCount(userid, db, errorstr);
 
@@ -273,10 +273,10 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  qint64 count = 0;
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
   QStringList objectlist;
+  qint64 count = 0;
 
   if(action == CREATE_USER)
     {
@@ -433,8 +433,8 @@ void biblioteq_misc_functions::savePassword(const QString &userid,
   if(db.driverName() == "QSQLITE")
     return; // Users are not supported.
 
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
 
   query.exec("SET ROLE NONE");
   querystr = QString("ALTER USER %1 WITH ENCRYPTED "
@@ -452,9 +452,9 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
 						       const QSqlDatabase &db,
 						       QString &errorstr)
 {
-  QString str = "";
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
   QStringList list;
 
   errorstr = "";
@@ -586,9 +586,9 @@ qint64 biblioteq_misc_functions::getMemberMatchCount(const QString &checksum,
 						     const QSqlDatabase &db,
 						     QString &errorstr)
 {
-  qint64 count = 0;
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
+  qint64 count = 0;
 
   errorstr = "";
   querystr = "SELECT COUNT(memberid) FROM member "
@@ -624,10 +624,10 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 						  const QString &itemTypeArg,
 						  QString &errorstr)
 {
-  QString str = "";
+  QSqlQuery query(db);
   QString itemType = "";
   QString querystr = "";
-  QSqlQuery query(db);
+  QString str = "";
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -699,9 +699,9 @@ QString biblioteq_misc_functions::getColumnString(const QTableWidget *table,
   if(columnName.isEmpty() || row < 0 || !table)
     return QString("");
 
-  int i = 0;
   QString str = "";
   QTableWidgetItem *column = 0;
+  int i = 0;
 
   if(row >= 0 && row < table->rowCount())
     for(i = 0; i < table->columnCount(); i++)
@@ -731,9 +731,9 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   if(columnName.isEmpty() || !table)
     return -1;
 
+  QTableWidgetItem *column = 0;
   int i = 0;
   int num = -1;
-  QTableWidgetItem *column = 0;
 
   for(i = 0; i < table->columnCount(); i++)
     {
@@ -786,10 +786,10 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 					    const QString &itemTypeArg,
 					    QString &errorstr)
 {
-  bool isCheckedOut = false;
-  QString str = "";
-  QString itemType = "";
   QSqlQuery query(db);
+  QString itemType = "";
+  QString str = "";
+  bool isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -829,10 +829,10 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 						const QString &itemTypeArg,
 						QString &errorstr)
 {
-  bool isCheckedOut = false;
-  QString str = "";
-  QString itemType = "";
   QSqlQuery query(db);
+  QString itemType = "";
+  QString str = "";
+  bool isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -874,9 +874,9 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
 					    const QString &itemTypeArg,
 					    QString &errorstr)
 {
+  QSqlQuery query(db);
   QString itemType = "";
   QString querystr = "";
-  QSqlQuery query(db);
 
   errorstr = "";
   itemType = itemTypeArg.toLower().remove(" ");
@@ -905,9 +905,9 @@ int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 					       const QString &itemTypeArg,
 					       QString &errorstr)
 {
-  int copy_number = -1;
-  QString itemType = "";
   QSqlQuery query(db);
+  QString itemType = "";
+  int copy_number = -1;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -940,10 +940,10 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 					       const QString &itemTypeArg,
 					       QString &errorstr)
 {
-  bool isAvailable = false;
+  QSqlQuery query(db);
   QString itemType = "";
   QString querystr = "";
-  QSqlQuery query(db);
+  bool isAvailable = false;
 
   errorstr = "";
   itemType = itemTypeArg;
@@ -983,10 +983,10 @@ QMap<QString, QString> biblioteq_misc_functions::getItemsReservedCounts
  const QString &memberid,
  QString &errorstr)
 {
-  QString str = "";
-  QString querystr = "";
-  QSqlQuery query(db);
   QMap<QString, QString> counts;
+  QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
 
   errorstr = "";
   querystr =
@@ -1061,9 +1061,9 @@ QString biblioteq_misc_functions::getRoles(const QSqlDatabase &db,
 					   const QString &username,
 					   QString &errorstr)
 {
-  QString roles = "";
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
+  QString roles = "";
 
   errorstr = "";
   querystr = "SELECT LOWER(roles) FROM admin WHERE "
@@ -1096,12 +1096,12 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
 					 const QSqlDatabase &db,
 					 QString &errorstr)
 {
-  int i = 0;
-  QString id = "";
-  QString oid = "";
-  QString itemType = "";
-  QString querystr = "";
   QSqlQuery query(db);
+  QString id = "";
+  QString itemType = "";
+  QString oid = "";
+  QString querystr = "";
+  int i = 0;
 
   id = idArg;
   itemType = itemTypeArg.toLower();
@@ -1155,11 +1155,11 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 						   const QString &itemTypeArg,
 						   QString &errorstr)
 {
-  int i = 0;
-  QString id = "";
-  QString itemoid = "";
-  QString itemType = "";
   QSqlQuery query(db);
+  QString id = "";
+  QString itemType = "";
+  QString itemoid = "";
+  int i = 0;
 
   /*
   ** Retrieve the item's OID. Use the OID to create initial copies.
@@ -1252,9 +1252,9 @@ QString biblioteq_misc_functions::getMemberName(const QSqlDatabase &db,
 						const QString &memberid,
 						QString &errorstr)
 {
-  QString str = "";
-  QString querystr = "";
   QSqlQuery query(db);
+  QString querystr = "";
+  QString str = "";
 
   errorstr = "";
   querystr = "SELECT last_name, first_name FROM member WHERE memberid = ?";
@@ -1395,8 +1395,8 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
   if(!window)
     return;
 
-  bool showWidgets = true;
   QString str = "";
+  bool showWidgets = true;
 
   if(roles.isEmpty())
     showWidgets = false;
@@ -1449,9 +1449,9 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
   if(db.driverName() == "QSQLITE")
     return isRequested; // Requests are not supported.
 
-  QString str = "";
-  QString itemType = "";
   QSqlQuery query(db);
+  QString itemType = "";
+  QString str = "";
 
   itemType = itemTypeArg;
   query.setForwardOnly(true);
@@ -1524,9 +1524,9 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
 (const QSqlDatabase &db,
  QString &errorstr)
 {
-  QString querystr("");
-  QSqlQuery query(db);
   QList<QPair<QString, QString> > locations;
+  QSqlQuery query(db);
+  QString querystr("");
 
   errorstr = "";
   querystr = "SELECT type, location FROM locations "
@@ -1553,8 +1553,8 @@ QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
 QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 						       QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList monetary_units;
 
   errorstr = "";
@@ -1580,8 +1580,8 @@ QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
 						   QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList languages;
 
   errorstr = "";
@@ -1607,8 +1607,8 @@ QStringList biblioteq_misc_functions::getLanguages(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 						   QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList formats;
 
   errorstr = "";
@@ -1634,8 +1634,8 @@ QStringList biblioteq_misc_functions::getCDFormats(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
 						    QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList ratings;
 
   errorstr = "";
@@ -1661,8 +1661,8 @@ QStringList biblioteq_misc_functions::getDVDRatings(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getDVDAspectRatios
 (const QSqlDatabase &db, QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList aspectratios;
 
   errorstr = "";
@@ -1688,8 +1688,8 @@ QStringList biblioteq_misc_functions::getDVDAspectRatios
 QStringList biblioteq_misc_functions::getDVDRegions(const QSqlDatabase &db,
 						    QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList regions;
 
   errorstr = "";
@@ -1716,8 +1716,8 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 					     const QString &type,
 					     QString &errorstr)
 {
-  int minimumdays = 1;
   QSqlQuery query(db);
+  int minimumdays = 1;
 
   errorstr = "";
   query.setForwardOnly(true);
@@ -1741,10 +1741,10 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 						     QString &errorstr)
 {
-  QString querystr("");
-  QSqlQuery query(db);
-  QStringList minimumdays;
   QMap<QString, QString> map;
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList minimumdays;
 
   errorstr = "";
   querystr = "SELECT type, days FROM minimum_days "
@@ -1793,8 +1793,8 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 QStringList biblioteq_misc_functions::getVideoGameRatings
 (const QSqlDatabase &db, QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList ratings;
 
   errorstr = "";
@@ -1820,8 +1820,8 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
 QStringList biblioteq_misc_functions::getVideoGamePlatforms
 (const QSqlDatabase &db, QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList platforms;
 
   errorstr = "";
@@ -1852,8 +1852,8 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
   if(db.driverName() != "QSQLITE")
     return value;
 
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
 
   errorstr = "";
   querystr = "INSERT INTO sequence VALUES (NULL)";
@@ -1882,8 +1882,8 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 						const QString &memberid,
 						QString &errorstr)
 {
-  bool expired = true;
   QSqlQuery query(db);
+  bool expired = true;
 
   errorstr = "";
   query.setForwardOnly(true);
@@ -2182,15 +2182,14 @@ void biblioteq_misc_functions::exportPhotographs
       qint64 id = QDateTime::currentMSecsSinceEpoch();
 #else
       QDateTime dateTime(QDateTime::currentDateTime());
-
       qint64 id = static_cast<qint64> (dateTime.toTime_t());
 #endif
 
       while(query.next())
 	{
-	  QImage image;
 	  QByteArray bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  QImage image;
 	  const char *format = 0;
 
 	  if(bytes.size() >= 4 &&
@@ -2230,8 +2229,8 @@ void biblioteq_misc_functions::exportPhotographs
 QStringList biblioteq_misc_functions::getBookBindingTypes
 (const QSqlDatabase &db, QString &errorstr)
 {
-  QString querystr("");
   QSqlQuery query(db);
+  QString querystr("");
   QStringList types;
 
   errorstr = "";

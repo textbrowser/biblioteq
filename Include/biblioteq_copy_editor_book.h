@@ -63,9 +63,9 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_bookcopybrowser m_cb;
+  biblioteq_item *bitem;
   bool showForLending;
   int quantity;
-  biblioteq_item *bitem;
   QString saveCopies(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

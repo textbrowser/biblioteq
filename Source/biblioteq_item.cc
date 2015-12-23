@@ -22,10 +22,10 @@
 
 biblioteq_item::biblioteq_item(void)
 {
-  row = -1;
-  oldq = -1;
-  isQueryEnabled = false;
-  parentWid = 0;
+  m_isQueryEnabled = false;
+  m_oldq = -1;
+  m_parentWid = 0;
+  m_row = -1;
 }
 
 /*
@@ -34,10 +34,10 @@ biblioteq_item::biblioteq_item(void)
 
 biblioteq_item::biblioteq_item(const int rowArg)
 {
-  row = rowArg;
-  oldq = -1;
-  isQueryEnabled = false;
-  parentWid = 0;
+  m_isQueryEnabled = false;
+  m_oldq = -1;
+  m_parentWid = 0;
+  m_row = rowArg;
 }
 
 /*
@@ -46,8 +46,8 @@ biblioteq_item::biblioteq_item(const int rowArg)
 
 biblioteq_item::~biblioteq_item()
 {
-  imageValues.clear();
-  widgetValues.clear();
+  m_imageValues.clear();
+  m_widgetValues.clear();
 }
 
 /*
@@ -56,7 +56,7 @@ biblioteq_item::~biblioteq_item()
 
 int biblioteq_item::getRow(void) const
 {
-  return row;
+  return m_row;
 }
 
 /*
@@ -65,7 +65,7 @@ int biblioteq_item::getRow(void) const
 
 int biblioteq_item::getOldQ(void) const
 {
-  return oldq;
+  return m_oldq;
 }
 
 /*
@@ -74,7 +74,7 @@ int biblioteq_item::getOldQ(void) const
 
 void biblioteq_item::updateRow(const int rowArg)
 {
-  row = rowArg;
+  m_row = rowArg;
 }
 
 /*
@@ -83,7 +83,7 @@ void biblioteq_item::updateRow(const int rowArg)
 
 QString biblioteq_item::getID(void) const
 {
-  return oid;
+  return m_oid;
 }
 
 /*
@@ -106,7 +106,7 @@ void biblioteq_item::print(QWidget *parent)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      document.setHtml(html);
+      document.setHtml(m_html);
       document.print(&printer);
     }
 }
@@ -132,7 +132,7 @@ void biblioteq_item::updateFont(const QFont &font, QWidget *window)
 
 void biblioteq_item::setOldQ(const int q)
 {
-  oldq = q;
+  m_oldq = q;
 }
 
 /*
@@ -147,8 +147,8 @@ void biblioteq_item::storeData(QMainWindow *window)
   QString classname = "";
   QString objectname = "";
 
-  imageValues.clear();
-  widgetValues.clear();
+  m_imageValues.clear();
+  m_widgetValues.clear();
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
     {
@@ -156,34 +156,34 @@ void biblioteq_item::storeData(QMainWindow *window)
       objectname = widget->objectName();
 
       if(classname == "QSpinBox")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
       else if(classname == "QLineEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QComboBox")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QDateEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QDateEdit *> (widget))->date().toString("MM/dd/yyyy");
       else if(classname == "QTextEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "QDoubleSpinBox")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
       else if(classname == "QTimeEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QTimeEdit *> (widget))->text().trimmed();
       else if(classname == "biblioteq_hyperlinked_text_edit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<biblioteq_hyperlinked_text_edit *> (widget))->
 	  toPlainText().
 	  trimmed();
       else if(classname == "biblioteq_image_drop_site")
-	imageValues[objectname] =
-	  (qobject_cast<biblioteq_image_drop_site *> (widget))->image;
+	m_imageValues[objectname] =
+	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 }
 
@@ -196,12 +196,12 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   if(!window)
     return false;
 
-  int i = 0;
-  bool hasChanged = false;
-  QString classname = "";
-  QString objectname = "";
   QMap<QString, QImage> newimg;
   QMap<QString, QString> newdata;
+  QString classname = "";
+  QString objectname = "";
+  bool hasChanged = false;
+  int i = 0;
 
   foreach(QWidget *widget, window->findChildren<QWidget *>())
     {
@@ -237,19 +237,21 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	  toPlainText().trimmed();
       else if(classname == "biblioteq_image_drop_site")
 	newimg[objectname] =
-	  (qobject_cast<biblioteq_image_drop_site *> (widget))->image;
+	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 
-  for(i = 0; i < widgetValues.size(); i++)
-    if(widgetValues[widgetValues.keys()[i]] != newdata[widgetValues.keys()[i]])
+  for(i = 0; i < m_widgetValues.size(); i++)
+    if(m_widgetValues[m_widgetValues.keys()[i]] !=
+       newdata[m_widgetValues.keys()[i]])
       {
 	hasChanged = true;
 	break;
       }
 
   if(!hasChanged)
-    for(i = 0; i < imageValues.size(); i++)
-      if(imageValues[imageValues.keys()[i]] != newimg[imageValues.keys()[i]])
+    for(i = 0; i < m_imageValues.size(); i++)
+      if(m_imageValues[m_imageValues.keys()[i]] !=
+	 newimg[m_imageValues.keys()[i]])
 	{
 	  hasChanged = true;
 	  break;

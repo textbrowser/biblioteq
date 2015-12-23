@@ -57,13 +57,13 @@ class biblioteq_copy_editor: public QDialog
   QVector<QString> m_columnHeaderIndexes;
   QWidget *m_parent;
   Ui_copybrowser m_cb;
+  biblioteq_item *m_bitem;
   bool m_showForLending;
   int m_quantity;
-  biblioteq_item *m_bitem;
   QString saveCopies(void);
-  void changeEvent(QEvent *);
-  void closeEvent(QCloseEvent *);
-  void keyPressEvent(QKeyEvent *);
+  void changeEvent(QEvent *event);
+  void closeEvent(QCloseEvent *event);
+  void keyPressEvent(QKeyEvent *event);
 
  protected:
   void clearCopiesList(void);

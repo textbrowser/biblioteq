@@ -27,7 +27,7 @@ biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 		     rowArg,
 		     "journal")
 {
-  subType = "Journal";
+  m_subType = "Journal";
   disconnect(ma.cancelButton, SIGNAL(clicked(void)),
 	     static_cast<biblioteq_magazine *> (this),
 	     SLOT(slotCancel(void)));
@@ -58,8 +58,8 @@ void biblioteq_journal::slotCancel(void)
 
 void biblioteq_journal::closeEvent(QCloseEvent *e)
 {
-  if(engWindowTitle.contains("Create") ||
-     engWindowTitle.contains("Modify"))
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::
 	 question(this, tr("BiblioteQ: Question"),

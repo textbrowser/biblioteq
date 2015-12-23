@@ -16,7 +16,8 @@
 */
 
 biblioteq_sruresults::biblioteq_sruresults
-(QWidget *parent, const QList<QByteArray> &list,
+(QWidget *parent,
+ const QList<QByteArray> &list,
  biblioteq_magazine *magazine_arg,
  const QFont &font):QDialog(parent)
 {
@@ -25,7 +26,7 @@ biblioteq_sruresults::biblioteq_sruresults
   m_records = list;
   magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
-  ui.setupUi(this);
+  m_ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
@@ -73,25 +74,25 @@ biblioteq_sruresults::biblioteq_sruresults
 	    row = i;
 
       if(!issn.isEmpty())
-	ui.list->addItem(issn);
+	m_ui.list->addItem(issn);
       else
-	ui.list->addItem
+	m_ui.list->addItem
 	  (QString(tr("Record #")) + QString::number(i + 1));
     }
 
-  connect(ui.list, SIGNAL(currentRowChanged(int)), this,
+  connect(m_ui.list, SIGNAL(currentRowChanged(int)), this,
 	  SLOT(slotUpdateQueryText(void)));
-  connect(ui.okButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectRecord(void)));
-  connect(ui.cancelButton, SIGNAL(clicked(void)), this,
+  connect(m_ui.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClose(void)));
 
   if(row == -1)
     row = 0;
 
-  ui.list->setCurrentRow(row);
-  ui.splitter->setStretchFactor(0,  0);
-  ui.splitter->setStretchFactor(1,  1);
+  m_ui.list->setCurrentRow(row);
+  m_ui.splitter->setStretchFactor(0,  0);
+  m_ui.splitter->setStretchFactor(1,  1);
   setGlobalFonts(font);
 
   if(parent)
@@ -117,7 +118,8 @@ biblioteq_sruresults::~biblioteq_sruresults()
 void biblioteq_sruresults::slotSelectRecord(void)
 {
   if(magazine)
-    magazine->populateDisplayAfterSRU(m_records.value(ui.list->currentRow()));
+    magazine->populateDisplayAfterSRU
+      (m_records.value(m_ui.list->currentRow()));
 
   close();
 }
@@ -129,7 +131,7 @@ void biblioteq_sruresults::slotSelectRecord(void)
 void biblioteq_sruresults::slotUpdateQueryText(void)
 {
   QString title("");
-  QXmlStreamReader reader(m_records.value(ui.list->currentRow()));
+  QXmlStreamReader reader(m_records.value(m_ui.list->currentRow()));
 
   /*
   ** $a - Title (NR)
@@ -170,9 +172,9 @@ void biblioteq_sruresults::slotUpdateQueryText(void)
 	}
 
   title = title.mid(0, title.lastIndexOf('/')).trimmed();
-  ui.title->setText(title);
-  ui.title->setCursorPosition(0);
-  ui.textarea->setPlainText(m_records.value(ui.list->currentRow()));
+  m_ui.title->setText(title);
+  m_ui.title->setCursorPosition(0);
+  m_ui.textarea->setPlainText(m_records.value(m_ui.list->currentRow()));
 }
 
 /*
@@ -229,7 +231,7 @@ void biblioteq_sruresults::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  ui.retranslateUi(this);
+	  m_ui.retranslateUi(this);
 	  break;
 	}
       default:

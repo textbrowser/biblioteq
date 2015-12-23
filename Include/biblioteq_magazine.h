@@ -55,15 +55,15 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   QHttp *m_sruHttp;
 #endif
   QNetworkAccessManager *m_sruManager;
-  QPalette cb_orig_pal;
-  QPalette te_orig_pal;
-  QPalette white_pal;
-  QString dt_orig_ss;
-  QString engWindowTitle;
-  QString subType;
+  QPalette m_cb_orig_pal;
+  QPalette m_te_orig_pal;
+  QPalette m_white_pal;
+  QString m_dt_orig_ss;
+  QString m_engWindowTitle;
+  QString m_subType;
   Ui_magDialog ma;
   Ui_passwordDialog ui_p;
-  biblioteq_generic_thread *thread;
+  biblioteq_generic_thread *m_thread;
   biblioteq_item_working_dialog *m_sruWorking;
   bool useHttp(void) const;
   void changeEvent(QEvent *);

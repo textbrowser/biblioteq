@@ -32,19 +32,19 @@ class biblioteq_generic_thread: public QThread
   static const int READ_GLOBAL_CONFIG_FILE = 200;
   static const int Z3950_QUERY = 300;
 
-  biblioteq_generic_thread(QObject *);
+  biblioteq_generic_thread(QObject *parent);
   ~biblioteq_generic_thread();
   QString getEType(void) const;
   QString getErrorStr(void) const;
   QStringList getList(void) const;
   QStringList getZ3950Results(void) const;
-  void msleep(const int);
+  void msleep(const int msecs);
   void run(void);
-  void setFilename(const QString &);
-  void setOutputList(const QList<bool> &);
-  void setType(const int);
-  void setZ3950Name(const QString &);
-  void setZ3950SearchString(const QString &);
+  void setFilename(const QString &filename);
+  void setOutputList(const QList<bool> &list);
+  void setType(const int type);
+  void setZ3950Name(const QString &name);
+  void setZ3950SearchString(const QString &z3950SearchStr);
 
  private:
   QList<bool> m_outputListBool;

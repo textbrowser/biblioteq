@@ -52,30 +52,30 @@ biblioteq_photographcollection::biblioteq_photographcollection
   if((scene3 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((photo_diag = new(std::nothrow) QDialog(this)) == 0)
+  if((m_photo_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   pc.setupUi(this);
 
-  if((scene = new(std::nothrow) biblioteq_bgraphicsscene
+  if((m_scene = new(std::nothrow) biblioteq_bgraphicsscene
       (pc.graphicsView)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  connect(scene,
+  connect(m_scene,
 	  SIGNAL(selectionChanged(void)),
 	  this,
 	  SLOT(slotSceneSelectionChanged(void)));
-  oid = oidArg;
-  row = rowArg;
-  isQueryEnabled = false;
-  parentWid = parentArg;
-  photo.setupUi(photo_diag);
+  m_oid = oidArg;
+  m_row = rowArg;
+  m_isQueryEnabled = false;
+  m_parentWid = parentArg;
+  photo.setupUi(m_photo_diag);
   pc.graphicsView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(pc.graphicsView,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
 	  this,
 	  SLOT(slotViewContextMenu(const QPoint &)));
-  pc.graphicsView->setScene(scene);
+  pc.graphicsView->setScene(m_scene);
   pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
@@ -85,12 +85,12 @@ biblioteq_photographcollection::biblioteq_photographcollection
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, true);
-  photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
   updateFont(qapp->font(), qobject_cast<QWidget *> (this));
-  photo_diag->setWindowModality(Qt::WindowModal);
-  updateFont(qapp->font(), qobject_cast<QWidget *> (photo_diag));
+  m_photo_diag->setWindowModality(Qt::WindowModal);
+  updateFont(qapp->font(), qobject_cast<QWidget *> (m_photo_diag));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
   connect(photo.select_image_item, SIGNAL(clicked(void)),
@@ -151,14 +151,14 @@ biblioteq_photographcollection::biblioteq_photographcollection
   if(pc.location->findText(tr("UNKNOWN")) == -1)
     pc.location->addItem(tr("UNKNOWN"));
 
-  if(parentWid)
-    resize(qRound(0.95 * parentWid->size().width()),
-	   qRound(0.95 * parentWid->size().height()));
+  if(m_parentWid)
+    resize(qRound(0.95 * m_parentWid->size().width()),
+	   qRound(0.95 * m_parentWid->size().height()));
 
   pc.splitter->setStretchFactor(0, 0);
   pc.splitter->setStretchFactor(1, 1);
   pc.splitter->setStretchFactor(2, 0);
-  biblioteq_misc_functions::center(this, parentWid);
+  biblioteq_misc_functions::center(this, m_parentWid);
   biblioteq_misc_functions::hideAdminFields(this, qmain->getRoles());
   biblioteq_misc_functions::highlightWidget
     (photo.id_item, QColor(255, 248, 220));
@@ -191,8 +191,8 @@ void biblioteq_photographcollection::slotGo(void)
   QString str("");
   QString errorstr("");
 
-  if(engWindowTitle.contains("Create") ||
-     engWindowTitle.contains("Modify"))
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
     {
       str = pc.id_collection->text().trimmed();
       pc.id_collection->setText(str);
@@ -241,7 +241,7 @@ void biblioteq_photographcollection::slotGo(void)
 
       QSqlQuery query(qmain->getDB());
 
-      if(engWindowTitle.contains("Modify"))
+      if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE photograph_collection SET "
 		      "id = ?, "
 		      "title = ?, "
@@ -269,7 +269,7 @@ void biblioteq_photographcollection::slotGo(void)
       query.bindValue(3, pc.about_collection->toPlainText().trimmed());
       query.bindValue(4, pc.notes_collection->toPlainText().trimmed());
 
-      if(!pc.thumbnail_collection->image.isNull())
+      if(!pc.thumbnail_collection->m_image.isNull())
 	{
 	  QImage image;
 	  QByteArray bytes;
@@ -277,8 +277,8 @@ void biblioteq_photographcollection::slotGo(void)
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
-	      pc.thumbnail_collection->image.save
-		(&buffer, pc.thumbnail_collection->imageFormat.toLatin1(),
+	      pc.thumbnail_collection->m_image.save
+		(&buffer, pc.thumbnail_collection->m_imageFormat.toLatin1(),
 		 100);
 	      query.bindValue(5, bytes.toBase64());
 	    }
@@ -287,14 +287,14 @@ void biblioteq_photographcollection::slotGo(void)
 
 	  buffer.close();
 	  bytes.clear();
-	  image = pc.thumbnail_collection->image;
+	  image = pc.thumbnail_collection->m_image;
 	  image = image.scaled
 	    (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
 	      image.save
-		(&buffer, pc.thumbnail_collection->imageFormat.toLatin1(),
+		(&buffer, pc.thumbnail_collection->m_imageFormat.toLatin1(),
 		 100);
 	      query.bindValue(6, bytes.toBase64());
 	    }
@@ -303,13 +303,13 @@ void biblioteq_photographcollection::slotGo(void)
 	}
       else
 	{
-	  pc.thumbnail_collection->imageFormat = "";
+	  pc.thumbnail_collection->m_imageFormat = "";
 	  query.bindValue(5, QVariant(QVariant::ByteArray));
 	  query.bindValue(6, QVariant(QVariant::ByteArray));
 	}
 
-      if(engWindowTitle.contains("Modify"))
-	query.bindValue(7, oid);
+      if(m_engWindowTitle.contains("Modify"))
+	query.bindValue(7, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
@@ -351,13 +351,13 @@ void biblioteq_photographcollection::slotGo(void)
 
 	  qapp->restoreOverrideCursor();
 
-	  if(engWindowTitle.contains("Modify"))
+	  if(m_engWindowTitle.contains("Modify"))
 	    {
 	      str = QString(tr("BiblioteQ: Modify Photograph Collection "
 			       "Entry (")) +
 		pc.id_collection->text() + tr(")");
 	      setWindowTitle(str);
-	      engWindowTitle = "Modify";
+	      m_engWindowTitle = "Modify";
 
 	      if((qmain->getTypeFilterString() == "All" ||
 		  qmain->getTypeFilterString() == "All Available" ||
@@ -365,12 +365,12 @@ void biblioteq_photographcollection::slotGo(void)
 		  qmain->getTypeFilterString() == "All Requested" ||
 		  qmain->getTypeFilterString() == "All Reserved" ||
 		  qmain->getTypeFilterString() == "Photograph Collections") &&
-		 oid == biblioteq_misc_functions::getColumnString
+		 m_oid == biblioteq_misc_functions::getColumnString
 		 (qmain->getUI().table,
-		  row, qmain->getUI().table->columnNumber("MYOID")) &&
+		  m_row, qmain->getUI().table->columnNumber("MYOID")) &&
 		 biblioteq_misc_functions::getColumnString
 		 (qmain->getUI().table,
-		  row, qmain->getUI().table->columnNumber("Type")) ==
+		  m_row, qmain->getUI().table->columnNumber("Type")) ==
 		 "Photograph Collection")
 		{
 		  qmain->getUI().table->setSortingEnabled(false);
@@ -381,16 +381,16 @@ void biblioteq_photographcollection::slotGo(void)
 		    {
 		      if(names.at(i) == "ID" ||
 			 names.at(i) == "ID Number")
-			qmain->getUI().table->item(row, i)->setText
+			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.id_collection->text());
 		      else if(names.at(i) == "Title")
-			qmain->getUI().table->item(row, i)->setText
+			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.title_collection->text());
 		      else if(names.at(i) == "Location")
-			qmain->getUI().table->item(row, i)->setText
+			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.location->currentText());
 		      else if(names.at(i) == "About")
-			qmain->getUI().table->item(row, i)->setText
+			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.about_collection->toPlainText().trimmed());
 		    }
 
@@ -403,13 +403,13 @@ void biblioteq_photographcollection::slotGo(void)
 		}
 
 	      qmain->slotDisplaySummary();
-	      qmain->updateSceneItem(oid, "Photograph Collection",
-				     pc.thumbnail_collection->image);
+	      qmain->updateSceneItem(m_oid, "Photograph Collection",
+				     pc.thumbnail_collection->m_image);
 	    }
 	  else
 	    {
 	      qapp->setOverrideCursor(Qt::WaitCursor);
-	      oid = biblioteq_misc_functions::getOID
+	      m_oid = biblioteq_misc_functions::getOID
 		(pc.id_collection->text(),
 		 "Photograph Collection",
 		 qmain->getDB(),
@@ -427,7 +427,7 @@ void biblioteq_photographcollection::slotGo(void)
 					   "photograph collection's OID."));
 		}
 	      else
-		qmain->replacePhotographCollection(oid, this);
+		qmain->replacePhotographCollection(m_oid, this);
 
 	      updateWindow(biblioteq::EDITABLE);
 
@@ -542,10 +542,10 @@ void biblioteq_photographcollection::search
 
   actions.clear();
   setWindowTitle(tr("BiblioteQ: Database Photograph Collection Search"));
-  engWindowTitle = "Search";
+  m_engWindowTitle = "Search";
   pc.okButton->setText(tr("&Search"));
   pc.id_collection->setFocus();
-  biblioteq_misc_functions::center(this, parentWid);
+  biblioteq_misc_functions::center(this, m_parentWid);
   show();
 }
 
@@ -564,12 +564,12 @@ void biblioteq_photographcollection::updateWindow(const int state)
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
-      engWindowTitle = "Modify";
-      disconnect(scene,
+      m_engWindowTitle = "Modify";
+      disconnect(m_scene,
 		 SIGNAL(deleteKeyPressed(void)),
 		 this,
 		 SLOT(slotDeleteItem(void)));
-      connect(scene,
+      connect(m_scene,
 	      SIGNAL(deleteKeyPressed(void)),
 	      this,
 	      SLOT(slotDeleteItem(void)));
@@ -584,7 +584,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
 	pc.id_collection->text() + tr(")");
-      engWindowTitle = "View";
+      m_engWindowTitle = "View";
     }
 
   setWindowTitle(str);
@@ -604,11 +604,11 @@ void biblioteq_photographcollection::modify(const int state,
 
   if(state == biblioteq::EDITABLE)
     {
-      disconnect(scene,
+      disconnect(m_scene,
 		 SIGNAL(deleteKeyPressed(void)),
 		 this,
 		 SLOT(slotDeleteItem(void)));
-      connect(scene,
+      connect(m_scene,
 	      SIGNAL(deleteKeyPressed(void)),
 	      this,
 	      SLOT(slotDeleteItem(void)));
@@ -616,10 +616,10 @@ void biblioteq_photographcollection::modify(const int state,
       if(behavior.isEmpty())
 	{
 	  setWindowTitle(tr("BiblioteQ: Modify Photograph Collection Entry"));
-	  engWindowTitle = "Modify";
+	  m_engWindowTitle = "Modify";
 	}
       else
-	engWindowTitle = behavior;
+	m_engWindowTitle = behavior;
 
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
@@ -638,10 +638,10 @@ void biblioteq_photographcollection::modify(const int state,
       if(behavior.isEmpty())
 	{
 	  setWindowTitle(tr("BiblioteQ: View Photograph Collection Details"));
-	  engWindowTitle = "View";
+	  m_engWindowTitle = "View";
 	}
       else
-	engWindowTitle = behavior;
+	m_engWindowTitle = behavior;
 
       pc.okButton->setVisible(false);
       pc.addItemButton->setVisible(false);
@@ -666,7 +666,7 @@ void biblioteq_photographcollection::modify(const int state,
 		"FROM "
 		"photograph_collection "
 		"WHERE myoid = ?");
-  query.bindValue(0, oid);
+  query.bindValue(0, m_oid);
   pc.okButton->setText(tr("&Save"));
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -704,14 +704,14 @@ void biblioteq_photographcollection::modify(const int state,
 			(tr("BiblioteQ: Modify Photograph Collection "
 			    "Entry (")) +
 			var.toString() + tr(")");
-		      engWindowTitle = "Modify";
+		      m_engWindowTitle = "Modify";
 		    }
 		  else
 		    {
 		      str = QString(tr("BiblioteQ: View Photograph "
 				       "Collection Details (")) +
 			var.toString() + tr(")");
-		      engWindowTitle = "View";
+		      m_engWindowTitle = "View";
 		    }
 
 		  setWindowTitle(str);
@@ -739,7 +739,7 @@ void biblioteq_photographcollection::modify(const int state,
 		  pc.thumbnail_collection->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray()));
 
-		  if(pc.thumbnail_collection->image.isNull())
+		  if(pc.thumbnail_collection->m_image.isNull())
 		    pc.thumbnail_collection->loadFromData(var.toByteArray());
 		}
 	    }
@@ -747,13 +747,13 @@ void biblioteq_photographcollection::modify(const int state,
 
       int pages = 1;
 
-      if(!engWindowTitle.contains("Create"))
+      if(!m_engWindowTitle.contains("Create"))
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  query.prepare("SELECT COUNT(*) "
 			"FROM photograph "
 			"WHERE collection_oid = ?");
-	  query.bindValue(0, oid);
+	  query.bindValue(0, m_oid);
 
 	  if(query.exec())
 	    if(query.next())
@@ -775,7 +775,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       pc.page->blockSignals(false);
 
-      if(!engWindowTitle.contains("Create"))
+      if(!m_engWindowTitle.contains("Create"))
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  showPhotographs(pc.page->currentText().toInt());
@@ -808,7 +808,7 @@ void biblioteq_photographcollection::insert(void)
   biblioteq_misc_functions::highlightWidget
     (pc.title_collection, QColor(255, 248, 220));
   setWindowTitle(tr("BiblioteQ: Create Photograph Collection Entry"));
-  engWindowTitle = "Create";
+  m_engWindowTitle = "Create";
   pc.id_collection->setFocus();
   pc.page->blockSignals(true);
   pc.page->clear();
@@ -886,8 +886,8 @@ void biblioteq_photographcollection::slotReset(void)
 
 void biblioteq_photographcollection::closeEvent(QCloseEvent *e)
 {
-  if(engWindowTitle.contains("Create") ||
-     engWindowTitle.contains("Modify"))
+  if(m_engWindowTitle.contains("Create") ||
+     m_engWindowTitle.contains("Modify"))
     if(hasDataChanged(this))
       if(QMessageBox::
 	 question(this, tr("BiblioteQ: Question"),
@@ -927,42 +927,42 @@ void biblioteq_photographcollection::slotQuery(void)
 
 void biblioteq_photographcollection::slotPrint(void)
 {
-  html = "";
-  html += "<b>" + tr("Collection ID:") + "</b> " +
+  m_html = "";
+  m_html += "<b>" + tr("Collection ID:") + "</b> " +
     pc.id_collection->text().trimmed() + "<br>";
-  html += "<b>" + tr("Collection Title:") + "</b> " +
+  m_html += "<b>" + tr("Collection Title:") + "</b> " +
     pc.title_collection->text().trimmed() + "<br>";
-  html += "<b>" + tr("Collection Location:") + "</b> " +
+  m_html += "<b>" + tr("Collection Location:") + "</b> " +
     pc.location->currentText().trimmed() + "<br>";
-  html += "<b>" + tr("Collection About:") + "</b> " +
+  m_html += "<b>" + tr("Collection About:") + "</b> " +
     pc.about_collection->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Collection Notes:") + "</b> " +
+  m_html += "<b>" + tr("Collection Notes:") + "</b> " +
     pc.notes_collection->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item ID:") + "</b> " +
+  m_html += "<b>" + tr("Item ID:") + "</b> " +
     pc.id_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Title:") + "</b> " +
+  m_html += "<b>" + tr("Item Title:") + "</b> " +
     pc.title_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Creator(s):") + "</b> " +
+  m_html += "<b>" + tr("Item Creator(s):") + "</b> " +
     pc.creators_item->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item Publication Date:") + "</b> " +
+  m_html += "<b>" + tr("Item Publication Date:") + "</b> " +
     pc.publication_date->date().toString(Qt::ISODate) + "<br>";
-  html += "<b>" + tr("Item Copies:") + "</b> " +
+  m_html += "<b>" + tr("Item Copies:") + "</b> " +
     pc.quantity->text() + "<br>";
-  html += "<b>" + tr("Item Medium:") + "</b> " +
+  m_html += "<b>" + tr("Item Medium:") + "</b> " +
     pc.medium_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Reproduction Number:") + "</b> " +
+  m_html += "<b>" + tr("Item Reproduction Number:") + "</b> " +
     pc.reproduction_number_item->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item Copyright:") + "</b> " +
+  m_html += "<b>" + tr("Item Copyright:") + "</b> " +
     pc.copyright_item->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item Call Number:") + "</b> " +
+  m_html += "<b>" + tr("Item Call Number:") + "</b> " +
     pc.call_number_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Other Number:") + "</b> " +
+  m_html += "<b>" + tr("Item Other Number:") + "</b> " +
     pc.other_number_item->text().trimmed() + "<br>";
-  html += "<b>" + tr("Item Notes:") + "</b> " +
+  m_html += "<b>" + tr("Item Notes:") + "</b> " +
     pc.notes_item->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item Subjects:") + "</b> " +
+  m_html += "<b>" + tr("Item Subjects:") + "</b> " +
     pc.subjects_item->toPlainText().trimmed() + "<br>";
-  html += "<b>" + tr("Item Format:") + "</b> " +
+  m_html += "<b>" + tr("Item Format:") + "</b> " +
     pc.format_item->toPlainText().trimmed() + "<br>";
   print(this);
 }
@@ -999,17 +999,17 @@ void biblioteq_photographcollection::slotSelectImage(void)
       if(button == pc.select_image_collection)
 	{
 	  pc.thumbnail_collection->clear();
-	  pc.thumbnail_collection->image =
+	  pc.thumbnail_collection->m_image =
 	    QImage(dialog.selectedFiles().value(0));
 
 	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
-	    pc.thumbnail_collection->imageFormat =
+	    pc.thumbnail_collection->m_imageFormat =
 	      dialog.selectedFiles().value(0).mid
 	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
 	      toUpper();
 
 	  pc.thumbnail_collection->scene()->addPixmap
-	    (QPixmap().fromImage(pc.thumbnail_collection->image));
+	    (QPixmap().fromImage(pc.thumbnail_collection->m_image));
 
 	  if(pc.thumbnail_collection->scene()->items().size() > 0)
 	    pc.thumbnail_collection->scene()->items().at(0)->setFlags
@@ -1018,17 +1018,17 @@ void biblioteq_photographcollection::slotSelectImage(void)
       else
 	{
 	  photo.thumbnail_item->clear();
-	  photo.thumbnail_item->image = QImage(dialog.selectedFiles().
+	  photo.thumbnail_item->m_image = QImage(dialog.selectedFiles().
 					       value(0));
 
 	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
-	    photo.thumbnail_item->imageFormat = dialog.selectedFiles().
+	    photo.thumbnail_item->m_imageFormat = dialog.selectedFiles().
 	      value(0).mid
 	      (dialog.selectedFiles().value(0).lastIndexOf(".") + 1).
 	      toUpper();
 
 	  photo.thumbnail_item->scene()->addPixmap
-	    (QPixmap().fromImage(photo.thumbnail_item->image));
+	    (QPixmap().fromImage(photo.thumbnail_item->m_image));
 
 	  if(photo.thumbnail_item->scene()->items().size() > 0)
 	    photo.thumbnail_item->scene()->items().at(0)->setFlags
@@ -1046,7 +1046,7 @@ void biblioteq_photographcollection::duplicate
 {
   modify(state, "Create"); // Initial population.
   pc.addItemButton->setEnabled(false);
-  oid = p_oid;
+  m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
 }
 
@@ -1062,7 +1062,7 @@ void biblioteq_photographcollection::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  pc.retranslateUi(this);
-	  photo.retranslateUi(photo_diag);
+	  photo.retranslateUi(m_photo_diag);
 	  break;
 	}
       default:
@@ -1087,7 +1087,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 		"ORDER BY id "
 		"LIMIT ? "
 		"OFFSET ?");
-  query.bindValue(0, oid);
+  query.bindValue(0, m_oid);
   query.bindValue(1, PHOTOGRAPHS_PER_PAGE);
   query.bindValue(2, PHOTOGRAPHS_PER_PAGE * (page - 1));
 
@@ -1150,9 +1150,9 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotInsertItem(void)));
-  photo_diag->resize(photo_diag->width(),
-		     qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center(photo_diag, this);
+  m_photo_diag->resize(m_photo_diag->width(),
+		       qRound(0.95 * size().height()));
+  biblioteq_misc_functions::center(m_photo_diag, this);
   photo.thumbnail_item->clear();
 #if QT_VERSION >= 0x040700
   photo.id_item->setText(QString::number(QDateTime::currentMSecsSinceEpoch()));
@@ -1177,7 +1177,7 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.format_item->clear();
   photo.scrollArea->ensureVisible(0, 0);
   photo.id_item->setFocus();
-  photo_diag->show();
+  m_photo_diag->show();
 }
 
 /*
@@ -1186,7 +1186,7 @@ void biblioteq_photographcollection::slotAddItem(void)
 
 void biblioteq_photographcollection::slotClosePhoto(void)
 {
-  photo_diag->close();
+  m_photo_diag->close();
 }
 
 /*
@@ -1202,7 +1202,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.id_item->text().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "ID field."));
       photo.id_item->setFocus();
@@ -1214,7 +1214,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.title_item->text().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Title field."));
       photo.title_item->setFocus();
@@ -1226,7 +1226,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.title_item->text().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Creator(s) field."));
       photo.creators_item->setFocus();
@@ -1238,7 +1238,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.medium_item->text().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Medium field."));
       photo.medium_item->setFocus();
@@ -1250,7 +1250,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.reproduction_number_item->toPlainText().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Reproduction Number field."));
       photo.reproduction_number_item->setFocus();
@@ -1262,7 +1262,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
 
   if(photo.copyright_item->toPlainText().isEmpty())
     {
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
 			       "Copyright field."));
       photo.copyright_item->setFocus();
@@ -1289,7 +1289,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       return;
     }
@@ -1320,7 +1320,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 		  "?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   query.bindValue(0, photo.id_item->text());
-  query.bindValue(1, oid);
+  query.bindValue(1, m_oid);
   query.bindValue(2, photo.title_item->text());
   query.bindValue(3, photo.creators_item->toPlainText());
   query.bindValue(4, photo.publication_date->date().toString("MM/dd/yyyy"));
@@ -1334,7 +1334,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
   query.bindValue(12, photo.subjects_item->toPlainText().trimmed());
   query.bindValue(13, photo.format_item->toPlainText().trimmed());
 
-  if(!photo.thumbnail_item->image.isNull())
+  if(!photo.thumbnail_item->m_image.isNull())
     {
       QImage image;
       QByteArray bytes;
@@ -1342,8 +1342,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
-	  photo.thumbnail_item->image.save
-	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  photo.thumbnail_item->m_image.save
+	    (&buffer, photo.thumbnail_item->m_imageFormat.toLatin1(), 100);
 	  query.bindValue(14, bytes.toBase64());
 	}
       else
@@ -1351,14 +1351,14 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
       buffer.close();
       bytes.clear();
-      image = photo.thumbnail_item->image;
+      image = photo.thumbnail_item->m_image;
       image = image.scaled
 	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
 	  image.save
-	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	    (&buffer, photo.thumbnail_item->m_imageFormat.toLatin1(), 100);
 	  query.bindValue(15, bytes.toBase64());
 	}
       else
@@ -1366,7 +1366,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
     }
   else
     {
-      photo.thumbnail_item->imageFormat = "";
+      photo.thumbnail_item->m_imageFormat = "";
       query.bindValue(14, QVariant(QVariant::ByteArray));
       query.bindValue(15, QVariant(QVariant::ByteArray));
     }
@@ -1417,7 +1417,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
-  query.bindValue(0, oid);
+  query.bindValue(0, m_oid);
 
   if(query.exec())
     if(query.next())
@@ -1453,7 +1453,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
        qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
-  QMessageBox::critical(photo_diag, tr("BiblioteQ: Database Error"),
+  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to create the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
@@ -1515,7 +1515,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		    "FROM photograph "
 		    "WHERE collection_oid = ? AND "
 		    "myoid = ?");
-      query.bindValue(0, oid);
+      query.bindValue(0, m_oid);
       query.bindValue(1, item->data(0).toString());
 
       if(query.exec())
@@ -1601,7 +1601,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		      photo.thumbnail_item->loadFromData
 			(QByteArray::fromBase64(var.toByteArray()));
 
-		      if(pc.thumbnail_collection->image.isNull())
+		      if(pc.thumbnail_collection->m_image.isNull())
 			{
 			  pc.thumbnail_item->loadFromData
 			    (var.toByteArray());
@@ -1628,12 +1628,12 @@ void biblioteq_photographcollection::slotModifyItem(void)
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotUpdateItem(void)));
-  photo_diag->resize(photo_diag->width(),
-		     qRound(0.95 * size().height()));
-  biblioteq_misc_functions::center(photo_diag, this);
+  m_photo_diag->resize(m_photo_diag->width(),
+		       qRound(0.95 * size().height()));
+  biblioteq_misc_functions::center(m_photo_diag, this);
   photo.id_item->setFocus();
   photo.scrollArea->ensureVisible(0, 0);
-  photo_diag->show();
+  m_photo_diag->show();
 }
 
 /*
@@ -1646,7 +1646,7 @@ void biblioteq_photographcollection::storeData(void)
   QString objectname = "";
   QList<QWidget *> list;
 
-  widgetValues.clear();
+  m_widgetValues.clear();
   list << pc.thumbnail_collection
        << pc.id_collection
        << pc.title_collection
@@ -1660,17 +1660,17 @@ void biblioteq_photographcollection::storeData(void)
       objectname = widget->objectName();
 
       if(classname == "QLineEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
       else if(classname == "QComboBox")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
       else if(classname == "QTextEdit")
-	widgetValues[objectname] =
+	m_widgetValues[objectname] =
 	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
       else if(classname == "biblioteq_image_drop_site")
-	imageValues[objectname] =
-	  (qobject_cast<biblioteq_image_drop_site *> (widget))->image;
+	m_imageValues[objectname] =
+	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 }
 
@@ -1691,7 +1691,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(photo_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
       return;
     }
@@ -1723,7 +1723,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   query.bindValue(11, photo.subjects_item->toPlainText().trimmed());
   query.bindValue(12, photo.format_item->toPlainText().trimmed());
 
-  if(!photo.thumbnail_item->image.isNull())
+  if(!photo.thumbnail_item->m_image.isNull())
     {
       QImage image;
       QBuffer buffer;
@@ -1733,8 +1733,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
-	  photo.thumbnail_item->image.save
-	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	  photo.thumbnail_item->m_image.save
+	    (&buffer, photo.thumbnail_item->m_imageFormat.toLatin1(), 100);
 	  query.bindValue(13, bytes.toBase64());
 	}
       else
@@ -1742,14 +1742,14 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
       buffer.close();
       bytes.clear();
-      image = photo.thumbnail_item->image;
+      image = photo.thumbnail_item->m_image;
       image = image.scaled
 	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
 	  image.save
-	    (&buffer, photo.thumbnail_item->imageFormat.toLatin1(), 100);
+	    (&buffer, photo.thumbnail_item->m_imageFormat.toLatin1(), 100);
 	  query.bindValue(14, bytes.toBase64());
 	}
       else
@@ -1757,12 +1757,12 @@ void biblioteq_photographcollection::slotUpdateItem(void)
     }
   else
     {
-      photo.thumbnail_item->imageFormat = "";
+      photo.thumbnail_item->m_imageFormat = "";
       query.bindValue(13, QVariant(QVariant::ByteArray));
       query.bindValue(14, QVariant(QVariant::ByteArray));
     }
 
-  query.bindValue(15, oid);
+  query.bindValue(15, m_oid);
   query.bindValue(16, m_itemOid);
   qapp->setOverrideCursor(Qt::WaitCursor);
 
@@ -1804,7 +1804,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       pc.notes_item->setPlainText(photo.notes_item->toPlainText());
       pc.subjects_item->setPlainText(photo.subjects_item->toPlainText());
       pc.format_item->setPlainText(photo.format_item->toPlainText());
-      pc.thumbnail_item->setImage(photo.thumbnail_item->image);
+      pc.thumbnail_item->setImage(photo.thumbnail_item->m_image);
     }
 
   return;
@@ -1818,7 +1818,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
        qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
-  QMessageBox::critical(photo_diag, tr("BiblioteQ: Database Error"),
+  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to update the item. "
 			   "Please verify that "
 			   "the item does not already exist."));
@@ -1877,7 +1877,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 	  query.prepare("DELETE FROM photograph WHERE "
 			"collection_oid = ? AND myoid = ?");
-	  query.bindValue(0, oid);
+	  query.bindValue(0, m_oid);
 	  query.bindValue(1, itemOid);
 	  query.exec();
 	}
@@ -1895,7 +1895,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
-  query.bindValue(0, oid);
+  query.bindValue(0, m_oid);
 
   if(query.exec())
     if(query.next())
@@ -1955,11 +1955,11 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
       if(!action ||
 	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
 	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(), oid, -1,
+	  (qmain->getDB(), m_oid, -1,
 	   dialog.selectedFiles().value(0));
       else
 	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(), oid, pc.page->currentText().toInt(),
+	  (qmain->getDB(), m_oid, pc.page->currentText().toInt(),
 	   dialog.selectedFiles().value(0));
 
       qapp->restoreOverrideCursor();
@@ -2035,7 +2035,7 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
 			    "photograph WHERE "
 			    "collection_oid = ? AND "
 			    "myoid = ?");
-	      query.bindValue(0, oid);
+	      query.bindValue(0, m_oid);
 	      query.bindValue(1, item->data(0).toLongLong());
 
 	      if(query.exec())

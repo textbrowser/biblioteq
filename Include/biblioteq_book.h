@@ -57,15 +57,15 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 #endif
   QNetworkAccessManager *m_imageManager;
   QNetworkAccessManager *m_sruManager;
-  QPalette te_orig_pal;
-  QPalette white_pal;
-  QString cb_orig_ss;
-  QString dt_orig_ss;
-  QString engWindowTitle;
+  QPalette m_te_orig_pal;
+  QPalette m_white_pal;
+  QString m_cb_orig_ss;
+  QString m_dt_orig_ss;
+  QString m_engWindowTitle;
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
-  biblioteq_generic_thread *thread;
-  biblioteq_item_working_dialog *httpProgress;
+  biblioteq_generic_thread *m_thread;
+  biblioteq_item_working_dialog *m_httpProgress;
   biblioteq_item_working_dialog *m_sruWorking;
   bool useHttp(void) const;
   void changeEvent(QEvent *);

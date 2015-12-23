@@ -39,12 +39,12 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void updateWindow(const int);
 
  private:
-  QDialog *photo_diag;
-  QString engWindowTitle;
+  QDialog *m_photo_diag;
+  QString m_engWindowTitle;
   QString m_itemOid;
   Ui_pcDialog pc;
   Ui_photographDialog photo;
-  biblioteq_bgraphicsscene *scene;
+  biblioteq_bgraphicsscene *m_scene;
   bool verifyItemFields(void);
   void changeEvent(QEvent *);
   void closeEvent(QCloseEvent *);

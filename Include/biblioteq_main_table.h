@@ -17,20 +17,26 @@ class biblioteq_main_table: public QTableWidget
   Q_OBJECT
 
  public:
-  biblioteq_main_table(QWidget *);
+  biblioteq_main_table(QWidget *parent);
   QHash<QString, QString> friendlyStates(void) const;
   QStringList columnNames(void) const;
-  int columnNumber(const QString &);
-  void parseStates(const QHash<QString, QString> &);
-  void recordColumnHidden
-    (const QString &, const QString &, const int, const bool);
-  void resetTable(const QString &, const QString &, const QString &);
-  void setColumnNames(const QStringList &);
+  int columnNumber(const QString &name) const;
+  void parseStates(const QHash<QString, QString> &states);
+  void recordColumnHidden(const QString &username,
+			  const QString &type,
+			  const int index,
+			  const bool hidden);
+  void resetTable(const QString &username,
+		  const QString &type,
+		  const QString &roles);
+  void setColumnNames(const QStringList &list);
 
  private:
-  QHash<QString, QList<int> > hiddenColumns;
+  QHash<QString, QList<int> > m_hiddenColumns;
   QVector<QString> m_columnHeaderIndexes;
-  void setColumns(const QString &, const QString &, const QString &);
+  void setColumns(const QString &username,
+		  const QString &type,
+		  const QString &roles);
 };
 
 #endif

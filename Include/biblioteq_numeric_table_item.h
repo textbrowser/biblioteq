@@ -10,8 +10,8 @@
 class biblioteq_numeric_table_item: public QTableWidgetItem
 {
 public:
-  biblioteq_numeric_table_item(const double);
-  bool operator <(const QTableWidgetItem &) const;
+  biblioteq_numeric_table_item(const double value);
+  bool operator <(const QTableWidgetItem &other) const;
 
 private:
   double m_value;

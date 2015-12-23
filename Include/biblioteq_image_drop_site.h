@@ -26,24 +26,24 @@ class biblioteq_image_drop_site: public QGraphicsView
   Q_OBJECT
 
  public:
-  QImage image;
-  QString imageFormat;
-  biblioteq_image_drop_site(QWidget *);
+  QImage m_image;
+  QString m_imageFormat;
+  biblioteq_image_drop_site(QWidget *parent);
   void clear(void);
-  void loadFromData(const QByteArray &);
-  void setImage(const QImage &);
-  void setReadOnly(const bool);
+  void loadFromData(const QByteArray &bytes);
+  void setImage(const QImage &image);
+  void setReadOnly(const bool readOnly);
 
  private:
-  bool doubleclicked;
-  QString determineFormat(const QByteArray &) const;
-  QString determineFormat(const QString &) const;
-  void dragEnterEvent(QDragEnterEvent *);
-  void dragLeaveEvent(QDragLeaveEvent *);
-  void dragMoveEvent(QDragMoveEvent *);
-  void dropEvent(QDropEvent *);
-  void keyPressEvent(QKeyEvent *);
-  void mouseDoubleClickEvent(QMouseEvent *);
+  bool m_doubleclicked;
+  QString determineFormat(const QByteArray &bytes) const;
+  QString determineFormat(const QString &filename) const;
+  void dragEnterEvent(QDragEnterEvent *event);
+  void dragLeaveEvent(QDragLeaveEvent *event);
+  void dragMoveEvent(QDragMoveEvent *event);
+  void dropEvent(QDropEvent *event);
+  void keyPressEvent(QKeyEvent *event);
+  void mouseDoubleClickEvent(QMouseEvent *event);
 };
 
 #endif
