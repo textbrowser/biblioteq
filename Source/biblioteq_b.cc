@@ -17,6 +17,56 @@
 
 extern QApplication *qapp;
 
+static void qt_graphicsItem_highlightSelected
+(QGraphicsItem *item, QPainter *painter,
+ const QStyleOptionGraphicsItem *option)
+{
+  const QRectF murect = painter->transform().mapRect(QRectF(0, 0, 1, 1));
+
+  if(qFuzzyIsNull(qMax(murect.width(), murect.height())))
+    return;
+
+  const QRectF mbrect = painter->transform().mapRect(item->boundingRect());
+
+  if(qMin(mbrect.width(), mbrect.height()) < qreal(1.0))
+    return;
+
+  const QColor bgcolor(70, 130, 180);
+  const qreal pad = 0.0;
+  const qreal penWidth = 5.0;
+
+  painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
+  painter->setBrush(Qt::NoBrush);
+  painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
+  painter->setPen(QPen(option->palette.windowText(), 0, Qt::SolidLine));
+  painter->setBrush(Qt::NoBrush);
+  painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
+}
+
+class biblioteq_graphicsitempixmap: public QGraphicsPixmapItem
+{
+public:
+  biblioteq_graphicsitempixmap(const QPixmap &pixmap,
+			       QGraphicsItem *parent):
+    QGraphicsPixmapItem(pixmap, parent)
+  {
+  }
+
+  ~biblioteq_graphicsitempixmap()
+  {
+  }
+
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+	     QWidget *widget = 0)
+  {
+    QGraphicsPixmapItem::paint(painter, option, widget);
+
+    if(option)
+      if(option->state & (QStyle::State_Selected | QStyle::State_HasFocus))
+	qt_graphicsItem_highlightSelected(this, painter, option);
+  }
+};
+
 /*
 ** -- populateTable() --
 */
@@ -3302,7 +3352,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   int iconTableRowIdx = 0;
   int iconTableColumnIdx = 0;
-  QGraphicsPixmapItem *pixmapItem = 0;
+  biblioteq_graphicsitempixmap *pixmapItem = 0;
 
   /*
   ** Adjust the dimensions of the graphics scene if pagination
@@ -3405,11 +3455,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		    (126, 187, Qt::KeepAspectRatio,
 		     Qt::SmoothTransformation);
 
-		pixmapItem = ui.graphicsView->scene()->addPixmap
-		  (QPixmap().fromImage(image));
-		pixmapItem->setPos(150 * iconTableColumnIdx,
-				   200 * iconTableRowIdx);
-		pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+		pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+		  (QPixmap().fromImage(image), 0);
+
+		if(pixmapItem)
+		  {
+		    pixmapItem->setPos(150 * iconTableColumnIdx,
+				       200 * iconTableRowIdx);
+		    pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+		    ui.graphicsView->scene()->addItem(pixmapItem);
+		  }
+
 		iconTableColumnIdx += 1;
 
 		if(iconTableColumnIdx >= 5)
