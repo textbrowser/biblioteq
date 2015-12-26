@@ -299,9 +299,6 @@
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
-                  <property name="readOnly">
-                   <bool>true</bool>
-                  </property>
                   <property name="displayFormat">
                    <string>yyyy-MM-dd</string>
                   </property>
