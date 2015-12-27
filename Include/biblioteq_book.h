@@ -38,12 +38,14 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_book(QMainWindow *, const QString &, const int);
+  biblioteq_book(QMainWindow *parentArg,
+		 const QString &oidArg,
+		 const int rowArg);
   ~biblioteq_book();
-  void duplicate(const QString &, const int);
+  void duplicate(const QString &p_oid, const int state);
   void insert(void);
-  void modify(const int);
-  void search(const QString & = "", const QString & = "");
+  void modify(const int state);
+  void search(const QString &field = "", const QString &value = "");
   void updateWindow(const int);
 
  private:
@@ -77,7 +79,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotCancelImageDownload(void);
   void slotConvertISBN10to13(void);
   void slotConvertISBN13to10(void);
-  void slotDataTransferProgress(qint64, qint64);
+  void slotDataTransferProgress(qint64 bytesread, qint64 totalbytes);
   void slotDownloadFinished(bool error);
   void slotDownloadFinished(void);
   void slotDownloadImage(void);
@@ -85,7 +87,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
   void slotProxyAuthenticationRequired
-    (const QNetworkProxy &, QAuthenticator *);
+    (const QNetworkProxy &proxy, QAuthenticator *authenticator);
 #if QT_VERSION < 0x050000
   void slotReadyRead(const QHttpResponseHeader &resp);
 #endif

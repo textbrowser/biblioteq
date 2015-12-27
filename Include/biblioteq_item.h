@@ -53,7 +53,7 @@ class biblioteq_item_working_dialog: public QProgressDialog
 class biblioteq_item
 {
  public:
-  biblioteq_item(const int);
+  biblioteq_item(const int rowArg);
   biblioteq_item(void);
   virtual ~biblioteq_item();
   QString getID(void) const;

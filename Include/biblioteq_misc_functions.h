@@ -80,7 +80,8 @@ class biblioteq_misc_functions
   static int getMinimumDays(const QSqlDatabase &, const QString &, QString &);
   static int sqliteQuerySize(const QString &, const QMap<QString, QVariant> &,
 			     const QSqlDatabase &, const char *, const int);
-  static int sqliteQuerySize(const QString &, const QSqlDatabase &, const char *, const int);
+  static int sqliteQuerySize(const QString &, const QSqlDatabase &,
+			     const char *, const int);
   static qint64 getMemberMatchCount(const QString &, const QString &,
 				    const QSqlDatabase &, QString &);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);

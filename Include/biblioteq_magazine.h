@@ -36,17 +36,20 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_magazine(QMainWindow *, const QString &,
-		     const int, const QString &);
+  biblioteq_magazine(QMainWindow *parentArg,
+		     const QString &oidArg,
+		     const int rowArg,
+		     const QString &subTypeArg);
   ~biblioteq_magazine();
   Ui_magDialog dialog(void) const;
-  void duplicate(const QString &, const int);
+  void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int);
-  void populateDisplayAfterSRU(const QByteArray &);
-  void populateDisplayAfterZ3950(const QStringList &, const QString &);
-  void search(const QString & = "", const QString & = "");
-  void updateWindow(const int);
+  void populateDisplayAfterSRU(const QByteArray &data);
+  void populateDisplayAfterZ3950(const QStringList &list,
+				 const QString &recordSyntax);
+  void search(const QString &field = "", const QString &value = "");
+  void updateWindow(const int state);
 
  protected:
   QByteArray m_sruResults;
@@ -95,8 +98,9 @@ class biblioteq_journal: public biblioteq_magazine
   Q_OBJECT
 
  public:
-  biblioteq_journal(QMainWindow *, const QString &,
-		    const int);
+  biblioteq_journal(QMainWindow *parentArg,
+		    const QString &oidArg,
+		    const int rowArg);
   ~biblioteq_journal();
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

@@ -29,13 +29,15 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 
  public:
   static const int PHOTOGRAPHS_PER_PAGE = 25;
-  biblioteq_photographcollection(QMainWindow *, const QString &, const int);
+  biblioteq_photographcollection(QMainWindow *parentArg,
+				 const QString &oidArg,
+				 const int rowArg);
   ~biblioteq_photographcollection();
-  void duplicate(const QString &, const int);
+  void duplicate(const QString &p_oid, const int state);
   void insert(void);
-  void modify(const int, const QString & = "");
-  void search(const QString & = "", const QString & = "");
-  void updateWindow(const int);
+  void modify(const int state, const QString &behavior = "");
+  void search(const QString &field = "", const QString &value = "");
+  void updateWindow(const int state);
 
  private:
   QDialog *m_photo_diag;
@@ -47,7 +49,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   bool verifyItemFields(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
-  void showPhotographs(const int);
+  void showPhotographs(const int page);
   void storeData(void);
 
  private slots:
@@ -59,14 +61,14 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotGo(void);
   void slotInsertItem(void);
   void slotModifyItem(void);
-  void slotPageChanged(const QString &);
+  void slotPageChanged(const QString &text);
   void slotPrint(void);
   void slotQuery(void);
   void slotReset(void);
   void slotSceneSelectionChanged(void);
   void slotSelectImage(void);
   void slotUpdateItem(void);
-  void slotViewContextMenu(const QPoint &);
+  void slotViewContextMenu(const QPoint &pos);
   void slotViewPhotograph(void);
 };
 

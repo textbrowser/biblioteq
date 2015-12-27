@@ -27,13 +27,15 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  biblioteq_dvd(QMainWindow *, const QString &, const int);
+  biblioteq_dvd(QMainWindow *parentArg,
+		const QString &oidArg,
+		const int rowArg);
   ~biblioteq_dvd();
-  void duplicate(const QString &, const int);
+  void duplicate(const QString &p_oid, const int state);
   void insert(void);
-  void modify(const int);
-  void search(const QString & = "", const QString & = "");
-  void updateWindow(const int);
+  void modify(const int state);
+  void search(const QString &field = "", const QString &value = "");
+  void updateWindow(const int state);
 
  private:
   QString m_engWindowTitle;

@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2016.01.01"
+#define BIBLIOTEQ_VERSION "2016.02.01"
 
 /*
 ** -- C++ Includes --
@@ -217,45 +217,55 @@ class biblioteq: public QMainWindow
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
-  int populateTable(const int, const QString &,
-		    const QString &, const int = NEW_PAGE);
-  static void quit(const char *, const char *, const int);
+  int populateTable(const int search_type_arg,
+		    const QString &typefilter,
+		    const QString &searchstrArg,
+		    const int pagingType= NEW_PAGE);
+  static void quit(const char *msg, const char *file, const int line);
   static void quit(void);
-  void addError(const QString &, const QString &, const QString & = "",
-		const char * = "", const int = 0);
-  void bookSearch(const QString &, const QString &);
-  void cdSearch(const QString &, const QString &);
-  void dvdSearch(const QString &, const QString &);
-  void journSearch(const QString &, const QString &);
-  void magSearch(const QString &, const QString &);
-  void pcSearch(const QString &, const QString &);
-  void removeBook(biblioteq_book *);
-  void removeCD(biblioteq_cd *);
-  void removeDVD(biblioteq_dvd *);
-  void removeJournal(biblioteq_journal *);
-  void removeMagazine(biblioteq_magazine *);
-  void removePhotographCollection(biblioteq_photographcollection *);
-  void removeVideoGame(biblioteq_videogame *);
-  void replaceBook(const QString &, biblioteq_book *);
-  void replaceCD(const QString &, biblioteq_cd *);
-  void replaceDVD(const QString &, biblioteq_dvd *);
-  void replaceJournal(const QString &, biblioteq_journal *);
-  void replaceMagazine(const QString &, biblioteq_magazine *);
-  void replacePhotographCollection(const QString &,
-				   biblioteq_photographcollection *);
-  void replaceVideoGame(const QString &, biblioteq_videogame *);
-  void setGlobalFonts(const QFont &);
+  void addError(const QString &type,
+		const QString &summary,
+		const QString &error = "",
+		const char *file = "",
+		const int line = 0);
+  void bookSearch(const QString &field, const QString &value);
+  void cdSearch(const QString &field, const QString &value);
+  void dvdSearch(const QString &field, const QString &value);
+  void journSearch(const QString &field, const QString &value);
+  void magSearch(const QString &field, const QString &value);
+  void pcSearch(const QString &field, const QString &value);
+  void removeBook(biblioteq_book *book);
+  void removeCD(biblioteq_cd *cd);
+  void removeDVD(biblioteq_dvd *dvd);
+  void removeJournal(biblioteq_journal *journal);
+  void removeMagazine(biblioteq_magazine *magazine);
+  void removePhotographCollection(biblioteq_photographcollection *pc);
+  void removeVideoGame(biblioteq_videogame *videogame);
+  void replaceBook(const QString &id, biblioteq_book *book);
+  void replaceCD(const QString &id, biblioteq_cd *cd);
+  void replaceDVD(const QString &id, biblioteq_dvd *dvd);
+  void replaceJournal(const QString &id, biblioteq_journal *journal);
+  void replaceMagazine(const QString &id, biblioteq_magazine *magazine);
+  void replacePhotographCollection(const QString &id,
+				   biblioteq_photographcollection *pc);
+  void replaceVideoGame(const QString &id, biblioteq_videogame *videogame);
+  void setGlobalFonts(const QFont &font);
   void showMain(void);
   void updateItemWindows(void);
-  void updateMembersBrowser(const QString &);
+  void updateMembersBrowser(const QString &memberid);
   void updateMembersBrowser(void);
-  void updateReservationHistoryBrowser(const QString &, const QString &,
-				       const QString &, const QString &,
-				       const QString &);
-  void updateRows(const QString &, const int, const QString &);
-  void updateSceneItem(const QString &oid, const QString &type,
+  void updateReservationHistoryBrowser(const QString &memberid,
+				       const QString &ioid,
+				       const QString &copyid,
+				       const QString &itemType,
+				       const QString &returnedDate);
+  void updateRows(const QString &oid,
+		  const int row,
+		  const QString &itemType);
+  void updateSceneItem(const QString &oid,
+		       const QString &type,
 		       const QImage &image);
-  void vgSearch(const QString &, const QString &);
+  void vgSearch(const QString &field, const QString &value);
 
  public slots:
   void slotDisplaySummary(void);
@@ -303,18 +313,17 @@ class biblioteq: public QMainWindow
   qint64 m_queryOffset;
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
-  void addConfigOptions(const QString &);
+  void addConfigOptions(const QString &typefilter);
   void adminSetup(void);
-  void cdModify(const int);
-  void changeEvent(QEvent *);
+  void changeEvent(QEvent *event);
   void cleanup(void);
-  void closeEvent(QCloseEvent *);
+  void closeEvent(QCloseEvent *event);
   void createSqliteMenuActions(void);
-  void deleteItem(const QString &, const QString &);
+  void deleteItem(const QString &oid, const QString &itemType);
   void emptyContainers(void);
   void initialUpdate(void);
   void prepareFilter(void);
-  void prepareRequestToolButton(const QString &);
+  void prepareRequestToolButton(const QString &typefilter);
   void readConfig(void);
   void readGlobalSetup(void);
   void resetAdminBrowser(void);
@@ -325,16 +334,16 @@ class biblioteq: public QMainWindow
   void slotAbout(void);
   void slotAddAdmin(void);
   void slotAddBorrower(void);
-  void slotAdminCheckBoxClicked(int);
+  void slotAdminCheckBoxClicked(int state);
   void slotAllGo(void);
   void slotAutoPopOnFilter(QAction *action);
   void slotBookSearch(void);
   void slotBranchChanged(void);
   void slotCDSearch(void);
   void slotCancelAddUser(void);
-  void slotChangeView(bool);
+  void slotChangeView(bool checked);
   void slotCheckout(void);
-  void slotClearSqliteMenu(bool);
+  void slotClearSqliteMenu(bool state);
   void slotCloseCustomQueryDialog(void);
   void slotCloseMembersBrowser(void);
   void slotClosePasswordDialog(void);
@@ -365,7 +374,7 @@ class biblioteq: public QMainWindow
   void slotModify(void);
   void slotModifyBorrower(void);
   void slotNextPage(void);
-  void slotPageClicked(const QString &);
+  void slotPageClicked(const QString &link);
   void slotPhotographSearch(void);
   void slotPopulateMembersBrowser(void);
   void slotPreviousPage(void);
@@ -393,7 +402,7 @@ class biblioteq: public QMainWindow
   void slotSceneSelectionChanged(void);
   void slotSearch(void);
   void slotSearchBasic(void);
-  void slotSectionResized(int, int, int);
+  void slotSectionResized(int logicalIndex, int oldSize, int newSize);
   void slotSelectDatabaseFile(void);
   void slotSetColumns(void);
   void slotSetFonts(void);
@@ -410,8 +419,8 @@ class biblioteq: public QMainWindow
   void slotShowMenu(void);
   void slotShowNext(void);
   void slotShowPrev(void);
-  void slotSqliteFileSelected(bool);
-  void slotUpdateIndicesAfterSort(int);
+  void slotSqliteFileSelected(bool state);
+  void slotUpdateIndicesAfterSort(int column);
   void slotVideoGameSearch(void);
   void slotViewDetails(void);
 };
