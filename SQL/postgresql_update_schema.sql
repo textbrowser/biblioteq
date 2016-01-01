@@ -1064,3 +1064,35 @@ GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
 /* Release 2015.07.04 */
 
 ALTER TABLE member ALTER sex SET DEFAULT 'Private';
+
+/* Release 2016.02.01 */
+
+CREATE TABLE grey_literature
+(
+	author		TEXT NOT NULL,
+	client		TEXT,
+	document_code_a	TEXT NOT NULL,
+	document_code_b TEXT NOT NULL,
+	document_date	TEXT NOT NULL,
+	document_id	TEXT NOT NULL PRIMARY KEY,
+	document_status TEXT,
+	document_title	TEXT NOT NULL,
+	document_type	TEXT NOT NULL,
+	job_number	TEXT NOT NULL,
+	location	TEXT,
+	myoid		BIGSERIAL UNIQUE,
+	notes		TEXT,
+	type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
+GRANT SELECT ON grey_literature TO biblioteq_circulation;
+GRANT SELECT ON grey_literature TO biblioteq_guest;
+GRANT SELECT ON grey_literature TO biblioteq_membership;
+GRANT SELECT ON grey_literature TO biblioteq_patron;
+GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_patron;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;

@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS dvd_aspect_ratios;
 DROP TABLE IF EXISTS dvd_copy_info;
 DROP TABLE IF EXISTS dvd_ratings;
 DROP TABLE IF EXISTS dvd_regions;
+DROP TABLE IF EXISTS grey_literature;
 DROP TABLE IF EXISTS item_borrower CASCADE;
 DROP TABLE IF EXISTS item_request;
 DROP TABLE IF EXISTS journal CASCADE;

@@ -2,94 +2,94 @@ CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEUSER;
 
 CREATE TABLE book
 (
-	id		 VARCHAR(32) UNIQUE,
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
-	edition		 VARCHAR(8) NOT NULL,
 	author		 TEXT NOT NULL,
-	pdate		 VARCHAR(32) NOT NULL,
-	publisher	 TEXT NOT NULL,
-	place		 TEXT NOT NULL,
-	category	 TEXT NOT NULL,
-	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	description	 TEXT NOT NULL,
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	quantity	 INTEGER NOT NULL DEFAULT 1,
-	binding_type	 VARCHAR(32) NOT NULL,
-	location	 TEXT NOT NULL,
-	isbn13		 VARCHAR(32) UNIQUE,
-	lccontrolnumber	 VARCHAR(64),
-	callnumber	 VARCHAR(64),
-	deweynumber	 VARCHAR(64),
-	front_cover	 BYTEA,
 	back_cover	 BYTEA,
-	marc_tags	 TEXT,
-	keyword		 TEXT,
+	binding_type	 VARCHAR(32) NOT NULL,
+	callnumber	 VARCHAR(64),
+	category	 TEXT NOT NULL,
 	condition 	 TEXT,
+	description	 TEXT NOT NULL,
+	deweynumber	 VARCHAR(64),
+	edition		 VARCHAR(8) NOT NULL,
+	front_cover	 BYTEA,
+	id		 VARCHAR(32) UNIQUE,
+	isbn13		 VARCHAR(32) UNIQUE,
+	keyword		 TEXT,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	lccontrolnumber	 VARCHAR(64),
+	location	 TEXT NOT NULL,
+	marc_tags	 TEXT,
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	myoid		 BIGSERIAL UNIQUE,
 	originality 	 TEXT,
+	pdate		 VARCHAR(32) NOT NULL,
+	place		 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	publisher	 TEXT NOT NULL,
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Book'
 );
 
 CREATE TABLE book_copy_info
 (
+	condition	 TEXT,
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	condition	 TEXT,
 	originality	 TEXT,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
 );
 
 CREATE TABLE cd
 (
-	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
 	artist		 TEXT NOT NULL,
-	recording_label	 TEXT NOT NULL,
-	rdate		 VARCHAR(32) NOT NULL,
-	category	 TEXT NOT NULL,
-	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	description	 TEXT NOT NULL,
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	quantity	 INTEGER NOT NULL DEFAULT 1,
-	location	 TEXT NOT NULL,
-	cdruntime	 VARCHAR(32) NOT NULL,
-	cdformat	 VARCHAR(128) NOT NULL,
-	cddiskcount	 INTEGER NOT NULL DEFAULT 1,
-	cdaudio		 VARCHAR(32) NOT NULL DEFAULT 'Mono',
-	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
-	front_cover	 BYTEA,
 	back_cover	 BYTEA,
+	category	 TEXT NOT NULL,
+	cdaudio		 VARCHAR(32) NOT NULL DEFAULT 'Mono',
+	cddiskcount	 INTEGER NOT NULL DEFAULT 1,
+	cdformat	 VARCHAR(128) NOT NULL,
+	cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',
+	cdruntime	 VARCHAR(32) NOT NULL,
+	description	 TEXT NOT NULL,
+	front_cover	 BYTEA,
+	id		 VARCHAR(32) NOT NULL PRIMARY KEY,
 	keyword		 TEXT,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	location	 TEXT NOT NULL,
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	myoid		 BIGSERIAL UNIQUE,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	rdate		 VARCHAR(32) NOT NULL,
+	recording_label	 TEXT NOT NULL,
+	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'CD'
 );
 
 CREATE TABLE cd_copy_info
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
 );
 
 CREATE TABLE cd_songs
 (
-	item_oid	 BIGINT NOT NULL,
 	albumnum	 INTEGER NOT NULL DEFAULT 1,
-	songnum		 INTEGER NOT NULL DEFAULT 1,
-	songtitle	 VARCHAR(256) NOT NULL,
-	runtime		 VARCHAR(32) NOT NULL,
 	artist		 TEXT NOT NULL DEFAULT 'UNKNOWN',
 	composer	 TEXT NOT NULL DEFAULT 'UNKNOWN',
-	PRIMARY KEY(item_oid, albumnum, songnum),
-	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE
+	item_oid	 BIGINT NOT NULL,
+	runtime		 VARCHAR(32) NOT NULL,
+	songnum		 INTEGER NOT NULL DEFAULT 1,
+	songtitle	 VARCHAR(256) NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, albumnum, songnum)
 );
 
 CREATE TABLE dvd
@@ -122,215 +122,233 @@ CREATE TABLE dvd
 
 CREATE TABLE dvd_copy_info
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
+);
+
+CREATE TABLE grey_literature
+(
+	author		TEXT NOT NULL,
+	client		TEXT,
+	document_code_a	TEXT NOT NULL,
+	document_code_b TEXT NOT NULL,
+	document_date	TEXT NOT NULL,
+	document_id	TEXT NOT NULL PRIMARY KEY,
+	document_status TEXT,
+	document_title	TEXT NOT NULL,
+	document_type	TEXT NOT NULL,
+	job_number	TEXT NOT NULL,
+	location	TEXT,
+	myoid		BIGSERIAL UNIQUE,
+	notes		TEXT,
+	type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'
 );
 
 CREATE TABLE journal
 (
-	id		 VARCHAR(32),
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
-	pdate		 VARCHAR(32) NOT NULL,
-	publisher	 TEXT NOT NULL,
-	place		 TEXT NOT NULL,
-	category	 TEXT NOT NULL,
-	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	description	 TEXT NOT NULL,
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	quantity	 INTEGER NOT NULL DEFAULT 1,
-	location	 TEXT NOT NULL,
-	issuevolume	 INTEGER NOT NULL DEFAULT 0,
-	issueno		 INTEGER NOT NULL DEFAULT 0,
-	lccontrolnumber	 VARCHAR(64),
+	back_cover	 BYTEA,
 	callnumber	 VARCHAR(64),
+	category	 TEXT NOT NULL,
+	description	 TEXT NOT NULL,
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
-	back_cover	 BYTEA,
-	marc_tags	 TEXT,
+	id		 VARCHAR(32),
+	issueno		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
 	keyword		 TEXT,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	lccontrolnumber	 VARCHAR(64),
+	location	 TEXT NOT NULL,
+	marc_tags	 TEXT,
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	myoid		 BIGSERIAL UNIQUE,
+	pdate		 VARCHAR(32) NOT NULL,
+	place		 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	publisher	 TEXT NOT NULL,
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',
 	UNIQUE (id, issuevolume, issueno)
 );
 
 CREATE TABLE journal_copy_info
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
 );
 
 CREATE TABLE magazine
 (
-	id		 VARCHAR(32),
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
-	pdate		 VARCHAR(32) NOT NULL,
-	publisher	 TEXT NOT NULL,
-	place		 TEXT NOT NULL,
-	category	 TEXT NOT NULL,
-	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	description	 TEXT NOT NULL,
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	quantity	 INTEGER NOT NULL DEFAULT 1,
-	location	 TEXT NOT NULL,
-	issuevolume	 INTEGER NOT NULL DEFAULT 0,
-	issueno		 INTEGER NOT NULL DEFAULT 0,
-	lccontrolnumber	 VARCHAR(64),
+	back_cover	 BYTEA,
 	callnumber	 VARCHAR(64),
+	category	 TEXT NOT NULL,
+	description	 TEXT NOT NULL,
 	deweynumber	 VARCHAR(64),
 	front_cover	 BYTEA,
-	back_cover	 BYTEA,
-	marc_tags	 TEXT,
+	id		 VARCHAR(32),
+	issueno		 INTEGER NOT NULL DEFAULT 0,
+	issuevolume	 INTEGER NOT NULL DEFAULT 0,
 	keyword		 TEXT,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	lccontrolnumber	 VARCHAR(64),
+	location	 TEXT NOT NULL,
+	marc_tags	 TEXT,
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	myoid		 BIGSERIAL UNIQUE,
+	pdate		 VARCHAR(32) NOT NULL,
+	place		 TEXT NOT NULL,
+	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	publisher	 TEXT NOT NULL,
+	quantity	 INTEGER NOT NULL DEFAULT 1,
+	title		 TEXT NOT NULL,
 	type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',
 	UNIQUE (id, issuevolume, issueno)
 );
 
 CREATE TABLE magazine_copy_info
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
 );
 
 CREATE TABLE photograph_collection
 (
-	id		 TEXT PRIMARY KEY NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
-	location	 TEXT NOT NULL,
 	about		 TEXT,
-	notes		 TEXT,
+	id		 TEXT PRIMARY KEY NOT NULL,
 	image		 BYTEA,
 	image_scaled	 BYTEA,
+	location	 TEXT NOT NULL,
+	myoid		 BIGSERIAL UNIQUE,
+	notes		 TEXT,
+	title		 TEXT NOT NULL,
 	type		 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection'
 );
 
 CREATE TABLE photograph
 (
-	id			  TEXT NOT NULL,
-	myoid			  BIGSERIAL UNIQUE,
-	collection_oid		  BIGINT NOT NULL,
-	title			  TEXT NOT NULL,
-	creators		  TEXT NOT NULL,
-	pdate			  VARCHAR(32) NOT NULL,
-	quantity		  INTEGER NOT NULL DEFAULT 1,
-	medium			  TEXT NOT NULL,
-	reproduction_number  	  TEXT NOT NULL,
-	copyright		  TEXT NOT NULL,
 	callnumber		  VARCHAR(64),
-	other_number		  TEXT,
-	notes			  TEXT,
-	subjects		  TEXT,
+	collection_oid		  BIGINT NOT NULL,
+	copyright		  TEXT NOT NULL,
+	creators		  TEXT NOT NULL,
 	format			  TEXT,
+	id			  TEXT NOT NULL,
 	image			  BYTEA,
 	image_scaled		  BYTEA,
-	PRIMARY KEY(id, collection_oid),
+	medium			  TEXT NOT NULL,
+	myoid			  BIGSERIAL UNIQUE,
+	notes			  TEXT,
+	other_number		  TEXT,
+	pdate			  VARCHAR(32) NOT NULL,
+	quantity		  INTEGER NOT NULL DEFAULT 1,
+	reproduction_number  	  TEXT NOT NULL,
+	subjects		  TEXT,
+	title			  TEXT NOT NULL,
 	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON
-				    DELETE CASCADE
+				    DELETE CASCADE,
+	PRIMARY KEY(id, collection_oid)
 );
 
 CREATE TABLE videogame
 (
-	id		 VARCHAR(32) PRIMARY KEY NOT NULL,
-	myoid		 BIGSERIAL UNIQUE,
-	title		 TEXT NOT NULL,
+	back_cover	 BYTEA,
+	description	 TEXT NOT NULL,
 	developer	 TEXT NOT NULL,
+	front_cover	 BYTEA,
 	genre		 TEXT NOT NULL,
-	rdate		 VARCHAR(32) NOT NULL,
-	publisher	 TEXT NOT NULL,
+	id		 VARCHAR(32) PRIMARY KEY NOT NULL,
+	keyword		 TEXT,
+	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	location	 TEXT NOT NULL,
+	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	myoid		 BIGSERIAL UNIQUE,
 	place		 TEXT NOT NULL,
 	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	description	 TEXT NOT NULL,
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',
+	publisher	 TEXT NOT NULL,
 	quantity	 INTEGER NOT NULL DEFAULT 1,
-	location	 TEXT NOT NULL,
-	vgrating	 VARCHAR(64) NOT NULL,
-	vgplatform	 VARCHAR(64) NOT NULL,
+	rdate		 VARCHAR(32) NOT NULL,
+	title		 TEXT NOT NULL,
+	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game',
 	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',
-	front_cover	 BYTEA,
-	back_cover	 BYTEA,
-	keyword		 TEXT,
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'
+	vgplatform	 VARCHAR(64) NOT NULL,
+	vgrating	 VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE videogame_copy_info
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	myoid		 BIGSERIAL UNIQUE,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
-	PRIMARY KEY(item_oid, copyid),
-	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE
+	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(item_oid, copyid)
 );
 
 CREATE TABLE member
 (
-	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
-	membersince	 VARCHAR(32) NOT NULL,
-	dob		 VARCHAR(32) NOT NULL,
-	sex		 VARCHAR(32) NOT NULL DEFAULT 'Private',
-	first_name	 VARCHAR(128) NOT NULL,
-	middle_init	 VARCHAR(1),
-	last_name	 VARCHAR(128) NOT NULL,
-	telephone_num	 VARCHAR(32),
-	street		 VARCHAR(256) NOT NULL,
 	city		 VARCHAR(256) NOT NULL,
-	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
-	zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A',
+	comments	 TEXT,
+	dob		 VARCHAR(32) NOT NULL,
 	email		 VARCHAR(128),
 	expiration_date	 VARCHAR(32) NOT NULL,
-	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
-	comments	 TEXT,
+	first_name	 VARCHAR(128) NOT NULL,
 	general_registration_number	 TEXT,
-	memberclass	 TEXT
+	last_name	 VARCHAR(128) NOT NULL,
+	memberclass	 TEXT,
+	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY,
+	membersince	 VARCHAR(32) NOT NULL,
+	middle_init	 VARCHAR(1),
+	overdue_fees	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,
+	sex		 VARCHAR(32) NOT NULL DEFAULT 'Private',
+	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',
+	street		 VARCHAR(256) NOT NULL,
+	telephone_num	 VARCHAR(32),
+	zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A'
 );
 
 CREATE TABLE member_history
 (
-	memberid	 VARCHAR(16) NOT NULL,
-	item_oid	 BIGINT NOT NULL,
 	copyid		 VARCHAR(64) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
 	duedate		 VARCHAR(32) NOT NULL,
-	returned_date	 VARCHAR(32) NOT NULL,
+	item_oid	 BIGINT NOT NULL,
+	memberid	 VARCHAR(16) NOT NULL,
 	myoid		 BIGSERIAL PRIMARY KEY,
 	reserved_by	 VARCHAR(128) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
+	returned_date	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE member_history_dnt
 (
-	memberid	VARCHAR(16) NOT NULL PRIMARY KEY,
 	dnt		INTEGER NOT NULL DEFAULT 1,
+	memberid	VARCHAR(16) NOT NULL PRIMARY KEY,
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
 );
 
 CREATE TABLE item_borrower
 (
+	copy_number	 INTEGER NOT NULL DEFAULT 1,
+	copyid		 VARCHAR(64) NOT NULL,
+	duedate		 VARCHAR(32) NOT NULL,
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
-	reserved_date	 VARCHAR(32) NOT NULL,
-	duedate		 VARCHAR(32) NOT NULL,
 	myoid		 BIGSERIAL PRIMARY KEY,
-	copyid		 VARCHAR(64) NOT NULL,
-	copy_number	 INTEGER NOT NULL DEFAULT 1,
 	reserved_by	 VARCHAR(128) NOT NULL,
+	reserved_date	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT
 );
@@ -339,8 +357,8 @@ CREATE TABLE item_request
 (
 	item_oid	 BIGINT NOT NULL,
 	memberid	 VARCHAR(16) NOT NULL,
-	requestdate	 VARCHAR(32) NOT NULL,
 	myoid		 BIGSERIAL NOT NULL,
+	requestdate	 VARCHAR(32) NOT NULL,
 	type		 VARCHAR(16) NOT NULL,
 	PRIMARY KEY(item_oid, memberid, type),
 	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE
@@ -418,8 +436,8 @@ FOR EACH row EXECUTE PROCEDURE delete_request();
 
 CREATE TABLE admin
 (
-	username	 VARCHAR(128) NOT NULL PRIMARY KEY,
-	roles		 TEXT NOT NULL
+	roles		 TEXT NOT NULL,
+	username	 VARCHAR(128) NOT NULL PRIMARY KEY
 );
 
 CREATE VIEW item_borrower_vw AS
@@ -529,6 +547,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO biblioteq_administr
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_administrator;
@@ -555,6 +574,7 @@ GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_administrator
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_administrator;
@@ -590,6 +610,7 @@ GRANT SELECT ON dvd_copy_info_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON dvd_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON dvd_ratings TO biblioteq_circulation;
 GRANT SELECT ON dvd_regions TO biblioteq_circulation;
+GRANT SELECT ON grey_literature TO biblioteq_circulation;
 GRANT SELECT ON item_borrower_vw TO biblioteq_circulation;
 GRANT SELECT ON journal TO biblioteq_circulation;
 GRANT SELECT ON journal_copy_info TO biblioteq_circulation;
@@ -635,6 +656,7 @@ GRANT SELECT ON dvd_copy_info_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON dvd_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON dvd_ratings TO biblioteq_guest;
 GRANT SELECT ON dvd_regions TO biblioteq_guest;
+GRANT SELECT ON grey_literature TO biblioteq_guest;
 GRANT SELECT ON item_borrower_vw TO biblioteq_guest;
 GRANT SELECT ON journal TO biblioteq_guest;
 GRANT SELECT ON journal_copy_info TO biblioteq_guest;
@@ -671,6 +693,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_aspect_ratios TO biblioteq_librarian
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_ratings TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO biblioteq_librarian;
@@ -695,6 +718,7 @@ GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_librarian;
@@ -725,6 +749,7 @@ GRANT SELECT ON dvd_copy_info_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON dvd_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON dvd_ratings TO biblioteq_membership;
 GRANT SELECT ON dvd_regions TO biblioteq_membership;
+GRANT SELECT ON grey_literature TO biblioteq_membership;
 GRANT SELECT ON item_borrower_vw TO biblioteq_membership;
 GRANT SELECT ON journal TO biblioteq_membership;
 GRANT SELECT ON journal_copy_info TO biblioteq_membership;
@@ -771,6 +796,7 @@ GRANT SELECT ON dvd_copy_info_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON dvd_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON dvd_ratings TO biblioteq_patron;
 GRANT SELECT ON dvd_regions TO biblioteq_patron;
+GRANT SELECT ON grey_literature TO biblioteq_patron;
 GRANT SELECT ON item_borrower_vw TO biblioteq_patron;
 GRANT SELECT ON journal TO biblioteq_patron;
 GRANT SELECT ON journal_copy_info TO biblioteq_patron;
