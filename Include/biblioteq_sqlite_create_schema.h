@@ -1,458 +1,460 @@
 const char *sqlite_create_schema_text = "\
 CREATE TABLE book							\
 (									\
-id		 VARCHAR(32) UNIQUE,					\
-    myoid		 BIGINT NOT NULL,				\
-    title		 TEXT NOT NULL,					\
-    edition		 VARCHAR(8) NOT NULL,				\
-    author		 TEXT NOT NULL,					\
-    pdate		 VARCHAR(32) NOT NULL,				\
-    publisher	 TEXT NOT NULL,						\
-    place		 TEXT NOT NULL,					\
-    category	 TEXT NOT NULL,						\
-    price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-    description	 TEXT NOT NULL,						\
-    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
-    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-    quantity	 INTEGER NOT NULL DEFAULT 1,				\
-    binding_type	 VARCHAR(32) NOT NULL,				\
-    location	 TEXT NOT NULL,						\
-    isbn13		 VARCHAR(32) UNIQUE,				\
-    lccontrolnumber	 VARCHAR(64),					\
-    callnumber	 VARCHAR(64),						\
-    deweynumber	 VARCHAR(64),						\
-    front_cover	 BYTEA,							\
+    author       TEXT NOT NULL,						\
     back_cover	 BYTEA,							\
-    marc_tags    TEXT,							\
-    keyword      TEXT,							\
+    binding_type VARCHAR(32) NOT NULL,					\
+    callnumber	 VARCHAR(64),						\
+    category	 TEXT NOT NULL,						\
     condition    TEXT,							\
+    description	 TEXT NOT NULL,						\
+    deweynumber	 VARCHAR(64),						\
+    edition	 VARCHAR(8) NOT NULL,					\
+    front_cover	 BYTEA,							\
+    id		 VARCHAR(32) UNIQUE,					\
+    isbn13	 VARCHAR(32) UNIQUE,					\
+    keyword      TEXT,							\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    lccontrolnumber	 VARCHAR(64),					\
+    location	 TEXT NOT NULL,						\
+    marc_tags    TEXT,							\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
     originality  TEXT,							\
-    type		 VARCHAR(16) NOT NULL DEFAULT 'Book'		\
-    );									\
+    pdate	 VARCHAR(32) NOT NULL,					\
+    place	 TEXT NOT NULL,						\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    publisher	 TEXT NOT NULL,						\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'Book'			\
+);									\
 									\
 CREATE TABLE book_copy_info						\
 (									\
-item_oid	 BIGINT NOT NULL,					\
-	  myoid		 BIGINT NOT NULL,				\
-	  copyid	 VARCHAR(64) NOT NULL,				\
-	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-          condition      TEXT,						\
-          originality    TEXT,						\
-	  PRIMARY KEY(item_oid, copyid),				\
-	  FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE \
-  );									\
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    condition    TEXT,							\
+    item_oid	 BIGINT NOT NULL,					\
+    originality  TEXT,							\
+    PRIMARY KEY(item_oid, copyid),					\
+    FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE	\
+);									\
 									\
 CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
 FOR EACH row								\
 BEGIN									\
-DELETE FROM book_copy_info WHERE item_oid = old.myoid;			\
-DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	type = old.type;						\
+    DELETE FROM book_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
 END;									\
 									\
 CREATE TABLE cd								\
 (									\
-id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
-    myoid		 BIGINT NOT NULL,				\
-    title		 TEXT NOT NULL,					\
-    artist		 TEXT NOT NULL,					\
-    recording_label	 TEXT NOT NULL,					\
-    rdate		 VARCHAR(32) NOT NULL,				\
-    category	 TEXT NOT NULL,						\
-    price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-    description	 TEXT NOT NULL,						\
-    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
-    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-    quantity	 INTEGER NOT NULL DEFAULT 1,				\
-    location	 TEXT NOT NULL,						\
-    cdruntime	 VARCHAR(32) NOT NULL,					\
-    cdformat	 VARCHAR(128) NOT NULL,					\
-    cddiskcount	 INTEGER NOT NULL DEFAULT 1,				\
-    cdaudio		 VARCHAR(32) NOT NULL DEFAULT 'Mono',		\
-    cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',			\
-    front_cover	 BYTEA,							\
+    artist	 TEXT NOT NULL,						\
     back_cover	 BYTEA,							\
+    category	 TEXT NOT NULL,						\
+    cdaudio	 VARCHAR(32) NOT NULL DEFAULT 'Mono',			\
+    cddiskcount	 INTEGER NOT NULL DEFAULT 1,				\
+    cdformat	 VARCHAR(128) NOT NULL,					\
+    cdrecording	 VARCHAR(32) NOT NULL DEFAULT 'Live',			\
+    cdruntime	 VARCHAR(32) NOT NULL,					\
+    description	 TEXT NOT NULL,						\
+    front_cover	 BYTEA,							\
+    id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
     keyword      TEXT,							\
-    type		 VARCHAR(16) NOT NULL DEFAULT 'CD'		\
-    );									\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    location	 TEXT NOT NULL,						\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    rdate	 VARCHAR(32) NOT NULL,					\
+    recording_label	 TEXT NOT NULL,					\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'CD'			\
+);									\
 									\
 CREATE TABLE cd_songs							\
 (									\
-item_oid	 BIGINT NOT NULL,					\
-	  albumnum	 INTEGER NOT NULL DEFAULT 1,			\
-	  songnum		 INTEGER NOT NULL DEFAULT 1,		\
-	  songtitle	 VARCHAR(256) NOT NULL,				\
-	  runtime		 VARCHAR(32) NOT NULL,			\
-	  artist         TEXT NOT NULL DEFAULT 'UNKNOWN',		\
-	  composer       TEXT NOT NULL DEFAULT 'UNKNOWN',		\
-	  PRIMARY KEY(item_oid, albumnum, songnum),			\
-	  FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
-	  );								\
+    albumnum	 INTEGER NOT NULL DEFAULT 1,				\
+    artist       TEXT NOT NULL DEFAULT 'UNKNOWN',			\
+    composer     TEXT NOT NULL DEFAULT 'UNKNOWN',			\
+    item_oid	 BIGINT NOT NULL,					\
+    runtime	 VARCHAR(32) NOT NULL,					\
+    songnum	 INTEGER NOT NULL DEFAULT 1,				\
+    songtitle	 VARCHAR(256) NOT NULL,					\
+    PRIMARY KEY(item_oid, albumnum, songnum),				\
+    FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
+);									\
 									\
 CREATE TABLE cd_copy_info						\
 (									\
-item_oid	 BIGINT NOT NULL,					\
-	  myoid		 BIGINT NOT NULL,				\
-	  copyid		 VARCHAR(64) NOT NULL,			\
-	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid),				\
-	  FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
-	  );								\
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),					\
+    FOREIGN KEY(item_oid) REFERENCES cd(myoid) ON DELETE CASCADE	\
+);									\
 									\
 CREATE TRIGGER cd_purge_trigger AFTER DELETE ON cd			\
 FOR EACH row								\
 BEGIN									\
-DELETE FROM cd_copy_info WHERE item_oid = old.myoid;			\
-DELETE FROM cd_songs WHERE item_oid = old.myoid;			\
-DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	  type = old.type;						\
+    DELETE FROM cd_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM cd_songs WHERE item_oid = old.myoid;			\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
 END;									\
 									\
 CREATE TABLE dvd							\
 (									\
-id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
-	  myoid		 BIGINT NOT NULL,				\
-	  title		 TEXT NOT NULL,					\
-	  studio		 TEXT NOT NULL,				\
-	  rdate		 VARCHAR(32) NOT NULL,				\
-	  category	 TEXT NOT NULL,					\
-	  price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-	  description	 TEXT NOT NULL,					\
-	  language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-	  monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',\
-	  quantity	 INTEGER NOT NULL DEFAULT 1,			\
-	  location	 TEXT NOT NULL,					\
-	  dvdactor	 TEXT NOT NULL,					\
-	  dvdformat	 TEXT NOT NULL,					\
-	  dvdruntime	 VARCHAR(32) NOT NULL,				\
-	  dvdrating	 VARCHAR(64) NOT NULL,				\
-	  dvdregion	 VARCHAR(64) NOT NULL,				\
-	  dvddiskcount	 INTEGER NOT NULL DEFAULT 1,			\
-	  dvddirector	 TEXT NOT NULL,					\
-	  dvdaspectratio	 VARCHAR(64) NOT NULL,			\
-	  front_cover	 BYTEA,						\
-	  back_cover	 BYTEA,						\
-          keyword        TEXT,						\
-	  type		 VARCHAR(16) NOT NULL DEFAULT 'DVD'		\
-	  );								\
+    back_cover	 BYTEA,							\
+    category	 TEXT NOT NULL,						\
+    description	 TEXT NOT NULL,						\
+    dvdactor	 TEXT NOT NULL,						\
+    dvdaspectratio	 VARCHAR(64) NOT NULL,				\
+    dvddirector	 TEXT NOT NULL,						\
+    dvddiskcount INTEGER NOT NULL DEFAULT 1,				\
+    dvdformat	 TEXT NOT NULL,						\
+    dvdrating	 VARCHAR(64) NOT NULL,					\
+    dvdregion	 VARCHAR(64) NOT NULL,					\
+    dvdruntime	 VARCHAR(32) NOT NULL,					\
+    front_cover	 BYTEA,							\
+    id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
+    keyword      TEXT,							\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    location	 TEXT NOT NULL,						\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    rdate	 VARCHAR(32) NOT NULL,					\
+    studio	 TEXT NOT NULL,						\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'DVD'			\
+);									\
 									\
 CREATE TABLE dvd_copy_info						\
 (									\
-item_oid	 BIGINT NOT NULL,					\
-	  myoid		 BIGINT NOT NULL,				\
-	  copyid		 VARCHAR(64) NOT NULL,			\
-	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid),				\
-	  FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE \
-	  );								\
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),					\
+    FOREIGN KEY(item_oid) REFERENCES dvd(myoid) ON DELETE CASCADE	\
+);									\
 									\
 CREATE TRIGGER dvd_purge_trigger AFTER DELETE ON dvd			\
 FOR EACH row								\
 BEGIN									\
-DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;			\
-DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	  type = old.type;						\
+    DELETE FROM dvd_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+	        type = old.type;					\
 END;									\
 									\
 CREATE TABLE journal							\
 (									\
-id		 VARCHAR(32),						\
-	  myoid		 BIGINT NOT NULL,				\
-	  title		 TEXT NOT NULL,					\
-	  pdate		 VARCHAR(32) NOT NULL,				\
-	  publisher	 TEXT NOT NULL,					\
-	  place		 TEXT NOT NULL,					\
-	  category	 TEXT NOT NULL,					\
-	  price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-	  description	 TEXT NOT NULL,					\
-	  language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-	  monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',\
-	  quantity	 INTEGER NOT NULL DEFAULT 1,			\
-	  location	 TEXT NOT NULL,					\
-	  issuevolume	 INTEGER NOT NULL DEFAULT 0,			\
-	  issueno		 INTEGER NOT NULL DEFAULT 0,		\
-	  lccontrolnumber	 VARCHAR(64),				\
-	  callnumber	 VARCHAR(64),					\
-	  deweynumber	 VARCHAR(64),					\
-	  front_cover	 BYTEA,						\
-	  back_cover	 BYTEA,						\
-          marc_tags      TEXT,						\
-          keyword        TEXT,						\
-	  type		 VARCHAR(16) NOT NULL DEFAULT 'Journal',	\
-          UNIQUE (id, issueno, issuevolume)				\
-	  );								\
+    back_cover	 BYTEA,							\
+    callnumber	 VARCHAR(64),						\
+    category	 TEXT NOT NULL,						\
+    description	 TEXT NOT NULL,						\
+    deweynumber	 VARCHAR(64),						\
+    front_cover	 BYTEA,							\
+    id		 VARCHAR(32),						\
+    issueno	 INTEGER NOT NULL DEFAULT 0,				\
+    issuevolume	 INTEGER NOT NULL DEFAULT 0,				\
+    keyword      TEXT,							\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    lccontrolnumber	 VARCHAR(64),					\
+    location	 TEXT NOT NULL,						\
+    marc_tags    TEXT,							\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
+    pdate	 VARCHAR(32) NOT NULL,					\
+    place	 TEXT NOT NULL,						\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    publisher	 TEXT NOT NULL,						\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'Journal',		\
+    UNIQUE(id, issueno, issuevolume)					\
+);									\
 									\
 CREATE TABLE journal_copy_info						\
 (									\
-item_oid	 BIGINT NOT NULL,					\
-	  myoid		 BIGINT NOT NULL,				\
-	  copyid		 VARCHAR(64) NOT NULL,			\
-	  copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	  PRIMARY KEY(item_oid, copyid),				\
-	  FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE \
-	  );								\
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),					\
+    FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE	\
+);									\
 									\
 CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
 FOR EACH row								\
 BEGIN									\
-DELETE FROM journal_copy_info WHERE item_oid = old.myoid;		\
-DELETE FROM member_history WHERE item_oid = old.myoid AND		\
-	  type = old.type;						\
+    DELETE FROM journal_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+                type = old.type;					\
 END;									\
 									\
 CREATE TABLE magazine							\
 (									\
-id		 VARCHAR(32),						\
-	  myoid		 BIGINT NOT NULL,				\
-	  title		 TEXT NOT NULL,					\
-	  pdate		 VARCHAR(32) NOT NULL,				\
-	  publisher	 TEXT NOT NULL,					\
-	  place		 TEXT NOT NULL,					\
-	  category	 TEXT NOT NULL,					\
-	  price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-	  description	 TEXT NOT NULL,					\
-	  language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-	  monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',\
-	  quantity	 INTEGER NOT NULL DEFAULT 1,			\
-	  location	 TEXT NOT NULL,					\
-	  issuevolume	 INTEGER NOT NULL DEFAULT 0,			\
-	  issueno		 INTEGER NOT NULL DEFAULT 0,		\
-	  lccontrolnumber	 VARCHAR(64),				\
-	  callnumber	 VARCHAR(64),					\
-	  deweynumber	 VARCHAR(64),					\
-	  front_cover	 BYTEA,						\
-	  back_cover	 BYTEA,						\
-          marc_tags      TEXT,						\
-          keyword        TEXT,						\
-	  type		 VARCHAR(16) NOT NULL DEFAULT 'Magazine',	\
-          UNIQUE (id, issuevolume, issueno)				\
+    back_cover	 BYTEA,							\
+    callnumber	 VARCHAR(64),						\
+    category	 TEXT NOT NULL,						\
+    description	 TEXT NOT NULL,						\
+    deweynumber	 VARCHAR(64),						\
+    front_cover	 BYTEA,							\
+    id		 VARCHAR(32),						\
+    issueno	 INTEGER NOT NULL DEFAULT 0,				\
+    issuevolume	 INTEGER NOT NULL DEFAULT 0,				\
+    keyword      TEXT,							\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    lccontrolnumber	 VARCHAR(64),					\
+    location	 TEXT NOT NULL,						\
+    marc_tags    TEXT,							\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
+    pdate	 VARCHAR(32) NOT NULL,					\
+    place	 TEXT NOT NULL,						\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    publisher	 TEXT NOT NULL,						\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'Magazine',		\
+    UNIQUE(id, issuevolume, issueno)					\
 );									\
 									\
 CREATE TABLE magazine_copy_info						\
 (									\
-	item_oid	 BIGINT NOT NULL,				\
-	myoid		 BIGINT NOT NULL,				\
-	copyid		 VARCHAR(64) NOT NULL,				\
-	copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	PRIMARY KEY(item_oid, copyid),				        \
-	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE \
+    copy_number	 INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),				        \
+    FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE	\
 );									\
 									\
 CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
 FOR EACH row								\
 BEGIN									\
-	DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;	\
-	DELETE FROM member_history WHERE item_oid = old.myoid AND	\
-		type = old.type;					\
+    DELETE FROM magazine_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+	        type = old.type;					\
 END;									\
 									\
 CREATE TABLE photograph_collection					\
 (									\
-        id		 TEXT PRIMARY KEY NOT NULL,			\
-	myoid		 BIGINT NOT NULL,				\
-	title		 TEXT NOT NULL,					\
-        location         TEXT NOT NULL,					\
-	about		 TEXT,						\
-	notes		 TEXT,						\
-	image		 BYTEA,						\
-	image_scaled	 BYTEA,						\
-	type		 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection' \
+    about	 TEXT,							\
+    id		 TEXT PRIMARY KEY NOT NULL,				\
+    image	 BYTEA,							\
+    image_scaled BYTEA,							\
+    location     TEXT NOT NULL,						\
+    myoid	 BIGINT NOT NULL,					\
+    notes	 TEXT,							\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection'	\
 );									\
 									\
 CREATE TABLE photograph							\
 (									\
-        id                        TEXT NOT NULL,			\
-	myoid			  BIGINT NOT NULL,			\
-	collection_oid		  BIGINT NOT NULL,			\
-	title			  TEXT NOT NULL,			\
-	creators		  TEXT NOT NULL,			\
-	pdate			  VARCHAR(32) NOT NULL,			\
-	quantity		  INTEGER NOT NULL DEFAULT 1,		\
-	medium			  TEXT NOT NULL,			\
-	reproduction_number  	  TEXT NOT NULL,			\
-	copyright		  TEXT NOT NULL,			\
-	callnumber		  VARCHAR(64),				\
-	other_number		  TEXT,					\
-	notes			  TEXT,					\
-	subjects		  TEXT,					\
-	format			  TEXT,					\
-	image			  BYTEA,				\
-	image_scaled		  BYTEA,				\
-	PRIMARY KEY(id, collection_oid),				\
-	FOREIGN KEY(collection_oid) REFERENCES photograph_collection(myoid) ON \
-				   DELETE CASCADE			\
+    callnumber		  VARCHAR(64),					\
+    collection_oid	  BIGINT NOT NULL,				\
+    copyright		  TEXT NOT NULL,				\
+    creators		  TEXT NOT NULL,				\
+    format		  TEXT,						\
+    id                    TEXT NOT NULL,				\
+    image		  BYTEA,					\
+    image_scaled	  BYTEA,					\
+    medium		  TEXT NOT NULL,				\
+    myoid		  BIGINT NOT NULL,				\
+    notes		  TEXT,						\
+    other_number	  TEXT,						\
+    pdate		  VARCHAR(32) NOT NULL,				\
+    quantity		  INTEGER NOT NULL DEFAULT 1,			\
+    reproduction_number   TEXT NOT NULL,				\
+    subjects		  TEXT,						\
+    title		  TEXT NOT NULL,				\
+    PRIMARY KEY(id, collection_oid),					\
+    FOREIGN KEY(collection_oid) REFERENCES				\
+                                photograph_collection(myoid) ON		\
+				DELETE CASCADE				\
 );									\
 									\
 CREATE TABLE videogame							\
 (									\
-	id		 VARCHAR(32) NOT NULL PRIMARY KEY,		\
-	myoid		 BIGINT NOT NULL,				\
-	title		 TEXT NOT NULL,					\
-	developer	 TEXT NOT NULL,					\
-	genre		 TEXT NOT NULL,					\
-	rdate		 VARCHAR(32) NOT NULL,				\
-	publisher	 TEXT NOT NULL,					\
-	place		 TEXT NOT NULL,					\
-	price		 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-	description	 TEXT NOT NULL,					\
-	language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-	monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
-	quantity	 INTEGER NOT NULL DEFAULT 1,			\
-	location	 TEXT NOT NULL,					\
-	vgrating	 VARCHAR(64) NOT NULL,				\
-	vgplatform	 VARCHAR(64) NOT NULL,				\
-	vgmode		 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',	\
-	front_cover	 BYTEA,						\
-	back_cover	 BYTEA,						\
-        keyword          TEXT,						\
-	type		 VARCHAR(16) NOT NULL DEFAULT 'Video Game'	\
+    back_cover	 BYTEA,							\
+    description  TEXT NOT NULL,						\
+    developer	 TEXT NOT NULL,						\
+    front_cover  BYTEA,							\
+    genre	 TEXT NOT NULL,						\
+    id		 VARCHAR(32) NOT NULL PRIMARY KEY,			\
+    keyword      TEXT,							\
+    language	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',		\
+    location	 TEXT NOT NULL,						\
+    monetary_units	 VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',	\
+    myoid	 BIGINT NOT NULL,					\
+    place	 TEXT NOT NULL,						\
+    price	 NUMERIC(10, 2) NOT NULL DEFAULT 0.00,			\
+    publisher	 TEXT NOT NULL,						\
+    quantity	 INTEGER NOT NULL DEFAULT 1,				\
+    rdate	 VARCHAR(32) NOT NULL,					\
+    title	 TEXT NOT NULL,						\
+    type	 VARCHAR(16) NOT NULL DEFAULT 'Video Game',		\
+    vgmode	 VARCHAR(16) NOT NULL DEFAULT 'Multiplayer',		\
+    vgplatform	 VARCHAR(64) NOT NULL,					\
+    vgrating	 VARCHAR(64) NOT NULL					\
 );									\
 									\
 CREATE TABLE videogame_copy_info					\
 (									\
-	item_oid	 BIGINT NOT NULL,				\
-	myoid		 BIGINT NOT NULL,				\
-	copyid		 VARCHAR(64) NOT NULL,				\
-	copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	PRIMARY KEY(item_oid, copyid),				        \
-	FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON DELETE CASCADE \
+    copy_number INTEGER NOT NULL DEFAULT 1,				\
+    copyid	 VARCHAR(64) NOT NULL,					\
+    item_oid	 BIGINT NOT NULL,					\
+    myoid	 BIGINT NOT NULL,					\
+    PRIMARY KEY(item_oid, copyid),				        \
+    FOREIGN KEY(item_oid) REFERENCES videogame(myoid) ON		\
+                          DELETE CASCADE				\
 );									\
 									\
 CREATE TRIGGER videogame_purge_trigger AFTER DELETE ON videogame	\
 FOR EACH row								\
 BEGIN									\
-	DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;	\
-	DELETE FROM member_history WHERE item_oid = old.myoid AND	\
-		type = old.type;					\
+    DELETE FROM videogame_copy_info WHERE item_oid = old.myoid;		\
+    DELETE FROM member_history WHERE item_oid = old.myoid AND		\
+      	        type = old.type;					\
 END;									\
 									\
 CREATE TABLE item_borrower						\
 (									\
-	item_oid	 BIGINT NOT NULL,				\
-	memberid	 VARCHAR(16) NOT NULL,				\
-	reserved_date	 VARCHAR(32) NOT NULL,				\
-	duedate		 VARCHAR(32) NOT NULL,				\
-	myoid		 INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
-	copyid		 VARCHAR(64) NOT NULL,				\
-	copy_number	 INTEGER NOT NULL DEFAULT 1,			\
-	reserved_by	 VARCHAR(128) NOT NULL,				\
-	type		 VARCHAR(16) NOT NULL,				\
-	FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT	\
+    copy_number	  INTEGER NOT NULL DEFAULT 1,				\
+    copyid	  VARCHAR(64) NOT NULL,					\
+    duedate	  VARCHAR(32) NOT NULL,					\
+    item_oid	  BIGINT NOT NULL,					\
+    memberid	  VARCHAR(16) NOT NULL,					\
+    myoid	  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,		\
+    reserved_by	  VARCHAR(128) NOT NULL,				\
+    reserved_date VARCHAR(32) NOT NULL,					\
+    type	  VARCHAR(16) NOT NULL,					\
+    FOREIGN KEY(memberid) REFERENCES member ON DELETE RESTRICT		\
 );									\
 									\
 CREATE TABLE member							\
 (									\
-	memberid	 VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,	\
-	membersince	 VARCHAR(32) NOT NULL,				\
-	dob		 VARCHAR(32) NOT NULL,				\
-	sex		 VARCHAR(32) NOT NULL DEFAULT 'Private',	\
-	first_name	 VARCHAR(128) NOT NULL,				\
-	middle_init	 VARCHAR(1),					\
-	last_name	 VARCHAR(128) NOT NULL,				\
-	telephone_num	 VARCHAR(32),					\
-	street		 VARCHAR(256) NOT NULL,				\
-	city		 VARCHAR(256) NOT NULL,				\
-	state_abbr	 VARCHAR(16) NOT NULL DEFAULT 'N/A',		\
-	zip		 VARCHAR(16) NOT NULL DEFAULT 'N/A',		\
-	email		 VARCHAR(128),					\
-	expiration_date  VARCHAR(32) NOT NULL,			        \
-	overdue_fees     NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
-        comments         TEXT,                                          \
-	general_registration_number TEXT,	                        \
-	memberclass      TEXT						\
+    city	     VARCHAR(256) NOT NULL,				\
+    comments         TEXT,						\
+    dob		     VARCHAR(32) NOT NULL,				\
+    email	     VARCHAR(128),					\
+    expiration_date  VARCHAR(32) NOT NULL,			        \
+    first_name	     VARCHAR(128) NOT NULL,				\
+    general_registration_number TEXT,					\
+    last_name	     VARCHAR(128) NOT NULL,				\
+    memberclass      TEXT,						\
+    memberid	     VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,	\
+    membersince	     VARCHAR(32) NOT NULL,				\
+    middle_init	     VARCHAR(1),					\
+    overdue_fees     NUMERIC(10, 2) NOT NULL DEFAULT 0.00,		\
+    sex		     VARCHAR(32) NOT NULL DEFAULT 'Private',		\
+    state_abbr	     VARCHAR(16) NOT NULL DEFAULT 'N/A',		\
+    street	     VARCHAR(256) NOT NULL,				\
+    telephone_num    VARCHAR(32),					\
+    zip		     VARCHAR(16) NOT NULL DEFAULT 'N/A'			\
 );									\
 									\
 CREATE TABLE member_history						\
 (									\
-	memberid	 VARCHAR(16) NOT NULL,				\
-	item_oid	 BIGINT NOT NULL,				\
-	copyid		 VARCHAR(64) NOT NULL,				\
-	reserved_date	 VARCHAR(32) NOT NULL,				\
-	duedate		 VARCHAR(32) NOT NULL,				\
-	returned_date	 VARCHAR(32) NOT NULL,				\
-	myoid		 INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
-	reserved_by	 VARCHAR(128) NOT NULL,				\
-	type		 VARCHAR(16) NOT NULL,				\
-	FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE \
+    memberid	  VARCHAR(16) NOT NULL,					\
+    item_oid	  BIGINT NOT NULL,					\
+    copyid	  VARCHAR(64) NOT NULL,					\
+    reserved_date VARCHAR(32) NOT NULL,					\
+    duedate	  VARCHAR(32) NOT NULL,					\
+    returned_date VARCHAR(32) NOT NULL,					\
+    myoid	  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,		\
+    reserved_by	  VARCHAR(128) NOT NULL,				\
+    type	  VARCHAR(16) NOT NULL,					\
+    FOREIGN KEY(memberid) REFERENCES member(memberid) ON DELETE CASCADE \
 );									\
 									\
 CREATE TRIGGER member_history_trigger AFTER DELETE ON member		\
 FOR EACH row								\
 BEGIN									\
-   DELETE FROM member_history WHERE memberid = old.memberid;		\
+    DELETE FROM member_history WHERE memberid = old.memberid;		\
 END;									\
 									\
 CREATE VIEW item_borrower_vw AS						\
-SELECT	 item_oid,							\
+SELECT	 copy_number,							\
+	 copyid,							\
+	 duedate,							\
 	 memberid,							\
 	 myoid,								\
-	 copyid,							\
-	 copy_number,							\
 	 reserved_date,							\
-	 duedate,							\
-	 type								\
+	 type,								\
+         item_oid							\
 FROM	 item_borrower;						        \
 									\
 CREATE TABLE book_binding_types						\
 (									\
-	binding_type     TEXT NOT NULL PRIMARY KEY			\
+    binding_type     TEXT NOT NULL PRIMARY KEY				\
 );									\
 									\
 CREATE TABLE locations				                        \
 (									\
-          location	 TEXT NOT NULL,					\
-	  type		 VARCHAR(32) NOT NULL,				\
-	  PRIMARY KEY(location, type)					\
+    location	 TEXT NOT NULL,						\
+    type	 VARCHAR(32) NOT NULL,					\
+    PRIMARY KEY(location, type)						\
 );      								\
 									\
 CREATE TABLE monetary_units						\
 (									\
-	monetary_unit	 TEXT NOT NULL PRIMARY KEY                      \
+    monetary_unit	 TEXT NOT NULL PRIMARY KEY                      \
 );                                                                      \
 									\
 CREATE TABLE languages							\
 (									\
-        language	 TEXT NOT NULL PRIMARY KEY			\
+    language	 TEXT NOT NULL PRIMARY KEY				\
 );      								\
 									\
 CREATE TABLE cd_formats							\
 (									\
-	cd_format	 TEXT NOT NULL PRIMARY KEY                      \
+    cd_format	 TEXT NOT NULL PRIMARY KEY				\
 );                                                                      \
 									\
 CREATE TABLE dvd_ratings						\
 (									\
-	dvd_rating	 TEXT NOT NULL PRIMARY KEY                      \
+    dvd_rating	 TEXT NOT NULL PRIMARY KEY				\
 );                                                                      \
 									\
 CREATE TABLE dvd_aspect_ratios						\
 (									\
-        dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY		\
+    dvd_aspect_ratio	 TEXT NOT NULL PRIMARY KEY			\
 );                                                                      \
 									\
 CREATE TABLE dvd_regions						\
 (									\
-	dvd_region	 TEXT NOT NULL PRIMARY KEY                      \
+    dvd_region	 TEXT NOT NULL PRIMARY KEY				\
 );                                                                      \
 									\
 CREATE TABLE minimum_days						\
 (									\
-	days		 INTEGER NOT NULL,                              \
-	type		 VARCHAR(16) NOT NULL PRIMARY KEY               \
+    days		 INTEGER NOT NULL,                              \
+    type		 VARCHAR(16) NOT NULL PRIMARY KEY               \
 );                                                                      \
 									\
 CREATE TABLE videogame_ratings						\
 (									\
-	videogame_rating	 TEXT NOT NULL PRIMARY KEY              \
+    videogame_rating	 TEXT NOT NULL PRIMARY KEY			\
 );                                                                      \
 									\
 CREATE TABLE videogame_platforms					\
 (									\
-	videogame_platform	 TEXT NOT NULL PRIMARY KEY              \
+    videogame_platform	 TEXT NOT NULL PRIMARY KEY			\
 );                                                                      \
 									\
 CREATE TABLE sequence							\
 (									\
-value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT		\
+    value            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT		\
 );									\
 ";
