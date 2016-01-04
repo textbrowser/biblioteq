@@ -60,6 +60,12 @@
       </item>
       <item>
        <widget class="QCheckBox" name="case_insensitive">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Case-Insensitive</string>
         </property>
@@ -101,7 +107,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>278</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -350,7 +356,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

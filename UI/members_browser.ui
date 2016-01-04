@@ -57,6 +57,12 @@
          </item>
          <item>
           <widget class="QCheckBox" name="filterBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string/>
            </property>
