@@ -441,13 +441,13 @@ CREATE TABLE admin
 );
 
 CREATE VIEW item_borrower_vw AS
-SELECT	 item_oid,
+SELECT	 copy_number,
+	 copyid,
+	 duedate,
+	 item_oid,
 	 memberid,
 	 myoid,
-	 copyid,
-	 copy_number,
 	 reserved_date,
-	 duedate,
 	 type
 FROM	 item_borrower;
 
