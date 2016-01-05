@@ -258,6 +258,7 @@ biblioteq::biblioteq(void):QMainWindow()
       ** We need to perform this before a PostgreSQL database connection is
       ** made. Otherwise, the connection may be severed later.
       ** The anomaly occurs on OS X 10.7.4 and Qt 4.8.6.
+      ** It may also occur on OS X 10.7.5 and Qt 4.8.7.
       */
 
       reply = manager.get
