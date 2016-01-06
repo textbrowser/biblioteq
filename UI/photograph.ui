@@ -112,6 +112,12 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="displayFormat">
               <string>yyyy-MM-dd</string>
              </property>
