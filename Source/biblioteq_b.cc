@@ -2489,7 +2489,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		QString E("");
 
-		if(db.driverName() != "QSQLITE")
+		if(m_db.driverName() != "QSQLITE")
 		  E = "E";
 
 		if(caseinsensitive)
@@ -3007,7 +3007,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 	    QString E("");
 
-	    if(db.driverName() != "QSQLITE")
+	    if(m_db.driverName() != "QSQLITE")
 	      E = "E";
 
 	    if(ui.searchType->currentIndex() == 0) // Category
@@ -3179,7 +3179,7 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 			      arg(ui.table->rowCount()));
 
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
 
   query.setForwardOnly(true);
 
@@ -3242,9 +3242,9 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   if(search_type != CUSTOM_QUERY)
-    ui.table->resetTable(db.userName(), typefilter, roles);
+    ui.table->resetTable(m_db.userName(), typefilter, roles);
   else
-    ui.table->resetTable(db.userName(), "", roles);
+    ui.table->resetTable(m_db.userName(), "", roles);
 
   qint64 currentPage = 0;
 
@@ -3362,7 +3362,7 @@ int biblioteq::populateTable(const int search_type_arg,
   if(limit == -1)
     {
       int size = biblioteq_misc_functions::sqliteQuerySize
-	(searchstr, db, __FILE__, __LINE__);
+	(searchstr, m_db, __FILE__, __LINE__);
 
       if(size > 0 && (size / 250 <= INT_MAX))
 	ui.graphicsView->setSceneRect(0, 0, 5 * 150,
@@ -3550,7 +3550,7 @@ int biblioteq::populateTable(const int search_type_arg,
       if(typefilter == "All")
 	if(ui.table->rowCount() == 0)
 	  {
-	    foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+	    foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
 	      widget->setEnabled(true);
 
 	    al.reset->setVisible(false);
@@ -3594,7 +3594,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
 void biblioteq::slotSearchBasic(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
 
   ui.case_insensitive->setEnabled(false);
@@ -3618,7 +3618,7 @@ void biblioteq::slotResetAllSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
@@ -3655,14 +3655,14 @@ void biblioteq::slotResetGeneralSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
   ui.table->setCurrentItem(0);
   slotDisplaySummary();
 
-  foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+  foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
     widget->setEnabled(true);
 
   al.reset->setVisible(false);
@@ -3699,18 +3699,18 @@ void biblioteq::slotRoleChanged(int index)
 
 void biblioteq::slotSaveDnt(bool state)
 {
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
 
   query.prepare("INSERT INTO member_history_dnt "
 		"(dnt, memberid) "
 		"VALUES (?, ?)");
   query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, db.userName());
+  query.bindValue(1, m_db.userName());
   query.exec();
   query.prepare("UPDATE member_history_dnt "
 		"SET dnt = ? "
 		"WHERE memberid = ?");
   query.bindValue(0, QVariant(state).toInt());
-  query.bindValue(1, db.userName());
+  query.bindValue(1, m_db.userName());
   query.exec();
 }

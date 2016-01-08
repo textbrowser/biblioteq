@@ -202,8 +202,8 @@ void biblioteq::quit(void)
 
 void biblioteq::cleanup(void)
 {
-  if(db.isOpen())
-    db.close();
+  if(m_db.isOpen())
+    m_db.close();
 }
 
 /*
@@ -270,39 +270,39 @@ biblioteq::biblioteq(void):QMainWindow()
   QMenu *menu4 = 0;
 
   ui.setupUi(this);
-  connected_bar_label = 0;
+  m_connected_bar_label = 0;
   error_bar_label = 0;
-  status_bar_label = 0;
+  m_status_bar_label = 0;
   lastSearchType = POPULATE_ALL;
   m_idCt = 0;
   previousTypeFilter = "";
 
-  if((branch_diag = new(std::nothrow) QDialog(this)) == 0)
+  if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((pass_diag = new(std::nothrow) QDialog(this)) == 0)
+  if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((all_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_all_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((admin_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_admin_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((members_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_members_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((history_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_history_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((userinfo_diag =
-      new(std::nothrow) userinfo_diag_class(members_diag)) == 0)
+      new(std::nothrow) userinfo_diag_class(m_members_diag)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((error_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_error_diag = new(std::nothrow) QMainWindow(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(this)) == 0)
@@ -398,33 +398,33 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.graphicsView->setScene(scene);
   ui.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   ui.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
-  bb.setupUi(members_diag);
-  history.setupUi(history_diag);
-  br.setupUi(branch_diag);
-  pass.setupUi(pass_diag);
-  al.setupUi(all_diag);
-  cq.setupUi(customquery_diag);
-  er.setupUi(error_diag);
-  ab.setupUi(admin_diag);
+  bb.setupUi(m_members_diag);
+  history.setupUi(m_history_diag);
+  br.setupUi(m_branch_diag);
+  pass.setupUi(m_pass_diag);
+  al.setupUi(m_all_diag);
+  cq.setupUi(m_customquery_diag);
+  er.setupUi(m_error_diag);
+  ab.setupUi(m_admin_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  pass_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  all_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_pass_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_all_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
   al.reset->setVisible(false);
-  pass_diag->setModal(true);
+  m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
-  branch_diag->setModal(true);
+  m_branch_diag->setModal(true);
   connect(al.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -491,7 +491,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotReserveCopy(void)));
   connect(ui.actionMembersBrowser, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowMembersBrowser(void)));
-  connect(userinfo_diag->userinfo.okButton, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->m_userinfo.okButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveUser(void)));
   connect(ui.actionChangePassword, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowChangePassword(void)));
@@ -507,16 +507,16 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotDisconnect(void)));
   connect(ui.actionDisconnect, SIGNAL(triggered(void)), this,
 	  SLOT(slotDisconnect(void)));
-  connect(userinfo_diag->userinfo.nextTool, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->m_userinfo.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
-  connect(userinfo_diag->userinfo.prevTool, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->m_userinfo.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
   connect(history.nextTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowNext(void)));
   connect(history.prevTool, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowPrev(void)));
   connect(history.cancelButton, SIGNAL(clicked(void)),
-	  history_diag, SLOT(close(void)));
+	  m_history_diag, SLOT(close(void)));
   connect(history.dnt, SIGNAL(toggled(bool)),
 	  this, SLOT(slotSaveDnt(bool)));
   connect(br.okButton, SIGNAL(clicked(void)), this,
@@ -533,7 +533,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotPopulateMembersBrowser(void)));
   connect(bb.deleteButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotRemoveMember(void)));
-  connect(userinfo_diag->userinfo.cancelButton, SIGNAL(clicked(void)), this,
+  connect(userinfo_diag->m_userinfo.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancelAddUser(void)));
   connect(bb.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCloseMembersBrowser(void)));
@@ -546,7 +546,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(al.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSearch(void)));
   connect(al.cancelButton, SIGNAL(clicked(void)),
-	  all_diag, SLOT(close(void)));
+	  m_all_diag, SLOT(close(void)));
   connect(ui.actionReservationHistory, SIGNAL(triggered(void)), this,
 	  SLOT(slotShowHistory(void)));
   connect(ui.searchTool, SIGNAL(triggered(void)), this,
@@ -566,7 +566,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(er.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetErrorLog(void)));
   connect(er.cancelButton, SIGNAL(clicked(void)),
-	  error_diag, SLOT(close(void)));
+	  m_error_diag, SLOT(close(void)));
   connect(bb.filter, SIGNAL(returnPressed(void)), this,
 	  SLOT(slotPopulateMembersBrowser(void)));
   connect(br.password, SIGNAL(returnPressed(void)), this,
@@ -591,14 +591,14 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePasswordDialog(void)));
-  connect(pass_diag, SIGNAL(finished(int)), this,
+  connect(m_pass_diag, SIGNAL(finished(int)), this,
 	  SLOT(slotClosePasswordDialog(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotResetLoginDialog(void)));
   connect(br.fileButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSelectDatabaseFile(void)));
   connect(br.cancelButton, SIGNAL(clicked(void)),
-	  branch_diag, SLOT(close(void)));
+	  m_branch_diag, SLOT(close(void)));
   connect(ui.actionConfigureAdministratorPrivileges,
 	  SIGNAL(triggered(void)), this, SLOT(slotShowAdminDialog(void)));
   connect(ab.reloadButton, SIGNAL(clicked(void)), this,
@@ -610,7 +610,7 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(ab.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotSaveAdministrators(void)));
   connect(ab.cancelButton, SIGNAL(clicked(void)),
-	  admin_diag, SLOT(close(void)));
+	  m_admin_diag, SLOT(close(void)));
   connect(ui.action_New_SQLite_Database,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -676,7 +676,7 @@ biblioteq::biblioteq(void):QMainWindow()
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
   ui.graphicsView->scene()->clear();
-  ui.table->resetTable(db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -705,7 +705,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   addConfigOptions(lastCategory);
   setUpdatesEnabled(true);
-  userinfo_diag->userinfo.expirationdate->setMaximumDate
+  userinfo_diag->m_userinfo.expirationdate->setMaximumDate
     (QDate(3000, 1, 1));
 
   QActionGroup *group1 = 0;
@@ -816,21 +816,21 @@ biblioteq::biblioteq(void):QMainWindow()
   if((validator1 = new(std::nothrow) QRegExpValidator(rx1, this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  userinfo_diag->userinfo.memberid->setValidator(validator1);
+  userinfo_diag->m_userinfo.memberid->setValidator(validator1);
 
   /*
   ** Highlight userinfo_diag->userinfo required widgets.
   */
 
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.firstName,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.firstName,
 					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.lastName,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.lastName,
 					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.street,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.street,
 					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.city,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.city,
 					    QColor(255, 248, 220));
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.zip,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.zip,
 					    QColor(255, 248, 220));
   ui.splitter->restoreState
     (settings.value("main_splitter_state").toByteArray());
@@ -897,7 +897,7 @@ void biblioteq::slotSetColumns(void)
       ui.table->setColumnHidden
 	(i, !m_configToolMenu->actions().at(i)->isChecked());
       ui.table->recordColumnHidden
-	(db.userName(),
+	(m_db.userName(),
 	 typefilter, i, !m_configToolMenu->actions().at(i)->
 	 isChecked());
     }
@@ -935,20 +935,20 @@ void biblioteq::adminSetup(void)
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
 
-  if(status_bar_label != 0)
+  if(m_status_bar_label != 0)
     {
-      status_bar_label->setPixmap(QPixmap(":/16x16/unlock.png"));
+      m_status_bar_label->setPixmap(QPixmap(":/16x16/unlock.png"));
 
       if(roles.contains("administrator"))
-	status_bar_label->setToolTip(tr("Administrator Mode"));
+	m_status_bar_label->setToolTip(tr("Administrator Mode"));
       else if(roles == "circulation")
-	status_bar_label->setToolTip(tr("Circulation Mode"));
+	m_status_bar_label->setToolTip(tr("Circulation Mode"));
       else if(roles == "librarian")
-	status_bar_label->setToolTip(tr("Librarian Mode"));
+	m_status_bar_label->setToolTip(tr("Librarian Mode"));
       else if(roles == "membership")
-	status_bar_label->setToolTip(tr("Membership Mode"));
+	m_status_bar_label->setToolTip(tr("Membership Mode"));
       else
-	status_bar_label->setToolTip(tr("Privileged Mode"));
+	m_status_bar_label->setToolTip(tr("Privileged Mode"));
     }
 
   if(roles.contains("administrator") || roles.contains("librarian"))
@@ -1000,7 +1000,7 @@ void biblioteq::adminSetup(void)
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled
     (roles.contains("administrator"));
 
-  if(db.driverName() != "QSQLITE")
+  if(m_db.driverName() != "QSQLITE")
     {
       ui.actionConfigureAdministratorPrivileges->setEnabled
 	(roles.contains("administrator"));
@@ -1054,7 +1054,7 @@ void biblioteq::adminSetup(void)
 	      SLOT(slotModifyBorrower(void)));
       bb.addButton->setEnabled(true);
 
-      if(db.driverName() != "QSQLITE")
+      if(m_db.driverName() != "QSQLITE")
 	bb.grantButton->setEnabled(true);
 
       bb.deleteButton->setEnabled(true);
@@ -1072,28 +1072,28 @@ void biblioteq::showMain(void)
 {
   statusBar()->setStyleSheet("QStatusBar::item{border: 0px;}");
 
-  if(connected_bar_label)
-    connected_bar_label->deleteLater();
+  if(m_connected_bar_label)
+    m_connected_bar_label->deleteLater();
 
   if(error_bar_label)
     error_bar_label->deleteLater();
 
-  if(status_bar_label)
-    status_bar_label->deleteLater();
+  if(m_status_bar_label)
+    m_status_bar_label->deleteLater();
 
-  if((connected_bar_label = new(std::nothrow) QLabel()) != 0)
+  if((m_connected_bar_label = new(std::nothrow) QLabel()) != 0)
     {
-      connected_bar_label->setPixmap
+      m_connected_bar_label->setPixmap
 	(QPixmap(":/16x16/disconnected.png"));
-      connected_bar_label->setToolTip(tr("Disconnected"));
-      statusBar()->addPermanentWidget(connected_bar_label);
+      m_connected_bar_label->setToolTip(tr("Disconnected"));
+      statusBar()->addPermanentWidget(m_connected_bar_label);
     }
 
-  if((status_bar_label = new(std::nothrow) QLabel()) != 0)
+  if((m_status_bar_label = new(std::nothrow) QLabel()) != 0)
     {
-      status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
-      status_bar_label->setToolTip(tr("Standard User Mode"));
-      statusBar()->addPermanentWidget(status_bar_label);
+      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
+      m_status_bar_label->setToolTip(tr("Standard User Mode"));
+      statusBar()->addPermanentWidget(m_status_bar_label);
     }
 
   if((error_bar_label = new(std::nothrow) QToolButton()) != 0)
@@ -1258,16 +1258,16 @@ void biblioteq::slotAbout(void)
 
 void biblioteq::slotSearch(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
   else if(!al.resetButton->isEnabled())
     {
-      if(!all_diag->isVisible())
-	all_diag->updateGeometry();
+      if(!m_all_diag->isVisible())
+	m_all_diag->updateGeometry();
 
-      biblioteq_misc_functions::center(all_diag, this);
-      all_diag->raise();
-      all_diag->show();
+      biblioteq_misc_functions::center(m_all_diag, this);
+      m_all_diag->raise();
+      m_all_diag->show();
       return;
     }
 
@@ -1275,7 +1275,7 @@ void biblioteq::slotSearch(void)
   ** Hide certain fields if we're a regular user.
   */
 
-  biblioteq_misc_functions::hideAdminFields(all_diag, roles);
+  biblioteq_misc_functions::hideAdminFields(m_all_diag, roles);
   al.idnumber->clear();
   al.title->clear();
   al.publisher->clear();
@@ -1302,7 +1302,7 @@ void biblioteq::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.language->addItems
-    (biblioteq_misc_functions::getLanguages(db,
+    (biblioteq_misc_functions::getLanguages(m_db,
 					    errorstr));
   qapp->restoreOverrideCursor();
 
@@ -1314,7 +1314,7 @@ void biblioteq::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.monetary_units->addItems
-    (biblioteq_misc_functions::getMonetaryUnits(db,
+    (biblioteq_misc_functions::getMonetaryUnits(m_db,
 						errorstr));
   qapp->restoreOverrideCursor();
 
@@ -1326,7 +1326,7 @@ void biblioteq::slotSearch(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   al.location->addItems
-    (biblioteq_misc_functions::getLocations(db,
+    (biblioteq_misc_functions::getLocations(m_db,
 					    "",
 					    errorstr));
   qapp->restoreOverrideCursor();
@@ -1348,19 +1348,19 @@ void biblioteq::slotSearch(void)
   al.monetary_units->setCurrentIndex(0);
   al.idnumber->setFocus();
 
-  if(!all_diag->isVisible())
-    all_diag->updateGeometry();
+  if(!m_all_diag->isVisible())
+    m_all_diag->updateGeometry();
 
   static bool resized = false;
 
   if(!resized)
-    all_diag->resize(qRound(0.75 * size().width()),
-		     qRound(0.75 * size().height()));
+    m_all_diag->resize(qRound(0.75 * size().width()),
+		       qRound(0.75 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(all_diag, this);
-  all_diag->raise();
-  all_diag->show();
+  biblioteq_misc_functions::center(m_all_diag, this);
+  m_all_diag->raise();
+  m_all_diag->show();
 }
 
 /*
@@ -1378,7 +1378,7 @@ void biblioteq::slotShowGrid(void)
 
 void biblioteq::slotModify(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
 
   int i = 0;
@@ -1812,7 +1812,7 @@ void biblioteq::slotViewDetails(void)
 
 void biblioteq::slotDelete(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
 
   int i = 0;
@@ -1826,7 +1826,7 @@ void biblioteq::slotDelete(void)
   QString title = "";
   QString errorstr = "";
   QString itemType = "";
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
   QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
@@ -1874,7 +1874,7 @@ void biblioteq::slotDelete(void)
 	}
 
       qapp->setOverrideCursor(Qt::WaitCursor);
-      isCheckedOut = biblioteq_misc_functions::isCheckedOut(db, oid, itemType,
+      isCheckedOut = biblioteq_misc_functions::isCheckedOut(m_db, oid, itemType,
 							    errorstr);
       qapp->restoreOverrideCursor();
 
@@ -1901,7 +1901,7 @@ void biblioteq::slotDelete(void)
 
       qapp->setOverrideCursor(Qt::WaitCursor);
       isRequested = biblioteq_misc_functions::isRequested
-	(db, oid, itemType, errorstr);
+	(m_db, oid, itemType, errorstr);
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -2026,7 +2026,7 @@ void biblioteq::closeEvent(QCloseEvent *e)
 
 void biblioteq::slotRefresh(void)
 {
-  if(db.isOpen())
+  if(m_db.isOpen())
     {
       QString str = "";
       QVariant data(ui.action_Category->menu()->defaultAction() ?
@@ -2034,11 +2034,11 @@ void biblioteq::slotRefresh(void)
 		    toString() : "All");
 
       if(data.toString() == "All Overdue" && roles.isEmpty())
-	str = db.userName();
+	str = m_db.userName();
       else if(data.toString() == "All Requested" && roles.isEmpty())
-	str = db.userName();
+	str = m_db.userName();
       else if(data.toString() == "All Reserved" && roles.isEmpty())
-	str = db.userName();
+	str = m_db.userName();
       else if(data.toString() == "All Reserved")
 	str = "%";
 
@@ -2156,60 +2156,60 @@ void biblioteq::slotAddBorrower(void)
   QDate now = QDate::currentDate();
   QDateTime nowTime = QDateTime::currentDateTime();
 
-  biblioteq_misc_functions::highlightWidget(userinfo_diag->userinfo.memberid,
+  biblioteq_misc_functions::highlightWidget(userinfo_diag->m_userinfo.memberid,
 					    QColor(255, 248, 220));
-  userinfo_diag->memberProperties.clear();
-  userinfo_diag->userinfo.memberid->setReadOnly(false);
-  userinfo_diag->userinfo.memberid->setText
+  userinfo_diag->m_memberProperties.clear();
+  userinfo_diag->m_userinfo.memberid->setReadOnly(false);
+  userinfo_diag->m_userinfo.memberid->setText
     ("m" + nowTime.toString("yyyyMMddhhmmss"));
-  userinfo_diag->userinfo.membersince->setDate(now);
-  userinfo_diag->userinfo.membersince->setMaximumDate(now);
-  userinfo_diag->userinfo.firstName->clear();
-  userinfo_diag->userinfo.lastName->clear();
-  userinfo_diag->userinfo.middle->clear();
-  userinfo_diag->userinfo.dob->setDate(now.addYears(-25));
-  userinfo_diag->userinfo.sex->setCurrentIndex(2); // Private
-  userinfo_diag->userinfo.street->clear();
-  userinfo_diag->userinfo.city->clear();
-  userinfo_diag->userinfo.state->setCurrentIndex(0);
-  userinfo_diag->userinfo.zip->setText("N/A");
-  userinfo_diag->userinfo.zip->setCursorPosition(0);
-  userinfo_diag->userinfo.telephoneNumber->clear();
-  userinfo_diag->userinfo.email->clear();
-  userinfo_diag->userinfo.expirationdate->setDate
+  userinfo_diag->m_userinfo.membersince->setDate(now);
+  userinfo_diag->m_userinfo.membersince->setMaximumDate(now);
+  userinfo_diag->m_userinfo.firstName->clear();
+  userinfo_diag->m_userinfo.lastName->clear();
+  userinfo_diag->m_userinfo.middle->clear();
+  userinfo_diag->m_userinfo.dob->setDate(now.addYears(-25));
+  userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
+  userinfo_diag->m_userinfo.street->clear();
+  userinfo_diag->m_userinfo.city->clear();
+  userinfo_diag->m_userinfo.state->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.zip->setText("N/A");
+  userinfo_diag->m_userinfo.zip->setCursorPosition(0);
+  userinfo_diag->m_userinfo.telephoneNumber->clear();
+  userinfo_diag->m_userinfo.email->clear();
+  userinfo_diag->m_userinfo.expirationdate->setDate
     (QDate::fromString("01/01/3000", "MM/dd/yyyy"));
-  userinfo_diag->userinfo.overduefees->setValue(0.00);
-  userinfo_diag->userinfo.comments->clear();
-  userinfo_diag->userinfo.memberclass->clear();
-  userinfo_diag->userinfo.generalregistrationnumber->clear();
-  userinfo_diag->memberProperties["membersince"] =
-    userinfo_diag->userinfo.membersince->date().toString
+  userinfo_diag->m_userinfo.overduefees->setValue(0.00);
+  userinfo_diag->m_userinfo.comments->clear();
+  userinfo_diag->m_userinfo.memberclass->clear();
+  userinfo_diag->m_userinfo.generalregistrationnumber->clear();
+  userinfo_diag->m_memberProperties["membersince"] =
+    userinfo_diag->m_userinfo.membersince->date().toString
     (Qt::ISODate);
-  userinfo_diag->memberProperties["dob"] =
-    userinfo_diag->userinfo.dob->date().toString
+  userinfo_diag->m_memberProperties["dob"] =
+    userinfo_diag->m_userinfo.dob->date().toString
     (Qt::ISODate);
-  userinfo_diag->memberProperties["sex"] =
-    userinfo_diag->userinfo.sex->currentText();
-  userinfo_diag->memberProperties["state_abbr"] =
-    userinfo_diag->userinfo.state->currentText();
-  userinfo_diag->memberProperties["zip"] = userinfo_diag->userinfo.zip->
+  userinfo_diag->m_memberProperties["sex"] =
+    userinfo_diag->m_userinfo.sex->currentText();
+  userinfo_diag->m_memberProperties["state_abbr"] =
+    userinfo_diag->m_userinfo.state->currentText();
+  userinfo_diag->m_memberProperties["zip"] = userinfo_diag->m_userinfo.zip->
     text();
-  userinfo_diag->memberProperties["telephone_num"] =
-    userinfo_diag->userinfo.telephoneNumber->text();
-  userinfo_diag->memberProperties["expiration_date"] =
-    userinfo_diag->userinfo.expirationdate->date().toString
+  userinfo_diag->m_memberProperties["telephone_num"] =
+    userinfo_diag->m_userinfo.telephoneNumber->text();
+  userinfo_diag->m_memberProperties["expiration_date"] =
+    userinfo_diag->m_userinfo.expirationdate->date().toString
     (Qt::ISODate);
-  userinfo_diag->memberProperties["overdue_fees"] =
-    QString::number(userinfo_diag->userinfo.overduefees->value());
+  userinfo_diag->m_memberProperties["overdue_fees"] =
+    QString::number(userinfo_diag->m_userinfo.overduefees->value());
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
   engUserinfoTitle = "Create New Member";
-  userinfo_diag->userinfo.prevTool->setVisible(false);
-  userinfo_diag->userinfo.nextTool->setVisible(false);
-  userinfo_diag->userinfo.memberid->selectAll();
-  userinfo_diag->userinfo.tabWidget->setCurrentIndex(0);
-  userinfo_diag->userinfo.memberid->setFocus();
+  userinfo_diag->m_userinfo.prevTool->setVisible(false);
+  userinfo_diag->m_userinfo.nextTool->setVisible(false);
+  userinfo_diag->m_userinfo.memberid->selectAll();
+  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.memberid->setFocus();
   userinfo_diag->updateGeometry();
-  biblioteq_misc_functions::center(userinfo_diag, members_diag);
+  biblioteq_misc_functions::center(userinfo_diag, m_members_diag);
   userinfo_diag->show();
 }
 
@@ -2225,42 +2225,42 @@ void biblioteq::slotSaveUser(void)
   QString str = "";
   QString checksum = "";
   QString errorstr = "";
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
 
-  str = userinfo_diag->userinfo.memberid->text().trimmed();
-  userinfo_diag->userinfo.memberid->setText(str);
-  str = userinfo_diag->userinfo.firstName->text().trimmed();
-  userinfo_diag->userinfo.firstName->setText(str);
-  str = userinfo_diag->userinfo.lastName->text().trimmed();
-  userinfo_diag->userinfo.lastName->setText(str);
-  str = userinfo_diag->userinfo.middle->text().trimmed();
-  userinfo_diag->userinfo.middle->setText(str);
-  str = userinfo_diag->userinfo.street->text().trimmed();
-  userinfo_diag->userinfo.street->setText(str);
-  str = userinfo_diag->userinfo.city->text().trimmed();
-  userinfo_diag->userinfo.city->setText(str);
-  str = userinfo_diag->userinfo.zip->text().trimmed();
-  userinfo_diag->userinfo.zip->setText(str);
-  str = userinfo_diag->userinfo.telephoneNumber->text().trimmed();
-  userinfo_diag->userinfo.telephoneNumber->setText(str);
-  str = userinfo_diag->userinfo.email->text().trimmed();
-  userinfo_diag->userinfo.email->setText(str);
+  str = userinfo_diag->m_userinfo.memberid->text().trimmed();
+  userinfo_diag->m_userinfo.memberid->setText(str);
+  str = userinfo_diag->m_userinfo.firstName->text().trimmed();
+  userinfo_diag->m_userinfo.firstName->setText(str);
+  str = userinfo_diag->m_userinfo.lastName->text().trimmed();
+  userinfo_diag->m_userinfo.lastName->setText(str);
+  str = userinfo_diag->m_userinfo.middle->text().trimmed();
+  userinfo_diag->m_userinfo.middle->setText(str);
+  str = userinfo_diag->m_userinfo.street->text().trimmed();
+  userinfo_diag->m_userinfo.street->setText(str);
+  str = userinfo_diag->m_userinfo.city->text().trimmed();
+  userinfo_diag->m_userinfo.city->setText(str);
+  str = userinfo_diag->m_userinfo.zip->text().trimmed();
+  userinfo_diag->m_userinfo.zip->setText(str);
+  str = userinfo_diag->m_userinfo.telephoneNumber->text().trimmed();
+  userinfo_diag->m_userinfo.telephoneNumber->setText(str);
+  str = userinfo_diag->m_userinfo.email->text().trimmed();
+  userinfo_diag->m_userinfo.email->setText(str);
 
   if(engUserinfoTitle.contains("New"))
     {
-      if(userinfo_diag->userinfo.memberid->text().length() < 5)
+      if(userinfo_diag->m_userinfo.memberid->text().length() < 5)
 	{
 	  QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 				tr("The Member ID must be at least five "
 				   "characters long."));
-	  userinfo_diag->userinfo.memberid->setFocus();
+	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
 	}
 
       qapp->setOverrideCursor(Qt::WaitCursor);
 
       qint64 ucount = biblioteq_misc_functions::userCount
-	(userinfo_diag->userinfo.memberid->text(), db, errorstr);
+	(userinfo_diag->m_userinfo.memberid->text(), m_db, errorstr);
 
       qapp->restoreOverrideCursor();
 
@@ -2269,68 +2269,68 @@ void biblioteq::slotSaveUser(void)
 	  QMessageBox::critical
 	    (userinfo_diag, tr("BiblioteQ: User Error"),
 	     QString(tr("The Member ID ")) +
-	     userinfo_diag->userinfo.memberid->text() +
+	     userinfo_diag->m_userinfo.memberid->text() +
 	     QString(tr(" already exists.")));
-	  userinfo_diag->userinfo.memberid->setFocus();
+	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
 	}
     }
 
-  if(userinfo_diag->userinfo.firstName->text().isEmpty())
+  if(userinfo_diag->m_userinfo.firstName->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid First Name."));
-      userinfo_diag->userinfo.firstName->setFocus();
+      userinfo_diag->m_userinfo.firstName->setFocus();
       return;
     }
 
-  if(userinfo_diag->userinfo.lastName->text().isEmpty())
+  if(userinfo_diag->m_userinfo.lastName->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid Last Name."));
-      userinfo_diag->userinfo.lastName->setFocus();
+      userinfo_diag->m_userinfo.lastName->setFocus();
       return;
     }
 
-  if(userinfo_diag->userinfo.street->text().isEmpty())
+  if(userinfo_diag->m_userinfo.street->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid Street."));
-      userinfo_diag->userinfo.street->setFocus();
+      userinfo_diag->m_userinfo.street->setFocus();
       return;
     }
 
-  if(userinfo_diag->userinfo.city->text().isEmpty())
+  if(userinfo_diag->m_userinfo.city->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid City."));
-      userinfo_diag->userinfo.city->setFocus();
+      userinfo_diag->m_userinfo.city->setFocus();
       return;
     }
 
-  if(userinfo_diag->userinfo.zip->text().isEmpty())
+  if(userinfo_diag->m_userinfo.zip->text().isEmpty())
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a ZIP Code."));
-      userinfo_diag->userinfo.zip->setFocus();
+      userinfo_diag->m_userinfo.zip->setFocus();
       return;
     }
 
-  checksum.append(userinfo_diag->userinfo.dob->date().
+  checksum.append(userinfo_diag->m_userinfo.dob->date().
 		  toString("MM/dd/yyyy"));
-  checksum.append(userinfo_diag->userinfo.sex->currentText());
-  checksum.append(userinfo_diag->userinfo.firstName->text());
-  checksum.append(userinfo_diag->userinfo.middle->text());
-  checksum.append(userinfo_diag->userinfo.lastName->text());
-  checksum.append(userinfo_diag->userinfo.street->text());
-  checksum.append(userinfo_diag->userinfo.city->text());
-  checksum.append(userinfo_diag->userinfo.state->currentText());
-  checksum.append(userinfo_diag->userinfo.zip->text());
+  checksum.append(userinfo_diag->m_userinfo.sex->currentText());
+  checksum.append(userinfo_diag->m_userinfo.firstName->text());
+  checksum.append(userinfo_diag->m_userinfo.middle->text());
+  checksum.append(userinfo_diag->m_userinfo.lastName->text());
+  checksum.append(userinfo_diag->m_userinfo.street->text());
+  checksum.append(userinfo_diag->m_userinfo.city->text());
+  checksum.append(userinfo_diag->m_userinfo.state->currentText());
+  checksum.append(userinfo_diag->m_userinfo.zip->text());
   qapp->setOverrideCursor(Qt::WaitCursor);
   count = biblioteq_misc_functions::getMemberMatchCount
     (checksum,
-     userinfo_diag->userinfo.memberid->text(),
-     db,
+     userinfo_diag->m_userinfo.memberid->text(),
+     m_db,
      errorstr);
   qapp->restoreOverrideCursor();
 
@@ -2355,13 +2355,13 @@ void biblioteq::slotSaveUser(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!db.transaction())
+  if(!m_db.transaction())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
-	 db.lastError().text(), __FILE__, __LINE__);
+	 m_db.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
 	(userinfo_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
@@ -2383,30 +2383,30 @@ void biblioteq::slotSaveUser(void)
 		    "?, ?, ?, "
 		    "?, ?, ?, ?, ?, ?, "
 		    "?, ?, ?, ?, ?)");
-      query.bindValue(0, userinfo_diag->userinfo.memberid->text().trimmed());
-      query.bindValue(1, userinfo_diag->userinfo.membersince->
+      query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
+      query.bindValue(1, userinfo_diag->m_userinfo.membersince->
 		      date().toString("MM/dd/yyyy"));
-      query.bindValue(2, userinfo_diag->userinfo.dob->date().
+      query.bindValue(2, userinfo_diag->m_userinfo.dob->date().
 		      toString("MM/dd/yyyy"));
-      query.bindValue(3, userinfo_diag->userinfo.sex->currentText());
-      query.bindValue(4, userinfo_diag->userinfo.firstName->text().trimmed());
-      query.bindValue(5, userinfo_diag->userinfo.middle->text().trimmed());
-      query.bindValue(6, userinfo_diag->userinfo.lastName->text().trimmed());
-      query.bindValue(7, userinfo_diag->userinfo.telephoneNumber->text());
-      query.bindValue(8, userinfo_diag->userinfo.street->text().trimmed());
-      query.bindValue(9, userinfo_diag->userinfo.city->text().trimmed());
-      query.bindValue(10, userinfo_diag->userinfo.state->currentText());
-      query.bindValue(11, userinfo_diag->userinfo.zip->text());
-      query.bindValue(12, userinfo_diag->userinfo.email->text().trimmed());
-      query.bindValue(13, userinfo_diag->userinfo.expirationdate->
+      query.bindValue(3, userinfo_diag->m_userinfo.sex->currentText());
+      query.bindValue(4, userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.bindValue(5, userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.bindValue(6, userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.bindValue(7, userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.bindValue(8, userinfo_diag->m_userinfo.street->text().trimmed());
+      query.bindValue(9, userinfo_diag->m_userinfo.city->text().trimmed());
+      query.bindValue(10, userinfo_diag->m_userinfo.state->currentText());
+      query.bindValue(11, userinfo_diag->m_userinfo.zip->text());
+      query.bindValue(12, userinfo_diag->m_userinfo.email->text().trimmed());
+      query.bindValue(13, userinfo_diag->m_userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
-      query.bindValue(14, userinfo_diag->userinfo.overduefees->value());
+      query.bindValue(14, userinfo_diag->m_userinfo.overduefees->value());
       query.bindValue
-	(15, userinfo_diag->userinfo.comments->toPlainText().trimmed());
+	(15, userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
       query.bindValue
-	(16, userinfo_diag->userinfo.generalregistrationnumber->text().
+	(16, userinfo_diag->m_userinfo.generalregistrationnumber->text().
 	 trimmed());
-      query.bindValue(17, userinfo_diag->userinfo.memberclass->text().
+      query.bindValue(17, userinfo_diag->m_userinfo.memberclass->text().
 		      trimmed());
     }
   else
@@ -2430,40 +2430,42 @@ void biblioteq::slotSaveUser(void)
 		    "general_registration_number = ?, "
 		    "memberclass = ? "
 		    "WHERE memberid = ?");
-      query.bindValue(0, userinfo_diag->userinfo.membersince->date().
+      query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
 		      toString("MM/dd/yyyy"));
-      query.bindValue(1, userinfo_diag->userinfo.dob->date().
+      query.bindValue(1, userinfo_diag->m_userinfo.dob->date().
 		      toString("MM/dd/yyyy"));
-      query.bindValue(2, userinfo_diag->userinfo.sex->currentText());
-      query.bindValue(3, userinfo_diag->userinfo.firstName->text().trimmed());
-      query.bindValue(4, userinfo_diag->userinfo.middle->text().trimmed());
-      query.bindValue(5, userinfo_diag->userinfo.lastName->text().trimmed());
-      query.bindValue(6, userinfo_diag->userinfo.telephoneNumber->text());
-      query.bindValue(7, userinfo_diag->userinfo.street->text().trimmed());
-      query.bindValue(8, userinfo_diag->userinfo.city->text().trimmed());
-      query.bindValue(9, userinfo_diag->userinfo.state->currentText());
-      query.bindValue(10, userinfo_diag->userinfo.zip->text());
-      query.bindValue(11, userinfo_diag->userinfo.email->text().trimmed());
-      query.bindValue(12, userinfo_diag->userinfo.expirationdate->
+      query.bindValue(2, userinfo_diag->m_userinfo.sex->currentText());
+      query.bindValue
+	(3, userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.bindValue(4, userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.bindValue(5, userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.bindValue(6, userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.bindValue(7, userinfo_diag->m_userinfo.street->text().trimmed());
+      query.bindValue(8, userinfo_diag->m_userinfo.city->text().trimmed());
+      query.bindValue(9, userinfo_diag->m_userinfo.state->currentText());
+      query.bindValue(10, userinfo_diag->m_userinfo.zip->text());
+      query.bindValue(11, userinfo_diag->m_userinfo.email->text().trimmed());
+      query.bindValue(12, userinfo_diag->m_userinfo.expirationdate->
 		      date().toString("MM/dd/yyyy"));
-      query.bindValue(13, userinfo_diag->userinfo.overduefees->value());
-      query.bindValue(14, userinfo_diag->userinfo.comments->toPlainText().
+      query.bindValue(13, userinfo_diag->m_userinfo.overduefees->value());
+      query.bindValue(14, userinfo_diag->m_userinfo.comments->toPlainText().
 		      trimmed());
-      query.bindValue(15, userinfo_diag->userinfo.generalregistrationnumber->
+      query.bindValue(15, userinfo_diag->m_userinfo.generalregistrationnumber->
 		      text().trimmed());
-      query.bindValue(16, userinfo_diag->userinfo.memberclass->text().
+      query.bindValue(16, userinfo_diag->m_userinfo.memberclass->text().
 		      trimmed());
-      query.bindValue(17, userinfo_diag->userinfo.memberid->text().trimmed());
+      query.bindValue
+	(17, userinfo_diag->m_userinfo.memberid->text().trimmed());
     }
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      if(!db.rollback())
+      if(!m_db.rollback())
 	addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   db.lastError().text(), __FILE__, __LINE__);
+	   m_db.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
@@ -2481,17 +2483,17 @@ void biblioteq::slotSaveUser(void)
 	  */
 
 	  biblioteq_misc_functions::DBAccount
-	    (userinfo_diag->userinfo.memberid->text(),
-	     db, biblioteq_misc_functions::CREATE_USER,
+	    (userinfo_diag->m_userinfo.memberid->text(),
+	     m_db, biblioteq_misc_functions::CREATE_USER,
 	     errorstr);
 
 	  if(!errorstr.isEmpty())
 	    {
-	      if(!db.rollback())
+	      if(!m_db.rollback())
 		addError
 		  (QString(tr("Database Error")),
 		   QString(tr("Rollback failure.")),
-		   db.lastError().text(), __FILE__, __LINE__);
+		   m_db.lastError().text(), __FILE__, __LINE__);
 
 	      qapp->restoreOverrideCursor();
 	      addError
@@ -2510,15 +2512,15 @@ void biblioteq::slotSaveUser(void)
 	    }
 	  else
 	    {
-	      if(!db.commit())
+	      if(!m_db.commit())
 		{
 		  addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     db.lastError().text(), __FILE__,
+		     m_db.lastError().text(), __FILE__,
 		     __LINE__);
-		  db.rollback();
+		  m_db.rollback();
 		  qapp->restoreOverrideCursor();
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
@@ -2535,8 +2537,8 @@ void biblioteq::slotSaveUser(void)
 	  */
 
 	  biblioteq_misc_functions::DBAccount
-	    (userinfo_diag->userinfo.memberid->text(),
-	     db, biblioteq_misc_functions::UPDATE_USER,
+	    (userinfo_diag->m_userinfo.memberid->text(),
+	     m_db, biblioteq_misc_functions::UPDATE_USER,
 	     errorstr);
 
 	  if(errorstr.trimmed().contains("not exist"))
@@ -2545,24 +2547,24 @@ void biblioteq::slotSaveUser(void)
 	    */
 
 	    biblioteq_misc_functions::DBAccount
-	      (userinfo_diag->userinfo.memberid->text(),
-	       db, biblioteq_misc_functions::CREATE_USER,
+	      (userinfo_diag->m_userinfo.memberid->text(),
+	       m_db, biblioteq_misc_functions::CREATE_USER,
 	       errorstr);
 
 	  if(!errorstr.isEmpty())
 	    {
-	      if(!db.rollback())
+	      if(!m_db.rollback())
 		addError
 		  (QString(tr("Database Error")),
 		   QString(tr("Rollback failure.")),
-		   db.lastError().text(), __FILE__, __LINE__);
+		   m_db.lastError().text(), __FILE__, __LINE__);
 
 	      qapp->restoreOverrideCursor();
 	      addError(QString(tr("Database Error")),
 		       QString(tr("An error occurred while attempting to "
 				  "update the database account "
 				  "for ")) +
-		       userinfo_diag->userinfo.memberid->text() +
+		       userinfo_diag->m_userinfo.memberid->text() +
 		       QString(tr(".")),
 		       errorstr, __FILE__, __LINE__);
 	      QMessageBox::critical
@@ -2570,20 +2572,20 @@ void biblioteq::slotSaveUser(void)
 		 tr("BiblioteQ: Database Error"),
 		 tr("An error occurred while attempting "
 		    "to update the database account %1.").
-		 arg(userinfo_diag->userinfo.memberid->text()));
+		 arg(userinfo_diag->m_userinfo.memberid->text()));
 	      return;
 	    }
 	  else
 	    {
-	      if(!db.commit())
+	      if(!m_db.commit())
 		{
 		  addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
 				"transaction.")),
-		     db.lastError().text(), __FILE__,
+		     m_db.lastError().text(), __FILE__,
 		     __LINE__);
-		  db.rollback();
+		  m_db.rollback();
 		  qapp->restoreOverrideCursor();
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
@@ -2595,43 +2597,43 @@ void biblioteq::slotSaveUser(void)
 	}
 
       qapp->restoreOverrideCursor();
-      userinfo_diag->memberProperties["membersince"] =
-	userinfo_diag->userinfo.membersince->date().toString
+      userinfo_diag->m_memberProperties["membersince"] =
+	userinfo_diag->m_userinfo.membersince->date().toString
 	(Qt::ISODate);
-      userinfo_diag->memberProperties["dob"] =
-	userinfo_diag->userinfo.dob->date().toString
+      userinfo_diag->m_memberProperties["dob"] =
+	userinfo_diag->m_userinfo.dob->date().toString
 	(Qt::ISODate);
-      userinfo_diag->memberProperties["sex"] =
-	userinfo_diag->userinfo.sex->currentText();
-      userinfo_diag->memberProperties["first_name"] =
-	userinfo_diag->userinfo.firstName->text().trimmed();
-      userinfo_diag->memberProperties["middle_init"] =
-	userinfo_diag->userinfo.middle->text().trimmed();
-      userinfo_diag->memberProperties["last_name"] =
-	userinfo_diag->userinfo.lastName->text().trimmed();
-      userinfo_diag->memberProperties["telephone_num"] =
-	userinfo_diag->userinfo.telephoneNumber->text();
-      userinfo_diag->memberProperties["street"] =
-	userinfo_diag->userinfo.street->text().trimmed();
-      userinfo_diag->memberProperties["city"] =
-	userinfo_diag->userinfo.city->text().trimmed();
-      userinfo_diag->memberProperties["state_abbr"] =
-	userinfo_diag->userinfo.state->currentText();
-      userinfo_diag->memberProperties["zip"] =
-	userinfo_diag->userinfo.zip->text();
-      userinfo_diag->memberProperties["email"] =
-	userinfo_diag->userinfo.email->text().trimmed();
-      userinfo_diag->memberProperties["expiration_date"] =
-	userinfo_diag->userinfo.expirationdate->date().toString
+      userinfo_diag->m_memberProperties["sex"] =
+	userinfo_diag->m_userinfo.sex->currentText();
+      userinfo_diag->m_memberProperties["first_name"] =
+	userinfo_diag->m_userinfo.firstName->text().trimmed();
+      userinfo_diag->m_memberProperties["middle_init"] =
+	userinfo_diag->m_userinfo.middle->text().trimmed();
+      userinfo_diag->m_memberProperties["last_name"] =
+	userinfo_diag->m_userinfo.lastName->text().trimmed();
+      userinfo_diag->m_memberProperties["telephone_num"] =
+	userinfo_diag->m_userinfo.telephoneNumber->text();
+      userinfo_diag->m_memberProperties["street"] =
+	userinfo_diag->m_userinfo.street->text().trimmed();
+      userinfo_diag->m_memberProperties["city"] =
+	userinfo_diag->m_userinfo.city->text().trimmed();
+      userinfo_diag->m_memberProperties["state_abbr"] =
+	userinfo_diag->m_userinfo.state->currentText();
+      userinfo_diag->m_memberProperties["zip"] =
+	userinfo_diag->m_userinfo.zip->text();
+      userinfo_diag->m_memberProperties["email"] =
+	userinfo_diag->m_userinfo.email->text().trimmed();
+      userinfo_diag->m_memberProperties["expiration_date"] =
+	userinfo_diag->m_userinfo.expirationdate->date().toString
 	(Qt::ISODate);
-      userinfo_diag->memberProperties["overdue_fees"] =
-	QString::number(userinfo_diag->userinfo.overduefees->value());
-      userinfo_diag->memberProperties["comments"] =
-	userinfo_diag->userinfo.comments->toPlainText().trimmed();
-      userinfo_diag->memberProperties["general_registration_number"] =
-	userinfo_diag->userinfo.generalregistrationnumber->text().trimmed();
-      userinfo_diag->memberProperties["memberclass"] =
-	userinfo_diag->userinfo.memberclass->text().trimmed();
+      userinfo_diag->m_memberProperties["overdue_fees"] =
+	QString::number(userinfo_diag->m_userinfo.overduefees->value());
+      userinfo_diag->m_memberProperties["comments"] =
+	userinfo_diag->m_userinfo.comments->toPlainText().trimmed();
+      userinfo_diag->m_memberProperties["general_registration_number"] =
+	userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed();
+      userinfo_diag->m_memberProperties["memberclass"] =
+	userinfo_diag->m_userinfo.memberclass->text().trimmed();
 
       if(engUserinfoTitle.contains("Modify"))
 	{
@@ -2644,17 +2646,17 @@ void biblioteq::slotSaveUser(void)
 
 	      if(m_bbColumnHeaderIndexes.at(i) == "First Name")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.firstName->text());
+		  (userinfo_diag->m_userinfo.firstName->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Last Name")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.lastName->text());
+		  (userinfo_diag->m_userinfo.lastName->text());
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Member Since")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.membersince->date().
+		  (userinfo_diag->m_userinfo.membersince->date().
 		   toString(Qt::ISODate));
 	      else if(m_bbColumnHeaderIndexes.at(i) == "Expiration Date")
 		bb.table->item(row, i)->setText
-		  (userinfo_diag->userinfo.expirationdate->
+		  (userinfo_diag->m_userinfo.expirationdate->
 		   date().toString(Qt::ISODate));
 	    }
 
@@ -2664,9 +2666,9 @@ void biblioteq::slotSaveUser(void)
 	{
 	  userinfo_diag->close();
 
-	  if(db.driverName() != "QSQLITE")
+	  if(m_db.driverName() != "QSQLITE")
 	    QMessageBox::information
-	      (members_diag,
+	      (m_members_diag,
 	       tr("BiblioteQ: Information"),
 	       tr("Please notify the new member that their "
 		  "default password has been set "
@@ -2695,36 +2697,36 @@ void biblioteq::readGlobalSetup(void)
 
       if(settings.group() == "Amazon Back Cover Images")
 	{
-	  amazonImages["back_cover_host"] = settings.value("host", "").
+	  m_amazonImages["back_cover_host"] = settings.value("host", "").
 	    toString().trimmed();
-	  amazonImages["back_cover_path"] = settings.value("path", "").
+	  m_amazonImages["back_cover_path"] = settings.value("path", "").
 	    toString().trimmed().remove('"');
-	  amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
+	  m_amazonImages["back_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
-	  amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
+	  m_amazonImages["back_proxy_port"] = settings.value("proxy_port", "").
 	    toString().trimmed();
-	  amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
+	  m_amazonImages["back_proxy_type"] = settings.value("proxy_type", "").
 	    toString().trimmed();
-	  amazonImages["back_proxy_username"] = settings.value
+	  m_amazonImages["back_proxy_username"] = settings.value
 	    ("proxy_username", "").toString().trimmed();
-	  amazonImages["back_proxy_password"] = settings.value
+	  m_amazonImages["back_proxy_password"] = settings.value
 	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group() == "Amazon Front Cover Images")
 	{
-	  amazonImages["front_cover_host"] = settings.value("host", "").
+	  m_amazonImages["front_cover_host"] = settings.value("host", "").
 	    toString().trimmed();
-	  amazonImages["front_cover_path"] = settings.value("path", "").
+	  m_amazonImages["front_cover_path"] = settings.value("path", "").
 	    toString().trimmed().remove('"');
-	  amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
+	  m_amazonImages["front_proxy_host"] = settings.value("proxy_host", "").
 	    toString().trimmed();
-	  amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
+	  m_amazonImages["front_proxy_port"] = settings.value("proxy_port", "").
 	    toString().trimmed();
-	  amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
+	  m_amazonImages["front_proxy_type"] = settings.value("proxy_type", "").
 	    toString().trimmed();
-	  amazonImages["front_proxy_username"] = settings.value
+	  m_amazonImages["front_proxy_username"] = settings.value
 	    ("proxy_username", "").toString().trimmed();
-	  amazonImages["front_proxy_password"] = settings.value
+	  m_amazonImages["front_proxy_password"] = settings.value
 	    ("proxy_password", "").toString().trimmed();
 	}
       else if(settings.group().startsWith("Branch"))
@@ -2743,8 +2745,8 @@ void biblioteq::readGlobalSetup(void)
 	      hash["port"] = settings.value("port", "").toString().trimmed();
 	      hash["ssl_enabled"] = settings.value("ssl_enabled", "").
 		toString().trimmed();
-	      branches[settings.value("database_name", "").
-		       toString().trimmed()] = hash;
+	      m_branches[settings.value("database_name", "").
+			 toString().trimmed()] = hash;
 	    }
 	}
       else if(settings.group().startsWith("SRU"))
@@ -2758,7 +2760,8 @@ void biblioteq::readGlobalSetup(void)
 		("url_isbn", "").toString().trimmed().remove('"');
 	      hash["url_issn"] = settings.value
 		("url_issn", "").toString().trimmed().remove('"');
-	      sruMaps[settings.value("name", "").toString().trimmed()] = hash;
+	      m_sruMaps[settings.value("name", "").toString().trimmed()] =
+		hash;
 	    }
 	}
       else if(settings.group().startsWith("Z39.50"))
@@ -2786,15 +2789,15 @@ void biblioteq::readGlobalSetup(void)
 		toString().trimmed();
 	      hash["proxy_port"] = settings.value("proxy_port", "").
 		toString().trimmed();
-	      z3950Maps[settings.value("name", "Z39.50 Site").
-			toString().trimmed()] = hash;
+	      m_z3950Maps[settings.value("name", "Z39.50 Site").
+			  toString().trimmed()] = hash;
 	    }
 	}
 
       settings.endGroup();
     }
 
-  QStringList list(branches.keys());
+  QStringList list(m_branches.keys());
 
   for(int i = 0; i < list.size(); i++)
     br.branch_name->addItem(list.at(i));
@@ -2809,13 +2812,13 @@ void biblioteq::readGlobalSetup(void)
       hash["port"] = "-1";
       hash["ssl_enabled"] = "false";
 
-      if(!branches.contains(hash["branch_name"]))
-	branches[hash["branch_name"]] = hash;
+      if(!m_branches.contains(hash["branch_name"]))
+	m_branches[hash["branch_name"]] = hash;
 
       br.branch_name->addItem(hash["branch_name"]);
     }
 
-  if(sruMaps.isEmpty())
+  if(m_sruMaps.isEmpty())
     {
       QHash<QString, QString> hash;
 
@@ -2826,10 +2829,10 @@ void biblioteq::readGlobalSetup(void)
       hash["url_issn"] = "http://www.loc.gov/z39voy?operation="
 	"searchRetrieve&version=1.1&query=bath.issn=%1&"
 	"recordSchema=marcxml&startRecord=1&maximumRecords=100";
-      sruMaps["Library of Congress"] = hash;
+      m_sruMaps["Library of Congress"] = hash;
     }
 
-  if(z3950Maps.isEmpty())
+  if(m_z3950Maps.isEmpty())
     {
       QHash<QString, QString> hash;
 
@@ -2839,7 +2842,7 @@ void biblioteq::readGlobalSetup(void)
       hash["Database"] = "LCDB";
       hash["Format"] = "marc8,utf-8";
       hash["RecordSyntax"] = "MARC21";
-      z3950Maps["Library of Congress"] = hash;
+      m_z3950Maps["Library of Congress"] = hash;
     }
 }
 
@@ -2970,12 +2973,12 @@ void biblioteq::slotRemoveMember(void)
   int totalReserved;
   QString errorstr = "";
   QString memberid = "";
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
   QMap<QString, QString> counts;
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Please select a member to delete."));
       return;
     }
@@ -2984,7 +2987,7 @@ void biblioteq::slotRemoveMember(void)
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
-    (db, memberid, errorstr);
+    (m_db, memberid, errorstr);
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -2994,7 +2997,7 @@ void biblioteq::slotRemoveMember(void)
 			  "are reserved by the selected member.")),
 	       errorstr, __FILE__, __LINE__);
       QMessageBox::critical
-	(members_diag, tr("BiblioteQ: Database Error"),
+	(m_members_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to determine the number of items that "
 	    "are reserved by the selected member."));
       return;
@@ -3008,13 +3011,13 @@ void biblioteq::slotRemoveMember(void)
   if(totalReserved != 0)
     {
       QMessageBox::critical
-	(members_diag, tr("BiblioteQ: User Error"),
+	(m_members_diag, tr("BiblioteQ: User Error"),
 	 tr("You may not remove a member that has reserved "
 	    "items."));
       return;
     }
 
-  if(QMessageBox::question(members_diag, tr("BiblioteQ: Question"),
+  if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
 			   tr("Are you sure that you wish to delete the "
 			      "selected member?"),
 			   QMessageBox::Yes | QMessageBox::No,
@@ -3023,15 +3026,15 @@ void biblioteq::slotRemoveMember(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!db.transaction())
+  if(!m_db.transaction())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
-	 db.lastError().text(), __FILE__, __LINE__);
+	 m_db.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
-	(members_diag, tr("BiblioteQ: Database Error"),
+	(m_members_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
       return;
     }
@@ -3043,22 +3046,22 @@ void biblioteq::slotRemoveMember(void)
 
   if(!query.exec())
     {
-      if(!db.rollback())
+      if(!m_db.rollback())
 	addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	   db.lastError().text(), __FILE__, __LINE__);
+	   m_db.lastError().text(), __FILE__, __LINE__);
 
       qapp->restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to remove the selected member.")),
 	       query.lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to remove the selected member."));
     }
   else
     {
       biblioteq_misc_functions::DBAccount
-	(memberid, db, biblioteq_misc_functions::DELETE_USER,
+	(memberid, m_db, biblioteq_misc_functions::DELETE_USER,
 	 errorstr);
 
       if(!errorstr.isEmpty())
@@ -3069,32 +3072,32 @@ void biblioteq::slotRemoveMember(void)
 	     memberid + tr("."),
 	     errorstr, __FILE__, __LINE__);
 
-	  if(!db.rollback())
+	  if(!m_db.rollback())
 	    addError
 	      (QString(tr("Database Error")),
 	       QString(tr("Rollback failure.")),
-	       db.lastError().text(), __FILE__, __LINE__);
+	       m_db.lastError().text(), __FILE__, __LINE__);
 
 	  qapp->restoreOverrideCursor();
 	  QMessageBox::critical
-	    (members_diag,
+	    (m_members_diag,
 	     tr("BiblioteQ: Database Error"),
 	     QString(tr("Unable to remove the patron account ")) +
 	     memberid + tr("."));
 	}
       else
 	{
-	  if(!db.commit())
+	  if(!m_db.commit())
 	    {
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to commit the current database "
 			    "transaction.")),
-		 db.lastError().text(), __FILE__,
+		 m_db.lastError().text(), __FILE__,
 		 __LINE__);
-	      db.rollback();
+	      m_db.rollback();
 	      qapp->restoreOverrideCursor();
-	      QMessageBox::critical(members_diag,
+	      QMessageBox::critical(m_members_diag,
 				    tr("BiblioteQ: Database Error"),
 				    tr("Unable to commit the current "
 				       "database transaction."));
@@ -3152,9 +3155,9 @@ void biblioteq::slotSaveConfig(void)
   else
     settings.remove("main_window_geometry");
 
-  if(db.isOpen())
+  if(m_db.isOpen())
     {
-      if(db.driverName() == "QSQLITE")
+      if(m_db.driverName() == "QSQLITE")
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
 	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
@@ -3575,7 +3578,7 @@ void biblioteq::slotDisplaySummary(void)
 	  summary += "<br>";
 	}
 
-      summary += biblioteq_misc_functions::getAbstractInfo(oid, type, db);
+      summary += biblioteq_misc_functions::getAbstractInfo(oid, type, m_db);
       summary += "<br>";
 
       if(type != "Photograph Collection")
@@ -3608,16 +3611,16 @@ void biblioteq::slotDisplaySummary(void)
       if(type != "Photograph Collection")
 	frontImage = biblioteq_misc_functions::getImage
 	  (oid, "front_cover", type,
-	   db);
+	   m_db);
       else
 	frontImage = biblioteq_misc_functions::getImage
 	  (oid, "image_scaled", type,
-	   db);
+	   m_db);
 
       if(type != "Photograph Collection")
 	backImage = biblioteq_misc_functions::getImage
 	  (oid, "back_cover", type,
-	   db);
+	   m_db);
 
       qapp->restoreOverrideCursor();
 
@@ -3695,7 +3698,7 @@ void biblioteq::slotShowNext(void)
   else
     row += 1;
 
-  if(history_diag->isVisible())
+  if(m_history_diag->isVisible())
     {
       table->clearSelection();
       table->selectRow(row);
@@ -3739,7 +3742,7 @@ void biblioteq::slotShowPrev(void)
   if(row < 0)
     row = 0;
 
-  if(history_diag->isVisible())
+  if(m_history_diag->isVisible())
     {
       table->clearSelection();
       table->selectRow(row);
@@ -3769,7 +3772,7 @@ void biblioteq::slotShowPrev(void)
 
 void biblioteq::slotShowConnectionDB(void)
 {
-  if(db.isOpen())
+  if(m_db.isOpen())
     return;
 
   slotBranchChanged();
@@ -3785,7 +3788,7 @@ void biblioteq::slotConnectDB(void)
   ** Prevent duplicate connections.
   */
 
-  if(db.isOpen())
+  if(m_db.isOpen())
     return;
 
   bool error = false;
@@ -3800,7 +3803,7 @@ void biblioteq::slotConnectDB(void)
   */
 
   br.userid->setFocus();
-  tmphash = branches[br.branch_name->currentText()];
+  tmphash = m_branches[br.branch_name->currentText()];
 
   if(tmphash["database_type"] == "postgresql")
     str = "QPSQL";
@@ -3832,7 +3835,7 @@ void biblioteq::slotConnectDB(void)
     {
       tmphash.clear();
       QMessageBox::critical
-	(branch_diag, tr("BiblioteQ: Database Error"),
+	(m_branch_diag, tr("BiblioteQ: Database Error"),
 	 tr("The selected branch's database type does not "
 	    "have a driver associated with it.") + "\n" +
 	 tr("The following drivers are available: ") +
@@ -3843,28 +3846,28 @@ void biblioteq::slotConnectDB(void)
       return;
     }
 
-  db = QSqlDatabase::addDatabase(str, "Default");
+  m_db = QSqlDatabase::addDatabase(str, "Default");
 
   if(tmphash["database_type"] == "sqlite")
-    db.setDatabaseName(br.filename->text());
+    m_db.setDatabaseName(br.filename->text());
   else
     {
-      db.setHostName(tmphash["hostname"]);
-      db.setDatabaseName(br.branch_name->currentText());
-      db.setPort(tmphash["port"].toInt());
+      m_db.setHostName(tmphash["hostname"]);
+      m_db.setDatabaseName(br.branch_name->currentText());
+      m_db.setPort(tmphash["port"].toInt());
     }
 
   if(tmphash["database_type"] != "sqlite")
     if(tmphash["ssl_enabled"] == "true")
-      db.setConnectOptions("requiressl=1");
+      m_db.setConnectOptions("requiressl=1");
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(tmphash["database_type"] == "sqlite")
-    (void) db.open();
+    (void) m_db.open();
   else
     {
-      (void) db.open(br.userid->text().trimmed(), br.password->text());
+      (void) m_db.open(br.userid->text().trimmed(), br.password->text());
 
       if(br.role->currentIndex() != 1)
 	br.password->clear();
@@ -3872,21 +3875,21 @@ void biblioteq::slotConnectDB(void)
 
   qapp->restoreOverrideCursor();
 
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     {
       error = true;
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to open a database connection "
 			  "with the provided information.")),
-	       db.lastError().text(),
+	       m_db.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(branch_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_branch_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to open a database "
 			       "connection with the provided information."));
     }
   else
     {
-      if(!db.driver()->hasFeature(QSqlDriver::Transactions))
+      if(!m_db.driver()->hasFeature(QSqlDriver::Transactions))
 	{
 	  error = true;
 	  addError
@@ -3894,10 +3897,10 @@ void biblioteq::slotConnectDB(void)
 	     QString(tr("The current database driver that you're using "
 			"does not support transactions. "
 			"Please upgradie your database and/or driver.")),
-	     db.lastError().text(),
+	     m_db.lastError().text(),
 	     __FILE__, __LINE__);
 	  QMessageBox::critical
-	    (branch_diag, tr("BiblioteQ: Database Error"),
+	    (m_branch_diag, tr("BiblioteQ: Database Error"),
 	     tr("The current database driver that you're using "
 		"does not support transactions. "
 		"Please upgrade your database and/or driver."));
@@ -3910,7 +3913,7 @@ void biblioteq::slotConnectDB(void)
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
 	  roles = biblioteq_misc_functions::getRoles
-	    (db, br.userid->text().trimmed(), errorstr).toLower();
+	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
 	  qapp->restoreOverrideCursor();
 
 	  if(errorstr.isEmpty())
@@ -3919,7 +3922,7 @@ void biblioteq::slotConnectDB(void)
 		{
 		  error = true;
 		  QMessageBox::critical
-		    (branch_diag, tr("BiblioteQ: User Error"),
+		    (m_branch_diag, tr("BiblioteQ: User Error"),
 		     QString(tr("It appears that the user ")) +
 		     br.userid->text().trimmed() +
 		     QString(tr(" does not have "
@@ -3929,18 +3932,18 @@ void biblioteq::slotConnectDB(void)
 		{
 		  error = true;
 		  QMessageBox::critical
-		    (branch_diag, tr("BiblioteQ: User Error"),
+		    (m_branch_diag, tr("BiblioteQ: User Error"),
 		     tr("It appears that you are attempting to assume an "
 			"administrator role in a non-administrator mode."));
 		}
 	      else
 		{
 		  if(br.role->currentIndex() == 0)
-		    biblioteq_misc_functions::setRole(db, errorstr, roles);
+		    biblioteq_misc_functions::setRole(m_db, errorstr, roles);
 		  else if(br.role->currentIndex() == 1)
-		    biblioteq_misc_functions::setRole(db, errorstr, "guest");
+		    biblioteq_misc_functions::setRole(m_db, errorstr, "guest");
 		  else
-		    biblioteq_misc_functions::setRole(db, errorstr, "patron");
+		    biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
 
 		  if(!errorstr.isEmpty())
 		    {
@@ -3953,7 +3956,7 @@ void biblioteq::slotConnectDB(void)
 			       errorstr,
 			       __FILE__, __LINE__);
 		      QMessageBox::critical
-			(branch_diag, tr("BiblioteQ: Database Error"),
+			(m_branch_diag, tr("BiblioteQ: Database Error"),
 			 QString(tr("Unable to set the role "
 				    "for ")) +
 			 br.userid->text().trimmed() +
@@ -3972,7 +3975,7 @@ void biblioteq::slotConnectDB(void)
 		       errorstr,
 		       __FILE__, __LINE__);
 	      QMessageBox::critical
-		(branch_diag, tr("BiblioteQ: Database Error"),
+		(m_branch_diag, tr("BiblioteQ: Database Error"),
 		 QString(tr("Unable to determine the "
 			    "roles of ")) +
 		 br.userid->text().trimmed() +
@@ -3980,7 +3983,7 @@ void biblioteq::slotConnectDB(void)
 	    }
 	  else if(br.role->currentIndex() == 1)
 	    {
-	      QSqlQuery query(db);
+	      QSqlQuery query(m_db);
 
 	      if(!query.exec("SET ROLE biblioteq_guest"))
 		{
@@ -3991,13 +3994,13 @@ void biblioteq::slotConnectDB(void)
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
-		    (branch_diag, tr("BiblioteQ: Database Error"),
+		    (m_branch_diag, tr("BiblioteQ: Database Error"),
 		     tr("Unable to set a guest role."));
 		}
 	    }
 	  else
 	    {
-	      QSqlQuery query(db);
+	      QSqlQuery query(m_db);
 
 	      if(!query.exec("SET ROLE biblioteq_patron"))
 		{
@@ -4010,7 +4013,7 @@ void biblioteq::slotConnectDB(void)
 			   errorstr,
 			   __FILE__, __LINE__);
 		  QMessageBox::critical
-		    (branch_diag, tr("BiblioteQ: Database Error"),
+		    (m_branch_diag, tr("BiblioteQ: Database Error"),
 		     QString(tr("Unable to set the role "
 				"for ")) +
 		     br.userid->text().trimmed() +
@@ -4029,12 +4032,12 @@ void biblioteq::slotConnectDB(void)
 
   if(error)
     {
-      db = QSqlDatabase();
+      m_db = QSqlDatabase();
       QSqlDatabase::removeDatabase("Default");
       return;
     }
   else
-    branch_diag->close();
+    m_branch_diag->close();
 
   /*
   ** We've connected successfully. Let's initialize
@@ -4045,13 +4048,13 @@ void biblioteq::slotConnectDB(void)
 
   settings.setValue("previous_branch_name",
 		    br.branch_name->currentText());
-  biblioteq_misc_functions::updateSQLiteDatabase(db);
-  selectedBranch = branches[br.branch_name->currentText()];
+  biblioteq_misc_functions::updateSQLiteDatabase(m_db);
+  m_selectedBranch = m_branches[br.branch_name->currentText()];
 
-  if(connected_bar_label != 0)
+  if(m_connected_bar_label != 0)
     {
-      connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
-      connected_bar_label->setToolTip(tr("Connected"));
+      m_connected_bar_label->setPixmap(QPixmap(":/16x16/connected.png"));
+      m_connected_bar_label->setToolTip(tr("Connected"));
     }
 
   ui.printTool->setEnabled(true);
@@ -4068,7 +4071,7 @@ void biblioteq::slotConnectDB(void)
   ui.connectTool->setEnabled(false);
   ui.actionConnect->setEnabled(false);
 
-  if(db.driverName() == "QSQLITE")
+  if(m_db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
       ui.menuEntriesPerPage->setEnabled(true);
@@ -4100,15 +4103,15 @@ void biblioteq::slotConnectDB(void)
       ** Set the window's title.
       */
 
-      setWindowTitle(tr("BiblioteQ: ") + selectedBranch["branch_name"] +
-		     QString(" (%1)").arg(db.userName()));
+      setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch["branch_name"] +
+		     QString(" (%1)").arg(m_db.userName()));
     }
 
   prepareFilter();
 
-  if(br.role->currentIndex() == 0 || db.driverName() == "QSQLITE")
+  if(br.role->currentIndex() == 0 || m_db.driverName() == "QSQLITE")
     {
-      if(db.driverName() == "QSQLITE")
+      if(m_db.driverName() == "QSQLITE")
 	{
 	  /*
 	  ** Add the database's information to the pulldown menu.
@@ -4167,7 +4170,7 @@ void biblioteq::slotConnectDB(void)
 
   bool found = false;
 
-  if(db.driverName() == "QSQLITE")
+  if(m_db.driverName() == "QSQLITE")
     {
       for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
 	if(ui.menuEntriesPerPage->actions()[i]->data().toInt() ==
@@ -4227,11 +4230,11 @@ void biblioteq::slotDisconnect(void)
   roles = "";
   m_pages = 0;
   m_queryOffset = 0;
-  userinfo_diag->memberProperties.clear();
-  all_diag->close();
-  members_diag->close();
-  history_diag->close();
-  customquery_diag->close();
+  userinfo_diag->m_memberProperties.clear();
+  m_all_diag->close();
+  m_members_diag->close();
+  m_history_diag->close();
+  m_customquery_diag->close();
   cq.tables_t->clear();
   cq.tables_t->setColumnCount(0);
   cq.tables_t->scrollToTop();
@@ -4239,7 +4242,7 @@ void biblioteq::slotDisconnect(void)
   cq.tables_t->clearSelection();
   cq.tables_t->setCurrentItem(0);
   cq.query_te->clear();
-  admin_diag->close();
+  m_admin_diag->close();
   db_enumerations->clear();
   db_enumerations->close();
   resetAdminBrowser();
@@ -4295,16 +4298,16 @@ void biblioteq::slotDisconnect(void)
   ui.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
   resetAllSearchWidgets();
 
-  foreach(QWidget *widget, all_diag->findChildren<QWidget *> ())
+  foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
     widget->setEnabled(true);
 
   al.reset->setVisible(false);
 
-  if(db.isOpen())
+  if(m_db.isOpen())
     {
       QSettings settings;
 
-      if(db.driverName() == "QSQLITE")
+      if(m_db.driverName() == "QSQLITE")
 	{
 	  for(int i = 0; i < ui.menuEntriesPerPage->actions().size(); i++)
 	    if(ui.menuEntriesPerPage->actions()[i]->isChecked())
@@ -4331,17 +4334,17 @@ void biblioteq::slotDisconnect(void)
   if(!ui.menuEntriesPerPage->actions().isEmpty())
     ui.menuEntriesPerPage->actions()[0]->setChecked(true);
 
-  if(connected_bar_label != 0)
+  if(m_connected_bar_label != 0)
     {
-      connected_bar_label->setPixmap
+      m_connected_bar_label->setPixmap
 	(QPixmap(":/16x16/disconnected.png"));
-      connected_bar_label->setToolTip(tr("Disconnected"));
+      m_connected_bar_label->setToolTip(tr("Disconnected"));
     }
 
-  if(status_bar_label != 0)
+  if(m_status_bar_label != 0)
     {
-      status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
-      status_bar_label->setToolTip(tr("Standard User Mode"));
+      m_status_bar_label->setPixmap(QPixmap(":/16x16/lock.png"));
+      m_status_bar_label->setToolTip(tr("Standard User Mode"));
     }
 
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
@@ -4354,7 +4357,7 @@ void biblioteq::slotDisconnect(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(db.userName(), previousTypeFilter, roles);
+  ui.table->resetTable(m_db.userName(), previousTypeFilter, roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -4375,11 +4378,11 @@ void biblioteq::slotDisconnect(void)
   deletedAdmins.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(db.isOpen())
-    db.close();
+  if(m_db.isOpen())
+    m_db.close();
 
   qapp->restoreOverrideCursor();
-  db = QSqlDatabase();
+  m_db = QSqlDatabase();
 
   if(QSqlDatabase::contains("Default"))
     QSqlDatabase::removeDatabase("Default");
@@ -4498,7 +4501,7 @@ QVector<QString> biblioteq::getBBColumnIndexes(void) const
 
 void biblioteq::slotShowMembersBrowser(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
 
   bb.filter->clear();
@@ -4511,13 +4514,13 @@ void biblioteq::slotShowMembersBrowser(void)
   static bool resized = false;
 
   if(!resized)
-    members_diag->resize(qRound(0.75 * size().width()),
-			 qRound(0.75 * size().height()));
+    m_members_diag->resize(qRound(0.75 * size().width()),
+			   qRound(0.75 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(members_diag, this);
-  members_diag->raise();
-  members_diag->show();
+  biblioteq_misc_functions::center(m_members_diag, this);
+  m_members_diag->raise();
+  m_members_diag->show();
 
   if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     slotPopulateMembersBrowser();
@@ -4532,8 +4535,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
   int i = -1;
   int j = 0;
   QString str = "";
-  QSqlQuery query(db);
-  QProgressDialog progress(members_diag);
+  QSqlQuery query(m_db);
+  QProgressDialog progress(m_members_diag);
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
@@ -4572,7 +4575,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
       QString E("");
 
-      if(db.driverName() != "QSQLITE")
+      if(m_db.driverName() != "QSQLITE")
 	E = "E";
 
       if(bb.filtertype->currentText() == "Member ID")
@@ -4613,7 +4616,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 			  "populating.")),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve member data for "
 			       "table populating."));
       return;
@@ -4623,24 +4626,24 @@ void biblioteq::slotPopulateMembersBrowser(void)
   resetMembersBrowser();
   bb.table->setSortingEnabled(false);
 
-  if(db.driverName() != "QSQLITE")
+  if(m_db.driverName() != "QSQLITE")
     bb.table->setRowCount(query.size());
   else
     bb.table->setRowCount
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 db, __FILE__, __LINE__));
+						 m_db, __FILE__, __LINE__));
 
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.setLabelText(tr("Populating the table..."));
   progress.setMinimum(0);
 
-  if(db.driverName() == "QSQLITE")
+  if(m_db.driverName() == "QSQLITE")
     progress.setMaximum
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 db, __FILE__, __LINE__));
+						 m_db, __FILE__, __LINE__));
   else
     progress.setMaximum(query.size());
 
@@ -4709,7 +4712,7 @@ void biblioteq::slotGrantPrivileges(void)
 {
   bool error = false;
   QString errorstr("");
-  QProgressDialog progress(members_diag);
+  QProgressDialog progress(m_members_diag);
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
@@ -4732,7 +4735,7 @@ void biblioteq::slotGrantPrivileges(void)
 	{
 	  biblioteq_misc_functions::DBAccount
 	    (item->text(),
-	     db, biblioteq_misc_functions::UPDATE_USER,
+	     m_db, biblioteq_misc_functions::UPDATE_USER,
 	     errorstr);
 
 	  if(!errorstr.isEmpty())
@@ -4760,7 +4763,7 @@ void biblioteq::slotGrantPrivileges(void)
   progress.hide();
 
   if(error)
-    QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+    QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			  tr("Unable to grant privileges to all of "
 			     "the members."));
 }
@@ -4787,7 +4790,7 @@ void biblioteq::updateMembersBrowser(void)
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
-    (db, memberid, errorstr);
+    (m_db, memberid, errorstr);
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -4818,7 +4821,7 @@ void biblioteq::updateMembersBrowser(void)
 	 counts["numvideogames"]);
       counts.clear();
 
-      if(history_diag->isVisible())
+      if(m_history_diag->isVisible())
 	slotShowHistory();
     }
 }
@@ -4840,7 +4843,7 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
-    (db, memberid, errorstr);
+    (m_db, memberid, errorstr);
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -4901,11 +4904,11 @@ void biblioteq::slotModifyBorrower(void)
   QString str = "";
   QString fieldname = "";
   QVariant var;
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Please select a member to modify."));
       return;
     }
@@ -4931,7 +4934,7 @@ void biblioteq::slotModifyBorrower(void)
 			      tr("Unable to retrieve the selected member's "
 				 "information."));
       else
-	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			      tr("Unable to retrieve the selected member's "
 				 "information."));
 
@@ -4948,67 +4951,67 @@ void biblioteq::slotModifyBorrower(void)
 	  fieldname = query.record().fieldName(i);
 
 	  if(fieldname == "memberid")
-	    userinfo_diag->userinfo.memberid->setText(var.toString());
+	    userinfo_diag->m_userinfo.memberid->setText(var.toString());
 	  else if(fieldname == "membersince")
-	    userinfo_diag->userinfo.membersince->setDate
+	    userinfo_diag->m_userinfo.membersince->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "dob")
-	    userinfo_diag->userinfo.dob->setDate
+	    userinfo_diag->m_userinfo.dob->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "sex")
 	    {
-	      if(userinfo_diag->userinfo.sex->findText(var.toString()) > -1)
-		userinfo_diag->userinfo.sex->setCurrentIndex
-		  (userinfo_diag->userinfo.sex->findText(var.toString()));
+	      if(userinfo_diag->m_userinfo.sex->findText(var.toString()) > -1)
+		userinfo_diag->m_userinfo.sex->setCurrentIndex
+		  (userinfo_diag->m_userinfo.sex->findText(var.toString()));
 	      else
-		userinfo_diag->userinfo.sex->setCurrentIndex(2); // Private
+		userinfo_diag->m_userinfo.sex->setCurrentIndex(2); // Private
 	    }
 	  else if(fieldname == "first_name")
-	    userinfo_diag->userinfo.firstName->setText(var.toString());
+	    userinfo_diag->m_userinfo.firstName->setText(var.toString());
 	  else if(fieldname == "middle_init")
-	    userinfo_diag->userinfo.middle->setText(var.toString());
+	    userinfo_diag->m_userinfo.middle->setText(var.toString());
 	  else if(fieldname == "last_name")
-	    userinfo_diag->userinfo.lastName->setText(var.toString());
+	    userinfo_diag->m_userinfo.lastName->setText(var.toString());
 	  else if(fieldname == "telephone_num")
-	    userinfo_diag->userinfo.telephoneNumber->setText(var.toString());
+	    userinfo_diag->m_userinfo.telephoneNumber->setText(var.toString());
 	  else if(fieldname == "street")
-	    userinfo_diag->userinfo.street->setText(var.toString());
+	    userinfo_diag->m_userinfo.street->setText(var.toString());
 	  else if(fieldname == "city")
-	    userinfo_diag->userinfo.city->setText(var.toString());
+	    userinfo_diag->m_userinfo.city->setText(var.toString());
 	  else if(fieldname == "state_abbr")
 	    {
-	      if(userinfo_diag->userinfo.state->
+	      if(userinfo_diag->m_userinfo.state->
 		 findText(var.toString()) == -1)
-		userinfo_diag->userinfo.state->setCurrentIndex(0);
+		userinfo_diag->m_userinfo.state->setCurrentIndex(0);
 	      else
-		userinfo_diag->userinfo.state->setCurrentIndex
-		  (userinfo_diag->userinfo.state->findText(var.toString()));
+		userinfo_diag->m_userinfo.state->setCurrentIndex
+		  (userinfo_diag->m_userinfo.state->findText(var.toString()));
 	    }
 	  else if(fieldname == "zip")
-	    userinfo_diag->userinfo.zip->setText(var.toString());
+	    userinfo_diag->m_userinfo.zip->setText(var.toString());
 	  else if(fieldname == "email")
-	    userinfo_diag->userinfo.email->setText(var.toString());
+	    userinfo_diag->m_userinfo.email->setText(var.toString());
 	  else if(fieldname == "expiration_date")
-	    userinfo_diag->userinfo.expirationdate->setDate
+	    userinfo_diag->m_userinfo.expirationdate->setDate
 	      (QDate::fromString(var.toString(), "MM/dd/yyyy"));
 	  else if(fieldname == "overdue_fees")
-	    userinfo_diag->userinfo.overduefees->setValue(var.toDouble());
+	    userinfo_diag->m_userinfo.overduefees->setValue(var.toDouble());
 	  else if(fieldname == "comments")
-	    userinfo_diag->userinfo.comments->setPlainText(var.toString());
+	    userinfo_diag->m_userinfo.comments->setPlainText(var.toString());
 	  else if(fieldname == "general_registration_number")
-	    userinfo_diag->userinfo.generalregistrationnumber->setText
+	    userinfo_diag->m_userinfo.generalregistrationnumber->setText
 	      (var.toString());
 	  else if(fieldname == "memberclass")
-	    userinfo_diag->userinfo.memberclass->setText(var.toString());
+	    userinfo_diag->m_userinfo.memberclass->setText(var.toString());
 
 	  if(fieldname.contains("dob") ||
 	     fieldname.contains("date") ||
 	     fieldname.contains("membersince"))
-	    userinfo_diag->memberProperties[fieldname] =
+	    userinfo_diag->m_memberProperties[fieldname] =
 	      QDate::fromString(var.toString(), "MM/dd/yyyy").
 	      toString(Qt::ISODate);
 	  else
-	    userinfo_diag->memberProperties[fieldname] = var.toString();
+	    userinfo_diag->m_memberProperties[fieldname] = var.toString();
 	}
 
       foreach(QLineEdit *textfield,
@@ -5016,16 +5019,16 @@ void biblioteq::slotModifyBorrower(void)
 	textfield->setCursorPosition(0);
     }
 
-  userinfo_diag->userinfo.memberid->setReadOnly(true);
-  userinfo_diag->userinfo.prevTool->setVisible(true);
-  userinfo_diag->userinfo.nextTool->setVisible(true);
+  userinfo_diag->m_userinfo.memberid->setReadOnly(true);
+  userinfo_diag->m_userinfo.prevTool->setVisible(true);
+  userinfo_diag->m_userinfo.nextTool->setVisible(true);
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
   engUserinfoTitle = "Modify Member";
-  userinfo_diag->userinfo.membersince->setMaximumDate(QDate::currentDate());
-  userinfo_diag->userinfo.tabWidget->setCurrentIndex(0);
-  userinfo_diag->userinfo.membersince->setFocus();
-  userinfo_diag->userinfo.memberid->setPalette
-    (userinfo_diag->userinfo.telephoneNumber->palette());
+  userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
+  userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
+  userinfo_diag->m_userinfo.membersince->setFocus();
+  userinfo_diag->m_userinfo.memberid->setPalette
+    (userinfo_diag->m_userinfo.telephoneNumber->palette());
   userinfo_diag->updateGeometry();
   userinfo_diag->show();
 }
@@ -5062,7 +5065,7 @@ void biblioteq::slotCheckout(void)
 
   if(type == "Photograph Collection")
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Photographs may not be reserved."));
       return;
     }
@@ -5080,7 +5083,7 @@ void biblioteq::slotCheckout(void)
 
       qapp->setOverrideCursor(Qt::WaitCursor);
       expired = biblioteq_misc_functions::hasMemberExpired
-	(db, memberid, errorstr);
+	(m_db, memberid, errorstr);
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -5091,7 +5094,7 @@ void biblioteq::slotCheckout(void)
 
       if(expired || !errorstr.isEmpty())
 	{
-	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 				tr("It appears that the selected member's "
 				   "membership has expired."));
 	  return;
@@ -5108,7 +5111,7 @@ void biblioteq::slotCheckout(void)
 	(ui.table, row2, ui.table->columnNumber("MYOID"));
       qapp->setOverrideCursor(Qt::WaitCursor);
       availability = biblioteq_misc_functions::getAvailability
-	(oid, db, type, errorstr).toInt();
+	(oid, m_db, type, errorstr).toInt();
       qapp->restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -5119,7 +5122,7 @@ void biblioteq::slotCheckout(void)
 
       if(availability < 1 || !errorstr.isEmpty())
 	{
-	  QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+	  QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 				tr("It appears that the item that you "
 				   "selected "
 				   "is not available for reservation."));
@@ -5129,7 +5132,7 @@ void biblioteq::slotCheckout(void)
 
   if(row1 < 0 || row2 < 0)
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("Please select a member and an item "
 			       "to continue with the reservation process."));
       return;
@@ -5173,7 +5176,7 @@ void biblioteq::slotCheckout(void)
 	  else
 	    {
 	      QMessageBox::critical
-		(members_diag, tr("BiblioteQ: User Error"),
+		(m_members_diag, tr("BiblioteQ: User Error"),
 		 tr("Unable to determine the selected item's type."));
 	      delete item;
 	      return;
@@ -5193,7 +5196,7 @@ void biblioteq::slotCheckout(void)
 	      (ui.table, row2, "id");
 
 	  if((copyeditor = new(std::nothrow)
-	      biblioteq_copy_editor(members_diag, item,
+	      biblioteq_copy_editor(m_members_diag, item,
 				    true,
 				    quantity, oid,
 				    0,
@@ -5214,10 +5217,10 @@ void biblioteq::slotCheckout(void)
 
 void biblioteq::prepareRequestToolButton(const QString &typefilter)
 {
-  if(db.driverName() != "QSQLITE")
-    if(db.isOpen())
+  if(m_db.driverName() != "QSQLITE")
+    if(m_db.isOpen())
       {
-	if(db.userName() == "xbook_guest")
+	if(m_db.userName() == "xbook_guest")
 	  {
 	    ui.actionRequests->setToolTip(tr("Item Requests"));
 	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
@@ -5281,7 +5284,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   ** Populate the main table only if we're connected to a database.
   */
 
-  if(db.isOpen())
+  if(m_db.isOpen())
     slotRefresh();
   else
     {
@@ -5295,7 +5298,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
       ui.nextPageButton->setEnabled(false);
       ui.pagesLabel->setText("1");
       ui.previousPageButton->setEnabled(false);
-      ui.table->resetTable(db.userName(), typefilter, "");
+      ui.table->resetTable(m_db.userName(), typefilter, "");
       ui.itemsCountLabel->setText(tr("0 Results"));
     }
 }
@@ -5306,7 +5309,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 
 void biblioteq::slotReset(void)
 {
-  if(all_diag->isVisible())
+  if(m_all_diag->isVisible())
     {
       QAction *action = qobject_cast<QAction *> (sender());
 
@@ -5402,13 +5405,13 @@ void biblioteq::slotShowErrorDialog(void)
   static bool resized = false;
 
   if(!resized)
-    error_diag->resize(qRound(0.75 * size().width()),
-		       qRound(0.75 * size().height()));
+    m_error_diag->resize(qRound(0.75 * size().width()),
+			 qRound(0.75 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(error_diag, this);
-  error_diag->raise();
-  error_diag->show();
+  biblioteq_misc_functions::center(m_error_diag, this);
+  m_error_diag->raise();
+  m_error_diag->show();
 }
 
 /*
@@ -5529,7 +5532,7 @@ Ui_mainWindow biblioteq::getUI(void) const
 
 QSqlDatabase biblioteq::getDB(void) const
 {
-  return db;
+  return m_db;
 }
 
 /*
@@ -5771,8 +5774,8 @@ void biblioteq::emptyContainers(void)
 
 QString biblioteq::getAdminID(void) const
 {
-  if(db.driverName() != "QSQLITE")
-    return db.userName();
+  if(m_db.driverName() != "QSQLITE")
+    return m_db.userName();
   else
     return "N/A";
 }
@@ -5990,7 +5993,8 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     {
       foreach(QWidget *w, qapp->topLevelWidgets())
 	{
-	  biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+	  biblioteq_videogame *videogame =
+	    qobject_cast<biblioteq_videogame *> (w);
 
 	  if(videogame && videogame->getID() == oid)
 	    {
@@ -6413,7 +6417,8 @@ void biblioteq::updateRows(const QString &oid, const int row,
     {
       foreach(QWidget *w, qapp->topLevelWidgets())
 	{
-	  biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
+	  biblioteq_magazine *magazine =
+	    qobject_cast<biblioteq_magazine *> (w);
 
 	  /*
 	  ** The class biblioteq_journal inherits biblioteq_magazine.
@@ -6445,7 +6450,8 @@ void biblioteq::updateRows(const QString &oid, const int row,
     {
       foreach(QWidget *w, qapp->topLevelWidgets())
 	{
-	  biblioteq_videogame *videogame = qobject_cast<biblioteq_videogame *> (w);
+	  biblioteq_videogame *videogame =
+	    qobject_cast<biblioteq_videogame *> (w);
 
 	  if(videogame && videogame->getID() == oid)
 	    {
@@ -6470,8 +6476,8 @@ void biblioteq::slotCloseMembersBrowser(void)
   ** Also closes the Reservation History Browser.
   */
 
-  history_diag->close();
-  members_diag->close();
+  m_history_diag->close();
+  m_members_diag->close();
 }
 
 /*
@@ -6485,7 +6491,7 @@ void biblioteq::slotListReservedItems(void)
 
   if(row < 0)
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("In order to list a member's reserved items, "
 			       "you must first select the member."));
       return;
@@ -6494,7 +6500,7 @@ void biblioteq::slotListReservedItems(void)
   memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
-  members_diag->raise();
+  m_members_diag->raise();
 }
 
 /*
@@ -6506,15 +6512,15 @@ void biblioteq::slotListOverdueItems(void)
   int row = bb.table->currentRow();
   QString memberid = "";
 
-  if(members_diag->isVisible())
+  if(m_members_diag->isVisible())
     memberid = biblioteq_misc_functions::getColumnString
       (bb.table, row,
        m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else if(roles.isEmpty())
-    memberid = db.userName();
+    memberid = m_db.userName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
-  members_diag->raise();
+  m_members_diag->raise();
 }
 
 /*
@@ -6531,8 +6537,8 @@ void biblioteq::slotReserveCopy(void)
 
   if(row < 0)
     {
-      if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			      tr("In order to reserve an item, you must "
 				 "first select it."));
       else
@@ -6548,8 +6554,8 @@ void biblioteq::slotReserveCopy(void)
 
   if(type == "Photograph Collection")
     {
-      if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			      tr("Photographs may not be reserved."));
       else
 	QMessageBox::critical(this, tr("BiblioteQ: User Error"),
@@ -6562,7 +6568,7 @@ void biblioteq::slotReserveCopy(void)
     (ui.table, row, ui.table->columnNumber("MYOID"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   availability = biblioteq_misc_functions::getAvailability
-    (oid, db, type, errorstr).toInt();
+    (oid, m_db, type, errorstr).toInt();
   qapp->restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
@@ -6572,8 +6578,8 @@ void biblioteq::slotReserveCopy(void)
 			  "the selected item.")),
 	       errorstr, __FILE__, __LINE__);
 
-      if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			      tr("Unable to determine the availability of "
 				 "the selected item."));
       else
@@ -6586,8 +6592,8 @@ void biblioteq::slotReserveCopy(void)
 
   if(availability < 1)
     {
-      if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			      tr("It appears that the item you selected "
 				 "is not available for reservation."));
       else
@@ -6601,7 +6607,7 @@ void biblioteq::slotReserveCopy(void)
   slotShowMembersBrowser();
 
   if(!ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
-    if(QMessageBox::question(members_diag, tr("BiblioteQ: Question"),
+    if(QMessageBox::question(m_members_diag, tr("BiblioteQ: Question"),
 			     tr("Would you like to retrieve the list of "
 				"members?"),
 			     QMessageBox::Yes | QMessageBox::No,
@@ -6618,7 +6624,7 @@ void biblioteq::slotReserveCopy(void)
 
 QMap<QString, QHash<QString, QString> > biblioteq::getZ3950Maps(void) const
 {
-  return z3950Maps;
+  return m_z3950Maps;
 }
 
 /*
@@ -6627,7 +6633,7 @@ QMap<QString, QHash<QString, QString> > biblioteq::getZ3950Maps(void) const
 
 QHash<QString, QString> biblioteq::getAmazonHash(void) const
 {
-  return amazonImages;
+  return m_amazonImages;
 }
 
 /*
@@ -6760,7 +6766,7 @@ void biblioteq::slotShowCustomQuery(void)
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
-      if(db.driverName() == "QSQLITE")
+      if(m_db.driverName() == "QSQLITE")
 	list << "book"
 	     << "book_copy_info"
 	     << "cd"
@@ -6836,7 +6842,7 @@ void biblioteq::slotShowCustomQuery(void)
 	if((item1 = new(std::nothrow) QTreeWidgetItem(cq.tables_t)) != 0)
 	  {
 	    item1->setText(0, list[i]);
-	    rec = db.record(list[i]);
+	    rec = m_db.record(list[i]);
 
 	    for(j = 0; j < rec.count(); j++)
 	      {
@@ -6889,13 +6895,13 @@ void biblioteq::slotShowCustomQuery(void)
   static bool resized = false;
 
   if(!resized)
-    customquery_diag->resize(qRound(0.75 * size().width()),
-			     qRound(0.75 * size().height()));
+    m_customquery_diag->resize(qRound(0.75 * size().width()),
+			       qRound(0.75 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(customquery_diag, this);
-  customquery_diag->raise();
-  customquery_diag->show();
+  biblioteq_misc_functions::center(m_customquery_diag, this);
+  m_customquery_diag->raise();
+  m_customquery_diag->show();
 }
 
 /*
@@ -6904,7 +6910,7 @@ void biblioteq::slotShowCustomQuery(void)
 
 void biblioteq::slotCloseCustomQueryDialog(void)
 {
-  customquery_diag->close();
+  m_customquery_diag->close();
 }
 
 /*
@@ -6919,7 +6925,7 @@ void biblioteq::slotExecuteCustomQuery(void)
 
   if(querystr.isEmpty())
     {
-      QMessageBox::critical(customquery_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid SQL statement."));
       return;
     }
@@ -6936,19 +6942,19 @@ void biblioteq::slotExecuteCustomQuery(void)
      querystr.toLower().contains("truncate ") ||
      querystr.toLower().contains("update "))
     {
-      QMessageBox::critical(customquery_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_customquery_diag, tr("BiblioteQ: User Error"),
 			    tr("Please provide a non-destructive SQL "
 			       "statement."));
       return;
     }
 
   if(populateTable(CUSTOM_QUERY, "Custom", querystr) == 0)
-    customquery_diag->close();
+    m_customquery_diag->close();
   else
     {
-      biblioteq_misc_functions::center(customquery_diag, this);
-      customquery_diag->raise();
-      customquery_diag->show();
+      biblioteq_misc_functions::center(m_customquery_diag, this);
+      m_customquery_diag->raise();
+      m_customquery_diag->show();
     }
 }
 
@@ -7017,7 +7023,7 @@ void biblioteq::slotPrintReserved(void)
   QString memberid = "";
   QPrinter printer;
   QStringList itemsList;
-  QPrintDialog dialog(&printer, members_diag);
+  QPrintDialog dialog(&printer, m_members_diag);
   QTextDocument document;
   QMap<QString, QString> memberinfo;
 
@@ -7030,7 +7036,7 @@ void biblioteq::slotPrintReserved(void)
   if(row < 0)
     {
       QMessageBox::critical
-	(members_diag, tr("BiblioteQ: User Error"),
+	(m_members_diag, tr("BiblioteQ: User Error"),
 	 tr("In order to print a member's reserved items, "
 	    "you must first select the member."));
       return;
@@ -7057,7 +7063,7 @@ void biblioteq::slotPrintReserved(void)
 
   if(itemsReserved < 1)
     {
-      QMessageBox::critical(members_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: User Error"),
 			    tr("The member that you selected does not have "
 			       "any reserved items."));
       return;
@@ -7073,7 +7079,7 @@ void biblioteq::slotPrintReserved(void)
      m_bbColumnHeaderIndexes.indexOf("Last Name"));
   qapp->setOverrideCursor(Qt::WaitCursor);
   itemsList = biblioteq_misc_functions::getReservedItems
-    (memberid, db, errorstr);
+    (memberid, m_db, errorstr);
   qapp->restoreOverrideCursor();
 
   if(errorstr.isEmpty())
@@ -7102,7 +7108,7 @@ void biblioteq::slotPrintReserved(void)
 	       QString(tr("Unable to determine the reserved items for "
 			  "the selected member.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to determine the reserved items for "
 			       "the selected member."));
     }
@@ -7126,7 +7132,7 @@ void biblioteq::slotCopyError(void)
 
   if(list.isEmpty())
     {
-      QMessageBox::critical(error_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_error_diag, tr("BiblioteQ: User Error"),
 			    tr("To copy the contents of the Error "
 			       "Log into "
 			       "the clipboard buffer, you must first "
@@ -7160,8 +7166,8 @@ void biblioteq::slotCopyError(void)
 
 void biblioteq::slotShowHistory(void)
 {
-  QProgressDialog progress(history_diag);
-  QSqlQuery query(db);
+  QProgressDialog progress(m_history_diag);
+  QSqlQuery query(m_db);
   QString errorstr("");
   QString memberid("");
   QString querystr = "";
@@ -7178,11 +7184,11 @@ void biblioteq::slotShowHistory(void)
 #endif
 #endif
 
-  if(db.driverName() == "QPSQL" && roles.isEmpty())
+  if(m_db.driverName() == "QPSQL" && roles.isEmpty())
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
-      bool dnt = biblioteq_misc_functions::dnt(db, db.userName(), errorstr);
+      bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(), errorstr);
 
       if(errorstr.isEmpty())
 	{
@@ -7200,11 +7206,11 @@ void biblioteq::slotShowHistory(void)
       history.dnt->setEnabled(false);
     }
 
-  if(members_diag->isVisible())
+  if(m_members_diag->isVisible())
     if(row < 0)
       {
 	QMessageBox::critical
-	  (members_diag, tr("BiblioteQ: User Error"),
+	  (m_members_diag, tr("BiblioteQ: User Error"),
 	   tr("In order to display a member's reservation "
 	      "history, you must first select the member."));
 	return;
@@ -7218,7 +7224,7 @@ void biblioteq::slotShowHistory(void)
        m_bbColumnHeaderIndexes.
        indexOf("Member ID"));
   else
-    memberid = db.userName();
+    memberid = m_db.userName();
 
   if(!roles.isEmpty())
     for(i = 0; i < list.size(); i++)
@@ -7246,7 +7252,7 @@ void biblioteq::slotShowHistory(void)
 			      "history.type ").arg(list[i]);
 	else
 	  {
-	    if(db.driverName() != "QSQLITE")
+	    if(m_db.driverName() != "QSQLITE")
 	      querystr += QString
 		("SELECT "
 		 "history.memberid, "
@@ -7317,7 +7323,7 @@ void biblioteq::slotShowHistory(void)
 			      "history.type ").arg(list[i]);
 	else
 	  {
-	    if(db.driverName() != "QSQLITE")
+	    if(m_db.driverName() != "QSQLITE")
 	      querystr += QString
 		("SELECT "
 		 "history.memberid, "
@@ -7380,12 +7386,12 @@ void biblioteq::slotShowHistory(void)
 	 query.lastError().text(),
 	 __FILE__, __LINE__);
 
-      if(history_diag->isVisible())
-	QMessageBox::critical(history_diag, tr("BiblioteQ: Database Error"),
+      if(m_history_diag->isVisible())
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: Database Error"),
 			      tr("Unable to retrieve reservation "
 				 "history data for table populating."));
-      else if(members_diag->isVisible())
-	QMessageBox::critical(members_diag, tr("BiblioteQ: Database Error"),
+      else if(m_members_diag->isVisible())
+	QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
 			      tr("Unable to retrieve reservation "
 				 "history data for table populating."));
       else
@@ -7435,13 +7441,13 @@ void biblioteq::slotShowHistory(void)
   list.clear();
   history.table->setSortingEnabled(false);
 
-  if(db.driverName() != "QSQLITE")
+  if(m_db.driverName() != "QSQLITE")
     history.table->setRowCount(query.size());
   else
     history.table->setRowCount
       (biblioteq_misc_functions::sqliteQuerySize(query.lastQuery(),
 						 query.boundValues(),
-						 db, __FILE__, __LINE__));
+						 m_db, __FILE__, __LINE__));
 
   history.table->scrollToTop();
   history.table->horizontalScrollBar()->setValue(0);
@@ -7500,31 +7506,31 @@ void biblioteq::slotShowHistory(void)
   history.nextTool->setVisible(!roles.isEmpty());
   history.prevTool->setVisible(!roles.isEmpty());
 
-  if(members_diag->isVisible())
+  if(m_members_diag->isVisible())
     {
       static bool resized = false;
 
       if(!resized)
-	history_diag->resize(qRound(0.75 * members_diag->size().width()),
-			     qRound(0.75 * members_diag->size().height()));
+	m_history_diag->resize(qRound(0.75 * m_members_diag->size().width()),
+			       qRound(0.75 * m_members_diag->size().height()));
 
       resized = true;
-      biblioteq_misc_functions::center(history_diag, members_diag);
+      biblioteq_misc_functions::center(m_history_diag, m_members_diag);
     }
   else
     {
       static bool resized = false;
 
       if(!resized)
-	history_diag->resize(qRound(0.75 * size().width()),
-			     qRound(0.75 * size().height()));
+	m_history_diag->resize(qRound(0.75 * size().width()),
+			       qRound(0.75 * size().height()));
 
       resized = true;
-      biblioteq_misc_functions::center(history_diag, this);
+      biblioteq_misc_functions::center(m_history_diag, this);
     }
 
-  history_diag->raise();
-  history_diag->show();
+  m_history_diag->raise();
+  m_history_diag->show();
 }
 
 /*
@@ -7533,7 +7539,7 @@ void biblioteq::slotShowHistory(void)
 
 QMainWindow *biblioteq::getMembersBrowser(void) const
 {
-  return members_diag;
+  return m_members_diag;
 }
 
 /*
@@ -7544,7 +7550,7 @@ void biblioteq::slotPrintReservationHistory(void)
 {
   QString html = "<html>";
   QPrinter printer;
-  QPrintDialog dialog(&printer, history_diag);
+  QPrintDialog dialog(&printer, m_history_diag);
   QTextDocument document;
 
 #ifdef Q_OS_MAC
@@ -7555,12 +7561,12 @@ void biblioteq::slotPrintReservationHistory(void)
 
   if(history.table->rowCount() == 0)
     {
-      if(members_diag->isVisible())
-	QMessageBox::critical(history_diag, tr("BiblioteQ: User Error"),
+      if(m_members_diag->isVisible())
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
 			      tr("The selected member does not yet have a "
 				 "reservation history to print."));
       else
-	QMessageBox::critical(history_diag, tr("BiblioteQ: User Error"),
+	QMessageBox::critical(m_history_diag, tr("BiblioteQ: User Error"),
 			      tr("You do not yet have a reservation history "
 				 "to print."));
 
@@ -7611,7 +7617,7 @@ void biblioteq::slotBranchChanged(void)
 {
   QHash<QString, QString> tmphash;
 
-  tmphash = branches[br.branch_name->currentText()];
+  tmphash = m_branches[br.branch_name->currentText()];
 
   if(tmphash["database_type"] == "sqlite")
     {
@@ -7625,10 +7631,10 @@ void biblioteq::slotBranchChanged(void)
     }
 
   tmphash.clear();
-  branch_diag->update();
-  branch_diag->resize(branch_diag->width(),
-		      branch_diag->minimumSize().height());
-  branch_diag->show();
+  m_branch_diag->update();
+  m_branch_diag->resize(m_branch_diag->width(),
+			m_branch_diag->minimumSize().height());
+  m_branch_diag->show();
 }
 
 /*
@@ -7650,7 +7656,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
   ** Called from the Borrowers Editor when an item has been updated.
   */
 
-  if(history_diag->isVisible())
+  if(m_history_diag->isVisible())
     if(history.table->rowCount() > 0 &&
        biblioteq_misc_functions::getColumnString
        (history.table, 0,
@@ -7696,11 +7702,11 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 
 void biblioteq::slotShowChangePassword(void)
 {
-  pass.userid->setText(db.userName());
+  pass.userid->setText(m_db.userName());
   pass.password->clear();
   pass.passwordAgain->clear();
   pass.password->setFocus();
-  pass_diag->show();
+  m_pass_diag->show();
 }
 
 /*
@@ -7714,7 +7720,7 @@ void biblioteq::slotSavePassword(void)
   if(pass.password->text().length() < 8)
     {
       QMessageBox::critical
-	(pass_diag, tr("BiblioteQ: User Error"),
+	(m_pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The password must be at least eight characters "
 	    "long."));
       pass.password->selectAll();
@@ -7724,7 +7730,7 @@ void biblioteq::slotSavePassword(void)
   else if(pass.password->text() != pass.passwordAgain->text())
     {
       QMessageBox::critical
-	(pass_diag, tr("BiblioteQ: User Error"),
+	(m_pass_diag, tr("BiblioteQ: User Error"),
 	 tr("The passwords do not match. Please try again."));
       pass.password->selectAll();
       pass.password->setFocus();
@@ -7733,12 +7739,12 @@ void biblioteq::slotSavePassword(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
   biblioteq_misc_functions::savePassword
-    (pass.userid->text(), db, pass.password->text(), errorstr);
+    (pass.userid->text(), m_db, pass.password->text(), errorstr);
 
   if(roles.isEmpty())
-    biblioteq_misc_functions::setRole(db, errorstr, "patron");
+    biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
   else
-    biblioteq_misc_functions::setRole(db, errorstr, roles);
+    biblioteq_misc_functions::setRole(m_db, errorstr, roles);
 
   qapp->restoreOverrideCursor();
   pass.password->clear();
@@ -7749,11 +7755,11 @@ void biblioteq::slotSavePassword(void)
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to save the new password.")),
 	       errorstr, __FILE__, __LINE__);
-      QMessageBox::critical(pass_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_pass_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the new password."));
     }
   else
-    pass_diag->close();
+    m_pass_diag->close();
 }
 
 /*
@@ -7787,7 +7793,7 @@ void biblioteq::slotResetLoginDialog(void)
 
 void biblioteq::slotSelectDatabaseFile(void)
 {
-  QFileDialog dialog(branch_diag);
+  QFileDialog dialog(m_branch_diag);
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -7813,13 +7819,13 @@ void biblioteq::slotShowAdminDialog(void)
   static bool resized = false;
 
   if(!resized)
-    admin_diag->resize(qRound(0.85 * size().width()),
-		       qRound(0.85 * size().height()));
+    m_admin_diag->resize(qRound(0.85 * size().width()),
+			 qRound(0.85 * size().height()));
 
   resized = true;
-  biblioteq_misc_functions::center(admin_diag, this);
-  admin_diag->raise();
-  admin_diag->show();
+  biblioteq_misc_functions::center(m_admin_diag, this);
+  m_admin_diag->raise();
+  m_admin_diag->show();
 
   if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
     slotRefreshAdminList();
@@ -7881,7 +7887,7 @@ void biblioteq::slotDeleteAdmin(void)
   if(row < 0)
     {
       QMessageBox::critical
-	(admin_diag, tr("BiblioteQ: User Error"),
+	(m_admin_diag, tr("BiblioteQ: User Error"),
 	 tr("To delete an entry, you must first select it."));
       return;
     }
@@ -7891,7 +7897,7 @@ void biblioteq::slotDeleteAdmin(void)
   if((ab.table->item(row, 0)->flags() & Qt::ItemIsEditable) == 0 &&
      str == getAdminID())
     {
-      QMessageBox::critical(admin_diag, tr("BiblioteQ: User Error"),
+      QMessageBox::critical(m_admin_diag, tr("BiblioteQ: User Error"),
 			    tr("As an administrator, you may not delete "
 			       "your account."));
       return;
@@ -7959,9 +7965,9 @@ void biblioteq::slotRefreshAdminList(void)
   QString str = "";
   QString columnname = "";
   QCheckBox *checkBox = 0;
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
   QStringList list;
-  QProgressDialog progress(admin_diag);
+  QProgressDialog progress(m_admin_diag);
   QTableWidgetItem *item = 0;
 
 #ifdef Q_OS_MAC
@@ -7982,7 +7988,7 @@ void biblioteq::slotRefreshAdminList(void)
 			  "populating.")),
 	       query.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
+      QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve administrator "
 			       "data for table populating."));
       return;
@@ -8088,9 +8094,9 @@ void biblioteq::slotSaveAdministrators(void)
   QString adminStr = "";
   QString errorstr = "";
   QCheckBox *checkBox = 0;
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
   QStringList tmplist;
-  QProgressDialog progress(admin_diag);
+  QProgressDialog progress(m_admin_diag);
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -8128,7 +8134,7 @@ void biblioteq::slotSaveAdministrators(void)
 	  ab.table->selectRow(i);
 	  ab.table->horizontalScrollBar()->setValue(i);
 	  QMessageBox::critical
-	    (admin_diag, tr("BiblioteQ: User Error"),
+	    (m_admin_diag, tr("BiblioteQ: User Error"),
 	     tr("Administrators must belong to at least one category."));
 	  return;
 	}
@@ -8141,7 +8147,7 @@ void biblioteq::slotSaveAdministrators(void)
 	  ab.table->selectRow(i);
 	  ab.table->horizontalScrollBar()->setValue(i);
 	  QMessageBox::critical
-	    (admin_diag, tr("BiblioteQ: User Error"),
+	    (m_admin_diag, tr("BiblioteQ: User Error"),
 	     tr("Duplicate administrator ids are not allowed."));
 	  return;
 	}
@@ -8150,15 +8156,15 @@ void biblioteq::slotSaveAdministrators(void)
   tmplist.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!db.transaction())
+  if(!m_db.transaction())
     {
       qapp->restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
-	 db.lastError().text(), __FILE__, __LINE__);
+	 m_db.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical
-	(admin_diag, tr("BiblioteQ: Database Error"),
+	(m_admin_diag, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
       return;
     }
@@ -8184,7 +8190,7 @@ void biblioteq::slotSaveAdministrators(void)
 	}
 
       biblioteq_misc_functions::DBAccount
-	(deletedAdmins[i].toLower(), db,
+	(deletedAdmins[i].toLower(), m_db,
 	 biblioteq_misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
@@ -8245,7 +8251,7 @@ void biblioteq::slotSaveAdministrators(void)
       if(str.isEmpty())
 	str = "none";
 
-      ucount = biblioteq_misc_functions::userCount(adminStr, db, errorstr);
+      ucount = biblioteq_misc_functions::userCount(adminStr, m_db, errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -8290,7 +8296,7 @@ void biblioteq::slotSaveAdministrators(void)
       if(ucount == 0)
 	{
 	  biblioteq_misc_functions::DBAccount
-	    (adminStr, db,
+	    (adminStr, m_db,
 	     biblioteq_misc_functions::CREATE_USER,
 	     errorstr, str);
 
@@ -8310,7 +8316,7 @@ void biblioteq::slotSaveAdministrators(void)
 	}
       else
 	{
-	  biblioteq_misc_functions::revokeAll(adminStr, db, errorstr);
+	  biblioteq_misc_functions::revokeAll(adminStr, m_db, errorstr);
 
 	  if(!errorstr.isEmpty())
 	    {
@@ -8324,7 +8330,7 @@ void biblioteq::slotSaveAdministrators(void)
 	      goto db_rollback;
 	    }
 
-	  biblioteq_misc_functions::grantPrivs(adminStr, str, db, errorstr);
+	  biblioteq_misc_functions::grantPrivs(adminStr, str, m_db, errorstr);
 
 	  if(!errorstr.isEmpty())
 	    {
@@ -8348,17 +8354,17 @@ void biblioteq::slotSaveAdministrators(void)
   progress.hide();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!db.commit())
+  if(!m_db.commit())
     {
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to commit the current database "
 		    "transaction.")),
-	 db.lastError().text(), __FILE__,
+	 m_db.lastError().text(), __FILE__,
 	 __LINE__);
-      db.rollback();
+      m_db.rollback();
       qapp->restoreOverrideCursor();
-      QMessageBox::critical(admin_diag,
+      QMessageBox::critical(m_admin_diag,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the current "
 			       "database transaction."));
@@ -8370,7 +8376,7 @@ void biblioteq::slotSaveAdministrators(void)
 
   if(adminCreated)
     QMessageBox::information
-      (admin_diag, tr("BiblioteQ: Information"),
+      (m_admin_diag, tr("BiblioteQ: Information"),
        tr("Please notify new administrators that their "
 	  "default password has been set "
 	  "to tempPass."));
@@ -8382,12 +8388,12 @@ void biblioteq::slotSaveAdministrators(void)
 
   qapp->setOverrideCursor(Qt::WaitCursor);
 
-  if(!db.rollback())
+  if(!m_db.rollback())
     addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
-	     db.lastError().text(), __FILE__, __LINE__);
+	     m_db.lastError().text(), __FILE__, __LINE__);
 
   qapp->restoreOverrideCursor();
-  QMessageBox::critical(admin_diag, tr("BiblioteQ: Database Error"),
+  QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
 			tr("An error occurred while attempting to save "
 			   "the administrator information."));
 }
@@ -8410,7 +8416,7 @@ void biblioteq::slotRequest(void)
   QDate now = QDate::currentDate();
   QString oid = "";
   QString itemType = "";
-  QSqlQuery query(db);
+  QSqlQuery query(m_db);
   QModelIndex index;
   QProgressDialog progress(this);
   QModelIndexList list = ui.table->selectionModel()->selectedRows();
@@ -8503,7 +8509,7 @@ void biblioteq::slotRequest(void)
 	      query.prepare("INSERT INTO item_request (item_oid, memberid, "
 			    "requestdate, type) VALUES (?, ?, ?, ?)");
 	      query.bindValue(0, oid);
-	      query.bindValue(1, db.userName());
+	      query.bindValue(1, m_db.userName());
 	      query.bindValue(2, now.toString("MM/dd/yyyy"));
 	      query.bindValue(3, itemType);
 	    }
@@ -8576,7 +8582,7 @@ void biblioteq::prepareFilter(void)
   QStringList tmplist1;
   QStringList tmplist2;
 
-  if(db.driverName() == "QSQLITE")
+  if(m_db.driverName() == "QSQLITE")
     {
       tmplist1 << "All"
 	       << "All Available"
@@ -8631,7 +8637,7 @@ void biblioteq::prepareFilter(void)
     }
   else
     {
-      if(db.userName() == "xbook_guest" ||
+      if(m_db.userName() == "xbook_guest" ||
 	 roles == "librarian" ||
 	 roles == "membership")
 	{
@@ -8719,8 +8725,8 @@ void biblioteq::slotSqliteFileSelected(bool state)
 
   for(int i = 0; i < br.branch_name->count(); i++)
     {
-      if(branches.contains(br.branch_name->itemText(i)))
-	if(branches[br.branch_name->itemText(i)]["database_type"] ==
+      if(m_branches.contains(br.branch_name->itemText(i)))
+	if(m_branches[br.branch_name->itemText(i)]["database_type"] ==
 	   "sqlite")
 	  {
 	    br.branch_name->setCurrentIndex(i);
@@ -8822,7 +8828,7 @@ void biblioteq::createSqliteMenuActions(void)
 
 void biblioteq::slotPreviousPage(void)
 {
-  if(db.isOpen())
+  if(m_db.isOpen())
     (void) populateTable(lastSearchType, previousTypeFilter,
 			 lastSearchStr, PREVIOUS_PAGE);
 }
@@ -8833,7 +8839,7 @@ void biblioteq::slotPreviousPage(void)
 
 void biblioteq::slotNextPage(void)
 {
-  if(db.isOpen())
+  if(m_db.isOpen())
     (void) populateTable(lastSearchType, previousTypeFilter,
 			 lastSearchStr, NEXT_PAGE);
 }
@@ -8844,7 +8850,7 @@ void biblioteq::slotNextPage(void)
 
 void biblioteq::slotPageClicked(const QString &link)
 {
-  if(db.isOpen())
+  if(m_db.isOpen())
     (void) populateTable(lastSearchType, previousTypeFilter,
 			 lastSearchStr, -link.toInt());
 }
@@ -8953,7 +8959,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	  ** connect automatically.
 	  */
 
-	  if(db.isOpen())
+	  if(m_db.isOpen())
 	    {
 	      /*
 	      ** Attempt to locate an SQLite branch.
@@ -8963,8 +8969,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
-		  if(branches.contains(br.branch_name->itemText(i)))
-		    if(branches[br.branch_name->itemText(i)]
+		  if(m_branches.contains(br.branch_name->itemText(i)))
+		    if(m_branches[br.branch_name->itemText(i)]
 		       ["database_type"] == "sqlite")
 		      {
 			found = true;
@@ -9001,8 +9007,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
-		  if(branches.contains(br.branch_name->itemText(i)))
-		    if(branches[br.branch_name->itemText(i)]
+		  if(m_branches.contains(br.branch_name->itemText(i)))
+		    if(m_branches[br.branch_name->itemText(i)]
 		       ["database_type"] == "sqlite")
 		      {
 			found = true;
@@ -9164,7 +9170,7 @@ void biblioteq::slotSectionResized(int logicalIndex, int oldSize,
 
 void biblioteq::slotDuplicate(void)
 {
-  if(!db.isOpen())
+  if(!m_db.isOpen())
     return;
 
   int i = 0;
@@ -9366,14 +9372,14 @@ void biblioteq::changeEvent(QEvent *event)
       {
       case QEvent::LanguageChange:
 	{
-	  ab.retranslateUi(admin_diag);
-	  al.retranslateUi(all_diag);
-	  bb.retranslateUi(members_diag);
-	  br.retranslateUi(branch_diag);
-	  cq.retranslateUi(customquery_diag);
-	  history.retranslateUi(history_diag);
-	  er.retranslateUi(error_diag);
-	  pass.retranslateUi(pass_diag);
+	  ab.retranslateUi(m_admin_diag);
+	  al.retranslateUi(m_all_diag);
+	  bb.retranslateUi(m_members_diag);
+	  br.retranslateUi(m_branch_diag);
+	  cq.retranslateUi(m_customquery_diag);
+	  history.retranslateUi(m_history_diag);
+	  er.retranslateUi(m_error_diag);
+	  pass.retranslateUi(m_pass_diag);
 	  ui.retranslateUi(this);
 	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->resetTransform();
@@ -9383,7 +9389,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.pagesLabel->setText("1");
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
-	    (db.userName(),
+	    (m_db.userName(),
 	     ui.action_Category->menu()->defaultAction() ?
 	     ui.action_Category->menu()->defaultAction()->data().toString() :
 	     "All",
@@ -9410,7 +9416,7 @@ void biblioteq::changeEvent(QEvent *event)
 
 QMap<QString, QHash<QString, QString> > biblioteq::getSRUMaps(void) const
 {
-  return sruMaps;
+  return m_sruMaps;
 }
 
 /*
@@ -9421,5 +9427,5 @@ void biblioteq::slotClosePasswordDialog(void)
 {
   pass.password->clear();
   pass.userid->clear();
-  pass_diag->setVisible(false);
+  m_pass_diag->setVisible(false);
 }

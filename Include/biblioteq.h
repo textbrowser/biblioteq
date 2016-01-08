@@ -57,78 +57,80 @@ class userinfo_diag_class: public QDialog
  public:
   userinfo_diag_class(QMainWindow *parent):QDialog(parent)
   {
-    userinfo.setupUi(this);
+    m_userinfo.setupUi(this);
   }
 
   ~userinfo_diag_class()
   {
   }
 
-  QHash<QString, QString> memberProperties;
-  Ui_UserInfo userinfo;
+  QHash<QString, QString> m_memberProperties;
+  Ui_UserInfo m_userinfo;
 
   bool haveMemberChanges(QString &str)
   {
     QStringList list;
 
-    if(memberProperties["membersince"] !=
-       userinfo.membersince->date().toString(Qt::ISODate))
+    if(m_memberProperties["membersince"] !=
+       m_userinfo.membersince->date().toString(Qt::ISODate))
       list << "membersince";
 
-    if(memberProperties["dob"] !=
-       userinfo.dob->date().toString(Qt::ISODate))
+    if(m_memberProperties["dob"] !=
+       m_userinfo.dob->date().toString(Qt::ISODate))
       list << "dob";
 
-    if(memberProperties["sex"] != userinfo.sex->currentText())
+    if(m_memberProperties["sex"] != m_userinfo.sex->currentText())
       list << "sex";
 
-    if(memberProperties["first_name"] != userinfo.firstName->text().
+    if(m_memberProperties["first_name"] != m_userinfo.firstName->text().
        trimmed())
       list << "first_name";
 
-    if(memberProperties["middle_init"] != userinfo.middle->text().trimmed())
+    if(m_memberProperties["middle_init"] != m_userinfo.middle->text().
+       trimmed())
       list << "middle_init";
 
-    if(memberProperties["last_name"] != userinfo.lastName->text().trimmed())
+    if(m_memberProperties["last_name"] != m_userinfo.lastName->text().
+       trimmed())
       list << "last_name";
 
-    if(memberProperties["telephone_num"] !=
-       userinfo.telephoneNumber->text())
+    if(m_memberProperties["telephone_num"] !=
+       m_userinfo.telephoneNumber->text())
       list << "telephone_num";
 
-    if(memberProperties["street"] != userinfo.street->text().trimmed())
+    if(m_memberProperties["street"] != m_userinfo.street->text().trimmed())
       list << "street";
 
-    if(memberProperties["city"] != userinfo.city->text().trimmed())
+    if(m_memberProperties["city"] != m_userinfo.city->text().trimmed())
       list << "city";
 
-    if(memberProperties["state_abbr"] != userinfo.state->currentText())
+    if(m_memberProperties["state_abbr"] != m_userinfo.state->currentText())
       list << "state_abbr";
 
-    if(memberProperties["zip"] != userinfo.zip->text())
+    if(m_memberProperties["zip"] != m_userinfo.zip->text())
       list << "zip";
 
-    if(memberProperties["email"] != userinfo.email->text())
+    if(m_memberProperties["email"] != m_userinfo.email->text())
       list << "email";
 
-    if(memberProperties["expiration_date"] !=
-       userinfo.expirationdate->date().toString(Qt::ISODate))
+    if(m_memberProperties["expiration_date"] !=
+       m_userinfo.expirationdate->date().toString(Qt::ISODate))
       list << "expiration_date";
 
-    if(memberProperties["overdue_fees"] !=
-       QString::number(userinfo.overduefees->value()))
+    if(m_memberProperties["overdue_fees"] !=
+       QString::number(m_userinfo.overduefees->value()))
       list << "overdue_fees";
 
-    if(memberProperties["comments"] != userinfo.comments->toPlainText().
+    if(m_memberProperties["comments"] != m_userinfo.comments->toPlainText().
        trimmed())
       list << "comments";
 
-    if(memberProperties["general_registration_number"] !=
-       userinfo.generalregistrationnumber->text().trimmed())
+    if(m_memberProperties["general_registration_number"] !=
+       m_userinfo.generalregistrationnumber->text().trimmed())
       list << "general_registration_number";
 
-    if(memberProperties["memberclass"] !=
-       userinfo.memberclass->text().trimmed())
+    if(m_memberProperties["memberclass"] !=
+       m_userinfo.memberclass->text().trimmed())
       list << "memberclass";
 
     while(!list.isEmpty())
@@ -152,7 +154,7 @@ class userinfo_diag_class: public QDialog
 	{
 	case QEvent::LanguageChange:
 	  {
-	    userinfo.retranslateUi(this);
+	    m_userinfo.retranslateUi(this);
 	    break;
 	  }
 	default:
@@ -272,22 +274,22 @@ class biblioteq: public QMainWindow
   void slotResizeColumns(void);
 
  private:
-  QDialog *branch_diag;
-  QDialog *pass_diag;
-  QHash<QString, QString> amazonImages;
-  QHash<QString, QString> selectedBranch;
-  QLabel *connected_bar_label;
-  QLabel *status_bar_label;
-  QMainWindow *admin_diag;
-  QMainWindow *all_diag;
-  QMainWindow *customquery_diag;
-  QMainWindow *error_diag;
-  QMainWindow *history_diag;
-  QMainWindow *members_diag;
-  QMap<QString, QHash<QString, QString> > branches;
-  QMap<QString, QHash<QString, QString> > sruMaps;
-  QMap<QString, QHash<QString, QString> > z3950Maps;
-  QSqlDatabase db;
+  QDialog *m_branch_diag;
+  QDialog *m_pass_diag;
+  QHash<QString, QString> m_amazonImages;
+  QHash<QString, QString> m_selectedBranch;
+  QLabel *m_connected_bar_label;
+  QLabel *m_status_bar_label;
+  QMainWindow *m_admin_diag;
+  QMainWindow *m_all_diag;
+  QMainWindow *m_customquery_diag;
+  QMainWindow *m_error_diag;
+  QMainWindow *m_history_diag;
+  QMainWindow *m_members_diag;
+  QMap<QString, QHash<QString, QString> > m_branches;
+  QMap<QString, QHash<QString, QString> > m_sruMaps;
+  QMap<QString, QHash<QString, QString> > m_z3950Maps;
+  QSqlDatabase m_db;
   QString engUserinfoTitle;
   QString lastCategory;
   QString lastSearchStr;
