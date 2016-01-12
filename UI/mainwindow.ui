@@ -107,7 +107,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>278</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -356,7 +356,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>24</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1165,11 +1165,6 @@
   <action name="action_Photograph_Collection">
    <property name="text">
     <string>&amp;Photograph Collection</string>
-   </property>
-  </action>
-  <action name="actionNone">
-   <property name="text">
-    <string>None</string>
    </property>
   </action>
   <action name="action_Category">
