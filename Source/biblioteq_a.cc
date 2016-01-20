@@ -189,8 +189,6 @@ void biblioteq::quit(void)
 	qmain->slotSaveConfig();
 
       qmain->cleanup();
-      qmain->deleteLater();
-      qmain = 0;
     }
 
   QApplication::quit();
@@ -223,11 +221,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 	     << line << tr(".");
 
   if(qmain != 0)
-    {
-      qmain->cleanup();
-      qmain->deleteLater();
-      qmain = 0;
-    }
+    qmain->cleanup();
 
   exit(EXIT_FAILURE);
 }
