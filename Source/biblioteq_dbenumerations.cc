@@ -507,7 +507,8 @@ void biblioteq_dbenumerations::slotRemove(void)
     list = m_ui.videoGameRatingsList;
 
   if(list)
-    delete list->takeItem(list->currentRow());
+    if(list->item(list->currentRow()))
+      delete list->takeItem(list->currentRow());
 }
 
 /*
