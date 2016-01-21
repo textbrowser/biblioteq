@@ -375,3 +375,4 @@
      qtbook_videogame.cc (Done)
 199. Settings panel, per Csanád Baksay. (TBD)
 200. Remove OFFSET. (TBD)
+201. Deleting NULL pointers is redundant.
