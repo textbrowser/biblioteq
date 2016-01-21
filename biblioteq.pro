@@ -16,8 +16,8 @@ QMAKE_EXTRA_TARGETS = purge
 QMAKE_STRIP	= echo
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Include /usr/local/include
-LIBS		+= -Wl,-R/usr/local/lib -lsqlite3 -lyaz
+INCLUDEPATH	+= Include
+LIBS		+= -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 
 FORMS           = UI/adminsetup.ui \

@@ -1,19 +1,17 @@
-cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
-QT		+= network printsupport sql widgets
+QT		+= network sql
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
-			  -Wformat=2 -Woverloaded-virtual \
-			  -Wpointer-arith -Wstrict-overflow=5 \
+			  -Woverloaded-virtual -Wpointer-arith \
+			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
-QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 QMAKE_STRIP	= echo
 
@@ -31,14 +29,14 @@ FORMS           = UI/adminsetup.ui \
 		  UI/cdinfo.ui \
 		  UI/copybrowser.ui \
 		  UI/customquery.ui \
-                  UI/dbenumerations.ui \
-                  UI/dvdinfo.ui \
-                  UI/errordiag.ui \
-                  UI/history.ui \
-                  UI/maginfo.ui \
-                  UI/mainwindow.ui \
-                  UI/members_browser.ui \
-                  UI/password.ui \
+		  UI/dbenumerations.ui \
+		  UI/dvdinfo.ui \
+		  UI/errordiag.ui \
+		  UI/history.ui \
+		  UI/maginfo.ui \
+		  UI/mainwindow.ui \
+		  UI/members_browser.ui \
+		  UI/password.ui \
                   UI/passwordPrompt.ui \
                   UI/photograph.ui \
                   UI/photographinfo.ui \
@@ -120,6 +118,6 @@ translations.path	= /usr/local/biblioteq/Translations
 translations.files	= Translations/*.qm
 
 INSTALLS	= biblioteq \
-                  conf \
-                  sh \
-		  translations
+		  conf \
+		  sh \
+                  translations
