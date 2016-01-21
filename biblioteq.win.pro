@@ -8,7 +8,7 @@ TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ.exe
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual \
-			  -Werror -Wextra \
+			  -Werror -Wextra -Wformat=2 \
 			  -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -fwrapv -mtune=generic -pie
