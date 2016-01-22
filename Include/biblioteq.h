@@ -293,8 +293,8 @@ class biblioteq: public QMainWindow
   QString engUserinfoTitle;
   QString lastCategory;
   QString lastSearchStr;
+  QString m_roles;
   QString previousTypeFilter;
-  QString roles;
   QStringList deletedAdmins;
   QToolButton *error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;

@@ -670,7 +670,7 @@ biblioteq::biblioteq(void):QMainWindow()
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
   ui.graphicsView->scene()->clear();
-  ui.table->resetTable(m_db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
   previousTypeFilter = lastCategory;
@@ -907,7 +907,7 @@ QString biblioteq::getRoles(void) const
   ** Empty roles suggest that the user is a patron.
   */
 
-  return roles;
+  return m_roles;
 }
 
 /*
@@ -933,19 +933,19 @@ void biblioteq::adminSetup(void)
     {
       m_status_bar_label->setPixmap(QPixmap(":/16x16/unlock.png"));
 
-      if(roles.contains("administrator"))
+      if(m_roles.contains("administrator"))
 	m_status_bar_label->setToolTip(tr("Administrator Mode"));
-      else if(roles == "circulation")
+      else if(m_roles == "circulation")
 	m_status_bar_label->setToolTip(tr("Circulation Mode"));
-      else if(roles == "librarian")
+      else if(m_roles == "librarian")
 	m_status_bar_label->setToolTip(tr("Librarian Mode"));
-      else if(roles == "membership")
+      else if(m_roles == "membership")
 	m_status_bar_label->setToolTip(tr("Membership Mode"));
       else
 	m_status_bar_label->setToolTip(tr("Privileged Mode"));
     }
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
       ui.table->disconnect(SIGNAL(itemDoubleClicked(QTableWidgetItem *)));
       connect(ui.table, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
@@ -956,10 +956,10 @@ void biblioteq::adminSetup(void)
       updateItemWindows();
     }
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     ui.deleteTool->setEnabled(true);
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
       ui.menu_Add_Item->setEnabled(true);
       ui.actionDeleteEntry->setEnabled(true);
@@ -969,41 +969,41 @@ void biblioteq::adminSetup(void)
       ui.duplicateTool->setEnabled(true);
     }
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     {
       ui.detailsTool->setEnabled(false);
       ui.actionViewDetails->setEnabled(false);
     }
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     ui.actionModifyEntry->setEnabled(true);
 
-  if(roles.contains("administrator") || roles.contains("circulation") ||
-     roles.contains("membership"))
+  if(m_roles.contains("administrator") || m_roles.contains("circulation") ||
+     m_roles.contains("membership"))
     {
       ui.userTool->setEnabled(true);
       ui.actionMembersBrowser->setEnabled(true);
     }
 
-  if(roles.contains("administrator") || roles.contains("circulation"))
+  if(m_roles.contains("administrator") || m_roles.contains("circulation"))
     ui.reserveTool->setEnabled(true);
 
-  if(roles.contains("administrator") || roles.contains("librarian"))
+  if(m_roles.contains("administrator") || m_roles.contains("librarian"))
     ui.actionAutoPopulateOnCreation->setEnabled(true);
 
   ui.actionPopulate_Members_Browser_Table_on_Display->setEnabled
-    (roles.contains("administrator"));
+    (m_roles.contains("administrator"));
 
   if(m_db.driverName() != "QSQLITE")
     {
       ui.actionConfigureAdministratorPrivileges->setEnabled
-	(roles.contains("administrator"));
+	(m_roles.contains("administrator"));
       ui.actionPopulate_Administrator_Browser_Table_on_Display->setEnabled
-	(roles.contains("administrator"));
+	(m_roles.contains("administrator"));
       ui.actionDatabase_Enumerations->setEnabled
-	(roles.contains("administrator"));
+	(m_roles.contains("administrator"));
       ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
-	(roles.contains("administrator"));
+	(m_roles.contains("administrator"));
     }
   else
     {
@@ -1019,7 +1019,7 @@ void biblioteq::adminSetup(void)
   ** Hide certain fields in the Members Browser.
   */
 
-  if(roles == "membership")
+  if(m_roles == "membership")
     {
       bb.historyButton->setEnabled(false);
       bb.listButton->setEnabled(false);
@@ -1028,14 +1028,14 @@ void biblioteq::adminSetup(void)
       bb.overdueButton->setEnabled(false);
     }
 
-  if(roles == "circulation" || roles == "librarian")
+  if(m_roles == "circulation" || m_roles == "librarian")
     {
       bb.addButton->setEnabled(false);
       bb.grantButton->setEnabled(false);
       bb.deleteButton->setEnabled(false);
       bb.modifyButton->setEnabled(false);
 
-      if(roles == "librarian")
+      if(m_roles == "librarian")
 	{
 	  ui.actionDatabase_Enumerations->setEnabled(true);
 	  ui.actionPopulate_Database_Enumerations_Browser_on_Display->
@@ -1269,7 +1269,7 @@ void biblioteq::slotSearch(void)
   ** Hide certain fields if we're a regular user.
   */
 
-  biblioteq_misc_functions::hideAdminFields(m_all_diag, roles);
+  biblioteq_misc_functions::hideAdminFields(m_all_diag, m_roles);
   al.idnumber->clear();
   al.title->clear();
   al.publisher->clear();
@@ -2027,11 +2027,11 @@ void biblioteq::slotRefresh(void)
 		    ui.action_Category->menu()->defaultAction()->data().
 		    toString() : "All");
 
-      if(data.toString() == "All Overdue" && roles.isEmpty())
+      if(data.toString() == "All Overdue" && m_roles.isEmpty())
 	str = m_db.userName();
-      else if(data.toString() == "All Requested" && roles.isEmpty())
+      else if(data.toString() == "All Requested" && m_roles.isEmpty())
 	str = m_db.userName();
-      else if(data.toString() == "All Reserved" && roles.isEmpty())
+      else if(data.toString() == "All Reserved" && m_roles.isEmpty())
 	str = m_db.userName();
       else if(data.toString() == "All Reserved")
 	str = "%";
@@ -3906,13 +3906,13 @@ void biblioteq::slotConnectDB(void)
       if(!error)
 	{
 	  qapp->setOverrideCursor(Qt::WaitCursor);
-	  roles = biblioteq_misc_functions::getRoles
+	  m_roles = biblioteq_misc_functions::getRoles
 	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
 	  qapp->restoreOverrideCursor();
 
 	  if(errorstr.isEmpty())
 	    {
-	      if(br.role->currentIndex() == 0 && roles.isEmpty())
+	      if(br.role->currentIndex() == 0 && m_roles.isEmpty())
 		{
 		  error = true;
 		  QMessageBox::critical
@@ -3922,7 +3922,7 @@ void biblioteq::slotConnectDB(void)
 		     QString(tr(" does not have "
 				"administrator privileges.")));
 		}
-	      else if(br.role->currentIndex() != 0 && !roles.isEmpty())
+	      else if(br.role->currentIndex() != 0 && !m_roles.isEmpty())
 		{
 		  error = true;
 		  QMessageBox::critical
@@ -3933,11 +3933,14 @@ void biblioteq::slotConnectDB(void)
 	      else
 		{
 		  if(br.role->currentIndex() == 0)
-		    biblioteq_misc_functions::setRole(m_db, errorstr, roles);
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, m_roles);
 		  else if(br.role->currentIndex() == 1)
-		    biblioteq_misc_functions::setRole(m_db, errorstr, "guest");
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, "guest");
 		  else
-		    biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
+		    biblioteq_misc_functions::setRole
+		      (m_db, errorstr, "patron");
 
 		  if(!errorstr.isEmpty())
 		    {
@@ -4019,7 +4022,7 @@ void biblioteq::slotConnectDB(void)
   else
     {
       if(!error)
-	roles = "administrator";
+	m_roles = "administrator";
     }
 
   tmphash.clear();
@@ -4221,7 +4224,7 @@ void biblioteq::slotConnectDB(void)
 
 void biblioteq::slotDisconnect(void)
 {
-  roles = "";
+  m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
   userinfo_diag->m_memberProperties.clear();
@@ -4351,7 +4354,7 @@ void biblioteq::slotDisconnect(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), previousTypeFilter, roles);
+  ui.table->resetTable(m_db.userName(), previousTypeFilter, m_roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
@@ -5220,7 +5223,7 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
 	    ui.actionRequests->setEnabled(false);
 	  }
-	else if((roles == "administrator" || roles == "circulation") &&
+	else if((m_roles == "administrator" || m_roles == "circulation") &&
 		typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setEnabled(true);
@@ -5228,20 +5231,20 @@ void biblioteq::prepareRequestToolButton(const QString &typefilter)
 	    ui.actionRequests->setIcon
 	      (QIcon(":/32x32/remove_request.png"));
 	  }
-	else if(roles.isEmpty() && (typefilter == "All" ||
-				    typefilter == "All Available" ||
-				    typefilter == "Books" ||
-				    typefilter == "DVDs" ||
-				    typefilter == "Journals" ||
-				    typefilter == "Magazines" ||
-				    typefilter == "Music CDs" ||
-				    typefilter == "Video Games"))
+	else if(m_roles.isEmpty() && (typefilter == "All" ||
+				      typefilter == "All Available" ||
+				      typefilter == "Books" ||
+				      typefilter == "DVDs" ||
+				      typefilter == "Journals" ||
+				      typefilter == "Magazines" ||
+				      typefilter == "Music CDs" ||
+				      typefilter == "Video Games"))
 	  {
 	    ui.actionRequests->setToolTip(tr("Request Selected Item(s)"));
 	    ui.actionRequests->setIcon(QIcon(":/32x32/request.png"));
 	    ui.actionRequests->setEnabled(true);
 	  }
-	else if(roles.isEmpty() && typefilter == "All Requested")
+	else if(m_roles.isEmpty() && typefilter == "All Requested")
 	  {
 	    ui.actionRequests->setToolTip(tr("Cancel Selected Request(s)"));
 	    ui.actionRequests->setIcon
@@ -6510,7 +6513,7 @@ void biblioteq::slotListOverdueItems(void)
     memberid = biblioteq_misc_functions::getColumnString
       (bb.table, row,
        m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  else if(roles.isEmpty())
+  else if(m_roles.isEmpty())
     memberid = m_db.userName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
@@ -7178,11 +7181,12 @@ void biblioteq::slotShowHistory(void)
 #endif
 #endif
 
-  if(m_db.driverName() == "QPSQL" && roles.isEmpty())
+  if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
     {
       qapp->setOverrideCursor(Qt::WaitCursor);
 
-      bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(), errorstr);
+      bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(),
+					       errorstr);
 
       if(errorstr.isEmpty())
 	{
@@ -7212,7 +7216,7 @@ void biblioteq::slotShowHistory(void)
 
   list << "cd" << "dvd" << "book" << "journal" << "magazine" << "videogame";
 
-  if(!roles.isEmpty())
+  if(!m_roles.isEmpty())
     memberid = biblioteq_misc_functions::getColumnString
       (bb.table, row,
        m_bbColumnHeaderIndexes.
@@ -7220,7 +7224,7 @@ void biblioteq::slotShowHistory(void)
   else
     memberid = m_db.userName();
 
-  if(!roles.isEmpty())
+  if(!m_roles.isEmpty())
     for(i = 0; i < list.size(); i++)
       {
 	if(list[i] != "book")
@@ -7404,7 +7408,7 @@ void biblioteq::slotShowHistory(void)
   list.clear();
   list.append(tr("Member ID"));
 
-  if(!roles.isEmpty())
+  if(!m_roles.isEmpty())
     {
       list.append(tr("First Name"));
       list.append(tr("Last Name"));
@@ -7497,8 +7501,8 @@ void biblioteq::slotShowHistory(void)
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   history.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
-  history.nextTool->setVisible(!roles.isEmpty());
-  history.prevTool->setVisible(!roles.isEmpty());
+  history.nextTool->setVisible(!m_roles.isEmpty());
+  history.prevTool->setVisible(!m_roles.isEmpty());
 
   if(m_members_diag->isVisible())
     {
@@ -7735,10 +7739,10 @@ void biblioteq::slotSavePassword(void)
   biblioteq_misc_functions::savePassword
     (pass.userid->text(), m_db, pass.password->text(), errorstr);
 
-  if(roles.isEmpty())
+  if(m_roles.isEmpty())
     biblioteq_misc_functions::setRole(m_db, errorstr, "patron");
   else
-    biblioteq_misc_functions::setRole(m_db, errorstr, roles);
+    biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
 
   qapp->restoreOverrideCursor();
   pass.password->clear();
@@ -8421,7 +8425,7 @@ void biblioteq::slotRequest(void)
 #endif
 #endif
 
-  if(!roles.isEmpty())
+  if(!m_roles.isEmpty())
     isRequesting = false;
   else if(ui.action_Category->menu()->defaultAction() &&
 	  ui.action_Category->menu()->defaultAction()->data().
@@ -8601,8 +8605,8 @@ void biblioteq::prepareFilter(void)
 	       << tr("Photograph Collections")
 	       << tr("Video Games");
     }
-  else if(roles.contains("administrator") ||
-	  roles.contains("circulation"))
+  else if(m_roles.contains("administrator") ||
+	  m_roles.contains("circulation"))
     {
       tmplist1 << "All"
 	       << "All Available"
@@ -8632,8 +8636,8 @@ void biblioteq::prepareFilter(void)
   else
     {
       if(m_db.userName() == "xbook_guest" ||
-	 roles == "librarian" ||
-	 roles == "membership")
+	 m_roles == "librarian" ||
+	 m_roles == "membership")
 	{
 	  tmplist1 << "All"
 		   << "All Available"
@@ -9387,7 +9391,7 @@ void biblioteq::changeEvent(QEvent *event)
 	     ui.action_Category->menu()->defaultAction() ?
 	     ui.action_Category->menu()->defaultAction()->data().toString() :
 	     "All",
-	     roles);
+	     m_roles);
 	  ui.itemsCountLabel->setText(tr("0 Results"));
 	  prepareFilter();
 	  QMessageBox::information
