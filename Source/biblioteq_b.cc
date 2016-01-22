@@ -391,7 +391,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  {
 	    searchstr = "";
 
-	    if(roles.isEmpty())
+	    if(m_roles.isEmpty())
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -696,7 +696,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else // !roles.isEmpty()
+	    else // !m_roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1051,7 +1051,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  {
 	    searchstr = "";
 
-	    if(roles.isEmpty())
+	    if(m_roles.isEmpty())
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "item_request.requestdate, "
@@ -1280,7 +1280,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else // !roles.isEmpty()
+	    else // !m_roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -1544,7 +1544,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  {
 	    searchstr = "";
 
-	    if(roles.isEmpty())
+	    if(m_roles.isEmpty())
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "item_borrower_vw.copyid, "
@@ -1815,7 +1815,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		searchstr.append("ORDER BY 1");
 		searchstr.append(limitStr + offsetStr);
 	      }
-	    else // !roles.isEmpty()
+	    else // !m_roles.isEmpty()
 	      {
 		searchstr.append("SELECT DISTINCT "
 				 "member.last_name || ', ' || "
@@ -3242,9 +3242,9 @@ int biblioteq::populateTable(const int search_type_arg,
     }
 
   if(search_type != CUSTOM_QUERY)
-    ui.table->resetTable(m_db.userName(), typefilter, roles);
+    ui.table->resetTable(m_db.userName(), typefilter, m_roles);
   else
-    ui.table->resetTable(m_db.userName(), "", roles);
+    ui.table->resetTable(m_db.userName(), "", m_roles);
 
   qint64 currentPage = 0;
 
@@ -3618,7 +3618,7 @@ void biblioteq::slotResetAllSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
@@ -3655,7 +3655,7 @@ void biblioteq::slotResetGeneralSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), lastCategory, roles);
+  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
