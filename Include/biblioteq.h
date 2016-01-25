@@ -290,11 +290,11 @@ class biblioteq: public QMainWindow
   QMap<QString, QHash<QString, QString> > m_sruMaps;
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
   QSqlDatabase m_db;
-  QString engUserinfoTitle;
-  QString lastCategory;
-  QString lastSearchStr;
+  QString m_engUserinfoTitle;
+  QString m_lastCategory;
+  QString m_lastSearchStr;
+  QString m_previousTypeFilter;
   QString m_roles;
-  QString previousTypeFilter;
   QStringList deletedAdmins;
   QToolButton *error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;

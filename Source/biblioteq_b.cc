@@ -3187,10 +3187,10 @@ int biblioteq::populateTable(const int search_type_arg,
     {
       qapp->restoreOverrideCursor();
 
-      if(!previousTypeFilter.isEmpty())
+      if(!m_previousTypeFilter.isEmpty())
 	for(int ii = 0; ii < ui.action_Category->menu()->actions().size();
 	    ii++)
-	  if(previousTypeFilter ==
+	  if(m_previousTypeFilter ==
 	     ui.action_Category->menu()->actions().at(ii)->data().toString())
 	    {
 	      ui.action_Category->menu()->setDefaultAction
@@ -3220,7 +3220,7 @@ int biblioteq::populateTable(const int search_type_arg,
        ui.action_Category->menu()->actions().at(ii)->data().toString())
       {
 	found = true;
-	previousTypeFilter = typefilter;
+	m_previousTypeFilter = typefilter;
 	ui.action_Category->menu()->setDefaultAction
 	  (ui.action_Category->menu()->actions().at(ii));
 	ui.categoryLabel->setText
@@ -3312,13 +3312,13 @@ int biblioteq::populateTable(const int search_type_arg,
   m_queryOffset = offset;
 
   if(search_type == POPULATE_SEARCH_BASIC)
-    lastSearchStr = searchstrArg;
+    m_lastSearchStr = searchstrArg;
   else if(typefilter != "All Overdue" &&
 	  typefilter != "All Requested" &&
 	  typefilter != "All Reserved")
-    lastSearchStr = searchstr;
+    m_lastSearchStr = searchstr;
   else
-    lastSearchStr = searchstrArg;
+    m_lastSearchStr = searchstrArg;
 
   lastSearchType = search_type;
   ui.table->scrollToTop();
@@ -3618,7 +3618,7 @@ void biblioteq::slotResetAllSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
+  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();
@@ -3655,7 +3655,7 @@ void biblioteq::slotResetGeneralSearch(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
+  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();

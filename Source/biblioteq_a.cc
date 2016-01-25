@@ -269,7 +269,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_status_bar_label = 0;
   lastSearchType = POPULATE_ALL;
   m_idCt = 0;
-  previousTypeFilter = "";
+  m_previousTypeFilter = "";
 
   if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -666,20 +666,20 @@ biblioteq::biblioteq(void):QMainWindow()
   QString typefilter("");
   QSettings settings;
 
-  typefilter = lastCategory =
+  typefilter = m_lastCategory =
     settings.value("last_category", "All").toString();
   typefilter.replace(" ", "_");
   ui.graphicsView->scene()->clear();
-  ui.table->resetTable(m_db.userName(), lastCategory, m_roles);
+  ui.table->resetTable(m_db.userName(), m_lastCategory, m_roles);
   ui.summary->setVisible(false);
   ui.actionConfigureAdministratorPrivileges->setEnabled(false);
-  previousTypeFilter = lastCategory;
+  m_previousTypeFilter = m_lastCategory;
   prepareFilter();
 
   bool found = false;
 
   for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
-    if(lastCategory ==
+    if(m_lastCategory ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
 	found = true;
@@ -697,7 +697,7 @@ biblioteq::biblioteq(void):QMainWindow()
       ui.categoryLabel->setText(tr("All"));
     }
 
-  addConfigOptions(lastCategory);
+  addConfigOptions(m_lastCategory);
   setUpdatesEnabled(true);
   userinfo_diag->m_userinfo.expirationdate->setMaximumDate
     (QDate(3000, 1, 1));
@@ -2196,7 +2196,7 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_memberProperties["overdue_fees"] =
     QString::number(userinfo_diag->m_userinfo.overduefees->value());
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Create New Member"));
-  engUserinfoTitle = "Create New Member";
+  m_engUserinfoTitle = "Create New Member";
   userinfo_diag->m_userinfo.prevTool->setVisible(false);
   userinfo_diag->m_userinfo.nextTool->setVisible(false);
   userinfo_diag->m_userinfo.memberid->selectAll();
@@ -2240,7 +2240,7 @@ void biblioteq::slotSaveUser(void)
   str = userinfo_diag->m_userinfo.email->text().trimmed();
   userinfo_diag->m_userinfo.email->setText(str);
 
-  if(engUserinfoTitle.contains("New"))
+  if(m_engUserinfoTitle.contains("New"))
     {
       if(userinfo_diag->m_userinfo.memberid->text().length() < 5)
 	{
@@ -2364,7 +2364,7 @@ void biblioteq::slotSaveUser(void)
 
   qapp->restoreOverrideCursor();
 
-  if(engUserinfoTitle.contains("New"))
+  if(m_engUserinfoTitle.contains("New"))
     { 
       query.prepare("INSERT INTO member "
 		    "(memberid, membersince, dob, sex, "
@@ -2470,7 +2470,7 @@ void biblioteq::slotSaveUser(void)
     }
   else
     {
-      if(engUserinfoTitle.contains("New"))
+      if(m_engUserinfoTitle.contains("New"))
 	{
 	  /*
 	  ** Create a database account for the new member.
@@ -2629,7 +2629,7 @@ void biblioteq::slotSaveUser(void)
       userinfo_diag->m_memberProperties["memberclass"] =
 	userinfo_diag->m_userinfo.memberclass->text().trimmed();
 
-      if(engUserinfoTitle.contains("Modify"))
+      if(m_engUserinfoTitle.contains("Modify"))
 	{
 	  bb.table->setSortingEnabled(false);
 
@@ -4196,7 +4196,7 @@ void biblioteq::slotConnectDB(void)
   found = false;
 
   for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
-    if(lastCategory ==
+    if(m_lastCategory ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
 	found = true;
@@ -4354,12 +4354,12 @@ void biblioteq::slotDisconnect(void)
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText("1");
   ui.previousPageButton->setEnabled(false);
-  ui.table->resetTable(m_db.userName(), previousTypeFilter, m_roles);
+  ui.table->resetTable(m_db.userName(), m_previousTypeFilter, m_roles);
   ui.itemsCountLabel->setText(tr("0 Results"));
   prepareFilter();
 
   for(int i = 0; i < ui.action_Category->menu()->actions().size(); i++)
-    if(previousTypeFilter ==
+    if(m_previousTypeFilter ==
        ui.action_Category->menu()->actions().at(i)->data().toString())
       {
 	ui.action_Category->menu()->setDefaultAction
@@ -4369,7 +4369,7 @@ void biblioteq::slotDisconnect(void)
 	break;
       }
 
-  addConfigOptions(previousTypeFilter);
+  addConfigOptions(m_previousTypeFilter);
   slotDisplaySummary();
   emptyContainers();
   deletedAdmins.clear();
@@ -5020,7 +5020,7 @@ void biblioteq::slotModifyBorrower(void)
   userinfo_diag->m_userinfo.prevTool->setVisible(true);
   userinfo_diag->m_userinfo.nextTool->setVisible(true);
   userinfo_diag->setWindowTitle(tr("BiblioteQ: Modify Member"));
-  engUserinfoTitle = "Modify Member";
+  m_engUserinfoTitle = "Modify Member";
   userinfo_diag->m_userinfo.membersince->setMaximumDate(QDate::currentDate());
   userinfo_diag->m_userinfo.tabWidget->setCurrentIndex(0);
   userinfo_diag->m_userinfo.membersince->setFocus();
@@ -8827,8 +8827,8 @@ void biblioteq::createSqliteMenuActions(void)
 void biblioteq::slotPreviousPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, previousTypeFilter,
-			 lastSearchStr, PREVIOUS_PAGE);
+    (void) populateTable(lastSearchType, m_previousTypeFilter,
+			 m_lastSearchStr, PREVIOUS_PAGE);
 }
 
 /*
@@ -8838,8 +8838,8 @@ void biblioteq::slotPreviousPage(void)
 void biblioteq::slotNextPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, previousTypeFilter,
-			 lastSearchStr, NEXT_PAGE);
+    (void) populateTable(lastSearchType, m_previousTypeFilter,
+			 m_lastSearchStr, NEXT_PAGE);
 }
 
 /*
@@ -8849,8 +8849,8 @@ void biblioteq::slotNextPage(void)
 void biblioteq::slotPageClicked(const QString &link)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, previousTypeFilter,
-			 lastSearchStr, -link.toInt());
+    (void) populateTable(lastSearchType, m_previousTypeFilter,
+			 m_lastSearchStr, -link.toInt());
 }
 
 /*
