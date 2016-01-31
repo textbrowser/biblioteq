@@ -19,9 +19,10 @@
 biblioteq_image_drop_site::biblioteq_image_drop_site(QWidget *parent):
   QGraphicsView(parent)
 {
+  m_doubleClickResizeEnabled = true;
+  m_doubleclicked = false;
   m_image = QImage();
   m_imageFormat = "";
-  m_doubleclicked = false;
   setAcceptDrops(true);
 }
 
@@ -191,9 +192,9 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_image_drop_site::clear(void)
 {
+  m_doubleclicked = false;
   m_image = QImage();
   m_imageFormat.clear();
-  m_doubleclicked = false;
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
@@ -315,6 +316,9 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
 {
   QGraphicsView::mouseDoubleClickEvent(event);
 
+  if(!m_doubleClickResizeEnabled)
+    return;
+
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
 
@@ -389,4 +393,13 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
 void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
 {
   QGraphicsView::dragLeaveEvent(event);
+}
+
+/*
+** -- enableDoubleClickResize() --
+*/
+
+void biblioteq_image_drop_site::enableDoubleClickResize(const bool state)
+{
+  m_doubleClickResizeEnabled = state;
 }

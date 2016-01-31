@@ -56,6 +56,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   pc.setupUi(this);
+  pc.thumbnail_item->enableDoubleClickResize(false);
 
   if((m_scene = new(std::nothrow) biblioteq_bgraphicsscene
       (pc.graphicsView)) == 0)
@@ -70,6 +71,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   m_isQueryEnabled = false;
   m_parentWid = parentArg;
   photo.setupUi(m_photo_diag);
+  photo.thumbnail_item->enableDoubleClickResize(false);
   pc.graphicsView->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(pc.graphicsView,
 	  SIGNAL(customContextMenuRequested(const QPoint &)),
@@ -126,6 +128,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
   connect(pc.exportPhotographsToolButton,
 	  SIGNAL(clicked(void)),
 	  this, SLOT(slotExportPhotographs(void)));
+  connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
+	  this, SLOT(slotViewPhotograph(void)));
   pc.resetButton->setMenu(menu1);
   pc.exportPhotographsToolButton->setMenu(menu2);
 
@@ -573,9 +577,6 @@ void biblioteq_photographcollection::updateWindow(const int state)
 	      SIGNAL(deleteKeyPressed(void)),
 	      this,
 	      SLOT(slotDeleteItem(void)));
-      pc.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
-      connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
-	      this, SLOT(slotModifyItem(void)));
     }
   else
     {
@@ -629,9 +630,6 @@ void biblioteq_photographcollection::modify(const int state,
 	(pc.id_collection, QColor(255, 248, 220));
       biblioteq_misc_functions::highlightWidget
 	(pc.title_collection, QColor(255, 248, 220));
-      pc.graphicsView->scene()->disconnect(SIGNAL(itemDoubleClicked(void)));
-      connect(pc.graphicsView->scene(), SIGNAL(itemDoubleClicked(void)),
-	      this, SLOT(slotModifyItem(void)));
     }
   else
     {
@@ -1981,6 +1979,13 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       QMenu menu(this);
       QAction *action = 0;
 
+      action = menu.addAction(tr("&Modify Photograph"),
+			      this,
+			      SLOT(slotModifyItem(void)));
+
+      if(m_engWindowTitle != "Modify")
+	action->setEnabled(false);
+
       action = menu.addAction(tr("&View Photograph"),
 			      this,
 			      SLOT(slotViewPhotograph(void)));
@@ -2000,11 +2005,14 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 void biblioteq_photographcollection::slotViewPhotograph(void)
 {
   QAction *action = qobject_cast<QAction *> (sender());
+  QPoint pos;
 
-  if(!action)
-    return;
+  if(action)
+    pos = action->data().toPoint();
 
-  QPoint pos(action->data().toPoint());
+  if(pos.isNull())
+    pos = pc.graphicsView->mapFromGlobal(QCursor::pos());
+
   QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
     (pc.graphicsView->itemAt(pos));
 

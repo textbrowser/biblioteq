@@ -30,11 +30,13 @@ class biblioteq_image_drop_site: public QGraphicsView
   QString m_imageFormat;
   biblioteq_image_drop_site(QWidget *parent);
   void clear(void);
+  void enableDoubleClickResize(const bool state);
   void loadFromData(const QByteArray &bytes);
   void setImage(const QImage &image);
   void setReadOnly(const bool readOnly);
 
  private:
+  bool m_doubleClickResizeEnabled;
   bool m_doubleclicked;
   QString determineFormat(const QByteArray &bytes) const;
   QString determineFormat(const QString &filename) const;
