@@ -1224,7 +1224,7 @@ bool biblioteq_photographcollection::verifyItemFields(void)
   str = photo.creators_item->toPlainText().trimmed();
   photo.creators_item->setPlainText(str);
 
-  if(photo.title_item->text().isEmpty())
+  if(photo.creators_item->toPlainText().isEmpty())
     {
       QMessageBox::critical(m_photo_diag, tr("BiblioteQ: User Error"),
 			    tr("Please complete the item's "
