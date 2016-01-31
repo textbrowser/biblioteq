@@ -94,7 +94,7 @@ int biblioteq::populateTable(const int search_type_arg,
       ui.graphicsView->setSceneRect
 	(0, 0,
 	 5 * 150,
-	 limit / 5 * 200);
+	 limit / 5 * 200 + 15);
     }
 
   /*
@@ -3316,10 +3316,13 @@ int biblioteq::populateTable(const int search_type_arg,
 	(searchstr, m_db, __FILE__, __LINE__);
 
       if(size > 0 && (size / 250 <= INT_MAX))
-	ui.graphicsView->setSceneRect(0, 0, 5 * 150,
-				      size * 250);
+	ui.graphicsView->setSceneRect(0, 0,
+				      5 * 150,
+				      size * 250 + 15);
       else
-	ui.graphicsView->setSceneRect(0, 0, 5 * 150, INT_MAX);
+	ui.graphicsView->setSceneRect(0, 0,
+				      5 * 150,
+				      INT_MAX);
     }
 
   i = -1;

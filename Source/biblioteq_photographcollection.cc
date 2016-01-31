@@ -16,6 +16,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_bgraphicsscene.h"
+#include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_photographcollection.h"
 #include "ui_photographview.h"
 
@@ -1102,7 +1103,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
       while(query.next())
 	{
 	  QImage image;
-	  QGraphicsPixmapItem *pixmapItem = 0;
+	  biblioteq_graphicsitempixmap *pixmapItem = 0;
 
 	  image.loadFromData
 	    (QByteArray::fromBase64(query.value(0).
@@ -1123,11 +1124,21 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      (126, 187, Qt::KeepAspectRatio,
 	       Qt::SmoothTransformation);
 
-	  pixmapItem = pc.graphicsView->scene()->addPixmap
-	    (QPixmap().fromImage(image));
-	  pixmapItem->setPos(150 * columnIdx, 200 * rowIdx);
-	  pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
-	  pixmapItem->setData(0, query.value(1));
+	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
+	    (QPixmap().fromImage(image), 0);
+
+	  if(pixmapItem)
+	    {
+	      if(rowIdx == 0)
+		pixmapItem->setPos(140 * columnIdx + 15, 15);
+	      else
+		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx + 15);
+
+	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+	      pixmapItem->setData(0, query.value(1));
+	      pc.graphicsView->scene()->addItem(pixmapItem);
+	    }
+
 	  columnIdx += 1;
 
 	  if(columnIdx >= 5)

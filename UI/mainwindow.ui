@@ -24,7 +24,10 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Search</string>
+         <string>&amp;Search</string>
+        </property>
+        <property name="buddy">
+         <cstring>searchType</cstring>
         </property>
        </widget>
       </item>
@@ -67,7 +70,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Case-Insensitive</string>
+         <string>&amp;Case-Insensitive</string>
         </property>
        </widget>
       </item>
@@ -111,7 +114,16 @@
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
