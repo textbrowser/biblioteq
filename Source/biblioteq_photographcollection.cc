@@ -1162,7 +1162,7 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.id_item->setText(QString::
                          number(static_cast<qint64> (dateTime.toTime_t())));
 #endif
-  photo.title_item->clear();
+  photo.title_item->setText("N/A");
   photo.creators_item->setPlainText("N/A");
   photo.publication_date->setDate(QDate::fromString("01/01/2000",
 						    "MM/dd/yyyy"));
