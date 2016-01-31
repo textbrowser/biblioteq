@@ -999,8 +999,8 @@ void biblioteq_photographcollection::slotSelectImage(void)
       if(button == pc.select_image_collection)
 	{
 	  pc.thumbnail_collection->clear();
-	  pc.thumbnail_collection->m_image =
-		 QImage(dialog.selectedFiles().value(0));
+	  pc.thumbnail_collection->m_image = QImage(dialog.selectedFiles().
+						    value(0));
 
 	  if(dialog.selectedFiles().value(0).lastIndexOf(".") > -1)
 	    pc.thumbnail_collection->m_imageFormat =
@@ -1598,16 +1598,17 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		    {
 		      pc.thumbnail_item->loadFromData
 			(QByteArray::fromBase64(var.toByteArray()));
+
+		      if(pc.thumbnail_item->m_image.isNull())
+			pc.thumbnail_item->loadFromData
+			  (var.toByteArray());
+
 		      photo.thumbnail_item->loadFromData
 			(QByteArray::fromBase64(var.toByteArray()));
 
-		      if(pc.thumbnail_collection->m_image.isNull())
-			{
-			  pc.thumbnail_item->loadFromData
-			    (var.toByteArray());
-			  photo.thumbnail_item->loadFromData
-			    (var.toByteArray());
-			}
+		      if(photo.thumbnail_item->m_image.isNull())
+			photo.thumbnail_item->loadFromData
+			  (var.toByteArray());
 		    }
 		  else
 		    {
