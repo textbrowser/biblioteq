@@ -265,7 +265,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   ui.setupUi(this);
   m_connected_bar_label = 0;
-  error_bar_label = 0;
+  m_error_bar_label = 0;
   m_status_bar_label = 0;
   lastSearchType = POPULATE_ALL;
   m_idCt = 0;
@@ -1069,8 +1069,8 @@ void biblioteq::showMain(void)
   if(m_connected_bar_label)
     m_connected_bar_label->deleteLater();
 
-  if(error_bar_label)
-    error_bar_label->deleteLater();
+  if(m_error_bar_label)
+    m_error_bar_label->deleteLater();
 
   if(m_status_bar_label)
     m_status_bar_label->deleteLater();
@@ -1090,16 +1090,16 @@ void biblioteq::showMain(void)
       statusBar()->addPermanentWidget(m_status_bar_label);
     }
 
-  if((error_bar_label = new(std::nothrow) QToolButton()) != 0)
+  if((m_error_bar_label = new(std::nothrow) QToolButton()) != 0)
     {
-      connect(error_bar_label,
+      connect(m_error_bar_label,
 	      SIGNAL(clicked(void)),
 	      this,
 	      SLOT(slotShowErrorDialog(void)));
-      error_bar_label->setAutoRaise(true);
-      error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
-      error_bar_label->setToolTip(tr("Empty Error Log"));
-      statusBar()->addPermanentWidget(error_bar_label);
+      m_error_bar_label->setAutoRaise(true);
+      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
+      m_error_bar_label->setToolTip(tr("Empty Error Log"));
+      statusBar()->addPermanentWidget(m_error_bar_label);
     }
 
   ui.itemsCountLabel->setText(tr("0 Results"));
@@ -4372,7 +4372,7 @@ void biblioteq::slotDisconnect(void)
   addConfigOptions(m_previousTypeFilter);
   slotDisplaySummary();
   emptyContainers();
-  deletedAdmins.clear();
+  m_deletedAdmins.clear();
   qapp->setOverrideCursor(Qt::WaitCursor);
 
   if(m_db.isOpen())
@@ -5424,10 +5424,10 @@ void biblioteq::addError(const QString &type, const QString &summary,
   QDateTime now = QDateTime::currentDateTime();
   QTableWidgetItem *item = 0;
 
-  if(error_bar_label != 0)
+  if(m_error_bar_label != 0)
     {
-      error_bar_label->setIcon(QIcon(":/16x16/log.png"));
-      error_bar_label->setToolTip(tr("Error Log Active"));
+      m_error_bar_label->setIcon(QIcon(":/16x16/log.png"));
+      m_error_bar_label->setToolTip(tr("Error Log Active"));
     }
 
   er.table->setSortingEnabled(false);
@@ -5498,10 +5498,10 @@ void biblioteq::slotResetErrorLog(void)
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   er.table->resizeColumnsToContents();
 
-  if(error_bar_label != 0)
+  if(m_error_bar_label != 0)
     {
-      error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
-      error_bar_label->setToolTip(tr("Empty Error Log"));
+      m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
+      m_error_bar_label->setToolTip(tr("Empty Error Log"));
     }
 }
 
@@ -7902,8 +7902,8 @@ void biblioteq::slotDeleteAdmin(void)
     }
   else
     {
-      if(!str.isEmpty() && !deletedAdmins.contains(str))
-	deletedAdmins.append(str);
+      if(!str.isEmpty() && !m_deletedAdmins.contains(str))
+	m_deletedAdmins.append(str);
 
       ab.table->removeRow(row);
 #ifdef Q_OS_MAC
@@ -8075,7 +8075,7 @@ void biblioteq::slotRefreshAdminList(void)
   ab.table->setRowCount(i); // Support cancellation.
   ab.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
-  deletedAdmins.clear();
+  m_deletedAdmins.clear();
 }
 
 /*
@@ -8171,24 +8171,24 @@ void biblioteq::slotSaveAdministrators(void)
   ** Remove database accounts.
   */
 
-  for(i = 0; i < deletedAdmins.size(); i++)
+  for(i = 0; i < m_deletedAdmins.size(); i++)
     {
       query.prepare("DELETE FROM admin WHERE LOWER(username) = LOWER(?)");
-      query.bindValue(0, deletedAdmins[i].toLower());
+      query.bindValue(0, m_deletedAdmins[i].toLower());
 
       if(!query.exec())
 	{
 	  qapp->restoreOverrideCursor();
 	  addError(QString(tr("Database Error")),
 		   QString(tr("An error occurred while attempting to "
-			      "remove ")) + deletedAdmins[i].toLower() +
+			      "remove ")) + m_deletedAdmins[i].toLower() +
 		   QString(tr(".")),
 		   query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
       biblioteq_misc_functions::DBAccount
-	(deletedAdmins[i].toLower(), m_db,
+	(m_deletedAdmins[i].toLower(), m_db,
 	 biblioteq_misc_functions::DELETE_USER, errorstr);
 
       if(!errorstr.isEmpty())
@@ -8198,7 +8198,7 @@ void biblioteq::slotSaveAdministrators(void)
 	    (QString(tr("Database Error")),
 	     QString(tr("An error occurred while attempting to "
 			"remove the database account ")) +
-	     deletedAdmins[i].toLower() + QString(tr(".")),
+	     m_deletedAdmins[i].toLower() + QString(tr(".")),
 	     errorstr, __FILE__, __LINE__);
 	  goto db_rollback;
 	}
@@ -8370,7 +8370,7 @@ void biblioteq::slotSaveAdministrators(void)
     }
 
   qapp->restoreOverrideCursor();
-  deletedAdmins.clear();
+  m_deletedAdmins.clear();
 
   if(adminCreated)
     QMessageBox::information

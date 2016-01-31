@@ -59,8 +59,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.setupUi(this);
   pc.thumbnail_item->enableDoubleClickResize(false);
 
-  if((m_scene = new(std::nothrow) biblioteq_bgraphicsscene
-      (pc.graphicsView)) == 0)
+  if((m_scene = new(std::nothrow) biblioteq_bgraphicsscene(pc.
+							   graphicsView)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   connect(m_scene,
@@ -2024,9 +2024,65 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
   if(pos.isNull())
     pos = pc.graphicsView->mapFromGlobal(QCursor::pos());
 
-  QGraphicsPixmapItem *item = qgraphicsitem_cast<QGraphicsPixmapItem *>
-    (pc.graphicsView->itemAt(pos));
+  loadPhotographFromItemInNewWindow
+    (qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (pc.graphicsView->
+							 itemAt(pos)));
+}
 
+/*
+** -- loadPhotographFromItem() --
+*/
+
+void biblioteq_photographcollection::loadPhotographFromItem
+(QGraphicsScene *scene, biblioteq_graphicsitempixmap *item)
+{
+  if(!item || !scene)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  query.setForwardOnly(true);
+  query.prepare("SELECT image FROM "
+		"photograph WHERE "
+		"collection_oid = ? AND "
+		"myoid = ?");
+  query.bindValue(0, m_oid);
+  query.bindValue(1, item->data(0).toLongLong());
+
+  if(query.exec())
+    if(query.next())
+      {
+	QImage image;
+
+	image.loadFromData
+	  (QByteArray::fromBase64(query.value(0).
+				  toByteArray()));
+
+	if(image.isNull())
+	  image.loadFromData(query.value(0).toByteArray());
+
+	if(image.isNull())
+	  image = QImage(":/no_image.png");
+
+	pc.graphicsView->scene()->clearSelection();
+	scene->addPixmap(QPixmap().fromImage(image));
+	item->setSelected(true);
+
+	if(!scene->items().isEmpty())
+	  scene->items().at(0)->setData(0, item->data(0));
+      }
+
+  qapp->restoreOverrideCursor();
+}
+
+/*
+** -- loadPhotographFromItemInNewWindow() --
+*/
+
+void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
+(biblioteq_graphicsitempixmap *item)
+{
   if(item)
     {
       QMainWindow *mainWindow = 0;
@@ -2040,46 +2096,150 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
 		  SIGNAL(clicked(void)),
 		  mainWindow,
 		  SLOT(close(void)));
+	  connect(ui.next,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotViewNextPhotograph(void)));
+	  connect(ui.previous,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotViewPreviousPhotograph(void)));
 
 	  QGraphicsScene *scene = 0;
 
 	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
 	    {
 	      ui.view->setScene(scene);
-
-	      QSqlQuery query(qmain->getDB());
-
-	      qapp->setOverrideCursor(Qt::WaitCursor);
-	      query.setForwardOnly(true);
-	      query.prepare("SELECT image FROM "
-			    "photograph WHERE "
-			    "collection_oid = ? AND "
-			    "myoid = ?");
-	      query.bindValue(0, m_oid);
-	      query.bindValue(1, item->data(0).toLongLong());
-
-	      if(query.exec())
-		if(query.next())
-		  {
-		    QImage image;
-
-		    image.loadFromData
-		      (QByteArray::fromBase64(query.value(0).
-					      toByteArray()));
-
-		    if(image.isNull())
-		      image.loadFromData(query.value(0).toByteArray());
-
-		    if(image.isNull())
-		      image = QImage(":/no_image.png");
-
-		    scene->addPixmap(QPixmap().fromImage(image));
-		    biblioteq_misc_functions::center(mainWindow, this);
-		    mainWindow->show();
-		  }
-
-	      qapp->restoreOverrideCursor();
+	      loadPhotographFromItem(scene, item);
+	      biblioteq_misc_functions::center(mainWindow, this);
+	      mainWindow->show();
 	    }
+	  else
+	    mainWindow->show();
+	}
+    }
+}
+
+/*
+** -- slotViewNextPhotograph()
+*/
+
+void biblioteq_photographcollection::slotViewNextPhotograph(void)
+{
+  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+
+  if(!toolButton)
+    return;
+
+  QWidget *parent = toolButton->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+
+      if(item)
+	{
+	  QList<QGraphicsItem *> list
+	    (pc.graphicsView->scene()->items(Qt::AscendingOrder));
+	  int idx = -1;
+
+	  for(int i = 0; i < list.size(); i++)
+	    if(item->data(0) == list.at(i)->data(0))
+	      {
+		idx = i;
+		break;
+	      }
+
+	  idx += 1;
+
+	  if(idx >= list.size())
+	    idx = 0;
+
+	  biblioteq_graphicsitempixmap *next =
+	    qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (list.
+								value(idx));
+
+	  loadPhotographFromItem(scene, next);
+	}
+    }
+}
+
+/*
+** -- slotViewPreviousPhotograph()
+*/
+
+void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
+{
+  QToolButton *toolButton = qobject_cast<QToolButton *> (sender());
+
+  if(!toolButton)
+    return;
+
+  QWidget *parent = toolButton->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+
+      if(item)
+	{
+	  QList<QGraphicsItem *> list
+	    (pc.graphicsView->scene()->items(Qt::AscendingOrder));
+	  int idx = -1;
+
+	  for(int i = 0; i < list.size(); i++)
+	    if(item->data(0) == list.at(i)->data(0))
+	      {
+		idx = i;
+		break;
+	      }
+
+	  idx -= 1;
+
+	  if(idx < 0)
+	    idx = list.size() - 1;
+
+	  biblioteq_graphicsitempixmap *next =
+	    qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (list.
+								value(idx));
+
+	  loadPhotographFromItem(scene, next);
 	}
     }
 }

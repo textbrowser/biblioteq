@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2016.02.01"
+#define BIBLIOTEQ_VERSION "2016.03.01"
 
 /*
 ** -- C++ Includes --
@@ -295,8 +295,8 @@ class biblioteq: public QMainWindow
   QString m_lastSearchStr;
   QString m_previousTypeFilter;
   QString m_roles;
-  QStringList deletedAdmins;
-  QToolButton *error_bar_label;
+  QStringList m_deletedAdmins;
+  QToolButton *m_error_bar_label;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
   QVector<QString> m_historyColumnHeaderIndexes;

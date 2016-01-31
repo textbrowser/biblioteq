@@ -22,6 +22,7 @@
 class biblioteq_bgraphicsscene;
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;
+class biblioteq_graphicsitempixmap;
 
 class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
 {
@@ -49,6 +50,9 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   bool verifyItemFields(void);
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void loadPhotographFromItem(QGraphicsScene *scene,
+			      biblioteq_graphicsitempixmap *item);
+  void loadPhotographFromItemInNewWindow(biblioteq_graphicsitempixmap *item);
   void showPhotographs(const int page);
   void storeData(void);
 
@@ -69,7 +73,9 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotSelectImage(void);
   void slotUpdateItem(void);
   void slotViewContextMenu(const QPoint &pos);
+  void slotViewNextPhotograph(void);
   void slotViewPhotograph(void);
+  void slotViewPreviousPhotograph(void);
 };
 
 #endif
