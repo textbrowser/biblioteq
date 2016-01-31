@@ -33,7 +33,7 @@ static void qt_graphicsItem_highlightSelected
 
   const QColor bgcolor(70, 130, 180);
   const qreal pad = 0.0;
-  const qreal penWidth = 5.0;
+  const qreal penWidth = 10.0;
 
   painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
   painter->setBrush(Qt::NoBrush);
@@ -76,17 +76,17 @@ int biblioteq::populateTable(const int search_type_arg,
 			     const QString &searchstrArg,
 			     const int pagingType)
 {
-  int i = -1;
-  int search_type = search_type_arg;
-  QDate now = QDate::currentDate();
-  QString str = "";
-  QString type = "";
+  QDate now(QDate::currentDate());
+  QProgressDialog progress(this);
   QString itemType = "";
   QString searchstr = "";
-  QStringList types;
+  QString str = "";
+  QString type = "";
   QStringList tmplist; // Used for custom queries.
-  QProgressDialog progress(this);
+  QStringList types;
   QTableWidgetItem *item = 0;
+  int i = -1;
+  int search_type = search_type_arg;
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -94,10 +94,10 @@ int biblioteq::populateTable(const int search_type_arg,
 #endif
 #endif
 
-  int limit = 0;
-  qint64 offset = m_queryOffset;
   QString limitStr("");
   QString offsetStr("");
+  int limit = 0;
+  qint64 offset = m_queryOffset;
 
   if(search_type != POPULATE_SEARCH_BASIC)
     resetAllSearchWidgets();
@@ -3281,8 +3281,8 @@ int biblioteq::populateTable(const int search_type_arg,
     }
   else
     {
-      qint64 start = 2;
       QString str("");
+      qint64 start = 2;
 
       if(currentPage == 1)
 	str += tr(" 1 ... ");
@@ -3350,9 +3350,9 @@ int biblioteq::populateTable(const int search_type_arg,
   progress.show();
   progress.update();
 
-  int iconTableRowIdx = 0;
-  int iconTableColumnIdx = 0;
   biblioteq_graphicsitempixmap *pixmapItem = 0;
+  int iconTableColumnIdx = 0;
+  int iconTableRowIdx = 0;
 
   /*
   ** Adjust the dimensions of the graphics scene if pagination
@@ -3460,8 +3460,12 @@ int biblioteq::populateTable(const int search_type_arg,
 
 		if(pixmapItem)
 		  {
-		    pixmapItem->setPos(150 * iconTableColumnIdx,
-				       200 * iconTableRowIdx);
+		    if(iconTableRowIdx == 0)
+		      pixmapItem->setPos(140 * iconTableColumnIdx, 15);
+		    else
+		      pixmapItem->setPos(140 * iconTableColumnIdx,
+					 15 + 200 * iconTableRowIdx);
+
 		    pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 		    ui.graphicsView->scene()->addItem(pixmapItem);
 		  }
