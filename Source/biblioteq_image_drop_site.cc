@@ -195,10 +195,7 @@ void biblioteq_image_drop_site::clear(void)
   m_doubleclicked = false;
   m_image = QImage();
   m_imageFormat.clear();
-
-  while(!scene()->items().isEmpty())
-    scene()->removeItem(scene()->items().first());
-
+  scene()->clear();
   scene()->clearSelection();
 }
 

@@ -2066,6 +2066,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	  image = QImage(":/no_image.png");
 
 	pc.graphicsView->scene()->clearSelection();
+	scene->clear();
 	scene->addPixmap(QPixmap().fromImage(image));
 	item->setSelected(true);
 
