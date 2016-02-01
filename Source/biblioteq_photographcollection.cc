@@ -32,11 +32,11 @@ biblioteq_photographcollection::biblioteq_photographcollection
  const QString &oidArg,
  const int rowArg):QMainWindow(), biblioteq_item(rowArg)
 {
-  QMenu *menu1 = 0;
-  QMenu *menu2 = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QGraphicsScene *scene3 = 0;
+  QMenu *menu1 = 0;
+  QMenu *menu2 = 0;
 
   if((menu1 = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -83,7 +83,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
-				PHOTOGRAPHS_PER_PAGE / 5 * 200);
+				PHOTOGRAPHS_PER_PAGE / 5 * 200 + 15);
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -101,6 +101,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
   connect(pc.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(pc.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotCancel(void)));
+  connect(pc.importItems, SIGNAL(clicked(void)), this,
+	  SLOT(slotImportItems(void)));
   connect(pc.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(pc.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
@@ -193,8 +195,8 @@ biblioteq_photographcollection::~biblioteq_photographcollection()
 
 void biblioteq_photographcollection::slotGo(void)
 {
-  QString str("");
   QString errorstr("");
+  QString str("");
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -276,9 +278,9 @@ void biblioteq_photographcollection::slotGo(void)
 
       if(!pc.thumbnail_collection->m_image.isNull())
 	{
-	  QImage image;
 	  QByteArray bytes;
 	  QBuffer buffer(&bytes);
+	  QImage image;
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
@@ -529,6 +531,7 @@ void biblioteq_photographcollection::search
   Q_UNUSED(field);
   Q_UNUSED(value);
   pc.addItemButton->setVisible(false);
+  pc.importItems->setVisible(false);
   pc.thumbnail_collection->setVisible(false);
   pc.select_image_collection->setVisible(false);
   pc.collectionGroup->setVisible(false);
@@ -566,6 +569,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
     {
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
+      pc.importItems->setVisible(true);
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
@@ -583,6 +587,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
     {
       pc.okButton->setVisible(false);
       pc.addItemButton->setEnabled(false);
+      pc.importItems->setVisible(false);
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
 	pc.id_collection->text() + tr(")");
@@ -599,10 +604,10 @@ void biblioteq_photographcollection::updateWindow(const int state)
 void biblioteq_photographcollection::modify(const int state,
 					    const QString &behavior)
 {
-  QString str("");
-  QString fieldname("");
-  QVariant var;
   QSqlQuery query(qmain->getDB());
+  QString fieldname("");
+  QString str("");
+  QVariant var;
 
   if(state == biblioteq::EDITABLE)
     {
@@ -625,6 +630,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
+      pc.importItems->setVisible(true);
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
       biblioteq_misc_functions::highlightWidget
@@ -644,6 +650,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       pc.okButton->setVisible(false);
       pc.addItemButton->setVisible(false);
+      pc.importItems->setVisible(false);
       pc.resetButton->setVisible(false);
       pc.select_image_collection->setVisible(false);
 
@@ -800,6 +807,7 @@ void biblioteq_photographcollection::insert(void)
 {
   pc.okButton->setText(tr("&Save"));
   pc.addItemButton->setEnabled(false);
+  pc.importItems->setEnabled(false);
   pc.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
   biblioteq_misc_functions::highlightWidget
@@ -1045,6 +1053,7 @@ void biblioteq_photographcollection::duplicate
 {
   modify(state, "Create"); // Initial population.
   pc.addItemButton->setEnabled(false);
+  pc.importItems->setEnabled(false);
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Photograph Collection Entry"));
 }
@@ -1132,10 +1141,10 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      if(rowIdx == 0)
 		pixmapItem->setPos(140 * columnIdx + 15, 15);
 	      else
-		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx + 15);
+		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
 
-	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 	      pixmapItem->setData(0, query.value(1));
+	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 	      pc.graphicsView->scene()->addItem(pixmapItem);
 	    }
 
@@ -1305,9 +1314,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
   else
     qapp->restoreOverrideCursor();
 
-  int pages = 1;
-  QString errorstr("");
   QSqlQuery query(qmain->getDB());
+  QString errorstr("");
+  int pages = 1;
 
   query.setForwardOnly(true);
 
@@ -1345,9 +1354,9 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
   if(!photo.thumbnail_item->m_image.isNull())
     {
-      QImage image;
       QByteArray bytes;
       QBuffer buffer(&bytes);
+      QImage image;
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
@@ -1383,8 +1392,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	(qmain->getDB(),
-	 errorstr);
+	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
 	query.bindValue(16, value);
@@ -1708,8 +1716,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   else
     qapp->restoreOverrideCursor();
 
-  QString errorstr("");
   QSqlQuery query(qmain->getDB());
+  QString errorstr("");
 
   query.prepare("UPDATE photograph SET "
 		"id = ?, title = ?, "
@@ -1735,9 +1743,9 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
   if(!photo.thumbnail_item->m_image.isNull())
     {
-      QImage image;
       QBuffer buffer;
       QByteArray bytes;
+      QImage image;
 
       buffer.setBuffer(&bytes);
 
@@ -1898,8 +1906,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 #endif
     }
 
-  int pages = 1;
   QSqlQuery query(qmain->getDB());
+  int pages = 1;
 
   query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) "
@@ -1923,8 +1931,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  showPhotographs(pc.page->currentText().toInt());
   progress.hide();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  showPhotographs(pc.page->currentText().toInt());
+  qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1933,7 +1943,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 void biblioteq_photographcollection::slotPageChanged(const QString &text)
 {
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  pc.page->repaint();
   showPhotographs(text.toInt());
+  qapp->restoreOverrideCursor();
 }
 
 /*
@@ -1987,8 +2000,8 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 
   if(item)
     {
-      QMenu menu(this);
       QAction *action = 0;
+      QMenu menu(this);
 
       action = menu.addAction(tr("&Modify Photograph"),
 			      this,
@@ -2243,4 +2256,243 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	  loadPhotographFromItem(scene, next);
 	}
     }
+}
+
+/*
+** -- slotImportItems()
+*/
+
+void biblioteq_photographcollection::slotImportItems(void)
+{
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+#endif
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Image Import"));
+  dialog.exec();
+
+  if(dialog.result() != QDialog::Accepted)
+    return;
+
+  dialog.close();
+  repaint();
+
+  QStringList list;
+
+  list << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
+
+  QFileInfoList files(dialog.directory().entryInfoList(list));
+
+  if(files.isEmpty())
+    return;
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!qmain->getDB().transaction())
+    {
+      qapp->restoreOverrideCursor();
+      qmain->addError(QString(tr("Database Error")),
+		      QString(tr("Unable to create a database transaction.")),
+		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
+      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
+			    tr("Unable to create a database transaction."));
+      return;
+    }
+  else
+    qapp->restoreOverrideCursor();
+
+  QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+#endif
+  progress.setLabelText(tr("Importing image(s)..."));
+  progress.setMaximum(files.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+  progress.update();
+
+  QSqlQuery query(qmain->getDB());
+  QString errorstr("");
+  int imported = 0;
+  int pages = 0;
+
+  query.setForwardOnly(true);
+
+  for(int i = 0; i < files.size(); i++)
+    {
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      progress.update();
+#ifndef Q_OS_MAC
+      qapp->processEvents();
+#endif
+
+      QByteArray bytes;
+      QFile file(files.at(i).absoluteFilePath());
+
+      if(!file.open(QIODevice::ReadOnly))
+	continue;
+      else
+	bytes = file.readAll();
+
+      if(static_cast<int> (bytes.length()) != file.size())
+	continue;
+
+      QImage image;
+
+      if(!image.loadFromData(bytes))
+	continue;
+
+      if(qmain->getDB().driverName() != "QSQLITE")
+	query.prepare("INSERT INTO photograph "
+		      "(id, collection_oid, title, creators, pdate, "
+		      "quantity, medium, reproduction_number, "
+		      "copyright, callnumber, other_number, notes, subjects, "
+		      "format, image, image_scaled) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, ?, ?)");
+      else
+	query.prepare("INSERT INTO photograph "
+		      "(id, collection_oid, title, creators, pdate, "
+		      "quantity, medium, reproduction_number, "
+		      "copyright, callnumber, other_number, notes, subjects, "
+		      "format, image, image_scaled, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		      "?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+      QString id("");
+
+#if QT_VERSION >= 0x040700
+      id = QString::number(QDateTime::currentMSecsSinceEpoch());
+#else
+      QDateTime dateTime(QDateTime::currentDateTime());
+
+      id = QString::number(static_cast<qint64> (dateTime.toTime_t()));
+#endif
+
+      query.bindValue(0, id);
+      query.bindValue(1, m_oid);
+      query.bindValue(2, "N/A");
+      query.bindValue(3, "N/A");
+      query.bindValue(4, "01/01/2001");
+      query.bindValue(5, 1);
+      query.bindValue(6, "N/A");
+      query.bindValue(7, "N/A");
+      query.bindValue(8, "N/A");
+      query.bindValue(9, "N/A");
+      query.bindValue(10, "N/A");
+      query.bindValue(11, "N/A");
+      query.bindValue(12, "N/A");
+      query.bindValue(13, "N/A");
+      query.bindValue(14, bytes.toBase64());
+
+      QBuffer buffer(&bytes);
+
+      buffer.open(QIODevice::WriteOnly);
+      image = image.scaled
+	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+      image.save(&buffer, 0, 100);
+      query.bindValue(15, bytes.toBase64());
+
+      if(qmain->getDB().driverName() == "QSQLITE")
+	{
+	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	    (qmain->getDB(),
+	     errorstr);
+
+	  if(errorstr.isEmpty())
+	    query.bindValue(16, value);
+	  else
+	    qmain->addError(QString(tr("Database Error")),
+			    QString(tr("Unable to generate a unique "
+				       "integer.")),
+			    errorstr);
+	}
+
+      if(!query.exec())
+	{
+	  qmain->addError(QString(tr("Database Error")),
+			  QString(tr("Unable to import image.")),
+			  query.lastError().text(), __FILE__, __LINE__);
+	  goto db_rollback;
+	}
+      else
+	imported += 1;
+    }
+
+  progress.close();
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!qmain->getDB().commit())
+    {
+      qapp->restoreOverrideCursor();
+      qmain->addError
+	(QString(tr("Database Error")),
+	 QString(tr("Unable to commit the current database "
+		    "transaction.")),
+	 qmain->getDB().lastError().text(), __FILE__,
+	 __LINE__);
+      goto db_rollback;
+    }
+  else
+    qapp->restoreOverrideCursor();
+
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  query.prepare("SELECT COUNT(*) "
+		"FROM photograph "
+		"WHERE collection_oid = ?");
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      {
+	int i = PHOTOGRAPHS_PER_PAGE;
+
+	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+      }
+
+  qapp->restoreOverrideCursor();
+  pages = qMax(1, pages);
+  pc.page->blockSignals(true);
+  pc.page->clear();
+
+  for(int i = 1; i <= pages; i++)
+    pc.page->addItem(QString::number(i));
+
+  pc.page->blockSignals(false);
+  qapp->setOverrideCursor(Qt::WaitCursor);
+  showPhotographs(1);
+  qapp->restoreOverrideCursor();
+  QMessageBox::information(this,
+			   tr("BiblioteQ: Information"),
+			   tr("A total of %1 image(s) where imported. "
+			      "The directory %2 contains %3 image(s).").
+			   arg(imported).
+			   arg(dialog.directory().absolutePath()).
+			   arg(files.size()));
+  return;
+
+ db_rollback:
+  qapp->setOverrideCursor(Qt::WaitCursor);
+
+  if(!qmain->getDB().rollback())
+    qmain->addError
+      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
+       qmain->getDB().lastError().text(), __FILE__, __LINE__);
+
+  qapp->restoreOverrideCursor();
+  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
+			tr("Unable to import all of the images."));
+
 }

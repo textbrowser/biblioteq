@@ -31,7 +31,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-112</y>
          <width>1098</width>
          <height>977</height>
         </rect>
@@ -668,6 +668,25 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="importItems">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Import Items</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="printButton">
         <property name="minimumSize">
          <size>
@@ -755,6 +774,7 @@
   <tabstop>addItemButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>exportPhotographsToolButton</tabstop>
+  <tabstop>importItems</tabstop>
   <tabstop>printButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
