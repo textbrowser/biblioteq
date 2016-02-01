@@ -1856,7 +1856,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
     {
       if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			       tr("Are you sure that you wish to permanently "
-				  "delete the selected item(s)?"),
+				  "delete the selected %1 item(s)?").
+			       arg(items.size()),
 			       QMessageBox::Yes | QMessageBox::No,
 			       QMessageBox::No) == QMessageBox::No)
 	return;
