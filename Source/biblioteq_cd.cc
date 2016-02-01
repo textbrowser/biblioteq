@@ -17,7 +17,6 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_cd.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -64,7 +63,7 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
   m_tracks_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_tracks_diag->setWindowModality(Qt::WindowModal);
   trd.setupUi(m_tracks_diag);
 #if QT_VERSION >= 0x050000
@@ -72,7 +71,7 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 #else
   trd.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (m_tracks_diag));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (m_tracks_diag));
   connect(trd.table->horizontalHeader(), SIGNAL(sectionClicked(int)),
 	  qmain, SLOT(slotResizeColumnsAfterSort(void)));
   connect(cd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
@@ -155,11 +154,11 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(),
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -167,11 +166,11 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the languages.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.monetary_units->addItems
     (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
 						errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -179,12 +178,12 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the monetary units.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "CD",
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -192,11 +191,11 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the cd locations.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   cd.format->addItems
     (biblioteq_misc_functions::getCDFormats(qmain->getDB(),
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -258,13 +257,13 @@ void biblioteq_cd::slotGo(void)
       if(m_engWindowTitle.contains("Modify") && m_row > -1)
 	{
 	  newq = cd.quantity->value();
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = biblioteq_misc_functions::getMaxCopyNumber
 	    (qmain->getDB(), m_oid, "CD", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      qmain->addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
@@ -277,7 +276,7 @@ void biblioteq_cd::slotGo(void)
 	      return;
 	    }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(newq < maxcopynumber)
 	    {
@@ -376,11 +375,11 @@ void biblioteq_cd::slotGo(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
@@ -391,7 +390,7 @@ void biblioteq_cd::slotGo(void)
 	  return;
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       str = cd.keyword->toPlainText().trimmed();
       cd.keyword->setPlainText(str);
 
@@ -553,11 +552,11 @@ void biblioteq_cd::slotGo(void)
 			    errorstr);
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
@@ -579,7 +578,7 @@ void biblioteq_cd::slotGo(void)
 
 	      if(!query.exec())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to purge unnecessary copy "
@@ -590,7 +589,7 @@ void biblioteq_cd::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -614,7 +613,7 @@ void biblioteq_cd::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
@@ -624,7 +623,7 @@ void biblioteq_cd::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -653,7 +652,7 @@ void biblioteq_cd::slotGo(void)
 					cd.category->toPlainText());
 	  cd.keyword->setMultipleLinks("cd_search", "keyword",
 				       cd.keyword->toPlainText());
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
@@ -760,12 +759,12 @@ void biblioteq_cd::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      QApplication::setOverrideCursor(Qt::WaitCursor);
 	      m_oid = biblioteq_misc_functions::getOID(cd.id->text(),
 						       "CD",
 						       qmain->getDB(),
 						       errorstr);
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 
 	      if(!errorstr.isEmpty())
 		{
@@ -796,14 +795,14 @@ void biblioteq_cd::slotGo(void)
 
     db_rollback:
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
@@ -1185,11 +1184,11 @@ void biblioteq_cd::modify(const int state)
 		"cd "
 		"WHERE myoid = ?");
   query.bindValue(0, str);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to retrieve the selected CD's data.")),
@@ -1202,7 +1201,7 @@ void biblioteq_cd::modify(const int state)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       showNormal();
 
       for(i = 0; i < query.record().count(); i++)
@@ -1428,11 +1427,11 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 		"ORDER BY albumnum, songnum, songtitle, runtime, "
 		"artist, composer");
   query.bindValue(0, m_oid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to retrieve track data for table "
 				 "populating.")),
@@ -1444,7 +1443,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   for(i = 1; i <= cd.no_of_discs->value(); i++)
     comboBoxList.append(QString::number(i));
@@ -1578,7 +1577,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -1741,11 +1740,11 @@ void biblioteq_cd::slotSaveTracks(void)
 	return;
       }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -1754,18 +1753,18 @@ void biblioteq_cd::slotSaveTracks(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   query.prepare("DELETE FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, m_oid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to purge track data.")),
 		      query.lastError().text(), __FILE__, __LINE__);
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError(QString(tr("Database Error")),
@@ -1773,11 +1772,11 @@ void biblioteq_cd::slotSaveTracks(void)
 			qmain->getDB().lastError().text(),
 			__FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       progress.setCancelButton(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -1838,12 +1837,12 @@ void biblioteq_cd::slotSaveTracks(void)
 
 	  progress.update();
 #ifndef Q_OS_MAC
-	  qapp->processEvents();
+	  QApplication::processEvents();
 #endif
 	}
 
       progress.hide();
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().commit())
 	{
@@ -1854,7 +1853,7 @@ void biblioteq_cd::slotSaveTracks(void)
 	  qmain->getDB().rollback();
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!lastError.isEmpty() ||
 	 qmain->getDB().lastError().isValid())
@@ -2168,7 +2167,7 @@ void biblioteq_cd::slotComputeRuntime(void)
   query.setForwardOnly(true);
   query.prepare("SELECT runtime FROM cd_songs WHERE item_oid = ?");
   query.bindValue(0, m_oid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(query.exec())
     while(query.next())
@@ -2178,7 +2177,7 @@ void biblioteq_cd::slotComputeRuntime(void)
 	sum = sum.addSecs(secs);
       }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(sum.toString("hh:mm:ss") == "00:00:00")
     QMessageBox::critical(this, tr("BiblioteQ: User Error"),

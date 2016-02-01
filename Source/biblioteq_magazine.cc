@@ -27,7 +27,6 @@
 #include "biblioteq_marc.h"
 #include "biblioteq_sruResults.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -100,7 +99,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(ma.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(ma.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -181,11 +180,11 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ma.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(),
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -193,11 +192,11 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the languages.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ma.monetary_units->addItems
     (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
 						errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -205,7 +204,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the monetary units.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(subTypeArg.toLower() == "journal")
     ma.location->addItems
@@ -218,7 +217,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 					      "Magazine",
 					      errorstr));
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     {
@@ -359,13 +358,13 @@ void biblioteq_magazine::slotGo(void)
       if(m_engWindowTitle.contains("Modify") && m_row > -1)
 	{
 	  newq = ma.quantity->value();
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = biblioteq_misc_functions::getMaxCopyNumber
 	    (qmain->getDB(), m_oid, m_subType, errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      qmain->addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
@@ -378,7 +377,7 @@ void biblioteq_magazine::slotGo(void)
 	      return;
 	    }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(newq < maxcopynumber)
 	    {
@@ -472,11 +471,11 @@ void biblioteq_magazine::slotGo(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
@@ -487,7 +486,7 @@ void biblioteq_magazine::slotGo(void)
 	  return;
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       str = ma.lcnum->text().trimmed();
       ma.lcnum->setText(str);
       str = ma.callnum->text().trimmed();
@@ -658,11 +657,11 @@ void biblioteq_magazine::slotGo(void)
 			      errorstr);
 	  }
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
@@ -686,7 +685,7 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(!query.exec())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to purge unnecessary copy "
@@ -698,7 +697,7 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -731,7 +730,7 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
@@ -741,7 +740,7 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -804,7 +803,7 @@ void biblioteq_magazine::slotGo(void)
 	    ma.keyword->setMultipleLinks("magazine_search", "keyword",
 					 ma.keyword->toPlainText());
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
@@ -957,7 +956,7 @@ void biblioteq_magazine::slotGo(void)
 
     db_rollback:
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError(QString(tr("Database Error")),
@@ -965,7 +964,7 @@ void biblioteq_magazine::slotGo(void)
 			qmain->getDB().lastError().text(), __FILE__,
 			__LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical
 	(this, tr("BiblioteQ: Database Error"),
 	 tr("Unable to create or update the entry. "
@@ -1353,11 +1352,11 @@ void biblioteq_magazine::modify(const int state)
 			"%1 "
 			"WHERE myoid = ?").arg(m_subType));
   query.bindValue(0, str);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(m_subType == "Journal")
 	{
@@ -1387,7 +1386,7 @@ void biblioteq_magazine::modify(const int state)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       showNormal();
 
       for(i = 0; i < query.record().count(); i++)
@@ -1993,7 +1992,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       while(m_thread->isRunning())
 	{
 #ifndef Q_OS_MAC
-	  qapp->processEvents();
+	  QApplication::processEvents();
 #endif
 	  m_thread->msleep(100);
 	}

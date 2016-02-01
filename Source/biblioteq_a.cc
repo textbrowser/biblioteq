@@ -78,7 +78,6 @@ extern "C"
 ** -- Global Variables --
 */
 
-QApplication *qapp = 0;
 QString biblioteq::s_locale = "";
 QTranslator *biblioteq::s_appTranslator = 0;
 QTranslator *biblioteq::s_qtTranslator = 0;
@@ -130,8 +129,8 @@ int main(int argc, char *argv[])
   ** Create the user interface.
   */
 
-  if((qapp = new(std::nothrow) QApplication(argc, argv)) == 0)
-    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+  QApplication qapplication(argc, argv);
+
 #ifdef Q_OS_MAC
 #if QT_VERSION >= 0x050000
   /*
@@ -160,10 +159,10 @@ int main(int argc, char *argv[])
     biblioteq::s_locale = QLocale::system().name();
 
   biblioteq::s_qtTranslator->load("qt_" + biblioteq::s_locale, "Translations");
-  qapp->installTranslator(biblioteq::s_qtTranslator);
+  qapplication.installTranslator(biblioteq::s_qtTranslator);
   biblioteq::s_appTranslator->load("biblioteq_" + biblioteq::s_locale,
 				   "Translations");
-  qapp->installTranslator(biblioteq::s_appTranslator);
+  qapplication.installTranslator(biblioteq::s_appTranslator);
 
   if((qmain = new(std::nothrow) biblioteq()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -174,7 +173,7 @@ int main(int argc, char *argv[])
   ** Enter an endless loop.
   */
 
-  return QApplication::exec();
+  return qapplication.exec();
 }
 
 /*
@@ -1171,7 +1170,7 @@ void biblioteq::showMain(void)
   initialUpdate();
   show();
 #ifndef Q_OS_MAC
-  setGlobalFonts(qapp->font());
+  setGlobalFonts(QApplication::font());
 #endif
   slotResizeColumns();
 
@@ -1218,7 +1217,7 @@ void biblioteq::slotAbout(void)
   QMessageBox mb(this);
 
 #ifndef Q_OS_MAC
-  mb.setFont(qapp->font());
+  mb.setFont(QApplication::font());
 #endif
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
@@ -1295,11 +1294,11 @@ void biblioteq::slotSearch(void)
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   al.language->addItems
     (biblioteq_misc_functions::getLanguages(m_db,
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError
@@ -1307,11 +1306,11 @@ void biblioteq::slotSearch(void)
        QString(tr("Unable to retrieve the languages.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   al.monetary_units->addItems
     (biblioteq_misc_functions::getMonetaryUnits(m_db,
 						errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError
@@ -1319,12 +1318,12 @@ void biblioteq::slotSearch(void)
        QString(tr("Unable to retrieve the monetary units.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   al.location->addItems
     (biblioteq_misc_functions::getLocations(m_db,
 					    "",
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError
@@ -1431,7 +1430,7 @@ void biblioteq::slotModify(void)
 
       if(type.toLower() == "cd")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_cd *c = qobject_cast<biblioteq_cd *> (w);
 
@@ -1450,7 +1449,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "dvd")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_dvd *d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -1469,7 +1468,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "book")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
 
@@ -1488,7 +1487,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "journal")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_journal *j = qobject_cast<biblioteq_journal *> (w);
 
@@ -1507,7 +1506,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "magazine")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_magazine *m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -1533,7 +1532,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_photographcollection *p =
 		qobject_cast<biblioteq_photographcollection *> (w);
@@ -1554,7 +1553,7 @@ void biblioteq::slotModify(void)
 	}
       else if(type.toLower() == "video game")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_videogame *v = qobject_cast<biblioteq_videogame *> (w);
 
@@ -1646,7 +1645,7 @@ void biblioteq::slotViewDetails(void)
 
       if(type.toLower() == "cd")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_cd *c = qobject_cast<biblioteq_cd *> (w);
 
@@ -1665,7 +1664,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "dvd")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_dvd *d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -1684,7 +1683,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "book")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
 
@@ -1703,7 +1702,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "journal")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_journal *j = qobject_cast<biblioteq_journal *> (w);
 
@@ -1722,7 +1721,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "magazine")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_magazine *m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -1747,7 +1746,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "photograph collection")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_photographcollection *p =
 		qobject_cast<biblioteq_photographcollection *> (w);
@@ -1768,7 +1767,7 @@ void biblioteq::slotViewDetails(void)
 	}
       else if(type.toLower() == "video game")
 	{
-	  foreach(QWidget *w, qapp->topLevelWidgets())
+	  foreach(QWidget *w, QApplication::topLevelWidgets())
 	    {
 	      biblioteq_videogame *v = qobject_cast<biblioteq_videogame *> (w);
 
@@ -1868,10 +1867,10 @@ void biblioteq::slotDelete(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       isCheckedOut = biblioteq_misc_functions::isCheckedOut(m_db, oid, itemType,
 							    errorstr);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	{
@@ -1894,10 +1893,10 @@ void biblioteq::slotDelete(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       isRequested = biblioteq_misc_functions::isRequested
 	(m_db, oid, itemType, errorstr);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	{
@@ -1984,7 +1983,7 @@ void biblioteq::slotDelete(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -2052,12 +2051,12 @@ void biblioteq::slotResizeColumnsAfterSort(void)
 
   if(object != 0 && object->parent() != 0)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       parent = object->parent();
       (qobject_cast<QTableWidget *> (parent))->resizeColumnsToContents();
       (qobject_cast<QTableWidget *> (parent))->horizontalHeader()->
 	setStretchLastSection(true);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 }
 
@@ -2072,7 +2071,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
   QString itemType = "";
   Qt::SortOrder order;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(ui.table->horizontalHeader()->sortIndicatorOrder() !=
      Qt::AscendingOrder)
@@ -2093,7 +2092,7 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
       updateRows(oid, i, itemType);
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -2102,10 +2101,10 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotResizeColumns(void)
 {
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.table->resizeColumnsToContents();
   ui.table->horizontalHeader()->setStretchLastSection(true);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -2252,12 +2251,12 @@ void biblioteq::slotSaveUser(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       qint64 ucount = biblioteq_misc_functions::userCount
 	(userinfo_diag->m_userinfo.memberid->text(), m_db, errorstr);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(ucount > 0)
 	{
@@ -2321,13 +2320,13 @@ void biblioteq::slotSaveUser(void)
   checksum.append(userinfo_diag->m_userinfo.city->text());
   checksum.append(userinfo_diag->m_userinfo.state->currentText());
   checksum.append(userinfo_diag->m_userinfo.zip->text());
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   count = biblioteq_misc_functions::getMemberMatchCount
     (checksum,
      userinfo_diag->m_userinfo.memberid->text(),
      m_db,
      errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(count < 0)
     {
@@ -2348,11 +2347,11 @@ void biblioteq::slotSaveUser(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
@@ -2363,7 +2362,7 @@ void biblioteq::slotSaveUser(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(m_engUserinfoTitle.contains("New"))
     { 
@@ -2453,7 +2452,7 @@ void biblioteq::slotSaveUser(void)
 	(17, userinfo_diag->m_userinfo.memberid->text().trimmed());
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
@@ -2462,7 +2461,7 @@ void biblioteq::slotSaveUser(void)
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   m_db.lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to save the member's information.")),
 	       query.lastError().text(), __FILE__, __LINE__);
@@ -2490,7 +2489,7 @@ void biblioteq::slotSaveUser(void)
 		   QString(tr("Rollback failure.")),
 		   m_db.lastError().text(), __FILE__, __LINE__);
 
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("An error occurred while attempting to "
@@ -2516,7 +2515,7 @@ void biblioteq::slotSaveUser(void)
 		     m_db.lastError().text(), __FILE__,
 		     __LINE__);
 		  m_db.rollback();
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to commit the current "
@@ -2554,7 +2553,7 @@ void biblioteq::slotSaveUser(void)
 		   QString(tr("Rollback failure.")),
 		   m_db.lastError().text(), __FILE__, __LINE__);
 
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      addError(QString(tr("Database Error")),
 		       QString(tr("An error occurred while attempting to "
 				  "update the database account "
@@ -2581,7 +2580,7 @@ void biblioteq::slotSaveUser(void)
 		     m_db.lastError().text(), __FILE__,
 		     __LINE__);
 		  m_db.rollback();
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  QMessageBox::critical(userinfo_diag,
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to commit the current "
@@ -2591,7 +2590,7 @@ void biblioteq::slotSaveUser(void)
 	    }
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       userinfo_diag->m_memberProperties["membersince"] =
 	userinfo_diag->m_userinfo.membersince->date().toString
 	(Qt::ISODate);
@@ -2872,12 +2871,12 @@ void biblioteq::readConfig(void)
     ui.actionPreserveGeometry->setChecked(false);
 
 #ifndef Q_OS_MAC
-  font = qapp->font();
+  font = QApplication::font();
 
   if(settings.contains("global_font"))
     font.fromString(settings.value("global_font", "").toString());
 
-  qapp->setFont(font);
+  QApplication::setFont(font);
 #endif
   ui.actionAutomaticallySaveSettingsOnExit->setChecked
     (settings.value("save_settings_on_exit", false).toBool());
@@ -2980,10 +2979,10 @@ void biblioteq::slotRemoveMember(void)
 
   memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
     (m_db, memberid, errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     {
@@ -3019,11 +3018,11 @@ void biblioteq::slotRemoveMember(void)
 			   QMessageBox::No) == QMessageBox::No)
     return;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
@@ -3034,10 +3033,10 @@ void biblioteq::slotRemoveMember(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   query.prepare("DELETE FROM member WHERE memberid = ?");
   query.bindValue(0, memberid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
@@ -3046,7 +3045,7 @@ void biblioteq::slotRemoveMember(void)
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   m_db.lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to remove the selected member.")),
 	       query.lastError().text(), __FILE__, __LINE__);
@@ -3073,7 +3072,7 @@ void biblioteq::slotRemoveMember(void)
 	       QString(tr("Rollback failure.")),
 	       m_db.lastError().text(), __FILE__, __LINE__);
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  QMessageBox::critical
 	    (m_members_diag,
 	     tr("BiblioteQ: Database Error"),
@@ -3091,7 +3090,7 @@ void biblioteq::slotRemoveMember(void)
 		 m_db.lastError().text(), __FILE__,
 		 __LINE__);
 	      m_db.rollback();
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      QMessageBox::critical(m_members_diag,
 				    tr("BiblioteQ: Database Error"),
 				    tr("Unable to commit the current "
@@ -3100,7 +3099,7 @@ void biblioteq::slotRemoveMember(void)
 	    }
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       slotPopulateMembersBrowser();
     }
 }
@@ -3208,13 +3207,13 @@ void biblioteq::slotShowColumns(void)
 {
   int i = 0;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   for(i = 0; i < ui.table->columnNames().size(); i++)
     if(ui.table->columnNames().at(i) == "Publisher")
       ui.table->setColumnHidden(i, false);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -3601,7 +3600,7 @@ void biblioteq::slotDisplaySummary(void)
       summary += "</html>";
       ui.summary->setText(summary);
       ui.summary->setVisible(true);
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(type != "Photograph Collection")
 	frontImage = biblioteq_misc_functions::getImage
@@ -3617,7 +3616,7 @@ void biblioteq::slotDisplaySummary(void)
 	  (oid, "back_cover", type,
 	   m_db);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       /*
       ** The size of no_image.png is 126x187.
@@ -3816,7 +3815,7 @@ void biblioteq::slotConnectDB(void)
   if(drivers.isEmpty())
     drivers = "N/A";
 
-  foreach(QString path, qapp->libraryPaths())
+  foreach(QString path, QApplication::libraryPaths())
     if(path.toLower().contains("plugin"))
       {
 	plugins = path;
@@ -3856,7 +3855,7 @@ void biblioteq::slotConnectDB(void)
     if(tmphash["ssl_enabled"] == "true")
       m_db.setConnectOptions("requiressl=1");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(tmphash["database_type"] == "sqlite")
     (void) m_db.open();
@@ -3868,7 +3867,7 @@ void biblioteq::slotConnectDB(void)
 	br.password->clear();
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!m_db.isOpen())
     {
@@ -3906,10 +3905,10 @@ void biblioteq::slotConnectDB(void)
     {
       if(!error)
 	{
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  m_roles = biblioteq_misc_functions::getRoles
 	    (m_db, br.userid->text().trimmed(), errorstr).toLower();
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(errorstr.isEmpty())
 	    {
@@ -4376,12 +4375,12 @@ void biblioteq::slotDisconnect(void)
   slotDisplaySummary();
   emptyContainers();
   m_deletedAdmins.clear();
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(m_db.isOpen())
     m_db.close();
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   m_db = QSqlDatabase();
 
   if(QSqlDatabase::contains("Default"))
@@ -4606,11 +4605,11 @@ void biblioteq::slotPopulateMembersBrowser(void)
     query.bindValue
       (0, biblioteq_myqstring::escape(bb.filter->text().trimmed()));
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve member data for table "
 			  "populating.")),
@@ -4622,7 +4621,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   resetMembersBrowser();
   bb.table->setSortingEnabled(false);
 
@@ -4689,7 +4688,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -4756,7 +4755,7 @@ void biblioteq::slotGrantPrivileges(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -4788,10 +4787,10 @@ void biblioteq::updateMembersBrowser(void)
 
   memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
     (m_db, memberid, errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError(QString(tr("Database Error")),
@@ -4841,10 +4840,10 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
   ** Called from the Borrowers Editor when an item has been updated.
   */
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   counts = biblioteq_misc_functions::getItemsReservedCounts
     (m_db, memberid, errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     addError(QString(tr("Database Error")),
@@ -4853,7 +4852,7 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 	     errorstr, __FILE__, __LINE__);
   else
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       for(i = 0; i < bb.table->rowCount(); i++)
 	{
@@ -4889,7 +4888,7 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 	}
 
       counts.clear();
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 }
 
@@ -4918,11 +4917,11 @@ void biblioteq::slotModifyBorrower(void)
   query.setForwardOnly(true);
   query.prepare("SELECT * FROM member WHERE memberid = ?");
   query.bindValue(0, str);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the selected member's "
 			  "information.")),
@@ -4942,7 +4941,7 @@ void biblioteq::slotModifyBorrower(void)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -5081,10 +5080,10 @@ void biblioteq::slotCheckout(void)
 	biblioteq_misc_functions::getColumnString
 	(bb.table, row1, m_bbColumnHeaderIndexes.indexOf("Member ID"));
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       expired = biblioteq_misc_functions::hasMemberExpired
 	(m_db, memberid, errorstr);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	addError(QString(tr("Database Error")),
@@ -5109,10 +5108,10 @@ void biblioteq::slotCheckout(void)
 
       oid = biblioteq_misc_functions::getColumnString
 	(ui.table, row2, ui.table->columnNumber("MYOID"));
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       availability = biblioteq_misc_functions::getAvailability
 	(oid, m_db, type, errorstr).toInt();
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	addError(QString(tr("Database Error")),
@@ -5684,9 +5683,9 @@ void biblioteq::replacePhotographCollection
 
 void biblioteq::updateItemWindows(void)
 {
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
       biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
@@ -5720,7 +5719,7 @@ void biblioteq::updateItemWindows(void)
 	videogame->updateWindow(EDITABLE);
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -5729,9 +5728,9 @@ void biblioteq::updateItemWindows(void)
 
 void biblioteq::emptyContainers(void)
 {
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
       biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
@@ -5765,7 +5764,7 @@ void biblioteq::emptyContainers(void)
 	photograph->deleteLater();
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -5907,7 +5906,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 {
   if(itemType == "cd")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
 
@@ -5920,7 +5919,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "dvd")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
 
@@ -5933,7 +5932,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "book")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
 
@@ -5946,7 +5945,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "journal")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
 
@@ -5959,7 +5958,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "magazine")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_magazine *magazine = qobject_cast<biblioteq_magazine *> (w);
 
@@ -5977,7 +5976,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "photographcollection")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_photographcollection *photograph =
 	    qobject_cast<biblioteq_photographcollection *> (w);
@@ -5991,7 +5990,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
     }
   else if(itemType == "videogame")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_videogame *videogame =
 	    qobject_cast<biblioteq_videogame *> (w);
@@ -6028,7 +6027,7 @@ void biblioteq::slotBookSearch(void)
 {
   biblioteq_book *book = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_book *b = qobject_cast<biblioteq_book *> (w);
 
@@ -6076,7 +6075,7 @@ void biblioteq::slotCDSearch(void)
 {
   biblioteq_cd *cd = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_cd *c = qobject_cast<biblioteq_cd *> (w);
 
@@ -6124,7 +6123,7 @@ void biblioteq::slotDVDSearch(void)
 {
   biblioteq_dvd *dvd = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_dvd *d = qobject_cast<biblioteq_dvd *> (w);
 
@@ -6173,7 +6172,7 @@ void biblioteq::slotJournSearch(void)
 {
   biblioteq_journal *journal = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_journal *j = qobject_cast<biblioteq_journal *> (w);
 
@@ -6222,7 +6221,7 @@ void biblioteq::slotMagSearch(void)
 {
   biblioteq_magazine *magazine = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_magazine *m = qobject_cast<biblioteq_magazine *> (w);
 
@@ -6277,7 +6276,7 @@ void biblioteq::slotPhotographSearch(void)
 {
   biblioteq_photographcollection *photograph = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_photographcollection *p =
 	qobject_cast<biblioteq_photographcollection *> (w);
@@ -6328,7 +6327,7 @@ void biblioteq::slotVideoGameSearch(void)
 {
   biblioteq_videogame *videogame = 0;
 
-  foreach(QWidget *w, qapp->topLevelWidgets())
+  foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_videogame *v = qobject_cast<biblioteq_videogame *> (w);
 
@@ -6363,7 +6362,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
 {
   if(itemType == "cd")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
 
@@ -6376,7 +6375,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "dvd")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_dvd *dvd = qobject_cast<biblioteq_dvd *> (w);
 
@@ -6389,7 +6388,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "book")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_book *book = qobject_cast<biblioteq_book *> (w);
 
@@ -6402,7 +6401,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "journal")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_journal *journal = qobject_cast<biblioteq_journal *> (w);
 
@@ -6415,7 +6414,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "magazine")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_magazine *magazine =
 	    qobject_cast<biblioteq_magazine *> (w);
@@ -6434,7 +6433,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "photographcollection")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_photographcollection *photograph =
 	    qobject_cast<biblioteq_photographcollection *> (w);
@@ -6448,7 +6447,7 @@ void biblioteq::updateRows(const QString &oid, const int row,
     }
   else if(itemType == "videogame")
     {
-      foreach(QWidget *w, qapp->topLevelWidgets())
+      foreach(QWidget *w, QApplication::topLevelWidgets())
 	{
 	  biblioteq_videogame *videogame =
 	    qobject_cast<biblioteq_videogame *> (w);
@@ -6566,10 +6565,10 @@ void biblioteq::slotReserveCopy(void)
 
   oid = biblioteq_misc_functions::getColumnString
     (ui.table, row, ui.table->columnNumber("MYOID"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   availability = biblioteq_misc_functions::getAvailability
     (oid, m_db, type, errorstr).toInt();
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     {
@@ -6722,10 +6721,10 @@ void biblioteq::slotSetFonts(void)
 
 void biblioteq::setGlobalFonts(const QFont &font)
 {
-  qapp->setOverrideCursor(Qt::WaitCursor);
-  qapp->setFont(font);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  QApplication::setFont(font);
 
-  foreach(QWidget *widget, qapp->allWidgets())
+  foreach(QWidget *widget, QApplication::allWidgets())
     {
       widget->setFont(font);
 
@@ -6745,7 +6744,7 @@ void biblioteq::setGlobalFonts(const QFont &font)
 	action->setFont(font);
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -6764,7 +6763,7 @@ void biblioteq::slotShowCustomQuery(void)
 
   if(cq.tables_t->columnCount() == 0)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(m_db.driverName() == "QSQLITE")
 	list << "book"
@@ -6889,7 +6888,7 @@ void biblioteq::slotShowCustomQuery(void)
 	  cq.tables_t->resizeColumnToContents(i);
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 
   static bool resized = false;
@@ -6974,7 +6973,7 @@ void biblioteq::slotPrintView(void)
   dialog.setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   html += "<table border=1>";
   html += "<tr>";
 
@@ -6998,7 +6997,7 @@ void biblioteq::slotPrintView(void)
 
   html += "</table>";
   html += "</html>";
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   printer.setPaperSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
   printer.setOrientation(QPrinter::Landscape);
@@ -7042,7 +7041,7 @@ void biblioteq::slotPrintReserved(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   itemsReserved = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved")).
     toInt() +
@@ -7059,7 +7058,7 @@ void biblioteq::slotPrintReserved(void)
     biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Video Games Reserved")).
     toInt();
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(itemsReserved < 1)
     {
@@ -7077,10 +7076,10 @@ void biblioteq::slotPrintReserved(void)
   memberinfo["lastname"] = biblioteq_misc_functions::getColumnString
     (bb.table, row,
      m_bbColumnHeaderIndexes.indexOf("Last Name"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   itemsList = biblioteq_misc_functions::getReservedItems
     (memberid, m_db, errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(errorstr.isEmpty())
     {
@@ -7126,7 +7125,7 @@ void biblioteq::slotCopyError(void)
   int i = 0;
   int j = 0;
   QString text = "";
-  QClipboard *clipboard = qapp->clipboard();
+  QClipboard *clipboard = QApplication::clipboard();
   QModelIndex index;
   QModelIndexList list = er.table->selectionModel()->selectedRows();
 
@@ -7140,7 +7139,7 @@ void biblioteq::slotCopyError(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   foreach(index, list)
     {
@@ -7157,7 +7156,7 @@ void biblioteq::slotCopyError(void)
     clipboard->setText(text);
 
   list.clear();
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -7186,7 +7185,7 @@ void biblioteq::slotShowHistory(void)
 
   if(m_db.driverName() == "QPSQL" && m_roles.isEmpty())
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       bool dnt = biblioteq_misc_functions::dnt(m_db, m_db.userName(),
 					       errorstr);
@@ -7199,7 +7198,7 @@ void biblioteq::slotShowHistory(void)
       else
 	history.dnt->setEnabled(false);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
   else
     {
@@ -7375,11 +7374,11 @@ void biblioteq::slotShowHistory(void)
   query.bindValue(3, memberid);
   query.bindValue(4, memberid);
   query.bindValue(5, memberid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to retrieve reservation history data for table "
@@ -7403,7 +7402,7 @@ void biblioteq::slotShowHistory(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   history.table->clear();
   history.table->setCurrentItem(0);
   history.table->setColumnCount(0);
@@ -7494,7 +7493,7 @@ void biblioteq::slotShowHistory(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -7574,7 +7573,7 @@ void biblioteq::slotPrintReservationHistory(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   html = tr("Reservation History") + "<br><br>";
   html += "<table border=1>";
   html += "<tr>";
@@ -7599,7 +7598,7 @@ void biblioteq::slotPrintReservationHistory(void)
 
   html += "</table>";
   html += "</html>";
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   printer.setPageSize(QPrinter::Letter);
   printer.setColorMode(QPrinter::GrayScale);
 
@@ -7665,7 +7664,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 	indexOf("Member ID")) ==
        memberid)
       {
-	qapp->setOverrideCursor(Qt::WaitCursor);
+	QApplication::setOverrideCursor(Qt::WaitCursor);
 
 	for(i = 0; i < history.table->rowCount(); i++)
 	  {
@@ -7693,7 +7692,7 @@ void biblioteq::updateReservationHistoryBrowser(const QString &memberid,
 	      }
 	  }
 
-	qapp->restoreOverrideCursor();
+	QApplication::restoreOverrideCursor();
       }
 }
 
@@ -7738,7 +7737,7 @@ void biblioteq::slotSavePassword(void)
       return;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   biblioteq_misc_functions::savePassword
     (pass.userid->text(), m_db, pass.password->text(), errorstr);
 
@@ -7747,7 +7746,7 @@ void biblioteq::slotSavePassword(void)
   else
     biblioteq_misc_functions::setRole(m_db, errorstr, m_roles);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   pass.password->clear();
   pass.passwordAgain->clear();
 
@@ -7979,11 +7978,11 @@ void biblioteq::slotRefreshAdminList(void)
   query.setForwardOnly(true);
   query.prepare("SELECT username, LOWER(roles) "
 		"FROM admin ORDER BY username");
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve administrator data for table "
 			  "populating.")),
@@ -7995,7 +7994,7 @@ void biblioteq::slotRefreshAdminList(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   resetAdminBrowser();
   ab.table->setRowCount(query.size());
   progress.setModal(true);
@@ -8070,7 +8069,7 @@ void biblioteq::slotRefreshAdminList(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -8155,11 +8154,11 @@ void biblioteq::slotSaveAdministrators(void)
     }
 
   tmplist.clear();
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to create a database transaction.")),
@@ -8181,7 +8180,7 @@ void biblioteq::slotSaveAdministrators(void)
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  addError(QString(tr("Database Error")),
 		   QString(tr("An error occurred while attempting to "
 			      "remove ")) + m_deletedAdmins[i].toLower() +
@@ -8196,7 +8195,7 @@ void biblioteq::slotSaveAdministrators(void)
 
       if(!errorstr.isEmpty())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  addError
 	    (QString(tr("Database Error")),
 	     QString(tr("An error occurred while attempting to "
@@ -8207,7 +8206,7 @@ void biblioteq::slotSaveAdministrators(void)
 	}
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   progress.setCancelButton(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -8348,12 +8347,12 @@ void biblioteq::slotSaveAdministrators(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
   progress.hide();
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.commit())
     {
@@ -8364,7 +8363,7 @@ void biblioteq::slotSaveAdministrators(void)
 	 m_db.lastError().text(), __FILE__,
 	 __LINE__);
       m_db.rollback();
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(m_admin_diag,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the current "
@@ -8372,7 +8371,7 @@ void biblioteq::slotSaveAdministrators(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   m_deletedAdmins.clear();
 
   if(adminCreated)
@@ -8387,13 +8386,13 @@ void biblioteq::slotSaveAdministrators(void)
 
  db_rollback:
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.rollback())
     addError(QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	     m_db.lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::critical(m_admin_diag, tr("BiblioteQ: Database Error"),
 			tr("An error occurred while attempting to save "
 			   "the administrator information."));
@@ -8547,7 +8546,7 @@ void biblioteq::slotRequest(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -8921,7 +8920,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
       int rc = 0;
       sqlite3 *ppDb = 0;
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       QFile::remove(dialog.selectedFiles().value(0));
       rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
 			   &ppDb,
@@ -8951,7 +8950,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 		 "sqlite3_open_v2() failure.", __FILE__, __LINE__);
 
       sqlite3_close(ppDb);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!error)
 	{
@@ -9093,7 +9092,7 @@ void biblioteq::slotExportAsCSV(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QFile file(dialog.selectedFiles().value(0));
 
@@ -9149,7 +9148,7 @@ void biblioteq::slotExportAsCSV(void)
 	  file.close();
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 }
 
@@ -9353,12 +9352,12 @@ void biblioteq::slotLanguageChanged(void)
   if(action && action->isChecked())
     {
       s_locale = action->data().toString();
-      qapp->removeTranslator(s_qtTranslator);
-      qapp->removeTranslator(s_appTranslator);
+      QApplication::removeTranslator(s_qtTranslator);
+      QApplication::removeTranslator(s_appTranslator);
       s_qtTranslator->load("qt_" + s_locale, "Translations");
-      qapp->installTranslator(s_qtTranslator);
+      QApplication::installTranslator(s_qtTranslator);
       s_appTranslator->load("biblioteq_" + s_locale, "Translations");
-      qapp->installTranslator(s_appTranslator);
+      QApplication::installTranslator(s_appTranslator);
     }
 }
 

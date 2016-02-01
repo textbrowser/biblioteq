@@ -17,7 +17,6 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_dvd.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -61,7 +60,7 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(dvd.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(dvd.printButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotPrint(void)));
@@ -129,11 +128,11 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(),
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -141,11 +140,11 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the languages.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.monetary_units->addItems
     (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
 						errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -153,12 +152,12 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the monetary units.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "DVD",
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -166,11 +165,11 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the dvd locations.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.rating->addItems
     (biblioteq_misc_functions::getDVDRatings(qmain->getDB(),
 					     errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -178,11 +177,11 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the dvd ratings.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.aspectratio->addItems
     (biblioteq_misc_functions::getDVDAspectRatios(qmain->getDB(),
 						  errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -190,11 +189,11 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the dvd aspect ratios.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   dvd.region->addItems
     (biblioteq_misc_functions::getDVDRegions(qmain->getDB(),
 					     errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -262,13 +261,13 @@ void biblioteq_dvd::slotGo(void)
       if(m_engWindowTitle.contains("Modify") && m_row > -1)
 	{
 	  newq = dvd.quantity->value();
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = biblioteq_misc_functions::getMaxCopyNumber
 	    (qmain->getDB(), m_oid, "DVD", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      qmain->addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
@@ -281,7 +280,7 @@ void biblioteq_dvd::slotGo(void)
 	      return;
 	    }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(newq < maxcopynumber)
 	    {
@@ -400,11 +399,11 @@ void biblioteq_dvd::slotGo(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
@@ -417,7 +416,7 @@ void biblioteq_dvd::slotGo(void)
 
       str = dvd.keyword->toPlainText().trimmed();
       dvd.keyword->setPlainText(str);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE dvd SET "
@@ -584,11 +583,11 @@ void biblioteq_dvd::slotGo(void)
 			    errorstr);
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the entry.")),
@@ -612,7 +611,7 @@ void biblioteq_dvd::slotGo(void)
 
 	      if(!query.exec())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to purge unnecessary copy "
@@ -623,7 +622,7 @@ void biblioteq_dvd::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -647,7 +646,7 @@ void biblioteq_dvd::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
@@ -657,7 +656,7 @@ void biblioteq_dvd::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -686,7 +685,7 @@ void biblioteq_dvd::slotGo(void)
 					 dvd.category->toPlainText());
 	  dvd.keyword->setMultipleLinks("dvd_search", "keyword",
 					dvd.keyword->toPlainText());
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
@@ -793,12 +792,12 @@ void biblioteq_dvd::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      QApplication::setOverrideCursor(Qt::WaitCursor);
 	      m_oid = biblioteq_misc_functions::getOID(dvd.id->text(),
 						       "DVD",
 						       qmain->getDB(),
 						       errorstr);
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 
 	      if(!errorstr.isEmpty())
 		{
@@ -829,14 +828,14 @@ void biblioteq_dvd::slotGo(void)
 
     db_rollback:
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
@@ -1198,11 +1197,11 @@ void biblioteq_dvd::modify(const int state)
 		"dvd "
 		"WHERE myoid = ?");
   query.bindValue(0, str);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to retrieve the selected DVD's data.")),
@@ -1215,7 +1214,7 @@ void biblioteq_dvd::modify(const int state)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       showNormal();
 
       for(i = 0; i < query.record().count(); i++)

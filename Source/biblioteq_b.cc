@@ -13,12 +13,6 @@
 #include "biblioteq_graphicsitempixmap.h"
 
 /*
-** -- Global Variables --
-*/
-
-extern QApplication *qapp;
-
-/*
 ** -- populateTable() --
 */
 
@@ -3126,7 +3120,7 @@ int biblioteq::populateTable(const int search_type_arg,
       }
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 			      arg(ui.table->rowCount()));
 
@@ -3136,7 +3130,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(!query.exec(searchstr))
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
 	for(int ii = 0; ii < ui.action_Category->menu()->actions().size();
@@ -3161,7 +3155,7 @@ int biblioteq::populateTable(const int search_type_arg,
       return 1;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   prepareRequestToolButton(typefilter);
 
   bool found = false;
@@ -3480,7 +3474,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -3682,179 +3676,179 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   if(m_db.driverName() != "QSQLITE")
     return;
 
-  QString str("");
+  QStringList list;
 
-  str.append("CREATE TABLE IF NOT EXISTS locations "
-	     "("
+  list.append("CREATE TABLE IF NOT EXISTS locations "
+	      "("
+	      "location TEXT NOT NULL,"
+	      "type VARCHAR(16),"
+	      "PRIMARY KEY(location, type));");
+  list.append("CREATE TABLE IF NOT EXISTS monetary_units "
+	      "("
+	      "monetary_unit TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS languages "
+	      "("
+	      "language TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS cd_formats "
+	      "("
+	      "cd_format	TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS dvd_ratings "
+	      "("
+	      "dvd_rating TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS dvd_aspect_ratios "
+	      "("
+	      "dvd_aspect_ratio TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS dvd_regions "
+	      "("
+	      "dvd_region TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS minimum_days "
+	      "("
+	      "days INTEGER NOT NULL,"
+	      "type VARCHAR(16) NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS videogame_ratings"
+	      "("
+	      "videogame_rating TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE IF NOT EXISTS videogame_platforms "
+	      "("
+	      "videogame_platform TEXT NOT NULL PRIMARY KEY);");
+  list.append("ALTER TABLE book ADD marc_tags TEXT;");
+  list.append("ALTER TABLE journal ADD marc_tags TEXT;");
+  list.append("ALTER TABLE magazine ADD marc_tags TEXT;");
+  list.append("ALTER TABLE member ADD expiration_date VARCHAR(32) "
+	      "NOT NULL DEFAULT '01/0/3000';");
+  list.append("ALTER TABLE book ADD keyword TEXT;");
+  list.append("ALTER TABLE cd ADD keyword TEXT;");
+  list.append("ALTER TABLE dvd ADD keyword TEXT;");
+  list.append("ALTER TABLE journal ADD keyword TEXT;");
+  list.append("ALTER TABLE magazine ADD keyword TEXT;");
+  list.append("ALTER TABLE videogame ADD keyword TEXT;");
+  list.append("ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) "
+	      "NOT NULL DEFAULT 0.00;");
+  list.append("ALTER TABLE member ADD comments TEXT, "
+	      "ADD general_registration_number TEXT, ADD memberclass TEXT;");
+  list.append("CREATE TABLE IF NOT EXISTS photograph_collection "
+	      "("
+	      "id  TEXT PRIMARY KEY NOT NULL,"
+	      "myoid BIGINT UNIQUE,"
+	      "title TEXT NOT NULL,"
+	      "location TEXT NOT NULL,"
+	      "about TEXT,"
+	      "notes TEXT,"
+	      "image BYTEA,"
+	      "image_scaled BYTEA,"
+	      "type VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection');");
+  list.append("CREATE TABLE IF NOT EXISTS photograph "
+	      "("
+	      "id TEXT NOT NULL,"
+	      "myoid BIGINT UNIQUE,"
+	      "collection_oid BIGINT NOT NULL,"
+	      "title TEXT NOT NULL,"
+	      "creators TEXT NOT NULL,"
+	      "pdate VARCHAR(32) NOT NULL,"
+	      "quantity INTEGER NOT NULL DEFAULT 1,"
+	      "medium TEXT NOT NULL,"
+	      "reproduction_number TEXT NOT NULL,"
+	      "copyright TEXT NOT NULL,"
+	      "callnumber VARCHAR(64),"
+	      "other_number TEXT,"
+	      "notes TEXT,"
+	      "subjects TEXT,"
+	      "format TEXT,"
+	      "image BYTEA,"
+	      "image_scaled BYTEA,"
+	      "PRIMARY KEY(id, collection_oid),"
+	      "FOREIGN KEY(collection_oid) REFERENCES "
+	      "photograph_collection(myoid) ON DELETE CASCADE);");
+  list.append("ALTER TABLE cd_songs ADD artist TEXT "
+	      "NOT NULL DEFAULT 'UNKNOWN';");
+  list.append("ALTER TABLE cd_songs ADD composer TEXT "
+	      "NOT NULL DEFAULT 'UNKNOWN';");
+  list.append("ALTER TABLE book ADD condition TEXT;");
+  list.append("ALTER TABLE book ADD originality TEXT;");
+  list.append("ALTER TABLE book_copy_info ADD condition TEXT;");
+  list.append("ALTER TABLE book_copy_info ADD originality TEXT;");
+  list.append("CREATE TABLE IF NOT EXISTS book_binding_types "
+	      "("
+	      "binding_type TEXT NOT NULL PRIMARY KEY);");
+  list.append("CREATE TABLE member_temporary "
+	      "("
+	      "memberid VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,"
+	      "membersince VARCHAR(32) NOT NULL,"
+	      "dob VARCHAR(32) NOT NULL,"
+	      "sex VARCHAR(32) NOT NULL DEFAULT 'Female',"
+	      "first_name VARCHAR(128) NOT NULL,"
+	      "middle_init VARCHAR(1),"
+	      "last_name VARCHAR(128) NOT NULL,"
+	      "telephone_num VARCHAR(32),"
+	      "street VARCHAR(256) NOT NULL,"
+	      "city VARCHAR(256) NOT NULL,"
+	      "state_abbr VARCHAR(16) NOT NULL DEFAULT 'N/A',"
+	      "zip VARCHAR(16) NOT NULL DEFAULT 'N/A',"
+	      "email VARCHAR(128),"
+	      "expiration_date VARCHAR(32) NOT NULL,"
+	      "overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	      "comments TEXT,"
+	      "general_registration_number TEXT,"
+	      "memberclass TEXT);");
+  list.append("INSERT INTO member_temporary SELECT * FROM member;"
+	      "DROP TABLE member;");
+  list.append("ALTER TABLE member_temporary RENAME TO member;");
+  list.append("CREATE TABLE journal_temporary "
+	      "("
+	      "id VARCHAR(32),"
+	      "myoid BIGINT NOT NULL,"
+	      "title TEXT NOT NULL,"
+	      "pdate VARCHAR(32) NOT NULL,"
+	      "publisher TEXT NOT NULL,"
+	      "place TEXT NOT NULL,"
+	      "category TEXT NOT NULL,"
+	      "price NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	      "description TEXT NOT NULL,"
+	      "language VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	      "monetary_units VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	      "quantity INTEGER NOT NULL DEFAULT 1,"
 	     "location TEXT NOT NULL,"
-	     "type VARCHAR(16),"
-	     "PRIMARY KEY(location, type));");
-  str.append("CREATE TABLE IF NOT EXISTS monetary_units "
-	     "("
-	     "monetary_unit TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS languages "
-	     "("
-	     "language TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS cd_formats "
-	     "("
-	     "cd_format	TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS dvd_ratings "
-	     "("
-	     "dvd_rating TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS dvd_aspect_ratios "
-	     "("
-	     "dvd_aspect_ratio TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS dvd_regions "
-	     "("
-	     "dvd_region TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS minimum_days "
-	     "("
-	     "days INTEGER NOT NULL,"
-	     "type VARCHAR(16) NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS videogame_ratings"
-	     "("
-	     "videogame_rating TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE IF NOT EXISTS videogame_platforms "
-	     "("
-	     "videogame_platform TEXT NOT NULL PRIMARY KEY);");
-  str.append("ALTER TABLE book ADD marc_tags TEXT;");
-  str.append("ALTER TABLE journal ADD marc_tags TEXT;");
-  str.append("ALTER TABLE magazine ADD marc_tags TEXT;");
-  str.append("ALTER TABLE member ADD expiration_date VARCHAR(32) "
-	     "NOT NULL DEFAULT '01/0/3000';");
-  str.append("ALTER TABLE book ADD keyword TEXT;");
-  str.append("ALTER TABLE cd ADD keyword TEXT;");
-  str.append("ALTER TABLE dvd ADD keyword TEXT;");
-  str.append("ALTER TABLE journal ADD keyword TEXT;");
-  str.append("ALTER TABLE magazine ADD keyword TEXT;");
-  str.append("ALTER TABLE videogame ADD keyword TEXT;");
-  str.append("ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) "
-	     "NOT NULL DEFAULT 0.00;");
-  str.append("ALTER TABLE member ADD comments TEXT, "
-	     "ADD general_registration_number TEXT, ADD memberclass TEXT;");
-  str.append("CREATE TABLE IF NOT EXISTS photograph_collection "
-	     "("
-	     "id  TEXT PRIMARY KEY NOT NULL,"
-	     "myoid BIGINT UNIQUE,"
-	     "title TEXT NOT NULL,"
-	     "location TEXT NOT NULL,"
-	     "about TEXT,"
-	     "notes TEXT,"
-	     "image BYTEA,"
-	     "image_scaled BYTEA,"
-	     "type VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection');");
-  str.append("CREATE TABLE IF NOT EXISTS photograph "
-	     "("
-	     "id TEXT NOT NULL,"
-	     "myoid BIGINT UNIQUE,"
-	     "collection_oid BIGINT NOT NULL,"
-	     "title TEXT NOT NULL,"
-	     "creators TEXT NOT NULL,"
-	     "pdate VARCHAR(32) NOT NULL,"
-	     "quantity INTEGER NOT NULL DEFAULT 1,"
-	     "medium TEXT NOT NULL,"
-	     "reproduction_number TEXT NOT NULL,"
-	     "copyright TEXT NOT NULL,"
-	     "callnumber VARCHAR(64),"
-	     "other_number TEXT,"
-	     "notes TEXT,"
-	     "subjects TEXT,"
-	     "format TEXT,"
-	     "image BYTEA,"
-	     "image_scaled BYTEA,"
-	     "PRIMARY KEY(id, collection_oid),"
-	     "FOREIGN KEY(collection_oid) REFERENCES "
-	     "photograph_collection(myoid) ON DELETE CASCADE);");
-  str.append("ALTER TABLE cd_songs ADD artist TEXT "
-	     "NOT NULL DEFAULT 'UNKNOWN';");
-  str.append("ALTER TABLE cd_songs ADD composer TEXT "
-	     "NOT NULL DEFAULT 'UNKNOWN';");
-  str.append("ALTER TABLE book ADD condition TEXT;");
-  str.append("ALTER TABLE book ADD originality TEXT;");
-  str.append("ALTER TABLE book_copy_info ADD condition TEXT;");
-  str.append("ALTER TABLE book_copy_info ADD originality TEXT;");
-  str.append("CREATE TABLE IF NOT EXISTS book_binding_types "
-	     "("
-	     "binding_type TEXT NOT NULL PRIMARY KEY);");
-  str.append("CREATE TABLE member_temporary "
-	     "("
-	     "memberid VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,"
-	     "membersince VARCHAR(32) NOT NULL,"
-	     "dob VARCHAR(32) NOT NULL,"
-	     "sex VARCHAR(32) NOT NULL DEFAULT 'Female',"
-	     "first_name VARCHAR(128) NOT NULL,"
-	     "middle_init VARCHAR(1),"
-	     "last_name VARCHAR(128) NOT NULL,"
-	     "telephone_num VARCHAR(32),"
-	     "street VARCHAR(256) NOT NULL,"
-	     "city VARCHAR(256) NOT NULL,"
-	     "state_abbr VARCHAR(16) NOT NULL DEFAULT 'N/A',"
-	     "zip VARCHAR(16) NOT NULL DEFAULT 'N/A',"
-	     "email VARCHAR(128),"
-	     "expiration_date VARCHAR(32) NOT NULL,"
-	     "overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
-	     "comments TEXT,"
-	     "general_registration_number TEXT,"
-	     "memberclass TEXT);");
-  str.append("INSERT INTO member_temporary SELECT * FROM member;"
-	     "DROP TABLE member;");
-  str.append("ALTER TABLE member_temporary RENAME TO member;");
-  str.append("CREATE TABLE journal_temporary "
-	     "("
-	     "id VARCHAR(32),"
-	     "myoid BIGINT NOT NULL,"
-	     "title TEXT NOT NULL,"
-	     "pdate VARCHAR(32) NOT NULL,"
-	     "publisher TEXT NOT NULL,"
-	     "place TEXT NOT NULL,"
-	     "category TEXT NOT NULL,"
-	     "price NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
-	     "description TEXT NOT NULL,"
-	     "language VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	     "monetary_units VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	     "quantity INTEGER NOT NULL DEFAULT 1,"
-	     "location TEXT NOT NULL,"
-	     "issuevolume INTEGER NOT NULL DEFAULT 0,"
-	     "issueno INTEGER NOT NULL DEFAULT 0,"
-	     "lccontrolnumber VARCHAR(64),"
-	     "callnumber VARCHAR(64),"
-	     "deweynumber VARCHAR(64),"
-	     "front_cover BYTEA,"
-	     "back_cover BYTEA,"
-	     "marc_tags TEXT,"
-	     "keyword TEXT,"
-	     "type VARCHAR(16) NOT NULL DEFAULT 'Journal',"
-	     "UNIQUE (id, issueno, issuevolume));");
-  str.append("INSERT INTO journal_temporary SELECT * FROM journal;"
-	     "DROP TABLE journal;"
-	     "ALTER TABLE journal_temporary RENAME TO journal;");
-  str.append("CREATE TABLE magazine_temporary"
-	     "("
-	     "id VARCHAR(32),"
-	     "myoid BIGINT NOT NULL,"
-	     "title TEXT NOT NULL,"
-	     "pdate VARCHAR(32) NOT NULL,"
-	     "publisher TEXT NOT NULL,"
-	     "place TEXT NOT NULL,"
-	     "category TEXT NOT NULL,"
-	     "price NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
-	     "description TEXT NOT NULL,"
-	     "language VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	     "monetary_units VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
-	     "quantity INTEGER NOT NULL DEFAULT 1,"
-	     "location TEXT NOT NULL,"
-	     "issuevolume INTEGER NOT NULL DEFAULT 0,"
-	     "issueno INTEGER NOT NULL DEFAULT 0,"
-	     "lccontrolnumber VARCHAR(64),"
-	     "callnumber VARCHAR(64),"
-	     "deweynumber VARCHAR(64),"
-	     "front_cover BYTEA,"
-	     "back_cover BYTEA,"
-	     "marc_tags TEXT,"
-	     "keyword TEXT,"
-	     "type VARCHAR(16) NOT NULL DEFAULT 'Magazine',"
-	     "UNIQUE (id, issueno, issuevolume));");
-  str.append("INSERT INTO magazine_temporary SELECT * FROM magazine;");
-  str.append("DROP TABLE magazine;");
-  str.append("ALTER TABLE magazine_temporary RENAME TO magazine;");
+	      "issuevolume INTEGER NOT NULL DEFAULT 0,"
+	      "issueno INTEGER NOT NULL DEFAULT 0,"
+	      "lccontrolnumber VARCHAR(64),"
+	      "callnumber VARCHAR(64),"
+	      "deweynumber VARCHAR(64),"
+	      "front_cover BYTEA,"
+	      "back_cover BYTEA,"
+	      "marc_tags TEXT,"
+	      "keyword TEXT,"
+	      "type VARCHAR(16) NOT NULL DEFAULT 'Journal',"
+	      "UNIQUE (id, issueno, issuevolume));");
+  list.append("INSERT INTO journal_temporary SELECT * FROM journal;"
+	      "DROP TABLE journal;"
+	      "ALTER TABLE journal_temporary RENAME TO journal;");
+  list.append("CREATE TABLE magazine_temporary"
+	      "("
+	      "id VARCHAR(32),"
+	      "myoid BIGINT NOT NULL,"
+	      "title TEXT NOT NULL,"
+	      "pdate VARCHAR(32) NOT NULL,"
+	      "publisher TEXT NOT NULL,"
+	      "place TEXT NOT NULL,"
+	      "category TEXT NOT NULL,"
+	      "price NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
+	      "description TEXT NOT NULL,"
+	      "language VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	      "monetary_units VARCHAR(64) NOT NULL DEFAULT 'UNKNOWN',"
+	      "quantity INTEGER NOT NULL DEFAULT 1,"
+	      "location TEXT NOT NULL,"
+	      "issuevolume INTEGER NOT NULL DEFAULT 0,"
+	      "issueno INTEGER NOT NULL DEFAULT 0,"
+	      "lccontrolnumber VARCHAR(64),"
+	      "callnumber VARCHAR(64),"
+	      "deweynumber VARCHAR(64),"
+	      "front_cover BYTEA,"
+	      "back_cover BYTEA,"
+	      "marc_tags TEXT,"
+	      "keyword TEXT,"
+	      "type VARCHAR(16) NOT NULL DEFAULT 'Magazine',"
+	      "UNIQUE (id, issueno, issuevolume));");
+  list.append("INSERT INTO magazine_temporary SELECT * FROM magazine;");
+  list.append("DROP TABLE magazine;");
+  list.append("ALTER TABLE magazine_temporary RENAME TO magazine;");
 }

@@ -6,7 +6,6 @@
 #include "biblioteq_dbenumerations.h"
 #include "biblioteq_misc_functions.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -226,7 +225,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
       else if(i == 10)
 	listwidget = m_ui.videoGameRatingsList;
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(i == 0)
 	list = biblioteq_misc_functions::getBookBindingTypes(qmain->getDB(),
@@ -262,7 +261,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	list = biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
 							     errorstr);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError
@@ -524,7 +523,7 @@ void biblioteq_dbenumerations::slotSave(void)
   QTableWidget *tablewidget = 0;
   bool error = false;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   tables << "book_binding_types"
 	 << "cd_formats"
 	 << "dvd_aspect_ratios"
@@ -781,7 +780,7 @@ void biblioteq_dbenumerations::slotSave(void)
 			__FILE__, __LINE__);
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(error)
     QMessageBox::critical(this, tr("BiblioteQ: Database Error"),

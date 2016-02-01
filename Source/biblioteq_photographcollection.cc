@@ -20,7 +20,6 @@
 #include "biblioteq_photographcollection.h"
 #include "ui_photographview.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -91,9 +90,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
   m_photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   m_photo_diag->setWindowModality(Qt::WindowModal);
-  updateFont(qapp->font(), qobject_cast<QWidget *> (m_photo_diag));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (m_photo_diag));
   connect(pc.select_image_collection, SIGNAL(clicked(void)),
 	  this, SLOT(slotSelectImage(void)));
   connect(photo.select_image_item, SIGNAL(clicked(void)),
@@ -138,12 +137,12 @@ biblioteq_photographcollection::biblioteq_photographcollection
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   pc.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "Photograph Collection",
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -229,11 +228,11 @@ void biblioteq_photographcollection::slotGo(void)
 	(pc.about_collection->toPlainText().trimmed());
       pc.notes_collection->setPlainText
 	(pc.notes_collection->toPlainText().trimmed());
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
@@ -244,7 +243,7 @@ void biblioteq_photographcollection::slotGo(void)
 	  return;
 	}
       else
-	qapp->restoreOverrideCursor();
+	QApplication::restoreOverrideCursor();
 
       QSqlQuery query(qmain->getDB());
 
@@ -332,11 +331,11 @@ void biblioteq_photographcollection::slotGo(void)
 			    errorstr);
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Unable to create or update the entry.")),
 			  query.lastError().text(), __FILE__, __LINE__);
@@ -346,7 +345,7 @@ void biblioteq_photographcollection::slotGo(void)
 	{
 	  if(!qmain->getDB().commit())
 	    {
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      qmain->addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to commit the current database "
@@ -356,7 +355,7 @@ void biblioteq_photographcollection::slotGo(void)
 	      goto db_rollback;
 	    }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
@@ -415,13 +414,13 @@ void biblioteq_photographcollection::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      QApplication::setOverrideCursor(Qt::WaitCursor);
 	      m_oid = biblioteq_misc_functions::getOID
 		(pc.id_collection->text(),
 		 "Photograph Collection",
 		 qmain->getDB(),
 		 errorstr);
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 
 	      if(!errorstr.isEmpty())
 		{
@@ -453,14 +452,14 @@ void biblioteq_photographcollection::slotGo(void)
 
     db_rollback:
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
@@ -674,11 +673,11 @@ void biblioteq_photographcollection::modify(const int state,
 		"WHERE myoid = ?");
   query.bindValue(0, m_oid);
   pc.okButton->setText(tr("&Save"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to retrieve the selected photograph "
 				 "collection's data.")),
@@ -691,7 +690,7 @@ void biblioteq_photographcollection::modify(const int state,
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       for(int i = 0; i < query.record().count(); i++)
 	{
@@ -755,7 +754,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       if(!m_engWindowTitle.contains("Create"))
 	{
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  query.prepare("SELECT COUNT(*) "
 			"FROM photograph "
 			"WHERE collection_oid = ?");
@@ -769,7 +768,7 @@ void biblioteq_photographcollection::modify(const int state,
 		pages = qCeil(query.value(0).toDouble() / qMax(1, i));
 	      }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  pages = qMax(1, pages);
 	}
 
@@ -783,9 +782,9 @@ void biblioteq_photographcollection::modify(const int state,
 
       if(!m_engWindowTitle.contains("Create"))
 	{
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  showPhotographs(pc.page->currentText().toInt());
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
@@ -1299,11 +1298,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(!verifyItemFields())
     return;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -1312,7 +1311,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
       return;
     }
   else
-    qapp->restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
   QSqlQuery query(qmain->getDB());
   QString errorstr("");
@@ -1403,11 +1402,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
 			errorstr);
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create or update the entry.")),
 		      query.lastError().text(), __FILE__, __LINE__);
@@ -1417,7 +1416,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
     {
       if(!qmain->getDB().commit())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to commit the current database "
@@ -1427,10 +1426,10 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	  goto db_rollback;
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
@@ -1444,7 +1443,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   pages = qMax(1, pages);
   pc.page->blockSignals(true);
   pc.page->clear();
@@ -1453,23 +1452,23 @@ void biblioteq_photographcollection::slotInsertItem(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyItem(void)));
   return;
 
  db_rollback:
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
     qmain->addError
       (QString(tr("Database Error")), QString(tr("Rollback failure.")),
        qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to create the item. "
 			   "Please verify that "
@@ -1701,11 +1700,11 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   if(!verifyItemFields())
     return;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -1714,7 +1713,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       return;
     }
   else
-    qapp->restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
   QSqlQuery query(qmain->getDB());
   QString errorstr("");
@@ -1782,11 +1781,11 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 
   query.bindValue(15, m_oid);
   query.bindValue(16, m_itemOid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create or update the entry.")),
 		      query.lastError().text(), __FILE__, __LINE__);
@@ -1796,7 +1795,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
     {
       if(!qmain->getDB().commit())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to commit the current database "
@@ -1806,7 +1805,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 	  goto db_rollback;
 	}
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       pc.id_item->setText(photo.id_item->text());
       pc.title_item->setText(photo.title_item->text());
       pc.creators_item->setPlainText(photo.creators_item->toPlainText());
@@ -1828,14 +1827,14 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   return;
 
  db_rollback:
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
     qmain->addError
       (QString(tr("Database Error")), QString(tr("Rollback failure.")),
        qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to update the item. "
 			   "Please verify that "
@@ -1903,7 +1902,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -1933,9 +1932,9 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
   pc.page->blockSignals(false);
   progress.hide();
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -1944,10 +1943,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 void biblioteq_photographcollection::slotPageChanged(const QString &text)
 {
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   pc.page->repaint();
   showPhotographs(text.toInt());
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -1972,7 +1971,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
   if(dialog.result() == QDialog::Accepted &&
      dialog.selectedFiles().size() > 0)
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QAction *action = qobject_cast<QAction *> (sender());
 
@@ -1986,7 +1985,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	  (qmain->getDB(), m_oid, pc.page->currentText().toInt(),
 	   dialog.selectedFiles().value(0));
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
     }
 }
 
@@ -2055,7 +2054,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
   QSqlQuery query(qmain->getDB());
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   query.setForwardOnly(true);
   query.prepare("SELECT image FROM "
 		"photograph WHERE "
@@ -2088,7 +2087,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	  scene->items().at(0)->setData(0, item->data(0));
       }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -2283,7 +2282,7 @@ void biblioteq_photographcollection::slotImportItems(void)
   dialog.close();
   repaint();
 #ifndef Q_OS_MAC
-  qapp->processEvents();
+  QApplication::processEvents();
 #endif
 
   QStringList list;
@@ -2295,11 +2294,11 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(files.isEmpty())
     return;
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -2308,7 +2307,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       return;
     }
   else
-    qapp->restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
   QProgressDialog progress(this);
 
@@ -2339,7 +2338,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
 
       QByteArray bytes;
@@ -2436,11 +2435,11 @@ void biblioteq_photographcollection::slotImportItems(void)
     }
 
   progress.close();
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().commit())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError
 	(QString(tr("Database Error")),
 	 QString(tr("Unable to commit the current database "
@@ -2450,9 +2449,9 @@ void biblioteq_photographcollection::slotImportItems(void)
       goto db_rollback;
     }
   else
-    qapp->restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
@@ -2466,7 +2465,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   pages = qMax(1, pages);
   pc.page->blockSignals(true);
   pc.page->clear();
@@ -2475,9 +2474,9 @@ void biblioteq_photographcollection::slotImportItems(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(1);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::information(this,
 			   tr("BiblioteQ: Information"),
 			   tr("A total of %1 image(s) where imported. "
@@ -2488,14 +2487,14 @@ void biblioteq_photographcollection::slotImportItems(void)
   return;
 
  db_rollback:
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
     qmain->addError
       (QString(tr("Database Error")), QString(tr("Rollback failure.")),
        qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to import all of the images."));
 

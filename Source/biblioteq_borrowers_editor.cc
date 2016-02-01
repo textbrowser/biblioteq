@@ -1,6 +1,5 @@
 #include "biblioteq_borrowers_editor.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -213,7 +212,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
       progress1.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -255,14 +254,14 @@ void biblioteq_borrowers_editor::showUsers(void)
       query.bindValue(1, m_ioid);
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     qmain->addError(QString(tr("Database Error")),
 		    QString(tr("Unable to retrieve borrower data.")),
 		    query.lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving borrower data..."));
@@ -346,7 +345,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
       progress2.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
       if(terminate)
 	break; // Out of resources?
@@ -400,11 +399,11 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 		"myoid = ? AND type = ?");
   query.bindValue(0, oid);
   query.bindValue(1, m_itemType);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to modify the reservation status of "
 				 "the selected copy.")),
@@ -440,15 +439,15 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 				   "the selected copy.")),
 			query.lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->updateMembersBrowser(memberid);
 
       /*
-	qapp->setOverrideCursor(Qt::WaitCursor);
+	QApplication::setOverrideCursor(Qt::WaitCursor);
 	availability = biblioteq_misc_functions::getAvailability
 	(ioid, qmain->getDB(),
 	itemType, errorstr);
-	qapp->restoreOverrideCursor();
+	QApplication::restoreOverrideCursor();
 
 	if(!errorstr.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
@@ -569,7 +568,7 @@ void biblioteq_borrowers_editor::slotSave(void)
 
       progress.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 

@@ -5,7 +5,6 @@
 #include "biblioteq.h"
 #include "biblioteq_copy_editor_book.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -88,13 +87,13 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
   copyid = biblioteq_misc_functions::getColumnString
     (m_cb.table, row, m_columnHeaderIndexes.indexOf("Barcode"));
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   isCheckedOut = biblioteq_misc_functions::isCopyCheckedOut(qmain->getDB(),
 							    copyid,
 							    m_ioid,
 							    m_itemType,
 							    errorstr);
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(isCheckedOut)
     {
@@ -162,13 +161,13 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
       QDate duedate = QDate::currentDate();
       QString errorstr("");
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
 	(biblioteq_misc_functions::getMinimumDays
 	 (qmain->getDB(),
 	  m_itemType,
 	  errorstr));
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
@@ -317,7 +316,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
       progress1.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
     }
 
@@ -352,14 +351,14 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   query.bindValue(0, m_itemType);
   query.bindValue(1, m_ioid);
   query.bindValue(2, m_ioid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     qmain->addError(QString(tr("Database Error")),
 		    QString(tr("Unable to retrieve copy data.")),
 		    query.lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   progress2.setModal(true);
   progress2.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress2.setLabelText(tr("Retrieving copy information..."));
@@ -447,7 +446,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
       progress2.update();
 #ifndef Q_OS_MAC
-      qapp->processEvents();
+      QApplication::processEvents();
 #endif
       if(terminate)
 	break; // Out of resources?
@@ -507,11 +506,11 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
   while(!m_copies.isEmpty())
     delete m_copies.takeFirst();
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().transaction())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to create a database transaction.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
@@ -520,7 +519,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
@@ -548,11 +547,11 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   if(saveCopies().isEmpty())
     {
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
       biblioteq_misc_functions::saveQuantity
 	(qmain->getDB(), m_ioid, m_copies.size(),
 	 m_itemType, errorstr);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
 	qmain->addError(QString(tr("Database Error")),
@@ -562,7 +561,7 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 	goto success_label;
     }
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   while(!m_copies.isEmpty())
     delete m_copies.takeFirst();
@@ -572,14 +571,14 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 		    QString(tr("Rollback failure.")),
 		    qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
   QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			tr("Unable to save the copy data."));
   return;
 
  success_label:
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().commit())
     {
@@ -590,23 +589,23 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 		      QString(tr("Commit failure.")),
 		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
       qmain->getDB().rollback();
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to commit the copy data."));
       return;
     }
 
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(m_spinbox)
     m_spinbox->setValue(m_copies.size());
 
   /*
-    qapp->setOverrideCursor(Qt::WaitCursor);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     availability = biblioteq_misc_functions::getAvailability
     (m_ioid, qmain->getDB(),
     m_itemType, errorstr);
-    qapp->restoreOverrideCursor();
+    QApplication::restoreOverrideCursor();
 
     if(!errorstr.isEmpty())
     qmain->addError(QString(tr("Database Error")),
@@ -692,11 +691,11 @@ QString biblioteq_copy_editor_book::saveCopies(void)
   query.prepare(QString("DELETE FROM %1_copy_info WHERE "
 			"item_oid = ?").arg(m_itemType.toLower().remove(" ")));
   query.bindValue(0, m_ioid);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to purge copy data.")),
 		      query.lastError().text(), __FILE__, __LINE__);
@@ -704,7 +703,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       progress.setCancelButton(0);
       progress.setModal(true);
       progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -775,7 +774,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
 	  progress.update();
 #ifndef Q_OS_MAC
-	  qapp->processEvents();
+	  QApplication::processEvents();
 #endif
 	}
 

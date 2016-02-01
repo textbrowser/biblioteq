@@ -17,7 +17,6 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_videogame.h"
 
-extern QApplication *qapp;
 extern biblioteq *qmain;
 
 /*
@@ -61,7 +60,7 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
   setAttribute(Qt::WA_MacMetalStyle, true);
 #endif
 #endif
-  updateFont(qapp->font(), qobject_cast<QWidget *> (this));
+  updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
   connect(vg.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(vg.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -121,11 +120,11 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 
   QString errorstr("");
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.rating->addItems
     (biblioteq_misc_functions::getVideoGameRatings(qmain->getDB(),
 						   errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -133,11 +132,11 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the video game ratings.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.platform->addItems
     (biblioteq_misc_functions::getVideoGamePlatforms(qmain->getDB(),
 						     errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -145,11 +144,11 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the video game platforms.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.language->addItems
     (biblioteq_misc_functions::getLanguages(qmain->getDB(),
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -157,11 +156,11 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the languages.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.monetary_units->addItems
     (biblioteq_misc_functions::getMonetaryUnits(qmain->getDB(),
 						errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -169,12 +168,12 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
        QString(tr("Unable to retrieve the monetary units.")),
        errorstr, __FILE__, __LINE__);
 
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   vg.location->addItems
     (biblioteq_misc_functions::getLocations(qmain->getDB(),
 					    "Video Game",
 					    errorstr));
-  qapp->restoreOverrideCursor();
+  QApplication::restoreOverrideCursor();
 
   if(!errorstr.isEmpty())
     qmain->addError
@@ -240,13 +239,13 @@ void biblioteq_videogame::slotGo(void)
       if(m_engWindowTitle.contains("Modify") && m_row > -1)
 	{
 	  newq = vg.quantity->value();
-	  qapp->setOverrideCursor(Qt::WaitCursor);
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  maxcopynumber = biblioteq_misc_functions::getMaxCopyNumber
 	    (qmain->getDB(), m_oid, "Video Game", errorstr);
 
 	  if(maxcopynumber < 0)
 	    {
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 	      qmain->addError
 		(QString(tr("Database Error")),
 		 QString(tr("Unable to determine the maximum copy number of "
@@ -259,7 +258,7 @@ void biblioteq_videogame::slotGo(void)
 	      return;
 	    }
 
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(newq < maxcopynumber)
 	    {
@@ -360,11 +359,11 @@ void biblioteq_videogame::slotGo(void)
 	  return;
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create a database transaction.")),
@@ -377,7 +376,7 @@ void biblioteq_videogame::slotGo(void)
 
       str = vg.keyword->toPlainText().trimmed();
       vg.keyword->setPlainText(str);
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE videogame SET id = ?, "
@@ -502,11 +501,11 @@ void biblioteq_videogame::slotGo(void)
 			    errorstr);
 	}
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!query.exec())
 	{
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 	  qmain->addError(QString(tr("Database Error")),
 			  QString(tr("Unable to create or update the entry.")),
 			  query.lastError().text(), __FILE__, __LINE__);
@@ -529,7 +528,7 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(!query.exec())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to purge unnecessary copy "
@@ -541,7 +540,7 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -566,7 +565,7 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(!errorstr.isEmpty())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to create initial copies.")),
@@ -576,7 +575,7 @@ void biblioteq_videogame::slotGo(void)
 
 	      if(!qmain->getDB().commit())
 		{
-		  qapp->restoreOverrideCursor();
+		  QApplication::restoreOverrideCursor();
 		  qmain->addError
 		    (QString(tr("Database Error")),
 		     QString(tr("Unable to commit the current database "
@@ -606,7 +605,7 @@ void biblioteq_videogame::slotGo(void)
 				     vg.genre->toPlainText());
 	  vg.keyword->setMultipleLinks("videogame_search", "keyword",
 				       vg.keyword->toPlainText());
-	  qapp->restoreOverrideCursor();
+	  QApplication::restoreOverrideCursor();
 
 	  if(m_engWindowTitle.contains("Modify"))
 	    {
@@ -710,12 +709,12 @@ void biblioteq_videogame::slotGo(void)
 	    }
 	  else
 	    {
-	      qapp->setOverrideCursor(Qt::WaitCursor);
+	      QApplication::setOverrideCursor(Qt::WaitCursor);
 	      m_oid = biblioteq_misc_functions::getOID(vg.id->text(),
 						       "Video Game",
 						       qmain->getDB(),
 						       errorstr);
-	      qapp->restoreOverrideCursor();
+	      QApplication::restoreOverrideCursor();
 
 	      if(!errorstr.isEmpty())
 		{
@@ -746,14 +745,14 @@ void biblioteq_videogame::slotGo(void)
 
     db_rollback:
 
-      qapp->setOverrideCursor(Qt::WaitCursor);
+      QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().rollback())
 	qmain->addError
 	  (QString(tr("Database Error")), QString(tr("Rollback failure.")),
 	   qmain->getDB().lastError().text(), __FILE__, __LINE__);
 
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to create or update the entry. "
 			       "Please verify that "
@@ -1073,11 +1072,11 @@ void biblioteq_videogame::modify(const int state)
 		"videogame "
 		"WHERE myoid = ?");
   query.bindValue(0, str);
-  qapp->setOverrideCursor(Qt::WaitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec() || !query.next())
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       qmain->addError(QString(tr("Database Error")),
 		      QString(tr("Unable to retrieve the selected video "
 				 "game's data.")),
@@ -1090,7 +1089,7 @@ void biblioteq_videogame::modify(const int state)
     }
   else
     {
-      qapp->restoreOverrideCursor();
+      QApplication::restoreOverrideCursor();
       showNormal();
 
       for(i = 0; i < query.record().count(); i++)
