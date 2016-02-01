@@ -423,6 +423,7 @@ class biblioteq: public QMainWindow
   void slotShowPrev(void);
   void slotSqliteFileSelected(bool state);
   void slotUpdateIndicesAfterSort(int column);
+  void slotUpgradeSqliteScheme(void);
   void slotVideoGameSearch(void);
   void slotViewDetails(void);
 };

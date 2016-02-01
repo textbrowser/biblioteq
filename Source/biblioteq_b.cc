@@ -3672,3 +3672,11 @@ void biblioteq::slotSaveDnt(bool state)
   query.bindValue(1, m_db.userName());
   query.exec();
 }
+
+/*
+** -- slotUpgradeSqliteScheme() --
+*/
+
+void biblioteq::slotUpgradeSqliteScheme(void)
+{
+}

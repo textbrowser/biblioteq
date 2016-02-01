@@ -154,6 +154,24 @@ BEGIN									\
 	        type = old.type;					\
 END;									\
 									\
+CREATE TABLE grey_literature						\
+(									\
+    author		TEXT NOT NULL,					\
+    client		TEXT,						\
+    document_code_a	TEXT NOT NULL,					\
+    document_code_b TEXT NOT NULL,					\
+    document_date	TEXT NOT NULL,					\
+    document_id	TEXT NOT NULL PRIMARY KEY,				\
+    document_status TEXT,						\
+    document_title	TEXT NOT NULL,					\
+    document_type	TEXT NOT NULL,					\
+    job_number	TEXT NOT NULL,						\
+    location	TEXT,							\
+    myoid		BIGINT UNIQUE,					\
+    notes		TEXT,						\
+    type		VARCHAR(16) NOT NULL DEFAULT 'Grey Literature'	\
+);									\
+									\
 CREATE TABLE journal							\
 (									\
     back_cover	 BYTEA,							\

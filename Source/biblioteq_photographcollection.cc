@@ -2282,6 +2282,9 @@ void biblioteq_photographcollection::slotImportItems(void)
 
   dialog.close();
   repaint();
+#ifndef Q_OS_MAC
+  qapp->processEvents();
+#endif
 
   QStringList list;
 

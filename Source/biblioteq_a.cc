@@ -662,6 +662,7 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.actionDatabase_Enumerations->setEnabled(false);
   ui.actionPopulate_Database_Enumerations_Browser_on_Display->setEnabled
     (false);
+  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
 
   QString typefilter("");
   QSettings settings;
@@ -4071,6 +4072,7 @@ void biblioteq::slotConnectDB(void)
   if(m_db.driverName() == "QSQLITE")
     {
       ui.actionChangePassword->setEnabled(false);
+      ui.action_Upgrade_SQLite_Schema->setEnabled(true);
       ui.menuEntriesPerPage->setEnabled(true);
 
       if(ui.menuEntriesPerPage->actions().size() >= 5)
@@ -4275,6 +4277,7 @@ void biblioteq::slotDisconnect(void)
   ui.actionConnect->setEnabled(true);
   ui.actionAutoPopulateOnCreation->setEnabled(false);
   ui.menuEntriesPerPage->setEnabled(true);
+  ui.action_Upgrade_SQLite_Schema->setEnabled(false);
 
   if(ui.menuEntriesPerPage->actions().size() >= 5)
     ui.menuEntriesPerPage->actions()[4]->setEnabled(true);

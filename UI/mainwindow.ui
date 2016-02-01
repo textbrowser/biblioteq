@@ -110,20 +110,11 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>278</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
+         <property name="margin">
           <number>0</number>
          </property>
          <item>
@@ -368,7 +359,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -386,6 +377,8 @@
     <addaction name="separator"/>
     <addaction name="actionDatabaseSearch"/>
     <addaction name="actionRefreshTable"/>
+    <addaction name="separator"/>
+    <addaction name="action_Upgrade_SQLite_Schema"/>
    </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
@@ -1182,6 +1175,11 @@
   <action name="action_Category">
    <property name="text">
     <string>&amp;Category</string>
+   </property>
+  </action>
+  <action name="action_Upgrade_SQLite_Schema">
+   <property name="text">
+    <string>&amp;Upgrade SQLite Schema</string>
    </property>
   </action>
  </widget>
