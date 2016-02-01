@@ -17,7 +17,7 @@ static void qt_graphicsItem_highlightSelected
 
   const QColor bgcolor(70, 130, 180);
   const qreal pad = 0.0;
-  const qreal penWidth = 10.0;
+  const qreal penWidth = 5.0;
 
   painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
   painter->setBrush(Qt::NoBrush);
