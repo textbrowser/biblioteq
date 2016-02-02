@@ -2382,6 +2382,9 @@ void biblioteq_photographcollection::slotImportItems(void)
       QApplication::processEvents();
 #endif
 
+      if(progress.wasCanceled())
+	break;
+
       QByteArray bytes1;
       QFile file(files.at(i).absoluteFilePath());
 
@@ -2484,7 +2487,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	imported += 1;
     }
 
-  progress.close();
+  progress.hide();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().commit())
