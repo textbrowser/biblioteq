@@ -3677,6 +3677,19 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   if(m_db.driverName() != "QSQLITE")
     return;
 
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("You are about to upgrade the legacy "
+			      "SQLite database %1. "
+			      "Please verify that you have made a "
+			      "copy of this database. "
+			      "Are you sure that you wish to continue?").
+			   arg(m_db.databaseName()),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QStringList list;
 
   list.append("CREATE TABLE IF NOT EXISTS locations "
@@ -3791,8 +3804,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "comments TEXT,"
 	      "general_registration_number TEXT,"
 	      "memberclass TEXT);");
-  list.append("INSERT INTO member_temporary SELECT * FROM member;"
-	      "DROP TABLE member;");
+  list.append("INSERT INTO member_temporary SELECT * FROM member;");
+  list.append("DROP TABLE member;");
   list.append("ALTER TABLE member_temporary RENAME TO member;");
   list.append("CREATE TABLE journal_temporary "
 	      "("
@@ -3820,9 +3833,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "keyword TEXT,"
 	      "type VARCHAR(16) NOT NULL DEFAULT 'Journal',"
 	      "UNIQUE (id, issueno, issuevolume));");
-  list.append("INSERT INTO journal_temporary SELECT * FROM journal;"
-	      "DROP TABLE journal;"
-	      "ALTER TABLE journal_temporary RENAME TO journal;");
+  list.append("INSERT INTO journal_temporary SELECT * FROM journal;");
+  list.append("DROP TABLE journal;");
+  list.append("ALTER TABLE journal_temporary RENAME TO journal;");
   list.append("CREATE TABLE magazine_temporary"
 	      "("
 	      "id VARCHAR(32),"
@@ -3852,4 +3865,47 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("INSERT INTO magazine_temporary SELECT * FROM magazine;");
   list.append("DROP TABLE magazine;");
   list.append("ALTER TABLE magazine_temporary RENAME TO magazine;");
+  list.append("CREATE TABLE IF NOT EXISTS grey_literature "
+	      "("
+	      "author TEXT NOT NULL,"
+	      "client TEXT,"
+	      "document_code_a TEXT NOT NULL,"
+	      "document_code_b TEXT NOT NULL,"
+	      "document_date TEXT NOT NULL,"
+	      "document_id TEXT NOT NULL PRIMARY KEY,"
+	      "document_status TEXT,"
+	      "document_title TEXT NOT NULL,"
+	      "document_type TEXT NOT NULL,"
+	      "job_number TEXT NOT NULL,"
+	      "location TEXT,"
+	      "myoid BIGINT UNIQUE,"
+	      "notes TEXT,"
+	      "type VARCHAR(16) NOT NULL DEFAULT 'Grey Literature');");
+
+  QString errors("");
+  int ct = 0;
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      QSqlQuery query(m_db);
+
+      if(!query.exec(list.at(i)))
+	{qDebug()<<list.at(i)<<query.lastError().text();
+	  errors.append(QString("Error %1: %2.\n").
+			arg(ct).arg(query.lastError().text()));
+	  ct += 1;
+	}
+    }
+
+  QApplication::restoreOverrideCursor();
+
+  if(!errors.isEmpty())
+    QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
+			  errors);
+  else
+    QMessageBox::information
+      (this,
+       tr("BiblioteQ: Information"),
+       tr("The database %1 was upgraded successfully.").
+       arg(m_db.databaseName()));
 }

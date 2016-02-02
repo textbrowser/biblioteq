@@ -371,6 +371,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertPhotograph(void)));
+  connect(ui.action_Upgrade_SQLite_Schema,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotUpgradeSqliteScheme(void)));
   connect(ui.action_Video_Game,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -4047,7 +4051,6 @@ void biblioteq::slotConnectDB(void)
 
   settings.setValue("previous_branch_name",
 		    br.branch_name->currentText());
-  biblioteq_misc_functions::updateSQLiteDatabase(m_db);
   m_selectedBranch = m_branches[br.branch_name->currentText()];
 
   if(m_connected_bar_label != 0)
