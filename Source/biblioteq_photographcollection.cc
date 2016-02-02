@@ -1156,6 +1156,9 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      columnIdx = 0;
 	    }
 	}
+
+      pc.graphicsView->scene()->setSceneRect
+	(pc.graphicsView->scene()->itemsBoundingRect());
     }
 }
 
@@ -2109,6 +2112,8 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	if(!scene->items().isEmpty())
 	  scene->items().at(0)->setData(0, item->data(0));
 
+	scene->setSceneRect(scene->itemsBoundingRect());
+
 	QGraphicsView *view = scene->views().value(0);
 
 	if(view)
@@ -2601,6 +2606,7 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 		  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	      item->setPixmap(QPixmap().fromImage(image));
+	      scene->setSceneRect(scene->itemsBoundingRect());
 	    }
 	}
     }

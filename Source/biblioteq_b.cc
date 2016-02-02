@@ -3478,6 +3478,7 @@ int biblioteq::populateTable(const int search_type_arg,
 #endif
     }
 
+  ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
   progress.hide();
   ui.table->setSortingEnabled(true);
 
