@@ -2190,25 +2190,9 @@ void biblioteq_misc_functions::exportPhotographs
 	  QByteArray bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
 	  QImage image;
-	  const char *format = 0;
+	  QString format(imageFormatGuess(bytes));
 
-	  if(bytes.size() >= 4 &&
-	     tolower(bytes[1]) == 'p' &&
-	     tolower(bytes[2]) == 'n' &&
-	     tolower(bytes[3]) == 'g')
-	    format = "PNG";
-	  else if(bytes.size() >= 10 &&
-		  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
-		  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
-	    format = "JPG";
-	  else if(bytes.size() >= 2 &&
-		  tolower(bytes[0]) == 'b' &&
-		  tolower(bytes[1]) == 'm')
-	    format = "BMP";
-	  else // Guess!
-	    format = "JPG";
-
-	  image.loadFromData(bytes, format);
+	  image.loadFromData(bytes, format.toLatin1().constData());
 
 	  if(!image.isNull())
 	    {
@@ -2216,7 +2200,7 @@ void biblioteq_misc_functions::exportPhotographs
 	      image.save
 		(destinationPath + QDir::separator() +
 		 QString("%1_%2.%3").arg(id).arg(i).arg(format).toLower(),
-		 format, 100);
+		 format.toLatin1().constData(), 100);
 	    }
 	}
     }
@@ -2279,4 +2263,31 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return dnt;
+}
+
+/*
+** -- imageFormatGuess() --
+*/
+
+QString biblioteq_misc_functions::imageFormatGuess(const QByteArray &bytes)
+{
+  QString format("");
+
+  if(bytes.size() >= 4 &&
+     tolower(bytes[1]) == 'p' &&
+     tolower(bytes[2]) == 'n' &&
+     tolower(bytes[3]) == 'g')
+    format = "PNG";
+  else if(bytes.size() >= 10 &&
+	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
+	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
+    format = "JPG";
+  else if(bytes.size() >= 2 &&
+	  tolower(bytes[0]) == 'b' &&
+	  tolower(bytes[1]) == 'm')
+    format = "BMP";
+  else // Guess!
+    format = "JPG";
+
+  return format;
 }

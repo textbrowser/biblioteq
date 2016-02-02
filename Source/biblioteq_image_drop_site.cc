@@ -206,25 +206,7 @@ void biblioteq_image_drop_site::clear(void)
 QString biblioteq_image_drop_site::determineFormat
 (const QByteArray &bytes) const
 {
-  QString imgf("");
-
-  if(bytes.size() >= 4 &&
-     tolower(bytes[1]) == 'p' &&
-     tolower(bytes[2]) == 'n' &&
-     tolower(bytes[3]) == 'g')
-    imgf = "PNG";
-  else if(bytes.size() >= 10 &&
-	  tolower(bytes[6]) == 'j' && tolower(bytes[7]) == 'f' &&
-	  tolower(bytes[8]) == 'i' && tolower(bytes[9]) == 'f')
-    imgf = "JPG";
-  else if(bytes.size() >= 2 &&
-	  tolower(bytes[0]) == 'b' &&
-	  tolower(bytes[1]) == 'm')
-    imgf = "BMP";
-  else // Guess!
-    imgf = "JPG";
-
-  return imgf;
+  return biblioteq_misc_functions::imageFormatGuess(bytes);
 }
 
 /*
@@ -242,16 +224,7 @@ QString biblioteq_image_drop_site::determineFormat
   if(file.open(QIODevice::ReadOnly) && (bytesRead =
 					file.read(bytes.data(),
 						  bytes.length())) > 0)
-    {
-      if(bytesRead >= 4 && bytes[1] == 'P' && bytes[2] == 'N' &&
-	 bytes[3] == 'G')
-	imgf = "PNG";
-      else if(bytesRead >= 10 && bytes[6] == 'J' && bytes[7] == 'F' &&
-	      bytes[8] == 'I' && bytes[9] == 'F')
-	imgf = "JPG";
-      else if(bytesRead >= 2 && bytes[0] == 'B' && bytes[1] == 'M')
-	imgf = "BMP";
-    }
+    imgf = biblioteq_misc_functions::imageFormatGuess(bytes);
 
   if(imgf.isEmpty())
     {

@@ -52,6 +52,8 @@
 #endif
 #endif
 
+#include <limits>
+
 /*
 ** -- C Includes --
 */
@@ -209,7 +211,7 @@ void biblioteq::cleanup(void)
 
 void biblioteq::quit(const char *msg, const char *file, const int line)
 {
-  if(msg != 0 && strlen(msg) > 0)
+  if(msg != 0 && qstrnlen(msg, std::numeric_limits<uint>::max()) > 0)
     qDebug() << tr(msg)
 	     << tr(" in file ")
 	     << file << tr(", line ") << line

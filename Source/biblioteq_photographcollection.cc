@@ -294,8 +294,10 @@ void biblioteq_photographcollection::slotGo(void)
 	  buffer.close();
 	  bytes.clear();
 	  image = pc.thumbnail_collection->m_image;
-	  image = image.scaled
-	    (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	  if(!image.isNull())
+	    image = image.scaled
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
@@ -568,7 +570,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
     {
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
-      pc.importItems->setVisible(true);
+      pc.importItems->setEnabled(true);
       pc.resetButton->setVisible(true);
       str = QString(tr("BiblioteQ: Modify Photograph Collection Entry (")) +
 	pc.id_collection->text() + tr(")");
@@ -586,7 +588,7 @@ void biblioteq_photographcollection::updateWindow(const int state)
     {
       pc.okButton->setVisible(false);
       pc.addItemButton->setEnabled(false);
-      pc.importItems->setVisible(false);
+      pc.importItems->setEnabled(false);
       pc.resetButton->setVisible(false);
       str = QString(tr("BiblioteQ: View Photograph Collection Details (")) +
 	pc.id_collection->text() + tr(")");
@@ -629,7 +631,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       pc.okButton->setVisible(true);
       pc.addItemButton->setEnabled(true);
-      pc.importItems->setVisible(true);
+      pc.importItems->setEnabled(true);
       pc.resetButton->setVisible(true);
       pc.select_image_collection->setVisible(true);
       biblioteq_misc_functions::highlightWidget
@@ -1368,8 +1370,10 @@ void biblioteq_photographcollection::slotInsertItem(void)
       buffer.close();
       bytes.clear();
       image = photo.thumbnail_item->m_image;
-      image = image.scaled
-	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(!image.isNull())
+	image = image.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
@@ -1759,8 +1763,10 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       buffer.close();
       bytes.clear();
       image = photo.thumbnail_item->m_image;
-      image = image.scaled
-	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(!image.isNull())
+	image = image.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
@@ -2065,14 +2071,16 @@ void biblioteq_photographcollection::loadPhotographFromItem
   if(query.exec())
     if(query.next())
       {
+	QByteArray bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
 	QImage image;
 
-	image.loadFromData
-	  (QByteArray::fromBase64(query.value(0).
-				  toByteArray()));
+	image.loadFromData(bytes);
 
 	if(image.isNull())
-	  image.loadFromData(query.value(0).toByteArray());
+	  {
+	    bytes = query.value(0).toByteArray();
+	    image.loadFromData(bytes);
+	  }
 
 	if(image.isNull())
 	  image = QImage(":/no_image.png");
@@ -2082,16 +2090,20 @@ void biblioteq_photographcollection::loadPhotographFromItem
 
 	size.setHeight((percent * size.height()) / 100);
 	size.setWidth((percent * size.width()) / 100);
-	image = image.scaled
-	  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	if(!image.isNull())
+	  image = image.scaled
+	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
 	pc.graphicsView->scene()->clearSelection();
 	scene->clear();
-	scene->addPixmap(QPixmap().fromImage(image));
 
-	QGraphicsPixmapItem *pixmap = scene->
-	  addPixmap(QPixmap().fromImage(originalImage));
+	QGraphicsPixmapItem *pixmapItem = scene->addPixmap
+	  (QPixmap().fromImage(image));
 
-	pixmap->setVisible(false);
+	if(pixmapItem)
+	  pixmapItem->setData(1, bytes);
+
 	item->setSelected(true);
 
 	if(!scene->items().isEmpty())
@@ -2429,13 +2441,17 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       QBuffer buffer;
       QByteArray bytes2;
+      QString format(biblioteq_misc_functions::imageFormatGuess(bytes1));
 
       buffer.setBuffer(&bytes2);
       buffer.open(QIODevice::WriteOnly);
-      image = image.scaled
-	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-      if(image.isNull() || !image.save(&buffer, 0, 100))
+      if(!image.isNull())
+	image = image.scaled
+	  (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+      if(image.isNull() || !image.save(&buffer, format.toLatin1().constData(),
+				       100))
 	bytes2 = bytes1;
 
       query.bindValue(15, bytes2.toBase64());
@@ -2565,22 +2581,27 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 
   if(scene)
     {
-      QGraphicsPixmapItem *item1 = qgraphicsitem_cast
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
 	<QGraphicsPixmapItem *> (scene->items().value(0));
-      QGraphicsPixmapItem *item2 = qgraphicsitem_cast
-	<QGraphicsPixmapItem *> (scene->items().value(1));
 
-      if(item1 && item2)
+      if(item)
 	{
-	  QPixmap pixmap(item2->pixmap());
-	  QSize size(pixmap.size());
-	  int percent = QString(text).remove("%").toInt();
+	  QImage image;
 
-	  size.setHeight((percent * size.height()) / 100);
-	  size.setWidth((percent * size.width()) / 100);
-	  pixmap = pixmap.scaled
-	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-	  item1->setPixmap(pixmap);
+	  if(image.loadFromData(item->data(1).toByteArray()))
+	    {
+	      QSize size(image.size());
+	      int percent = QString(text).remove("%").toInt();
+
+	      size.setHeight((percent * size.height()) / 100);
+	      size.setWidth((percent * size.width()) / 100);
+
+	      if(!image.isNull())
+		image = image.scaled
+		  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+	      item->setPixmap(QPixmap().fromImage(image));
+	    }
 	}
     }
 }
