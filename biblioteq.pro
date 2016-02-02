@@ -12,11 +12,12 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
+QMAKE_DISTCLEAN += -r Include
 QMAKE_EXTRA_TARGETS = purge
 QMAKE_STRIP	= echo
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Include
+INCLUDEPATH	+= Include Source
 LIBS		+= -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 
@@ -49,26 +50,26 @@ FORMS           = UI/adminsetup.ui \
 
 UI_HEADERS_DIR  = Include
 
-HEADERS		= Include/biblioteq.h \
-                  Include/biblioteq_bgraphicsscene.h \
-		  Include/biblioteq_book.h \
-		  Include/biblioteq_borrowers_editor.h \
-		  Include/biblioteq_cd.h \
-		  Include/biblioteq_copy_editor.h \
-		  Include/biblioteq_copy_editor_book.h \
-                  Include/biblioteq_dbenumerations.h \
-		  Include/biblioteq_dvd.h \
-                  Include/biblioteq_generic_thread.h \
-		  Include/biblioteq_hyperlinked_text_edit.h \
-		  Include/biblioteq_image_drop_site.h \
-		  Include/biblioteq_item.h \
-		  Include/biblioteq_magazine.h \
-		  Include/biblioteq_main_table.h \
-                  Include/biblioteq_myqstring.h \
-		  Include/biblioteq_photographcollection.h \
-		  Include/biblioteq_sruResults.h \
-		  Include/biblioteq_videogame.h \
-		  Include/biblioteq_z3950results.h
+HEADERS		= Source/biblioteq.h \
+                  Source/biblioteq_bgraphicsscene.h \
+		  Source/biblioteq_book.h \
+		  Source/biblioteq_borrowers_editor.h \
+		  Source/biblioteq_cd.h \
+		  Source/biblioteq_copy_editor.h \
+		  Source/biblioteq_copy_editor_book.h \
+                  Source/biblioteq_dbenumerations.h \
+		  Source/biblioteq_dvd.h \
+                  Source/biblioteq_generic_thread.h \
+		  Source/biblioteq_hyperlinked_text_edit.h \
+		  Source/biblioteq_image_drop_site.h \
+		  Source/biblioteq_item.h \
+		  Source/biblioteq_magazine.h \
+		  Source/biblioteq_main_table.h \
+                  Source/biblioteq_myqstring.h \
+		  Source/biblioteq_photographcollection.h \
+		  Source/biblioteq_sruResults.h \
+		  Source/biblioteq_videogame.h \
+		  Source/biblioteq_z3950results.h
 
 SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_b.cc \
