@@ -11,7 +11,7 @@
 ** -- Local Includes --
 */
 
-#include "ui_dbenumerations.h"
+#include "ui_biblioteq_dbenumerations.h"
 
 class biblioteq_dbenumerations: public QMainWindow
 {

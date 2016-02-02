@@ -16,8 +16,8 @@
 
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_photograph.h"
-#include "ui_photographinfo.h"
+#include "ui_biblioteq_photograph.h"
+#include "ui_biblioteq_photographinfo.h"
 
 class biblioteq_bgraphicsscene;
 class biblioteq_borrowers_editor;

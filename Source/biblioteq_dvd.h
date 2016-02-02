@@ -17,7 +17,7 @@
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_dvdinfo.h"
+#include "ui_biblioteq_dvdinfo.h"
 
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;

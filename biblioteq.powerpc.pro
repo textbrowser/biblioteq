@@ -21,32 +21,32 @@ INCLUDEPATH	+= Include Source
 LIBS		+= -Wl,-R/usr/local/lib -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 
-FORMS           = UI/adminsetup.ui \
-		  UI/allinfo.ui \
-		  UI/bookcopybrowser.ui \
-		  UI/bookinfo.ui \
-                  UI/borrowers.ui \
-		  UI/branch_s.ui \
-		  UI/cdinfo.ui \
-		  UI/copybrowser.ui \
-		  UI/customquery.ui \
-		  UI/dbenumerations.ui \
-		  UI/dvdinfo.ui \
-		  UI/errordiag.ui \
-		  UI/history.ui \
-		  UI/maginfo.ui \
-		  UI/mainwindow.ui \
-		  UI/members_browser.ui \
-		  UI/password.ui \
-                  UI/passwordPrompt.ui \
-                  UI/photograph.ui \
-                  UI/photographinfo.ui \
-                  UI/photographview.ui \
-                  UI/sruResults.ui \
-                  UI/tracks.ui \
-                  UI/userinfo.ui \
-                  UI/videogameinfo.ui \
-                  UI/z3950results.ui
+FORMS           = UI/biblioteq_adminsetup.ui \
+		  UI/biblioteq_allinfo.ui \
+		  UI/biblioteq_bookcopybrowser.ui \
+		  UI/biblioteq_bookinfo.ui \
+                  UI/biblioteq_borrowers.ui \
+		  UI/biblioteq_branch_s.ui \
+		  UI/biblioteq_cdinfo.ui \
+		  UI/biblioteq_copybrowser.ui \
+		  UI/biblioteq_customquery.ui \
+		  UI/biblioteq_dbenumerations.ui \
+		  UI/biblioteq_dvdinfo.ui \
+		  UI/biblioteq_errordiag.ui \
+		  UI/biblioteq_history.ui \
+		  UI/biblioteq_maginfo.ui \
+		  UI/biblioteq_mainwindow.ui \
+		  UI/biblioteq_members_browser.ui \
+		  UI/biblioteq_password.ui \
+                  UI/biblioteq_passwordPrompt.ui \
+                  UI/biblioteq_photograph.ui \
+                  UI/biblioteq_photographinfo.ui \
+                  UI/biblioteq_photographview.ui \
+                  UI/biblioteq_sruResults.ui \
+                  UI/biblioteq_tracks.ui \
+                  UI/biblioteq_userinfo.ui \
+                  UI/biblioteq_videogameinfo.ui \
+                  UI/biblioteq_z3950results.ui
 
 UI_HEADERS_DIR  = Include
 

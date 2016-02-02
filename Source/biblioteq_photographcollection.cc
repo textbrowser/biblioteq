@@ -18,7 +18,7 @@
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_graphicsitempixmap.h"
 #include "biblioteq_photographcollection.h"
-#include "ui_photographview.h"
+#include "ui_biblioteq_photographview.h"
 
 extern biblioteq *qmain;
 

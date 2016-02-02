@@ -23,9 +23,9 @@
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_z3950results.h"
-#include "ui_borrowers.h"
-#include "ui_maginfo.h"
-#include "ui_passwordPrompt.h"
+#include "ui_biblioteq_borrowers.h"
+#include "ui_biblioteq_maginfo.h"
+#include "ui_biblioteq_passwordPrompt.h"
 
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;

@@ -17,8 +17,8 @@
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_borrowers.h"
-#include "ui_videogameinfo.h"
+#include "ui_biblioteq_borrowers.h"
+#include "ui_biblioteq_videogameinfo.h"
 
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor;

@@ -18,7 +18,7 @@
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_bookcopybrowser.h"
+#include "ui_biblioteq_bookcopybrowser.h"
 
 class biblioteq_copy_editor_book: public biblioteq_copy_editor
 {

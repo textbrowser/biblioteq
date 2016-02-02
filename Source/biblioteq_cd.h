@@ -18,8 +18,8 @@
 #include "biblioteq_copy_editor.h"
 #include "biblioteq_misc_functions.h"
 #include "biblioteq_item.h"
-#include "ui_cdinfo.h"
-#include "ui_tracks.h"
+#include "ui_biblioteq_cdinfo.h"
+#include "ui_biblioteq_tracks.h"
 
 class biblioteq_copy_editor;
 

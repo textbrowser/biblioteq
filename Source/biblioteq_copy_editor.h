@@ -17,7 +17,7 @@
 
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_copybrowser.h"
+#include "ui_biblioteq_copybrowser.h"
 
 class biblioteq_copy_editor: public QDialog
 {

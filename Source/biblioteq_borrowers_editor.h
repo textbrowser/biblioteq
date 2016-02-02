@@ -16,7 +16,7 @@
 #include "biblioteq.h"
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_borrowers.h"
+#include "ui_biblioteq_borrowers.h"
 
 class biblioteq_borrowers_editor: public QDialog
 {

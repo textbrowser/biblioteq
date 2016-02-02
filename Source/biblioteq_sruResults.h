@@ -13,7 +13,7 @@
 ** -- Local Includes --
 */
 
-#include "ui_sruResults.h"
+#include "ui_biblioteq_sruResults.h"
 
 class biblioteq_magazine;
 

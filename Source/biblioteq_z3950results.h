@@ -13,7 +13,7 @@
 ** -- Local Includes --
 */
 
-#include "ui_z3950results.h"
+#include "ui_biblioteq_z3950results.h"
 
 class biblioteq_magazine;
 

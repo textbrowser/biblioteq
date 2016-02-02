@@ -25,9 +25,9 @@
 #include "biblioteq_generic_thread.h"
 #include "biblioteq_item.h"
 #include "biblioteq_misc_functions.h"
-#include "ui_bookinfo.h"
-#include "ui_borrowers.h"
-#include "ui_passwordPrompt.h"
+#include "ui_biblioteq_bookinfo.h"
+#include "ui_biblioteq_borrowers.h"
+#include "ui_biblioteq_passwordPrompt.h"
 
 class biblioteq_borrowers_editor;
 class biblioteq_copy_editor_book;
