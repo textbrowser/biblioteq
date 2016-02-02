@@ -51,8 +51,9 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void loadPhotographFromItem(QGraphicsScene *scene,
-			      biblioteq_graphicsitempixmap *item);
-  void loadPhotographFromItemInNewWindow(biblioteq_graphicsitempixmap *item);
+			      QGraphicsPixmapItem *item,
+			      const int percent);
+  void loadPhotographFromItemInNewWindow(QGraphicsPixmapItem *item);
   void showPhotographs(const int page);
   void storeData(void);
 
@@ -63,6 +64,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void slotDeleteItem(void);
   void slotExportPhotographs(void);
   void slotGo(void);
+  void slotImageViewSizeChanged(const QString &text);
   void slotImportItems(void);
   void slotInsertItem(void);
   void slotModifyItem(void);

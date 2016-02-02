@@ -1129,8 +1129,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
 	  if(!image.isNull())
 	    image = image.scaled
-	      (126, 187, Qt::KeepAspectRatio,
-	       Qt::SmoothTransformation);
+	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
 	    (QPixmap().fromImage(image), 0);
@@ -2047,7 +2046,7 @@ void biblioteq_photographcollection::slotViewPhotograph(void)
 */
 
 void biblioteq_photographcollection::loadPhotographFromItem
-(QGraphicsScene *scene, biblioteq_graphicsitempixmap *item)
+(QGraphicsScene *scene, QGraphicsPixmapItem *item, const int percent)
 {
   if(!item || !scene)
     return;
@@ -2078,13 +2077,33 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	if(image.isNull())
 	  image = QImage(":/no_image.png");
 
+	QImage originalImage(image);
+	QSize size(image.size());
+
+	size.setHeight((percent * size.height()) / 100);
+	size.setWidth((percent * size.width()) / 100);
+	image = image.scaled
+	  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	pc.graphicsView->scene()->clearSelection();
 	scene->clear();
 	scene->addPixmap(QPixmap().fromImage(image));
+
+	QGraphicsPixmapItem *pixmap = scene->
+	  addPixmap(QPixmap().fromImage(originalImage));
+
+	pixmap->setVisible(false);
 	item->setSelected(true);
 
 	if(!scene->items().isEmpty())
 	  scene->items().at(0)->setData(0, item->data(0));
+
+	QGraphicsView *view = scene->views().value(0);
+
+	if(view)
+	  {
+	    view->horizontalScrollBar()->setValue(0);
+	    view->verticalScrollBar()->setValue(0);
+	  }
       }
 
   QApplication::restoreOverrideCursor();
@@ -2095,7 +2114,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 */
 
 void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
-(biblioteq_graphicsitempixmap *item)
+(QGraphicsPixmapItem *item)
 {
   if(item)
     {
@@ -2118,13 +2137,19 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		  SIGNAL(clicked(void)),
 		  this,
 		  SLOT(slotViewPreviousPhotograph(void)));
+	  connect(ui.view_size,
+		  SIGNAL(currentIndexChanged(const QString &)),
+		  this,
+		  SLOT(slotImageViewSizeChanged(const QString &)));
 
 	  QGraphicsScene *scene = 0;
 
 	  if((scene = new(std::nothrow) QGraphicsScene(mainWindow)) != 0)
 	    {
 	      ui.view->setScene(scene);
-	      loadPhotographFromItem(scene, item);
+	      loadPhotographFromItem
+		(scene, item,
+		 ui.view_size->currentText().remove("%").toInt());
 	      biblioteq_misc_functions::center(mainWindow, this);
 	      mainWindow->show();
 	    }
@@ -2162,7 +2187,9 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
   if(!parent)
     return;
 
+  QComboBox *comboBox = parent->findChild<QComboBox *> ();
   QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  int percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
 
   if(scene)
     {
@@ -2187,11 +2214,10 @@ void biblioteq_photographcollection::slotViewNextPhotograph(void)
 	  if(idx >= list.size())
 	    idx = 0;
 
-	  biblioteq_graphicsitempixmap *next =
-	    qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (list.
-								value(idx));
-
-	  loadPhotographFromItem(scene, next);
+	  loadPhotographFromItem
+	    (scene,
+	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	     percent);
 	}
     }
 }
@@ -2224,7 +2250,9 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
   if(!parent)
     return;
 
+  QComboBox *comboBox = parent->findChild<QComboBox *> ();
   QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+  int percent = comboBox ? comboBox->currentText().remove("%").toInt() : 100;
 
   if(scene)
     {
@@ -2249,11 +2277,10 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 	  if(idx < 0)
 	    idx = list.size() - 1;
 
-	  biblioteq_graphicsitempixmap *next =
-	    qgraphicsitem_cast<biblioteq_graphicsitempixmap *> (list.
-								value(idx));
-
-	  loadPhotographFromItem(scene, next);
+	  loadPhotographFromItem
+	    (scene,
+	     qgraphicsitem_cast<QGraphicsPixmapItem *> (list.value(idx)),
+	     percent);
 	}
     }
 }
@@ -2273,7 +2300,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 #endif
   dialog.setDirectory(QDir::homePath());
   dialog.setFileMode(QFileDialog::Directory);
-  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Image Import"));
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Import"));
   dialog.exec();
 
   if(dialog.result() != QDialog::Accepted)
@@ -2341,20 +2368,20 @@ void biblioteq_photographcollection::slotImportItems(void)
       QApplication::processEvents();
 #endif
 
-      QByteArray bytes;
+      QByteArray bytes1;
       QFile file(files.at(i).absoluteFilePath());
 
       if(!file.open(QIODevice::ReadOnly))
 	continue;
       else
-	bytes = file.readAll();
+	bytes1 = file.readAll();
 
-      if(static_cast<int> (bytes.length()) != file.size())
+      if(static_cast<int> (bytes1.length()) != file.size())
 	continue;
 
       QImage image;
 
-      if(!image.loadFromData(bytes))
+      if(!image.loadFromData(bytes1))
 	continue;
 
       if(qmain->getDB().driverName() != "QSQLITE")
@@ -2398,15 +2425,20 @@ void biblioteq_photographcollection::slotImportItems(void)
       query.bindValue(11, "N/A");
       query.bindValue(12, "N/A");
       query.bindValue(13, "N/A");
-      query.bindValue(14, bytes.toBase64());
+      query.bindValue(14, bytes1.toBase64());
 
-      QBuffer buffer(&bytes);
+      QBuffer buffer;
+      QByteArray bytes2;
 
+      buffer.setBuffer(&bytes2);
       buffer.open(QIODevice::WriteOnly);
       image = image.scaled
 	(126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-      image.save(&buffer, 0, 100);
-      query.bindValue(15, bytes.toBase64());
+
+      if(image.isNull() || !image.save(&buffer, 0, 100))
+	bytes2 = bytes1;
+
+      query.bindValue(15, bytes2.toBase64());
 
       if(qmain->getDB().driverName() == "QSQLITE")
 	{
@@ -2426,7 +2458,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       if(!query.exec())
 	{
 	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to import image.")),
+			  QString(tr("Unable to import photograph.")),
 			  query.lastError().text(), __FILE__, __LINE__);
 	  goto db_rollback;
 	}
@@ -2498,4 +2530,57 @@ void biblioteq_photographcollection::slotImportItems(void)
   QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
 			tr("Unable to import all of the images."));
 
+}
+
+/*
+** -- slotImageViewSizeChanged() --
+*/
+
+void biblioteq_photographcollection::slotImageViewSizeChanged
+(const QString &text)
+{
+  QComboBox *comboBox = qobject_cast<QComboBox *> (sender());
+
+  if(!comboBox)
+    return;
+
+  QWidget *parent = comboBox->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item1 = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+      QGraphicsPixmapItem *item2 = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(1));
+
+      if(item1 && item2)
+	{
+	  QPixmap pixmap(item2->pixmap());
+	  QSize size(pixmap.size());
+	  int percent = QString(text).remove("%").toInt();
+
+	  size.setHeight((percent * size.height()) / 100);
+	  size.setWidth((percent * size.width()) / 100);
+	  pixmap = pixmap.scaled
+	    (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	  item1->setPixmap(pixmap);
+	}
+    }
 }
