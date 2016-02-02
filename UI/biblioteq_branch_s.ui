@@ -23,7 +23,10 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Branch Name</string>
+        <string>&amp;Branch Name</string>
+       </property>
+       <property name="buddy">
+        <cstring>branch_name</cstring>
        </property>
       </widget>
      </item>
@@ -121,7 +124,10 @@
           <item row="0" column="1">
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Userid</string>
+             <string>&amp;Userid</string>
+            </property>
+            <property name="buddy">
+             <cstring>userid</cstring>
             </property>
            </widget>
           </item>
@@ -167,7 +173,10 @@
           <item row="1" column="1">
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>Password</string>
+             <string>&amp;Password</string>
+            </property>
+            <property name="buddy">
+             <cstring>password</cstring>
             </property>
            </widget>
           </item>

@@ -48,7 +48,10 @@
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>Due Date</string>
+              <string>&amp;Due Date</string>
+             </property>
+             <property name="buddy">
+              <cstring>dueDate</cstring>
              </property>
             </widget>
            </item>
