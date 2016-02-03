@@ -56,6 +56,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void loadPhotographFromItemInNewWindow(QGraphicsPixmapItem *item);
   void showPhotographs(const int page);
   void storeData(void);
+  void updateTablePhotographCount(const int count);
 
  private slots:
   void slotAddItem(void);

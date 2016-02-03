@@ -1441,6 +1441,8 @@ void biblioteq_photographcollection::slotInsertItem(void)
   if(query.exec())
     if(query.next())
       {
+	updateTablePhotographCount(query.value(0).toInt());
+
 	int i = PHOTOGRAPHS_PER_PAGE;
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -1923,6 +1925,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   if(query.exec())
     if(query.next())
       {
+	updateTablePhotographCount(query.value(0).toInt());
+
 	int i = PHOTOGRAPHS_PER_PAGE;
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -2513,6 +2517,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(query.exec())
     if(query.next())
       {
+	updateTablePhotographCount(query.value(0).toInt());
+
 	int i = PHOTOGRAPHS_PER_PAGE;
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
@@ -2609,5 +2615,41 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 	      scene->setSceneRect(scene->itemsBoundingRect());
 	    }
 	}
+    }
+}
+
+/*
+** -- updateTablePhotographCount() --
+*/
+
+void biblioteq_photographcollection::updateTablePhotographCount
+(const int count)
+{
+  if((qmain->getTypeFilterString() == "All" ||
+      qmain->getTypeFilterString() == "All Available" ||
+      qmain->getTypeFilterString() == "All Overdue" ||
+      qmain->getTypeFilterString() == "All Requested" ||
+      qmain->getTypeFilterString() == "All Reserved" ||
+      qmain->getTypeFilterString() == "Photograph Collections") &&
+     m_oid == biblioteq_misc_functions::getColumnString
+     (qmain->getUI().table,
+      m_row, qmain->getUI().table->columnNumber("MYOID")) &&
+     biblioteq_misc_functions::getColumnString
+     (qmain->getUI().table,
+      m_row, qmain->getUI().table->columnNumber("Type")) ==
+     "Photograph Collection")
+    {
+      qmain->getUI().table->setSortingEnabled(false);
+
+      QStringList names(qmain->getUI().table->columnNames());
+
+      for(int i = 0; i < names.size(); i++)
+	if(names.at(i) == "Photograph Count")
+	  {
+	    qmain->getUI().table->item(m_row, i)->
+	      setText(QString::number(count));
+	    qmain->slotDisplaySummary();
+	    break;
+	  }
     }
 }
