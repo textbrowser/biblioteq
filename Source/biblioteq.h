@@ -117,8 +117,7 @@ class userinfo_diag_class: public QDialog
        m_userinfo.expirationdate->date().toString(Qt::ISODate))
       list << "expiration_date";
 
-    if(m_memberProperties["overdue_fees"] !=
-       QString::number(m_userinfo.overduefees->value()))
+    if(m_memberProperties["overdue_fees"] != m_userinfo.overduefees->text())
       list << "overdue_fees";
 
     if(m_memberProperties["comments"] != m_userinfo.comments->toPlainText().
@@ -164,7 +163,8 @@ class userinfo_diag_class: public QDialog
     QDialog::changeEvent(event);
   }
 
-  void closeEvent(QCloseEvent *event)
+ private slots:
+  void done(int r)
   {
     QString str("");
 
@@ -175,14 +175,9 @@ class userinfo_diag_class: public QDialog
 	  arg(str),
 	  QMessageBox::Yes | QMessageBox::No,
 	  QMessageBox::No) == QMessageBox::No)
-	{
-	  if(event)
-	    event->ignore();
+	return;
 
-	  return;
-	}
-
-    QDialog::closeEvent(event);
+    QDialog::done(r);
   }
 };
 
