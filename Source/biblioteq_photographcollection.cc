@@ -2147,6 +2147,10 @@ void biblioteq_photographcollection::loadPhotographFromItemInNewWindow
 		  SIGNAL(clicked(void)),
 		  mainWindow,
 		  SLOT(close(void)));
+	  connect(ui.exportItem,
+		  SIGNAL(clicked(void)),
+		  this,
+		  SLOT(slotExportItem(void)));
 	  connect(ui.next,
 		  SIGNAL(clicked(void)),
 		  this,
@@ -2651,5 +2655,76 @@ void biblioteq_photographcollection::updateTablePhotographCount
 	    qmain->slotDisplaySummary();
 	    break;
 	  }
+    }
+}
+
+/*
+** -- slotExportItem() --
+*/
+
+void biblioteq_photographcollection::slotExportItem(void)
+{
+  QPushButton *pushButton = qobject_cast<QPushButton *> (sender());
+
+  if(!pushButton)
+    return;
+
+  QWidget *parent = pushButton->parentWidget();
+
+  do
+    {
+      if(!parent)
+	break;
+
+      if(qobject_cast<QMainWindow *> (parent))
+	break;
+
+      parent = parent->parentWidget();
+    }
+  while(true);
+
+  if(!parent)
+    return;
+
+  QByteArray bytes;
+  QGraphicsScene *scene = parent->findChild<QGraphicsScene *> ();
+
+  if(scene)
+    {
+      QGraphicsPixmapItem *item = qgraphicsitem_cast
+	<QGraphicsPixmapItem *> (scene->items().value(0));
+
+      if(item)
+	bytes = item->data(1).toByteArray();
+    }
+
+  if(bytes.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+#endif
+#endif
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::AnyFile);
+  dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Photograph "
+			   "Export"));
+  dialog.selectFile(QString("biblioteq-image-export.%1").
+		    arg(biblioteq_misc_functions::imageFormatGuess(bytes)));
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      QFile file(dialog.selectedFiles().value(0));
+
+      if(file.open(QIODevice::WriteOnly))
+	{
+	  file.write(bytes);
+	  file.flush();
+	  file.close();
+	}
     }
 }
