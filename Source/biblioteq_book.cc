@@ -2657,7 +2657,6 @@ void biblioteq_book::slotSelectImage(void)
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == id.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));

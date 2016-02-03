@@ -991,7 +991,6 @@ void biblioteq_photographcollection::slotSelectImage(void)
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == pc.select_image_collection)
     dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection "

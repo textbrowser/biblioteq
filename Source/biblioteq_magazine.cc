@@ -2614,7 +2614,6 @@ void biblioteq_magazine::slotSelectImage(void)
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setDirectory(QDir::homePath());
-  dialog.setNameFilter("Image Files (*.bmp *.jpg *.jpeg *.png)");
 
   if(button == ma.frontButton)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
