@@ -29,11 +29,11 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   Q_OBJECT
 
  public:
-  static const int PHOTOGRAPHS_PER_PAGE = 25;
   biblioteq_photographcollection(QMainWindow *parentArg,
 				 const QString &oidArg,
 				 const int rowArg);
   ~biblioteq_photographcollection();
+  static int photographsPerPage(void);
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state, const QString &behavior = "");

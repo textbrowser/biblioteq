@@ -22,11 +22,7 @@ static void qt_graphicsItem_highlightSelected
   const qreal pad = 0.0;
   const qreal penWidth = 5.0;
 
-  item->setOpacity(0.25);
   painter->setPen(QPen(bgcolor, penWidth, Qt::SolidLine));
-  painter->setBrush(Qt::NoBrush);
-  painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
-  painter->setPen(QPen(option->palette.windowText(), 0, Qt::SolidLine));
   painter->setBrush(Qt::NoBrush);
   painter->drawRect(item->boundingRect().adjusted(pad, pad, -pad, -pad));
 }
@@ -47,8 +43,6 @@ public:
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 	     QWidget *widget = 0)
   {
-    setOpacity(1.0);
-
     QGraphicsPixmapItem::paint(painter, option, widget);
 
     if(option)

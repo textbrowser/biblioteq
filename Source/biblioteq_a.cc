@@ -744,6 +744,8 @@ biblioteq::biblioteq(void):QMainWindow()
       ui.menuEntriesPerPage->addAction(action);
     }
 
+  preparePhotographsPerPageMenu();
+
   QAction *action = 0;
   QActionGroup *group2 = 0;
 

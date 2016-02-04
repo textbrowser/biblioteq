@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QSettings>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QtCore/qmath.h>
@@ -82,7 +83,7 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
   pc.graphicsView->setSceneRect(0, 0,
 				5 * 150,
-				PHOTOGRAPHS_PER_PAGE / 5 * 200 + 15);
+				photographsPerPage() / 5 * 200 + 15);
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -765,7 +766,7 @@ void biblioteq_photographcollection::modify(const int state,
 	  if(query.exec())
 	    if(query.next())
 	      {
-		int i = PHOTOGRAPHS_PER_PAGE;
+		int i = photographsPerPage();
 
 		pages = qCeil(query.value(0).toDouble() / qMax(1, i));
 	      }
@@ -1096,8 +1097,8 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 		"LIMIT ? "
 		"OFFSET ?");
   query.bindValue(0, m_oid);
-  query.bindValue(1, PHOTOGRAPHS_PER_PAGE);
-  query.bindValue(2, PHOTOGRAPHS_PER_PAGE * (page - 1));
+  query.bindValue(1, photographsPerPage());
+  query.bindValue(2, photographsPerPage() * (page - 1));
 
   if(query.exec())
     {
@@ -1442,7 +1443,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
       {
 	updateTablePhotographCount(query.value(0).toInt());
 
-	int i = PHOTOGRAPHS_PER_PAGE;
+	int i = photographsPerPage();
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
@@ -1926,7 +1927,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       {
 	updateTablePhotographCount(query.value(0).toInt());
 
-	int i = PHOTOGRAPHS_PER_PAGE;
+	int i = photographsPerPage();
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
@@ -2522,7 +2523,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       {
 	updateTablePhotographCount(query.value(0).toInt());
 
-	int i = PHOTOGRAPHS_PER_PAGE;
+	int i = photographsPerPage();
 
 	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
@@ -2726,4 +2727,15 @@ void biblioteq_photographcollection::slotExportItem(void)
 	  file.close();
 	}
     }
+}
+
+/*
+** -- photographsPerPage() --
+*/
+
+int biblioteq_photographcollection::photographsPerPage(void)
+{
+  QSettings settings;
+
+  return qBound(25, settings.value("photographs_per_page", 25).toInt(), 100);
 }

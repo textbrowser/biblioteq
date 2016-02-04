@@ -458,6 +458,11 @@
       <string>Preferred &amp;SRU Site</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menuPhotographs_per_Page">
+     <property name="title">
+      <string>P&amp;hotographs per Page</string>
+     </property>
+    </widget>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
@@ -470,6 +475,7 @@
     <addaction name="separator"/>
     <addaction name="menuEntriesPerPage"/>
     <addaction name="menu_Language"/>
+    <addaction name="menuPhotographs_per_Page"/>
     <addaction name="menuPreferredSRUSite"/>
     <addaction name="menuPreferredZ3950Server"/>
     <addaction name="separator"/>
@@ -1180,6 +1186,11 @@
   <action name="action_Upgrade_SQLite_Schema">
    <property name="text">
     <string>&amp;Upgrade SQLite Schema</string>
+   </property>
+  </action>
+  <action name="action1">
+   <property name="text">
+    <string>1</string>
    </property>
   </action>
  </widget>

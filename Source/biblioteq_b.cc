@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QSettings>
 #include <QSqlRecord>
 #include <QtDebug>
 
@@ -3907,4 +3908,60 @@ void biblioteq::slotUpgradeSqliteScheme(void)
        tr("BiblioteQ: Information"),
        tr("The database %1 was upgraded successfully.").
        arg(m_db.databaseName()));
+}
+
+/*
+** -- preparePhotographsPerPageMenu() --
+*/
+
+void biblioteq::preparePhotographsPerPageMenu(void)
+{
+  QActionGroup *group = 0;
+
+  if((group = new(std::nothrow) QActionGroup(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  ui.menuPhotographs_per_Page->clear();
+
+  QSettings settings;
+  int integer = qBound(25, settings.value("photographs_per_age", 25).toInt(),
+		       100);
+
+  for(int i = 1; i <= 4; i++)
+    {
+      QAction *action = 0;
+
+      action = group->addAction(QString(tr("&%1")).arg(25 * i));
+
+      if(!action)
+	continue;
+
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPhotographsPerPageChanged(void)));
+      action->setData(25 * i);
+      action->setCheckable(true);
+
+      if(action->data().toInt() == integer)
+	action->setChecked(true);
+
+      ui.menuPhotographs_per_Page->addAction(action);
+    }
+}
+
+/*
+** -- slotPhotographsPerPageChanged() --
+*/
+
+void biblioteq::slotPhotographsPerPageChanged(void)
+{
+  QAction *action = qobject_cast<QAction *> (sender());
+
+  if(!action)
+    return;
+
+  QSettings settings;
+
+  settings.setValue("photographs_per_age", action->data().toInt());
 }

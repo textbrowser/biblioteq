@@ -320,6 +320,7 @@ class biblioteq: public QMainWindow
   void emptyContainers(void);
   void initialUpdate(void);
   void prepareFilter(void);
+  void preparePhotographsPerPageMenu(void);
   void prepareRequestToolButton(const QString &typefilter);
   void readConfig(void);
   void readGlobalSetup(void);
@@ -372,6 +373,7 @@ class biblioteq: public QMainWindow
   void slotModifyBorrower(void);
   void slotNextPage(void);
   void slotPageClicked(const QString &link);
+  void slotPhotographsPerPageChanged(void);
   void slotPhotographSearch(void);
   void slotPopulateMembersBrowser(void);
   void slotPreviousPage(void);

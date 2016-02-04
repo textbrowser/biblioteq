@@ -137,23 +137,6 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="closeButton">
-        <property name="minimumSize">
-         <size>
-          <width>105</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&amp;Close</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../Icons/icons.qrc">
-          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="exportItem">
         <property name="minimumSize">
          <size>
@@ -167,6 +150,23 @@
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
           <normaloff>:/32x32/save.png</normaloff>:/32x32/save.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="closeButton">
+        <property name="minimumSize">
+         <size>
+          <width>105</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&amp;Close</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../Icons/icons.qrc">
+          <normaloff>:/16x16/cancel.png</normaloff>:/16x16/cancel.png</iconset>
         </property>
        </widget>
       </item>
@@ -215,8 +215,8 @@
   <tabstop>view_size</tabstop>
   <tabstop>view</tabstop>
   <tabstop>previous</tabstop>
-  <tabstop>closeButton</tabstop>
   <tabstop>exportItem</tabstop>
+  <tabstop>closeButton</tabstop>
   <tabstop>next</tabstop>
  </tabstops>
  <resources>

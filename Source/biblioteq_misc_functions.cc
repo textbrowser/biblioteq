@@ -3,6 +3,7 @@
 */
 
 #include <QDate>
+#include <QSettings>
 #include <QSqlField>
 #include <QSqlIndex>
 #include <QtDebug>
@@ -2022,15 +2023,15 @@ void biblioteq_misc_functions::exportPhotographs
     }
   else
     {
+      int integer = biblioteq_photographcollection::photographsPerPage();
+
       query.prepare
 	(QString("SELECT image FROM photograph WHERE "
 		 "collection_oid = ? AND image IS NOT NULL "
 		 "LIMIT %1 "
 		 "OFFSET %2").
-	 arg(biblioteq_photographcollection::PHOTOGRAPHS_PER_PAGE).
-	 arg(biblioteq_photographcollection::
-	     PHOTOGRAPHS_PER_PAGE * (pageOffset -
-				     1)));
+	 arg(integer).
+	 arg(integer * (pageOffset - 1)));
       query.bindValue(0, collectionOid);
     }
 
