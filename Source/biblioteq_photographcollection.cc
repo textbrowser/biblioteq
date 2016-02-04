@@ -278,9 +278,11 @@ void biblioteq_photographcollection::slotGo(void)
 
       if(!pc.thumbnail_collection->m_image.isNull())
 	{
+	  QBuffer buffer;
 	  QByteArray bytes;
-	  QBuffer buffer(&bytes);
 	  QImage image;
+
+	  buffer.setBuffer(&bytes);
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
@@ -322,8 +324,7 @@ void biblioteq_photographcollection::slotGo(void)
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	    (qmain->getDB(),
-	     errorstr);
+	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
 	    query.bindValue(7, value);
@@ -565,7 +566,7 @@ void biblioteq_photographcollection::search
 
 void biblioteq_photographcollection::updateWindow(const int state)
 {
-  QString str = "";
+  QString str("");
 
   if(state == biblioteq::EDITABLE)
     {
@@ -1107,8 +1108,8 @@ void biblioteq_photographcollection::showPhotographs(const int page)
       pc.graphicsView->verticalScrollBar()->setValue(0);
       pc.graphicsView->horizontalScrollBar()->setValue(0);
 
-      int rowIdx = 0;
       int columnIdx = 0;
+      int rowIdx = 0;
 
       while(query.next())
 	{
@@ -1354,9 +1355,11 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
   if(!photo.thumbnail_item->m_image.isNull())
     {
+      QBuffer buffer;
       QByteArray bytes;
-      QBuffer buffer(&bytes);
       QImage image;
+
+      buffer.setBuffer(&bytes);
 
       if(buffer.open(QIODevice::WriteOnly))
 	{
@@ -1466,6 +1469,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
   return;
 
  db_rollback:
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
@@ -1664,9 +1668,9 @@ void biblioteq_photographcollection::slotModifyItem(void)
 
 void biblioteq_photographcollection::storeData(void)
 {
-  QString classname = "";
-  QString objectname = "";
   QList<QWidget *> list;
+  QString classname("");
+  QString objectname("");
 
   m_widgetValues.clear();
   list << pc.thumbnail_collection
@@ -1834,6 +1838,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
   return;
 
  db_rollback:
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!qmain->getDB().rollback())
@@ -2343,21 +2348,6 @@ void biblioteq_photographcollection::slotImportItems(void)
   if(files.isEmpty())
     return;
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!qmain->getDB().transaction())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError(QString(tr("Database Error")),
-		      QString(tr("Unable to create a database transaction.")),
-		      qmain->getDB().lastError().text(), __FILE__, __LINE__);
-      QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to create a database transaction."));
-      return;
-    }
-  else
-    QApplication::restoreOverrideCursor();
-
   QProgressDialog progress(this);
 
 #ifdef Q_OS_MAC
@@ -2373,12 +2363,8 @@ void biblioteq_photographcollection::slotImportItems(void)
   progress.show();
   progress.update();
 
-  QSqlQuery query(qmain->getDB());
-  QString errorstr("");
   int imported = 0;
   int pages = 0;
-
-  query.setForwardOnly(true);
 
   for(int i = 0; i < files.size(); i++)
     {
@@ -2408,6 +2394,8 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       if(!image.loadFromData(bytes1))
 	continue;
+
+      QSqlQuery query(qmain->getDB());
 
       if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare("INSERT INTO photograph "
@@ -2471,6 +2459,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
       if(qmain->getDB().driverName() == "QSQLITE")
 	{
+	  QString errorstr("");
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(),
 	     errorstr);
@@ -2485,12 +2474,9 @@ void biblioteq_photographcollection::slotImportItems(void)
 	}
 
       if(!query.exec())
-	{
-	  qmain->addError(QString(tr("Database Error")),
-			  QString(tr("Unable to import photograph.")),
-			  query.lastError().text(), __FILE__, __LINE__);
-	  goto db_rollback;
-	}
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to import photograph.")),
+			query.lastError().text(), __FILE__, __LINE__);
       else
 	imported += 1;
     }
@@ -2498,21 +2484,9 @@ void biblioteq_photographcollection::slotImportItems(void)
   progress.hide();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(!qmain->getDB().commit())
-    {
-      QApplication::restoreOverrideCursor();
-      qmain->addError
-	(QString(tr("Database Error")),
-	 QString(tr("Unable to commit the current database "
-		    "transaction.")),
-	 qmain->getDB().lastError().text(), __FILE__,
-	 __LINE__);
-      goto db_rollback;
-    }
-  else
-    QApplication::restoreOverrideCursor();
+  QSqlQuery query(qmain->getDB());
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
+  query.setForwardOnly(true);
   query.prepare("SELECT COUNT(*) "
 		"FROM photograph "
 		"WHERE collection_oid = ?");
@@ -2547,20 +2521,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 			   arg(imported).
 			   arg(dialog.directory().absolutePath()).
 			   arg(files.size()));
-  return;
-
- db_rollback:
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!qmain->getDB().rollback())
-    qmain->addError
-      (QString(tr("Database Error")), QString(tr("Rollback failure.")),
-       qmain->getDB().lastError().text(), __FILE__, __LINE__);
-
-  QApplication::restoreOverrideCursor();
-  QMessageBox::critical(m_photo_diag, tr("BiblioteQ: Database Error"),
-			tr("Unable to import all of the images."));
-
 }
 
 /*

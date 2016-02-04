@@ -32,9 +32,9 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 			       const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
-  QMenu *menu = 0;
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
+  QMenu *menu = 0;
 
   if((menu = new(std::nothrow) QMenu(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
@@ -61,8 +61,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     }
   else
     {
-      if((m_imageManager = new(std::nothrow)
-	  QNetworkAccessManager(this)) == 0)
+      if((m_imageManager = new(std::nothrow) QNetworkAccessManager(this)) == 0)
 	biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
     }
 
@@ -300,8 +299,8 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   if((actionGroup2 = new(std::nothrow) QActionGroup(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  bool found = false;
   QMap<QString, QHash<QString, QString> > hashes(qmain->getSRUMaps());
+  bool found = false;
 
   for(int i = 0; i < hashes.size(); i++)
     {
@@ -393,13 +392,13 @@ biblioteq_book::~biblioteq_book()
 
 void biblioteq_book::slotGo(void)
 {
-  int i = 0;
-  int newq = 0;
-  int maxcopynumber = 0;
-  QString str = "";
+  QSqlQuery query(qmain->getDB());
   QString errorstr = "";
   QString searchstr = "";
-  QSqlQuery query(qmain->getDB());
+  QString str = "";
+  int i = 0;
+  int maxcopynumber = 0;
+  int newq = 0;
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
@@ -703,8 +702,10 @@ void biblioteq_book::slotGo(void)
 
       if(!id.back_image->m_image.isNull())
 	{
+	  QBuffer buffer;
 	  QByteArray bytes;
-	  QBuffer buffer(&bytes);
+
+	  buffer.setBuffer(&bytes);
 
 	  if(buffer.open(QIODevice::WriteOnly))
 	    {
@@ -732,8 +733,7 @@ void biblioteq_book::slotGo(void)
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
-	    (qmain->getDB(),
-	     errorstr);
+	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
 	    {
@@ -1011,7 +1011,7 @@ void biblioteq_book::slotGo(void)
 	      updateWindow(biblioteq::EDITABLE);
 
 	      if(qmain->getUI().actionAutoPopulateOnCreation->isChecked())
-		(void) qmain->populateTable
+		qmain->populateTable
 		  (biblioteq::POPULATE_ALL, "Books", QString(""));
 
 	      raise();
@@ -1341,11 +1341,11 @@ void biblioteq_book::updateWindow(const int state)
 
 void biblioteq_book::modify(const int state)
 {
-  int i = 0;
-  QString str = "";
-  QString fieldname = "";
-  QVariant var;
   QSqlQuery query(qmain->getDB());
+  QString fieldname = "";
+  QString str = "";
+  QVariant var;
+  int i = 0;
 
   if(state == biblioteq::EDITABLE)
     {
@@ -1953,12 +1953,12 @@ void biblioteq_book::slotReset(void)
 
 void biblioteq_book::slotConvertISBN10to13(void)
 {
-  int i = 0;
+  QString numberstr = "";
+  QString str = "";
   int arr[] = {1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3};
   int check = 0;
+  int i = 0;
   int total = 0;
-  QString str = "";
-  QString numberstr = "";
 
   str = "978" + id.id->text().trimmed().left(9);
 
@@ -1983,9 +1983,9 @@ void biblioteq_book::slotConvertISBN10to13(void)
 
 void biblioteq_book::slotConvertISBN13to10(void)
 {
-  int total = 0;
-  QString z("");
   QString isbnnum(id.isbn13->text().trimmed().mid(3, 9));
+  QString z("");
+  int total = 0;
 
   for(int i = 0; i < 9; i++)
     if(i < isbnnum.length())
@@ -2058,8 +2058,8 @@ void biblioteq_book::slotPopulateCopiesEditor(void)
 
 void biblioteq_book::slotShowUsers(void)
 {
-  int state = 0;
   biblioteq_borrowers_editor *borrowerseditor = 0;
+  int state = 0;
 
   if(!id.okButton->isHidden())
     state = biblioteq::EDITABLE;
@@ -2195,10 +2195,10 @@ void biblioteq_book::slotSRUQuery(void)
 	  else
 	    proxy.setType(QNetworkProxy::Socks5Proxy);
 
-	  quint16 port = 0;
 	  QString host("");
-	  QString user("");
 	  QString password("");
+	  QString user("");
+	  quint16 port = 0;
 
 	  host = hash["proxy_host"];
 	  port = hash["proxy_port"].toUShort();
@@ -2224,9 +2224,10 @@ void biblioteq_book::slotSRUQuery(void)
 	}
       else if(type == "system")
 	{
+	  QList<QNetworkProxy> list;
 	  QNetworkProxyQuery query(url);
-	  QList<QNetworkProxy> list
-	    (QNetworkProxyFactory::systemProxyForQuery(query));
+
+	  list = QNetworkProxyFactory::systemProxyForQuery(query);
 
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
@@ -2293,14 +2294,14 @@ void biblioteq_book::slotZ3950Query(void)
   if(findChild<biblioteq_generic_thread *> ())
     return;
 
-  int i = 0;
-  QString str = "";
-  QString etype = "";
   QString errorstr = "";
+  QString etype = "";
   QString searchstr = "";
+  QString str = "";
   QStringList list;
   QStringList tmplist;
   biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
+  int i = 0;
 
   if(!(id.id->text().trimmed().length() == 10 ||
        id.isbn13->text().trimmed().length() == 13))
@@ -2759,9 +2760,9 @@ void biblioteq_book::slotDownloadImage(void)
        qmain->getAmazonHash()["back_cover_path"].replace
        ("%", id.id->text().trimmed()));
 
-  QString type;
-  QNetworkProxy proxy;
   QHash<QString, QString> hash(qmain->getAmazonHash());
+  QNetworkProxy proxy;
+  QString type;
 
   if(hash.contains("front_proxy_type"))
     type = hash["front_proxy_type"].toLower().trimmed();
@@ -2817,10 +2818,10 @@ void biblioteq_book::slotDownloadImage(void)
 	  else
 	    proxy.setType(QNetworkProxy::Socks5Proxy);
 
-	  quint16 port = 0;
 	  QString host("");
-	  QString user("");
 	  QString password("");
+	  QString user("");
+	  quint16 port = 0;
 
 	  if(pb == id.dwnldFront)
 	    {
@@ -2857,9 +2858,10 @@ void biblioteq_book::slotDownloadImage(void)
 	}
       else if(type == "system")
 	{
+	  QList<QNetworkProxy> list;
 	  QNetworkProxyQuery query(url);
-	  QList<QNetworkProxy> list
-	    (QNetworkProxyFactory::systemProxyForQuery(query));
+
+	  list = QNetworkProxyFactory::systemProxyForQuery(query);
 
 	  if(!list.isEmpty())
 	    proxy = list.at(0);
