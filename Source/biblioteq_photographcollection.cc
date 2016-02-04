@@ -1513,6 +1513,8 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
       return;
     }
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   QGraphicsPixmapItem *item = 0;
 
   if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
@@ -1643,6 +1645,8 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		}
 	    }
     }
+
+  QApplication::restoreOverrideCursor();
 }
 
 /*
