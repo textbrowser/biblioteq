@@ -3266,7 +3266,7 @@ int biblioteq::populateTable(const int search_type_arg,
   else
     m_lastSearchStr = searchstrArg;
 
-  lastSearchType = search_type;
+  m_lastSearchType = search_type;
   ui.table->scrollToTop();
   ui.table->horizontalScrollBar()->setValue(0);
   ui.table->clearSelection();

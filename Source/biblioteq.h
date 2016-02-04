@@ -305,7 +305,7 @@ class biblioteq: public QMainWindow
   Ui_membersBrowser bb;
   Ui_passSelect pass;
   biblioteq_dbenumerations *db_enumerations;
-  int lastSearchType;
+  int m_lastSearchType;
   qint64 m_pages;
   qint64 m_queryOffset;
   quint64 m_idCt;

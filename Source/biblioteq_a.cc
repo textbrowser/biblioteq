@@ -268,7 +268,7 @@ biblioteq::biblioteq(void):QMainWindow()
   m_connected_bar_label = 0;
   m_error_bar_label = 0;
   m_status_bar_label = 0;
-  lastSearchType = POPULATE_ALL;
+  m_lastSearchType = POPULATE_ALL;
   m_idCt = 0;
   m_previousTypeFilter = "";
 
@@ -8839,7 +8839,7 @@ void biblioteq::createSqliteMenuActions(void)
 void biblioteq::slotPreviousPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, m_previousTypeFilter,
+    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
 			 m_lastSearchStr, PREVIOUS_PAGE);
 }
 
@@ -8850,7 +8850,7 @@ void biblioteq::slotPreviousPage(void)
 void biblioteq::slotNextPage(void)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, m_previousTypeFilter,
+    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
 			 m_lastSearchStr, NEXT_PAGE);
 }
 
@@ -8861,7 +8861,7 @@ void biblioteq::slotNextPage(void)
 void biblioteq::slotPageClicked(const QString &link)
 {
   if(m_db.isOpen())
-    (void) populateTable(lastSearchType, m_previousTypeFilter,
+    (void) populateTable(m_lastSearchType, m_previousTypeFilter,
 			 m_lastSearchStr, -link.toInt());
 }
 
