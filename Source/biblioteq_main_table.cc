@@ -506,7 +506,19 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 
 int biblioteq_main_table::columnNumber(const QString &name) const
 {
-  return m_columnHeaderIndexes.indexOf(name);
+  int index = m_columnHeaderIndexes.indexOf(name);
+
+  if(index >= 0)
+    return index;
+
+  for(int i = 0; i < m_columnHeaderIndexes.size(); i++)
+    if(m_columnHeaderIndexes.at(i).toLower() == name.toLower())
+      {
+	index = i;
+	break;
+      }
+
+  return index;
 }
 
 /*
