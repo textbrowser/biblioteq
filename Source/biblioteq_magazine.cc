@@ -2640,6 +2640,9 @@ void biblioteq_magazine::slotSelectImage(void)
 	  if(ma.front_image->scene()->items().size() > 0)
 	    ma.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  ma.front_image->scene()->setSceneRect
+	    (ma.front_image->scene()->itemsBoundingRect());
 	}
       else
 	{
@@ -2657,6 +2660,9 @@ void biblioteq_magazine::slotSelectImage(void)
 	  if(ma.back_image->scene()->items().size() > 0)
 	    ma.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  ma.back_image->scene()->setSceneRect
+	    (ma.back_image->scene()->itemsBoundingRect());
 	}
     }
 }

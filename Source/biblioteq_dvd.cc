@@ -1819,6 +1819,9 @@ void biblioteq_dvd::slotSelectImage(void)
 	  if(dvd.front_image->scene()->items().size() > 0)
 	    dvd.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  dvd.front_image->scene()->setSceneRect
+	    (dvd.front_image->scene()->itemsBoundingRect());
 	}
       else
 	{
@@ -1836,6 +1839,9 @@ void biblioteq_dvd::slotSelectImage(void)
 	  if(dvd.back_image->scene()->items().size() > 0)
 	    dvd.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  dvd.back_image->scene()->setSceneRect
+	    (dvd.back_image->scene()->itemsBoundingRect());
 	}
     }
 }

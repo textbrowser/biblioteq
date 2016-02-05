@@ -1637,6 +1637,9 @@ void biblioteq_videogame::slotSelectImage(void)
 	  if(vg.front_image->scene()->items().size() > 0)
 	    vg.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  vg.front_image->scene()->setSceneRect
+	    (vg.front_image->scene()->itemsBoundingRect());
 	}
       else
 	{
@@ -1654,6 +1657,9 @@ void biblioteq_videogame::slotSelectImage(void)
 	  if(vg.back_image->scene()->items().size() > 0)
 	    vg.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  vg.back_image->scene()->setSceneRect
+	    (vg.back_image->scene()->itemsBoundingRect());
 	}
     }
 }

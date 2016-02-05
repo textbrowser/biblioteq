@@ -2276,6 +2276,9 @@ void biblioteq_cd::slotSelectImage(void)
 	  if(cd.front_image->scene()->items().size() > 0)
 	    cd.front_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  cd.front_image->scene()->setSceneRect
+	    (cd.front_image->scene()->itemsBoundingRect());
 	}
       else
 	{
@@ -2293,6 +2296,9 @@ void biblioteq_cd::slotSelectImage(void)
 	  if(cd.back_image->scene()->items().size() > 0)
 	    cd.back_image->scene()->items().at(0)->setFlags
 	      (QGraphicsItem::ItemIsSelectable);
+
+	  cd.back_image->scene()->setSceneRect
+	    (cd.back_image->scene()->itemsBoundingRect());
 	}
     }
 }

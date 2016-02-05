@@ -170,6 +170,8 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       if(acceptDrops())
 	if(scene()->items().size() > 0)
 	  scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+      scene()->setSceneRect(scene()->itemsBoundingRect());
     }
 }
 
@@ -276,6 +278,8 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
   if(acceptDrops())
     if(scene()->items().size() > 0)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  scene()->setSceneRect(scene()->itemsBoundingRect());
 }
 
 /*
@@ -311,6 +315,8 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
   if(acceptDrops())
     if(scene()->items().size() > 0)
       scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  scene()->setSceneRect(scene()->itemsBoundingRect());
 }
 
 /*
