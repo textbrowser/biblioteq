@@ -3890,7 +3890,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
       QSqlQuery query(m_db);
 
       if(!query.exec(list.at(i)))
-	{qDebug()<<list.at(i)<<query.lastError().text();
+	{
 	  errors.append(QString("Error %1: %2.\n").
 			arg(ct).arg(query.lastError().text()));
 	  ct += 1;

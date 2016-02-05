@@ -24,7 +24,7 @@ biblioteq_sruresults::biblioteq_sruresults
   int row = -1;
 
   m_records = list;
-  magazine = magazine_arg;
+  m_magazine = magazine_arg;
   setWindowModality(Qt::WindowModal);
   m_ui.setupUi(this);
 #ifdef Q_OS_MAC
@@ -69,8 +69,8 @@ biblioteq_sruresults::biblioteq_sruresults
 	  }
 
       if(row == -1)
-	if(magazine)
-	  if(issn == magazine->dialog().id->text())
+	if(m_magazine)
+	  if(issn == m_magazine->dialog().id->text())
 	    row = i;
 
       if(!issn.isEmpty())
@@ -117,8 +117,8 @@ biblioteq_sruresults::~biblioteq_sruresults()
 
 void biblioteq_sruresults::slotSelectRecord(void)
 {
-  if(magazine)
-    magazine->populateDisplayAfterSRU
+  if(m_magazine)
+    m_magazine->populateDisplayAfterSRU
       (m_records.value(m_ui.list->currentRow()));
 
   close();

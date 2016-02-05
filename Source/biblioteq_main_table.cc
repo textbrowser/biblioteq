@@ -524,6 +524,8 @@ QStringList biblioteq_main_table::columnNames(void) const
 
 void biblioteq_main_table::setColumnNames(const QStringList &list)
 {
+  m_columnHeaderIndexes.clear();
+
   for(int i = 0; i < list.size(); i++)
     m_columnHeaderIndexes.append(list.at(i));
 }

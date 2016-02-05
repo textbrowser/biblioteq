@@ -31,7 +31,7 @@ class biblioteq_sruresults: public QDialog
  private:
   QList<QByteArray> m_records;
   Ui_sruResultsDialog m_ui;
-  biblioteq_magazine *magazine;
+  biblioteq_magazine *m_magazine;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);

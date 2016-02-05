@@ -83,6 +83,8 @@ QString biblioteq_misc_functions::getAbstractInfo(const QString &oid,
       querystr = QString("SELECT description FROM %1 WHERE myoid = ?").arg
 	(type);
     }
+  else
+    return str;
 
   query.setForwardOnly(true);
   query.prepare(querystr);
@@ -116,14 +118,20 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   if(type == "book" || type == "cd" || type == "dvd" || type == "journal" ||
      type == "magazine" || type == "photograph_collection" ||
      type == "videogame")
-    if(which == "back_cover" || which == "front_cover" ||
-       which == "image_scaled")
-      {
-	query.setForwardOnly(true);
-	query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
-		      arg(which).arg(type));
-	query.bindValue(0, oid);
-      }
+    {
+      if(which == "back_cover" || which == "front_cover" ||
+	 which == "image_scaled")
+	{
+	  query.setForwardOnly(true);
+	  query.prepare(QString("SELECT %1 FROM %2 WHERE myoid = ?").
+			arg(which).arg(type));
+	  query.bindValue(0, oid);
+	}
+      else
+	return image;
+    }
+  else
+    return image;
 
   if(query.exec())
     if(query.next())
@@ -647,6 +655,8 @@ QString biblioteq_misc_functions::getAvailability(const QString &oid,
 		       "GROUP BY %1.quantity, "
 		       "%1.myoid").arg(itemType.toLower().remove(" ")).arg
       (itemType);
+  else
+    return str;
 
   query.setForwardOnly(true);
   query.prepare(querystr);
@@ -887,6 +897,8 @@ void biblioteq_misc_functions::saveQuantity(const QSqlDatabase &db,
      itemType == "videogame")
     querystr = QString("UPDATE %1 SET quantity = ? WHERE "
 		       "myoid = ?").arg(itemType);
+  else
+    return;
 
   query.prepare(querystr);
   query.bindValue(0, quantity);
@@ -957,6 +969,8 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 		       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
 		       "WHERE item_oid = ? AND type = '%2')").arg
       (itemType.toLower().remove(" ")).arg(itemType);
+  else
+    return isAvailable;
 
   query.setForwardOnly(true);
   query.prepare(querystr);
@@ -1122,6 +1136,8 @@ QString biblioteq_misc_functions::getOID(const QString &idArg,
   else if(itemType == "cd" || itemType == "dvd" ||
 	  itemType == "photograph_collection" || itemType == "videogame")
     querystr = QString("SELECT myoid FROM %1 WHERE id = ?").arg(itemType);
+  else
+    return oid;
 
   query.setForwardOnly(true);
   query.prepare(querystr);
@@ -1306,6 +1322,8 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 
   if(db.driverName() != "QSQLITE")
     return count; // SQLite only.
+  else if(querystr.trimmed().isEmpty())
+    return count;
 
   QSqlQuery query(db);
 
@@ -1336,6 +1354,8 @@ int biblioteq_misc_functions::sqliteQuerySize
 
   if(db.driverName() != "QSQLITE")
     return count; // SQLite only.
+  else if(querystr.trimmed().isEmpty())
+    return count;
 
   QList<QVariant> list = boundValues.values();
   QSqlQuery query(db);
