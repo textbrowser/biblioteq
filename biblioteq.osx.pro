@@ -1,7 +1,7 @@
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" BIBLIOTEQ_WA_MACMETALSTYLE=0
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" BIBLIOTEQ_WA_MACMETALSTYLE=1
 LANGUAGE	= C++
 QT		+= network sql
 TEMPLATE	= app
