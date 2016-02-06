@@ -97,7 +97,8 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   ui_p.setupUi(m_proxyDialog);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  m_proxyDialog->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_proxyDialog->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   m_parentWid = parentArg;
@@ -109,7 +110,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   id.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
@@ -2653,7 +2654,7 @@ void biblioteq_book::slotSelectImage(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

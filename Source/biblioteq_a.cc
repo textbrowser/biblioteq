@@ -344,7 +344,7 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   connect(ui.action_Book,
@@ -409,14 +409,18 @@ biblioteq::biblioteq(void):QMainWindow()
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  m_members_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_history_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_branch_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_pass_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_all_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_customquery_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_error_diag->setAttribute(Qt::WA_MacMetalStyle, true);
-  m_admin_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  m_members_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_history_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_branch_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_pass_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_all_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_customquery_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_error_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_admin_diag->setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
   ui.actionSetGlobalFonts->setVisible(false);
 #endif
@@ -1185,7 +1189,7 @@ void biblioteq::showMain(void)
 #ifdef Q_OS_WIN32
   QFileInfo fileInfo("biblioteq.conf");
 #else
-  QFileInfo fileInfo(CONFIGFILE);
+  QFileInfo fileInfo(BIBLIOTEQ_CONFIGFILE);
 #endif
 
   if(!fileInfo.isReadable())
@@ -1835,7 +1839,7 @@ void biblioteq::slotDelete(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -2690,7 +2694,7 @@ void biblioteq::readGlobalSetup(void)
 #ifdef Q_OS_WIN32
   QSettings settings("biblioteq.conf", QSettings::IniFormat);
 #else
-  QSettings settings(CONFIGFILE, QSettings::IniFormat);
+  QSettings settings(BIBLIOTEQ_CONFIGFILE, QSettings::IniFormat);
 #endif
 
   for(int i = 0; i < settings.childGroups().size(); i++)
@@ -4547,7 +4551,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   str = "SELECT member.memberid, "
@@ -4723,7 +4727,7 @@ void biblioteq::slotGrantPrivileges(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   progress.setCancelButton(0);
@@ -6714,7 +6718,7 @@ void biblioteq::slotSetFonts(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
@@ -6980,7 +6984,7 @@ void biblioteq::slotPrintView(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -7038,7 +7042,7 @@ void biblioteq::slotPrintReserved(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -7189,7 +7193,7 @@ void biblioteq::slotShowHistory(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -7565,7 +7569,7 @@ void biblioteq::slotPrintReservationHistory(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -7807,7 +7811,7 @@ void biblioteq::slotSelectDatabaseFile(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
@@ -7982,7 +7986,7 @@ void biblioteq::slotRefreshAdminList(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   query.setForwardOnly(true);
@@ -8110,7 +8114,7 @@ void biblioteq::slotSaveAdministrators(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   /*
@@ -8433,7 +8437,7 @@ void biblioteq::slotRequest(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -8914,7 +8918,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);
@@ -9089,7 +9093,7 @@ void biblioteq::slotExportAsCSV(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::AnyFile);

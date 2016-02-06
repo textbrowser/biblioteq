@@ -29,7 +29,7 @@ biblioteq_sruresults::biblioteq_sruresults
   m_ui.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   for(int i = 0; i < m_records.size(); i++)

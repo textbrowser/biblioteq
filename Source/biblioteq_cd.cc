@@ -59,8 +59,9 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
   cd.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
-  m_tracks_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_tracks_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
@@ -1417,7 +1418,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   query.setForwardOnly(true);
@@ -1725,7 +1726,7 @@ void biblioteq_cd::slotSaveTracks(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
 
@@ -2245,7 +2246,7 @@ void biblioteq_cd::slotSelectImage(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

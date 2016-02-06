@@ -87,8 +87,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
-  m_photo_diag->setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  m_photo_diag->setAttribute
+    (Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
@@ -988,7 +989,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);
@@ -1888,7 +1889,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   progress.setCancelButton(0);
@@ -1983,7 +1984,7 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::Directory);
@@ -2332,7 +2333,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setDirectory(QDir::homePath());
@@ -2362,7 +2363,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   progress.setLabelText(tr("Importing image(s)..."));
@@ -2676,7 +2677,7 @@ void biblioteq_photographcollection::slotExportItem(void)
   dialog.setAcceptMode(QFileDialog::AcceptSave);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setDirectory(QDir::homePath());

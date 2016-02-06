@@ -96,7 +96,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   ma.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
@@ -2609,7 +2609,7 @@ void biblioteq_magazine::slotSelectImage(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  dialog.setAttribute(Qt::WA_MacMetalStyle, true);
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   dialog.setFileMode(QFileDialog::ExistingFile);

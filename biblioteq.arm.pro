@@ -1,7 +1,7 @@
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		+= network sql
 TEMPLATE	= app

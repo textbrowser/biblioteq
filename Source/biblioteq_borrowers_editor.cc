@@ -20,7 +20,7 @@ biblioteq_borrowers_editor::biblioteq_borrowers_editor
   m_bd.setupUi(this);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  setAttribute(Qt::WA_MacMetalStyle, true);
+  setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   m_ioid = ioidArg;
@@ -98,8 +98,8 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress1.setAttribute(Qt::WA_MacMetalStyle, true);
-  progress2.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress1.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+  progress2.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   m_bd.table->clear();
@@ -513,7 +513,7 @@ void biblioteq_borrowers_editor::slotSave(void)
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
-  progress.setAttribute(Qt::WA_MacMetalStyle, true);
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
   progress.setCancelButton(0);
