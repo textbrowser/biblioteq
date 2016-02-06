@@ -41,7 +41,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="bookBindingsList"/>
+             <widget class="QListWidget" name="bookBindingsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -119,7 +123,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="cdFormatsList"/>
+             <widget class="QListWidget" name="cdFormatsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -197,7 +205,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="dvdAspectRatiosList"/>
+             <widget class="QListWidget" name="dvdAspectRatiosList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -275,7 +287,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="dvdRatingsList"/>
+             <widget class="QListWidget" name="dvdRatingsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -358,7 +374,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="dvdRegionsList"/>
+             <widget class="QListWidget" name="dvdRegionsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -436,7 +456,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="languagesList"/>
+             <widget class="QListWidget" name="languagesList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -515,6 +539,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="locationsTable">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
               <attribute name="horizontalHeaderStretchLastSection">
                <bool>true</bool>
               </attribute>
@@ -606,7 +633,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="monetaryUnitsList"/>
+             <widget class="QListWidget" name="monetaryUnitsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -690,6 +721,9 @@
             </item>
             <item>
              <widget class="QTableWidget" name="minimumDaysTable">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
               <attribute name="horizontalHeaderStretchLastSection">
                <bool>true</bool>
               </attribute>
@@ -880,7 +914,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="videoGamePlatformsList"/>
+             <widget class="QListWidget" name="videoGamePlatformsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_15">
@@ -958,7 +996,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="videoGameRatingsList"/>
+             <widget class="QListWidget" name="videoGameRatingsList">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_14">

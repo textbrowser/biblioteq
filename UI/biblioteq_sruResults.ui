@@ -35,7 +35,11 @@
          </property>
          <layout class="QVBoxLayout">
           <item>
-           <widget class="QListWidget" name="list"/>
+           <widget class="QListWidget" name="list">
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
