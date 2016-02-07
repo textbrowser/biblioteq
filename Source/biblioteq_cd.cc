@@ -1495,7 +1495,10 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
     progress.setMaximum(query.size());
 
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -1576,8 +1579,8 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }

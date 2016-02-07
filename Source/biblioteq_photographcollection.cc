@@ -1899,12 +1899,17 @@ void biblioteq_photographcollection::slotDeleteItem(void)
   progress.setMaximum(items.size());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
-  int i = 0;
+  int i = -1;
 
   while(!items.isEmpty())
     {
+      i += 1;
+
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
@@ -1923,8 +1928,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 	  query.exec();
 	}
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -1957,6 +1962,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
   pc.page->blockSignals(false);
   progress.hide();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
   QApplication::restoreOverrideCursor();
@@ -1996,7 +2005,10 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
   if(dialog.result() == QDialog::Accepted &&
      dialog.selectedFiles().size() > 0)
     {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
+      dialog.hide();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
 
       QAction *action = qobject_cast<QAction *> (sender());
 
@@ -2004,13 +2016,11 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
 	biblioteq_misc_functions::exportPhotographs
 	  (qmain->getDB(), m_oid, -1,
-	   dialog.selectedFiles().value(0));
+	   dialog.selectedFiles().value(0), this);
       else
 	biblioteq_misc_functions::exportPhotographs
 	  (qmain->getDB(), m_oid, pc.page->currentText().toInt(),
-	   dialog.selectedFiles().value(0));
-
-      QApplication::restoreOverrideCursor();
+	   dialog.selectedFiles().value(0), this);
     }
 }
 
@@ -2345,7 +2355,6 @@ void biblioteq_photographcollection::slotImportItems(void)
     return;
 
   dialog.close();
-  repaint();
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
@@ -2372,7 +2381,10 @@ void biblioteq_photographcollection::slotImportItems(void)
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   int imported = 0;
   int pages = 0;
@@ -2382,8 +2394,8 @@ void biblioteq_photographcollection::slotImportItems(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
 
@@ -2493,6 +2505,9 @@ void biblioteq_photographcollection::slotImportItems(void)
     }
 
   progress.hide();
+#ifndef Q_OS_MAC
+  QApplication::processEvents();
+#endif
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QSqlQuery query(qmain->getDB());

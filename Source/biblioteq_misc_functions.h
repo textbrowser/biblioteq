@@ -94,7 +94,8 @@ class biblioteq_misc_functions
 				  const QSqlDatabase &, const QString &,
 				  QString &);
   static void exportPhotographs(const QSqlDatabase &, const QString &,
-				const int, const QString &);
+				const int, const QString &,
+				QWidget *parent);
   static void grantPrivs(const QString &, const QString &,
 			 const QSqlDatabase &, QString &);
   static void hideAdminFields(QMainWindow *, const QString &);

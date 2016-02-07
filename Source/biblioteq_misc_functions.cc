@@ -3,6 +3,7 @@
 */
 
 #include <QDate>
+#include <QProgressDialog>
 #include <QSettings>
 #include <QSqlField>
 #include <QSqlIndex>
@@ -2029,8 +2030,26 @@ void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
  const QString &collectionOid,
  const int pageOffset,
- const QString &destinationPath)
+ const QString &destinationPath,
+ QWidget *parent)
 {
+  QProgressDialog progress(parent);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  progress.setLabelText(QObject::tr("Exporting image(s)..."));
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
+
   QSqlQuery query(db);
 
   query.setForwardOnly(true);
@@ -2057,7 +2076,13 @@ void biblioteq_misc_functions::exportPhotographs
 
   if(query.exec())
     {
+      if(db.driverName() == "QPSQL")
+	progress.setMaximum(query.size());
+      else
+	progress.setMaximum(0);
+
       int i = 0;
+      int j = -1;
 #if QT_VERSION >= 0x040700
       qint64 id = QDateTime::currentMSecsSinceEpoch();
 #else
@@ -2067,6 +2092,22 @@ void biblioteq_misc_functions::exportPhotographs
 
       while(query.next())
 	{
+	  if(db.driverName() == "QPSQL")
+	    {
+	      j += 1;
+
+	      if(j + 1 <= progress.maximum())
+		progress.setValue(j + 1);
+	    }
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+
+	  if(progress.wasCanceled())
+	    break;
+
 	  QByteArray bytes
 	    (QByteArray::fromBase64(query.value(0).toByteArray()));
 	  QImage image;

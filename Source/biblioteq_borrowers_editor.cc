@@ -523,7 +523,10 @@ void biblioteq_borrowers_editor::slotSave(void)
   progress.setMaximum(m_bd.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   for(i = 0; i < m_bd.table->rowCount(); i++)
     {
@@ -566,8 +569,8 @@ void biblioteq_borrowers_editor::slotSave(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }

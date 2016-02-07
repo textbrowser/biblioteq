@@ -1950,7 +1950,10 @@ void biblioteq::slotDelete(void)
   progress.setMaximum(list.size());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   foreach(index, list)
     {
@@ -1993,8 +1996,8 @@ void biblioteq::slotDelete(void)
 	  numdeleted += 1;
 	}
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -4658,7 +4661,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
     progress.setMaximum(query.size());
 
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -4697,8 +4703,8 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -4737,7 +4743,10 @@ void biblioteq::slotGrantPrivileges(void)
   progress.setMaximum(bb.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   for(int i = 0; i < bb.table->rowCount(); i++)
     {
@@ -4764,8 +4773,8 @@ void biblioteq::slotGrantPrivileges(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -7471,7 +7480,10 @@ void biblioteq::slotShowHistory(void)
   progress.setMinimum(0);
   progress.setMaximum(history.table->rowCount());
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -7505,8 +7517,8 @@ void biblioteq::slotShowHistory(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -8017,7 +8029,10 @@ void biblioteq::slotRefreshAdminList(void)
   progress.setMaximum(query.size());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
   i = -1;
 
   while(i++, !progress.wasCanceled() && query.next())
@@ -8081,8 +8096,8 @@ void biblioteq::slotRefreshAdminList(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -8228,7 +8243,10 @@ void biblioteq::slotSaveAdministrators(void)
   progress.setMaximum(ab.table->rowCount());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   /*
   ** Add or modify administrators.
@@ -8359,8 +8377,8 @@ void biblioteq::slotSaveAdministrators(void)
 	    }
 	}
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
@@ -8493,7 +8511,10 @@ void biblioteq::slotRequest(void)
   progress.setMaximum(list.size());
   progress.setMinimum(0);
   progress.show();
-  progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   foreach(index, list)
     {
@@ -8558,8 +8579,8 @@ void biblioteq::slotRequest(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(ct);
 
-      progress.update();
 #ifndef Q_OS_MAC
+      progress.repaint();
       QApplication::processEvents();
 #endif
     }
