@@ -785,22 +785,22 @@ void biblioteq_photographcollection::modify(const int state,
 
       pc.page->blockSignals(false);
 
-      if(!m_engWindowTitle.contains("Create"))
-	{
-	  QApplication::setOverrideCursor(Qt::WaitCursor);
-	  showPhotographs(pc.page->currentText().toInt());
-	  QApplication::restoreOverrideCursor();
-	}
-
       foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
 	textfield->setCursorPosition(0);
 
       storeData();
       showNormal();
+      raise();
+#ifndef Q_OS_MAC
+      repaint();
+      QApplication::processEvents();
+#endif
+
+      if(!m_engWindowTitle.contains("Create"))
+	showPhotographs(pc.page->currentText().toInt());
     }
 
   pc.id_collection->setFocus();
-  raise();
 }
 
 /*
@@ -1095,9 +1095,45 @@ void biblioteq_photographcollection::changeEvent(QEvent *event)
 
 void biblioteq_photographcollection::showPhotographs(const int page)
 {
+  QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  progress.setLabelText(tr("Loading image(s)..."));
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
+
   QSqlQuery query(qmain->getDB());
 
   query.setForwardOnly(true);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      query.prepare("SELECT COUNT(*) FROM photograph "
+		    "photograph WHERE "
+		    "collection_oid = ? "
+		    "ORDER BY id "
+		    "LIMIT ? "
+		    "OFFSET ?");
+      query.bindValue(0, m_oid);
+      query.bindValue(1, photographsPerPage());
+      query.bindValue(2, photographsPerPage() * (page - 1));
+
+      if(query.exec() && query.next())
+	progress.setMaximum(query.value(0).toInt());
+      else
+	progress.setMaximum(0);
+    }
+
   query.prepare("SELECT image_scaled, myoid FROM "
 		"photograph WHERE "
 		"collection_oid = ? "
@@ -1110,16 +1146,33 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   if(query.exec())
     {
+      if(qmain->getDB().driverName() == "QPSQL")
+	progress.setMaximum(query.size());
+
       pc.graphicsView->scene()->clear();
       pc.graphicsView->resetTransform();
       pc.graphicsView->verticalScrollBar()->setValue(0);
       pc.graphicsView->horizontalScrollBar()->setValue(0);
 
       int columnIdx = 0;
+      int i = -1;
       int rowIdx = 0;
 
       while(query.next())
 	{
+	  i += 1;
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+
+	  if(progress.wasCanceled())
+	    break;
+
 	  QImage image;
 	  biblioteq_graphicsitempixmap *pixmapItem = 0;
 
@@ -1165,6 +1218,8 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	    }
 	}
     }
+
+  progress.hide();
 }
 
 /*
@@ -1467,9 +1522,7 @@ void biblioteq_photographcollection::slotInsertItem(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
-  QApplication::restoreOverrideCursor();
   photo.saveButton->disconnect(SIGNAL(clicked(void)));
   connect(photo.saveButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotModifyItem(void)));
@@ -1965,10 +2018,7 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 #ifndef Q_OS_MAC
   QApplication::processEvents();
 #endif
-
-  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(pc.page->currentText().toInt());
-  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -1977,10 +2027,8 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 void biblioteq_photographcollection::slotPageChanged(const QString &text)
 {
-  QApplication::setOverrideCursor(Qt::WaitCursor);
   pc.page->repaint();
   showPhotographs(text.toInt());
-  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -2440,11 +2488,13 @@ void biblioteq_photographcollection::slotImportItems(void)
       QString id("");
 
 #if QT_VERSION >= 0x040700
-      id = QString::number(QDateTime::currentMSecsSinceEpoch());
+      id = QString::number(QDateTime::currentMSecsSinceEpoch() +
+			   static_cast<qint64> (imported));
 #else
       QDateTime dateTime(QDateTime::currentDateTime());
 
-      id = QString::number(static_cast<qint64> (dateTime.toTime_t()));
+      id = QString::number(static_cast<qint64> (dateTime.toTime_t()) +
+			   static_cast<qint64> (imported));
 #endif
 
       query.bindValue(0, id);
@@ -2537,9 +2587,7 @@ void biblioteq_photographcollection::slotImportItems(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  QApplication::setOverrideCursor(Qt::WaitCursor);
   showPhotographs(1);
-  QApplication::restoreOverrideCursor();
   QMessageBox::information(this,
 			   tr("BiblioteQ: Information"),
 			   tr("A total of %1 image(s) where imported. "
