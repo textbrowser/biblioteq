@@ -3924,7 +3924,7 @@ void biblioteq::preparePhotographsPerPageMenu(void)
   ui.menuPhotographs_per_Page->clear();
 
   QSettings settings;
-  int integer = qBound(25, settings.value("photographs_per_age", 25).toInt(),
+  int integer = qBound(25, settings.value("photographs_per_page", 25).toInt(),
 		       100);
 
   for(int i = 1; i <= 4; i++)
@@ -3963,5 +3963,5 @@ void biblioteq::slotPhotographsPerPageChanged(void)
 
   QSettings settings;
 
-  settings.setValue("photographs_per_age", action->data().toInt());
+  settings.setValue("photographs_per_page", action->data().toInt());
 }
