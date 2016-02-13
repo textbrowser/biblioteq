@@ -1167,7 +1167,6 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())
@@ -1983,7 +1982,6 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
     }
 
@@ -2444,7 +2442,6 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
 
       if(progress.wasCanceled())

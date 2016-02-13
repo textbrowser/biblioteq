@@ -1581,7 +1581,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
     }
 
@@ -1839,9 +1838,8 @@ void biblioteq_cd::slotSaveTracks(void)
 	  if(i + 1 <= progress.maximum())
 	    progress.setValue(i + 1);
 
-	  progress.update();
 #ifndef Q_OS_MAC
-	  QApplication::processEvents();
+	  progress.repaint();
 #endif
 	}
 

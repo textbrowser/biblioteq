@@ -3473,9 +3473,8 @@ int biblioteq::populateTable(const int search_type_arg,
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
-      progress.update();
 #ifndef Q_OS_MAC
-      QApplication::processEvents();
+      progress.repaint();
 #endif
     }
 

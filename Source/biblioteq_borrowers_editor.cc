@@ -210,9 +210,8 @@ void biblioteq_borrowers_editor::showUsers(void)
       if(i + 1 <= progress1.maximum())
 	progress1.setValue(i + 1);
 
-      progress1.update();
 #ifndef Q_OS_MAC
-      QApplication::processEvents();
+      progress1.repaint();
 #endif
     }
 
@@ -343,9 +342,8 @@ void biblioteq_borrowers_editor::showUsers(void)
       if(i + 1 <= progress2.maximum())
 	progress2.setValue(i + 1);
 
-      progress2.update();
 #ifndef Q_OS_MAC
-      QApplication::processEvents();
+      progress2.repaint();
 #endif
       if(terminate)
 	break; // Out of resources?
@@ -571,7 +569,6 @@ void biblioteq_borrowers_editor::slotSave(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
-      QApplication::processEvents();
 #endif
     }
 

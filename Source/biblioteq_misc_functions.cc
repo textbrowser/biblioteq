@@ -2102,7 +2102,6 @@ void biblioteq_misc_functions::exportPhotographs
 
 #ifndef Q_OS_MAC
 	  progress.repaint();
-	  QApplication::processEvents();
 #endif
 
 	  if(progress.wasCanceled())
