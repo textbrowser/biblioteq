@@ -677,7 +677,7 @@ void biblioteq_copy_editor_book::changeEvent(QEvent *event)
 }
 
 /*
-** -- saveM_Copies() --
+** -- saveCopies() --
 */
 
 QString biblioteq_copy_editor_book::saveCopies(void)
