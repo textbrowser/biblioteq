@@ -148,7 +148,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     {
       m_cb.saveButton->setText(tr("&Save"));
       connect(m_cb.saveButton, SIGNAL(clicked(void)), this,
-	      SLOT(slotSaveM_Copies(void)));
+	      SLOT(slotSaveCopies(void)));
       connect(m_cb.deleteButton, SIGNAL(clicked(void)), this,
 	      SLOT(slotDeleteCopy(void)));
     }
@@ -462,7 +462,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 }
 
 /*
-** -- slotSaveM_Copies() --
+** -- slotSaveCopies() --
 */
 
 void biblioteq_copy_editor_book::slotSaveCopies(void)
