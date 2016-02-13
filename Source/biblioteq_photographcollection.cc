@@ -2587,7 +2587,7 @@ void biblioteq_photographcollection::slotImportItems(void)
   showPhotographs(1);
   QMessageBox::information(this,
 			   tr("BiblioteQ: Information"),
-			   tr("A total of %1 image(s) where imported. "
+			   tr("A total of %1 image(s) were imported. "
 			      "The directory %2 contains %3 image(s).").
 			   arg(imported).
 			   arg(dialog.directory().absolutePath()).
