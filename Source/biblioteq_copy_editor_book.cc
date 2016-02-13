@@ -452,6 +452,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 #ifndef Q_OS_MAC
       progress2.repaint();
 #endif
+
       if(terminate)
 	break; // Out of resources?
     }

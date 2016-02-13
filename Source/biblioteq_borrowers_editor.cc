@@ -345,6 +345,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 #ifndef Q_OS_MAC
       progress2.repaint();
 #endif
+
       if(terminate)
 	break; // Out of resources?
     }

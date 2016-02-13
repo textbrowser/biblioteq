@@ -7,8 +7,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 /*
 ** -- Qt Includes --
 */

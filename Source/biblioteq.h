@@ -1,15 +1,13 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2016.02.12"
+#define BIBLIOTEQ_VERSION "2016.02.14"
 
 /*
 ** -- C++ Includes --
 */
 
 #include <iostream>
-
-using namespace std;
 
 /*
 ** -- Qt Includes --

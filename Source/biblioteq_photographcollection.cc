@@ -1965,6 +1965,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
+#ifndef Q_OS_MAC
+      progress.repaint();
+#endif
+
       QGraphicsPixmapItem *item = 0;
 
       if((item = qgraphicsitem_cast<QGraphicsPixmapItem *> (items.
@@ -1979,10 +1983,6 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 	  query.bindValue(1, itemOid);
 	  query.exec();
 	}
-
-#ifndef Q_OS_MAC
-      progress.repaint();
-#endif
     }
 
   QSqlQuery query(qmain->getDB());

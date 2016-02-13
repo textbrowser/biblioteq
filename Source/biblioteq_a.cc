@@ -1962,6 +1962,10 @@ void biblioteq::slotDelete(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
+#ifndef Q_OS_MAC
+      progress.repaint();
+#endif
+
       if(ui.table->item(i, col) == 0)
 	continue;
 
@@ -1995,10 +1999,6 @@ void biblioteq::slotDelete(void)
 	  deleteItem(str, itemType);
 	  numdeleted += 1;
 	}
-
-#ifndef Q_OS_MAC
-      progress.repaint();
-#endif
     }
 
   progress.hide();
@@ -8255,6 +8255,10 @@ void biblioteq::slotSaveAdministrators(void)
       if(i + 1 <= progress.maximum())
 	progress.setValue(i + 1);
 
+#ifndef Q_OS_MAC
+      progress.repaint();
+#endif
+
       if(adminStr.isEmpty())
 	continue; // Ignore empty administrator ids.
       else if(adminStr == getAdminID())
@@ -8371,10 +8375,6 @@ void biblioteq::slotSaveAdministrators(void)
 	      goto db_rollback;
 	    }
 	}
-
-#ifndef Q_OS_MAC
-      progress.repaint();
-#endif
     }
 
   progress.hide();
