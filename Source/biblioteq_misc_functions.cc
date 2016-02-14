@@ -2162,7 +2162,7 @@ bool biblioteq_misc_functions::dnt(const QSqlDatabase &db,
 				   QString &errorstr)
 {
   if(db.driverName() == "QSQLITE")
-    return true;
+    return false;
 
   QSqlQuery query(db);
   QString querystr("");
