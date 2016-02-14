@@ -263,10 +263,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 	    if(j == 1)
-	      {
-		str = QString("CopyIdentifier-%1-%2").arg(m_ioid).arg(i + 1);
-		item->setText(str);
-	      }
+	      item->setText("");
 	    else if(j == 2)
 	      {
 		if(m_showForLending)
