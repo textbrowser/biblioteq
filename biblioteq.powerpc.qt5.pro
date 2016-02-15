@@ -1,27 +1,25 @@
 cache()
 purge.commands = rm -f *~ && rm -f */*~
 
-CONFIG		+= app_bundle qt release thread warn_on
+CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		+= network printsupport sql widgets
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
-QMAKE_CXX	= clang++
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic
+			  -fwrapv -mabi=altivec -mpowerpc -mtune=powerpc -pie
 QMAKE_DISTCLEAN	+= .qmake.cache .qmake.stash -r Include
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 QMAKE_STRIP	= echo
 
-ICON		= Icons/book.icns
-INCLUDEPATH	+= Include Source /usr/local/include
-LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lyaz
+ICON		= Icons/book.png
+INCLUDEPATH	+= Include Source
+LIBS		+= -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 
 FORMS           = UI/biblioteq_adminsetup.ui \
@@ -33,23 +31,23 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 		  UI/biblioteq_cdinfo.ui \
 		  UI/biblioteq_copybrowser.ui \
 		  UI/biblioteq_customquery.ui \
-		  UI/biblioteq_dbenumerations.ui \
-		  UI/biblioteq_dvdinfo.ui \
-		  UI/biblioteq_errordiag.ui \
-		  UI/biblioteq_history.ui \
-		  UI/biblioteq_maginfo.ui \
+                  UI/biblioteq_dbenumerations.ui \
+                  UI/biblioteq_dvdinfo.ui \
+                  UI/biblioteq_errordiag.ui \
+                  UI/biblioteq_history.ui \
+                  UI/biblioteq_maginfo.ui \
                   UI/biblioteq_mainwindow.ui \
-		  UI/biblioteq_members_browser.ui \
-		  UI/biblioteq_password.ui \
-		  UI/biblioteq_passwordPrompt.ui \
-		  UI/biblioteq_photograph.ui \
-		  UI/biblioteq_photographinfo.ui \
-		  UI/biblioteq_photographview.ui \
-		  UI/biblioteq_sruResults.ui \
-		  UI/biblioteq_tracks.ui \
-		  UI/biblioteq_userinfo.ui \
-		  UI/biblioteq_videogameinfo.ui \
-		  UI/biblioteq_z3950results.ui
+                  UI/biblioteq_members_browser.ui \
+                  UI/biblioteq_password.ui \
+                  UI/biblioteq_passwordPrompt.ui \
+                  UI/biblioteq_photograph.ui \
+                  UI/biblioteq_photographinfo.ui \
+                  UI/biblioteq_photographview.ui \
+                  UI/biblioteq_sruResults.ui \
+                  UI/biblioteq_tracks.ui \
+                  UI/biblioteq_userinfo.ui \
+                  UI/biblioteq_videogameinfo.ui \
+                  UI/biblioteq_z3950results.ui
 
 UI_HEADERS_DIR  = Include
 
@@ -101,9 +99,6 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_videogame.cc \
                   Source/biblioteq_z3950results.cc
 
-OBJECTIVE_HEADERS += Source/Cocoainitializer.h
-OBJECTIVE_SOURCES += Source/Cocoainitializer.mm
-
 TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_de_DE.ts \
 		  Translations/biblioteq_el_GR.ts \
@@ -115,36 +110,21 @@ TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
 PROJECTNAME	= BiblioteQ
 TARGET		= BiblioteQ
 
-biblioteq.path		= /Applications/BiblioteQ_Qt5.d/BiblioteQ.app
-biblioteq.files		= BiblioteQ.app/*
-conf.path		= /Applications/BiblioteQ_Qt5.d
+biblioteq.path		= /usr/local/biblioteq
+biblioteq.files		= BiblioteQ
+conf.path		= /usr/local/biblioteq
 conf.files		= biblioteq.conf
-doc1.path		= /Applications/BiblioteQ_Qt5.d/Documentation
-doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
-doc2.path		= /Applications/BiblioteQ_Qt5.d/Documentation/Contributed
-doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
-lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.qt5.pro
+lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.powerpc.qt5.pro
 lrelease.path           = .
-lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.qt5.pro
-macdeployqt.path	= BiblioteQ.app
-macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
-preinstall.path         = /Applications/BiblioteQ_Qt5.d
-preinstall.extra        = rm -rf /Applications/BiblioteQ_Qt5.d/BiblioteQ.app/*
-postinstall.path	= /Applications/BiblioteQ_Qt5.d
-postinstall.extra	= cp -r BiblioteQ.app /Applications/BiblioteQ_Qt5.d/.
-sql.path		= /Applications/BiblioteQ_Qt5.d
-sql.files		= SQL/*.sql
-translations.path	= /Applications/BiblioteQ_Qt5.d/Translations
+lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.powerpc.qt5.pro
+sh.path			= /usr/local/biblioteq
+sh.files		= biblioteq.sh
+translations.path	= /usr/local/biblioteq/Translations
 translations.files	= Translations/*.qm
 
-INSTALLS	= preinstall \
-		  macdeployqt \
-		  biblioteq \
-		  conf \
-		  doc1 \
-		  doc2 \
+INSTALLS	= biblioteq \
+                  conf \
 		  lupdate \
 		  lrelease \
-		  sql \
-		  translations \
-		  postinstall
+                  sh \
+		  translations

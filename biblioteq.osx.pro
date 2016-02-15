@@ -118,6 +118,9 @@ doc1.path		= /Applications/BiblioteQ.d/Documentation
 doc1.files		= Documentation/*.pdf Documentation/*.txt Documentation/TO-DO
 doc2.path		= /Applications/BiblioteQ.d/Documentation/Contributed
 doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
+lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
+lrelease.path           = .
+lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 preinstall.path         = /Applications/BiblioteQ.d
@@ -135,6 +138,8 @@ INSTALLS	= preinstall \
 		  conf \
 		  doc1 \
 		  doc2 \
+		  lupdate \
+		  lrelease \
 		  sql \
 		  translations \
 		  postinstall
