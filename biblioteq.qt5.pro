@@ -117,6 +117,7 @@ conf.files		= biblioteq.conf
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.qt5.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.qt5.pro
+lupdate.path            = .
 sh.path			= /usr/local/biblioteq
 sh.files		= biblioteq.sh
 translations.path	= /usr/local/biblioteq/Translations

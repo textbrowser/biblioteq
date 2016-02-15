@@ -121,6 +121,7 @@ doc2.files		= Documentation/Contributed/*.docx Documentation/Contributed/*.pdf
 lrelease.extra          = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
+lupdate.path            = .
 macdeployqt.path	= BiblioteQ.app
 macdeployqt.extra	= $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app -verbose=0 2>/dev/null; echo;
 preinstall.path         = /Applications/BiblioteQ.d
