@@ -1997,7 +1997,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 	  m_thread->msleep(100);
 	}
 
-      working.hide();
+      working.close();
 
       if(working.wasCanceled())
 	{
@@ -3234,7 +3234,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 		  this, SLOT(slotSRUDownloadFinished(void)));
 	}
       else
-	m_sruWorking->hide();
+	m_sruWorking->close();
     }
 }
 
@@ -3268,7 +3268,7 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
 
 void biblioteq_magazine::sruDownloadFinished(void)
 {
-  m_sruWorking->hide();
+  m_sruWorking->close();
   update();
 
   QList<QByteArray> list;

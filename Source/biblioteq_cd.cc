@@ -1585,7 +1585,7 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   trd.table->setRowCount(i); // Support cancellation.
@@ -1845,7 +1845,7 @@ void biblioteq_cd::slotSaveTracks(void)
 #endif
 	}
 
-      progress.hide();
+      progress.close();
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().commit())

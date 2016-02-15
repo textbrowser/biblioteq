@@ -1219,7 +1219,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	}
     }
 
-  progress.hide();
+  progress.close();
 }
 
 /*
@@ -2014,8 +2014,9 @@ void biblioteq_photographcollection::slotDeleteItem(void)
     pc.page->addItem(QString::number(i));
 
   pc.page->blockSignals(false);
-  progress.hide();
+  progress.close();
 #ifndef Q_OS_MAC
+  repaint();
   QApplication::processEvents();
 #endif
   showPhotographs(pc.page->currentText().toInt());
@@ -2054,8 +2055,9 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
   if(dialog.result() == QDialog::Accepted &&
      dialog.selectedFiles().size() > 0)
     {
-      dialog.hide();
+      dialog.close();
 #ifndef Q_OS_MAC
+      repaint();
       QApplication::processEvents();
 #endif
 
@@ -2405,6 +2407,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 
   dialog.close();
 #ifndef Q_OS_MAC
+  repaint();
   QApplication::processEvents();
 #endif
 
@@ -2555,8 +2558,9 @@ void biblioteq_photographcollection::slotImportItems(void)
 	imported += 1;
     }
 
-  progress.hide();
+  progress.close();
 #ifndef Q_OS_MAC
+  repaint();
   QApplication::processEvents();
 #endif
   QApplication::setOverrideCursor(Qt::WaitCursor);

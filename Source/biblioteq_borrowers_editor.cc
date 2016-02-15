@@ -216,7 +216,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 #endif
     }
 
-  progress1.hide();
+  progress1.close();
   m_bd.table->setRowCount(i); // Support cancellation.
   query.setForwardOnly(true);
 
@@ -352,7 +352,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 	break; // Out of resources?
     }
 
-  progress2.hide();
+  progress2.close();
   m_bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
@@ -576,7 +576,7 @@ void biblioteq_borrowers_editor::slotSave(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
 
   if(error)
     QMessageBox::critical(this, tr("BiblioteQ: User Error"),

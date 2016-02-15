@@ -2282,7 +2282,7 @@ void biblioteq_book::slotSRUQuery(void)
 		  this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
 	}
       else
-	m_sruWorking->hide();
+	m_sruWorking->close();
     }
 }
 
@@ -2381,7 +2381,7 @@ void biblioteq_book::slotZ3950Query(void)
 	  m_thread->msleep(100);
 	}
 
-      working.hide();
+      working.close();
 
       if(working.wasCanceled())
 	{
@@ -2970,7 +2970,7 @@ void biblioteq_book::slotDownloadFinished(void)
 void biblioteq_book::downloadFinished(void)
 {
   if(m_httpProgress->isVisible())
-    m_httpProgress->hide();
+    m_httpProgress->close();
 
   if(m_imageBuffer.property("which") == "front")
     {
@@ -3160,7 +3160,7 @@ void biblioteq_book::slotSRUDownloadFinished(void)
 
 void biblioteq_book::sruDownloadFinished(void)
 {
-  m_sruWorking->hide();
+  m_sruWorking->close();
   update();
 
   /*

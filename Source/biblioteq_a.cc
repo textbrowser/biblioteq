@@ -2002,7 +2002,7 @@ void biblioteq::slotDelete(void)
 	}
     }
 
-  progress.hide();
+  progress.close();
 
   /*
   ** Provide some fancy messages.
@@ -4709,7 +4709,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i); // Support cancellation.
   bb.table->horizontalHeader()->resizeSections
@@ -4779,7 +4779,7 @@ void biblioteq::slotGrantPrivileges(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
 
   if(error)
     QMessageBox::critical(m_members_diag, tr("BiblioteQ: Database Error"),
@@ -7523,7 +7523,7 @@ void biblioteq::slotShowHistory(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
   history.table->setRowCount(i); // Support cancellation.
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
@@ -8102,7 +8102,7 @@ void biblioteq::slotRefreshAdminList(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
   ab.table->setRowCount(i); // Support cancellation.
   ab.table->horizontalHeader()->resizeSections
     (QHeaderView::ResizeToContents);
@@ -8292,7 +8292,7 @@ void biblioteq::slotSaveAdministrators(void)
 
       if(!errorstr.isEmpty())
 	{
-	  progress.hide();
+	  progress.close();
 	  addError
 	    (QString(tr("Database Error")),
 	     QString(tr("The function biblioteq_misc_functions::"
@@ -8321,7 +8321,7 @@ void biblioteq::slotSaveAdministrators(void)
 
       if(!query.exec())
 	{
-	  progress.hide();
+	  progress.close();
 	  addError
 	    (QString(tr("Database Error")),
 	     QString(tr("Unable to create or update the administrator entry "
@@ -8339,7 +8339,7 @@ void biblioteq::slotSaveAdministrators(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      progress.hide();
+	      progress.close();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("An error occurred while attempting to "
@@ -8357,7 +8357,7 @@ void biblioteq::slotSaveAdministrators(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      progress.hide();
+	      progress.close();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("An error occurred while attempting to "
@@ -8371,7 +8371,7 @@ void biblioteq::slotSaveAdministrators(void)
 
 	  if(!errorstr.isEmpty())
 	    {
-	      progress.hide();
+	      progress.close();
 	      addError
 		(QString(tr("Database Error")),
 		 QString(tr("An error occurred while attempting to "
@@ -8383,7 +8383,7 @@ void biblioteq::slotSaveAdministrators(void)
 	}
     }
 
-  progress.hide();
+  progress.close();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!m_db.commit())
@@ -8585,7 +8585,7 @@ void biblioteq::slotRequest(void)
 #endif
     }
 
-  progress.hide();
+  progress.close();
 
   /*
   ** Provide some fancy messages.

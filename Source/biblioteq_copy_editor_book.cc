@@ -320,7 +320,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 #endif
     }
 
-  progress1.hide();
+  progress1.close();
   m_cb.table->setRowCount(i); // Support cancellation.
   query.setForwardOnly(true);
   query.prepare(QString("SELECT %1.title, "
@@ -456,7 +456,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	break; // Out of resources?
     }
 
-  progress2.hide();
+  progress2.close();
   m_cb.table->resizeColumnsToContents();
 }
 
@@ -785,7 +785,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 #endif
 	}
 
-      progress.hide();
+      progress.close();
     }
 
   return lastError;

@@ -3479,7 +3479,7 @@ int biblioteq::populateTable(const int search_type_arg,
 #endif
     }
 
-  progress.hide();
+  progress.close();
   ui.table->setSortingEnabled(true);
 
   if(search_type == CUSTOM_QUERY)
