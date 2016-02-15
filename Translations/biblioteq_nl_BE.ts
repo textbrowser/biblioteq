@@ -43,6 +43,26 @@
         <source>Database Error</source>
         <translation>Database Fout</translation>
     </message>
+    <message>
+        <source>hardcover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paperback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Exporting image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -358,6 +378,10 @@
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -520,16 +544,4361 @@
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Case-Insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear the main table and reset the search widgets.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq</name>
+    <message>
+        <source> in file </source>
+        <translation type="unfinished">in bestand</translation>
+    </message>
+    <message>
+        <source>, line </source>
+        <translation type="unfinished">, regel</translation>
+    </message>
+    <message>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred in file </source>
+        <translation type="unfinished">Een onbekende fout is opgetreden in bestand</translation>
+    </message>
+    <message>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <source>Reset &amp;ID Number</source>
+        <translation type="unfinished">Reset &amp;ID Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Reset &amp;Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Reset &amp;Uitgever</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Reset &amp;Categorieën</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Availability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Unlimited Entries per Page</source>
+        <translation type="unfinished">&amp;Alle Items per Pagina</translation>
+    </message>
+    <message>
+        <source>&amp;%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Czech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dutch (&amp;Netherlands)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>G&amp;reek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Administrator Mode</source>
+        <translation type="unfinished">Administrator Modus</translation>
+    </message>
+    <message>
+        <source>Circulation Mode</source>
+        <translation type="unfinished">Circulatie Modus</translation>
+    </message>
+    <message>
+        <source>Librarian Mode</source>
+        <translation type="unfinished">Bibliothecaris Modus</translation>
+    </message>
+    <message>
+        <source>Membership Mode</source>
+        <translation type="unfinished">Klant Modus</translation>
+    </message>
+    <message>
+        <source>Privileged Mode</source>
+        <translation type="unfinished">Bevoorrechte-Modus</translation>
+    </message>
+    <message>
+        <source>Item Requests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished">Verbroken</translation>
+    </message>
+    <message>
+        <source>Standard User Mode</source>
+        <translation type="unfinished">Standaard Gebruiker Modus</translation>
+    </message>
+    <message>
+        <source>Empty Error Log</source>
+        <translation type="unfinished">Fouten Logboek Wissen</translation>
+    </message>
+    <message>
+        <source>0 Results</source>
+        <translation type="unfinished">0 Resultaten</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed. The current working directory is %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: About</source>
+        <translation type="unfinished">BiblioteQ:Over dit programma</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the locations.</source>
+        <translation type="unfinished">Onmogelijk om de Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please select at least one item to modify.</source>
+        <translation type="unfinished">Selecteer hetgeen dat u wenst te wijzigen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to modify the </source>
+        <translation type="unfinished">Bent U zeker dat U volgende wilt wijzigen:</translation>
+    </message>
+    <message>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished">BiblioteQ: Fout</translation>
+    </message>
+    <message>
+        <source>Unable to determine the selected item&apos;s type.</source>
+        <translation type="unfinished">Niet mogelijk om het type van dit Item te bepalen.</translation>
+    </message>
+    <message>
+        <source>Please select at least one item to view.</source>
+        <translation type="unfinished">Selecteer minstens één item om weer te geven.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to view the </source>
+        <translation type="unfinished">Bent U zeker dat U volgende wilt bekijken:</translation>
+    </message>
+    <message>
+        <source>Please select an item to delete.</source>
+        <translation type="unfinished">Selecteer minstens één item om te verwijderen.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Fout</translation>
+    </message>
+    <message>
+        <source>The main table does not contain enough information for item deletion.</source>
+        <translation type="unfinished">De hoofdtabel bevat niet genoeg informatie om item te verwijderen.</translation>
+    </message>
+    <message>
+        <source>Unable to determine if the item has been reserved.</source>
+        <translation type="unfinished">Niet mogelijk om na te gaan of dit item is uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>Reserved items may not be deleted.</source>
+        <translation type="unfinished">Uitgeleende items kunnen niet worden verwijderd.</translation>
+    </message>
+    <message>
+        <source>Unable to determine if the item has been requested.</source>
+        <translation type="unfinished">Niet mogelijk om na te gaan of dit item is gereserveerd.</translation>
+    </message>
+    <message>
+        <source>Requested items may not be deleted.</source>
+        <translation type="unfinished">Gereserveerde items kunnen niet worden verwijderd.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Verwijderen van geselecteerde item(s)...</translation>
+    </message>
+    <message>
+        <source>Unable to delete the item.</source>
+        <translation type="unfinished">Niet mogelijk om item te verwijderen.</translation>
+    </message>
+    <message>
+        <source>Unable to delete all or some of the selected items.</source>
+        <translation type="unfinished">Niet mogelijk om sommige of alle geselecteerde item(s) te verwijderen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create New Member</source>
+        <translation type="unfinished">BiblioteQ: Nieuwe Klant Aanmaken</translation>
+    </message>
+    <message>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Member ID </source>
+        <translation type="unfinished">Het Klant-ID</translation>
+    </message>
+    <message>
+        <source> already exists.</source>
+        <translation type="unfinished">bestaat al.</translation>
+    </message>
+    <message>
+        <source>Please provide a valid First Name.</source>
+        <translation type="unfinished">Vul een geldige voornaam in a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a valid Last Name.</source>
+        <translation type="unfinished">Vul een geldige Familienaam in a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a valid Street.</source>
+        <translation type="unfinished">Vul een geldige straat in a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a valid City.</source>
+        <translation type="unfinished">Vul een geldige Woonplaats in a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the uniqueness of the proposed member.</source>
+        <translation type="unfinished">Niet mogelijk om na te gaan of voorgestelde klant uniek is.</translation>
+    </message>
+    <message>
+        <source>An identical member already exists.</source>
+        <translation type="unfinished">Een identieke klant bestaat reeds.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to save the member&apos;s information.</source>
+        <translation type="unfinished">Niet mogelijk om klant-info op te slaan.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create a database account for the new member.</source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor de nieuwe klant.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to update the database account for </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde een database-account te updaten voor</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to update the database account %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ: Informatie</translation>
+    </message>
+    <message>
+        <source>Please notify the new member that their default password has been set to tempPass.</source>
+        <translation type="unfinished">Laat de nieuwe klant weten dat hun paswoord is gezet op tempPass.</translation>
+    </message>
+    <message>
+        <source>Please select a member to delete.</source>
+        <translation type="unfinished">Selecteer een klant om te verwijderen.</translation>
+    </message>
+    <message>
+        <source>Unable to determine the number of items that are reserved by the selected member.</source>
+        <translation type="unfinished">Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
+    </message>
+    <message>
+        <source>You may not remove a member that has reserved items.</source>
+        <translation type="unfinished">U mag geen Klant verwijderen die geleende item(s) bezit.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected member?</source>
+        <translation type="unfinished">Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
+    </message>
+    <message>
+        <source>Unable to remove the selected member.</source>
+        <translation type="unfinished">Onmogelijk om geselecteerde klant te verwijderen.</translation>
+    </message>
+    <message>
+        <source>Unable to remove the patron account </source>
+        <translation type="unfinished">Niet mogelijk om de patroon account te verwijderen.</translation>
+    </message>
+    <message>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available</source>
+        <translation type="unfinished">Beschikbaar</translation>
+    </message>
+    <message>
+        <source>Unavailable</source>
+        <translation type="unfinished">Niet Beschikbaar</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
+        <translation type="unfinished">De geselecteerde Domein-Databank heeft geen driver met zich verbonden.</translation>
+    </message>
+    <message>
+        <source>The following drivers are available: </source>
+        <translation type="unfinished">De volgende drivers zijn beschikbaar:</translation>
+    </message>
+    <message>
+        <source>In addition, Qt expects plugins to exist in: </source>
+        <translation type="unfinished">In aanvulling, Qt verwacht plugins in:</translation>
+    </message>
+    <message>
+        <source>Please contact your administrator.</source>
+        <translation type="unfinished">Contacteer uw administrator a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Unable to open a database connection with the provided information.</source>
+        <translation type="unfinished">Niet mogelijk om de database te openen met de opgegeven informatie.</translation>
+    </message>
+    <message>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
+        <translation type="unfinished">Uw huidige database driver ondersteunt geen transacties. Upgrade uw database en/of driver.</translation>
+    </message>
+    <message>
+        <source>It appears that the user </source>
+        <translation type="unfinished">Het lijkt dat de gebruiker</translation>
+    </message>
+    <message>
+        <source> does not have administrator privileges.</source>
+        <translation type="unfinished">geen administrator rechten heeft.</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
+        <translation type="unfinished">Schijnbaar probeert u administrator functies uit te voeren in een niet-administrator omgeving.</translation>
+    </message>
+    <message>
+        <source>Unable to set the role for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the roles of </source>
+        <translation type="unfinished">Niet mogelijk om de functie vast te stellen van</translation>
+    </message>
+    <message>
+        <source>Unable to set a guest role.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished">Verbonden</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Request Selected Item(s)</source>
+        <translation type="unfinished">Vraag Geselecteerde Item(s) Aan</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Administrator</source>
+        <translation type="unfinished">Administrator</translation>
+    </message>
+    <message>
+        <source>Circulation</source>
+        <translation type="unfinished">Circulatie</translation>
+    </message>
+    <message>
+        <source>Librarian</source>
+        <translation type="unfinished">Bibliothecaris</translation>
+    </message>
+    <message>
+        <source>Membership</source>
+        <translation type="unfinished">Lidmaatschap</translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="unfinished">Klant ID</translation>
+    </message>
+    <message>
+        <source>First Name</source>
+        <translation type="unfinished">Voornaam</translation>
+    </message>
+    <message>
+        <source>Last Name</source>
+        <translation type="unfinished">Familienaam</translation>
+    </message>
+    <message>
+        <source>Member Since</source>
+        <translation type="unfinished">Klant sinds</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished">Uitschrijfdatum</translation>
+    </message>
+    <message>
+        <source>Books Reserved</source>
+        <translation type="unfinished">Uitgeleende Boeken</translation>
+    </message>
+    <message>
+        <source>CDs Reserved</source>
+        <translation type="unfinished">Uitgeleende CD&apos;s</translation>
+    </message>
+    <message>
+        <source>DVDs Reserved</source>
+        <translation type="unfinished">Uitgeleende DVD&apos;s</translation>
+    </message>
+    <message>
+        <source>Journals Reserved</source>
+        <translation type="unfinished">Uitgeleende Kranten</translation>
+    </message>
+    <message>
+        <source>Magazines Reserved</source>
+        <translation type="unfinished">Uitgeleende Tijdschriften</translation>
+    </message>
+    <message>
+        <source>Video Games Reserved</source>
+        <translation type="unfinished">Uitgeleende Video Games</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve member data for table populating.</source>
+        <translation type="unfinished">Kan de klant data niet ophalen om de tabel te vullen.</translation>
+    </message>
+    <message>
+        <source>Populating the table...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Granting privileges...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to grant privileges to all of the members.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine the number of reserved items for the selected member.</source>
+        <translation type="unfinished">Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a member to modify.</source>
+        <translation type="unfinished">Selecteer een klant om te wijzigen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected member&apos;s information.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde klant te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Member</source>
+        <translation type="unfinished">BiblioteQ: Bewerk Klant Gegevens</translation>
+    </message>
+    <message>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to determine if the membership of the selected member has expired.</source>
+        <translation type="unfinished">Het is niet vast te stellen of het lidmaatschap van geselecteerde klant is verlopen.</translation>
+    </message>
+    <message>
+        <source>It appears that the selected member&apos;s membership has expired.</source>
+        <translation type="unfinished">Het lidmaatschap van geselecteerde klant is verlopen.</translation>
+    </message>
+    <message>
+        <source>Unable to determine the availability of the selected item.</source>
+        <translation type="unfinished">Niet na te gaan of geselecteerde beschikbaar is.</translation>
+    </message>
+    <message>
+        <source>It appears that the item that you selected is not available for reservation.</source>
+        <translation type="unfinished">Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
+    </message>
+    <message>
+        <source>Please select a member and an item to continue with the reservation process.</source>
+        <translation type="unfinished">Selecteer een klant en een item om door te kunnen gaan met het uitleenproces.</translation>
+    </message>
+    <message>
+        <source>Cancel Selected Request(s)</source>
+        <translation type="unfinished">Annuleer de geselecteerde aanvraag</translation>
+    </message>
+    <message>
+        <source>Error Log Active</source>
+        <translation type="unfinished">Fouten Logboek Actief</translation>
+    </message>
+    <message>
+        <source>Memory failure in addError()!</source>
+        <translation type="unfinished">Geheugen Falen in addError()!</translation>
+    </message>
+    <message>
+        <source>Event Time</source>
+        <translation type="unfinished">Tijd</translation>
+    </message>
+    <message>
+        <source>Event Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summary</source>
+        <translation type="unfinished">Samenvatting</translation>
+    </message>
+    <message>
+        <source>Full Description</source>
+        <translation type="unfinished">Volledige Beschrijving</translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished">Bestand</translation>
+    </message>
+    <message>
+        <source>Line Number</source>
+        <translation type="unfinished">Regelnummer</translation>
+    </message>
+    <message>
+        <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
+        <translation type="unfinished">Om uitgeleende item(s) van een klant weer te geven, moet u eerst een klant selecteren.</translation>
+    </message>
+    <message>
+        <source>In order to reserve an item, you must first select it.</source>
+        <translation type="unfinished">Om een item uit te lenen, moet u het eerst selecteren.</translation>
+    </message>
+    <message>
+        <source>It appears that the item you selected is not available for reservation.</source>
+        <translation type="unfinished">Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
+    </message>
+    <message>
+        <source>Would you like to retrieve the list of members?</source>
+        <translation type="unfinished">Wilt u de lijst met alle klanten weergeven?</translation>
+    </message>
+    <message>
+        <source>Add &amp;Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;General Search</source>
+        <translation type="unfinished">&amp;Algemeen Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;Book Search</source>
+        <translation type="unfinished">&amp;Boek Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;DVD Search</source>
+        <translation type="unfinished">&amp;DVD Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search</source>
+        <translation type="unfinished">&amp;Krant Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;Magazine Search</source>
+        <translation type="unfinished">&amp;Tijdschrift Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search</source>
+        <translation type="unfinished">&amp;Muziek CD Zoeken</translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game Search</source>
+        <translation type="unfinished">&amp;Video-Game Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select Global Font</source>
+        <translation type="unfinished">BiblioteQ: Wijzig Lettertype</translation>
+    </message>
+    <message>
+        <source>Table Name</source>
+        <translation type="unfinished">Tabelnaam</translation>
+    </message>
+    <message>
+        <source>Column</source>
+        <translation type="unfinished">Kolom</translation>
+    </message>
+    <message>
+        <source>Column Type</source>
+        <translation type="unfinished">Type Kolom </translation>
+    </message>
+    <message>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>Please provide a valid SQL statement.</source>
+        <translation type="unfinished">Voorzie een geldige SQL uitdrukking a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a non-destructive SQL statement.</source>
+        <translation type="unfinished">Voorzie een SQL uitdrukking zonder destructieve gevolgen a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
+        <translation type="unfinished">Om de geleende Item(s) van een klant af te printen moet U eerst een klant selecteren.</translation>
+    </message>
+    <message>
+        <source>The member that you selected does not have any reserved items.</source>
+        <translation type="unfinished">De klant die U selecteerde heeft geen items ontleend.</translation>
+    </message>
+    <message>
+        <source>Reserved Items for </source>
+        <translation type="unfinished">Ontleende items van</translation>
+    </message>
+    <message>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reserved items for the selected member.</source>
+        <translation type="unfinished">Het is niet mogelijk om geleende items vast te stellen van deze klant.</translation>
+    </message>
+    <message>
+        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
+        <translation type="unfinished">Om de inhoud van het fouten-logboek te kopieëren naar het klembord, dient u minstens één regel te selecteren.</translation>
+    </message>
+    <message>
+        <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
+        <translation type="unfinished">Om de reservatiegeschiedenis te zien moet U eerst een klant selecteren.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve reservation history data for table populating.</source>
+        <translation type="unfinished">Kan de reservatiegeschiedenis niet achterhalen om de tabel te vullen.</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>ID Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reservation Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original Due Date</source>
+        <translation type="unfinished">Originele Terugbrengdatum</translation>
+    </message>
+    <message>
+        <source>Returned Date</source>
+        <translation type="unfinished">Datum Ingave</translation>
+    </message>
+    <message>
+        <source>Lender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The selected member does not yet have a reservation history to print.</source>
+        <translation type="unfinished">De klant die U selecteerde heeft nog geen reservatiegeschiedenis.</translation>
+    </message>
+    <message>
+        <source>You do not yet have a reservation history to print.</source>
+        <translation type="unfinished"> U heeft nog geen reservatiegeschiedenis om te printen.</translation>
+    </message>
+    <message>
+        <source>Reservation History</source>
+        <translation type="unfinished">Uitleengeschiedenis</translation>
+    </message>
+    <message>
+        <source>The password must be at least eight characters long.</source>
+        <translation type="unfinished">Het paswoord moet uit minstens acht tekens bestaan.</translation>
+    </message>
+    <message>
+        <source>The passwords do not match. Please try again.</source>
+        <translation type="unfinished">De paswoorden komen niet overeen. Probeert U het nogmaal.</translation>
+    </message>
+    <message>
+        <source>Unable to save the new password.</source>
+        <translation type="unfinished">Kan het nieuw paswoord niet opslaan.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SQLite Database Selection</source>
+        <translation type="unfinished">BiblioteQ: SQLite Database Selectie</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>To delete an entry, you must first select it.</source>
+        <translation type="unfinished">Om te verwijderen, dient U eerst te selecteren.</translation>
+    </message>
+    <message>
+        <source>As an administrator, you may not delete your account.</source>
+        <translation type="unfinished">Als administrator, kunt U uw eigen account niet verwijderen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve administrator data for table populating.</source>
+        <translation type="unfinished">Kan de administrator data niet achterhalen om de tabel te vullen.</translation>
+    </message>
+    <message>
+        <source>Administrators must belong to at least one category.</source>
+        <translation type="unfinished">Administrators dienen op zijn minst lid te zijn van één categorie.</translation>
+    </message>
+    <message>
+        <source>Duplicate administrator ids are not allowed.</source>
+        <translation type="unfinished">Dubbele administrator ID&apos;s zijn niet toegelaten.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde  het volgende te verplaatsen:</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove the database account </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde  de database-account te verplaatsen</translation>
+    </message>
+    <message>
+        <source>Saving administrator information...</source>
+        <translation type="unfinished">Administrator informatie opslaan...</translation>
+    </message>
+    <message>
+        <source>The function biblioteq_misc_functions::userCount() failed for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create or update the administrator entry for </source>
+        <translation type="unfinished">Niet mogelijk om administrator gegevens te updaten of aan te maken voor</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create a database account for </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor </translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to revoke privileges from </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde privileges in te trekken van </translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to grant privileges to </source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde privileges toe te staan aan </translation>
+    </message>
+    <message>
+        <source>Please notify new administrators that their default password has been set to tempPass.</source>
+        <translation type="unfinished">Laat  nieuwe administrators weten dat hun paswoord is gezet op tempPass.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to save the administrator information.</source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde de administrator gegevens op te slaan.</translation>
+    </message>
+    <message>
+        <source>Please select at least one item to place on request.</source>
+        <translation type="unfinished">Selecteer minstens één item om bij de aanvraag te plaatsen.</translation>
+    </message>
+    <message>
+        <source>Please select at least one request to cancel.</source>
+        <translation type="unfinished">Selecteer minstens één item-aanvraag om te annuleren.</translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to cancel the selected request(s)?</source>
+        <translation type="unfinished">Bent U zeker dat U de geselecteerde aanvragen wilt annuleren?</translation>
+    </message>
+    <message>
+        <source>Requesting the selected item(s)...</source>
+        <translation type="unfinished">Bezig met geselecteerde item(s) aan te vragen...</translation>
+    </message>
+    <message>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to request the item.</source>
+        <translation type="unfinished">Kan item niet aanvragen.</translation>
+    </message>
+    <message>
+        <source>Unable to cancel the request.</source>
+        <translation type="unfinished">Kan aanvraag niet annuleren.</translation>
+    </message>
+    <message>
+        <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
+        <translation type="unfinished">Kan sommige of alle geselecteerde items niet aanvragen.Ga na of U geen dubbele items probeert aan te vragen.</translation>
+    </message>
+    <message>
+        <source>Unable to cancel some or all of the selected requests.</source>
+        <translation type="unfinished">Niet mogelijk om sommige of alle geselecteerde aanvragen te annuleren.</translation>
+    </message>
+    <message>
+        <source>All Available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Overdue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Boeken</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD&apos;s</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Kranten</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Tijdschriften</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">Muziek CD&apos;s</translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Video Games</translation>
+    </message>
+    <message>
+        <source>All Requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear Menu</source>
+        <translation type="unfinished">&amp;Wis Menu</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: New SQLite Database</source>
+        <translation type="unfinished">BiblioteQ: Nieuwe SQLite Database </translation>
+    </message>
+    <message>
+        <source>Unable to create the specified SQLite database.</source>
+        <translation type="unfinished">Niet mogelijk om de gevraagde SQLite database aan te maken.</translation>
+    </message>
+    <message>
+        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished">U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV (*.csv)</source>
+        <translation type="unfinished">CSV (*.csv)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select at least one item to duplicate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to duplicate the </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Result(s)</source>
+        <translation type="unfinished">%1 Resultaten</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the data required for populating the main table.</source>
+        <translation type="unfinished">Niet mogelijk om de data op te halen om de hoofdtabel te vullen.</translation>
+    </message>
+    <message>
+        <source> %1 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> 1 ... </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished">1</translation>
+    </message>
+    <message>
+        <source> ... </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> ... %1 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_book</name>
+    <message>
+        <source>BiblioteQ: Image Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (voorkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (achterkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;ISBN-10</source>
+        <translation type="unfinished">Reset &amp;ISBN-10</translation>
+    </message>
+    <message>
+        <source>Reset &amp;ISBN-13</source>
+        <translation type="unfinished">Reset &amp;ISBN-13</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Edition</source>
+        <translation type="unfinished">Reset &amp;Editie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Author(s)</source>
+        <translation type="unfinished">Reset &amp;Auteur(s)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Book Binding Type</source>
+        <translation type="unfinished">Reset &amp;Type Boekbinding</translation>
+    </message>
+    <message>
+        <source>Reset &amp;LC Control Number</source>
+        <translation type="unfinished">Reset &amp;LC Controle Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Call Number</source>
+        <translation type="unfinished">Reset &amp;Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Dewey Class Number</source>
+        <translation type="unfinished">Reset &amp;Dewey Classificatie Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Reset &amp;Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Reset &amp;Uitgever</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Reset &amp;Plaats van Uitgave</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Reset &amp;Categorieën</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished">Reset &amp;MARC Tags</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the book locations.</source>
+        <translation type="unfinished">Onmogelijk om de BOEK Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
+        <translation type="unfinished">Vervolledig zowel de  ISBN-10 als ISBN-13.</translation>
+    </message>
+    <message>
+        <source>Please complete the Author(s) field.</source>
+        <translation type="unfinished">Vervolledig de Acteur(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Vervolledig de Titel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Vervolledig de Uitgever(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished">Niet mogelijk om onnodige kopie data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished">Niet mogelijk om Initialen aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Book Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk BOEK gegevens</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Book Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk BOEK gegevens</translation>
+    </message>
+    <message>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished">Ophalen van beschikbaarheid.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Book Search</source>
+        <translation type="unfinished">BiblioteQ: BOEK Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Book Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk BOEK Details</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Book Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk BOEK Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected book&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde Boeken te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Book Entry</source>
+        <translation type="unfinished">BiblioteQ: BOEK Aanmaken</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Z39.50 Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Data Ophalen</translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Z39.50 Query Error</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Aanvraag Fout</translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to create a thread due to insufficient resources.</source>
+        <translation type="unfinished">Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+    </message>
+    <message>
+        <source>Z39.50 Query Error</source>
+        <translation type="unfinished">Z39.50 Aanvraag Fout</translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISBN-10:</source>
+        <translation type="unfinished">ISBN-10:</translation>
+    </message>
+    <message>
+        <source>ISBN-13:</source>
+        <translation type="unfinished">ISBN-13:</translation>
+    </message>
+    <message>
+        <source>Edition:</source>
+        <translation type="unfinished">Editie:</translation>
+    </message>
+    <message>
+        <source>Author(s):</source>
+        <translation type="unfinished">Auteur(s):</translation>
+    </message>
+    <message>
+        <source>Book Binding Type:</source>
+        <translation type="unfinished">Type Boekbinding:</translation>
+    </message>
+    <message>
+        <source>LC Control Number:</source>
+        <translation type="unfinished">LC Controle Nummer:</translation>
+    </message>
+    <message>
+        <source>Call Number:</source>
+        <translation type="unfinished">Aanroep Nummer:</translation>
+    </message>
+    <message>
+        <source>Dewey Class Number:</source>
+        <translation type="unfinished">Dewey Classificatie Nummer:</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date:</source>
+        <translation type="unfinished">Datum van Uitgave:</translation>
+    </message>
+    <message>
+        <source>Publisher:</source>
+        <translation type="unfinished">Uitgever:</translation>
+    </message>
+    <message>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Plaats van Uitgave:</translation>
+    </message>
+    <message>
+        <source>Categories:</source>
+        <translation type="unfinished">Categorieën:</translation>
+    </message>
+    <message>
+        <source>Price:</source>
+        <translation type="unfinished">Prijs:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished">Taal:</translation>
+    </message>
+    <message>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Munteenheid:</translation>
+    </message>
+    <message>
+        <source>Copies:</source>
+        <translation type="unfinished">Kopieën:</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Locatie:</translation>
+    </message>
+    <message>
+        <source>Originality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Abstract:</source>
+        <translation type="unfinished">Samenvatting:</translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished">MARC Tags:</translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
+        <translation type="unfinished">Om een hoes te downloaden van Amazon, moet het ISBN-10 gekend zijn.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Download</source>
+        <translation type="unfinished">BiblioteQ: Download Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>Downloading the front cover image. Please be patient...</source>
+        <translation type="unfinished">Downloaden van de  Voorkant Hoes. Even geduld a.u.b. ...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Download</source>
+        <translation type="unfinished">BiblioteQ: Download Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>Downloading the back cover image. Please be patient...</source>
+        <translation type="unfinished">Downloaden van de  Achterkant Hoes. Even geduld a.u.b. ...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: HTTP Warning</source>
+        <translation type="unfinished">BiblioteQ: HTTP Waarschuwing</translation>
+    </message>
+    <message>
+        <source>The front cover image for the specified ISBN may not exist.</source>
+        <translation type="unfinished">De Hoes (Voorkant) voor deze ISBN bestaat mogelijks niet.</translation>
+    </message>
+    <message>
+        <source>The back cover image for the specified ISBN may not exist.</source>
+        <translation type="unfinished">De Hoes (Achterkant) voor deze ISBN bestaat mogelijks niet.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Book Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A network error (%1) occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or more SSL errors occurred. Please verify your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_borrowers_editor</name>
+    <message>
+        <source>BiblioteQ: Item Reservation Status (</source>
+        <translation type="unfinished">BiblioteQ: Item Uitleenstatus</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Item Reservation Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="unfinished">Klant ID</translation>
+    </message>
+    <message>
+        <source>First Name</source>
+        <translation type="unfinished">Voornaam</translation>
+    </message>
+    <message>
+        <source>Last Name</source>
+        <translation type="unfinished">Familienaam</translation>
+    </message>
+    <message>
+        <source>Reservation Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy Due Date</source>
+        <translation type="unfinished">Kopie Terugbrengdatum</translation>
+    </message>
+    <message>
+        <source>Lender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve borrower data.</source>
+        <translation type="unfinished">Niet mogelijk klant-data te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Retrieving borrower data...</source>
+        <translation type="unfinished">Ophalen van Klant-data...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please select the copy that has been returned.</source>
+        <translation type="unfinished">Selecteer de kopie die is teruggebracht.</translation>
+    </message>
+    <message>
+        <source>It appears that the selected item has not been reserved.</source>
+        <translation type="unfinished">Het lijkt erop dat het geselecteerde item niet is uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Are you sure that the copy has been returned?</source>
+        <translation type="unfinished">Bent U zeker dat het item is teruggebracht?</translation>
+    </message>
+    <message>
+        <source>Unable to modify the reservation status of the selected copy.</source>
+        <translation type="unfinished">Niet mogelijk om de uitleenstatus van het geselecteerde aan te passen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to modify the returned date of the selected copy.</source>
+        <translation type="unfinished">Niet mogelijk om de terugbrengdatum aan te passen.</translation>
+    </message>
+    <message>
+        <source>Updating the due date(s)...</source>
+        <translation type="unfinished">Updaten van de &apos;terugbrengdatums&apos;...</translation>
+    </message>
+    <message>
+        <source>Unable to update the due date.</source>
+        <translation type="unfinished">Niet mogelijk om de &quot;terugbrengdatum&apos; te updaten.</translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_cd</name>
+    <message>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (voorkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (achterkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Catalog Number</source>
+        <translation type="unfinished">Reset &amp;Catalogus Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Format</source>
+        <translation type="unfinished">Reset &amp;Format</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Artist</source>
+        <translation type="unfinished">Reset &amp;Artiest</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Number of Discs</source>
+        <translation type="unfinished">Reset &amp;Aantal Discs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Runtime</source>
+        <translation type="unfinished">Reset &amp;Duur</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Audio</source>
+        <translation type="unfinished">Reset &amp;Studio</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Recording Type</source>
+        <translation type="unfinished">Reset &amp;Type Opname</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Reset &amp;Uitgavedatum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Recording Label</source>
+        <translation type="unfinished">Reset &amp;Record Label</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Reset &amp;Categorieën</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd locations.</source>
+        <translation type="unfinished">Onmogelijk om de CD Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the cd formats.</source>
+        <translation type="unfinished">Onmogelijk om de CD Formats te achterhalen.</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the Catalog Number field.</source>
+        <translation type="unfinished">Vervolledig Catalogus Nummer(s)a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Artist field.</source>
+        <translation type="unfinished">Vervolledig &quot;Artiest&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please provide a valid Runtime.</source>
+        <translation type="unfinished">Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Vervolledig de Titel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Recording Label field.</source>
+        <translation type="unfinished">Vervolledig Record Label(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished">Niet mogelijk om onnodige kopie data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished">Niet mogelijk om Initialen aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk Muziek CD gegevens (</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished">Ophalen van beschikbaarheid.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the CD&apos;s OID.</source>
+        <translation type="unfinished">Niet mogelijk om CD&apos;s OID op te halen.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Music CD Search</source>
+        <translation type="unfinished">BiblioteQ: CD Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk CD Details (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Music CD Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk Muziek CD gegevens</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Music CD Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk CD Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected CD&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde CD te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Music CD Entry</source>
+        <translation type="unfinished">BiblioteQ: CD Aanmaken</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve track data for table populating.</source>
+        <translation type="unfinished">Kan de track-data niet ophalen om de tabel te vullen.</translation>
+    </message>
+    <message>
+        <source>Album Number</source>
+        <translation type="unfinished">Album Nummer</translation>
+    </message>
+    <message>
+        <source>Track Number</source>
+        <translation type="unfinished">Track Nummer</translation>
+    </message>
+    <message>
+        <source>Track Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Track Runtime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Artiest</translation>
+    </message>
+    <message>
+        <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Album Tracks Browser (</source>
+        <translation type="unfinished">BiblioteQ: Browser van Album Tracks (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populating the table...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Rij-nummer</translation>
+    </message>
+    <message>
+        <source> contains an empty Song Title.</source>
+        <translation type="unfinished">bevat een lege Titel.</translation>
+    </message>
+    <message>
+        <source>Unable to purge track data.</source>
+        <translation type="unfinished">Niet mogelijk om track data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Saving the track data...</source>
+        <translation type="unfinished">Opslaan van track-data...</translation>
+    </message>
+    <message>
+        <source>Unable to create track data.</source>
+        <translation type="unfinished">Niet mogelijk om track-data aan te maken.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Toewijsfout.</translation>
+    </message>
+    <message>
+        <source>Some or all of the track data has not been saved.</source>
+        <translation type="unfinished">Enige of alle track data zijn niet opgeslagen.</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
+        <translation type="unfinished">De gezamenlijke duur van alle tracks is nul. Vul de individuele duurtijden in a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Catalog Number:</source>
+        <translation type="unfinished">Aanroep Nummer:</translation>
+    </message>
+    <message>
+        <source>Format:</source>
+        <translation type="unfinished">Format:</translation>
+    </message>
+    <message>
+        <source>Artist:</source>
+        <translation type="unfinished">Artiest:</translation>
+    </message>
+    <message>
+        <source>Number of Discs:</source>
+        <translation type="unfinished">Aantal Discs:</translation>
+    </message>
+    <message>
+        <source>Runtime:</source>
+        <translation type="unfinished">Duur:</translation>
+    </message>
+    <message>
+        <source>Audio:</source>
+        <translation type="unfinished">Studio:</translation>
+    </message>
+    <message>
+        <source>Recording Type:</source>
+        <translation type="unfinished">Type Opname:</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release Date:</source>
+        <translation type="unfinished">Uitgave Datum:</translation>
+    </message>
+    <message>
+        <source>Recording Label:</source>
+        <translation type="unfinished">Platenmaatschappij:</translation>
+    </message>
+    <message>
+        <source>Categories:</source>
+        <translation type="unfinished">Categorieën:</translation>
+    </message>
+    <message>
+        <source>Price:</source>
+        <translation type="unfinished">Prijs:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished">Taal:</translation>
+    </message>
+    <message>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Munteenheid:</translation>
+    </message>
+    <message>
+        <source>Copies:</source>
+        <translation type="unfinished">Kopieën:</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Locatie:</translation>
+    </message>
+    <message>
+        <source>Abstract:</source>
+        <translation type="unfinished">Samenvatting:</translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Music CD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_copy_editor</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Selecteer hetgeen dat u wenst te verwijderen.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">U moet tenminste één kopie hebben.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Niet mogelijk om de uitleenstatus te bepalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Uitlenen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">De kopie data kan niet teruggevonden worden.</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Ophalen van kopie-info...</translation>
+    </message>
+    <message>
+        <source>Please select a copy to reserve.</source>
+        <translation type="unfinished">Selecteer a.u.b. een item om uit te lenen.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
+        <translation type="unfinished">Schijnbaar is de kopie die u selecteerde niet beschikbaar of bestaat niet.</translation>
+    </message>
+    <message>
+        <source>Please select a future Due Date.</source>
+        <translation type="unfinished">Selecteer een datum in de toekomst.</translation>
+    </message>
+    <message>
+        <source>Unable to determine the selected copy&apos;s availability.</source>
+        <translation type="unfinished">Niet na te gaan of geselecteerde beschikbaar is.</translation>
+    </message>
+    <message>
+        <source>The copy that you have selected is either unavailable or is reserved.</source>
+        <translation type="unfinished">De kopie die u selecteerde is of niet beschikbaar of is uitgeleend.</translation>
+    </message>
+    <message>
+        <source>Unable to create a reserve record.</source>
+        <translation type="unfinished">Niet mogelijk om een uitleen-record aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create a history record.</source>
+        <translation type="unfinished">Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Rij-nummer</translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished">bevat een lege barcode.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished">bevat een dubbele barcode.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om de kopie datum op te slaan.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Toewijsfout.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data toe te wijzen.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie data te louteren.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Opslaan van kopie-data...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data aan te maken.</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_copy_editor_book</name>
+    <message>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Selecteer hetgeen dat u wenst te verwijderen.</translation>
+    </message>
+    <message>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">U moet tenminste één kopie hebben.</translation>
+    </message>
+    <message>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished">Niet mogelijk om de uitleenstatus te bepalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">&amp;Uitlenen</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binding Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Club</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ex-Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Poor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Very Good</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished">De kopie data kan niet teruggevonden worden.</translation>
+    </message>
+    <message>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Ophalen van kopie-info...</translation>
+    </message>
+    <message>
+        <source>Row number </source>
+        <translation type="unfinished">Rij-nummer</translation>
+    </message>
+    <message>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished">bevat een lege barcode.</translation>
+    </message>
+    <message>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished">bevat een dubbele barcode.</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+    </message>
+    <message>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om de kopie datum op te slaan.</translation>
+    </message>
+    <message>
+        <source>Commit failure.</source>
+        <translation type="unfinished">Toewijsfout.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data toe te wijzen.</translation>
+    </message>
+    <message>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie data te louteren.</translation>
+    </message>
+    <message>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Opslaan van kopie-data...</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished">Niet mogelijk om kopie-data aan te maken.</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_dbenumerations</name>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <source>Book</source>
+        <translation type="unfinished">Boek</translation>
+    </message>
+    <message>
+        <source>DVD</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>Journal</source>
+        <translation type="unfinished">Krant</translation>
+    </message>
+    <message>
+        <source>Magazine</source>
+        <translation type="unfinished">Tijdschrift</translation>
+    </message>
+    <message>
+        <source>Music CD</source>
+        <translation type="unfinished">Muziek CD</translation>
+    </message>
+    <message>
+        <source>Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Game</source>
+        <translation type="unfinished">Video Game</translation>
+    </message>
+    <message>
+        <source>Book Binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CD Format</source>
+        <translation type="unfinished">CD Format</translation>
+    </message>
+    <message>
+        <source>DVD Aspect Ratio</source>
+        <translation type="unfinished">DVD Beeldformaat</translation>
+    </message>
+    <message>
+        <source>DVD Rating</source>
+        <translation type="unfinished">DVD Rating</translation>
+    </message>
+    <message>
+        <source>DVD Region</source>
+        <translation type="unfinished">DVD Regio</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Taal</translation>
+    </message>
+    <message>
+        <source>Monetary Unit</source>
+        <translation type="unfinished">Munteenheid</translation>
+    </message>
+    <message>
+        <source>Video Game Platform</source>
+        <translation type="unfinished">Video Game Platform</translation>
+    </message>
+    <message>
+        <source>Video Game Rating</source>
+        <translation type="unfinished">Video Game Rating</translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the location (</source>
+        <translation type="unfinished">Niet mogelijk om de Locatie aan te maken (</translation>
+    </message>
+    <message>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <source>).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the minimum day (</source>
+        <translation type="unfinished">Niet mogelijk om de minimum dag aan te maken (</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>An error occurred while attempting to save the database enumerations.</source>
+        <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde de Standaardwaarden op te slaan.</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_dvd</name>
+    <message>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (voorkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (achterkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;UPC</source>
+        <translation type="unfinished">Reset &amp;UPC</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Rating</source>
+        <translation type="unfinished">Re&amp;set Rating</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Actor(s)</source>
+        <translation type="unfinished">Reset &amp;Acteur(s)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Director(s)</source>
+        <translation type="unfinished">Reset  &amp;Director(s)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Number of Discs</source>
+        <translation type="unfinished">Reset &amp;Aantal Discs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Runtime</source>
+        <translation type="unfinished">Reset &amp;Duur</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Format</source>
+        <translation type="unfinished">Reset &amp;Format</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Region</source>
+        <translation type="unfinished">Reset &amp;Regio</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Aspect Ratio</source>
+        <translation type="unfinished">Reset &amp;Beeldformaat</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Reset &amp;Uitgavedatum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Studio</source>
+        <translation type="unfinished">Reset &amp;Studio</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Reset &amp;Categorieën</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd locations.</source>
+        <translation type="unfinished">Onmogelijk om de DVD Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd ratings.</source>
+        <translation type="unfinished">Onmogelijk om het DVD-Rating te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd aspect ratios.</source>
+        <translation type="unfinished">Onmogelijk om het DVD-Beeldformaat te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the dvd regions.</source>
+        <translation type="unfinished">Onmogelijk om de DVD-regio te achterhalen.</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the UPC field.</source>
+        <translation type="unfinished">Vervolledig de UPC a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Actor(s) field.</source>
+        <translation type="unfinished">Vervolledig de Acteur(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Director(s) field.</source>
+        <translation type="unfinished">Vervolledig Director(s)a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please provide a valid Runtime.</source>
+        <translation type="unfinished">Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Format field.</source>
+        <translation type="unfinished">Vervolledig &quot;Format&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Vervolledig de Titel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Studio field.</source>
+        <translation type="unfinished">Vervolledig Studio a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished">Niet mogelijk om onnodige kopie data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished">Niet mogelijk om Initialen aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify DVD Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk DVD gegevens</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished">Ophalen van beschikbaarheid.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the DVD&apos;s OID.</source>
+        <translation type="unfinished">Niet mogelijk om DVD&apos;s OID op te halen.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database DVD Search</source>
+        <translation type="unfinished">BiblioteQ: DVD Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View DVD Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk DVD Details</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify DVD Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk DVD gegevens</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View DVD Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk DVD Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected DVD&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde DVD te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create DVD Entry</source>
+        <translation type="unfinished">BiblioteQ: DVD Aanmaken</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPC:</source>
+        <translation type="unfinished">UPC:</translation>
+    </message>
+    <message>
+        <source>Rating:</source>
+        <translation type="unfinished">Rating:</translation>
+    </message>
+    <message>
+        <source>Actor(s):</source>
+        <translation type="unfinished">Acteur(s):</translation>
+    </message>
+    <message>
+        <source>Director(s):</source>
+        <translation type="unfinished">Regie:</translation>
+    </message>
+    <message>
+        <source>Number of Discs:</source>
+        <translation type="unfinished">Aantal Discs:</translation>
+    </message>
+    <message>
+        <source>Runtime:</source>
+        <translation type="unfinished">Duur:</translation>
+    </message>
+    <message>
+        <source>Format:</source>
+        <translation type="unfinished">Format:</translation>
+    </message>
+    <message>
+        <source>Region:</source>
+        <translation type="unfinished">Regio:</translation>
+    </message>
+    <message>
+        <source>Aspect Ratio:</source>
+        <translation type="unfinished">Beeldformaat:</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release Date:</source>
+        <translation type="unfinished">Uitgave Datum:</translation>
+    </message>
+    <message>
+        <source>Studio:</source>
+        <translation type="unfinished">Studio:</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation type="unfinished">Categorie:</translation>
+    </message>
+    <message>
+        <source>Price:</source>
+        <translation type="unfinished">Prijs:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished">Taal:</translation>
+    </message>
+    <message>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Munteenheid:</translation>
+    </message>
+    <message>
+        <source>Copies:</source>
+        <translation type="unfinished">Kopieën:</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Locatie:</translation>
+    </message>
+    <message>
+        <source>Abstract:</source>
+        <translation type="unfinished">Samenvatting:</translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate DVD Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_generic_thread</name>
+    <message>
+        <source>Unable to read </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>. This file is required by BiblioteQ.</source>
+        <translation type="unfinished">. Dit bestand is nodig voor BiblioteQ.</translation>
+    </message>
+    <message>
+        <source>Z39.50 Empty Results Set</source>
+        <translation type="unfinished">Z39.50 Lege Resultaten Set</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_journal</name>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_magazine</name>
+    <message>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (voorkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (achterkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;ISSN</source>
+        <translation type="unfinished">Reset &amp;ISSN</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Volume</source>
+        <translation type="unfinished">Reset &amp;Volume</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Issue</source>
+        <translation type="unfinished">Reset &amp;Issue</translation>
+    </message>
+    <message>
+        <source>Reset &amp;LC Control Number</source>
+        <translation type="unfinished">Reset &amp;LC Controle Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Call Number</source>
+        <translation type="unfinished">Reset &amp;Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Dewey Number</source>
+        <translation type="unfinished">Reset &amp;Dewey Classificatie Nummer</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Reset &amp;Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Reset &amp;Uitgever</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Reset &amp;Plaats van Uitgave</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Reset &amp;Categorieën</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished">Reset &amp;MARC Tags</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the journal locations.</source>
+        <translation type="unfinished">Onmogelijk om de KRANT Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the magazine locations.</source>
+        <translation type="unfinished">Onmogelijk om de TIJDSCHRIFT Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the ISSN field.</source>
+        <translation type="unfinished">Vervolledig ISSNl a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Vervolledig de Titel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Vervolledig de Uitgever(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished">Niet mogelijk om onnodige kopie data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished">Niet mogelijk om Initialen aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Journal Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk KRANT gegevens</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Magazine Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk KRANT gegevens</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+    </message>
+    <message>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished">Ophalen van beschikbaarheid.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Journal Search</source>
+        <translation type="unfinished">BiblioteQ: KRANT Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Magazine Search</source>
+        <translation type="unfinished">BiblioteQ: TIJDSCHRIFT Zoeken (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk KRANT Details (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk TIJDSCHRIFT Details (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Journal Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk KRANT Details</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Magazine Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk TIJDSCHRIFT Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected journal&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde Kranten te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected magazine&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde Tijdschriften te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: KRANT Aanmaken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: TIJDSCHRIFT Aanmaken</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Z39.50 Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Data Ophalen</translation>
+    </message>
+    <message>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Memory Error</source>
+        <translation type="unfinished">BiblioteQ: Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Z39.50 Query Error</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Aanvraag Fout</translation>
+    </message>
+    <message>
+        <source>A Z39.50 entry may not yet exist for </source>
+        <translation type="unfinished">Een Z39.50 gegeven zou nog niet bestaan voor</translation>
+    </message>
+    <message>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <source>Unable to create a thread because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Z39.50 Query Error</source>
+        <translation type="unfinished">Z39.50 Aanvraag Fout</translation>
+    </message>
+    <message>
+        <source>The Z39.50 entry could not be retrieved.</source>
+        <translation type="unfinished"> Z39.50 gegeven kon niet achterhaald worden.</translation>
+    </message>
+    <message>
+        <source>ISSN:</source>
+        <translation type="unfinished">ISSN:</translation>
+    </message>
+    <message>
+        <source>Volume:</source>
+        <translation type="unfinished">Volume Uitgave:</translation>
+    </message>
+    <message>
+        <source>Issue (Number):</source>
+        <translation type="unfinished">Uitgave (Nummer):</translation>
+    </message>
+    <message>
+        <source>LC Control Number:</source>
+        <translation type="unfinished">LC Controle Nummer:</translation>
+    </message>
+    <message>
+        <source>Call Number:</source>
+        <translation type="unfinished">Aanroep Nummer:</translation>
+    </message>
+    <message>
+        <source>Dewey Class Number:</source>
+        <translation type="unfinished">Dewey Classificatie Nummer:</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date:</source>
+        <translation type="unfinished">Datum van Uitgave:</translation>
+    </message>
+    <message>
+        <source>Publisher:</source>
+        <translation type="unfinished">Uitgever:</translation>
+    </message>
+    <message>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Plaats van Uitgave:</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation type="unfinished">Categorie:</translation>
+    </message>
+    <message>
+        <source>Price:</source>
+        <translation type="unfinished">Prijs:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished">Taal:</translation>
+    </message>
+    <message>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Munteenheid:</translation>
+    </message>
+    <message>
+        <source>Copies:</source>
+        <translation type="unfinished">Kopieën:</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Locatie:</translation>
+    </message>
+    <message>
+        <source>Abstract:</source>
+        <translation type="unfinished">Samenvatting:</translation>
+    </message>
+    <message>
+        <source>MARC Tags:</source>
+        <translation type="unfinished">MARC Tags:</translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Journal Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Magazine Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> or a network error occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_main_table</name>
+    <message>
+        <source>Borrower</source>
+        <translation type="unfinished">Klant</translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="unfinished">Klant ID</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="unfinished">Barcode</translation>
+    </message>
+    <message>
+        <source>Reservation Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Request Date</source>
+        <translation type="unfinished">Aanvraag Datum</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>ID Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publisher</source>
+        <translation type="unfinished">Uitgever</translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Taal</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation type="unfinished">Prijs</translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation type="unfinished">Munteenheid</translation>
+    </message>
+    <message>
+        <source>Quantity</source>
+        <translation type="unfinished">Aantal</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished">Locatie</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>Total Reserved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Author(s)</source>
+        <translation type="unfinished">Auteur(s)</translation>
+    </message>
+    <message>
+        <source>Place of Publication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edition</source>
+        <translation type="unfinished">Editie</translation>
+    </message>
+    <message>
+        <source>ISBN-10</source>
+        <translation type="unfinished">ISBN-10</translation>
+    </message>
+    <message>
+        <source>Book Binding Type</source>
+        <translation type="unfinished">Type Boekbinding</translation>
+    </message>
+    <message>
+        <source>ISBN-13</source>
+        <translation type="unfinished">ISBN-13</translation>
+    </message>
+    <message>
+        <source>LC Control Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="unfinished">Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Dewey Class Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Originality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="unfinished">Format</translation>
+    </message>
+    <message>
+        <source>Studio</source>
+        <translation type="unfinished">Studio</translation>
+    </message>
+    <message>
+        <source>Release Date</source>
+        <translation type="unfinished">Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Number of Discs</source>
+        <translation type="unfinished">Aantal Discs</translation>
+    </message>
+    <message>
+        <source>Runtime</source>
+        <translation type="unfinished">Duur</translation>
+    </message>
+    <message>
+        <source>UPC</source>
+        <translation type="unfinished">UPC</translation>
+    </message>
+    <message>
+        <source>Rating</source>
+        <translation type="unfinished">Rating</translation>
+    </message>
+    <message>
+        <source>Region</source>
+        <translation type="unfinished">Regio</translation>
+    </message>
+    <message>
+        <source>Aspect Ratio</source>
+        <translation type="unfinished">Beeldformaat</translation>
+    </message>
+    <message>
+        <source>Volume</source>
+        <translation type="unfinished">Volume</translation>
+    </message>
+    <message>
+        <source>Issue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="unfinished">ISSN</translation>
+    </message>
+    <message>
+        <source>Dewey Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Artiest</translation>
+    </message>
+    <message>
+        <source>Recording Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Catalog Number</source>
+        <translation type="unfinished">Catalogus Nummer</translation>
+    </message>
+    <message>
+        <source>Audio</source>
+        <translation type="unfinished">Audio</translation>
+    </message>
+    <message>
+        <source>Recording Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <source>Photograph Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Game Rating</source>
+        <translation type="unfinished">Game Rating</translation>
+    </message>
+    <message>
+        <source>Platform</source>
+        <translation type="unfinished">Platform</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="unfinished">Mode</translation>
+    </message>
+    <message>
+        <source>Genres</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_photographcollection</name>
+    <message>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection About:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copies:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Medium:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Copyright:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Call Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Other Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Subjects:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to permanently delete the selected %1 item(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">Verwijderen van geselecteerde item(s)...</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Importing image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to import photograph.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ: Informatie</translation>
+    </message>
+    <message>
+        <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_sruresults</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Record #</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_videogame</name>
+    <message>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (voorkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Reset &amp;Hoes (achterkant)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;UPC</source>
+        <translation type="unfinished">Reset &amp;UPC</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Game Rating</source>
+        <translation type="unfinished">Re&amp;set Game Rating</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Developer(s)</source>
+        <translation type="unfinished">Reset  &amp;Ontwikkelaar(s)</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Platform</source>
+        <translation type="unfinished">Reset &amp;Platform</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Mode</source>
+        <translation type="unfinished">Reset &amp;Mode</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Reset &amp;Titel</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Reset &amp;Uitgavedatum</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Reset &amp;Uitgever</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Reset &amp;Plaats van Uitgave</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Genres</source>
+        <translation type="unfinished">Reset &amp;Genres</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Reset &amp;Prijs</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Reset &amp;Taal</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Reset &amp;Munteenheid</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Reset &amp;Kopieên</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Reset &amp;Locatie</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Reset &amp;Samenvatting</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Reset &amp;Sleutelwoorden</translation>
+    </message>
+    <message>
+        <source>Database Error</source>
+        <translation type="unfinished">Database Fout</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game ratings.</source>
+        <translation type="unfinished">Onmogelijk om het Video Game-Rating te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game platforms.</source>
+        <translation type="unfinished">Onmogelijk om het Video Game-Platform te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished">Onmogelijk om de taal te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished">Onmogelijk om Munteenheid te achterhalen.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game locations.</source>
+        <translation type="unfinished">Onmogelijk om de Video Game Locaties te achterhalen.</translation>
+    </message>
+    <message>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ONBEKEND</translation>
+    </message>
+    <message>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+    </message>
+    <message>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please complete the UPC field.</source>
+        <translation type="unfinished">Vervolledig de UPC a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Developer(s) field.</source>
+        <translation type="unfinished">Vervolledig Ontwikkelaar(s)a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Vervolledig de Titel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Vervolledig de Uitgever(s) a.u.b. .</translation>
+    </message>
+    <message>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+    </message>
+    <message>
+        <source>Please complete the Genres field.</source>
+        <translation type="unfinished">Vervolledig Genrel a.u.b..</translation>
+    </message>
+    <message>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished">Niet mogelijk om onnodige kopie data door te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
+    </message>
+    <message>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished">Niet mogelijk om Initialen aan te maken.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Video Game Entry (</source>
+        <translation type="unfinished">BiblioteQ: Bewerk VIDEO-GAME gegevens (</translation>
+    </message>
+    <message>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished">Ophalen van beschikbaarheid.</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the video game&apos;s OID.</source>
+        <translation type="unfinished">Niet mogelijk om VIDEO-GAME - OID op te halen.</translation>
+    </message>
+    <message>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+    </message>
+    <message>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished">Elke</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Database Video Game Search</source>
+        <translation type="unfinished">BiblioteQ: VIDEO-GAME Zoeken</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Video Game Details (</source>
+        <translation type="unfinished">BiblioteQ: Bekijk VIDEO-GAME Details (</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Modify Video Game Entry</source>
+        <translation type="unfinished">BiblioteQ: Bewerk VIDEO-GAME gegevens</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: View Video Game Details</source>
+        <translation type="unfinished">BiblioteQ: Bekijk VIDEO-GAME Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the selected video game&apos;s data.</source>
+        <translation type="unfinished">Niet mogelijk om gegevens van geselecteerde video-game te achterhalen.</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Create Video Game Entry</source>
+        <translation type="unfinished">BiblioteQ: VIDEO GAME Aanmaken</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPC:</source>
+        <translation type="unfinished">UPC:</translation>
+    </message>
+    <message>
+        <source>Game Rating:</source>
+        <translation type="unfinished">Game Rating:</translation>
+    </message>
+    <message>
+        <source>Developer(s):</source>
+        <translation type="unfinished">Ontwikkelaar(s):</translation>
+    </message>
+    <message>
+        <source>Platform:</source>
+        <translation type="unfinished">Platform:</translation>
+    </message>
+    <message>
+        <source>Mode:</source>
+        <translation type="unfinished">Modus:</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release Date:</source>
+        <translation type="unfinished">Uitgave Datum:</translation>
+    </message>
+    <message>
+        <source>Publisher:</source>
+        <translation type="unfinished">Uitgever:</translation>
+    </message>
+    <message>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Plaats van Uitgave:</translation>
+    </message>
+    <message>
+        <source>Genre:</source>
+        <translation type="unfinished">Genre:</translation>
+    </message>
+    <message>
+        <source>Price:</source>
+        <translation type="unfinished">Prijs:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished">Taal:</translation>
+    </message>
+    <message>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Munteenheid:</translation>
+    </message>
+    <message>
+        <source>Copies:</source>
+        <translation type="unfinished">Kopieën:</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Locatie:</translation>
+    </message>
+    <message>
+        <source>Abstract:</source>
+        <translation type="unfinished">Samenvatting:</translation>
+    </message>
+    <message>
+        <source>Keywords:</source>
+        <translation type="unfinished">Sleutelwoorden:</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Voorkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Selecteer Achterkant Hoes</translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Duplicate Video Game Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_z3950results</name>
+    <message>
+        <source>Record #</source>
+        <translation type="unfinished">Record #</translation>
+    </message>
 </context>
 <context>
     <name>bookcopybrowser</name>
     <message>
         <source>BiblioteQ: Copies Browser</source>
         <translation type="unfinished">BiblioteQ: Kopieën Browser</translation>
-    </message>
-    <message>
-        <source>Due Date</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
@@ -575,32 +4944,36 @@
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Sluiten</translation>
     </message>
+    <message>
+        <source>&amp;Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>borrowers_editor</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Copy Due Date</source>
-        <translation>Kopie Terugbrengdatum</translation>
+        <translation type="obsolete">Kopie Terugbrengdatum</translation>
     </message>
     <message>
         <source>Updating the due date(s)...</source>
-        <translation>Updaten van de &apos;terugbrengdatums&apos;...</translation>
+        <translation type="obsolete">Updaten van de &apos;terugbrengdatums&apos;...</translation>
     </message>
     <message>
         <source>Are you sure that the copy has been returned?</source>
-        <translation>Bent U zeker dat het item is teruggebracht?</translation>
+        <translation type="obsolete">Bent U zeker dat het item is teruggebracht?</translation>
     </message>
     <message>
         <source>Retrieving borrower data...</source>
-        <translation>Ophalen van Klant-data...</translation>
+        <translation type="obsolete">Ophalen van Klant-data...</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation type="obsolete">Klant ID</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to invalid dates.</source>
@@ -608,35 +4981,35 @@
     </message>
     <message>
         <source>Unable to modify the returned date of the selected copy.</source>
-        <translation>Niet mogelijk om de terugbrengdatum aan te passen.</translation>
+        <translation type="obsolete">Niet mogelijk om de terugbrengdatum aan te passen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
+        <translation type="obsolete">BiblioteQ: Voortgang Venster</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
-        <translation>Objecten samenstellen...</translation>
+        <translation type="obsolete">Objecten samenstellen...</translation>
     </message>
     <message>
         <source>Copy Number</source>
-        <translation>Kopie-Nummer</translation>
+        <translation type="obsolete">Kopie-Nummer</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Uitlener</translation>
+        <translation type="obsolete">Uitlener</translation>
     </message>
     <message>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation>Het lijkt erop dat het geselecteerde item niet is uitgeleend.</translation>
+        <translation type="obsolete">Het lijkt erop dat het geselecteerde item niet is uitgeleend.</translation>
     </message>
     <message>
         <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation>Niet mogelijk om de uitleenstatus van het geselecteerde aan te passen.</translation>
+        <translation type="obsolete">Niet mogelijk om de uitleenstatus van het geselecteerde aan te passen.</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation type="obsolete">Barcode</translation>
     </message>
     <message>
         <source>Some or all of the Due Dates were not updated due to database errors.</source>
@@ -644,19 +5017,19 @@
     </message>
     <message>
         <source>Please select the copy that has been returned.</source>
-        <translation>Selecteer de kopie die is teruggebracht.</translation>
+        <translation type="obsolete">Selecteer de kopie die is teruggebracht.</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>Unable to update the due date.</source>
-        <translation>Niet mogelijk om de &quot;terugbrengdatum&apos; te updaten.</translation>
+        <translation type="obsolete">Niet mogelijk om de &quot;terugbrengdatum&apos; te updaten.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
@@ -664,55 +5037,43 @@
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation type="obsolete">Voornaam</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation type="obsolete">Familienaam</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleendatum</translation>
+        <translation type="obsolete">Uitleendatum</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;dataEdit&quot; object. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Unable to retrieve borrower data.</source>
-        <translation>Niet mogelijk klant-data te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk klant-data te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation>BiblioteQ: Item Uitleenstatus</translation>
+        <translation type="obsolete">BiblioteQ: Item Uitleenstatus</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Item Reservation Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Some or all of the Due Dates were not updated because of database errors.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
@@ -727,15 +5088,15 @@
     </message>
     <message>
         <source>Userid</source>
-        <translation>Gebruikers ID</translation>
+        <translation type="obsolete">Gebruikers ID</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Paswoord</translation>
+        <translation type="obsolete">Paswoord</translation>
     </message>
     <message>
         <source>Branch Name</source>
-        <translation>Domeinnaam</translation>
+        <translation type="obsolete">Domeinnaam</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
@@ -752,6 +5113,30 @@
     <message>
         <source>Administrator</source>
         <translation>Administrator</translation>
+    </message>
+    <message>
+        <source>&amp;Branch Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>xbook_guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patron</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -992,19 +5377,19 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source> contains a duplicate Barcode.</source>
-        <translation>bevat een dubbele barcode.</translation>
+        <translation type="obsolete">bevat een dubbele barcode.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>BiblioteQ: Copy Browser (</source>
@@ -1012,11 +5397,11 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation>Niet na te gaan of geselecteerde beschikbaar is.</translation>
+        <translation type="obsolete">Niet na te gaan of geselecteerde beschikbaar is.</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -1024,350 +5409,258 @@
     </message>
     <message>
         <source>Commit failure.</source>
-        <translation>Toewijsfout.</translation>
+        <translation type="obsolete">Toewijsfout.</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ:Voortgangsvenster</translation>
+        <translation type="obsolete">BiblioteQ:Voortgangsvenster</translation>
     </message>
     <message>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation>De kopie die u selecteerde is of niet beschikbaar of is uitgeleend.</translation>
+        <translation type="obsolete">De kopie die u selecteerde is of niet beschikbaar of is uitgeleend.</translation>
     </message>
     <message>
         <source>Constructing objects...</source>
-        <translation>Construeren van objecten...</translation>
+        <translation type="obsolete">Construeren van objecten...</translation>
     </message>
     <message>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation>Schijnbaar is de kopie die u selecteerde niet beschikbaar of bestaat niet.</translation>
+        <translation type="obsolete">Schijnbaar is de kopie die u selecteerde niet beschikbaar of bestaat niet.</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation>Rij-nummer</translation>
+        <translation type="obsolete">Rij-nummer</translation>
     </message>
     <message>
         <source>Please select a future Due Date.</source>
-        <translation>Selecteer een datum in de toekomst.</translation>
+        <translation type="obsolete">Selecteer een datum in de toekomst.</translation>
     </message>
     <message>
         <source>Please select the copy that you intend to delete.</source>
-        <translation>Selecteer hetgeen dat u wenst te verwijderen.</translation>
+        <translation type="obsolete">Selecteer hetgeen dat u wenst te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to create copy data.</source>
-        <translation>Niet mogelijk om kopie-data aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie-data aan te maken.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation type="obsolete">Barcode</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation>&amp;Uitlenen</translation>
+        <translation type="obsolete">&amp;Uitlenen</translation>
     </message>
     <message>
         <source>Saving the copy data...</source>
-        <translation>Opslaan van kopie-data...</translation>
+        <translation type="obsolete">Opslaan van kopie-data...</translation>
     </message>
     <message>
         <source>You must have at least one copy.</source>
-        <translation>U moet tenminste één kopie hebben.</translation>
+        <translation type="obsolete">U moet tenminste één kopie hebben.</translation>
     </message>
     <message>
         <source>Unable to purge copy data.</source>
-        <translation>Niet mogelijk om kopie data te louteren.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie data te louteren.</translation>
     </message>
     <message>
         <source>Unable to create a reserve record.</source>
-        <translation>Niet mogelijk om een uitleen-record aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een uitleen-record aan te maken.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the minimum number of days.</source>
-        <translation>Niet mogelijk om het aantal minimum dagen terug te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om het aantal minimum dagen terug te halen.</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation>Niet mogelijk om de uitleenstatus te bepalen.</translation>
+        <translation type="obsolete">Niet mogelijk om de uitleenstatus te bepalen.</translation>
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+        <translation type="obsolete">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
     </message>
     <message>
         <source>Please select a copy to reserve.</source>
-        <translation>Selecteer a.u.b. een item om uit te lenen.</translation>
+        <translation type="obsolete">Selecteer a.u.b. een item om uit te lenen.</translation>
     </message>
     <message>
         <source>Unable to create a history record.</source>
-        <translation>Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een geschiedenis-record aan te maken.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Onmogelijk om geheugen toe te wijzen voor dit item. Dit is een serieus probleem!</translation>
+        <translation type="obsolete">Onmogelijk om geheugen toe te wijzen voor dit item. Dit is een serieus probleem!</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
-        <translation>Niet mogelijk om kopie-data toe te wijzen.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie-data toe te wijzen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
-        <translation>De kopie data kan niet teruggevonden worden.</translation>
+        <translation type="obsolete">De kopie data kan niet teruggevonden worden.</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation>Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+        <translation type="obsolete">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to save the copy data.</source>
-        <translation>Niet mogelijk om de kopie datum op te slaan.</translation>
+        <translation type="obsolete">Niet mogelijk om de kopie datum op te slaan.</translation>
     </message>
     <message>
         <source>Retrieving copy information...</source>
-        <translation>Ophalen van kopie-info...</translation>
+        <translation type="obsolete">Ophalen van kopie-info...</translation>
     </message>
     <message>
         <source> contains an empty Barcode.</source>
-        <translation>bevat een lege barcode.</translation>
+        <translation type="obsolete">bevat een lege barcode.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
     <name>copy_editor_book</name>
     <message>
-        <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Copy Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Please select the copy that you intend to delete.</source>
-        <translation type="unfinished">Selecteer hetgeen dat u wenst te verwijderen.</translation>
+        <translation type="obsolete">Selecteer hetgeen dat u wenst te verwijderen.</translation>
     </message>
     <message>
         <source>You must have at least one copy.</source>
-        <translation type="unfinished">U moet tenminste één kopie hebben.</translation>
+        <translation type="obsolete">U moet tenminste één kopie hebben.</translation>
     </message>
     <message>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation type="unfinished">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
+        <translation type="obsolete">Het lijkt erop dat de kopie die u selecteerde om te verwijderen uitgeleend is.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation type="unfinished">Database Fout</translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
     <message>
         <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished">Niet mogelijk om de uitleenstatus te bepalen.</translation>
+        <translation type="obsolete">Niet mogelijk om de uitleenstatus te bepalen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Opslaan</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>&amp;Reserve</source>
-        <translation type="unfinished">&amp;Uitlenen</translation>
+        <translation type="obsolete">&amp;Uitlenen</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished">Barcode</translation>
+        <translation type="obsolete">Barcode</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished">Beschikbaarheid</translation>
-    </message>
-    <message>
-        <source>Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Black &amp; White Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Binding Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Club</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ex-Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fair</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Good</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Poor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Very Good</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Beschikbaarheid</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation type="unfinished">Geheugen Fout</translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished">De kopie data kan niet teruggevonden worden.</translation>
+        <translation type="obsolete">De kopie data kan niet teruggevonden worden.</translation>
     </message>
     <message>
         <source>Retrieving copy information...</source>
-        <translation type="unfinished">Ophalen van kopie-info...</translation>
+        <translation type="obsolete">Ophalen van kopie-info...</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation type="unfinished">Rij-nummer</translation>
+        <translation type="obsolete">Rij-nummer</translation>
     </message>
     <message>
         <source> contains an empty Barcode.</source>
-        <translation type="unfinished">bevat een lege barcode.</translation>
+        <translation type="obsolete">bevat een lege barcode.</translation>
     </message>
     <message>
         <source> contains a duplicate Barcode.</source>
-        <translation type="unfinished">bevat een dubbele barcode.</translation>
+        <translation type="obsolete">bevat een dubbele barcode.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen. Dit is een groot probleem!</translation>
     </message>
     <message>
         <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
+        <translation type="obsolete">Niet mogelijk om item&apos;s hoeveelheid op te slaan.</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Unable to save the copy data.</source>
-        <translation type="unfinished">Niet mogelijk om de kopie datum op te slaan.</translation>
+        <translation type="obsolete">Niet mogelijk om de kopie datum op te slaan.</translation>
     </message>
     <message>
         <source>Commit failure.</source>
-        <translation type="unfinished">Toewijsfout.</translation>
+        <translation type="obsolete">Toewijsfout.</translation>
     </message>
     <message>
         <source>Unable to commit the copy data.</source>
-        <translation type="unfinished">Niet mogelijk om kopie-data toe te wijzen.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie-data toe te wijzen.</translation>
     </message>
     <message>
         <source>Unable to purge copy data.</source>
-        <translation type="unfinished">Niet mogelijk om kopie data te louteren.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie data te louteren.</translation>
     </message>
     <message>
         <source>Saving the copy data...</source>
-        <translation type="unfinished">Opslaan van kopie-data...</translation>
+        <translation type="obsolete">Opslaan van kopie-data...</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to create copy data.</source>
-        <translation type="unfinished">Niet mogelijk om kopie-data aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om kopie-data aan te maken.</translation>
     </message>
 </context>
 <context>
@@ -1406,7 +5699,7 @@
     </message>
     <message>
         <source>Due Date</source>
-        <translation>Terugbrengdatum</translation>
+        <translation type="obsolete">Terugbrengdatum</translation>
     </message>
     <message>
         <source>BiblioteQ: Copies Browser</source>
@@ -1414,6 +5707,10 @@
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Due Date</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1651,23 +5948,19 @@
     <name>dbenumerations</name>
     <message>
         <source>.</source>
-        <translation>.</translation>
-    </message>
-    <message>
-        <source>).</source>
-        <translation></translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>, </source>
-        <translation>,</translation>
+        <translation type="obsolete">,</translation>
     </message>
     <message>
         <source>DVD</source>
-        <translation>DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
         <source>Book</source>
-        <translation>Boek</translation>
+        <translation type="obsolete">Boek</translation>
     </message>
     <message>
         <source>dvd aspect ratio</source>
@@ -1679,7 +5972,7 @@
     </message>
     <message>
         <source>Journal</source>
-        <translation>Krant</translation>
+        <translation type="obsolete">Krant</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the languages.</source>
@@ -1687,11 +5980,11 @@
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>DVD Aspect Ratio</source>
-        <translation>DVD Beeldformaat</translation>
+        <translation type="obsolete">DVD Beeldformaat</translation>
     </message>
     <message>
         <source>video game platform</source>
@@ -1699,7 +5992,7 @@
     </message>
     <message>
         <source>Video Game Platform</source>
-        <translation>Video Game Platform</translation>
+        <translation type="obsolete">Video Game Platform</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the locations.</source>
@@ -1707,11 +6000,11 @@
     </message>
     <message>
         <source>Unable to create the minimum day (</source>
-        <translation>Niet mogelijk om de minimum dag aan te maken (</translation>
+        <translation type="obsolete">Niet mogelijk om de minimum dag aan te maken (</translation>
     </message>
     <message>
         <source>Video Game Rating</source>
-        <translation>Video Game Rating</translation>
+        <translation type="obsolete">Video Game Rating</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the minimum days.</source>
@@ -1719,7 +6012,7 @@
     </message>
     <message>
         <source>CD Format</source>
-        <translation>CD Format</translation>
+        <translation type="obsolete">CD Format</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the dvd aspect ratios.</source>
@@ -1727,11 +6020,11 @@
     </message>
     <message>
         <source>DVD Rating</source>
-        <translation>DVD Rating</translation>
+        <translation type="obsolete">DVD Rating</translation>
     </message>
     <message>
         <source>DVD Region</source>
-        <translation>DVD Regio</translation>
+        <translation type="obsolete">DVD Regio</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the video game platforms.</source>
@@ -1747,7 +6040,7 @@
     </message>
     <message>
         <source>Unable to create the location (</source>
-        <translation>Niet mogelijk om de Locatie aan te maken (</translation>
+        <translation type="obsolete">Niet mogelijk om de Locatie aan te maken (</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the monetary units.</source>
@@ -1767,11 +6060,11 @@
     </message>
     <message>
         <source>Magazine</source>
-        <translation>Tijdschrift</translation>
+        <translation type="obsolete">Tijdschrift</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>language</source>
@@ -1779,11 +6072,11 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="obsolete">Taal</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde de Standaardwaarden op te slaan.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde de Standaardwaarden op te slaan.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the cd formats.</source>
@@ -1791,7 +6084,7 @@
     </message>
     <message>
         <source>Video Game</source>
-        <translation>Video Game</translation>
+        <translation type="obsolete">Video Game</translation>
     </message>
     <message>
         <source>Unable to create the </source>
@@ -1799,15 +6092,15 @@
     </message>
     <message>
         <source>Music CD</source>
-        <translation>Muziek CD</translation>
+        <translation type="obsolete">Muziek CD</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Monetary Unit</source>
-        <translation>Munteenheid</translation>
+        <translation type="obsolete">Munteenheid</translation>
     </message>
     <message>
         <source>monetary unit</source>
@@ -1823,35 +6116,11 @@
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the contents of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Binding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to remove entries from the %1 table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create an entry in </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>for </source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
@@ -2048,15 +6317,15 @@
     <name>generic_thread</name>
     <message>
         <source>. This file is required by BiblioteQ.</source>
-        <translation>. Dit bestand is nodig voor BiblioteQ.</translation>
+        <translation type="obsolete">. Dit bestand is nodig voor BiblioteQ.</translation>
     </message>
     <message>
         <source>Unable to read </source>
-        <translation>Kan niet gelezen worden</translation>
+        <translation type="obsolete">Kan niet gelezen worden</translation>
     </message>
     <message>
         <source>Z39.50 Empty Results Set</source>
-        <translation>Z39.50 Lege Resultaten Set</translation>
+        <translation type="obsolete">Z39.50 Lege Resultaten Set</translation>
     </message>
 </context>
 <context>
@@ -2132,6 +6401,10 @@
     <message>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
         <translation>BiblioteQ: Uitleengeschiedenis van Kl</translation>
+    </message>
+    <message>
+        <source>&amp;Do not record reservation history.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2999,214 +7272,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>main_table</name>
     <message>
-        <source>UPC</source>
-        <translation>UPC</translation>
+        <source>&amp;Search</source>
+        <translation type="unfinished">&amp;Zoeken</translation>
     </message>
     <message>
-        <source>ISSN</source>
-        <translation>ISSN</translation>
-    </message>
-    <message>
-        <source>Mode</source>
-        <translation>Mode</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>Audio</source>
-        <translation>Audio</translation>
-    </message>
-    <message>
-        <source>Issue</source>
-        <translation>Issue Nummer</translation>
-    </message>
-    <message>
-        <source>Book Binding Type</source>
-        <translation>Type Boekbinding</translation>
-    </message>
-    <message>
-        <source>Price</source>
-        <translation>Prijs</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>Titel</translation>
-    </message>
-    <message>
-        <source>Dewey Number</source>
-        <translation>Dewey Classificatie Nummer</translation>
-    </message>
-    <message>
-        <source>Platform</source>
-        <translation>Platform</translation>
-    </message>
-    <message>
-        <source>Aspect Ratio</source>
-        <translation>Beeldformaat</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation>Beschikbaarheid</translation>
-    </message>
-    <message>
-        <source>Recording Label</source>
-        <translation>Record Label</translation>
-    </message>
-    <message>
-        <source>LC Control Number</source>
-        <translation>Controle Nummer</translation>
-    </message>
-    <message>
-        <source>Member ID</source>
-        <translation>Klant ID</translation>
-    </message>
-    <message>
-        <source>Artist</source>
-        <translation>Artiest</translation>
-    </message>
-    <message>
-        <source>Format</source>
-        <translation>Format</translation>
-    </message>
-    <message>
-        <source>Genres</source>
-        <translation>Genre</translation>
-    </message>
-    <message>
-        <source>Call Number</source>
-        <translation>Aanroep Nummer</translation>
-    </message>
-    <message>
-        <source>Dewey Class Number</source>
-        <translation>Dewey Classificatienummer</translation>
-    </message>
-    <message>
-        <source>ID Number</source>
-        <translation>ID Nummer</translation>
-    </message>
-    <message>
-        <source>Rating</source>
-        <translation>Rating</translation>
-    </message>
-    <message>
-        <source>Region</source>
-        <translation>Regio</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Locatie</translation>
-    </message>
-    <message>
-        <source>Studio</source>
-        <translation>Studio</translation>
-    </message>
-    <message>
-        <source>Place of Publication</source>
-        <translation>Plaats van Uitgave</translation>
-    </message>
-    <message>
-        <source>Game Rating</source>
-        <translation>Game Rating</translation>
-    </message>
-    <message>
-        <source>Volume</source>
-        <translation>Volume</translation>
-    </message>
-    <message>
-        <source>Borrower</source>
-        <translation>Klant</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation>Taal</translation>
-    </message>
-    <message>
-        <source>Barcode</source>
-        <translation>Barcode</translation>
-    </message>
-    <message>
-        <source>Publication Date</source>
-        <translation>Uitgave Datum</translation>
-    </message>
-    <message>
-        <source>Publisher</source>
-        <translation>Uitgever</translation>
-    </message>
-    <message>
-        <source>Runtime</source>
-        <translation>Duur</translation>
-    </message>
-    <message>
-        <source>Reservation Date</source>
-        <translation>Uitleen Datum</translation>
-    </message>
-    <message>
-        <source>Author(s)</source>
-        <translation>Auteur(s)</translation>
-    </message>
-    <message>
-        <source>Due Date</source>
-        <translation>Terugbreng Datum</translation>
-    </message>
-    <message>
-        <source>Quantity</source>
-        <translation>Aantal</translation>
-    </message>
-    <message>
-        <source>Edition</source>
-        <translation>Editie</translation>
-    </message>
-    <message>
-        <source>Number of Discs</source>
-        <translation>Aantal Discs</translation>
-    </message>
-    <message>
-        <source>Categories</source>
-        <translation>Categorie</translation>
-    </message>
-    <message>
-        <source>Release Date</source>
-        <translation>Uitgave Datum</translation>
-    </message>
-    <message>
-        <source>Monetary Units</source>
-        <translation>Munteenheid</translation>
-    </message>
-    <message>
-        <source>Catalog Number</source>
-        <translation>Catalogus Nummer</translation>
-    </message>
-    <message>
-        <source>ISBN-10</source>
-        <translation>ISBN-10</translation>
-    </message>
-    <message>
-        <source>ISBN-13</source>
-        <translation>ISBN-13</translation>
-    </message>
-    <message>
-        <source>Recording Type</source>
-        <translation>Type Opname</translation>
-    </message>
-    <message>
-        <source>Request Date</source>
-        <translation>Aanvraag Datum</translation>
-    </message>
-    <message>
-        <source>Total Reserved</source>
+        <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3214,27 +7288,246 @@
         <translation type="unfinished">ID</translation>
     </message>
     <message>
-        <source>Photograph Count</source>
+        <source>Keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About</source>
+        <source>Title</source>
+        <translation type="unfinished">Titel</translation>
+    </message>
+    <message>
+        <source>&amp;Case-Insensitive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Originality</source>
+        <source>Clear the main table and reset the nearby search widgets.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Condition</source>
+        <source>Reset</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P&amp;hotographs per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Upgrade SQLite Schema</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>main_table</name>
+    <message>
+        <source>UPC</source>
+        <translation type="obsolete">UPC</translation>
+    </message>
+    <message>
+        <source>ISSN</source>
+        <translation type="obsolete">ISSN</translation>
+    </message>
+    <message>
+        <source>Mode</source>
+        <translation type="obsolete">Mode</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="obsolete">Type</translation>
+    </message>
+    <message>
+        <source>Audio</source>
+        <translation type="obsolete">Audio</translation>
+    </message>
+    <message>
+        <source>Issue</source>
+        <translation type="obsolete">Issue Nummer</translation>
+    </message>
+    <message>
+        <source>Book Binding Type</source>
+        <translation type="obsolete">Type Boekbinding</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation type="obsolete">Prijs</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="obsolete">Titel</translation>
+    </message>
+    <message>
+        <source>Dewey Number</source>
+        <translation type="obsolete">Dewey Classificatie Nummer</translation>
+    </message>
+    <message>
+        <source>Platform</source>
+        <translation type="obsolete">Platform</translation>
+    </message>
+    <message>
+        <source>Aspect Ratio</source>
+        <translation type="obsolete">Beeldformaat</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="obsolete">Beschikbaarheid</translation>
+    </message>
+    <message>
+        <source>Recording Label</source>
+        <translation type="obsolete">Record Label</translation>
+    </message>
+    <message>
+        <source>LC Control Number</source>
+        <translation type="obsolete">Controle Nummer</translation>
+    </message>
+    <message>
+        <source>Member ID</source>
+        <translation type="obsolete">Klant ID</translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="obsolete">Artiest</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation type="obsolete">Format</translation>
+    </message>
+    <message>
+        <source>Genres</source>
+        <translation type="obsolete">Genre</translation>
+    </message>
+    <message>
+        <source>Call Number</source>
+        <translation type="obsolete">Aanroep Nummer</translation>
+    </message>
+    <message>
+        <source>Dewey Class Number</source>
+        <translation type="obsolete">Dewey Classificatienummer</translation>
+    </message>
+    <message>
+        <source>ID Number</source>
+        <translation type="obsolete">ID Nummer</translation>
+    </message>
+    <message>
+        <source>Rating</source>
+        <translation type="obsolete">Rating</translation>
+    </message>
+    <message>
+        <source>Region</source>
+        <translation type="obsolete">Regio</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="obsolete">Locatie</translation>
+    </message>
+    <message>
+        <source>Studio</source>
+        <translation type="obsolete">Studio</translation>
+    </message>
+    <message>
+        <source>Place of Publication</source>
+        <translation type="obsolete">Plaats van Uitgave</translation>
+    </message>
+    <message>
+        <source>Game Rating</source>
+        <translation type="obsolete">Game Rating</translation>
+    </message>
+    <message>
+        <source>Volume</source>
+        <translation type="obsolete">Volume</translation>
+    </message>
+    <message>
+        <source>Borrower</source>
+        <translation type="obsolete">Klant</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="obsolete">Taal</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation type="obsolete">Barcode</translation>
+    </message>
+    <message>
+        <source>Publication Date</source>
+        <translation type="obsolete">Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Publisher</source>
+        <translation type="obsolete">Uitgever</translation>
+    </message>
+    <message>
+        <source>Runtime</source>
+        <translation type="obsolete">Duur</translation>
+    </message>
+    <message>
+        <source>Reservation Date</source>
+        <translation type="obsolete">Uitleen Datum</translation>
+    </message>
+    <message>
+        <source>Author(s)</source>
+        <translation type="obsolete">Auteur(s)</translation>
+    </message>
+    <message>
+        <source>Due Date</source>
+        <translation type="obsolete">Terugbreng Datum</translation>
+    </message>
+    <message>
+        <source>Quantity</source>
+        <translation type="obsolete">Aantal</translation>
+    </message>
+    <message>
+        <source>Edition</source>
+        <translation type="obsolete">Editie</translation>
+    </message>
+    <message>
+        <source>Number of Discs</source>
+        <translation type="obsolete">Aantal Discs</translation>
+    </message>
+    <message>
+        <source>Categories</source>
+        <translation type="obsolete">Categorie</translation>
+    </message>
+    <message>
+        <source>Release Date</source>
+        <translation type="obsolete">Uitgave Datum</translation>
+    </message>
+    <message>
+        <source>Monetary Units</source>
+        <translation type="obsolete">Munteenheid</translation>
+    </message>
+    <message>
+        <source>Catalog Number</source>
+        <translation type="obsolete">Catalogus Nummer</translation>
+    </message>
+    <message>
+        <source>ISBN-10</source>
+        <translation type="obsolete">ISBN-10</translation>
+    </message>
+    <message>
+        <source>ISBN-13</source>
+        <translation type="obsolete">ISBN-13</translation>
+    </message>
+    <message>
+        <source>Recording Type</source>
+        <translation type="obsolete">Type Opname</translation>
+    </message>
+    <message>
+        <source>Request Date</source>
+        <translation type="obsolete">Aanvraag Datum</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="obsolete">ID</translation>
     </message>
 </context>
 <context>
     <name>membersBrowser</name>
     <message>
         <source>Apply Filter</source>
-        <translation>Pas Filter Toe</translation>
+        <translation type="obsolete">Pas Filter Toe</translation>
     </message>
     <message>
         <source>Member Since</source>
@@ -3266,7 +7559,7 @@
     </message>
     <message>
         <source>Filter</source>
-        <translation>Filter</translation>
+        <translation type="obsolete">Filter</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
@@ -3332,6 +7625,14 @@
         <source>Grant Privileges</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Apply Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>passSelect</name>
@@ -3349,11 +7650,11 @@
     </message>
     <message>
         <source>Confirm Password</source>
-        <translation>Bevestig Paswoord</translation>
+        <translation type="obsolete">Bevestig Paswoord</translation>
     </message>
     <message>
         <source>Userid</source>
-        <translation>Gebruikers ID</translation>
+        <translation type="obsolete">Gebruikers ID</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -3361,7 +7662,19 @@
     </message>
     <message>
         <source>New Password</source>
-        <translation>Nieuw paswoord</translation>
+        <translation type="obsolete">Nieuw paswoord</translation>
+    </message>
+    <message>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Confirm Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3375,12 +7688,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Username</source>
+        <source>Password</source>
+        <translation type="obsolete">Paswoord</translation>
+    </message>
+    <message>
+        <source>&amp;Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password</source>
-        <translation type="unfinished">Paswoord</translation>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3501,6 +7818,10 @@
         <source>&amp;Export Items</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Import Items</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographDialog</name>
@@ -3591,52 +7912,72 @@
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Sluiten</translation>
     </message>
+    <message>
+        <source>&amp;View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>100%</source>
+        <translation type="unfinished">100%</translation>
+    </message>
+    <message>
+        <source>80%</source>
+        <translation type="unfinished">80%</translation>
+    </message>
+    <message>
+        <source>50%</source>
+        <translation type="unfinished">50%</translation>
+    </message>
+    <message>
+        <source>25%</source>
+        <translation type="unfinished">25%</translation>
+    </message>
+    <message>
+        <source>Previous Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>qtbook</name>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>1</source>
-        <translation>1</translation>
-    </message>
-    <message>
-        <source>%1</source>
-        <translation></translation>
+        <translation type="obsolete">1</translation>
     </message>
     <message>
         <source>, </source>
-        <translation>,</translation>
+        <translation type="obsolete">,</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <source>&amp;%1</source>
-        <translation></translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>UPC</source>
         <translation type="obsolete">UPC</translation>
     </message>
     <message>
-        <source> %1 </source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Unable to remove the selected member.</source>
-        <translation>Onmogelijk om geselecteerde klant te verwijderen.</translation>
+        <translation type="obsolete">Onmogelijk om geselecteerde klant te verwijderen.</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Bestand</translation>
+        <translation type="obsolete">Bestand</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -3644,35 +7985,27 @@
     </message>
     <message>
         <source>An error occurred while attempting to update the database account for </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account te updaten voor</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde een database-account te updaten voor</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="obsolete">Typ</translation>
     </message>
     <message>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation>U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source> ... </source>
-        <translation></translation>
+        <translation type="obsolete">U bent al verbonden met een database. Wilt U uw huidige connectie verbreken en met een nieuwe SQLite database verder gaan?</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create a database account for </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor </translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor </translation>
     </message>
     <message>
         <source>Unable to cancel the request.</source>
-        <translation>Kan aanvraag niet annuleren.</translation>
+        <translation type="obsolete">Kan aanvraag niet annuleren.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation type="obsolete">Fout</translation>
     </message>
     <message>
         <source>Table</source>
@@ -3680,7 +8013,7 @@
     </message>
     <message>
         <source>Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Cancelling the selected request(s)...</source>
@@ -3688,95 +8021,91 @@
     </message>
     <message>
         <source> in file </source>
-        <translation>in bestand</translation>
+        <translation type="obsolete">in bestand</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>Please select at least one item to place on request.</source>
-        <translation>Selecteer minstens één item om bij de aanvraag te plaatsen.</translation>
+        <translation type="obsolete">Selecteer minstens één item om bij de aanvraag te plaatsen.</translation>
     </message>
     <message>
         <source>An identical member already exists.</source>
-        <translation>Een identieke klant bestaat reeds.</translation>
+        <translation type="obsolete">Een identieke klant bestaat reeds.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to create a database account for the new member.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor de nieuwe klant.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde een database-account aan te maken voor de nieuwe klant.</translation>
     </message>
     <message>
         <source>Administrators must belong to at least one category.</source>
-        <translation>Administrators dienen op zijn minst lid te zijn van één categorie.</translation>
+        <translation type="obsolete">Administrators dienen op zijn minst lid te zijn van één categorie.</translation>
     </message>
     <message>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation>Laat de nieuwe klant weten dat hun paswoord is gezet op tempPass.</translation>
+        <translation type="obsolete">Laat de nieuwe klant weten dat hun paswoord is gezet op tempPass.</translation>
     </message>
     <message>
         <source>Circulation Mode</source>
-        <translation>Circulatie Modus</translation>
+        <translation type="obsolete">Circulatie Modus</translation>
     </message>
     <message>
         <source>Empty Error Log</source>
-        <translation>Fouten Logboek Wissen</translation>
-    </message>
-    <message>
-        <source> ... %1 </source>
-        <translation></translation>
+        <translation type="obsolete">Fouten Logboek Wissen</translation>
     </message>
     <message>
         <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation>Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;checBbox&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Member Since</source>
-        <translation>Klant sinds</translation>
+        <translation type="obsolete">Klant sinds</translation>
     </message>
     <message>
         <source>Please provide a valid SQL statement.</source>
-        <translation>Voorzie een geldige SQL uitdrukking a.u.b.  .</translation>
+        <translation type="obsolete">Voorzie een geldige SQL uitdrukking a.u.b.  .</translation>
     </message>
     <message>
         <source>Standard User Mode</source>
-        <translation>Standaard Gebruiker Modus</translation>
+        <translation type="obsolete">Standaard Gebruiker Modus</translation>
     </message>
     <message>
         <source>An unknown error occurred in file </source>
-        <translation>Een onbekende fout is opgetreden in bestand</translation>
+        <translation type="obsolete">Een onbekende fout is opgetreden in bestand</translation>
     </message>
     <message>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation>De klant die U selecteerde heeft geen items ontleend.</translation>
+        <translation type="obsolete">De klant die U selecteerde heeft geen items ontleend.</translation>
     </message>
     <message>
         <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation>Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
+        <translation type="obsolete">Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
     </message>
     <message>
         <source>Please contact your administrator.</source>
-        <translation>Contacteer uw administrator a.u.b.  .</translation>
+        <translation type="obsolete">Contacteer uw administrator a.u.b.  .</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  het volgende te verplaatsen:</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  het volgende te verplaatsen:</translation>
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Verbroken</translation>
+        <translation type="obsolete">Verbroken</translation>
     </message>
     <message>
         <source>BiblioteQ: Create New Member</source>
-        <translation>BiblioteQ: Nieuwe Klant Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: Nieuwe Klant Aanmaken</translation>
     </message>
     <message>
         <source>It appears that the user </source>
-        <translation>Het lijkt dat de gebruiker</translation>
+        <translation type="obsolete">Het lijkt dat de gebruiker</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue?</source>
@@ -3784,35 +8113,35 @@
     </message>
     <message>
         <source>Error Log Active</source>
-        <translation>Fouten Logboek Actief</translation>
+        <translation type="obsolete">Fouten Logboek Actief</translation>
     </message>
     <message>
         <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation>Kan de reservatiegeschiedenis niet achterhalen om de tabel te vullen.</translation>
+        <translation type="obsolete">Kan de reservatiegeschiedenis niet achterhalen om de tabel te vullen.</translation>
     </message>
     <message>
         <source>In addition, Qt expects plugins to exist in: </source>
-        <translation>In aanvulling, Qt verwacht plugins in:</translation>
+        <translation type="obsolete">In aanvulling, Qt verwacht plugins in:</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Table Name</source>
-        <translation>Tabelnaam</translation>
+        <translation type="obsolete">Tabelnaam</translation>
     </message>
     <message>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Om de geleende Item(s) van een klant af te printen moet U eerst een klant selecteren.</translation>
+        <translation type="obsolete">Om de geleende Item(s) van een klant af te printen moet U eerst een klant selecteren.</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
+        <translation type="obsolete">Reset &amp;Uitgave Datum</translation>
     </message>
     <message>
         <source>Please provide a valid ZIP Code.</source>
@@ -3820,23 +8149,23 @@
     </message>
     <message>
         <source>Administrator Mode</source>
-        <translation>Administrator Modus</translation>
+        <translation type="obsolete">Administrator Modus</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen vrijmaken voor&quot; item2&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Cancel Selected Request(s)</source>
-        <translation>Annuleer de geselecteerde aanvraag</translation>
+        <translation type="obsolete">Annuleer de geselecteerde aanvraag</translation>
     </message>
     <message>
         <source>Unable to save the member&apos;s information.</source>
-        <translation>Niet mogelijk om klant-info op te slaan.</translation>
+        <translation type="obsolete">Niet mogelijk om klant-info op te slaan.</translation>
     </message>
     <message>
         <source>Populating the table...</source>
-        <translation>Hoofdtabel opvullen...</translation>
+        <translation type="obsolete">Hoofdtabel opvullen...</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -3844,15 +8173,11 @@
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation>Uitschrijfdatum</translation>
+        <translation type="obsolete">Uitschrijfdatum</translation>
     </message>
     <message>
         <source>Insert &amp;Book</source>
         <translation type="obsolete">&amp;Boek Toevoegen</translation>
-    </message>
-    <message>
-        <source> 1 ... </source>
-        <translation></translation>
     </message>
     <message>
         <source>Recording Label</source>
@@ -3860,55 +8185,55 @@
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation>&amp;Krant Zoeken</translation>
+        <translation type="obsolete">&amp;Krant Zoeken</translation>
     </message>
     <message>
         <source>Member ID</source>
-        <translation>Klant ID</translation>
+        <translation type="obsolete">Klant ID</translation>
     </message>
     <message>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Om uitgeleende item(s) van een klant weer te geven, moet u eerst een klant selecteren.</translation>
+        <translation type="obsolete">Om uitgeleende item(s) van een klant weer te geven, moet u eerst een klant selecteren.</translation>
     </message>
     <message>
         <source>Requested items may not be deleted.</source>
-        <translation>Gereserveerde items kunnen niet worden verwijderd.</translation>
+        <translation type="obsolete">Gereserveerde items kunnen niet worden verwijderd.</translation>
     </message>
     <message>
         <source>Membership Mode</source>
-        <translation>Klant Modus</translation>
+        <translation type="obsolete">Klant Modus</translation>
     </message>
     <message>
         <source>Returned Date</source>
-        <translation>Datum Ingave</translation>
+        <translation type="obsolete">Datum Ingave</translation>
     </message>
     <message>
         <source>You may not remove a member that has reserved items.</source>
-        <translation>U mag geen Klant verwijderen die geleende item(s) bezit.</translation>
+        <translation type="obsolete">U mag geen Klant verwijderen die geleende item(s) bezit.</translation>
     </message>
     <message>
         <source>Memory failure in addError()!</source>
-        <translation>Geheugen Falen in addError()!</translation>
+        <translation type="obsolete">Geheugen Falen in addError()!</translation>
     </message>
     <message>
         <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
-        <translation>Uw huidige database driver ondersteunt geen transacties. Upgrade uw database en/of driver.</translation>
+        <translation type="obsolete">Uw huidige database driver ondersteunt geen transacties. Upgrade uw database en/of driver.</translation>
     </message>
     <message>
         <source>Reserved items may not be deleted.</source>
-        <translation>Uitgeleende items kunnen niet worden verwijderd.</translation>
+        <translation type="obsolete">Uitgeleende items kunnen niet worden verwijderd.</translation>
     </message>
     <message>
         <source>BiblioteQ: SQLite Database Selection</source>
-        <translation>BiblioteQ: SQLite Database Selectie</translation>
+        <translation type="obsolete">BiblioteQ: SQLite Database Selectie</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
-        <translation>BiblioteQ: Wijzig Lettertype</translation>
+        <translation type="obsolete">BiblioteQ: Wijzig Lettertype</translation>
     </message>
     <message>
         <source>Please select a member to delete.</source>
-        <translation>Selecteer een klant om te verwijderen.</translation>
+        <translation type="obsolete">Selecteer een klant om te verwijderen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Export View as CSV</source>
@@ -3916,87 +8241,87 @@
     </message>
     <message>
         <source>Column Type</source>
-        <translation>Type Kolom </translation>
+        <translation type="obsolete">Type Kolom </translation>
     </message>
     <message>
         <source> already exists.</source>
-        <translation>bestaat al.</translation>
+        <translation type="obsolete">bestaat al.</translation>
     </message>
     <message>
         <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation>Om de inhoud van het fouten-logboek te kopieëren naar het klembord, dient u minstens één regel te selecteren.</translation>
+        <translation type="obsolete">Om de inhoud van het fouten-logboek te kopieëren naar het klembord, dient u minstens één regel te selecteren.</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
+        <translation type="obsolete">BiblioteQ: Voortgang Venster</translation>
     </message>
     <message>
         <source>Column</source>
-        <translation>Kolom</translation>
+        <translation type="obsolete">Kolom</translation>
     </message>
     <message>
         <source>Unable to delete the item.</source>
-        <translation>Niet mogelijk om item te verwijderen.</translation>
+        <translation type="obsolete">Niet mogelijk om item te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to cancel some or all of the selected requests.</source>
-        <translation>Niet mogelijk om sommige of alle geselecteerde aanvragen te annuleren.</translation>
+        <translation type="obsolete">Niet mogelijk om sommige of alle geselecteerde aanvragen te annuleren.</translation>
     </message>
     <message>
         <source>Request Selected Item(s)</source>
-        <translation>Vraag Geselecteerde Item(s) Aan</translation>
+        <translation type="obsolete">Vraag Geselecteerde Item(s) Aan</translation>
     </message>
     <message>
         <source>An error occurred while attempting to revoke privileges from </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde privileges in te trekken van </translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde privileges in te trekken van </translation>
     </message>
     <message>
         <source>It appears that the selected member&apos;s membership has expired.</source>
-        <translation>Het lidmaatschap van geselecteerde klant is verlopen.</translation>
+        <translation type="obsolete">Het lidmaatschap van geselecteerde klant is verlopen.</translation>
     </message>
     <message>
         <source>Line Number</source>
-        <translation>Regelnummer</translation>
+        <translation type="obsolete">Regelnummer</translation>
     </message>
     <message>
         <source>The selected member does not yet have a reservation history to print.</source>
-        <translation>De klant die U selecteerde heeft nog geen reservatiegeschiedenis.</translation>
+        <translation type="obsolete">De klant die U selecteerde heeft nog geen reservatiegeschiedenis.</translation>
     </message>
     <message>
         <source>Video Games Reserved</source>
-        <translation>Uitgeleende Video Games</translation>
+        <translation type="obsolete">Uitgeleende Video Games</translation>
     </message>
     <message>
         <source>Lender</source>
-        <translation>Ontlener</translation>
+        <translation type="obsolete">Ontlener</translation>
     </message>
     <message>
         <source>DVDs Reserved</source>
-        <translation>Uitgeleende DVD&apos;s</translation>
+        <translation type="obsolete">Uitgeleende DVD&apos;s</translation>
     </message>
     <message>
         <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation>Kan sommige of alle geselecteerde items niet aanvragen.Ga na of U geen dubbele items probeert aan te vragen.</translation>
+        <translation type="obsolete">Kan sommige of alle geselecteerde items niet aanvragen.Ga na of U geen dubbele items probeert aan te vragen.</translation>
     </message>
     <message>
         <source>Connected</source>
-        <translation>Verbonden</translation>
+        <translation type="obsolete">Verbonden</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation type="obsolete">Reset &amp;Uitgever</translation>
     </message>
     <message>
         <source>ID Number</source>
-        <translation>ID Nummer</translation>
+        <translation type="obsolete">ID Nummer</translation>
     </message>
     <message>
         <source>Event Time</source>
-        <translation>Tijd</translation>
+        <translation type="obsolete">Tijd</translation>
     </message>
     <message>
         <source>Event Type</source>
-        <translation>Type</translation>
+        <translation type="obsolete">Type</translation>
     </message>
     <message>
         <source>Insert Music &amp;CD</source>
@@ -4004,7 +8329,7 @@
     </message>
     <message>
         <source>Unable to determine the availability of the selected item.</source>
-        <translation>Niet na te gaan of geselecteerde beschikbaar is.</translation>
+        <translation type="obsolete">Niet na te gaan of geselecteerde beschikbaar is.</translation>
     </message>
     <message>
         <source>Location</source>
@@ -4012,7 +8337,7 @@
     </message>
     <message>
         <source>Unable to remove the patron account </source>
-        <translation>Niet mogelijk om de patroon account te verwijderen.</translation>
+        <translation type="obsolete">Niet mogelijk om de patroon account te verwijderen.</translation>
     </message>
     <message>
         <source>Studio</source>
@@ -4020,7 +8345,7 @@
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation>&amp;DVD Zoeken</translation>
+        <translation type="obsolete">&amp;DVD Zoeken</translation>
     </message>
     <message>
         <source> selected items?</source>
@@ -4032,7 +8357,7 @@
     </message>
     <message>
         <source>The main table does not contain enough information for item deletion.</source>
-        <translation>De hoofdtabel bevat niet genoeg informatie om item te verwijderen.</translation>
+        <translation type="obsolete">De hoofdtabel bevat niet genoeg informatie om item te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s ID. In order to reserve the item, its ID must be known.</source>
@@ -4040,27 +8365,27 @@
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation>&amp;Video-Game Zoeken</translation>
+        <translation type="obsolete">&amp;Video-Game Zoeken</translation>
     </message>
     <message>
         <source>Unable to save the new password.</source>
-        <translation>Kan het nieuw paswoord niet opslaan.</translation>
+        <translation type="obsolete">Kan het nieuw paswoord niet opslaan.</translation>
     </message>
     <message>
         <source>The Member ID </source>
-        <translation>Het Klant-ID</translation>
+        <translation type="obsolete">Het Klant-ID</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>BiblioteQ has exited.</source>
-        <translation>BiblioteQ is afgesloten.</translation>
+        <translation type="obsolete">BiblioteQ is afgesloten.</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>Unable to read </source>
@@ -4068,23 +8393,23 @@
     </message>
     <message>
         <source>Unable to determine if the item has been reserved.</source>
-        <translation>Niet mogelijk om na te gaan of dit item is uitgeleend.</translation>
+        <translation type="obsolete">Niet mogelijk om na te gaan of dit item is uitgeleend.</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation>&amp;Boek Zoeken</translation>
+        <translation type="obsolete">&amp;Boek Zoeken</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Member</source>
-        <translation>BiblioteQ: Bewerk Klant Gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk Klant Gegevens</translation>
     </message>
     <message>
         <source>File Error</source>
@@ -4092,79 +8417,79 @@
     </message>
     <message>
         <source>Full Description</source>
-        <translation>Volledige Beschrijving</translation>
+        <translation type="obsolete">Volledige Beschrijving</translation>
     </message>
     <message>
         <source>Please select at least one request to cancel.</source>
-        <translation>Selecteer minstens één item-aanvraag om te annuleren.</translation>
+        <translation type="obsolete">Selecteer minstens één item-aanvraag om te annuleren.</translation>
     </message>
     <message>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation>Om een item uit te lenen, moet u het eerst selecteren.</translation>
+        <translation type="obsolete">Om een item uit te lenen, moet u het eerst selecteren.</translation>
     </message>
     <message>
         <source>Unable to create or update the administrator entry for </source>
-        <translation>Niet mogelijk om administrator gegevens te updaten of aan te maken voor</translation>
+        <translation type="obsolete">Niet mogelijk om administrator gegevens te updaten of aan te maken voor</translation>
     </message>
     <message>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation>Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
+        <translation type="obsolete">Bent u zeker dat u geselecteerde klant wilt verwijderen?</translation>
     </message>
     <message>
         <source>To delete an entry, you must first select it.</source>
-        <translation>Om te verwijderen, dient U eerst te selecteren.</translation>
+        <translation type="obsolete">Om te verwijderen, dient U eerst te selecteren.</translation>
     </message>
     <message>
         <source>Unavailable</source>
-        <translation>Niet Beschikbaar</translation>
+        <translation type="obsolete">Niet Beschikbaar</translation>
     </message>
     <message>
         <source>Unable to delete all or some of the selected items.</source>
-        <translation>Niet mogelijk om sommige of alle geselecteerde item(s) te verwijderen.</translation>
+        <translation type="obsolete">Niet mogelijk om sommige of alle geselecteerde item(s) te verwijderen.</translation>
     </message>
     <message>
         <source>Unable to determine the selected item&apos;s type.</source>
-        <translation>Niet mogelijk om het type van dit Item te bepalen.</translation>
+        <translation type="obsolete">Niet mogelijk om het type van dit Item te bepalen.</translation>
     </message>
     <message>
         <source>Magazines Reserved</source>
-        <translation>Uitgeleende Tijdschriften</translation>
+        <translation type="obsolete">Uitgeleende Tijdschriften</translation>
     </message>
     <message>
         <source>Unable to determine the roles of </source>
-        <translation>Niet mogelijk om de functie vast te stellen van</translation>
+        <translation type="obsolete">Niet mogelijk om de functie vast te stellen van</translation>
     </message>
     <message>
         <source>Reserved Items for </source>
-        <translation>Ontleende items van</translation>
+        <translation type="obsolete">Ontleende items van</translation>
     </message>
     <message>
         <source>Available</source>
-        <translation>Beschikbaar</translation>
+        <translation type="obsolete">Beschikbaar</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation>&amp;Tijdschrift Zoeken</translation>
+        <translation type="obsolete">&amp;Tijdschrift Zoeken</translation>
     </message>
     <message>
         <source>Unable to create the specified SQLite database.</source>
-        <translation>Niet mogelijk om de gevraagde SQLite database aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om de gevraagde SQLite database aan te maken.</translation>
     </message>
     <message>
         <source>Unable to determine if the item has been requested.</source>
-        <translation>Niet mogelijk om na te gaan of dit item is gereserveerd.</translation>
+        <translation type="obsolete">Niet mogelijk om na te gaan of dit item is gereserveerd.</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>%1 Result(s)</source>
-        <translation>%1 Resultaten</translation>
+        <translation type="obsolete">%1 Resultaten</translation>
     </message>
     <message>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation>Om de reservatiegeschiedenis te zien moet U eerst een klant selecteren.</translation>
+        <translation type="obsolete">Om de reservatiegeschiedenis te zien moet U eerst een klant selecteren.</translation>
     </message>
     <message>
         <source>The Member ID must be at least seven characters long.</source>
@@ -4172,19 +8497,19 @@
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
-        <translation>Verwijderen van geselecteerde item(s)...</translation>
+        <translation type="obsolete">Verwijderen van geselecteerde item(s)...</translation>
     </message>
     <message>
         <source>&amp;Clear Menu</source>
-        <translation>&amp;Wis Menu</translation>
+        <translation type="obsolete">&amp;Wis Menu</translation>
     </message>
     <message>
         <source>BiblioteQ: Information</source>
-        <translation>BiblioteQ: Informatie</translation>
+        <translation type="obsolete">BiblioteQ: Informatie</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation type="obsolete">Barcode</translation>
     </message>
     <message>
         <source>Processing the global configuration file.</source>
@@ -4192,15 +8517,15 @@
     </message>
     <message>
         <source>Unable to retrieve administrator data for table populating.</source>
-        <translation>Kan de administrator data niet achterhalen om de tabel te vullen.</translation>
+        <translation type="obsolete">Kan de administrator data niet achterhalen om de tabel te vullen.</translation>
     </message>
     <message>
         <source>Journals Reserved</source>
-        <translation>Uitgeleende Kranten</translation>
+        <translation type="obsolete">Uitgeleende Kranten</translation>
     </message>
     <message>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation>Laat  nieuwe administrators weten dat hun paswoord is gezet op tempPass.</translation>
+        <translation type="obsolete">Laat  nieuwe administrators weten dat hun paswoord is gezet op tempPass.</translation>
     </message>
     <message>
         <source> due to insufficient resources.</source>
@@ -4208,23 +8533,23 @@
     </message>
     <message>
         <source>Unable to retrieve member data for table populating.</source>
-        <translation>Kan de klant data niet ophalen om de tabel te vullen.</translation>
+        <translation type="obsolete">Kan de klant data niet ophalen om de tabel te vullen.</translation>
     </message>
     <message>
         <source>0 Results</source>
-        <translation>0 Resultaten</translation>
+        <translation type="obsolete">0 Resultaten</translation>
     </message>
     <message>
         <source>Membership</source>
-        <translation>Lidmaatschap</translation>
+        <translation type="obsolete">Lidmaatschap</translation>
     </message>
     <message>
         <source>Are you sure that you wish to modify the </source>
-        <translation>Bent U zeker dat U volgende wilt wijzigen:</translation>
+        <translation type="obsolete">Bent U zeker dat U volgende wilt wijzigen:</translation>
     </message>
     <message>
         <source>CDs Reserved</source>
-        <translation>Uitgeleende CD&apos;s</translation>
+        <translation type="obsolete">Uitgeleende CD&apos;s</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -4232,11 +8557,11 @@
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation>Niet mogelijk om de data op te halen om de hoofdtabel te vullen.</translation>
+        <translation type="obsolete">Niet mogelijk om de data op te halen om de hoofdtabel te vullen.</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -4252,79 +8577,79 @@
     </message>
     <message>
         <source>Reset &amp;ID Number</source>
-        <translation>Reset &amp;ID Nummer</translation>
+        <translation type="obsolete">Reset &amp;ID Nummer</translation>
     </message>
     <message>
         <source>Please select at least one item to modify.</source>
-        <translation>Selecteer hetgeen dat u wenst te wijzigen.</translation>
+        <translation type="obsolete">Selecteer hetgeen dat u wenst te wijzigen.</translation>
     </message>
     <message>
         <source>The following drivers are available: </source>
-        <translation>De volgende drivers zijn beschikbaar:</translation>
+        <translation type="obsolete">De volgende drivers zijn beschikbaar:</translation>
     </message>
     <message>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation>Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
+        <translation type="obsolete">Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
     </message>
     <message>
         <source>Librarian</source>
-        <translation>Bibliothecaris</translation>
+        <translation type="obsolete">Bibliothecaris</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>Librarian Mode</source>
-        <translation>Bibliothecaris Modus</translation>
+        <translation type="obsolete">Bibliothecaris Modus</translation>
     </message>
     <message>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation>Selecteer een klant en een item om door te kunnen gaan met het uitleenproces.</translation>
+        <translation type="obsolete">Selecteer een klant en een item om door te kunnen gaan met het uitleenproces.</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
-        <translation>&amp;Algemeen Zoeken</translation>
+        <translation type="obsolete">&amp;Algemeen Zoeken</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>First Name</source>
-        <translation>Voornaam</translation>
+        <translation type="obsolete">Voornaam</translation>
     </message>
     <message>
         <source>The passwords do not match. Please try again.</source>
-        <translation>De paswoorden komen niet overeen. Probeert U het nogmaal.</translation>
+        <translation type="obsolete">De paswoorden komen niet overeen. Probeert U het nogmaal.</translation>
     </message>
     <message>
         <source>Last Name</source>
-        <translation>Familienaam</translation>
+        <translation type="obsolete">Familienaam</translation>
     </message>
     <message>
         <source>Would you like to retrieve the list of members?</source>
-        <translation>Wilt u de lijst met alle klanten weergeven?</translation>
+        <translation type="obsolete">Wilt u de lijst met alle klanten weergeven?</translation>
     </message>
     <message>
         <source>Saving administrator information...</source>
-        <translation>Administrator informatie opslaan...</translation>
+        <translation type="obsolete">Administrator informatie opslaan...</translation>
     </message>
     <message>
         <source>CSV (*.csv)</source>
-        <translation>CSV (*.csv)</translation>
+        <translation type="obsolete">CSV (*.csv)</translation>
     </message>
     <message>
         <source>Reservation Date</source>
-        <translation>Uitleendatum</translation>
+        <translation type="obsolete">Uitleendatum</translation>
     </message>
     <message>
         <source>Insert &amp;Journal</source>
@@ -4336,23 +8661,23 @@
     </message>
     <message>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
-        <translation>Schijnbaar probeert u administrator functies uit te voeren in een niet-administrator omgeving.</translation>
+        <translation type="obsolete">Schijnbaar probeert u administrator functies uit te voeren in een niet-administrator omgeving.</translation>
     </message>
     <message>
         <source>Summary</source>
-        <translation>Samenvatting</translation>
+        <translation type="obsolete">Samenvatting</translation>
     </message>
     <message>
         <source>&amp;Unlimited Entries per Page</source>
-        <translation>&amp;Alle Items per Pagina</translation>
+        <translation type="obsolete">&amp;Alle Items per Pagina</translation>
     </message>
     <message>
         <source>Books Reserved</source>
-        <translation>Uitgeleende Boeken</translation>
+        <translation type="obsolete">Uitgeleende Boeken</translation>
     </message>
     <message>
         <source>Unable to open a database connection with the provided information.</source>
-        <translation>Niet mogelijk om de database te openen met de opgegeven informatie.</translation>
+        <translation type="obsolete">Niet mogelijk om de database te openen met de opgegeven informatie.</translation>
     </message>
     <message>
         <source>Insert &amp;Magazine</source>
@@ -4360,19 +8685,19 @@
     </message>
     <message>
         <source>Please provide a valid Street.</source>
-        <translation>Vul een geldige straat in a.u.b.  .</translation>
+        <translation type="obsolete">Vul een geldige straat in a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to determine the reserved items for the selected member.</source>
-        <translation>Het is niet mogelijk om geleende items vast te stellen van deze klant.</translation>
+        <translation type="obsolete">Het is niet mogelijk om geleende items vast te stellen van deze klant.</translation>
     </message>
     <message>
         <source>Original Due Date</source>
-        <translation>Originele Terugbrengdatum</translation>
+        <translation type="obsolete">Originele Terugbrengdatum</translation>
     </message>
     <message>
         <source>Please provide a valid City.</source>
-        <translation>Vul een geldige Woonplaats in a.u.b.  .</translation>
+        <translation type="obsolete">Vul een geldige Woonplaats in a.u.b.  .</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -4380,15 +8705,15 @@
     </message>
     <message>
         <source>Please select at least one item to view.</source>
-        <translation>Selecteer minstens één item om weer te geven.</translation>
+        <translation type="obsolete">Selecteer minstens één item om weer te geven.</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen vrijmaken voor&quot; item1&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>An error occurred while attempting to grant privileges to </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde privileges toe te staan aan </translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde privileges toe te staan aan </translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -4396,47 +8721,47 @@
     </message>
     <message>
         <source>Unable to determine the uniqueness of the proposed member.</source>
-        <translation>Niet mogelijk om na te gaan of voorgestelde klant uniek is.</translation>
+        <translation type="obsolete">Niet mogelijk om na te gaan of voorgestelde klant uniek is.</translation>
     </message>
     <message>
         <source>Privileged Mode</source>
-        <translation>Bevoorrechte-Modus</translation>
+        <translation type="obsolete">Bevoorrechte-Modus</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
-        <translation>De geselecteerde Domein-Databank heeft geen driver met zich verbonden.</translation>
+        <translation type="obsolete">De geselecteerde Domein-Databank heeft geen driver met zich verbonden.</translation>
     </message>
     <message>
         <source>Please provide a valid Last Name.</source>
-        <translation>Vul een geldige Familienaam in a.u.b.  .</translation>
+        <translation type="obsolete">Vul een geldige Familienaam in a.u.b.  .</translation>
     </message>
     <message>
         <source>The password must be at least eight characters long.</source>
-        <translation>Het paswoord moet uit minstens acht tekens bestaan.</translation>
+        <translation type="obsolete">Het paswoord moet uit minstens acht tekens bestaan.</translation>
     </message>
     <message>
         <source>Item Requests</source>
-        <translation>Item Aanvragen</translation>
+        <translation type="obsolete">Item Aanvragen</translation>
     </message>
     <message>
         <source>Please select an item to delete.</source>
-        <translation>Selecteer minstens één item om te verwijderen.</translation>
+        <translation type="obsolete">Selecteer minstens één item om te verwijderen.</translation>
     </message>
     <message>
         <source>Please provide a non-destructive SQL statement.</source>
-        <translation>Voorzie een SQL uitdrukking zonder destructieve gevolgen a.u.b.  .</translation>
+        <translation type="obsolete">Voorzie een SQL uitdrukking zonder destructieve gevolgen a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>Circulation</source>
-        <translation>Circulatie</translation>
+        <translation type="obsolete">Circulatie</translation>
     </message>
     <message>
         <source>Unable to retrieve the number of reserved items by the selected member.</source>
@@ -4444,27 +8769,27 @@
     </message>
     <message>
         <source>&amp;Music CD Search</source>
-        <translation>&amp;Muziek CD Zoeken</translation>
+        <translation type="obsolete">&amp;Muziek CD Zoeken</translation>
     </message>
     <message>
         <source>An error occurred while attempting to remove the database account </source>
-        <translation>Er is een fout opgetreden terwijl u probeerde  de database-account te verplaatsen</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde  de database-account te verplaatsen</translation>
     </message>
     <message>
         <source>Unable to determine if the membership of the selected member has expired.</source>
-        <translation>Het is niet vast te stellen of het lidmaatschap van geselecteerde klant is verlopen.</translation>
+        <translation type="obsolete">Het is niet vast te stellen of het lidmaatschap van geselecteerde klant is verlopen.</translation>
     </message>
     <message>
         <source>An error occurred while attempting to save the administrator information.</source>
-        <translation>Er is een fout opgetreden terwijl u probeerde de administrator gegevens op te slaan.</translation>
+        <translation type="obsolete">Er is een fout opgetreden terwijl u probeerde de administrator gegevens op te slaan.</translation>
     </message>
     <message>
         <source>As an administrator, you may not delete your account.</source>
-        <translation>Als administrator, kunt U uw eigen account niet verwijderen.</translation>
+        <translation type="obsolete">Als administrator, kunt U uw eigen account niet verwijderen.</translation>
     </message>
     <message>
         <source>You do not yet have a reservation history to print.</source>
-        <translation> U heeft nog geen reservatiegeschiedenis om te printen.</translation>
+        <translation type="obsolete"> U heeft nog geen reservatiegeschiedenis om te printen.</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -4472,39 +8797,39 @@
     </message>
     <message>
         <source>Administrator</source>
-        <translation>Administrator</translation>
+        <translation type="obsolete">Administrator</translation>
     </message>
     <message>
         <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation>Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
+        <translation type="obsolete">Het is niet mogelijk om het aantal items vast te stellen die door deze klant zijn geleend.</translation>
     </message>
     <message>
         <source>Please provide a valid First Name.</source>
-        <translation>Vul een geldige voornaam in a.u.b.  .</translation>
+        <translation type="obsolete">Vul een geldige voornaam in a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to request the item.</source>
-        <translation>Kan item niet aanvragen.</translation>
+        <translation type="obsolete">Kan item niet aanvragen.</translation>
     </message>
     <message>
         <source>BiblioteQ: New SQLite Database</source>
-        <translation>BiblioteQ: Nieuwe SQLite Database </translation>
+        <translation type="obsolete">BiblioteQ: Nieuwe SQLite Database </translation>
     </message>
     <message>
         <source>Unable to retrieve the selected member&apos;s information.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde klant te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde klant te achterhalen.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation type="obsolete">Reset &amp;Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source> does not have administrator privileges.</source>
-        <translation>geen administrator rechten heeft.</translation>
+        <translation type="obsolete">geen administrator rechten heeft.</translation>
     </message>
     <message>
         <source>Catalog Number</source>
@@ -4512,23 +8837,23 @@
     </message>
     <message>
         <source>The function misc_functions::userCount() failed for </source>
-        <translation>De functie&quot; misc_functions::userCount()&quot; faalde voor</translation>
+        <translation type="obsolete">De functie&quot; misc_functions::userCount()&quot; faalde voor</translation>
     </message>
     <message>
         <source>Duplicate administrator ids are not allowed.</source>
-        <translation>Dubbele administrator ID&apos;s zijn niet toegelaten.</translation>
+        <translation type="obsolete">Dubbele administrator ID&apos;s zijn niet toegelaten.</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>, line </source>
-        <translation>, regel</translation>
+        <translation type="obsolete">, regel</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -4536,43 +8861,43 @@
     </message>
     <message>
         <source>Please select a member to modify.</source>
-        <translation>Selecteer een klant om te wijzigen.</translation>
+        <translation type="obsolete">Selecteer een klant om te wijzigen.</translation>
     </message>
     <message>
         <source>It appears that the item you selected is not available for reservation.</source>
-        <translation>Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar is het item dat u selecteerde niet beschikbaar om te worden uitgeleend.</translation>
     </message>
     <message>
         <source>BiblioteQ: About</source>
-        <translation>BiblioteQ:Over dit programma</translation>
+        <translation type="obsolete">BiblioteQ:Over dit programma</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
-        <translation>BiblioteQ: Fout</translation>
+        <translation type="obsolete">BiblioteQ: Fout</translation>
     </message>
     <message>
         <source>Reservation History</source>
-        <translation>Uitleengeschiedenis</translation>
+        <translation type="obsolete">Uitleengeschiedenis</translation>
     </message>
     <message>
         <source>Requesting the selected item(s)...</source>
-        <translation>Bezig met geselecteerde item(s) aan te vragen...</translation>
+        <translation type="obsolete">Bezig met geselecteerde item(s) aan te vragen...</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation>Bent U zeker dat U de geselecteerde aanvragen wilt annuleren?</translation>
+        <translation type="obsolete">Bent U zeker dat U de geselecteerde aanvragen wilt annuleren?</translation>
     </message>
     <message>
         <source>Are you sure that you wish to view the </source>
-        <translation>Bent U zeker dat U volgende wilt bekijken:</translation>
+        <translation type="obsolete">Bent U zeker dat U volgende wilt bekijken:</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>The current password is incorrect.</source>
@@ -4580,232 +8905,46 @@
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the locations.</source>
-        <translation>Onmogelijk om de Locaties te achterhalen.</translation>
-    </message>
-    <message>
-        <source>Please select at least one item to duplicate.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure that you wish to duplicate the </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Icons Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Table Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Onmogelijk om de Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>MYOID</source>
         <translation type="obsolete">MYOID</translation>
     </message>
     <message>
-        <source>BiblioteQ: Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset &amp;Availability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;DVD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Journal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Magazine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Music &amp;CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Video Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Granting privileges...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to grant privileges to all of the members.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Member ID must be at least five characters long.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to set the role for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Czech</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Belgium)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch (&amp;Netherlands)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;French</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;German</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>G&amp;reek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Overdue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Reserved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Books</source>
-        <translation type="unfinished">Boeken</translation>
+        <translation type="obsolete">Boeken</translation>
     </message>
     <message>
         <source>DVDs</source>
-        <translation type="unfinished">DVD&apos;s</translation>
+        <translation type="obsolete">DVD&apos;s</translation>
     </message>
     <message>
         <source>Journals</source>
-        <translation type="unfinished">Kranten</translation>
+        <translation type="obsolete">Kranten</translation>
     </message>
     <message>
         <source>Magazines</source>
-        <translation type="unfinished">Tijdschriften</translation>
+        <translation type="obsolete">Tijdschriften</translation>
     </message>
     <message>
         <source>Music CDs</source>
-        <translation type="unfinished">Muziek CD&apos;s</translation>
+        <translation type="obsolete">Muziek CD&apos;s</translation>
     </message>
     <message>
         <source>Video Games</source>
-        <translation type="unfinished">Video Games</translation>
-    </message>
-    <message>
-        <source>All Requested</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Photograph(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photographs may not be reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NULL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Photograph Collections</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue?
-%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An error occurred while attempting to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Hungarian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please provide a ZIP Code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Canceling the selected request(s)...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Video Games</translation>
     </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>.</source>
@@ -4813,7 +8952,7 @@
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>Type</source>
@@ -4821,7 +8960,7 @@
     </message>
     <message>
         <source>Unable to retrieve the book locations.</source>
-        <translation>Onmogelijk om de BOEK Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de BOEK Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, either the ISBN-10 or ISBN-13 must be provided.</source>
@@ -4829,7 +8968,7 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>Book Binding Type</source>
@@ -4845,51 +8984,51 @@
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>The front cover image for the specified ISBN may not exist.</source>
-        <translation>De Hoes (Voorkant) voor deze ISBN bestaat mogelijks niet.</translation>
+        <translation type="obsolete">De Hoes (Voorkant) voor deze ISBN bestaat mogelijks niet.</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation type="obsolete">Sleutelwoorden:</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details</source>
-        <translation>BiblioteQ: Bekijk BOEK Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk BOEK Details</translation>
     </message>
     <message>
         <source>Call Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation type="obsolete">Aanroep Nummer:</translation>
     </message>
     <message>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Classificatie Nummer:</translation>
+        <translation type="obsolete">Dewey Classificatie Nummer:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation type="obsolete">Munteenheid:</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
+        <translation type="obsolete">Reset &amp;Uitgave Datum</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-10</source>
-        <translation>Reset &amp;ISBN-10</translation>
+        <translation type="obsolete">Reset &amp;ISBN-10</translation>
     </message>
     <message>
         <source>Reset &amp;ISBN-13</source>
-        <translation>Reset &amp;ISBN-13</translation>
+        <translation type="obsolete">Reset &amp;ISBN-13</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -4897,7 +9036,7 @@
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation type="obsolete">Uitgever:</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -4909,19 +9048,19 @@
     </message>
     <message>
         <source>Reset &amp;Dewey Class Number</source>
-        <translation>Reset &amp;Dewey Classificatie Nummer</translation>
+        <translation type="obsolete">Reset &amp;Dewey Classificatie Nummer</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation>Reset &amp;Aanroep Nummer</translation>
+        <translation type="obsolete">Reset &amp;Aanroep Nummer</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>The back cover image for the specified ISBN may not exist.</source>
-        <translation>De Hoes (Achterkant) voor deze ISBN bestaat mogelijks niet.</translation>
+        <translation type="obsolete">De Hoes (Achterkant) voor deze ISBN bestaat mogelijks niet.</translation>
     </message>
     <message>
         <source>Call Number</source>
@@ -4933,19 +9072,19 @@
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation>LC Controle Nummer:</translation>
+        <translation type="obsolete">LC Controle Nummer:</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (voorkant)</translation>
     </message>
     <message>
         <source>Book Binding Type:</source>
-        <translation>Type Boekbinding:</translation>
+        <translation type="obsolete">Type Boekbinding:</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation type="obsolete">Reset &amp;Uitgever</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -4953,15 +9092,15 @@
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation>MARC Tags:</translation>
+        <translation type="obsolete">MARC Tags:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation type="obsolete">Prijs:</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
-        <translation>Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
+        <translation type="obsolete">Niet mogelijk om een verbinding te maken wegens te weinig bronnen.</translation>
     </message>
     <message>
         <source>Location</source>
@@ -4969,7 +9108,7 @@
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation type="obsolete">Titel:</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -4977,11 +9116,11 @@
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de Titel a.u.b..</translation>
     </message>
     <message>
         <source>Reset &amp;Author(s)</source>
-        <translation>Reset &amp;Auteur(s)</translation>
+        <translation type="obsolete">Reset &amp;Auteur(s)</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -4989,23 +9128,23 @@
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>BiblioteQ: View Book Details (</source>
-        <translation>BiblioteQ: Bekijk BOEK Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk BOEK Details</translation>
     </message>
     <message>
         <source>Please complete the Author(s) field.</source>
-        <translation>Vervolledig de Acteur(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig de Acteur(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
@@ -5013,47 +9152,47 @@
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>Reset &amp;Book Binding Type</source>
-        <translation>Reset &amp;Type Boekbinding</translation>
+        <translation type="obsolete">Reset &amp;Type Boekbinding</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Edition</source>
-        <translation>Reset &amp;Editie</translation>
+        <translation type="obsolete">Reset &amp;Editie</translation>
     </message>
     <message>
         <source>ISBN-13:</source>
-        <translation>ISBN-13:</translation>
+        <translation type="obsolete">ISBN-13:</translation>
     </message>
     <message>
         <source>ISBN-10:</source>
-        <translation>ISBN-10:</translation>
+        <translation type="obsolete">ISBN-10:</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Voorkant Hoes</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Book Search</source>
-        <translation>BiblioteQ: BOEK Zoeken</translation>
+        <translation type="obsolete">BiblioteQ: BOEK Zoeken</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation>Reset &amp;LC Controle Nummer</translation>
+        <translation type="obsolete">Reset &amp;LC Controle Nummer</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -5061,19 +9200,19 @@
     </message>
     <message>
         <source>BiblioteQ: Create Book Entry</source>
-        <translation>BiblioteQ: BOEK Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: BOEK Aanmaken</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Download</source>
-        <translation>BiblioteQ: Download Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Download Voorkant Hoes</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om een geschiedenis-record aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een geschiedenis-record aan te maken.</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -5085,43 +9224,43 @@
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Download</source>
-        <translation>BiblioteQ: Download Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Download Achterkant Hoes</translation>
     </message>
     <message>
         <source>BiblioteQ: HTTP Warning</source>
-        <translation>BiblioteQ: HTTP Waarschuwing</translation>
+        <translation type="obsolete">BiblioteQ: HTTP Waarschuwing</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation type="obsolete">Ophalen van beschikbaarheid.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation type="obsolete">Locatie:</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation>Downloaden van de  Voorkant Hoes. Even geduld a.u.b. ...</translation>
+        <translation type="obsolete">Downloaden van de  Voorkant Hoes. Even geduld a.u.b. ...</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation>Reset &amp;MARC Tags</translation>
+        <translation type="obsolete">Reset &amp;MARC Tags</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
@@ -5129,11 +9268,11 @@
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation type="obsolete">Kopieën:</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation type="obsolete">Samenvatting:</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -5141,15 +9280,15 @@
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source>Edition:</source>
-        <translation>Editie:</translation>
+        <translation type="obsolete">Editie:</translation>
     </message>
     <message>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
-        <translation>Vervolledig zowel de  ISBN-10 als ISBN-13.</translation>
+        <translation type="obsolete">Vervolledig zowel de  ISBN-10 als ISBN-13.</translation>
     </message>
     <message>
         <source>Unable to retrieve the book&apos;s OID.</source>
@@ -5157,15 +9296,15 @@
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om onnodige kopie data door te voeren.</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig de Uitgever(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation type="obsolete">Plaats van Uitgave:</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -5173,7 +9312,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -5193,39 +9332,39 @@
     </message>
     <message>
         <source>Unable to retrieve the selected book&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Boeken te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde Boeken te achterhalen.</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Achterkant Hoes</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation type="obsolete">Reset &amp;Plaats van Uitgave</translation>
     </message>
     <message>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation>Om een hoes te downloaden van Amazon, moet het ISBN-10 gekend zijn.</translation>
+        <translation type="obsolete">Om een hoes te downloaden van Amazon, moet het ISBN-10 gekend zijn.</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Aanvraag Fout</translation>
+        <translation type="obsolete">Z39.50 Aanvraag Fout</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Aanvraag Fout</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Aanvraag Fout</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Data Ophalen</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Data Ophalen</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -5233,31 +9372,31 @@
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry (</source>
-        <translation>BiblioteQ: Bewerk BOEK gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk BOEK gegevens</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation type="obsolete">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation type="obsolete">Reset &amp;Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation>Categorieën:</translation>
+        <translation type="obsolete">Categorieën:</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>ISBN-10</source>
@@ -5269,134 +9408,54 @@
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om Initialen aan te maken.</translation>
     </message>
     <message>
         <source>Author(s):</source>
-        <translation>Auteur(s):</translation>
+        <translation type="obsolete">Auteur(s):</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (achterkant)</translation>
     </message>
     <message>
         <source>Publication Date:</source>
-        <translation>Datum van Uitgave:</translation>
+        <translation type="obsolete">Datum van Uitgave:</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation>Downloaden van de  Achterkant Hoes. Even geduld a.u.b. ...</translation>
+        <translation type="obsolete">Downloaden van de  Achterkant Hoes. Even geduld a.u.b. ...</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Book Entry</source>
-        <translation>BiblioteQ: Bewerk BOEK gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk BOEK gegevens</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Book Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The proxy %1:%2 is requesting credentials.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset &amp;Originality</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset &amp;Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the book binding types.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Originality:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Condition:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
     <name>qtbook_cd</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>Type</source>
@@ -5404,7 +9463,7 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>Audio</source>
@@ -5416,59 +9475,59 @@
     </message>
     <message>
         <source>Title</source>
-        <translation type="unfinished">Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Music CD Search</source>
-        <translation>BiblioteQ: CD Zoeken</translation>
+        <translation type="obsolete">BiblioteQ: CD Zoeken</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation type="obsolete">Sleutelwoorden:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation type="obsolete">Munteenheid:</translation>
     </message>
     <message>
         <source>Album Number</source>
-        <translation>Album Nummer</translation>
+        <translation type="obsolete">Album Nummer</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details (</source>
-        <translation>BiblioteQ: Bekijk CD Details (</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk CD Details (</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation>Reset &amp;Format</translation>
+        <translation type="obsolete">Reset &amp;Format</translation>
     </message>
     <message>
         <source>Reset &amp;Artist</source>
-        <translation>Reset &amp;Artiest</translation>
+        <translation type="obsolete">Reset &amp;Artiest</translation>
     </message>
     <message>
         <source>Track Runtime</source>
-        <translation>Duur Track</translation>
+        <translation type="obsolete">Duur Track</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Track Number</source>
-        <translation>Track Nummer</translation>
+        <translation type="obsolete">Track Nummer</translation>
     </message>
     <message>
         <source>Populating the table...</source>
-        <translation>Tabel opvullen...</translation>
+        <translation type="obsolete">Tabel opvullen...</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -5476,11 +9535,11 @@
     </message>
     <message>
         <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation>Niet mogelijk om CD&apos;s OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om CD&apos;s OID op te halen.</translation>
     </message>
     <message>
         <source>Recording Type:</source>
-        <translation>Type Opname:</translation>
+        <translation type="obsolete">Type Opname:</translation>
     </message>
     <message>
         <source>Recording Label</source>
@@ -5488,35 +9547,35 @@
     </message>
     <message>
         <source>Unable to retrieve the cd formats.</source>
-        <translation>Onmogelijk om de CD Formats te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de CD Formats te achterhalen.</translation>
     </message>
     <message>
         <source>Recording Label:</source>
-        <translation>Platenmaatschappij:</translation>
+        <translation type="obsolete">Platenmaatschappij:</translation>
     </message>
     <message>
         <source>Commit failure.</source>
-        <translation>Toewijsfout.</translation>
+        <translation type="obsolete">Toewijsfout.</translation>
     </message>
     <message>
         <source>Please complete the Catalog Number field.</source>
-        <translation>Vervolledig Catalogus Nummer(s)a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig Catalogus Nummer(s)a.u.b. .</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Music CD Entry</source>
-        <translation>BiblioteQ: CD Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: CD Aanmaken</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="unfinished">Artiest</translation>
+        <translation type="obsolete">Artiest</translation>
     </message>
     <message>
         <source>Audio:</source>
-        <translation>Studio:</translation>
+        <translation type="obsolete">Studio:</translation>
     </message>
     <message>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Voortgang Venster</translation>
+        <translation type="obsolete">BiblioteQ: Voortgang Venster</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5524,15 +9583,15 @@
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (voorkant)</translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation>Reset &amp;Duur</translation>
+        <translation type="obsolete">Reset &amp;Duur</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -5540,7 +9599,7 @@
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation type="obsolete">Prijs:</translation>
     </message>
     <message>
         <source>Location</source>
@@ -5548,59 +9607,59 @@
     </message>
     <message>
         <source>Unable to create track data.</source>
-        <translation>Niet mogelijk om track-data aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om track-data aan te maken.</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel: </translation>
+        <translation type="obsolete">Titel: </translation>
     </message>
     <message>
         <source>Some or all of the track data has not been saved.</source>
-        <translation>Enige of alle track data zijn niet opgeslagen.</translation>
+        <translation type="obsolete">Enige of alle track data zijn niet opgeslagen.</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de Titel a.u.b..</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation>BiblioteQ: Bewerk Muziek CD gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk Muziek CD gegevens</translation>
     </message>
     <message>
         <source>Row number </source>
-        <translation>Rij-nummer</translation>
+        <translation type="obsolete">Rij-nummer</translation>
     </message>
     <message>
         <source>Reset &amp;Catalog Number</source>
-        <translation>Reset &amp;Catalogus Nummer</translation>
+        <translation type="obsolete">Reset &amp;Catalogus Nummer</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation>Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation>BiblioteQ: Browser van Album Tracks (</translation>
+        <translation type="obsolete">BiblioteQ: Browser van Album Tracks (</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>Reset &amp;Recording Type</source>
-        <translation>Reset &amp;Type Opname</translation>
+        <translation type="obsolete">Reset &amp;Type Opname</translation>
     </message>
     <message>
         <source>Please complete the Artist field.</source>
-        <translation>Vervolledig &quot;Artiest&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Artiest&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
@@ -5608,31 +9667,31 @@
     </message>
     <message>
         <source>Reset &amp;Audio</source>
-        <translation>Reset &amp;Studio</translation>
+        <translation type="obsolete">Reset &amp;Studio</translation>
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Reset &amp;Aantal Discs</translation>
+        <translation type="obsolete">Reset &amp;Aantal Discs</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation>BiblioteQ: Bewerk Muziek CD gegevens (</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk Muziek CD gegevens (</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Voorkant Hoes</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -5640,23 +9699,23 @@
     </message>
     <message>
         <source>Unable to retrieve track data for table populating.</source>
-        <translation>Kan de track-data niet ophalen om de tabel te vullen.</translation>
+        <translation type="obsolete">Kan de track-data niet ophalen om de tabel te vullen.</translation>
     </message>
     <message>
         <source>Artist:</source>
-        <translation>Artiest:</translation>
+        <translation type="obsolete">Artiest:</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to retrieve the cd locations.</source>
-        <translation>Onmogelijk om de CD Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de CD Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken.</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -5668,23 +9727,23 @@
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation type="obsolete">Ophalen van beschikbaarheid.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation type="obsolete">Locatie:</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;trackEdit&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Runtime</source>
@@ -5692,39 +9751,39 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation>Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Kan niet genoeg geheugen toewijzen voor de &quot;comboBox&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation type="obsolete">Reset &amp;Uitgavedatum</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation type="obsolete">Kopieën:</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation type="obsolete">Samenvatting:</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source> contains an empty Song Title.</source>
-        <translation>bevat een lege Titel.</translation>
+        <translation type="obsolete">bevat een lege Titel.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om onnodige kopie data door te voeren.</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -5732,7 +9791,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -5740,11 +9799,11 @@
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;timeEdit&quot; object. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Please complete the Recording Label field.</source>
-        <translation>Vervolledig Record Label(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig Record Label(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5756,39 +9815,39 @@
     </message>
     <message>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation>De gezamenlijke duur van alle tracks is nul. Vul de individuele duurtijden in a.u.b.  .</translation>
+        <translation type="obsolete">De gezamenlijke duur van alle tracks is nul. Vul de individuele duurtijden in a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation>Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
+        <translation type="obsolete">Niet mogelijk om geheugen toe te wijzen voor het &quot;item-object&quot;. Dit is een ernstig probleem!</translation>
     </message>
     <message>
         <source>Runtime:</source>
-        <translation>Duur:</translation>
+        <translation type="obsolete">Duur:</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Achterkant Hoes</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation>Aantal Discs:</translation>
+        <translation type="obsolete">Aantal Discs:</translation>
     </message>
     <message>
         <source>BiblioteQ: View Music CD Details</source>
-        <translation>BiblioteQ: Bekijk CD Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk CD Details</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
     </message>
     <message>
         <source>Unable to purge track data.</source>
-        <translation>Niet mogelijk om track data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om track data door te voeren.</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -5796,7 +9855,7 @@
     </message>
     <message>
         <source>Track Title</source>
-        <translation>Titel</translation>
+        <translation type="obsolete">Titel</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -5804,23 +9863,23 @@
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation type="obsolete">Format:</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation type="obsolete">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation type="obsolete">Reset &amp;Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Saving the track data...</source>
-        <translation>Opslaan van track-data...</translation>
+        <translation type="obsolete">Opslaan van track-data...</translation>
     </message>
     <message>
         <source>Catalog Number</source>
@@ -5828,27 +9887,27 @@
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>Categories:</source>
-        <translation>Categorieën:</translation>
+        <translation type="obsolete">Categorieën:</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde CD te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde CD te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om Initialen aan te maken.</translation>
     </message>
     <message>
         <source>Recording Type</source>
@@ -5856,7 +9915,7 @@
     </message>
     <message>
         <source>Catalog Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation type="obsolete">Aanroep Nummer:</translation>
     </message>
     <message>
         <source>BiblioteQ: Error</source>
@@ -5864,58 +9923,38 @@
     </message>
     <message>
         <source>Reset &amp;Recording Label</source>
-        <translation>Reset &amp;Record Label</translation>
+        <translation type="obsolete">Reset &amp;Record Label</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (achterkant)</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation type="obsolete">Uitgave Datum:</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset &amp;Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Composer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -5923,7 +9962,7 @@
     </message>
     <message>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
         <source>Type</source>
@@ -5931,7 +9970,7 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>Price</source>
@@ -5943,27 +9982,27 @@
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation type="obsolete">Munteenheid:</translation>
     </message>
     <message>
         <source>Reset &amp;Format</source>
-        <translation>Reset &amp;Format</translation>
+        <translation type="obsolete">Reset &amp;Format</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation>Onmogelijk om het DVD-Beeldformaat te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om het DVD-Beeldformaat te achterhalen.</translation>
     </message>
     <message>
         <source>Aspect Ratio</source>
@@ -5975,43 +10014,43 @@
     </message>
     <message>
         <source>Please complete the Format field.</source>
-        <translation>Vervolledig &quot;Format&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Format&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>BiblioteQ: Create DVD Entry</source>
-        <translation>BiblioteQ: DVD Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: DVD Aanmaken</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd locations.</source>
-        <translation>Onmogelijk om de DVD Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de DVD Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>Reset &amp;Rating</source>
-        <translation>Re&amp;set Rating</translation>
+        <translation type="obsolete">Re&amp;set Rating</translation>
     </message>
     <message>
         <source>Reset &amp;Region</source>
-        <translation>Reset &amp;Regio</translation>
+        <translation type="obsolete">Reset &amp;Regio</translation>
     </message>
     <message>
         <source>Reset &amp;Studio</source>
-        <translation>Reset &amp;Studio</translation>
+        <translation type="obsolete">Reset &amp;Studio</translation>
     </message>
     <message>
         <source>Reset &amp;Actor(s)</source>
-        <translation>Reset &amp;Acteur(s)</translation>
+        <translation type="obsolete">Reset &amp;Acteur(s)</translation>
     </message>
     <message>
         <source>Reset &amp;Aspect Ratio</source>
-        <translation>Reset &amp;Beeldformaat</translation>
+        <translation type="obsolete">Reset &amp;Beeldformaat</translation>
     </message>
     <message>
         <source>BiblioteQ: Database DVD Search</source>
-        <translation>BiblioteQ: DVD Zoeken</translation>
+        <translation type="obsolete">BiblioteQ: DVD Zoeken</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry</source>
-        <translation>BiblioteQ: Bewerk DVD gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk DVD gegevens</translation>
     </message>
     <message>
         <source>Format</source>
@@ -6019,19 +10058,19 @@
     </message>
     <message>
         <source>Please complete the Studio field.</source>
-        <translation>Vervolledig Studio a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig Studio a.u.b.  .</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (voorkant)</translation>
     </message>
     <message>
         <source>Reset &amp;Runtime</source>
-        <translation>Reset &amp;Duur</translation>
+        <translation type="obsolete">Reset &amp;Duur</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -6039,7 +10078,7 @@
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation type="obsolete">Prijs:</translation>
     </message>
     <message>
         <source>Rating</source>
@@ -6059,35 +10098,35 @@
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation type="obsolete">Titel:</translation>
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de Titel a.u.b..</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify DVD Entry (</source>
-        <translation>BiblioteQ: Bewerk DVD gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk DVD gegevens</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details (</source>
-        <translation>BiblioteQ: Bekijk DVD Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk DVD Details</translation>
     </message>
     <message>
         <source>Please provide a valid Runtime.</source>
-        <translation>Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Duur&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
@@ -6095,27 +10134,27 @@
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>Please complete the Actor(s) field.</source>
-        <translation>Vervolledig de Acteur(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig de Acteur(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Reset &amp;Aantal Discs</translation>
+        <translation type="obsolete">Reset &amp;Aantal Discs</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Voorkant Hoes</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -6123,27 +10162,27 @@
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation>Vervolledig de UPC a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de UPC a.u.b..</translation>
     </message>
     <message>
         <source>Unable to retrieve the dvd ratings.</source>
-        <translation>Onmogelijk om het DVD-Rating te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om het DVD-Rating te achterhalen.</translation>
     </message>
     <message>
         <source>Rating:</source>
-        <translation>Rating:</translation>
+        <translation type="obsolete">Rating:</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Region:</source>
-        <translation>Regio:</translation>
+        <translation type="obsolete">Regio:</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken.</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -6151,7 +10190,7 @@
     </message>
     <message>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
-        <translation>Niet mogelijk om DVD&apos;s OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om DVD&apos;s OID op te halen.</translation>
     </message>
     <message>
         <source>Publisher</source>
@@ -6159,19 +10198,19 @@
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation type="obsolete">Ophalen van beschikbaarheid.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation type="obsolete">Locatie:</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Runtime</source>
@@ -6179,43 +10218,43 @@
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation type="obsolete">Reset &amp;Uitgavedatum</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation type="obsolete">Kopieën:</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation type="obsolete">Samenvatting:</translation>
     </message>
     <message>
         <source>Studio:</source>
-        <translation>Studio:</translation>
+        <translation type="obsolete">Studio:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation>Categorie:</translation>
+        <translation type="obsolete">Categorie:</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om onnodige kopie data door te voeren.</translation>
     </message>
     <message>
         <source>Actor(s):</source>
-        <translation>Acteur(s):</translation>
+        <translation type="obsolete">Acteur(s):</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -6223,7 +10262,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -6239,31 +10278,31 @@
     </message>
     <message>
         <source>Unable to retrieve the dvd regions.</source>
-        <translation>Onmogelijk om de DVD-regio te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de DVD-regio te achterhalen.</translation>
     </message>
     <message>
         <source>Runtime:</source>
-        <translation>Duur:</translation>
+        <translation type="obsolete">Duur:</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation>Reset &amp;UPC</translation>
+        <translation type="obsolete">Reset &amp;UPC</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Achterkant Hoes</translation>
     </message>
     <message>
         <source>Number of Discs:</source>
-        <translation>Aantal Discs:</translation>
+        <translation type="obsolete">Aantal Discs:</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -6279,121 +10318,105 @@
     </message>
     <message>
         <source>Aspect Ratio:</source>
-        <translation>Beeldformaat:</translation>
+        <translation type="obsolete">Beeldformaat:</translation>
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation type="obsolete">Format:</translation>
     </message>
     <message>
         <source>Reset &amp;Director(s)</source>
-        <translation>Reset  &amp;Director(s)</translation>
+        <translation type="obsolete">Reset  &amp;Director(s)</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation type="obsolete">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation type="obsolete">Reset &amp;Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>BiblioteQ: View DVD Details</source>
-        <translation>BiblioteQ: Bekijk DVD Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk DVD Details</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected DVD&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde DVD te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde DVD te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om Initialen aan te maken.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (achterkant)</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation type="obsolete">Uitgave Datum:</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>Please complete the Director(s) field.</source>
-        <translation>Vervolledig Director(s)a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig Director(s)a.u.b. .</translation>
     </message>
     <message>
         <source>Director(s):</source>
-        <translation>Regie:</translation>
+        <translation type="obsolete">Regie:</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate DVD Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation type="unfinished">Sleutelwoorden:</translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Sleutelwoorden:</translation>
     </message>
 </context>
 <context>
     <name>qtbook_journal</name>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
         <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>qtbook_magazine</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>ISSN</source>
@@ -6405,11 +10428,11 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>ISSN:</source>
-        <translation>ISSN:</translation>
+        <translation type="obsolete">ISSN:</translation>
     </message>
     <message>
         <source>Issue</source>
@@ -6425,31 +10448,31 @@
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation type="obsolete">Sleutelwoorden:</translation>
     </message>
     <message>
         <source>Call Number:</source>
-        <translation>Aanroep Nummer:</translation>
+        <translation type="obsolete">Aanroep Nummer:</translation>
     </message>
     <message>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Classificatie Nummer:</translation>
+        <translation type="obsolete">Dewey Classificatie Nummer:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation type="obsolete">Munteenheid:</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry (</source>
-        <translation>BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
     </message>
     <message>
         <source>Unable to retrieve the selected magazine&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Tijdschriften te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde Tijdschriften te achterhalen.</translation>
     </message>
     <message>
         <source>Dewey Number</source>
@@ -6457,23 +10480,23 @@
     </message>
     <message>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde Kranten te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde Kranten te achterhalen.</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Reset &amp;Publication Date</source>
-        <translation>Reset &amp;Uitgave Datum</translation>
+        <translation type="obsolete">Reset &amp;Uitgave Datum</translation>
     </message>
     <message>
         <source>Issue (Number):</source>
-        <translation>Uitgave (Nummer):</translation>
+        <translation type="obsolete">Uitgave (Nummer):</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -6481,11 +10504,11 @@
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation type="obsolete">Uitgever:</translation>
     </message>
     <message>
         <source>Reset &amp;Volume</source>
-        <translation>Reset &amp;Volume</translation>
+        <translation type="obsolete">Reset &amp;Volume</translation>
     </message>
     <message>
         <source>LC Control Number</source>
@@ -6493,23 +10516,23 @@
     </message>
     <message>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Een Z39.50 gegeven zou nog niet bestaan voor</translation>
+        <translation type="obsolete">Een Z39.50 gegeven zou nog niet bestaan voor</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Magazine Search</source>
-        <translation>BiblioteQ: TIJDSCHRIFT Zoeken (</translation>
+        <translation type="obsolete">BiblioteQ: TIJDSCHRIFT Zoeken (</translation>
     </message>
     <message>
         <source>Reset &amp;Call Number</source>
-        <translation>Reset &amp;Aanroep Nummer</translation>
+        <translation type="obsolete">Reset &amp;Aanroep Nummer</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Journal Search</source>
-        <translation>BiblioteQ: KRANT Zoeken</translation>
+        <translation type="obsolete">BiblioteQ: KRANT Zoeken</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>Call Number</source>
@@ -6517,15 +10540,15 @@
     </message>
     <message>
         <source>LC Control Number:</source>
-        <translation>LC Controle Nummer:</translation>
+        <translation type="obsolete">LC Controle Nummer:</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (voorkant)</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation type="obsolete">Reset &amp;Uitgever</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -6533,11 +10556,11 @@
     </message>
     <message>
         <source>MARC Tags:</source>
-        <translation>MARC Tags:</translation>
+        <translation type="obsolete">MARC Tags:</translation>
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation type="obsolete">Prijs:</translation>
     </message>
     <message>
         <source>Unable to create a thread due to insufficient resources.</source>
@@ -6549,7 +10572,7 @@
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation type="obsolete">Titel:</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -6557,7 +10580,7 @@
     </message>
     <message>
         <source>BiblioteQ: Create Journal Entry</source>
-        <translation>BiblioteQ: KRANT Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: KRANT Aanmaken</translation>
     </message>
     <message>
         <source>Volume</source>
@@ -6565,11 +10588,11 @@
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de Titel a.u.b..</translation>
     </message>
     <message>
         <source>Reset &amp;ISSN</source>
-        <translation>Reset &amp;ISSN</translation>
+        <translation type="obsolete">Reset &amp;ISSN</translation>
     </message>
     <message>
         <source>Replace existing values with those retrieved from the Z39.50 system?</source>
@@ -6577,27 +10600,27 @@
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Samenvatting&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry</source>
-        <translation>BiblioteQ: Bewerk KRANT gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk KRANT gegevens</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine locations.</source>
-        <translation>Onmogelijk om de TIJDSCHRIFT Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de TIJDSCHRIFT Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Journal Entry (</source>
-        <translation>BiblioteQ: Bewerk KRANT gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk KRANT gegevens</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
@@ -6605,23 +10628,23 @@
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>Reset &amp;Issue</source>
-        <translation>Reset &amp;Issue</translation>
+        <translation type="obsolete">Reset &amp;Issue</translation>
     </message>
     <message>
         <source>Reset &amp;Dewey Number</source>
-        <translation>Reset &amp;Dewey Classificatie Nummer</translation>
+        <translation type="obsolete">Reset &amp;Dewey Classificatie Nummer</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>Unable to create a &quot;dialog&quot; object due to insufficient resources.</source>
@@ -6629,15 +10652,15 @@
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Voorkant Hoes</translation>
     </message>
     <message>
         <source>Reset &amp;LC Control Number</source>
-        <translation>Reset &amp;LC Controle Nummer</translation>
+        <translation type="obsolete">Reset &amp;LC Controle Nummer</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -6645,15 +10668,15 @@
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details</source>
-        <translation>BiblioteQ: Bekijk TIJDSCHRIFT Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk TIJDSCHRIFT Details</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken.</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -6665,67 +10688,67 @@
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation type="obsolete">Ophalen van beschikbaarheid.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation type="obsolete">Locatie:</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>Reset &amp;MARC Tags</source>
-        <translation>Reset &amp;MARC Tags</translation>
+        <translation type="obsolete">Reset &amp;MARC Tags</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation> Z39.50 gegeven kon niet achterhaald worden.</translation>
+        <translation type="obsolete"> Z39.50 gegeven kon niet achterhaald worden.</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation type="obsolete">Kopieën:</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation type="obsolete">Samenvatting:</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation>Categorie:</translation>
+        <translation type="obsolete">Categorie:</translation>
     </message>
     <message>
         <source>BiblioteQ: View Journal Details (</source>
-        <translation>BiblioteQ: Bekijk KRANT Details (</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk KRANT Details (</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om onnodige kopie data door te voeren.</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig de Uitgever(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation type="obsolete">Plaats van Uitgave:</translation>
     </message>
     <message>
         <source>In order to query a Z39.50 system, the ISSN must be provided.</source>
@@ -6737,7 +10760,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -6749,7 +10772,7 @@
     </message>
     <message>
         <source>BiblioteQ: View Journal Details</source>
-        <translation>BiblioteQ: Bekijk KRANT Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk KRANT Details</translation>
     </message>
     <message>
         <source>Downloading information from the Z39.50 system. Please be patient...</source>
@@ -6757,35 +10780,35 @@
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Achterkant Hoes</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation type="obsolete">Reset &amp;Plaats van Uitgave</translation>
     </message>
     <message>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Aanvraag Fout</translation>
+        <translation type="obsolete">Z39.50 Aanvraag Fout</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Aanvraag Fout</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Aanvraag Fout</translation>
     </message>
     <message>
         <source>Please complete the ISSN field.</source>
-        <translation>Vervolledig ISSNl a.u.b..</translation>
+        <translation type="obsolete">Vervolledig ISSNl a.u.b..</translation>
     </message>
     <message>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Data Ophalen</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Data Ophalen</translation>
     </message>
     <message>
         <source>Monetary Units</source>
@@ -6793,51 +10816,51 @@
     </message>
     <message>
         <source>Volume:</source>
-        <translation>Volume Uitgave:</translation>
+        <translation type="obsolete">Volume Uitgave:</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation type="obsolete">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
     </message>
     <message>
         <source>Reset &amp;Categories</source>
-        <translation>Reset &amp;Categorieën</translation>
+        <translation type="obsolete">Reset &amp;Categorieën</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>BiblioteQ: View Magazine Details (</source>
-        <translation>BiblioteQ: Bekijk TIJDSCHRIFT Details (</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk TIJDSCHRIFT Details (</translation>
     </message>
     <message>
         <source>BiblioteQ: Memory Error</source>
-        <translation>BiblioteQ: Geheugen Fout</translation>
+        <translation type="obsolete">BiblioteQ: Geheugen Fout</translation>
     </message>
     <message>
         <source>Memory Error</source>
-        <translation>Geheugen Fout</translation>
+        <translation type="obsolete">Geheugen Fout</translation>
     </message>
     <message>
         <source>Please complete the Categories field.</source>
-        <translation>Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Categorieën&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>BiblioteQ: Create Magazine Entry</source>
-        <translation>BiblioteQ: TIJDSCHRIFT Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: TIJDSCHRIFT Aanmaken</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal locations.</source>
-        <translation>Onmogelijk om de KRANT Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de KRANT Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om Initialen aan te maken.</translation>
     </message>
     <message>
         <source>Unable to retrieve the magazine&apos;s OID.</source>
@@ -6845,7 +10868,7 @@
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (achterkant)</translation>
     </message>
     <message>
         <source>Unable to retrieve the journal&apos;s OID.</source>
@@ -6853,385 +10876,105 @@
     </message>
     <message>
         <source>Publication Date:</source>
-        <translation>Datum van Uitgave:</translation>
+        <translation type="obsolete">Datum van Uitgave:</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Magazine Entry</source>
-        <translation>BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk TIJDSCHRIFT gegevens</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Journal Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Magazine Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create a thread because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In order to query an SRU site, the ISSN must be provided.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: SRU Query Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An SRU entry may not yet exist for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Journal Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Magazine Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
     <message>
-        <source>Reset Collection &amp;Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection &amp;ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection &amp;Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection &amp;Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection &amp;About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reset Collection &amp;Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Current Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Error</source>
-        <translation type="unfinished">Database Fout</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the photograph collection locations.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation type="unfinished">BiblioteQ: Gebruikers Fout</translation>
-    </message>
-    <message>
-        <source>Please complete the collection&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the collection&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation type="unfinished">Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished">BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished">Niet mogelijk om een unieke integer aan te maken.</translation>
-    </message>
-    <message>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished">Niet mogelijk om huidige database transactie uit te voeren.</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>)</source>
-        <translation type="unfinished">)</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation type="unfinished">Elke</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Database Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished">&amp;Zoeken</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Photograph Collection Details (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Modify Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: View Photograph Collection Details</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Opslaan</translation>
-    </message>
-    <message>
-        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Create Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation type="unfinished">BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
         <translation type="obsolete">U heeft onopgeslagen data. Toch afsluiten?</translation>
     </message>
     <message>
-        <source>Collection ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Location:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection About:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collection Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Creator(s):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Publication Date:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Copies:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Medium:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Reproduction Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Copyright:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Call Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Other Number:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Notes:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Subjects:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item Format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s ID field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Title field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Creator(s) field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Medium field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Reproduction Number field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please complete the item&apos;s Copyright field.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to create the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to update the item. Please verify that the item does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation type="unfinished">Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Progress Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Bent u zeker dat u het geselecteerde permanent wilt verwijderen?</translation>
     </message>
     <message>
         <source>Deleting the selected item(s)...</source>
-        <translation type="unfinished">Verwijderen van geselecteerde item(s)...</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Photograph Collection Photographs Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Verwijderen van geselecteerde item(s)...</translation>
     </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
     <message>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Elke</translation>
+        <translation type="obsolete">Elke</translation>
     </message>
     <message>
         <source>UPC</source>
@@ -7243,7 +10986,7 @@
     </message>
     <message>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
         <source>Type</source>
@@ -7251,11 +10994,11 @@
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation>&amp;Opslaan</translation>
+        <translation type="obsolete">&amp;Opslaan</translation>
     </message>
     <message>
         <source>Mode:</source>
-        <translation>Modus:</translation>
+        <translation type="obsolete">Modus:</translation>
     </message>
     <message>
         <source>Price</source>
@@ -7267,35 +11010,35 @@
     </message>
     <message>
         <source>Reset &amp;Abstract</source>
-        <translation>Reset &amp;Samenvatting</translation>
+        <translation type="obsolete">Reset &amp;Samenvatting</translation>
     </message>
     <message>
         <source>Keywords:</source>
-        <translation>Sleutelwoorden:</translation>
+        <translation type="obsolete">Sleutelwoorden:</translation>
     </message>
     <message>
         <source>Monetary Units:</source>
-        <translation>Munteenheid:</translation>
+        <translation type="obsolete">Munteenheid:</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game ratings.</source>
-        <translation>Onmogelijk om het Video Game-Rating te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om het Video Game-Rating te achterhalen.</translation>
     </message>
     <message>
         <source>Reset &amp;Genres</source>
-        <translation>Reset &amp;Genres</translation>
+        <translation type="obsolete">Reset &amp;Genres</translation>
     </message>
     <message>
         <source>Please complete the Developer(s) field.</source>
-        <translation>Vervolledig Ontwikkelaar(s)a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig Ontwikkelaar(s)a.u.b. .</translation>
     </message>
     <message>
         <source>Reset &amp;Copies</source>
-        <translation>Reset &amp;Kopieên</translation>
+        <translation type="obsolete">Reset &amp;Kopieên</translation>
     </message>
     <message>
         <source>Unable to create a database transaction.</source>
-        <translation>Niet mogelijk om een database transactie aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een database transactie aan te maken.</translation>
     </message>
     <message>
         <source>Platform</source>
@@ -7303,7 +11046,7 @@
     </message>
     <message>
         <source>Reset &amp;Game Rating</source>
-        <translation>Re&amp;set Game Rating</translation>
+        <translation type="obsolete">Re&amp;set Game Rating</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -7311,23 +11054,23 @@
     </message>
     <message>
         <source>Publisher:</source>
-        <translation>Uitgever:</translation>
+        <translation type="obsolete">Uitgever:</translation>
     </message>
     <message>
         <source>Please complete the Genres field.</source>
-        <translation>Vervolledig Genrel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig Genrel a.u.b..</translation>
     </message>
     <message>
         <source>Reset &amp;Developer(s)</source>
-        <translation>Reset  &amp;Ontwikkelaar(s)</translation>
+        <translation type="obsolete">Reset  &amp;Ontwikkelaar(s)</translation>
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details</source>
-        <translation>BiblioteQ: Bekijk VIDEO-GAME Details</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk VIDEO-GAME Details</translation>
     </message>
     <message>
         <source>Genre:</source>
-        <translation>Genre:</translation>
+        <translation type="obsolete">Genre:</translation>
     </message>
     <message>
         <source>Genres</source>
@@ -7335,15 +11078,15 @@
     </message>
     <message>
         <source>Language:</source>
-        <translation>Taal:</translation>
+        <translation type="obsolete">Taal:</translation>
     </message>
     <message>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Reset &amp;Hoes (voorkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (voorkant)</translation>
     </message>
     <message>
         <source>Reset &amp;Publisher</source>
-        <translation>Reset &amp;Uitgever</translation>
+        <translation type="obsolete">Reset &amp;Uitgever</translation>
     </message>
     <message>
         <source>ID Number</source>
@@ -7351,7 +11094,7 @@
     </message>
     <message>
         <source>Price:</source>
-        <translation>Prijs:</translation>
+        <translation type="obsolete">Prijs:</translation>
     </message>
     <message>
         <source>Location</source>
@@ -7359,7 +11102,7 @@
     </message>
     <message>
         <source>Title:</source>
-        <translation>Titel:</translation>
+        <translation type="obsolete">Titel:</translation>
     </message>
     <message>
         <source>Place of Publication</source>
@@ -7371,23 +11114,23 @@
     </message>
     <message>
         <source>Please complete the Title field.</source>
-        <translation>Vervolledig de Titel a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de Titel a.u.b..</translation>
     </message>
     <message>
         <source>Reset &amp;Mode</source>
-        <translation>Reset &amp;Mode</translation>
+        <translation type="obsolete">Reset &amp;Mode</translation>
     </message>
     <message>
         <source>Please complete the Abstract field.</source>
-        <translation>Prosím, vyplňte pole Abstrakt.</translation>
+        <translation type="obsolete">Prosím, vyplňte pole Abstrakt.</translation>
     </message>
     <message>
         <source>Reset &amp;Keywords</source>
-        <translation>Reset &amp;Sleutelwoorden</translation>
+        <translation type="obsolete">Reset &amp;Sleutelwoorden</translation>
     </message>
     <message>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Reset &amp;Munteenheid</translation>
+        <translation type="obsolete">Reset &amp;Munteenheid</translation>
     </message>
     <message>
         <source>Would you like to modify copy information?</source>
@@ -7395,23 +11138,23 @@
     </message>
     <message>
         <source>Reset &amp;Title</source>
-        <translation>Reset &amp;Titel</translation>
+        <translation type="obsolete">Reset &amp;Titel</translation>
     </message>
     <message>
         <source>Reset &amp;Price</source>
-        <translation>Reset &amp;Prijs</translation>
+        <translation type="obsolete">Reset &amp;Prijs</translation>
     </message>
     <message>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
+        <translation type="obsolete">Vervolledig &quot;Plaats van Uitgave&quot; a.u.b.  .</translation>
     </message>
     <message>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Voorkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Voorkant Hoes</translation>
     </message>
     <message>
         <source>Unable to commit the current database transaction.</source>
-        <translation>Niet mogelijk om huidige database transactie uit te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om huidige database transactie uit te voeren.</translation>
     </message>
     <message>
         <source>Language</source>
@@ -7419,23 +11162,23 @@
     </message>
     <message>
         <source>BiblioteQ: Create Video Game Entry</source>
-        <translation>BiblioteQ: VIDEO GAME Aanmaken</translation>
+        <translation type="obsolete">BiblioteQ: VIDEO GAME Aanmaken</translation>
     </message>
     <message>
         <source>Please complete the UPC field.</source>
-        <translation>Vervolledig de UPC a.u.b..</translation>
+        <translation type="obsolete">Vervolledig de UPC a.u.b..</translation>
     </message>
     <message>
         <source>Platform:</source>
-        <translation>Platform:</translation>
+        <translation type="obsolete">Platform:</translation>
     </message>
     <message>
         <source>Unable to generate a unique integer.</source>
-        <translation>Niet mogelijk om een unieke integer aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om een unieke integer aan te maken.</translation>
     </message>
     <message>
         <source>Unable to create or update the entry.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken.</translation>
     </message>
     <message>
         <source>Publication Date</source>
@@ -7447,71 +11190,71 @@
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry (</source>
-        <translation>BiblioteQ: Bewerk VIDEO-GAME gegevens (</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk VIDEO-GAME gegevens (</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Video Game Search</source>
-        <translation>BiblioteQ: VIDEO-GAME Zoeken</translation>
+        <translation type="obsolete">BiblioteQ: VIDEO-GAME Zoeken</translation>
     </message>
     <message>
         <source>Retrieving availability.</source>
-        <translation>Ophalen van beschikbaarheid.</translation>
+        <translation type="obsolete">Ophalen van beschikbaarheid.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation>Locatie:</translation>
+        <translation type="obsolete">Locatie:</translation>
     </message>
     <message>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ: Vraag</translation>
+        <translation type="obsolete">BiblioteQ: Vraag</translation>
     </message>
     <message>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Gebruikers Fout</translation>
+        <translation type="obsolete">BiblioteQ: Gebruikers Fout</translation>
     </message>
     <message>
         <source>Unable to retrieve the languages.</source>
-        <translation>Onmogelijk om de taal te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de taal te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game&apos;s OID.</source>
-        <translation>Niet mogelijk om VIDEO-GAME - OID op te halen.</translation>
+        <translation type="obsolete">Niet mogelijk om VIDEO-GAME - OID op te halen.</translation>
     </message>
     <message>
         <source>UNKNOWN</source>
-        <translation>ONBEKEND</translation>
+        <translation type="obsolete">ONBEKEND</translation>
     </message>
     <message>
         <source>Reset &amp;Release Date</source>
-        <translation>Reset &amp;Uitgavedatum</translation>
+        <translation type="obsolete">Reset &amp;Uitgavedatum</translation>
     </message>
     <message>
         <source>Copies:</source>
-        <translation>Kopieën:</translation>
+        <translation type="obsolete">Kopieën:</translation>
     </message>
     <message>
         <source>Abstract:</source>
-        <translation>Samenvatting:</translation>
+        <translation type="obsolete">Samenvatting:</translation>
     </message>
     <message>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation>Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
+        <translation type="obsolete">Niet mogelijk om te updaten of aan te maken. Ga na of deze data reeds bestaat.</translation>
     </message>
     <message>
         <source>Reset &amp;Platform</source>
-        <translation>Reset &amp;Platform</translation>
+        <translation type="obsolete">Reset &amp;Platform</translation>
     </message>
     <message>
         <source>Unable to purge unnecessary copy data.</source>
-        <translation>Niet mogelijk om onnodige kopie data door te voeren.</translation>
+        <translation type="obsolete">Niet mogelijk om onnodige kopie data door te voeren.</translation>
     </message>
     <message>
         <source>Please complete the Publisher field.</source>
-        <translation>Vervolledig de Uitgever(s) a.u.b. .</translation>
+        <translation type="obsolete">Vervolledig de Uitgever(s) a.u.b. .</translation>
     </message>
     <message>
         <source>Place of Publication:</source>
-        <translation>Plaats van Uitgave:</translation>
+        <translation type="obsolete">Plaats van Uitgave:</translation>
     </message>
     <message>
         <source>Quantity</source>
@@ -7519,7 +11262,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>You have unsaved data. Continue closing?</source>
@@ -7527,7 +11270,7 @@
     </message>
     <message>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
-        <translation>Niet mogelijk om gegevens van geselecteerde video-game te achterhalen.</translation>
+        <translation type="obsolete">Niet mogelijk om gegevens van geselecteerde video-game te achterhalen.</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -7535,35 +11278,35 @@
     </message>
     <message>
         <source>Developer(s):</source>
-        <translation>Ontwikkelaar(s):</translation>
+        <translation type="obsolete">Ontwikkelaar(s):</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game locations.</source>
-        <translation>Onmogelijk om de Video Game Locaties te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om de Video Game Locaties te achterhalen.</translation>
     </message>
     <message>
         <source>Game Rating:</source>
-        <translation>Game Rating:</translation>
+        <translation type="obsolete">Game Rating:</translation>
     </message>
     <message>
         <source>Reset &amp;Location</source>
-        <translation>Reset &amp;Locatie</translation>
+        <translation type="obsolete">Reset &amp;Locatie</translation>
     </message>
     <message>
         <source>Reset &amp;UPC</source>
-        <translation>Reset &amp;UPC</translation>
+        <translation type="obsolete">Reset &amp;UPC</translation>
     </message>
     <message>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Selecteer Achterkant Hoes</translation>
+        <translation type="obsolete">BiblioteQ: Selecteer Achterkant Hoes</translation>
     </message>
     <message>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Reset &amp;Plaats van Uitgave</translation>
+        <translation type="obsolete">Reset &amp;Plaats van Uitgave</translation>
     </message>
     <message>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
+        <translation type="obsolete">Schijnbaar wilt U proberen om het aantal kopieën te verminderen terwijl er kopiëen zijn uitgeleend.</translation>
     </message>
     <message>
         <source>Release Date</source>
@@ -7575,63 +11318,51 @@
     </message>
     <message>
         <source>BiblioteQ: View Video Game Details (</source>
-        <translation>BiblioteQ: Bekijk VIDEO-GAME Details (</translation>
+        <translation type="obsolete">BiblioteQ: Bekijk VIDEO-GAME Details (</translation>
     </message>
     <message>
         <source>Unable to determine the maximum copy number of the item.</source>
-        <translation>Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
+        <translation type="obsolete">Niet mogelijk om het maximum kopie-nummer vast te stellen.</translation>
     </message>
     <message>
         <source>BiblioteQ: Database Error</source>
-        <translation>BiblioteQ: Database Fout</translation>
+        <translation type="obsolete">BiblioteQ: Database Fout</translation>
     </message>
     <message>
         <source>BiblioteQ: Modify Video Game Entry</source>
-        <translation>BiblioteQ: Bewerk VIDEO-GAME gegevens</translation>
+        <translation type="obsolete">BiblioteQ: Bewerk VIDEO-GAME gegevens</translation>
     </message>
     <message>
         <source>Unable to retrieve the monetary units.</source>
-        <translation>Onmogelijk om Munteenheid te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om Munteenheid te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to retrieve the video game platforms.</source>
-        <translation>Onmogelijk om het Video Game-Platform te achterhalen.</translation>
+        <translation type="obsolete">Onmogelijk om het Video Game-Platform te achterhalen.</translation>
     </message>
     <message>
         <source>Unable to create initial copies.</source>
-        <translation>Niet mogelijk om Initialen aan te maken.</translation>
+        <translation type="obsolete">Niet mogelijk om Initialen aan te maken.</translation>
     </message>
     <message>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Reset &amp;Hoes (achterkant)</translation>
+        <translation type="obsolete">Reset &amp;Hoes (achterkant)</translation>
     </message>
     <message>
         <source>Release Date:</source>
-        <translation>Uitgave Datum:</translation>
+        <translation type="obsolete">Uitgave Datum:</translation>
     </message>
     <message>
         <source>Reset &amp;Language</source>
-        <translation>Reset &amp;Taal</translation>
+        <translation type="obsolete">Reset &amp;Taal</translation>
     </message>
     <message>
         <source>Rollback failure.</source>
-        <translation>Ongedaanmaak-functie mislukt.</translation>
+        <translation type="obsolete">Ongedaanmaak-functie mislukt.</translation>
     </message>
     <message>
         <source>Database Error</source>
-        <translation>Database Fout</translation>
-    </message>
-    <message>
-        <source>BiblioteQ: Duplicate Video Game Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your changes have not been saved. Continue closing?</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Database Fout</translation>
     </message>
 </context>
 <context>
@@ -7665,7 +11396,7 @@
     <name>sruresults</name>
     <message>
         <source>Record #</source>
-        <translation type="unfinished">Record #</translation>
+        <translation type="obsolete">Record #</translation>
     </message>
 </context>
 <context>
@@ -7712,6 +11443,18 @@
     </message>
     <message>
         <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>userinfo_diag_class</name>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7885,7 +11628,7 @@
     <name>z3950results</name>
     <message>
         <source>Record #</source>
-        <translation>Record #</translation>
+        <translation type="obsolete">Record #</translation>
     </message>
 </context>
 </TS>
