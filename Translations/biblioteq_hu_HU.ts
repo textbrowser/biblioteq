@@ -4,7 +4,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Source/misc_functions.cc" line="+561"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="+571"/>
         <source>#</source>
         <translation>#</translation>
     </message>
@@ -34,27 +34,58 @@
         <translation>Esedékesség:</translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+99"/>
         <source>NULL availability value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+637"/>
-        <location line="+36"/>
+        <location line="+659"/>
+        <location line="+38"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-35"/>
-        <location line="+36"/>
+        <location line="-37"/>
+        <location line="+38"/>
         <source>Unable to determine the query size.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+667"/>
+        <source>Exporting image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_marc.cc" line="+115"/>
+        <location line="+411"/>
+        <location line="+472"/>
+        <source>hardcover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-881"/>
+        <location line="+411"/>
+        <location line="+472"/>
+        <source>paperback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-881"/>
+        <location line="+411"/>
+        <location line="+472"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
     </message>
 </context>
 <context>
     <name>UserInfo</name>
     <message>
-        <location filename="../UI/userinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_userinfo.ui" line="+14"/>
         <source>BiblioteQ: Borrower Information</source>
         <translation>BiblioteQ: Kölcsönző Adatai</translation>
     </message>
@@ -74,14 +105,14 @@
         <translation>Óta tag:</translation>
     </message>
     <message>
-        <location line="+15"/>
-        <location line="+108"/>
-        <location line="+405"/>
+        <location line="+27"/>
+        <location line="+120"/>
+        <location line="+431"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
     <message>
-        <location line="-488"/>
+        <location line="-526"/>
         <source>First Name</source>
         <translation>Utónév</translation>
     </message>
@@ -101,12 +132,12 @@
         <translation>Születésnap</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+49"/>
         <source>Sex</source>
         <translation>Nem</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+16"/>
         <source>Female</source>
         <translation>Nő</translation>
     </message>
@@ -114,6 +145,11 @@
         <location line="+5"/>
         <source>Male</source>
         <translation>Férfi</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+23"/>
@@ -131,7 +167,7 @@
         <translation>Állam &amp; Irányitószám</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
         <source>N/A</source>
         <translation></translation>
     </message>
@@ -401,7 +437,7 @@
         <translation>Lejárási Dátum</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+46"/>
         <source>Overdue Fees</source>
         <translation>Késedelmi Díjak</translation>
     </message>
@@ -451,7 +487,7 @@
 <context>
     <name>adminBrowser</name>
     <message>
-        <location filename="../UI/adminsetup.ui" line="+14"/>
+        <location filename="../UI/biblioteq_adminsetup.ui" line="+14"/>
         <source>BiblioteQ: Administrator Browser</source>
         <translation type="unfinished"></translation>
     </message>
@@ -507,25 +543,25 @@
     </message>
     <message>
         <location line="+7"/>
-        <location line="+294"/>
+        <location line="+297"/>
         <source>Administrator</source>
         <translation type="unfinished">Adminisztrátor</translation>
     </message>
     <message>
-        <location line="-167"/>
-        <location line="+172"/>
+        <location line="-170"/>
+        <location line="+175"/>
         <source>Circulation</source>
         <translation type="unfinished">Cirkuláció</translation>
     </message>
     <message>
-        <location line="-126"/>
-        <location line="+131"/>
+        <location line="-129"/>
+        <location line="+134"/>
         <source>Librarian</source>
         <translation type="unfinished">Könyvtáros</translation>
     </message>
     <message>
-        <location line="-85"/>
-        <location line="+90"/>
+        <location line="-88"/>
+        <location line="+93"/>
         <source>Membership</source>
         <translation type="unfinished">Tagság</translation>
     </message>
@@ -563,7 +599,7 @@
 <context>
     <name>allDialog</name>
     <message>
-        <location filename="../UI/allinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_allinfo.ui" line="+14"/>
         <source>BiblioteQ: General Database Search</source>
         <translation>BiblioteQ: Általános Keresés</translation>
     </message>
@@ -583,7 +619,7 @@
         <translation>Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+15"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -608,12 +644,12 @@
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Monetary Units</source>
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -628,7 +664,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
@@ -638,7 +674,12 @@
         <translation>Hozzáférhető</translation>
     </message>
     <message>
-        <location line="+44"/>
+        <location line="+32"/>
+        <source>Case-Insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
         <source>&amp;Search</source>
         <translation>Keresés</translation>
     </message>
@@ -652,26 +693,6345 @@
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
+    <message>
+        <location line="+11"/>
+        <source>Clear the main table and reset the search widgets.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq</name>
+    <message>
+        <location filename="../Source/biblioteq_a.cc" line="+216"/>
+        <source> in file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+4"/>
+        <source>, line </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-3"/>
+        <location line="+4"/>
+        <location line="+2355"/>
+        <location line="+504"/>
+        <location line="+14"/>
+        <location line="+756"/>
+        <location line="+2"/>
+        <location line="+114"/>
+        <location line="+8"/>
+        <location line="+11"/>
+        <location line="+8"/>
+        <location line="+30"/>
+        <location line="+8"/>
+        <location line="+736"/>
+        <location line="+3448"/>
+        <location line="+16"/>
+        <location line="+68"/>
+        <location line="+28"/>
+        <location line="+19"/>
+        <location line="+18"/>
+        <location line="+14"/>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <location line="-8159"/>
+        <source>An unknown error occurred in file </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+97"/>
+        <location line="+4086"/>
+        <source>BiblioteQ</source>
+        <translation type="unfinished">BiblioteQ</translation>
+    </message>
+    <message>
+        <location line="-4084"/>
+        <source>Reset &amp;ID Number</source>
+        <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Kiadási Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Kiadó Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Kategóriák Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Availability</source>
+        <translation type="unfinished">Hozzáférhetőség Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+364"/>
+        <location line="+3522"/>
+        <location line="+4404"/>
+        <location line="+27"/>
+        <location line="+28"/>
+        <location line="+24"/>
+        <location filename="../Source/biblioteq_b.cc" line="+3181"/>
+        <location line="+6"/>
+        <source>All</source>
+        <translation type="unfinished">Minden</translation>
+    </message>
+    <message>
+        <location line="-7986"/>
+        <source>&amp;Unlimited Entries per Page</source>
+        <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location filename="../Source/biblioteq_b.cc" line="+747"/>
+        <source>&amp;%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+33"/>
+        <source>Icons Mode</source>
+        <translation type="unfinished">Ikon Mód</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Table Mode</source>
+        <translation type="unfinished">Táblázat Mód</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>&amp;Czech</source>
+        <translation type="unfinished">Cseh</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Dutch (&amp;Belgium)</source>
+        <translation type="unfinished">Holland (Belgium)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Dutch (&amp;Netherlands)</source>
+        <translation type="unfinished">Holland (Hollandia)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;French</source>
+        <translation type="unfinished">Francia</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Hungarian</source>
+        <translation type="unfinished">Magyar</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>G&amp;reek</source>
+        <translation type="unfinished">Görög</translation>
+    </message>
+    <message>
+        <location line="+145"/>
+        <source>Administrator Mode</source>
+        <translation type="unfinished">Adminisztrátor Mód</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Circulation Mode</source>
+        <translation type="unfinished">Cirkulációs Mód</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Librarian Mode</source>
+        <translation type="unfinished">Könyvtáros Mód</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Membership Mode</source>
+        <translation type="unfinished">Tagság Mód</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Privileged Mode</source>
+        <translation type="unfinished">Kiváltságos Mód</translation>
+    </message>
+    <message>
+        <location line="+71"/>
+        <location line="+3278"/>
+        <location line="+941"/>
+        <location line="+34"/>
+        <source>Item Requests</source>
+        <translation type="unfinished">Cikk Lefoglalások</translation>
+    </message>
+    <message>
+        <location line="-4187"/>
+        <location line="+3260"/>
+        <source>Disconnected</source>
+        <translation type="unfinished">Nincs Kapcsolódva</translation>
+    </message>
+    <message>
+        <location line="-3253"/>
+        <location line="+3259"/>
+        <source>Standard User Mode</source>
+        <translation type="unfinished">Átlagfelhasználó Mód</translation>
+    </message>
+    <message>
+        <location line="-3247"/>
+        <location line="+4416"/>
+        <source>Empty Error Log</source>
+        <translation type="unfinished">Üres Hiba Napló</translation>
+    </message>
+    <message>
+        <location line="-4412"/>
+        <location line="+3257"/>
+        <location line="+950"/>
+        <location line="+4108"/>
+        <location filename="../Source/biblioteq_b.cc" line="-364"/>
+        <location line="+37"/>
+        <source>0 Results</source>
+        <translation type="unfinished">0 Eredmény</translation>
+    </message>
+    <message>
+        <location line="-8280"/>
+        <location line="+24"/>
+        <source>None</source>
+        <translation type="unfinished">Semelyik</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>BiblioteQ: Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed. The current working directory is %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>BiblioteQ: About</source>
+        <translation type="unfinished">BiblioteQ: A Programról</translation>
+    </message>
+    <message>
+        <location line="+83"/>
+        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+547"/>
+        <location line="+26"/>
+        <location line="+79"/>
+        <location line="+354"/>
+        <location line="+23"/>
+        <location line="+105"/>
+        <location line="+4"/>
+        <location line="+23"/>
+        <location line="+6"/>
+        <location line="+18"/>
+        <location line="+40"/>
+        <location line="+5"/>
+        <location line="+20"/>
+        <location line="+412"/>
+        <location line="+38"/>
+        <location line="+18"/>
+        <location line="+4"/>
+        <location line="+15"/>
+        <location line="+7"/>
+        <location line="+16"/>
+        <location line="+788"/>
+        <location line="+15"/>
+        <location line="+58"/>
+        <location line="+19"/>
+        <location line="+21"/>
+        <location line="+17"/>
+        <location line="+607"/>
+        <location line="+136"/>
+        <location line="+53"/>
+        <location line="+53"/>
+        <location line="+76"/>
+        <location line="+167"/>
+        <location line="+28"/>
+        <location line="+1458"/>
+        <location line="+531"/>
+        <location line="+277"/>
+        <location line="+375"/>
+        <location line="+231"/>
+        <location line="+180"/>
+        <location line="+21"/>
+        <location line="+16"/>
+        <location line="+68"/>
+        <location line="+29"/>
+        <location line="+18"/>
+        <location line="+18"/>
+        <location line="+14"/>
+        <location line="+16"/>
+        <location line="+32"/>
+        <location line="+138"/>
+        <location line="+4"/>
+        <location line="+410"/>
+        <location line="+7"/>
+        <location filename="../Source/biblioteq_b.cc" line="-458"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-7665"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Unable to retrieve the locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="+57"/>
+        <location line="+215"/>
+        <location line="+225"/>
+        <location line="+54"/>
+        <location line="+26"/>
+        <location line="+334"/>
+        <location line="+17"/>
+        <location line="+11"/>
+        <location line="+8"/>
+        <location line="+8"/>
+        <location line="+8"/>
+        <location line="+8"/>
+        <location line="+38"/>
+        <location line="+630"/>
+        <location line="+33"/>
+        <location line="+911"/>
+        <location line="+10"/>
+        <location line="+986"/>
+        <location line="+160"/>
+        <location line="+29"/>
+        <location line="+28"/>
+        <location line="+10"/>
+        <location line="+44"/>
+        <location line="+1315"/>
+        <location line="+47"/>
+        <location line="+4"/>
+        <location line="+13"/>
+        <location line="+3"/>
+        <location line="+35"/>
+        <location line="+4"/>
+        <location line="+328"/>
+        <location line="+17"/>
+        <location line="+94"/>
+        <location line="+27"/>
+        <location line="+69"/>
+        <location line="+79"/>
+        <location line="+355"/>
+        <location line="+4"/>
+        <location line="+154"/>
+        <location line="+10"/>
+        <location line="+157"/>
+        <location line="+10"/>
+        <location line="+240"/>
+        <location line="+13"/>
+        <location line="+295"/>
+        <location line="+10"/>
+        <location line="+744"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-7819"/>
+        <source>Please select at least one item to modify.</source>
+        <translation type="unfinished">Jelöljön ki legalább egy módosítandó cikket.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <location line="+214"/>
+        <location line="+308"/>
+        <location line="+1093"/>
+        <location line="+693"/>
+        <location line="+44"/>
+        <location line="+2866"/>
+        <location line="+1859"/>
+        <location line="+530"/>
+        <location line="+213"/>
+        <location filename="../Source/biblioteq_b.cc" line="+531"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-7819"/>
+        <source>Are you sure that you wish to modify the </source>
+        <translation type="unfinished">Biztosan szeretné módositani a </translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <location line="+214"/>
+        <location line="+7607"/>
+        <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
+        <translation type="unfinished"> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
+    </message>
+    <message>
+        <location line="-7643"/>
+        <location line="+215"/>
+        <location line="+65"/>
+        <location line="+7450"/>
+        <source>BiblioteQ: Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-7729"/>
+        <location line="+215"/>
+        <location line="+3391"/>
+        <location line="+4124"/>
+        <source>Unable to determine the selected item&apos;s type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-7702"/>
+        <source>Please select at least one item to view.</source>
+        <translation type="unfinished">Jelöljön ki legalább egy megtekintendő cikket.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Are you sure that you wish to view the </source>
+        <translation type="unfinished">Biztosan meg szeretné tekinteni a </translation>
+    </message>
+    <message>
+        <location line="+220"/>
+        <source>Please select an item to delete.</source>
+        <translation type="unfinished">Jelöljön ki egy törlendő cikket!</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+4"/>
+        <source>The main table does not contain enough information for item deletion.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <location line="+4"/>
+        <source>Unable to determine if the item has been reserved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+26"/>
+        <location line="+93"/>
+        <location line="+340"/>
+        <location line="+23"/>
+        <location line="+108"/>
+        <location line="+33"/>
+        <location line="+19"/>
+        <location line="+46"/>
+        <location line="+19"/>
+        <location line="+409"/>
+        <location line="+37"/>
+        <location line="+21"/>
+        <location line="+26"/>
+        <location line="+17"/>
+        <location line="+737"/>
+        <location line="+48"/>
+        <location line="+17"/>
+        <location line="+59"/>
+        <location line="+19"/>
+        <location line="+19"/>
+        <location line="+19"/>
+        <location line="+604"/>
+        <location line="+153"/>
+        <location line="+167"/>
+        <location line="+4"/>
+        <location line="+1648"/>
+        <location line="+4"/>
+        <location line="+525"/>
+        <location line="+280"/>
+        <location line="+4"/>
+        <location line="+4"/>
+        <location line="+363"/>
+        <location line="+233"/>
+        <location line="+179"/>
+        <location line="+204"/>
+        <location line="+28"/>
+        <location line="+167"/>
+        <location line="+6"/>
+        <location line="+463"/>
+        <location filename="../Source/biblioteq_b.cc" line="-527"/>
+        <location line="+750"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-7161"/>
+        <source>Reserved items may not be deleted.</source>
+        <translation type="unfinished">Kikölcsönzött cikkeket nem lehet törölni.</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+4"/>
+        <source>Unable to determine if the item has been requested.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Requested items may not be deleted.</source>
+        <translation type="unfinished">Lefoglalt cikkeket nem lehet törölni.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
+        <translation type="unfinished">Biztosan szeretné véglegesen törölni a következő cikk(ek)et?</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+2703"/>
+        <location line="+90"/>
+        <location line="+2737"/>
+        <location line="+549"/>
+        <location line="+214"/>
+        <location line="+263"/>
+        <location filename="../Source/biblioteq_b.cc" line="-622"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-6555"/>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">A kijelölt cikkek törlése...</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <source>Unable to delete the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Unable to delete all or some of the selected items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+200"/>
+        <source>BiblioteQ: Create New Member</source>
+        <translation type="unfinished">BiblioteQ: Új Tag Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>The Member ID must be at least five characters long.</source>
+        <translation type="unfinished">A Tag Azonosító legalább 5 kerekter kell legyen!</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>The Member ID </source>
+        <translation type="unfinished">A Tag azonosító: </translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source> already exists.</source>
+        <translation type="unfinished"> már létezik.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Please provide a valid First Name.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Utónevet!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a valid Last Name.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Vezetéknevet!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a valid Street.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Utcát!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a valid City.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Várost!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a ZIP Code.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Irányító Számot!</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <location line="+4"/>
+        <source>Unable to determine the uniqueness of the proposed member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>An identical member already exists.</source>
+        <translation type="unfinished">Egy azonos tag már létezik!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+4"/>
+        <location line="+667"/>
+        <location line="+4"/>
+        <location line="+5146"/>
+        <location line="+4"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-5721"/>
+        <location line="+28"/>
+        <location line="+64"/>
+        <location line="+492"/>
+        <location line="+27"/>
+        <location line="+5337"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="-5943"/>
+        <location line="+3"/>
+        <source>Unable to save the member&apos;s information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <location line="+7"/>
+        <source>An error occurred while attempting to create a database account for the new member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+8"/>
+        <location line="+57"/>
+        <location line="+8"/>
+        <location line="+502"/>
+        <location line="+8"/>
+        <location line="+5282"/>
+        <location line="+8"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-5828"/>
+        <location line="+2191"/>
+        <source>An error occurred while attempting to update the database account for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2182"/>
+        <source>An error occurred while attempting to update the database account %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+99"/>
+        <location line="+5730"/>
+        <location line="+1025"/>
+        <location filename="../Source/biblioteq_b.cc" line="+627"/>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ: Információ</translation>
+    </message>
+    <message>
+        <location line="-6754"/>
+        <source>Please notify the new member that their default password has been set to tempPass.</source>
+        <translation type="unfinished">Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
+    </message>
+    <message>
+        <location line="+309"/>
+        <source>Please select a member to delete.</source>
+        <translation type="unfinished">Válasszon ki egy törlendő tagot!</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <location line="+5"/>
+        <source>Unable to determine the number of items that are reserved by the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>You may not remove a member that has reserved items.</source>
+        <translation type="unfinished">Nem lehet törölni tagot aki még rendelkezik kikölcsönzött cikkekkel!</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Are you sure that you wish to delete the selected member?</source>
+        <translation type="unfinished">Biztosan szeretné törölni a kijelölt tagot?</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <location line="+3"/>
+        <source>Unable to remove the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+14"/>
+        <source>Unable to remove the patron account </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+451"/>
+        <source>%1 Photograph(s)</source>
+        <translation type="unfinished">%1 Fénykép</translation>
+    </message>
+    <message>
+        <location line="+57"/>
+        <source>Available</source>
+        <translation type="unfinished">Hozzáférhető</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Unavailable</source>
+        <translation type="unfinished">Nem Hozzáférhető</translation>
+    </message>
+    <message>
+        <location line="+119"/>
+        <location line="+44"/>
+        <source>Your changes have not been saved. Continue?
+%1</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Folytatja?
+%1</translation>
+    </message>
+    <message>
+        <location line="+81"/>
+        <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>The following drivers are available: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>In addition, Qt expects plugins to exist in: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Please contact your administrator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <location line="+5"/>
+        <source>Unable to open a database connection with the provided information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>It appears that the user </source>
+        <translation type="unfinished">Úgy tűnik a felhasználo: </translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source> does not have administrator privileges.</source>
+        <translation type="unfinished"> nem rendelkezik adminisztrátor jogosultságokkal.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
+        <translation type="unfinished">Úgy tűnik adminisztrátor szerepet próbálsz vállalni nem adminisztrátori módban.</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <location line="+8"/>
+        <location line="+49"/>
+        <location line="+8"/>
+        <source>Unable to set the role for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-46"/>
+        <location line="+8"/>
+        <source>Unable to determine the roles of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+6"/>
+        <source>Unable to set a guest role.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+58"/>
+        <source>Connected</source>
+        <translation type="unfinished">Csatlakozva</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <location line="+20"/>
+        <source>BiblioteQ: </source>
+        <translation type="unfinished">BiblioteQ: </translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <location line="+1090"/>
+        <source>Request Selected Item(s)</source>
+        <translation type="unfinished">Kijelölt Cikk(ek) Lefoglalása</translation>
+    </message>
+    <message>
+        <location line="-827"/>
+        <source>ID</source>
+        <translation type="unfinished">Azonosító</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Administrator</source>
+        <translation type="unfinished">Adminisztrátor</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Circulation</source>
+        <translation type="unfinished">Cirkuláció</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Librarian</source>
+        <translation type="unfinished">Könyvtáros</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Membership</source>
+        <translation type="unfinished">Tagság</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+2962"/>
+        <source>Member ID</source>
+        <translation type="unfinished">Tag Azonosító</translation>
+    </message>
+    <message>
+        <location line="-2961"/>
+        <location line="+2965"/>
+        <source>First Name</source>
+        <translation type="unfinished">Utónév</translation>
+    </message>
+    <message>
+        <location line="-2964"/>
+        <location line="+2965"/>
+        <source>Last Name</source>
+        <translation type="unfinished">Vezeték Név</translation>
+    </message>
+    <message>
+        <location line="-2964"/>
+        <source>Member Since</source>
+        <translation type="unfinished">Óta tag:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Expiration Date</source>
+        <translation type="unfinished">Lejárási Dátum</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Books Reserved</source>
+        <translation type="unfinished">Kölcsönzött Könyvek</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>CDs Reserved</source>
+        <translation type="unfinished">Kölcsönzött CDk</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>DVDs Reserved</source>
+        <translation type="unfinished">Kölcsönzött DVDk</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Journals Reserved</source>
+        <translation type="unfinished">Kölcsönzött Folyóiratok</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Magazines Reserved</source>
+        <translation type="unfinished">Kölcsönzött Magazinok</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Video Games Reserved</source>
+        <translation type="unfinished">Kölcsönzött Videójátékok</translation>
+    </message>
+    <message>
+        <location line="+146"/>
+        <location line="+5"/>
+        <source>Unable to retrieve member data for table populating.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <location line="+2827"/>
+        <location line="+549"/>
+        <location filename="../Source/biblioteq_b.cc" line="-626"/>
+        <source>Populating the table...</source>
+        <translation type="unfinished">Táblázat kitöltése...</translation>
+    </message>
+    <message>
+        <location line="-3332"/>
+        <location line="+2177"/>
+        <location line="+21"/>
+        <location line="+616"/>
+        <location line="+371"/>
+        <location line="+9"/>
+        <location line="+171"/>
+        <location line="+21"/>
+        <location line="+7"/>
+        <location filename="../Source/biblioteq_b.cc" line="+172"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-3392"/>
+        <location line="+2814"/>
+        <location line="+371"/>
+        <location line="+180"/>
+        <location line="+28"/>
+        <location filename="../Source/biblioteq_b.cc" line="+1"/>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-3348"/>
+        <source>Granting privileges...</source>
+        <translation type="unfinished">Jogosultságok adása..</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Unable to grant privileges to all of the members.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Unable to determine the number of reserved items for the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <source>Unable to retrieve the number of reserved items of the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>Please select a member to modify.</source>
+        <translation type="unfinished">Jelöljön ki egy módosítandó tagot!</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <location line="+7"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected member&apos;s information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+90"/>
+        <source>BiblioteQ: Modify Member</source>
+        <translation type="unfinished">BiblioteQ: Tag Módosítása</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <location line="+1490"/>
+        <location line="+3"/>
+        <source>Photographs may not be reserved.</source>
+        <translation type="unfinished">Fényképeket nem lehet kikölcsönözni.</translation>
+    </message>
+    <message>
+        <location line="-1471"/>
+        <source>Unable to determine if the membership of the selected member has expired.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>It appears that the selected member&apos;s membership has expired.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt tag tagsága lejárt.</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <location line="+1458"/>
+        <location line="+6"/>
+        <location line="+4"/>
+        <source>Unable to determine the availability of the selected item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1461"/>
+        <source>It appears that the item that you selected is not available for reservation.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Please select a member and an item to continue with the reservation process.</source>
+        <translation type="unfinished">Jelöljön ki egy tagot és egy cikket a kikölcsönzési folyamat folytatásához.</translation>
+    </message>
+    <message>
+        <location line="+97"/>
+        <location line="+19"/>
+        <source>Cancel Selected Request(s)</source>
+        <translation type="unfinished">Kijlölt lefoglalás(ok) törlése</translation>
+    </message>
+    <message>
+        <location line="+181"/>
+        <source>Error Log Active</source>
+        <translation type="unfinished">Hiba Napló Aktív</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>Memory failure in addError()!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Event Time</source>
+        <translation type="unfinished">Esemény Ideje</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Event Type</source>
+        <translation type="unfinished">Esemény Típusa</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Summary</source>
+        <translation type="unfinished">Összefoglalás</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Full Description</source>
+        <translation type="unfinished">Teljes Leírás</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File</source>
+        <translation type="unfinished">Fájl</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Line Number</source>
+        <translation type="unfinished">Sor Szám</translation>
+    </message>
+    <message>
+        <location line="+1005"/>
+        <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
+        <translation type="unfinished">Egy tag kikölcsönzött cikkeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <location line="+4"/>
+        <source>In order to reserve an item, you must first select it.</source>
+        <translation type="unfinished">Egy cikk kölcsönzéséhez előszőr ki kell jelölni a cikket!</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <location line="+4"/>
+        <source>It appears that the item you selected is not available for reservation.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Would you like to retrieve the list of members?</source>
+        <translation type="unfinished">Szeretné kilistázni a tagokat?</translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>Add &amp;Book</source>
+        <translation type="unfinished">Könyv Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished">DVD Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished">Folyóirat Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished">Magazin Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished">Zene CD Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished">Fénykép Gyüjtemény Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished">Videójáték Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;General Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Book Search</source>
+        <translation type="unfinished">Könvy Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;DVD Search</source>
+        <translation type="unfinished">DVD Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Journal Search</source>
+        <translation type="unfinished">Folyóirat Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Magazine Search</source>
+        <translation type="unfinished">Magazin Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Music CD Search</source>
+        <translation type="unfinished">Zene CD Keresés</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished">Fénykép Gyüjtemény Keresés</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Video Game Search</source>
+        <translation type="unfinished">Videójáték Keresés</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>BiblioteQ: Select Global Font</source>
+        <translation type="unfinished">BiblioteQ: Fő Betűtípus Kiválastása</translation>
+    </message>
+    <message>
+        <location line="+122"/>
+        <source>Table Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Column Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>No</source>
+        <translation type="unfinished">Nem</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>Please provide a valid SQL statement.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Please provide a non-destructive SQL statement.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+94"/>
+        <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
+        <translation type="unfinished">Egy tag kikölcsönzött cikkeinek kinyomtatásához előszőr ki kell jelölni a tagot!</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>The member that you selected does not have any reserved items.</source>
+        <translation type="unfinished">A kijelölt tagnak nincsenek kikölcsönzött cikkeit.</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Reserved Items for </source>
+        <translation type="unfinished">Kikölcsönzött cikkek: </translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <location line="+4"/>
+        <source>Unable to determine the reserved items for the selected member.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
+        <translation type="unfinished">Hogy a Hiba Napló tartalmát a vágólapba másolja, legalább egy bejegyzést ki kell jelölni.</translation>
+    </message>
+    <message>
+        <location line="+79"/>
+        <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
+        <translation type="unfinished">Egy tag kölcsönzési előzményeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
+    </message>
+    <message>
+        <location line="+170"/>
+        <location line="+7"/>
+        <location line="+4"/>
+        <location line="+4"/>
+        <source>Unable to retrieve reservation history data for table populating.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ID Number</source>
+        <translation type="unfinished">Azonosító Szám</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Barcode</source>
+        <translation type="unfinished">Vonalkód</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type</source>
+        <translation type="unfinished">Típus</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reservation Date</source>
+        <translation type="unfinished">Kölcsönzési Dátum</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Original Due Date</source>
+        <translation type="unfinished">Eredeti Esedékesség</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Returned Date</source>
+        <translation type="unfinished">Visszaszolgáltatási Dátum</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lender</source>
+        <translation type="unfinished">Kölcsönadó</translation>
+    </message>
+    <message>
+        <location line="+143"/>
+        <source>The selected member does not yet have a reservation history to print.</source>
+        <translation type="unfinished">A kijelölt tag még nem rendelkezik kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>You do not yet have a reservation history to print.</source>
+        <translation type="unfinished">Még nem rendelkezel kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Reservation History</source>
+        <translation type="unfinished">Kölcsönzési Előzmények</translation>
+    </message>
+    <message>
+        <location line="+147"/>
+        <source>The password must be at least eight characters long.</source>
+        <translation type="unfinished">A jelszó legalább 8 karaktert kell tartalmazzon!</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The passwords do not match. Please try again.</source>
+        <translation type="unfinished">Az új jelszó nem egyezik meg a megerősítésével. Probálja meg mégegyszer.</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+3"/>
+        <source>Unable to save the new password.</source>
+        <translation type="unfinished">Új jelszó mentése sikertelen.</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>BiblioteQ: SQLite Database Selection</source>
+        <translation type="unfinished">BiblioteQ: SQLite Adatbázis Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <location line="+192"/>
+        <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-166"/>
+        <source>To delete an entry, you must first select it.</source>
+        <translation type="unfinished">Egy bejegyzés törléséhez először ki kell jelölni!</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>As an administrator, you may not delete your account.</source>
+        <translation type="unfinished">Adminisztrátorként nem törölheted a felhasználód!</translation>
+    </message>
+    <message>
+        <location line="+86"/>
+        <location line="+5"/>
+        <source>Unable to retrieve administrator data for table populating.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Administrators must belong to at least one category.</source>
+        <translation type="unfinished">Legalább egy kategóriahoz tartozniuk kell az adminisztrátoroknak!</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Duplicate administrator ids are not allowed.</source>
+        <translation type="unfinished">Nem lehet két azonos adminisztrátor azonosító!</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>An error occurred while attempting to remove </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>An error occurred while attempting to remove the database account </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Saving administrator information...</source>
+        <translation type="unfinished">Adminisztrátor adatok mentése...</translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>The function biblioteq_misc_functions::userCount() failed for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Unable to create or update the administrator entry for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>An error occurred while attempting to create a database account for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>An error occurred while attempting to revoke privileges from </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>An error occurred while attempting to grant privileges to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Please notify new administrators that their default password has been set to tempPass.</source>
+        <translation type="unfinished">Tájékoztassa az uj adminisztrátorokat hogy a jelszavuk tempPass.</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>An error occurred while attempting to save the administrator information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <source>Please select at least one item to place on request.</source>
+        <translation type="unfinished">Jelöljön ki legalább egy lefoglalandó cikket.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Please select at least one request to cancel.</source>
+        <translation type="unfinished">Jelöljön ki legalább egy törlendő lefoglalást.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Are you sure that you wish to cancel the selected request(s)?</source>
+        <translation type="unfinished">Biztosan szeretné törölni a kijelölt lefoglalásokat?</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Requesting the selected item(s)...</source>
+        <translation type="unfinished">Kijelölt cikkek lefoglalása...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Canceling the selected request(s)...</source>
+        <translation type="unfinished">Kijelölt lefoglalások törlése...</translation>
+    </message>
+    <message>
+        <location line="+54"/>
+        <source>Unable to request the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Unable to cancel the request.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Unable to cancel some or all of the selected requests.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <location line="+27"/>
+        <location line="+28"/>
+        <location line="+24"/>
+        <source>All Available</source>
+        <translation type="unfinished">Minden Hozzáférhető</translation>
+    </message>
+    <message>
+        <location line="-78"/>
+        <location line="+27"/>
+        <location line="+52"/>
+        <source>All Overdue</source>
+        <translation type="unfinished">Minden Lejárt Esedékességű</translation>
+    </message>
+    <message>
+        <location line="-78"/>
+        <location line="+28"/>
+        <location line="+52"/>
+        <source>All Reserved</source>
+        <translation type="unfinished">Minden Kikölcsönzött</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Books</source>
+        <translation type="unfinished">Könyvek</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>DVDs</source>
+        <translation type="unfinished">DVDk</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Journals</source>
+        <translation type="unfinished">Folyóiratok</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Magazines</source>
+        <translation type="unfinished">Magazinok</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Music CDs</source>
+        <translation type="unfinished">Zene CDk</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Photograph Collections</source>
+        <translation type="unfinished">Fénykép Gyüjtemények</translation>
+    </message>
+    <message>
+        <location line="-79"/>
+        <location line="+28"/>
+        <location line="+25"/>
+        <location line="+27"/>
+        <source>Video Games</source>
+        <translation type="unfinished">Videójátékok</translation>
+    </message>
+    <message>
+        <location line="-60"/>
+        <location line="+52"/>
+        <source>All Requested</source>
+        <translation type="unfinished">Minden Lefoglalt</translation>
+    </message>
+    <message>
+        <location line="+130"/>
+        <source>&amp;Clear Menu</source>
+        <translation type="unfinished">Menü Ürítése</translation>
+    </message>
+    <message>
+        <location line="+105"/>
+        <source>BiblioteQ: New SQLite Database</source>
+        <translation type="unfinished">BiblioteQ: Új SQLite Adatbázis</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Unable to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
+        <translation type="unfinished">Úgy tűnik már csatlakozott egy adatbázishoz. Szeretné megszakítani a jelenlegi kapcsolatot és az új SQLite adatbázishoz csatlakozni?</translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <source>An error occurred while attempting to create the specified SQLite database.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+57"/>
+        <source>CSV (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Export Table View as CSV</source>
+        <translation type="unfinished">BiblioteQ: Táblázat Nézet Mentése CSV-ként</translation>
+    </message>
+    <message>
+        <location line="+105"/>
+        <source>Please select at least one item to duplicate.</source>
+        <translation type="unfinished">Jelöljön ki legalább egy megkettőzendő cikket.</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Are you sure that you wish to duplicate the </source>
+        <translation type="unfinished">Biztosan szeretné megkettőzni a </translation>
+    </message>
+    <message>
+        <location line="+202"/>
+        <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
+        <translation type="unfinished">Ha megváltoztatta a nyelvet, mentse el a beállításait és indítsa ujra a BiblioteQ-et a váltáshoz.</translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_b.cc" line="-330"/>
+        <location line="+402"/>
+        <source>%1 Result(s)</source>
+        <translation type="unfinished">%1 Eredmény</translation>
+    </message>
+    <message>
+        <location line="-377"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the data required for populating the main table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
+        <location line="+23"/>
+        <source> %1 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-21"/>
+        <location line="+23"/>
+        <location line="+5"/>
+        <source>%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source> 1 ... </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source> ... </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source> ... %1 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+432"/>
+        <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+228"/>
+        <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_book</name>
+    <message>
+        <location filename="../Source/biblioteq_book.cc" line="+53"/>
+        <source>BiblioteQ: Image Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Elülső Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Hátulsó Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;ISBN-10</source>
+        <translation type="unfinished">ISBN-10 Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;ISBN-13</source>
+        <translation type="unfinished">ISBN-13 Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Edition</source>
+        <translation type="unfinished">Kiadás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Author(s)</source>
+        <translation type="unfinished">Szerző(k) Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Book Binding Type</source>
+        <translation type="unfinished">Könyv Kötés Típus Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;LC Control Number</source>
+        <translation type="unfinished">&quot;LC Control&quot; Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Call Number</source>
+        <translation type="unfinished">Hivószám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Dewey Class Number</source>
+        <translation type="unfinished">Dewey Osztály Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Kiadási Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Kiadó Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Megjelenés Helyének Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Kategóriák Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Originality</source>
+        <translation type="unfinished">Eredetiség  Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Condition</source>
+        <translation type="unfinished">Állapot Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished">MARC Cimkék Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+144"/>
+        <location line="+145"/>
+        <location line="+182"/>
+        <location line="+12"/>
+        <location line="+24"/>
+        <location line="+12"/>
+        <location line="+37"/>
+        <location line="+10"/>
+        <location line="+152"/>
+        <location line="+40"/>
+        <location line="+413"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1207"/>
+        <source>Unable to retrieve the book binding types.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Unable to retrieve the book locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+1206"/>
+        <location line="+11"/>
+        <location line="+17"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-1107"/>
+        <location line="+5"/>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+144"/>
+        <location line="+469"/>
+        <location line="+413"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1015"/>
+        <location line="+44"/>
+        <location line="+17"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+12"/>
+        <location line="+11"/>
+        <location line="+1536"/>
+        <location line="+224"/>
+        <location line="+416"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-2292"/>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+1570"/>
+        <location line="+381"/>
+        <location line="+790"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-2740"/>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+    </message>
+    <message>
+        <location line="+33"/>
+        <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
+        <translation type="unfinished">Toltse ki a ISBN-10 és ISBN-13 mezőket is!</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Please complete the Author(s) field.</source>
+        <translation type="unfinished">Töltse ki a Szerző(k) mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Töltse ki a Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Töltse ki a Kiadó mezőt! </translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Töltse ki a Kiadás Helye mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Töltse ki a Kategóriák mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished">Töltse ki a Összefoglalás mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+4"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+178"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+47"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+63"/>
+        <location line="+409"/>
+        <location line="+230"/>
+        <source>BiblioteQ: Modify Book Entry (</source>
+        <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-638"/>
+        <location line="+409"/>
+        <location line="+24"/>
+        <location line="+206"/>
+        <location line="+10"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-647"/>
+        <location line="+409"/>
+        <location line="+47"/>
+        <location line="+183"/>
+        <source>BiblioteQ: Modify Book Entry</source>
+        <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="-543"/>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+185"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>BiblioteQ: Database Book Search</source>
+        <translation type="unfinished">BiblioteQ: Könyv Keresés</translation>
+    </message>
+    <message>
+        <location line="+71"/>
+        <location line="+216"/>
+        <source>BiblioteQ: View Book Details (</source>
+        <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése (</translation>
+    </message>
+    <message>
+        <location line="-213"/>
+        <location line="+58"/>
+        <location line="+158"/>
+        <source>BiblioteQ: View Book Details</source>
+        <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése</translation>
+    </message>
+    <message>
+        <location line="-130"/>
+        <location line="+231"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-201"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected book&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+227"/>
+        <source>BiblioteQ: Create Book Entry</source>
+        <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+339"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+72"/>
+        <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished">Egy SRU lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
+    </message>
+    <message>
+        <location line="+224"/>
+        <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
+        <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>BiblioteQ: Z39.50 Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
+    </message>
+    <message>
+        <location line="+75"/>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
+    </message>
+    <message>
+        <location line="+165"/>
+        <location line="+19"/>
+        <source>BiblioteQ: Z39.50 Query Error</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Hiba</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished">Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Unable to create a thread due to insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Z39.50 Query Error</source>
+        <translation type="unfinished">Z39.50 Lekérdezés Hiba</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>ISBN-10:</source>
+        <translation type="unfinished">ISBN-10:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>ISBN-13:</source>
+        <translation type="unfinished">ISBN-13:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Edition:</source>
+        <translation type="unfinished">Kiadás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Author(s):</source>
+        <translation type="unfinished">Szerző(k):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Book Binding Type:</source>
+        <translation type="unfinished">Könyv Kötés Típus:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>LC Control Number:</source>
+        <translation type="unfinished">&quot;LC Control&quot; Szám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Call Number:</source>
+        <translation type="unfinished">Hívószám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Dewey Class Number:</source>
+        <translation type="unfinished">Dewey Osztály Szám:</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Title:</source>
+        <translation type="unfinished">Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Publication Date:</source>
+        <translation type="unfinished">Kiadási Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Publisher:</source>
+        <translation type="unfinished">Kiadó:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Megjelenés Helye:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Categories:</source>
+        <translation type="unfinished">Kategóriák:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Price:</source>
+        <translation type="unfinished">Ár:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Language:</source>
+        <translation type="unfinished">Nyelv:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Pénzegység:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Copies:</source>
+        <translation type="unfinished">Példányok:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Location:</source>
+        <translation type="unfinished">Hely:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Originality:</source>
+        <translation type="unfinished">Eredetiség:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Condition:</source>
+        <translation type="unfinished">Állapot:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Abstract:</source>
+        <translation type="unfinished">Összefoglalás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>MARC Tags:</source>
+        <translation type="unfinished">MARC Cimkék:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Keywords:</source>
+        <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+62"/>
+        <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
+        <translation type="unfinished">Az Amazonról való borítókép letöltéséhez az ISBN-10 szükséges!</translation>
+    </message>
+    <message>
+        <location line="+201"/>
+        <source>BiblioteQ: Front Cover Image Download</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Letöltése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading the front cover image. Please be patient...</source>
+        <translation type="unfinished">Elülső borító kép letöltése. Legyen türelemmel...</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>BiblioteQ: Back Cover Image Download</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Letöltése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading the back cover image. Please be patient...</source>
+        <translation type="unfinished">Hátulsó borító kép letöltése. Legyen türelemmel...</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <location line="+17"/>
+        <source>BiblioteQ: HTTP Warning</source>
+        <translation type="unfinished">BiblioteQ: HTTP Figyelmeztetés</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <source>The front cover image for the specified ISBN may not exist.</source>
+        <translation type="unfinished">Lehet hogy elülső borító kép nem létezik a megadott ISBNnek.</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>The back cover image for the specified ISBN may not exist.</source>
+        <translation type="unfinished">Lehet hogy hátulsó borító kép nem létezik a megadott ISBNnek.</translation>
+    </message>
+    <message>
+        <location line="+79"/>
+        <source>BiblioteQ: Duplicate Book Entry</source>
+        <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Megkettőzése</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished">A %1:%2 proxi belépőt kér.</translation>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
+    </message>
+    <message>
+        <location line="+182"/>
+        <location line="+38"/>
+        <location line="+4"/>
+        <location line="+12"/>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished">BiblioteQ: SRU Lekérdezési Hiba</translation>
+    </message>
+    <message>
+        <location line="-53"/>
+        <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
+        <translation type="unfinished">Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <location line="+4"/>
+        <source>A network error (%1) occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>One or more SSL errors occurred. Please verify your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_borrowers_editor</name>
+    <message>
+        <location filename="../Source/biblioteq_borrowers_editor.cc" line="+66"/>
+        <source>BiblioteQ: Item Reservation Status (</source>
+        <translation type="unfinished">BiblioteQ: Cikk Kölcsönzési Állapota (</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Item Reservation Status</source>
+        <translation type="unfinished">BiblioteQ: Cikk Kölcsönzési Állapota</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <location line="+21"/>
+        <source>Copy Number</source>
+        <translation type="unfinished">Példány Azonosító</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <location line="+21"/>
+        <source>Barcode</source>
+        <translation type="unfinished">Vonalkód</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>Member ID</source>
+        <translation type="unfinished">Tag Azonosító</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>First Name</source>
+        <translation type="unfinished">Utónév</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Last Name</source>
+        <translation type="unfinished">Vezeték Név</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+18"/>
+        <source>Reservation Date</source>
+        <translation type="unfinished">Kölcsönzési Dátum</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <location line="+18"/>
+        <source>Copy Due Date</source>
+        <translation type="unfinished">Példány Esedékessége:</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Lender</source>
+        <translation type="unfinished">Kölcsönadó</translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <location line="+103"/>
+        <location line="+256"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-358"/>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <location line="+20"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+55"/>
+        <location line="+148"/>
+        <location line="+30"/>
+        <location line="+116"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-293"/>
+        <source>Unable to retrieve borrower data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Retrieving borrower data...</source>
+        <translation type="unfinished">Kölcsönző adatainak lekérése...</translation>
+    </message>
+    <message>
+        <location line="+110"/>
+        <location line="+10"/>
+        <location line="+195"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-204"/>
+        <source>Please select the copy that has been returned.</source>
+        <translation type="unfinished">Egy visszaszolgáltatott példányt válasszon ki!</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>It appears that the selected item has not been reserved.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt cikk nincs kikölcsönözve.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Are you sure that the copy has been returned?</source>
+        <translation type="unfinished">Biztos hogy ezt a példányt vissza kapta?</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <location line="+4"/>
+        <source>Unable to modify the reservation status of the selected copy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+175"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-148"/>
+        <source>Unable to modify the returned date of the selected copy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+84"/>
+        <source>Updating the due date(s)...</source>
+        <translation type="unfinished">Esedékességek frissítése...</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Unable to update the due date.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Some or all of the Due Dates were not updated because of database errors.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_cd</name>
+    <message>
+        <location filename="../Source/biblioteq_cd.cc" line="+102"/>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Elülső Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Hátulsó Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Catalog Number</source>
+        <translation type="unfinished">Katalógus Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Format</source>
+        <translation type="unfinished">Formátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Artist</source>
+        <translation type="unfinished">Művész Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Composer</source>
+        <translation type="unfinished">Zeneszerző Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Reset &amp;Number of Discs</source>
+        <translation type="unfinished">Lemezek Számának Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Runtime</source>
+        <translation type="unfinished">Futásidő Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Audio</source>
+        <translation type="unfinished">Hang Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Recording Type</source>
+        <translation type="unfinished">Felvétel Típusának Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Megjelenési Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Recording Label</source>
+        <translation type="unfinished">Lemezkiadó Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Kategóriák Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+12"/>
+        <location line="+66"/>
+        <location line="+116"/>
+        <location line="+165"/>
+        <location line="+12"/>
+        <location line="+22"/>
+        <location line="+11"/>
+        <location line="+24"/>
+        <location line="+10"/>
+        <location line="+115"/>
+        <location line="+28"/>
+        <location line="+31"/>
+        <location line="+391"/>
+        <location line="+242"/>
+        <location line="+316"/>
+        <location line="+16"/>
+        <location line="+6"/>
+        <location line="+59"/>
+        <location line="+20"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1686"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Unable to retrieve the cd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the cd formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+1014"/>
+        <location line="+11"/>
+        <location line="+14"/>
+        <location line="+32"/>
+        <location line="+349"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-1370"/>
+        <location line="+5"/>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+115"/>
+        <location line="+387"/>
+        <location line="+31"/>
+        <location line="+390"/>
+        <location line="+244"/>
+        <location line="+314"/>
+        <location line="+109"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1579"/>
+        <location line="+23"/>
+        <location line="+11"/>
+        <location line="+8"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+1369"/>
+        <location line="+445"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-1901"/>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <location line="+1797"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-1796"/>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Please complete the Catalog Number field.</source>
+        <translation type="unfinished">Töltse ki a Katalógus Szám mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Artist field.</source>
+        <translation type="unfinished">Töltse ki a Művész mezőt!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a valid Runtime.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Futásidőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Töltse ki a Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Recording Label field.</source>
+        <translation type="unfinished">Töltse ki a Lemezkiadó mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Töltse ki a Kategóriák mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished">Töltse ki a Összefoglalás mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+4"/>
+        <location line="+1363"/>
+        <location line="+3"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1205"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+34"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <location line="+400"/>
+        <location line="+205"/>
+        <source>BiblioteQ: Modify Music CD Entry (</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-604"/>
+        <location line="+400"/>
+        <location line="+17"/>
+        <location line="+188"/>
+        <location line="+6"/>
+        <location line="+199"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-726"/>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the CD&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <location line="+972"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="-967"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+174"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>BiblioteQ: Database Music CD Search</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Keresés</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <location line="+194"/>
+        <source>BiblioteQ: View Music CD Details (</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Reszletek (</translation>
+    </message>
+    <message>
+        <location line="-171"/>
+        <source>BiblioteQ: Modify Music CD Entry</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>BiblioteQ: View Music CD Details</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Reszletek</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+210"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-170"/>
+        <location line="+3"/>
+        <source>Unable to retrieve the selected CD&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+196"/>
+        <source>BiblioteQ: Create Music CD Entry</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <location line="+5"/>
+        <source>Unable to retrieve track data for table populating.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Album Number</source>
+        <translation type="unfinished">Album Szám</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Track Number</source>
+        <translation type="unfinished">Zeneszám Szám</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Track Title</source>
+        <translation type="unfinished">Zeneszám Cím</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Track Runtime</source>
+        <translation type="unfinished">Zeneszám Futásidő</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Artist</source>
+        <translation type="unfinished">Művész</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Composer</source>
+        <translation type="unfinished">Zeneszerző</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>BiblioteQ: Album Tracks Browser (</source>
+        <translation type="unfinished">BiblioteQ: Album Zeneszámok Böngésző (</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <location line="+307"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-306"/>
+        <source>Populating the table...</source>
+        <translation type="unfinished">Táblázat kitöltése...</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <location line="+16"/>
+        <location line="+16"/>
+        <location line="+14"/>
+        <location line="+82"/>
+        <location line="+15"/>
+        <location line="+14"/>
+        <location line="+14"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-170"/>
+        <location line="+128"/>
+        <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-112"/>
+        <location line="+127"/>
+        <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-111"/>
+        <location line="+125"/>
+        <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-111"/>
+        <location line="+125"/>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-58"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="+102"/>
+        <source>Row number </source>
+        <translation type="unfinished">Sor: </translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source> contains an empty Song Title.</source>
+        <translation type="unfinished"> üres címet tartalmaz.</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Unable to purge track data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Saving the track data...</source>
+        <translation type="unfinished">Zeneszám adatainak mentése...</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Unable to create track data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Commit failure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Some or all of the track data has not been saved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+227"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
+        <translation type="unfinished">A zeneszámok összfutásideje nulla. Állítsa be az egyéni futásidőket.</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Catalog Number:</source>
+        <translation type="unfinished">Katalógus Szám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Format:</source>
+        <translation type="unfinished">Formátum:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Artist:</source>
+        <translation type="unfinished">Művész:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Number of Discs:</source>
+        <translation type="unfinished">Lemezek Száma:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Runtime:</source>
+        <translation type="unfinished">Futásidő:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Audio:</source>
+        <translation type="unfinished">Hang:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Recording Type:</source>
+        <translation type="unfinished">Felvétel Típus:</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Title:</source>
+        <translation type="unfinished">Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Release Date:</source>
+        <translation type="unfinished">Megjelenési Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Recording Label:</source>
+        <translation type="unfinished">Lemezkiadó:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Categories:</source>
+        <translation type="unfinished">Kategóriák:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Price:</source>
+        <translation type="unfinished">Ár:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Language:</source>
+        <translation type="unfinished">Nyelv:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Pénzegység:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Copies:</source>
+        <translation type="unfinished">Példányok:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Location:</source>
+        <translation type="unfinished">Hely:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Abstract:</source>
+        <translation type="unfinished">Összefoglalás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Keywords:</source>
+        <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>BiblioteQ: Duplicate Music CD Entry</source>
+        <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Megkettőzése</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_copy_editor</name>
+    <message>
+        <location filename="../Source/biblioteq_copy_editor.cc" line="+63"/>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished">BiblioteQ: Példány Böngésző (%1)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished">BiblioteQ: Példány Böngésző</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+7"/>
+        <location line="+26"/>
+        <location line="+319"/>
+        <location line="+6"/>
+        <location line="+7"/>
+        <location line="+33"/>
+        <location line="+172"/>
+        <location line="+10"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-579"/>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Válassza ki a törlendő példányt!</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">Legalább egy példány szükséges.</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+57"/>
+        <location line="+139"/>
+        <location line="+151"/>
+        <location line="+40"/>
+        <location line="+37"/>
+        <location line="+135"/>
+        <location line="+38"/>
+        <location line="+13"/>
+        <location line="+18"/>
+        <location line="+69"/>
+        <location line="+58"/>
+        <location line="+9"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-763"/>
+        <location line="+4"/>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+347"/>
+        <location line="+39"/>
+        <location line="+172"/>
+        <location line="+53"/>
+        <location line="+18"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-600"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">Kikölcsönzés</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Barcode</source>
+        <translation type="unfinished">Vonalkód</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Availability</source>
+        <translation type="unfinished">Hozzáférhetőség</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <location line="+92"/>
+        <location line="+505"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-596"/>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <location line="+431"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-430"/>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Példány adatainak lekérése...</translation>
+    </message>
+    <message>
+        <location line="+110"/>
+        <source>Please select a copy to reserve.</source>
+        <translation type="unfinished">Jelöljön ki egy kikölcsönzendő példányt!</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Please select a future Due Date.</source>
+        <translation type="unfinished">Egy jövőbeli dátumot válasszon ki!</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+4"/>
+        <source>Unable to determine the selected copy&apos;s availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>The copy that you have selected is either unavailable or is reserved.</source>
+        <translation type="unfinished">Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <location line="+3"/>
+        <source>Unable to create a reserve record.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Unable to create a history record.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+103"/>
+        <location line="+10"/>
+        <source>Row number </source>
+        <translation type="unfinished">Sor: </translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished"> üres vonalkódot tartalmaz.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished"> nem egyedi vonalkódot tartalmaz.</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <location line="+3"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Commit failure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Példány adatainak mentése...</translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_copy_editor_book</name>
+    <message>
+        <location filename="../Source/biblioteq_copy_editor_book.cc" line="+47"/>
+        <source>BiblioteQ: Copy Browser (%1)</source>
+        <translation type="unfinished">BiblioteQ: Példány Böngésző (%1)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Copy Browser</source>
+        <translation type="unfinished">BiblioteQ: Példány Böngésző</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+7"/>
+        <location line="+26"/>
+        <location line="+380"/>
+        <location line="+10"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-422"/>
+        <source>Please select the copy that you intend to delete.</source>
+        <translation type="unfinished">Válassza ki a törlendő példányt!</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>You must have at least one copy.</source>
+        <translation type="unfinished">Legalább egy példány szükséges.</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>It appears that the copy you selected to delete is reserved.</source>
+        <translation type="unfinished">Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+57"/>
+        <location line="+184"/>
+        <location line="+161"/>
+        <location line="+43"/>
+        <location line="+13"/>
+        <location line="+18"/>
+        <location line="+111"/>
+        <location line="+60"/>
+        <location line="+9"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-655"/>
+        <location line="+4"/>
+        <source>Unable to determine the reservation status of the selected copy.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+401"/>
+        <location line="+58"/>
+        <location line="+18"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-448"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Unable to retrieve the minimum number of days.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Reserve</source>
+        <translation type="unfinished">Kikölcsönzés</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Barcode</source>
+        <translation type="unfinished">Vonalkód</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Availability</source>
+        <translation type="unfinished">Hozzáférhetőség</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Originality</source>
+        <translation type="unfinished">Eredetiség</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Condition</source>
+        <translation type="unfinished">Állapot</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+133"/>
+        <location line="+350"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-482"/>
+        <source>Constructing objects...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Black &amp; White Copy</source>
+        <translation type="unfinished">Fekete-fehér Másolat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Color Copy</source>
+        <translation type="unfinished">Színes Másolat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Original</source>
+        <translation type="unfinished">Eredeti</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>As New</source>
+        <translation type="unfinished">Minha Új</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Binding Copy</source>
+        <translation type="unfinished">Köteles Példány</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Book Club</source>
+        <translation type="unfinished">Könvy Klub</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Ex-Library</source>
+        <translation type="unfinished">Volt-Könyvtári</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Fair</source>
+        <translation type="unfinished">Elfogadható</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Fine</source>
+        <translation type="unfinished">Jobb</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Good</source>
+        <translation type="unfinished">Jó</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Poor</source>
+        <translation type="unfinished">Rossz</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Very Good</source>
+        <translation type="unfinished">Nagyon Jó</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+34"/>
+        <location line="+238"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-271"/>
+        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>Unable to retrieve copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Retrieving copy information...</source>
+        <translation type="unfinished">Példány adatainak lekérése...</translation>
+    </message>
+    <message>
+        <location line="+123"/>
+        <location line="+10"/>
+        <source>Row number </source>
+        <translation type="unfinished">Sor: </translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source> contains an empty Barcode.</source>
+        <translation type="unfinished"> üres vonalkódot tartalmaz.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source> contains a duplicate Barcode.</source>
+        <translation type="unfinished"> nem egyedi vonalkódot tartalmaz.</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <location line="+3"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Unable to save the item&apos;s quantity.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to save the copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Commit failure.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to commit the copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+106"/>
+        <source>Unable to purge copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Saving the copy data...</source>
+        <translation type="unfinished">Példány adatainak mentése...</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Unable to create copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_dbenumerations</name>
+    <message>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="+268"/>
+        <location line="+281"/>
+        <location line="+9"/>
+        <location line="+44"/>
+        <location line="+79"/>
+        <location line="+69"/>
+        <location line="+14"/>
+        <location line="+13"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-508"/>
+        <source>Unable to retrieve the contents of </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+336"/>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <location line="-306"/>
+        <location line="+116"/>
+        <source>Book</source>
+        <translation type="unfinished">Könvy</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>DVD</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>Journal</source>
+        <translation type="unfinished">Folyóirat</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>Magazine</source>
+        <translation type="unfinished">Magazin</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>Music CD</source>
+        <translation type="unfinished">Zene CD</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>Photograph Collection</source>
+        <translation type="unfinished">Fénykép Gyüjtemény</translation>
+    </message>
+    <message>
+        <location line="-115"/>
+        <location line="+116"/>
+        <source>Video Game</source>
+        <translation type="unfinished">Videójáték</translation>
+    </message>
+    <message>
+        <location line="-42"/>
+        <source>Book Binding</source>
+        <translation type="unfinished">Könyv Kötés</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>CD Format</source>
+        <translation type="unfinished">CD Formátum</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>DVD Aspect Ratio</source>
+        <translation type="unfinished">DVD Képarány*</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>DVD Rating</source>
+        <translation type="unfinished">DVD Besorolás</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>DVD Region</source>
+        <translation type="unfinished">DVD Régió</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Language</source>
+        <translation type="unfinished">Nyelv</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Monetary Unit</source>
+        <translation type="unfinished">Pénzegység</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Video Game Platform</source>
+        <translation type="unfinished">Videójáték Rendszertípus</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Video Game Rating</source>
+        <translation type="unfinished">Videójáték Besorolás</translation>
+    </message>
+    <message>
+        <location line="+88"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>An error occurred while attempting to remove entries from the %1 table.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Unable to create an entry in </source>
+        <translation type="unfinished">Bejegyzés létrehozása sikertelen a táblázatban:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+78"/>
+        <source>Unable to create the location (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+68"/>
+        <source>, </source>
+        <translation type="unfinished">,</translation>
+    </message>
+    <message>
+        <location line="-66"/>
+        <location line="+68"/>
+        <source>).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-4"/>
+        <source>Unable to create the minimum day (</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>An error occurred while attempting to save the database enumerations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_dvd</name>
+    <message>
+        <location filename="../Source/biblioteq_dvd.cc" line="+77"/>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Elülső Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Hátulsó Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;UPC</source>
+        <translation type="unfinished">UPC Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Rating</source>
+        <translation type="unfinished">Besorolás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Actor(s)</source>
+        <translation type="unfinished">Sinész(ek) Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Director(s)</source>
+        <translation type="unfinished">Rendező(k) Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Number of Discs</source>
+        <translation type="unfinished">Lemezek Számának Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Runtime</source>
+        <translation type="unfinished">Futásidő Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Format</source>
+        <translation type="unfinished">Formátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Region</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Aspect Ratio</source>
+        <translation type="unfinished">Képarány Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Megjelenési Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Studio</source>
+        <translation type="unfinished">Studió Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Kategóriák Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+72"/>
+        <location line="+136"/>
+        <location line="+172"/>
+        <location line="+12"/>
+        <location line="+24"/>
+        <location line="+11"/>
+        <location line="+24"/>
+        <location line="+10"/>
+        <location line="+115"/>
+        <location line="+28"/>
+        <location line="+31"/>
+        <location line="+371"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1066"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Unable to retrieve the dvd locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the dvd ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the dvd aspect ratios.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the dvd regions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+1023"/>
+        <location line="+11"/>
+        <location line="+14"/>
+        <location line="+41"/>
+        <location line="+9"/>
+        <location line="+9"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-1057"/>
+        <location line="+5"/>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+135"/>
+        <location line="+396"/>
+        <location line="+31"/>
+        <location line="+370"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-921"/>
+        <location line="+22"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+8"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+12"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-107"/>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <location line="+1363"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-1362"/>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Please complete the UPC field.</source>
+        <translation type="unfinished">Töltse ki az UPC mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Actor(s) field.</source>
+        <translation type="unfinished">Töltse ki a Szinész(ek) mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Director(s) field.</source>
+        <translation type="unfinished">Töltse ki a Rendező(k) mezőt!</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Please provide a valid Runtime.</source>
+        <translation type="unfinished">Adjon meg egy érvényes Futásidőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Format field.</source>
+        <translation type="unfinished">Töltse ki a Formátum mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Töltse ki a Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Studio field.</source>
+        <translation type="unfinished">Töltse ki a Stúdió mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Töltse ki a Kategóriák mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished">Töltse ki a Összefoglalás mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+4"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+168"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+34"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <location line="+387"/>
+        <location line="+198"/>
+        <source>BiblioteQ: Modify DVD Entry (</source>
+        <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-584"/>
+        <location line="+387"/>
+        <location line="+13"/>
+        <location line="+185"/>
+        <location line="+6"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-507"/>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the DVD&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+164"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>BiblioteQ: Database DVD Search</source>
+        <translation type="unfinished">BiblioteQ: DVD Keresés</translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <location line="+191"/>
+        <source>BiblioteQ: View DVD Details (</source>
+        <translation type="unfinished">BiblioteQ: DVD Részleteinek Megtekintése (</translation>
+    </message>
+    <message>
+        <location line="-168"/>
+        <source>BiblioteQ: Modify DVD Entry</source>
+        <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>BiblioteQ: View DVD Details</source>
+        <translation type="unfinished">BiblioteQ: DVD Részleteinek Megtekintése</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+220"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-178"/>
+        <location line="+3"/>
+        <source>Unable to retrieve the selected DVD&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+208"/>
+        <source>BiblioteQ: Create DVD Entry</source>
+        <translation type="unfinished">BiblioteQ: DVD Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+243"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+75"/>
+        <source>UPC:</source>
+        <translation type="unfinished">UPC:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Rating:</source>
+        <translation type="unfinished">Besorolás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Actor(s):</source>
+        <translation type="unfinished">Színész(ek):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Director(s):</source>
+        <translation type="unfinished">Rendező(k):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Number of Discs:</source>
+        <translation type="unfinished">Lemezek Száma:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Runtime:</source>
+        <translation type="unfinished">Futásidő:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Format:</source>
+        <translation type="unfinished">Formátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Region:</source>
+        <translation type="unfinished">Térség:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Aspect Ratio:</source>
+        <translation type="unfinished">Képarány:</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Title:</source>
+        <translation type="unfinished">Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Release Date:</source>
+        <translation type="unfinished">Megjelenési Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Studio:</source>
+        <translation type="unfinished">Stúdió:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Category:</source>
+        <translation type="unfinished">Kategóriák:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Price:</source>
+        <translation type="unfinished">Ár:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Language:</source>
+        <translation type="unfinished">Nyelv:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Pénzegység:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Copies:</source>
+        <translation type="unfinished">Példányok:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Location:</source>
+        <translation type="unfinished">Hely:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Abstract:</source>
+        <translation type="unfinished">Összefoglalás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Keywords:</source>
+        <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>BiblioteQ: Duplicate DVD Entry</source>
+        <translation type="unfinished">BiblioteQ: DVD Bejegyzés Megkettőzése</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_generic_thread</name>
+    <message>
+        <location filename="../Source/biblioteq_generic_thread.cc" line="+67"/>
+        <source>Unable to read </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>. This file is required by BiblioteQ.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+98"/>
+        <location line="+1"/>
+        <source>Z39.50 Empty Results Set</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_journal</name>
+    <message>
+        <location filename="../Source/biblioteq_journal.cc" line="+65"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_magazine</name>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="+83"/>
+        <source>BiblioteQ: SRU Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading information from the SRU site. Please be patient...</source>
+        <translation type="unfinished">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
+    </message>
+    <message>
+        <location line="+33"/>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Elülső Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Hátulsó Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;ISSN</source>
+        <translation type="unfinished">ISSN Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Volume</source>
+        <translation type="unfinished">Kötet Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Issue</source>
+        <translation type="unfinished">Kiadvány Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;LC Control Number</source>
+        <translation type="unfinished">&quot;LC Control&quot; Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Call Number</source>
+        <translation type="unfinished">Hivószám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Dewey Number</source>
+        <translation type="unfinished">Dewey Osztály Szám Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publication Date</source>
+        <translation type="unfinished">Kiadási Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Kiadó Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Megjelenés Helyének Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Categories</source>
+        <translation type="unfinished">Kategóriák Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;MARC Tags</source>
+        <translation type="unfinished">MARC Cimkék Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <location line="+12"/>
+        <location line="+23"/>
+        <location line="+5"/>
+        <location line="+138"/>
+        <location line="+111"/>
+        <location line="+174"/>
+        <location line="+12"/>
+        <location line="+24"/>
+        <location line="+12"/>
+        <location line="+33"/>
+        <location line="+10"/>
+        <location line="+165"/>
+        <location line="+52"/>
+        <location line="+402"/>
+        <location line="+11"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1183"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Unable to retrieve the journal locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to retrieve the magazine locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+1194"/>
+        <location line="+11"/>
+        <location line="+13"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-1094"/>
+        <location line="+5"/>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+110"/>
+        <location line="+485"/>
+        <location line="+399"/>
+        <location line="+11"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-994"/>
+        <location line="+24"/>
+        <location line="+14"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+12"/>
+        <location line="+11"/>
+        <location line="+1479"/>
+        <location line="+1109"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-2670"/>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <location line="+1473"/>
+        <location line="+146"/>
+        <location line="+1276"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-2894"/>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Please complete the ISSN field.</source>
+        <translation type="unfinished">Töltse ki a ISSN mezőt!</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Töltse ki a Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Töltse ki a Kiadó mezőt! </translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Töltse ki a Kiadás Helye mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Categories field.</source>
+        <translation type="unfinished">Töltse ki a Kategóriák mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished">Töltse ki a Összefoglalás mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+4"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+170"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+43"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+77"/>
+        <location line="+397"/>
+        <location line="+264"/>
+        <source>BiblioteQ: Modify Journal Entry (</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-659"/>
+        <location line="+397"/>
+        <location line="+266"/>
+        <source>BiblioteQ: Modify Magazine Entry (</source>
+        <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-661"/>
+        <location line="+397"/>
+        <location line="+31"/>
+        <location line="+230"/>
+        <location line="+4"/>
+        <location line="+19"/>
+        <location line="+4"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-680"/>
+        <location line="+397"/>
+        <location line="+58"/>
+        <location line="+207"/>
+        <source>BiblioteQ: Modify Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="-660"/>
+        <location line="+397"/>
+        <location line="+58"/>
+        <location line="+207"/>
+        <source>BiblioteQ: Modify Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="-575"/>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+161"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>BiblioteQ: Database Journal Search</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Database Magazine Search</source>
+        <translation type="unfinished">BiblioteQ: Magazin Keresés</translation>
+    </message>
+    <message>
+        <location line="+75"/>
+        <location line="+256"/>
+        <source>BiblioteQ: View Journal Details (</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése (</translation>
+    </message>
+    <message>
+        <location line="-254"/>
+        <location line="+258"/>
+        <source>BiblioteQ: View Magazine Details (</source>
+        <translation type="unfinished">BiblioteQ: Magazin Reszletek (</translation>
+    </message>
+    <message>
+        <location line="-251"/>
+        <source>BiblioteQ: View Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Megtekintése</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: View Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Megtekintése</translation>
+    </message>
+    <message>
+        <location line="+55"/>
+        <location line="+200"/>
+        <source>BiblioteQ: View Journal Details</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése</translation>
+    </message>
+    <message>
+        <location line="-198"/>
+        <location line="+200"/>
+        <source>BiblioteQ: View Magazine Details</source>
+        <translation type="unfinished">BiblioteQ: Magazin Reszleteinek Megtekintése</translation>
+    </message>
+    <message>
+        <location line="-174"/>
+        <location line="+262"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-232"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected journal&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected magazine&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+248"/>
+        <source>BiblioteQ: Create Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Create Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+238"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
+        <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges a ISSN!</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>BiblioteQ: Z39.50 Data Retrieval</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Downloading information from the Z39.50 site. Please be patient...</source>
+        <translation type="unfinished">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>Replace existing values with those retrieved from the Z39.50 site?</source>
+        <translation type="unfinished">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <location line="+24"/>
+        <location line="+1246"/>
+        <source>Memory Error</source>
+        <translation type="unfinished">Memória Hiba</translation>
+    </message>
+    <message>
+        <location line="-1269"/>
+        <location line="+6"/>
+        <location line="+1264"/>
+        <location line="+6"/>
+        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1271"/>
+        <location line="+1270"/>
+        <source>BiblioteQ: Memory Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1263"/>
+        <location line="+21"/>
+        <source>BiblioteQ: Z39.50 Query Error</source>
+        <translation type="unfinished">BiblioteQ: Z39.50 Hiba</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>A Z39.50 entry may not yet exist for </source>
+        <translation type="unfinished">Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>.</source>
+        <translation type="unfinished">.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Unable to create a thread because of insufficient resources.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Z39.50 Query Error</source>
+        <translation type="unfinished">Z39.50 Lekérdezés Hiba</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>The Z39.50 entry could not be retrieved.</source>
+        <translation type="unfinished">A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>ISSN:</source>
+        <translation type="unfinished">ISSN:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Volume:</source>
+        <translation type="unfinished">Kötet:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Issue (Number):</source>
+        <translation type="unfinished">Kiadvány (Szám):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>LC Control Number:</source>
+        <translation type="unfinished">&quot;LC Control&quot; Szám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Call Number:</source>
+        <translation type="unfinished">Hívószám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Dewey Class Number:</source>
+        <translation type="unfinished">Dewey Osztály Szám:</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Title:</source>
+        <translation type="unfinished">Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Publication Date:</source>
+        <translation type="unfinished">Kiadási Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Publisher:</source>
+        <translation type="unfinished">Kiadó:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Megjelenés Helye:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Category:</source>
+        <translation type="unfinished">Kategóriák:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Price:</source>
+        <translation type="unfinished">Ár:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Language:</source>
+        <translation type="unfinished">Nyelv:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Pénzegység:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Copies:</source>
+        <translation type="unfinished">Példányok:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Location:</source>
+        <translation type="unfinished">Hely:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Abstract:</source>
+        <translation type="unfinished">Összefoglalás:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>MARC Tags:</source>
+        <translation type="unfinished">MARC Cimkék:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Keywords:</source>
+        <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+498"/>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+70"/>
+        <source>BiblioteQ: Duplicate Journal Entry</source>
+        <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Megkettőzése</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Duplicate Magazine Entry</source>
+        <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Megkettőzése</translation>
+    </message>
+    <message>
+        <location line="+364"/>
+        <source>In order to query an SRU site, the ISSN must be provided.</source>
+        <translation type="unfinished">Egy SRU lekérdezéshez szükséges a ISSN!</translation>
+    </message>
+    <message>
+        <location line="+233"/>
+        <source>Replace existing values with those retrieved from the SRU site?</source>
+        <translation type="unfinished">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>BiblioteQ: SRU Query Error</source>
+        <translation type="unfinished">BiblioteQ: SRU Lekérdezési Hiba</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>An SRU entry may not yet exist for </source>
+        <translation type="unfinished">Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source> or a network error occurred.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished">A %1:%2 proxi belépőt kér.</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_main_table</name>
+    <message>
+        <location filename="../Source/biblioteq_main_table.cc" line="+59"/>
+        <location line="+17"/>
+        <source>Borrower</source>
+        <translation type="unfinished">Kölcsönző</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <location line="+17"/>
+        <source>Member ID</source>
+        <translation type="unfinished">Tag Azonosító</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>Barcode</source>
+        <translation type="unfinished">Vonalkód</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reservation Date</source>
+        <translation type="unfinished">Kölcsönzési Dátum</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Due Date</source>
+        <translation type="unfinished">Esedékesség</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Request Date</source>
+        <translation type="unfinished">Lefoglalási Dátum</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <location line="+42"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+43"/>
+        <location line="+43"/>
+        <location line="+17"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="-238"/>
+        <source>ID Number</source>
+        <translation type="unfinished">Azonosító Szám</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+42"/>
+        <location line="+93"/>
+        <location line="+106"/>
+        <source>Publisher</source>
+        <translation type="unfinished">Kiadó</translation>
+    </message>
+    <message>
+        <location line="-240"/>
+        <location line="+42"/>
+        <location line="+93"/>
+        <source>Publication Date</source>
+        <translation type="unfinished">Kiadási Dátum</translation>
+    </message>
+    <message>
+        <location line="-134"/>
+        <location line="+44"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <source>Categories</source>
+        <translation type="unfinished">Kategóriák</translation>
+    </message>
+    <message>
+        <location line="-181"/>
+        <location line="+44"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <location line="+60"/>
+        <source>Language</source>
+        <translation type="unfinished">Nyelv</translation>
+    </message>
+    <message>
+        <location line="-241"/>
+        <location line="+45"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <location line="+60"/>
+        <source>Price</source>
+        <translation type="unfinished">Ár</translation>
+    </message>
+    <message>
+        <location line="-242"/>
+        <location line="+45"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <location line="+60"/>
+        <source>Monetary Units</source>
+        <translation type="unfinished">Pénzegység</translation>
+    </message>
+    <message>
+        <location line="-242"/>
+        <location line="+45"/>
+        <location line="+51"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <location line="+60"/>
+        <source>Quantity</source>
+        <translation type="unfinished">Mennyiség</translation>
+    </message>
+    <message>
+        <location line="-242"/>
+        <location line="+46"/>
+        <location line="+50"/>
+        <location line="+43"/>
+        <location line="+44"/>
+        <location line="+32"/>
+        <location line="+28"/>
+        <source>Location</source>
+        <translation type="unfinished">Hely</translation>
+    </message>
+    <message>
+        <location line="-229"/>
+        <location line="+37"/>
+        <location line="+49"/>
+        <location line="+43"/>
+        <location line="+43"/>
+        <location line="+58"/>
+        <source>Availability</source>
+        <translation type="unfinished">Hozzáférhetőség</translation>
+    </message>
+    <message>
+        <location line="-229"/>
+        <location line="+37"/>
+        <location line="+49"/>
+        <location line="+43"/>
+        <location line="+43"/>
+        <location line="+58"/>
+        <source>Total Reserved</source>
+        <translation type="unfinished">Összes Kölcsönzött</translation>
+    </message>
+    <message>
+        <location line="-225"/>
+        <location line="+35"/>
+        <location line="+47"/>
+        <location line="+43"/>
+        <location line="+43"/>
+        <location line="+30"/>
+        <location line="+28"/>
+        <source>Type</source>
+        <translation type="unfinished">Típus</translation>
+    </message>
+    <message>
+        <location line="-212"/>
+        <source>Author(s)</source>
+        <translation type="unfinished">Szerző(k)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+93"/>
+        <location line="+106"/>
+        <source>Place of Publication</source>
+        <translation type="unfinished">Megjelenés Helye</translation>
+    </message>
+    <message>
+        <location line="-198"/>
+        <source>Edition</source>
+        <translation type="unfinished">Kiadás</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>ISBN-10</source>
+        <translation type="unfinished">ISBN-13: {10?}</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Book Binding Type</source>
+        <translation type="unfinished">Könyv Kötés Típus</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>ISBN-13</source>
+        <translation type="unfinished">ISBN-13: {13?}</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+92"/>
+        <source>LC Control Number</source>
+        <translation type="unfinished">&quot;LC Control&quot; Szám</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <location line="+92"/>
+        <source>Call Number</source>
+        <translation type="unfinished">Hívószám</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Dewey Class Number</source>
+        <translation type="unfinished">Dewey Osztály Szám</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Originality</source>
+        <translation type="unfinished">Eredetiség</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Condition</source>
+        <translation type="unfinished">Állapot</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <location line="+87"/>
+        <source>Format</source>
+        <translation type="unfinished">Formátum</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Studio</source>
+        <translation type="unfinished">Stúdió</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+87"/>
+        <location line="+61"/>
+        <source>Release Date</source>
+        <translation type="unfinished">Megjelenési Dátum</translation>
+    </message>
+    <message>
+        <location line="-147"/>
+        <location line="+87"/>
+        <source>Number of Discs</source>
+        <translation type="unfinished">Lemezek Száma</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <location line="+87"/>
+        <source>Runtime</source>
+        <translation type="unfinished">Futásidő</translation>
+    </message>
+    <message>
+        <location line="-84"/>
+        <location line="+147"/>
+        <source>UPC</source>
+        <translation type="unfinished">UPC</translation>
+    </message>
+    <message>
+        <location line="-142"/>
+        <source>Rating</source>
+        <translation type="unfinished">Besorolás</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Region</source>
+        <translation type="unfinished">Térség</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Aspect Ratio</source>
+        <translation type="unfinished">Képarány</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Volume</source>
+        <translation type="unfinished">Kötet</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Issue</source>
+        <translation type="unfinished">Kiadvány</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>ISSN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Dewey Number</source>
+        <translation type="unfinished">Dewey Szám</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Artist</source>
+        <translation type="unfinished">Művész</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Recording Label</source>
+        <translation type="unfinished">Lemezkiadó</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Catalog Number</source>
+        <translation type="unfinished">Katalógus Szám</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Audio</source>
+        <translation type="unfinished">Hang</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Recording Type</source>
+        <translation type="unfinished">Felvétel Típus</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>ID</source>
+        <translation type="unfinished">Azonosító</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Photograph Count</source>
+        <translation type="unfinished">Fénykép db. Szám</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>About</source>
+        <translation type="unfinished">A Cikkről</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Game Rating</source>
+        <translation type="unfinished">Játék Besorolása</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Platform</source>
+        <translation type="unfinished">Rendszer Típus</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Mode</source>
+        <translation type="unfinished">Mód</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Genres</source>
+        <translation type="unfinished">Műfajok</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_photographcollection</name>
+    <message>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="+114"/>
+        <source>Reset Collection &amp;Image</source>
+        <translation type="unfinished">Gyüjtemény Kép Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset Collection &amp;ID</source>
+        <translation type="unfinished">Gyüjtemény Azonosító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset Collection &amp;Title</source>
+        <translation type="unfinished">Gyüjtemény Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset Collection &amp;Location</source>
+        <translation type="unfinished">Gyüjtemény Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset Collection &amp;About</source>
+        <translation type="unfinished">&quot;Gyüjtemény -ről&quot; Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset Collection &amp;Notes</source>
+        <translation type="unfinished">Gyüjtemény Hozzászólások Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;All</source>
+        <translation type="unfinished">Mind</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Current Page</source>
+        <translation type="unfinished">Jelenlegi Oldal</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <location line="+88"/>
+        <location line="+94"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+77"/>
+        <location line="+32"/>
+        <location line="+222"/>
+        <location line="+684"/>
+        <location line="+97"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+48"/>
+        <location line="+244"/>
+        <location line="+83"/>
+        <location line="+11"/>
+        <location line="+35"/>
+        <location line="+634"/>
+        <location line="+7"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2399"/>
+        <source>Unable to retrieve the photograph collection locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+579"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-529"/>
+        <location line="+12"/>
+        <location line="+1064"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-1135"/>
+        <source>Please complete the collection&apos;s ID field.</source>
+        <translation type="unfinished">Töltse ki a Gyüjtemény Azonosító mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the collection&apos;s Title field.</source>
+        <translation type="unfinished">Töltse ki a Gyüjtemény Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <location line="+4"/>
+        <location line="+1127"/>
+        <location line="+3"/>
+        <location line="+408"/>
+        <location line="+3"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1542"/>
+        <location line="+193"/>
+        <location line="+32"/>
+        <location line="+222"/>
+        <location line="+683"/>
+        <location line="+168"/>
+        <location line="+243"/>
+        <location line="+130"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1580"/>
+        <location line="+1134"/>
+        <location line="+1077"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-2200"/>
+        <location line="+1134"/>
+        <location line="+386"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1509"/>
+        <location line="+1134"/>
+        <location line="+386"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1509"/>
+        <location line="+211"/>
+        <location line="+136"/>
+        <source>BiblioteQ: Modify Photograph Collection Entry (</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-345"/>
+        <location line="+210"/>
+        <location line="+18"/>
+        <location line="+119"/>
+        <location line="+7"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-290"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <location line="+1073"/>
+        <location line="+373"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="-1441"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+75"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>BiblioteQ: Database Photograph Collection Search</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Keresés</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <location line="+125"/>
+        <source>BiblioteQ: View Photograph Collection Details (</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése (</translation>
+    </message>
+    <message>
+        <location line="-92"/>
+        <source>BiblioteQ: Modify Photograph Collection Entry</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>BiblioteQ: View Photograph Collection Details</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <location line="+132"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-125"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+130"/>
+        <source>BiblioteQ: Create Photograph Collection Entry</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Létrehozása</translation>
+    </message>
+    <message>
+        <location line="+83"/>
+        <location line="+1028"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-1027"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Collection ID:</source>
+        <translation type="unfinished">Gyüjtemény Azonosító:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Collection Title:</source>
+        <translation type="unfinished">Gyüjtemény Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Collection Location:</source>
+        <translation type="unfinished">Gyüjtemény Helye:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Collection About:</source>
+        <translation type="unfinished">A Gyüjteményről:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Collection Notes:</source>
+        <translation type="unfinished">Gyüjtemény Hozzászólások:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item ID:</source>
+        <translation type="unfinished">Cikk Azonosító:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Title:</source>
+        <translation type="unfinished">Cikk Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Creator(s):</source>
+        <translation type="unfinished">Cikk Alkotó(i):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Publication Date:</source>
+        <translation type="unfinished">Cikk Kiadási Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Copies:</source>
+        <translation type="unfinished">Cikk Példányok:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Medium:</source>
+        <translation type="unfinished">Cikk Médium:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Reproduction Number:</source>
+        <translation type="unfinished">Cikk Reprodukció Szám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Copyright:</source>
+        <translation type="unfinished">Cikk Szerzői Jog:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Call Number:</source>
+        <translation type="unfinished">Cikk Hívószám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Other Number:</source>
+        <translation type="unfinished">Cikk Egyéb Szám:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Notes:</source>
+        <translation type="unfinished">Cikk Hozzászólások</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Subjects:</source>
+        <translation type="unfinished">Cikk Témák:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Item Format:</source>
+        <translation type="unfinished">Cikk Formátuma:</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>BiblioteQ: Photograph Collection Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Kép Kiválasztás</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>BiblioteQ: Photograph Collection Item Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Cikk Kép Kiválasztás</translation>
+    </message>
+    <message>
+        <location line="+65"/>
+        <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyűjtemény Bejegyzése Megkettőzése</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>Loading image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+842"/>
+        <location line="+481"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: Folyamat</translation>
+    </message>
+    <message>
+        <location line="-1144"/>
+        <source>Please complete the item&apos;s ID field.</source>
+        <translation type="unfinished">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the item&apos;s Title field.</source>
+        <translation type="unfinished">Töltse ki a cikk Cím mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the item&apos;s Creator(s) field.</source>
+        <translation type="unfinished">Töltse ki a cikk Alkotó(k) mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the item&apos;s Medium field.</source>
+        <translation type="unfinished">Töltse ki a cikk Médium mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the item&apos;s Reproduction Number field.</source>
+        <translation type="unfinished">Töltse ki a cikk Reprodukció Szám mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the item&apos;s Copyright field.</source>
+        <translation type="unfinished">Töltse ki a cikk Szerzői Jog mezőjét!</translation>
+    </message>
+    <message>
+        <location line="+195"/>
+        <source>Unable to create the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished">A cikk létrehozása sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
+    </message>
+    <message>
+        <location line="+373"/>
+        <source>Unable to update the item. Please verify that the item does not already exist.</source>
+        <translation type="unfinished">A cikk frissítése sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Are you sure that you wish to permanently delete the selected %1 item(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Deleting the selected item(s)...</source>
+        <translation type="unfinished">A kijelölt cikkek törlése...</translation>
+    </message>
+    <message>
+        <location line="+99"/>
+        <source>BiblioteQ: Photograph Collection Photographs Export</source>
+        <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>&amp;Modify Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;View Photograph</source>
+        <translation type="unfinished">Fénykép Megtekintése</translation>
+    </message>
+    <message>
+        <location line="+303"/>
+        <source>BiblioteQ: Photograph Collection Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Importing image(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+125"/>
+        <source>Unable to import photograph.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished">BiblioteQ: Információ</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+155"/>
+        <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_sruresults</name>
+    <message>
+        <location filename="../Source/biblioteq_sruResults.cc" line="+80"/>
+        <source>Record #</source>
+        <translation type="unfinished">Rekord #</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_videogame</name>
+    <message>
+        <location filename="../Source/biblioteq_videogame.cc" line="+76"/>
+        <source>Reset &amp;Front Cover Image</source>
+        <translation type="unfinished">Elülső Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Back Cover Image</source>
+        <translation type="unfinished">Hátulsó Borító Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;UPC</source>
+        <translation type="unfinished">UPC Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Game Rating</source>
+        <translation type="unfinished">Játék Besorolás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Developer(s)</source>
+        <translation type="unfinished">Fejlesző(k) Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Platform</source>
+        <translation type="unfinished">Rendszer Típus Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Mode</source>
+        <translation type="unfinished">Mód Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Title</source>
+        <translation type="unfinished">Cím Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Release Date</source>
+        <translation type="unfinished">Megjelenési Dátum Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Publisher</source>
+        <translation type="unfinished">Kiadó Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Place of Publication</source>
+        <translation type="unfinished">Megjelenés Helyének Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Genres</source>
+        <translation type="unfinished">Műfaj Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Price</source>
+        <translation type="unfinished">Ár Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Language</source>
+        <translation type="unfinished">Nyelv Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Monetary Units</source>
+        <translation type="unfinished">Pénzegység Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Copies</source>
+        <translation type="unfinished">Példányok Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Location</source>
+        <translation type="unfinished">Hely Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Abstract</source>
+        <translation type="unfinished">Összefoglalás Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Reset &amp;Keywords</source>
+        <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+12"/>
+        <location line="+13"/>
+        <location line="+70"/>
+        <location line="+118"/>
+        <location line="+130"/>
+        <location line="+11"/>
+        <location line="+24"/>
+        <location line="+12"/>
+        <location line="+25"/>
+        <location line="+10"/>
+        <location line="+112"/>
+        <location line="+29"/>
+        <location line="+31"/>
+        <location line="+328"/>
+        <source>Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-948"/>
+        <source>Unable to retrieve the video game ratings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the video game platforms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Unable to retrieve the monetary units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Unable to retrieve the video game locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+1"/>
+        <location line="+918"/>
+        <location line="+17"/>
+        <location line="+11"/>
+        <location line="+9"/>
+        <location line="+9"/>
+        <source>UNKNOWN</source>
+        <translation type="unfinished">ISMERETLEN</translation>
+    </message>
+    <message>
+        <location line="-914"/>
+        <location line="+5"/>
+        <source>Unable to determine the maximum copy number of the item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <location line="+117"/>
+        <location line="+353"/>
+        <location line="+31"/>
+        <location line="+328"/>
+        <source>BiblioteQ: Database Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-818"/>
+        <location line="+23"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+11"/>
+        <location line="+12"/>
+        <location line="+11"/>
+        <source>BiblioteQ: User Error</source>
+        <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
+    </message>
+    <message>
+        <location line="-89"/>
+        <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
+        <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <location line="+1206"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-1205"/>
+        <source>You have increased the number of copies. Would you like to modify copy information?</source>
+        <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Please complete the UPC field.</source>
+        <translation type="unfinished">Töltse ki az UPC mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Developer(s) field.</source>
+        <translation type="unfinished">Töltse ki a Fejlesztő(k) mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Title field.</source>
+        <translation type="unfinished">Töltse ki a Cím mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Publisher field.</source>
+        <translation type="unfinished">Töltse ki a Kiadó mezőt! </translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Place of Publication field.</source>
+        <translation type="unfinished">Töltse ki a Kiadás Helye mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Please complete the Genres field.</source>
+        <translation type="unfinished">Töltse ki a Műfaj mezőt!</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Please complete the Abstract field.</source>
+        <translation type="unfinished">Töltse ki a Összefoglalás mezőt!</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+4"/>
+        <source>Unable to create a database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+126"/>
+        <source>Unable to generate a unique integer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Unable to create or update the entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Unable to purge unnecessary copy data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <location line="+35"/>
+        <source>Unable to commit the current database transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-10"/>
+        <source>Unable to create initial copies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <location line="+358"/>
+        <location line="+201"/>
+        <source>BiblioteQ: Modify Video Game Entry (</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása (</translation>
+    </message>
+    <message>
+        <location line="-558"/>
+        <location line="+358"/>
+        <location line="+13"/>
+        <location line="+188"/>
+        <location line="+6"/>
+        <source>)</source>
+        <translation type="unfinished">)</translation>
+    </message>
+    <message>
+        <location line="-485"/>
+        <source>Retrieving availability.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the video game&apos;s OID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Rollback failure.</source>
+        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+142"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <location line="+1"/>
+        <source>Any</source>
+        <translation type="unfinished">Bármely</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>BiblioteQ: Database Video Game Search</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Keresés</translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <location line="+194"/>
+        <source>BiblioteQ: View Video Game Details (</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Reszletek (</translation>
+    </message>
+    <message>
+        <location line="-171"/>
+        <source>BiblioteQ: Modify Video Game Entry</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>BiblioteQ: View Video Game Details</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Reszletek</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <location line="+186"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Mentés</translation>
+    </message>
+    <message>
+        <location line="-161"/>
+        <location line="+4"/>
+        <source>Unable to retrieve the selected video game&apos;s data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+190"/>
+        <source>BiblioteQ: Create Video Game Entry</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Léteséítése</translation>
+    </message>
+    <message>
+        <location line="+208"/>
+        <source>Your changes have not been saved. Continue closing?</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+    </message>
+    <message>
+        <location line="+75"/>
+        <source>UPC:</source>
+        <translation type="unfinished">UPC:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Game Rating:</source>
+        <translation type="unfinished">Játék Besorolása:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Developer(s):</source>
+        <translation type="unfinished">Fejlesztő(k):</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Platform:</source>
+        <translation type="unfinished">Rendszer Típus:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Mode:</source>
+        <translation type="unfinished">Mód:</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Title:</source>
+        <translation type="unfinished">Cím:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Release Date:</source>
+        <translation type="unfinished">Megjelenési Dátum:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Publisher:</source>
+        <translation type="unfinished">Kiadó:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Place of Publication:</source>
+        <translation type="unfinished">Megjelenés Helye:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Genre:</source>
+        <translation type="unfinished">Műfaj:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Price:</source>
+        <translation type="unfinished">Ár:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Language:</source>
+        <translation type="unfinished">Nyelv:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Monetary Units:</source>
+        <translation type="unfinished">Pénzegység:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Copies:</source>
+        <translation type="unfinished">Példányok:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Location:</source>
+        <translation type="unfinished">Hely:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Abstract:</source>
+        <translation type="unfinished">Összefoglalás:</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Keywords:</source>
+        <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>BiblioteQ: Front Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>BiblioteQ: Back Cover Image Selection</source>
+        <translation type="unfinished">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>BiblioteQ: Duplicate Video Game Entry</source>
+        <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Megkettőzése</translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_z3950results</name>
+    <message>
+        <location filename="../Source/biblioteq_z3950results.cc" line="+66"/>
+        <source>Record #</source>
+        <translation type="unfinished">Rekord #</translation>
+    </message>
 </context>
 <context>
     <name>bookcopybrowser</name>
     <message>
-        <location filename="../UI/bookcopybrowser.ui" line="+20"/>
+        <location filename="../UI/biblioteq_bookcopybrowser.ui" line="+20"/>
         <source>BiblioteQ: Copies Browser</source>
         <translation>BiblioteQ: Példány Böngésző</translation>
     </message>
     <message>
-        <location line="+31"/>
         <source>Due Date</source>
-        <translation>Esedékesség</translation>
+        <translation type="obsolete">Esedékesség</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+31"/>
+        <source>&amp;Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+56"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -724,209 +7084,148 @@
 <context>
     <name>borrowers_editor</name>
     <message>
-        <location filename="../Source/borrowers_editor.cc" line="+67"/>
         <source>BiblioteQ: Item Reservation Status (</source>
-        <translation>BiblioteQ: Cikk Kölcsönzési Állapota (</translation>
+        <translation type="obsolete">BiblioteQ: Cikk Kölcsönzési Állapota (</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Item Reservation Status</source>
-        <translation>BiblioteQ: Cikk Kölcsönzési Állapota</translation>
+        <translation type="obsolete">BiblioteQ: Cikk Kölcsönzési Állapota</translation>
     </message>
     <message>
-        <location line="+44"/>
-        <location line="+21"/>
         <source>Copy Number</source>
-        <translation>Példány Azonosító</translation>
+        <translation type="obsolete">Példány Azonosító</translation>
     </message>
     <message>
-        <location line="-20"/>
-        <location line="+21"/>
         <source>Barcode</source>
-        <translation>Vonalkód</translation>
+        <translation type="obsolete">Vonalkód</translation>
     </message>
     <message>
-        <location line="-20"/>
         <source>Member ID</source>
-        <translation>Tag Azonosító</translation>
+        <translation type="obsolete">Tag Azonosító</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>First Name</source>
-        <translation>Utónév</translation>
+        <translation type="obsolete">Utónév</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Last Name</source>
-        <translation>Vezeték Név</translation>
+        <translation type="obsolete">Vezeték Név</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <location line="+18"/>
         <source>Reservation Date</source>
-        <translation>Kölcsönzési Dátum</translation>
+        <translation type="obsolete">Kölcsönzési Dátum</translation>
     </message>
     <message>
-        <location line="-17"/>
-        <location line="+18"/>
         <source>Copy Due Date</source>
-        <translation>Példány Esedékessége:</translation>
+        <translation type="obsolete">Példány Esedékessége:</translation>
     </message>
     <message>
-        <location line="-17"/>
         <source>Lender</source>
-        <translation>Kölcsönadó</translation>
+        <translation type="obsolete">Kölcsönadó</translation>
     </message>
     <message>
-        <location line="+43"/>
-        <location line="+102"/>
-        <location line="+251"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-352"/>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <location line="+20"/>
         <source>Memory Error</source>
-        <translation>Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-19"/>
-        <source>Unable to allocate memory for the &quot;dateEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+54"/>
-        <location line="+147"/>
-        <location line="+30"/>
-        <location line="+109"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-285"/>
-        <source>Unable to retrieve borrower data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
         <source>Retrieving borrower data...</source>
-        <translation>Kölcsönző adatainak lekérése...</translation>
+        <translation type="obsolete">Kölcsönző adatainak lekérése...</translation>
     </message>
     <message>
-        <location line="+109"/>
-        <location line="+10"/>
-        <location line="+188"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-197"/>
         <source>Please select the copy that has been returned.</source>
-        <translation>Egy visszaszolgáltatott példányt válasszon ki!</translation>
+        <translation type="obsolete">Egy visszaszolgáltatott példányt válasszon ki!</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>It appears that the selected item has not been reserved.</source>
-        <translation>Úgy tűnik a kijelölt cikk nincs kikölcsönözve.</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt cikk nincs kikölcsönözve.</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Are you sure that the copy has been returned?</source>
-        <translation>Biztos hogy ezt a példányt vissza kapta?</translation>
+        <translation type="obsolete">Biztos hogy ezt a példányt vissza kapta?</translation>
     </message>
     <message>
-        <location line="+15"/>
-        <location line="+4"/>
-        <source>Unable to modify the reservation status of the selected copy.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+168"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-141"/>
-        <source>Unable to modify the returned date of the selected copy.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+80"/>
         <source>Updating the due date(s)...</source>
-        <translation>Esedékességek frissítése...</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Unable to update the due date.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <source>Some or all of the Due Dates were not updated because of invalid dates.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
-        <source>Some or all of the Due Dates were not updated because of database errors.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Esedékességek frissítése...</translation>
     </message>
 </context>
 <context>
     <name>branchSelect</name>
     <message>
-        <location filename="../UI/branch_s.ui" line="+14"/>
+        <location filename="../UI/biblioteq_branch_s.ui" line="+14"/>
         <source>BiblioteQ: Branch Selection</source>
         <translation>BiblioteQ: Adatbázis Kiválasztás</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Branch Name</source>
-        <translation>Adatbázis Típus</translation>
+        <translation type="obsolete">Adatbázis Típus</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+73"/>
         <source>&amp;Select SQLite Database</source>
         <translation>SQLite Adatbátis Kiválasztása</translation>
     </message>
     <message>
-        <location line="+40"/>
         <source>Userid</source>
-        <translation>Felhasználó</translation>
+        <translation type="obsolete">Felhasználó</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+69"/>
         <source>Administrator</source>
         <translation>Adminisztrátor</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation type="obsolete">Jelszó</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="-130"/>
+        <source>&amp;Branch Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <location line="+47"/>
+        <source>xbook_guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-31"/>
+        <source>Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Patron</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+67"/>
         <source>&amp;Connect</source>
         <translation>Csatlakozás</translation>
     </message>
@@ -944,12 +7243,12 @@
 <context>
     <name>cdDialog</name>
     <message>
-        <location filename="../UI/cdinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_cdinfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -1070,7 +7369,7 @@
         <translation>Megjelenési Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -1100,7 +7399,7 @@
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
@@ -1120,7 +7419,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -1158,12 +7457,12 @@
 <context>
     <name>checkedOutDialog</name>
     <message>
-        <location filename="../UI/borrowers.ui" line="+20"/>
+        <location filename="../UI/biblioteq_borrowers.ui" line="+20"/>
         <source>BiblioteQ: Current Borrowers</source>
         <translation>BiblioteQ: Jelenlegi Kölcsönzők</translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+44"/>
         <source>Copy Number</source>
         <translation>Példány Azonosító</translation>
     </message>
@@ -1226,544 +7525,256 @@
 <context>
     <name>copy_editor</name>
     <message>
-        <location filename="../Source/copy_editor.cc" line="+63"/>
         <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation>BiblioteQ: Példány Böngésző (%1)</translation>
+        <translation type="obsolete">BiblioteQ: Példány Böngésző (%1)</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Copy Browser</source>
-        <translation>BiblioteQ: Példány Böngésző</translation>
+        <translation type="obsolete">BiblioteQ: Példány Böngésző</translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+7"/>
-        <location line="+26"/>
-        <location line="+313"/>
-        <location line="+6"/>
-        <location line="+7"/>
-        <location line="+32"/>
-        <location line="+165"/>
-        <location line="+10"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-565"/>
         <source>Please select the copy that you intend to delete.</source>
-        <translation>Válassza ki a törlendő példányt!</translation>
+        <translation type="obsolete">Válassza ki a törlendő példányt!</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>You must have at least one copy.</source>
-        <translation>Legalább egy példány szükséges.</translation>
+        <translation type="obsolete">Legalább egy példány szükséges.</translation>
     </message>
     <message>
-        <location line="+26"/>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
+        <translation type="obsolete">Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <location line="+57"/>
-        <location line="+138"/>
-        <location line="+145"/>
-        <location line="+40"/>
-        <location line="+33"/>
-        <location line="+132"/>
-        <location line="+37"/>
-        <location line="+13"/>
-        <location line="+18"/>
-        <location line="+62"/>
-        <location line="+51"/>
-        <location line="+9"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-734"/>
-        <location line="+4"/>
-        <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+340"/>
-        <location line="+39"/>
-        <location line="+165"/>
-        <location line="+52"/>
-        <location line="+18"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-585"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="+25"/>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
         <source>&amp;Reserve</source>
-        <translation>Kikölcsönzés</translation>
+        <translation type="obsolete">Kikölcsönzés</translation>
     </message>
     <message>
-        <location line="+20"/>
         <source>Title</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Barcode</source>
-        <translation>Vonalkód</translation>
+        <translation type="obsolete">Vonalkód</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Availability</source>
-        <translation>Hozzáférhetőség</translation>
+        <translation type="obsolete">Hozzáférhetőség</translation>
     </message>
     <message>
-        <location line="+25"/>
-        <location line="+91"/>
-        <location line="+484"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-574"/>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
-        <location line="+417"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-416"/>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+44"/>
-        <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
         <source>Retrieving copy information...</source>
-        <translation>Példány adatainak lekérése...</translation>
+        <translation type="obsolete">Példány adatainak lekérése...</translation>
     </message>
     <message>
-        <location line="+105"/>
         <source>Please select a copy to reserve.</source>
-        <translation>Jelöljön ki egy kikölcsönzendő példányt!</translation>
+        <translation type="obsolete">Jelöljön ki egy kikölcsönzendő példányt!</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>It appears that the copy you&apos;ve selected is either unavailable or does not exist.</source>
-        <translation>Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Please select a future Due Date.</source>
-        <translation>Egy jövőbeli dátumot válasszon ki!</translation>
+        <translation type="obsolete">Egy jövőbeli dátumot válasszon ki!</translation>
     </message>
     <message>
-        <location line="+21"/>
-        <location line="+4"/>
-        <source>Unable to determine the selected copy&apos;s availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
         <source>The copy that you have selected is either unavailable or is reserved.</source>
-        <translation>Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt példány hozzáférhetetlen vagy nem létezik.</translation>
     </message>
     <message>
-        <location line="+29"/>
-        <location line="+3"/>
-        <source>Unable to create a reserve record.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <source>Unable to create a history record.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+100"/>
-        <location line="+10"/>
         <source>Row number </source>
-        <translation>Sor: </translation>
+        <translation type="obsolete">Sor: </translation>
     </message>
     <message>
-        <location line="-9"/>
         <source> contains an empty Barcode.</source>
-        <translation> üres vonalkódot tartalmaz.</translation>
+        <translation type="obsolete"> üres vonalkódot tartalmaz.</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source> contains a duplicate Barcode.</source>
-        <translation> nem egyedi vonalkódot tartalmaz.</translation>
+        <translation type="obsolete"> nem egyedi vonalkódot tartalmaz.</translation>
     </message>
     <message>
-        <location line="+21"/>
-        <location line="+3"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
         <source>Rollback failure.</source>
-        <translation>Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Unable to save the copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
-        <source>Unable to commit the copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+57"/>
-        <source>Unable to purge copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
         <source>Saving the copy data...</source>
-        <translation>Példány adatainak mentése...</translation>
-    </message>
-    <message>
-        <location line="+41"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>Unable to create copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Példány adatainak mentése...</translation>
     </message>
 </context>
 <context>
     <name>copy_editor_book</name>
     <message>
-        <location filename="../Source/copy_editor_book.cc" line="+48"/>
         <source>BiblioteQ: Copy Browser (%1)</source>
-        <translation>BiblioteQ: Példány Böngésző (%1)</translation>
+        <translation type="obsolete">BiblioteQ: Példány Böngésző (%1)</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Copy Browser</source>
-        <translation>BiblioteQ: Példány Böngésző</translation>
+        <translation type="obsolete">BiblioteQ: Példány Böngésző</translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+7"/>
-        <location line="+26"/>
-        <location line="+375"/>
-        <location line="+10"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-417"/>
         <source>Please select the copy that you intend to delete.</source>
-        <translation>Válassza ki a törlendő példányt!</translation>
+        <translation type="obsolete">Válassza ki a törlendő példányt!</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>You must have at least one copy.</source>
-        <translation>Legalább egy példány szükséges.</translation>
+        <translation type="obsolete">Legalább egy példány szükséges.</translation>
     </message>
     <message>
-        <location line="+26"/>
         <source>It appears that the copy you selected to delete is reserved.</source>
-        <translation>Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
+        <translation type="obsolete">Úgy tűnik a példány amit tőrleni szeretne kikölcsönzött.</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <location line="+57"/>
-        <location line="+183"/>
-        <location line="+157"/>
-        <location line="+42"/>
-        <location line="+13"/>
-        <location line="+18"/>
-        <location line="+105"/>
-        <location line="+53"/>
-        <location line="+9"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-636"/>
-        <location line="+4"/>
-        <source>Unable to determine the reservation status of the selected copy.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+396"/>
-        <location line="+57"/>
-        <location line="+18"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-442"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="+25"/>
-        <source>Unable to retrieve the minimum number of days.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
         <source>&amp;Reserve</source>
-        <translation>Kikölcsönzés</translation>
+        <translation type="obsolete">Kikölcsönzés</translation>
     </message>
     <message>
-        <location line="+20"/>
         <source>Title</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Barcode</source>
-        <translation>Vonalkód</translation>
+        <translation type="obsolete">Vonalkód</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Availability</source>
-        <translation>Hozzáférhetőség</translation>
+        <translation type="obsolete">Hozzáférhetőség</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Originality</source>
-        <translation>Eredetiség</translation>
+        <translation type="obsolete">Eredetiség</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Condition</source>
-        <translation>Állapot</translation>
+        <translation type="obsolete">Állapot</translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+132"/>
-        <location line="+339"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-470"/>
-        <source>Constructing objects...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+18"/>
         <source>Black &amp; White Copy</source>
-        <translation>Fekete-fehér Másolat</translation>
+        <translation type="obsolete">Fekete-fehér Másolat</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Color Copy</source>
-        <translation>Színes Másolat</translation>
+        <translation type="obsolete">Színes Másolat</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Original</source>
-        <translation>Eredeti</translation>
+        <translation type="obsolete">Eredeti</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>As New</source>
-        <translation>Minha Új</translation>
+        <translation type="obsolete">Minha Új</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Binding Copy</source>
-        <translation>Köteles Példány</translation>
+        <translation type="obsolete">Köteles Példány</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Book Club</source>
-        <translation>Könvy Klub</translation>
+        <translation type="obsolete">Könvy Klub</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Ex-Library</source>
-        <translation>Volt-Könyvtári</translation>
+        <translation type="obsolete">Volt-Könyvtári</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Fair</source>
-        <translation>Elfogadható</translation>
+        <translation type="obsolete">Elfogadható</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Fine</source>
-        <translation>Jobb</translation>
+        <translation type="obsolete">Jobb</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Good</source>
-        <translation>Jó</translation>
+        <translation type="obsolete">Jó</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Poor</source>
-        <translation>Rossz</translation>
+        <translation type="obsolete">Rossz</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Very Good</source>
-        <translation>Nagyon Jó</translation>
+        <translation type="obsolete">Nagyon Jó</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+37"/>
-        <location line="+233"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-269"/>
-        <source>Unable to allocate memory for the &quot;combobox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+48"/>
-        <source>Unable to retrieve copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
         <source>Retrieving copy information...</source>
-        <translation>Példány adatainak lekérése...</translation>
+        <translation type="obsolete">Példány adatainak lekérése...</translation>
     </message>
     <message>
-        <location line="+119"/>
-        <location line="+10"/>
         <source>Row number </source>
-        <translation>Sor: </translation>
+        <translation type="obsolete">Sor: </translation>
     </message>
     <message>
-        <location line="-9"/>
         <source> contains an empty Barcode.</source>
-        <translation> üres vonalkódot tartalmaz.</translation>
+        <translation type="obsolete"> üres vonalkódot tartalmaz.</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source> contains a duplicate Barcode.</source>
-        <translation> nem egyedi vonalkódot tartalmaz.</translation>
+        <translation type="obsolete"> nem egyedi vonalkódot tartalmaz.</translation>
     </message>
     <message>
-        <location line="+21"/>
-        <location line="+3"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+25"/>
-        <source>Unable to allocate memory for the &quot;copy&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Unable to save the item&apos;s quantity.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
         <source>Rollback failure.</source>
-        <translation>Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Unable to save the copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
-        <source>Unable to commit the copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+100"/>
-        <source>Unable to purge copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
         <source>Saving the copy data...</source>
-        <translation>Példány adatainak mentése...</translation>
-    </message>
-    <message>
-        <location line="+43"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>Unable to create copy data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Példány adatainak mentése...</translation>
     </message>
 </context>
 <context>
     <name>copybrowser</name>
     <message>
-        <location filename="../UI/copybrowser.ui" line="+20"/>
+        <location filename="../UI/biblioteq_copybrowser.ui" line="+20"/>
         <source>BiblioteQ: Copies Browser</source>
         <translation>BiblioteQ: Példány Böngésző</translation>
     </message>
     <message>
-        <location line="+31"/>
         <source>Due Date</source>
-        <translation>Esedékesség</translation>
+        <translation type="obsolete">Esedékesség</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+31"/>
+        <source>&amp;Due Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+22"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+56"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -1806,7 +7817,7 @@
 <context>
     <name>customquery</name>
     <message>
-        <location filename="../UI/customquery.ui" line="+14"/>
+        <location filename="../UI/biblioteq_customquery.ui" line="+14"/>
         <source>BiblioteQ: Custom Query</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1839,7 +7850,7 @@
 <context>
     <name>dbEnumerations</name>
     <message>
-        <location filename="../UI/dbenumerations.ui" line="+14"/>
+        <location filename="../UI/biblioteq_dbenumerations.ui" line="+14"/>
         <source>BiblioteQ: Database Enumerations Browser</source>
         <translation>BiblioteQ: Adatbázis Felsorolások</translation>
     </message>
@@ -1849,29 +7860,29 @@
         <translation>Könyv Kötés Típusok</translation>
     </message>
     <message>
-        <location line="+25"/>
-        <location line="+78"/>
+        <location line="+29"/>
+        <location line="+82"/>
         <source>Add CD Format</source>
         <translation>CD Formátum Hozzáadása</translation>
     </message>
     <message>
-        <location line="-61"/>
-        <location line="+78"/>
+        <location line="-65"/>
+        <location line="+82"/>
         <source>Remove CD Format</source>
         <translation>CD Formátum Törlése</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-46"/>
         <source>CD Formats</source>
         <translation>CD Formátumok</translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+82"/>
         <source>DVD Aspect Ratios</source>
         <translation>DVD Képarányok</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add DVD Aspect Ratio</source>
         <translation>DVD Képarány Hozzáadása</translation>
     </message>
@@ -1886,7 +7897,7 @@
         <translation>DVD Besorolások</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add DVD Rating</source>
         <translation>DVD Besorolás Hozzáadása</translation>
     </message>
@@ -1901,7 +7912,7 @@
         <translation>DVD Régiók</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add DVD Region</source>
         <translation>DVD Régió Hozzáadása</translation>
     </message>
@@ -1916,7 +7927,7 @@
         <translation>Nyelvek</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add Language</source>
         <translation>Nyelv Hozzáadása</translation>
     </message>
@@ -1931,13 +7942,13 @@
         <translation>Helyek</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <location line="+202"/>
+        <location line="+14"/>
+        <location line="+212"/>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-207"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -1957,7 +7968,7 @@
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add Monetary Unit</source>
         <translation>Pénzegység Hozzáadása</translation>
     </message>
@@ -1972,7 +7983,7 @@
         <translation>Ajánlott Minimum Kölcsönzése Tartam</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+14"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2056,7 +8067,7 @@
         <translation>Videójáték Rendszertípus</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add Video Game Platform</source>
         <translation>Hozzáadás</translation>
     </message>
@@ -2071,7 +8082,7 @@
         <translation>Videójáték Besorolások</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+29"/>
         <source>Add Video Game Rating</source>
         <translation>Videójáték Besorolás Hozzáadása</translation>
     </message>
@@ -2099,187 +8110,95 @@
 <context>
     <name>dbenumerations</name>
     <message>
-        <location filename="../Source/dbenumerations.cc" line="+268"/>
-        <location line="+278"/>
-        <location line="+9"/>
-        <location line="+44"/>
-        <location line="+79"/>
-        <location line="+69"/>
-        <location line="+14"/>
-        <location line="+13"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-505"/>
-        <source>Unable to retrieve the contents of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <location line="+333"/>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
-        <location line="-303"/>
-        <location line="+117"/>
         <source>Book</source>
-        <translation>Könvy</translation>
+        <translation type="obsolete">Könvy</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>DVD</source>
-        <translation>DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>Journal</source>
-        <translation>Folyóirat</translation>
+        <translation type="obsolete">Folyóirat</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>Magazine</source>
-        <translation>Magazin</translation>
+        <translation type="obsolete">Magazin</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>Music CD</source>
-        <translation>Zene CD</translation>
+        <translation type="obsolete">Zene CD</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>Photograph Collection</source>
-        <translation>Fénykép Gyüjtemény</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény</translation>
     </message>
     <message>
-        <location line="-116"/>
-        <location line="+117"/>
         <source>Video Game</source>
-        <translation>Videójáték</translation>
+        <translation type="obsolete">Videójáték</translation>
     </message>
     <message>
-        <location line="-42"/>
         <source>Book Binding</source>
-        <translation>Könyv Kötés</translation>
+        <translation type="obsolete">Könyv Kötés</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>CD Format</source>
-        <translation>CD Formátum</translation>
+        <translation type="obsolete">CD Formátum</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>DVD Aspect Ratio</source>
-        <translation>DVD Képarány*</translation>
+        <translation type="obsolete">DVD Képarány*</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>DVD Rating</source>
-        <translation>DVD Besorolás</translation>
+        <translation type="obsolete">DVD Besorolás</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>DVD Region</source>
-        <translation>DVD Régió</translation>
+        <translation type="obsolete">DVD Régió</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Language</source>
-        <translation>Nyelv</translation>
+        <translation type="obsolete">Nyelv</translation>
     </message>
     <message>
-        <location line="+44"/>
         <source>Monetary Unit</source>
-        <translation>Pénzegység</translation>
+        <translation type="obsolete">Pénzegység</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Video Game Platform</source>
-        <translation>Videójáték Rendszertípus</translation>
+        <translation type="obsolete">Videójáték Rendszertípus</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Video Game Rating</source>
-        <translation>Videójáték Besorolás</translation>
+        <translation type="obsolete">Videójáték Besorolás</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
-        <source>An error occurred while attempting to remove entries from the %1 table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+44"/>
         <source>Unable to create an entry in </source>
-        <translation>Bejegyzés létrehozása sikertelen a táblázatban:</translation>
+        <translation type="obsolete">Bejegyzés létrehozása sikertelen a táblázatban:</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+78"/>
-        <source>Unable to create the location (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <location line="+68"/>
         <source>, </source>
-        <translation type="unfinished">,</translation>
+        <translation type="obsolete">,</translation>
     </message>
     <message>
-        <location line="-66"/>
-        <location line="+68"/>
-        <source>).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-4"/>
-        <source>Unable to create the minimum day (</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>An error occurred while attempting to save the database enumerations.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
 </context>
 <context>
     <name>dvdDialog</name>
     <message>
-        <location filename="../UI/dvdinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_dvdinfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -2315,7 +8234,7 @@
         <translation>Besorolás</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+34"/>
         <source>Actor(s)</source>
         <translation>Színész(ek)</translation>
     </message>
@@ -2345,12 +8264,12 @@
         <translation>Térség</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Aspect Ratio</source>
         <translation>Képarány</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+33"/>
         <source>hh:mm:ss</source>
         <translation>hh:mm:ss</translation>
     </message>
@@ -2370,7 +8289,7 @@
         <translation>Megjelenési Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -2395,12 +8314,12 @@
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Monetary Units</source>
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
@@ -2420,7 +8339,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -2458,12 +8377,12 @@
 <context>
     <name>errordialog</name>
     <message>
-        <location filename="../UI/errordiag.ui" line="+14"/>
+        <location filename="../UI/biblioteq_errordiag.ui" line="+14"/>
         <source>BiblioteQ: Error Log</source>
         <translation>BiblioteQ: Hiba Napló</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+45"/>
         <source>Event Time</source>
         <translation>Esemény Ideje</translation>
     </message>
@@ -2509,33 +8428,19 @@
     </message>
 </context>
 <context>
-    <name>generic_thread</name>
-    <message>
-        <location filename="../Source/generic_thread.cc" line="+66"/>
-        <source>Unable to read </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>. This file is required by BiblioteQ.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+90"/>
-        <location line="+1"/>
-        <source>Z39.50 Empty Results Set</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>historyDialog</name>
     <message>
-        <location filename="../UI/history.ui" line="+14"/>
+        <location filename="../UI/biblioteq_history.ui" line="+14"/>
         <source>BiblioteQ: Member&apos;s Reservation History</source>
         <translation>BiblioteQ: Tag Kölcsönzési Előzményei</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+11"/>
+        <source>&amp;Do not record reservation history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+44"/>
         <source>Member ID</source>
         <translation>Tag Azonosító</translation>
     </message>
@@ -2623,12 +8528,12 @@
 <context>
     <name>informationDialog</name>
     <message>
-        <location filename="../UI/bookinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_bookinfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -2690,7 +8595,7 @@
         <translation>Kiadás</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+34"/>
         <source>Author(s)</source>
         <translation>Szerző(k)</translation>
     </message>
@@ -2700,7 +8605,7 @@
         <translation>Könyv Kötés Típus</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+37"/>
         <source>LC Control Number</source>
         <translation>&quot;LC Control&quot; Szám</translation>
     </message>
@@ -2725,12 +8630,12 @@
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+34"/>
         <source>Publication Date</source>
         <translation>Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -2755,7 +8660,7 @@
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+37"/>
         <source>&amp;Copies</source>
         <translation>Példányok</translation>
     </message>
@@ -2770,7 +8675,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -2805,7 +8710,7 @@
         <translation>Eredetiség</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
         <source>Black &amp; White Copy</source>
         <translation>Fekete-fehér Másolat</translation>
     </message>
@@ -2825,7 +8730,7 @@
         <translation>Állapot</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
         <source>As New</source>
         <translation>Minha Új</translation>
     </message>
@@ -2903,12 +8808,12 @@
 <context>
     <name>magDialog</name>
     <message>
-        <location filename="../UI/maginfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -2984,7 +8889,7 @@
         <translation>Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -3009,12 +8914,12 @@
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Monetary Units</source>
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
@@ -3034,7 +8939,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -3087,27 +8992,68 @@
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../UI/mainwindow.ui" line="+14"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+13"/>
+        <source>&amp;Search</source>
+        <translation type="unfinished">Keresés</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>ID</source>
+        <translation type="unfinished">Azonosító</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Title</source>
+        <translation type="unfinished">Cím</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Case-Insensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Clear the main table and reset the nearby search widgets.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+195"/>
         <source>Previous Page</source>
         <translation>Előző Oldal</translation>
     </message>
     <message>
         <location line="+20"/>
+        <location line="+895"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="-882"/>
         <source>Next Page</source>
         <translation>Következő Oldal</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+56"/>
         <source>&amp;Help</source>
         <translation>Segítség</translation>
     </message>
@@ -3117,7 +9063,7 @@
         <translation>Eszközök</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+12"/>
         <source>&amp;File</source>
         <translation>Fájl</translation>
     </message>
@@ -3142,7 +9088,7 @@
         <translation>Nézet</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+10"/>
         <source>&amp;Options</source>
         <translation>Beállítások</translation>
     </message>
@@ -3167,7 +9113,12 @@
         <translation>Kedvence SRU Oldal</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+5"/>
+        <source>P&amp;hotographs per Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
         <source>Connect Toobar</source>
         <translation>Csatlakozás Eszköztár</translation>
     </message>
@@ -3310,12 +9261,12 @@
     <message>
         <location line="+3"/>
         <location line="+3"/>
-        <location line="+140"/>
+        <location line="+137"/>
         <source>Database Search</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location line="-137"/>
+        <location line="-134"/>
         <source>Ctrl+F</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3370,7 +9321,7 @@
         <translation>Cikk Hozzáadása</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>Delete Selected Item(s)</source>
         <translation>Kijelölt Cikk(ek) Törlése</translation>
     </message>
@@ -3582,388 +9533,269 @@
     </message>
     <message>
         <location line="+5"/>
+        <source>&amp;Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Upgrade SQLite Schema</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>None</source>
-        <translation>Semelyik</translation>
+        <translation type="obsolete">Semelyik</translation>
     </message>
 </context>
 <context>
     <name>main_table</name>
     <message>
-        <location filename="../Source/main_table.cc" line="+57"/>
-        <location line="+17"/>
         <source>Borrower</source>
-        <translation>Kölcsönző</translation>
+        <translation type="obsolete">Kölcsönző</translation>
     </message>
     <message>
-        <location line="-16"/>
-        <location line="+17"/>
         <source>Member ID</source>
-        <translation>Tag Azonosító</translation>
+        <translation type="obsolete">Tag Azonosító</translation>
     </message>
     <message>
-        <location line="-12"/>
         <source>Barcode</source>
-        <translation>Vonalkód</translation>
+        <translation type="obsolete">Vonalkód</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Reservation Date</source>
-        <translation>Kölcsönzési Dátum</translation>
+        <translation type="obsolete">Kölcsönzési Dátum</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Due Date</source>
-        <translation>Esedékesség</translation>
+        <translation type="obsolete">Esedékesség</translation>
     </message>
     <message>
-        <location line="+15"/>
         <source>Request Date</source>
-        <translation>Lefoglalási Dátum</translation>
+        <translation type="obsolete">Lefoglalási Dátum</translation>
     </message>
     <message>
-        <location line="+4"/>
-        <location line="+42"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+17"/>
         <source>Title</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location line="-238"/>
         <source>ID Number</source>
-        <translation>Azonosító Szám</translation>
+        <translation type="obsolete">Azonosító Szám</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <location line="+42"/>
-        <location line="+93"/>
-        <location line="+106"/>
         <source>Publisher</source>
-        <translation>Kiadó</translation>
+        <translation type="obsolete">Kiadó</translation>
     </message>
     <message>
-        <location line="-240"/>
-        <location line="+42"/>
-        <location line="+93"/>
         <source>Publication Date</source>
-        <translation>Kiadási Dátum</translation>
+        <translation type="obsolete">Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="-134"/>
-        <location line="+44"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
         <source>Categories</source>
-        <translation>Kategóriák</translation>
+        <translation type="obsolete">Kategóriák</translation>
     </message>
     <message>
-        <location line="-181"/>
-        <location line="+44"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
         <source>Language</source>
-        <translation>Nyelv</translation>
+        <translation type="obsolete">Nyelv</translation>
     </message>
     <message>
-        <location line="-241"/>
-        <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
         <source>Price</source>
-        <translation>Ár</translation>
+        <translation type="obsolete">Ár</translation>
     </message>
     <message>
-        <location line="-242"/>
-        <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
         <source>Monetary Units</source>
-        <translation>Pénzegység</translation>
+        <translation type="obsolete">Pénzegység</translation>
     </message>
     <message>
-        <location line="-242"/>
-        <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
         <source>Quantity</source>
-        <translation>Mennyiség</translation>
+        <translation type="obsolete">Mennyiség</translation>
     </message>
     <message>
-        <location line="-242"/>
-        <location line="+46"/>
-        <location line="+50"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+32"/>
-        <location line="+28"/>
         <source>Location</source>
-        <translation>Hely</translation>
+        <translation type="obsolete">Hely</translation>
     </message>
     <message>
-        <location line="-229"/>
-        <location line="+37"/>
-        <location line="+49"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+58"/>
         <source>Availability</source>
-        <translation>Hozzáférhetőség</translation>
+        <translation type="obsolete">Hozzáférhetőség</translation>
     </message>
     <message>
-        <location line="-229"/>
-        <location line="+37"/>
-        <location line="+49"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+58"/>
         <source>Total Reserved</source>
-        <translation>Összes Kölcsönzött</translation>
+        <translation type="obsolete">Összes Kölcsönzött</translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+35"/>
-        <location line="+47"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+30"/>
-        <location line="+28"/>
         <source>Type</source>
-        <translation>Típus</translation>
+        <translation type="obsolete">Típus</translation>
     </message>
     <message>
-        <location line="-212"/>
         <source>Author(s)</source>
-        <translation>Szerző(k)</translation>
+        <translation type="obsolete">Szerző(k)</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <location line="+93"/>
-        <location line="+106"/>
         <source>Place of Publication</source>
-        <translation>Megjelenés Helye</translation>
+        <translation type="obsolete">Megjelenés Helye</translation>
     </message>
     <message>
-        <location line="-198"/>
         <source>Edition</source>
-        <translation>Kiadás</translation>
+        <translation type="obsolete">Kiadás</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>ISBN-10</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+4"/>
         <source>Book Binding Type</source>
-        <translation>Könyv Kötés Típus</translation>
+        <translation type="obsolete">Könyv Kötés Típus</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>ISBN-13</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <location line="+92"/>
         <source>LC Control Number</source>
-        <translation>&quot;LC Control&quot; Szám</translation>
+        <translation type="obsolete">&quot;LC Control&quot; Szám</translation>
     </message>
     <message>
-        <location line="-91"/>
-        <location line="+92"/>
         <source>Call Number</source>
-        <translation>Hívószám</translation>
+        <translation type="obsolete">Hívószám</translation>
     </message>
     <message>
-        <location line="-91"/>
         <source>Dewey Class Number</source>
-        <translation>Dewey Osztály Szám</translation>
+        <translation type="obsolete">Dewey Osztály Szám</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Originality</source>
-        <translation>Eredetiség</translation>
+        <translation type="obsolete">Eredetiség</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Condition</source>
-        <translation>Állapot</translation>
+        <translation type="obsolete">Állapot</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+87"/>
         <source>Format</source>
-        <translation>Formátum</translation>
+        <translation type="obsolete">Formátum</translation>
     </message>
     <message>
-        <location line="-86"/>
         <source>Studio</source>
-        <translation>Stúdió</translation>
+        <translation type="obsolete">Stúdió</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <location line="+87"/>
-        <location line="+61"/>
         <source>Release Date</source>
-        <translation>Megjelenési Dátum</translation>
+        <translation type="obsolete">Megjelenési Dátum</translation>
     </message>
     <message>
-        <location line="-147"/>
-        <location line="+87"/>
         <source>Number of Discs</source>
-        <translation>Lemezek Száma</translation>
+        <translation type="obsolete">Lemezek Száma</translation>
     </message>
     <message>
-        <location line="-86"/>
-        <location line="+87"/>
         <source>Runtime</source>
-        <translation>Futásidő</translation>
+        <translation type="obsolete">Futásidő</translation>
     </message>
     <message>
-        <location line="-84"/>
-        <location line="+147"/>
         <source>UPC</source>
-        <translation>UPC</translation>
+        <translation type="obsolete">UPC</translation>
     </message>
     <message>
-        <location line="-142"/>
         <source>Rating</source>
-        <translation>Besorolás</translation>
+        <translation type="obsolete">Besorolás</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Region</source>
-        <translation>Térség</translation>
+        <translation type="obsolete">Térség</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Aspect Ratio</source>
-        <translation>Képarány</translation>
+        <translation type="obsolete">Képarány</translation>
     </message>
     <message>
-        <location line="+32"/>
         <source>Volume</source>
-        <translation>Kötet</translation>
+        <translation type="obsolete">Kötet</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Issue</source>
-        <translation>Kiadvány</translation>
+        <translation type="obsolete">Kiadvány</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>ISSN</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+7"/>
         <source>Dewey Number</source>
-        <translation>Dewey Szám</translation>
+        <translation type="obsolete">Dewey Szám</translation>
     </message>
     <message>
-        <location line="+29"/>
         <source>Artist</source>
-        <translation>Művész</translation>
+        <translation type="obsolete">Művész</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Recording Label</source>
-        <translation>Lemezkiadó</translation>
+        <translation type="obsolete">Lemezkiadó</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Catalog Number</source>
-        <translation>Katalógus Szám</translation>
+        <translation type="obsolete">Katalógus Szám</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Audio</source>
-        <translation>Hang</translation>
+        <translation type="obsolete">Hang</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Recording Type</source>
-        <translation>Felvétel Típus</translation>
+        <translation type="obsolete">Felvétel Típus</translation>
     </message>
     <message>
-        <location line="+29"/>
         <source>ID</source>
-        <translation>Azonosító</translation>
+        <translation type="obsolete">Azonosító</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Photograph Count</source>
-        <translation>Fénykép db. Szám</translation>
+        <translation type="obsolete">Fénykép db. Szám</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>About</source>
-        <translation>A Cikkről</translation>
+        <translation type="obsolete">A Cikkről</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Game Rating</source>
-        <translation>Játék Besorolása</translation>
+        <translation type="obsolete">Játék Besorolása</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Platform</source>
-        <translation>Rendszer Típus</translation>
+        <translation type="obsolete">Rendszer Típus</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Mode</source>
-        <translation>Mód</translation>
+        <translation type="obsolete">Mód</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>Genres</source>
-        <translation>Műfajok</translation>
+        <translation type="obsolete">Műfajok</translation>
     </message>
 </context>
 <context>
     <name>membersBrowser</name>
     <message>
-        <location filename="../UI/members_browser.ui" line="+14"/>
+        <location filename="../UI/biblioteq_members_browser.ui" line="+14"/>
         <source>BiblioteQ: Members Browser</source>
         <translation>BiblioteQ: Tag Böngésző</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>Filter</source>
-        <translation>Szűrő</translation>
+        <translation type="obsolete">Szűrő</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <location line="+57"/>
+        <location line="+30"/>
+        <location line="+66"/>
         <source>Member ID</source>
         <translation>Tag Azonosító</translation>
     </message>
     <message>
-        <location line="-52"/>
-        <location line="+62"/>
+        <location line="-61"/>
+        <location line="+71"/>
         <source>Last Name</source>
         <translation>Vezeték Név</translation>
     </message>
     <message>
-        <location line="-44"/>
         <source>Apply Filter</source>
-        <translation>Alkalmaz</translation>
+        <translation type="obsolete">Alkalmaz</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="-90"/>
+        <source>&amp;Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <source>&amp;Apply Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
         <source>First Name</source>
         <translation>Utónév</translation>
     </message>
@@ -4066,27 +9898,39 @@
 <context>
     <name>passSelect</name>
     <message>
-        <location filename="../UI/password.ui" line="+20"/>
+        <location filename="../UI/biblioteq_password.ui" line="+20"/>
         <source>BiblioteQ: Password Selection</source>
         <translation>BiblioteQ: Jelszó Kiválasztása</translation>
     </message>
     <message>
-        <location line="+34"/>
         <source>Userid</source>
-        <translation>Felhasználó</translation>
+        <translation type="obsolete">Felhasználó</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>New Password</source>
-        <translation>Új Jelszó</translation>
+        <translation type="obsolete">Új Jelszó</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Confirm Password</source>
-        <translation>Megerősítése</translation>
+        <translation type="obsolete">Megerősítése</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+34"/>
+        <source>&amp;Userid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;New Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Confirm Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+56"/>
         <source>&amp;Save</source>
         <translation>Mentés</translation>
     </message>
@@ -4099,7 +9943,7 @@
 <context>
     <name>passwordDialog</name>
     <message>
-        <location filename="../UI/passwordPrompt.ui" line="+14"/>
+        <location filename="../UI/biblioteq_passwordPrompt.ui" line="+14"/>
         <source>BiblioteQ: Proxy Authentication Required</source>
         <translation>BiblioteQ: Proxi Belépés Szükséges</translation>
     </message>
@@ -4110,68 +9954,76 @@
     </message>
     <message>
         <location line="+9"/>
-        <source>Username</source>
-        <translation>Felhasználó</translation>
+        <source>&amp;Username</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
+        <source>&amp;Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="obsolete">Felhasználó</translation>
+    </message>
+    <message>
         <source>Password</source>
-        <translation>Jelszó</translation>
+        <translation type="obsolete">Jelszó</translation>
     </message>
 </context>
 <context>
     <name>pcDialog</name>
     <message>
-        <location filename="../UI/photographinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_photographinfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>About Collection</source>
         <translation>A Gyüjteményről</translation>
     </message>
     <message>
         <location line="+12"/>
-        <location line="+206"/>
+        <location line="+214"/>
         <source>Thumbnail</source>
         <translation>Kicsinyített</translation>
     </message>
     <message>
-        <location line="-178"/>
+        <location line="-186"/>
         <source>&amp;Select</source>
         <translation>Kiválasztás</translation>
     </message>
     <message>
         <location line="+28"/>
-        <location line="+274"/>
+        <location line="+285"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="-264"/>
+        <location line="-275"/>
         <source>About</source>
         <translation>A Cikkről</translation>
     </message>
     <message>
         <location line="+17"/>
-        <location line="+169"/>
+        <location line="+180"/>
         <source>Notes</source>
         <translation>Hozzászólások</translation>
     </message>
     <message>
-        <location line="-152"/>
-        <location line="+332"/>
+        <location line="-163"/>
+        <location line="+343"/>
         <source>ID</source>
         <translation>Azonosító</translation>
     </message>
     <message>
-        <location line="-322"/>
+        <location line="-333"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+34"/>
         <source>Collection Items</source>
         <translation>Gyűjtemény Elemek</translation>
     </message>
@@ -4181,7 +10033,7 @@
         <translation>Oldal</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+37"/>
         <source>Item Information</source>
         <translation>Cikk Adatai</translation>
     </message>
@@ -4191,7 +10043,7 @@
         <translation>Alkotó(k)</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+15"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -4261,7 +10113,12 @@
         <translation>Cikkek Exportálása</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+22"/>
+        <source>&amp;Import Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+13"/>
         <source>&amp;Print</source>
         <translation>Nyomtatás</translation>
     </message>
@@ -4274,7 +10131,7 @@
 <context>
     <name>photographDialog</name>
     <message>
-        <location filename="../UI/photograph.ui" line="+14"/>
+        <location filename="../UI/biblioteq_photograph.ui" line="+14"/>
         <source>BiblioteQ: Photograph Browser</source>
         <translation>BiblioteQ: Fénykép Böngésző</translation>
     </message>
@@ -4294,7 +10151,7 @@
         <translation>Alkotó(k)</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -4372,4963 +10229,2696 @@
 <context>
     <name>photographView</name>
     <message>
-        <location filename="../UI/photographview.ui" line="+14"/>
+        <location filename="../UI/biblioteq_photographview.ui" line="+14"/>
         <source>BiblioteQ: Photograph View</source>
         <translation>BiblioteQ: Fénykép Nézet</translation>
     </message>
     <message>
-        <location line="+44"/>
+        <location line="+29"/>
+        <source>&amp;View Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>100%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>80%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>50%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>25%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Previous Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Next Photograph</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>qtbook</name>
     <message>
-        <location filename="../Include/qtbook.h" line="+177"/>
-        <location filename="../Source/qtbook_a.cc" line="+1351"/>
-        <location line="+214"/>
-        <location line="+307"/>
-        <location line="+1016"/>
-        <location line="+686"/>
-        <location line="+44"/>
-        <location line="+2744"/>
-        <location line="+1865"/>
-        <location line="+485"/>
-        <location line="+213"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Your changes have not been saved. Continue closing?
 %1</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?
 %1</translation>
     </message>
     <message>
-        <location filename="../Source/qtbook_a.cc" line="-8716"/>
         <source>BiblioteQ has exited.</source>
-        <translation>A BiblioteQ kilépett.</translation>
+        <translation type="obsolete">A BiblioteQ kilépett.</translation>
     </message>
     <message>
-        <location line="+28"/>
-        <source> in file </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <location line="+4"/>
-        <source>, line </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-3"/>
-        <location line="+4"/>
-        <location line="+2226"/>
-        <location line="+470"/>
-        <location line="+14"/>
-        <location line="+750"/>
-        <location line="+2"/>
-        <location line="+104"/>
-        <location line="+8"/>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+13"/>
-        <location line="+8"/>
-        <location line="+682"/>
-        <location line="+3420"/>
-        <location line="+15"/>
-        <location line="+59"/>
-        <location line="+28"/>
-        <location line="+18"/>
-        <location line="+18"/>
-        <location line="+14"/>
         <source>.</source>
-        <translation type="unfinished">.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
-        <location line="-7870"/>
-        <source>An unknown error occurred in file </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+67"/>
         <source>Add &amp;Book</source>
-        <translation>Könyv Hozzáadása</translation>
+        <translation type="obsolete">Könyv Hozzáadása</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Add &amp;DVD</source>
-        <translation>DVD Hozzáadása</translation>
+        <translation type="obsolete">DVD Hozzáadása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Add &amp;Journal</source>
-        <translation>Folyóirat Hozzáadása</translation>
+        <translation type="obsolete">Folyóirat Hozzáadása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Add &amp;Magazine</source>
-        <translation>Magazin Hozzáadása</translation>
+        <translation type="obsolete">Magazin Hozzáadása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Add Music &amp;CD</source>
-        <translation>Zene CD Hozzáadása</translation>
+        <translation type="obsolete">Zene CD Hozzáadása</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Add &amp;Photograph Collection</source>
-        <translation>Fénykép Gyüjtemény Hozzáadása</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény Hozzáadása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Add &amp;Video Game</source>
-        <translation>Videójáték Hozzáadása</translation>
+        <translation type="obsolete">Videójáték Hozzáadása</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>&amp;General Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Book Search</source>
-        <translation>Könvy Keresés</translation>
+        <translation type="obsolete">Könvy Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;DVD Search</source>
-        <translation>DVD Keresés</translation>
+        <translation type="obsolete">DVD Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Journal Search</source>
-        <translation>Folyóirat Keresés</translation>
+        <translation type="obsolete">Folyóirat Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Magazine Search</source>
-        <translation>Magazin Keresés</translation>
+        <translation type="obsolete">Magazin Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Music CD Search</source>
-        <translation>Zene CD Keresés</translation>
+        <translation type="obsolete">Zene CD Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Photograph Collection Search</source>
-        <translation>Fénykép Gyüjtemény Keresés</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Video Game Search</source>
-        <translation>Videójáték Keresés</translation>
+        <translation type="obsolete">Videójáték Keresés</translation>
     </message>
     <message>
-        <location line="+4"/>
-        <location line="+3838"/>
         <source>BiblioteQ</source>
-        <translation>BiblioteQ</translation>
+        <translation type="obsolete">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-3837"/>
         <source>Reset &amp;ID Number</source>
-        <translation>Azonosító Szám Visszaállítása</translation>
+        <translation type="obsolete">Azonosító Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publication Date</source>
-        <translation>Kiadási Dátum Visszaállítása</translation>
+        <translation type="obsolete">Kiadási Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publisher</source>
-        <translation>Kiadó Visszaállítása</translation>
+        <translation type="obsolete">Kiadó Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Categories</source>
-        <translation>Kategóriák Visszaállítása</translation>
+        <translation type="obsolete">Kategóriák Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Availability</source>
-        <translation>Hozzáférhetőség Visszaállítása</translation>
+        <translation type="obsolete">Hozzáférhetőség Visszaállítása</translation>
     </message>
     <message>
-        <location line="+340"/>
         <source>&amp;Unlimited Entries per Page</source>
-        <translation>Oldalanként Végtelen Bejegyzés</translation>
+        <translation type="obsolete">Oldalanként Végtelen Bejegyzés</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>&amp;%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+31"/>
         <source>Icons Mode</source>
-        <translation>Ikon Mód</translation>
+        <translation type="obsolete">Ikon Mód</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Table Mode</source>
-        <translation>Táblázat Mód</translation>
+        <translation type="obsolete">Táblázat Mód</translation>
     </message>
     <message>
-        <location line="+15"/>
         <source>&amp;Czech</source>
-        <translation>Cseh</translation>
+        <translation type="obsolete">Cseh</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Dutch (&amp;Belgium)</source>
-        <translation>Holland (Belgium)</translation>
+        <translation type="obsolete">Holland (Belgium)</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Dutch (&amp;Netherlands)</source>
-        <translation>Holland (Hollandia)</translation>
+        <translation type="obsolete">Holland (Hollandia)</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;English</source>
-        <translation>Angol</translation>
+        <translation type="obsolete">Angol</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;French</source>
-        <translation>Francia</translation>
+        <translation type="obsolete">Francia</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Hungarian</source>
-        <translation type="unfinished">Magyar</translation>
+        <translation type="obsolete">Magyar</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;German</source>
-        <translation>Német</translation>
+        <translation type="obsolete">Német</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>G&amp;reek</source>
-        <translation>Görög</translation>
+        <translation type="obsolete">Görög</translation>
     </message>
     <message>
-        <location line="+143"/>
         <source>Administrator Mode</source>
-        <translation>Adminisztrátor Mód</translation>
+        <translation type="obsolete">Adminisztrátor Mód</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Circulation Mode</source>
-        <translation>Cirkulációs Mód</translation>
+        <translation type="obsolete">Cirkulációs Mód</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Librarian Mode</source>
-        <translation>Könyvtáros Mód</translation>
+        <translation type="obsolete">Könyvtáros Mód</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Membership Mode</source>
-        <translation>Tagság Mód</translation>
+        <translation type="obsolete">Tagság Mód</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Privileged Mode</source>
-        <translation>Kiváltságos Mód</translation>
+        <translation type="obsolete">Kiváltságos Mód</translation>
     </message>
     <message>
-        <location line="+71"/>
-        <location line="+3098"/>
-        <location line="+933"/>
         <source>Item Requests</source>
-        <translation>Cikk Lefoglalások</translation>
+        <translation type="obsolete">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-3976"/>
-        <location line="+3085"/>
         <source>Disconnected</source>
-        <translation>Nincs Kapcsolódva</translation>
+        <translation type="obsolete">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3078"/>
-        <location line="+3084"/>
         <source>Standard User Mode</source>
-        <translation>Átlagfelhasználó Mód</translation>
+        <translation type="obsolete">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3077"/>
-        <location line="+4192"/>
         <source>Empty Error Log</source>
-        <translation>Üres Hiba Napló</translation>
+        <translation type="obsolete">Üres Hiba Napló</translation>
     </message>
     <message>
-        <location line="-4188"/>
-        <location line="+3080"/>
         <source>0 Results</source>
-        <translation>0 Eredmény</translation>
+        <translation type="obsolete">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-3045"/>
-        <location line="+24"/>
         <source>None</source>
-        <translation>Semelyik</translation>
+        <translation type="obsolete">Semelyik</translation>
     </message>
     <message>
-        <location line="+45"/>
         <source>BiblioteQ: About</source>
-        <translation>BiblioteQ: A Programról</translation>
+        <translation type="obsolete">BiblioteQ: A Programról</translation>
     </message>
     <message>
-        <location line="+69"/>
-        <location line="+12"/>
-        <location line="+13"/>
-        <location line="+547"/>
-        <location line="+25"/>
-        <location line="+71"/>
-        <location line="+340"/>
-        <location line="+25"/>
-        <location line="+101"/>
-        <location line="+4"/>
-        <location line="+22"/>
-        <location line="+6"/>
-        <location line="+18"/>
-        <location line="+26"/>
-        <location line="+399"/>
-        <location line="+38"/>
-        <location line="+18"/>
-        <location line="+4"/>
-        <location line="+14"/>
-        <location line="+7"/>
-        <location line="+16"/>
-        <location line="+780"/>
-        <location line="+15"/>
-        <location line="+50"/>
-        <location line="+19"/>
-        <location line="+21"/>
-        <location line="+560"/>
-        <location line="+129"/>
-        <location line="+52"/>
-        <location line="+52"/>
-        <location line="+75"/>
-        <location line="+163"/>
-        <location line="+28"/>
-        <location line="+1431"/>
-        <location line="+576"/>
-        <location line="+251"/>
-        <location line="+366"/>
-        <location line="+230"/>
-        <location line="+177"/>
-        <location line="+21"/>
-        <location line="+15"/>
-        <location line="+60"/>
-        <location line="+28"/>
-        <location line="+17"/>
-        <location line="+18"/>
-        <location line="+14"/>
-        <location line="+21"/>
-        <location line="+32"/>
-        <location line="+134"/>
-        <location line="+4"/>
-        <location line="+368"/>
-        <location line="+7"/>
-        <location filename="../Source/qtbook_b.cc" line="+2817"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-7419"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Unable to retrieve the locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="+57"/>
-        <location line="+215"/>
-        <location line="+225"/>
-        <location line="+54"/>
-        <location line="+25"/>
-        <location line="+312"/>
-        <location line="+17"/>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+8"/>
-        <location line="+8"/>
-        <location line="+8"/>
-        <location line="+38"/>
-        <location line="+576"/>
-        <location line="+32"/>
-        <location line="+902"/>
-        <location line="+10"/>
-        <location line="+905"/>
-        <location line="+156"/>
-        <location line="+28"/>
-        <location line="+28"/>
-        <location line="+10"/>
-        <location line="+44"/>
-        <location line="+1288"/>
-        <location line="+47"/>
-        <location line="+4"/>
-        <location line="+13"/>
-        <location line="+3"/>
-        <location line="+28"/>
-        <location line="+4"/>
-        <location line="+381"/>
-        <location line="+17"/>
-        <location line="+94"/>
-        <location line="+27"/>
-        <location line="+68"/>
-        <location line="+55"/>
-        <location line="+350"/>
-        <location line="+4"/>
-        <location line="+154"/>
-        <location line="+10"/>
-        <location line="+151"/>
-        <location line="+10"/>
-        <location line="+236"/>
-        <location line="+13"/>
-        <location line="+288"/>
-        <location line="+10"/>
-        <location line="+699"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-7573"/>
         <source>Please select at least one item to modify.</source>
-        <translation>Jelöljön ki legalább egy módosítandó cikket.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy módosítandó cikket.</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Are you sure that you wish to modify the </source>
-        <translation>Biztosan szeretné módositani a </translation>
+        <translation type="obsolete">Biztosan szeretné módositani a </translation>
     </message>
     <message>
-        <location line="+2"/>
-        <location line="+214"/>
-        <location line="+7361"/>
         <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
-        <translation> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
+        <translation type="obsolete"> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
     </message>
     <message>
-        <location line="-7397"/>
-        <location line="+215"/>
-        <location line="+65"/>
-        <location line="+7204"/>
-        <source>BiblioteQ: Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-7483"/>
-        <location line="+215"/>
-        <location line="+3218"/>
-        <location line="+4051"/>
-        <source>Unable to determine the selected item&apos;s type.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-7456"/>
         <source>Please select at least one item to view.</source>
-        <translation>Jelöljön ki legalább egy megtekintendő cikket.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy megtekintendő cikket.</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Are you sure that you wish to view the </source>
-        <translation>Biztosan meg szeretné tekinteni a </translation>
+        <translation type="obsolete">Biztosan meg szeretné tekinteni a </translation>
     </message>
     <message>
-        <location line="+220"/>
         <source>Please select an item to delete.</source>
-        <translation>Jelöljön ki egy törlendő cikket!</translation>
+        <translation type="obsolete">Jelöljön ki egy törlendő cikket!</translation>
     </message>
     <message>
-        <location line="+20"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+4"/>
-        <source>The main table does not contain enough information for item deletion.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <location line="+4"/>
-        <source>Unable to determine if the item has been reserved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+25"/>
-        <location line="+90"/>
-        <location line="+321"/>
-        <location line="+25"/>
-        <location line="+104"/>
-        <location line="+32"/>
-        <location line="+19"/>
-        <location line="+422"/>
-        <location line="+37"/>
-        <location line="+21"/>
-        <location line="+25"/>
-        <location line="+17"/>
-        <location line="+731"/>
-        <location line="+46"/>
-        <location line="+17"/>
-        <location line="+51"/>
-        <location line="+19"/>
-        <location line="+21"/>
-        <location line="+557"/>
-        <location line="+146"/>
-        <location line="+164"/>
-        <location line="+4"/>
-        <location line="+1615"/>
-        <location line="+576"/>
-        <location line="+254"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <location line="+354"/>
-        <location line="+232"/>
-        <location line="+176"/>
-        <location line="+198"/>
-        <location line="+28"/>
-        <location line="+163"/>
-        <location line="+6"/>
-        <location line="+421"/>
-        <location filename="../Source/qtbook_b.cc" line="+4"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-6915"/>
         <source>Reserved items may not be deleted.</source>
-        <translation>Kikölcsönzött cikkeket nem lehet törölni.</translation>
+        <translation type="obsolete">Kikölcsönzött cikkeket nem lehet törölni.</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <source>Unable to determine if the item has been requested.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
         <source>Requested items may not be deleted.</source>
-        <translation>Lefoglalt cikkeket nem lehet törölni.</translation>
+        <translation type="obsolete">Lefoglalt cikkeket nem lehet törölni.</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation>Biztosan szeretné véglegesen törölni a következő cikk(ek)et?</translation>
+        <translation type="obsolete">Biztosan szeretné véglegesen törölni a következő cikk(ek)et?</translation>
     </message>
     <message>
-        <location line="+11"/>
-        <location line="+2545"/>
-        <location line="+87"/>
-        <location line="+2718"/>
-        <location line="+539"/>
-        <location line="+210"/>
-        <location line="+257"/>
-        <location filename="../Source/qtbook_b.cc" line="+109"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-6355"/>
         <source>Deleting the selected item(s)...</source>
-        <translation>A kijelölt cikkek törlése...</translation>
+        <translation type="obsolete">A kijelölt cikkek törlése...</translation>
     </message>
     <message>
-        <location line="+38"/>
-        <source>Unable to delete the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>Unable to delete all or some of the selected items.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+181"/>
         <source>BiblioteQ: Create New Member</source>
-        <translation>BiblioteQ: Új Tag Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Új Tag Létrehozása</translation>
     </message>
     <message>
-        <location line="+50"/>
         <source>The Member ID must be at least five characters long.</source>
-        <translation>A Tag Azonosító legalább 5 kerekter kell legyen!</translation>
+        <translation type="obsolete">A Tag Azonosító legalább 5 kerekter kell legyen!</translation>
     </message>
     <message>
-        <location line="+17"/>
         <source>The Member ID </source>
-        <translation>A Tag azonosító: </translation>
+        <translation type="obsolete">A Tag azonosító: </translation>
     </message>
     <message>
-        <location line="+2"/>
         <source> already exists.</source>
-        <translation> már létezik.</translation>
+        <translation type="obsolete"> már létezik.</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>Please provide a valid First Name.</source>
-        <translation>Adjon meg egy érvényes Utónevet!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Utónevet!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a valid Last Name.</source>
-        <translation>Adjon meg egy érvényes Vezetéknevet!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Vezetéknevet!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a valid Street.</source>
-        <translation>Adjon meg egy érvényes Utcát!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Utcát!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a valid City.</source>
-        <translation>Adjon meg egy érvényes Várost!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Várost!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a ZIP Code.</source>
-        <translation>Adjon meg egy érvényes Irányító Számot!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Irányító Számot!</translation>
     </message>
     <message>
-        <location line="+26"/>
-        <location line="+4"/>
-        <source>Unable to determine the uniqueness of the proposed member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
         <source>An identical member already exists.</source>
-        <translation>Egy azonos tag már létezik!</translation>
+        <translation type="obsolete">Egy azonos tag már létezik!</translation>
     </message>
     <message>
-        <location line="+13"/>
-        <location line="+4"/>
-        <location line="+610"/>
-        <location line="+4"/>
-        <location line="+5030"/>
-        <location line="+4"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-5552"/>
-        <location line="+27"/>
-        <location line="+504"/>
-        <location line="+26"/>
-        <location line="+5216"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-5768"/>
-        <location line="+3"/>
-        <source>Unable to save the member&apos;s information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+25"/>
-        <location line="+7"/>
-        <source>An error occurred while attempting to create a database account for the new member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+514"/>
-        <location line="+8"/>
-        <location line="+5161"/>
-        <location line="+8"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-5673"/>
-        <location line="+2070"/>
-        <source>An error occurred while attempting to update the database account for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1989"/>
-        <location line="+5602"/>
-        <location line="+969"/>
         <source>BiblioteQ: Information</source>
-        <translation>BiblioteQ: Információ</translation>
+        <translation type="obsolete">BiblioteQ: Információ</translation>
     </message>
     <message>
-        <location line="-6570"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
-        <translation>Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
+        <translation type="obsolete">Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
     </message>
     <message>
-        <location line="+304"/>
         <source>Please select a member to delete.</source>
-        <translation>Válasszon ki egy törlendő tagot!</translation>
+        <translation type="obsolete">Válasszon ki egy törlendő tagot!</translation>
     </message>
     <message>
-        <location line="+13"/>
-        <location line="+5"/>
-        <source>Unable to determine the number of items that are reserved by the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
         <source>You may not remove a member that has reserved items.</source>
-        <translation>Nem lehet törölni tagot aki még rendelkezik kikölcsönzött cikkekkel!</translation>
+        <translation type="obsolete">Nem lehet törölni tagot aki még rendelkezik kikölcsönzött cikkekkel!</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Are you sure that you wish to delete the selected member?</source>
-        <translation>Biztosan szeretné törölni a kijelölt tagot?</translation>
+        <translation type="obsolete">Biztosan szeretné törölni a kijelölt tagot?</translation>
     </message>
     <message>
-        <location line="+35"/>
-        <location line="+3"/>
-        <source>Unable to remove the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <location line="+14"/>
-        <source>Unable to remove the patron account </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+448"/>
         <source>%1 Photograph(s)</source>
-        <translation>%1 Fénykép</translation>
+        <translation type="obsolete">%1 Fénykép</translation>
     </message>
     <message>
-        <location line="+57"/>
         <source>Available</source>
-        <translation>Hozzáférhető</translation>
+        <translation type="obsolete">Hozzáférhető</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Unavailable</source>
-        <translation>Nem Hozzáférhető</translation>
+        <translation type="obsolete">Nem Hozzáférhető</translation>
     </message>
     <message>
-        <location line="+116"/>
-        <location line="+44"/>
         <source>Your changes have not been saved. Continue?
 %1</source>
-        <translation>A változtatásai nem voltak elmentve. Folytatja?
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Folytatja?
 %1</translation>
     </message>
     <message>
-        <location line="+81"/>
-        <source>The selected branch&apos;s database type does not have a driver associated with it.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>The following drivers are available: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>In addition, Qt expects plugins to exist in: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Please contact your administrator.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+35"/>
-        <location line="+5"/>
-        <source>Unable to open a database connection with the provided information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>The current database driver that you&apos;re using does not support transactions. Please upgradie your database and/or driver.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <source>The current database driver that you&apos;re using does not support transactions. Please upgrade your database and/or driver.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+22"/>
         <source>It appears that the user </source>
-        <translation>Úgy tűnik a felhasználo: </translation>
+        <translation type="obsolete">Úgy tűnik a felhasználo: </translation>
     </message>
     <message>
-        <location line="+2"/>
         <source> does not have administrator privileges.</source>
-        <translation> nem rendelkezik adminisztrátor jogosultságokkal.</translation>
+        <translation type="obsolete"> nem rendelkezik adminisztrátor jogosultságokkal.</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>It appears that you are attempting to assume an administrator role in a non-administrator mode.</source>
-        <translation>Úgy tűnik adminisztrátor szerepet próbálsz vállalni nem adminisztrátori módban.</translation>
+        <translation type="obsolete">Úgy tűnik adminisztrátor szerepet próbálsz vállalni nem adminisztrátori módban.</translation>
     </message>
     <message>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+32"/>
-        <location line="+8"/>
-        <source>Unable to set the role for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-29"/>
-        <location line="+8"/>
-        <source>Unable to determine the roles of </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+61"/>
         <source>Connected</source>
-        <translation>Csatlakozva</translation>
+        <translation type="obsolete">Csatlakozva</translation>
     </message>
     <message>
-        <location line="+29"/>
-        <location line="+20"/>
         <source>BiblioteQ: </source>
-        <translation>BiblioteQ: </translation>
+        <translation type="obsolete">BiblioteQ: </translation>
     </message>
     <message>
-        <location line="+51"/>
-        <location line="+1032"/>
         <source>Request Selected Item(s)</source>
-        <translation>Kijelölt Cikk(ek) Lefoglalása</translation>
+        <translation type="obsolete">Kijelölt Cikk(ek) Lefoglalása</translation>
     </message>
     <message>
-        <location line="-805"/>
         <source>ID</source>
-        <translation>Azonosító</translation>
+        <translation type="obsolete">Azonosító</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Administrator</source>
-        <translation>Adminisztrátor</translation>
+        <translation type="obsolete">Adminisztrátor</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Circulation</source>
-        <translation>Cirkuláció</translation>
+        <translation type="obsolete">Cirkuláció</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Librarian</source>
-        <translation>Könyvtáros</translation>
+        <translation type="obsolete">Könyvtáros</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Membership</source>
-        <translation>Tagság</translation>
+        <translation type="obsolete">Tagság</translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+2938"/>
         <source>Member ID</source>
-        <translation>Tag Azonosító</translation>
+        <translation type="obsolete">Tag Azonosító</translation>
     </message>
     <message>
-        <location line="-2937"/>
-        <location line="+2941"/>
         <source>First Name</source>
-        <translation>Utónév</translation>
+        <translation type="obsolete">Utónév</translation>
     </message>
     <message>
-        <location line="-2940"/>
-        <location line="+2941"/>
         <source>Last Name</source>
-        <translation>Vezeték Név</translation>
+        <translation type="obsolete">Vezeték Név</translation>
     </message>
     <message>
-        <location line="-2940"/>
         <source>Member Since</source>
-        <translation>Óta tag:</translation>
+        <translation type="obsolete">Óta tag:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Expiration Date</source>
-        <translation>Lejárási Dátum</translation>
+        <translation type="obsolete">Lejárási Dátum</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Books Reserved</source>
-        <translation>Kölcsönzött Könyvek</translation>
+        <translation type="obsolete">Kölcsönzött Könyvek</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>CDs Reserved</source>
-        <translation>Kölcsönzött CDk</translation>
+        <translation type="obsolete">Kölcsönzött CDk</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>DVDs Reserved</source>
-        <translation>Kölcsönzött DVDk</translation>
+        <translation type="obsolete">Kölcsönzött DVDk</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Journals Reserved</source>
-        <translation>Kölcsönzött Folyóiratok</translation>
+        <translation type="obsolete">Kölcsönzött Folyóiratok</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Magazines Reserved</source>
-        <translation>Kölcsönzött Magazinok</translation>
+        <translation type="obsolete">Kölcsönzött Magazinok</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Video Games Reserved</source>
-        <translation>Kölcsönzött Videójátékok</translation>
+        <translation type="obsolete">Kölcsönzött Videójátékok</translation>
     </message>
     <message>
-        <location line="+144"/>
-        <location line="+5"/>
-        <source>Unable to retrieve member data for table populating.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+19"/>
-        <location line="+2805"/>
-        <location line="+539"/>
-        <location filename="../Source/qtbook_b.cc" line="+1"/>
         <source>Populating the table...</source>
-        <translation>Táblázat kitöltése...</translation>
+        <translation type="obsolete">Táblázat kitöltése...</translation>
     </message>
     <message>
-        <location line="-3303"/>
-        <location line="+2185"/>
-        <location line="+21"/>
-        <location line="+586"/>
-        <location line="+365"/>
-        <location line="+9"/>
-        <location line="+167"/>
-        <location line="+21"/>
-        <location line="+7"/>
-        <location filename="../Source/qtbook_b.cc" line="+159"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-3360"/>
-        <location line="+2792"/>
-        <location line="+365"/>
-        <location line="+176"/>
-        <location line="+28"/>
-        <location filename="../Source/qtbook_b.cc" line="+1"/>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-3316"/>
         <source>Granting privileges...</source>
-        <translation>Jogosultságok adása..</translation>
+        <translation type="obsolete">Jogosultságok adása..</translation>
     </message>
     <message>
-        <location line="+40"/>
-        <source>Unable to grant privileges to all of the members.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <source>Unable to determine the number of reserved items for the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+52"/>
-        <source>Unable to retrieve the number of reserved items of the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+61"/>
         <source>Please select a member to modify.</source>
-        <translation>Jelöljön ki egy módosítandó tagot!</translation>
+        <translation type="obsolete">Jelöljön ki egy módosítandó tagot!</translation>
     </message>
     <message>
-        <location line="+14"/>
-        <location line="+7"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected member&apos;s information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+87"/>
         <source>BiblioteQ: Modify Member</source>
-        <translation>BiblioteQ: Tag Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Tag Módosítása</translation>
     </message>
     <message>
-        <location line="+44"/>
-        <location line="+1462"/>
-        <location line="+3"/>
         <source>Photographs may not be reserved.</source>
-        <translation>Fényképeket nem lehet kikölcsönözni.</translation>
+        <translation type="obsolete">Fényképeket nem lehet kikölcsönözni.</translation>
     </message>
     <message>
-        <location line="-1444"/>
-        <source>Unable to determine if the membership of the selected member has expired.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
         <source>It appears that the selected member&apos;s membership has expired.</source>
-        <translation>Úgy tűnik a kijelölt tag tagsága lejárt.</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt tag tagsága lejárt.</translation>
     </message>
     <message>
-        <location line="+21"/>
-        <location line="+1431"/>
-        <location line="+4"/>
-        <source>Unable to determine the availability of the selected item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1428"/>
         <source>It appears that the item that you selected is not available for reservation.</source>
-        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Please select a member and an item to continue with the reservation process.</source>
-        <translation>Jelöljön ki egy tagot és egy cikket a kikölcsönzési folyamat folytatásához.</translation>
+        <translation type="obsolete">Jelöljön ki egy tagot és egy cikket a kikölcsönzési folyamat folytatásához.</translation>
     </message>
     <message>
-        <location line="+91"/>
-        <location line="+19"/>
         <source>Cancel Selected Request(s)</source>
-        <translation>Kijlölt lefoglalás(ok) törlése</translation>
+        <translation type="obsolete">Kijlölt lefoglalás(ok) törlése</translation>
     </message>
     <message>
-        <location line="+166"/>
         <source>Error Log Active</source>
-        <translation>Hiba Napló Aktív</translation>
+        <translation type="obsolete">Hiba Napló Aktív</translation>
     </message>
     <message>
-        <location line="+35"/>
-        <source>Memory failure in addError()!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
         <source>Event Time</source>
-        <translation>Esemény Ideje</translation>
+        <translation type="obsolete">Esemény Ideje</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Event Type</source>
-        <translation>Esemény Típusa</translation>
+        <translation type="obsolete">Esemény Típusa</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Summary</source>
-        <translation>Összefoglalás</translation>
+        <translation type="obsolete">Összefoglalás</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Full Description</source>
-        <translation>Teljes Leírás</translation>
+        <translation type="obsolete">Teljes Leírás</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>File</source>
-        <translation>Fájl</translation>
+        <translation type="obsolete">Fájl</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Line Number</source>
-        <translation>Sor Szám</translation>
+        <translation type="obsolete">Sor Szám</translation>
     </message>
     <message>
-        <location line="+1002"/>
         <source>In order to list a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Egy tag kikölcsönzött cikkeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
+        <translation type="obsolete">Egy tag kikölcsönzött cikkeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
     </message>
     <message>
-        <location line="+47"/>
-        <location line="+4"/>
         <source>In order to reserve an item, you must first select it.</source>
-        <translation>Egy cikk kölcsönzéséhez előszőr ki kell jelölni a cikket!</translation>
+        <translation type="obsolete">Egy cikk kölcsönzéséhez előszőr ki kell jelölni a cikket!</translation>
     </message>
     <message>
-        <location line="+44"/>
-        <location line="+4"/>
         <source>It appears that the item you selected is not available for reservation.</source>
-        <translation>Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
+        <translation type="obsolete">Úgy tűnik a kijelölt cikk jelenleg nem kölcsönözhető. (esetleg már ki van kölcsönözve?)</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Would you like to retrieve the list of members?</source>
-        <translation>Szeretné kilistázni a tagokat?</translation>
+        <translation type="obsolete">Szeretné kilistázni a tagokat?</translation>
     </message>
     <message>
-        <location line="+54"/>
         <source>BiblioteQ: Select Global Font</source>
-        <translation>BiblioteQ: Fő Betűtípus Kiválastása</translation>
+        <translation type="obsolete">BiblioteQ: Fő Betűtípus Kiválastása</translation>
     </message>
     <message>
-        <location line="+223"/>
-        <source>Table Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Column Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>NULL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Unable to allocate memory for the &quot;item2&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
         <source>No</source>
-        <translation>Nem</translation>
+        <translation type="obsolete">Nem</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Unable to allocate memory for the &quot;item1&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+56"/>
-        <source>Please provide a valid SQL statement.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>Please provide a non-destructive SQL statement.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+94"/>
         <source>In order to print a member&apos;s reserved items, you must first select the member.</source>
-        <translation>Egy tag kikölcsönzött cikkeinek kinyomtatásához előszőr ki kell jelölni a tagot!</translation>
+        <translation type="obsolete">Egy tag kikölcsönzött cikkeinek kinyomtatásához előszőr ki kell jelölni a tagot!</translation>
     </message>
     <message>
-        <location line="+27"/>
         <source>The member that you selected does not have any reserved items.</source>
-        <translation>A kijelölt tagnak nincsenek kikölcsönzött cikkeit.</translation>
+        <translation type="obsolete">A kijelölt tagnak nincsenek kikölcsönzött cikkeit.</translation>
     </message>
     <message>
-        <location line="+20"/>
         <source>Reserved Items for </source>
-        <translation>Kikölcsönzött cikkek: </translation>
+        <translation type="obsolete">Kikölcsönzött cikkek: </translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>, </source>
-        <translation>,</translation>
+        <translation type="obsolete">,</translation>
     </message>
     <message>
-        <location line="+19"/>
-        <location line="+4"/>
-        <source>Unable to determine the reserved items for the selected member.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
         <source>To copy the contents of the Error Log into the clipboard buffer, you must first select at least one entry.</source>
-        <translation>Hogy a Hiba Napló tartalmát a vágólapba másolja, legalább egy bejegyzést ki kell jelölni.</translation>
+        <translation type="obsolete">Hogy a Hiba Napló tartalmát a vágólapba másolja, legalább egy bejegyzést ki kell jelölni.</translation>
     </message>
     <message>
-        <location line="+55"/>
         <source>In order to display a member&apos;s reservation history, you must first select the member.</source>
-        <translation>Egy tag kölcsönzési előzményeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
+        <translation type="obsolete">Egy tag kölcsönzési előzményeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
     </message>
     <message>
-        <location line="+168"/>
-        <location line="+7"/>
-        <location line="+4"/>
-        <location line="+4"/>
-        <source>Unable to retrieve reservation history data for table populating.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
         <source>Title</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>ID Number</source>
-        <translation>Azonosító Szám</translation>
+        <translation type="obsolete">Azonosító Szám</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Barcode</source>
-        <translation>Vonalkód</translation>
+        <translation type="obsolete">Vonalkód</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Type</source>
-        <translation>Típus</translation>
+        <translation type="obsolete">Típus</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Reservation Date</source>
-        <translation>Kölcsönzési Dátum</translation>
+        <translation type="obsolete">Kölcsönzési Dátum</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Original Due Date</source>
-        <translation>Eredeti Esedékesség</translation>
+        <translation type="obsolete">Eredeti Esedékesség</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Returned Date</source>
-        <translation>Visszaszolgáltatási Dátum</translation>
+        <translation type="obsolete">Visszaszolgáltatási Dátum</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Lender</source>
-        <translation>Kölcsönadó</translation>
+        <translation type="obsolete">Kölcsönadó</translation>
     </message>
     <message>
-        <location line="+140"/>
         <source>The selected member does not yet have a reservation history to print.</source>
-        <translation>A kijelölt tag még nem rendelkezik kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
+        <translation type="obsolete">A kijelölt tag még nem rendelkezik kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>You do not yet have a reservation history to print.</source>
-        <translation>Még nem rendelkezel kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
+        <translation type="obsolete">Még nem rendelkezel kölcsönzési előzményekkel amit nyomtatni lehetne.</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Reservation History</source>
-        <translation>Kölcsönzési Előzmények</translation>
+        <translation type="obsolete">Kölcsönzési Előzmények</translation>
     </message>
     <message>
-        <location line="+147"/>
         <source>The password must be at least eight characters long.</source>
-        <translation>A jelszó legalább 8 karaktert kell tartalmazzon!</translation>
+        <translation type="obsolete">A jelszó legalább 8 karaktert kell tartalmazzon!</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>The passwords do not match. Please try again.</source>
-        <translation>Az új jelszó nem egyezik meg a megerősítésével. Probálja meg mégegyszer.</translation>
+        <translation type="obsolete">Az új jelszó nem egyezik meg a megerősítésével. Probálja meg mégegyszer.</translation>
     </message>
     <message>
-        <location line="+16"/>
-        <location line="+3"/>
         <source>Unable to save the new password.</source>
-        <translation>Új jelszó mentése sikertelen.</translation>
+        <translation type="obsolete">Új jelszó mentése sikertelen.</translation>
     </message>
     <message>
-        <location line="+47"/>
         <source>BiblioteQ: SQLite Database Selection</source>
-        <translation>BiblioteQ: SQLite Adatbázis Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: SQLite Adatbázis Kiválasztása</translation>
     </message>
     <message>
-        <location line="+59"/>
-        <location line="+188"/>
-        <source>Unable to allocate memory for the &quot;checkBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-162"/>
         <source>To delete an entry, you must first select it.</source>
-        <translation>Egy bejegyzés törléséhez először ki kell jelölni!</translation>
+        <translation type="obsolete">Egy bejegyzés törléséhez először ki kell jelölni!</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>As an administrator, you may not delete your account.</source>
-        <translation>Adminisztrátorként nem törölheted a felhasználód!</translation>
+        <translation type="obsolete">Adminisztrátorként nem törölheted a felhasználód!</translation>
     </message>
     <message>
-        <location line="+85"/>
-        <location line="+5"/>
-        <source>Unable to retrieve administrator data for table populating.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+146"/>
         <source>Administrators must belong to at least one category.</source>
-        <translation>Legalább egy kategóriahoz tartozniuk kell az adminisztrátoroknak!</translation>
+        <translation type="obsolete">Legalább egy kategóriahoz tartozniuk kell az adminisztrátoroknak!</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Duplicate administrator ids are not allowed.</source>
-        <translation>Nem lehet két azonos adminisztrátor azonosító!</translation>
+        <translation type="obsolete">Nem lehet két azonos adminisztrátor azonosító!</translation>
     </message>
     <message>
-        <location line="+34"/>
-        <source>An error occurred while attempting to remove </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+15"/>
-        <source>An error occurred while attempting to remove the database account </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
         <source>Saving administrator information...</source>
-        <translation>Adminisztrátor adatok mentése...</translation>
+        <translation type="obsolete">Adminisztrátor adatok mentése...</translation>
     </message>
     <message>
-        <location line="+48"/>
-        <source>The function misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <source>Unable to create or update the administrator entry for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>An error occurred while attempting to create a database account for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+18"/>
-        <source>An error occurred while attempting to revoke privileges from </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>An error occurred while attempting to grant privileges to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
         <source>Please notify new administrators that their default password has been set to tempPass.</source>
-        <translation>Tájékoztassa az uj adminisztrátorokat hogy a jelszavuk tempPass.</translation>
+        <translation type="obsolete">Tájékoztassa az uj adminisztrátorokat hogy a jelszavuk tempPass.</translation>
     </message>
     <message>
-        <location line="+17"/>
-        <source>An error occurred while attempting to save the administrator information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+45"/>
         <source>Please select at least one item to place on request.</source>
-        <translation>Jelöljön ki legalább egy lefoglalandó cikket.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy lefoglalandó cikket.</translation>
     </message>
     <message>
-        <location line="+10"/>
         <source>Please select at least one request to cancel.</source>
-        <translation>Jelöljön ki legalább egy törlendő lefoglalást.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy törlendő lefoglalást.</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Are you sure that you wish to cancel the selected request(s)?</source>
-        <translation>Biztosan szeretné törölni a kijelölt lefoglalásokat?</translation>
+        <translation type="obsolete">Biztosan szeretné törölni a kijelölt lefoglalásokat?</translation>
     </message>
     <message>
-        <location line="+15"/>
         <source>Requesting the selected item(s)...</source>
-        <translation>Kijelölt cikkek lefoglalása...</translation>
+        <translation type="obsolete">Kijelölt cikkek lefoglalása...</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Canceling the selected request(s)...</source>
-        <translation>Kijelölt lefoglalások törlése...</translation>
+        <translation type="obsolete">Kijelölt lefoglalások törlése...</translation>
     </message>
     <message>
-        <location line="+51"/>
-        <source>Unable to request the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>Unable to cancel the request.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Unable to request some or all of the selected items. Please verify that you are not attempting to request duplicate items.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Unable to cancel some or all of the selected requests.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+31"/>
-        <location line="+28"/>
-        <location line="+24"/>
         <source>All</source>
-        <translation>Minden</translation>
+        <translation type="obsolete">Minden</translation>
     </message>
     <message>
-        <location line="-51"/>
-        <location line="+28"/>
-        <location line="+24"/>
         <source>All Available</source>
-        <translation>Minden Hozzáférhető</translation>
+        <translation type="obsolete">Minden Hozzáférhető</translation>
     </message>
     <message>
-        <location line="-51"/>
-        <location line="+28"/>
         <source>All Overdue</source>
-        <translation>Minden Lejárt Esedékességű</translation>
+        <translation type="obsolete">Minden Lejárt Esedékességű</translation>
     </message>
     <message>
-        <location line="-27"/>
-        <location line="+29"/>
         <source>All Reserved</source>
-        <translation>Minden Kikölcsönzött</translation>
+        <translation type="obsolete">Minden Kikölcsönzött</translation>
     </message>
     <message>
-        <location line="-28"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Books</source>
-        <translation>Könyvek</translation>
+        <translation type="obsolete">Könyvek</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>DVDs</source>
-        <translation>DVDk</translation>
+        <translation type="obsolete">DVDk</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Journals</source>
-        <translation>Folyóiratok</translation>
+        <translation type="obsolete">Folyóiratok</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Magazines</source>
-        <translation>Magazinok</translation>
+        <translation type="obsolete">Magazinok</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Music CDs</source>
-        <translation>Zene CDk</translation>
+        <translation type="obsolete">Zene CDk</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Photograph Collections</source>
-        <translation>Fénykép Gyüjtemények</translation>
+        <translation type="obsolete">Fénykép Gyüjtemények</translation>
     </message>
     <message>
-        <location line="-49"/>
-        <location line="+29"/>
-        <location line="+21"/>
         <source>Video Games</source>
-        <translation>Videójátékok</translation>
+        <translation type="obsolete">Videójátékok</translation>
     </message>
     <message>
-        <location line="-29"/>
         <source>All Requested</source>
-        <translation>Minden Lefoglalt</translation>
+        <translation type="obsolete">Minden Lefoglalt</translation>
     </message>
     <message>
-        <location line="+142"/>
         <source>&amp;Clear Menu</source>
-        <translation>Menü Ürítése</translation>
+        <translation type="obsolete">Menü Ürítése</translation>
     </message>
     <message>
-        <location line="+102"/>
         <source>BiblioteQ: New SQLite Database</source>
-        <translation>BiblioteQ: Új SQLite Adatbázis</translation>
+        <translation type="obsolete">BiblioteQ: Új SQLite Adatbázis</translation>
     </message>
     <message>
-        <location line="+34"/>
-        <source>Unable to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+38"/>
         <source>It appears that you are already connected to a database. Do you want to terminate the current connection and connect to the new SQLite database?</source>
-        <translation>Úgy tűnik már csatlakozott egy adatbázishoz. Szeretné megszakítani a jelenlegi kapcsolatot és az új SQLite adatbázishoz csatlakozni?</translation>
+        <translation type="obsolete">Úgy tűnik már csatlakozott egy adatbázishoz. Szeretné megszakítani a jelenlegi kapcsolatot és az új SQLite adatbázishoz csatlakozni?</translation>
     </message>
     <message>
-        <location line="+43"/>
-        <source>An error occurred while attempting to create the specified SQLite database.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+57"/>
-        <source>CSV (*.csv)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
         <source>BiblioteQ: Export Table View as CSV</source>
-        <translation>BiblioteQ: Táblázat Nézet Mentése CSV-ként</translation>
+        <translation type="obsolete">BiblioteQ: Táblázat Nézet Mentése CSV-ként</translation>
     </message>
     <message>
-        <location line="+105"/>
         <source>Please select at least one item to duplicate.</source>
-        <translation>Jelöljön ki legalább egy megkettőzendő cikket.</translation>
+        <translation type="obsolete">Jelöljön ki legalább egy megkettőzendő cikket.</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Are you sure that you wish to duplicate the </source>
-        <translation>Biztosan szeretné megkettőzni a </translation>
+        <translation type="obsolete">Biztosan szeretné megkettőzni a </translation>
     </message>
     <message>
-        <location line="+192"/>
         <source>You may have selected a new language. Please restart BiblioteQ after saving your settings.</source>
-        <translation>Ha megváltoztatta a nyelvet, mentse el a beállításait és indítsa ujra a BiblioteQ-et a váltáshoz.</translation>
+        <translation type="obsolete">Ha megváltoztatta a nyelvet, mentse el a beállításait és indítsa ujra a BiblioteQ-et a váltáshoz.</translation>
     </message>
     <message>
-        <location filename="../Source/qtbook_b.cc" line="-287"/>
-        <location line="+339"/>
         <source>%1 Result(s)</source>
-        <translation>%1 Eredmény</translation>
-    </message>
-    <message>
-        <location line="-325"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+50"/>
-        <location line="+23"/>
-        <source> %1 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-21"/>
-        <location line="+23"/>
-        <location line="+5"/>
-        <source>%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-17"/>
-        <source> 1 ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+0"/>
-        <source> ... </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source> ... %1 </source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">%1 Eredmény</translation>
     </message>
 </context>
 <context>
     <name>qtbook_book</name>
     <message>
-        <location filename="../Source/qtbook_book.cc" line="+107"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Elülső Borító Visszaállítása</translation>
+        <translation type="obsolete">Elülső Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Hátulsó Borító Visszaállítása</translation>
+        <translation type="obsolete">Hátulsó Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;ISBN-10</source>
-        <translation>ISBN-10 Visszaállítása</translation>
+        <translation type="obsolete">ISBN-10 Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;ISBN-13</source>
-        <translation>ISBN-13 Visszaállítása</translation>
+        <translation type="obsolete">ISBN-13 Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Edition</source>
-        <translation>Kiadás Visszaállítása</translation>
+        <translation type="obsolete">Kiadás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Author(s)</source>
-        <translation>Szerző(k) Visszaállítása</translation>
+        <translation type="obsolete">Szerző(k) Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Book Binding Type</source>
-        <translation>Könyv Kötés Típus Visszaállítása</translation>
+        <translation type="obsolete">Könyv Kötés Típus Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;LC Control Number</source>
-        <translation>&quot;LC Control&quot; Szám Visszaállítása</translation>
+        <translation type="obsolete">&quot;LC Control&quot; Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Call Number</source>
-        <translation>Hivószám Visszaállítása</translation>
+        <translation type="obsolete">Hivószám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Dewey Class Number</source>
-        <translation>Dewey Osztály Szám Visszaállítása</translation>
+        <translation type="obsolete">Dewey Osztály Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publication Date</source>
-        <translation>Kiadási Dátum Visszaállítása</translation>
+        <translation type="obsolete">Kiadási Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publisher</source>
-        <translation>Kiadó Visszaállítása</translation>
+        <translation type="obsolete">Kiadó Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Megjelenés Helyének Visszaállítása</translation>
+        <translation type="obsolete">Megjelenés Helyének Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Categories</source>
-        <translation>Kategóriák Visszaállítása</translation>
+        <translation type="obsolete">Kategóriák Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Originality</source>
-        <translation>Eredetiség  Visszaállítása</translation>
+        <translation type="obsolete">Eredetiség  Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Condition</source>
-        <translation>Állapot Visszaállítása</translation>
+        <translation type="obsolete">Állapot Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;MARC Tags</source>
-        <translation>MARC Cimkék Visszaállítása</translation>
+        <translation type="obsolete">MARC Cimkék Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+38"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+13"/>
-        <location line="+142"/>
-        <location line="+145"/>
-        <location line="+180"/>
-        <location line="+12"/>
-        <location line="+24"/>
-        <location line="+12"/>
-        <location line="+35"/>
-        <location line="+10"/>
-        <location line="+152"/>
-        <location line="+40"/>
-        <location line="+405"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1193"/>
-        <source>Unable to retrieve the book binding types.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Unable to retrieve the book locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+1191"/>
-        <location line="+11"/>
-        <location line="+17"/>
-        <location line="+894"/>
-        <location line="+3"/>
-        <location line="+16"/>
-        <location line="+3"/>
-        <location line="+5"/>
-        <location line="+3"/>
-        <location line="+1147"/>
-        <location line="+3"/>
-        <location line="+18"/>
-        <location line="+3"/>
-        <location line="+5"/>
-        <location line="+3"/>
         <source>UNKNOWN</source>
-        <translation type="unfinished">ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-3197"/>
-        <location line="+5"/>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+144"/>
-        <location line="+465"/>
-        <location line="+405"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1003"/>
-        <location line="+44"/>
-        <location line="+17"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+12"/>
-        <location line="+11"/>
-        <location line="+1524"/>
-        <location line="+173"/>
-        <location line="+841"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-2654"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+        <translation type="obsolete">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+1557"/>
-        <location line="+324"/>
-        <location line="+1143"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3023"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+        <translation type="obsolete">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
     <message>
-        <location line="+33"/>
         <source>Please complete both the ISBN-10 and ISBN-13 fields.</source>
-        <translation>Toltse ki a ISBN-10 és ISBN-13 mezőket is!</translation>
+        <translation type="obsolete">Toltse ki a ISBN-10 és ISBN-13 mezőket is!</translation>
     </message>
     <message>
-        <location line="+17"/>
         <source>Please complete the Author(s) field.</source>
-        <translation>Töltse ki a Szerző(k) mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Szerző(k) mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Title field.</source>
-        <translation>Töltse ki a Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Publisher field.</source>
-        <translation>Töltse ki a Kiadó mezőt! </translation>
+        <translation type="obsolete">Töltse ki a Kiadó mezőt! </translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Töltse ki a Kiadás Helye mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kiadás Helye mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Categories field.</source>
-        <translation>Töltse ki a Kategóriák mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kategóriák mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Abstract field.</source>
-        <translation>Töltse ki a Összefoglalás mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Összefoglalás mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+176"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <location line="+45"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-10"/>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+63"/>
-        <location line="+402"/>
-        <location line="+228"/>
         <source>BiblioteQ: Modify Book Entry (</source>
-        <translation>BiblioteQ: Könyv Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-629"/>
-        <location line="+402"/>
-        <location line="+24"/>
-        <location line="+204"/>
-        <location line="+10"/>
-        <source>)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="-638"/>
-        <location line="+402"/>
-        <location line="+47"/>
-        <location line="+181"/>
         <source>BiblioteQ: Modify Book Entry</source>
-        <translation>BiblioteQ: Könyv Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-534"/>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+39"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+178"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+21"/>
         <source>BiblioteQ: Database Book Search</source>
-        <translation>BiblioteQ: Könyv Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Keresés</translation>
     </message>
     <message>
-        <location line="+71"/>
-        <location line="+214"/>
         <source>BiblioteQ: View Book Details (</source>
-        <translation>BiblioteQ: Könyv Részleteinek Megtekintése (</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-211"/>
-        <location line="+58"/>
-        <location line="+156"/>
         <source>BiblioteQ: View Book Details</source>
-        <translation>BiblioteQ: Könyv Részleteinek Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-128"/>
-        <location line="+229"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-200"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected book&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+226"/>
         <source>BiblioteQ: Create Book Entry</source>
-        <translation>BiblioteQ: Könyv Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+339"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+73"/>
         <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Egy SRU lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
+        <translation type="obsolete">Egy SRU lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
     </message>
     <message>
-        <location line="+28"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation>BiblioteQ: SRU Adatok Lekérése</translation>
+        <translation type="obsolete">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation>Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
+        <translation type="obsolete">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+144"/>
         <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
-        <translation>Egy Z39.50 lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
+        <translation type="obsolete">Egy Z39.50 lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Adatok Lekérése</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation>Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
+        <translation type="obsolete">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation>Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
+        <translation type="obsolete">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
     </message>
     <message>
-        <location line="+602"/>
-        <location line="+19"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Hiba</translation>
     </message>
     <message>
-        <location line="-18"/>
         <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
-        <translation>Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
+        <translation type="obsolete">Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Unable to create a thread due to insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Lekérdezés Hiba</translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Z39.50 Lekérdezés Hiba</translation>
     </message>
     <message>
         <source>The Z39.50 entry could not be retrieved.</source>
         <translation type="obsolete">A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>ISBN-10:</source>
-        <translation>ISBN-10:</translation>
+        <translation type="obsolete">ISBN-10:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>ISBN-13:</source>
-        <translation>ISBN-13:</translation>
+        <translation type="obsolete">ISBN-13:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Edition:</source>
-        <translation>Kiadás:</translation>
+        <translation type="obsolete">Kiadás:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Author(s):</source>
-        <translation>Szerző(k):</translation>
+        <translation type="obsolete">Szerző(k):</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Book Binding Type:</source>
-        <translation>Könyv Kötés Típus:</translation>
+        <translation type="obsolete">Könyv Kötés Típus:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>LC Control Number:</source>
-        <translation>&quot;LC Control&quot; Szám:</translation>
+        <translation type="obsolete">&quot;LC Control&quot; Szám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Call Number:</source>
-        <translation>Hívószám:</translation>
+        <translation type="obsolete">Hívószám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Osztály Szám:</translation>
+        <translation type="obsolete">Dewey Osztály Szám:</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Title:</source>
-        <translation>Cím:</translation>
+        <translation type="obsolete">Cím:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Publication Date:</source>
-        <translation>Kiadási Dátum:</translation>
+        <translation type="obsolete">Kiadási Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Publisher:</source>
-        <translation>Kiadó:</translation>
+        <translation type="obsolete">Kiadó:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Place of Publication:</source>
-        <translation>Megjelenés Helye:</translation>
+        <translation type="obsolete">Megjelenés Helye:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Categories:</source>
-        <translation>Kategóriák:</translation>
+        <translation type="obsolete">Kategóriák:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Price:</source>
-        <translation>Ár:</translation>
+        <translation type="obsolete">Ár:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation type="obsolete">Nyelv:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Monetary Units:</source>
-        <translation>Pénzegység:</translation>
+        <translation type="obsolete">Pénzegység:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copies:</source>
-        <translation>Példányok:</translation>
+        <translation type="obsolete">Példányok:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Location:</source>
-        <translation>Hely:</translation>
+        <translation type="obsolete">Hely:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Originality:</source>
-        <translation>Eredetiség:</translation>
+        <translation type="obsolete">Eredetiség:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Condition:</source>
-        <translation>Állapot:</translation>
+        <translation type="obsolete">Állapot:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Abstract:</source>
-        <translation>Összefoglalás:</translation>
+        <translation type="obsolete">Összefoglalás:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>MARC Tags:</source>
-        <translation>MARC Cimkék:</translation>
+        <translation type="obsolete">MARC Cimkék:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Keywords:</source>
-        <translation>Kulcsszavak:</translation>
+        <translation type="obsolete">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+56"/>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
-        <translation>Az Amazonról való borítókép letöltéséhez az ISBN-10 szükséges!</translation>
+        <translation type="obsolete">Az Amazonról való borítókép letöltéséhez az ISBN-10 szükséges!</translation>
     </message>
     <message>
-        <location line="+161"/>
         <source>BiblioteQ: Front Cover Image Download</source>
-        <translation>BiblioteQ: Elülső Borító Kép Letöltése</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Letöltése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading the front cover image. Please be patient...</source>
-        <translation>Elülső borító kép letöltése. Legyen türelemmel...</translation>
+        <translation type="obsolete">Elülső borító kép letöltése. Legyen türelemmel...</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>BiblioteQ: Back Cover Image Download</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Letöltése</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Letöltése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading the back cover image. Please be patient...</source>
-        <translation>Hátulsó borító kép letöltése. Legyen türelemmel...</translation>
+        <translation type="obsolete">Hátulsó borító kép letöltése. Legyen türelemmel...</translation>
     </message>
     <message>
-        <location line="+35"/>
-        <location line="+19"/>
         <source>BiblioteQ: HTTP Warning</source>
-        <translation>BiblioteQ: HTTP Figyelmeztetés</translation>
+        <translation type="obsolete">BiblioteQ: HTTP Figyelmeztetés</translation>
     </message>
     <message>
-        <location line="-18"/>
         <source>The front cover image for the specified ISBN may not exist.</source>
-        <translation>Lehet hogy elülső borító kép nem létezik a megadott ISBNnek.</translation>
+        <translation type="obsolete">Lehet hogy elülső borító kép nem létezik a megadott ISBNnek.</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>The back cover image for the specified ISBN may not exist.</source>
-        <translation>Lehet hogy hátulsó borító kép nem létezik a megadott ISBNnek.</translation>
+        <translation type="obsolete">Lehet hogy hátulsó borító kép nem létezik a megadott ISBNnek.</translation>
     </message>
     <message>
-        <location line="+68"/>
         <source>BiblioteQ: Duplicate Book Entry</source>
-        <translation>BiblioteQ: Könyv Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Könyv Bejegyzés Megkettőzése</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>The proxy %1:%2 is requesting credentials.</source>
-        <translation>A %1:%2 proxi belépőt kér.</translation>
+        <translation type="obsolete">A %1:%2 proxi belépőt kér.</translation>
     </message>
     <message>
-        <location line="+74"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation>Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
+        <translation type="obsolete">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
     </message>
     <message>
-        <location line="+554"/>
         <source>BiblioteQ: SRU Query Error</source>
-        <translation>BiblioteQ: SRU Lekérdezési Hiba</translation>
+        <translation type="obsolete">BiblioteQ: SRU Lekérdezési Hiba</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
-        <translation>Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
+        <translation type="obsolete">Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
     </message>
 </context>
 <context>
     <name>qtbook_cd</name>
     <message>
-        <location filename="../Source/qtbook_cd.cc" line="+102"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Elülső Borító Visszaállítása</translation>
+        <translation type="obsolete">Elülső Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Hátulsó Borító Visszaállítása</translation>
+        <translation type="obsolete">Hátulsó Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Catalog Number</source>
-        <translation>Katalógus Szám Visszaállítása</translation>
+        <translation type="obsolete">Katalógus Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Format</source>
-        <translation>Formátum Visszaállítása</translation>
+        <translation type="obsolete">Formátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Artist</source>
-        <translation>Művész Visszaállítása</translation>
+        <translation type="obsolete">Művész Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Composer</source>
-        <translation>Zeneszerző Visszaállítása</translation>
+        <translation type="obsolete">Zeneszerző Visszaállítása</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Lemezek Számának Visszaállítása</translation>
+        <translation type="obsolete">Lemezek Számának Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Runtime</source>
-        <translation>Futásidő Visszaállítása</translation>
+        <translation type="obsolete">Futásidő Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Audio</source>
-        <translation>Hang Visszaállítása</translation>
+        <translation type="obsolete">Hang Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Recording Type</source>
-        <translation>Felvétel Típusának Visszaállítása</translation>
+        <translation type="obsolete">Felvétel Típusának Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Release Date</source>
-        <translation>Megjelenési Dátum Visszaállítása</translation>
+        <translation type="obsolete">Megjelenési Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Recording Label</source>
-        <translation>Lemezkiadó Visszaállítása</translation>
+        <translation type="obsolete">Lemezkiadó Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Categories</source>
-        <translation>Kategóriák Visszaállítása</translation>
+        <translation type="obsolete">Kategóriák Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+22"/>
-        <location line="+12"/>
-        <location line="+13"/>
-        <location line="+12"/>
-        <location line="+64"/>
-        <location line="+116"/>
-        <location line="+164"/>
-        <location line="+12"/>
-        <location line="+22"/>
-        <location line="+11"/>
-        <location line="+23"/>
-        <location line="+10"/>
-        <location line="+115"/>
-        <location line="+28"/>
-        <location line="+31"/>
-        <location line="+380"/>
-        <location line="+240"/>
-        <location line="+313"/>
-        <location line="+16"/>
-        <location line="+6"/>
-        <location line="+59"/>
-        <location line="+20"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1666"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Unable to retrieve the cd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the cd formats.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+998"/>
-        <location line="+11"/>
-        <location line="+14"/>
-        <location line="+32"/>
-        <location line="+345"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1352"/>
-        <location line="+5"/>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+115"/>
-        <location line="+385"/>
-        <location line="+31"/>
-        <location line="+379"/>
-        <location line="+242"/>
-        <location line="+311"/>
-        <location line="+109"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1561"/>
-        <location line="+23"/>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+1351"/>
-        <location line="+445"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1883"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+        <translation type="obsolete">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <location line="+1779"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1778"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+        <translation type="obsolete">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Please complete the Catalog Number field.</source>
-        <translation>Töltse ki a Katalógus Szám mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Katalógus Szám mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Artist field.</source>
-        <translation>Töltse ki a Művész mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Művész mezőt!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a valid Runtime.</source>
-        <translation>Adjon meg egy érvényes Futásidőt!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Futásidőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Title field.</source>
-        <translation>Töltse ki a Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Recording Label field.</source>
-        <translation>Töltse ki a Lemezkiadó mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Lemezkiadó mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Categories field.</source>
-        <translation>Töltse ki a Kategóriák mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kategóriák mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Abstract field.</source>
-        <translation>Töltse ki a Összefoglalás mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Összefoglalás mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <location line="+1345"/>
-        <location line="+3"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1188"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+22"/>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <location line="+33"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-10"/>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
-        <location line="+390"/>
-        <location line="+203"/>
         <source>BiblioteQ: Modify Music CD Entry (</source>
-        <translation>BiblioteQ: Zene CD Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-592"/>
-        <location line="+390"/>
-        <location line="+17"/>
-        <location line="+186"/>
-        <location line="+6"/>
-        <location line="+198"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="-713"/>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the CD&apos;s OID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <location line="+956"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-951"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+164"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+11"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+20"/>
         <source>BiblioteQ: Database Music CD Search</source>
-        <translation>BiblioteQ: Zene CD Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Keresés</translation>
     </message>
     <message>
-        <location line="+59"/>
-        <location line="+192"/>
         <source>BiblioteQ: View Music CD Details (</source>
-        <translation>BiblioteQ: Zene CD Reszletek (</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Reszletek (</translation>
     </message>
     <message>
-        <location line="-169"/>
         <source>BiblioteQ: Modify Music CD Entry</source>
-        <translation>BiblioteQ: Zene CD Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="+28"/>
         <source>BiblioteQ: View Music CD Details</source>
-        <translation>BiblioteQ: Zene CD Reszletek</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Reszletek</translation>
     </message>
     <message>
-        <location line="+27"/>
-        <location line="+208"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-169"/>
-        <location line="+3"/>
-        <source>Unable to retrieve the selected CD&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+195"/>
         <source>BiblioteQ: Create Music CD Entry</source>
-        <translation>BiblioteQ: Zene CD Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+42"/>
-        <location line="+5"/>
-        <source>Unable to retrieve track data for table populating.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+14"/>
         <source>Album Number</source>
-        <translation>Album Szám</translation>
+        <translation type="obsolete">Album Szám</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Track Number</source>
-        <translation>Zeneszám Szám</translation>
+        <translation type="obsolete">Zeneszám Szám</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Track Title</source>
-        <translation>Zeneszám Cím</translation>
+        <translation type="obsolete">Zeneszám Cím</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Track Runtime</source>
-        <translation>Zeneszám Futásidő</translation>
+        <translation type="obsolete">Zeneszám Futásidő</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Artist</source>
-        <translation>Művész</translation>
+        <translation type="obsolete">Művész</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Composer</source>
-        <translation>Zeneszerző</translation>
+        <translation type="obsolete">Zeneszerző</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>BiblioteQ: Album Tracks Browser (</source>
-        <translation>BiblioteQ: Album Zeneszámok Böngésző (</translation>
+        <translation type="obsolete">BiblioteQ: Album Zeneszámok Böngésző (</translation>
     </message>
     <message>
-        <location line="+9"/>
-        <location line="+304"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-303"/>
         <source>Populating the table...</source>
-        <translation>Táblázat kitöltése...</translation>
+        <translation type="obsolete">Táblázat kitöltése...</translation>
     </message>
     <message>
-        <location line="+41"/>
-        <location line="+16"/>
-        <location line="+16"/>
-        <location line="+14"/>
-        <location line="+82"/>
-        <location line="+15"/>
-        <location line="+14"/>
-        <location line="+14"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-170"/>
-        <location line="+128"/>
-        <source>Unable to allocate memory for the &quot;comboBox&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-112"/>
-        <location line="+127"/>
-        <source>Unable to allocate memory for the &quot;trackEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-111"/>
-        <location line="+125"/>
-        <source>Unable to allocate memory for the &quot;timeEdit&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-111"/>
-        <location line="+125"/>
-        <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-58"/>
         <source>Title</source>
-        <translation>Cím</translation>
+        <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location line="+102"/>
         <source>Row number </source>
-        <translation>Sor: </translation>
+        <translation type="obsolete">Sor: </translation>
     </message>
     <message>
-        <location line="+1"/>
         <source> contains an empty Song Title.</source>
-        <translation> üres címet tartalmaz.</translation>
+        <translation type="obsolete"> üres címet tartalmaz.</translation>
     </message>
     <message>
-        <location line="+28"/>
-        <source>Unable to purge track data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+18"/>
         <source>Saving the track data...</source>
-        <translation>Zeneszám adatainak mentése...</translation>
+        <translation type="obsolete">Zeneszám adatainak mentése...</translation>
     </message>
     <message>
-        <location line="+47"/>
-        <source>Unable to create track data.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Commit failure.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <source>Some or all of the track data has not been saved.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+227"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+96"/>
         <source>The total runtime of the available tracks is zero. Please set the individual runtimes.</source>
-        <translation>A zeneszámok összfutásideje nulla. Állítsa be az egyéni futásidőket.</translation>
+        <translation type="obsolete">A zeneszámok összfutásideje nulla. Állítsa be az egyéni futásidőket.</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Catalog Number:</source>
-        <translation>Katalógus Szám:</translation>
+        <translation type="obsolete">Katalógus Szám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Format:</source>
-        <translation>Formátum:</translation>
+        <translation type="obsolete">Formátum:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Artist:</source>
-        <translation>Művész:</translation>
+        <translation type="obsolete">Művész:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Number of Discs:</source>
-        <translation>Lemezek Száma:</translation>
+        <translation type="obsolete">Lemezek Száma:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Runtime:</source>
-        <translation>Futásidő:</translation>
+        <translation type="obsolete">Futásidő:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Audio:</source>
-        <translation>Hang:</translation>
+        <translation type="obsolete">Hang:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Recording Type:</source>
-        <translation>Felvétel Típus:</translation>
+        <translation type="obsolete">Felvétel Típus:</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Title:</source>
-        <translation>Cím:</translation>
+        <translation type="obsolete">Cím:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Release Date:</source>
-        <translation>Megjelenési Dátum:</translation>
+        <translation type="obsolete">Megjelenési Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Recording Label:</source>
-        <translation>Lemezkiadó:</translation>
+        <translation type="obsolete">Lemezkiadó:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Categories:</source>
-        <translation>Kategóriák:</translation>
+        <translation type="obsolete">Kategóriák:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Price:</source>
-        <translation>Ár:</translation>
+        <translation type="obsolete">Ár:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation type="obsolete">Nyelv:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Monetary Units:</source>
-        <translation>Pénzegység:</translation>
+        <translation type="obsolete">Pénzegység:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copies:</source>
-        <translation>Példányok:</translation>
+        <translation type="obsolete">Példányok:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Location:</source>
-        <translation>Hely:</translation>
+        <translation type="obsolete">Hely:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Abstract:</source>
-        <translation>Összefoglalás:</translation>
+        <translation type="obsolete">Összefoglalás:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Keywords:</source>
-        <translation>Kulcsszavak:</translation>
+        <translation type="obsolete">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+54"/>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
-        <translation>BiblioteQ: Zene CD Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Zene CD Bejegyzés Megkettőzése</translation>
     </message>
 </context>
 <context>
     <name>qtbook_dvd</name>
     <message>
-        <location filename="../Source/qtbook_dvd.cc" line="+78"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Elülső Borító Visszaállítása</translation>
+        <translation type="obsolete">Elülső Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Hátulsó Borító Visszaállítása</translation>
+        <translation type="obsolete">Hátulsó Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;UPC</source>
-        <translation>UPC Visszaállítása</translation>
+        <translation type="obsolete">UPC Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Rating</source>
-        <translation>Besorolás Visszaállítása</translation>
+        <translation type="obsolete">Besorolás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Actor(s)</source>
-        <translation>Sinész(ek) Visszaállítása</translation>
+        <translation type="obsolete">Sinész(ek) Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Director(s)</source>
-        <translation>Rendező(k) Visszaállítása</translation>
+        <translation type="obsolete">Rendező(k) Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Number of Discs</source>
-        <translation>Lemezek Számának Visszaállítása</translation>
+        <translation type="obsolete">Lemezek Számának Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Runtime</source>
-        <translation>Futásidő Visszaállítása</translation>
+        <translation type="obsolete">Futásidő Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Format</source>
-        <translation>Formátum Visszaállítása</translation>
+        <translation type="obsolete">Formátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Region</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Aspect Ratio</source>
-        <translation>Képarány Visszaállítása</translation>
+        <translation type="obsolete">Képarány Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Release Date</source>
-        <translation>Megjelenési Dátum Visszaállítása</translation>
+        <translation type="obsolete">Megjelenési Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Studio</source>
-        <translation>Studió Visszaállítása</translation>
+        <translation type="obsolete">Studió Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Categories</source>
-        <translation>Kategóriák Visszaállítása</translation>
+        <translation type="obsolete">Kategóriák Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+20"/>
-        <location line="+12"/>
-        <location line="+13"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+70"/>
-        <location line="+136"/>
-        <location line="+171"/>
-        <location line="+12"/>
-        <location line="+24"/>
-        <location line="+11"/>
-        <location line="+23"/>
-        <location line="+10"/>
-        <location line="+115"/>
-        <location line="+28"/>
-        <location line="+31"/>
-        <location line="+365"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1056"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Unable to retrieve the dvd locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the dvd ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the dvd aspect ratios.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the dvd regions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+1012"/>
-        <location line="+11"/>
-        <location line="+14"/>
-        <location line="+41"/>
-        <location line="+9"/>
-        <location line="+9"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1048"/>
-        <location line="+5"/>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+135"/>
-        <location line="+394"/>
-        <location line="+31"/>
-        <location line="+364"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-913"/>
-        <location line="+22"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+8"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+12"/>
-        <location line="+11"/>
-        <location line="+11"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-107"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+        <translation type="obsolete">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <location line="+1354"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1353"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+        <translation type="obsolete">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Please complete the UPC field.</source>
-        <translation>Töltse ki az UPC mezőt!</translation>
+        <translation type="obsolete">Töltse ki az UPC mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Actor(s) field.</source>
-        <translation>Töltse ki a Szinész(ek) mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Szinész(ek) mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Director(s) field.</source>
-        <translation>Töltse ki a Rendező(k) mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Rendező(k) mezőt!</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Please provide a valid Runtime.</source>
-        <translation>Adjon meg egy érvényes Futásidőt!</translation>
+        <translation type="obsolete">Adjon meg egy érvényes Futásidőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Format field.</source>
-        <translation>Töltse ki a Formátum mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Formátum mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Title field.</source>
-        <translation>Töltse ki a Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Studio field.</source>
-        <translation>Töltse ki a Stúdió mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Stúdió mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Categories field.</source>
-        <translation>Töltse ki a Kategóriák mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kategóriák mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Abstract field.</source>
-        <translation>Töltse ki a Összefoglalás mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Összefoglalás mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+167"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <location line="+33"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-10"/>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+40"/>
-        <location line="+382"/>
-        <location line="+196"/>
         <source>BiblioteQ: Modify DVD Entry (</source>
-        <translation>BiblioteQ: DVD Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: DVD Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-577"/>
-        <location line="+382"/>
-        <location line="+13"/>
-        <location line="+183"/>
-        <location line="+6"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="-500"/>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+28"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the DVD&apos;s OID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+159"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+11"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>BiblioteQ: Database DVD Search</source>
-        <translation>BiblioteQ: DVD Keresés</translation>
+        <translation type="obsolete">BiblioteQ: DVD Keresés</translation>
     </message>
     <message>
-        <location line="+53"/>
-        <location line="+189"/>
         <source>BiblioteQ: View DVD Details (</source>
-        <translation>BiblioteQ: DVD Részleteinek Megtekintése (</translation>
+        <translation type="obsolete">BiblioteQ: DVD Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-166"/>
         <source>BiblioteQ: Modify DVD Entry</source>
-        <translation>BiblioteQ: DVD Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: DVD Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="+28"/>
         <source>BiblioteQ: View DVD Details</source>
-        <translation>BiblioteQ: DVD Részleteinek Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: DVD Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="+22"/>
-        <location line="+218"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-177"/>
-        <location line="+3"/>
-        <source>Unable to retrieve the selected DVD&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+207"/>
         <source>BiblioteQ: Create DVD Entry</source>
-        <translation>BiblioteQ: DVD Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: DVD Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+243"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+76"/>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Rating:</source>
-        <translation>Besorolás:</translation>
+        <translation type="obsolete">Besorolás:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Actor(s):</source>
-        <translation>Színész(ek):</translation>
+        <translation type="obsolete">Színész(ek):</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Director(s):</source>
-        <translation>Rendező(k):</translation>
+        <translation type="obsolete">Rendező(k):</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Number of Discs:</source>
-        <translation>Lemezek Száma:</translation>
+        <translation type="obsolete">Lemezek Száma:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Runtime:</source>
-        <translation>Futásidő:</translation>
+        <translation type="obsolete">Futásidő:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Format:</source>
-        <translation>Formátum:</translation>
+        <translation type="obsolete">Formátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Region:</source>
-        <translation>Térség:</translation>
+        <translation type="obsolete">Térség:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Aspect Ratio:</source>
-        <translation>Képarány:</translation>
+        <translation type="obsolete">Képarány:</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Title:</source>
-        <translation>Cím:</translation>
+        <translation type="obsolete">Cím:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Release Date:</source>
-        <translation>Megjelenési Dátum:</translation>
+        <translation type="obsolete">Megjelenési Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Studio:</source>
-        <translation>Stúdió:</translation>
+        <translation type="obsolete">Stúdió:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Category:</source>
-        <translation>Kategóriák:</translation>
+        <translation type="obsolete">Kategóriák:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Price:</source>
-        <translation>Ár:</translation>
+        <translation type="obsolete">Ár:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation type="obsolete">Nyelv:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Monetary Units:</source>
-        <translation>Pénzegység:</translation>
+        <translation type="obsolete">Pénzegység:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copies:</source>
-        <translation>Példányok:</translation>
+        <translation type="obsolete">Példányok:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Location:</source>
-        <translation>Hely:</translation>
+        <translation type="obsolete">Hely:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Abstract:</source>
-        <translation>Összefoglalás:</translation>
+        <translation type="obsolete">Összefoglalás:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Keywords:</source>
-        <translation>Kulcsszavak:</translation>
+        <translation type="obsolete">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+53"/>
         <source>BiblioteQ: Duplicate DVD Entry</source>
-        <translation>BiblioteQ: DVD Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: DVD Bejegyzés Megkettőzése</translation>
     </message>
 </context>
 <context>
     <name>qtbook_journal</name>
     <message>
-        <location filename="../Source/qtbook_journal.cc" line="+65"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
 </context>
 <context>
     <name>qtbook_magazine</name>
     <message>
-        <location filename="../Source/qtbook_magazine.cc" line="+87"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Elülső Borító Visszaállítása</translation>
+        <translation type="obsolete">Elülső Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Hátulsó Borító Visszaállítása</translation>
+        <translation type="obsolete">Hátulsó Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;ISSN</source>
-        <translation>ISSN Visszaállítása</translation>
+        <translation type="obsolete">ISSN Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Volume</source>
-        <translation>Kötet Visszaállítása</translation>
+        <translation type="obsolete">Kötet Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Issue</source>
-        <translation>Kiadvány Visszaállítása</translation>
+        <translation type="obsolete">Kiadvány Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;LC Control Number</source>
-        <translation>&quot;LC Control&quot; Szám Visszaállítása</translation>
+        <translation type="obsolete">&quot;LC Control&quot; Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Call Number</source>
-        <translation>Hivószám Visszaállítása</translation>
+        <translation type="obsolete">Hivószám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Dewey Number</source>
-        <translation>Dewey Osztály Szám Visszaállítása</translation>
+        <translation type="obsolete">Dewey Osztály Szám Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publication Date</source>
-        <translation>Kiadási Dátum Visszaállítása</translation>
+        <translation type="obsolete">Kiadási Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publisher</source>
-        <translation>Kiadó Visszaállítása</translation>
+        <translation type="obsolete">Kiadó Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Megjelenés Helyének Visszaállítása</translation>
+        <translation type="obsolete">Megjelenés Helyének Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Categories</source>
-        <translation>Kategóriák Visszaállítása</translation>
+        <translation type="obsolete">Kategóriák Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;MARC Tags</source>
-        <translation>MARC Cimkék Visszaállítása</translation>
+        <translation type="obsolete">MARC Cimkék Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+34"/>
-        <location line="+12"/>
-        <location line="+23"/>
-        <location line="+5"/>
-        <location line="+136"/>
-        <location line="+111"/>
-        <location line="+173"/>
-        <location line="+12"/>
-        <location line="+24"/>
-        <location line="+12"/>
-        <location line="+33"/>
-        <location line="+10"/>
-        <location line="+165"/>
-        <location line="+52"/>
-        <location line="+396"/>
-        <location line="+11"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1174"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>Unable to retrieve the journal locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
-        <source>Unable to retrieve the magazine locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+1184"/>
-        <location line="+11"/>
-        <location line="+13"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1086"/>
-        <location line="+5"/>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+110"/>
-        <location line="+484"/>
-        <location line="+393"/>
-        <location line="+11"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-987"/>
-        <location line="+24"/>
-        <location line="+14"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+12"/>
-        <location line="+11"/>
-        <location line="+1472"/>
-        <location line="+1011"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-2565"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+        <translation type="obsolete">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <location line="+1465"/>
-        <location line="+140"/>
-        <location line="+1129"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-2733"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+        <translation type="obsolete">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
     <message>
-        <location line="+15"/>
         <source>Please complete the ISSN field.</source>
-        <translation>Töltse ki a ISSN mezőt!</translation>
+        <translation type="obsolete">Töltse ki a ISSN mezőt!</translation>
     </message>
     <message>
-        <location line="+14"/>
         <source>Please complete the Title field.</source>
-        <translation>Töltse ki a Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Publisher field.</source>
-        <translation>Töltse ki a Kiadó mezőt! </translation>
+        <translation type="obsolete">Töltse ki a Kiadó mezőt! </translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Töltse ki a Kiadás Helye mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kiadás Helye mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Categories field.</source>
-        <translation>Töltse ki a Kategóriák mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kategóriák mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Abstract field.</source>
-        <translation>Töltse ki a Összefoglalás mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Összefoglalás mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+169"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <location line="+43"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-10"/>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+77"/>
-        <location line="+392"/>
-        <location line="+262"/>
         <source>BiblioteQ: Modify Journal Entry (</source>
-        <translation>BiblioteQ: Folyóirat Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-652"/>
-        <location line="+392"/>
-        <location line="+264"/>
         <source>BiblioteQ: Modify Magazine Entry (</source>
-        <translation>BiblioteQ: Magazin Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-654"/>
-        <location line="+392"/>
-        <location line="+31"/>
-        <location line="+228"/>
-        <location line="+4"/>
-        <location line="+19"/>
-        <location line="+4"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="-673"/>
-        <location line="+392"/>
-        <location line="+58"/>
-        <location line="+205"/>
         <source>BiblioteQ: Modify Journal Entry</source>
-        <translation>BiblioteQ: Folyóirat Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-653"/>
-        <location line="+392"/>
-        <location line="+58"/>
-        <location line="+205"/>
         <source>BiblioteQ: Modify Magazine Entry</source>
-        <translation>BiblioteQ: Magazin Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-568"/>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+52"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+156"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>BiblioteQ: Database Journal Search</source>
-        <translation>BiblioteQ: Folyóirat Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Database Magazine Search</source>
-        <translation>BiblioteQ: Magazin Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Keresés</translation>
     </message>
     <message>
-        <location line="+75"/>
-        <location line="+254"/>
         <source>BiblioteQ: View Journal Details (</source>
-        <translation>BiblioteQ: Folyóirat Részleteinek Megtekintése (</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-252"/>
-        <location line="+256"/>
         <source>BiblioteQ: View Magazine Details (</source>
-        <translation>BiblioteQ: Magazin Reszletek (</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Reszletek (</translation>
     </message>
     <message>
-        <location line="-249"/>
         <source>BiblioteQ: View Journal Entry</source>
-        <translation>BiblioteQ: Folyóirat Bejegyzés Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Bejegyzés Megtekintése</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: View Magazine Entry</source>
-        <translation>BiblioteQ: Magazin Bejegyzés Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Bejegyzés Megtekintése</translation>
     </message>
     <message>
-        <location line="+55"/>
-        <location line="+198"/>
         <source>BiblioteQ: View Journal Details</source>
-        <translation>BiblioteQ: Folyóirat Részleteinek Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-196"/>
-        <location line="+198"/>
         <source>BiblioteQ: View Magazine Details</source>
-        <translation>BiblioteQ: Magazin Reszleteinek Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Reszleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-172"/>
-        <location line="+260"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-231"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected journal&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected magazine&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+247"/>
         <source>BiblioteQ: Create Journal Entry</source>
-        <translation>BiblioteQ: Folyóirat Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Create Magazine Entry</source>
-        <translation>BiblioteQ: Magazin Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+238"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+81"/>
         <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
-        <translation>Egy Z39.50 lekérdezéshez szükséges a ISSN!</translation>
+        <translation type="obsolete">Egy Z39.50 lekérdezéshez szükséges a ISSN!</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
-        <translation>BiblioteQ: Z39.50 Adatok Lekérése</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
-        <translation>Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
+        <translation type="obsolete">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+49"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
-        <translation>Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
+        <translation type="obsolete">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
     </message>
     <message>
-        <location line="+24"/>
-        <location line="+24"/>
-        <location line="+1098"/>
         <source>Memory Error</source>
-        <translation type="unfinished">Memória Hiba</translation>
+        <translation type="obsolete">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-1121"/>
-        <location line="+6"/>
-        <location line="+1116"/>
-        <location line="+6"/>
-        <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1123"/>
-        <location line="+1122"/>
-        <source>BiblioteQ: Memory Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1115"/>
-        <location line="+21"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
-        <translation>BiblioteQ: Z39.50 Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Z39.50 Hiba</translation>
     </message>
     <message>
-        <location line="-20"/>
         <source>A Z39.50 entry may not yet exist for </source>
-        <translation>Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
+        <translation type="obsolete">Lehet hogy még nem létezik Z39.50 bejegyzés a megadott ISBN(ek)hez.</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <location line="+1122"/>
         <source>.</source>
-        <translation>.</translation>
+        <translation type="obsolete">.</translation>
     </message>
     <message>
-        <location line="-1112"/>
-        <source>Unable to create a thread because of insufficient resources.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
         <source>Z39.50 Query Error</source>
-        <translation>Z39.50 Lekérdezés Hiba</translation>
+        <translation type="obsolete">Z39.50 Lekérdezés Hiba</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>The Z39.50 entry could not be retrieved.</source>
-        <translation>A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
+        <translation type="obsolete">A Z39.50 bejegyzés lekérése sikertelen volt.</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>ISSN:</source>
-        <translation>ISSN:</translation>
+        <translation type="obsolete">ISSN:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Volume:</source>
-        <translation>Kötet:</translation>
+        <translation type="obsolete">Kötet:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Issue (Number):</source>
-        <translation>Kiadvány (Szám):</translation>
+        <translation type="obsolete">Kiadvány (Szám):</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>LC Control Number:</source>
-        <translation>&quot;LC Control&quot; Szám:</translation>
+        <translation type="obsolete">&quot;LC Control&quot; Szám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Call Number:</source>
-        <translation>Hívószám:</translation>
+        <translation type="obsolete">Hívószám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Dewey Class Number:</source>
-        <translation>Dewey Osztály Szám:</translation>
+        <translation type="obsolete">Dewey Osztály Szám:</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Title:</source>
-        <translation>Cím:</translation>
+        <translation type="obsolete">Cím:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Publication Date:</source>
-        <translation>Kiadási Dátum:</translation>
+        <translation type="obsolete">Kiadási Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Publisher:</source>
-        <translation>Kiadó:</translation>
+        <translation type="obsolete">Kiadó:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Place of Publication:</source>
-        <translation>Megjelenés Helye:</translation>
+        <translation type="obsolete">Megjelenés Helye:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Category:</source>
-        <translation>Kategóriák:</translation>
+        <translation type="obsolete">Kategóriák:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Price:</source>
-        <translation>Ár:</translation>
+        <translation type="obsolete">Ár:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation type="obsolete">Nyelv:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Monetary Units:</source>
-        <translation>Pénzegység:</translation>
+        <translation type="obsolete">Pénzegység:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copies:</source>
-        <translation>Példányok:</translation>
+        <translation type="obsolete">Példányok:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Location:</source>
-        <translation>Hely:</translation>
+        <translation type="obsolete">Hely:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Abstract:</source>
-        <translation>Összefoglalás:</translation>
+        <translation type="obsolete">Összefoglalás:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>MARC Tags:</source>
-        <translation>MARC Cimkék:</translation>
+        <translation type="obsolete">MARC Cimkék:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Keywords:</source>
-        <translation>Kulcsszavak:</translation>
+        <translation type="obsolete">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+415"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+64"/>
         <source>BiblioteQ: Duplicate Journal Entry</source>
-        <translation>BiblioteQ: Folyóirat Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Folyóirat Bejegyzés Megkettőzése</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
-        <translation>BiblioteQ: Magazin Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Magazin Bejegyzés Megkettőzése</translation>
     </message>
     <message>
-        <location line="+364"/>
         <source>In order to query an SRU site, the ISSN must be provided.</source>
-        <translation>Egy SRU lekérdezéshez szükséges a ISSN!</translation>
+        <translation type="obsolete">Egy SRU lekérdezéshez szükséges a ISSN!</translation>
     </message>
     <message>
-        <location line="+28"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
-        <translation>BiblioteQ: SRU Adatok Lekérése</translation>
+        <translation type="obsolete">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Downloading information from the SRU site. Please be patient...</source>
-        <translation>Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
+        <translation type="obsolete">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+148"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
-        <translation>Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
+        <translation type="obsolete">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
     </message>
     <message>
-        <location line="+30"/>
         <source>BiblioteQ: SRU Query Error</source>
-        <translation>BiblioteQ: SRU Lekérdezési Hiba</translation>
+        <translation type="obsolete">BiblioteQ: SRU Lekérdezési Hiba</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>An SRU entry may not yet exist for </source>
-        <translation>Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
+        <translation type="obsolete">Lehet hogy még nem létezik SRU bejegyzés a megadott ISBN(ek)hez.</translation>
     </message>
 </context>
 <context>
     <name>qtbook_photographcollection</name>
     <message>
-        <location filename="../Source/qtbook_photographcollection.cc" line="+107"/>
         <source>Reset Collection &amp;Image</source>
-        <translation>Gyüjtemény Kép Visszaállítása</translation>
+        <translation type="obsolete">Gyüjtemény Kép Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset Collection &amp;ID</source>
-        <translation>Gyüjtemény Azonosító Visszaállítása</translation>
+        <translation type="obsolete">Gyüjtemény Azonosító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset Collection &amp;Title</source>
-        <translation>Gyüjtemény Cím Visszaállítása</translation>
+        <translation type="obsolete">Gyüjtemény Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset Collection &amp;Location</source>
-        <translation>Gyüjtemény Hely Visszaállítása</translation>
+        <translation type="obsolete">Gyüjtemény Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset Collection &amp;About</source>
-        <translation>&quot;Gyüjtemény -ről&quot; Visszaállítása</translation>
+        <translation type="obsolete">&quot;Gyüjtemény -ről&quot; Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset Collection &amp;Notes</source>
-        <translation>Gyüjtemény Hozzászólások Visszaállítása</translation>
+        <translation type="obsolete">Gyüjtemény Hozzászólások Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;All</source>
-        <translation>Mind</translation>
+        <translation type="obsolete">Mind</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Current Page</source>
-        <translation>Jelenlegi Oldal</translation>
+        <translation type="obsolete">Jelenlegi Oldal</translation>
     </message>
     <message>
-        <location line="+21"/>
-        <location line="+86"/>
-        <location line="+90"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+76"/>
-        <location line="+32"/>
-        <location line="+222"/>
-        <location line="+612"/>
-        <location line="+91"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+47"/>
-        <location line="+238"/>
-        <location line="+81"/>
-        <location line="+11"/>
-        <location line="+34"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1663"/>
-        <source>Unable to retrieve the photograph collection locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+571"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-523"/>
-        <location line="+12"/>
-        <location line="+987"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+12"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1058"/>
         <source>Please complete the collection&apos;s ID field.</source>
-        <translation>Töltse ki a Gyüjtemény Azonosító mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Gyüjtemény Azonosító mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the collection&apos;s Title field.</source>
-        <translation>Töltse ki a Gyüjtemény Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Gyüjtemény Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+17"/>
-        <location line="+4"/>
-        <location line="+1050"/>
-        <location line="+3"/>
-        <location line="+395"/>
-        <location line="+3"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1452"/>
-        <location line="+188"/>
-        <location line="+32"/>
-        <location line="+222"/>
-        <location line="+611"/>
-        <location line="+161"/>
-        <location line="+237"/>
-        <location line="+127"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1491"/>
-        <location line="+1055"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1044"/>
-        <location line="+1055"/>
-        <location line="+377"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1421"/>
-        <location line="+1055"/>
-        <location line="+377"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1421"/>
-        <location line="+208"/>
-        <location line="+137"/>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-343"/>
-        <location line="+207"/>
-        <location line="+20"/>
-        <location line="+118"/>
-        <location line="+7"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="-289"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the photograph collection&apos;s OID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+27"/>
-        <location line="+994"/>
-        <location line="+364"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-1353"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+74"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>BiblioteQ: Database Photograph Collection Search</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+39"/>
-        <location line="+124"/>
         <source>BiblioteQ: View Photograph Collection Details (</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése (</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-91"/>
         <source>BiblioteQ: Modify Photograph Collection Entry</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="+22"/>
         <source>BiblioteQ: View Photograph Collection Details</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése</translation>
     </message>
     <message>
-        <location line="+29"/>
-        <location line="+131"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-124"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+128"/>
         <source>BiblioteQ: Create Photograph Collection Entry</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Bejegyzés Létrehozása</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+83"/>
-        <location line="+942"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-941"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>Collection ID:</source>
-        <translation>Gyüjtemény Azonosító:</translation>
+        <translation type="obsolete">Gyüjtemény Azonosító:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Collection Title:</source>
-        <translation>Gyüjtemény Cím:</translation>
+        <translation type="obsolete">Gyüjtemény Cím:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Collection Location:</source>
-        <translation>Gyüjtemény Helye:</translation>
+        <translation type="obsolete">Gyüjtemény Helye:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Collection About:</source>
-        <translation>A Gyüjteményről:</translation>
+        <translation type="obsolete">A Gyüjteményről:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Collection Notes:</source>
-        <translation>Gyüjtemény Hozzászólások:</translation>
+        <translation type="obsolete">Gyüjtemény Hozzászólások:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item ID:</source>
-        <translation>Cikk Azonosító:</translation>
+        <translation type="obsolete">Cikk Azonosító:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Title:</source>
-        <translation>Cikk Cím:</translation>
+        <translation type="obsolete">Cikk Cím:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Creator(s):</source>
-        <translation>Cikk Alkotó(i):</translation>
+        <translation type="obsolete">Cikk Alkotó(i):</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Publication Date:</source>
-        <translation>Cikk Kiadási Dátum:</translation>
+        <translation type="obsolete">Cikk Kiadási Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Copies:</source>
-        <translation>Cikk Példányok:</translation>
+        <translation type="obsolete">Cikk Példányok:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Medium:</source>
-        <translation>Cikk Médium:</translation>
+        <translation type="obsolete">Cikk Médium:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Reproduction Number:</source>
-        <translation>Cikk Reprodukció Szám:</translation>
+        <translation type="obsolete">Cikk Reprodukció Szám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Copyright:</source>
-        <translation>Cikk Szerzői Jog:</translation>
+        <translation type="obsolete">Cikk Szerzői Jog:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Call Number:</source>
-        <translation>Cikk Hívószám:</translation>
+        <translation type="obsolete">Cikk Hívószám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Other Number:</source>
-        <translation>Cikk Egyéb Szám:</translation>
+        <translation type="obsolete">Cikk Egyéb Szám:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Notes:</source>
-        <translation>Cikk Hozzászólások</translation>
+        <translation type="obsolete">Cikk Hozzászólások</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Subjects:</source>
-        <translation>Cikk Témák:</translation>
+        <translation type="obsolete">Cikk Témák:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Item Format:</source>
-        <translation>Cikk Formátuma:</translation>
+        <translation type="obsolete">Cikk Formátuma:</translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>BiblioteQ: Photograph Collection Image Selection</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Kép Kiválasztás</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Kép Kiválasztás</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>BiblioteQ: Photograph Collection Item Image Selection</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Cikk Kép Kiválasztás</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Cikk Kép Kiválasztás</translation>
     </message>
     <message>
-        <location line="+58"/>
         <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
-        <translation>BiblioteQ: Fénykép Gyűjtemény Bejegyzése Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyűjtemény Bejegyzése Megkettőzése</translation>
     </message>
     <message>
-        <location line="+155"/>
         <source>Please complete the item&apos;s ID field.</source>
-        <translation>Töltse ki a cikk Azonosító Szám mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the item&apos;s Title field.</source>
-        <translation>Töltse ki a cikk Cím mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Cím mezőjét!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the item&apos;s Creator(s) field.</source>
-        <translation>Töltse ki a cikk Alkotó(k) mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Alkotó(k) mezőjét!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the item&apos;s Medium field.</source>
-        <translation>Töltse ki a cikk Médium mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Médium mezőjét!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the item&apos;s Reproduction Number field.</source>
-        <translation>Töltse ki a cikk Reprodukció Szám mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Reprodukció Szám mezőjét!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the item&apos;s Copyright field.</source>
-        <translation>Töltse ki a cikk Szerzői Jog mezőjét!</translation>
+        <translation type="obsolete">Töltse ki a cikk Szerzői Jog mezőjét!</translation>
     </message>
     <message>
-        <location line="+188"/>
         <source>Unable to create the item. Please verify that the item does not already exist.</source>
-        <translation>A cikk létrehozása sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
+        <translation type="obsolete">A cikk létrehozása sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
     <message>
-        <location line="+364"/>
         <source>Unable to update the item. Please verify that the item does not already exist.</source>
-        <translation>A cikk frissítése sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
+        <translation type="obsolete">A cikk frissítése sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
     <message>
-        <location line="+18"/>
         <source>Are you sure that you wish to permanently delete the selected item(s)?</source>
-        <translation>Biztosan szeretné véglegesen törölni a következő cikk(ek)et?</translation>
+        <translation type="obsolete">Biztosan szeretné véglegesen törölni a következő cikk(ek)et?</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>BiblioteQ: Progress Dialog</source>
-        <translation>BiblioteQ: Folyamat</translation>
+        <translation type="obsolete">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Deleting the selected item(s)...</source>
-        <translation>A kijelölt cikkek törlése...</translation>
+        <translation type="obsolete">A kijelölt cikkek törlése...</translation>
     </message>
     <message>
-        <location line="+86"/>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
-        <translation>BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
+        <translation type="obsolete">BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
     </message>
     <message>
-        <location line="+38"/>
         <source>&amp;View Photograph</source>
-        <translation>Fénykép Megtekintése</translation>
+        <translation type="obsolete">Fénykép Megtekintése</translation>
     </message>
 </context>
 <context>
     <name>qtbook_videogame</name>
     <message>
-        <location filename="../Source/qtbook_videogame.cc" line="+77"/>
         <source>Reset &amp;Front Cover Image</source>
-        <translation>Elülső Borító Visszaállítása</translation>
+        <translation type="obsolete">Elülső Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Back Cover Image</source>
-        <translation>Hátulsó Borító Visszaállítása</translation>
+        <translation type="obsolete">Hátulsó Borító Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;UPC</source>
-        <translation>UPC Visszaállítása</translation>
+        <translation type="obsolete">UPC Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Game Rating</source>
-        <translation>Játék Besorolás Visszaállítása</translation>
+        <translation type="obsolete">Játék Besorolás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Developer(s)</source>
-        <translation>Fejlesző(k) Visszaállítása</translation>
+        <translation type="obsolete">Fejlesző(k) Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Platform</source>
-        <translation>Rendszer Típus Visszaállítása</translation>
+        <translation type="obsolete">Rendszer Típus Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Mode</source>
-        <translation>Mód Visszaállítása</translation>
+        <translation type="obsolete">Mód Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Title</source>
-        <translation>Cím Visszaállítása</translation>
+        <translation type="obsolete">Cím Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Release Date</source>
-        <translation>Megjelenési Dátum Visszaállítása</translation>
+        <translation type="obsolete">Megjelenési Dátum Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Publisher</source>
-        <translation>Kiadó Visszaállítása</translation>
+        <translation type="obsolete">Kiadó Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Place of Publication</source>
-        <translation>Megjelenés Helyének Visszaállítása</translation>
+        <translation type="obsolete">Megjelenés Helyének Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Genres</source>
-        <translation>Műfaj Visszaállítása</translation>
+        <translation type="obsolete">Műfaj Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Price</source>
-        <translation>Ár Visszaállítása</translation>
+        <translation type="obsolete">Ár Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Language</source>
-        <translation>Nyelv Visszaállítása</translation>
+        <translation type="obsolete">Nyelv Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Monetary Units</source>
-        <translation>Pénzegység Visszaállítása</translation>
+        <translation type="obsolete">Pénzegység Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Copies</source>
-        <translation>Példányok Visszaállítása</translation>
+        <translation type="obsolete">Példányok Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Location</source>
-        <translation>Hely Visszaállítása</translation>
+        <translation type="obsolete">Hely Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Abstract</source>
-        <translation>Összefoglalás Visszaállítása</translation>
+        <translation type="obsolete">Összefoglalás Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Reset &amp;Keywords</source>
-        <translation>Kulcsszavak Visszaállítása</translation>
+        <translation type="obsolete">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
-        <location line="+19"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+12"/>
-        <location line="+13"/>
-        <location line="+68"/>
-        <location line="+118"/>
-        <location line="+129"/>
-        <location line="+11"/>
-        <location line="+24"/>
-        <location line="+12"/>
-        <location line="+24"/>
-        <location line="+10"/>
-        <location line="+112"/>
-        <location line="+29"/>
-        <location line="+31"/>
-        <location line="+324"/>
-        <source>Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-940"/>
-        <source>Unable to retrieve the video game ratings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the video game platforms.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the languages.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Unable to retrieve the monetary units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Unable to retrieve the video game locations.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+909"/>
-        <location line="+17"/>
-        <location line="+11"/>
-        <location line="+9"/>
-        <location line="+9"/>
         <source>UNKNOWN</source>
-        <translation>ISMERETLEN</translation>
+        <translation type="obsolete">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-907"/>
-        <location line="+5"/>
-        <source>Unable to determine the maximum copy number of the item.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-1"/>
-        <location line="+117"/>
-        <location line="+351"/>
-        <location line="+31"/>
-        <location line="+324"/>
-        <source>BiblioteQ: Database Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-812"/>
-        <location line="+23"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+12"/>
-        <location line="+11"/>
         <source>BiblioteQ: User Error</source>
-        <translation>BiblioteQ: Felhasználói Hiba</translation>
+        <translation type="obsolete">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-89"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
-        <translation>Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
+        <translation type="obsolete">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
-        <location line="+9"/>
-        <location line="+1199"/>
         <source>BiblioteQ: Question</source>
-        <translation>BiblioteQ:Kérdés</translation>
+        <translation type="obsolete">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1198"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
-        <translation>Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
+        <translation type="obsolete">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>Please complete the UPC field.</source>
-        <translation>Töltse ki az UPC mezőt!</translation>
+        <translation type="obsolete">Töltse ki az UPC mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Developer(s) field.</source>
-        <translation>Töltse ki a Fejlesztő(k) mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Fejlesztő(k) mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Title field.</source>
-        <translation>Töltse ki a Cím mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Publisher field.</source>
-        <translation>Töltse ki a Kiadó mezőt! </translation>
+        <translation type="obsolete">Töltse ki a Kiadó mezőt! </translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Place of Publication field.</source>
-        <translation>Töltse ki a Kiadás Helye mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Kiadás Helye mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Please complete the Genres field.</source>
-        <translation>Töltse ki a Műfaj mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Műfaj mezőt!</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>Please complete the Abstract field.</source>
-        <translation>Töltse ki a Összefoglalás mezőt!</translation>
+        <translation type="obsolete">Töltse ki a Összefoglalás mezőt!</translation>
     </message>
     <message>
-        <location line="+12"/>
-        <location line="+4"/>
-        <source>Unable to create a database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+125"/>
-        <source>Unable to generate a unique integer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <source>Unable to create or update the entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Unable to purge unnecessary copy data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <location line="+34"/>
-        <source>Unable to commit the current database transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-10"/>
-        <source>Unable to create initial copies.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+41"/>
-        <location line="+355"/>
-        <location line="+199"/>
         <source>BiblioteQ: Modify Video Game Entry (</source>
-        <translation>BiblioteQ: Videójáték Bejegyzés Módosítása (</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-553"/>
-        <location line="+355"/>
-        <location line="+13"/>
-        <location line="+186"/>
-        <location line="+6"/>
         <source>)</source>
-        <translation>)</translation>
+        <translation type="obsolete">)</translation>
     </message>
     <message>
-        <location line="-480"/>
-        <source>Retrieving availability.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the video game&apos;s OID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+26"/>
         <source>Rollback failure.</source>
-        <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
+        <translation type="obsolete">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+139"/>
         <source>&amp;Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
         <source>Any</source>
-        <translation>Bármely</translation>
+        <translation type="obsolete">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>BiblioteQ: Database Video Game Search</source>
-        <translation>BiblioteQ: Videójáték Keresés</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Keresés</translation>
     </message>
     <message>
-        <location line="+53"/>
-        <location line="+192"/>
         <source>BiblioteQ: View Video Game Details (</source>
-        <translation>BiblioteQ: Videójáték Reszletek (</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Reszletek (</translation>
     </message>
     <message>
-        <location line="-169"/>
         <source>BiblioteQ: Modify Video Game Entry</source>
-        <translation>BiblioteQ: Videójáték Bejegyzés Módosítása</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="+26"/>
         <source>BiblioteQ: View Video Game Details</source>
-        <translation>BiblioteQ: Videójáték Reszletek</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Reszletek</translation>
     </message>
     <message>
-        <location line="+24"/>
-        <location line="+184"/>
         <source>&amp;Save</source>
-        <translation>Mentés</translation>
+        <translation type="obsolete">Mentés</translation>
     </message>
     <message>
-        <location line="-160"/>
-        <location line="+4"/>
-        <source>Unable to retrieve the selected video game&apos;s data.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+189"/>
         <source>BiblioteQ: Create Video Game Entry</source>
-        <translation>BiblioteQ: Videójáték Bejegyzés Léteséítése</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Bejegyzés Léteséítése</translation>
     </message>
     <message>
-        <location line="+208"/>
         <source>Your changes have not been saved. Continue closing?</source>
-        <translation>A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
+        <translation type="obsolete">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+76"/>
         <source>UPC:</source>
-        <translation>UPC:</translation>
+        <translation type="obsolete">UPC:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Game Rating:</source>
-        <translation>Játék Besorolása:</translation>
+        <translation type="obsolete">Játék Besorolása:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Developer(s):</source>
-        <translation>Fejlesztő(k):</translation>
+        <translation type="obsolete">Fejlesztő(k):</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Platform:</source>
-        <translation>Rendszer Típus:</translation>
+        <translation type="obsolete">Rendszer Típus:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Mode:</source>
-        <translation>Mód:</translation>
+        <translation type="obsolete">Mód:</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Title:</source>
-        <translation>Cím:</translation>
+        <translation type="obsolete">Cím:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Release Date:</source>
-        <translation>Megjelenési Dátum:</translation>
+        <translation type="obsolete">Megjelenési Dátum:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Publisher:</source>
-        <translation>Kiadó:</translation>
+        <translation type="obsolete">Kiadó:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Place of Publication:</source>
-        <translation>Megjelenés Helye:</translation>
+        <translation type="obsolete">Megjelenés Helye:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Genre:</source>
-        <translation>Műfaj:</translation>
+        <translation type="obsolete">Műfaj:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Price:</source>
-        <translation>Ár:</translation>
+        <translation type="obsolete">Ár:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Language:</source>
-        <translation>Nyelv:</translation>
+        <translation type="obsolete">Nyelv:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Monetary Units:</source>
-        <translation>Pénzegység:</translation>
+        <translation type="obsolete">Pénzegység:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Copies:</source>
-        <translation>Példányok:</translation>
+        <translation type="obsolete">Példányok:</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Location:</source>
-        <translation>Hely:</translation>
+        <translation type="obsolete">Hely:</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Abstract:</source>
-        <translation>Összefoglalás:</translation>
+        <translation type="obsolete">Összefoglalás:</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Keywords:</source>
-        <translation>Kulcsszavak:</translation>
+        <translation type="obsolete">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+25"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
-        <translation>BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
-        <translation>BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
+        <translation type="obsolete">BiblioteQ: Hátulsó Borító Kép Kiválasztása</translation>
     </message>
     <message>
-        <location line="+53"/>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
-        <translation>BiblioteQ: Videójáték Bejegyzés Megkettőzése</translation>
+        <translation type="obsolete">BiblioteQ: Videójáték Bejegyzés Megkettőzése</translation>
     </message>
 </context>
 <context>
     <name>sruResultsDialog</name>
     <message>
-        <location filename="../UI/sruResults.ui" line="+14"/>
+        <location filename="../UI/biblioteq_sruResults.ui" line="+14"/>
         <source>BiblioteQ: SRU Query Results</source>
         <translation>BiblioteQ: SRU Lekérdezés Eredmények</translation>
     </message>
@@ -9338,7 +12928,7 @@
         <translation>Letöltött Rekordok</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+14"/>
         <source>Record &amp;Contents</source>
         <translation>Rekord Tartalma</translation>
     </message>
@@ -9348,7 +12938,7 @@
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+57"/>
         <source>&amp;Select</source>
         <translation>Kiválasztás</translation>
     </message>
@@ -9361,20 +12951,19 @@
 <context>
     <name>sruresults</name>
     <message>
-        <location filename="../Source/sruResults.cc" line="+78"/>
         <source>Record #</source>
-        <translation>Rekord #</translation>
+        <translation type="obsolete">Rekord #</translation>
     </message>
 </context>
 <context>
     <name>tracksDialog</name>
     <message>
-        <location filename="../UI/tracks.ui" line="+20"/>
+        <location filename="../UI/biblioteq_tracks.ui" line="+20"/>
         <source>BiblioteQ: Album Tracks Browser</source>
         <translation>BiblioteQ: Album Zeneszám Böngésző</translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+44"/>
         <source>Album Number</source>
         <translation>Album Szám</translation>
     </message>
@@ -9425,14 +13014,29 @@
     </message>
 </context>
 <context>
+    <name>userinfo_diag_class</name>
+    <message>
+        <location filename="../Source/biblioteq.h" line="+171"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Your changes have not been saved. Continue closing?
+%1</source>
+        <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?
+%1</translation>
+    </message>
+</context>
+<context>
     <name>vgDialog</name>
     <message>
-        <location filename="../UI/videogameinfo.ui" line="+14"/>
+        <location filename="../UI/biblioteq_videogameinfo.ui" line="+14"/>
         <source>BiblioteQ</source>
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -9468,7 +13072,7 @@
         <translation>Játék Besorolása</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Developer(s)</source>
         <translation>Fejlesztő(k)</translation>
     </message>
@@ -9478,12 +13082,12 @@
         <translation>Rendszer Típus</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Mode</source>
         <translation>Mód</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
         <source>Multiplayer</source>
         <translation>Többjátékosos</translation>
     </message>
@@ -9508,7 +13112,7 @@
         <translation>Megjelenési Dátum</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+21"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -9533,12 +13137,12 @@
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Monetary Units</source>
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
@@ -9558,7 +13162,7 @@
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+31"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
@@ -9601,7 +13205,7 @@
 <context>
     <name>z3950ResultsDialog</name>
     <message>
-        <location filename="../UI/z3950results.ui" line="+14"/>
+        <location filename="../UI/biblioteq_z3950results.ui" line="+14"/>
         <source>BiblioteQ: Z39.50 Query Results</source>
         <translation>BiblioteQ: Z39.50 Lekérdezés Eredmények</translation>
     </message>
@@ -9611,7 +13215,7 @@
         <translation>Letöltött Rekordok</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+14"/>
         <source>Record &amp;Contents</source>
         <translation>Rekord Tartalma</translation>
     </message>
@@ -9621,7 +13225,7 @@
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+57"/>
         <source>&amp;Select</source>
         <translation>Kiválasztás</translation>
     </message>
@@ -9634,9 +13238,8 @@
 <context>
     <name>z3950results</name>
     <message>
-        <location filename="../Source/z3950results.cc" line="+63"/>
         <source>Record #</source>
-        <translation>Rekord #</translation>
+        <translation type="obsolete">Rekord #</translation>
     </message>
 </context>
 </TS>
