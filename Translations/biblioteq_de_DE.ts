@@ -6158,8 +6158,8 @@
         <location filename="../Source/biblioteq_photographcollection.cc" line="1864"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1875"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1910"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2544"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2551"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2547"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2554"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6222,7 +6222,7 @@
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="334"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1468"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2545"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2548"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
@@ -6446,7 +6446,7 @@
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1108"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1950"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2431"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2434"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6501,47 +6501,47 @@
         <translation type="unfinished">Lösche die ausgewählten Ausleihen...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2050"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2051"/>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2090"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2092"/>
         <source>&amp;Modify Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2097"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2099"/>
         <source>&amp;View Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2400"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2402"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2427"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2430"/>
         <source>Importing image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2552"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2555"/>
         <source>Unable to import photograph.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2593"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2597"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2594"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2598"/>
         <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2749"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2753"/>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>

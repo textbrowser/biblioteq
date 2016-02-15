@@ -6137,13 +6137,13 @@
         <location line="+83"/>
         <location line="+11"/>
         <location line="+35"/>
-        <location line="+634"/>
+        <location line="+637"/>
         <location line="+7"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2399"/>
+        <location line="-2402"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6201,12 +6201,12 @@
     <message>
         <location line="-1580"/>
         <location line="+1134"/>
-        <location line="+1077"/>
+        <location line="+1080"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2200"/>
+        <location line="-2203"/>
         <location line="+1134"/>
         <location line="+386"/>
         <source>Unable to create or update the entry.</source>
@@ -6425,12 +6425,12 @@
     <message>
         <location line="+3"/>
         <location line="+842"/>
-        <location line="+481"/>
+        <location line="+484"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-1144"/>
+        <location line="-1147"/>
         <source>Please complete the item&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
     </message>
@@ -6480,12 +6480,12 @@
         <translation type="unfinished">A kijelölt cikkek törlése...</translation>
     </message>
     <message>
-        <location line="+99"/>
+        <location line="+100"/>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+41"/>
         <source>&amp;Modify Photograph</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6500,7 +6500,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+28"/>
         <source>Importing image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6510,7 +6510,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+42"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Információ</translation>
     </message>
