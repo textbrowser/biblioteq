@@ -1964,6 +1964,7 @@ void biblioteq::slotDelete(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
 
       if(ui.table->item(i, col) == 0)
@@ -4704,6 +4705,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 
@@ -4773,6 +4775,7 @@ void biblioteq::slotGrantPrivileges(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 
@@ -7516,6 +7519,7 @@ void biblioteq::slotShowHistory(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 
@@ -8094,6 +8098,7 @@ void biblioteq::slotRefreshAdminList(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 
@@ -8257,6 +8262,7 @@ void biblioteq::slotSaveAdministrators(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
 
       if(adminStr.isEmpty())
@@ -8575,6 +8581,7 @@ void biblioteq::slotRequest(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 

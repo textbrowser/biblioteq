@@ -212,6 +212,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 #ifndef Q_OS_MAC
       progress1.repaint();
+      QApplication::processEvents();
 #endif
     }
 
@@ -344,6 +345,7 @@ void biblioteq_borrowers_editor::showUsers(void)
 
 #ifndef Q_OS_MAC
       progress2.repaint();
+      QApplication::processEvents();
 #endif
 
       if(terminate)
@@ -570,6 +572,7 @@ void biblioteq_borrowers_editor::slotSave(void)
 
 #ifndef Q_OS_MAC
       progress.repaint();
+      QApplication::processEvents();
 #endif
     }
 
