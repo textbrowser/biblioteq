@@ -845,7 +845,7 @@ void biblioteq_videogame::slotGo(void)
 
       if(vg.platform->currentIndex() != 0)
 	searchstr.append("vgplatform = " + E + "'" +
-			 biblioteq_myqstring::escape(vg.rating->currentText().
+			 biblioteq_myqstring::escape(vg.platform->currentText().
 						     trimmed()) +
 			 "' AND ");
 
