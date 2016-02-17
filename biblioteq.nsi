@@ -31,9 +31,10 @@ file /r .\release\plugins
 
 file /r .\release\Translations
 file .\release\*.dll
+file .\Libraries.win32\postgresql.d\*.dll
+file .\Libraries.win32\yaz.d\Microsoft.VC90.CRT.manifest
 file .\Libraries.win32\sqlite3.d\*.dll
 file .\Libraries.win32\yaz.d\*.dll
-file .\Libraries.win32\yaz.d\Microsoft.VC90.CRT.manifest
 file .\release\BiblioteQ.exe
 
 # Add an icon to the Desktop.
