@@ -1939,7 +1939,6 @@ void biblioteq_magazine::slotZ3950Query(void)
   QString errorstr = "";
   QString searchstr = "";
   QStringList list;
-  biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
 
   if(ma.id->text().trimmed().length() != 9)
     {
@@ -1953,13 +1952,15 @@ void biblioteq_magazine::slotZ3950Query(void)
 
   if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
     {
+      biblioteq_item_working_dialog working
+	(qobject_cast<QMainWindow *> (this));
+
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
 			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
-      working.setCancelButton(0);
       working.show();
       working.update();
 
@@ -1999,7 +2000,11 @@ void biblioteq_magazine::slotZ3950Query(void)
 
       working.close();
 
-      if(working.wasCanceled())
+      bool canceled = working.wasCanceled();
+
+      working.reset(); // Qt 5.5.x adjustment.
+
+      if(canceled)
 	{
 	  m_thread->deleteLater();
 	  return;
@@ -3073,6 +3078,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 	return;
     }
 
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->show();
@@ -3234,7 +3240,10 @@ void biblioteq_magazine::slotSRUQuery(void)
 		  this, SLOT(slotSRUDownloadFinished(void)));
 	}
       else
-	m_sruWorking->close();
+	{
+	  m_sruWorking->reset(); // Qt 5.5.x adjustment.
+	  m_sruWorking->close();
+	}
     }
 }
 
@@ -3268,6 +3277,7 @@ void biblioteq_magazine::slotSRUDownloadFinished(void)
 
 void biblioteq_magazine::sruDownloadFinished(void)
 {
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
   update();
 

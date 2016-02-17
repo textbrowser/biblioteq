@@ -45,8 +45,8 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   if((scene2 = new(std::nothrow) QGraphicsScene(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_httpProgress =
-      new(std::nothrow) biblioteq_item_working_dialog(this)) == 0)
+  if((m_httpProgress = new(std::nothrow)
+      biblioteq_item_working_dialog(qobject_cast<QMainWindow *> (this))) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   m_httpProgress->reset(); // Qt 5.5.x adjustment.
@@ -2104,6 +2104,7 @@ void biblioteq_book::slotSRUQuery(void)
 	return;
     }
 
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->setMaximum(0);
   m_sruWorking->setMinimum(0);
   m_sruWorking->show();
@@ -2282,7 +2283,10 @@ void biblioteq_book::slotSRUQuery(void)
 		  this, SLOT(slotSRUSslErrors(const QList<QSslError> &)));
 	}
       else
-	m_sruWorking->close();
+	{
+	  m_sruWorking->reset(); // Qt 5.5.x adjustment.
+	  m_sruWorking->close();
+	}
     }
 }
 
@@ -2301,7 +2305,6 @@ void biblioteq_book::slotZ3950Query(void)
   QString str = "";
   QStringList list;
   QStringList tmplist;
-  biblioteq_item_working_dialog working(qobject_cast<QMainWindow *> (this));
   int i = 0;
 
   if(!(id.id->text().trimmed().length() == 10 ||
@@ -2317,13 +2320,15 @@ void biblioteq_book::slotZ3950Query(void)
 
   if((m_thread = new(std::nothrow) biblioteq_generic_thread(this)) != 0)
     {
+      biblioteq_item_working_dialog working
+	(qobject_cast<QMainWindow *> (this));
+
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
 			      "site. Please be patient..."));
       working.setMaximum(0);
       working.setMinimum(0);
-      working.setCancelButton(0);
       working.show();
       working.update();
 
@@ -2383,7 +2388,11 @@ void biblioteq_book::slotZ3950Query(void)
 
       working.close();
 
-      if(working.wasCanceled())
+      bool canceled = working.wasCanceled();
+
+      working.reset(); // Qt 5.5.x adjustment.
+
+      if(canceled)
 	{
 	  m_thread->deleteLater();
 	  return;
@@ -2919,6 +2928,7 @@ void biblioteq_book::slotDownloadImage(void)
 	      this, SLOT(slotDownloadFinished(void)));
     }
 
+  m_httpProgress->reset(); // Qt 5.5.x adjustment.
   m_httpProgress->setMaximum(0);
   m_httpProgress->setMinimum(0);
   m_httpProgress->show();
@@ -2970,7 +2980,10 @@ void biblioteq_book::slotDownloadFinished(void)
 void biblioteq_book::downloadFinished(void)
 {
   if(m_httpProgress->isVisible())
-    m_httpProgress->close();
+    {
+      m_httpProgress->reset(); // Qt 5.5.x adjustment.
+      m_httpProgress->close();
+    }
 
   if(m_imageBuffer.property("which") == "front")
     {
@@ -3160,6 +3173,7 @@ void biblioteq_book::slotSRUDownloadFinished(void)
 
 void biblioteq_book::sruDownloadFinished(void)
 {
+  m_sruWorking->reset(); // Qt 5.5.x adjustment.
   m_sruWorking->close();
   update();
 
