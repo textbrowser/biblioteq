@@ -1065,7 +1065,8 @@ GRANT INSERT, SELECT, UPDATE ON member_history_dnt TO biblioteq_patron;
 
 ALTER TABLE member ALTER sex SET DEFAULT 'Private';
 
-/* Release 2016.03.01 */
+/* Release 2016.02.17 */
+/* Incomplete, please do not execute. */
 
 CREATE TABLE grey_literature
 (
