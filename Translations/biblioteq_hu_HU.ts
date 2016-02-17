@@ -2599,26 +2599,26 @@
         <location line="+12"/>
         <location line="+11"/>
         <location line="+1536"/>
-        <location line="+224"/>
-        <location line="+416"/>
+        <location line="+227"/>
+        <location line="+422"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-2292"/>
+        <location line="-2301"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+1570"/>
-        <location line="+381"/>
-        <location line="+790"/>
+        <location line="+390"/>
+        <location line="+795"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-2740"/>
+        <location line="-2754"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -2790,12 +2790,12 @@
         <translation type="unfinished">Egy SRU lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
     </message>
     <message>
-        <location line="+224"/>
+        <location line="+227"/>
         <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+12"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
@@ -2805,7 +2805,7 @@
         <translation type="unfinished">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+78"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
     </message>
@@ -2971,7 +2971,7 @@
         <translation type="unfinished">Az Amazonról való borítókép letöltéséhez az ISBN-10 szükséges!</translation>
     </message>
     <message>
-        <location line="+201"/>
+        <location line="+202"/>
         <source>BiblioteQ: Front Cover Image Download</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Letöltése</translation>
     </message>
@@ -2991,7 +2991,7 @@
         <translation type="unfinished">Hátulsó borító kép letöltése. Legyen türelemmel...</translation>
     </message>
     <message>
-        <location line="+50"/>
+        <location line="+53"/>
         <location line="+17"/>
         <source>BiblioteQ: HTTP Warning</source>
         <translation type="unfinished">BiblioteQ: HTTP Figyelmeztetés</translation>
@@ -3017,7 +3017,7 @@
         <translation type="unfinished">A %1:%2 proxi belépőt kér.</translation>
     </message>
     <message>
-        <location line="+89"/>
+        <location line="+90"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
         <translation type="unfinished">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
     </message>
@@ -5282,26 +5282,26 @@
         <location line="+11"/>
         <location line="+12"/>
         <location line="+11"/>
-        <location line="+1479"/>
-        <location line="+1109"/>
+        <location line="+1478"/>
+        <location line="+1115"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-2670"/>
+        <location line="-2675"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
         <location line="+1473"/>
-        <location line="+146"/>
-        <location line="+1276"/>
+        <location line="+151"/>
+        <location line="+1281"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-2894"/>
+        <location line="-2904"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5513,12 +5513,12 @@
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="+79"/>
         <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
         <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges a ISSN!</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+12"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
@@ -5528,33 +5528,33 @@
         <translation type="unfinished">Adatok letöltése a Z39.50 oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+56"/>
+        <location line="+59"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished">Jelenlegi adatok helyettesítése a Z39.50 oldalról lekértekkel?</translation>
     </message>
     <message>
         <location line="+24"/>
         <location line="+24"/>
-        <location line="+1246"/>
+        <location line="+1251"/>
         <source>Memory Error</source>
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-1269"/>
+        <location line="-1274"/>
         <location line="+6"/>
-        <location line="+1264"/>
+        <location line="+1269"/>
         <location line="+6"/>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1271"/>
-        <location line="+1270"/>
+        <location line="-1276"/>
+        <location line="+1275"/>
         <source>BiblioteQ: Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1263"/>
+        <location line="-1268"/>
         <location line="+21"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Hiba</translation>
@@ -5705,7 +5705,7 @@
         <translation type="unfinished">Egy SRU lekérdezéshez szükséges a ISSN!</translation>
     </message>
     <message>
-        <location line="+233"/>
+        <location line="+238"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
         <translation type="unfinished">Jelenlegi adatok helyettesítése az SRU oldalról lekértekkel?</translation>
     </message>
