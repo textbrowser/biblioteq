@@ -4,6 +4,7 @@ purge.commands = rm -f *~ && rm -f */*~
 CONFIG		+= app_bundle qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
+QT		-= webkit
 QT		+= network printsupport sql widgets
 TEMPLATE	= app
 

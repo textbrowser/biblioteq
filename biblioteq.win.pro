@@ -3,6 +3,7 @@ purge.commands = del *~ && del *\\*~
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 LANGUAGE	= C++
+QT		-= webkit
 QT		+= network sql
 TEMPLATE	= app
 

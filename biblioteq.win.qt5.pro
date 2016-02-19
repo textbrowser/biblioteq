@@ -4,8 +4,7 @@ purge.commands = del *~ && del *\\*~
 CONFIG		+= qt release thread warn_on windows
 DEFINES		+=
 LANGUAGE	= C++
-QT		+= network printsupport sql widgets
-LANGUAGE	= C++
+QT		-= webkit
 QT		+= network printsupport sql widgets
 
 QMAKE_CLEAN	+= BiblioteQ.exe
