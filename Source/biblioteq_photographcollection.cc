@@ -2462,7 +2462,7 @@ void biblioteq_photographcollection::slotImportItems(void)
       else
 	bytes1 = file.readAll();
 
-      if(static_cast<int> (bytes1.length()) != file.size())
+      if(static_cast<qint64> (bytes1.length()) != file.size())
 	continue;
 
       QImage image;
