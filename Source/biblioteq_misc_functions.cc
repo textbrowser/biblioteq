@@ -4,7 +4,6 @@
 
 #include <QDate>
 #include <QProgressDialog>
-#include <QSettings>
 #include <QSqlField>
 #include <QSqlIndex>
 #include <QtDebug>

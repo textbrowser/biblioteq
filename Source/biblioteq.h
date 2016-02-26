@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2016.02.17"
+#define BIBLIOTEQ_VERSION "2016.02.27"
 
 /*
 ** -- C++ Includes --
@@ -209,6 +209,7 @@ class biblioteq: public QMainWindow
   QString getPreferredZ3950Site(void) const;
   QString getRoles(void) const;
   QString getTypeFilterString(void) const;
+  QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;

@@ -110,7 +110,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>278</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -359,7 +359,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>24</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -463,6 +463,7 @@
       <string>P&amp;hotographs per Page</string>
      </property>
     </widget>
+    <addaction name="actionAutomatically_Resize_Column_Widths"/>
     <addaction name="actionAutomaticallySaveSettingsOnExit"/>
     <addaction name="actionShowGrid"/>
     <addaction name="actionPopulate_Administrator_Browser_Table_on_Display"/>
@@ -1191,6 +1192,14 @@
   <action name="action1">
    <property name="text">
     <string>1</string>
+   </property>
+  </action>
+  <action name="actionAutomatically_Resize_Column_Widths">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Automatically &amp;Resize Column Widths</string>
    </property>
   </action>
  </widget>

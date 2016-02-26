@@ -2,7 +2,6 @@
 ** -- Qt Includes --
 */
 
-#include <QSettings>
 #include <QSqlField>
 #include <QSqlRecord>
 #include <QtCore/qmath.h>
@@ -2774,7 +2773,5 @@ void biblioteq_photographcollection::slotExportItem(void)
 
 int biblioteq_photographcollection::photographsPerPage(void)
 {
-  QSettings settings;
-
-  return qBound(25, settings.value("photographs_per_page", 25).toInt(), 100);
+  return qBound(25, qmain->setting("photographs_per_page").toInt(), 100);
 }

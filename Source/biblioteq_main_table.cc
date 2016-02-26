@@ -8,7 +8,10 @@
 ** -- Local Includes --
 */
 
+#include "biblioteq.h"
 #include "biblioteq_main_table.h"
+
+extern biblioteq *qmain;
 
 /*
 ** -- biblioteq_main_table() --
@@ -420,7 +423,10 @@ void biblioteq_main_table::resetTable(const QString &username,
 
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
-  resizeColumnsToContents();
+
+  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
+    resizeColumnsToContents();
+
   horizontalHeader()->setStretchLastSection(true);
   clearSelection();
   setCurrentItem(0);

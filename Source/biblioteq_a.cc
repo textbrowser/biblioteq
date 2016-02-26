@@ -2066,6 +2066,10 @@ void biblioteq::slotResizeColumnsAfterSort(void)
 
   if(object != 0 && object->parent() != 0)
     {
+      if(object->parent() == ui.table)
+	if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
+	  return;
+
       QApplication::setOverrideCursor(Qt::WaitCursor);
       parent = object->parent();
       (qobject_cast<QTableWidget *> (parent))->resizeColumnsToContents();
@@ -2864,14 +2868,16 @@ void biblioteq::readConfig(void)
   QFont font;
   QSettings settings;
 
-  ui.actionShowGrid->setChecked(settings.value("show_table_grid",
-					       false).toBool());
+  ui.actionAutoPopulateOnCreation->setChecked
+    (settings.value("automatically_populate_on_create", false).toBool());
+  ui.actionAutomatically_Resize_Column_Widths->setChecked
+    (settings.value("automatically_resize_column_widths", false).toBool());
   ui.actionPopulateOnStart->setChecked
     (settings.value("populate_table_on_connect", false).toBool());
   ui.actionResetErrorLogOnDisconnect->setChecked
     (settings.value("reset_error_log_on_disconnect", false).toBool());
-  ui.actionAutoPopulateOnCreation->setChecked
-    (settings.value("automatically_populate_on_create", false).toBool());
+  ui.actionShowGrid->setChecked
+    (settings.value("show_table_grid", false).toBool());
 
   if(settings.contains("main_window_geometry"))
     {
@@ -3127,29 +3133,30 @@ void biblioteq::slotSaveConfig(void)
 {
   QSettings settings;
 
-  settings.setValue("main_splitter_state", ui.splitter->saveState());
-  settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
-  settings.setValue("populate_table_on_connect",
-		    ui.actionPopulateOnStart->isChecked());
-  settings.setValue("reset_error_log_on_disconnect",
-		    ui.actionResetErrorLogOnDisconnect->isChecked());
-  settings.setValue("automatically_populate_on_create",
-		    ui.actionAutoPopulateOnCreation->isChecked());
-  settings.setValue("save_settings_on_exit",
-		    ui.actionAutomaticallySaveSettingsOnExit->isChecked());
-  settings.setValue
-    ("automatically_populate_members_list_on_display",
-     ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
   settings.setValue
     ("automatically_populate_admin_list_on_display",
      ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked());
   settings.setValue
     ("automatically_populate_enum_list_on_display",
-     ui.actionPopulate_Database_Enumerations_Browser_on_Display->
-     isChecked());
+     ui.actionPopulate_Database_Enumerations_Browser_on_Display->isChecked());
+  settings.setValue
+    ("automatically_populate_members_list_on_display",
+     ui.actionPopulate_Members_Browser_Table_on_Display->isChecked());
+  settings.setValue("automatically_populate_on_create",
+		    ui.actionAutoPopulateOnCreation->isChecked());
+  settings.setValue("automatically_resize_column_widths",
+		    ui.actionAutomatically_Resize_Column_Widths->isChecked());
   settings.setValue("global_font", font().toString());
   settings.setValue("last_category", getTypeFilterString());
   settings.setValue("locale", s_locale);
+  settings.setValue("main_splitter_state", ui.splitter->saveState());
+  settings.setValue("populate_table_on_connect",
+		    ui.actionPopulateOnStart->isChecked());
+  settings.setValue("reset_error_log_on_disconnect",
+		    ui.actionResetErrorLogOnDisconnect->isChecked());
+  settings.setValue("save_settings_on_exit",
+		    ui.actionAutomaticallySaveSettingsOnExit->isChecked());
+  settings.setValue("show_table_grid", ui.actionShowGrid->isChecked());
 
   if(ui.actionPreserveGeometry->isChecked())
     {

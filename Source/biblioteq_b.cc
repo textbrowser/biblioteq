@@ -3965,3 +3965,23 @@ void biblioteq::slotPhotographsPerPageChanged(void)
 
   settings.setValue("photographs_per_page", action->data().toInt());
 }
+
+/*
+** -- setting() --
+*/
+
+QVariant biblioteq::setting(const QString &name) const
+{
+  if(name == "automatically_resize_column_widths")
+    return ui.actionAutomatically_Resize_Column_Widths->isChecked();
+  else if(name == "photographs_per_page")
+    {
+      foreach(QAction *action, ui.menuPhotographs_per_Page->actions())
+	if(action->isChecked())
+	  return action->data().toInt();
+
+      return 25;
+    }
+  else
+    return QVariant();
+}
