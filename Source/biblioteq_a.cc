@@ -233,6 +233,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
 biblioteq::biblioteq(void):QMainWindow()
 {
+  qmain = this;
   bool anomaly = false;
 
 #if QT_VERSION < 0x050000
@@ -2120,6 +2121,10 @@ void biblioteq::slotUpdateIndicesAfterSort(int column)
 
 void biblioteq::slotResizeColumns(void)
 {
+  if(!sender())
+    if(!ui.actionAutomatically_Resize_Column_Widths->isChecked())
+      return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
   ui.table->resizeColumnsToContents();
   ui.table->horizontalHeader()->setStretchLastSection(true);

@@ -3522,7 +3522,9 @@ int biblioteq::populateTable(const int search_type_arg,
   if(search_type != CUSTOM_QUERY)
     addConfigOptions(typefilter);
 
-  slotResizeColumns();
+  if(ui.actionAutomatically_Resize_Column_Widths->isChecked())
+    slotResizeColumns();
+
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
   ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
 			      arg(ui.table->rowCount()));

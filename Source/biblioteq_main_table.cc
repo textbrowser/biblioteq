@@ -20,6 +20,7 @@ extern biblioteq *qmain;
 biblioteq_main_table::biblioteq_main_table(QWidget *parent):
   QTableWidget(parent)
 {
+  m_lastType.clear();
   setDragEnabled(false);
   setAcceptDrops(false);
 #if QT_VERSION >= 0x050000
@@ -412,23 +413,41 @@ void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &type,
 				      const QString &roles)
 {
-  clear();
+  if(qmain->setting("automatically_resize_column_widths").toBool())
+    {
+      clear();
+      setColumnCount(0);
+    }
+  else
+    {
+      if(m_lastType == type)
+	clearContents();
+      else
+	{
+	  clear();
+	  setColumnCount(0);
+	}
+    }
+
   setRowCount(0);
-  setColumnCount(0);
   scrollToTop();
   horizontalScrollBar()->setValue(0);
 
   if(!type.isEmpty())
-    setColumns(username, type, roles);
+    if(columnCount() == 0)
+      setColumns(username, type, roles);
 
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
 
-  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
-    resizeColumnsToContents();
+  if(qmain->setting("automatically_resize_column_widths").toBool())
+    {
+      resizeColumnsToContents();
+      horizontalHeader()->setStretchLastSection(true);
+    }
 
-  horizontalHeader()->setStretchLastSection(true);
   clearSelection();
+  m_lastType = type;
   setCurrentItem(0);
 }
 

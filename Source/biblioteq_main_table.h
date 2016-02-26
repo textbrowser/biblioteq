@@ -33,6 +33,7 @@ class biblioteq_main_table: public QTableWidget
 
  private:
   QHash<QString, QList<int> > m_hiddenColumns;
+  QString m_lastType;
   QVector<QString> m_columnHeaderIndexes;
   void setColumns(const QString &username,
 		  const QString &type,
