@@ -154,6 +154,7 @@ int main(int argc, char *argv[])
   if(!(biblioteq::s_locale == "cs_CZ" ||
        biblioteq::s_locale == "de_DE" ||
        biblioteq::s_locale == "el_GR" ||
+       biblioteq::s_locale == "en_US" ||
        biblioteq::s_locale == "fr_FR" ||
        biblioteq::s_locale == "hu_HU" ||
        biblioteq::s_locale == "nl_BE" ||
