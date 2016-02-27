@@ -3056,8 +3056,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	      {
 		if(ui.case_insensitive->isChecked())
 		  str.append("LOWER(title) LIKE " + E + "'%" +
-			     biblioteq_myqstring::escape(searchstrArg.toLower().
-							 trimmed()) +
+			     biblioteq_myqstring::
+			     escape(searchstrArg.toLower().trimmed()) +
 			     "%' ");
 		else
 		  str.append("title LIKE " + E + "'%" +
