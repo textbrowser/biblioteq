@@ -233,7 +233,6 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
 biblioteq::biblioteq(void):QMainWindow()
 {
-  qmain = this;
   bool anomaly = false;
 
 #if QT_VERSION < 0x050000
@@ -1207,6 +1206,7 @@ void biblioteq::showMain(void)
 
 biblioteq::~biblioteq()
 {
+  qmain = 0;
 }
 
 /*

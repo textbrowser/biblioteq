@@ -1,8 +1,6 @@
 #include "biblioteq.h"
 #include "biblioteq_myqstring.h"
 
-extern biblioteq *qmain;
-
 /*
 ** -- biblioteq_myqstring() --
 */

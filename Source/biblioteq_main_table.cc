@@ -413,7 +413,7 @@ void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &type,
 				      const QString &roles)
 {
-  if(qmain->setting("automatically_resize_column_widths").toBool())
+  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
     {
       clear();
       setColumnCount(0);
@@ -440,7 +440,7 @@ void biblioteq_main_table::resetTable(const QString &username,
   horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   horizontalHeader()->setSortIndicatorShown(true);
 
-  if(qmain->setting("automatically_resize_column_widths").toBool())
+  if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
     {
       resizeColumnsToContents();
       horizontalHeader()->setStretchLastSection(true);

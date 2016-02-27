@@ -1332,10 +1332,11 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
       count += 1;
 
   if(query.lastError().isValid())
-    qmain->addError
-      (QString(QObject::tr("Database Error")),
-       QString(QObject::tr("Unable to determine the query size.")),
-       query.lastError().text(), file, line);
+    if(qmain)
+      qmain->addError
+	(QString(QObject::tr("Database Error")),
+	 QString(QObject::tr("Unable to determine the query size.")),
+	 query.lastError().text(), file, line);
 
   return count;
 }
@@ -1370,10 +1371,11 @@ int biblioteq_misc_functions::sqliteQuerySize
       count += 1;
 
   if(query.lastError().isValid())
-    qmain->addError
-      (QString(QObject::tr("Database Error")),
-       QString(QObject::tr("Unable to determine the query size.")),
-       query.lastError().text(), file, line);
+    if(qmain)
+      qmain->addError
+	(QString(QObject::tr("Database Error")),
+	 QString(QObject::tr("Unable to determine the query size.")),
+	 query.lastError().text(), file, line);
 
   return count;
 }
