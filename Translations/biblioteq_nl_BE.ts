@@ -7319,6 +7319,10 @@
         <source>&amp;Upgrade SQLite Schema</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Automatically &amp;Resize Column Widths</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
