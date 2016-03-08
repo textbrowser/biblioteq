@@ -1,1 +1,5 @@
-The vcruntime140.dll file was downloaded from https://www.microsoft.com/en-us/download/details.aspx?id=48145.
+The following files were downloaded from https://www.microsoft.com/en-us/download/details.aspx?id=48145:
+
+api-ms-win-crt-runtime-l1-1-0.dll
+vcruntime140.dll
+
