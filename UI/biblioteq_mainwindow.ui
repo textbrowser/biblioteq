@@ -114,7 +114,16 @@
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
@@ -1211,11 +1220,11 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>case_insensitive</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>searchType</tabstop>
   <tabstop>search</tabstop>
-  <tabstop>case_insensitive</tabstop>
   <tabstop>resetAllSearch</tabstop>
-  <tabstop>scrollArea</tabstop>
   <tabstop>table</tabstop>
   <tabstop>graphicsView</tabstop>
   <tabstop>previousPageButton</tabstop>
