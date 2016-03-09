@@ -107,6 +107,10 @@ class biblioteq_misc_functions
   static void updateColumn(QTableWidget *, const int, const int,
 			   const QString &);
   static void updateSQLiteDatabase(const QSqlDatabase &);
+
+ private:
+  biblioteq_misc_functions(void);
+  ~biblioteq_misc_functions();
 };
 
 #endif
