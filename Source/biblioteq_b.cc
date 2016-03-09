@@ -3987,3 +3987,16 @@ QVariant biblioteq::setting(const QString &name) const
   else
     return QVariant();
 }
+
+/*
+** -- homePath() --
+*/
+
+QString biblioteq::homePath(void)
+{
+#ifdef Q_OS_WIN32
+  return QDir::currentPath() + QDir::separator() + ".biblioteq";
+#else
+  return QDir::homePath() + QDir::separator() + ".biblioteq";
+#endif
+}

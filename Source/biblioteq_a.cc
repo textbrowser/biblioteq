@@ -98,6 +98,11 @@ int main(int argc, char *argv[])
   QCoreApplication::setOrganizationName("BiblioteQ");
   QCoreApplication::setOrganizationDomain("biblioteq.sourceforge.net");
   QCoreApplication::setApplicationName("BiblioteQ");
+  QSettings::setPath(QSettings::IniFormat,
+		     QSettings::UserScope,
+		     biblioteq::homePath());
+  QSettings::setDefaultFormat(QSettings::IniFormat);
+  QDir().mkdir(biblioteq::homePath());
 
   /*
   ** Remove old configuration settings.
@@ -6744,7 +6749,7 @@ void biblioteq::slotSetFonts(void)
 #endif
 #endif
   dialog.setOption(QFontDialog::DontUseNativeDialog);
-  dialog.setCurrentFont(QFont());
+  dialog.setCurrentFont(QApplication::font());
   dialog.setWindowTitle(tr("BiblioteQ: Select Global Font"));
 
   if(dialog.exec() == QDialog::Accepted)

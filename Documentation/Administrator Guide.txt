@@ -45,15 +45,15 @@ e) After the required dependencies have been fulfilled and your environment is p
 
 	4.1 OS X
 
-	To remove BiblioteQ, simply remove the /Applications/BiblioteQ.d directory. You may also wish to remove users' configuration files (/Users/user/Library/Preferences/net.sourceforge.biblioteq.BiblioteQ.plist).
+	Remove the /Applications/BiblioteQ.d directory. You may also wish to remove the configuration file (~/.biblioteq).
 
 	4.2 Unix
 
-	To remove BiblioteQ, remove the /usr/local/biblioteq directory and the /usr/local/bin/biblioteq.sh script. You may also wish to remove users' configuration directories (/home/user/.config/BiblioteQ).
+	Remove the /usr/local/biblioteq directory. You may also wish to remove the configuration file (~/.biblioteq).
 
 	4.3 Windows
 
-	Simply run the BiblioteQ-Uninstaller executable that is located in your installation directory. You may also wish to remove the registry entry for BiblioteQ. Launch regedit and remove My Computer\HKEY_CURRENT_USER\Software\BiblioteQ.
+	Remove the BiblioteQ folder.
 
 5. PostgreSQL Database Removal
 
