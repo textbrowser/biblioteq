@@ -1327,6 +1327,8 @@ int biblioteq_misc_functions::sqliteQuerySize(const QString &querystr,
 
   QSqlQuery query(db);
 
+  query.setForwardOnly(true);
+
   if(query.exec(querystr))
     while(query.next())
       count += 1;
@@ -1361,6 +1363,7 @@ int biblioteq_misc_functions::sqliteQuerySize
   QList<QVariant> list = boundValues.values();
   QSqlQuery query(db);
 
+  query.setForwardOnly(true);
   query.prepare(querystr);
 
   for(int i = 0; i < list.size(); i++)
