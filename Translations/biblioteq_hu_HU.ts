@@ -39,14 +39,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+660"/>
-        <location line="+39"/>
+        <location line="+662"/>
+        <location line="+40"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-38"/>
-        <location line="+39"/>
+        <location line="-39"/>
+        <location line="+40"/>
         <source>Unable to determine the query size.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9037,7 +9037,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+195"/>
+        <location line="+204"/>
         <source>Previous Page</source>
         <translation>Előző Oldal</translation>
     </message>
