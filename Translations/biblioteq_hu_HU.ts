@@ -707,7 +707,7 @@
 <context>
     <name>biblioteq</name>
     <message>
-        <location filename="../Source/biblioteq_a.cc" line="+217"/>
+        <location filename="../Source/biblioteq_a.cc" line="+222"/>
         <source> in file </source>
         <translation type="unfinished"></translation>
     </message>
