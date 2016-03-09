@@ -91,6 +91,27 @@ biblioteq *qmain = 0;
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  QMacStyle *style = new(std::nothrow) QMacStyle();
+
+  if(style)
+    QApplication::setStyle(style);
+#endif
+#endif
+
+  QApplication qapplication(argc, argv);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION >= 0x050000
+  /*
+  ** Eliminate warnings.
+  */
+
+  CocoaInitializer ci;
+#endif
+#endif
+
   /*
   ** Prepare configuration settings.
   */
@@ -122,31 +143,6 @@ int main(int argc, char *argv[])
 	if(settings.allKeys().at(i).contains("_header_state"))
 	  settings.remove(settings.allKeys().at(i));
     }
-
-#ifdef Q_OS_MAC
-#if QT_VERSION < 0x050000
-  QMacStyle *style = new(std::nothrow) QMacStyle();
-
-  if(style)
-    QApplication::setStyle(style);
-#endif
-#endif
-
-  /*
-  ** Create the user interface.
-  */
-
-  QApplication qapplication(argc, argv);
-
-#ifdef Q_OS_MAC
-#if QT_VERSION >= 0x050000
-  /*
-  ** Eliminate warnings.
-  */
-
-  CocoaInitializer ci;
-#endif
-#endif
 
   if((biblioteq::s_qtTranslator = new(std::nothrow) QTranslator(0)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
