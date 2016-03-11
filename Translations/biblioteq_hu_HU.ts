@@ -707,7 +707,7 @@
 <context>
     <name>biblioteq</name>
     <message>
-        <location filename="../Source/biblioteq_a.cc" line="+222"/>
+        <location filename="../Source/biblioteq_a.cc" line="+218"/>
         <source> in file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -720,7 +720,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2364"/>
+        <location line="+2365"/>
         <location line="+506"/>
         <location line="+14"/>
         <location line="+757"/>
@@ -743,18 +743,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8171"/>
+        <location line="-8172"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+97"/>
-        <location line="+4098"/>
+        <location line="+4099"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4096"/>
+        <location line="-4097"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <location line="+364"/>
-        <location line="+3534"/>
+        <location line="+3535"/>
         <location line="+4404"/>
         <location line="+27"/>
         <location line="+28"/>
@@ -831,7 +831,7 @@
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-7998"/>
+        <location line="-7999"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -918,33 +918,33 @@
     </message>
     <message>
         <location line="+71"/>
-        <location line="+3290"/>
+        <location line="+3291"/>
         <location line="+941"/>
         <location line="+34"/>
         <source>Item Requests</source>
         <translation type="unfinished">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-4199"/>
-        <location line="+3272"/>
+        <location line="-4200"/>
+        <location line="+3273"/>
         <source>Disconnected</source>
         <translation type="unfinished">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3265"/>
-        <location line="+3271"/>
+        <location line="-3266"/>
+        <location line="+3272"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3259"/>
-        <location line="+4428"/>
+        <location line="-3260"/>
+        <location line="+4429"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Üres Hiba Napló</translation>
     </message>
     <message>
-        <location line="-4424"/>
-        <location line="+3269"/>
+        <location line="-4425"/>
+        <location line="+3270"/>
         <location line="+950"/>
         <location line="+4108"/>
         <location filename="../Source/biblioteq_b.cc" line="-364"/>
@@ -953,7 +953,7 @@
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8292"/>
+        <location line="-8293"/>
         <location line="+24"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -974,7 +974,7 @@
         <translation type="unfinished">BiblioteQ: A Programról</translation>
     </message>
     <message>
-        <location line="+83"/>
+        <location line="+84"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+547"/>
