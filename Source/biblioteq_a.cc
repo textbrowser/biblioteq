@@ -7406,6 +7406,11 @@ void biblioteq::slotShowHistory(void)
   querystr.append("ORDER BY 1");
   query.setForwardOnly(true);
   query.prepare(querystr);
+
+  /*
+  ** The number of bound values should equal the size of list.
+  */
+
   query.bindValue(0, memberid);
   query.bindValue(1, memberid);
   query.bindValue(2, memberid);
