@@ -216,7 +216,7 @@ class biblioteq: public QMainWindow
   int populateTable(const int search_type_arg,
 		    const QString &typefilter,
 		    const QString &searchstrArg,
-		    const int pagingType= NEW_PAGE);
+		    const int pagingType = NEW_PAGE);
   static QString homePath(void);
   static void quit(const char *msg, const char *file, const int line);
   static void quit(void);
