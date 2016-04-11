@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1072</width>
-         <height>1545</height>
+         <height>1552</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -159,7 +159,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>&amp;Select</string>
+                 <string>&amp;Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -551,7 +551,7 @@
                 <item row="0" column="0">
                  <widget class="QPushButton" name="copiesButton">
                   <property name="text">
-                   <string>&amp;Copies</string>
+                   <string>&amp;Copies...</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Icons/icons.qrc">
@@ -562,7 +562,7 @@
                 <item row="1" column="0">
                  <widget class="QPushButton" name="showUserButton">
                   <property name="text">
-                   <string>&amp;Reservation Status</string>
+                   <string>&amp;Reservation Status...</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Icons/icons.qrc">
@@ -817,7 +817,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Print</string>
+         <string>&amp;Print...</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

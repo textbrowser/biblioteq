@@ -110,7 +110,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>278</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -368,7 +368,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -628,7 +628,7 @@
      <normaloff>:/16x16/info.png</normaloff>:/16x16/info.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;About</string>
+    <string>&amp;About...</string>
    </property>
   </action>
   <action name="actionShowGrid">
@@ -654,7 +654,7 @@
      <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save Settings</string>
+    <string>&amp;Save Settings...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -677,7 +677,7 @@
      <normaloff>:/16x16/log.png</normaloff>:/16x16/log.png</iconset>
    </property>
    <property name="text">
-    <string>View Error &amp;Log</string>
+    <string>View Error &amp;Log...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -697,7 +697,7 @@
      <normaloff>:/16x16/connected.png</normaloff>:/16x16/connected.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Connect</string>
+    <string>&amp;Connect...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -745,7 +745,7 @@
      <normaloff>:/16x16/edit.png</normaloff>:/16x16/edit.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Modify Selected Item(s)</string>
+    <string>&amp;Modify Selected Item(s)...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
@@ -757,7 +757,7 @@
      <normaloff>:/16x16/members.png</normaloff>:/16x16/members.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Members Browser</string>
+    <string>&amp;Members Browser...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
@@ -769,7 +769,7 @@
      <normaloff>:/16x16/find.png</normaloff>:/16x16/find.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Database Search</string>
+    <string>&amp;Database Search...</string>
    </property>
    <property name="iconText">
     <string>Database Search</string>
@@ -799,7 +799,7 @@
      <normaloff>:/16x16/details.png</normaloff>:/16x16/details.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Selected Item(s)</string>
+    <string>&amp;Selected Item(s)...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
@@ -811,7 +811,7 @@
      <normaloff>:/16x16/fonts.png</normaloff>:/16x16/fonts.png</iconset>
    </property>
    <property name="text">
-    <string>Select &amp;Global Font</string>
+    <string>Select &amp;Global Font...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -1025,7 +1025,7 @@
      <normaloff>:/16x16/filenew.png</normaloff>:/16x16/filenew.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;New SQLite Database</string>
+    <string>&amp;New SQLite Database...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -1057,7 +1057,7 @@
      <normaloff>:/16x16/fileexport.png</normaloff>:/16x16/fileexport.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export Table View as CSV</string>
+    <string>&amp;Export Table View as CSV...</string>
    </property>
   </action>
   <action name="duplicateTool">
@@ -1078,7 +1078,7 @@
      <normaloff>:/16x16/editcopy.png</normaloff>:/16x16/editcopy.png</iconset>
    </property>
    <property name="text">
-    <string>D&amp;uplicate Selected Item(s)</string>
+    <string>D&amp;uplicate Selected Item(s)...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+U</string>
@@ -1086,32 +1086,32 @@
   </action>
   <action name="action_Book">
    <property name="text">
-    <string>&amp;Book</string>
+    <string>&amp;Book...</string>
    </property>
   </action>
   <action name="action_DVD">
    <property name="text">
-    <string>&amp;DVD</string>
+    <string>&amp;DVD...</string>
    </property>
   </action>
   <action name="action_Journal">
    <property name="text">
-    <string>&amp;Journal</string>
+    <string>&amp;Journal...</string>
    </property>
   </action>
   <action name="action_Magazine">
    <property name="text">
-    <string>&amp;Magazine</string>
+    <string>&amp;Magazine...</string>
    </property>
   </action>
   <action name="actionMusic_CD">
    <property name="text">
-    <string>Music &amp;CD</string>
+    <string>Music &amp;CD...</string>
    </property>
   </action>
   <action name="action_Video_Game">
    <property name="text">
-    <string>&amp;Video Game</string>
+    <string>&amp;Video Game...</string>
    </property>
   </action>
   <action name="actionCzech">
@@ -1185,7 +1185,7 @@
   </action>
   <action name="action_Photograph_Collection">
    <property name="text">
-    <string>&amp;Photograph Collection</string>
+    <string>&amp;Photograph Collection...</string>
    </property>
   </action>
   <action name="action_Category">

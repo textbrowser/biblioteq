@@ -145,7 +145,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Export</string>
+         <string>&amp;Export...</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

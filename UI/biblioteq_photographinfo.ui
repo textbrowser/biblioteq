@@ -31,8 +31,8 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-112</y>
-         <width>1098</width>
+         <y>0</y>
+         <width>1096</width>
          <height>977</height>
         </rect>
        </property>
@@ -99,7 +99,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>&amp;Select</string>
+                 <string>&amp;Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -627,7 +627,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Add Item</string>
+         <string>&amp;Add Item...</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
@@ -660,7 +660,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Export Items</string>
+         <string>&amp;Export Items...</string>
         </property>
         <property name="popupMode">
          <enum>QToolButton::MenuButtonPopup</enum>
@@ -682,7 +682,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Import Items</string>
+         <string>&amp;Import Items...</string>
         </property>
        </widget>
       </item>
@@ -695,7 +695,7 @@
          </size>
         </property>
         <property name="text">
-         <string>&amp;Print</string>
+         <string>&amp;Print...</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

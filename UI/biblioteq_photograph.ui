@@ -29,7 +29,7 @@
         <x>0</x>
         <y>0</y>
         <width>475</width>
-        <height>1033</height>
+        <height>1040</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -70,7 +70,7 @@
             </size>
            </property>
            <property name="text">
-            <string>&amp;Select</string>
+            <string>&amp;Select...</string>
            </property>
            <property name="icon">
             <iconset resource="../Icons/icons.qrc">
