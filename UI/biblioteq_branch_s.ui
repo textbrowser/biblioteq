@@ -84,7 +84,7 @@
           <item>
            <widget class="QPushButton" name="fileButton">
             <property name="text">
-             <string>&amp;Select SQLite Database</string>
+             <string>&amp;Select SQLite Database...</string>
             </property>
            </widget>
           </item>
