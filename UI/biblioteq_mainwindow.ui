@@ -654,7 +654,7 @@
      <normaloff>:/16x16/filesave.png</normaloff>:/16x16/filesave.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save Settings...</string>
+    <string>&amp;Save Settings</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>

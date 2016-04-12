@@ -116,7 +116,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>&amp;Select</string>
+                 <string>&amp;Select...</string>
                 </property>
                 <property name="icon">
                  <iconset resource="../Icons/icons.qrc">
@@ -191,12 +191,6 @@
                   <width>105</width>
                   <height>0</height>
                  </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Times</family>
-                  <pointsize>10</pointsize>
-                 </font>
                 </property>
                 <property name="text">
                  <string>&amp;Select...</string>
