@@ -2088,14 +2088,14 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       QAction *action = 0;
       QMenu menu(this);
 
-      action = menu.addAction(tr("&Modify Photograph"),
+      action = menu.addAction(tr("&Modify Photograph..."),
 			      this,
 			      SLOT(slotModifyItem(void)));
 
       if(m_engWindowTitle != "Modify")
 	action->setEnabled(false);
 
-      action = menu.addAction(tr("&View Photograph"),
+      action = menu.addAction(tr("&View Photograph..."),
 			      this,
 			      SLOT(slotViewPhotograph(void)));
 

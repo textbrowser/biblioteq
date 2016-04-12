@@ -6685,21 +6685,21 @@ void biblioteq::slotShowMenu(void)
     {
       QMenu menu(this);
 
-      connect(menu.addAction(tr("Add &Book")),
+      connect(menu.addAction(tr("Add &Book...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
       // menu.addAction(tr("Add &Cassette Tape"));
-      connect(menu.addAction(tr("Add &DVD")),
+      connect(menu.addAction(tr("Add &DVD...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
-      connect(menu.addAction(tr("Add &Journal")),
+      connect(menu.addAction(tr("Add &Journal...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertJourn(void)));
-      connect(menu.addAction(tr("Add &Magazine")),
+      connect(menu.addAction(tr("Add &Magazine...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
-      connect(menu.addAction(tr("Add Music &CD")),
+      connect(menu.addAction(tr("Add Music &CD...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
       // menu.addAction(tr("Add &Newspaper"));
-      connect(menu.addAction(tr("Add &Photograph Collection")),
+      connect(menu.addAction(tr("Add &Photograph Collection...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
-      connect(menu.addAction(tr("Add &Video Game")),
+      connect(menu.addAction(tr("Add &Video Game...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
       // menu.addAction(tr("Add &VHS"));
       // menu.addAction(tr("Add &Vinyl Record"));
@@ -6709,24 +6709,24 @@ void biblioteq::slotShowMenu(void)
     {
       QMenu menu(this);
 
-      connect(menu.addAction(tr("&General Search")),
+      connect(menu.addAction(tr("&General Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotSearch(void)));
       menu.addSeparator();
-      connect(menu.addAction(tr("&Book Search")),
+      connect(menu.addAction(tr("&Book Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotBookSearch(void)));
-      connect(menu.addAction(tr("&DVD Search")),
+      connect(menu.addAction(tr("&DVD Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotDVDSearch(void)));
-      connect(menu.addAction(tr("&Journal Search")),
+      connect(menu.addAction(tr("&Journal Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotJournSearch(void)));
-      connect(menu.addAction(tr("&Magazine Search")),
+      connect(menu.addAction(tr("&Magazine Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotMagSearch(void)));
-      connect(menu.addAction(tr("&Music CD Search")),
+      connect(menu.addAction(tr("&Music CD Search...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotCDSearch(void)));
       connect
-	(menu.addAction(tr("&Photograph Collection Search")),
+	(menu.addAction(tr("&Photograph Collection Search...")),
 	 SIGNAL(triggered(void)), this, SLOT(slotPhotographSearch(void)));
       connect
-	(menu.addAction(tr("&Video Game Search")),
+	(menu.addAction(tr("&Video Game Search...")),
 	 SIGNAL(triggered(void)), this, SLOT(slotVideoGameSearch(void)));
       menu.exec(QCursor::pos());
     }
