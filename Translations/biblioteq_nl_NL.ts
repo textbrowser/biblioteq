@@ -1222,63 +1222,63 @@
     </message>
     <message>
         <source>Add &amp;Book</source>
-        <translation type="unfinished">Voeg &amp;Boek Toe</translation>
+        <translation type="obsolete">Voeg &amp;Boek Toe</translation>
     </message>
     <message>
         <source>Add &amp;DVD</source>
-        <translation type="unfinished">Voeg &amp;DVD Toe</translation>
+        <translation type="obsolete">Voeg &amp;DVD Toe</translation>
     </message>
     <message>
         <source>Add &amp;Journal</source>
-        <translation type="unfinished">Voeg &amp;Krant Toe</translation>
+        <translation type="obsolete">Voeg &amp;Krant Toe</translation>
     </message>
     <message>
         <source>Add &amp;Magazine</source>
-        <translation type="unfinished">Voeg &amp;Tijdschrift Toe</translation>
+        <translation type="obsolete">Voeg &amp;Tijdschrift Toe</translation>
     </message>
     <message>
         <source>Add Music &amp;CD</source>
-        <translation type="unfinished">Voeg Muziek &amp;CD Toe</translation>
+        <translation type="obsolete">Voeg Muziek &amp;CD Toe</translation>
     </message>
     <message>
         <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished">Voeg &amp;Foto Verzameling toe</translation>
+        <translation type="obsolete">Voeg &amp;Foto Verzameling toe</translation>
     </message>
     <message>
         <source>Add &amp;Video Game</source>
-        <translation type="unfinished">Voeg &amp;Video Game toe</translation>
+        <translation type="obsolete">Voeg &amp;Video Game toe</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
-        <translation type="unfinished">&amp;Algemeen Zoeken</translation>
+        <translation type="obsolete">&amp;Algemeen Zoeken</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation type="unfinished">&amp;Boek Zoeken</translation>
+        <translation type="obsolete">&amp;Boek Zoeken</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished">&amp;DVD Zoeken</translation>
+        <translation type="obsolete">&amp;DVD Zoeken</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished">&amp;Krant Zoeken</translation>
+        <translation type="obsolete">&amp;Krant Zoeken</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished">&amp;Tijdschrift Zoeken</translation>
+        <translation type="obsolete">&amp;Tijdschrift Zoeken</translation>
     </message>
     <message>
         <source>&amp;Music CD Search</source>
-        <translation type="unfinished">&amp;Muziek CD Zoeken</translation>
+        <translation type="obsolete">&amp;Muziek CD Zoeken</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished">&amp;Foto Verzameling Zoeken</translation>
+        <translation type="obsolete">&amp;Foto Verzameling Zoeken</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished">&amp;Video-Game Zoeken</translation>
+        <translation type="obsolete">&amp;Video-Game Zoeken</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
@@ -1634,6 +1634,66 @@
     </message>
     <message>
         <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;General Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game Search...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4521,14 +4581,6 @@
         <translation type="unfinished">BiblioteQ: Foto Verzameling Exporteer</translation>
     </message>
     <message>
-        <source>&amp;Modify Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4550,6 +4602,14 @@
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5092,7 +5152,7 @@
     <name>branchSelect</name>
     <message>
         <source>&amp;Select SQLite Database</source>
-        <translation>&amp;Selecteer SQLite Database</translation>
+        <translation type="obsolete">&amp;Selecteer SQLite Database</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -5150,6 +5210,10 @@
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>cdDialog</name>
@@ -5191,11 +5255,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation type="obsolete">&amp;Uitleenstatus</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -5235,7 +5299,7 @@
     </message>
     <message>
         <source>&amp;Show Tracks</source>
-        <translation>&amp;Bekijk Tracks</translation>
+        <translation type="obsolete">&amp;Bekijk Tracks</translation>
     </message>
     <message>
         <source>Language</source>
@@ -5267,11 +5331,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation type="obsolete">&amp;Kopieën</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5323,6 +5387,26 @@
     </message>
     <message>
         <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Tracks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6187,11 +6271,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation type="obsolete">&amp;Uitleenstatus</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6251,7 +6335,7 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation type="obsolete">&amp;Kopieën</translation>
     </message>
     <message>
         <source>Actor(s)</source>
@@ -6263,7 +6347,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -6300,6 +6384,22 @@
     <message>
         <source>yyyy-MM-dd</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6380,7 +6480,7 @@
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -6438,6 +6538,10 @@
         <source>&amp;Do not record reservation history.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>informationDialog</name>
@@ -6471,11 +6575,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation type="obsolete">&amp;Uitleenstatus</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6559,7 +6663,7 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation type="obsolete">&amp;Kopieën</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -6567,7 +6671,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -6673,6 +6777,22 @@
         <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -6702,11 +6822,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation type="obsolete">&amp;Uitleenstatus</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6774,11 +6894,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation type="obsolete">&amp;Kopieën</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -6827,6 +6947,22 @@
     <message>
         <source>ISSN</source>
         <translation type="unfinished">ISSN</translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6933,7 +7069,7 @@
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Over BiblioteQ</translation>
+        <translation type="obsolete">&amp;Over BiblioteQ</translation>
     </message>
     <message>
         <source>Configure Administrator Privileges</source>
@@ -6957,7 +7093,7 @@
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>&amp;Pas Geselecteerde Item(s) Aan</translation>
+        <translation type="obsolete">&amp;Pas Geselecteerde Item(s) Aan</translation>
     </message>
     <message>
         <source>Connect Toobar</source>
@@ -7101,7 +7237,7 @@
     </message>
     <message>
         <source>&amp;Members Browser</source>
-        <translation>&amp;Lijst met Klanten</translation>
+        <translation type="obsolete">&amp;Lijst met Klanten</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -7113,7 +7249,7 @@
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Verbinden</translation>
+        <translation type="obsolete">&amp;Verbinden</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -7129,11 +7265,11 @@
     </message>
     <message>
         <source>View Error &amp;Log</source>
-        <translation>Bekijk Fouten &amp;Logboek</translation>
+        <translation type="obsolete">Bekijk Fouten &amp;Logboek</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
-        <translation>&amp;Geselecteerde Item(s)</translation>
+        <translation type="obsolete">&amp;Geselecteerde Item(s)</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
@@ -7153,7 +7289,7 @@
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Selecteer &amp;Globaal Lettertype</translation>
+        <translation type="obsolete">Selecteer &amp;Globaal Lettertype</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
@@ -7177,7 +7313,7 @@
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
-        <translation>&amp;Nieuwe SQLite Database</translation>
+        <translation type="obsolete">&amp;Nieuwe SQLite Database</translation>
     </message>
     <message>
         <source>Next Page</source>
@@ -7189,7 +7325,7 @@
     </message>
     <message>
         <source>&amp;Database Search</source>
-        <translation>&amp;Zoeken</translation>
+        <translation type="obsolete">&amp;Zoeken</translation>
     </message>
     <message>
         <source>Database Search</source>
@@ -7213,11 +7349,11 @@
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
-        <translation>&amp;Exporteer Tabel als CSV bestand</translation>
+        <translation type="obsolete">&amp;Exporteer Tabel als CSV bestand</translation>
     </message>
     <message>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation>D&amp;ubbele Geselekteerde Item(s)</translation>
+        <translation type="obsolete">D&amp;ubbele Geselekteerde Item(s)</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
@@ -7237,27 +7373,27 @@
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation>&amp;Boek</translation>
+        <translation type="obsolete">&amp;Boek</translation>
     </message>
     <message>
         <source>&amp;DVD</source>
-        <translation>&amp;DVD</translation>
+        <translation type="obsolete">&amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal</source>
-        <translation>&amp;Krant</translation>
+        <translation type="obsolete">&amp;Krant</translation>
     </message>
     <message>
         <source>&amp;Magazine</source>
-        <translation>&amp;Tijdschrift</translation>
+        <translation type="obsolete">&amp;Tijdschrift</translation>
     </message>
     <message>
         <source>Music &amp;CD</source>
-        <translation>Muziek &amp;CD&apos;s</translation>
+        <translation type="obsolete">Muziek &amp;CD&apos;s</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
-        <translation>&amp;Video Game</translation>
+        <translation type="obsolete">&amp;Video Game</translation>
     </message>
     <message>
         <source>&amp;Language</source>
@@ -7301,7 +7437,7 @@
     </message>
     <message>
         <source>&amp;Photograph Collection</source>
-        <translation>&amp;Foto Verzameling</translation>
+        <translation type="obsolete">&amp;Foto Verzameling</translation>
     </message>
     <message>
         <source>None</source>
@@ -7357,6 +7493,78 @@
     </message>
     <message>
         <source>Automatically &amp;Resize Column Widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Error &amp;Log...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connect...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Members Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Database Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7772,7 +7980,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Title</source>
@@ -7856,7 +8064,7 @@
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation>&amp;Voeg Item Toe</translation>
+        <translation type="obsolete">&amp;Voeg Item Toe</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -7868,18 +8076,30 @@
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation>&amp;Sluiten</translation>
     </message>
     <message>
-        <source>&amp;Export Items</source>
+        <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Import Items</source>
+        <source>&amp;Add Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7895,7 +8115,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>Creator(s)</source>
@@ -7961,6 +8181,10 @@
         <source>&amp;Close</source>
         <translation>&amp;Sluiten</translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographView</name>
@@ -7997,11 +8221,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export</source>
+        <source>Next Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Next Photograph</source>
+        <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12086,11 +12310,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Uitleenstatus</translation>
+        <translation type="obsolete">&amp;Uitleenstatus</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Afdrukken</translation>
+        <translation type="obsolete">&amp;Afdrukken</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -12146,11 +12370,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopieën</translation>
+        <translation type="obsolete">&amp;Kopieën</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Selecteer</translation>
+        <translation type="obsolete">&amp;Selecteer</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -12179,6 +12403,22 @@
     <message>
         <source>yyyy-MM-dd</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1241,64 +1241,28 @@
         <translation type="unfinished">Chcete načíst seznam zapůjčitelů?</translation>
     </message>
     <message>
-        <source>Add &amp;Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;DVD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Journal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Magazine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add Music &amp;CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add &amp;Video Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;General Search</source>
-        <translation type="unfinished">&amp;Všeobecné hledání</translation>
+        <translation type="obsolete">&amp;Všeobecné hledání</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation type="unfinished">Hledání &amp;knih</translation>
+        <translation type="obsolete">Hledání &amp;knih</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished">Hledání &amp;DVD</translation>
+        <translation type="obsolete">Hledání &amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished">Hledání &amp;časopisů</translation>
+        <translation type="obsolete">Hledání &amp;časopisů</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished">Hledání &amp;magazínů</translation>
-    </message>
-    <message>
-        <source>&amp;Music CD Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Hledání &amp;magazínů</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished">Hledání &amp;videoher</translation>
+        <translation type="obsolete">Hledání &amp;videoher</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
@@ -1654,6 +1618,66 @@
     </message>
     <message>
         <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;General Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game Search...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4541,14 +4565,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Modify Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4570,6 +4586,14 @@
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5108,7 +5132,7 @@
     </message>
     <message>
         <source>&amp;Select SQLite Database</source>
-        <translation>&amp;Vyber SQLite databázi</translation>
+        <translation type="obsolete">&amp;Vyber SQLite databázi</translation>
     </message>
     <message>
         <source>Userid</source>
@@ -5158,6 +5182,10 @@
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>cdDialog</name>
@@ -5175,7 +5203,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -5243,7 +5271,7 @@
     </message>
     <message>
         <source>&amp;Show Tracks</source>
-        <translation>&amp;Ukázat stopy</translation>
+        <translation type="obsolete">&amp;Ukázat stopy</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -5287,11 +5315,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopie</translation>
+        <translation type="obsolete">&amp;Kopie</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Zápůjčky</translation>
+        <translation type="obsolete">&amp;Zápůjčky</translation>
     </message>
     <message>
         <source>Location</source>
@@ -5321,7 +5349,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -5341,6 +5369,26 @@ webová adresa</translation>
     </message>
     <message>
         <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Tracks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6034,7 +6082,7 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6126,11 +6174,11 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopie</translation>
+        <translation type="obsolete">&amp;Kopie</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Zápůjčky</translation>
+        <translation type="obsolete">&amp;Zápůjčky</translation>
     </message>
     <message>
         <source>Location</source>
@@ -6160,7 +6208,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6172,6 +6220,22 @@ webová adresa</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6301,7 +6365,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6313,6 +6377,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Do not record reservation history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6336,7 +6404,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6536,11 +6604,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopie</translation>
+        <translation type="obsolete">&amp;Kopie</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Zápůjčky</translation>
+        <translation type="obsolete">&amp;Zápůjčky</translation>
     </message>
     <message>
         <source>Location</source>
@@ -6574,7 +6642,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6664,6 +6732,22 @@ webová adresa</translation>
         <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -6711,7 +6795,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6787,11 +6871,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopie</translation>
+        <translation type="obsolete">&amp;Kopie</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Zápůjčky</translation>
+        <translation type="obsolete">&amp;Zápůjčky</translation>
     </message>
     <message>
         <source>Location</source>
@@ -6825,7 +6909,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6858,6 +6942,22 @@ webová adresa</translation>
     <message>
         <source>ISSN</source>
         <translation type="unfinished">ISSN</translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6980,7 +7080,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;O programu</translation>
+        <translation type="obsolete">&amp;O programu</translation>
     </message>
     <message>
         <source>&amp;Display Table Grid</source>
@@ -7016,7 +7116,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
-        <translation>Prohlížení seznamu &amp;chyb</translation>
+        <translation type="obsolete">Prohlížení seznamu &amp;chyb</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
@@ -7028,7 +7128,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Připojit</translation>
+        <translation type="obsolete">&amp;Připojit</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -7060,7 +7160,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>&amp;Změnit vybrané položky</translation>
+        <translation type="obsolete">&amp;Změnit vybrané položky</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -7068,7 +7168,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Members Browser</source>
-        <translation>S&amp;eznam zapůjčitelů</translation>
+        <translation type="obsolete">S&amp;eznam zapůjčitelů</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -7076,7 +7176,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Database Search</source>
-        <translation>Hledání v &amp;databázi</translation>
+        <translation type="obsolete">Hledání v &amp;databázi</translation>
     </message>
     <message>
         <source>Database Search</source>
@@ -7096,7 +7196,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
-        <translation>V&amp;ybrané položky</translation>
+        <translation type="obsolete">V&amp;ybrané položky</translation>
     </message>
     <message>
         <source>Select Global &amp;Font</source>
@@ -7228,7 +7328,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Vybrat pís&amp;mo pro celou aplikaci</translation>
+        <translation type="obsolete">Vybrat pís&amp;mo pro celou aplikaci</translation>
     </message>
     <message>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
@@ -7287,10 +7387,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;New SQLite Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7315,14 +7411,6 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export Table View as CSV</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>D&amp;uplicate Selected Item(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7336,30 +7424,6 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Book</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;DVD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Journal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Magazine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Music &amp;CD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Video Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7400,10 +7464,6 @@ webová adresa</translation>
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7456,6 +7516,78 @@ webová adresa</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Column Widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Error &amp;Log...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connect...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Members Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Database Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7899,7 +8031,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Title</source>
@@ -7982,27 +8114,35 @@ webová adresa</translation>
         <translation type="unfinished">&amp;OK</translation>
     </message>
     <message>
-        <source>&amp;Add Item</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Reset</source>
         <translation type="unfinished">&amp;Vyčistit</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Zavřít</translation>
     </message>
     <message>
-        <source>&amp;Export Items</source>
+        <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Import Items</source>
+        <source>&amp;Add Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8018,7 +8158,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Creator(s)</source>
@@ -8084,6 +8224,10 @@ webová adresa</translation>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Zavřít</translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographView</name>
@@ -8120,11 +8264,11 @@ webová adresa</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export</source>
+        <source>Next Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Next Photograph</source>
+        <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11913,7 +12057,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Vybrat</translation>
+        <translation type="obsolete">&amp;Vybrat</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -11993,11 +12137,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Kopie</translation>
+        <translation type="obsolete">&amp;Kopie</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Zápůjčky</translation>
+        <translation type="obsolete">&amp;Zápůjčky</translation>
     </message>
     <message>
         <source>Location</source>
@@ -12031,7 +12175,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Tisk</translation>
+        <translation type="obsolete">&amp;Tisk</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -12043,6 +12187,22 @@ webová adresa</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

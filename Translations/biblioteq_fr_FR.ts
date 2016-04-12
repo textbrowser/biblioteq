@@ -1226,63 +1226,55 @@
     </message>
     <message>
         <source>Add &amp;Book</source>
-        <translation type="unfinished">Ajouter un li&amp;vre</translation>
+        <translation type="obsolete">Ajouter un li&amp;vre</translation>
     </message>
     <message>
         <source>Add &amp;DVD</source>
-        <translation type="unfinished">Ajouter un &amp;DVD</translation>
+        <translation type="obsolete">Ajouter un &amp;DVD</translation>
     </message>
     <message>
         <source>Add &amp;Journal</source>
-        <translation type="unfinished">Ajouter un &amp;Journal</translation>
+        <translation type="obsolete">Ajouter un &amp;Journal</translation>
     </message>
     <message>
         <source>Add &amp;Magazine</source>
-        <translation type="unfinished">Ajouter un &amp;magazine</translation>
+        <translation type="obsolete">Ajouter un &amp;magazine</translation>
     </message>
     <message>
         <source>Add Music &amp;CD</source>
-        <translation type="unfinished">Ajouter un CD de musi&amp;que</translation>
-    </message>
-    <message>
-        <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ajouter un CD de musi&amp;que</translation>
     </message>
     <message>
         <source>Add &amp;Video Game</source>
-        <translation type="unfinished">Ajouter un &amp;jeu vidéo</translation>
+        <translation type="obsolete">Ajouter un &amp;jeu vidéo</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
-        <translation type="unfinished">Recherche &amp;générale</translation>
+        <translation type="obsolete">Recherche &amp;générale</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation type="unfinished">&amp;Recherche de livres</translation>
+        <translation type="obsolete">&amp;Recherche de livres</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished">Recherche de &amp;DVD</translation>
+        <translation type="obsolete">Recherche de &amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished">Recherche de &amp;journaux</translation>
+        <translation type="obsolete">Recherche de &amp;journaux</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished">Recherche de maga&amp;zines</translation>
+        <translation type="obsolete">Recherche de maga&amp;zines</translation>
     </message>
     <message>
         <source>&amp;Music CD Search</source>
-        <translation type="unfinished">Recherche de CD de &amp;musique</translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Recherche de CD de &amp;musique</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished">Recherche de jeux &amp;vidéo</translation>
+        <translation type="obsolete">Recherche de jeux &amp;vidéo</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
@@ -1638,6 +1630,66 @@
     </message>
     <message>
         <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;General Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game Search...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4525,14 +4577,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Modify Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4554,6 +4598,14 @@
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5088,7 +5140,7 @@
     <name>branchSelect</name>
     <message>
         <source>&amp;Select SQLite Database</source>
-        <translation>&amp;Sélectionner la base de données SQLite</translation>
+        <translation type="obsolete">&amp;Sélectionner la base de données SQLite</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -5146,6 +5198,10 @@
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>cdDialog</name>
@@ -5187,11 +5243,11 @@
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;État de réservation</translation>
+        <translation type="obsolete">&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -5231,7 +5287,7 @@
     </message>
     <message>
         <source>&amp;Show Tracks</source>
-        <translation>&amp;Afficher les pistes</translation>
+        <translation type="obsolete">&amp;Afficher les pistes</translation>
     </message>
     <message>
         <source>Language</source>
@@ -5263,11 +5319,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Copies</translation>
+        <translation type="obsolete">&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -5319,6 +5375,26 @@
     </message>
     <message>
         <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Tracks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6180,11 +6256,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;État de réservation</translation>
+        <translation type="obsolete">&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6244,7 +6320,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Copies</translation>
+        <translation type="obsolete">&amp;Copies</translation>
     </message>
     <message>
         <source>Actor(s)</source>
@@ -6256,7 +6332,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Number of Discs</source>
@@ -6292,6 +6368,22 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6373,7 +6465,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>Member ID</source>
@@ -6431,6 +6523,10 @@ minmal de jours.</translation>
         <source>&amp;Do not record reservation history.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>informationDialog</name>
@@ -6464,11 +6560,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;État de réservation</translation>
+        <translation type="obsolete">&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6552,7 +6648,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Copies</translation>
+        <translation type="obsolete">&amp;Copies</translation>
     </message>
     <message>
         <source>Author(s)</source>
@@ -6560,7 +6656,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -6662,6 +6758,22 @@ minmal de jours.</translation>
         <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -6691,11 +6803,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;État de réservation</translation>
+        <translation type="obsolete">&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -6763,11 +6875,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Copies</translation>
+        <translation type="obsolete">&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Categories</source>
@@ -6812,6 +6924,22 @@ minmal de jours.</translation>
     <message>
         <source>ISSN</source>
         <translation type="unfinished">ISSN</translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6918,7 +7046,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;À propos</translation>
+        <translation type="obsolete">&amp;À propos</translation>
     </message>
     <message>
         <source>Configure Administrator Privileges</source>
@@ -6942,7 +7070,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>&amp;Modifier l&apos;article ou les articles sélectionnés</translation>
+        <translation type="obsolete">&amp;Modifier l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>Connect Toobar</source>
@@ -7062,7 +7190,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Members Browser</source>
-        <translation>&amp;Explorateur de membres</translation>
+        <translation type="obsolete">&amp;Explorateur de membres</translation>
     </message>
     <message>
         <source>Disconnect</source>
@@ -7074,7 +7202,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Connecter</translation>
+        <translation type="obsolete">&amp;Connecter</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -7090,11 +7218,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>View Error &amp;Log</source>
-        <translation>Afficher le &amp;journal des erreurs</translation>
+        <translation type="obsolete">Afficher le &amp;journal des erreurs</translation>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
-        <translation>&amp;Sélectionner un ou des articles</translation>
+        <translation type="obsolete">&amp;Sélectionner un ou des articles</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
@@ -7114,7 +7242,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Sélectionner une police &amp;globale</translation>
+        <translation type="obsolete">Sélectionner une police &amp;globale</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
@@ -7138,7 +7266,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
-        <translation>&amp;Nouvelle base de données SQLite</translation>
+        <translation type="obsolete">&amp;Nouvelle base de données SQLite</translation>
     </message>
     <message>
         <source>Next Page</source>
@@ -7150,7 +7278,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Database Search</source>
-        <translation>Recherche dans la base &amp;de données</translation>
+        <translation type="obsolete">Recherche dans la base &amp;de données</translation>
     </message>
     <message>
         <source>Database Search</source>
@@ -7174,11 +7302,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
-        <translation>&amp;Exporter la vue de la table au format CSV</translation>
+        <translation type="obsolete">&amp;Exporter la vue de la table au format CSV</translation>
     </message>
     <message>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation>D&amp;upliquer l&apos;article ou les articles sélectionnés</translation>
+        <translation type="obsolete">D&amp;upliquer l&apos;article ou les articles sélectionnés</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
@@ -7198,27 +7326,27 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation>&amp;Livre</translation>
+        <translation type="obsolete">&amp;Livre</translation>
     </message>
     <message>
         <source>&amp;DVD</source>
-        <translation>&amp;DVD</translation>
+        <translation type="obsolete">&amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal</source>
-        <translation>&amp;Journal</translation>
+        <translation type="obsolete">&amp;Journal</translation>
     </message>
     <message>
         <source>&amp;Magazine</source>
-        <translation>&amp;Magazine</translation>
+        <translation type="obsolete">&amp;Magazine</translation>
     </message>
     <message>
         <source>Music &amp;CD</source>
-        <translation>&amp;CD de musique</translation>
+        <translation type="obsolete">&amp;CD de musique</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
-        <translation>Jeu &amp;vidéo</translation>
+        <translation type="obsolete">Jeu &amp;vidéo</translation>
     </message>
     <message>
         <source>&amp;Language</source>
@@ -7258,10 +7386,6 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7314,6 +7438,78 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Automatically &amp;Resize Column Widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Error &amp;Log...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connect...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Members Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Database Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7717,7 +7913,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Title</source>
@@ -7801,7 +7997,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished">&amp;Ajouter un article</translation>
+        <translation type="obsolete">&amp;Ajouter un article</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -7809,18 +8005,30 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export Items</source>
+        <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Import Items</source>
+        <source>&amp;Add Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7836,7 +8044,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>Creator(s)</source>
@@ -7902,6 +8110,10 @@ minmal de jours.</translation>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographView</name>
@@ -7938,11 +8150,11 @@ minmal de jours.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export</source>
+        <source>Next Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Next Photograph</source>
+        <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11560,11 +11772,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;État de réservation</translation>
+        <translation type="obsolete">&amp;État de réservation</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Imprimer</translation>
+        <translation type="obsolete">&amp;Imprimer</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -11620,11 +11832,11 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>&amp;Copies</translation>
+        <translation type="obsolete">&amp;Copies</translation>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>&amp;Sélectionner</translation>
+        <translation type="obsolete">&amp;Sélectionner</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -11652,6 +11864,22 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

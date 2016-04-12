@@ -1242,63 +1242,55 @@
     </message>
     <message>
         <source>Add &amp;Book</source>
-        <translation type="unfinished">Προσθήκη Βιβλί&amp;ου</translation>
+        <translation type="obsolete">Προσθήκη Βιβλί&amp;ου</translation>
     </message>
     <message>
         <source>Add &amp;DVD</source>
-        <translation type="unfinished">Προσθήκη &amp;DVD</translation>
+        <translation type="obsolete">Προσθήκη &amp;DVD</translation>
     </message>
     <message>
         <source>Add &amp;Journal</source>
-        <translation type="unfinished">Προσθήκη Ε&amp;φημερίδας</translation>
+        <translation type="obsolete">Προσθήκη Ε&amp;φημερίδας</translation>
     </message>
     <message>
         <source>Add &amp;Magazine</source>
-        <translation type="unfinished">Προσθήκη &amp;Περιοδικού</translation>
+        <translation type="obsolete">Προσθήκη &amp;Περιοδικού</translation>
     </message>
     <message>
         <source>Add Music &amp;CD</source>
-        <translation type="unfinished">Προσθήκη Μουσικού &amp;CD</translation>
-    </message>
-    <message>
-        <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Προσθήκη Μουσικού &amp;CD</translation>
     </message>
     <message>
         <source>Add &amp;Video Game</source>
-        <translation type="unfinished">Προσθήκη &amp;Ηλεκτρονικού παιχνιδιού</translation>
+        <translation type="obsolete">Προσθήκη &amp;Ηλεκτρονικού παιχνιδιού</translation>
     </message>
     <message>
         <source>&amp;General Search</source>
-        <translation type="unfinished">&amp;Γενική αναζήτηση</translation>
+        <translation type="obsolete">&amp;Γενική αναζήτηση</translation>
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation type="unfinished">Αναζήτηση Β&amp;ιβλίου</translation>
+        <translation type="obsolete">Αναζήτηση Β&amp;ιβλίου</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished">Αναζήτηση &amp;DVD</translation>
+        <translation type="obsolete">Αναζήτηση &amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished">Αναζήτηση &amp;Εφημερίδας</translation>
+        <translation type="obsolete">Αναζήτηση &amp;Εφημερίδας</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished">Αναζήτηση &amp;Περιοδικού</translation>
+        <translation type="obsolete">Αναζήτηση &amp;Περιοδικού</translation>
     </message>
     <message>
         <source>&amp;Music CD Search</source>
-        <translation type="unfinished">Αναζήτηση &amp;CD</translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Αναζήτηση &amp;CD</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished">Αναζήτηση &amp;Ηλεκτρονικού παιχνιδιού</translation>
+        <translation type="obsolete">Αναζήτηση &amp;Ηλεκτρονικού παιχνιδιού</translation>
     </message>
     <message>
         <source>BiblioteQ: Select Global Font</source>
@@ -1654,6 +1646,66 @@
     </message>
     <message>
         <source>The database %1 was upgraded successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;General Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Music CD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game Search...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4541,14 +4593,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Modify Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View Photograph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4570,6 +4614,14 @@
     </message>
     <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5124,7 +5176,7 @@
     </message>
     <message>
         <source>&amp;Select SQLite Database</source>
-        <translation>&amp;Επιλογή SQLite βάσης δεδομένων</translation>
+        <translation type="obsolete">&amp;Επιλογή SQLite βάσης δεδομένων</translation>
     </message>
     <message>
         <source>Userid</source>
@@ -5174,6 +5226,10 @@
         <source>&amp;Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>cdDialog</name>
@@ -5191,7 +5247,7 @@
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -5259,7 +5315,7 @@
     </message>
     <message>
         <source>&amp;Show Tracks</source>
-        <translation>Πρ&amp;οβολή κομματιών</translation>
+        <translation type="obsolete">Πρ&amp;οβολή κομματιών</translation>
     </message>
     <message>
         <source>General Information</source>
@@ -5303,11 +5359,11 @@
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>Α&amp;ντίτυπα</translation>
+        <translation type="obsolete">Α&amp;ντίτυπα</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Κατάσταση δανεισμού</translation>
+        <translation type="obsolete">&amp;Κατάσταση δανεισμού</translation>
     </message>
     <message>
         <source>Location</source>
@@ -5337,7 +5393,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -5357,6 +5413,26 @@ URL</source>
     </message>
     <message>
         <source>Composer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Tracks...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6229,7 +6305,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6321,11 +6397,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>Α&amp;ντίτυπα</translation>
+        <translation type="obsolete">Α&amp;ντίτυπα</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Κατάσταση δανεισμού</translation>
+        <translation type="obsolete">&amp;Κατάσταση δανεισμού</translation>
     </message>
     <message>
         <source>Location</source>
@@ -6355,7 +6431,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6367,6 +6443,22 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6496,7 +6588,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6508,6 +6600,10 @@ URL</source>
     </message>
     <message>
         <source>&amp;Do not record reservation history.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6531,7 +6627,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6731,11 +6827,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>Α&amp;ντίτυπα</translation>
+        <translation type="obsolete">Α&amp;ντίτυπα</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Κατάσταση δανεισμού</translation>
+        <translation type="obsolete">&amp;Κατάσταση δανεισμού</translation>
     </message>
     <message>
         <source>Location</source>
@@ -6769,7 +6865,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -6859,6 +6955,22 @@ URL</source>
         <source>Very Good</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -6906,7 +7018,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -6982,11 +7094,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>Α&amp;ντίτυπα</translation>
+        <translation type="obsolete">Α&amp;ντίτυπα</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Κατάσταση δανεισμού</translation>
+        <translation type="obsolete">&amp;Κατάσταση δανεισμού</translation>
     </message>
     <message>
         <source>Location</source>
@@ -7020,7 +7132,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -7054,6 +7166,22 @@ URL</source>
         <source>ISSN</source>
         <translation type="unfinished">ISSN</translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
@@ -7063,7 +7191,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
-        <translation>&amp;Νέα SQLite βάση δεδομένων</translation>
+        <translation type="obsolete">&amp;Νέα SQLite βάση δεδομένων</translation>
     </message>
     <message>
         <source>BiblioteQ</source>
@@ -7183,7 +7311,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Σχετικά</translation>
+        <translation type="obsolete">&amp;Σχετικά</translation>
     </message>
     <message>
         <source>&amp;Display Table Grid</source>
@@ -7219,7 +7347,7 @@ URL</source>
     </message>
     <message>
         <source>View Error &amp;Log</source>
-        <translation>Προβολή &amp;καταχώρισης σφαλμάτων</translation>
+        <translation type="obsolete">Προβολή &amp;καταχώρισης σφαλμάτων</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
@@ -7231,7 +7359,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Connect</source>
-        <translation>&amp;Σύνδεση</translation>
+        <translation type="obsolete">&amp;Σύνδεση</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -7263,7 +7391,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>Διαμό&amp;ρφωση επιλεγμένων αντικειμένων</translation>
+        <translation type="obsolete">Διαμό&amp;ρφωση επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>Ctrl+V</source>
@@ -7271,7 +7399,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Members Browser</source>
-        <translation>Ανα&amp;ζήτηση μελών</translation>
+        <translation type="obsolete">Ανα&amp;ζήτηση μελών</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -7279,7 +7407,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Database Search</source>
-        <translation>Αναζήτηση στη &amp;βάση δεδομένων</translation>
+        <translation type="obsolete">Αναζήτηση στη &amp;βάση δεδομένων</translation>
     </message>
     <message>
         <source>Database Search</source>
@@ -7299,7 +7427,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Selected Item(s)</source>
-        <translation>Επι&amp;λεγμένα αντικείμενα</translation>
+        <translation type="obsolete">Επι&amp;λεγμένα αντικείμενα</translation>
     </message>
     <message>
         <source>Select Global &amp;Font</source>
@@ -7439,7 +7567,7 @@ URL</source>
     </message>
     <message>
         <source>Select &amp;Global Font</source>
-        <translation>Επιλογή γενικής γραμματο&amp;σειράς</translation>
+        <translation type="obsolete">Επιλογή γενικής γραμματο&amp;σειράς</translation>
     </message>
     <message>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
@@ -7491,11 +7619,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Export Table View as CSV</source>
-        <translation>Εξαγωγή του πίνακα προ&amp;βολής σε CSV</translation>
+        <translation type="obsolete">Εξαγωγή του πίνακα προ&amp;βολής σε CSV</translation>
     </message>
     <message>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation>Αντ&amp;ιγραφή επιλεγμένων αντικειμένων</translation>
+        <translation type="obsolete">Αντ&amp;ιγραφή επιλεγμένων αντικειμένων</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
@@ -7515,27 +7643,27 @@ URL</source>
     </message>
     <message>
         <source>&amp;Book</source>
-        <translation>Βιβλί&amp;ο</translation>
+        <translation type="obsolete">Βιβλί&amp;ο</translation>
     </message>
     <message>
         <source>&amp;DVD</source>
-        <translation>&amp;DVD</translation>
+        <translation type="obsolete">&amp;DVD</translation>
     </message>
     <message>
         <source>&amp;Journal</source>
-        <translation>Ε&amp;φημερίδα</translation>
+        <translation type="obsolete">Ε&amp;φημερίδα</translation>
     </message>
     <message>
         <source>&amp;Magazine</source>
-        <translation>&amp;Περιοδικό</translation>
+        <translation type="obsolete">&amp;Περιοδικό</translation>
     </message>
     <message>
         <source>Music &amp;CD</source>
-        <translation>Μουσικό &amp;CD</translation>
+        <translation type="obsolete">Μουσικό &amp;CD</translation>
     </message>
     <message>
         <source>&amp;Video Game</source>
-        <translation>&amp;Ηλεκτρονικό παιχνίδι</translation>
+        <translation type="obsolete">&amp;Ηλεκτρονικό παιχνίδι</translation>
     </message>
     <message>
         <source>&amp;Language</source>
@@ -7575,10 +7703,6 @@ URL</source>
     </message>
     <message>
         <source>Preferred &amp;SRU Site</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7631,6 +7755,78 @@ URL</source>
     </message>
     <message>
         <source>Automatically &amp;Resize Column Widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Error &amp;Log...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Connect...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Members Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Database Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select &amp;Global Font...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;New SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8082,7 +8278,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Title</source>
@@ -8166,7 +8362,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Add Item</source>
-        <translation type="unfinished">&amp;Προσθήκη αντικειμένου</translation>
+        <translation type="obsolete">&amp;Προσθήκη αντικειμένου</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -8174,18 +8370,30 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation type="unfinished">&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Κλείσιμο</translation>
     </message>
     <message>
-        <source>&amp;Export Items</source>
+        <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Import Items</source>
+        <source>&amp;Add Item...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Import Items...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8201,7 +8409,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation type="unfinished">Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Creator(s)</source>
@@ -8267,6 +8475,10 @@ URL</source>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Κλείσιμο</translation>
     </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographView</name>
@@ -8303,11 +8515,11 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Export</source>
+        <source>Next Photograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Next Photograph</source>
+        <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12488,7 +12700,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Select</source>
-        <translation>Επι&amp;λογή</translation>
+        <translation type="obsolete">Επι&amp;λογή</translation>
     </message>
     <message>
         <source>Back Cover Image</source>
@@ -12568,11 +12780,11 @@ URL</source>
     </message>
     <message>
         <source>&amp;Copies</source>
-        <translation>Α&amp;ντίτυπα</translation>
+        <translation type="obsolete">Α&amp;ντίτυπα</translation>
     </message>
     <message>
         <source>&amp;Reservation Status</source>
-        <translation>&amp;Κατάσταση δανεισμού</translation>
+        <translation type="obsolete">&amp;Κατάσταση δανεισμού</translation>
     </message>
     <message>
         <source>Location</source>
@@ -12606,7 +12818,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Εκτύπωση</translation>
+        <translation type="obsolete">&amp;Εκτύπωση</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -12618,6 +12830,22 @@ URL</source>
     </message>
     <message>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -732,7 +732,7 @@
         <location line="+30"/>
         <location line="+8"/>
         <location line="+736"/>
-        <location line="+3448"/>
+        <location line="+3453"/>
         <location line="+16"/>
         <location line="+68"/>
         <location line="+28"/>
@@ -743,7 +743,7 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8172"/>
+        <location line="-8177"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -821,7 +821,7 @@
     <message>
         <location line="+364"/>
         <location line="+3535"/>
-        <location line="+4404"/>
+        <location line="+4409"/>
         <location line="+27"/>
         <location line="+28"/>
         <location line="+24"/>
@@ -831,7 +831,7 @@
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-7999"/>
+        <location line="-8004"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -946,14 +946,14 @@
         <location line="-4425"/>
         <location line="+3270"/>
         <location line="+950"/>
-        <location line="+4108"/>
+        <location line="+4113"/>
         <location filename="../Source/biblioteq_b.cc" line="-364"/>
         <location line="+37"/>
         <source>0 Results</source>
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8293"/>
+        <location line="-8298"/>
         <location line="+24"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -1012,7 +1012,7 @@
         <location line="+28"/>
         <location line="+1458"/>
         <location line="+531"/>
-        <location line="+277"/>
+        <location line="+282"/>
         <location line="+375"/>
         <location line="+231"/>
         <location line="+180"/>
@@ -1034,7 +1034,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7676"/>
+        <location line="-7681"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1099,7 +1099,7 @@
         <location line="+27"/>
         <location line="+69"/>
         <location line="+79"/>
-        <location line="+355"/>
+        <location line="+360"/>
         <location line="+4"/>
         <location line="+154"/>
         <location line="+10"/>
@@ -1114,7 +1114,7 @@
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-7830"/>
+        <location line="-7835"/>
         <source>Please select at least one item to modify.</source>
         <translation type="unfinished">Jelöljön ki legalább egy módosítandó cikket.</translation>
     </message>
@@ -1126,7 +1126,7 @@
         <location line="+694"/>
         <location line="+44"/>
         <location line="+2866"/>
-        <location line="+1859"/>
+        <location line="+1864"/>
         <location line="+530"/>
         <location line="+213"/>
         <location filename="../Source/biblioteq_b.cc" line="+533"/>
@@ -1134,35 +1134,35 @@
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-7830"/>
+        <location line="-7835"/>
         <source>Are you sure that you wish to modify the </source>
         <translation type="unfinished">Biztosan szeretné módositani a </translation>
     </message>
     <message>
         <location line="+2"/>
         <location line="+214"/>
-        <location line="+7618"/>
+        <location line="+7623"/>
         <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
         <translation type="unfinished"> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
     </message>
     <message>
-        <location line="-7654"/>
+        <location line="-7659"/>
         <location line="+215"/>
         <location line="+65"/>
-        <location line="+7461"/>
+        <location line="+7466"/>
         <source>BiblioteQ: Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7740"/>
+        <location line="-7745"/>
         <location line="+215"/>
         <location line="+3402"/>
-        <location line="+4124"/>
+        <location line="+4129"/>
         <source>Unable to determine the selected item&apos;s type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7713"/>
+        <location line="-7718"/>
         <source>Please select at least one item to view.</source>
         <translation type="unfinished">Jelöljön ki legalább egy megtekintendő cikket.</translation>
     </message>
@@ -1224,7 +1224,7 @@
         <location line="+1648"/>
         <location line="+4"/>
         <location line="+525"/>
-        <location line="+280"/>
+        <location line="+285"/>
         <location line="+4"/>
         <location line="+4"/>
         <location line="+363"/>
@@ -1241,7 +1241,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7172"/>
+        <location line="-7177"/>
         <source>Reserved items may not be deleted.</source>
         <translation type="unfinished">Kikölcsönzött cikkeket nem lehet törölni.</translation>
     </message>
@@ -1265,7 +1265,7 @@
         <location line="+11"/>
         <location line="+2714"/>
         <location line="+90"/>
-        <location line="+2737"/>
+        <location line="+2742"/>
         <location line="+549"/>
         <location line="+214"/>
         <location line="+263"/>
@@ -1274,7 +1274,7 @@
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-6566"/>
+        <location line="-6571"/>
         <source>Deleting the selected item(s)...</source>
         <translation type="unfinished">A kijelölt cikkek törlése...</translation>
     </message>
@@ -1349,23 +1349,23 @@
         <location line="+4"/>
         <location line="+669"/>
         <location line="+4"/>
-        <location line="+5147"/>
+        <location line="+5152"/>
         <location line="+4"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5724"/>
+        <location line="-5729"/>
         <location line="+28"/>
         <location line="+64"/>
         <location line="+494"/>
         <location line="+27"/>
-        <location line="+5338"/>
+        <location line="+5343"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-5946"/>
+        <location line="-5951"/>
         <location line="+3"/>
         <source>Unable to save the member&apos;s information.</source>
         <translation type="unfinished"></translation>
@@ -1383,13 +1383,13 @@
         <location line="+8"/>
         <location line="+504"/>
         <location line="+8"/>
-        <location line="+5283"/>
+        <location line="+5288"/>
         <location line="+8"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5831"/>
+        <location line="-5836"/>
         <location line="+2194"/>
         <source>An error occurred while attempting to update the database account for </source>
         <translation type="unfinished"></translation>
@@ -1401,14 +1401,14 @@
     </message>
     <message>
         <location line="+99"/>
-        <location line="+5733"/>
+        <location line="+5738"/>
         <location line="+1025"/>
         <location filename="../Source/biblioteq_b.cc" line="+629"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Információ</translation>
     </message>
     <message>
-        <location line="-6757"/>
+        <location line="-6762"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
         <translation type="unfinished">Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
     </message>
@@ -1583,24 +1583,24 @@
     </message>
     <message>
         <location line="+27"/>
-        <location line="+2962"/>
+        <location line="+2967"/>
         <source>Member ID</source>
         <translation type="unfinished">Tag Azonosító</translation>
     </message>
     <message>
-        <location line="-2961"/>
-        <location line="+2965"/>
+        <location line="-2966"/>
+        <location line="+2970"/>
         <source>First Name</source>
         <translation type="unfinished">Utónév</translation>
     </message>
     <message>
-        <location line="-2964"/>
-        <location line="+2965"/>
+        <location line="-2969"/>
+        <location line="+2970"/>
         <source>Last Name</source>
         <translation type="unfinished">Vezeték Név</translation>
     </message>
     <message>
-        <location line="-2964"/>
+        <location line="-2969"/>
         <source>Member Since</source>
         <translation type="unfinished">Óta tag:</translation>
     </message>
@@ -1647,17 +1647,17 @@
     </message>
     <message>
         <location line="+19"/>
-        <location line="+2827"/>
+        <location line="+2832"/>
         <location line="+549"/>
         <location filename="../Source/biblioteq_b.cc" line="-628"/>
         <source>Populating the table...</source>
         <translation type="unfinished">Táblázat kitöltése...</translation>
     </message>
     <message>
-        <location line="-3332"/>
+        <location line="-3337"/>
         <location line="+2177"/>
         <location line="+21"/>
-        <location line="+616"/>
+        <location line="+621"/>
         <location line="+371"/>
         <location line="+9"/>
         <location line="+171"/>
@@ -1668,8 +1668,8 @@
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-3392"/>
-        <location line="+2814"/>
+        <location line="-3397"/>
+        <location line="+2819"/>
         <location line="+371"/>
         <location line="+180"/>
         <location line="+28"/>
@@ -1678,7 +1678,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3348"/>
+        <location line="-3353"/>
         <source>Granting privileges...</source>
         <translation type="unfinished">Jogosultságok adása..</translation>
     </message>
@@ -1819,78 +1819,138 @@
     </message>
     <message>
         <location line="+40"/>
-        <source>Add &amp;Book</source>
-        <translation type="unfinished">Könyv Hozzáadása</translation>
+        <source>Add &amp;Book...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Add &amp;DVD</source>
-        <translation type="unfinished">DVD Hozzáadása</translation>
+        <source>Add &amp;DVD...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Add &amp;Journal</source>
-        <translation type="unfinished">Folyóirat Hozzáadása</translation>
+        <source>Add &amp;Journal...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Add &amp;Magazine</source>
-        <translation type="unfinished">Magazin Hozzáadása</translation>
+        <source>Add &amp;Magazine...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Add Music &amp;CD</source>
-        <translation type="unfinished">Zene CD Hozzáadása</translation>
+        <source>Add Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Add &amp;Photograph Collection</source>
-        <translation type="unfinished">Fénykép Gyüjtemény Hozzáadása</translation>
+        <source>Add &amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Add &amp;Video Game</source>
-        <translation type="unfinished">Videójáték Hozzáadása</translation>
+        <source>Add &amp;Video Game...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
+        <source>&amp;General Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Book Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;DVD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Journal Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Magazine Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Music CD Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Photograph Collection Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Video Game Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Book</source>
+        <translation type="obsolete">Könyv Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="obsolete">DVD Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="obsolete">Folyóirat Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="obsolete">Magazin Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="obsolete">Zene CD Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="obsolete">Fénykép Gyüjtemény Hozzáadása</translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="obsolete">Videójáték Hozzáadása</translation>
+    </message>
+    <message>
         <source>&amp;General Search</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Book Search</source>
-        <translation type="unfinished">Könvy Keresés</translation>
+        <translation type="obsolete">Könvy Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;DVD Search</source>
-        <translation type="unfinished">DVD Keresés</translation>
+        <translation type="obsolete">DVD Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Journal Search</source>
-        <translation type="unfinished">Folyóirat Keresés</translation>
+        <translation type="obsolete">Folyóirat Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Magazine Search</source>
-        <translation type="unfinished">Magazin Keresés</translation>
+        <translation type="obsolete">Magazin Keresés</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;Music CD Search</source>
-        <translation type="unfinished">Zene CD Keresés</translation>
+        <translation type="obsolete">Zene CD Keresés</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Photograph Collection Search</source>
-        <translation type="unfinished">Fénykép Gyüjtemény Keresés</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény Keresés</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>&amp;Video Game Search</source>
-        <translation type="unfinished">Videójáték Keresés</translation>
+        <translation type="obsolete">Videójáték Keresés</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -1979,7 +2039,7 @@
         <translation type="unfinished">Egy tag kölcsönzési előzményeinek megtekintéséhez előszőr ki kell jelölni a tagot!</translation>
     </message>
     <message>
-        <location line="+170"/>
+        <location line="+175"/>
         <location line="+7"/>
         <location line="+4"/>
         <location line="+4"/>
@@ -6486,13 +6546,17 @@
     </message>
     <message>
         <location line="+41"/>
-        <source>&amp;Modify Photograph</source>
+        <source>&amp;Modify Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
+        <source>&amp;View Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;View Photograph</source>
-        <translation type="unfinished">Fénykép Megtekintése</translation>
+        <translation type="obsolete">Fénykép Megtekintése</translation>
     </message>
     <message>
         <location line="+303"/>
@@ -7176,16 +7240,15 @@
         <translation type="obsolete">Adatbázis Típus</translation>
     </message>
     <message>
-        <location line="+73"/>
         <source>&amp;Select SQLite Database</source>
-        <translation>SQLite Adatbátis Kiválasztása</translation>
+        <translation type="obsolete">SQLite Adatbátis Kiválasztása</translation>
     </message>
     <message>
         <source>Userid</source>
         <translation type="obsolete">Felhasználó</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+142"/>
         <source>Administrator</source>
         <translation>Adminisztrátor</translation>
     </message>
@@ -7199,7 +7262,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+101"/>
+        <location line="+61"/>
+        <source>&amp;Select SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
         <source>&amp;Userid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7258,10 +7326,14 @@
         <translation>Elülső Borító</translation>
     </message>
     <message>
+        <source>&amp;Select</source>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
         <location line="+28"/>
         <location line="+60"/>
-        <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-28"/>
@@ -7345,11 +7417,30 @@
     </message>
     <message>
         <location line="+22"/>
-        <source>&amp;Show Tracks</source>
-        <translation>Számok Kiírása</translation>
+        <source>&amp;Show Tracks...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+239"/>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+203"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Show Tracks</source>
+        <translation type="obsolete">Számok Kiírása</translation>
+    </message>
+    <message>
+        <location line="-427"/>
         <source>Composer</source>
         <translation>Zeneszerző</translation>
     </message>
@@ -7404,17 +7495,15 @@
         <translation>Példányok</translation>
     </message>
     <message>
-        <location line="+24"/>
         <source>&amp;Copies</source>
-        <translation>Példányok</translation>
+        <translation type="obsolete">Példányok</translation>
     </message>
     <message>
-        <location line="+11"/>
         <source>&amp;Reservation Status</source>
-        <translation>Kölcsönzési Állapot</translation>
+        <translation type="obsolete">Kölcsönzési Állapot</translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+63"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -7444,12 +7533,11 @@
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+36"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -8208,10 +8296,14 @@
         <translation>Elülső Borító</translation>
     </message>
     <message>
+        <source>&amp;Select</source>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
         <location line="+28"/>
         <location line="+60"/>
-        <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-28"/>
@@ -8325,16 +8417,29 @@
     </message>
     <message>
         <location line="+24"/>
-        <source>&amp;Copies</source>
-        <translation>Példányok</translation>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>&amp;Reservation Status</source>
-        <translation>Kölcsönzési Állapot</translation>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+203"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies</source>
+        <translation type="obsolete">Példányok</translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status</source>
+        <translation type="obsolete">Kölcsönzési Állapot</translation>
+    </message>
+    <message>
+        <location line="-175"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -8364,12 +8469,11 @@
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+36"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -8511,8 +8615,12 @@
     </message>
     <message>
         <location line="+17"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -8549,18 +8657,16 @@
         <translation>Letöltés</translation>
     </message>
     <message>
-        <location line="-60"/>
-        <location line="+83"/>
         <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <translation type="obsolete">Kiválasztás</translation>
     </message>
     <message>
-        <location line="-51"/>
+        <location line="-28"/>
         <source>Back Cover Image</source>
         <translation>Hátulsó Borító</translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+72"/>
         <source>Specific Information</source>
         <translation>Jellemző Adatok</translation>
     </message>
@@ -8660,14 +8766,28 @@
         <translation>Pénzegység</translation>
     </message>
     <message>
-        <location line="+37"/>
         <source>&amp;Copies</source>
-        <translation>Példányok</translation>
+        <translation type="obsolete">Példányok</translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status</source>
+        <translation type="obsolete">Kölcsönzési Állapot</translation>
+    </message>
+    <message>
+        <location line="-469"/>
+        <location line="+77"/>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+429"/>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>&amp;Reservation Status</source>
-        <translation>Kölcsönzési Állapot</translation>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+28"/>
@@ -8796,8 +8916,12 @@
     </message>
     <message>
         <location line="+16"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -8823,10 +8947,14 @@
         <translation>Elülső Borító</translation>
     </message>
     <message>
+        <source>&amp;Select</source>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
         <location line="+28"/>
         <location line="+60"/>
-        <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-28"/>
@@ -8925,16 +9053,29 @@
     </message>
     <message>
         <location line="+24"/>
-        <source>&amp;Copies</source>
-        <translation>Példányok</translation>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>&amp;Reservation Status</source>
-        <translation>Kölcsönzési Állapot</translation>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+255"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies</source>
+        <translation type="obsolete">Példányok</translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status</source>
+        <translation type="obsolete">Kölcsönzési Állapot</translation>
+    </message>
+    <message>
+        <location line="-227"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -8979,12 +9120,11 @@
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+36"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -9149,11 +9289,100 @@
     </message>
     <message>
         <location line="+22"/>
-        <source>&amp;About</source>
-        <translation>A Programról</translation>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>View Error &amp;Log...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>&amp;Connect...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>&amp;Modify Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>&amp;Members Browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>&amp;Database Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>&amp;Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Select &amp;Global Font...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+214"/>
+        <source>&amp;New SQLite Database...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>&amp;Export Table View as CSV...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>D&amp;uplicate Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+8"/>
+        <source>&amp;Book...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;DVD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Journal...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Magazine...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Music &amp;CD...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Video Game...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+74"/>
+        <source>&amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;About</source>
+        <translation type="obsolete">A Programról</translation>
+    </message>
+    <message>
+        <location line="-549"/>
         <source>&amp;Display Table Grid</source>
         <translation>Táblázat Rács Megjelenítése</translation>
     </message>
@@ -9178,12 +9407,11 @@
         <translation>Nézet Kitöltése Kapcsolódáskor</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>View Error &amp;Log</source>
-        <translation>Hiba Napló Megtekintése</translation>
+        <translation type="obsolete">Hiba Napló Megtekintése</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <source>Ctrl+L</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9193,12 +9421,11 @@
         <translation>Hiba Napló Visszaállítása Kapcsolat Bontásakor</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;Connect</source>
-        <translation>Csatlakozás</translation>
+        <translation type="obsolete">Csatlakozás</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9233,33 +9460,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;Modify Selected Item(s)</source>
-        <translation>Kijelölt Cikk(ek) Szerkesztése</translation>
+        <translation type="obsolete">Kijelölt Cikk(ek) Szerkesztése</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <location line="+54"/>
         <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-45"/>
         <source>&amp;Members Browser</source>
-        <translation>Tag Böngésző</translation>
+        <translation type="obsolete">Tag Böngésző</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="-42"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;Database Search</source>
-        <translation>Keresés</translation>
+        <translation type="obsolete">Keresés</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <location line="+3"/>
         <location line="+137"/>
         <source>Database Search</source>
@@ -9281,17 +9505,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;Selected Item(s)</source>
-        <translation>Kijelölt Cikk(ek)</translation>
+        <translation type="obsolete">Kijelölt Cikk(ek)</translation>
     </message>
     <message>
-        <location line="+12"/>
         <source>Select &amp;Global Font</source>
-        <translation>Fő Betűtípus Kiválasztása</translation>
+        <translation type="obsolete">Fő Betűtípus Kiválasztása</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+24"/>
         <source>Ctrl+G</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9406,12 +9628,11 @@
         <translation>Adminisztrátor Böngésző Táblázat Kitöltése Megtekintéskor</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;New SQLite Database</source>
-        <translation>Új SQLite Adatbázis</translation>
+        <translation type="obsolete">Új SQLite Adatbázis</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9427,12 +9648,11 @@
         <translation>Adatbázis Felsorolások Böngésző Kitöltése Megtekintéskor</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>&amp;Export Table View as CSV</source>
-        <translation>Táblázat Nézet Mentése CSV-ként</translation>
+        <translation type="obsolete">Táblázat Nézet Mentése CSV-ként</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+18"/>
         <source>Duplicate</source>
         <translation>Megkettőzés</translation>
     </message>
@@ -9442,47 +9662,40 @@
         <translation>Kijelölt Cikk(ek) Megkettőzése</translation>
     </message>
     <message>
-        <location line="+9"/>
         <source>D&amp;uplicate Selected Item(s)</source>
-        <translation>Kijelölt Cikk(ek) Megkettőzése</translation>
+        <translation type="obsolete">Kijelölt Cikk(ek) Megkettőzése</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+12"/>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Book</source>
-        <translation>Könvy</translation>
+        <translation type="obsolete">Könvy</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;DVD</source>
-        <translation>DVD</translation>
+        <translation type="obsolete">DVD</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Journal</source>
-        <translation>Folyóirat</translation>
+        <translation type="obsolete">Folyóirat</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Magazine</source>
-        <translation>Magazin</translation>
+        <translation type="obsolete">Magazin</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Music &amp;CD</source>
-        <translation>Zene CD</translation>
+        <translation type="obsolete">Zene CD</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Video Game</source>
-        <translation>Videójáték</translation>
+        <translation type="obsolete">Videójáték</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+38"/>
         <source>&amp;Czech</source>
         <translation>Cseh</translation>
     </message>
@@ -9527,12 +9740,11 @@
         <translation>Holland (Hollandia)</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>&amp;Photograph Collection</source>
-        <translation>Fénykép Gyüjtemény</translation>
+        <translation type="obsolete">Fénykép Gyüjtemény</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+10"/>
         <source>&amp;Category</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9995,9 +10207,13 @@
         <translation>Kicsinyített</translation>
     </message>
     <message>
-        <location line="-186"/>
         <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
+        <location line="-186"/>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+28"/>
@@ -10104,31 +10320,43 @@
     </message>
     <message>
         <location line="+23"/>
-        <source>&amp;Add Item</source>
-        <translation>Cikk Hozzáadása</translation>
+        <source>&amp;Add Item...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
-        <source>&amp;Reset</source>
-        <translation>Visszaállítás</translation>
-    </message>
-    <message>
-        <location line="+16"/>
-        <source>&amp;Export Items</source>
-        <translation>Cikkek Exportálása</translation>
+        <location line="+33"/>
+        <source>&amp;Export Items...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+22"/>
-        <source>&amp;Import Items</source>
+        <source>&amp;Import Items...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <source>&amp;Add Item</source>
+        <translation type="obsolete">Cikk Hozzáadása</translation>
+    </message>
+    <message>
+        <location line="-51"/>
+        <source>&amp;Reset</source>
+        <translation>Visszaállítás</translation>
+    </message>
+    <message>
+        <source>&amp;Export Items</source>
+        <translation type="obsolete">Cikkek Exportálása</translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation type="obsolete">Nyomtatás</translation>
+    </message>
+    <message>
+        <location line="+68"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
@@ -10146,9 +10374,13 @@
         <translation>Kicsinyített</translation>
     </message>
     <message>
-        <location line="+28"/>
         <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+28"/>
@@ -10270,7 +10502,7 @@
     </message>
     <message>
         <location line="+42"/>
-        <source>&amp;Export</source>
+        <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -13051,10 +13283,14 @@
         <translation>Elülső Borító</translation>
     </message>
     <message>
+        <source>&amp;Select</source>
+        <translation type="obsolete">Kiválasztás</translation>
+    </message>
+    <message>
         <location line="+28"/>
         <location line="+60"/>
-        <source>&amp;Select</source>
-        <translation>Kiválasztás</translation>
+        <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-28"/>
@@ -13153,16 +13389,29 @@
     </message>
     <message>
         <location line="+24"/>
-        <source>&amp;Copies</source>
-        <translation>Példányok</translation>
+        <source>&amp;Copies...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>&amp;Reservation Status</source>
-        <translation>Kölcsönzési Állapot</translation>
+        <source>&amp;Reservation Status...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+220"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Copies</source>
+        <translation type="obsolete">Példányok</translation>
+    </message>
+    <message>
+        <source>&amp;Reservation Status</source>
+        <translation type="obsolete">Kölcsönzési Állapot</translation>
+    </message>
+    <message>
+        <location line="-192"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -13197,12 +13446,11 @@
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location line="+16"/>
         <source>&amp;Print</source>
-        <translation>Nyomtatás</translation>
+        <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+33"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>
