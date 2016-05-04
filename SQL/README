@@ -6,7 +6,7 @@ hosting the database(s).
 pg_dump -U postgres --clean --file=xbook_db.sql xbook_db
 pg_dumpall -U postgres --clean --globals-only --file=globals.sql
 
-Importing a databse copy is simple.
+Importing a database copy is simple.
 
 psql -U postgres < globals.sql
 psql -U postgres < xbook_db.sql
