@@ -145,7 +145,7 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   if(populate)
     populateWidgets();
   else
-    m_ui.cdFormatsList->setFocus();
+    m_ui.bookBindingsList->setFocus();
 }
 
 /*
@@ -352,7 +352,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
       pairList.clear();
     }
 
-  m_ui.cdFormatsList->setFocus();
+  m_ui.bookBindingsList->setFocus();
 }
 
 /*
