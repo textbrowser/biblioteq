@@ -5046,7 +5046,7 @@ void biblioteq::slotModifyBorrower(void)
 	      toString(Qt::ISODate);
 	  else if(fieldname == "overdue_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
-	      QString::number(var.toDouble());
+	      userinfo_diag->m_userinfo.overduefees->text();
 	  else
 	    userinfo_diag->m_memberProperties[fieldname] = var.toString();
 	}
