@@ -122,9 +122,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Collection &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
-  connect(menu2->addAction(tr("&All")),
+  connect(menu2->addAction(tr("&All...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
-  connect(menu2->addAction(tr("&Current Page")),
+  connect(menu2->addAction(tr("&Current Page...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
 	  this, SLOT(slotPageChanged(const QString &)));
