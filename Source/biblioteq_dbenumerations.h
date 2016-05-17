@@ -20,6 +20,7 @@ class biblioteq_dbenumerations: public QMainWindow
  public:
   biblioteq_dbenumerations(QWidget *parent);
   void clear(void);
+  void closeEvent(QCloseEvent *event);
   void show(QMainWindow *parent, const bool populate);
 
  private:

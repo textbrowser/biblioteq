@@ -110,7 +110,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>278</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -368,7 +368,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -1008,7 +1008,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate &amp;Members Browser Table on Display</string>
+    <string>Populate &amp;Members Browser on Display</string>
    </property>
   </action>
   <action name="actionPopulate_Administrator_Browser_Table_on_Display">
@@ -1016,7 +1016,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Populate &amp;Administrator Browser Table on Display</string>
+    <string>Populate &amp;Administrator Browser on Display</string>
    </property>
   </action>
   <action name="action_New_SQLite_Database">

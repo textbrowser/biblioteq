@@ -810,3 +810,12 @@ void biblioteq_dbenumerations::changeEvent(QEvent *event)
 
   QMainWindow::changeEvent(event);
 }
+
+/*
+** -- closeEvent() --
+*/
+
+void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
+{
+  QMainWindow::closeEvent(event);
+}
