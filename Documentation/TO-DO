@@ -101,7 +101,7 @@
 55.  Verify a copy's status via a database query prior to saving it. (Done)
 56.  Only allow digits, or other applicable characters, in the ID
      (ISBN, etc.) fields. (Done)
-57.  Replace all references of qtbook with biblioteq. (TBD)
+57.  Replace all references of qtbook with biblioteq. (Done)
 58.  Add "create" and "search" displays to appropriate containers. (Done)
 59.  Remove modality from "create" and "search" displays. (Done)
 60.  Update the Items Reserved column in the Members Browser after an
@@ -377,3 +377,4 @@
 200. Remove OFFSET. (TBD)
 201. Deleting NULL pointers is redundant. (TBD)
 202. SQL injection. (TBD)
+203. Warn the user if there is stale photograph item data. (TBD)
