@@ -377,4 +377,4 @@
 200. Remove OFFSET. (TBD)
 201. Deleting NULL pointers is redundant. (TBD)
 202. SQL injection. (TBD)
-203. Warn the user if there is stale photograph item data. (TBD)
+203. Warn the user if there are stale photograph item data. (TBD)
