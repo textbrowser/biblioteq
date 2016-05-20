@@ -6,8 +6,8 @@
 */
 
 #include <QHash>
-#include <QMap>
 #include <QMainWindow>
+#include <QMap>
 
 /*
 ** -- Local Includes --
