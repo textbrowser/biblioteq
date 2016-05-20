@@ -352,6 +352,9 @@ void biblioteq_dbenumerations::populateWidgets(void)
       pairList.clear();
     }
 
+  m_listData.clear();
+  m_tableData.clear();
+  saveData(m_listData, m_tableData);
   m_ui.bookBindingsList->setFocus();
 }
 
@@ -361,6 +364,20 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
 void biblioteq_dbenumerations::slotReload(void)
 {
+  QHash<QWidget *, QStringList> listData;
+  QHash<QWidget *, QMap<QString, QString> > tableData;
+
+  saveData(listData, tableData);
+
+  if(listData != m_listData ||
+     tableData != m_tableData)
+    if(QMessageBox::
+       question(this, tr("BiblioteQ: Question"),
+		tr("Your changes have not been saved. Continue?"),
+		QMessageBox::Yes | QMessageBox::No,
+		QMessageBox::No) == QMessageBox::No)
+      return;
+
   populateWidgets();
 }
 
@@ -817,5 +834,80 @@ void biblioteq_dbenumerations::changeEvent(QEvent *event)
 
 void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 {
+  QHash<QWidget *, QStringList> listData;
+  QHash<QWidget *, QMap<QString, QString> > tableData;
+
+  saveData(listData, tableData);
+
+  if(listData != m_listData ||
+     tableData != m_tableData)
+    if(QMessageBox::
+       question(this, tr("BiblioteQ: Question"),
+		tr("Your changes have not been saved. Continue?"),
+		QMessageBox::Yes | QMessageBox::No,
+		QMessageBox::No) == QMessageBox::No)
+      {
+	if(event)
+	  event->ignore();
+
+	return;
+      }
+
   QMainWindow::closeEvent(event);
+}
+
+/*
+** -- saveData() --
+*/
+
+void biblioteq_dbenumerations::saveData
+(QHash<QWidget *, QStringList> &listData,
+ QHash<QWidget *, QMap<QString, QString> > &tableData)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  foreach(QListWidget *widget, findChildren<QListWidget *> ())
+    {
+      QStringList list;
+
+      for(int i = 0; i < widget->count(); i++)
+	{
+	  QListWidgetItem *item = widget->item(i);
+
+	  if(item)
+	    list << item->text();
+	}
+
+      listData[widget] = list;
+    }
+
+  foreach(QTableWidget *widget, findChildren<QTableWidget *> ())
+    {
+      QMap<QString, QString> map;
+
+      for(int i = 0; i < widget->rowCount(); i++)
+	{
+	  QString text("");
+	  QTableWidgetItem *item = widget->item(i, 1);
+
+	  if(!item)
+	    continue;
+	  else
+	    {
+	      if(qobject_cast<QComboBox *> (widget->cellWidget(i, 0)))
+		text = qobject_cast<QComboBox *> (widget->cellWidget(i, 0))->
+		  currentText();
+	      else if(widget->item(i, 0))
+		text = widget->item(i, 0)->text();
+	      else
+		continue;
+	    }
+
+	  map[text] = item->text();
+	}
+
+      tableData[widget] = map;
+    }
+
+  QApplication::restoreOverrideCursor();
 }

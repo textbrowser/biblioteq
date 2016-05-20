@@ -5,6 +5,8 @@
 ** -- Qt Includes --
 */
 
+#include <QHash>
+#include <QMap>
 #include <QMainWindow>
 
 /*
@@ -24,9 +26,13 @@ class biblioteq_dbenumerations: public QMainWindow
   void show(QMainWindow *parent, const bool populate);
 
  private:
+  QHash<QWidget *, QStringList> m_listData;
+  QHash<QWidget *, QMap<QString, QString> > m_tableData;
   Ui_dbEnumerations m_ui;
   void changeEvent(QEvent *event);
   void populateWidgets(void);
+  void saveData(QHash<QWidget *, QStringList> &listData,
+		QHash<QWidget *, QMap<QString, QString> > &tableData);
 
  private slots:
   void slotAdd(void);
