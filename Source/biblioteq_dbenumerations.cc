@@ -130,6 +130,8 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(QWidget *parent):
 
 void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 {
+  bool wasVisible = isVisible();
+
   static bool resized = false;
 
   if(parent && !resized)
@@ -145,7 +147,16 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
   if(populate)
     populateWidgets();
   else
-    m_ui.bookBindingsList->setFocus();
+    {
+      if(!wasVisible)
+	{
+	  m_listData.clear();
+	  m_tableData.clear();
+	  saveData(m_listData, m_tableData);
+	}
+
+      m_ui.bookBindingsList->setFocus();
+    }
 }
 
 /*
@@ -154,6 +165,9 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 
 void biblioteq_dbenumerations::clear(void)
 {
+  m_listData.clear();
+  m_tableData.clear();
+
   foreach(QListWidget *listwidget, findChildren<QListWidget *> ())
     listwidget->clear();
 
