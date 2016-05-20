@@ -376,5 +376,5 @@
 199. Settings panel, per Csanád Baksay. (TBD)
 200. Remove OFFSET. (TBD)
 201. Deleting NULL pointers is redundant. (TBD)
-202. SQL injection. (TBD)
+202. SQL injection. See item #198. (TBD)
 203. Warn the user if there are stale photograph item data. (Done)
