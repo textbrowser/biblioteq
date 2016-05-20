@@ -3246,6 +3246,14 @@
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished">Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποθήκευσης των στοιχείων της  βάσης δεδομένων.</translation>
     </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Ερώτημα</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
@@ -4341,14 +4349,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Current Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Error</source>
         <translation type="unfinished">Σφάλμα βάσης δεδομένων</translation>
     </message>
@@ -4622,6 +4622,14 @@
     </message>
     <message>
         <source>&amp;View Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7531,11 +7539,11 @@ URL</source>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Εμφάνιση εγγραφών του πίν&amp;ακα μελών κατά την προβολή</translation>
+        <translation type="obsolete">Εμφάνιση εγγραφών του πίν&amp;ακα μελών κατά την προβολή</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Εμφάνιση εγγραφών του πίνακα &amp;διαχειριστών κατά την προβολή</translation>
+        <translation type="obsolete">Εμφάνιση εγγραφών του πίνακα &amp;διαχειριστών κατά την προβολή</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -7827,6 +7835,14 @@ URL</source>
     </message>
     <message>
         <source>&amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

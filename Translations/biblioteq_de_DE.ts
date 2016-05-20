@@ -4411,174 +4411,186 @@
 <context>
     <name>biblioteq_dbenumerations</name>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="268"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="549"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="558"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="602"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="681"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="750"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="764"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="777"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="282"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="580"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="589"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="633"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="712"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="781"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="795"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="808"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="269"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="283"/>
         <source>Unable to retrieve the contents of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="270"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="606"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="284"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="637"/>
         <source>.</source>
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="300"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="416"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="314"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="447"/>
         <source>Book</source>
         <translation type="unfinished">Buch</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="301"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="417"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="315"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="448"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="302"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="418"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="316"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="449"/>
         <source>Journal</source>
         <translation type="unfinished">Journal</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="303"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="419"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="317"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="450"/>
         <source>Magazine</source>
         <translation type="unfinished">Magazin</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="304"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="420"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="318"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="451"/>
         <source>Music CD</source>
         <translation type="unfinished">Musik-CD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="305"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="421"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="319"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="452"/>
         <source>Photograph Collection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="306"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="422"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="320"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="453"/>
         <source>Video Game</source>
         <translation type="unfinished">Videospiel</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="380"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="389"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="859"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="390"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="860"/>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="411"/>
         <source>Book Binding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="385"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="416"/>
         <source>CD Format</source>
         <translation type="unfinished">CD Format</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="390"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="421"/>
         <source>DVD Aspect Ratio</source>
         <translation type="unfinished">DVD Seitenverhältnis</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="395"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="426"/>
         <source>DVD Rating</source>
         <translation type="unfinished">DVD Bewertung</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="400"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="431"/>
         <source>DVD Region</source>
         <translation type="unfinished">DVD Region</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="405"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="436"/>
         <source>Language</source>
         <translation type="unfinished">Sprache</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="452"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="483"/>
         <source>Monetary Unit</source>
         <translation type="unfinished">Währungseinheit</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="457"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="488"/>
         <source>Video Game Platform</source>
         <translation type="unfinished">Videospiel Plattform</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="462"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="493"/>
         <source>Video Game Rating</source>
         <translation type="unfinished">Videospiel-Bewertung</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="550"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="581"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="559"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="590"/>
         <source>An error occurred while attempting to remove entries from the %1 table.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="603"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="634"/>
         <source>Unable to create an entry in </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="604"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="635"/>
         <source>for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="682"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="713"/>
         <source>Unable to create the location (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="685"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="753"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="716"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="784"/>
         <source>, </source>
         <translation type="unfinished">,</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="687"/>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="755"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="718"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="786"/>
         <source>).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="751"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="782"/>
         <source>Unable to create the minimum day (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="765"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="796"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="778"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="809"/>
         <source>Rollback failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="786"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="817"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="787"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="818"/>
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6156,12 +6168,12 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="125"/>
-        <source>&amp;All</source>
+        <source>&amp;All...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="127"/>
-        <source>&amp;Current Page</source>
+        <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9689,6 +9701,16 @@ URL</source>
         <translation type="unfinished">Ansicht Aktualisieren</translation>
     </message>
     <message>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1011"/>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1019"/>
+        <source>Populate &amp;Administrator Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1081"/>
         <source>D&amp;uplicate Selected Item(s)...</source>
         <translation type="unfinished"></translation>
@@ -10136,14 +10158,12 @@ URL</source>
         <translation type="unfinished">Ausleih Anfragen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1011"/>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation type="unfinished">Zeige Inhalte der Tabelle im Browser der Nutzerinnen während der Anzeige</translation>
+        <translation type="obsolete">Zeige Inhalte der Tabelle im Browser der Nutzerinnen während der Anzeige</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1019"/>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation type="unfinished">Zeige Inhalte der Tabelle im Browser der Administratorinnen während der Anzeige</translation>
+        <translation type="obsolete">Zeige Inhalte der Tabelle im Browser der Administratorinnen während der Anzeige</translation>
     </message>
 </context>
 <context>

@@ -4426,8 +4426,8 @@
 <context>
     <name>biblioteq_dbenumerations</name>
     <message>
-        <location filename="../Source/biblioteq_dbenumerations.cc" line="+268"/>
-        <location line="+281"/>
+        <location filename="../Source/biblioteq_dbenumerations.cc" line="+282"/>
+        <location line="+298"/>
         <location line="+9"/>
         <location line="+44"/>
         <location line="+79"/>
@@ -4438,60 +4438,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-508"/>
+        <location line="-525"/>
         <source>Unable to retrieve the contents of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+336"/>
+        <location line="+353"/>
         <source>.</source>
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-306"/>
-        <location line="+116"/>
+        <location line="-323"/>
+        <location line="+133"/>
         <source>Book</source>
         <translation type="unfinished">Könvy</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>Journal</source>
         <translation type="unfinished">Folyóirat</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>Magazine</source>
         <translation type="unfinished">Magazin</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>Music CD</source>
         <translation type="unfinished">Zene CD</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>Photograph Collection</source>
         <translation type="unfinished">Fénykép Gyüjtemény</translation>
     </message>
     <message>
-        <location line="-115"/>
-        <location line="+116"/>
+        <location line="-132"/>
+        <location line="+133"/>
         <source>Video Game</source>
         <translation type="unfinished">Videójáték</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-64"/>
+        <location line="+470"/>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ:Kérdés</translation>
+    </message>
+    <message>
+        <location line="-469"/>
+        <location line="+470"/>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-449"/>
         <source>Book Binding</source>
         <translation type="unfinished">Könyv Kötés</translation>
     </message>
@@ -6170,14 +6182,22 @@
         <translation type="unfinished">Gyüjtemény Hozzászólások Visszaállítása</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>&amp;All</source>
-        <translation type="unfinished">Mind</translation>
+        <translation type="obsolete">Mind</translation>
+    </message>
+    <message>
+        <source>&amp;Current Page</source>
+        <translation type="obsolete">Jelenlegi Oldal</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>&amp;Current Page</source>
-        <translation type="unfinished">Jelenlegi Oldal</translation>
+        <source>&amp;All...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Current Page...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+23"/>
@@ -9328,7 +9348,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+214"/>
+        <location line="+197"/>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Populate &amp;Administrator Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
         <source>&amp;New SQLite Database...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9618,21 +9648,19 @@
         <translation>Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Tag Böngésző Táblázat Kitöltése Megtekintéskor</translation>
+        <translation type="obsolete">Tag Böngésző Táblázat Kitöltése Megtekintéskor</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Adminisztrátor Böngésző Táblázat Kitöltése Megtekintéskor</translation>
+        <translation type="obsolete">Adminisztrátor Böngésző Táblázat Kitöltése Megtekintéskor</translation>
     </message>
     <message>
         <source>&amp;New SQLite Database</source>
         <translation type="obsolete">Új SQLite Adatbázis</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+28"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>

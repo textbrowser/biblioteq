@@ -3234,6 +3234,14 @@
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished">Er is een fout opgetreden terwijl u probeerde de Standaardwaarden op te slaan.</translation>
     </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Vraag</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
@@ -4330,11 +4338,11 @@
     </message>
     <message>
         <source>&amp;All</source>
-        <translation type="unfinished">&amp;Alles</translation>
+        <translation type="obsolete">&amp;Alles</translation>
     </message>
     <message>
         <source>&amp;Current Page</source>
-        <translation type="unfinished">&amp;Huidige Pagina</translation>
+        <translation type="obsolete">&amp;Huidige Pagina</translation>
     </message>
     <message>
         <source>Database Error</source>
@@ -4610,6 +4618,14 @@
     </message>
     <message>
         <source>&amp;View Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7209,7 +7225,7 @@
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Ledentabel &amp;Laden bij Oproep</translation>
+        <translation type="obsolete">Ledentabel &amp;Laden bij Oproep</translation>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
@@ -7293,7 +7309,7 @@
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Administrator-&amp;Tabel Laden bij Oproep</translation>
+        <translation type="obsolete">Administrator-&amp;Tabel Laden bij Oproep</translation>
     </message>
     <message>
         <source>Reservations Toolbar</source>
@@ -7565,6 +7581,14 @@
     </message>
     <message>
         <source>&amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

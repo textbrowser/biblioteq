@@ -3230,6 +3230,14 @@
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished">Une erreur est survenue lors d&apos;une tentative d&apos;enregistrer les énumérations de la base de données.</translation>
     </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
@@ -4325,14 +4333,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Current Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4606,6 +4606,14 @@
     </message>
     <message>
         <source>&amp;View Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7174,7 +7182,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Remplir la ta&amp;ble de l&apos;explorateur des membres à l&apos;affichage</translation>
+        <translation type="obsolete">Remplir la ta&amp;ble de l&apos;explorateur des membres à l&apos;affichage</translation>
     </message>
     <message>
         <source>Automatically Save Settings on E&amp;xit</source>
@@ -7246,7 +7254,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Remplir la table de l&apos;explorateur de l&apos;&amp;administrateur à l&apos;affichage</translation>
+        <translation type="obsolete">Remplir la table de l&apos;explorateur de l&apos;&amp;administrateur à l&apos;affichage</translation>
     </message>
     <message>
         <source>Reservations Toolbar</source>
@@ -7510,6 +7518,14 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

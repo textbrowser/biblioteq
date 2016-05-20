@@ -3218,6 +3218,14 @@
         <source>An error occurred while attempting to save the database enumerations.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Question</source>
+        <translation type="unfinished">BiblioteQ: Dotaz</translation>
+    </message>
+    <message>
+        <source>Your changes have not been saved. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_dvd</name>
@@ -4313,14 +4321,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Current Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Database Error</source>
         <translation type="unfinished">Chyba databáze</translation>
     </message>
@@ -4594,6 +4594,14 @@
     </message>
     <message>
         <source>&amp;View Photograph...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;All...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7292,11 +7300,11 @@ webová adresa</translation>
     </message>
     <message>
         <source>Populate &amp;Members Browser Table on Display</source>
-        <translation>Naplnit &amp;tabulku zapůjčitelů při zobrazení</translation>
+        <translation type="obsolete">Naplnit &amp;tabulku zapůjčitelů při zobrazení</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser Table on Display</source>
-        <translation>Naplnit přehled &amp;administrátorů při zobrazení</translation>
+        <translation type="obsolete">Naplnit přehled &amp;administrátorů při zobrazení</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -7588,6 +7596,14 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Photograph Collection...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Members Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
