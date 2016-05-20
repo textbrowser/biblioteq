@@ -354,7 +354,8 @@
 193. All QFileDialog instances should have their current directory set
      to the user's home directory. (Done)
 194. Allow patrons to opt-out of reservation histories. (Done)
-195. Dates should not be retrieved from local services. (TBD)
+195. Dates should not be retrieved from local services.
+     PostgreSQL only. (TBD)
 196. Users should only be allowed to view their reservation histories.
      Create temporary views? (TBD)
 197. After an item has been added, the item's row must be updated. One
