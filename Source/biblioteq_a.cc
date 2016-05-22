@@ -4254,6 +4254,9 @@ void biblioteq::slotConnectDB(void)
 
 void biblioteq::slotDisconnect(void)
 {
+  if(db_enumerations->isVisible() && !db_enumerations->close())
+    return;
+
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
@@ -4271,7 +4274,6 @@ void biblioteq::slotDisconnect(void)
   cq.query_te->clear();
   m_admin_diag->close();
   db_enumerations->clear();
-  db_enumerations->close();
   resetAdminBrowser();
   resetMembersBrowser();
   ui.pagesLabel->setText("1");
