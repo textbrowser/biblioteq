@@ -3310,14 +3310,14 @@ int biblioteq::populateTable(const int search_type_arg,
       int size = biblioteq_misc_functions::sqliteQuerySize
 	(searchstr, m_db, __FILE__, __LINE__);
 
-      if(size > 0 && (size / 250 <= INT_MAX))
+      if(size > 0 && (size / 250 <= std::numeric_limits<int>::max()))
 	ui.graphicsView->setSceneRect(0, 0,
 				      5 * 150,
 				      size * 250 + 15);
       else
 	ui.graphicsView->setSceneRect(0, 0,
 				      5 * 150,
-				      INT_MAX);
+				      std::numeric_limits<int>::max());
     }
 
   i = -1;
@@ -3926,14 +3926,19 @@ void biblioteq::preparePhotographsPerPageMenu(void)
   ui.menuPhotographs_per_Page->clear();
 
   QSettings settings;
-  int integer = qBound(25, settings.value("photographs_per_page", 25).toInt(),
-		       100);
+  int integer = settings.value("photographs_per_page", 25).toInt();
 
-  for(int i = 1; i <= 4; i++)
+  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
+    integer = 25;
+
+  for(int i = 1; i <= 5; i++)
     {
       QAction *action = 0;
 
-      action = group->addAction(QString(tr("&%1")).arg(25 * i));
+      if(i == 5)
+	action = group->addAction(tr("&Unlimited"));
+      else
+	action = group->addAction(QString(tr("&%1")).arg(25 * i));
 
       if(!action)
 	continue;
@@ -3942,7 +3947,12 @@ void biblioteq::preparePhotographsPerPageMenu(void)
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotPhotographsPerPageChanged(void)));
-      action->setData(25 * i);
+
+      if(i == 5)
+	action->setData(-1);
+      else
+	action->setData(25 * i);
+
       action->setCheckable(true);
 
       if(action->data().toInt() == integer)

@@ -80,9 +80,12 @@ biblioteq_photographcollection::biblioteq_photographcollection
   pc.graphicsView->setScene(m_scene);
   pc.graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
   pc.graphicsView->setRubberBandSelectionMode(Qt::IntersectsItemShape);
-  pc.graphicsView->setSceneRect(0, 0,
-				5 * 150,
-				photographsPerPage() / 5 * 200 + 15);
+
+  if(photographsPerPage() != -1) // Unlimited.
+    pc.graphicsView->setSceneRect(0, 0,
+				  5 * 150,
+				  photographsPerPage() / 5 * 200 + 15);
+
   pc.thumbnail_item->setReadOnly(true);
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -769,7 +772,10 @@ void biblioteq_photographcollection::modify(const int state,
 	      {
 		int i = photographsPerPage();
 
-		pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+		if(i == -1) // Unlimited.
+		  pages = 1;
+		else
+		  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
 	      }
 
 	  QApplication::restoreOverrideCursor();
@@ -1117,7 +1123,44 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 
   if(qmain->getDB().driverName() == "QSQLITE")
     {
-      query.prepare("SELECT COUNT(*) FROM photograph "
+      if(photographsPerPage() == -1) // Unlimited.
+	{
+	  query.prepare("SELECT COUNT(*) FROM photograph "
+			"photograph WHERE "
+			"collection_oid = ? "
+			"ORDER BY id");
+	  query.bindValue(0, m_oid);
+	}
+      else
+	{
+	  query.prepare("SELECT COUNT(*) FROM photograph "
+			"photograph WHERE "
+			"collection_oid = ? "
+			"ORDER BY id "
+			"LIMIT ? "
+			"OFFSET ?");
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, photographsPerPage());
+	  query.bindValue(2, photographsPerPage() * (page - 1));
+	}
+
+      if(query.exec() && query.next())
+	progress.setMaximum(query.value(0).toInt());
+      else
+	progress.setMaximum(0);
+    }
+
+  if(photographsPerPage() == -1) // Unlimited.
+    {
+      query.prepare("SELECT image_scaled, myoid FROM "
+		    "photograph WHERE "
+		    "collection_oid = ? "
+		    "ORDER BY id");
+      query.bindValue(0, m_oid);
+    }
+  else
+    {
+      query.prepare("SELECT image_scaled, myoid FROM "
 		    "photograph WHERE "
 		    "collection_oid = ? "
 		    "ORDER BY id "
@@ -1126,22 +1169,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
       query.bindValue(0, m_oid);
       query.bindValue(1, photographsPerPage());
       query.bindValue(2, photographsPerPage() * (page - 1));
-
-      if(query.exec() && query.next())
-	progress.setMaximum(query.value(0).toInt());
-      else
-	progress.setMaximum(0);
     }
-
-  query.prepare("SELECT image_scaled, myoid FROM "
-		"photograph WHERE "
-		"collection_oid = ? "
-		"ORDER BY id "
-		"LIMIT ? "
-		"OFFSET ?");
-  query.bindValue(0, m_oid);
-  query.bindValue(1, photographsPerPage());
-  query.bindValue(2, photographsPerPage() * (page - 1));
 
   if(query.exec())
     {
@@ -1203,7 +1231,8 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      else
 		pixmapItem->setPos(140 * columnIdx + 15, 200 * rowIdx);
 
-	      pixmapItem->setData(0, query.value(1));
+	      pixmapItem->setData(0, query.value(1)); // myoid
+	      pixmapItem->setData(2, i); // Next / previous navigation.
 	      pixmapItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
 	      pc.graphicsView->scene()->addItem(pixmapItem);
 	    }
@@ -1509,7 +1538,10 @@ void biblioteq_photographcollection::slotInsertItem(void)
 
 	int i = photographsPerPage();
 
-	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+	if(i == -1) // Unlimited.
+	  pages = 1;
+	else
+	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
 
   QApplication::restoreOverrideCursor();
@@ -2002,7 +2034,10 @@ void biblioteq_photographcollection::slotDeleteItem(void)
 
 	int i = photographsPerPage();
 
-	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+	if(i == -1) // Unlimited.
+	  pages = 1;
+	else
+	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
 
   pages = qMax(1, pages);
@@ -2187,7 +2222,10 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	item->setSelected(true);
 
 	if(!scene->items().isEmpty())
-	  scene->items().at(0)->setData(0, item->data(0));
+	  {
+	    scene->items().at(0)->setData(0, item->data(0)); // myoid
+	    scene->items().at(0)->setData(2, item->data(2)); // Navigation.
+	  }
 
 	scene->setSceneRect(scene->itemsBoundingRect());
 
@@ -2579,7 +2617,10 @@ void biblioteq_photographcollection::slotImportItems(void)
 
 	int i = photographsPerPage();
 
-	pages = qCeil(query.value(0).toDouble() / qMax(1, i));
+	if(i == -1) // Unlimited.
+	  pages = 1;
+	else
+	  pages = qCeil(query.value(0).toDouble() / qMax(1, i));
       }
 
   QApplication::restoreOverrideCursor();
@@ -2773,5 +2814,10 @@ void biblioteq_photographcollection::slotExportItem(void)
 
 int biblioteq_photographcollection::photographsPerPage(void)
 {
-  return qBound(25, qmain->setting("photographs_per_page").toInt(), 100);
+  int integer = qmain->setting("photographs_per_page").toInt();
+
+  if(!(integer == -1 || (integer >= 25 && integer <= 100)))
+    integer = 25;
+
+  return integer;
 }
