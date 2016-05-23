@@ -1692,6 +1692,10 @@
         <source>&amp;Video Game Search...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
