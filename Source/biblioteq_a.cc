@@ -4257,6 +4257,9 @@ void biblioteq::slotDisconnect(void)
   if(db_enumerations->isVisible() && !db_enumerations->close())
     return;
 
+  if(!emptyContainers())
+    return;
+
   m_roles = "";
   m_pages = 0;
   m_queryOffset = 0;
@@ -4404,7 +4407,6 @@ void biblioteq::slotDisconnect(void)
 
   addConfigOptions(m_previousTypeFilter);
   slotDisplaySummary();
-  emptyContainers();
   m_deletedAdmins.clear();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -5766,10 +5768,8 @@ void biblioteq::updateItemWindows(void)
 ** -- emptyContainers() --
 */
 
-void biblioteq::emptyContainers(void)
+bool biblioteq::emptyContainers(void)
 {
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
   foreach(QWidget *w, QApplication::topLevelWidgets())
     {
       biblioteq_cd *cd = qobject_cast<biblioteq_cd *> (w);
@@ -5782,29 +5782,64 @@ void biblioteq::emptyContainers(void)
 	qobject_cast<biblioteq_photographcollection *> (w);
 
       if(cd)
-	cd->deleteLater();
+	{
+	  if(cd->isVisible() && !cd->close())
+	    return false;
+	  else
+	    cd->deleteLater();
+	}
 
       if(dvd)
-	dvd->deleteLater();
+	{
+	  if(dvd->isVisible() && !dvd->close())
+	    return false;
+	  else
+	    dvd->deleteLater();
+	}
 
       if(book)
-	book->deleteLater();
+	{
+	  if(book->isVisible() && !book->close())
+	    return false;
+	  else
+	    book->deleteLater();
+	}
 
       if(journal)
-	journal->deleteLater();
+	{
+	  if(journal->isVisible() && !journal->close())
+	    return false;
+	  else
+	    journal->deleteLater();
+	}
 
       if(!qobject_cast<biblioteq_journal *> (w))
 	if(magazine)
-	  magazine->deleteLater();
+	  {
+	    if(magazine->isVisible() && !magazine->close())
+	      return false;
+	    else
+	      magazine->deleteLater();
+	  }
 
       if(videogame)
-	videogame->deleteLater();
+	{
+	  if(videogame->isVisible() && !videogame->close())
+	    return false;
+	  else
+	    videogame->deleteLater();
+	}
 
       if(photograph)
-	photograph->deleteLater();
+	{
+	  if(photograph->isVisible() && !photograph->close())
+	    return false;
+	  else
+	    photograph->deleteLater();
+	}
     }
 
-  QApplication::restoreOverrideCursor();
+  return true;
 }
 
 /*

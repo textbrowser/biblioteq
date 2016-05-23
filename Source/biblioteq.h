@@ -310,6 +310,7 @@ class biblioteq: public QMainWindow
   qint64 m_queryOffset;
   quint64 m_idCt;
   userinfo_diag_class *userinfo_diag;
+  bool emptyContainers(void);
   void addConfigOptions(const QString &typefilter);
   void adminSetup(void);
   void changeEvent(QEvent *event);
@@ -317,7 +318,6 @@ class biblioteq: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void createSqliteMenuActions(void);
   void deleteItem(const QString &oid, const QString &itemType);
-  void emptyContainers(void);
   void initialUpdate(void);
   void prepareFilter(void);
   void preparePhotographsPerPageMenu(void);
