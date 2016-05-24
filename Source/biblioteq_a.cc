@@ -73,6 +73,7 @@ extern "C"
 */
 
 #include "biblioteq.h"
+#include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_sqlite_create_schema.h"
 
@@ -1242,7 +1243,8 @@ void biblioteq::slotAbout(void)
 	     "Read a book today!<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
-	     "Qt version %2."
+	     "Architecture %2.<br>"
+	     "Qt version %3."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
@@ -1253,6 +1255,7 @@ void biblioteq::slotAbout(void)
 	     "http://biblioteq.sourceforge.net/"
 	     "release_notes.html</a>.<br></html>").
      arg(BIBLIOTEQ_VERSION).
+     arg(BIBLIOTEQ_ARCHITECTURE_STR).
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
