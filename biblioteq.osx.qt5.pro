@@ -22,7 +22,7 @@ QMAKE_STRIP	= echo
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Include Source /usr/local/include
-LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lyaz
+LIBS		+= -framework Cocoa -lsqlite3 -L/usr/local/lib -lpq -lyaz
 RESOURCES	= Icons/icons.qrc
 
 FORMS           = UI/biblioteq_adminsetup.ui \
