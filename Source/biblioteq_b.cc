@@ -7,6 +7,12 @@
 #include <QtDebug>
 
 /*
+** -- C++ Includes --
+*/
+
+#include <limits>
+
+/*
 ** -- Local Includes --
 */
 
