@@ -1240,7 +1240,7 @@ void biblioteq::slotAbout(void)
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
 	     "Copyright (c) 2005 - present, guess who?<br>"
-	     "Read a book today!<br>"
+	     "Visit your local library!<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Architecture %2.<br>"
