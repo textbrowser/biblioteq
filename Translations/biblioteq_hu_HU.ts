@@ -707,7 +707,7 @@
 <context>
     <name>biblioteq</name>
     <message>
-        <location filename="../Source/biblioteq_a.cc" line="+218"/>
+        <location filename="../Source/biblioteq_a.cc" line="+219"/>
         <source> in file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -720,7 +720,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2365"/>
+        <location line="+2367"/>
         <location line="+506"/>
         <location line="+14"/>
         <location line="+757"/>
@@ -743,18 +743,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8214"/>
+        <location line="-8216"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+97"/>
-        <location line="+4103"/>
+        <location line="+4105"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4101"/>
+        <location line="-4103"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -820,18 +820,18 @@
     </message>
     <message>
         <location line="+364"/>
-        <location line="+3535"/>
+        <location line="+3537"/>
         <location line="+4446"/>
         <location line="+27"/>
         <location line="+28"/>
         <location line="+24"/>
-        <location filename="../Source/biblioteq_b.cc" line="+3181"/>
+        <location filename="../Source/biblioteq_b.cc" line="+3187"/>
         <location line="+6"/>
         <source>All</source>
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-8041"/>
+        <location line="-8043"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -918,33 +918,33 @@
     </message>
     <message>
         <location line="+71"/>
-        <location line="+3296"/>
+        <location line="+3298"/>
         <location line="+940"/>
         <location line="+34"/>
         <source>Item Requests</source>
         <translation type="unfinished">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-4204"/>
-        <location line="+3278"/>
+        <location line="-4206"/>
+        <location line="+3280"/>
         <source>Disconnected</source>
         <translation type="unfinished">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3271"/>
-        <location line="+3277"/>
+        <location line="-3273"/>
+        <location line="+3279"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3265"/>
-        <location line="+4433"/>
+        <location line="-3267"/>
+        <location line="+4435"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Üres Hiba Napló</translation>
     </message>
     <message>
-        <location line="-4429"/>
-        <location line="+3275"/>
+        <location line="-4431"/>
+        <location line="+3277"/>
         <location line="+949"/>
         <location line="+4146"/>
         <location filename="../Source/biblioteq_b.cc" line="-369"/>
@@ -953,7 +953,7 @@
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8335"/>
+        <location line="-8337"/>
         <location line="+24"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -974,7 +974,7 @@
         <translation type="unfinished">BiblioteQ: A Programról</translation>
     </message>
     <message>
-        <location line="+84"/>
+        <location line="+86"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+547"/>
