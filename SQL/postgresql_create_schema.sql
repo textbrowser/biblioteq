@@ -44,7 +44,7 @@ CREATE TABLE book_copy_info
 );
 
 CREATE TABLE book_files
-{
+(
 	description	TEXT,
 	file		BYTEA NOT NULL,
 	file_digest	TEXT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE book_files
 	myoid		BIGSERIAL NOT NULL,
 	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
 	PRIMARY KEY(file_digest, item_oid)
-};
+);
 
 CREATE TABLE cd
 (

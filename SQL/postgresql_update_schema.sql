@@ -1101,7 +1101,7 @@ GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 /* Release 2016.07.01 */
 
 CREATE TABLE book_files
-{
+(
 	description	TEXT,
 	file		BYTEA NOT NULL,
 	file_digest	TEXT NOT NULL,
@@ -1109,7 +1109,7 @@ CREATE TABLE book_files
 	myoid		BIGSERIAL NOT NULL,
 	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
 	PRIMARY KEY(file_digest, item_oid)
-};
+);
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_administrator;
