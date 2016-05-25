@@ -549,7 +549,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrato
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO biblioteq_administrator;
