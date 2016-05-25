@@ -43,6 +43,17 @@ CREATE TABLE book_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
+CREATE TABLE book_files
+{
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+};
+
 CREATE TABLE cd
 (
 	artist		 TEXT NOT NULL,
@@ -538,6 +549,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrato
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO biblioteq_administrator;
@@ -569,6 +581,7 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON videogame_ratings TO biblioteq_administr
 GRANT DELETE, SELECT ON item_request TO biblioteq_administrator;
 GRANT SELECT ON item_borrower_vw TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_administrator;
@@ -596,6 +609,8 @@ GRANT SELECT ON book TO biblioteq_circulation;
 GRANT SELECT ON book_binding_types TO biblioteq_circulation;
 GRANT SELECT ON book_copy_info TO biblioteq_circulation;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON book_files TO biblioteq_circulation;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON book_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON cd TO biblioteq_circulation;
 GRANT SELECT ON cd_copy_info TO biblioteq_circulation;
@@ -642,6 +657,8 @@ GRANT SELECT ON book TO biblioteq_guest;
 GRANT SELECT ON book_binding_types TO biblioteq_guest;
 GRANT SELECT ON book_copy_info TO biblioteq_guest;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON book_files TO biblioteq_guest;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON book_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON cd TO biblioteq_guest;
 GRANT SELECT ON cd_copy_info TO biblioteq_guest;
@@ -684,6 +701,7 @@ REVOKE ALL ON admin FROM biblioteq_guest;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_binding_types TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_copy_info TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_copy_info TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON cd_formats TO biblioteq_librarian;
@@ -714,6 +732,7 @@ GRANT SELECT ON item_borrower_vw TO biblioteq_librarian;
 GRANT SELECT ON item_request TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON book_copy_info_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_librarian;
@@ -735,6 +754,8 @@ GRANT SELECT ON book TO biblioteq_membership;
 GRANT SELECT ON book_binding_types TO biblioteq_membership;
 GRANT SELECT ON book_copy_info TO biblioteq_membership;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON book_files TO biblioteq_membership;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON book_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON cd TO biblioteq_membership;
 GRANT SELECT ON cd_copy_info TO biblioteq_membership;
@@ -782,6 +803,8 @@ GRANT SELECT ON book TO biblioteq_patron;
 GRANT SELECT ON book_binding_types TO biblioteq_patron;
 GRANT SELECT ON book_copy_info TO biblioteq_patron;
 GRANT SELECT ON book_copy_info_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON book_files TO biblioteq_patron;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON book_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON cd TO biblioteq_patron;
 GRANT SELECT ON cd_copy_info TO biblioteq_patron;
