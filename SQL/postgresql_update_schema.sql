@@ -1097,3 +1097,29 @@ GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_patron;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
+
+/* Release 2016.07.01 */
+
+CREATE TABLE book_files
+{
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+};
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT ON book_files TO biblioteq_circulation;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON book_files TO biblioteq_guest;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_guest;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_files TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON book_files_myoid_seq TO biblioteq_librarian;
+GRANT SELECT ON book_files TO biblioteq_membership;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON book_files TO biblioteq_patron;
+GRANT SELECT ON book_files_myoid_seq TO biblioteq_patron;
