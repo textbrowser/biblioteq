@@ -75,6 +75,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 		  const QByteArray &bytes,
 		  const QString &fileName) const;
   void downloadFinished(void);
+  void populateFiles(void);
   void sruDownloadFinished(void);
 
  private slots:

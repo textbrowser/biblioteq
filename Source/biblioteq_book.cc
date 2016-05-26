@@ -3532,6 +3532,7 @@ void biblioteq_book::slotAttachFiles(void)
 	  file.close();
 	}
 
+      populateFiles();
       QApplication::restoreOverrideCursor();
     }
 }
@@ -3580,4 +3581,12 @@ void biblioteq_book::createFile(const QByteArray &digest,
       (QString(tr("Database Error")),
        QString(tr("Unable to create a database transaction.")),
        query.lastError().text(), __FILE__, __LINE__);
+}
+
+/*
+** -- populateFiles() --
+*/
+
+void biblioteq_book::populateFiles(void)
+{
 }
