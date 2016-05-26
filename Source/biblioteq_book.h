@@ -71,6 +71,9 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   bool useHttp(void) const;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
+  void createFile(const QByteArray &digest,
+		  const QByteArray &bytes,
+		  const QString &fileName) const;
   void downloadFinished(void);
   void sruDownloadFinished(void);
 

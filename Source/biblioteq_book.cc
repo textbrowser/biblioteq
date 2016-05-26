@@ -3525,6 +3525,7 @@ void biblioteq_book::slotAttachFiles(void)
 	      if(!bytes.isEmpty())
 		{
 		  total = qCompress(total, 9);
+		  createFile(digest.result(), total, fileName);
 		}
 	    }
 
@@ -3532,5 +3533,45 @@ void biblioteq_book::slotAttachFiles(void)
 	}
 
       QApplication::restoreOverrideCursor();
+    }
+}
+
+/*
+** -- createFile() --
+*/
+
+void biblioteq_book::createFile(const QByteArray &digest,
+				const QByteArray &bytes,
+				const QString &fileName) const
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare("INSERT INTO book_files "
+		  "(file, file_digest, file_name, item_oid) "
+		  "VALUES (?, ?, ?, ?)");
+  else
+    query.prepare("INSERT INTO book_files "
+		  "(file, file_digest, file_name, item_oid, myoid) "
+		  "VALUES (?, ?, ?, ?, ?)");
+
+  query.bindValue(0, bytes);
+  query.bindValue(1, digest.toHex());
+  query.bindValue(2, fileName);
+  query.bindValue(3, m_oid);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	query.bindValue(4, value);
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique "
+				   "integer.")),
+			errorstr);
     }
 }

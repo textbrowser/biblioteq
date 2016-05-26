@@ -48,6 +48,7 @@ CREATE TABLE book_files
 	description	TEXT,
 	file		BYTEA NOT NULL,
 	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
 	item_oid	BIGINT NOT NULL,
 	myoid		BIGSERIAL NOT NULL,
 	FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,
