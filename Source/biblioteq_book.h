@@ -75,6 +75,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void sruDownloadFinished(void);
 
  private slots:
+  void slotAttachFiles(void);
   void slotCancel(void);
   void slotCancelImageDownload(void);
   void slotConvertISBN10to13(void);

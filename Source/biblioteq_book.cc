@@ -114,6 +114,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 #endif
 #endif
   updateFont(QApplication::font(), qobject_cast<QWidget *> (this));
+  connect(id.attach_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAttachFiles(void)));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -1201,7 +1205,10 @@ void biblioteq_book::slotGo(void)
 
 void biblioteq_book::search(const QString &field, const QString &value)
 {
+  id.attach_files->setVisible(false);
   id.coverImages->setVisible(false);
+  id.delete_files->setVisible(false);
+  id.export_files->setVisible(false);
   id.id->clear();
   id.category->clear();
   id.isbn13->clear();
@@ -1286,7 +1293,10 @@ void biblioteq_book::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      id.attach_files->setEnabled(true);
       id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
       id.sruQueryButton->setVisible(true);
@@ -1309,8 +1319,11 @@ void biblioteq_book::updateWindow(const int state)
     }
   else
     {
+      id.attach_files->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);
       id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
       id.sruQueryButton->setVisible(false);
@@ -1352,7 +1365,10 @@ void biblioteq_book::modify(const int state)
     {
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
+      id.attach_files->setEnabled(true);
       id.copiesButton->setEnabled(true);
+      id.delete_files->setEnabled(true);
+      id.export_files->setEnabled(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(true);
       id.sruQueryButton->setVisible(true);
@@ -1387,7 +1403,10 @@ void biblioteq_book::modify(const int state)
       id.isbnAvailableCheckBox->setCheckable(false);
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";
+      id.attach_files->setVisible(false);
       id.copiesButton->setVisible(false);
+      id.delete_files->setVisible(false);
+      id.export_files->setVisible(true);
       id.showUserButton->setEnabled(true);
       id.okButton->setVisible(false);
       id.sruQueryButton->setVisible(false);
@@ -1628,6 +1647,7 @@ void biblioteq_book::modify(const int state)
 void biblioteq_book::insert(void)
 {
   slotReset();
+  id.attach_files->setEnabled(false);
   id.id->clear();
   id.isbn13->clear();
   id.category->setPlainText("N/A");
@@ -1642,6 +1662,8 @@ void biblioteq_book::insert(void)
   id.marc_tags->clear();
   id.keyword->clear();
   id.copiesButton->setEnabled(false);
+  id.delete_files->setEnabled(false);
+  id.export_files->setEnabled(false);
   id.sruQueryButton->setVisible(true);
   id.z3950QueryButton->setVisible(true);
   id.okButton->setText(tr("&Save"));
@@ -3091,7 +3113,10 @@ void biblioteq_book::slotReadyRead(void)
 void biblioteq_book::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
+  id.attach_files->setEnabled(false);
   id.copiesButton->setEnabled(false);
+  id.delete_files->setEnabled(false);
+  id.export_files->setEnabled(false);
   id.showUserButton->setEnabled(false);
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
@@ -3456,4 +3481,31 @@ bool biblioteq_book::useHttp(void) const
 #else
   return false;
 #endif
+}
+
+/*
+** -- slotAttachFiles() --
+*/
+
+void biblioteq_book::slotAttachFiles(void)
+{
+  QFileDialog fileDialog(this, tr("BiblioteQ: Attach File(s)"));
+
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setDirectory(QDir::homePath());
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+
+  if(fileDialog.exec() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QStringList files(fileDialog.selectedFiles());
+
+      while(!files.isEmpty())
+	{
+	  QString fileName(files.takeFirst());
+	}
+
+      QApplication::restoreOverrideCursor();
+    }
 }
