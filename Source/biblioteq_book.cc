@@ -3574,4 +3574,10 @@ void biblioteq_book::createFile(const QByteArray &digest,
 				   "integer.")),
 			errorstr);
     }
+
+  if(!query.exec())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to create a database transaction.")),
+       query.lastError().text(), __FILE__, __LINE__);
 }
