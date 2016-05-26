@@ -109,6 +109,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
+  id.files->setColumnHidden(id.files->columnCount() - 1, true); // myoid
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
@@ -1635,6 +1636,7 @@ void biblioteq_book::modify(const int state)
 	textfield->setCursorPosition(0);
 
       storeData(this);
+      populateFiles();
     }
 
   id.id->setFocus();
@@ -3525,7 +3527,8 @@ void biblioteq_book::slotAttachFiles(void)
 	      if(!bytes.isEmpty())
 		{
 		  total = qCompress(total, 9);
-		  createFile(digest.result(), total, fileName);
+		  createFile(digest.result(), total,
+			     QFileInfo(fileName).fileName());
 		}
 	    }
 
@@ -3557,7 +3560,7 @@ void biblioteq_book::createFile(const QByteArray &digest,
 		  "VALUES (?, ?, ?, ?, ?)");
 
   query.bindValue(0, bytes);
-  query.bindValue(1, digest.toHex());
+  query.bindValue(1, digest.toHex().constData());
   query.bindValue(2, fileName);
   query.bindValue(3, m_oid);
 
@@ -3589,4 +3592,51 @@ void biblioteq_book::createFile(const QByteArray &digest,
 
 void biblioteq_book::populateFiles(void)
 {
+  id.files->clearContents();
+  id.files->setRowCount(0);
+
+  QSqlQuery query(qmain->getDB());
+
+  query.setForwardOnly(true);
+  query.prepare("SELECT COUNT(*) FROM book_files WHERE item_oid = ?");
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      id.files->setRowCount(query.value(0).toInt());
+
+  query.prepare("SELECT file_name, "
+		"file_digest, "
+		"LENGTH(file), "
+		"description, "
+		"myoid FROM book_files "
+                "WHERE item_oid = ? ORDER BY file_name");
+  query.bindValue(0, m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  int row = 0;
+  int totalRows = 0;
+
+  if(query.exec())
+    while(query.next() && totalRows < id.files->rowCount())
+      {
+	totalRows += 1;
+
+	for(int i = 0; i < query.record().count() - 1; i++)
+	  {
+	    QTableWidgetItem *item = new(std::nothrow)
+	      QTableWidgetItem(query.value(i).toString());
+
+	    if(!item)
+	      continue;
+
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	    id.files->setItem(row, i, item);
+	  }
+
+	row += 1;
+      }
+
+  id.files->setRowCount(totalRows);
+  QApplication::restoreOverrideCursor();
 }
