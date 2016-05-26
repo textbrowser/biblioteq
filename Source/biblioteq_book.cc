@@ -3,6 +3,7 @@
 */
 
 #include <QAuthenticator>
+#include <QCryptographicHash>
 #include <QNetworkProxy>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -3503,7 +3504,31 @@ void biblioteq_book::slotAttachFiles(void)
 
       while(!files.isEmpty())
 	{
+	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QFile file;
 	  QString fileName(files.takeFirst());
+
+	  file.setFileName(fileName);
+
+	  if(file.open(QIODevice::ReadOnly))
+	    {
+	      QByteArray bytes(4096, 0);
+	      QByteArray total;
+	      qint64 rc = 0;
+
+	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
+		{
+		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
+		  total.append(bytes.mid(0, static_cast<int> (rc)));
+		}
+
+	      if(!bytes.isEmpty())
+		{
+		  total = qCompress(total, 9);
+		}
+	    }
+
+	  file.close();
 	}
 
       QApplication::restoreOverrideCursor();

@@ -42,6 +42,17 @@ CREATE TABLE book_copy_info						\
     FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE	\
 );									\
 									\
+CREATE TABLE book_files							\
+(									\
+    description	TEXT,							\
+    file	BYTEA NOT NULL,						\
+    file_digest	TEXT NOT NULL,						\
+    item_oid	BIGINT NOT NULL,					\
+    myoid	BIGINT NOT NULL,					\
+    FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,	\
+    PRIMARY KEY(file_digest, item_oid)					\
+);									\
+									\
 CREATE TRIGGER book_purge_trigger AFTER DELETE ON book			\
 FOR EACH row								\
 BEGIN									\
