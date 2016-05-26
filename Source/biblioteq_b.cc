@@ -3700,6 +3700,16 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 
   QStringList list;
 
+  list.append("CREATE TABLE IF NOT EXISTS book_files"
+	      "("
+	      "description	TEXT,"
+	      "file		BYTEA NOT NULL,"
+	      "file_digest	TEXT NOT NULL,"
+	      "item_oid	BIGINT NOT NULL,"
+	      "myoid		BIGSERIAL NOT NULL,"
+	      "FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,"
+	      "PRIMARY KEY(file_digest, item_oid)"
+	      ");");
   list.append("CREATE TABLE IF NOT EXISTS locations "
 	      "("
 	      "location TEXT NOT NULL,"
