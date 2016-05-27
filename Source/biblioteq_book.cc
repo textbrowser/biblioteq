@@ -124,6 +124,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotDeleteFiles(void)));
+  connect(id.export_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExportFiles(void)));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -3713,4 +3717,12 @@ void biblioteq_book::slotDeleteFiles(void)
 
   QApplication::restoreOverrideCursor();
   populateFiles();
+}
+
+/*
+** -- slotExportFiles() --
+*/
+
+void biblioteq_book::slotExportFiles(void)
+{
 }
