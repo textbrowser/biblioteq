@@ -59,7 +59,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="search"/>
+       <widget class="QLineEdit" name="search">
+        <property name="toolTip">
+         <string>Please press the Enter key to execute the query.</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QCheckBox" name="case_insensitive">
