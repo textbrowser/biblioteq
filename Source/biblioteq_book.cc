@@ -120,6 +120,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotAttachFiles(void)));
+  connect(id.delete_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteFiles(void)));
   connect(id.okButton, SIGNAL(clicked(void)), this, SLOT(slotGo(void)));
   connect(id.showUserButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotShowUsers(void)));
@@ -3500,11 +3504,29 @@ void biblioteq_book::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
+      repaint();
 
+      QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
+      int i = -1;
 
-      while(!files.isEmpty())
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(tr("Uploading files..."));
+      progress.setMaximum(files.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      while(i++, !files.isEmpty() && !progress.wasCanceled())
 	{
 	  QCryptographicHash digest(QCryptographicHash::Sha1);
 	  QFile file;
@@ -3533,10 +3555,18 @@ void biblioteq_book::slotAttachFiles(void)
 	    }
 
 	  file.close();
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
 	}
 
-      populateFiles();
       QApplication::restoreOverrideCursor();
+      populateFiles();
     }
 }
 
@@ -3622,7 +3652,7 @@ void biblioteq_book::populateFiles(void)
       {
 	totalRows += 1;
 
-	for(int i = 0; i < query.record().count() - 1; i++)
+	for(int i = 0; i < query.record().count(); i++)
 	  {
 	    QTableWidgetItem *item = new(std::nothrow)
 	      QTableWidgetItem(query.value(i).toString());
@@ -3647,4 +3677,40 @@ void biblioteq_book::populateFiles(void)
 
 void biblioteq_book::slotDeleteFiles(void)
 {
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("Please select at least one file to delete."));
+      return;
+    }
+
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected files?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      list.clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  while(!list.isEmpty())
+    {
+      QSqlQuery query(qmain->getDB());
+
+      query.prepare("DELETE FROM book_files WHERE "
+		    "item_oid = ? AND myoid = ?");
+      query.bindValue(0, m_oid);
+      query.bindValue(1, list.takeFirst().data());
+      query.exec();
+    }
+
+  QApplication::restoreOverrideCursor();
+  populateFiles();
 }
