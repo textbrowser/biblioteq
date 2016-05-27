@@ -3754,5 +3754,56 @@ void biblioteq_book::slotExportFiles(void)
       repaint();
       QApplication::processEvents();
 #endif
+
+      QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(QObject::tr("Exporting file(s)..."));
+      progress.setMaximum(list.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      int i = -1;
+
+      while(i++, !list.isEmpty() && !progress.wasCanceled())
+	{
+	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
+	  query.prepare("SELECT file, file_name FROM book_files "
+			"WHERE item_oid = ? AND myoid = ?");
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, list.takeFirst().data());
+
+	  if(query.exec() && query.next())
+	    {
+	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
+			 query.value(1).toString());
+
+	      if(file.open(QIODevice::WriteOnly))
+		file.write(qUncompress(query.value(0).toByteArray()));
+
+	      file.flush();
+	      file.close();
+	    }
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+	}
     }
 }
