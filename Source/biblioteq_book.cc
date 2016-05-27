@@ -3640,3 +3640,11 @@ void biblioteq_book::populateFiles(void)
   id.files->setRowCount(totalRows);
   QApplication::restoreOverrideCursor();
 }
+
+/*
+** -- slotDeleteFiles() --
+*/
+
+void biblioteq_book::slotDeleteFiles(void)
+{
+}
