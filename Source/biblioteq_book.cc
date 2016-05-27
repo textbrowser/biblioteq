@@ -3508,7 +3508,11 @@ void biblioteq_book::slotAttachFiles(void)
 
   if(fileDialog.exec() == QDialog::Accepted)
     {
+      fileDialog.close();
+#ifndef Q_OS_MAC
       repaint();
+      QApplication::processEvents();
+#endif
 
       QProgressDialog progress(this);
       QStringList files(fileDialog.selectedFiles());
@@ -3725,4 +3729,30 @@ void biblioteq_book::slotDeleteFiles(void)
 
 void biblioteq_book::slotExportFiles(void)
 {
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      dialog.close();
+#ifndef Q_OS_MAC
+      repaint();
+      QApplication::processEvents();
+#endif
+    }
 }
