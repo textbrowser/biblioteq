@@ -89,7 +89,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotDownloadFinished(bool error);
   void slotDownloadFinished(void);
   void slotDownloadImage(void);
-  void slotEditFileDescription(void);
+  void slotEditFileDescription(QTableWidgetItem *item);
   void slotExportFiles(void);
   void slotGo(void);
   void slotPopulateCopiesEditor(void);

@@ -4,6 +4,7 @@
 
 #include <QAuthenticator>
 #include <QCryptographicHash>
+#include <QInputDialog>
 #include <QNetworkProxy>
 #include <QSqlField>
 #include <QSqlRecord>
@@ -1326,9 +1327,14 @@ void biblioteq_book::updateWindow(const int state)
 	str = tr("BiblioteQ: Modify Book Entry");
 
       m_engWindowTitle = "Modify";
+      connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
     }
   else
     {
+      disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.attach_files->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);
       id.copiesButton->setVisible(false);
@@ -1373,6 +1379,9 @@ void biblioteq_book::modify(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
@@ -3675,6 +3684,7 @@ void biblioteq_book::populateFiles(void)
 	row += 1;
       }
 
+  id.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   id.files->setRowCount(totalRows);
   QApplication::restoreOverrideCursor();
 }
@@ -3812,6 +3822,37 @@ void biblioteq_book::slotExportFiles(void)
 ** -- slotEditFileDescription() --
 */
 
-void biblioteq_book::slotEditFileDescription(void)
+void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
 {
+  if(!item)
+    return;
+
+  QTableWidgetItem *item1 = id.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    id.files->item(item->row(), id.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+  QString text
+    (QInputDialog::getText(this,
+			   tr("BiblioteQ: File Description"),
+			   tr("Description"), QLineEdit::Normal,
+			   description).trimmed());
+
+  query.prepare("UPDATE book_files SET description = ? "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.bindValue(0, text);
+  query.bindValue(1, m_oid);
+  query.bindValue(2, myoid);
+
+  if(query.exec())
+    item1->setText(text);
 }
