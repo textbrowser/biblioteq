@@ -2168,10 +2168,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ: Attach File(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Uploading files...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2184,10 +2180,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Are you sure that you wish to delete the selected files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Book File Export</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2197,6 +2189,14 @@
     </message>
     <message>
         <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Book Attachment(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

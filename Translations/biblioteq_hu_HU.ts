@@ -3124,11 +3124,16 @@
     </message>
     <message>
         <location line="+29"/>
-        <source>BiblioteQ: Attach File(s)</source>
+        <source>BiblioteQ: Book Attachment(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+198"/>
+        <source>Are you sure that you wish to delete the selected file(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-175"/>
         <source>Uploading files...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3143,12 +3148,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>Are you sure that you wish to delete the selected files?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+47"/>
+        <location line="+52"/>
         <source>BiblioteQ: Book File Export</source>
         <translation type="unfinished"></translation>
     </message>

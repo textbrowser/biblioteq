@@ -3109,7 +3109,12 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3512"/>
-        <source>BiblioteQ: Attach File(s)</source>
+        <source>BiblioteQ: Book Attachment(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_book.cc" line="3710"/>
+        <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3125,11 +3130,6 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3705"/>
         <source>Please select at least one file to delete.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Source/biblioteq_book.cc" line="3710"/>
-        <source>Are you sure that you wish to delete the selected files?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
