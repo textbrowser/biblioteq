@@ -3509,7 +3509,7 @@ bool biblioteq_book::useHttp(void) const
 
 void biblioteq_book::slotAttachFiles(void)
 {
-  QFileDialog fileDialog(this, tr("BiblioteQ: Attach File(s)"));
+  QFileDialog fileDialog(this, tr("BiblioteQ: Book Attachment(s)"));
 
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setDirectory(QDir::homePath());
@@ -3708,7 +3708,7 @@ void biblioteq_book::slotDeleteFiles(void)
 
   if(QMessageBox::question(this, tr("BiblioteQ: Question"),
 			   tr("Are you sure that you wish to delete the "
-			      "selected files?"),
+			      "selected file(s)?"),
 			   QMessageBox::Yes | QMessageBox::No,
 			   QMessageBox::No) == QMessageBox::No)
     {
