@@ -3807,3 +3807,11 @@ void biblioteq_book::slotExportFiles(void)
 	}
     }
 }
+
+/*
+** -- slotEditFileDescription() --
+*/
+
+void biblioteq_book::slotEditFileDescription(void)
+{
+}
