@@ -63,6 +63,10 @@
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: indikátor postupu</translation>
     </message>
+    <message>
+        <source>Exporting file(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -2161,6 +2165,38 @@
     </message>
     <message>
         <source>One or more SSL errors occurred. Please verify your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Attach File(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished">BiblioteQ: indikátor postupu</translation>
+    </message>
+    <message>
+        <source>Please select at least one file to delete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to delete the selected files?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Book File Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: File Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6760,6 +6796,42 @@ webová adresa</translation>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished">Soubor</translation>
+    </message>
+    <message>
+        <source>Digest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compressed Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>myoid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Attach...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Smazat</translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>locResultsDialog</name>
@@ -7608,6 +7680,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>Populate &amp;Administrator Browser on Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please press the Enter key to execute the query.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
