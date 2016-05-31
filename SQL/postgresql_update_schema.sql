@@ -1124,3 +1124,53 @@ GRANT SELECT ON book_files TO biblioteq_membership;
 GRANT SELECT ON book_files_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON book_files TO biblioteq_patron;
 GRANT SELECT ON book_files_myoid_seq TO biblioteq_patron;
+
+CREATE TABLE journal_files
+(
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT ON journal_files TO biblioteq_circulation;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON journal_files TO biblioteq_guest;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_guest;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_librarian;
+GRANT SELECT ON journal_files TO biblioteq_membership;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON journal_files TO biblioteq_patron;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_patron;
+
+CREATE TABLE magazine_files
+(
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_administrator;
+GRANT SELECT ON magazine_files TO biblioteq_circulation;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON magazine_files TO biblioteq_guest;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_guest;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_librarian;
+GRANT SELECT ON magazine_files TO biblioteq_membership;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON magazine_files TO biblioteq_patron;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_patron;

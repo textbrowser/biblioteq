@@ -198,6 +198,18 @@ CREATE TABLE journal_copy_info
 	PRIMARY KEY(item_oid, copyid)
 );
 
+CREATE TABLE journal_files
+(
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
+);
+
 CREATE TABLE magazine
 (
 	back_cover	 BYTEA,
@@ -234,6 +246,18 @@ CREATE TABLE magazine_copy_info
 	myoid		 BIGSERIAL UNIQUE,
 	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
 	PRIMARY KEY(item_oid, copyid)
+);
+
+CREATE TABLE magazine_files
+(
+	description	TEXT,
+	file		BYTEA NOT NULL,
+	file_digest	TEXT NOT NULL,
+	file_name	TEXT NOT NULL,
+	item_oid	BIGINT NOT NULL,
+	myoid		BIGSERIAL NOT NULL,
+	FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,
+	PRIMARY KEY(file_digest, item_oid)
 );
 
 CREATE TABLE photograph_collection
@@ -564,10 +588,12 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_administrat
 GRANT DELETE, INSERT, SELECT, UPDATE ON item_borrower TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON member_history TO biblioteq_administrator;
 GRANT DELETE, SELECT ON member_history_dnt TO biblioteq_administrator;
@@ -591,8 +617,10 @@ GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON item_borrower_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_administrator;
+GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON member_history_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_administrator;
@@ -631,12 +659,16 @@ GRANT SELECT ON item_borrower_vw TO biblioteq_circulation;
 GRANT SELECT ON journal TO biblioteq_circulation;
 GRANT SELECT ON journal_copy_info TO biblioteq_circulation;
 GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON journal_files TO biblioteq_circulation;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON journal_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON languages TO biblioteq_circulation;
 GRANT SELECT ON locations TO biblioteq_circulation;
 GRANT SELECT ON magazine TO biblioteq_circulation;
 GRANT SELECT ON magazine_copy_info TO biblioteq_circulation;
 GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_circulation;
+GRANT SELECT ON magazine_files TO biblioteq_circulation;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_circulation;
 GRANT SELECT ON member TO biblioteq_circulation;
 GRANT SELECT ON monetary_units TO biblioteq_circulation;
@@ -679,12 +711,16 @@ GRANT SELECT ON item_borrower_vw TO biblioteq_guest;
 GRANT SELECT ON journal TO biblioteq_guest;
 GRANT SELECT ON journal_copy_info TO biblioteq_guest;
 GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON journal_files TO biblioteq_guest;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON journal_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON languages TO biblioteq_guest;
 GRANT SELECT ON locations TO biblioteq_guest;
 GRANT SELECT ON magazine TO biblioteq_guest;
 GRANT SELECT ON magazine_copy_info TO biblioteq_guest;
 GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_guest;
+GRANT SELECT ON magazine_files TO biblioteq_guest;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON monetary_units TO biblioteq_guest;
 GRANT SELECT ON photograph TO biblioteq_guest;
@@ -715,10 +751,12 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON dvd_regions TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON grey_literature TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON journal_copy_info TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON journal_files TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON languages TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON locations TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_copy_info TO biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON magazine_files TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON minimum_days TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON monetary_units TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON photograph TO biblioteq_librarian;
@@ -741,8 +779,10 @@ GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON grey_literature TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON magazine_copy_info_myoid_seq TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON magazine_files_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON magazine_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON photograph_collection_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON photograph_myoid_seq TO biblioteq_librarian;
@@ -776,12 +816,16 @@ GRANT SELECT ON item_borrower_vw TO biblioteq_membership;
 GRANT SELECT ON journal TO biblioteq_membership;
 GRANT SELECT ON journal_copy_info TO biblioteq_membership;
 GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON journal_files TO biblioteq_membership;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON journal_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON languages TO biblioteq_membership;
 GRANT SELECT ON locations TO biblioteq_membership;
 GRANT SELECT ON magazine TO biblioteq_membership;
 GRANT SELECT ON magazine_copy_info TO biblioteq_membership;
 GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_membership;
+GRANT SELECT ON magazine_files TO biblioteq_membership;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_membership;
 GRANT DELETE ON member_history_dnt TO biblioteq_membership;
 GRANT SELECT ON minimum_days TO biblioteq_membership;
@@ -825,12 +869,16 @@ GRANT SELECT ON item_borrower_vw TO biblioteq_patron;
 GRANT SELECT ON journal TO biblioteq_patron;
 GRANT SELECT ON journal_copy_info TO biblioteq_patron;
 GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON journal_files TO biblioteq_patron;
+GRANT SELECT ON journal_files_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON journal_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON languages TO biblioteq_patron;
 GRANT SELECT ON locations TO biblioteq_patron;
 GRANT SELECT ON magazine TO biblioteq_patron;
 GRANT SELECT ON magazine_copy_info TO biblioteq_patron;
 GRANT SELECT ON magazine_copy_info_myoid_seq TO biblioteq_patron;
+GRANT SELECT ON magazine_files TO biblioteq_patron;
+GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON magazine_myoid_seq TO biblioteq_patron;
 GRANT SELECT ON member_history TO biblioteq_patron;
 GRANT SELECT ON member_history_myoid_seq TO biblioteq_patron;
