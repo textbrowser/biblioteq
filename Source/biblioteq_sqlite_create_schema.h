@@ -222,6 +222,18 @@ CREATE TABLE journal_copy_info						\
     FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE	\
 );									\
 									\
+CREATE TABLE journal_files						\
+(									\
+    description	TEXT,							\
+    file	BYTEA NOT NULL,						\
+    file_digest	TEXT NOT NULL,						\
+    file_name   TEXT NOT NULL,						\
+    item_oid	BIGINT NOT NULL,					\
+    myoid	BIGINT NOT NULL,					\
+    FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE CASCADE,	\
+    PRIMARY KEY(file_digest, item_oid)					\
+);									\
+									\
 CREATE TRIGGER journal_purge_trigger AFTER DELETE ON journal		\
 FOR EACH row								\
 BEGIN									\
@@ -266,6 +278,18 @@ CREATE TABLE magazine_copy_info						\
     myoid	 BIGINT NOT NULL,					\
     PRIMARY KEY(item_oid, copyid),				        \
     FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE	\
+);									\
+									\
+CREATE TABLE magazine_files						\
+(									\
+    description	TEXT,							\
+    file	BYTEA NOT NULL,						\
+    file_digest	TEXT NOT NULL,						\
+    file_name   TEXT NOT NULL,						\
+    item_oid	BIGINT NOT NULL,					\
+    myoid	BIGINT NOT NULL,					\
+    FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE CASCADE,	\
+    PRIMARY KEY(file_digest, item_oid)					\
 );									\
 									\
 CREATE TRIGGER magazine_purge_trigger AFTER DELETE ON magazine		\
