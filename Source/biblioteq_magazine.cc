@@ -3,6 +3,7 @@
 */
 
 #include <QAuthenticator>
+#include <QCryptographicHash>
 #include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
