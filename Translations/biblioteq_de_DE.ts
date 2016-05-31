@@ -60,12 +60,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3775"/>
+        <location filename="../Source/biblioteq_book.cc" line="3778"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3735"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3779"/>
+        <location filename="../Source/biblioteq_book.cc" line="3782"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3739"/>
         <location filename="../Source/biblioteq_misc_functions.cc" line="2050"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
@@ -865,7 +867,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="731"/>
-        <location filename="../Source/biblioteq_b.cc" line="3958"/>
+        <location filename="../Source/biblioteq_b.cc" line="3982"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1264,7 +1266,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8661"/>
         <location filename="../Source/biblioteq_a.cc" line="9124"/>
         <location filename="../Source/biblioteq_b.cc" line="3159"/>
-        <location filename="../Source/biblioteq_b.cc" line="3922"/>
+        <location filename="../Source/biblioteq_b.cc" line="3946"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1431,7 +1433,7 @@
         <location filename="../Source/biblioteq_a.cc" line="2696"/>
         <location filename="../Source/biblioteq_a.cc" line="8471"/>
         <location filename="../Source/biblioteq_a.cc" line="9496"/>
-        <location filename="../Source/biblioteq_b.cc" line="3927"/>
+        <location filename="../Source/biblioteq_b.cc" line="3951"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
@@ -2425,12 +2427,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3928"/>
+        <location filename="../Source/biblioteq_b.cc" line="3952"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3956"/>
+        <location filename="../Source/biblioteq_b.cc" line="3980"/>
         <source>&amp;Unlimited</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2592,9 +2594,9 @@
         <location filename="../Source/biblioteq_book.cc" line="855"/>
         <location filename="../Source/biblioteq_book.cc" line="1007"/>
         <location filename="../Source/biblioteq_book.cc" line="1047"/>
-        <location filename="../Source/biblioteq_book.cc" line="1483"/>
-        <location filename="../Source/biblioteq_book.cc" line="3623"/>
-        <location filename="../Source/biblioteq_book.cc" line="3631"/>
+        <location filename="../Source/biblioteq_book.cc" line="1486"/>
+        <location filename="../Source/biblioteq_book.cc" line="3626"/>
+        <location filename="../Source/biblioteq_book.cc" line="3634"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2627,9 +2629,9 @@
         <location filename="../Source/biblioteq_book.cc" line="304"/>
         <location filename="../Source/biblioteq_book.cc" line="306"/>
         <location filename="../Source/biblioteq_book.cc" line="307"/>
-        <location filename="../Source/biblioteq_book.cc" line="1536"/>
-        <location filename="../Source/biblioteq_book.cc" line="1547"/>
-        <location filename="../Source/biblioteq_book.cc" line="1564"/>
+        <location filename="../Source/biblioteq_book.cc" line="1539"/>
+        <location filename="../Source/biblioteq_book.cc" line="1550"/>
+        <location filename="../Source/biblioteq_book.cc" line="1567"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">UNBEKANNT</translation>
     </message>
@@ -2643,7 +2645,7 @@
         <location filename="../Source/biblioteq_book.cc" line="438"/>
         <location filename="../Source/biblioteq_book.cc" line="582"/>
         <location filename="../Source/biblioteq_book.cc" line="1051"/>
-        <location filename="../Source/biblioteq_book.cc" line="1487"/>
+        <location filename="../Source/biblioteq_book.cc" line="1490"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2656,10 +2658,10 @@
         <location filename="../Source/biblioteq_book.cc" line="543"/>
         <location filename="../Source/biblioteq_book.cc" line="555"/>
         <location filename="../Source/biblioteq_book.cc" line="566"/>
-        <location filename="../Source/biblioteq_book.cc" line="2129"/>
-        <location filename="../Source/biblioteq_book.cc" line="2356"/>
-        <location filename="../Source/biblioteq_book.cc" line="2778"/>
-        <location filename="../Source/biblioteq_book.cc" line="3704"/>
+        <location filename="../Source/biblioteq_book.cc" line="2132"/>
+        <location filename="../Source/biblioteq_book.cc" line="2359"/>
+        <location filename="../Source/biblioteq_book.cc" line="2781"/>
+        <location filename="../Source/biblioteq_book.cc" line="3707"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2670,10 +2672,10 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="460"/>
-        <location filename="../Source/biblioteq_book.cc" line="2057"/>
-        <location filename="../Source/biblioteq_book.cc" line="2447"/>
-        <location filename="../Source/biblioteq_book.cc" line="3245"/>
-        <location filename="../Source/biblioteq_book.cc" line="3709"/>
+        <location filename="../Source/biblioteq_book.cc" line="2060"/>
+        <location filename="../Source/biblioteq_book.cc" line="2450"/>
+        <location filename="../Source/biblioteq_book.cc" line="3248"/>
+        <location filename="../Source/biblioteq_book.cc" line="3712"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2720,13 +2722,13 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="579"/>
         <location filename="../Source/biblioteq_book.cc" line="583"/>
-        <location filename="../Source/biblioteq_book.cc" line="3632"/>
+        <location filename="../Source/biblioteq_book.cc" line="3635"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="761"/>
-        <location filename="../Source/biblioteq_book.cc" line="3624"/>
+        <location filename="../Source/biblioteq_book.cc" line="3627"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
@@ -2754,7 +2756,7 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="909"/>
         <location filename="../Source/biblioteq_book.cc" line="1324"/>
-        <location filename="../Source/biblioteq_book.cc" line="1571"/>
+        <location filename="../Source/biblioteq_book.cc" line="1574"/>
         <source>BiblioteQ: Modify Book Entry (</source>
         <translation type="unfinished">BiblioteQ: Bearbeite Buch Eintrag (</translation>
     </message>
@@ -2762,8 +2764,8 @@
         <location filename="../Source/biblioteq_book.cc" line="910"/>
         <location filename="../Source/biblioteq_book.cc" line="1325"/>
         <location filename="../Source/biblioteq_book.cc" line="1357"/>
-        <location filename="../Source/biblioteq_book.cc" line="1572"/>
-        <location filename="../Source/biblioteq_book.cc" line="1582"/>
+        <location filename="../Source/biblioteq_book.cc" line="1575"/>
+        <location filename="../Source/biblioteq_book.cc" line="1585"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
@@ -2771,7 +2773,7 @@
         <location filename="../Source/biblioteq_book.cc" line="912"/>
         <location filename="../Source/biblioteq_book.cc" line="1327"/>
         <location filename="../Source/biblioteq_book.cc" line="1385"/>
-        <location filename="../Source/biblioteq_book.cc" line="1574"/>
+        <location filename="../Source/biblioteq_book.cc" line="1577"/>
         <source>BiblioteQ: Modify Book Entry</source>
         <translation type="unfinished">BiblioteQ: Bearbeite den Bucheintrag (</translation>
     </message>
@@ -2813,337 +2815,337 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1356"/>
-        <location filename="../Source/biblioteq_book.cc" line="1581"/>
+        <location filename="../Source/biblioteq_book.cc" line="1584"/>
         <source>BiblioteQ: View Book Details (</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Buch Details (</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="1359"/>
-        <location filename="../Source/biblioteq_book.cc" line="1423"/>
-        <location filename="../Source/biblioteq_book.cc" line="1584"/>
+        <location filename="../Source/biblioteq_book.cc" line="1426"/>
+        <location filename="../Source/biblioteq_book.cc" line="1587"/>
         <source>BiblioteQ: View Book Details</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Buch Details</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="1454"/>
-        <location filename="../Source/biblioteq_book.cc" line="1689"/>
+        <location filename="../Source/biblioteq_book.cc" line="1457"/>
+        <location filename="../Source/biblioteq_book.cc" line="1692"/>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="1484"/>
-        <location filename="../Source/biblioteq_book.cc" line="1488"/>
+        <location filename="../Source/biblioteq_book.cc" line="1487"/>
+        <location filename="../Source/biblioteq_book.cc" line="1491"/>
         <source>Unable to retrieve the selected book&apos;s data.</source>
         <translation type="unfinished">Kann die Daten der ausgewählten Bücher nicht erhalten.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="1719"/>
+        <location filename="../Source/biblioteq_book.cc" line="1722"/>
         <source>BiblioteQ: Create Book Entry</source>
         <translation type="unfinished">BiblioteQ: Buch Eintrag erstellen</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2058"/>
+        <location filename="../Source/biblioteq_book.cc" line="2061"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2130"/>
+        <location filename="../Source/biblioteq_book.cc" line="2133"/>
         <source>In order to query an SRU site, either the ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2357"/>
+        <location filename="../Source/biblioteq_book.cc" line="2360"/>
         <source>In order to query a Z39.50 site, either the ISBN-10 or ISBN-13 must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2369"/>
+        <location filename="../Source/biblioteq_book.cc" line="2372"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2370"/>
+        <location filename="../Source/biblioteq_book.cc" line="2373"/>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2448"/>
+        <location filename="../Source/biblioteq_book.cc" line="2451"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2613"/>
-        <location filename="../Source/biblioteq_book.cc" line="2632"/>
+        <location filename="../Source/biblioteq_book.cc" line="2616"/>
+        <location filename="../Source/biblioteq_book.cc" line="2635"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2614"/>
+        <location filename="../Source/biblioteq_book.cc" line="2617"/>
         <source>A Z39.50 entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2622"/>
+        <location filename="../Source/biblioteq_book.cc" line="2625"/>
         <source>Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2623"/>
+        <location filename="../Source/biblioteq_book.cc" line="2626"/>
         <source>Unable to create a thread due to insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2629"/>
+        <location filename="../Source/biblioteq_book.cc" line="2632"/>
         <source>Z39.50 Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2633"/>
+        <location filename="../Source/biblioteq_book.cc" line="2636"/>
         <source>The Z39.50 entry could not be retrieved. Please view the error log.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2645"/>
+        <location filename="../Source/biblioteq_book.cc" line="2648"/>
         <source>ISBN-10:</source>
         <translation type="unfinished">ISBN-10:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2647"/>
+        <location filename="../Source/biblioteq_book.cc" line="2650"/>
         <source>ISBN-13:</source>
         <translation type="unfinished">ISBN-13:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2649"/>
+        <location filename="../Source/biblioteq_book.cc" line="2652"/>
         <source>Edition:</source>
         <translation type="unfinished">Edition:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2651"/>
+        <location filename="../Source/biblioteq_book.cc" line="2654"/>
         <source>Author(s):</source>
         <translation type="unfinished">Autorenschaft:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2653"/>
+        <location filename="../Source/biblioteq_book.cc" line="2656"/>
         <source>Book Binding Type:</source>
         <translation type="unfinished">Typ der Buchbindung:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2655"/>
+        <location filename="../Source/biblioteq_book.cc" line="2658"/>
         <source>LC Control Number:</source>
         <translation type="unfinished">LC Kontroll-Nummer:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2657"/>
+        <location filename="../Source/biblioteq_book.cc" line="2660"/>
         <source>Call Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2659"/>
+        <location filename="../Source/biblioteq_book.cc" line="2662"/>
         <source>Dewey Class Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2666"/>
+        <location filename="../Source/biblioteq_book.cc" line="2669"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2668"/>
+        <location filename="../Source/biblioteq_book.cc" line="2671"/>
         <source>Publication Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2670"/>
+        <location filename="../Source/biblioteq_book.cc" line="2673"/>
         <source>Publisher:</source>
         <translation type="unfinished">Verlag:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2672"/>
+        <location filename="../Source/biblioteq_book.cc" line="2675"/>
         <source>Place of Publication:</source>
         <translation type="unfinished">Erscheinungsort:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2674"/>
+        <location filename="../Source/biblioteq_book.cc" line="2677"/>
         <source>Categories:</source>
         <translation type="unfinished">Kategorien:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2676"/>
+        <location filename="../Source/biblioteq_book.cc" line="2679"/>
         <source>Price:</source>
         <translation type="unfinished">Preis:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2677"/>
+        <location filename="../Source/biblioteq_book.cc" line="2680"/>
         <source>Language:</source>
         <translation type="unfinished">Sprache:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2679"/>
+        <location filename="../Source/biblioteq_book.cc" line="2682"/>
         <source>Monetary Units:</source>
         <translation type="unfinished">Währungseinheit:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2681"/>
+        <location filename="../Source/biblioteq_book.cc" line="2684"/>
         <source>Copies:</source>
         <translation type="unfinished">Kopien:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2682"/>
+        <location filename="../Source/biblioteq_book.cc" line="2685"/>
         <source>Location:</source>
         <translation type="unfinished">Ort:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2684"/>
+        <location filename="../Source/biblioteq_book.cc" line="2687"/>
         <source>Originality:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2686"/>
+        <location filename="../Source/biblioteq_book.cc" line="2689"/>
         <source>Condition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2688"/>
+        <location filename="../Source/biblioteq_book.cc" line="2691"/>
         <source>Abstract:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2690"/>
+        <location filename="../Source/biblioteq_book.cc" line="2693"/>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2692"/>
+        <location filename="../Source/biblioteq_book.cc" line="2695"/>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2715"/>
+        <location filename="../Source/biblioteq_book.cc" line="2718"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2717"/>
+        <location filename="../Source/biblioteq_book.cc" line="2720"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2779"/>
+        <location filename="../Source/biblioteq_book.cc" line="2782"/>
         <source>In order to download a cover image from Amazon, the ISBN-10 must be provided.</source>
         <translation type="unfinished">Um ein Titelbild von Amazon herunterzuladen, muss die ISBN-10 angegeben sein.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2981"/>
+        <location filename="../Source/biblioteq_book.cc" line="2984"/>
         <source>BiblioteQ: Front Cover Image Download</source>
         <translation type="unfinished">BiblioteQ: Titelbild Download</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2982"/>
+        <location filename="../Source/biblioteq_book.cc" line="2985"/>
         <source>Downloading the front cover image. Please be patient...</source>
         <translation type="unfinished">Das Titelbild wird heruntergeladen. Bitte sei geduldig...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2988"/>
+        <location filename="../Source/biblioteq_book.cc" line="2991"/>
         <source>BiblioteQ: Back Cover Image Download</source>
         <translation type="unfinished">BiblioteQ: Bild des Rückendeckels Herunterladen</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="2989"/>
+        <location filename="../Source/biblioteq_book.cc" line="2992"/>
         <source>Downloading the back cover image. Please be patient...</source>
         <translation type="unfinished">Das Bild des Rückendeckels wird herunter geladen. Bitte sei geduldig...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3042"/>
-        <location filename="../Source/biblioteq_book.cc" line="3059"/>
+        <location filename="../Source/biblioteq_book.cc" line="3045"/>
+        <location filename="../Source/biblioteq_book.cc" line="3062"/>
         <source>BiblioteQ: HTTP Warning</source>
         <translation type="unfinished">BiblioteQ: HTTP Warnmeldung</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3043"/>
+        <location filename="../Source/biblioteq_book.cc" line="3046"/>
         <source>The front cover image for the specified ISBN may not exist.</source>
         <translation type="unfinished">Das Titelbild der genannten ISBN könnte nicht existieren.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3060"/>
+        <location filename="../Source/biblioteq_book.cc" line="3063"/>
         <source>The back cover image for the specified ISBN may not exist.</source>
         <translation type="unfinished">Das Bild des Rückendeckels der genannten ISBN könnte nicht exisitieren.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3142"/>
+        <location filename="../Source/biblioteq_book.cc" line="3145"/>
         <source>BiblioteQ: Duplicate Book Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3156"/>
+        <location filename="../Source/biblioteq_book.cc" line="3159"/>
         <source>The proxy %1:%2 is requesting credentials.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3246"/>
+        <location filename="../Source/biblioteq_book.cc" line="3249"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3428"/>
-        <location filename="../Source/biblioteq_book.cc" line="3466"/>
-        <location filename="../Source/biblioteq_book.cc" line="3470"/>
-        <location filename="../Source/biblioteq_book.cc" line="3482"/>
+        <location filename="../Source/biblioteq_book.cc" line="3431"/>
+        <location filename="../Source/biblioteq_book.cc" line="3469"/>
+        <location filename="../Source/biblioteq_book.cc" line="3473"/>
+        <location filename="../Source/biblioteq_book.cc" line="3485"/>
         <source>BiblioteQ: SRU Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3429"/>
+        <location filename="../Source/biblioteq_book.cc" line="3432"/>
         <source>An SRU entry may not yet exist for the provided ISBN(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3467"/>
-        <location filename="../Source/biblioteq_book.cc" line="3471"/>
+        <location filename="../Source/biblioteq_book.cc" line="3470"/>
+        <location filename="../Source/biblioteq_book.cc" line="3474"/>
         <source>A network error (%1) occurred.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3483"/>
+        <location filename="../Source/biblioteq_book.cc" line="3486"/>
         <source>One or more SSL errors occurred. Please verify your settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3512"/>
+        <location filename="../Source/biblioteq_book.cc" line="3515"/>
         <source>BiblioteQ: Book Attachment(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3710"/>
+        <location filename="../Source/biblioteq_book.cc" line="3713"/>
         <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3535"/>
+        <location filename="../Source/biblioteq_book.cc" line="3538"/>
         <source>Uploading files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3539"/>
+        <location filename="../Source/biblioteq_book.cc" line="3542"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3705"/>
+        <location filename="../Source/biblioteq_book.cc" line="3708"/>
         <source>Please select at least one file to delete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3757"/>
+        <location filename="../Source/biblioteq_book.cc" line="3760"/>
         <source>BiblioteQ: Book File Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3846"/>
+        <location filename="../Source/biblioteq_book.cc" line="3849"/>
         <source>BiblioteQ: File Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3847"/>
+        <location filename="../Source/biblioteq_book.cc" line="3850"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5206,641 +5208,692 @@
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="83"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="85"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="84"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="86"/>
         <source>Downloading information from the SRU site. Please be patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="117"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="131"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="119"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="133"/>
         <source>Reset &amp;Back Cover Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="121"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="135"/>
         <source>Reset &amp;ISSN</source>
         <translation type="unfinished">Zurücksetzen &amp;ISSN</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="123"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="137"/>
         <source>Reset &amp;Volume</source>
         <translation type="unfinished">Zurücksetzen &amp;Ausgabe/Volume</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="125"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="139"/>
         <source>Reset &amp;Issue</source>
         <translation type="unfinished">Zurücksetzen &amp;Heft/Issue</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="127"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="141"/>
         <source>Reset &amp;LC Control Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="129"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="143"/>
         <source>Reset &amp;Call Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="131"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="145"/>
         <source>Reset &amp;Dewey Number</source>
         <translation type="unfinished">Zurücksetzen der &amp;Dewey Nummer</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="133"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="147"/>
         <source>Reset &amp;Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="135"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="149"/>
         <source>Reset &amp;Publication Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="137"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="151"/>
         <source>Reset &amp;Publisher</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="139"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="153"/>
         <source>Reset &amp;Place of Publication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="141"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="155"/>
         <source>Reset &amp;Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="143"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="157"/>
         <source>Reset &amp;Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="145"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="159"/>
         <source>Reset &amp;Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="147"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="161"/>
         <source>Reset &amp;Monetary Units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="149"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="163"/>
         <source>Reset &amp;Copies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="151"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="165"/>
         <source>Reset &amp;Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="153"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="167"/>
         <source>Reset &amp;Abstract</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="155"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="169"/>
         <source>Reset &amp;MARC Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="157"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="171"/>
         <source>Reset &amp;Keywords</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="191"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="203"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="226"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="231"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="369"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="480"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="654"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="666"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="690"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="702"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="735"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="745"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="910"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="962"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1364"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1375"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="205"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="217"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="240"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="245"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="383"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="494"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="668"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="680"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="704"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="716"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="749"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="759"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="924"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="976"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1406"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1417"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3567"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3575"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="192"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="206"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="204"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="218"/>
         <source>Unable to retrieve the monetary units.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="227"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="241"/>
         <source>Unable to retrieve the journal locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="232"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="246"/>
         <source>Unable to retrieve the magazine locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="239"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="240"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="242"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="243"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="245"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="246"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1440"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1451"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1464"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="253"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="254"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="256"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="257"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="259"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="260"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1482"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1493"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1506"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">UNBEKANNT</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="370"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="375"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="384"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="389"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="374"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="484"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="969"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1368"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1379"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="388"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="498"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="983"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1410"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1421"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="385"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="409"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="399"/>
         <location filename="../Source/biblioteq_magazine.cc" line="423"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="434"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="445"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="457"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="468"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1946"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3061"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="437"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="448"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="459"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="471"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="482"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1989"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3107"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3654"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="386"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="400"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="394"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1867"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="2018"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3299"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="408"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1910"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2061"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3345"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3659"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="395"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="409"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="410"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="424"/>
         <source>Please complete the ISSN field.</source>
         <translation type="unfinished">Bitte vervollständige das Feld ISSN.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="424"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="438"/>
         <source>Please complete the Title field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="435"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="449"/>
         <source>Please complete the Publisher field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="446"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="460"/>
         <source>Please complete the Place of Publication field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="458"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="472"/>
         <source>Please complete the Categories field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="469"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="483"/>
         <source>Please complete the Abstract field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="481"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="485"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="495"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="499"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3576"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="655"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="669"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3568"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="667"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="681"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="691"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="705"/>
         <source>Unable to purge unnecessary copy data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="703"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="746"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="717"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="760"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="736"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="750"/>
         <source>Unable to create initial copies.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="813"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1210"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1474"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="827"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1234"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1516"/>
         <source>BiblioteQ: Modify Journal Entry (</source>
         <translation type="unfinished">BiblioteQ: Den Journal Eintrag bearbeiten (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="815"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1212"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1478"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="829"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1236"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1520"/>
         <source>BiblioteQ: Modify Magazine Entry (</source>
         <translation type="unfinished">BiblioteQ: Den Magazin Eintrag bearbeiten (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="817"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1214"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1245"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1475"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1479"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1498"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1502"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="831"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1238"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1275"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1517"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1521"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1540"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1544"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="822"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1219"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1277"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1484"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="836"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1243"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1307"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1526"/>
         <source>BiblioteQ: Modify Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Journal Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="824"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1221"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1279"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1486"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="838"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1245"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1309"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1528"/>
         <source>BiblioteQ: Modify Magazine Entry</source>
         <translation type="unfinished">BiblioteQ: Magazin Eintrag bearbeiten</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="911"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="925"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="963"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="977"/>
         <source>Rollback failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="970"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="984"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1131"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1148"/>
         <source>&amp;Search</source>
         <translation type="unfinished">&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1143"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1144"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1145"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1160"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1161"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1162"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1164"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1181"/>
         <source>BiblioteQ: Database Journal Search</source>
         <translation type="unfinished">BiblioteQ: Journal Datenbank Suche</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1166"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1183"/>
         <source>BiblioteQ: Database Magazine Search</source>
         <translation type="unfinished">BiblioteQ: Magazin Datenbank Suche</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1241"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1497"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1271"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1539"/>
         <source>BiblioteQ: View Journal Details (</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Journal Details (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1243"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1501"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1273"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1543"/>
         <source>BiblioteQ: View Magazine Details (</source>
         <translation type="unfinished">BiblioteQ: Ansicht der Magazin Details (</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1250"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1280"/>
         <source>BiblioteQ: View Journal Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1252"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1282"/>
         <source>BiblioteQ: View Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1307"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1507"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1346"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1549"/>
         <source>BiblioteQ: View Journal Details</source>
         <translation type="unfinished">BiblioteQ: Ansicht Journal Details</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1309"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1509"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1348"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1551"/>
         <source>BiblioteQ: View Magazine Details</source>
         <translation type="unfinished">BiblioteQ: Ansicht Magazin Details</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1335"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1597"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1377"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1640"/>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1365"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1369"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1407"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1411"/>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
         <translation type="unfinished">Kann die ausgewählten Daten der Journale nicht erreichen.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1376"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="1380"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1418"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1422"/>
         <source>Unable to retrieve the selected magazine&apos;s data.</source>
         <translation type="unfinished">Kann die ausgewählten Daten der Magazine nicht erreichen.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1628"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1671"/>
         <source>BiblioteQ: Create Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Journal Eintrag erstellen</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1630"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1673"/>
         <source>BiblioteQ: Create Magazine Entry</source>
         <translation type="unfinished">BiblioteQ: Magazin Eintrag erstellen</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1868"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1911"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1947"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="1990"/>
         <source>In order to query a Z39.50 site, the ISSN must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1959"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2002"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="1960"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2003"/>
         <source>Downloading information from the Z39.50 site. Please be patient...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2019"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2062"/>
         <source>Replace existing values with those retrieved from the Z39.50 site?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2043"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="2067"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3318"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2086"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2110"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3364"/>
         <source>Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2044"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="2050"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3319"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3325"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2087"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2093"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3365"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3371"/>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2049"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3324"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2092"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3370"/>
         <source>BiblioteQ: Memory Error</source>
         <translation type="unfinished">BiblioteQ: Speicher Fehler</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2056"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="2077"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2099"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2120"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2057"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2100"/>
         <source>A Z39.50 entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2058"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2101"/>
         <source>.</source>
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2068"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2111"/>
         <source>Unable to create a thread because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2074"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2117"/>
         <source>Z39.50 Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2078"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2121"/>
         <source>The Z39.50 entry could not be retrieved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2089"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2132"/>
         <source>ISSN:</source>
         <translation type="unfinished">ISSN:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2090"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2133"/>
         <source>Volume:</source>
         <translation type="unfinished">Ausgabe:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2091"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2134"/>
         <source>Issue (Number):</source>
         <translation type="unfinished">Heft/Issue (Nummer):</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2093"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2136"/>
         <source>LC Control Number:</source>
         <translation type="unfinished">LC Kontroll-Nummer:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2095"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2138"/>
         <source>Call Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2097"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2140"/>
         <source>Dewey Class Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2104"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2147"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2106"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2149"/>
         <source>Publication Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2108"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2151"/>
         <source>Publisher:</source>
         <translation type="unfinished">Verlag:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2110"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2153"/>
         <source>Place of Publication:</source>
         <translation type="unfinished">Erscheinungsort:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2112"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2155"/>
         <source>Category:</source>
         <translation type="unfinished">Kategorien:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2114"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2157"/>
         <source>Price:</source>
         <translation type="unfinished">Preis:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2115"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2158"/>
         <source>Language:</source>
         <translation type="unfinished">Sprache:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2117"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2160"/>
         <source>Monetary Units:</source>
         <translation type="unfinished">Währungseinheit:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2119"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2162"/>
         <source>Copies:</source>
         <translation type="unfinished">Kopien:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2120"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2163"/>
         <source>Location:</source>
         <translation type="unfinished">Ort:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2122"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2165"/>
         <source>Abstract:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2124"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2167"/>
         <source>MARC Tags:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2126"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2169"/>
         <source>Keywords:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2624"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2667"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Auswahl des Titelbildes</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2626"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2669"/>
         <source>BiblioteQ: Back Cover Image Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2696"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2742"/>
         <source>BiblioteQ: Duplicate Journal Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="2698"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="2744"/>
         <source>BiblioteQ: Duplicate Magazine Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3062"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3108"/>
         <source>In order to query an SRU site, the ISSN must be provided.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3300"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3346"/>
         <source>Replace existing values with those retrieved from the SRU site?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3331"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3377"/>
         <source>BiblioteQ: SRU Query Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3332"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3378"/>
         <source>An SRU entry may not yet exist for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3333"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3379"/>
         <source> or a network error occurred.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3370"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3416"/>
         <source>The proxy %1:%2 is requesting credentials.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3455"/>
+        <source>BiblioteQ: %1 Attachment(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3479"/>
+        <source>Uploading files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3483"/>
+        <source>BiblioteQ: Progress Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3655"/>
+        <source>Please select at least one file to delete.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3660"/>
+        <source>Are you sure that you wish to delete the selected file(s)?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3714"/>
+        <source>BiblioteQ: Journal File Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3716"/>
+        <source>BiblioteQ: Magazine File Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3812"/>
+        <source>BiblioteQ: File Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_magazine.cc" line="3813"/>
+        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9382,12 +9435,12 @@ URL</source>
         <translation>Allgemeine Informationen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="358"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="407"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="368"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="361"/>
         <source>Publication Date</source>
         <translation>Veröffentlichungsdatum</translation>
     </message>
@@ -9417,7 +9470,7 @@ URL</source>
         <translation type="unfinished">ISSN</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="389"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="382"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9462,7 +9515,52 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="820"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="717"/>
+        <source>Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="754"/>
+        <source>File</source>
+        <translation type="unfinished">Datei</translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="759"/>
+        <source>Digest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="764"/>
+        <source>Compressed Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="769"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="774"/>
+        <source>myoid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="797"/>
+        <source>&amp;Attach...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="804"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Löschen</translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="811"/>
+        <source>&amp;Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_maginfo.ui" line="938"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9505,22 +9603,22 @@ URL</source>
         <translation>Stichworte</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="752"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="870"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="769"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="887"/>
         <source>&amp;SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="785"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="903"/>
         <source>&amp;Z39.50 Query</source>
         <translation>&amp;Z39.50 Anfrage</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="801"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="919"/>
         <source>&amp;Reset</source>
         <translation>&amp;Zurücksetzen</translation>
     </message>
@@ -9529,7 +9627,7 @@ URL</source>
         <translation type="obsolete">&amp;Drucken</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_maginfo.ui" line="837"/>
+        <location filename="../UI/biblioteq_maginfo.ui" line="955"/>
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
     </message>
