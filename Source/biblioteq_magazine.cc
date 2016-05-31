@@ -3,6 +3,7 @@
 */
 
 #include <QAuthenticator>
+#include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QSqlField>
@@ -94,6 +95,18 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
+  connect(ma.attach_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotAttachFiles(void)));
+  connect(ma.delete_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDeleteFiles(void)));
+  connect(ma.export_files,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotExportFiles(void)));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
@@ -1112,7 +1125,10 @@ void biblioteq_magazine::slotGo(void)
 
 void biblioteq_magazine::search(const QString &field, const QString &value)
 {
+  ma.attach_files->setVisible(false);
   ma.coverImages->setVisible(false);
+  ma.delete_files->setVisible(false);
+  ma.export_files->setVisible(false);
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -1195,6 +1211,13 @@ void biblioteq_magazine::updateWindow(const int state)
 
   if(state == biblioteq::EDITABLE)
     {
+      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
+      ma.attach_files->setEnabled(true);
+      ma.copiesButton->setEnabled(true);
+      ma.delete_files->setEnabled(true);
+      ma.export_files->setEnabled(true);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.sruQueryButton->setVisible(true);
@@ -1225,6 +1248,12 @@ void biblioteq_magazine::updateWindow(const int state)
     }
   else
     {
+      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
+      ma.attach_files->setVisible(false);
+      ma.delete_files->setVisible(false);
+      ma.export_files->setEnabled(true);
       ma.issnAvailableCheckBox->setCheckable(false);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
@@ -1279,6 +1308,9 @@ void biblioteq_magazine::modify(const int state)
 	setWindowTitle(QString(tr("BiblioteQ: Modify Magazine Entry")));
 
       m_engWindowTitle = "Modify";
+      ma.attach_files->setEnabled(true);
+      ma.delete_files->setEnabled(true);
+      ma.export_files->setEnabled(true);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.sruQueryButton->setVisible(true);
@@ -1300,15 +1332,24 @@ void biblioteq_magazine::modify(const int state)
       biblioteq_misc_functions::highlightWidget
 	(ma.place->viewport(), QColor(255, 248, 220));
       m_te_orig_pal = ma.description->viewport()->palette();
+      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
+	      Qt::UniqueConnection);
     }
   else
     {
+      disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
+
       if(m_subType == "Journal")
 	setWindowTitle(QString(tr("BiblioteQ: View Journal Details")));
       else
 	setWindowTitle(QString(tr("BiblioteQ: View Magazine Details")));
 
       m_engWindowTitle = "Modify";
+      ma.attach_files->setVisible(false);
+      ma.delete_files->setVisible(false);
+      ma.export_files->setVisible(true);
       ma.issnAvailableCheckBox->setCheckable(false);
       ma.showUserButton->setEnabled(true);
       ma.copiesButton->setVisible(false);
@@ -1580,6 +1621,7 @@ void biblioteq_magazine::modify(const int state)
 void biblioteq_magazine::insert(void)
 {
   slotReset();
+  ma.attach_files->setEnabled(false);
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -2688,6 +2730,9 @@ Ui_magDialog biblioteq_magazine::dialog(void) const
 void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
 {
   modify(state); // Initial population.
+  ma.attach_files->setEnabled(false);
+  ma.delete_files->setEnabled(false);
+  ma.export_files->setEnabled(false);
   ma.copiesButton->setEnabled(false);
   ma.showUserButton->setEnabled(false);
   m_oid = p_oid;
@@ -3398,4 +3443,386 @@ bool biblioteq_magazine::useHttp(void) const
 #else
   return false;
 #endif
+}
+
+/*
+** -- slotAttachFiles() --
+*/
+
+void biblioteq_magazine::slotAttachFiles(void)
+{
+  QFileDialog fileDialog(this, tr("BiblioteQ: %1 Attachment(s)").
+			 arg(m_subType));
+
+  fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+  fileDialog.setDirectory(QDir::homePath());
+  fileDialog.setFileMode(QFileDialog::ExistingFiles);
+
+  if(fileDialog.exec() == QDialog::Accepted)
+    {
+      fileDialog.close();
+#ifndef Q_OS_MAC
+      repaint();
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+      QStringList files(fileDialog.selectedFiles());
+      int i = -1;
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(tr("Uploading files..."));
+      progress.setMaximum(files.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      while(i++, !files.isEmpty() && !progress.wasCanceled())
+	{
+	  QCryptographicHash digest(QCryptographicHash::Sha1);
+	  QFile file;
+	  QString fileName(files.takeFirst());
+
+	  file.setFileName(fileName);
+
+	  if(file.open(QIODevice::ReadOnly))
+	    {
+	      QByteArray bytes(4096, 0);
+	      QByteArray total;
+	      qint64 rc = 0;
+
+	      while((rc = file.read(bytes.data(), bytes.size())) > 0)
+		{
+		  digest.addData(bytes.mid(0, static_cast<int> (rc)));
+		  total.append(bytes.mid(0, static_cast<int> (rc)));
+		}
+
+	      if(!bytes.isEmpty())
+		{
+		  total = qCompress(total, 9);
+		  createFile(digest.result(), total,
+			     QFileInfo(fileName).fileName());
+		}
+	    }
+
+	  file.close();
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+	}
+
+      QApplication::restoreOverrideCursor();
+      populateFiles();
+    }
+}
+
+/*
+** -- createFile() --
+*/
+
+void biblioteq_magazine::createFile(const QByteArray &digest,
+				    const QByteArray &bytes,
+				    const QString &fileName) const
+{
+  QSqlQuery query(qmain->getDB());
+
+  if(qmain->getDB().driverName() != "QSQLITE")
+    query.prepare(QString("INSERT INTO %1_files "
+			  "(file, file_digest, file_name, item_oid) "
+			  "VALUES (?, ?, ?, ?)").arg(m_subType));
+  else
+    query.prepare(QString("INSERT INTO %1_files "
+			  "(file, file_digest, file_name, item_oid, myoid) "
+			  "VALUES (?, ?, ?, ?, ?)").arg(m_subType));
+
+  query.bindValue(0, bytes);
+  query.bindValue(1, digest.toHex().constData());
+  query.bindValue(2, fileName);
+  query.bindValue(3, m_oid);
+
+  if(qmain->getDB().driverName() == "QSQLITE")
+    {
+      QString errorstr("");
+      qint64 value = biblioteq_misc_functions::getSqliteUniqueId
+	(qmain->getDB(), errorstr);
+
+      if(errorstr.isEmpty())
+	query.bindValue(4, value);
+      else
+	qmain->addError(QString(tr("Database Error")),
+			QString(tr("Unable to generate a unique "
+				   "integer.")),
+			errorstr);
+    }
+
+  if(!query.exec())
+    qmain->addError
+      (QString(tr("Database Error")),
+       QString(tr("Unable to create a database transaction.")),
+       query.lastError().text(), __FILE__, __LINE__);
+}
+
+/*
+** -- populateFiles() --
+*/
+
+void biblioteq_magazine::populateFiles(void)
+{
+  ma.files->clearContents();
+  ma.files->setRowCount(0);
+
+  QSqlQuery query(qmain->getDB());
+
+  query.setForwardOnly(true);
+
+  if(m_subType == "Journal")
+    query.prepare("SELECT COUNT(*) FROM journal_files WHERE item_oid = ?");
+  else
+    query.prepare("SELECT COUNT(*) FROM magazine_files WHERE item_oid = ?");
+
+  query.bindValue(0, m_oid);
+
+  if(query.exec())
+    if(query.next())
+      ma.files->setRowCount(query.value(0).toInt());
+
+  query.prepare(QString("SELECT file_name, "
+			"file_digest, "
+			"LENGTH(file), "
+			"description, "
+			"myoid FROM %1_files "
+			"WHERE item_oid = ? ORDER BY file_name").
+		arg(m_subType));
+  query.bindValue(0, m_oid);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  int row = 0;
+  int totalRows = 0;
+
+  if(query.exec())
+    while(query.next() && totalRows < ma.files->rowCount())
+      {
+	totalRows += 1;
+
+	for(int i = 0; i < query.record().count(); i++)
+	  {
+	    QTableWidgetItem *item = new(std::nothrow)
+	      QTableWidgetItem(query.value(i).toString());
+
+	    if(!item)
+	      continue;
+
+	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	    ma.files->setItem(row, i, item);
+	  }
+
+	row += 1;
+      }
+
+  ma.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
+  ma.files->setRowCount(totalRows);
+  QApplication::restoreOverrideCursor();
+}
+
+/*
+** -- slotDeleteFiles() --
+*/
+
+void biblioteq_magazine::slotDeleteFiles(void)
+{
+  QModelIndexList list(ma.files->selectionModel()->
+		       selectedRows(ma.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    {
+      QMessageBox::critical
+	(this, tr("BiblioteQ: User Error"),
+	 tr("Please select at least one file to delete."));
+      return;
+    }
+
+  if(QMessageBox::question(this, tr("BiblioteQ: Question"),
+			   tr("Are you sure that you wish to delete the "
+			      "selected file(s)?"),
+			   QMessageBox::Yes | QMessageBox::No,
+			   QMessageBox::No) == QMessageBox::No)
+    {
+      list.clear();
+      return;
+    }
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  while(!list.isEmpty())
+    {
+      QSqlQuery query(qmain->getDB());
+
+      if(m_subType == "Journal")
+	query.prepare("DELETE FROM journal_files WHERE "
+		      "item_oid = ? AND myoid = ?");
+      else
+	query.prepare("DELETE FROM magazine_files WHERE "
+		      "item_oid = ? AND myoid = ?");
+
+      query.bindValue(0, m_oid);
+      query.bindValue(1, list.takeFirst().data());
+      query.exec();
+    }
+
+  QApplication::restoreOverrideCursor();
+  populateFiles();
+}
+
+/*
+** -- slotExportFiles() --
+*/
+
+void biblioteq_magazine::slotExportFiles(void)
+{
+  QModelIndexList list(ma.files->selectionModel()->
+		       selectedRows(ma.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setDirectory(QDir::homePath());
+
+  if(m_subType.toLower() == "journal")
+    dialog.setWindowTitle(tr("BiblioteQ: Journal File Export"));
+  else
+    dialog.setWindowTitle(tr("BiblioteQ: Magazine File Export"));
+
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      dialog.close();
+#ifndef Q_OS_MAC
+      repaint();
+      QApplication::processEvents();
+#endif
+
+      QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(QObject::tr("Exporting file(s)..."));
+      progress.setMaximum(list.size());
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      int i = -1;
+
+      while(i++, !list.isEmpty() && !progress.wasCanceled())
+	{
+	  QSqlQuery query(qmain->getDB());
+
+	  query.setForwardOnly(true);
+
+	  if(m_subType == "Journal")
+	    query.prepare("SELECT file, file_name FROM journal_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+	  else
+	    query.prepare("SELECT file, file_name FROM magazine_files "
+			  "WHERE item_oid = ? AND myoid = ?");
+
+	  query.bindValue(0, m_oid);
+	  query.bindValue(1, list.takeFirst().data());
+
+	  if(query.exec() && query.next())
+	    {
+	      QFile file(dialog.selectedFiles().value(0) + QDir::separator() +
+			 query.value(1).toString());
+
+	      if(file.open(QIODevice::WriteOnly))
+		file.write(qUncompress(query.value(0).toByteArray()));
+
+	      file.flush();
+	      file.close();
+	    }
+
+	  if(i + 1 <= progress.maximum())
+	    progress.setValue(i + 1);
+
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+	}
+    }
+}
+
+/*
+** -- slotEditFileDescription() --
+*/
+
+void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
+{
+  if(!item)
+    return;
+
+  QTableWidgetItem *item1 = ma.files->item(item->row(), 3); // Description
+
+  if(!item1)
+    return;
+
+  QString description(item1->text());
+  QTableWidgetItem *item2 =
+    ma.files->item(item->row(), ma.files->columnCount() - 1); // myoid
+
+  if(!item2)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
+  QString text
+    (QInputDialog::getText(this,
+			   tr("BiblioteQ: File Description"),
+			   tr("Description"), QLineEdit::Normal,
+			   description).trimmed());
+
+  if(m_subType == "Journal")
+    query.prepare("UPDATE journal_files SET description = ? "
+		  "WHERE item_oid = ? AND myoid = ?");
+  else
+    query.prepare("UPDATE magazine_files SET description = ? "
+		  "WHERE item_oid = ? AND myoid = ?");
+
+  query.bindValue(0, text);
+  query.bindValue(1, m_oid);
+  query.bindValue(2, myoid);
+
+  if(query.exec())
+    item1->setText(text);
 }

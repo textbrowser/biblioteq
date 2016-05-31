@@ -40,7 +40,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 		     const QString &oidArg,
 		     const int rowArg,
 		     const QString &subTypeArg);
-  ~biblioteq_magazine();
+  virtual ~biblioteq_magazine();
   Ui_magDialog dialog(void) const;
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
@@ -70,11 +70,19 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   biblioteq_item_working_dialog *m_sruWorking;
   bool useHttp(void) const;
   void changeEvent(QEvent *event);
+  void createFile(const QByteArray &digest,
+		  const QByteArray &bytes,
+		  const QString &fileName) const;
   void closeEvent(QCloseEvent *event);
+  void populateFiles(void);
   void sruDownloadFinished(void);
 
  protected slots:
+  void slotAttachFiles(void);
   void slotCancel(void);
+  void slotDeleteFiles(void);
+  void slotEditFileDescription(QTableWidgetItem *item);
+  void slotExportFiles(void);
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
