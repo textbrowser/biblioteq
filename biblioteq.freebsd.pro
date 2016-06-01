@@ -15,7 +15,6 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -fwrapv -mtune=generic
 QMAKE_DISTCLEAN += -r Include
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_STRIP	= echo
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Include Source
