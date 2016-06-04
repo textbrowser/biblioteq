@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3777"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="+3736"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3784"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="+3743"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2455,7 +2455,7 @@
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3726"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3733"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2676,12 +2676,12 @@
         <location line="+1565"/>
         <location line="+227"/>
         <location line="+422"/>
-        <location line="+926"/>
+        <location line="+933"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3256"/>
+        <location line="-3263"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
@@ -2690,12 +2690,12 @@
         <location line="+1599"/>
         <location line="+390"/>
         <location line="+798"/>
-        <location line="+464"/>
+        <location line="+471"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3250"/>
+        <location line="-3257"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -3130,12 +3130,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+198"/>
+        <location line="+205"/>
         <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-182"/>
         <source>Uploading files...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3145,7 +3145,7 @@
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="+166"/>
+        <location line="+173"/>
         <source>Please select at least one file to delete.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5223,7 +5223,7 @@
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="-3655"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="-3662"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
@@ -5417,12 +5417,12 @@
         <location line="+11"/>
         <location line="+1507"/>
         <location line="+1118"/>
-        <location line="+547"/>
+        <location line="+554"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3254"/>
+        <location line="-3261"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
@@ -5431,12 +5431,12 @@
         <location line="+1502"/>
         <location line="+151"/>
         <location line="+1284"/>
-        <location line="+314"/>
+        <location line="+321"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3250"/>
+        <location line="-3257"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5882,7 +5882,7 @@
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="+172"/>
+        <location line="+179"/>
         <source>Please select at least one file to delete.</source>
         <translation type="unfinished"></translation>
     </message>
