@@ -3604,7 +3604,7 @@ void biblioteq_magazine::populateFiles(void)
 
   query.prepare(QString("SELECT file_name, "
 			"file_digest, "
-			"LENGTH(file), "
+			"LENGTH(file) AS f_s, "
 			"description, "
 			"myoid FROM %1_files "
 			"WHERE item_oid = ? ORDER BY file_name").
@@ -3612,6 +3612,7 @@ void biblioteq_magazine::populateFiles(void)
   query.bindValue(0, m_oid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  QLocale locale;
   int row = 0;
   int totalRows = 0;
 
@@ -3622,8 +3623,14 @@ void biblioteq_magazine::populateFiles(void)
 
 	for(int i = 0; i < query.record().count(); i++)
 	  {
-	    QTableWidgetItem *item = new(std::nothrow)
-	      QTableWidgetItem(query.value(i).toString());
+	    QTableWidgetItem *item = 0;
+
+	    if(query.record().fieldName(i) == "f_s")
+	      item = new(std::nothrow) QTableWidgetItem
+		(locale.toString(query.value(i).toLongLong()));
+	    else
+	      item = new(std::nothrow)
+		QTableWidgetItem(query.value(i).toString());
 
 	    if(!item)
 	      continue;
