@@ -1419,9 +1419,8 @@ void biblioteq_book::modify(const int state)
     }
   else
     {
-      connect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
+      disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.isbnAvailableCheckBox->setCheckable(false);
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";

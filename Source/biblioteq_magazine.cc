@@ -96,6 +96,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
+  ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
   connect(ma.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -1249,9 +1250,8 @@ void biblioteq_magazine::updateWindow(const int state)
     }
   else
     {
-      connect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
-	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
-	      Qt::UniqueConnection);
+      disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       ma.attach_files->setVisible(false);
       ma.delete_files->setVisible(false);
       ma.export_files->setEnabled(true);
