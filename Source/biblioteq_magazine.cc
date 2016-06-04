@@ -1609,6 +1609,7 @@ void biblioteq_magazine::modify(const int state)
 	textfield->setCursorPosition(0);
 
       storeData(this);
+      populateFiles();
     }
 
   ma.id->setFocus();
