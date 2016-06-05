@@ -1174,3 +1174,6 @@ GRANT SELECT ON magazine_files TO biblioteq_membership;
 GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_membership;
 GRANT SELECT ON magazine_files TO biblioteq_patron;
 GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_patron;
+
+REVOKE ALL ON item_borrower_vw FROM biblioteq_guest;
+GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;

@@ -707,7 +707,7 @@ GRANT SELECT ON dvd_myoid_seq TO biblioteq_guest;
 GRANT SELECT ON dvd_ratings TO biblioteq_guest;
 GRANT SELECT ON dvd_regions TO biblioteq_guest;
 GRANT SELECT ON grey_literature TO biblioteq_guest;
-GRANT SELECT ON item_borrower_vw TO biblioteq_guest;
+GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
 GRANT SELECT ON journal TO biblioteq_guest;
 GRANT SELECT ON journal_copy_info TO biblioteq_guest;
 GRANT SELECT ON journal_copy_info_myoid_seq TO biblioteq_guest;
