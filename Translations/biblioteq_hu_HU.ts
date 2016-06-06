@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3784"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="+3743"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3810"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="+3754"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -728,7 +728,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2367"/>
+        <location line="+2365"/>
         <location line="+506"/>
         <location line="+14"/>
         <location line="+757"/>
@@ -751,18 +751,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8216"/>
+        <location line="-8214"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+97"/>
-        <location line="+4105"/>
+        <location line="+4103"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4103"/>
+        <location line="-4101"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -827,7 +827,7 @@
         <translation type="unfinished">Hozzáférhetőség Visszaállítása</translation>
     </message>
     <message>
-        <location line="+364"/>
+        <location line="+362"/>
         <location line="+3537"/>
         <location line="+4446"/>
         <location line="+27"/>
@@ -2455,7 +2455,7 @@
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3733"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3759"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2599,7 +2599,7 @@
         <location line="+12"/>
         <location line="+12"/>
         <location line="+13"/>
-        <location line="+144"/>
+        <location line="+159"/>
         <location line="+145"/>
         <location line="+182"/>
         <location line="+12"/>
@@ -2609,14 +2609,14 @@
         <location line="+10"/>
         <location line="+152"/>
         <location line="+40"/>
-        <location line="+438"/>
-        <location line="+2140"/>
+        <location line="+448"/>
+        <location line="+2141"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3380"/>
+        <location line="-3406"/>
         <source>Unable to retrieve the book binding types.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2644,14 +2644,19 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1231"/>
+        <location line="+1256"/>
         <location line="+11"/>
         <location line="+17"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1132"/>
+        <location line="-1247"/>
+        <source>Author, Title, Dewey Number...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+105"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -2660,12 +2665,12 @@
         <location line="-1"/>
         <location line="+144"/>
         <location line="+469"/>
-        <location line="+438"/>
+        <location line="+448"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1040"/>
+        <location line="-1050"/>
         <location line="+44"/>
         <location line="+17"/>
         <location line="+11"/>
@@ -2673,29 +2678,29 @@
         <location line="+11"/>
         <location line="+12"/>
         <location line="+11"/>
-        <location line="+1565"/>
+        <location line="+1575"/>
         <location line="+227"/>
-        <location line="+422"/>
+        <location line="+423"/>
         <location line="+933"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3263"/>
+        <location line="-3274"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+1599"/>
+        <location line="+1609"/>
         <location line="+390"/>
-        <location line="+798"/>
+        <location line="+799"/>
         <location line="+471"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3257"/>
+        <location line="-3268"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -2737,18 +2742,18 @@
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3051"/>
+        <location line="+3062"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2873"/>
-        <location line="+2865"/>
+        <location line="-2884"/>
+        <location line="+2876"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2853"/>
+        <location line="-2864"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2771,29 +2776,29 @@
     <message>
         <location line="+63"/>
         <location line="+415"/>
-        <location line="+249"/>
+        <location line="+259"/>
         <source>BiblioteQ: Modify Book Entry (</source>
         <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-663"/>
+        <location line="-673"/>
         <location line="+415"/>
-        <location line="+32"/>
-        <location line="+217"/>
+        <location line="+37"/>
+        <location line="+222"/>
         <location line="+10"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-672"/>
+        <location line="-682"/>
         <location line="+415"/>
-        <location line="+58"/>
-        <location line="+191"/>
+        <location line="+63"/>
+        <location line="+196"/>
         <source>BiblioteQ: Modify Book Entry</source>
         <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-568"/>
+        <location line="-578"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2829,15 +2834,15 @@
         <translation type="unfinished">BiblioteQ: Könyv Keresés</translation>
     </message>
     <message>
-        <location line="+82"/>
-        <location line="+227"/>
+        <location line="+87"/>
+        <location line="+232"/>
         <source>BiblioteQ: View Book Details (</source>
         <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-224"/>
+        <location line="-229"/>
         <location line="+66"/>
-        <location line="+161"/>
+        <location line="+166"/>
         <source>BiblioteQ: View Book Details</source>
         <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése</translation>
     </message>
@@ -3035,7 +3040,7 @@
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
@@ -3460,7 +3465,7 @@
         <location line="+115"/>
         <location line="+28"/>
         <location line="+31"/>
-        <location line="+391"/>
+        <location line="+400"/>
         <location line="+242"/>
         <location line="+316"/>
         <location line="+16"/>
@@ -3471,7 +3476,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1686"/>
+        <location line="-1695"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3499,7 +3504,7 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1014"/>
+        <location line="+1023"/>
         <location line="+11"/>
         <location line="+14"/>
         <location line="+32"/>
@@ -3508,7 +3513,7 @@
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1370"/>
+        <location line="-1379"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -3518,7 +3523,7 @@
         <location line="+115"/>
         <location line="+387"/>
         <location line="+31"/>
-        <location line="+390"/>
+        <location line="+399"/>
         <location line="+244"/>
         <location line="+314"/>
         <location line="+109"/>
@@ -3526,7 +3531,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1579"/>
+        <location line="-1588"/>
         <location line="+23"/>
         <location line="+11"/>
         <location line="+8"/>
@@ -3534,24 +3539,24 @@
         <location line="+11"/>
         <location line="+12"/>
         <location line="+12"/>
-        <location line="+1369"/>
+        <location line="+1378"/>
         <location line="+445"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1901"/>
+        <location line="-1910"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1797"/>
+        <location line="+1806"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1796"/>
+        <location line="-1805"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -3593,13 +3598,13 @@
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+1363"/>
+        <location line="+1372"/>
         <location line="+3"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1205"/>
+        <location line="-1214"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3627,22 +3632,22 @@
     <message>
         <location line="+40"/>
         <location line="+400"/>
-        <location line="+205"/>
+        <location line="+214"/>
         <source>BiblioteQ: Modify Music CD Entry (</source>
         <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-604"/>
+        <location line="-613"/>
         <location line="+400"/>
-        <location line="+17"/>
-        <location line="+188"/>
+        <location line="+21"/>
+        <location line="+193"/>
         <location line="+6"/>
         <location line="+199"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-726"/>
+        <location line="-735"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3654,12 +3659,12 @@
     </message>
     <message>
         <location line="+26"/>
-        <location line="+972"/>
+        <location line="+981"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-967"/>
+        <location line="-976"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3684,13 +3689,13 @@
         <translation type="unfinished">BiblioteQ: Zene CD Keresés</translation>
     </message>
     <message>
-        <location line="+59"/>
-        <location line="+194"/>
+        <location line="+63"/>
+        <location line="+199"/>
         <source>BiblioteQ: View Music CD Details (</source>
         <translation type="unfinished">BiblioteQ: Zene CD Reszletek (</translation>
     </message>
     <message>
-        <location line="-171"/>
+        <location line="-176"/>
         <source>BiblioteQ: Modify Music CD Entry</source>
         <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása</translation>
     </message>
@@ -3700,7 +3705,7 @@
         <translation type="unfinished">BiblioteQ: Zene CD Reszletek</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+32"/>
         <location line="+210"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
@@ -3945,7 +3950,7 @@
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
@@ -4799,12 +4804,12 @@
         <location line="+115"/>
         <location line="+28"/>
         <location line="+31"/>
-        <location line="+371"/>
+        <location line="+380"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1066"/>
+        <location line="-1075"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4846,7 +4851,7 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1023"/>
+        <location line="+1032"/>
         <location line="+11"/>
         <location line="+14"/>
         <location line="+41"/>
@@ -4856,7 +4861,7 @@
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1057"/>
+        <location line="-1066"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -4866,12 +4871,12 @@
         <location line="+135"/>
         <location line="+396"/>
         <location line="+31"/>
-        <location line="+370"/>
+        <location line="+379"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-921"/>
+        <location line="-930"/>
         <location line="+22"/>
         <location line="+11"/>
         <location line="+11"/>
@@ -4891,12 +4896,12 @@
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1363"/>
+        <location line="+1372"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1362"/>
+        <location line="-1371"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -4980,21 +4985,21 @@
     <message>
         <location line="+40"/>
         <location line="+387"/>
-        <location line="+198"/>
+        <location line="+207"/>
         <source>BiblioteQ: Modify DVD Entry (</source>
         <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-584"/>
+        <location line="-593"/>
         <location line="+387"/>
-        <location line="+13"/>
-        <location line="+185"/>
+        <location line="+17"/>
+        <location line="+190"/>
         <location line="+6"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-507"/>
+        <location line="-516"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5035,13 +5040,13 @@
         <translation type="unfinished">BiblioteQ: DVD Keresés</translation>
     </message>
     <message>
-        <location line="+53"/>
-        <location line="+191"/>
+        <location line="+57"/>
+        <location line="+196"/>
         <source>BiblioteQ: View DVD Details (</source>
         <translation type="unfinished">BiblioteQ: DVD Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-168"/>
+        <location line="-173"/>
         <source>BiblioteQ: Modify DVD Entry</source>
         <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása</translation>
     </message>
@@ -5051,7 +5056,7 @@
         <translation type="unfinished">BiblioteQ: DVD Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+27"/>
         <location line="+220"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
@@ -5173,7 +5178,7 @@
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
@@ -5223,7 +5228,7 @@
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="-3662"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="-3673"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
@@ -5352,15 +5357,15 @@
         <location line="+10"/>
         <location line="+165"/>
         <location line="+52"/>
-        <location line="+429"/>
+        <location line="+439"/>
         <location line="+11"/>
-        <location line="+2151"/>
+        <location line="+2152"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3369"/>
+        <location line="-3380"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5386,14 +5391,14 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1221"/>
+        <location line="+1231"/>
         <location line="+11"/>
         <location line="+13"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1121"/>
+        <location line="-1131"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -5402,41 +5407,41 @@
         <location line="-1"/>
         <location line="+110"/>
         <location line="+485"/>
-        <location line="+426"/>
+        <location line="+436"/>
         <location line="+11"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1021"/>
+        <location line="-1031"/>
         <location line="+24"/>
         <location line="+14"/>
         <location line="+11"/>
         <location line="+11"/>
         <location line="+12"/>
         <location line="+11"/>
-        <location line="+1507"/>
-        <location line="+1118"/>
+        <location line="+1517"/>
+        <location line="+1119"/>
         <location line="+554"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3261"/>
+        <location line="-3272"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1502"/>
+        <location line="+1512"/>
         <location line="+151"/>
-        <location line="+1284"/>
+        <location line="+1285"/>
         <location line="+321"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3257"/>
+        <location line="-3268"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5473,18 +5478,18 @@
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3077"/>
+        <location line="+3088"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2907"/>
-        <location line="+2899"/>
+        <location line="-2918"/>
+        <location line="+2910"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2887"/>
+        <location line="-2898"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5507,22 +5512,22 @@
     <message>
         <location line="+77"/>
         <location line="+407"/>
-        <location line="+281"/>
+        <location line="+291"/>
         <source>BiblioteQ: Modify Journal Entry (</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-686"/>
+        <location line="-696"/>
         <location line="+407"/>
-        <location line="+283"/>
+        <location line="+293"/>
         <source>BiblioteQ: Modify Magazine Entry (</source>
         <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-688"/>
+        <location line="-698"/>
         <location line="+407"/>
-        <location line="+36"/>
-        <location line="+242"/>
+        <location line="+41"/>
+        <location line="+247"/>
         <location line="+4"/>
         <location line="+19"/>
         <location line="+4"/>
@@ -5530,23 +5535,23 @@
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-707"/>
+        <location line="-717"/>
         <location line="+407"/>
-        <location line="+63"/>
-        <location line="+219"/>
+        <location line="+68"/>
+        <location line="+224"/>
         <source>BiblioteQ: Modify Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-687"/>
+        <location line="-697"/>
         <location line="+407"/>
-        <location line="+63"/>
-        <location line="+219"/>
+        <location line="+68"/>
+        <location line="+224"/>
         <source>BiblioteQ: Modify Magazine Entry</source>
         <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-602"/>
+        <location line="-612"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5583,19 +5588,19 @@
         <translation type="unfinished">BiblioteQ: Magazin Keresés</translation>
     </message>
     <message>
-        <location line="+87"/>
-        <location line="+268"/>
+        <location line="+92"/>
+        <location line="+273"/>
         <source>BiblioteQ: View Journal Details (</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-266"/>
-        <location line="+270"/>
+        <location line="-271"/>
+        <location line="+275"/>
         <source>BiblioteQ: View Magazine Details (</source>
         <translation type="unfinished">BiblioteQ: Magazin Reszletek (</translation>
     </message>
     <message>
-        <location line="-263"/>
+        <location line="-268"/>
         <source>BiblioteQ: View Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Megtekintése</translation>
     </message>
@@ -5606,13 +5611,13 @@
     </message>
     <message>
         <location line="+64"/>
-        <location line="+203"/>
+        <location line="+208"/>
         <source>BiblioteQ: View Journal Details</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-201"/>
-        <location line="+203"/>
+        <location line="-206"/>
+        <location line="+208"/>
         <source>BiblioteQ: View Magazine Details</source>
         <translation type="unfinished">BiblioteQ: Magazin Reszleteinek Megtekintése</translation>
     </message>
@@ -5672,26 +5677,26 @@
     <message>
         <location line="+24"/>
         <location line="+24"/>
-        <location line="+1254"/>
+        <location line="+1255"/>
         <source>Memory Error</source>
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-1277"/>
+        <location line="-1278"/>
         <location line="+6"/>
-        <location line="+1272"/>
+        <location line="+1273"/>
         <location line="+6"/>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1279"/>
-        <location line="+1278"/>
+        <location line="-1280"/>
+        <location line="+1279"/>
         <source>BiblioteQ: Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1271"/>
+        <location line="-1272"/>
         <location line="+21"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Hiba</translation>
@@ -5817,7 +5822,7 @@
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
-        <location line="+498"/>
+        <location line="+499"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
     </message>
@@ -6318,7 +6323,7 @@
         <location line="+77"/>
         <location line="+32"/>
         <location line="+222"/>
-        <location line="+710"/>
+        <location line="+711"/>
         <location line="+97"/>
         <location line="+11"/>
         <location line="+11"/>
@@ -6333,7 +6338,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2437"/>
+        <location line="-2438"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6347,7 +6352,7 @@
     <message>
         <location line="-529"/>
         <location line="+12"/>
-        <location line="+1090"/>
+        <location line="+1091"/>
         <location line="+12"/>
         <location line="+12"/>
         <location line="+12"/>
@@ -6357,7 +6362,7 @@
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1161"/>
+        <location line="-1162"/>
         <source>Please complete the collection&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a Gyüjtemény Azonosító mezőt!</translation>
     </message>
@@ -6369,7 +6374,7 @@
     <message>
         <location line="+17"/>
         <location line="+4"/>
-        <location line="+1153"/>
+        <location line="+1154"/>
         <location line="+3"/>
         <location line="+411"/>
         <location line="+3"/>
@@ -6377,11 +6382,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1571"/>
+        <location line="-1572"/>
         <location line="+193"/>
         <location line="+32"/>
         <location line="+222"/>
-        <location line="+709"/>
+        <location line="+710"/>
         <location line="+171"/>
         <location line="+243"/>
         <location line="+130"/>
@@ -6389,28 +6394,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1609"/>
-        <location line="+1160"/>
+        <location line="-1610"/>
+        <location line="+1161"/>
         <location line="+1089"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2238"/>
-        <location line="+1160"/>
+        <location line="-2239"/>
+        <location line="+1161"/>
         <location line="+389"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1538"/>
-        <location line="+1160"/>
+        <location line="-1539"/>
+        <location line="+1161"/>
         <location line="+389"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1538"/>
+        <location line="-1539"/>
         <location line="+211"/>
         <location line="+136"/>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
@@ -6433,13 +6438,13 @@
     </message>
     <message>
         <location line="+27"/>
-        <location line="+1102"/>
+        <location line="+1103"/>
         <location line="+373"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-1470"/>
+        <location line="-1471"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6493,12 +6498,12 @@
     </message>
     <message>
         <location line="+83"/>
-        <location line="+1054"/>
+        <location line="+1055"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1053"/>
+        <location line="-1054"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -6593,7 +6598,7 @@
         <translation type="unfinished">Cikk Formátuma:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>BiblioteQ: Photograph Collection Image Selection</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Kép Kiválasztás</translation>
     </message>
@@ -6841,12 +6846,12 @@
         <location line="+112"/>
         <location line="+29"/>
         <location line="+31"/>
-        <location line="+328"/>
+        <location line="+338"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-948"/>
+        <location line="-958"/>
         <source>Unable to retrieve the video game ratings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6881,7 +6886,7 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+918"/>
+        <location line="+928"/>
         <location line="+17"/>
         <location line="+11"/>
         <location line="+9"/>
@@ -6890,7 +6895,7 @@
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-914"/>
+        <location line="-924"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -6900,12 +6905,12 @@
         <location line="+117"/>
         <location line="+353"/>
         <location line="+31"/>
-        <location line="+328"/>
+        <location line="+338"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-818"/>
+        <location line="-828"/>
         <location line="+23"/>
         <location line="+11"/>
         <location line="+11"/>
@@ -6923,12 +6928,12 @@
     </message>
     <message>
         <location line="+9"/>
-        <location line="+1206"/>
+        <location line="+1216"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1205"/>
+        <location line="-1215"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -7002,21 +7007,21 @@
     <message>
         <location line="+41"/>
         <location line="+358"/>
-        <location line="+201"/>
+        <location line="+211"/>
         <source>BiblioteQ: Modify Video Game Entry (</source>
         <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-558"/>
+        <location line="-568"/>
         <location line="+358"/>
-        <location line="+13"/>
-        <location line="+188"/>
+        <location line="+18"/>
+        <location line="+193"/>
         <location line="+6"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-485"/>
+        <location line="-495"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7057,13 +7062,13 @@
         <translation type="unfinished">BiblioteQ: Videójáték Keresés</translation>
     </message>
     <message>
-        <location line="+53"/>
-        <location line="+194"/>
+        <location line="+58"/>
+        <location line="+199"/>
         <source>BiblioteQ: View Video Game Details (</source>
         <translation type="unfinished">BiblioteQ: Videójáték Reszletek (</translation>
     </message>
     <message>
-        <location line="-171"/>
+        <location line="-176"/>
         <source>BiblioteQ: Modify Video Game Entry</source>
         <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása</translation>
     </message>
@@ -7073,7 +7078,7 @@
         <translation type="unfinished">BiblioteQ: Videójáték Reszletek</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+29"/>
         <location line="+186"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
@@ -8771,7 +8776,7 @@
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+39"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -9099,7 +9104,7 @@
         <translation type="obsolete">Nyomtatás</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+23"/>
         <source>&amp;Close</source>
         <translation>Bezárás</translation>
     </message>

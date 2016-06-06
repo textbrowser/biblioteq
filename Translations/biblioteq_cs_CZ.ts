@@ -2199,6 +2199,10 @@
         <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Author, Title, Dewey Number...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
