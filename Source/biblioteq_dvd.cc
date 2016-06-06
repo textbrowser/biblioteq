@@ -1741,7 +1741,7 @@ void biblioteq_dvd::slotQuery(void)
 
 void biblioteq_dvd::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("UPC:") + "</b> " + dvd.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Rating:") + "</b> " + dvd.rating->currentText() +
     "<br>";
@@ -1782,7 +1782,8 @@ void biblioteq_dvd::slotPrint(void)
   m_html += "<b>" + tr("Abstract:") + "</b> " +
     dvd.description->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    dvd.keyword->toPlainText().trimmed() + "<br>";
+    dvd.keyword->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 

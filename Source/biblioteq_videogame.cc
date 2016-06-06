@@ -1564,7 +1564,7 @@ void biblioteq_videogame::slotQuery(void)
 
 void biblioteq_videogame::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("UPC:") + "</b> " + vg.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Game Rating:") + "</b> " +
     vg.rating->currentText() + "<br>";
@@ -1600,8 +1600,8 @@ void biblioteq_videogame::slotPrint(void)
     vg.description->toPlainText().trimmed() +
     "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    vg.keyword->toPlainText().trimmed() +
-    "<br>";
+    vg.keyword->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 

@@ -2207,7 +2207,7 @@ void biblioteq_cd::slotComputeRuntime(void)
 
 void biblioteq_cd::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("Catalog Number:") + "</b> " +
     cd.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Format:") + "</b> " + cd.format->currentText() + "<br>";
@@ -2243,7 +2243,8 @@ void biblioteq_cd::slotPrint(void)
   m_html += "<b>" + tr("Abstract:") + "</b> " +
     cd.description->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    cd.keyword->toPlainText().trimmed() + "<br>";
+    cd.keyword->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 

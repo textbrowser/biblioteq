@@ -943,7 +943,7 @@ void biblioteq_photographcollection::slotQuery(void)
 
 void biblioteq_photographcollection::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("Collection ID:") + "</b> " +
     pc.id_collection->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Collection Title:") + "</b> " +
@@ -979,7 +979,8 @@ void biblioteq_photographcollection::slotPrint(void)
   m_html += "<b>" + tr("Item Subjects:") + "</b> " +
     pc.subjects_item->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Item Format:") + "</b> " +
-    pc.format_item->toPlainText().trimmed() + "<br>";
+    pc.format_item->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 

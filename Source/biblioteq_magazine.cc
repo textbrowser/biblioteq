@@ -2139,7 +2139,7 @@ void biblioteq_magazine::slotZ3950Query(void)
 
 void biblioteq_magazine::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("ISSN:") + "</b> " + ma.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("Volume:") + "</b> " + ma.volume->text() + "<br>";
   m_html += "<b>" + tr("Issue (Number):") + "</b> " + ma.issue->text() +
@@ -2178,7 +2178,8 @@ void biblioteq_magazine::slotPrint(void)
   m_html += "<b>" + tr("MARC Tags:") + "</b> " +
     ma.marc_tags->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    ma.keyword->toPlainText().trimmed() + "<br>";
+    ma.keyword->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 
