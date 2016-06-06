@@ -974,7 +974,12 @@ void biblioteq_videogame::updateWindow(const int state)
   else
     {
       vg.copiesButton->setVisible(false);
-      vg.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	vg.showUserButton->setVisible(false);
+      else
+	vg.showUserButton->setEnabled(true);
+
       vg.okButton->setVisible(false);
       vg.queryButton->setVisible(false);
       vg.resetButton->setVisible(false);
@@ -1032,7 +1037,12 @@ void biblioteq_videogame::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Video Game Details"));
       m_engWindowTitle = "View";
       vg.copiesButton->setVisible(false);
-      vg.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	vg.showUserButton->setVisible(false);
+      else
+	vg.showUserButton->setEnabled(true);
+
       vg.okButton->setVisible(false);
       vg.queryButton->setVisible(false);
       vg.resetButton->setVisible(false);

@@ -1082,7 +1082,11 @@ void biblioteq_dvd::updateWindow(const int state)
     }
   else
     {
-      dvd.showUserButton->setEnabled(true);
+      if(qmain->isGuest())
+	dvd.showUserButton->setVisible(false);
+      else
+	dvd.showUserButton->setEnabled(true);
+
       dvd.copiesButton->setVisible(false);
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);
@@ -1142,7 +1146,12 @@ void biblioteq_dvd::modify(const int state)
     {
       setWindowTitle(tr("BiblioteQ: View DVD Details"));
       m_engWindowTitle = "View";
-      dvd.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	dvd.showUserButton->setVisible(false);
+      else
+	dvd.showUserButton->setEnabled(true);
+
       dvd.copiesButton->setVisible(false);
       dvd.okButton->setVisible(false);
       dvd.queryButton->setVisible(false);

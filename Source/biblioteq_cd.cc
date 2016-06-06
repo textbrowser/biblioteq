@@ -1063,7 +1063,11 @@ void biblioteq_cd::updateWindow(const int state)
     }
   else
     {
-      cd.showUserButton->setEnabled(true);
+      if(qmain->isGuest())
+	cd.showUserButton->setVisible(false);
+      else
+	cd.showUserButton->setEnabled(true);
+
       cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);
@@ -1127,7 +1131,12 @@ void biblioteq_cd::modify(const int state)
     {
       setWindowTitle(tr("BiblioteQ: View Music CD Details"));
       m_engWindowTitle = "View";
-      cd.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	cd.showUserButton->setVisible(false);
+      else
+	cd.showUserButton->setEnabled(true);
+
       cd.copiesButton->setVisible(false);
       cd.okButton->setVisible(false);
       cd.queryButton->setVisible(false);

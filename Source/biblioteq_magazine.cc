@@ -1256,7 +1256,12 @@ void biblioteq_magazine::updateWindow(const int state)
       ma.delete_files->setVisible(false);
       ma.export_files->setEnabled(true);
       ma.issnAvailableCheckBox->setCheckable(false);
-      ma.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	ma.showUserButton->setVisible(false);
+      else
+	ma.showUserButton->setEnabled(true);
+
       ma.copiesButton->setVisible(false);
       ma.sruQueryButton->setVisible(false);
       ma.z3950QueryButton->setVisible(false);
@@ -1352,7 +1357,12 @@ void biblioteq_magazine::modify(const int state)
       ma.delete_files->setVisible(false);
       ma.export_files->setVisible(true);
       ma.issnAvailableCheckBox->setCheckable(false);
-      ma.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	ma.showUserButton->setVisible(false);
+      else
+	ma.showUserButton->setEnabled(true);
+
       ma.copiesButton->setVisible(false);
       ma.sruQueryButton->setVisible(false);
       ma.z3950QueryButton->setVisible(false);

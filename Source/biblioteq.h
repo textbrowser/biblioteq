@@ -213,6 +213,7 @@ class biblioteq: public QMainWindow
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;
   Ui_membersBrowser getBB(void) const;
+  bool isGuest(void) const;
   int populateTable(const int search_type_arg,
 		    const QString &typefilter,
 		    const QString &searchstrArg,

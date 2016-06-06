@@ -1340,7 +1340,12 @@ void biblioteq_book::updateWindow(const int state)
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
       id.export_files->setEnabled(true);
-      id.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
+
       id.okButton->setVisible(false);
       id.sruQueryButton->setVisible(false);
       id.z3950QueryButton->setVisible(false);
@@ -1428,7 +1433,12 @@ void biblioteq_book::modify(const int state)
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
       id.export_files->setVisible(true);
-      id.showUserButton->setEnabled(true);
+
+      if(qmain->isGuest())
+	id.showUserButton->setVisible(false);
+      else
+	id.showUserButton->setEnabled(true);
+
       id.okButton->setVisible(false);
       id.sruQueryButton->setVisible(false);
       id.z3950QueryButton->setVisible(false);

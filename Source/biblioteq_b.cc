@@ -4051,3 +4051,17 @@ QString biblioteq::homePath(void)
   return QDir::homePath() + QDir::separator() + ".biblioteq";
 #endif
 }
+
+/*
+** -- isGuest() --
+*/
+
+bool biblioteq::isGuest(void) const
+{
+  if(m_db.driverName() == "QSQLITE")
+    return false;
+  else if(m_db.userName() == "xbook_guest")
+    return true;
+  else
+    return false;
+}
