@@ -1,5 +1,11 @@
 CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEUSER;
 
+CREATE TABLE admin
+(
+	roles		 TEXT NOT NULL,
+	username	 VARCHAR(128) NOT NULL PRIMARY KEY
+);
+
 CREATE TABLE book
 (
 	author		 TEXT NOT NULL,
@@ -470,23 +476,6 @@ END;
 CREATE TRIGGER item_request_trigger AFTER INSERT ON item_borrower
 FOR EACH row EXECUTE PROCEDURE delete_request();
 
-CREATE TABLE admin
-(
-	roles		 TEXT NOT NULL,
-	username	 VARCHAR(128) NOT NULL PRIMARY KEY
-);
-
-CREATE VIEW item_borrower_vw AS
-SELECT	 copy_number,
-	 copyid,
-	 duedate,
-	 item_oid,
-	 memberid,
-	 myoid,
-	 reserved_date,
-	 type
-FROM	 item_borrower;
-
 CREATE TABLE book_binding_types
 (
 	binding_type	 TEXT NOT NULL PRIMARY KEY
@@ -545,30 +534,41 @@ CREATE TABLE videogame_ratings
 	videogame_rating	 TEXT NOT NULL PRIMARY KEY
 );
 
+CREATE VIEW item_borrower_vw AS
+SELECT	 copy_number,
+	 copyid,
+	 duedate,
+	 item_oid,
+	 memberid,
+	 myoid,
+	 reserved_date,
+	 type
+FROM	 item_borrower;
+
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
+CREATE ROLE biblioteq_circulation_librarian INHERIT;
+CREATE ROLE biblioteq_circulation_librarian_membership INHERIT;
+CREATE ROLE biblioteq_circulation_membership INHERIT;
 CREATE ROLE biblioteq_guest NOINHERIT;
 CREATE ROLE biblioteq_librarian INHERIT;
+CREATE ROLE biblioteq_librarian_membership INHERIT;
 CREATE ROLE biblioteq_membership CREATEROLE INHERIT;
 CREATE ROLE biblioteq_patron NOINHERIT;
-CREATE ROLE biblioteq_circulation_librarian INHERIT;
-CREATE ROLE biblioteq_circulation_membership INHERIT;
-CREATE ROLE biblioteq_librarian_membership INHERIT;
-CREATE ROLE biblioteq_circulation_librarian_membership INHERIT;
 
 GRANT biblioteq_circulation TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_librarian TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_membership TO biblioteq_administrator WITH ADMIN OPTION;
-GRANT biblioteq_patron TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_circulation TO biblioteq_circulation_librarian WITH ADMIN OPTION;
-GRANT biblioteq_librarian TO biblioteq_circulation_librarian WITH ADMIN OPTION;
-GRANT biblioteq_circulation TO biblioteq_circulation_membership WITH ADMIN OPTION;
-GRANT biblioteq_membership TO biblioteq_circulation_membership WITH ADMIN OPTION;
-GRANT biblioteq_librarian TO biblioteq_librarian_membership WITH ADMIN OPTION;
-GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
 GRANT biblioteq_circulation TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_circulation TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_administrator WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_circulation_librarian WITH ADMIN OPTION;
 GRANT biblioteq_librarian TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_librarian TO biblioteq_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_administrator WITH ADMIN OPTION;
 GRANT biblioteq_membership TO biblioteq_circulation_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_circulation_membership WITH ADMIN OPTION;
+GRANT biblioteq_membership TO biblioteq_librarian_membership WITH ADMIN OPTION;
+GRANT biblioteq_patron TO biblioteq_administrator WITH ADMIN OPTION;
 
 GRANT DELETE, INSERT, SELECT, UPDATE ON admin TO biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book TO biblioteq_administrator;
