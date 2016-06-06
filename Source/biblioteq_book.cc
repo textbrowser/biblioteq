@@ -340,6 +340,21 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   else if(!found)
     id.sruQueryButton->actions()[0]->setChecked(true);
 
+  QAction *action = new(std::nothrow) QAction
+    (tr("Author, Title, Dewey Number..."), this);
+
+  if(action)
+    {
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPrintAuthorTitleDewey(void)));
+      id.printButton->addAction(action);
+    }
+
+  if(id.printButton->actions().isEmpty())
+    id.printButton->setPopupMode(QToolButton::DelayedPopup);
+
   hashes.clear();
   found = false;
   hashes = qmain->getZ3950Maps();
@@ -2653,7 +2668,7 @@ void biblioteq_book::slotZ3950Query(void)
 
 void biblioteq_book::slotPrint(void)
 {
-  m_html = "";
+  m_html = "<html>";
   m_html += "<b>" + tr("ISBN-10:") + "</b> " +
     id.id->text().trimmed() + "<br>";
   m_html += "<b>" + tr("ISBN-13:") + "</b> " +
@@ -2702,7 +2717,8 @@ void biblioteq_book::slotPrint(void)
   m_html += "<b>" + tr("MARC Tags:") + "</b> " +
     id.marc_tags->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    id.keyword->toPlainText().trimmed() + "<br>";
+    id.keyword->toPlainText().trimmed();
+  m_html += "</html>";
   print(this);
 }
 
@@ -3874,4 +3890,37 @@ void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
 
   if(query.exec())
     item1->setText(text);
+}
+
+/*
+** -- slotPrintAuthorTitleDewey() --
+*/
+
+void biblioteq_book::slotPrintAuthorTitleDewey(void)
+{
+  QString html("");
+
+  html += "<html>";
+  html += id.author->toPlainText().trimmed() + "<br>";
+  html += id.title->text().trimmed() + "<br>";
+  html += id.deweynum->text().trimmed();
+  html += "</html>";
+
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
 }

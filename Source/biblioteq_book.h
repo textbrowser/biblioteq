@@ -94,6 +94,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
+  void slotPrintAuthorTitleDewey(void);
   void slotProxyAuthenticationRequired
     (const QNetworkProxy &proxy, QAuthenticator *authenticator);
 #if QT_VERSION < 0x050000
