@@ -1098,7 +1098,7 @@ GRANT SELECT ON grey_literature_myoid_seq TO biblioteq_patron;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_administrator;
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 
-/* Release 2016.07.01 */
+/* Release 2016.07.04 */
 
 CREATE TABLE book_files
 (
