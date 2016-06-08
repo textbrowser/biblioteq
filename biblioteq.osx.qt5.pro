@@ -109,6 +109,7 @@ TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_el_GR.ts \
 		  Translations/biblioteq_fr_FR.ts \
 		  Translations/biblioteq_hu_HU.ts \
+		  Translations/biblioteq_it_IT.ts \
                   Translations/biblioteq_nl_BE.ts \
                   Translations/biblioteq_nl_NL.ts
 
