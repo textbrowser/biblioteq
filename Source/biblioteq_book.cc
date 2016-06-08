@@ -341,7 +341,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     id.sruQueryButton->actions()[0]->setChecked(true);
 
   QAction *action = new(std::nothrow) QAction
-    (tr("Author, Title, Dewey Number..."), this);
+    (tr("Author, Title, Dewey Class Number..."), this);
 
   if(action)
     {
@@ -349,6 +349,18 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotPrintAuthorTitleDewey(void)));
+      id.printButton->addAction(action);
+    }
+
+  action = new(std::nothrow) QAction
+    (tr("Call Number, Dewey Class Number..."), this);
+
+  if(action)
+    {
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotPrintCallDewey(void)));
       id.printButton->addAction(action);
     }
 
@@ -3904,6 +3916,44 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
   html += id.author->toPlainText().trimmed() + "<br>";
   html += id.title->text().trimmed() + "<br>";
   html += id.deweynum->text().trimmed();
+  html += "</html>";
+
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+  QTextDocument document;
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  printer.setColorMode(QPrinter::GrayScale);
+  printer.setPageSize(QPrinter::Letter);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      document.setHtml(html);
+      document.print(&printer);
+    }
+}
+
+/*
+** -- slotPrintCallDewey() --
+*/
+
+void biblioteq_book::slotPrintCallDewey(void)
+{
+  QString html("");
+  QStringList list
+    ((id.callnum->text().trimmed() + " " +
+      id.deweynum->text().trimmed()).split(QRegExp("\\W+"),
+					   QString::SkipEmptyParts));
+
+  html += "<html>";
+
+  for(int i = 0; i < list.size(); i++)
+    html += list.at(i) + "<br>";
+
   html += "</html>";
 
   QPrinter printer;
