@@ -68,6 +68,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   biblioteq_generic_thread *m_thread;
   biblioteq_item_working_dialog *m_httpProgress;
   biblioteq_item_working_dialog *m_sruWorking;
+  bool m_duplicate;
   bool useHttp(void) const;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);

@@ -34,6 +34,8 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
 			       const int rowArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
+  m_duplicate = false;
+
   QGraphicsScene *scene1 = 0;
   QGraphicsScene *scene2 = 0;
   QMenu *menu = 0;
@@ -1692,7 +1694,9 @@ void biblioteq_book::modify(const int state)
 	textfield->setCursorPosition(0);
 
       storeData(this);
-      populateFiles();
+
+      if(!m_duplicate)
+	populateFiles();
     }
 
   id.id->setFocus();
@@ -3172,6 +3176,7 @@ void biblioteq_book::slotReadyRead(void)
 
 void biblioteq_book::duplicate(const QString &p_oid, const int state)
 {
+  m_duplicate = true;
   modify(state); // Initial population.
   id.attach_files->setEnabled(false);
   id.copiesButton->setEnabled(false);
@@ -3180,6 +3185,7 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
   id.showUserButton->setEnabled(false);
   m_oid = p_oid;
   setWindowTitle(tr("BiblioteQ: Duplicate Book Entry"));
+  m_duplicate = false;
   m_engWindowTitle = "Create";
 }
 

@@ -41,6 +41,8 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 				       const QString &subTypeArg):
   QMainWindow(), biblioteq_item(rowArg)
 {
+  m_duplicate = false;
+
   QMenu *menu = 0;
   QRegExp rx("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9X]");
   QValidator *validator1 = 0;
@@ -1619,7 +1621,9 @@ void biblioteq_magazine::modify(const int state)
 	textfield->setCursorPosition(0);
 
       storeData(this);
-      populateFiles();
+
+      if(!m_duplicate)
+	populateFiles();
     }
 
   ma.id->setFocus();
@@ -2742,6 +2746,7 @@ Ui_magDialog biblioteq_magazine::dialog(void) const
 
 void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
 {
+  m_duplicate = true;
   modify(state); // Initial population.
   ma.attach_files->setEnabled(false);
   ma.delete_files->setEnabled(false);
@@ -2755,6 +2760,7 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
   else
     setWindowTitle(tr("BiblioteQ: Duplicate Magazine Entry"));
 
+  m_duplicate = false;
   m_engWindowTitle = "Create";
 }
 
