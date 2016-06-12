@@ -2212,7 +2212,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Author, Title, Dewey Number...</source>
+        <source>Author, Title, Dewey Class Number...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call Number, Dewey Class Number...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
