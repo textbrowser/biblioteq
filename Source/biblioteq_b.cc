@@ -28,6 +28,8 @@ int biblioteq::populateTable(const int search_type_arg,
 			     const QString &searchstrArg,
 			     const int pagingType)
 {
+  ui.itemsCountLabel->setText(tr("0 Results"));
+
   QDate now(QDate::currentDate());
   QProgressDialog progress(this);
   QString itemType = "";
@@ -3442,7 +3444,11 @@ int biblioteq::populateTable(const int search_type_arg,
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
 		if(j == 0)
-		  ui.table->setRowCount(ui.table->rowCount() + 1);
+		  {
+		    ui.table->setRowCount(ui.table->rowCount() + 1);
+		    ui.itemsCountLabel->setText(QString(tr("%1 Result(s)")).
+						arg(ui.table->rowCount()));
+		  }
 
 		ui.table->setItem(i, j, item);
 
