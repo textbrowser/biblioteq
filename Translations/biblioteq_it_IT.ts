@@ -5155,34 +5155,6 @@
     </message>
 </context>
 <context>
-    <name>biblioteq_greyliteratureinfo</name>
-    <message>
-        <location filename="../UI/biblioteq_greyliteratureinfo.ui" line="14"/>
-        <source>BiblioteQ</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/biblioteq_greyliteratureinfo.ui" line="52"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/biblioteq_greyliteratureinfo.ui" line="69"/>
-        <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/biblioteq_greyliteratureinfo.ui" line="85"/>
-        <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/biblioteq_greyliteratureinfo.ui" line="102"/>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>biblioteq_journal</name>
     <message>
         <location filename="../Source/biblioteq_journal.cc" line="65"/>

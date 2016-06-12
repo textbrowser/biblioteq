@@ -56,7 +56,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3810"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3822"/>
         <location filename="../Source/biblioteq_magazine.cc" line="+3754"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
@@ -2455,7 +2455,7 @@
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3759"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3771"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2599,7 +2599,7 @@
         <location line="+12"/>
         <location line="+12"/>
         <location line="+13"/>
-        <location line="+159"/>
+        <location line="+171"/>
         <location line="+145"/>
         <location line="+182"/>
         <location line="+12"/>
@@ -2616,7 +2616,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3406"/>
+        <location line="-3418"/>
         <source>Unable to retrieve the book binding types.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2644,19 +2644,14 @@
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1256"/>
+        <location line="+1268"/>
         <location line="+11"/>
         <location line="+17"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1247"/>
-        <source>Author, Title, Dewey Number...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+105"/>
+        <location line="-1142"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -3145,7 +3140,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4"/>
+        <location line="-3231"/>
+        <source>Author, Title, Dewey Class Number...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Call Number, Dewey Class Number...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3223"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
