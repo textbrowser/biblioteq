@@ -3609,7 +3609,7 @@ void biblioteq_book::slotAttachFiles(void)
 		  total.append(bytes.mid(0, static_cast<int> (rc)));
 		}
 
-	      if(!bytes.isEmpty())
+	      if(!total.isEmpty())
 		{
 		  total = qCompress(total, 9);
 		  createFile(digest.result(), total,
@@ -3687,6 +3687,7 @@ void biblioteq_book::populateFiles(void)
 {
   id.files->clearContents();
   id.files->setRowCount(0);
+  id.files->setSortingEnabled(false);
 
   QSqlQuery query(qmain->getDB());
 
@@ -3739,6 +3740,7 @@ void biblioteq_book::populateFiles(void)
 
   id.files->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
   id.files->setRowCount(totalRows);
+  id.files->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
 }
 
