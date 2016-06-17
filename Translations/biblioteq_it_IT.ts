@@ -4,14 +4,14 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3828"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3760"/>
+        <location filename="../Source/biblioteq_book.cc" line="3830"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3762"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3832"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3764"/>
+        <location filename="../Source/biblioteq_book.cc" line="3834"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3766"/>
         <location filename="../Source/biblioteq_misc_functions.cc" line="2050"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
@@ -2625,7 +2625,7 @@
         <location filename="../Source/biblioteq_book.cc" line="2172"/>
         <location filename="../Source/biblioteq_book.cc" line="2399"/>
         <location filename="../Source/biblioteq_book.cc" line="2822"/>
-        <location filename="../Source/biblioteq_book.cc" line="3757"/>
+        <location filename="../Source/biblioteq_book.cc" line="3759"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2639,7 +2639,7 @@
         <location filename="../Source/biblioteq_book.cc" line="2100"/>
         <location filename="../Source/biblioteq_book.cc" line="2490"/>
         <location filename="../Source/biblioteq_book.cc" line="3291"/>
-        <location filename="../Source/biblioteq_book.cc" line="3762"/>
+        <location filename="../Source/biblioteq_book.cc" line="3764"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3089,27 +3089,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3758"/>
+        <location filename="../Source/biblioteq_book.cc" line="3760"/>
         <source>Please select at least one file to delete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3763"/>
+        <location filename="../Source/biblioteq_book.cc" line="3765"/>
         <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3810"/>
+        <location filename="../Source/biblioteq_book.cc" line="3812"/>
         <source>BiblioteQ: Book File Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3899"/>
+        <location filename="../Source/biblioteq_book.cc" line="3901"/>
         <source>BiblioteQ: File Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="3900"/>
+        <location filename="../Source/biblioteq_book.cc" line="3902"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5366,7 +5366,7 @@
         <location filename="../Source/biblioteq_magazine.cc" line="485"/>
         <location filename="../Source/biblioteq_magazine.cc" line="2004"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3125"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3679"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3681"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5380,7 +5380,7 @@
         <location filename="../Source/biblioteq_magazine.cc" line="1925"/>
         <location filename="../Source/biblioteq_magazine.cc" line="2076"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3363"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="3684"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3686"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5831,32 +5831,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3680"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3682"/>
         <source>Please select at least one file to delete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3685"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3687"/>
         <source>Are you sure that you wish to delete the selected file(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3739"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3741"/>
         <source>BiblioteQ: Journal File Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3741"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3743"/>
         <source>BiblioteQ: Magazine File Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3837"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3839"/>
         <source>BiblioteQ: File Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="3838"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="3840"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
