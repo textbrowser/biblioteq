@@ -277,7 +277,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	      item->setText("");
 
 	    m_cb.table->setItem(i, j, item);
-	    m_cb.table->resizeColumnToContents(j);
 	  }
 	else
 	  qmain->addError(QString(tr("Memory Error")),
@@ -395,8 +394,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		    else if(j != 0)
 		      m_cb.table->item(row, j)->setText(str);
 		  }
-
-		m_cb.table->resizeColumnToContents(j);
 	      }
 	    else
 	      terminate = true;
@@ -415,7 +412,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
     }
 
   progress2.close();
-  m_cb.table->resizeColumnsToContents();
+
+  for(int i = 0; i < m_cb.table->columnCount() - 1; i++)
+    m_cb.table->resizeColumnToContents(i);
 }
 
 /*

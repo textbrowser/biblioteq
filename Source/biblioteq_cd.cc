@@ -1581,8 +1581,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 					 "\"item\" object. "
 					 "This is a serious problem!")),
 			      QString(""), __FILE__, __LINE__);
-
-	    trd.table->resizeColumnToContents(i);
 	  }
 
       if(i + 1 <= progress.maximum())
@@ -1598,7 +1596,9 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   trd.table->setSortingEnabled(false);
   comboBoxList.clear();
   trd.table->setRowCount(i); // Support cancellation.
-  trd.table->resizeColumnsToContents();
+
+  for(int i = 0; i < trd.table->columnCount() - 1; i++)
+    trd.table->resizeColumnToContents(i);
 }
 
 /*
@@ -1706,13 +1706,13 @@ void biblioteq_cd::slotInsertTrack(void)
 				   "\"item\" object. "
 				   "This is a serious problem!")),
 			QString(""), __FILE__, __LINE__);
-
-      trd.table->resizeColumnToContents(i);
     }
 
   list.clear();
   trd.table->setSortingEnabled(false);
-  trd.table->resizeColumnsToContents();
+
+  for(int i = 0; i < trd.table->columnCount() - 1; i++)
+    trd.table->resizeColumnToContents(i);
 }
 
 /*

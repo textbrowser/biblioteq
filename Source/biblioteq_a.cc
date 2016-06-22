@@ -1238,11 +1238,12 @@ void biblioteq::slotAbout(void)
   mb.setText
     (QString("<html>BiblioteQ Version %1<br>"
 	     "Copyright (c) 2005 - present, guess who?<br>"
+	     "Compiled on %2, %3.<br>"
 	     "Visit your local library!<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
-	     "Architecture %2.<br>"
-	     "Qt version %3."
+	     "Architecture %4.<br>"
+	     "Qt version %5."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
@@ -1253,6 +1254,8 @@ void biblioteq::slotAbout(void)
 	     "http://biblioteq.sourceforge.net/"
 	     "release_notes.html</a>.<br></html>").
      arg(BIBLIOTEQ_VERSION).
+     arg(__DATE__).
+     arg(__TIME__).
      arg(BIBLIOTEQ_ARCHITECTURE_STR).
      arg(QT_VERSION_STR));
   mb.setStandardButtons(QMessageBox::Ok);
@@ -2130,7 +2133,10 @@ void biblioteq::slotResizeColumns(void)
       return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  ui.table->resizeColumnsToContents();
+
+  for(int i = 0; i < ui.table->columnCount() - 1; i++)
+    ui.table->resizeColumnToContents(i);
+
   ui.table->horizontalHeader()->setStretchLastSection(true);
   QApplication::restoreOverrideCursor();
 }
@@ -5441,7 +5447,9 @@ void biblioteq::slotReset(void)
 void biblioteq::slotShowErrorDialog(void)
 {
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  er.table->resizeColumnsToContents();
+
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
 
   static bool resized = false;
 
@@ -5541,7 +5549,9 @@ void biblioteq::slotResetErrorLog(void)
   er.table->setHorizontalHeaderLabels(list);
   list.clear();
   er.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  er.table->resizeColumnsToContents();
+
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
 
   if(m_error_bar_label != 0)
     {
@@ -6829,13 +6839,13 @@ void biblioteq::setGlobalFonts(const QFont &font)
 
 void biblioteq::slotShowCustomQuery(void)
 {
-  int i = 0;
-  int j = 0;
   QSqlField field;
   QSqlRecord rec;
   QStringList list;
   QTreeWidgetItem *item1 = 0;
   QTreeWidgetItem *item2 = 0;
+  int i = 0;
+  int j = 0;
 
   if(cq.tables_t->columnCount() == 0)
     {
@@ -6952,7 +6962,7 @@ void biblioteq::slotShowCustomQuery(void)
 			      "problem!")), QString(""),
 		   __FILE__, __LINE__);
 
-      for(i = 0; i < cq.tables_t->columnCount(); i++)
+      for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
 	{
 #if QT_VERSION >= 0x050000
 	  cq.tables_t->header()->setSectionResizeMode

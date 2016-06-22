@@ -442,7 +442,9 @@ void biblioteq_main_table::resetTable(const QString &username,
 
   if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
     {
-      resizeColumnsToContents();
+      for(int i = 0; i < columnCount() - 1; i++)
+	resizeColumnToContents(i);
+
       horizontalHeader()->setStretchLastSection(true);
     }
 
