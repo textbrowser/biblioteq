@@ -2285,7 +2285,7 @@ void biblioteq_cd::slotSelectImage(void)
 	      toUpper();
 
 	  cd.front_image->scene()->addPixmap
-	    (QPixmap().fromImage(cd.front_image->m_image));
+	    (QPixmap::fromImage(cd.front_image->m_image));
 
 	  if(cd.front_image->scene()->items().size() > 0)
 	    cd.front_image->scene()->items().at(0)->setFlags
@@ -2305,7 +2305,7 @@ void biblioteq_cd::slotSelectImage(void)
 	      toUpper();
 
 	  cd.back_image->scene()->addPixmap
-	    (QPixmap().fromImage(cd.back_image->m_image));
+	    (QPixmap::fromImage(cd.back_image->m_image));
 
 	  if(cd.back_image->scene()->items().size() > 0)
 	    cd.back_image->scene()->items().at(0)->setFlags

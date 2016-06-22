@@ -3413,7 +3413,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		     Qt::SmoothTransformation);
 
 		pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
-		  (QPixmap().fromImage(image), 0);
+		  (QPixmap::fromImage(image), 0);
 
 		if(pixmapItem)
 		  {

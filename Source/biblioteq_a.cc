@@ -3673,7 +3673,7 @@ void biblioteq::slotDisplaySummary(void)
       if(!frontImage.isNull())
 	{
 	  ui.frontImage->setVisible(true);
-	  ui.frontImage->setPixmap(QPixmap().fromImage(frontImage));
+	  ui.frontImage->setPixmap(QPixmap::fromImage(frontImage));
 	}
       else
 	ui.frontImage->clear();
@@ -3683,7 +3683,7 @@ void biblioteq::slotDisplaySummary(void)
 	  if(!backImage.isNull())
 	    {
 	      ui.backImage->setVisible(true);
-	      ui.backImage->setPixmap(QPixmap().fromImage(backImage));
+	      ui.backImage->setPixmap(QPixmap::fromImage(backImage));
 	    }
 	  else
 	    ui.backImage->clear();

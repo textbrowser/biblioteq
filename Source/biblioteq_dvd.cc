@@ -1824,7 +1824,7 @@ void biblioteq_dvd::slotSelectImage(void)
 	      toUpper();
 
 	  dvd.front_image->scene()->addPixmap
-	    (QPixmap().fromImage(dvd.front_image->m_image));
+	    (QPixmap::fromImage(dvd.front_image->m_image));
 
 	  if(dvd.front_image->scene()->items().size() > 0)
 	    dvd.front_image->scene()->items().at(0)->setFlags
@@ -1844,7 +1844,7 @@ void biblioteq_dvd::slotSelectImage(void)
 	      toUpper();
 
 	  dvd.back_image->scene()->addPixmap
-	    (QPixmap().fromImage(dvd.back_image->m_image));
+	    (QPixmap::fromImage(dvd.back_image->m_image));
 
 	  if(dvd.back_image->scene()->items().size() > 0)
 	    dvd.back_image->scene()->items().at(0)->setFlags

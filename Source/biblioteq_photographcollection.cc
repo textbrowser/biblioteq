@@ -1025,7 +1025,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	      toUpper();
 
 	  pc.thumbnail_collection->scene()->addPixmap
-	    (QPixmap().fromImage(pc.thumbnail_collection->m_image));
+	    (QPixmap::fromImage(pc.thumbnail_collection->m_image));
 
 	  if(pc.thumbnail_collection->scene()->items().size() > 0)
 	    pc.thumbnail_collection->scene()->items().at(0)->setFlags
@@ -1047,7 +1047,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
 	      toUpper();
 
 	  photo.thumbnail_item->scene()->addPixmap
-	    (QPixmap().fromImage(photo.thumbnail_item->m_image));
+	    (QPixmap::fromImage(photo.thumbnail_item->m_image));
 
 	  if(photo.thumbnail_item->scene()->items().size() > 0)
 	    photo.thumbnail_item->scene()->items().at(0)->setFlags
@@ -1223,7 +1223,7 @@ void biblioteq_photographcollection::showPhotographs(const int page)
 	      (126, 187, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	  pixmapItem = new(std::nothrow) biblioteq_graphicsitempixmap
-	    (QPixmap().fromImage(image), 0);
+	    (QPixmap::fromImage(image), 0);
 
 	  if(pixmapItem)
 	    {
@@ -2215,7 +2215,7 @@ void biblioteq_photographcollection::loadPhotographFromItem
 	scene->clear();
 
 	QGraphicsPixmapItem *pixmapItem = scene->addPixmap
-	  (QPixmap().fromImage(image));
+	  (QPixmap::fromImage(image));
 
 	if(pixmapItem)
 	  pixmapItem->setData(1, bytes);
@@ -2695,7 +2695,7 @@ void biblioteq_photographcollection::slotImageViewSizeChanged
 		image = image.scaled
 		  (size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	      item->setPixmap(QPixmap().fromImage(image));
+	      item->setPixmap(QPixmap::fromImage(image));
 	      scene->setSceneRect(scene->itemsBoundingRect());
 	    }
 	}

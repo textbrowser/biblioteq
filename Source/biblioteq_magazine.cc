@@ -2699,7 +2699,7 @@ void biblioteq_magazine::slotSelectImage(void)
 	      toUpper();
 
 	  ma.front_image->scene()->addPixmap
-	    (QPixmap().fromImage(ma.front_image->m_image));
+	    (QPixmap::fromImage(ma.front_image->m_image));
 
 	  if(ma.front_image->scene()->items().size() > 0)
 	    ma.front_image->scene()->items().at(0)->setFlags
@@ -2719,7 +2719,7 @@ void biblioteq_magazine::slotSelectImage(void)
 	      toUpper();
 
 	  ma.back_image->scene()->addPixmap
-	    (QPixmap().fromImage(ma.back_image->m_image));
+	    (QPixmap::fromImage(ma.back_image->m_image));
 
 	  if(ma.back_image->scene()->items().size() > 0)
 	    ma.back_image->scene()->items().at(0)->setFlags

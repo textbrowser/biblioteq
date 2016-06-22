@@ -152,7 +152,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       if(m_image.width() > width() ||
 	 m_image.height() > height())
 	{
-	  pixmap = QPixmap().fromImage(m_image);
+	  pixmap = QPixmap::fromImage(m_image);
 
 	  if(!pixmap.isNull())
 	    pixmap = pixmap.scaled
@@ -160,10 +160,13 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 	       Qt::SmoothTransformation);
 	}
       else
-	pixmap = QPixmap().fromImage(m_image);
+	pixmap = QPixmap::fromImage(m_image);
 
       while(!scene()->items().isEmpty())
 	scene()->removeItem(scene()->items().first());
+
+      if(pixmap.isNull())
+	pixmap = QPixmap(":/no_image.png");
 
       scene()->addPixmap(pixmap);
 
@@ -260,7 +263,7 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
   if(m_image.width() > width() ||
      m_image.height() > height())
     {
-      pixmap = QPixmap().fromImage(m_image);
+      pixmap = QPixmap::fromImage(m_image);
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
@@ -268,10 +271,13 @@ void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
 	   Qt::SmoothTransformation);
     }
   else
-    pixmap = QPixmap().fromImage(m_image);
+    pixmap = QPixmap::fromImage(m_image);
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
+
+  if(pixmap.isNull())
+    pixmap = QPixmap(":/no_image.png");
 
   scene()->addPixmap(pixmap);
 
@@ -297,15 +303,25 @@ void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)
     scene()->removeItem(scene()->items().first());
 
   if(!m_doubleclicked)
-    scene()->addPixmap(QPixmap().fromImage(m_image));
+    {
+      QPixmap pixmap(QPixmap::fromImage(m_image));
+
+      if(pixmap.isNull())
+	pixmap = QPixmap(":/no_image.png");
+
+      scene()->addPixmap(pixmap);
+    }
   else
     {
-      QPixmap pixmap(QPixmap().fromImage(m_image));
+      QPixmap pixmap(QPixmap::fromImage(m_image));
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
 	  (size(), Qt::KeepAspectRatio,
 	   Qt::SmoothTransformation);
+
+      if(pixmap.isNull())
+	pixmap = QPixmap(":/no_image.png");
 
       scene()->addPixmap(pixmap);
     }
@@ -342,7 +358,7 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
   if(this->m_image.width() > width() ||
      this->m_image.height() > height())
     {
-      pixmap = QPixmap().fromImage(this->m_image);
+      pixmap = QPixmap::fromImage(this->m_image);
 
       if(!pixmap.isNull())
 	pixmap = pixmap.scaled
@@ -350,10 +366,13 @@ void biblioteq_image_drop_site::setImage(const QImage &image)
 	   Qt::SmoothTransformation);
     }
   else
-    pixmap = QPixmap().fromImage(this->m_image);
+    pixmap = QPixmap::fromImage(this->m_image);
 
   while(!scene()->items().isEmpty())
     scene()->removeItem(scene()->items().first());
+
+  if(pixmap.isNull())
+    pixmap = QPixmap(":/no_image.png");
 
   scene()->addPixmap(pixmap);
 

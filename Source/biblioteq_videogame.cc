@@ -1642,7 +1642,7 @@ void biblioteq_videogame::slotSelectImage(void)
 	      toUpper();
 
 	  vg.front_image->scene()->addPixmap
-	    (QPixmap().fromImage(vg.front_image->m_image));
+	    (QPixmap::fromImage(vg.front_image->m_image));
 
 	  if(vg.front_image->scene()->items().size() > 0)
 	    vg.front_image->scene()->items().at(0)->setFlags
@@ -1662,7 +1662,7 @@ void biblioteq_videogame::slotSelectImage(void)
 	      toUpper();
 
 	  vg.back_image->scene()->addPixmap
-	    (QPixmap().fromImage(vg.back_image->m_image));
+	    (QPixmap::fromImage(vg.back_image->m_image));
 
 	  if(vg.back_image->scene()->items().size() > 0)
 	    vg.back_image->scene()->items().at(0)->setFlags
