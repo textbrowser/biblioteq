@@ -4520,8 +4520,9 @@ void biblioteq::resetMembersBrowser(void)
   bb.table->setHorizontalHeaderLabels(list);
   list.clear();
   bb.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  bb.table->horizontalHeader()->resizeSections
-    (QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < bb.table->columnCount() - 1; i++)
+    bb.table->resizeColumnToContents(i);
 }
 
 /*
@@ -4546,8 +4547,9 @@ void biblioteq::slotShowMembersBrowser(void)
   bb.filterBox->setCheckState(Qt::Checked);
   bb.filtertype->setCurrentIndex(0);
   bb.filter->setFocus();
-  bb.table->horizontalHeader()->resizeSections
-    (QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < bb.table->columnCount() - 1; i++)
+    bb.table->resizeColumnToContents(i);
 
   static bool resized = false;
 
@@ -4737,8 +4739,10 @@ void biblioteq::slotPopulateMembersBrowser(void)
   progress.close();
   bb.table->setSortingEnabled(true);
   bb.table->setRowCount(i); // Support cancellation.
-  bb.table->horizontalHeader()->resizeSections
-    (QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < bb.table->columnCount() - 1; i++)
+    bb.table->resizeColumnToContents(i);
+
 #ifdef Q_OS_MAC
   bb.table->hide();
   bb.table->show();
@@ -6963,16 +6967,7 @@ void biblioteq::slotShowCustomQuery(void)
 		   __FILE__, __LINE__);
 
       for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
-	{
-#if QT_VERSION >= 0x050000
-	  cq.tables_t->header()->setSectionResizeMode
-	    (i, QHeaderView::ResizeToContents);
-#else
-	  cq.tables_t->header()->setResizeMode
-	    (i, QHeaderView::ResizeToContents);
-#endif
-	  cq.tables_t->resizeColumnToContents(i);
-	}
+	cq.tables_t->resizeColumnToContents(i);
 
       QApplication::restoreOverrideCursor();
     }
@@ -7595,8 +7590,10 @@ void biblioteq::slotShowHistory(void)
   history.table->setRowCount(i); // Support cancellation.
   history.table->setSortingEnabled(true);
   history.table->horizontalHeader()->setSortIndicator(0, Qt::AscendingOrder);
-  history.table->horizontalHeader()->resizeSections
-    (QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < history.table->columnCount() - 1; i++)
+    history.table->resizeColumnToContents(i);
+
   history.nextTool->setVisible(!m_roles.isEmpty());
   history.prevTool->setVisible(!m_roles.isEmpty());
 

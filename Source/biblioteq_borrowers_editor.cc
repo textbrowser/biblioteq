@@ -353,7 +353,9 @@ void biblioteq_borrowers_editor::showUsers(void)
     }
 
   progress2.close();
-  m_bd.table->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < m_bd.table->columnCount() - 1; i++)
+    m_bd.table->resizeColumnToContents(i);
 }
 
 /*
