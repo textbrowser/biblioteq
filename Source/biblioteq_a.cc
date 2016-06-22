@@ -4456,7 +4456,6 @@ void biblioteq::resetAdminBrowser(void)
   ab.table->setRowCount(0);
   ab.table->scrollToTop();
   ab.table->horizontalScrollBar()->setValue(0);
-  ab.table->setSortingEnabled(false);
   list.clear();
   list.append(tr("ID"));
   list.append(tr("Administrator"));
@@ -5507,12 +5506,13 @@ void biblioteq::addError(const QString &type, const QString &summary,
 
 	item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 	er.table->setItem(er.table->rowCount() - 1, i, item);
-	er.table->resizeColumnToContents(i);
       }
     else
       qDebug() << tr("Memory failure in addError()!");
 
-  er.table->resizeColumnsToContents();
+  for(int i = 0; i < er.table->columnCount() - 1; i++)
+    er.table->resizeColumnToContents(i);
+
   er.table->setSortingEnabled(true);
 }
 
@@ -8162,8 +8162,10 @@ void biblioteq::slotRefreshAdminList(void)
 
   progress.close();
   ab.table->setRowCount(i); // Support cancellation.
-  ab.table->horizontalHeader()->resizeSections
-    (QHeaderView::ResizeToContents);
+
+  for(int i = 0; i < ab.table->columnCount() - 1; i++)
+    ab.table->resizeColumnToContents(i);
+
   m_deletedAdmins.clear();
 }
 
