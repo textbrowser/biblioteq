@@ -69,64 +69,68 @@ class userinfo_diag_class: public QDialog
   {
     QStringList list;
 
-    if(m_memberProperties["membersince"] !=
+    if(m_memberProperties.value("membersince") !=
        m_userinfo.membersince->date().toString(Qt::ISODate))
       list << "membersince";
 
-    if(m_memberProperties["dob"] !=
+    if(m_memberProperties.value("dob") !=
        m_userinfo.dob->date().toString(Qt::ISODate))
       list << "dob";
 
-    if(m_memberProperties["sex"] != m_userinfo.sex->currentText())
+    if(m_memberProperties.value("sex") != m_userinfo.sex->currentText())
       list << "sex";
 
-    if(m_memberProperties["first_name"] != m_userinfo.firstName->text().
+    if(m_memberProperties.value("first_name") != m_userinfo.firstName->text().
        trimmed())
       list << "first_name";
 
-    if(m_memberProperties["middle_init"] != m_userinfo.middle->text().
+    if(m_memberProperties.value("middle_init") != m_userinfo.middle->text().
        trimmed())
       list << "middle_init";
 
-    if(m_memberProperties["last_name"] != m_userinfo.lastName->text().
+    if(m_memberProperties.value("last_name") != m_userinfo.lastName->text().
        trimmed())
       list << "last_name";
 
-    if(m_memberProperties["telephone_num"] !=
+    if(m_memberProperties.value("telephone_num") !=
        m_userinfo.telephoneNumber->text())
       list << "telephone_num";
 
-    if(m_memberProperties["street"] != m_userinfo.street->text().trimmed())
+    if(m_memberProperties.value("street") !=
+       m_userinfo.street->text().trimmed())
       list << "street";
 
-    if(m_memberProperties["city"] != m_userinfo.city->text().trimmed())
+    if(m_memberProperties.value("city") != m_userinfo.city->text().trimmed())
       list << "city";
 
-    if(m_memberProperties["state_abbr"] != m_userinfo.state->currentText())
+    if(m_memberProperties.value("state_abbr") !=
+       m_userinfo.state->currentText())
       list << "state_abbr";
 
-    if(m_memberProperties["zip"] != m_userinfo.zip->text())
+    if(m_memberProperties.value("zip") != m_userinfo.zip->text())
       list << "zip";
 
-    if(m_memberProperties["email"] != m_userinfo.email->text())
+    if(m_memberProperties.value("email") != m_userinfo.email->text())
       list << "email";
 
-    if(m_memberProperties["expiration_date"] !=
+    if(m_memberProperties.value("expiration_date") !=
        m_userinfo.expirationdate->date().toString(Qt::ISODate))
       list << "expiration_date";
 
-    if(m_memberProperties["overdue_fees"] != m_userinfo.overduefees->text())
+    if(m_memberProperties.value("overdue_fees") !=
+       m_userinfo.overduefees->text())
       list << "overdue_fees";
 
-    if(m_memberProperties["comments"] != m_userinfo.comments->toPlainText().
+    if(m_memberProperties.value("comments") !=
+       m_userinfo.comments->toPlainText().
        trimmed())
       list << "comments";
 
-    if(m_memberProperties["general_registration_number"] !=
+    if(m_memberProperties.value("general_registration_number") !=
        m_userinfo.generalregistrationnumber->text().trimmed())
       list << "general_registration_number";
 
-    if(m_memberProperties["memberclass"] !=
+    if(m_memberProperties.value("memberclass") !=
        m_userinfo.memberclass->text().trimmed())
       list << "memberclass";
 
@@ -167,12 +171,12 @@ class userinfo_diag_class: public QDialog
     QString str("");
 
     if(haveMemberChanges(str))
-      if(QMessageBox::question
-	 (this, tr("BiblioteQ: Question"),
-	  tr("Your changes have not been saved. Continue closing?\n%1").
-	  arg(str),
-	  QMessageBox::Yes | QMessageBox::No,
-	  QMessageBox::No) == QMessageBox::No)
+      if(QMessageBox::
+	 question(this, tr("BiblioteQ: Question"),
+		  tr("Your changes have not been saved. Continue "
+		     "closing?\n%1").arg(str),
+		  QMessageBox::Yes | QMessageBox::No,
+		  QMessageBox::No) == QMessageBox::No)
 	return;
 
     QDialog::done(r);

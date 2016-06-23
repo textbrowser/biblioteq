@@ -2030,7 +2030,8 @@ void biblioteq_magazine::slotZ3950Query(void)
 	  {
 	    found = true;
 	    recordSyntax = qmain->getZ3950Maps().value
-	      (ma.z3950QueryButton->actions().at(i)->text())["RecordSyntax"];
+	      (ma.z3950QueryButton->actions().at(i)->text()).
+	      value("RecordSyntax");
 	    m_thread->setZ3950Name
 	      (ma.z3950QueryButton->actions().at(i)->text());
 	    break;
@@ -2039,7 +2040,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       if(!found)
 	{
 	  recordSyntax = qmain->getZ3950Maps().value
-	    (qmain->getPreferredZ3950Site())["RecordSyntax"];
+	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
 	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
 	}
 
@@ -3165,7 +3166,7 @@ void biblioteq_magazine::slotSRUQuery(void)
   QString searchstr("");
   QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
 
-  searchstr = hash["url_issn"];
+  searchstr = hash.value("url_issn");
   searchstr.replace("%1", ma.id->text().trimmed());
 
   QUrl url(QUrl::fromUserInput(searchstr));
@@ -3173,9 +3174,9 @@ void biblioteq_magazine::slotSRUQuery(void)
   QNetworkProxy proxy;
 
   if(hash.contains("proxy_type"))
-    type = hash["proxy_type"].toLower().trimmed();
+    type = hash.value("proxy_type").toLower().trimmed();
   else if(hash.contains("proxy_type"))
-    type = hash["proxy_type"].toLower().trimmed();
+    type = hash.value("proxy_type").toLower().trimmed();
 
   if(type == "none")
     proxy.setType(QNetworkProxy::NoProxy);
@@ -3231,10 +3232,10 @@ void biblioteq_magazine::slotSRUQuery(void)
 	  QString user("");
 	  QString password("");
 
-	  host = hash["proxy_host"];
-	  port = hash["proxy_port"].toUShort();
-	  user = hash["proxy_username"];
-	  password = hash["proxy_password"];
+	  host = hash.value("proxy_host");
+	  port = hash.value("proxy_port").toUShort();
+	  user = hash.value("proxy_username");
+	  password = hash.value("proxy_password");
 	  proxy.setHostName(host);
 	  proxy.setPort(port);
 

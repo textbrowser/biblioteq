@@ -2212,7 +2212,7 @@ void biblioteq_book::slotSRUQuery(void)
   QHash<QString, QString> hash(qmain->getSRUMaps()[name]);
   QString searchstr("");
 
-  searchstr = hash["url_isbn"];
+  searchstr = hash.value("url_isbn");
 
   if(!id.id->text().trimmed().isEmpty())
     searchstr.replace("%1", id.id->text().trimmed());
@@ -2229,9 +2229,9 @@ void biblioteq_book::slotSRUQuery(void)
   QUrl url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
-    type = hash["proxy_type"].toLower().trimmed();
+    type = hash.value("proxy_type").toLower().trimmed();
   else if(hash.contains("proxy_type"))
-    type = hash["proxy_type"].toLower().trimmed();
+    type = hash.value("proxy_type").toLower().trimmed();
 
   if(type == "none")
     proxy.setType(QNetworkProxy::NoProxy);
@@ -2287,10 +2287,10 @@ void biblioteq_book::slotSRUQuery(void)
 	  QString user("");
 	  quint16 port = 0;
 
-	  host = hash["proxy_host"];
-	  port = hash["proxy_port"].toUShort();
-	  user = hash["proxy_username"];
-	  password = hash["proxy_password"];
+	  host = hash.value("proxy_host");
+	  port = hash.value("proxy_port").toUShort();
+	  user = hash.value("proxy_username");
+	  password = hash.value("proxy_password");
 	  proxy.setHostName(host);
 	  proxy.setPort(port);
 
@@ -2446,7 +2446,8 @@ void biblioteq_book::slotZ3950Query(void)
 	  {
 	    found = true;
 	    recordSyntax = qmain->getZ3950Maps().value
-	      (id.z3950QueryButton->actions().at(i)->text())["RecordSyntax"];
+	      (id.z3950QueryButton->actions().at(i)->text()).
+	      value("RecordSyntax");
 	    m_thread->setZ3950Name
 	      (id.z3950QueryButton->actions().at(i)->text());
 	    break;
@@ -2455,7 +2456,7 @@ void biblioteq_book::slotZ3950Query(void)
       if(!found)
 	{
 	  recordSyntax = qmain->getZ3950Maps().value
-	    (qmain->getPreferredZ3950Site())["RecordSyntax"];
+	    (qmain->getPreferredZ3950Site()).value("RecordSyntax");
 	  m_thread->setZ3950Name(qmain->getPreferredZ3950Site());
 	}
 
@@ -2853,12 +2854,12 @@ void biblioteq_book::slotDownloadImage(void)
 
   if(pb == id.dwnldFront)
     url = QUrl::fromUserInput
-      (qmain->getAmazonHash()["front_cover_host"] +
+      (qmain->getAmazonHash().value("front_cover_host") +
        qmain->getAmazonHash()["front_cover_path"].replace
        ("%", id.id->text().trimmed()));
   else
     url = QUrl::fromUserInput
-      (qmain->getAmazonHash()["back_cover_host"] +
+      (qmain->getAmazonHash().value("back_cover_host") +
        qmain->getAmazonHash()["back_cover_path"].replace
        ("%", id.id->text().trimmed()));
 
@@ -2927,17 +2928,17 @@ void biblioteq_book::slotDownloadImage(void)
 
 	  if(pb == id.dwnldFront)
 	    {
-	      host = hash["front_proxy_host"];
-	      port = hash["front_proxy_port"].toUShort();
-	      user = hash["front_proxy_username"];
-	      password = hash["front_proxy_password"];
+	      host = hash.value("front_proxy_host");
+	      port = hash.value("front_proxy_port").toUShort();
+	      user = hash.value("front_proxy_username");
+	      password = hash.value("front_proxy_password");
 	    }
 	  else
 	    {
-	      host = hash["back_proxy_host"];
-	      port = hash["back_proxy_port"].toUShort();
-	      user = hash["back_proxy_username"];
-	      password = hash["back_proxy_password"];
+	      host = hash.value("back_proxy_host");
+	      port = hash.value("back_proxy_port").toUShort();
+	      user = hash.value("back_proxy_username");
+	      password = hash.value("back_proxy_password");
 	    }
 
 	  proxy.setHostName(host);

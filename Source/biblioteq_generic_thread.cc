@@ -85,7 +85,7 @@ void biblioteq_generic_thread::run(void)
       {
 	QHash<QString, QString> hash
 	  (qmain->getZ3950Maps().value(m_z3950Name));
-	QString recordSyntax(hash["RecordSyntax"].trimmed());
+	QString recordSyntax(hash.value("RecordSyntax").trimmed());
 	ZOOM_connection zoomConnection = 0;
 	ZOOM_options options = ZOOM_options_create();
 	ZOOM_resultset zoomResultSet = 0;
@@ -107,8 +107,8 @@ void biblioteq_generic_thread::run(void)
 	   !hash.value("proxy_port").isEmpty())
 	  {
 	    QString value(QString("%1:%2").
-			  arg(hash["proxy_host"]).
-			  arg(hash["proxy_port"]));
+			  arg(hash.value("proxy_host")).
+			  arg(hash.value("proxy_port")));
 
 	    ZOOM_options_set(options, "proxy", value.toLatin1().constData());
 	  }

@@ -1136,7 +1136,7 @@ void biblioteq::showMain(void)
   for(int i = 0; i < getSRUMaps().size(); i++)
     {
       QAction *action = group1->addAction
-	(getSRUMaps().values()[i]["Name"]);
+	(getSRUMaps().values()[i].value("Name"));
 
       if(!action)
 	continue;
@@ -1160,7 +1160,7 @@ void biblioteq::showMain(void)
   for(int i = 0; i < getZ3950Maps().size(); i++)
     {
       QAction *action = group2->addAction
-	(getZ3950Maps().values()[i]["Name"]);
+	(getZ3950Maps().values()[i].value("Name"));
 
       if(!action)
 	continue;
@@ -2766,6 +2766,8 @@ void biblioteq::readGlobalSetup(void)
 
 	      hash["branch_name"] = settings.value("database_name", "").
 		toString().trimmed();
+	      hash["connection_options"] = settings.value
+		("connection_options", "").toString().trimmed();
 	      hash["hostname"] = settings.value("hostname", "").
 		toString().trimmed();
 	      hash["database_type"] = settings.value("database_type", "").
@@ -2840,10 +2842,10 @@ void biblioteq::readGlobalSetup(void)
       hash["port"] = "-1";
       hash["ssl_enabled"] = "false";
 
-      if(!m_branches.contains(hash["branch_name"]))
-	m_branches[hash["branch_name"]] = hash;
+      if(!m_branches.contains(hash.value("branch_name")))
+	m_branches[hash.value("branch_name")] = hash;
 
-      br.branch_name->addItem(hash["branch_name"]);
+      br.branch_name->addItem(hash.value("branch_name"));
     }
 
   if(m_sruMaps.isEmpty())
@@ -2851,10 +2853,10 @@ void biblioteq::readGlobalSetup(void)
       QHash<QString, QString> hash;
 
       hash["Name"] = "Library of Congress";
-      hash["url_isbn"] = "http://www.loc.gov/z39voy?operation=searchRetrieve&"
+      hash["url_isbn"] = "https://www.loc.gov/z39voy?operation=searchRetrieve&"
 	"version=1.1&query=bath.isbn=%1 or bath.isbn=%2&"
 	"recordSchema=marcxml&startRecord=1&maximumRecords=1";
-      hash["url_issn"] = "http://www.loc.gov/z39voy?operation="
+      hash["url_issn"] = "https://www.loc.gov/z39voy?operation="
 	"searchRetrieve&version=1.1&query=bath.issn=%1&"
 	"recordSchema=marcxml&startRecord=1&maximumRecords=100";
       m_sruMaps["Library of Congress"] = hash;
@@ -3033,9 +3035,12 @@ void biblioteq::slotRemoveMember(void)
       return;
     }
 
-  totalReserved = counts["numbooks"].toInt() + counts["numcds"].toInt() +
-    counts["numdvds"].toInt() + counts["numjournals"].toInt() +
-    counts["nummagazines"].toInt() + counts["numvideogames"].toInt();
+  totalReserved = counts.value("numbooks").toInt() +
+    counts.value("numcds").toInt() +
+    counts.value("numdvds").toInt() +
+    counts.value("numjournals").toInt() +
+    counts.value("nummagazines").toInt() +
+    counts.value("numvideogames").toInt();
   counts.clear();
 
   if(totalReserved != 0)
@@ -3836,9 +3841,9 @@ void biblioteq::slotConnectDB(void)
   br.userid->setFocus();
   tmphash = m_branches[br.branch_name->currentText()];
 
-  if(tmphash["database_type"] == "postgresql")
+  if(tmphash.value("database_type") == "postgresql")
     str = "QPSQL";
-  else if(tmphash["database_type"] == "sqlite")
+  else if(tmphash.value("database_type") == "sqlite")
     str = "QSQLITE";
   else
     str = "QODBC";
@@ -3879,22 +3884,28 @@ void biblioteq::slotConnectDB(void)
 
   m_db = QSqlDatabase::addDatabase(str, "Default");
 
-  if(tmphash["database_type"] == "sqlite")
+  if(tmphash.value("database_type") == "sqlite")
     m_db.setDatabaseName(br.filename->text());
   else
     {
-      m_db.setHostName(tmphash["hostname"]);
+      m_db.setHostName(tmphash.value("hostname"));
       m_db.setDatabaseName(br.branch_name->currentText());
-      m_db.setPort(tmphash["port"].toInt());
+      m_db.setPort(tmphash.value("port").toInt());
     }
 
-  if(tmphash["database_type"] != "sqlite")
-    if(tmphash["ssl_enabled"] == "true")
-      m_db.setConnectOptions("requiressl=1");
+  if(tmphash.value("database_type") != "sqlite")
+    {
+      QString str(tmphash.value("connection_options"));
+
+      if(tmphash.value("ssl_enabled") == "true")
+	str.append(";requiressl=1");
+
+      m_db.setConnectOptions(str);
+    }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  if(tmphash["database_type"] == "sqlite")
+  if(tmphash.value("database_type") == "sqlite")
     (void) m_db.open();
   else
     {
@@ -3938,7 +3949,7 @@ void biblioteq::slotConnectDB(void)
 	}
     }
 
-  if(tmphash["database_type"] != "sqlite")
+  if(tmphash.value("database_type") != "sqlite")
     {
       if(!error)
 	{
@@ -4137,7 +4148,8 @@ void biblioteq::slotConnectDB(void)
       ** Set the window's title.
       */
 
-      setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch["branch_name"] +
+      setWindowTitle(tr("BiblioteQ: ") + m_selectedBranch.
+		     value("branch_name") +
 		     QString(" (%1)").arg(m_db.userName()));
     }
 
@@ -4850,23 +4862,23 @@ void biblioteq::updateMembersBrowser(void)
     {
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-	 counts["numbooks"]);
+	 counts.value("numbooks"));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-	 counts["numcds"]);
+	 counts.value("numcds"));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-	 counts["numdvds"]);
+	 counts.value("numdvds"));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-	 counts["numjournals"]);
+	 counts.value("numjournals"));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row, m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-	 counts["nummagazines"]);
+	 counts.value("nummagazines"));
       biblioteq_misc_functions::updateColumn
 	(bb.table, row,
 	 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-	 counts["numvideogames"]);
+	 counts.value("numvideogames"));
       counts.clear();
 
       if(m_history_diag->isVisible())
@@ -4913,25 +4925,25 @@ void biblioteq::updateMembersBrowser(const QString &memberid)
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Books Reserved"),
-		 counts["numbooks"]);
+		 counts.value("numbooks"));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("CDs Reserved"),
-		 counts["numcds"]);
+		 counts.value("numcds"));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i, m_bbColumnHeaderIndexes.indexOf("DVDs Reserved"),
-		 counts["numdvds"]);
+		 counts.value("numdvds"));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Journals Reserved"),
-		 counts["numjournals"]);
+		 counts.value("numjournals"));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Magazines Reserved"),
-		 counts["nummagazines"]);
+		 counts.value("nummagazines"));
 	      biblioteq_misc_functions::updateColumn
 		(bb.table, i,
 		 m_bbColumnHeaderIndexes.indexOf("Video Games Reserved"),
-		 counts["numvideogames"]);
+		 counts.value("numvideogames"));
 	      break;
 	    }
 	}
@@ -7165,8 +7177,8 @@ void biblioteq::slotPrintReserved(void)
   if(errorstr.isEmpty())
     {
       str = "<html>\n";
-      str += tr("Reserved Items for ") + memberinfo["lastname"] +
-	tr(", ") + memberinfo["firstname"] + "<br><br>";
+      str += tr("Reserved Items for ") + memberinfo.value("lastname") +
+	tr(", ") + memberinfo.value("firstname") + "<br><br>";
 
       for(int i = 0; i < itemsList.size(); i++)
 	str += itemsList[i] + "<br><br>";
@@ -7710,7 +7722,7 @@ void biblioteq::slotBranchChanged(void)
 
   tmphash = m_branches[br.branch_name->currentText()];
 
-  if(tmphash["database_type"] == "sqlite")
+  if(tmphash.value("database_type") == "sqlite")
     {
       br.stackedWidget->setCurrentIndex(0);
       br.fileButton->setFocus();
@@ -8828,7 +8840,7 @@ void biblioteq::slotSqliteFileSelected(bool state)
   for(int i = 0; i < br.branch_name->count(); i++)
     {
       if(m_branches.contains(br.branch_name->itemText(i)))
-	if(m_branches[br.branch_name->itemText(i)]["database_type"] ==
+	if(m_branches[br.branch_name->itemText(i)].value("database_type") ==
 	   "sqlite")
 	  {
 	    br.branch_name->setCurrentIndex(i);
@@ -9072,8 +9084,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
 		  if(m_branches.contains(br.branch_name->itemText(i)))
-		    if(m_branches[br.branch_name->itemText(i)]
-		       ["database_type"] == "sqlite")
+		    if(m_branches[br.branch_name->itemText(i)].
+		       value("database_type") == "sqlite")
 		      {
 			found = true;
 			br.branch_name->setCurrentIndex(i);
@@ -9110,8 +9122,8 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 	      for(int i = 0; i < br.branch_name->count(); i++)
 		{
 		  if(m_branches.contains(br.branch_name->itemText(i)))
-		    if(m_branches[br.branch_name->itemText(i)]
-		       ["database_type"] == "sqlite")
+		    if(m_branches[br.branch_name->itemText(i)].
+		       value("database_type") == "sqlite")
 		      {
 			found = true;
 			br.branch_name->setCurrentIndex(i);
