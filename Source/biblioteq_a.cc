@@ -1236,10 +1236,9 @@ void biblioteq::slotAbout(void)
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText
-    (QString("<html>BiblioteQ Version %1<br>"
+    (QString("<html>BiblioteQ Version %1<br><br>"
 	     "Copyright (c) 2005 - present, guess who?<br>"
 	     "Compiled on %2, %3.<br>"
-	     "Visit your local library!<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Architecture %4.<br>"
@@ -1247,12 +1246,7 @@ void biblioteq::slotAbout(void)
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> for "
-	     "project information.<br>"
-	     "For release notes, please visit "
-	     "<a href=\"http://biblioteq.sourceforge.net/"
-	     "release_notes.html\">"
-	     "http://biblioteq.sourceforge.net/"
-	     "release_notes.html</a>.<br></html>").
+	     "project information.</html>").
      arg(BIBLIOTEQ_VERSION).
      arg(__DATE__).
      arg(__TIME__).
