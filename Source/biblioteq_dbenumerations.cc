@@ -346,8 +346,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 		  if(item1)
 		    item1->deleteLater();
 
-		  if(item2)
-		    delete item2;
+		  delete item2;
 		}
 	    }
 
@@ -473,8 +472,7 @@ void biblioteq_dbenumerations::slotAdd(void)
 	  if(item1)
 	    item1->deleteLater();
 
-	  if(item2)
-	    delete item2;
+	  delete item2;
 	}
     }
   else if(toolButton == m_ui.addMonetaryUnit)
@@ -501,7 +499,7 @@ void biblioteq_dbenumerations::slotAdd(void)
       list->setCurrentItem(listItem);
       list->editItem(listItem);
     }
-  else if(listItem)
+  else
     delete listItem;
 }
 
