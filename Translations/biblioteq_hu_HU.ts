@@ -728,7 +728,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2371"/>
+        <location line="+2365"/>
         <location line="+511"/>
         <location line="+14"/>
         <location line="+757"/>
@@ -751,18 +751,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8235"/>
+        <location line="-8229"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+97"/>
-        <location line="+4121"/>
+        <location line="+4115"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4119"/>
+        <location line="-4113"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -828,7 +828,7 @@
     </message>
     <message>
         <location line="+362"/>
-        <location line="+3555"/>
+        <location line="+3549"/>
         <location line="+4449"/>
         <location line="+27"/>
         <location line="+28"/>
@@ -839,7 +839,7 @@
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-8064"/>
+        <location line="-8058"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -926,33 +926,33 @@
     </message>
     <message>
         <location line="+71"/>
-        <location line="+3316"/>
+        <location line="+3310"/>
         <location line="+943"/>
         <location line="+34"/>
         <source>Item Requests</source>
         <translation type="unfinished">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-4227"/>
-        <location line="+3298"/>
+        <location line="-4221"/>
+        <location line="+3292"/>
         <source>Disconnected</source>
         <translation type="unfinished">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3291"/>
-        <location line="+3297"/>
+        <location line="-3285"/>
+        <location line="+3291"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3285"/>
-        <location line="+4461"/>
+        <location line="-3279"/>
+        <location line="+4455"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Üres Hiba Napló</translation>
     </message>
     <message>
-        <location line="-4457"/>
-        <location line="+3295"/>
+        <location line="-4451"/>
+        <location line="+3289"/>
         <location line="+952"/>
         <location line="+4146"/>
         <location filename="../Source/biblioteq_b.cc" line="-3957"/>
@@ -962,7 +962,7 @@
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8358"/>
+        <location line="-8352"/>
         <location line="+24"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -983,7 +983,7 @@
         <translation type="unfinished">BiblioteQ: A Programról</translation>
     </message>
     <message>
-        <location line="+89"/>
+        <location line="+83"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+547"/>
@@ -4498,7 +4498,7 @@
     <name>biblioteq_dbenumerations</name>
     <message>
         <location filename="../Source/biblioteq_dbenumerations.cc" line="+282"/>
-        <location line="+298"/>
+        <location line="+296"/>
         <location line="+9"/>
         <location line="+44"/>
         <location line="+79"/>
@@ -4509,72 +4509,72 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-525"/>
+        <location line="-523"/>
         <source>Unable to retrieve the contents of </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+353"/>
+        <location line="+351"/>
         <source>.</source>
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-323"/>
-        <location line="+133"/>
+        <location line="-321"/>
+        <location line="+132"/>
         <source>Book</source>
         <translation type="unfinished">Könvy</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>DVD</source>
         <translation type="unfinished">DVD</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>Journal</source>
         <translation type="unfinished">Folyóirat</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>Magazine</source>
         <translation type="unfinished">Magazin</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>Music CD</source>
         <translation type="unfinished">Zene CD</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>Photograph Collection</source>
         <translation type="unfinished">Fénykép Gyüjtemény</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+133"/>
+        <location line="-131"/>
+        <location line="+132"/>
         <source>Video Game</source>
         <translation type="unfinished">Videójáték</translation>
     </message>
     <message>
         <location line="-64"/>
-        <location line="+470"/>
+        <location line="+469"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-469"/>
-        <location line="+470"/>
+        <location line="-468"/>
+        <location line="+469"/>
         <source>Your changes have not been saved. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-449"/>
+        <location line="-448"/>
         <source>Book Binding</source>
         <translation type="unfinished">Könyv Kötés</translation>
     </message>
@@ -4604,7 +4604,7 @@
         <translation type="unfinished">Nyelv</translation>
     </message>
     <message>
-        <location line="+47"/>
+        <location line="+46"/>
         <source>Monetary Unit</source>
         <translation type="unfinished">Pénzegység</translation>
     </message>
