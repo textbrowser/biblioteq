@@ -381,3 +381,4 @@
 202. SQL injections. See item #198. (TBD)
 203. Warn the user if there are stale photograph item data. (Done)
 204. item_borrower and item_request privacy. (TBD)
+205. Can BiblioteQ benefit from EXISTS() instead of COUNT()? (TBD)
