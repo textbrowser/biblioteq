@@ -191,9 +191,9 @@
      from the main table. (Done)
 97.  Simplify the branch-selection dialog. (Done)
      The user should be presented with the following fields:
- 	Userid
- 	Password
- 	Branch Name
+	Userid
+	Password
+	Branch Name
 98.  Allow editing of copy information during item creation. (Done)
 99.  Create a statistics panel. (TBD)
 100. Release a version for Windows XP. (Done)
@@ -381,4 +381,5 @@
 202. SQL injections. See item #198. (TBD)
 203. Warn the user if there are stale photograph item data. (Done)
 204. item_borrower and item_request privacy. (TBD)
-205. Can BiblioteQ benefit from EXISTS() instead of COUNT()? (TBD)
+205. Can BiblioteQ benefit from EXISTS()? Replaced most COUNT()
+     instances. (Done)
