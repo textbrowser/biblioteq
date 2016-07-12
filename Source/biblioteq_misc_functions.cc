@@ -1459,25 +1459,17 @@ bool biblioteq_misc_functions::isRequested(const QSqlDatabase &db,
 
   QSqlQuery query(db);
   QString itemType = "";
-  QString str = "";
 
   itemType = itemTypeArg;
   query.setForwardOnly(true);
-  query.prepare("SELECT COUNT(myoid) FROM item_request "
-		"WHERE item_oid = ? AND type = ?");
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_request "
+		"WHERE item_oid = ? AND type = ?)");
   query.bindValue(0, oid);
   query.bindValue(1, itemType);
 
   if(query.exec())
-    {
-      if(query.next())
-	str = query.value(0).toString();
-
-      if(str == "0")
-	isRequested = false;
-      else
-	isRequested = true;
-    }
+    if(query.next())
+      isRequested = query.value(0).toBool();
 
   if(query.lastError().isValid())
     {
