@@ -946,11 +946,13 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
   if(itemType.toLower() == "book" || itemType.toLower() == "cd" ||
      itemType.toLower() == "dvd" || itemType.toLower() == "journal" ||
      itemType.toLower() == "magazine" || itemType.toLower() == "video game")
-    querystr = QString("SELECT COUNT(myoid) FROM %1_copy_info "
-		       "WHERE copyid = ? AND item_oid = ? "
-		       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
-		       "WHERE item_oid = ? AND type = '%2')").arg
-      (itemType.toLower().remove(" ")).arg(itemType);
+    querystr = QString
+      ("SELECT EXISTS(SELECT 1 FROM %1_copy_info "
+       "WHERE copyid = ? AND item_oid = ? "
+       "AND copyid NOT IN (SELECT copyid FROM item_borrower_vw "
+       "WHERE item_oid = ? AND type = '%2'))").arg(itemType.
+						   toLower().remove(" ")).
+      arg(itemType);
   else
     return isAvailable;
 
@@ -962,11 +964,13 @@ bool biblioteq_misc_functions::isCopyAvailable(const QSqlDatabase &db,
 
   if(query.exec())
     if(query.next())
-      if(query.value(0).toLongLong() >= 1)
-	isAvailable = true;
+      isAvailable = query.value(0).toBool();
 
   if(query.lastError().isValid())
-    errorstr = query.lastError().text();
+    {
+      errorstr = query.lastError().text();
+      isAvailable = false;
+    }
 
   return isAvailable;
 }
