@@ -22,39 +22,39 @@ extern biblioteq *qmain;
 */
 
 /*
-** -- userCount() --
+** -- userExists() --
 */
 
-qint64 biblioteq_misc_functions::userCount(const QString &userid,
-					   const QSqlDatabase &db,
-					   QString &errorstr)
+bool biblioteq_misc_functions::userExists(const QString &userid,
+					  const QSqlDatabase &db,
+					  QString &errorstr)
 {
   QSqlQuery query(db);
-  qint64 count = 0;
+  bool exists = false;
 
   errorstr = "";
   query.setForwardOnly(true);
 
   if(db.driverName() == "QSQLITE")
-    query.prepare("SELECT COUNT(memberid) FROM member WHERE "
-		  "memberid = ?");
+    query.prepare("SELECT EXISTS(SELECT 1 FROM member WHERE "
+		  "memberid = ?)");
   else
-    query.prepare("SELECT COUNT(usename) FROM pg_user WHERE "
-		  "LOWER(usename) = LOWER(?)");
+    query.prepare("SELECT EXISTS(SELECT 1 FROM pg_user WHERE "
+		  "LOWER(usename) = LOWER(?))");
 
   query.bindValue(0, userid);
 
   if(query.exec())
     if(query.next())
-      count = query.value(0).toLongLong();
+      exists = query.value(0).toBool();
 
   if(query.lastError().isValid())
     {
-      count = -1;
+      exists = false;
       errorstr = query.lastError().text();
     }
 
-  return count;
+  return exists;
 }
 
 /*
@@ -227,11 +227,9 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
   QSqlQuery query(db);
   QString querystr = "";
   QStringList objectlist;
-  qint64 count = 0;
+  bool exists = userExists(userid, db, errorstr);
 
-  count = userCount(userid, db, errorstr);
-
-  if(count > 0)
+  if(exists)
     {
       objectlist << "biblioteq_administrator"
 		 << "biblioteq_circulation"
@@ -285,7 +283,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
   QSqlQuery query(db);
   QString querystr = "";
   QStringList objectlist;
-  qint64 count = 0;
+  bool exists = false;
 
   if(action == CREATE_USER)
     {
@@ -293,9 +291,9 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
       ** Does the user exist?
       */
 
-      count = userCount(userid, db, errorstr);
+      exists = userExists(userid, db, errorstr);
 
-      if(count == 0)
+      if(!exists)
 	{
 	  QString str(roles);
 

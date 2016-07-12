@@ -2281,12 +2281,12 @@ void biblioteq::slotSaveUser(void)
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
-      qint64 ucount = biblioteq_misc_functions::userCount
+      bool uexists = biblioteq_misc_functions::userExists
 	(userinfo_diag->m_userinfo.memberid->text(), m_db, errorstr);
 
       QApplication::restoreOverrideCursor();
 
-      if(ucount > 0)
+      if(uexists)
 	{
 	  QMessageBox::critical
 	    (userinfo_diag, tr("BiblioteQ: User Error"),
@@ -8188,17 +8188,17 @@ void biblioteq::slotRefreshAdminList(void)
 
 void biblioteq::slotSaveAdministrators(void)
 {
-  int i = 0;
-  int j = 0;
-  qint64 ucount = 0;
-  bool adminCreated = false;
-  QString str = "";
+  QCheckBox *checkBox = 0;
+  QProgressDialog progress(m_admin_diag);
+  QSqlQuery query(m_db);
   QString adminStr = "";
   QString errorstr = "";
-  QCheckBox *checkBox = 0;
-  QSqlQuery query(m_db);
+  QString str = "";
   QStringList tmplist;
-  QProgressDialog progress(m_admin_diag);
+  bool adminCreated = false;
+  bool uexists = false;
+  int i = 0;
+  int j = 0;
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -8361,7 +8361,7 @@ void biblioteq::slotSaveAdministrators(void)
       if(str.isEmpty())
 	str = "none";
 
-      ucount = biblioteq_misc_functions::userCount(adminStr, m_db, errorstr);
+      uexists = biblioteq_misc_functions::userExists(adminStr, m_db, errorstr);
 
       if(!errorstr.isEmpty())
 	{
@@ -8369,13 +8369,13 @@ void biblioteq::slotSaveAdministrators(void)
 	  addError
 	    (QString(tr("Database Error")),
 	     QString(tr("The function biblioteq_misc_functions::"
-			"userCount() failed "
+			"userExists() failed "
 			"for ")) + adminStr + QString(tr(".")),
 	     errorstr, __FILE__, __LINE__);
 	  goto db_rollback;
 	}
 
-      if(ucount == 0)
+      if(!uexists)
 	{
 	  query.prepare("INSERT INTO admin (username, roles) "
 			"VALUES (LOWER(?), LOWER(?))");
@@ -8403,7 +8403,7 @@ void biblioteq::slotSaveAdministrators(void)
 	  goto db_rollback;
 	}
 
-      if(ucount == 0)
+      if(!uexists)
 	{
 	  biblioteq_misc_functions::DBAccount
 	    (adminStr, m_db,

@@ -73,6 +73,7 @@ class biblioteq_misc_functions
   static bool isGnome(void);
   static bool isRequested(const QSqlDatabase &, const QString &,
 			  const QString &, QString &);
+  static bool userExists(const QString &, const QSqlDatabase &, QString &);
   static int getColumnNumber(const QTableWidget *, const QString &);
   static int getMaxCopyNumber(const QSqlDatabase &, const QString &,
 			      const QString &, QString &);
@@ -84,7 +85,6 @@ class biblioteq_misc_functions
   static qint64 getMemberMatchCount(const QString &, const QString &,
 				    const QSqlDatabase &, QString &);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);
-  static qint64 userCount(const QString &, const QSqlDatabase &, QString &);
   static void DBAccount(const QString &, const QSqlDatabase &,
 			const int, QString &, const QString & = "");
   static void center(QWidget *, QMainWindow *);
