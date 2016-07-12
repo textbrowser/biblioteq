@@ -585,25 +585,25 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
 }
 
 /*
-** -- getMemberMatchCount() --
+** -- getMemberMatch() --
 */
 
-qint64 biblioteq_misc_functions::getMemberMatchCount(const QString &checksum,
-						     const QString &memberid,
-						     const QSqlDatabase &db,
-						     QString &errorstr)
+bool biblioteq_misc_functions::getMemberMatch(const QString &checksum,
+					      const QString &memberid,
+					      const QSqlDatabase &db,
+					      QString &errorstr)
 {
   QSqlQuery query(db);
   QString querystr = "";
-  qint64 count = 0;
+  bool exists = false;
 
   errorstr = "";
-  querystr = "SELECT COUNT(memberid) FROM member "
+  querystr = "SELECT EXISTS(SELECT 1 FROM member "
     "WHERE "
     "dob || sex || first_name || "
     "middle_init || "
     "last_name || street || city || state_abbr || zip = ? "
-    "AND memberid != ?";
+    "AND memberid != ?)";
   query.setForwardOnly(true);
   query.prepare(querystr);
   query.bindValue(0, checksum);
@@ -611,15 +611,15 @@ qint64 biblioteq_misc_functions::getMemberMatchCount(const QString &checksum,
 
   if(query.exec())
     if(query.next())
-      count = query.value(0).toLongLong();
+      exists = query.value(0).toBool();
 
   if(query.lastError().isValid())
     {
-      count = -1;
+      exists = false;
       errorstr = query.lastError().text();
     }
 
-  return count;
+  return exists;
 }
 
 /*

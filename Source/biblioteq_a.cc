@@ -2241,9 +2241,9 @@ void biblioteq::slotAddBorrower(void)
 
 void biblioteq::slotSaveUser(void)
 {
+  bool exists = false;
   int i = 0;
   int row = bb.table->currentRow();
-  qint64 count = -1;
   QString str = "";
   QString checksum = "";
   QString errorstr = "";
@@ -2349,14 +2349,14 @@ void biblioteq::slotSaveUser(void)
   checksum.append(userinfo_diag->m_userinfo.state->currentText());
   checksum.append(userinfo_diag->m_userinfo.zip->text());
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  count = biblioteq_misc_functions::getMemberMatchCount
+  exists = biblioteq_misc_functions::getMemberMatch
     (checksum,
      userinfo_diag->m_userinfo.memberid->text(),
      m_db,
      errorstr);
   QApplication::restoreOverrideCursor();
 
-  if(count < 0)
+  if(!errorstr.isEmpty())
     {
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to determine the uniqueness of the "
@@ -2368,7 +2368,7 @@ void biblioteq::slotSaveUser(void)
       return;
     }
 
-  if(count != 0)
+  if(exists)
     {
       QMessageBox::critical(userinfo_diag, tr("BiblioteQ: User Error"),
 			    tr("An identical member already exists."));

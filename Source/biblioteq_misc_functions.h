@@ -62,6 +62,8 @@ class biblioteq_misc_functions
   static QStringList getVideoGamePlatforms(const QSqlDatabase &, QString &);
   static QStringList getVideoGameRatings(const QSqlDatabase &, QString &);
   static bool dnt(const QSqlDatabase &, const QString &, QString &);
+  static bool getMemberMatch(const QString &, const QString &,
+			     const QSqlDatabase &, QString &);
   static bool hasMemberExpired(const QSqlDatabase &db,
 			       const QString &memberid, QString &errorstr);
   static bool isCheckedOut(const QSqlDatabase &,
@@ -82,8 +84,6 @@ class biblioteq_misc_functions
 			     const QSqlDatabase &, const char *, const int);
   static int sqliteQuerySize(const QString &, const QSqlDatabase &,
 			     const char *, const int);
-  static qint64 getMemberMatchCount(const QString &, const QString &,
-				    const QSqlDatabase &, QString &);
   static qint64 getSqliteUniqueId(const QSqlDatabase &, QString &);
   static void DBAccount(const QString &, const QSqlDatabase &,
 			const int, QString &, const QString & = "");
