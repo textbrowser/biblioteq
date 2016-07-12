@@ -376,7 +376,7 @@
      qtbook_photographcollection.cc (Done) (Searching, TBD)
      qtbook_videogame.cc (Done) (Searching, TBD)
 199. Settings panel, per Csanád Baksay. (TBD)
-200. Remove OFFSET. (TBD)
+200. Remove OFFSET? (TBD)
 201. Deleting NULL pointers is redundant, save for deleteLater(). (Done)
 202. SQL injections. See item #198. (TBD)
 203. Warn the user if there are stale photograph item data. (Done)
