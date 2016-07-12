@@ -797,27 +797,19 @@ bool biblioteq_misc_functions::isCheckedOut(const QSqlDatabase &db,
 {
   QSqlQuery query(db);
   QString itemType = "";
-  QString str = "";
   bool isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
   query.setForwardOnly(true);
-  query.prepare("SELECT COUNT(myoid) FROM item_borrower_vw "
-		"WHERE item_oid = ? AND type = ?");
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw "
+		"WHERE item_oid = ? AND type = ?)");
   query.bindValue(0, oid);
   query.bindValue(1, itemType);
 
   if(query.exec())
-    {
-      if(query.next())
-	str = query.value(0).toString();
-
-      if(str == "0")
-	isCheckedOut = false;
-      else
-	isCheckedOut = true;
-    }
+    if(query.next())
+      isCheckedOut = query.value(0).toBool();
 
   if(query.lastError().isValid())
     {
@@ -840,29 +832,21 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
 {
   QSqlQuery query(db);
   QString itemType = "";
-  QString str = "";
   bool isCheckedOut = false;
 
   errorstr = "";
   itemType = itemTypeArg;
   query.setForwardOnly(true);
-  query.prepare("SELECT count(copyid) FROM item_borrower_vw WHERE "
+  query.prepare("SELECT EXISTS(SELECT 1 FROM item_borrower_vw WHERE "
 		"copyid = ? AND item_oid = ? AND "
-		"type = ?");
+		"type = ?)");
   query.bindValue(0, copyid);
   query.bindValue(1, oid);
   query.bindValue(2, itemType);
 
   if(query.exec())
-    {
-      if(query.next())
-	str = query.value(0).toString();
-
-      if(str == "0")
-	isCheckedOut = false;
-      else
-	isCheckedOut = true;
-    }
+    if(query.next())
+      isCheckedOut = query.value(0).toBool();
 
   if(query.lastError().isValid())
     {
