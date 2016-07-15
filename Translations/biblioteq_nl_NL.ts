@@ -1453,10 +1453,6 @@
         <translation type="unfinished">Administrator informatie opslaan...</translation>
     </message>
     <message>
-        <source>The function biblioteq_misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished">Niet mogelijk om administrator gegevens te updaten of aan te maken voor</translation>
     </message>
@@ -1702,6 +1698,10 @@
     </message>
     <message>
         <source>&amp;Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The function biblioteq_misc_functions::userExists() failed for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

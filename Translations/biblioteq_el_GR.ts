@@ -1465,10 +1465,6 @@
         <translation type="unfinished">Αποθήκευση πληροφοριών διαχειριστή...</translation>
     </message>
     <message>
-        <source>The function biblioteq_misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished">Αδυναμία δημιουργίας ή αναβάθμισης καταχώρισης διαχειριστή για </translation>
     </message>
@@ -1714,6 +1710,10 @@
     </message>
     <message>
         <source>&amp;Unlimited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The function biblioteq_misc_functions::userExists() failed for </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

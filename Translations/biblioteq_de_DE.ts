@@ -8,54 +8,54 @@
         <translation type="obsolete">Programm Fehler: objectlist.size() != privlist.size().</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="570"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="568"/>
         <source>#</source>
         <translation>#</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="572"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="570"/>
         <source>Barcode: </source>
         <translation>Strichcode:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="574"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="572"/>
         <source> Location: </source>
         <translation> Ort: </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="576"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="574"/>
         <source>Type: </source>
         <translation>Typ: </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="577"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="575"/>
         <source>Title: </source>
         <translation>Titel:</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="578"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="576"/>
         <source>Due Date: </source>
         <translation>Fälligkeitsdatum: </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="677"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="675"/>
         <source>NULL availability value.</source>
         <translation>NULL Verfügbarkeitswert</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1339"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1379"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1325"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1365"/>
         <source>Database Error</source>
         <translation>Datenbankfehler</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1340"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1380"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1326"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1366"/>
         <source>Unable to determine the query size.</source>
         <translation>Die Ergebnisse der Anfrage können nicht bestimmt werden.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2047"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2025"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3835"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3767"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2050"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2028"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1923,6 +1923,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../Source/biblioteq_a.cc" line="8371"/>
+        <source>The function biblioteq_misc_functions::userExists() failed for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;General Search</source>
         <translation type="obsolete">&amp;Generelle Suche</translation>
     </message>
@@ -2162,11 +2167,6 @@
         <location filename="../Source/biblioteq_a.cc" line="8315"/>
         <source>Saving administrator information...</source>
         <translation type="unfinished">Speichere die Informationen zur Administratorin...</translation>
-    </message>
-    <message>
-        <location filename="../Source/biblioteq_a.cc" line="8371"/>
-        <source>The function biblioteq_misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="8400"/>

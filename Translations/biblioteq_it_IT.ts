@@ -12,7 +12,7 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3835"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3767"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2050"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2028"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -38,54 +38,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="570"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="568"/>
         <source>#</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="572"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="570"/>
         <source>Barcode: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="574"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="572"/>
         <source> Location: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="576"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="574"/>
         <source>Type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="577"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="575"/>
         <source>Title: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="578"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="576"/>
         <source>Due Date: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="677"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="675"/>
         <source>NULL availability value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1339"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1379"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1325"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1365"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1340"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="1380"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1326"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="1366"/>
         <source>Unable to determine the query size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2047"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2025"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2117,7 +2117,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="8371"/>
-        <source>The function biblioteq_misc_functions::userCount() failed for </source>
+        <source>The function biblioteq_misc_functions::userExists() failed for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

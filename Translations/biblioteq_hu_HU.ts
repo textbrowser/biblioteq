@@ -4,7 +4,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="+570"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="+568"/>
         <source>#</source>
         <translation>#</translation>
     </message>
@@ -39,7 +39,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+662"/>
+        <location line="+650"/>
         <location line="+40"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
@@ -51,7 +51,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+667"/>
+        <location line="+659"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1902,6 +1902,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+1584"/>
+        <source>The function biblioteq_misc_functions::userExists() failed for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Add &amp;Book</source>
         <translation type="obsolete">Könyv Hozzáadása</translation>
     </message>
@@ -1962,7 +1967,7 @@
         <translation type="obsolete">Videójáték Keresés</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="-1563"/>
         <source>BiblioteQ: Select Global Font</source>
         <translation type="unfinished">BiblioteQ: Fő Betűtípus Kiválastása</translation>
     </message>
@@ -2179,12 +2184,7 @@
         <translation type="unfinished">Adminisztrátor adatok mentése...</translation>
     </message>
     <message>
-        <location line="+56"/>
-        <source>The function biblioteq_misc_functions::userCount() failed for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
+        <location line="+85"/>
         <source>Unable to create or update the administrator entry for </source>
         <translation type="unfinished"></translation>
     </message>
