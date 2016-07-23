@@ -7281,9 +7281,15 @@ void biblioteq::slotShowHistory(void)
 	{
 	  history.dnt->setChecked(dnt);
 	  history.dnt->setEnabled(true);
+	  history.dnt->setToolTip("");
 	}
       else
-	history.dnt->setEnabled(false);
+	{
+	  history.dnt->setEnabled(false);
+	  history.dnt->setToolTip
+	    (tr("The option is not available because an error "
+		"occurred while attempting to retrieve its value."));
+	}
 
       QApplication::restoreOverrideCursor();
     }
@@ -7291,6 +7297,14 @@ void biblioteq::slotShowHistory(void)
     {
       history.dnt->setChecked(true);
       history.dnt->setEnabled(false);
+
+      if(m_db.driverName() == "QPSQL")
+	history.dnt->setToolTip
+	  (tr("The option is only available for patrons."));
+      else
+	history.dnt->setToolTip
+	  (tr("The option is not available for SQLite databases as "
+	      "such databases do not support actual patrons."));
     }
 
   if(m_members_diag->isVisible())
