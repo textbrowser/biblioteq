@@ -1672,6 +1672,18 @@
         <source>The function biblioteq_misc_functions::userExists() failed for </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option is only available for patrons.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option is not available for SQLite databases as such databases do not support actual patrons.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
