@@ -40,6 +40,7 @@ biblioteq_generic_thread::~biblioteq_generic_thread()
   m_list.clear();
   m_z3950Results.clear();
   m_outputListBool.clear();
+  wait();
 }
 
 /*

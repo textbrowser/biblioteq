@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QNetworkAccessManager>
+#include <QPointer>
 #include <QStringList>
 
 /*
@@ -61,12 +62,12 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   QPalette m_cb_orig_pal;
   QPalette m_te_orig_pal;
   QPalette m_white_pal;
+  QPointer<biblioteq_generic_thread> m_thread;
   QString m_dt_orig_ss;
   QString m_engWindowTitle;
   QString m_subType;
   Ui_magDialog ma;
   Ui_passwordDialog ui_p;
-  biblioteq_generic_thread *m_thread;
   biblioteq_item_working_dialog *m_sruWorking;
   bool m_duplicate;
   bool useHttp(void) const;

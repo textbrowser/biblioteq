@@ -2013,6 +2013,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       biblioteq_item_working_dialog working
 	(qobject_cast<QMainWindow *> (this));
 
+      working.setCancelButton(0);
       working.setModal(true);
       working.setWindowTitle(tr("BiblioteQ: Z39.50 Data Retrieval"));
       working.setLabelText(tr("Downloading information from the Z39.50 "
@@ -2049,7 +2050,7 @@ void biblioteq_magazine::slotZ3950Query(void)
       m_thread->setZ3950SearchString(searchstr);
       m_thread->start();
 
-      while(m_thread->isRunning())
+      while(!m_thread->isFinished())
 	{
 #ifndef Q_OS_MAC
 	  QApplication::processEvents();
