@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3831"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="+3763"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3832"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="+3764"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2472,7 +2472,7 @@
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3778"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3779"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2627,13 +2627,13 @@
         <location line="+152"/>
         <location line="+40"/>
         <location line="+448"/>
-        <location line="+2146"/>
+        <location line="+2147"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3423"/>
+        <location line="-3424"/>
         <source>Unable to retrieve the book binding types.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2692,27 +2692,27 @@
         <location line="+11"/>
         <location line="+1577"/>
         <location line="+227"/>
-        <location line="+424"/>
+        <location line="+425"/>
         <location line="+937"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3281"/>
+        <location line="-3282"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+1611"/>
-        <location line="+391"/>
+        <location line="+392"/>
         <location line="+801"/>
         <location line="+473"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3275"/>
+        <location line="-3276"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -2754,18 +2754,18 @@
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3067"/>
+        <location line="+3068"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2889"/>
-        <location line="+2881"/>
+        <location line="-2890"/>
+        <location line="+2882"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2869"/>
+        <location line="-2870"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2891,7 +2891,7 @@
         <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges vagy a ISBN-10 vagy a ISBN-13!</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+13"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
@@ -3157,7 +3157,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3236"/>
+        <location line="-3237"/>
         <source>Author, Title, Dewey Class Number...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3167,7 +3167,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3228"/>
+        <location line="+3229"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
@@ -5218,7 +5218,7 @@
 <context>
     <name>biblioteq_generic_thread</name>
     <message>
-        <location filename="../Source/biblioteq_generic_thread.cc" line="+67"/>
+        <location filename="../Source/biblioteq_generic_thread.cc" line="+68"/>
         <source>Unable to read </source>
         <translation type="unfinished"></translation>
     </message>
@@ -5250,7 +5250,7 @@
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="-3680"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="-3681"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
@@ -5381,13 +5381,13 @@
         <location line="+52"/>
         <location line="+439"/>
         <location line="+11"/>
-        <location line="+2157"/>
+        <location line="+2158"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3385"/>
+        <location line="-3386"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5443,27 +5443,27 @@
         <location line="+12"/>
         <location line="+11"/>
         <location line="+1519"/>
-        <location line="+1122"/>
+        <location line="+1123"/>
         <location line="+556"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3279"/>
+        <location line="-3280"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
         <location line="+1514"/>
-        <location line="+152"/>
+        <location line="+153"/>
         <location line="+1287"/>
         <location line="+323"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3275"/>
+        <location line="-3276"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5500,18 +5500,18 @@
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3093"/>
+        <location line="+3094"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2923"/>
-        <location line="+2915"/>
+        <location line="-2924"/>
+        <location line="+2916"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2903"/>
+        <location line="-2904"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5682,7 +5682,7 @@
         <translation type="unfinished">Egy Z39.50 lekérdezéshez szükséges a ISSN!</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+13"/>
         <source>BiblioteQ: Z39.50 Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Adatok Lekérése</translation>
     </message>
