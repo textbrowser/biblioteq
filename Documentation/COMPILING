@@ -8,7 +8,7 @@ a distclean before building BiblioteQ.
 Absolute cleaning:
 make distclean or mingw32-make distclean
 
-FreeBSD:
+FreeBSD
 qmake -o Makefile biblioteq.freebsd.pro (Qt 4.x)
 or
 qmake -o Makefile biblioteq.freebsd.qt5.pro (Qt 5.x)
@@ -18,7 +18,8 @@ or
 qmake-qt5 -o Makefile biblioteq.freebsd.qt5.pro
 gmake
 
-Linux:
+Linux
+
 qmake -o Makefile biblioteq.pro (Qt 4.x)
 or
 qmake -o Makefile biblioteq.qt5.pro (Qt 5.x)
@@ -28,19 +29,22 @@ or
 qmake-qt5 -o Makefile biblioteq.qt5.pro
 make
 
-OS X Qt 4.x:
+OS X Qt 4.x
+
 qmake -o Makefile biblioteq.osx.pro
 make
 sudo make install
 sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
 sudo make distclean
 
-OS X Qt 5.x:
+OS X Qt 5.x
+
 qmake -o Makefile biblioteq.osx.qt5.pro
 sudo make install
 sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ_Qt5.d/.
 sudo make distclean
 
-Windows:
+Windows
+
 qmake -o Makefile biblioteq.win.qt5.pro
 make or mingw32-make
