@@ -9,6 +9,7 @@ Absolute cleaning:
 make distclean or mingw32-make distclean
 
 FreeBSD
+
 qmake -o Makefile biblioteq.freebsd.pro (Qt 4.x)
 or
 qmake -o Makefile biblioteq.freebsd.qt5.pro (Qt 5.x)
