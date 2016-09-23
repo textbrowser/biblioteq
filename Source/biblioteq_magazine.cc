@@ -2329,7 +2329,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  ma.lcnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -2361,7 +2361,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  ma.callnum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -2396,7 +2396,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  ma.deweynum->setText(str);
 	  biblioteq_misc_functions::highlightWidget
@@ -2442,7 +2442,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -2488,7 +2488,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      tmpstr = tmpstr.mid
 		(0, tmpstr.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  tmplist = tmpstr.split("$a");
 
@@ -2636,7 +2636,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(!str.isEmpty())
 	    {

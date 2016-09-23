@@ -172,7 +172,7 @@ void biblioteq_z3950results::slotUpdateQueryText(void)
 	      break;
 	    }
 	  else
-	    subfields.takeFirst();
+	    subfields.removeFirst();
 
 	if(title.lastIndexOf('/') > -1)
 	  title = title.mid(0, title.lastIndexOf('/')).trimmed();

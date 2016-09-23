@@ -503,7 +503,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  m_lcnum = str;
 	}
@@ -564,7 +564,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  m_callnum = str;
 	}
@@ -599,7 +599,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  m_deweynum = str;
 	}
@@ -659,7 +659,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.endsWith(","))
 	    str = str.mid(0, str.length() - 1).trimmed();
@@ -716,7 +716,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -748,7 +748,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.indexOf(" ") > -1)
 	    str = str.mid(0, str.indexOf(" ")).trimmed();
@@ -805,7 +805,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 		(0, tmpstr.indexOf(subfields.takeFirst())).
 		trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -950,7 +950,7 @@ void biblioteq_marc::parseBookZ3950Marc21(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(!str.isEmpty())
 	    {
@@ -1074,7 +1074,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -1108,7 +1108,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.indexOf(" ") > -1)
 	    str = str.mid(0, str.indexOf(" ")).trimmed();
@@ -1154,7 +1154,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 		(0, tmpstr.indexOf(subfields.takeFirst())).
 		trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -1259,7 +1259,7 @@ void biblioteq_marc::parseBookZ3950Unimarc(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(!str.isEmpty())
 	    {
@@ -1332,7 +1332,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(str.lastIndexOf('/') > -1)
 	    str = str.mid(0, str.lastIndexOf('/')).trimmed();
@@ -1376,7 +1376,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 		(0, tmpstr.indexOf(subfields.takeFirst())).
 		trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  QStringList tmplist(tmpstr.split("$a"));
 
@@ -1481,7 +1481,7 @@ void biblioteq_marc::parseMagazineZ3950Unimarc(void)
 	      str = str.mid
 		(0, str.indexOf(subfields.takeFirst())).trimmed();
 	    else
-	      subfields.takeFirst();
+	      subfields.removeFirst();
 
 	  if(!str.isEmpty())
 	    {
