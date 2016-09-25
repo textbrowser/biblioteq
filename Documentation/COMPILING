@@ -5,7 +5,8 @@ Homebrew is required for OS X.
 If header (h) or interface (ui) files have changed, please perform
 a distclean before building BiblioteQ.
 
-Absolute cleaning:
+Absolute Cleaning
+
 make distclean or mingw32-make distclean
 
 FreeBSD
