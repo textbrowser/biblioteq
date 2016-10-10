@@ -1245,8 +1245,10 @@ void biblioteq::slotAbout(void)
 	     "Qt version %5."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
-	     "http://biblioteq.sourceforge.net</a> for "
-	     "project information.</html>").
+	     "http://biblioteq.sourceforge.net</a> or "
+	     "<a href=\"https://textbrowser.github.io/biblioteq/\">"
+	     "https://textbrowser.github.io/biblioteq</a> "
+	     "for project information.</html>").
      arg(BIBLIOTEQ_VERSION).
      arg(__DATE__).
      arg(__TIME__).
