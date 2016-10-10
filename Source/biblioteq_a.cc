@@ -9039,6 +9039,11 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 
   if(dialog.result() == QDialog::Accepted)
     {
+      repaint();
+#ifndef Q_OS_MAC
+      QApplication::processEvents();
+#endif
+
       int rc = 0;
       sqlite3 *ppDb = 0;
 

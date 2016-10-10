@@ -114,7 +114,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>280</height>
+          <height>273</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -372,7 +372,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>27</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -382,6 +382,9 @@
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuTools">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>&amp;Tools</string>
     </property>
@@ -413,6 +416,9 @@
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>&amp;Edit</string>
     </property>
@@ -438,6 +444,9 @@
     <addaction name="actionModifyEntry"/>
    </widget>
    <widget class="QMenu" name="menu_View">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>&amp;View</string>
     </property>
@@ -448,6 +457,9 @@
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>&amp;Options</string>
     </property>
