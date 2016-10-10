@@ -3821,19 +3821,33 @@ void biblioteq::slotConnectDB(void)
   if(m_db.isOpen())
     return;
 
-  bool error = false;
-  QString str = "";
+  QHash<QString, QString> tmphash(m_branches[br.branch_name->currentText()]);
+
+  if(tmphash.value("database_type") == "sqlite")
+    {
+      QFileInfo fileInfo(br.filename->text());
+
+      if(!fileInfo.exists() || !fileInfo.isReadable() || !fileInfo.isWritable())
+	{
+	  QMessageBox::critical
+	    (m_branch_diag, tr("BiblioteQ: User Error"),
+	     tr("The selected SQLite file is not accessible. Please "
+		"verify that the file exists, is readable, and is writable."));
+	  return;
+	}
+    }
+
   QString drivers = "";
-  QString plugins = "";
   QString errorstr = "";
-  QHash<QString, QString> tmphash;
+  QString plugins = "";
+  QString str = "";
+  bool error = false;
 
   /*
   ** Configure some database attributes.
   */
 
   br.userid->setFocus();
-  tmphash = m_branches[br.branch_name->currentText()];
 
   if(tmphash.value("database_type") == "postgresql")
     str = "QPSQL";
