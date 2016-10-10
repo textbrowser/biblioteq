@@ -1712,6 +1712,10 @@
         <source>The option is not available for SQLite databases as such databases do not support actual patrons.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The selected SQLite file is not accessible. Please verify that the file exists, is readable, and is writable.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
