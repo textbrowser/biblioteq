@@ -4640,7 +4640,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
       if(m_db.driverName() != "QSQLITE")
 	E = "E";
 
-      if(bb.filtertype->currentText() == "Member ID")
+      if(bb.filtertype->currentIndex() == 0) // Member ID
 	{
 	  str.append("member.memberid LIKE " + E + "'%' || ");
 	  str.append("?");
