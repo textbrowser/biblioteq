@@ -1,7 +1,7 @@
 #ifndef _BIBLIOTEQ_H_
 #define _BIBLIOTEQ_H_
 
-#define BIBLIOTEQ_VERSION "2016.09.04"
+#define BIBLIOTEQ_VERSION "2016.11.05"
 
 /*
 ** -- C++ Includes --
