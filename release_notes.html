@@ -29,10 +29,12 @@
       </div>
       <div id="colTwo">
 	<h2>Release Notes</h2>
-	<p>October 21, 2016</p>
+	<p>October 27, 2016</p>
 	<ul>
+	  <li>Corrected a grant statement in postgresql_create_schema.sql with respect to grey_literature_myoid_seq.</li>
 	  <li>Corrected member query. Problem caused by translation-based logic. Thanks to Jeepee.</li>
-          <li>If you're having Z39.50 problems on W32, please remove the Windows registry My Computer\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.</li>
+	  <li>If you're having Z39.50 problems on W32, please remove the Windows registry My Computer\HKEY_CURRENT_USER\Software\BiblioteQ via regedit.</li>
+	  <li>Modified postgresql_destroy_schema.sql so that it produces a single notice during an ideal execution.</li>
 	  <li>SQLite at version 3.15.0 on Windows.</li>
 	  <li>Upgraded YAZ products to version 5.18.0 on OS X.</li>
 	  <li>Verify accessibility of SQLite files.</li>
