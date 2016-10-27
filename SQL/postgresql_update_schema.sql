@@ -1177,3 +1177,7 @@ GRANT SELECT ON magazine_files_myoid_seq TO biblioteq_patron;
 
 REVOKE ALL ON item_borrower_vw FROM biblioteq_guest;
 GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
+
+/* Release 2016.11.05 */
+
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;

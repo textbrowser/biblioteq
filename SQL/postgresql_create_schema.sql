@@ -776,7 +776,7 @@ GRANT SELECT, UPDATE, USAGE ON cd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON cd_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON dvd_myoid_seq TO biblioteq_librarian;
-GRANT SELECT, UPDATE, USAGE ON grey_literature TO biblioteq_librarian;
+GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_copy_info_myoid_seq TO biblioteq_librarian;
 GRANT SELECT, UPDATE, USAGE ON journal_files_myoid_seq TO biblioteq_librarian;
