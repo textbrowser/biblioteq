@@ -180,7 +180,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
 
       if(!query.lastError().isValid())
 	{
-	  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
 	  (void) query.exec(querystr);
 	}
 
@@ -195,7 +195,7 @@ void biblioteq_misc_functions::grantPrivs(const QString &userid,
 
       if(!query.lastError().isValid())
 	{
-	  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+	  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
 	  (void) query.exec(querystr);
 	}
 
@@ -256,7 +256,7 @@ void biblioteq_misc_functions::revokeAll(const QString &userid,
 	errorstr = query.lastError().text();
       else
 	{
-	  querystr = QString("ALTER USER %1 NOCREATEUSER").arg(userid);
+	  querystr = QString("ALTER USER %1 NOCREATEROLE").arg(userid);
 	  (void) query.exec(querystr);
 
 	  if(query.lastError().isValid())
@@ -300,7 +300,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 	  if(str.contains("administrator") || str.contains("membership"))
 	    querystr = QString
 	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass' "
-	       "CREATEUSER").arg(userid);
+	       "CREATEROLE").arg(userid);
 	  else
 	    querystr = QString
 	      ("CREATE USER %1 ENCRYPTED PASSWORD 'tempPass'").arg(userid);
@@ -389,7 +389,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
 	      if(!query.lastError().isValid())
 		{
-		  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+		  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
 		  (void) query.exec(querystr);
 		}
 	    }
@@ -401,7 +401,7 @@ void biblioteq_misc_functions::DBAccount(const QString &userid,
 
 	      if(!query.lastError().isValid())
 		{
-		  querystr = QString("ALTER USER %1 CREATEUSER").arg(userid);
+		  querystr = QString("ALTER USER %1 CREATEROLE").arg(userid);
 		  (void) query.exec(querystr);
 		}
 	    }
