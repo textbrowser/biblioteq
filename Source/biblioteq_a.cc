@@ -1199,6 +1199,13 @@ void biblioteq::showMain(void)
        tr("BiblioteQ was not able to discover the biblioteq.conf "
 	  "file. Default values will be assumed. The current working "
 	  "directory is %1.").arg(QDir::currentPath()));
+
+  if(!QSqlDatabase::isDriverAvailable("QPSQL") &&
+     !QSqlDatabase::isDriverAvailable("QSQLITE"))
+    QMessageBox::critical
+      (this, tr("BiblioteQ: Database Error"),
+       tr("The PostgreSQL and SQLite database drivers "
+	  "are not available. This is a critical error."));
 }
 
 /*
@@ -3855,8 +3862,6 @@ void biblioteq::slotConnectDB(void)
     str = "QPSQL";
   else if(tmphash.value("database_type") == "sqlite")
     str = "QSQLITE";
-  else
-    str = "QODBC";
 
   foreach(QString driver, QSqlDatabase::drivers())
     drivers += driver + ", ";
