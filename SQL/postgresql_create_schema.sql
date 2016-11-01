@@ -897,5 +897,5 @@ GRANT SELECT, UPDATE, USAGE ON item_request_myoid_seq TO biblioteq_patron;
 REVOKE ALL ON admin FROM biblioteq_patron;
 
 CREATE USER xbook_guest ENCRYPTED PASSWORD 'xbook_guest' IN ROLE biblioteq_guest;
-INSERT INTO admin VALUES ('xbook_admin', 'administrator');
+INSERT INTO admin (username, roles) VALUES ('xbook_admin', 'administrator');
 GRANT biblioteq_administrator TO xbook_admin WITH ADMIN OPTION;
