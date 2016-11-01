@@ -1,4 +1,4 @@
-CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEUSER;
+CREATE USER xbook_admin ENCRYPTED PASSWORD 'xbook_admin' CREATEROLE;
 
 CREATE TABLE admin
 (
