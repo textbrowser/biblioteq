@@ -1204,10 +1204,22 @@ void biblioteq::showMain(void)
 
   if(!QSqlDatabase::isDriverAvailable("QPSQL") &&
      !QSqlDatabase::isDriverAvailable("QSQLITE"))
-    QMessageBox::critical
-      (this, tr("BiblioteQ: Database Error"),
-       tr("The PostgreSQL and SQLite database drivers "
-	  "are not available. This is a critical error."));
+    {
+      QFileInfo fileInfo("qt.conf");
+      QString str("");
+
+      if(fileInfo.isReadable() && fileInfo.size() > 0)
+	str = tr("The PostgreSQL and SQLite database drivers "
+		 "are not available. "
+		 "The file qt.conf is present in BiblioteQ's "
+		 "current working directory. Perhaps a conflict "
+		 "exists. Please resolve!");
+      else
+	str = tr("The PostgreSQL and SQLite database drivers "
+		 "are not available. Please resolve!");
+
+      QMessageBox::critical(this, tr("BiblioteQ: Error"), str);
+    }
 }
 
 /*
