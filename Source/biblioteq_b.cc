@@ -3674,6 +3674,13 @@ void biblioteq::slotSaveDnt(bool state)
   query.bindValue(0, QVariant(state).toInt());
   query.bindValue(1, m_db.userName());
   query.exec();
+
+  if(query.lastError().isValid())
+    addError(QString(tr("Database Error")),
+	     QString(tr("Unable to insert into member_history_dnt for "
+			"member %1.").arg(m_db.userName())),
+	     query.lastError().text(), __FILE__, __LINE__);
+
   query.prepare("UPDATE member_history_dnt "
 		"SET dnt = ? "
 		"WHERE memberid = ?");
