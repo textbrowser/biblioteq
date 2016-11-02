@@ -3906,6 +3906,15 @@ void biblioteq::slotConnectDB(void)
   if(!QSqlDatabase::isDriverAvailable(str))
     {
       tmphash.clear();
+
+      QFileInfo fileInfo("qt.conf");
+      QString str("");
+
+      if(fileInfo.isReadable() && fileInfo.size() > 0)
+	str = tr("\nThe file qt.conf is present in BiblioteQ's "
+		 "current working directory. Perhaps a conflict "
+		 "exists.");
+
       QMessageBox::critical
 	(m_branch_diag, tr("BiblioteQ: Database Error"),
 	 tr("The selected branch's database type does not "
@@ -3913,7 +3922,7 @@ void biblioteq::slotConnectDB(void)
 	 tr("The following drivers are available: ") +
 	 drivers + tr(".") + "\n" +
 	 tr("In addition, Qt expects plugins to exist "
-	    "in: ") + plugins + tr(".") + "\n" +
+	    "in: ") + plugins + tr(".") + str + "\n" +
 	 tr("Please contact your administrator."));
       return;
     }
