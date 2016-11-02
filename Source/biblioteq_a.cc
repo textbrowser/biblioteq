@@ -3949,9 +3949,11 @@ void biblioteq::slotConnectDB(void)
 			  "with the provided information.")),
 	       m_db.lastError().text(),
 	       __FILE__, __LINE__);
-      QMessageBox::critical(m_branch_diag, tr("BiblioteQ: Database Error"),
-			    tr("Unable to open a database "
-			       "connection with the provided information."));
+      QMessageBox::critical
+	(m_branch_diag, tr("BiblioteQ: Database Error"),
+	 tr("Unable to open a database "
+	    "connection with the provided information. Please "
+	    "review the Error Log."));
     }
   else
     {
@@ -9081,7 +9083,7 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
       QFile::remove(dialog.selectedFiles().value(0));
       rc = sqlite3_open_v2(dialog.selectedFiles().value(0).toUtf8(),
 			   &ppDb,
-			   SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE,
+			   SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE,
 			   0);
 
       if(rc == SQLITE_OK)
