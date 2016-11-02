@@ -1732,6 +1732,18 @@
         <source>The selected SQLite file is not accessible. Please verify that the file exists, is readable, and is writable.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The PostgreSQL and SQLite database drivers are not available. This is a critical error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to insert into member_history_dnt for member %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to update member_history_dnt for member %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -8019,6 +8031,10 @@ URL</source>
     </message>
     <message>
         <source>Please press the Enter key to execute the query.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
