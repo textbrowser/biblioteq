@@ -507,6 +507,8 @@
     <addaction name="separator"/>
     <addaction name="actionSaveSettings"/>
     <addaction name="actionSetGlobalFonts"/>
+    <addaction name="separator"/>
+    <addaction name="actionReload_biblioteq_conf"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -1225,6 +1227,11 @@
    </property>
    <property name="text">
     <string>Automatically &amp;Resize Column Widths</string>
+   </property>
+  </action>
+  <action name="actionReload_biblioteq_conf">
+   <property name="text">
+    <string>Reload &amp;biblioteq.conf</string>
    </property>
   </action>
  </widget>

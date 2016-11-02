@@ -477,6 +477,8 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotRefresh(void)));
   connect(ui.actionRefreshTable, SIGNAL(triggered(void)), this,
 	  SLOT(slotRefresh(void)));
+  connect(ui.actionReload_biblioteq_conf, SIGNAL(triggered(void)), this,
+	  SLOT(slotReloadBiblioteqConf(void)));
   connect(ui.action_Category->menu(), SIGNAL(triggered(QAction *)), this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
   connect(ui.modifyTool, SIGNAL(triggered(void)), this,
@@ -2722,6 +2724,11 @@ void biblioteq::readGlobalSetup(void)
   QSettings settings(BIBLIOTEQ_CONFIGFILE, QSettings::IniFormat);
 #endif
 
+  m_amazonImages.clear();
+  m_branches.clear();
+  m_sruMaps.clear();
+  m_z3950Maps.clear();
+
   for(int i = 0; i < settings.childGroups().size(); i++)
     {
       settings.beginGroup(settings.childGroups().at(i));
@@ -2829,6 +2836,8 @@ void biblioteq::readGlobalSetup(void)
 
       settings.endGroup();
     }
+
+  br.branch_name->clear();
 
   QStringList list(m_branches.keys());
 
