@@ -1717,15 +1717,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The PostgreSQL and SQLite database drivers are not available. This is a critical error.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unable to update member_history_dnt for member %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PostgreSQL and SQLite database drivers are not available. The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists. Please resolve!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PostgreSQL and SQLite database drivers are not available. Please resolve!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+The file qt.conf is present in BiblioteQ&apos;s current working directory. Perhaps a conflict exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to open a database connection with the provided information. Please review the Error Log.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
