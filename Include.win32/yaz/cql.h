@@ -466,7 +466,7 @@ int cql_strncmp(const char *s1, const char *s2, size_t n);
     or 'omit'. Default is 'highValue'.
 
     See also
-    http://www.loc.gov/standards/sru/sru1-1archive/search-retrieve-operation.html#sort
+    http://www.loc.gov/standards/sru/sru-1-1.html#sort
 */
 YAZ_EXPORT
 int cql_sortby_to_sortkeys(struct cql_node *cn,

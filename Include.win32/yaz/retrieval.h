@@ -27,7 +27,7 @@
 
 /**
  * \file retrieval.h
- * \brief Retrieval Utility
+ * \brief Retrieval utility
  */
 
 #ifndef YAZ_RETRIEVAL_H

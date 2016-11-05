@@ -27,7 +27,7 @@
 
 /**
  * \file timing.h
-   \brief Timing Utilities
+   \brief Timing utilities
 
  */
 

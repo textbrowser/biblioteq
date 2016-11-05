@@ -27,7 +27,7 @@
 
 /**
  * \file
- * \brief Poll , select wrappers
+ * \brief Poll, select wrappers
  */
 #ifndef YAZ_POLL_H
 #define YAZ_POLL_H

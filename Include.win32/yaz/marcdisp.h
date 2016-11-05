@@ -498,6 +498,9 @@ int yaz_marc_check_marc21_coding(const char *charset,
 YAZ_EXPORT
 int yaz_opac_check_marc21_coding(const char *charset, Z_OPACRecord *r);
 
+
+size_t yaz_marc_sizeof_char(yaz_marc_t mt, const char *buf);
+
 YAZ_END_CDECL
 
 #endif

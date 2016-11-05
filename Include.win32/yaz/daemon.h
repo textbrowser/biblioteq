@@ -63,7 +63,7 @@ YAZ_BEGIN_CDECL
     Flag YAZ_DAEMON_KEEPALIVE: Repeatedly calls work handler if it makes a
     "fatal" error.
 
-    Flag YAZ_DAEMON_KEEPALIVE: Re-opens yaz log if SIGHUP is received
+    Flag YAZ_DAEMON_LOG_REOPEN: Re-opens yaz log if SIGHUP is received
 */
 YAZ_EXPORT
 int yaz_daemon(const char *progname,

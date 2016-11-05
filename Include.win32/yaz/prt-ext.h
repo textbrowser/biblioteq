@@ -27,7 +27,7 @@
 
 /**
  * \file prt-ext.h
- * \brief Header for utilities that handles Z39.50 EXTERNALs
+ * \brief Header for utilities that handle Z39.50 EXTERNALs
  */
 
 /*

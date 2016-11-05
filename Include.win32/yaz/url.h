@@ -27,7 +27,7 @@
 
 /**
  * \file url.h
- * \brief Fetch URL utility
+ * \brief URL fetch utility
  */
 
 #ifndef YAZ_URL_H

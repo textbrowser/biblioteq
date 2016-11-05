@@ -48,7 +48,7 @@ typedef struct association *bend_association;
 /** \brief Information for Z39.50/SRU search handler
 
     This structure is passed to the search handler. Some members
-    are read-only (input), some are read-write (input and ouput),
+    are read-only (input), some are read-write (input and output),
     and others are write-only.
  */
 typedef struct {
@@ -108,7 +108,7 @@ typedef struct bend_fetch_rr {
     int len;                   /**< record length or -1 if structured (output)*/
     char *record;              /**< record buffer (output) */
     int last_in_set;           /**< 1=last in set; 0=not last (output)  */
-    Odr_oid *output_format;    /**< record syntax OIT (output) */
+    Odr_oid *output_format;    /**< record syntax OID (output) */
     int errcode;               /**< Diagnostic code / 0 for no error (output) */
     char *errstring;           /**< Additional info (output) */
     int surrogate_flag;        /**< 1=surrogate diagnostic(SD); 0=NSD (output)*/
@@ -278,7 +278,7 @@ typedef struct bend_initrequest
     set that the backend assumes for query terms */
     char *query_charset;
 
-    /** \brief whehter query_charset also applies to recors
+    /** \brief whether query_charset also applies to records
 
     Is 0 (No) by default. Set to 1 (yes) if records is in the same
     character set as queries. If in doubt, use 0 (No).
@@ -344,7 +344,7 @@ typedef struct statserv_options_block
     int (*options_func)(int argc, char **argv);
     int (*check_ip)(void *cd, const char *addr, int len, int type);
     char daemon_name[BEND_NAME_MAX];
-    int inetd;                    /**< Do we use the inet deamon or not */
+    int inetd;                    /**< Do we use the inet daemon or not */
 
     void *handle;                 /**< Handle */
     bend_initresult *(*bend_init)(bend_initrequest *r);
