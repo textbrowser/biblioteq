@@ -20,13 +20,11 @@ make
 
 FreeBSD
 
-qmake -o Makefile biblioteq.freebsd.pro (Qt 4.x)
-or
-qmake -o Makefile biblioteq.freebsd.qt5.pro (Qt 5.x)
+qmake -o Makefile biblioteq.freebsd.pro
 or
 qmake-qt4 -o Makefile biblioteq.freebsd.pro
 or
-qmake-qt5 -o Makefile biblioteq.freebsd.qt5.pro
+qmake-qt5 -o Makefile biblioteq.freebsd.pro
 gmake
 
 Linux
