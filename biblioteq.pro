@@ -62,7 +62,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_videogameinfo.ui \
                   UI/biblioteq_z3950results.ui
 
-UI_DIR  = temp
+UI_DIR          = temp
 
 HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_bgraphicsscene.h \
@@ -134,9 +134,11 @@ lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.pro
 lupdate.path            = .
 sh.path			= /usr/local/biblioteq
 sh.files                = biblioteq.sh
+
 greaterThan(QT_MAJOR_VERSION, 4) {
 sh.files		= biblioteq.qt5.sh
 }
+
 translations.path	= /usr/local/biblioteq/Translations
 translations.files	= Translations/*.qm
 

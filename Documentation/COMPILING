@@ -7,7 +7,16 @@ a distclean before building BiblioteQ.
 
 Absolute Cleaning
 
-make distclean or mingw32-make distclean
+gmake distclean or make distclean or mingw32-make distclean
+
+ARM
+
+qmake -o Makefile biblioteq.arm.pro
+or
+qmake-qt4 -o Makefile biblioteq.arm.pro
+or
+qmake-qt5 -o Makefile biblioteq.arm.pro
+make
 
 FreeBSD
 
