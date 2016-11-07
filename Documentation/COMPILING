@@ -55,5 +55,5 @@ make
 
 Windows
 
-qmake -o Makefile biblioteq.win.qt5.pro
+qmake -o Makefile biblioteq.win.pro
 make or mingw32-make

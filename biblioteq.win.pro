@@ -1,3 +1,7 @@
+greaterThan(QT_MAJOR_VERSION, 4) {
+cache()
+}
+
 purge.commands = del *~ && del *\\*~
 
 CONFIG		+= qt release thread warn_on windows
@@ -5,6 +9,11 @@ DEFINES		+=
 LANGUAGE	= C++
 QT		-= webkit
 QT		+= network sql
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QT              += printsupport widgets
+}
+
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ.exe
@@ -13,11 +22,16 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual \
 			  -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -fwrapv -mtune=generic -pie
-QMAKE_DISTCLEAN += -r Include
+QMAKE_DISTCLEAN += -r temp
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+}
+
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
-INCLUDEPATH	+= Include Source Include.win32
+INCLUDEPATH	+= Source Include.win32 temp
 LIBS		+= -L"." \
 		   -L"Libraries.win32\\sqlite3.d" \
 		   -L"Libraries.win32\\yaz.d" -lsqlite3 -lyaz5
@@ -51,7 +65,7 @@ FORMS           = UI\\biblioteq_adminsetup.ui \
                   UI\\biblioteq_videogameinfo.ui \
                   UI\\biblioteq_z3950results.ui
 
-UI_HEADERS_DIR  = Include
+UI_DIR          = temp
 
 HEADERS		= Source\\biblioteq.h \
                   Source\\biblioteq_bgraphicsscene.h \
