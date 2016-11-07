@@ -22,13 +22,11 @@ gmake
 
 Linux
 
-qmake -o Makefile biblioteq.pro (Qt 4.x)
-or
-qmake -o Makefile biblioteq.qt5.pro (Qt 5.x)
+qmake -o Makefile biblioteq.pro
 or
 qmake-qt4 -o Makefile biblioteq.pro
 or
-qmake-qt5 -o Makefile biblioteq.qt5.pro
+qmake-qt5 -o Makefile biblioteq.pro
 make
 
 OS X Qt 4.x
