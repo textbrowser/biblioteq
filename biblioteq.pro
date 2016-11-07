@@ -1,10 +1,19 @@
+greaterThan(QT_MAJOR_VERSION, 4) {
+cache()
+}
+
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		-= webkit
-QT		+= network sql
+QT              += network sql
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QT              += printsupport widgets
+}
+
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
@@ -13,11 +22,16 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic -pie
-QMAKE_DISTCLEAN += -r Include
+QMAKE_DISTCLEAN += -r temp
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+}
+
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons/book.png
-INCLUDEPATH	+= Include Source
+INCLUDEPATH	+= Source temp
 LIBS		+= -lsqlite3 -lyaz
 RESOURCES	= Icons/icons.qrc
 
@@ -48,7 +62,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
                   UI/biblioteq_videogameinfo.ui \
                   UI/biblioteq_z3950results.ui
 
-UI_HEADERS_DIR  = Include
+UI_DIR  = temp
 
 HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_bgraphicsscene.h \
@@ -119,13 +133,16 @@ lrelease.path           = .
 lupdate.extra           = $$[QT_INSTALL_BINS]/lupdate biblioteq.pro
 lupdate.path            = .
 sh.path			= /usr/local/biblioteq
-sh.files		= biblioteq.sh
+sh.files                = biblioteq.sh
+greaterThan(QT_MAJOR_VERSION, 4) {
+sh.files		= biblioteq.qt5.sh
+}
 translations.path	= /usr/local/biblioteq/Translations
 translations.files	= Translations/*.qm
 
 INSTALLS	= biblioteq \
-		  conf \
-		  lupdate \
-		  lrelease \
-		  sh \
+                  conf \
+                  lupdate \
+                  lrelease \
+                  sh \
                   translations
