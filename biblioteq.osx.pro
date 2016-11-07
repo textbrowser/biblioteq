@@ -1,24 +1,58 @@
+greaterThan(QT_MAJOR_VERSION, 4) {
+cache()
+}
+
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" BIBLIOTEQ_WA_MACMETALSTYLE=1
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+
+lessThan(QT_MAJOR_VERSION, 5) {
+DEFINES         += BIBLIOTEQ_WA_MACMETALSTYLE=1
+}
+
 LANGUAGE	= C++
 QT		-= webkit
 QT		+= network sql
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QT              += printsupport widgets
+}
+
 TEMPLATE	= app
 
 QMAKE_CLEAN	+= BiblioteQ
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_CXX       = clang++
+}
+
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=generic -pie
+			  -fwrapv -mtune=generic
+
+lessThan(QT_MAJOR_VERSION, 5) {
+QMAKE_CXXFLAGS_RELEASE += -pie
+}
+
 QMAKE_EXTRA_TARGETS = purge
-QMAKE_DISTCLEAN += -r Include
+QMAKE_DISTCLEAN += -r temp
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+}
+
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 
 ICON		= Icons/book.icns
-INCLUDEPATH	+= Include Source /usr/local/include
+INCLUDEPATH	+= Source temp /usr/local/include
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+LIBS            += -framework Cocoa
+}
+
 LIBS		+= -lsqlite3 -L/usr/local/lib -lpq -lyaz
 RESOURCES	= Icons/icons.qrc
 
@@ -49,7 +83,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 		  UI/biblioteq_videogameinfo.ui \
 		  UI/biblioteq_z3950results.ui
 
-UI_HEADERS_DIR  = Include
+UI_DIR          = temp
 
 HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_bgraphicsscene.h \
@@ -98,6 +132,11 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \
                   Source/biblioteq_z3950results.cc
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+OBJECTIVE_HEADERS += Source/Cocoainitializer.h
+OBJECTIVE_HEADERS += Source/Cocoainitializer.mm
+}
 
 TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_de_DE.ts \

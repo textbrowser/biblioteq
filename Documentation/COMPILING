@@ -36,19 +36,12 @@ or
 qmake-qt5 -o Makefile biblioteq.pro
 make
 
-OS X Qt 4.x
+OS X
 
 qmake -o Makefile biblioteq.osx.pro
 make
 sudo make install
 sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
-sudo make distclean
-
-OS X Qt 5.x
-
-qmake -o Makefile biblioteq.osx.qt5.pro
-sudo make install
-sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ_Qt5.d/.
 sudo make distclean
 
 Windows
