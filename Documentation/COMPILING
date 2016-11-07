@@ -44,6 +44,15 @@ sudo make install
 sudo cp -r ./BiblioteQ.app /Applications/BiblioteQ.d/.
 sudo make distclean
 
+PowerPC
+
+qmake -o Makefile biblioteq.powerpc.pro
+or
+qmake-qt4 -o Makefile biblioteq.powerpc.pro
+or
+qmake-qt5 -o Makefile biblioteq.powerpc.pro
+make
+
 Windows
 
 qmake -o Makefile biblioteq.win.qt5.pro
