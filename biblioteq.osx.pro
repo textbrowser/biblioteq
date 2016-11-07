@@ -134,8 +134,8 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_z3950results.cc
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-OBJECTIVE_HEADERS += Source/Cocoainitializer.h
-OBJECTIVE_HEADERS += Source/Cocoainitializer.mm
+OBJECTIVE_HEADERS += Source/CocoaInitializer.h
+OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
 }
 
 TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
