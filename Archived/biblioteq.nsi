@@ -1,3 +1,5 @@
+# BiblioteQ is portable as of 2016.03.15. Please do not use this file!
+
 # Define installer name.
 
 Name "BiblioteQ Installer"
