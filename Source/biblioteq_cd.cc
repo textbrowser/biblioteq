@@ -749,7 +749,7 @@ void biblioteq_cd::slotGo(void)
 
 		  qmain->getUI().table->setSortingEnabled(true);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -1342,7 +1342,7 @@ void biblioteq_cd::modify(const int state)
 	    }
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);

@@ -1418,7 +1418,7 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
   else
     showWidgets = false;
 
-  foreach(QWidget *widget, window->findChildren<QWidget *>())
+  foreach(QWidget *widget, window->findChildren<QWidget *> ())
     {
       str = widget->objectName().toLower();
 
@@ -1426,7 +1426,7 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	widget->setVisible(showWidgets);
     }
 
-  foreach(QLabel *widget, window->findChildren<QLabel *>())
+  foreach(QLabel *widget, window->findChildren<QLabel *> ())
     {
       str = widget->text().toLower();
 
@@ -1434,9 +1434,9 @@ void biblioteq_misc_functions::hideAdminFields(QMainWindow *window,
 	widget->setVisible(showWidgets);
     }
 
-  foreach(QToolButton *button, window->findChildren<QToolButton *>())
+  foreach(QToolButton *button, window->findChildren<QToolButton *> ())
     if(button->menu())
-      foreach(QAction *action, button->menu()->findChildren<QAction *>())
+      foreach(QAction *action, button->menu()->findChildren<QAction *> ())
 	{
 	  str = action->text().toLower();
 

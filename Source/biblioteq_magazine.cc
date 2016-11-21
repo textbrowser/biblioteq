@@ -932,7 +932,7 @@ void biblioteq_magazine::slotGo(void)
 
 		  qmain->getUI().table->setSortingEnabled(true);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -1617,7 +1617,7 @@ void biblioteq_magazine::modify(const int state)
 	    }
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -2296,7 +2296,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	    (ma.title, QColor(162, 205, 90));
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       return;
@@ -2660,7 +2660,7 @@ void biblioteq_magazine::populateDisplayAfterZ3950
 	}
     }
 
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
 
@@ -3111,7 +3111,7 @@ void biblioteq_magazine::populateDisplayAfterSRU(const QByteArray &data)
 	  }
       }
 
-  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
     textfield->setCursorPosition(0);
 }
 

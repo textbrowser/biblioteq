@@ -81,6 +81,7 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_magazine.h \
 		  Source/biblioteq_main_table.h \
                   Source/biblioteq_myqstring.h \
+		  Source/biblioteq_options.h \
 		  Source/biblioteq_photographcollection.h \
 		  Source/biblioteq_sruResults.h \
 		  Source/biblioteq_videogame.h \
@@ -108,6 +109,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_misc_functions.cc \
                   Source/biblioteq_myqstring.cc \
                   Source/biblioteq_numeric_table_item.cc \
+		  Source/biblioteq_options.cc \
                   Source/biblioteq_photographcollection.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \

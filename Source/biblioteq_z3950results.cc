@@ -212,7 +212,7 @@ void biblioteq_z3950results::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
-  foreach(QWidget *widget, findChildren<QWidget *>())
+  foreach(QWidget *widget, findChildren<QWidget *> ())
     widget->setFont(font);
 }
 

@@ -1041,7 +1041,7 @@ void biblioteq_book::slotGo(void)
 
 		  qmain->getUI().table->setSortingEnabled(true);
 
-		  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+		  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		    textfield->setCursorPosition(0);
 
 		  qmain->slotResizeColumns();
@@ -1690,7 +1690,7 @@ void biblioteq_book::modify(const int state)
 	    }
 	}
 
-      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
       storeData(this);
@@ -2649,7 +2649,7 @@ void biblioteq_book::slotZ3950Query(void)
 		    (id.title, QColor(162, 205, 90));
 		}
 
-	      foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	      foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 		textfield->setCursorPosition(0);
 	    }
 	}
@@ -3467,7 +3467,7 @@ void biblioteq_book::sruDownloadFinished(void)
 		(id.title, QColor(162, 205, 90));
 	    }
 
-	  foreach(QLineEdit *textfield, findChildren<QLineEdit *>())
+	  foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
 	    textfield->setCursorPosition(0);
 	}
     }

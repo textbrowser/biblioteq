@@ -5125,7 +5125,7 @@ void biblioteq::slotModifyBorrower(void)
 	}
 
       foreach(QLineEdit *textfield,
-	      userinfo_diag->findChildren<QLineEdit *>())
+	      userinfo_diag->findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
     }
 
@@ -6888,7 +6888,7 @@ void biblioteq::setGlobalFonts(const QFont &font)
     {
       mb->setFont(font);
 
-      foreach(QMenu *menu, mb->findChildren<QMenu *>())
+      foreach(QMenu *menu, mb->findChildren<QMenu *> ())
 	foreach(QAction *action, menu->actions())
 	action->setFont(font);
     }
