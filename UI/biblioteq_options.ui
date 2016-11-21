@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>405</width>
-    <height>200</height>
+    <width>511</width>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,20 +22,20 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
-    <widget class="QScrollArea" name="scrollArea_2">
+    <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <widget class="QWidget" name="scrollAreaWidgetContents">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>387</width>
-        <height>145</height>
+        <width>493</width>
+        <height>401</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -47,7 +47,7 @@
             <string>&amp;Main Window Canvas Background Color</string>
            </property>
            <property name="buddy">
-            <cstring>publication_date</cstring>
+            <cstring>main_window_canvas_background_color</cstring>
            </property>
           </widget>
          </item>
@@ -77,56 +77,24 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>&amp;Publication Date</string>
-           </property>
-           <property name="buddy">
-            <cstring>publication_date</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="publication_date">
-           <property name="currentIndex">
-            <number>2</number>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContents</enum>
-           </property>
-           <item>
-            <property name="text">
-             <string>Year</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Year, Month</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Year, Month, Day</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+        <widget class="QTableWidget" name="publication_date">
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>Item Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Publication Date Format</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -208,7 +176,7 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>scrollArea_2</tabstop>
+  <tabstop>scrollArea</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
   <tabstop>publication_date</tabstop>
   <tabstop>saveButton</tabstop>
