@@ -505,6 +505,8 @@
     <addaction name="menuPreferredSRUSite"/>
     <addaction name="menuPreferredZ3950Server"/>
     <addaction name="separator"/>
+    <addaction name="actionOther_Options"/>
+    <addaction name="separator"/>
     <addaction name="actionSaveSettings"/>
     <addaction name="actionSetGlobalFonts"/>
     <addaction name="separator"/>
@@ -1232,6 +1234,11 @@
   <action name="actionReload_biblioteq_conf">
    <property name="text">
     <string>Reload &amp;biblioteq.conf</string>
+   </property>
+  </action>
+  <action name="actionOther_Options">
+   <property name="text">
+    <string>Other &amp;Options...</string>
    </property>
   </action>
  </widget>
