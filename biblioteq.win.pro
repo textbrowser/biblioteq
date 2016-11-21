@@ -54,6 +54,7 @@ FORMS           = UI\\biblioteq_adminsetup.ui \
                   UI\\biblioteq_maginfo.ui \
                   UI\\biblioteq_mainwindow.ui \
                   UI\\biblioteq_members_browser.ui \
+		  UI\\biblioteq_options.ui \
                   UI\\biblioteq_password.ui \
                   UI\\biblioteq_passwordPrompt.ui \
                   UI\\biblioteq_photograph.ui \
