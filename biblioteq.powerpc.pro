@@ -69,6 +69,7 @@ HEADERS		= Source/biblioteq.h \
                   Source/biblioteq_bgraphicsscene.h \
 		  Source/biblioteq_book.h \
 		  Source/biblioteq_borrowers_editor.h \
+		  Source/biblioteq_c.h \
 		  Source/biblioteq_cd.h \
 		  Source/biblioteq_copy_editor.h \
 		  Source/biblioteq_copy_editor_book.h \
@@ -92,6 +93,7 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_bgraphicsscene.cc \
                   Source/biblioteq_book.cc \
                   Source/biblioteq_borrowers_editor.cc \
+		  Source/biblioteq_c.cc \
                   Source/biblioteq_callnum_table_item.cc \
                   Source/biblioteq_cd.cc \
                   Source/biblioteq_copy_editor.cc \
