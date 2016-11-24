@@ -307,5 +307,10 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 	(dialog.selectedColor().name());
     }
   else
-    emit mainWindowCanvasBackgroundColorChanged(QColor());
+    {
+      emit mainWindowCanvasBackgroundColorChanged(QColor());
+      m_ui.main_window_canvas_background_color->setStyleSheet
+	(QString("background-color: %1").arg(color.name()));
+      m_ui.main_window_canvas_background_color->setText(color.name());
+    }
 }
