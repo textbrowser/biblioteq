@@ -47,6 +47,12 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void insert(void);
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
+
+  void setPublicationDateFormat(const QString &dateFormat)
+  {
+    id.publication_date->setDisplayFormat(dateFormat);
+  }
+
   void updateWindow(const int);
 
  private:

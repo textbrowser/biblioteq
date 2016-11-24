@@ -50,10 +50,11 @@ biblioteq_otheroptions::~biblioteq_otheroptions()
 }
 
 /*
-** -- dateFormat() --
+** -- publicationDateFormat() --
 */
 
-QString biblioteq_otheroptions::dateFormat(const QString &itemType) const
+QString biblioteq_otheroptions::publicationDateFormat
+(const QString &itemType) const
 {
   for(int i = 0; i < m_ui.publication_date->rowCount(); i++)
     if(m_ui.publication_date->item(i, 0) &&

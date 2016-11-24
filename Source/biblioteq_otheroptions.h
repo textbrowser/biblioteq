@@ -20,7 +20,7 @@ class biblioteq_otheroptions: public QMainWindow
  public:
   biblioteq_otheroptions(void);
   ~biblioteq_otheroptions();
-  QString dateFormat(const QString &itemType) const;
+  QString publicationDateFormat(const QString &itemType) const;
   void prepareSettings(void);
 
  private:

@@ -63,7 +63,7 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
 
 QString biblioteq::publicationDateFormat(const QString &itemType) const
 {
-  return m_otheroptions->dateFormat(itemType);
+  return m_otheroptions->publicationDateFormat(itemType);
 }
 
 /*
@@ -72,4 +72,12 @@ QString biblioteq::publicationDateFormat(const QString &itemType) const
 
 void biblioteq::slotOtherOptionsSaved(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  foreach(QWidget *widget, QApplication::topLevelWidgets())
+    if(qobject_cast<biblioteq_book *> (widget))
+      qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("books"));
+
+  QApplication::restoreOverrideCursor();
 }

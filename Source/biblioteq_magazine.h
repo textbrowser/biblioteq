@@ -49,6 +49,12 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void populateDisplayAfterSRU(const QByteArray &data);
   void populateDisplayAfterZ3950(const QStringList &list,
 				 const QString &recordSyntax);
+
+  void setPublicationDateFormat(const QString &dateFormat)
+  {
+    ma.publication_date->setDisplayFormat(dateFormat);
+  }
+
   void search(const QString &field = "", const QString &value = "");
   void updateWindow(const int state);
 
