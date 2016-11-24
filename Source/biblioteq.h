@@ -215,6 +215,7 @@ class biblioteq: public QMainWindow
   QString getPreferredZ3950Site(void) const;
   QString getRoles(void) const;
   QString getTypeFilterString(void) const;
+  QString publicationDateFormat(const QString &itemType) const;
   QVariant setting(const QString &name) const;
   QVector<QString> getBBColumnIndexes(void) const;
   Ui_mainWindow getUI(void) const;

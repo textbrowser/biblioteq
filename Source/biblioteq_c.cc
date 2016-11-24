@@ -56,3 +56,12 @@ void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
       ui.graphicsView->scene()->setBackgroundBrush(color);
     }
 }
+
+/*
+** -- publicationDateFormat() --
+*/
+
+QString biblioteq::publicationDateFormat(const QString &itemType) const
+{
+  return m_otheroptions->dateFormat(itemType);
+}
