@@ -72,7 +72,6 @@ HEADERS		= Source\\biblioteq.h \
                   Source\\biblioteq_bgraphicsscene.h \
 		  Source\\biblioteq_book.h \
 		  Source\\biblioteq_borrowers_editor.h \
-		  Source\\biblioteq_c.h \
 		  Source\\biblioteq_cd.h \
 		  Source\\biblioteq_copy_editor.h \
 		  Source\\biblioteq_copy_editor_book.h \
