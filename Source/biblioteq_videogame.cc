@@ -931,7 +931,9 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
       m_engWindowTitle = "Search";
       vg.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
-      show();
+      showNormal();
+      activateWindow();
+      raise();
     }
   else
     {
@@ -1101,6 +1103,8 @@ void biblioteq_videogame::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       showNormal();
+      activateWindow();
+      raise();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -1286,7 +1290,9 @@ void biblioteq_videogame::insert(void)
   m_engWindowTitle = "Create";
   vg.id->setFocus();
   storeData(this);
-  show();
+  showNormal();
+  activateWindow();
+  raise();
 }
 
 /*

@@ -270,40 +270,43 @@ biblioteq::biblioteq(void):QMainWindow()
   ui.setupUi(this);
   m_connected_bar_label = 0;
   m_error_bar_label = 0;
-  m_status_bar_label = 0;
-  m_lastSearchType = POPULATE_ALL;
   m_idCt = 0;
+  m_lastSearchType = POPULATE_ALL;
   m_previousTypeFilter = "";
+  m_status_bar_label = 0;
 
   if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
+    biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
+
+  if((m_otheroptions_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_all_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_all_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_admin_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_admin_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_members_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_members_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_history_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_history_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_customquery_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_customquery_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((userinfo_diag =
       new(std::nothrow) userinfo_diag_class(m_members_diag)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_error_diag = new(std::nothrow) QMainWindow(this)) == 0)
+  if((m_error_diag = new(std::nothrow) QMainWindow()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(this)) == 0)
+  if((db_enumerations = new(std::nothrow) biblioteq_dbenumerations(0)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_configToolMenu = new(std::nothrow) QMenu(this)) == 0)
@@ -354,6 +357,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertBook(void)));
+  connect(ui.actionOther_Options,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotShowOtherOptions(void)));
   connect(ui.actionMusic_CD,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -408,6 +415,7 @@ biblioteq::biblioteq(void):QMainWindow()
   cq.setupUi(m_customquery_diag);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
+  m_otheroptions.setupUi(m_otheroptions_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
@@ -1297,8 +1305,9 @@ void biblioteq::slotSearch(void)
 	m_all_diag->updateGeometry();
 
       biblioteq_misc_functions::center(m_all_diag, this);
+      m_all_diag->showNormal();
+      m_all_diag->activateWindow();
       m_all_diag->raise();
-      m_all_diag->show();
       return;
     }
 
@@ -1390,8 +1399,9 @@ void biblioteq::slotSearch(void)
 
   resized = true;
   biblioteq_misc_functions::center(m_all_diag, this);
+  m_all_diag->showNormal();
+  m_all_diag->activateWindow();
   m_all_diag->raise();
-  m_all_diag->show();
 }
 
 /*
@@ -4618,8 +4628,9 @@ void biblioteq::slotShowMembersBrowser(void)
 
   resized = true;
   biblioteq_misc_functions::center(m_members_diag, this);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
   m_members_diag->raise();
-  m_members_diag->show();
 
   if(ui.actionPopulate_Members_Browser_Table_on_Display->isChecked())
     slotPopulateMembersBrowser();
@@ -5522,8 +5533,9 @@ void biblioteq::slotShowErrorDialog(void)
 
   resized = true;
   biblioteq_misc_functions::center(m_error_diag, this);
+  m_error_diag->showNormal();
+  m_error_diag->activateWindow();
   m_error_diag->raise();
-  m_error_diag->show();
 }
 
 /*
@@ -6192,13 +6204,12 @@ void biblioteq::slotBookSearch(void)
       book = new(std::nothrow) biblioteq_book(this, "search", -1);
 
       if(book)
-	{
-	  book->raise();
-	  book->search();
-	}
+	book->search();
     }
-  else
-    book->raise();
+
+  book->showNormal();
+  book->activateWindow();
+  book->raise();
 }
 
 /*
@@ -6240,13 +6251,12 @@ void biblioteq::slotCDSearch(void)
       cd = new(std::nothrow) biblioteq_cd(this, "search", -1);
 
       if(cd)
-	{
-	  cd->raise();
-	  cd->search();
-	}
+	cd->search();
     }
-  else
-    cd->raise();
+
+  cd->showNormal();
+  cd->activateWindow();
+  cd->raise();
 }
 
 /*
@@ -6288,13 +6298,12 @@ void biblioteq::slotDVDSearch(void)
       dvd = new(std::nothrow) biblioteq_dvd(this, "search", -1);
 
       if(dvd)
-	{
-	  dvd->raise();
-	  dvd->search();
-	}
+	dvd->search();
     }
-  else
-    dvd->raise();
+
+  dvd->showNormal();
+  dvd->activateWindow();
+  dvd->raise();
 }
 
 /*
@@ -6337,13 +6346,12 @@ void biblioteq::slotJournSearch(void)
       journal = new(std::nothrow) biblioteq_journal(this, "search", -1);
 
       if(journal)
-	{
-	  journal->raise();
-	  journal->search();
-	}
+	journal->search();
     }
-  else
-    journal->raise();
+
+  journal->showNormal();
+  journal->activateWindow();
+  journal->raise();
 }
 
 /*
@@ -6392,13 +6400,12 @@ void biblioteq::slotMagSearch(void)
 	(this, "search", -1, "magazine");
 
       if(magazine)
-	{
-	  magazine->raise();
-	  magazine->search();
-	}
+	magazine->search();
     }
-  else
-    magazine->raise();
+
+  magazine->showNormal();
+  magazine->activateWindow();
+  magazine->raise();
 }
 
 /*
@@ -6443,13 +6450,12 @@ void biblioteq::slotPhotographSearch(void)
 	(this, "search", -1);
 
       if(photograph)
-	{
-	  photograph->raise();
-	  photograph->search();
-	}
+	photograph->search();
     }
-  else
-    photograph->raise();
+
+  photograph->showNormal();
+  photograph->activateWindow();
+  photograph->raise();
 }
 
 /*
@@ -6493,13 +6499,12 @@ void biblioteq::slotVideoGameSearch(void)
 	(this, "search", -1);
 
       if(videogame)
-	{
-	  videogame->raise();
-	  videogame->search();
-	}
+	videogame->search();
     }
-  else
-    videogame->raise();
+
+  videogame->showNormal();
+  videogame->activateWindow();
+  videogame->raise();
 }
 
 /*
@@ -6648,6 +6653,8 @@ void biblioteq::slotListReservedItems(void)
   memberid = biblioteq_misc_functions::getColumnString
     (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
   (void) populateTable(POPULATE_ALL, "All Reserved", memberid);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
   m_members_diag->raise();
 }
 
@@ -6668,6 +6675,8 @@ void biblioteq::slotListOverdueItems(void)
     memberid = m_db.userName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+  m_members_diag->showNormal();
+  m_members_diag->activateWindow();
   m_members_diag->raise();
 }
 
@@ -7039,8 +7048,9 @@ void biblioteq::slotShowCustomQuery(void)
 
   resized = true;
   biblioteq_misc_functions::center(m_customquery_diag, this);
+  m_customquery_diag->showNormal();
+  m_customquery_diag->activateWindow();
   m_customquery_diag->raise();
-  m_customquery_diag->show();
 }
 
 /*
@@ -7092,8 +7102,9 @@ void biblioteq::slotExecuteCustomQuery(void)
   else
     {
       biblioteq_misc_functions::center(m_customquery_diag, this);
+      m_customquery_diag->showNormal();
+      m_customquery_diag->activateWindow();
       m_customquery_diag->raise();
-      m_customquery_diag->show();
     }
 }
 
@@ -7693,8 +7704,9 @@ void biblioteq::slotShowHistory(void)
       biblioteq_misc_functions::center(m_history_diag, this);
     }
 
+  m_history_diag->showNormal();
+  m_history_diag->activateWindow();
   m_history_diag->raise();
-  m_history_diag->show();
 }
 
 /*
@@ -7988,8 +8000,9 @@ void biblioteq::slotShowAdminDialog(void)
 
   resized = true;
   biblioteq_misc_functions::center(m_admin_diag, this);
+  m_admin_diag->showNormal();
+  m_admin_diag->activateWindow();
   m_admin_diag->raise();
-  m_admin_diag->show();
 
   if(ui.actionPopulate_Administrator_Browser_Table_on_Display->isChecked())
     slotRefreshAdminList();

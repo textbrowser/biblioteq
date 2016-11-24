@@ -560,7 +560,9 @@ void biblioteq_photographcollection::search
   pc.okButton->setText(tr("&Search"));
   pc.id_collection->setFocus();
   biblioteq_misc_functions::center(this, m_parentWid);
-  show();
+  showNormal();
+  activateWindow();
+  raise();
 }
 
 /*
@@ -795,6 +797,7 @@ void biblioteq_photographcollection::modify(const int state,
 
       storeData();
       showNormal();
+      activateWindow();
       raise();
 #ifndef Q_OS_MAC
       repaint();
@@ -831,7 +834,9 @@ void biblioteq_photographcollection::insert(void)
   pc.page->addItem("1");
   pc.page->blockSignals(false);
   storeData();
-  show();
+  showNormal();
+  activateWindow();
+  raise();
 }
 
 /*

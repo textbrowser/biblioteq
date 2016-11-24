@@ -1040,7 +1040,9 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
       m_engWindowTitle = "Search";
       dvd.id->setFocus();
       biblioteq_misc_functions::center(this, m_parentWid);
-      show();
+      showNormal();
+      activateWindow();
+      raise();
     }
   else
     {
@@ -1225,6 +1227,8 @@ void biblioteq_dvd::modify(const int state)
     {
       QApplication::restoreOverrideCursor();
       showNormal();
+      activateWindow();
+      raise();
 
       for(i = 0; i < query.record().count(); i++)
 	{
@@ -1428,7 +1432,9 @@ void biblioteq_dvd::insert(void)
   m_engWindowTitle = "Create";
   dvd.id->setFocus();
   storeData(this);
-  show();
+  showNormal();
+  activateWindow();
+  raise();
 }
 
 /*

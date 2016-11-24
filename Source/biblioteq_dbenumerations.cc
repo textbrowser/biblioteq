@@ -140,8 +140,9 @@ void biblioteq_dbenumerations::show(QMainWindow *parent, const bool populate)
 
   resized = true;
   biblioteq_misc_functions::center(this, parent);
+  showNormal();
+  activateWindow();
   raise();
-  QMainWindow::show();
   m_ui.emptyLabel->setMinimumHeight(m_ui.addCdFormat->height());
 
   if(populate)

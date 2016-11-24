@@ -109,7 +109,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Execute</string>
+         <string>&amp;Execute</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">
@@ -126,7 +126,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Close</string>
+         <string>&amp;Close</string>
         </property>
         <property name="icon">
          <iconset resource="../Icons/icons.qrc">

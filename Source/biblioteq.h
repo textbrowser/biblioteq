@@ -45,6 +45,7 @@
 #include "ui_biblioteq_history.h"
 #include "ui_biblioteq_mainwindow.h"
 #include "ui_biblioteq_members_browser.h"
+#include "ui_biblioteq_options.h"
 #include "ui_biblioteq_password.h"
 #include "ui_biblioteq_userinfo.h"
 
@@ -286,6 +287,7 @@ class biblioteq: public QMainWindow
   QMainWindow *m_error_diag;
   QMainWindow *m_history_diag;
   QMainWindow *m_members_diag;
+  QMainWindow *m_otheroptions_diag;
   QMap<QString, QHash<QString, QString> > m_branches;
   QMap<QString, QHash<QString, QString> > m_sruMaps;
   QMap<QString, QHash<QString, QString> > m_z3950Maps;
@@ -308,6 +310,7 @@ class biblioteq: public QMainWindow
   Ui_historyDialog history;
   Ui_mainWindow ui;
   Ui_membersBrowser bb;
+  Ui_options m_otheroptions;
   Ui_passSelect pass;
   biblioteq_dbenumerations *db_enumerations;
   int m_lastSearchType;
