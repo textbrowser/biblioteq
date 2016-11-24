@@ -7,13 +7,13 @@
 */
 
 #include "biblioteq_magazine.h"
-#include "biblioteq_options.h"
+#include "biblioteq_otheroptions.h"
 
 /*
-** -- biblioteq_options() --
+** -- biblioteq_otheroptions() --
 */
 
-biblioteq_options::biblioteq_options(void):QMainWindow()
+biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
 {
   m_ui.setupUi(this);
 #ifdef Q_OS_MAC
@@ -21,13 +21,17 @@ biblioteq_options::biblioteq_options(void):QMainWindow()
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  connect(m_ui.close,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotClose(void)));
 }
 
 /*
-** -- ~biblioteq_options() --
+** -- ~biblioteq_otheroptions() --
 */
 
-biblioteq_options::~biblioteq_options()
+biblioteq_otheroptions::~biblioteq_otheroptions()
 {
 }
 
@@ -35,7 +39,7 @@ biblioteq_options::~biblioteq_options()
 ** -- changeEvent() --
 */
 
-void biblioteq_options::changeEvent(QEvent *event)
+void biblioteq_otheroptions::changeEvent(QEvent *event)
 {
   if(event)
     switch(event->type())
@@ -56,7 +60,7 @@ void biblioteq_options::changeEvent(QEvent *event)
 ** -- closeEvent() --
 */
 
-void biblioteq_options::closeEvent(QCloseEvent *event)
+void biblioteq_otheroptions::closeEvent(QCloseEvent *event)
 {
   QMainWindow::closeEvent(event);
 }
@@ -65,7 +69,7 @@ void biblioteq_options::closeEvent(QCloseEvent *event)
 ** -- keyPressEvent() --
 */
 
-void biblioteq_options::keyPressEvent(QKeyEvent *event)
+void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 {
   if(event && event->key() == Qt::Key_Escape)
     close();
@@ -77,7 +81,7 @@ void biblioteq_options::keyPressEvent(QKeyEvent *event)
 ** -- setGlobalFonts() --
 */
 
-void biblioteq_options::setGlobalFonts(const QFont &font)
+void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 {
   setFont(font);
 
@@ -89,7 +93,7 @@ void biblioteq_options::setGlobalFonts(const QFont &font)
 ** -- slotClose() --
 */
 
-void biblioteq_options::slotClose(void)
+void biblioteq_otheroptions::slotClose(void)
 {
   close();
 }

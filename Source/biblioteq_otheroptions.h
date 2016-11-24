@@ -1,5 +1,5 @@
-#ifndef _BIBLIOTEQ_OPTIONS_H_
-#define _BIBLIOTEQ_OPTIONS_H_
+#ifndef _BIBLIOTEQ_OTHEROPTIONS_H_
+#define _BIBLIOTEQ_OTHEROPTIONS_H_
 
 /*
 ** -- Qt Includes --
@@ -11,18 +11,18 @@
 ** -- Local Includes --
 */
 
-#include "ui_biblioteq_options.h"
+#include "ui_biblioteq_otheroptions.h"
 
-class biblioteq_options: public QMainWindow
+class biblioteq_otheroptions: public QMainWindow
 {
   Q_OBJECT
 
  public:
-  biblioteq_options(void);
-  ~biblioteq_options();
+  biblioteq_otheroptions(void);
+  ~biblioteq_otheroptions();
 
  private:
-  Ui_options m_ui;
+  Ui_otheroptions m_ui;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>options</class>
- <widget class="QMainWindow" name="options">
+ <class>otheroptions</class>
+ <widget class="QMainWindow" name="otheroptions">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>BiblioteQ: Options</string>
+   <string>BiblioteQ: Other Options</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../Icons/icons.qrc">
@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>482</width>
-         <height>340</height>
+         <height>347</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -117,7 +117,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="saveButton">
+       <widget class="QPushButton" name="save">
         <property name="minimumSize">
          <size>
           <width>105</width>
@@ -134,7 +134,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="cancelButton">
+       <widget class="QPushButton" name="close">
         <property name="minimumSize">
          <size>
           <width>105</width>
@@ -178,8 +178,8 @@
   <tabstop>scrollArea</tabstop>
   <tabstop>main_window_canvas_background_color</tabstop>
   <tabstop>publication_date</tabstop>
-  <tabstop>saveButton</tabstop>
-  <tabstop>cancelButton</tabstop>
+  <tabstop>save</tabstop>
+  <tabstop>close</tabstop>
  </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>

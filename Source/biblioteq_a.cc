@@ -75,6 +75,7 @@ extern "C"
 #include "biblioteq.h"
 #include "biblioteq_architecture.h"
 #include "biblioteq_bgraphicsscene.h"
+#include "biblioteq_otheroptions.h"
 #include "biblioteq_sqlite_create_schema.h"
 
 /*
@@ -278,7 +279,7 @@ biblioteq::biblioteq(void):QMainWindow()
   if((m_branch_diag = new(std::nothrow) QDialog(this)) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
-  if((m_otheroptions_diag = new(std::nothrow) QMainWindow()) == 0)
+  if((m_otheroptions = new(std::nothrow) biblioteq_otheroptions()) == 0)
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   if((m_pass_diag = new(std::nothrow) QDialog(this)) == 0)
@@ -415,7 +416,6 @@ biblioteq::biblioteq(void):QMainWindow()
   cq.setupUi(m_customquery_diag);
   er.setupUi(m_error_diag);
   ab.setupUi(m_admin_diag);
-  m_otheroptions.setupUi(m_otheroptions_diag);
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
 #ifdef Q_OS_MAC
