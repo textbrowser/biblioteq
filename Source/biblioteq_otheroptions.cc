@@ -183,6 +183,16 @@ void biblioteq_otheroptions::prepareSettings(void)
     }
 
   m_ui.publication_date->resizeColumnToContents(0);
+
+  QColor color(settings.value("mainwindow_canvas_background_color").
+	       toString().trimmed());
+
+  if(!color.isValid())
+    color = Qt::white;
+
+  m_ui.main_window_canvas_background_color->setStyleSheet
+    (QString("background-color: %1").arg(color.name()));
+  m_ui.main_window_canvas_background_color->setText(color.name());
   QApplication::restoreOverrideCursor();
 }
 
@@ -215,6 +225,18 @@ void biblioteq_otheroptions::showNormal(void)
 void biblioteq_otheroptions::slotClose(void)
 {
   close();
+}
+
+/*
+** -- slotPreviewCanvasBackgroundColor() --
+*/
+
+void biblioteq_otheroptions::slotPreviewCanvasBackgroundColor
+(const QColor &color)
+{
+  m_ui.main_window_canvas_background_color->setStyleSheet
+    (QString("background-color: %1").arg(color.name()));
+  m_ui.main_window_canvas_background_color->setText(color.name());
 }
 
 /*
@@ -251,6 +273,11 @@ void biblioteq_otheroptions::slotSave(void)
       settings.setValue(key, value);
     }
 
+  settings.setValue
+    ("mainwindow_canvas_background_color",
+     m_ui.main_window_canvas_background_color->text());
+  emit mainWindowCanvasBackgroundColorChanged
+    (QColor(m_ui.main_window_canvas_background_color->text()));
   QApplication::restoreOverrideCursor();
 }
 
@@ -267,6 +294,10 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 	  SIGNAL(currentColorChanged(const QColor &)),
 	  this,
 	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)));
+  connect(&dialog,
+	  SIGNAL(currentColorChanged(const QColor &)),
+	  this,
+	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
 
   if(dialog.exec() == QDialog::Accepted)
     {
@@ -274,13 +305,6 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 	(QString("background-color: %1").arg(dialog.selectedColor().name()));
       m_ui.main_window_canvas_background_color->setText
 	(dialog.selectedColor().name());
-
-      QSettings settings;
-
-      settings.setValue
-	("otheroptions/main_window_canvas_background_color",
-	 dialog.selectedColor().name());
-      emit mainWindowCanvasBackgroundColorChanged(dialog.selectedColor());
     }
   else
     emit mainWindowCanvasBackgroundColorChanged(QColor());

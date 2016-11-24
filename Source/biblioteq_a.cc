@@ -606,6 +606,10 @@ biblioteq::biblioteq(void):QMainWindow()
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePasswordDialog(void)));
   connect(m_otheroptions,
+	  SIGNAL(mainWindowCanvasBackgroundColorChanged(const QColor &)),
+	  this,
+	  SLOT(slotMainWindowCanvasBackgroundColorChanged(const QColor &)));
+  connect(m_otheroptions,
 	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
 	  this,
 	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
@@ -3029,6 +3033,13 @@ void biblioteq::readConfig(void)
   else
     ui.table->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
+  QColor color(settings.value("mainwindow_canvas_backgound_color").
+	       toString().trimmed());
+
+  if(!color.isValid())
+    color = Qt::white;
+
+  ui.graphicsView->scene()->setBackgroundBrush(color);
   slotResizeColumns();
   createSqliteMenuActions();
 }

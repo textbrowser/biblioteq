@@ -21,17 +21,18 @@ class biblioteq_otheroptions: public QMainWindow
   biblioteq_otheroptions(void);
   ~biblioteq_otheroptions();
   QString dateFormat(const QString &itemType) const;
+  void prepareSettings(void);
 
  private:
   Ui_otheroptions m_ui;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
-  void prepareSettings(void);
   void setGlobalFonts(const QFont &font);
 
  private slots:
   void slotClose(void);
+  void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotSave(void);
   void slotSelectMainwindowCanvasBackgroundColor(void);
 

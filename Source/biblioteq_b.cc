@@ -18,6 +18,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_graphicsitempixmap.h"
+#include "biblioteq_otheroptions.h"
 
 /*
 ** -- populateTable() --
@@ -4092,5 +4093,6 @@ bool biblioteq::isGuest(void) const
 
 void biblioteq::slotReloadBiblioteqConf(void)
 {
+  m_otheroptions->prepareSettings();
   readGlobalSetup();
 }

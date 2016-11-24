@@ -1,4 +1,10 @@
 /*
+** -- Qt Includes --
+*/
+
+#include <QSettings>
+
+/*
 ** -- Local Includes --
 */
 
@@ -24,4 +30,29 @@ void biblioteq::slotShowOtherOptions(void)
 void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)
 {
   ui.graphicsView->scene()->setBackgroundBrush(color);
+}
+
+/*
+** -- slotMainWindowCanvasBackgroundColorChanged() --
+*/
+
+void biblioteq::slotMainWindowCanvasBackgroundColorChanged(const QColor &color)
+{
+  QSettings settings;
+
+  if(color.isValid())
+    {
+      settings.setValue("mainwindow_canvas_backgound_color", color.name());
+      ui.graphicsView->scene()->setBackgroundBrush(color);
+    }
+  else
+    {
+      QColor color(settings.value("mainwindow_canvas_backgound_color").
+		   toString().trimmed());
+
+      if(!color.isValid())
+	color = Qt::white;
+
+      ui.graphicsView->scene()->setBackgroundBrush(color);
+    }
 }
