@@ -135,7 +135,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< tr("Journals")
 	<< tr("Magazines")
 	<< tr("Music CDs")
-	<< tr("Photographs")
+	<< tr("Photograph Collections")
 	<< tr("Video Games");
   list2 << settings.value("otheroptions/book_publication_date_format").
            toString()
@@ -154,7 +154,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< "journals"
 	<< "magazines"
 	<< "musiccds"
-	<< "photographs"
+	<< "photographcollections"
 	<< "videogames";
   m_ui.publication_date->setRowCount(list1.size());
 

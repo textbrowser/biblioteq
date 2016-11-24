@@ -59,12 +59,6 @@ class biblioteq_item
   QString getID(void) const;
   int getOldQ(void) const;
   int getRow(void) const;
-
-  virtual void setPublicationDateFormat(const QString &dateFormat)
-  {
-    Q_UNUSED(dateFormat);
-  }
-
   void setOldQ(const int q);
   void updateFont(const QFont &font, QWidget *window);
   void updateRow(const int rowArg);

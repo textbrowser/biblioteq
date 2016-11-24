@@ -9,6 +9,7 @@
 */
 
 #include "biblioteq.h"
+#include "biblioteq_book.h"
 #include "biblioteq_otheroptions.h"
 
 /*
@@ -78,6 +79,25 @@ void biblioteq::slotOtherOptionsSaved(void)
     if(qobject_cast<biblioteq_book *> (widget))
       qobject_cast<biblioteq_book *> (widget)->setPublicationDateFormat
 	(m_otheroptions->publicationDateFormat("books"));
+    else if(qobject_cast<biblioteq_cd *> (widget))
+      qobject_cast<biblioteq_cd *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("musiccds"));
+    else if(qobject_cast<biblioteq_dvd *> (widget))
+      qobject_cast<biblioteq_dvd *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("dvds"));
+    else if(qobject_cast<biblioteq_journal *> (widget))
+      qobject_cast<biblioteq_journal *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("journals"));
+    else if(qobject_cast<biblioteq_magazine *> (widget))
+      qobject_cast<biblioteq_magazine *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("magazines"));
+    else if(qobject_cast<biblioteq_photographcollection *> (widget))
+      qobject_cast<biblioteq_photographcollection *> (widget)->
+	setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("photographcollections"));
+    else if(qobject_cast<biblioteq_videogame *> (widget))
+      qobject_cast<biblioteq_videogame *> (widget)->setPublicationDateFormat
+	(m_otheroptions->publicationDateFormat("videogames"));
 
   QApplication::restoreOverrideCursor();
 }
