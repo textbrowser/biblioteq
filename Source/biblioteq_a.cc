@@ -613,6 +613,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
 	  this,
 	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
+  connect(m_otheroptions,
+	  SIGNAL(saved(void)),
+	  this,
+	  SLOT(slotOtherOptionsSaved(void)));
   connect(m_pass_diag, SIGNAL(finished(int)), this,
 	  SLOT(slotClosePasswordDialog(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,
@@ -1274,6 +1278,8 @@ void biblioteq::slotAbout(void)
   mb.setTextFormat(Qt::RichText);
   mb.setText
     (QString("<html>BiblioteQ Version %1<br><br>"
+	     "In times of uncertainty, critical thinking is required. "
+	     "Explore, read, think, and discuss.<br><br>"
 	     "Copyright (c) 2005 - present, guess who?<br>"
 	     "Compiled on %2, %3.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"

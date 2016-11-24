@@ -65,3 +65,11 @@ QString biblioteq::publicationDateFormat(const QString &itemType) const
 {
   return m_otheroptions->dateFormat(itemType);
 }
+
+/*
+** -- slotOtherOptionsSaved() --
+*/
+
+void biblioteq::slotOtherOptionsSaved(void)
+{
+}

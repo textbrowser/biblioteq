@@ -42,6 +42,7 @@ class biblioteq_otheroptions: public QMainWindow
  signals:
   void mainWindowCanvasBackgroundColorChanged(const QColor &color);
   void mainWindowCanvasBackgroundColorPreview(const QColor &color);
+  void saved(void);
 };
 
 #endif

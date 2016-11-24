@@ -58,10 +58,14 @@ QString biblioteq_otheroptions::dateFormat(const QString &itemType) const
   for(int i = 0; i < m_ui.publication_date->rowCount(); i++)
     if(m_ui.publication_date->item(i, 0) &&
        itemType.toLower().trimmed() ==
-       m_ui.publication_date->item(i, 0)->text().toLower())
+       m_ui.publication_date->item(i, 0)->data(Qt::UserRole).toString().
+       toLower())
       {
-	if(m_ui.publication_date->item(i, 1))
-	  return m_ui.publication_date->item(i, 1)->text();
+	QComboBox *comboBox = qobject_cast<QComboBox *>
+	  (m_ui.publication_date->cellWidget(i, 1));
+
+	if(comboBox)
+	  return comboBox->currentText();
 
 	break;
       }
@@ -123,6 +127,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   QSettings settings;
   QStringList list1;
   QStringList list2;
+  QStringList list3;
 
   list1 << tr("Books")
 	<< tr("DVDs")
@@ -143,6 +148,13 @@ void biblioteq_otheroptions::prepareSettings(void)
            toString()
 	<< settings.value("otheroptions/videogame_publication_date_format").
            toString();
+  list3 << "books"
+	<< "dvds"
+	<< "journals"
+	<< "magazines"
+	<< "musiccds"
+	<< "photographs"
+	<< "videogames";
   m_ui.publication_date->setRowCount(list1.size());
 
   for(int i = 0; i < list1.size(); i++)
@@ -177,6 +189,7 @@ void biblioteq_otheroptions::prepareSettings(void)
       else
 	comboBox->setCurrentIndex(0);
 
+      item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
       m_ui.publication_date->setItem(i, 0, item);
       m_ui.publication_date->setCellWidget(i, 1, comboBox);
@@ -278,6 +291,7 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.main_window_canvas_background_color->text());
   emit mainWindowCanvasBackgroundColorChanged
     (QColor(m_ui.main_window_canvas_background_color->text()));
+  emit saved();
   QApplication::restoreOverrideCursor();
 }
 
