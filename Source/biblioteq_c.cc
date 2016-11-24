@@ -16,3 +16,12 @@ void biblioteq::slotShowOtherOptions(void)
   m_otheroptions->activateWindow();
   m_otheroptions->raise();
 }
+
+/*
+** -- slotPreviewCanvasBackgroundColor() --
+*/
+
+void biblioteq::slotPreviewCanvasBackgroundColor(const QColor &color)
+{
+  ui.graphicsView->scene()->setBackgroundBrush(color);
+}

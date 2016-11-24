@@ -384,6 +384,7 @@ class biblioteq: public QMainWindow
   void slotPhotographsPerPageChanged(void);
   void slotPhotographSearch(void);
   void slotPopulateMembersBrowser(void);
+  void slotPreviewCanvasBackgroundColor(const QColor &color);
   void slotPreviousPage(void);
   void slotPrintReservationHistory(void);
   void slotPrintReserved(void);

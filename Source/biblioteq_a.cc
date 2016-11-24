@@ -605,6 +605,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SLOT(slotSavePassword(void)));
   connect(pass.cancelButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotClosePasswordDialog(void)));
+  connect(m_otheroptions,
+	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)),
+	  this,
+	  SLOT(slotPreviewCanvasBackgroundColor(const QColor &)));
   connect(m_pass_diag, SIGNAL(finished(int)), this,
 	  SLOT(slotClosePasswordDialog(void)));
   connect(br.resetButton, SIGNAL(clicked(void)), this,

@@ -2,6 +2,7 @@
 ** -- Qt Includes --
 */
 
+#include <QColorDialog>
 #include <QSettings>
 
 /*
@@ -29,6 +30,14 @@ biblioteq_otheroptions::biblioteq_otheroptions(void):QMainWindow()
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.main_window_canvas_background_color,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectMainwindowCanvasBackgroundColor(void)));
+  connect(m_ui.save,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSave(void)));
   prepareSettings();
 }
 
@@ -108,6 +117,7 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_otheroptions::prepareSettings(void)
 {
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   m_ui.publication_date->clearContents();
 
   QSettings settings;
@@ -133,7 +143,6 @@ void biblioteq_otheroptions::prepareSettings(void)
            toString()
 	<< settings.value("otheroptions/videogame_publication_date_format").
            toString();
-  m_ui.publication_date->setSortingEnabled(false);
   m_ui.publication_date->setRowCount(list1.size());
 
   for(int i = 0; i < list1.size(); i++)
@@ -174,10 +183,7 @@ void biblioteq_otheroptions::prepareSettings(void)
     }
 
   m_ui.publication_date->resizeColumnToContents(0);
-  m_ui.publication_date->setSortingEnabled(true);
-  m_ui.publication_date->horizontalHeader()->
-    setSortIndicator(0, Qt::AscendingOrder);
-  m_ui.publication_date->horizontalHeader()->setSortIndicatorShown(true);
+  QApplication::restoreOverrideCursor();
 }
 
 /*
@@ -209,4 +215,73 @@ void biblioteq_otheroptions::showNormal(void)
 void biblioteq_otheroptions::slotClose(void)
 {
   close();
+}
+
+/*
+** -- slotSave() --
+*/
+
+void biblioteq_otheroptions::slotSave(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QSettings settings;
+  QStringList list;
+
+  list << "otheroptions/book_publication_date_format"
+       << "otheroptions/dvd_publication_date_format"
+       << "otheroptions/journal_publication_date_format"
+       << "otheroptions/magazine_publication_date_format"
+       << "otheroptions/cd_publication_date_format"
+       << "otheroptions/photograph_publication_date_format"
+       << "otheroptions/videogame_publication_date_format";
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      QComboBox *comboBox = qobject_cast<QComboBox *>
+	(m_ui.publication_date->cellWidget(i, 1));
+      QString key(list.at(i));
+      QString value("");
+
+      if(comboBox)
+	value = comboBox->currentText();
+      else
+	value = "MM/dd/yyyy";
+
+      settings.setValue(key, value);
+    }
+
+  QApplication::restoreOverrideCursor();
+}
+
+/*
+** -- slotSelectMainwindowCanvasBackgroundColor() --
+*/
+
+void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
+{
+  QColor color(m_ui.main_window_canvas_background_color->text());
+  QColorDialog dialog(this);
+
+  connect(&dialog,
+	  SIGNAL(currentColorChanged(const QColor &)),
+	  this,
+	  SIGNAL(mainWindowCanvasBackgroundColorPreview(const QColor &)));
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      m_ui.main_window_canvas_background_color->setStyleSheet
+	(QString("background-color: %1").arg(dialog.selectedColor().name()));
+      m_ui.main_window_canvas_background_color->setText
+	(dialog.selectedColor().name());
+
+      QSettings settings;
+
+      settings.setValue
+	("otheroptions/main_window_canvas_background_color",
+	 dialog.selectedColor().name());
+      emit mainWindowCanvasBackgroundColorChanged(dialog.selectedColor());
+    }
+  else
+    emit mainWindowCanvasBackgroundColorChanged(QColor());
 }
