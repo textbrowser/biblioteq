@@ -20,6 +20,8 @@ class biblioteq_otheroptions: public QMainWindow
  public:
   biblioteq_otheroptions(void);
   ~biblioteq_otheroptions();
+  QString dateFormat(const QString &itemType) const;
+  void prepareSettings(void);
 
  private:
   Ui_otheroptions m_ui;
@@ -30,6 +32,9 @@ class biblioteq_otheroptions: public QMainWindow
 
  private slots:
   void slotClose(void);
+
+ public slots:
+  void showNormal(void);
 };
 
 #endif
