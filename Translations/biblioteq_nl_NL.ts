@@ -4436,6 +4436,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_otheroptions</name>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Boeken</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD&apos;s</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Kranten</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Tijdschriften</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">Muziek CD&apos;s</translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished">Foto Verzameling</translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Video Games</translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Geheugen Fout</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>Reset Collection &amp;Image</source>
@@ -5971,7 +6010,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>customquery</name>
     <message>
         <source>Close</source>
-        <translation>Sluiten</translation>
+        <translation type="obsolete">Sluiten</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
@@ -5987,11 +6026,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Execute</source>
-        <translation>Uitvoeren</translation>
+        <translation type="obsolete">Uitvoeren</translation>
     </message>
     <message>
         <source>Database Tables</source>
         <translation>Databank Tabellen</translation>
+    </message>
+    <message>
+        <source>&amp;Execute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
     </message>
 </context>
 <context>
@@ -7796,6 +7843,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Other &amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8121,6 +8172,37 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>&amp;Apply Filter</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>otheroptions</name>
+    <message>
+        <source>BiblioteQ: Other Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>#ffffff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Opslaan</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Sluiten</translation>
     </message>
 </context>
 <context>

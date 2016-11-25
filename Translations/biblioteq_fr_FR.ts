@@ -4432,6 +4432,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_otheroptions</name>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Livres</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Journaux</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Magazines</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">CD de musique</translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Jeux vidéo</translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Erreur de mémoire</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>Reset Collection &amp;Image</source>
@@ -5943,7 +5982,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>customquery</name>
     <message>
         <source>Close</source>
-        <translation>Fermer</translation>
+        <translation type="obsolete">Fermer</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
@@ -5959,11 +5998,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Execute</source>
-        <translation>Exécuter</translation>
+        <translation type="obsolete">Exécuter</translation>
     </message>
     <message>
         <source>Database Tables</source>
         <translation>Tables de la base de données</translation>
+    </message>
+    <message>
+        <source>&amp;Execute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7733,6 +7780,10 @@ minmal de jours.</translation>
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Other &amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8049,6 +8100,37 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Apply Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>otheroptions</name>
+    <message>
+        <source>BiblioteQ: Other Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>#ffffff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Publication Date Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Enregistrer</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

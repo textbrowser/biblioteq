@@ -4448,6 +4448,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_otheroptions</name>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Βιβλία</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVDs</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Εφημερίδες</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Περιοδικά</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">Μουσικά CDs</translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Ηλεκτρονικά παιχνίδια</translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Σφάλμα μνήμης</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>Reset Collection &amp;Image</source>
@@ -6021,15 +6060,23 @@ URL</source>
     </message>
     <message>
         <source>Execute</source>
-        <translation>Εκτέλεση</translation>
+        <translation type="obsolete">Εκτέλεση</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation type="obsolete">Κλείσιμο</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
         <translation>Αυτή η φόρμα απευθύνεται σε προχωρημένους χρήστες που γνωρίζουν SQL και το πρότυπο βάσης δεδομένων του BiblioteQ. Παρακαλώ να γίνει εισαγωγή πληροφορίας εικόνας (Εξώφυλλο, οπισθόφυλλο) όταν δημιουργηθεί το ερώτημα.</translation>
+    </message>
+    <message>
+        <source>&amp;Execute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
     </message>
 </context>
 <context>
@@ -8050,6 +8097,10 @@ URL</source>
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Other &amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8411,6 +8462,37 @@ URL</source>
     <message>
         <source>&amp;Apply Filter</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>otheroptions</name>
+    <message>
+        <source>BiblioteQ: Other Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>#ffffff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Type</source>
+        <translation type="unfinished">Τύπος αντικειμένου</translation>
+    </message>
+    <message>
+        <source>Publication Date Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">Απ&amp;οθήκευση</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Κλείσιμο</translation>
     </message>
 </context>
 <context>

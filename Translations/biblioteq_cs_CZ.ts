@@ -4420,6 +4420,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
 </context>
 <context>
+    <name>biblioteq_otheroptions</name>
+    <message>
+        <source>Books</source>
+        <translation type="unfinished">Knihy</translation>
+    </message>
+    <message>
+        <source>DVDs</source>
+        <translation type="unfinished">DVD disky</translation>
+    </message>
+    <message>
+        <source>Journals</source>
+        <translation type="unfinished">Časopisy</translation>
+    </message>
+    <message>
+        <source>Magazines</source>
+        <translation type="unfinished">Magazíny</translation>
+    </message>
+    <message>
+        <source>Music CDs</source>
+        <translation type="unfinished">Hudební CD</translation>
+    </message>
+    <message>
+        <source>Photograph Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Games</source>
+        <translation type="unfinished">Videohry</translation>
+    </message>
+    <message>
+        <source>Memory Error</source>
+        <translation type="unfinished">Chyba paměti</translation>
+    </message>
+    <message>
+        <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>biblioteq_photographcollection</name>
     <message>
         <source>Reset Collection &amp;Image</source>
@@ -5950,15 +5989,23 @@ Načítání obrázků může dotaz značně zpomalit.</translation>
     </message>
     <message>
         <source>Execute</source>
-        <translation>Provést dotaz</translation>
+        <translation type="obsolete">Provést dotaz</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Zavřít</translation>
+        <translation type="obsolete">Zavřít</translation>
     </message>
     <message>
         <source>This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. Please note that retrieving image information (front_cover, back_cover) will burden the query.</source>
         <translation>Toto okno je určeno pokročilým uživatelům, kteří ovládají dotazovací jazyk SQL a znají dobře databázové schéma BiblioteQ. Načítání obrázků může dotaz značně zpomalit.</translation>
+    </message>
+    <message>
+        <source>&amp;Execute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
     </message>
 </context>
 <context>
@@ -7811,6 +7858,10 @@ webová adresa</translation>
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Other &amp;Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8168,6 +8219,37 @@ webová adresa</translation>
     <message>
         <source>&amp;Apply Filter</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>otheroptions</name>
+    <message>
+        <source>BiblioteQ: Other Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Main Window Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>#ffffff</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Type</source>
+        <translation type="unfinished">Typ položky</translation>
+    </message>
+    <message>
+        <source>Publication Date Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Uložit</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zavřít</translation>
     </message>
 </context>
 <context>
