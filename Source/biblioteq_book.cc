@@ -113,7 +113,6 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   id.setupUi(this);
   id.files->setColumnHidden(id.files->columnCount() - 1, true); // myoid
-  qDebug()<<qmain->publicationDateFormat("books");
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
