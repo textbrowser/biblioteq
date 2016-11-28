@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3840"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="+3770"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3839"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="+3772"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2511,7 +2511,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3787"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3786"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2526,7 +2526,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+73"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Elülső Borító Visszaállítása</translation>
     </message>
@@ -3406,7 +3406,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_cd</name>
     <message>
-        <location filename="../Source/biblioteq_cd.cc" line="+102"/>
+        <location filename="../Source/biblioteq_cd.cc" line="+103"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Elülső Borító Visszaállítása</translation>
     </message>
@@ -4738,7 +4738,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_dvd</name>
     <message>
-        <location filename="../Source/biblioteq_dvd.cc" line="+77"/>
+        <location filename="../Source/biblioteq_dvd.cc" line="+78"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Elülső Borító Visszaállítása</translation>
     </message>
@@ -5276,7 +5276,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_journal</name>
     <message>
-        <location filename="../Source/biblioteq_journal.cc" line="+65"/>
+        <location filename="../Source/biblioteq_journal.cc" line="+67"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
@@ -5289,7 +5289,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="-3687"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="-3689"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
@@ -5299,7 +5299,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Adatok letöltése az SRU oldalrol. Legyen türuelemmel...</translation>
     </message>
     <message>
-        <location line="+46"/>
+        <location line="+48"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Elülső Borító Visszaállítása</translation>
     </message>
@@ -6363,7 +6363,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Videójátékok</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+38"/>
         <source>Memory Error</source>
         <translation type="unfinished">Memória Hiba</translation>
     </message>
@@ -6376,7 +6376,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_photographcollection</name>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="+116"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="+118"/>
         <source>Reset Collection &amp;Image</source>
         <translation type="unfinished">Gyüjtemény Kép Visszaállítása</translation>
     </message>
@@ -6844,7 +6844,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_videogame</name>
     <message>
-        <location filename="../Source/biblioteq_videogame.cc" line="+76"/>
+        <location filename="../Source/biblioteq_videogame.cc" line="+77"/>
         <source>Reset &amp;Front Cover Image</source>
         <translation type="unfinished">Elülső Borító Visszaállítása</translation>
     </message>
