@@ -164,6 +164,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       if(!(str == "MM/dd/yyyy" ||
 	   str == "MM/dd" ||
+	   str == "MM/yyyy" ||
 	   str == "MM"))
 	str = "MM/dd/yyyy";
 
@@ -183,6 +184,7 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       comboBox->addItems(QStringList() << "MM/dd/yyyy"
 			               << "MM/dd"
+			               << "MM/yyyy"
 			               << "MM");
 
       if(comboBox->findText(str) >= 0)

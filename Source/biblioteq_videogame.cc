@@ -55,6 +55,7 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
+  vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);

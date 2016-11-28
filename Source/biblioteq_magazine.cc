@@ -99,6 +99,8 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   ma.setupUi(this);
   ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
+  ma.publication_date->setDisplayFormat
+    (qmain->publicationDateFormat("magazines"));
   connect(ma.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,

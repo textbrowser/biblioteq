@@ -57,6 +57,7 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   cd.setupUi(this);
+  cd.release_date->setDisplayFormat(qmain->publicationDateFormat("musiccds"));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);

@@ -55,6 +55,7 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   dvd.setupUi(this);
+  dvd.release_date->setDisplayFormat(qmain->publicationDateFormat("dvds"));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);

@@ -28,6 +28,8 @@ biblioteq_journal::biblioteq_journal(QMainWindow *parent,
 		     "journal")
 {
   m_subType = "Journal";
+  ma.publication_date->setDisplayFormat
+    (qmain->publicationDateFormat("journals"));
   disconnect(ma.cancelButton, SIGNAL(clicked(void)),
 	     static_cast<biblioteq_magazine *> (this),
 	     SLOT(slotCancel(void)));
