@@ -9,14 +9,14 @@ Introduction
 	1.1 PostgreSQL Database Configuration
 
 	BiblioteQ supports PostgreSQL 8.x, 9.x, and newer. Please follow the PostgreSQL-provided documentation for installing PostgreSQL. After installing the required PostgreSQL packages, please perform the following operations:
-a) Create the xbook_db database via createdb xbook_db -E UTF8 or via the PostgreSQL-recommended protocol. Please note that xbook_db is only a suggestion.
-b) Execute createlang plpgsql -d xbook_db or the PostgreSQL-recommended protocol for adding a new programming language to the database.
-c) Replace all instances of the default administrator xbook_admin in postgresql_create_schema.sql file.
-d) Log into your PostgreSQL database and load the postgresql_create_schema.sql file via \i postgresql_create_schema.sql.
+a) Create the xbook_db database via createdb xbook_db -E UTF8 or via the PostgreSQL-recommended procedure. Please note that xbook_db is only a suggestion.
+b) Execute createlang plpgsql -d xbook_db or the PostgreSQL-recommended procedure for adding a new programming language to the xbook_db database.
+c) If desired, replace all instances of the default administrator xbook_admin in postgresql_create_schema.sql file.
+d) Log into your PostgreSQL xbook_db database and load the postgresql_create_schema.sql file via \i postgresql_create_schema.sql.
 
 	1.2 Database Updates
 
-	It is sometimes necessary to update a database schema after a software update. To do so, please execute the version-specific SQL statements that are located in the postgresql_update_schema.sql. You may also be required to execute additional steps via BiblioteQ. Please read and follow the version-specific instructions listed at http://biblioteq.sourceforge.net/release_notes.html.
+	It is sometimes necessary to update a database schema after a software update. To do so, please execute the version-specific SQL statements that are located in postgresql_update_schema.sql. You may also be required to execute additional steps via BiblioteQ. Please read and follow the version-specific instructions listed at http://biblioteq.sourceforge.net/release_notes.html.
 
 2. BiblioteQ Installation
 
@@ -27,11 +27,11 @@ d) Log into your PostgreSQL database and load the postgresql_create_schema.sql f
 	2.2 Unix Installation
 
 	Installing BiblioteQ on platforms that lack prepared bundles involves several operations. First, please 	resolve the following software prerequisites:
-a) Qt 4.8.x must be installed. Qt 5.x is also supported. Qt 4.7.4 is loosely supported. Please download the software from https://www.qt.io/download. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin.
+a) Qt 4.8.x must be installed. Qt 5.x is also supported. Qt 4.7.4 is loosely supported. Please download Qt from https://www.qt.io/download. You have the option of building Qt with the PostgreSQL driver or creating the driver separately as a plugin.
 b) YAZ 4.2.x, or higher, must be installed. Please download the software from http://www.indexdata.com/yaz.
 c) If you intend to use PostgreSQL, the PostgreSQL database package must be installed. Please download the software from https://www.postgresql.org/download.
 d) If you intend to use SQLite, the SQLite package must be installed. Please download the software from https://www.sqlite.org/download.html.
-e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make or qmake -o Makefile biblioteq.qt5.pro.
+e) After the required dependencies have been fulfilled and your environment is properly configured for Qt, build BiblioteQ via qmake -o Makefile biblioteq.pro && make. Some systems provide gmake, qmake-qt4, and qmake-qt5.
 
 	2.3 Windows Installation
 
@@ -70,4 +70,3 @@ e) After the required dependencies have been fulfilled and your environment is p
 6. SQLite Database Removal
 
 	Delete the desired SQLite database file(s).
-
