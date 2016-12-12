@@ -1181,3 +1181,14 @@ GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
 /* Release 2016.11.05 */
 
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
+
+/* Release 2017.01.01 */
+
+ALTER TABLE book ADD accession_number TEXT;
+ALTER TABLE cd ADD accession_number TEXT;
+ALTER TABLE dvd ADD accession_number TEXT;
+ALTER TABLE journal ADD accession_number TEXT;
+ALTER TABLE magazine ADD accession_number TEXT;
+ALTER TABLE photograph ADD accession_number TEXT;
+ALTER TABLE photograph_collection ADD accession_number TEXT;
+ALTER TABLE videogame ADD accession_number TEXT;
