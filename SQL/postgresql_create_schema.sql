@@ -273,8 +273,8 @@ CREATE TABLE magazine_files
 
 CREATE TABLE photograph_collection
 (
-	accession_number TEXT,
 	about		 TEXT,
+	accession_number TEXT,
 	id		 TEXT PRIMARY KEY NOT NULL,
 	image		 BYTEA,
 	image_scaled	 BYTEA,

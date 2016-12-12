@@ -1,6 +1,7 @@
 const char *sqlite_create_schema_text = "\
 CREATE TABLE book							\
 (									\
+    accession_number TEXT,						\
     author       TEXT NOT NULL,						\
     back_cover	 BYTEA,							\
     binding_type VARCHAR(32) NOT NULL,					\
@@ -64,6 +65,7 @@ END;									\
 									\
 CREATE TABLE cd								\
 (									\
+    accession_number TEXT,						\
     artist	 TEXT NOT NULL,						\
     back_cover	 BYTEA,							\
     category	 TEXT NOT NULL,						\
@@ -122,6 +124,7 @@ END;									\
 									\
 CREATE TABLE dvd							\
 (									\
+    accession_number TEXT,						\
     back_cover	 BYTEA,							\
     category	 TEXT NOT NULL,						\
     description	 TEXT NOT NULL,						\
@@ -186,6 +189,7 @@ CREATE TABLE grey_literature						\
 									\
 CREATE TABLE journal							\
 (									\
+    accession_number TEXT,						\
     back_cover	 BYTEA,							\
     callnumber	 VARCHAR(64),						\
     category	 TEXT NOT NULL,						\
@@ -244,6 +248,7 @@ END;									\
 									\
 CREATE TABLE magazine							\
 (									\
+    accession_number TEXT,						\
     back_cover	 BYTEA,							\
     callnumber	 VARCHAR(64),						\
     category	 TEXT NOT NULL,						\
@@ -303,6 +308,7 @@ END;									\
 CREATE TABLE photograph_collection					\
 (									\
     about	 TEXT,							\
+    accession_number TEXT,						\
     id		 TEXT PRIMARY KEY NOT NULL,				\
     image	 BYTEA,							\
     image_scaled BYTEA,							\
@@ -315,6 +321,7 @@ CREATE TABLE photograph_collection					\
 									\
 CREATE TABLE photograph							\
 (									\
+    accession_number      TEXT, 					\
     callnumber		  VARCHAR(64),					\
     collection_oid	  BIGINT NOT NULL,				\
     copyright		  TEXT NOT NULL,				\
@@ -340,6 +347,7 @@ CREATE TABLE photograph							\
 									\
 CREATE TABLE videogame							\
 (									\
+    accession_number TEXT,						\
     back_cover	 BYTEA,							\
     description  TEXT NOT NULL,						\
     developer	 TEXT NOT NULL,						\
