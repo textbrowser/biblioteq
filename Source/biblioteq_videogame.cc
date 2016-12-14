@@ -773,6 +773,7 @@ void biblioteq_videogame::slotGo(void)
 	"videogame.quantity - COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"videogame.accession_number, "
 	"videogame.type, "
 	"videogame.myoid, "
 	"videogame.front_cover "

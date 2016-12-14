@@ -830,6 +830,7 @@ void biblioteq_cd::slotGo(void)
 	"cd.cdrecording, "
 	"cd.quantity - COUNT(item_borrower_vw.item_oid) AS availability, "
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"cd.accession_number, "
 	"cd.type, "
 	"cd.myoid, "
 	"cd.front_cover "

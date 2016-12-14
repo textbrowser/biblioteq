@@ -864,6 +864,7 @@ void biblioteq_dvd::slotGo(void)
 	"COUNT(item_borrower_vw.item_oid) "
 	"AS availability, "
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
+	"dvd.accession_number, "
 	"dvd.type, "
 	"dvd.myoid, "
 	"dvd.front_cover "

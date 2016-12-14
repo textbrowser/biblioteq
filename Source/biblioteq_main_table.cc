@@ -116,8 +116,10 @@ void biblioteq_main_table::setColumns(const QString &username,
 	  m_columnHeaderIndexes.append("Total Reserved");
 	}
 
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
 
@@ -151,6 +153,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Total Reserved"));
       list.append(tr("Originality"));
       list.append(tr("Condition"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -175,6 +178,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Total Reserved");
       m_columnHeaderIndexes.append("Originality");
       m_columnHeaderIndexes.append("Condition");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
@@ -198,6 +202,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Aspect Ratio"));
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -218,6 +223,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Aspect Ratio");
       m_columnHeaderIndexes.append("Availability");
       m_columnHeaderIndexes.append("Total Reserved");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
@@ -241,6 +247,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Dewey Number"));
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -261,6 +268,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Dewey Number");
       m_columnHeaderIndexes.append("Availability");
       m_columnHeaderIndexes.append("Total Reserved");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
@@ -284,6 +292,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Recording Type"));
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -304,6 +313,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Recording Type");
       m_columnHeaderIndexes.append("Availability");
       m_columnHeaderIndexes.append("Total Reserved");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
@@ -314,6 +324,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Location"));
       list.append(tr("Photograph Count"));
       list.append(tr("About"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -321,6 +332,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Location");
       m_columnHeaderIndexes.append("Photograph Count");
       m_columnHeaderIndexes.append("About");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }
@@ -342,6 +354,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Location"));
       list.append(tr("Availability"));
       list.append(tr("Total Reserved"));
+      list.append(tr("Accession Number"));
       list.append(tr("Type"));
       list.append("MYOID");
       m_columnHeaderIndexes.append("Title");
@@ -360,6 +373,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Location");
       m_columnHeaderIndexes.append("Availability");
       m_columnHeaderIndexes.append("Total Reserved");
+      m_columnHeaderIndexes.append("Accession Number");
       m_columnHeaderIndexes.append("Type");
       m_columnHeaderIndexes.append("MYOID");
     }

@@ -1102,6 +1102,7 @@ void biblioteq_book::slotGo(void)
 	"COUNT(item_borrower_vw.item_oid) AS total_reserved, "
 	"book.originality, "
 	"book.condition, "
+	"book.accession_number, "
 	"book.type, "
 	"book.myoid, "
 	"book.front_cover "

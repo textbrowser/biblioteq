@@ -483,6 +483,7 @@ void biblioteq_photographcollection::slotGo(void)
 	"photograph_collection.location, "
 	"COUNT(photograph.myoid) AS photograph_count, "
 	"photograph_collection.about, "
+	"photograph_collection.accession_number, "
 	"photograph_collection.type, "
 	"photograph_collection.myoid, "
 	"photograph_collection.image_scaled "
