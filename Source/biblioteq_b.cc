@@ -3844,7 +3844,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "myoid		BIGSERIAL NOT NULL,"
 	      "FOREIGN KEY(item_oid) REFERENCES book(myoid) ON DELETE CASCADE,"
 	      "PRIMARY KEY(file_digest, item_oid)"
-	      ");");
+	      ")");
   list.append("CREATE TABLE IF NOT EXISTS journal_files"
 	      "("
 	      "description	TEXT,"
@@ -3856,12 +3856,12 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "FOREIGN KEY(item_oid) REFERENCES journal(myoid) ON DELETE "
 	      "CASCADE,"
 	      "PRIMARY KEY(file_digest, item_oid)"
-	      ");");
+	      ")");
   list.append("CREATE TABLE IF NOT EXISTS locations "
 	      "("
 	      "location TEXT NOT NULL,"
 	      "type VARCHAR(16),"
-	      "PRIMARY KEY(location, type));");
+	      "PRIMARY KEY(location, type))");
   list.append("CREATE TABLE IF NOT EXISTS magazine_files"
 	      "("
 	      "description	TEXT,"
@@ -3873,50 +3873,50 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "FOREIGN KEY(item_oid) REFERENCES magazine(myoid) ON DELETE "
 	      "CASCADE,"
 	      "PRIMARY KEY(file_digest, item_oid)"
-	      ");");
+	      ")");
   list.append("CREATE TABLE IF NOT EXISTS monetary_units "
 	      "("
-	      "monetary_unit TEXT NOT NULL PRIMARY KEY);");
+	      "monetary_unit TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS languages "
 	      "("
-	      "language TEXT NOT NULL PRIMARY KEY);");
+	      "language TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS cd_formats "
 	      "("
-	      "cd_format	TEXT NOT NULL PRIMARY KEY);");
+	      "cd_format	TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS dvd_ratings "
 	      "("
-	      "dvd_rating TEXT NOT NULL PRIMARY KEY);");
+	      "dvd_rating TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS dvd_aspect_ratios "
 	      "("
-	      "dvd_aspect_ratio TEXT NOT NULL PRIMARY KEY);");
+	      "dvd_aspect_ratio TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS dvd_regions "
 	      "("
-	      "dvd_region TEXT NOT NULL PRIMARY KEY);");
+	      "dvd_region TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS minimum_days "
 	      "("
 	      "days INTEGER NOT NULL,"
-	      "type VARCHAR(16) NOT NULL PRIMARY KEY);");
+	      "type VARCHAR(16) NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS videogame_ratings"
 	      "("
-	      "videogame_rating TEXT NOT NULL PRIMARY KEY);");
+	      "videogame_rating TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE IF NOT EXISTS videogame_platforms "
 	      "("
-	      "videogame_platform TEXT NOT NULL PRIMARY KEY);");
-  list.append("ALTER TABLE book ADD marc_tags TEXT;");
-  list.append("ALTER TABLE journal ADD marc_tags TEXT;");
-  list.append("ALTER TABLE magazine ADD marc_tags TEXT;");
+	      "videogame_platform TEXT NOT NULL PRIMARY KEY)");
+  list.append("ALTER TABLE book ADD marc_tags TEXT");
+  list.append("ALTER TABLE journal ADD marc_tags TEXT");
+  list.append("ALTER TABLE magazine ADD marc_tags TEXT");
   list.append("ALTER TABLE member ADD expiration_date VARCHAR(32) "
-	      "NOT NULL DEFAULT '01/0/3000';");
-  list.append("ALTER TABLE book ADD keyword TEXT;");
-  list.append("ALTER TABLE cd ADD keyword TEXT;");
-  list.append("ALTER TABLE dvd ADD keyword TEXT;");
-  list.append("ALTER TABLE journal ADD keyword TEXT;");
-  list.append("ALTER TABLE magazine ADD keyword TEXT;");
-  list.append("ALTER TABLE videogame ADD keyword TEXT;");
+	      "NOT NULL DEFAULT '01/0/3000'");
+  list.append("ALTER TABLE book ADD keyword TEXT");
+  list.append("ALTER TABLE cd ADD keyword TEXT");
+  list.append("ALTER TABLE dvd ADD keyword TEXT");
+  list.append("ALTER TABLE journal ADD keyword TEXT");
+  list.append("ALTER TABLE magazine ADD keyword TEXT");
+  list.append("ALTER TABLE videogame ADD keyword TEXT");
   list.append("ALTER TABLE member ADD overdue_fees NUMERIC(10, 2) "
-	      "NOT NULL DEFAULT 0.00;");
+	      "NOT NULL DEFAULT 0.00");
   list.append("ALTER TABLE member ADD comments TEXT, "
-	      "ADD general_registration_number TEXT, ADD memberclass TEXT;");
+	      "ADD general_registration_number TEXT, ADD memberclass TEXT");
   list.append("CREATE TABLE IF NOT EXISTS photograph_collection "
 	      "("
 	      "id  TEXT PRIMARY KEY NOT NULL,"
@@ -3927,7 +3927,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "notes TEXT,"
 	      "image BYTEA,"
 	      "image_scaled BYTEA,"
-	      "type VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection');");
+	      "type VARCHAR(32) NOT NULL DEFAULT 'Photograph Collection')");
   list.append("CREATE TABLE IF NOT EXISTS photograph "
 	      "("
 	      "id TEXT NOT NULL,"
@@ -3949,18 +3949,18 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "image_scaled BYTEA,"
 	      "PRIMARY KEY(id, collection_oid),"
 	      "FOREIGN KEY(collection_oid) REFERENCES "
-	      "photograph_collection(myoid) ON DELETE CASCADE);");
+	      "photograph_collection(myoid) ON DELETE CASCADE)");
   list.append("ALTER TABLE cd_songs ADD artist TEXT "
-	      "NOT NULL DEFAULT 'UNKNOWN';");
+	      "NOT NULL DEFAULT 'UNKNOWN'");
   list.append("ALTER TABLE cd_songs ADD composer TEXT "
-	      "NOT NULL DEFAULT 'UNKNOWN';");
-  list.append("ALTER TABLE book ADD condition TEXT;");
-  list.append("ALTER TABLE book ADD originality TEXT;");
-  list.append("ALTER TABLE book_copy_info ADD condition TEXT;");
-  list.append("ALTER TABLE book_copy_info ADD originality TEXT;");
+	      "NOT NULL DEFAULT 'UNKNOWN'");
+  list.append("ALTER TABLE book ADD condition TEXT");
+  list.append("ALTER TABLE book ADD originality TEXT");
+  list.append("ALTER TABLE book_copy_info ADD condition TEXT");
+  list.append("ALTER TABLE book_copy_info ADD originality TEXT");
   list.append("CREATE TABLE IF NOT EXISTS book_binding_types "
 	      "("
-	      "binding_type TEXT NOT NULL PRIMARY KEY);");
+	      "binding_type TEXT NOT NULL PRIMARY KEY)");
   list.append("CREATE TABLE member_temporary "
 	      "("
 	      "memberid VARCHAR(16) NOT NULL PRIMARY KEY DEFAULT 1,"
@@ -3980,10 +3980,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "overdue_fees NUMERIC(10, 2) NOT NULL DEFAULT 0.00,"
 	      "comments TEXT,"
 	      "general_registration_number TEXT,"
-	      "memberclass TEXT);");
-  list.append("INSERT INTO member_temporary SELECT * FROM member;");
-  list.append("DROP TABLE member;");
-  list.append("ALTER TABLE member_temporary RENAME TO member;");
+	      "memberclass TEXT)");
+  list.append("INSERT INTO member_temporary SELECT * FROM member");
+  list.append("DROP TABLE member");
+  list.append("ALTER TABLE member_temporary RENAME TO member");
   list.append("CREATE TABLE journal_temporary "
 	      "("
 	      "id VARCHAR(32),"
@@ -4009,10 +4009,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "marc_tags TEXT,"
 	      "keyword TEXT,"
 	      "type VARCHAR(16) NOT NULL DEFAULT 'Journal',"
-	      "UNIQUE (id, issueno, issuevolume));");
-  list.append("INSERT INTO journal_temporary SELECT * FROM journal;");
-  list.append("DROP TABLE journal;");
-  list.append("ALTER TABLE journal_temporary RENAME TO journal;");
+	      "UNIQUE (id, issueno, issuevolume))");
+  list.append("INSERT INTO journal_temporary SELECT * FROM journal");
+  list.append("DROP TABLE journal");
+  list.append("ALTER TABLE journal_temporary RENAME TO journal");
   list.append("CREATE TABLE magazine_temporary"
 	      "("
 	      "id VARCHAR(32),"
@@ -4038,10 +4038,10 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "marc_tags TEXT,"
 	      "keyword TEXT,"
 	      "type VARCHAR(16) NOT NULL DEFAULT 'Magazine',"
-	      "UNIQUE (id, issueno, issuevolume));");
-  list.append("INSERT INTO magazine_temporary SELECT * FROM magazine;");
-  list.append("DROP TABLE magazine;");
-  list.append("ALTER TABLE magazine_temporary RENAME TO magazine;");
+	      "UNIQUE (id, issueno, issuevolume))");
+  list.append("INSERT INTO magazine_temporary SELECT * FROM magazine");
+  list.append("DROP TABLE magazine");
+  list.append("ALTER TABLE magazine_temporary RENAME TO magazine");
   list.append("CREATE TABLE IF NOT EXISTS grey_literature "
 	      "("
 	      "author TEXT NOT NULL,"
@@ -4057,7 +4057,15 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "location TEXT,"
 	      "myoid BIGINT UNIQUE,"
 	      "notes TEXT,"
-	      "type VARCHAR(16) NOT NULL DEFAULT 'Grey Literature');");
+	      "type VARCHAR(16) NOT NULL DEFAULT 'Grey Literature')");
+  list.append("ALTER TABLE book ADD accession_number TEXT");
+  list.append("ALTER TABLE cd ADD accession_number TEXT");
+  list.append("ALTER TABLE dvd ADD accession_number TEXT");
+  list.append("ALTER TABLE journal ADD accession_number TEXT");
+  list.append("ALTER TABLE magazine ADD accession_number TEXT");
+  list.append("ALTER TABLE photograph ADD accession_number TEXT");
+  list.append("ALTER TABLE photograph_collection ADD accession_number TEXT");
+  list.append("ALTER TABLE videogame ADD accession_number TEXT");
 
   QString errors("");
   int ct = 0;
