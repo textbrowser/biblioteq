@@ -2264,6 +2264,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Call Number, Dewey Class Number...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -2821,6 +2829,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>BiblioteQ: Duplicate Music CD Entry</source>
         <translation type="unfinished">BiblioteQ: Dubbele Muziek CD Gegevens</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3694,6 +3710,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>BiblioteQ: Duplicate DVD Entry</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_generic_thread</name>
@@ -4211,6 +4235,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
@@ -4432,6 +4464,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Genres</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4792,6 +4828,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Current Page...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_sruresults</name>
@@ -5125,6 +5169,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <source>BiblioteQ: Duplicate Video Game Entry</source>
         <translation type="unfinished">BiblioteQ: Dubbele VIDEO GAME Gegevens</translation>
+    </message>
+    <message>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5587,6 +5639,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6589,6 +6645,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>errordialog</name>
@@ -7017,6 +7077,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Export...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -7222,6 +7286,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8413,6 +8481,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>photographDialog</name>
@@ -8494,6 +8566,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12729,6 +12805,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

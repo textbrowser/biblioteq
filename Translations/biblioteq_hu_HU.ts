@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="+3839"/>
-        <location filename="../Source/biblioteq_magazine.cc" line="+3772"/>
+        <location filename="../Source/biblioteq_book.cc" line="+3868"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="+3801"/>
         <source>Exporting file(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -740,7 +740,7 @@
         <location line="+30"/>
         <location line="+8"/>
         <location line="+745"/>
-        <location line="+3502"/>
+        <location line="+3505"/>
         <location line="+16"/>
         <location line="+68"/>
         <location line="+28"/>
@@ -751,7 +751,7 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8329"/>
+        <location line="-8332"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
@@ -829,23 +829,23 @@
     <message>
         <location line="+380"/>
         <location line="+3611"/>
-        <location line="+4466"/>
+        <location line="+4469"/>
         <location line="+27"/>
         <location line="+28"/>
         <location line="+24"/>
-        <location filename="../Source/biblioteq_b.cc" line="+3190"/>
+        <location filename="../Source/biblioteq_b.cc" line="+3303"/>
         <location line="+6"/>
         <source>All</source>
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-8137"/>
+        <location line="-8140"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
     <message>
         <location line="+2"/>
-        <location filename="../Source/biblioteq_b.cc" line="+807"/>
+        <location filename="../Source/biblioteq_b.cc" line="+815"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -954,15 +954,15 @@
         <location line="-4515"/>
         <location line="+3351"/>
         <location line="+953"/>
-        <location line="+4167"/>
-        <location filename="../Source/biblioteq_b.cc" line="-3971"/>
-        <location line="+3553"/>
+        <location line="+4170"/>
+        <location filename="../Source/biblioteq_b.cc" line="-4092"/>
+        <location line="+3666"/>
         <location line="+37"/>
         <source>0 Results</source>
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8436"/>
+        <location line="-8439"/>
         <location line="+24"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -1030,7 +1030,7 @@
         <location line="+167"/>
         <location line="+28"/>
         <location line="+1494"/>
-        <location line="+524"/>
+        <location line="+527"/>
         <location line="+296"/>
         <location line="+378"/>
         <location line="+232"/>
@@ -1055,7 +1055,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7796"/>
+        <location line="-7799"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1115,7 +1115,7 @@
         <location line="+3"/>
         <location line="+35"/>
         <location line="+4"/>
-        <location line="+320"/>
+        <location line="+323"/>
         <location line="+17"/>
         <location line="+95"/>
         <location line="+27"/>
@@ -1136,7 +1136,7 @@
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-7949"/>
+        <location line="-7952"/>
         <source>Please select at least one item to modify.</source>
         <translation type="unfinished">Jelöljön ki legalább egy módosítandó cikket.</translation>
     </message>
@@ -1148,7 +1148,7 @@
         <location line="+694"/>
         <location line="+44"/>
         <location line="+2940"/>
-        <location line="+1877"/>
+        <location line="+1880"/>
         <location line="+535"/>
         <location line="+213"/>
         <location filename="../Source/biblioteq_b.cc" line="+16"/>
@@ -1156,36 +1156,36 @@
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-7949"/>
+        <location line="-7952"/>
         <source>Are you sure that you wish to modify the </source>
         <translation type="unfinished">Biztosan szeretné módositani a </translation>
     </message>
     <message>
         <location line="+2"/>
         <location line="+214"/>
-        <location line="+7737"/>
+        <location line="+7740"/>
         <source> selected items? BiblioteQ will exit if it&apos;s unable to acquire resources.</source>
         <translation type="unfinished"> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
     </message>
     <message>
-        <location line="-8176"/>
+        <location line="-8179"/>
         <location line="+403"/>
         <location line="+215"/>
         <location line="+65"/>
-        <location line="+7580"/>
+        <location line="+7583"/>
         <source>BiblioteQ: Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7859"/>
+        <location line="-7862"/>
         <location line="+215"/>
         <location line="+3462"/>
-        <location line="+4183"/>
+        <location line="+4186"/>
         <source>Unable to determine the selected item&apos;s type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7832"/>
+        <location line="-7835"/>
         <source>Please select at least one item to view.</source>
         <translation type="unfinished">Jelöljön ki legalább egy megtekintendő cikket.</translation>
     </message>
@@ -1246,7 +1246,7 @@
         <location line="+4"/>
         <location line="+1684"/>
         <location line="+4"/>
-        <location line="+518"/>
+        <location line="+521"/>
         <location line="+299"/>
         <location line="+4"/>
         <location line="+4"/>
@@ -1259,12 +1259,12 @@
         <location line="+6"/>
         <location line="+468"/>
         <location filename="../Source/biblioteq_b.cc" line="-547"/>
-        <location line="+805"/>
+        <location line="+813"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-7291"/>
+        <location line="-7294"/>
         <source>Reserved items may not be deleted.</source>
         <translation type="unfinished">Kikölcsönzött cikkeket nem lehet törölni.</translation>
     </message>
@@ -1288,16 +1288,16 @@
         <location line="+11"/>
         <location line="+2772"/>
         <location line="+92"/>
-        <location line="+2785"/>
+        <location line="+2788"/>
         <location line="+553"/>
         <location line="+216"/>
         <location line="+263"/>
-        <location filename="../Source/biblioteq_b.cc" line="-677"/>
+        <location filename="../Source/biblioteq_b.cc" line="-685"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-6680"/>
+        <location line="-6683"/>
         <source>Deleting the selected item(s)...</source>
         <translation type="unfinished">A kijelölt cikkek törlése...</translation>
     </message>
@@ -1372,23 +1372,23 @@
         <location line="+4"/>
         <location line="+688"/>
         <location line="+4"/>
-        <location line="+5239"/>
+        <location line="+5242"/>
         <location line="+4"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5835"/>
+        <location line="-5838"/>
         <location line="+28"/>
         <location line="+64"/>
         <location line="+513"/>
         <location line="+27"/>
-        <location line="+5430"/>
+        <location line="+5433"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-6057"/>
+        <location line="-6060"/>
         <location line="+3"/>
         <source>Unable to save the member&apos;s information.</source>
         <translation type="unfinished"></translation>
@@ -1406,13 +1406,13 @@
         <location line="+8"/>
         <location line="+523"/>
         <location line="+8"/>
-        <location line="+5375"/>
+        <location line="+5378"/>
         <location line="+8"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-5942"/>
+        <location line="-5945"/>
         <location line="+2251"/>
         <source>An error occurred while attempting to update the database account for </source>
         <translation type="unfinished"></translation>
@@ -1424,14 +1424,14 @@
     </message>
     <message>
         <location line="+99"/>
-        <location line="+5844"/>
+        <location line="+5847"/>
         <location line="+1030"/>
-        <location filename="../Source/biblioteq_b.cc" line="+682"/>
+        <location filename="../Source/biblioteq_b.cc" line="+690"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Információ</translation>
     </message>
     <message>
-        <location line="-6873"/>
+        <location line="-6876"/>
         <source>Please notify the new member that their default password has been set to tempPass.</source>
         <translation type="unfinished">Tájékoztassa az uj tagot hogy a jelszava tempPass.</translation>
     </message>
@@ -1621,24 +1621,24 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+27"/>
-        <location line="+3015"/>
+        <location line="+3018"/>
         <source>Member ID</source>
         <translation type="unfinished">Tag Azonosító</translation>
     </message>
     <message>
-        <location line="-3014"/>
-        <location line="+3018"/>
+        <location line="-3017"/>
+        <location line="+3021"/>
         <source>First Name</source>
         <translation type="unfinished">Utónév</translation>
     </message>
     <message>
-        <location line="-3017"/>
-        <location line="+3018"/>
+        <location line="-3020"/>
+        <location line="+3021"/>
         <source>Last Name</source>
         <translation type="unfinished">Vezeték Név</translation>
     </message>
     <message>
-        <location line="-3017"/>
+        <location line="-3020"/>
         <source>Member Since</source>
         <translation type="unfinished">Óta tag:</translation>
     </message>
@@ -1685,17 +1685,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+19"/>
-        <location line="+2877"/>
+        <location line="+2880"/>
         <location line="+553"/>
-        <location filename="../Source/biblioteq_b.cc" line="-681"/>
+        <location filename="../Source/biblioteq_b.cc" line="-689"/>
         <source>Populating the table...</source>
         <translation type="unfinished">Táblázat kitöltése...</translation>
     </message>
     <message>
-        <location line="-3386"/>
-        <location line="+2215"/>
+        <location line="-3389"/>
+        <location line="+2216"/>
         <location line="+21"/>
-        <location line="+628"/>
+        <location line="+630"/>
         <location line="+375"/>
         <location line="+9"/>
         <location line="+171"/>
@@ -1706,8 +1706,8 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-3446"/>
-        <location line="+2864"/>
+        <location line="-3449"/>
+        <location line="+2867"/>
         <location line="+375"/>
         <location line="+180"/>
         <location line="+28"/>
@@ -1716,7 +1716,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3400"/>
+        <location line="-3403"/>
         <source>Granting privileges...</source>
         <translation type="unfinished">Jogosultságok adása..</translation>
     </message>
@@ -1931,7 +1931,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+505"/>
+        <location line="+508"/>
         <source>The option is not available because an error occurred while attempting to retrieve its value.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2011,12 +2011,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Videójáték Keresés</translation>
     </message>
     <message>
-        <location line="-1581"/>
+        <location line="-1584"/>
         <source>BiblioteQ: Select Global Font</source>
         <translation type="unfinished">BiblioteQ: Fő Betűtípus Kiválastása</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+123"/>
         <source>Table Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2051,7 +2051,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+48"/>
+        <location line="+50"/>
         <source>Please provide a valid SQL statement.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2498,7 +2498,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+263"/>
+        <location line="+271"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2511,7 +2511,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_book</name>
     <message>
-        <location filename="../Source/biblioteq_book.cc" line="-3786"/>
+        <location filename="../Source/biblioteq_book.cc" line="-3815"/>
         <source>BiblioteQ: Image Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2651,28 +2651,33 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+38"/>
         <location line="+12"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+171"/>
         <location line="+145"/>
-        <location line="+182"/>
+        <location line="+187"/>
         <location line="+12"/>
         <location line="+24"/>
         <location line="+12"/>
         <location line="+37"/>
         <location line="+10"/>
-        <location line="+152"/>
+        <location line="+155"/>
         <location line="+40"/>
-        <location line="+450"/>
-        <location line="+2151"/>
+        <location line="+458"/>
+        <location line="+2162"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3430"/>
+        <location line="-3457"/>
         <source>Unable to retrieve the book binding types.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2700,14 +2705,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1272"/>
+        <location line="+1288"/>
         <location line="+11"/>
         <location line="+17"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1146"/>
+        <location line="-1162"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -2715,13 +2720,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1"/>
         <location line="+144"/>
-        <location line="+469"/>
-        <location line="+450"/>
+        <location line="+477"/>
+        <location line="+458"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1052"/>
+        <location line="-1068"/>
         <location line="+44"/>
         <location line="+17"/>
         <location line="+11"/>
@@ -2729,29 +2734,29 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+11"/>
         <location line="+12"/>
         <location line="+11"/>
-        <location line="+1583"/>
+        <location line="+1608"/>
         <location line="+227"/>
-        <location line="+425"/>
+        <location line="+427"/>
         <location line="+937"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3288"/>
+        <location line="-3315"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+10"/>
-        <location line="+1617"/>
+        <location line="+1642"/>
         <location line="+392"/>
-        <location line="+801"/>
+        <location line="+803"/>
         <location line="+473"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3282"/>
+        <location line="-3309"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -2793,18 +2798,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3074"/>
+        <location line="+3101"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2896"/>
-        <location line="+2888"/>
+        <location line="-2918"/>
+        <location line="+2910"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2876"/>
+        <location line="-2898"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2826,30 +2831,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+63"/>
-        <location line="+417"/>
-        <location line="+261"/>
+        <location line="+427"/>
+        <location line="+262"/>
         <source>BiblioteQ: Modify Book Entry (</source>
         <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-677"/>
-        <location line="+417"/>
+        <location line="-688"/>
+        <location line="+427"/>
         <location line="+37"/>
-        <location line="+224"/>
+        <location line="+225"/>
         <location line="+10"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-686"/>
-        <location line="+417"/>
+        <location line="-697"/>
+        <location line="+427"/>
         <location line="+63"/>
-        <location line="+198"/>
+        <location line="+199"/>
         <source>BiblioteQ: Modify Book Entry</source>
         <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-582"/>
+        <location line="-590"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2864,7 +2869,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+188"/>
+        <location line="+194"/>
         <source>&amp;Search</source>
         <translation type="unfinished">Keresés</translation>
     </message>
@@ -2880,42 +2885,42 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+22"/>
         <source>BiblioteQ: Database Book Search</source>
         <translation type="unfinished">BiblioteQ: Könyv Keresés</translation>
     </message>
     <message>
         <location line="+89"/>
-        <location line="+234"/>
+        <location line="+235"/>
         <source>BiblioteQ: View Book Details (</source>
         <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-231"/>
+        <location line="-232"/>
         <location line="+66"/>
-        <location line="+168"/>
+        <location line="+169"/>
         <source>BiblioteQ: View Book Details</source>
         <translation type="unfinished">BiblioteQ: Könyv Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-132"/>
-        <location line="+239"/>
+        <location line="-133"/>
+        <location line="+242"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-209"/>
+        <location line="-211"/>
         <location line="+4"/>
         <source>Unable to retrieve the selected book&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+235"/>
+        <location line="+238"/>
         <source>BiblioteQ: Create Book Entry</source>
         <translation type="unfinished">BiblioteQ: Könyv Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+341"/>
+        <location line="+347"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -3091,6 +3096,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
@@ -3196,7 +3206,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3243"/>
+        <location line="-3270"/>
         <source>Author, Title, Dewey Class Number...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3206,7 +3216,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3235"/>
+        <location line="+3262"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
@@ -3511,23 +3521,28 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+22"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+12"/>
         <location line="+66"/>
         <location line="+116"/>
-        <location line="+165"/>
+        <location line="+170"/>
         <location line="+12"/>
         <location line="+22"/>
         <location line="+11"/>
         <location line="+24"/>
         <location line="+10"/>
         <location line="+115"/>
-        <location line="+28"/>
         <location line="+31"/>
-        <location line="+402"/>
-        <location line="+246"/>
+        <location line="+31"/>
+        <location line="+399"/>
+        <location line="+249"/>
         <location line="+316"/>
         <location line="+16"/>
         <location line="+6"/>
@@ -3537,7 +3552,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1701"/>
+        <location line="-1709"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3565,16 +3580,16 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1027"/>
+        <location line="+1032"/>
         <location line="+11"/>
         <location line="+14"/>
         <location line="+32"/>
-        <location line="+351"/>
+        <location line="+354"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1385"/>
+        <location line="-1393"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -3582,17 +3597,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1"/>
         <location line="+115"/>
-        <location line="+387"/>
+        <location line="+395"/>
         <location line="+31"/>
-        <location line="+401"/>
-        <location line="+248"/>
+        <location line="+398"/>
+        <location line="+251"/>
         <location line="+314"/>
         <location line="+109"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1594"/>
+        <location line="-1602"/>
         <location line="+23"/>
         <location line="+11"/>
         <location line="+8"/>
@@ -3600,24 +3615,24 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+11"/>
         <location line="+12"/>
         <location line="+12"/>
-        <location line="+1384"/>
-        <location line="+445"/>
+        <location line="+1392"/>
+        <location line="+451"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1916"/>
+        <location line="-1930"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1812"/>
+        <location line="+1826"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1811"/>
+        <location line="-1825"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -3659,13 +3674,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+1378"/>
+        <location line="+1386"/>
         <location line="+3"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1220"/>
+        <location line="-1223"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3692,28 +3707,28 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+40"/>
-        <location line="+402"/>
-        <location line="+216"/>
+        <location line="+401"/>
+        <location line="+217"/>
         <source>BiblioteQ: Modify Music CD Entry (</source>
         <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása (</translation>
     </message>
     <message>
         <location line="-617"/>
-        <location line="+402"/>
+        <location line="+401"/>
         <location line="+21"/>
-        <location line="+195"/>
+        <location line="+196"/>
         <location line="+6"/>
-        <location line="+201"/>
+        <location line="+204"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-741"/>
+        <location line="-744"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+31"/>
         <location line="+4"/>
         <source>Unable to retrieve the CD&apos;s OID.</source>
         <translation type="unfinished"></translation>
@@ -3730,7 +3745,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+174"/>
+        <location line="+169"/>
         <source>&amp;Search</source>
         <translation type="unfinished">Keresés</translation>
     </message>
@@ -3745,18 +3760,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>BiblioteQ: Database Music CD Search</source>
         <translation type="unfinished">BiblioteQ: Zene CD Keresés</translation>
     </message>
     <message>
         <location line="+65"/>
-        <location line="+201"/>
+        <location line="+202"/>
         <source>BiblioteQ: View Music CD Details (</source>
         <translation type="unfinished">BiblioteQ: Zene CD Reszletek (</translation>
     </message>
     <message>
-        <location line="-178"/>
+        <location line="-179"/>
         <source>BiblioteQ: Modify Music CD Entry</source>
         <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Módosítása</translation>
     </message>
@@ -3767,18 +3782,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+32"/>
-        <location line="+212"/>
+        <location line="+215"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-172"/>
+        <location line="-174"/>
         <location line="+3"/>
         <source>Unable to retrieve the selected CD&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+198"/>
+        <location line="+201"/>
         <source>BiblioteQ: Create Music CD Entry</source>
         <translation type="unfinished">BiblioteQ: Zene CD Bejegyzés Létrehozása</translation>
     </message>
@@ -3911,7 +3926,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+227"/>
+        <location line="+233"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -4009,6 +4024,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+2"/>
         <source>Keywords:</source>
         <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+24"/>
@@ -4848,6 +4868,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+20"/>
         <location line="+12"/>
         <location line="+13"/>
@@ -4856,21 +4881,21 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+12"/>
         <location line="+72"/>
         <location line="+136"/>
-        <location line="+172"/>
+        <location line="+179"/>
         <location line="+12"/>
         <location line="+24"/>
         <location line="+11"/>
         <location line="+24"/>
         <location line="+10"/>
         <location line="+115"/>
-        <location line="+28"/>
         <location line="+31"/>
-        <location line="+382"/>
+        <location line="+31"/>
+        <location line="+389"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1077"/>
+        <location line="-1094"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4912,7 +4937,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1036"/>
+        <location line="+1053"/>
         <location line="+11"/>
         <location line="+14"/>
         <location line="+41"/>
@@ -4922,7 +4947,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1070"/>
+        <location line="-1087"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -4930,14 +4955,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1"/>
         <location line="+135"/>
-        <location line="+396"/>
+        <location line="+406"/>
         <location line="+31"/>
-        <location line="+381"/>
+        <location line="+388"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-932"/>
+        <location line="-949"/>
         <location line="+22"/>
         <location line="+11"/>
         <location line="+11"/>
@@ -4957,12 +4982,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1378"/>
+        <location line="+1404"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1377"/>
+        <location line="-1403"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5018,7 +5043,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+168"/>
+        <location line="+175"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5045,27 +5070,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+40"/>
-        <location line="+389"/>
-        <location line="+209"/>
+        <location line="+398"/>
+        <location line="+210"/>
         <source>BiblioteQ: Modify DVD Entry (</source>
         <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-597"/>
-        <location line="+389"/>
+        <location line="-607"/>
+        <location line="+398"/>
         <location line="+17"/>
-        <location line="+192"/>
+        <location line="+193"/>
         <location line="+6"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-520"/>
+        <location line="-530"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+31"/>
         <location line="+4"/>
         <source>Unable to retrieve the DVD&apos;s OID.</source>
         <translation type="unfinished"></translation>
@@ -5081,7 +5106,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+164"/>
+        <location line="+169"/>
         <source>&amp;Search</source>
         <translation type="unfinished">Keresés</translation>
     </message>
@@ -5096,18 +5121,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>BiblioteQ: Database DVD Search</source>
         <translation type="unfinished">BiblioteQ: DVD Keresés</translation>
     </message>
     <message>
         <location line="+59"/>
-        <location line="+198"/>
+        <location line="+199"/>
         <source>BiblioteQ: View DVD Details (</source>
         <translation type="unfinished">BiblioteQ: DVD Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-176"/>
         <source>BiblioteQ: Modify DVD Entry</source>
         <translation type="unfinished">BiblioteQ: DVD Bejegyzés Módosítása</translation>
     </message>
@@ -5118,23 +5143,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+27"/>
-        <location line="+222"/>
+        <location line="+225"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-180"/>
+        <location line="-182"/>
         <location line="+3"/>
         <source>Unable to retrieve the selected DVD&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+210"/>
+        <location line="+213"/>
         <source>BiblioteQ: Create DVD Entry</source>
         <translation type="unfinished">BiblioteQ: DVD Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+245"/>
+        <location line="+251"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -5239,6 +5264,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak:</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>BiblioteQ: Front Cover Image Selection</source>
         <translation type="unfinished">BiblioteQ: Elülső Borító Kép Kiválasztása</translation>
@@ -5289,7 +5319,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_magazine</name>
     <message>
-        <location filename="../Source/biblioteq_magazine.cc" line="-3689"/>
+        <location filename="../Source/biblioteq_magazine.cc" line="-3718"/>
         <source>BiblioteQ: SRU Data Retrieval</source>
         <translation type="unfinished">BiblioteQ: SRU Adatok Lekérése</translation>
     </message>
@@ -5404,29 +5434,34 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+34"/>
         <location line="+12"/>
         <location line="+23"/>
         <location line="+5"/>
         <location line="+138"/>
         <location line="+111"/>
-        <location line="+174"/>
+        <location line="+180"/>
         <location line="+12"/>
         <location line="+24"/>
         <location line="+12"/>
         <location line="+33"/>
         <location line="+10"/>
         <location line="+165"/>
-        <location line="+52"/>
-        <location line="+441"/>
+        <location line="+55"/>
+        <location line="+448"/>
         <location line="+11"/>
-        <location line="+2162"/>
+        <location line="+2173"/>
         <location line="+8"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3392"/>
+        <location line="-3419"/>
         <source>Unable to retrieve the languages.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5452,14 +5487,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+1235"/>
+        <location line="+1251"/>
         <location line="+11"/>
         <location line="+13"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-1135"/>
+        <location line="-1151"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -5467,42 +5502,42 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1"/>
         <location line="+110"/>
-        <location line="+485"/>
-        <location line="+438"/>
+        <location line="+494"/>
+        <location line="+445"/>
         <location line="+11"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1033"/>
+        <location line="-1049"/>
         <location line="+24"/>
         <location line="+14"/>
         <location line="+11"/>
         <location line="+11"/>
         <location line="+12"/>
         <location line="+11"/>
-        <location line="+1525"/>
-        <location line="+1123"/>
+        <location line="+1550"/>
+        <location line="+1125"/>
         <location line="+556"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-3286"/>
+        <location line="-3313"/>
         <source>It appears that you are attempting to decrease the number of copies while there are copies that have been reserved.</source>
         <translation type="unfinished">Úgy tűnik csökkenteni akarja a példányok számát amíg vannak kikölcsönzött példányok.</translation>
     </message>
     <message>
         <location line="+8"/>
-        <location line="+1520"/>
+        <location line="+1545"/>
         <location line="+153"/>
-        <location line="+1287"/>
+        <location line="+1289"/>
         <location line="+323"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-3282"/>
+        <location line="-3309"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -5539,18 +5574,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+12"/>
         <location line="+4"/>
-        <location line="+3100"/>
+        <location line="+3127"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2930"/>
-        <location line="+2922"/>
+        <location line="-2951"/>
+        <location line="+2943"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2910"/>
+        <location line="-2931"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5572,23 +5607,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+77"/>
-        <location line="+409"/>
-        <location line="+293"/>
+        <location line="+418"/>
+        <location line="+294"/>
         <source>BiblioteQ: Modify Journal Entry (</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-700"/>
-        <location line="+409"/>
-        <location line="+295"/>
+        <location line="-710"/>
+        <location line="+418"/>
+        <location line="+296"/>
         <source>BiblioteQ: Modify Magazine Entry (</source>
         <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-702"/>
-        <location line="+409"/>
+        <location line="-712"/>
+        <location line="+418"/>
         <location line="+41"/>
-        <location line="+249"/>
+        <location line="+250"/>
         <location line="+4"/>
         <location line="+19"/>
         <location line="+4"/>
@@ -5596,28 +5631,28 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-721"/>
-        <location line="+409"/>
+        <location line="-731"/>
+        <location line="+418"/>
         <location line="+68"/>
-        <location line="+226"/>
+        <location line="+227"/>
         <source>BiblioteQ: Modify Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-701"/>
-        <location line="+409"/>
+        <location line="-711"/>
+        <location line="+418"/>
         <location line="+68"/>
-        <location line="+226"/>
+        <location line="+227"/>
         <source>BiblioteQ: Modify Magazine Entry</source>
         <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Módosítása</translation>
     </message>
     <message>
-        <location line="-616"/>
+        <location line="-626"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+55"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
@@ -5627,7 +5662,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+164"/>
+        <location line="+169"/>
         <source>&amp;Search</source>
         <translation type="unfinished">Keresés</translation>
     </message>
@@ -5639,7 +5674,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>BiblioteQ: Database Journal Search</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Keresés</translation>
     </message>
@@ -5650,18 +5685,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+94"/>
-        <location line="+275"/>
+        <location line="+276"/>
         <source>BiblioteQ: View Journal Details (</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-273"/>
-        <location line="+277"/>
+        <location line="-274"/>
+        <location line="+278"/>
         <source>BiblioteQ: View Magazine Details (</source>
         <translation type="unfinished">BiblioteQ: Magazin Reszletek (</translation>
     </message>
     <message>
-        <location line="-270"/>
+        <location line="-271"/>
         <source>BiblioteQ: View Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Megtekintése</translation>
     </message>
@@ -5672,24 +5707,24 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+64"/>
-        <location line="+210"/>
+        <location line="+211"/>
         <source>BiblioteQ: View Journal Details</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Részleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-208"/>
-        <location line="+210"/>
+        <location line="-209"/>
+        <location line="+211"/>
         <source>BiblioteQ: View Magazine Details</source>
         <translation type="unfinished">BiblioteQ: Magazin Reszleteinek Megtekintése</translation>
     </message>
     <message>
-        <location line="-176"/>
-        <location line="+268"/>
+        <location line="-177"/>
+        <location line="+271"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-238"/>
+        <location line="-240"/>
         <location line="+4"/>
         <source>Unable to retrieve the selected journal&apos;s data.</source>
         <translation type="unfinished"></translation>
@@ -5701,7 +5736,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+254"/>
+        <location line="+257"/>
         <source>BiblioteQ: Create Journal Entry</source>
         <translation type="unfinished">BiblioteQ: Folyóirat Bejegyzés Létrehozása</translation>
     </message>
@@ -5711,7 +5746,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Magazin Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+246"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -5738,26 +5773,26 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+24"/>
         <location line="+24"/>
-        <location line="+1257"/>
+        <location line="+1259"/>
         <source>Memory Error</source>
         <translation type="unfinished">Memória Hiba</translation>
     </message>
     <message>
-        <location line="-1280"/>
+        <location line="-1282"/>
         <location line="+6"/>
-        <location line="+1275"/>
+        <location line="+1277"/>
         <location line="+6"/>
         <source>Unable to create a &quot;dialog&quot; object because of insufficient resources.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1282"/>
-        <location line="+1281"/>
+        <location line="-1284"/>
+        <location line="+1283"/>
         <source>BiblioteQ: Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1274"/>
+        <location line="-1276"/>
         <location line="+21"/>
         <source>BiblioteQ: Z39.50 Query Error</source>
         <translation type="unfinished">BiblioteQ: Z39.50 Hiba</translation>
@@ -5881,6 +5916,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+2"/>
         <source>Keywords:</source>
         <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+499"/>
@@ -6014,140 +6054,151 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+4"/>
-        <location line="+42"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+17"/>
+        <location line="+44"/>
+        <location line="+53"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+19"/>
         <source>Title</source>
         <translation type="unfinished">Cím</translation>
     </message>
     <message>
-        <location line="-238"/>
+        <location line="-250"/>
         <source>ID Number</source>
         <translation type="unfinished">Azonosító Szám</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+42"/>
-        <location line="+93"/>
-        <location line="+106"/>
+        <location line="+44"/>
+        <location line="+97"/>
+        <location line="+112"/>
         <source>Publisher</source>
         <translation type="unfinished">Kiadó</translation>
     </message>
     <message>
-        <location line="-240"/>
-        <location line="+42"/>
-        <location line="+93"/>
+        <location line="-252"/>
+        <location line="+44"/>
+        <location line="+97"/>
         <source>Publication Date</source>
         <translation type="unfinished">Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="-134"/>
-        <location line="+44"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
+        <location line="-140"/>
+        <location line="+46"/>
+        <location line="+53"/>
+        <location line="+45"/>
+        <location line="+46"/>
         <source>Categories</source>
         <translation type="unfinished">Kategóriák</translation>
     </message>
     <message>
-        <location line="-181"/>
-        <location line="+44"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
+        <location line="-189"/>
+        <location line="+46"/>
+        <location line="+53"/>
+        <location line="+45"/>
+        <location line="+46"/>
+        <location line="+64"/>
         <source>Language</source>
         <translation type="unfinished">Nyelv</translation>
     </message>
     <message>
-        <location line="-241"/>
+        <location line="-253"/>
+        <location line="+47"/>
+        <location line="+53"/>
         <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
+        <location line="+46"/>
+        <location line="+64"/>
         <source>Price</source>
         <translation type="unfinished">Ár</translation>
     </message>
     <message>
-        <location line="-242"/>
+        <location line="-254"/>
+        <location line="+47"/>
+        <location line="+53"/>
         <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
+        <location line="+46"/>
+        <location line="+64"/>
         <source>Monetary Units</source>
         <translation type="unfinished">Pénzegység</translation>
     </message>
     <message>
-        <location line="-242"/>
+        <location line="-254"/>
+        <location line="+47"/>
+        <location line="+53"/>
         <location line="+45"/>
-        <location line="+51"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+60"/>
+        <location line="+46"/>
+        <location line="+64"/>
         <source>Quantity</source>
         <translation type="unfinished">Mennyiség</translation>
     </message>
     <message>
-        <location line="-242"/>
+        <location line="-254"/>
+        <location line="+48"/>
+        <location line="+52"/>
+        <location line="+45"/>
         <location line="+46"/>
-        <location line="+50"/>
-        <location line="+43"/>
-        <location line="+44"/>
-        <location line="+32"/>
-        <location line="+28"/>
+        <location line="+34"/>
+        <location line="+30"/>
         <source>Location</source>
         <translation type="unfinished">Hely</translation>
     </message>
     <message>
-        <location line="-229"/>
-        <location line="+37"/>
-        <location line="+49"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+58"/>
+        <location line="-241"/>
+        <location line="+39"/>
+        <location line="+51"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+62"/>
         <source>Availability</source>
         <translation type="unfinished">Hozzáférhetőség</translation>
     </message>
     <message>
-        <location line="-229"/>
-        <location line="+37"/>
-        <location line="+49"/>
-        <location line="+43"/>
-        <location line="+43"/>
-        <location line="+58"/>
+        <location line="-241"/>
+        <location line="+39"/>
+        <location line="+51"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+62"/>
         <source>Total Reserved</source>
         <translation type="unfinished">Összes Kölcsönzött</translation>
     </message>
     <message>
-        <location line="-225"/>
-        <location line="+35"/>
-        <location line="+47"/>
-        <location line="+43"/>
-        <location line="+43"/>
+        <location line="-237"/>
+        <location line="+37"/>
+        <location line="+49"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+32"/>
         <location line="+30"/>
-        <location line="+28"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-237"/>
+        <location line="+37"/>
+        <location line="+49"/>
+        <location line="+45"/>
+        <location line="+45"/>
+        <location line="+32"/>
+        <location line="+30"/>
         <source>Type</source>
         <translation type="unfinished">Típus</translation>
     </message>
     <message>
-        <location line="-212"/>
+        <location line="-223"/>
         <source>Author(s)</source>
         <translation type="unfinished">Szerző(k)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+93"/>
-        <location line="+106"/>
+        <location line="+97"/>
+        <location line="+112"/>
         <source>Place of Publication</source>
         <translation type="unfinished">Megjelenés Helye</translation>
     </message>
     <message>
-        <location line="-198"/>
+        <location line="-208"/>
         <source>Edition</source>
         <translation type="unfinished">Kiadás</translation>
     </message>
@@ -6168,18 +6219,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+1"/>
-        <location line="+92"/>
+        <location line="+96"/>
         <source>LC Control Number</source>
         <translation type="unfinished">&quot;LC Control&quot; Szám</translation>
     </message>
     <message>
-        <location line="-91"/>
-        <location line="+92"/>
+        <location line="-95"/>
+        <location line="+96"/>
         <source>Call Number</source>
         <translation type="unfinished">Hívószám</translation>
     </message>
     <message>
-        <location line="-91"/>
+        <location line="-95"/>
         <source>Dewey Class Number</source>
         <translation type="unfinished">Dewey Osztály Szám</translation>
     </message>
@@ -6194,43 +6245,43 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Állapot</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+87"/>
+        <location line="+33"/>
+        <location line="+91"/>
         <source>Format</source>
         <translation type="unfinished">Formátum</translation>
     </message>
     <message>
-        <location line="-86"/>
+        <location line="-90"/>
         <source>Studio</source>
         <translation type="unfinished">Stúdió</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+87"/>
-        <location line="+61"/>
+        <location line="+91"/>
+        <location line="+65"/>
         <source>Release Date</source>
         <translation type="unfinished">Megjelenési Dátum</translation>
     </message>
     <message>
-        <location line="-147"/>
-        <location line="+87"/>
+        <location line="-155"/>
+        <location line="+91"/>
         <source>Number of Discs</source>
         <translation type="unfinished">Lemezek Száma</translation>
     </message>
     <message>
-        <location line="-86"/>
-        <location line="+87"/>
+        <location line="-90"/>
+        <location line="+91"/>
         <source>Runtime</source>
         <translation type="unfinished">Futásidő</translation>
     </message>
     <message>
-        <location line="-84"/>
-        <location line="+147"/>
+        <location line="-88"/>
+        <location line="+155"/>
         <source>UPC</source>
         <translation type="unfinished">UPC</translation>
     </message>
     <message>
-        <location line="-142"/>
+        <location line="-150"/>
         <source>Rating</source>
         <translation type="unfinished">Besorolás</translation>
     </message>
@@ -6245,7 +6296,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Képarány</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+34"/>
         <source>Volume</source>
         <translation type="unfinished">Kötet</translation>
     </message>
@@ -6265,7 +6316,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Dewey Szám</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+31"/>
         <source>Artist</source>
         <translation type="unfinished">Művész</translation>
     </message>
@@ -6290,7 +6341,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Felvétel Típus</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+31"/>
         <source>ID</source>
         <translation type="unfinished">Azonosító</translation>
     </message>
@@ -6305,7 +6356,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">A Cikkről</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+16"/>
         <source>Game Rating</source>
         <translation type="unfinished">Játék Besorolása</translation>
     </message>
@@ -6415,6 +6466,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>&amp;All...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6425,43 +6481,43 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+23"/>
-        <location line="+88"/>
-        <location line="+94"/>
-        <location line="+11"/>
-        <location line="+11"/>
-        <location line="+77"/>
-        <location line="+32"/>
-        <location line="+224"/>
-        <location line="+714"/>
+        <location line="+90"/>
         <location line="+97"/>
         <location line="+11"/>
         <location line="+11"/>
-        <location line="+51"/>
-        <location line="+244"/>
-        <location line="+83"/>
+        <location line="+80"/>
+        <location line="+32"/>
+        <location line="+232"/>
+        <location line="+728"/>
+        <location line="+99"/>
         <location line="+11"/>
-        <location line="+35"/>
-        <location line="+643"/>
+        <location line="+11"/>
+        <location line="+51"/>
+        <location line="+252"/>
+        <location line="+85"/>
+        <location line="+11"/>
+        <location line="+36"/>
+        <location line="+646"/>
         <location line="+7"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2443"/>
+        <location line="-2489"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+1"/>
-        <location line="+581"/>
+        <location line="+597"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-531"/>
+        <location line="-547"/>
         <location line="+12"/>
-        <location line="+1096"/>
+        <location line="+1124"/>
         <location line="+12"/>
         <location line="+12"/>
         <location line="+12"/>
@@ -6471,7 +6527,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Felhasználói Hiba</translation>
     </message>
     <message>
-        <location line="-1167"/>
+        <location line="-1195"/>
         <source>Please complete the collection&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a Gyüjtemény Azonosító mezőt!</translation>
     </message>
@@ -6481,89 +6537,89 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Töltse ki a Gyüjtemény Cím mezőt!</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+19"/>
         <location line="+4"/>
-        <location line="+1159"/>
+        <location line="+1187"/>
         <location line="+3"/>
-        <location line="+411"/>
+        <location line="+421"/>
         <location line="+3"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1577"/>
-        <location line="+193"/>
+        <location line="-1615"/>
+        <location line="+199"/>
         <location line="+32"/>
-        <location line="+224"/>
-        <location line="+713"/>
-        <location line="+171"/>
-        <location line="+243"/>
-        <location line="+130"/>
+        <location line="+232"/>
+        <location line="+727"/>
+        <location line="+173"/>
+        <location line="+251"/>
+        <location line="+133"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1615"/>
-        <location line="+1166"/>
-        <location line="+1089"/>
+        <location line="-1653"/>
+        <location line="+1193"/>
+        <location line="+1103"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2244"/>
-        <location line="+1166"/>
-        <location line="+389"/>
+        <location line="-2285"/>
+        <location line="+1193"/>
+        <location line="+399"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1544"/>
-        <location line="+1166"/>
-        <location line="+389"/>
+        <location line="-1581"/>
+        <location line="+1193"/>
+        <location line="+399"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1544"/>
-        <location line="+213"/>
-        <location line="+136"/>
+        <location line="-1581"/>
+        <location line="+223"/>
+        <location line="+137"/>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-347"/>
-        <location line="+212"/>
+        <location line="-358"/>
+        <location line="+222"/>
         <location line="+18"/>
-        <location line="+119"/>
+        <location line="+120"/>
         <location line="+7"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-292"/>
+        <location line="-300"/>
         <location line="+4"/>
         <source>Unable to retrieve the photograph collection&apos;s OID.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+27"/>
-        <location line="+1108"/>
-        <location line="+373"/>
+        <location line="+1132"/>
+        <location line="+384"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-1476"/>
+        <location line="-1511"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+81"/>
         <source>Any</source>
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+13"/>
         <source>BiblioteQ: Database Photograph Collection Search</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Keresés</translation>
     </message>
@@ -6574,12 +6630,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+40"/>
-        <location line="+125"/>
+        <location line="+126"/>
         <source>BiblioteQ: View Photograph Collection Details (</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése (</translation>
     </message>
     <message>
-        <location line="-92"/>
+        <location line="-93"/>
         <source>BiblioteQ: Modify Photograph Collection Entry</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Módosítása</translation>
     </message>
@@ -6589,30 +6645,30 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Részletek Megtekintése</translation>
     </message>
     <message>
-        <location line="+31"/>
-        <location line="+136"/>
+        <location line="+32"/>
+        <location line="+138"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-129"/>
+        <location line="-131"/>
         <location line="+4"/>
         <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+134"/>
+        <location line="+137"/>
         <source>BiblioteQ: Create Photograph Collection Entry</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Bejegyzés Létrehozása</translation>
     </message>
     <message>
-        <location line="+85"/>
-        <location line="+1055"/>
+        <location line="+91"/>
+        <location line="+1073"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1054"/>
+        <location line="-1072"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -6707,6 +6763,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Cikk Formátuma:</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+24"/>
         <source>BiblioteQ: Photograph Collection Image Selection</source>
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Kép Kiválasztás</translation>
@@ -6728,13 +6789,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+3"/>
-        <location line="+868"/>
-        <location line="+490"/>
+        <location line="+884"/>
+        <location line="+492"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-1156"/>
+        <location line="-1173"/>
         <source>Please complete the item&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
     </message>
@@ -6764,12 +6825,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Töltse ki a cikk Szerzői Jog mezőjét!</translation>
     </message>
     <message>
-        <location line="+198"/>
+        <location line="+202"/>
         <source>Unable to create the item. Please verify that the item does not already exist.</source>
         <translation type="unfinished">A cikk létrehozása sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
     <message>
-        <location line="+373"/>
+        <location line="+384"/>
         <source>Unable to update the item. Please verify that the item does not already exist.</source>
         <translation type="unfinished">A cikk frissítése sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
@@ -6789,7 +6850,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
     </message>
     <message>
-        <location line="+41"/>
+        <location line="+42"/>
         <source>&amp;Modify Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6803,7 +6864,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Fénykép Megtekintése</translation>
     </message>
     <message>
-        <location line="+306"/>
+        <location line="+307"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6813,7 +6874,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+125"/>
+        <location line="+126"/>
         <source>Unable to import photograph.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6939,6 +7000,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Kulcsszavak Visszaállítása</translation>
     </message>
     <message>
+        <location line="+2"/>
+        <source>Reset &amp;Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+19"/>
         <location line="+12"/>
         <location line="+12"/>
@@ -6946,21 +7012,21 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+13"/>
         <location line="+70"/>
         <location line="+118"/>
-        <location line="+130"/>
+        <location line="+134"/>
         <location line="+11"/>
         <location line="+24"/>
         <location line="+12"/>
         <location line="+25"/>
         <location line="+10"/>
         <location line="+112"/>
-        <location line="+29"/>
+        <location line="+32"/>
         <location line="+31"/>
-        <location line="+340"/>
+        <location line="+346"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-960"/>
+        <location line="-973"/>
         <source>Unable to retrieve the video game ratings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6995,7 +7061,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+1"/>
         <location line="+2"/>
         <location line="+1"/>
-        <location line="+932"/>
+        <location line="+945"/>
         <location line="+17"/>
         <location line="+11"/>
         <location line="+9"/>
@@ -7004,7 +7070,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">ISMERETLEN</translation>
     </message>
     <message>
-        <location line="-928"/>
+        <location line="-941"/>
         <location line="+5"/>
         <source>Unable to determine the maximum copy number of the item.</source>
         <translation type="unfinished"></translation>
@@ -7012,14 +7078,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1"/>
         <location line="+117"/>
-        <location line="+353"/>
+        <location line="+360"/>
         <location line="+31"/>
-        <location line="+340"/>
+        <location line="+346"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-830"/>
+        <location line="-843"/>
         <location line="+23"/>
         <location line="+11"/>
         <location line="+11"/>
@@ -7037,12 +7103,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+9"/>
-        <location line="+1222"/>
+        <location line="+1244"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1221"/>
+        <location line="-1243"/>
         <source>You have increased the number of copies. Would you like to modify copy information?</source>
         <translation type="unfinished">Növelte a példányok számát. Szeretné módosítani a példány adatokat?</translation>
     </message>
@@ -7088,7 +7154,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+126"/>
+        <location line="+130"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7115,27 +7181,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+41"/>
-        <location line="+360"/>
-        <location line="+213"/>
+        <location line="+368"/>
+        <location line="+214"/>
         <source>BiblioteQ: Modify Video Game Entry (</source>
         <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása (</translation>
     </message>
     <message>
-        <location line="-572"/>
-        <location line="+360"/>
+        <location line="-581"/>
+        <location line="+368"/>
         <location line="+18"/>
-        <location line="+195"/>
+        <location line="+196"/>
         <location line="+6"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location line="-499"/>
+        <location line="-508"/>
         <source>Retrieving availability.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+32"/>
         <location line="+4"/>
         <source>Unable to retrieve the video game&apos;s OID.</source>
         <translation type="unfinished"></translation>
@@ -7151,7 +7217,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+142"/>
+        <location line="+146"/>
         <source>&amp;Search</source>
         <translation type="unfinished">Keresés</translation>
     </message>
@@ -7166,18 +7232,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Bármely</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>BiblioteQ: Database Video Game Search</source>
         <translation type="unfinished">BiblioteQ: Videójáték Keresés</translation>
     </message>
     <message>
         <location line="+60"/>
-        <location line="+201"/>
+        <location line="+202"/>
         <source>BiblioteQ: View Video Game Details (</source>
         <translation type="unfinished">BiblioteQ: Videójáték Reszletek (</translation>
     </message>
     <message>
-        <location line="-178"/>
+        <location line="-179"/>
         <source>BiblioteQ: Modify Video Game Entry</source>
         <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Módosítása</translation>
     </message>
@@ -7188,23 +7254,23 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+29"/>
-        <location line="+188"/>
+        <location line="+191"/>
         <source>&amp;Save</source>
         <translation type="unfinished">Mentés</translation>
     </message>
     <message>
-        <location line="-163"/>
+        <location line="-165"/>
         <location line="+4"/>
         <source>Unable to retrieve the selected video game&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+192"/>
+        <location line="+195"/>
         <source>BiblioteQ: Create Video Game Entry</source>
         <translation type="unfinished">BiblioteQ: Videójáték Bejegyzés Léteséítése</translation>
     </message>
     <message>
-        <location line="+210"/>
+        <location line="+216"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -7292,6 +7358,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+3"/>
         <source>Keywords:</source>
         <translation type="unfinished">Kulcsszavak:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+24"/>
@@ -7675,7 +7746,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+203"/>
+        <location line="+115"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+98"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7684,7 +7760,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Számok Kiírása</translation>
     </message>
     <message>
-        <location line="-427"/>
+        <location line="-437"/>
         <source>Composer</source>
         <translation>Zeneszerző</translation>
     </message>
@@ -7694,7 +7770,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Általános Adatok</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+30"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -7729,7 +7805,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+7"/>
         <source>Monetary Units</source>
         <translation>Pénzegység</translation>
     </message>
@@ -7752,17 +7828,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+41"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+23"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
     <message>
-        <location line="+58"/>
+        <location line="+68"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
@@ -8164,7 +8240,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+29"/>
         <source>Query Statement</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8615,7 +8691,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Általános Adatok</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+28"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -8635,7 +8711,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Stúdió</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+7"/>
         <source>Categories</source>
         <translation>Kategóriák</translation>
     </message>
@@ -8670,7 +8746,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+203"/>
+        <location line="+115"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+98"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8683,22 +8764,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Kölcsönzési Állapot</translation>
     </message>
     <message>
-        <location line="-175"/>
+        <location line="-185"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+41"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+23"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
     <message>
-        <location line="+58"/>
+        <location line="+68"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
@@ -8885,7 +8966,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>BiblioteQ</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+48"/>
         <source>Cover Images</source>
         <translation>Borítóképek</translation>
     </message>
@@ -8975,7 +9056,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Általános Adatok</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+81"/>
         <source>Language</source>
         <translation>Nyelv</translation>
     </message>
@@ -9018,13 +9099,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Kölcsönzési Állapot</translation>
     </message>
     <message>
-        <location line="-508"/>
+        <location line="-522"/>
         <location line="+77"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+468"/>
+        <location line="+482"/>
         <source>&amp;Copies...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9034,7 +9115,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+38"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
@@ -9044,17 +9125,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Összefoglalás</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="-308"/>
         <source>Place of Publication</source>
         <translation>Megjelenés Helye</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-7"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+361"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -9064,7 +9145,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>MARC Cimkék</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+23"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
@@ -9074,7 +9155,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Eredetiség</translation>
     </message>
     <message>
-        <location line="-392"/>
+        <location line="-378"/>
         <source>Black &amp; White Copy</source>
         <translation>Fekete-fehér Másolat</translation>
     </message>
@@ -9089,7 +9170,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Eredeti</translation>
     </message>
     <message>
-        <location line="+389"/>
+        <location line="+375"/>
         <source>Condition</source>
         <translation>Állapot</translation>
     </message>
@@ -9184,7 +9265,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+24"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
@@ -9296,17 +9382,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Általános Adatok</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+89"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="-46"/>
+        <location line="-56"/>
         <source>Publication Date</source>
         <translation>Kiadási Dátum</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+31"/>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
     </message>
@@ -9351,7 +9437,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+118"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9396,7 +9482,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+127"/>
+        <location line="+24"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+113"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9409,17 +9500,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Kölcsönzési Állapot</translation>
     </message>
     <message>
-        <location line="-345"/>
+        <location line="-321"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+17"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
     <message>
-        <location line="+46"/>
+        <location line="+36"/>
         <source>Place of Publication</source>
         <translation>Megjelenés Helye</translation>
     </message>
@@ -9429,12 +9520,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>MARC Cimkék</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+7"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
     <message>
-        <location line="+176"/>
+        <location line="+186"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
@@ -10597,7 +10688,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+12"/>
-        <location line="+214"/>
+        <location line="+224"/>
         <source>Thumbnail</source>
         <translation>Kicsinyített</translation>
     </message>
@@ -10606,40 +10697,46 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Kiválasztás</translation>
     </message>
     <message>
-        <location line="-186"/>
+        <location line="-196"/>
         <source>&amp;Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+28"/>
-        <location line="+285"/>
+        <location line="+309"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="-275"/>
+        <location line="-299"/>
         <source>About</source>
         <translation>A Cikkről</translation>
     </message>
     <message>
         <location line="+17"/>
-        <location line="+180"/>
+        <location line="+197"/>
         <source>Notes</source>
         <translation>Hozzászólások</translation>
     </message>
     <message>
-        <location line="-163"/>
-        <location line="+343"/>
+        <location line="-177"/>
+        <location line="+370"/>
         <source>ID</source>
         <translation>Azonosító</translation>
     </message>
     <message>
-        <location line="-333"/>
+        <location line="-363"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+31"/>
+        <location line="+365"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-352"/>
         <source>Collection Items</source>
         <translation>Gyűjtemény Elemek</translation>
     </message>
@@ -10654,7 +10751,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Cikk Adatai</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+28"/>
         <source>Creator(s)</source>
         <translation>Alkotó(k)</translation>
     </message>
@@ -10669,12 +10766,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Hívószám</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+30"/>
         <source>Other Number</source>
         <translation>Egyéb Szám</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+7"/>
         <source>Copyright</source>
         <translation>Szerzői Jog</translation>
     </message>
@@ -10684,7 +10781,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Médium</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+14"/>
         <source>Reproduction Number</source>
         <translation>Reprodukció Szám</translation>
     </message>
@@ -10694,7 +10791,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Témák</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+7"/>
         <source>Publication Date</source>
         <translation>Kiadási Dátum</translation>
     </message>
@@ -10709,7 +10806,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Példányok</translation>
     </message>
     <message>
-        <location line="+127"/>
+        <location line="+134"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
@@ -10798,12 +10895,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Hívószám</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+24"/>
         <source>Other Number</source>
         <translation>Egyéb Szám</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+7"/>
         <source>Copyright</source>
         <translation>Szerzői Jog</translation>
     </message>
@@ -10818,17 +10915,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Reprodukció Szám</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+17"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+13"/>
         <source>Subjects</source>
         <translation>Témák</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+7"/>
         <source>Publication Date</source>
         <translation>Kiadási Dátum</translation>
     </message>
@@ -10838,17 +10935,22 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Formátum</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+17"/>
         <source>Copies</source>
         <translation>Példányok</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+47"/>
         <source>ID</source>
         <translation>Azonosító</translation>
     </message>
     <message>
-        <location line="+79"/>
+        <location line="+33"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
         <source>&amp;Save</source>
         <translation>Mentés</translation>
     </message>
@@ -13738,7 +13840,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation>Általános Adatok</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+19"/>
         <source>Title</source>
         <translation>Cím</translation>
     </message>
@@ -13793,7 +13895,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+220"/>
+        <location line="+122"/>
+        <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+95"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13806,27 +13913,27 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="obsolete">Kölcsönzési Állapot</translation>
     </message>
     <message>
-        <location line="-192"/>
+        <location line="-189"/>
         <source>Location</source>
         <translation>Hely</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+41"/>
         <source>Abstract</source>
         <translation>Összefoglalás</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+23"/>
         <source>Place of Publication</source>
         <translation>Megjelenés Helye</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+7"/>
         <source>Keywords</source>
         <translation>Kulcsszavak</translation>
     </message>
     <message>
-        <location line="+58"/>
+        <location line="+68"/>
         <source>&amp;OK</source>
         <translation>OK</translation>
     </message>
