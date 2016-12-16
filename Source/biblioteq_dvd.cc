@@ -759,7 +759,7 @@ void biblioteq_dvd::slotGo(void)
 			  (dvd.studio->toPlainText());
 		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(m_row, i)->setText
-			  (dvd.category->toPlainText().trimmed());
+			  (dvd.category->toPlainText());
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (dvd.price->cleanText());

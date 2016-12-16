@@ -719,7 +719,7 @@ void biblioteq_cd::slotGo(void)
 			  (cd.recording_label->toPlainText());
 		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(m_row, i)->setText
-			  (cd.category->toPlainText().trimmed());
+			  (cd.category->toPlainText());
 		      else if(names.at(i) == "Price")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (cd.price->cleanText());
@@ -755,7 +755,7 @@ void biblioteq_cd::slotGo(void)
 			}
 		      else if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_row, i)->setText
-			  (cd.accession_number->text().trimmed());
+			  (cd.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);

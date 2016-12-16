@@ -1034,7 +1034,7 @@ void biblioteq_book::slotGo(void)
 			  (id.condition->currentText().trimmed());
 		      else if(names.at(i) == "Accession Number")
 			qmain->getUI().table->item(m_row, i)->setText
-			  (id.accession_number->text().trimmed());
+			  (id.accession_number->text());
 		      else if(names.at(i) == "Availability")
 			{
 			  qmain->getUI().table->item(m_row, i)->setText

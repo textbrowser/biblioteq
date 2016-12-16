@@ -175,6 +175,8 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Accession Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(ma.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(ma.backButton,
@@ -516,6 +518,8 @@ void biblioteq_magazine::slotGo(void)
       ma.marc_tags->setPlainText(str);
       str = ma.keyword->toPlainText().trimmed();
       ma.keyword->setPlainText(str);
+      str = ma.accession_number->text().trimmed();
+      ma.accession_number->setText(str);
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare(QString("UPDATE %1 SET "
@@ -538,7 +542,8 @@ void biblioteq_magazine::slotGo(void)
 			      "back_cover = ?, "
 			      "place = ?, "
 			      "marc_tags = ?, "
-			      "keyword = ? "
+			      "keyword = ?, "
+			      "accession_number = ? "
 			      "WHERE "
 			      "myoid = ?").arg(m_subType));
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -551,8 +556,9 @@ void biblioteq_magazine::slotGo(void)
 			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "place, marc_tags, keyword, type) "
-			      "VALUES (?, ?, ?, "
+			      "place, marc_tags, keyword, accession_number, "
+			      "type) "
+			      "VALUES (?, ?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
@@ -568,8 +574,9 @@ void biblioteq_magazine::slotGo(void)
 			      "location, issuevolume, issueno, "
 			      "lccontrolnumber, callnumber, deweynumber, "
 			      "front_cover, back_cover, "
-			      "place, marc_tags, keyword, type, myoid) "
-			      "VALUES (?, ?, ?, ?, "
+			      "place, marc_tags, keyword, accession_number, "
+			      "type, myoid) "
+			      "VALUES (?, ?, ?, ?, ?, "
 			      "?, ?, ?, "
 			      "?, ?, "
 			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
@@ -651,11 +658,12 @@ void biblioteq_magazine::slotGo(void)
       query.bindValue(18, ma.place->toPlainText().trimmed());
       query.bindValue(19, ma.marc_tags->toPlainText().trimmed());
       query.bindValue(20, ma.keyword->toPlainText().trimmed());
+      query.bindValue(21, ma.accession_number->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(21, m_oid);
+	query.bindValue(22, m_oid);
       else
-	query.bindValue(21, m_subType);
+	query.bindValue(22, m_subType);
 
       if(m_engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
@@ -666,7 +674,7 @@ void biblioteq_magazine::slotGo(void)
 
 	    if(errorstr.isEmpty())
 	      {
-		query.bindValue(22, value);
+		query.bindValue(23, value);
 		m_oid = QString::number(value);
 	      }
 	    else
@@ -930,6 +938,9 @@ void biblioteq_magazine::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (ma.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -1112,6 +1123,10 @@ void biblioteq_magazine::slotGo(void)
       searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (ma.keyword->toPlainText().trimmed()) + "%' ");
+      searchstr.append
+	("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+	 biblioteq_myqstring::escape(ma.accession_number->text().
+				     trimmed()) + "%' ");
 
       /*
       ** Search the database.
@@ -1169,6 +1184,7 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.location->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+  ma.accession_number->clear();
   ma.issnAvailableCheckBox->setCheckable(false);
 
   if(field.isEmpty() && value.isEmpty())
@@ -1406,7 +1422,8 @@ void biblioteq_magazine::modify(const int state)
 			"front_cover, "
 			"back_cover, "
 			"marc_tags, "
-			"keyword "
+			"keyword, "
+			"accession_number "
 			"FROM "
 			"%1 "
 			"WHERE myoid = ?").arg(m_subType));
@@ -1622,6 +1639,8 @@ void biblioteq_magazine::modify(const int state)
 		    ma.back_image->loadFromData(var.toByteArray());
 		}
 	    }
+	  else if(fieldname == "accession_number")
+	    ma.accession_number->setText(var.toString());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1675,6 +1694,7 @@ void biblioteq_magazine::insert(void)
   ma.location->setCurrentIndex(0);
   ma.language->setCurrentIndex(0);
   ma.monetary_units->setCurrentIndex(0);
+  ma.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (ma.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -1714,7 +1734,7 @@ void biblioteq_magazine::slotReset(void)
     {
       QList<QAction *> actions = ma.resetButton->menu()->actions();
 
-      if(actions.size() < 21)
+      if(actions.size() < 22)
 	{
 	  // Error.
 	}
@@ -1851,6 +1871,11 @@ void biblioteq_magazine::slotReset(void)
 	  ma.keyword->clear();
 	  ma.keyword->setFocus();
 	}
+      else if(action == actions[21])
+	{
+	  ma.accession_number->clear();
+	  ma.accession_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -1917,6 +1942,7 @@ void biblioteq_magazine::slotReset(void)
       ma.description->viewport()->setPalette(m_te_orig_pal);
       ma.marc_tags->viewport()->setPalette(m_white_pal);
       ma.publisher->viewport()->setPalette(m_te_orig_pal);
+      ma.accession_number->clear();
       ma.id->setFocus();
     }
 }
@@ -2193,7 +2219,9 @@ void biblioteq_magazine::slotPrint(void)
   m_html += "<b>" + tr("MARC Tags:") + "</b> " +
     ma.marc_tags->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    ma.keyword->toPlainText().trimmed();
+    ma.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+    ma.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
 }
