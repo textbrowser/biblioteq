@@ -144,6 +144,8 @@ biblioteq_cd::biblioteq_cd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Accession Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(cd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(cd.backButton,
@@ -395,6 +397,8 @@ void biblioteq_cd::slotGo(void)
       QApplication::restoreOverrideCursor();
       str = cd.keyword->toPlainText().trimmed();
       cd.keyword->setPlainText(str);
+      str = cd.accession_number->text().trimmed();
+      cd.accession_number->setText(str);
 
       if(m_engWindowTitle.contains("Modify"))
 	query.prepare("UPDATE cd SET "
@@ -417,7 +421,8 @@ void biblioteq_cd::slotGo(void)
 		      "cdaudio = ?, "
 		      "front_cover = ?, "
 		      "back_cover = ?, "
-		      "keyword = ? "
+		      "keyword = ?, "
+		      "accession_number "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -439,9 +444,9 @@ void biblioteq_cd::slotGo(void)
 		      "location, "
 		      "cdrecording, "
 		      "cdaudio, front_cover, "
-		      "back_cover, keyword) "
+		      "back_cover, keyword, accession_number) "
 		      "VALUES "
-		      "(?, ?, ?, "
+		      "(?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -468,9 +473,10 @@ void biblioteq_cd::slotGo(void)
 		      "cdaudio, front_cover, "
 		      "back_cover, "
 		      "keyword, "
+		      "accession_number, "
 		      "myoid) "
 		      "VALUES "
-		      "(?, ?, ?, "
+		      "(?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
@@ -536,9 +542,10 @@ void biblioteq_cd::slotGo(void)
 	}
 
       query.bindValue(19, cd.keyword->toPlainText().trimmed());
+      query.bindValue(20, cd.accession_number->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(20, m_oid);
+	query.bindValue(21, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
@@ -546,7 +553,7 @@ void biblioteq_cd::slotGo(void)
 	     errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(20, value);
+	    query.bindValue(21, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -746,6 +753,9 @@ void biblioteq_cd::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (cd.accession_number->text().trimmed());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -950,6 +960,10 @@ void biblioteq_cd::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (cd.location->currentText().trimmed()) + "' ");
 
+      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+		       biblioteq_myqstring::escape
+		       (cd.accession_number->text().trimmed()) + "%' ");
+
       /*
       ** Search the database.
       */
@@ -1004,6 +1018,7 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
+  cd.accession_number->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1193,7 +1208,8 @@ void biblioteq_cd::modify(const int state)
 		"location, "
 		"front_cover, "
 		"back_cover, "
-		"keyword "
+		"keyword, "
+		"accession_number "
 		"FROM "
 		"cd "
 		"WHERE myoid = ?");
@@ -1346,6 +1362,8 @@ void biblioteq_cd::modify(const int state)
 		    cd.back_image->loadFromData(var.toByteArray());
 		}
 	    }
+	  else if(fieldname == "accession_number")
+	    cd.accession_number->setText(var.toString());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1394,6 +1412,7 @@ void biblioteq_cd::insert(void)
   cd.monetary_units->setCurrentIndex(0);
   cd.recording_type->setCurrentIndex(0);
   cd.format->setCurrentIndex(0);
+  cd.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (cd.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -1904,7 +1923,7 @@ void biblioteq_cd::slotReset(void)
     {
       QList<QAction *> actions = cd.resetButton->menu()->actions();
 
-      if(actions.size() < 21)
+      if(actions.size() < 22)
 	{
 	  // Error.
 	}
@@ -2033,6 +2052,11 @@ void biblioteq_cd::slotReset(void)
 	  cd.keyword->clear();
 	  cd.keyword->setFocus();
 	}
+      else if(action == actions[21])
+	{
+	  cd.accession_number->clear();
+	  cd.accession_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -2091,6 +2115,7 @@ void biblioteq_cd::slotReset(void)
       cd.back_image->clear();
       cd.keyword->clear();
       cd.composer->clear();
+      cd.accession_number->clear();
       cd.id->setFocus();
     }
 }
@@ -2251,7 +2276,9 @@ void biblioteq_cd::slotPrint(void)
   m_html += "<b>" + tr("Abstract:") + "</b> " +
     cd.description->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    cd.keyword->toPlainText().trimmed();
+    cd.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+    cd.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
 }

@@ -1767,6 +1767,7 @@ void biblioteq_book::insert(void)
   id.language->setCurrentIndex(0);
   id.monetary_units->setCurrentIndex(0);
   id.binding->setCurrentIndex(0);
+  id.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (id.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
