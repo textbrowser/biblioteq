@@ -2267,7 +2267,7 @@ void biblioteq_cd::slotPrint(void)
     cd.description->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
     cd.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
     cd.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);

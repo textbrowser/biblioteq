@@ -1014,7 +1014,7 @@ void biblioteq_photographcollection::slotPrint(void)
     pc.subjects_item->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Item Format:") + "</b> " +
     pc.format_item->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
     pc.accession_number_item->text().trimmed();
   m_html += "</html>";
   print(this);

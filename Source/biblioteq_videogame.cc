@@ -112,6 +112,8 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Accession Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(vg.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(vg.backButton,
@@ -377,6 +379,8 @@ void biblioteq_videogame::slotGo(void)
 
       str = vg.keyword->toPlainText().trimmed();
       vg.keyword->setPlainText(str);
+      str = vg.accession_number->text().trimmed();
+      vg.accession_number->setText(str);
       QApplication::restoreOverrideCursor();
 
       if(m_engWindowTitle.contains("Modify"))
@@ -396,7 +400,8 @@ void biblioteq_videogame::slotGo(void)
 		      "front_cover = ?, "
 		      "back_cover = ?, "
 		      "place = ?, "
-		      "keyword = ? "
+		      "keyword = ?, "
+		      "accession_number = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -407,8 +412,8 @@ void biblioteq_videogame::slotGo(void)
 		      "vgplatform, location, vgmode, "
 		      "front_cover, "
 		      "back_cover, "
-		      "place, keyword) "
-		      "VALUES (?, ?, ?, ?, "
+		      "place, keyword, accession_number) "
+		      "VALUES (?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -420,8 +425,8 @@ void biblioteq_videogame::slotGo(void)
 		      "vgplatform, location, vgmode, "
 		      "front_cover, "
 		      "back_cover, "
-		      "place, keyword, myoid) "
-		      "VALUES (?, ?, ?, ?, "
+		      "place, keyword, accession_number, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -484,9 +489,10 @@ void biblioteq_videogame::slotGo(void)
 
       query.bindValue(17, vg.place->toPlainText().trimmed());
       query.bindValue(18, vg.keyword->toPlainText().trimmed());
+      query.bindValue(19, vg.accession_number->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(19, m_oid);
+	query.bindValue(20, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
@@ -494,7 +500,7 @@ void biblioteq_videogame::slotGo(void)
 	     errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(19, value);
+	    query.bindValue(20, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -694,6 +700,9 @@ void biblioteq_videogame::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (vg.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -871,6 +880,9 @@ void biblioteq_videogame::slotGo(void)
       searchstr.append("AND COALESCE(keyword, '') LIKE " + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (vg.keyword->toPlainText().trimmed()) + "%' ");
+      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+		       biblioteq_myqstring::
+		       escape(vg.accession_number->text().trimmed()) + "%' ");
 
       /*
       ** Search the database.
@@ -917,6 +929,7 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.monetary_units->setCurrentIndex(0);
   vg.platform->setCurrentIndex(0);
   vg.mode->setCurrentIndex(0);
+  vg.accession_number->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1081,7 +1094,8 @@ void biblioteq_videogame::modify(const int state)
 		"location, description, "
 		"front_cover, "
 		"back_cover, "
-		"keyword "
+		"keyword, "
+		"accession_number "
 		"FROM "
 		"videogame "
 		"WHERE myoid = ?");
@@ -1234,6 +1248,8 @@ void biblioteq_videogame::modify(const int state)
 		    vg.back_image->loadFromData(var.toByteArray());
 		}
 	    }
+	  else if(fieldname == "accession_number")
+	    vg.accession_number->setText(var.toString());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1274,6 +1290,7 @@ void biblioteq_videogame::insert(void)
   vg.language->setCurrentIndex(0);
   vg.monetary_units->setCurrentIndex(0);
   vg.rating->setCurrentIndex(0);
+  vg.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (vg.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -1309,7 +1326,7 @@ void biblioteq_videogame::slotReset(void)
     {
       QList<QAction *> actions = vg.resetButton->menu()->actions();
 
-      if(actions.size() < 19)
+      if(actions.size() < 20)
 	{
 	  // Error.
 	}
@@ -1428,6 +1445,11 @@ void biblioteq_videogame::slotReset(void)
 	  vg.keyword->clear();
 	  vg.keyword->setFocus();
 	}
+      else if(action == actions[19])
+	{
+	  vg.accession_number->clear();
+	  vg.accession_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -1483,6 +1505,7 @@ void biblioteq_videogame::slotReset(void)
       vg.front_image->clear();
       vg.back_image->clear();
       vg.keyword->clear();
+      vg.accession_number->clear();
       vg.id->setFocus();
     }
 }
@@ -1608,7 +1631,9 @@ void biblioteq_videogame::slotPrint(void)
     vg.description->toPlainText().trimmed() +
     "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    vg.keyword->toPlainText().trimmed();
+    vg.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
+    vg.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
 }

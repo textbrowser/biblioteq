@@ -2770,7 +2770,7 @@ void biblioteq_book::slotPrint(void)
     id.marc_tags->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
     id.keyword->toPlainText().trimmed() + "<br>";
-  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+  m_html += "<b>" + tr("Accession Number:") + "</b> " +
     id.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
