@@ -850,8 +850,7 @@ void biblioteq_cd::slotGo(void)
 	"AND item_borrower_vw.type = 'CD' "
 	"WHERE ";
       searchstr.append("id LIKE '%").append(cd.id->text().
-					    trimmed()).
-	append("%' AND ");
+					    trimmed()).append("%' AND ");
 
       QString E("");
 
@@ -869,20 +868,22 @@ void biblioteq_cd::slotGo(void)
 	(biblioteq_myqstring::
 	 escape(cd.artist->toPlainText().trimmed())).append("%' OR ");
       searchstr.append
-	("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+	("(cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
 	 "cd_songs.item_oid = cd.myoid AND ");
       searchstr.append("cd_songs.artist LIKE " + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.artist->toPlainText().trimmed())).append
-	("%')");
-      searchstr.append(") AND ");
+	 escape(cd.artist->toPlainText().trimmed())).append("%')");
+      searchstr.append(")) AND ");
+      searchstr.append("(composer LIKE " + E + "'%").append
+	(biblioteq_myqstring::
+	 escape(cd.composer->toPlainText().trimmed())).append("%' OR ");
       searchstr.append
-	("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
+	("(cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
 	 "cd_songs.item_oid = cd.myoid AND ");
       searchstr.append("cd_songs.composer LIKE " + E + "'%").append
 	(biblioteq_myqstring::
 	 escape(cd.composer->toPlainText().trimmed())).append("%')");
-      searchstr.append(" AND ");
+      searchstr.append(")) AND ");
 
       if(cd.no_of_discs->value() > 0)
 	searchstr.append("cddiskcount = ").append
@@ -957,8 +958,8 @@ void biblioteq_cd::slotGo(void)
 			 (cd.location->currentText().trimmed()) + "' ");
 
       searchstr.append(" AND COALESCE(accession_number, '') LIKE " + E + "'%" +
-		       biblioteq_myqstring::escape
-		       (cd.accession_number->text().trimmed()) + "%' ");
+		       biblioteq_myqstring::
+		       escape(cd.accession_number->text().trimmed()) + "%' ");
 
       /*
       ** Search the database.
