@@ -7008,6 +7008,7 @@ void biblioteq::slotShowCustomQuery(void)
 	     << "videogame_ratings";
 
       list.sort();
+      cq.tables_t->setSortingEnabled(false);
       cq.tables_t->setColumnCount(3);
       cq.tables_t->setHeaderLabels(QStringList()
 				   << tr("Table Name")
@@ -7058,6 +7059,8 @@ void biblioteq::slotShowCustomQuery(void)
       for(i = 0; i < cq.tables_t->columnCount() - 1; i++)
 	cq.tables_t->resizeColumnToContents(i);
 
+      cq.tables_t->setSortingEnabled(true);
+      cq.tables_t->sortByColumn(0, Qt::AscendingOrder);
       QApplication::restoreOverrideCursor();
     }
 
