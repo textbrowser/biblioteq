@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1096</width>
-         <height>977</height>
+         <width>1112</width>
+         <height>873</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -158,6 +158,9 @@
                 </property>
                </widget>
               </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="id_collection"/>
+              </item>
               <item row="4" column="1">
                <widget class="QTextEdit" name="notes_collection">
                 <property name="tabChangesFocus">
@@ -174,9 +177,6 @@
                  <string>ID</string>
                 </property>
                </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="id_collection"/>
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_20">
@@ -208,6 +208,16 @@
                  </spacer>
                 </item>
                </layout>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>Accession Number</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="accession_number"/>
               </item>
              </layout>
             </item>
@@ -291,6 +301,13 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="id_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_12">
                 <property name="text">
@@ -368,13 +385,6 @@
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>Other Number</string>
-                </property>
-               </widget>
-              </item>
               <item row="6" column="1">
                <widget class="QTextEdit" name="reproduction_number_item">
                 <property name="tabChangesFocus">
@@ -385,6 +395,13 @@
                 </property>
                 <property name="acceptRichText">
                  <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>Other Number</string>
                 </property>
                </widget>
               </item>
@@ -402,6 +419,13 @@
                 </property>
                </widget>
               </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="title_item">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
               <item row="6" column="0">
                <widget class="QLabel" name="label_6">
                 <property name="text">
@@ -413,13 +437,6 @@
                <widget class="QLabel" name="label_4">
                 <property name="text">
                  <string>Title</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="title_item">
-                <property name="readOnly">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -436,17 +453,17 @@
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Subjects</string>
-                </property>
-               </widget>
-              </item>
               <item row="5" column="1">
                <widget class="QLineEdit" name="medium_item">
                 <property name="readOnly">
                  <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Subjects</string>
                 </property>
                </widget>
               </item>
@@ -511,20 +528,6 @@
                 </item>
                </layout>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_15">
-                <property name="text">
-                 <string>ID</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="id_item">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="1">
                <widget class="QTextEdit" name="creators_item">
                 <property name="tabChangesFocus">
@@ -535,6 +538,13 @@
                 </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>ID</string>
                 </property>
                </widget>
               </item>
@@ -561,6 +571,20 @@
                 </property>
                 <property name="textInteractionFlags">
                  <set>Qt::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_19">
+                <property name="text">
+                 <string>Accession Number</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="1">
+               <widget class="QLineEdit" name="accession_number_item">
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -754,6 +778,7 @@
   <tabstop>location</tabstop>
   <tabstop>about_collection</tabstop>
   <tabstop>notes_collection</tabstop>
+  <tabstop>accession_number</tabstop>
   <tabstop>page</tabstop>
   <tabstop>graphicsView</tabstop>
   <tabstop>thumbnail_item</tabstop>
@@ -770,6 +795,7 @@
   <tabstop>notes_item</tabstop>
   <tabstop>subjects_item</tabstop>
   <tabstop>format_item</tabstop>
+  <tabstop>accession_number_item</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>addItemButton</tabstop>
   <tabstop>resetButton</tabstop>

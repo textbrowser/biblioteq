@@ -127,6 +127,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu1->addAction(tr("Reset Collection &Notes")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu1->addAction(tr("Reset &Accession Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu2->addAction(tr("&All...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(menu2->addAction(tr("&Current Page...")),
@@ -234,6 +236,8 @@ void biblioteq_photographcollection::slotGo(void)
 	(pc.about_collection->toPlainText().trimmed());
       pc.notes_collection->setPlainText
 	(pc.notes_collection->toPlainText().trimmed());
+      pc.accession_number->setText
+	(pc.accession_number->text().trimmed());
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       if(!qmain->getDB().transaction())
@@ -261,23 +265,24 @@ void biblioteq_photographcollection::slotGo(void)
 		      "about = ?, "
 		      "notes = ?, "
 		      "image = ?, "
-		      "image_scaled = ? "
+		      "image_scaled = ?, "
+		      "accession_number = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare("INSERT INTO photograph_collection "
 		      "(id, title, location, about, notes, image, "
-		      "image_scaled) VALUES (?, "
-		      "?, ?, ?, ?, ?, ?)");
+		      "image_scaled, accession_number) VALUES (?, "
+		      "?, ?, ?, ?, ?, ?, ?)");
       else
 	query.prepare("INSERT INTO photograph_collection "
 		      "(id, title, location, about, notes, image, "
-		      "image_scaled, myoid) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		      "image_scaled, accession_number, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      query.bindValue(0, pc.id_collection->text());
-      query.bindValue(1, pc.title_collection->text());
-      query.bindValue(2, pc.location->currentText());
+      query.bindValue(0, pc.id_collection->text().trimmed());
+      query.bindValue(1, pc.title_collection->text().trimmed());
+      query.bindValue(2, pc.location->currentText().trimmed());
       query.bindValue(3, pc.about_collection->toPlainText().trimmed());
       query.bindValue(4, pc.notes_collection->toPlainText().trimmed());
 
@@ -324,15 +329,17 @@ void biblioteq_photographcollection::slotGo(void)
 	  query.bindValue(6, QVariant(QVariant::ByteArray));
 	}
 
+      query.bindValue(7, pc.accession_number->text().trimmed());
+
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(7, m_oid);
+	query.bindValue(8, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
 	    (qmain->getDB(), errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(7, value);
+	    query.bindValue(8, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -403,10 +410,13 @@ void biblioteq_photographcollection::slotGo(void)
 			  (pc.title_collection->text());
 		      else if(names.at(i) == "Location")
 			qmain->getUI().table->item(m_row, i)->setText
-			  (pc.location->currentText());
+			  (pc.location->currentText().trimmed());
 		      else if(names.at(i) == "About")
 			qmain->getUI().table->item(m_row, i)->setText
 			  (pc.about_collection->toPlainText().trimmed());
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (pc.accession_number->text());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -519,7 +529,12 @@ void biblioteq_photographcollection::slotGo(void)
 		       E + "'%" +
 		       biblioteq_myqstring::escape
 		       (pc.notes_collection->toPlainText().trimmed()) +
-		       "%'");
+		       "%' AND ");
+      searchstr.append
+	("COALESCE(photograph_collection.accession_number, '') LIKE " +
+	 E + "'%" +
+	 biblioteq_myqstring::escape(pc.accession_number->text().trimmed()) +
+	 "%'");
 
       /*
       ** Search the database.
@@ -548,13 +563,14 @@ void biblioteq_photographcollection::search
   pc.exportPhotographsToolButton->setVisible(false);
   pc.location->insertItem(0, tr("Any"));
   pc.location->setCurrentIndex(0);
+  pc.accession_number->clear();
 
   QList<QAction *> actions = pc.resetButton->menu()->actions();
 
   if(!actions.isEmpty())
     actions[0]->setVisible(false);
 
-  for(int i = 6; i < actions.size(); i++)
+  for(int i = 7; i < actions.size(); i++)
     actions.at(i)->setVisible(false);
 
   actions.clear();
@@ -679,7 +695,8 @@ void biblioteq_photographcollection::modify(const int state,
 		"location, "
 		"about, "
 		"notes, "
-		"image "
+		"image, "
+		"accession_number "
 		"FROM "
 		"photograph_collection "
 		"WHERE myoid = ?");
@@ -760,6 +777,8 @@ void biblioteq_photographcollection::modify(const int state,
 		    pc.thumbnail_collection->loadFromData(var.toByteArray());
 		}
 	    }
+	  else if(fieldname == "accession_number")
+	    pc.accession_number->setText(var.toString());
 	}
 
       int pages = 1;
@@ -825,6 +844,7 @@ void biblioteq_photographcollection::insert(void)
   pc.importItems->setEnabled(false);
   pc.publication_date->setDate(QDate::fromString("01/01/2000",
 						 "MM/dd/yyyy"));
+  pc.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (pc.id_collection, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -854,7 +874,7 @@ void biblioteq_photographcollection::slotReset(void)
     {
       QList<QAction *> actions = pc.resetButton->menu()->actions();
 
-      if(actions.size() < 6)
+      if(actions.size() < 7)
 	{
 	  // Error.
 	}
@@ -885,6 +905,11 @@ void biblioteq_photographcollection::slotReset(void)
 	  pc.notes_collection->clear();
 	  pc.notes_collection->setFocus();
 	}
+      else if(action == actions[6])
+	{
+	  pc.accession_number->clear();
+	  pc.accession_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -900,6 +925,7 @@ void biblioteq_photographcollection::slotReset(void)
       pc.about_collection->clear();
       pc.notes_collection->clear();
       pc.location->setCurrentIndex(0);
+      pc.accession_number->clear();
       pc.id_collection->setFocus();
     }
 }
@@ -987,7 +1013,9 @@ void biblioteq_photographcollection::slotPrint(void)
   m_html += "<b>" + tr("Item Subjects:") + "</b> " +
     pc.subjects_item->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Item Format:") + "</b> " +
-    pc.format_item->toPlainText().trimmed();
+    pc.format_item->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+    pc.accession_number_item->text().trimmed();
   m_html += "</html>";
   print(this);
 }
@@ -1294,6 +1322,7 @@ void biblioteq_photographcollection::slotAddItem(void)
   photo.subjects_item->clear();
   photo.format_item->clear();
   photo.scrollArea->ensureVisible(0, 0);
+  photo.accession_number_item->clear();
   photo.id_item->setFocus();
   m_photo_diag->show();
 }
@@ -1387,6 +1416,8 @@ bool biblioteq_photographcollection::verifyItemFields(void)
       return false;
     }
 
+  str = photo.accession_number_item->text().trimmed();
+  photo.accession_number_item->setText(str);
   return true;
 }
 
@@ -1425,16 +1456,16 @@ void biblioteq_photographcollection::slotInsertItem(void)
 		  "(id, collection_oid, title, creators, pdate, "
 		  "quantity, medium, reproduction_number, "
 		  "copyright, callnumber, other_number, notes, subjects, "
-		  "format, image, image_scaled) "
-		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		  "format, image, image_scaled, accession_number) "
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		  "?, ?, ?, ?, ?, ?, ?, ?)");
   else
     query.prepare("INSERT INTO photograph "
 		  "(id, collection_oid, title, creators, pdate, "
 		  "quantity, medium, reproduction_number, "
 		  "copyright, callnumber, other_number, notes, subjects, "
-		  "format, image, image_scaled, myoid) "
-		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		  "format, image, image_scaled, accession_number, myoid) "
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		  "?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   query.bindValue(0, photo.id_item->text());
@@ -1493,13 +1524,15 @@ void biblioteq_photographcollection::slotInsertItem(void)
       query.bindValue(15, QVariant(QVariant::ByteArray));
     }
 
+  query.bindValue(16, photo.accession_number_item->text().trimmed());
+
   if(qmain->getDB().driverName() == "QSQLITE")
     {
       qint64 value = biblioteq_misc_functions::getSqliteUniqueId
 	(qmain->getDB(), errorstr);
 
       if(errorstr.isEmpty())
-	query.bindValue(16, value);
+	query.bindValue(17, value);
       else
 	qmain->addError(QString(tr("Database Error")),
 			QString(tr("Unable to generate a unique "
@@ -1610,6 +1643,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
       pc.notes_item->clear();
       pc.subjects_item->clear();
       pc.format_item->clear();
+      pc.accession_number_item->clear();
       return;
     }
 
@@ -1638,7 +1672,8 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		    "notes, "
 		    "subjects, "
 		    "format, "
-		    "image "
+		    "image, "
+		    "accession_number "
 		    "FROM photograph "
 		    "WHERE collection_oid = ? AND "
 		    "myoid = ?");
@@ -1743,6 +1778,11 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 		      photo.thumbnail_item->clear();
 		    }
 		}
+	      else if(fieldname == "accession_number")
+		{
+		  pc.accession_number_item->setText(var.toString());
+		  photo.accession_number_item->setText(var.toString());
+		}
 	    }
     }
 
@@ -1782,7 +1822,8 @@ void biblioteq_photographcollection::storeData(void)
        << pc.title_collection
        << pc.location
        << pc.about_collection
-       << pc.notes_collection;
+       << pc.notes_collection
+       << pc.accession_number;
 
   foreach(QWidget *widget, list)
     {
@@ -1837,7 +1878,8 @@ void biblioteq_photographcollection::slotUpdateItem(void)
 		"quantity = ?, medium = ?, reproduction_number = ?, "
 		"copyright = ?, callnumber = ?, other_number = ?, "
 		"notes = ?, subjects = ?, "
-		"format = ?, image = ?, image_scaled = ? "
+		"format = ?, image = ?, image_scaled = ?, "
+		"accession_number = ? "
 		"WHERE collection_oid = ? AND myoid = ?");
   query.bindValue(0, photo.id_item->text());
   query.bindValue(1, photo.title_item->text());
@@ -1894,8 +1936,9 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       query.bindValue(14, QVariant(QVariant::ByteArray));
     }
 
-  query.bindValue(15, m_oid);
-  query.bindValue(16, m_itemOid);
+  query.bindValue(15, photo.accession_number_item->text().trimmed());
+  query.bindValue(16, m_oid);
+  query.bindValue(17, m_itemOid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!query.exec())
@@ -1937,6 +1980,7 @@ void biblioteq_photographcollection::slotUpdateItem(void)
       pc.subjects_item->setPlainText(photo.subjects_item->toPlainText());
       pc.format_item->setPlainText(photo.format_item->toPlainText());
       pc.thumbnail_item->setImage(photo.thumbnail_item->m_image);
+      pc.accession_number_item->setText(photo.accession_number_item->text());
     }
 
   return;
@@ -2132,6 +2176,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       QAction *action = 0;
       QMenu menu(this);
 
+      item->setSelected(true);
       action = menu.addAction(tr("&Modify Photograph..."),
 			      this,
 			      SLOT(slotModifyItem(void)));
@@ -2147,6 +2192,7 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
 	{
 	  action->setData(pos);
 	  menu.exec(QCursor::pos());
+	  item->setSelected(true);
 	}
     }
 }
@@ -2523,16 +2569,16 @@ void biblioteq_photographcollection::slotImportItems(void)
 		      "(id, collection_oid, title, creators, pdate, "
 		      "quantity, medium, reproduction_number, "
 		      "copyright, callnumber, other_number, notes, subjects, "
-		      "format, image, image_scaled) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		      "format, image, image_scaled, accession_number) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?)");
       else
 	query.prepare("INSERT INTO photograph "
 		      "(id, collection_oid, title, creators, pdate, "
 		      "quantity, medium, reproduction_number, "
 		      "copyright, callnumber, other_number, notes, subjects, "
-		      "format, image, image_scaled, myoid) "
-		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+		      "format, image, image_scaled, accession_number, myoid) "
+		      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 		      "?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       QString id("");
@@ -2579,6 +2625,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	bytes2 = bytes1;
 
       query.bindValue(15, bytes2.toBase64());
+      query.bindValue(16, "N/A");
 
       if(qmain->getDB().driverName() == "QSQLITE")
 	{
@@ -2588,7 +2635,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	     errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(16, value);
+	    query.bindValue(17, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
