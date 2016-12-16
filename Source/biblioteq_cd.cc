@@ -422,7 +422,7 @@ void biblioteq_cd::slotGo(void)
 		      "front_cover = ?, "
 		      "back_cover = ?, "
 		      "keyword = ?, "
-		      "accession_number "
+		      "accession_number = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -867,8 +867,7 @@ void biblioteq_cd::slotGo(void)
 
       searchstr.append("(artist LIKE " + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.artist->toPlainText().trimmed())).append
-	("%' OR ");
+	 escape(cd.artist->toPlainText().trimmed())).append("%' OR ");
       searchstr.append
 	("cd.myoid IN (SELECT cd_songs.item_oid FROM cd_songs WHERE "
 	 "cd_songs.item_oid = cd.myoid AND ");
@@ -882,8 +881,7 @@ void biblioteq_cd::slotGo(void)
 	 "cd_songs.item_oid = cd.myoid AND ");
       searchstr.append("cd_songs.composer LIKE " + E + "'%").append
 	(biblioteq_myqstring::
-	 escape(cd.composer->toPlainText().trimmed())).append
-	("%')");
+	 escape(cd.composer->toPlainText().trimmed())).append("%')");
       searchstr.append(" AND ");
 
       if(cd.no_of_discs->value() > 0)
@@ -910,9 +908,7 @@ void biblioteq_cd::slotGo(void)
 
       if(cd.release_date->date().toString("MM/yyyy") != "01/7999")
 	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
-			 cd.release_date->date().toString
-			 ("MM/yyyy") +
-			 "' AND ");
+			 cd.release_date->date().toString("MM/yyyy") +"' AND ");
 
       searchstr.append("recording_label LIKE " + E + "'%" +
 		       biblioteq_myqstring::
@@ -960,7 +956,7 @@ void biblioteq_cd::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (cd.location->currentText().trimmed()) + "' ");
 
-      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+      searchstr.append(" AND COALESCE(accession_number, '') LIKE " + E + "'%" +
 		       biblioteq_myqstring::escape
 		       (cd.accession_number->text().trimmed()) + "%' ");
 

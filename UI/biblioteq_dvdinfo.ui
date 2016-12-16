@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1017</width>
-         <height>1147</height>
+         <height>1148</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -427,6 +427,28 @@
             <string>General Information</string>
            </property>
            <layout class="QGridLayout">
+            <item row="2" column="1">
+             <widget class="biblioteq_hyperlinked_text_edit" name="studio">
+              <property name="verticalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="tabChangesFocus">
+               <bool>true</bool>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+              </property>
+              <property name="openLinks">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
@@ -487,28 +509,6 @@
              <widget class="QLabel" name="label_14">
               <property name="text">
                <string>Studio</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="biblioteq_hyperlinked_text_edit" name="studio">
-              <property name="verticalScrollBarPolicy">
-               <enum>Qt::ScrollBarAlwaysOff</enum>
-              </property>
-              <property name="horizontalScrollBarPolicy">
-               <enum>Qt::ScrollBarAlwaysOff</enum>
-              </property>
-              <property name="tabChangesFocus">
-               <bool>true</bool>
-              </property>
-              <property name="readOnly">
-               <bool>false</bool>
-              </property>
-              <property name="textInteractionFlags">
-               <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-              </property>
-              <property name="openLinks">
-               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -693,13 +693,6 @@
               </item>
              </layout>
             </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Abstract</string>
-              </property>
-             </widget>
-            </item>
             <item row="9" column="1">
              <widget class="QTextEdit" name="description">
               <property name="tabChangesFocus">
@@ -707,6 +700,13 @@
               </property>
               <property name="acceptRichText">
                <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Abstract</string>
               </property>
              </widget>
             </item>
@@ -748,6 +748,16 @@
                <bool>false</bool>
               </property>
              </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="label_21">
+              <property name="text">
+               <string>Accession Number</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <widget class="QLineEdit" name="accession_number"/>
             </item>
            </layout>
           </widget>
@@ -923,6 +933,7 @@
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>accession_number</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>

@@ -119,6 +119,8 @@ biblioteq_dvd::biblioteq_dvd(QMainWindow *parentArg,
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Keywords")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset &Accession Number")),
+	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(dvd.frontButton,
 	  SIGNAL(clicked(void)), this, SLOT(slotSelectImage(void)));
   connect(dvd.backButton,
@@ -417,6 +419,8 @@ void biblioteq_dvd::slotGo(void)
 
       str = dvd.keyword->toPlainText().trimmed();
       dvd.keyword->setPlainText(str);
+      str = dvd.accession_number->text().trimmed();
+      dvd.accession_number->setText(str);
       QApplication::restoreOverrideCursor();
 
       if(m_engWindowTitle.contains("Modify"))
@@ -442,7 +446,8 @@ void biblioteq_dvd::slotGo(void)
 		      "description = ?, "
 		      "front_cover = ?, "
 		      "back_cover = ?, "
-		      "keyword = ? "
+		      "keyword = ?, "
+		      "accession_number = ? "
 		      "WHERE "
 		      "myoid = ?");
       else if(qmain->getDB().driverName() != "QSQLITE")
@@ -466,9 +471,9 @@ void biblioteq_dvd::slotGo(void)
 		      "quantity, "
 		      "location, "
 		      "description, front_cover, "
-		      "back_cover, keyword) "
+		      "back_cover, keyword, accession_number) "
 		      "VALUES "
-		      "(?, ?, ?, "
+		      "(?, ?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -494,11 +499,14 @@ void biblioteq_dvd::slotGo(void)
 		      "monetary_units, "
 		      "quantity, "
 		      "location, "
-		      "description, front_cover, "
-		      "back_cover, keyword, "
+		      "description, "
+		      "front_cover, "
+		      "back_cover, "
+		      "keyword, "
+		      "accession_number, "
 		      "myoid) "
 		      "VALUES "
-		      "(?, ?, ?, "
+		      "(?, ?, ?, ?, "
 		      "?, ?, "
 		      "?, ?, ?, "
 		      "?, ?, ?, "
@@ -566,9 +574,10 @@ void biblioteq_dvd::slotGo(void)
 	}
 
       query.bindValue(21, dvd.keyword->toPlainText().trimmed());
+      query.bindValue(22, dvd.accession_number->text().trimmed());
 
       if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(22, m_oid);
+	query.bindValue(23, m_oid);
       else if(qmain->getDB().driverName() == "QSQLITE")
 	{
 	  qint64 value = biblioteq_misc_functions::getSqliteUniqueId
@@ -576,7 +585,7 @@ void biblioteq_dvd::slotGo(void)
 	     errorstr);
 
 	  if(errorstr.isEmpty())
-	    query.bindValue(22, value);
+	    query.bindValue(23, value);
 	  else
 	    qmain->addError(QString(tr("Database Error")),
 			    QString(tr("Unable to generate a unique "
@@ -778,6 +787,9 @@ void biblioteq_dvd::slotGo(void)
 			       QString(tr("Retrieving availability.")),
 			       errorstr, __FILE__, __LINE__);
 			}
+		      else if(names.at(i) == "Accession Number")
+			qmain->getUI().table->item(m_row, i)->setText
+			  (dvd.accession_number->text().trimmed());
 		    }
 
 		  qmain->getUI().table->setSortingEnabled(true);
@@ -975,6 +987,10 @@ void biblioteq_dvd::slotGo(void)
 			 biblioteq_myqstring::escape
 			 (dvd.location->currentText().trimmed()) + "' ");
 
+      searchstr.append("AND COALESCE(accession_number, '') LIKE " + E + "'%" +
+		       biblioteq_myqstring::escape(dvd.accession_number->
+						   text().trimmed()) + "%' ");
+
       /*
       ** Search the database.
       */
@@ -1026,6 +1042,7 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.rating->setCurrentIndex(0);
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
+  dvd.accession_number->clear();
 
   if(field.isEmpty() && value.isEmpty())
     {
@@ -1205,7 +1222,8 @@ void biblioteq_dvd::modify(const int state)
 		"location, "
 		"front_cover, "
 		"back_cover, "
-		"keyword "
+		"keyword, "
+		"accession_number "
 		"FROM "
 		"dvd "
 		"WHERE myoid = ?");
@@ -1366,6 +1384,8 @@ void biblioteq_dvd::modify(const int state)
 		    dvd.back_image->loadFromData(var.toByteArray());
 		}
 	    }
+	  else if(fieldname == "accession_number")
+	    dvd.accession_number->setText(var.toString());
 	}
 
       foreach(QLineEdit *textfield, findChildren<QLineEdit *> ())
@@ -1414,6 +1434,7 @@ void biblioteq_dvd::insert(void)
   dvd.rating->setCurrentIndex(0);
   dvd.region->setCurrentIndex(0);
   dvd.aspectratio->setCurrentIndex(0);
+  dvd.accession_number->clear();
   biblioteq_misc_functions::highlightWidget
     (dvd.id, QColor(255, 248, 220));
   biblioteq_misc_functions::highlightWidget
@@ -1451,7 +1472,7 @@ void biblioteq_dvd::slotReset(void)
     {
       QList<QAction *> actions = dvd.resetButton->menu()->actions();
 
-      if(actions.size() < 22)
+      if(actions.size() < 23)
 	{
 	  // Error.
 	}
@@ -1593,6 +1614,11 @@ void biblioteq_dvd::slotReset(void)
 	  dvd.keyword->clear();
 	  dvd.keyword->setFocus();
 	}
+      else if(action == actions[22])
+	{
+	  dvd.accession_number->clear();
+	  dvd.accession_number->setFocus();
+	}
 
       actions.clear();
     }
@@ -1660,6 +1686,7 @@ void biblioteq_dvd::slotReset(void)
       dvd.front_image->clear();
       dvd.back_image->clear();
       dvd.keyword->clear();
+      dvd.accession_number->clear();
       dvd.id->setFocus();
     }
 }
@@ -1790,7 +1817,9 @@ void biblioteq_dvd::slotPrint(void)
   m_html += "<b>" + tr("Abstract:") + "</b> " +
     dvd.description->toPlainText().trimmed() + "<br>";
   m_html += "<b>" + tr("Keywords:") + "</b> " +
-    dvd.keyword->toPlainText().trimmed();
+    dvd.keyword->toPlainText().trimmed() + "<br>";
+  m_html += "<b>" + tr("Accession Number:") + "</b>" +
+    dvd.accession_number->text().trimmed();
   m_html += "</html>";
   print(this);
 }
