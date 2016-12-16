@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1072</width>
-         <height>1545</height>
+         <height>1553</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -1018,6 +1018,10 @@
   <tabstop>description</tabstop>
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>files</tabstop>
+  <tabstop>attach_files</tabstop>
+  <tabstop>delete_files</tabstop>
+  <tabstop>export_files</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>sruQueryButton</tabstop>
   <tabstop>z3950QueryButton</tabstop>

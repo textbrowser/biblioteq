@@ -1246,6 +1246,11 @@
   <tabstop>description</tabstop>
   <tabstop>marc_tags</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>files</tabstop>
+  <tabstop>attach_files</tabstop>
+  <tabstop>delete_files</tabstop>
+  <tabstop>export_files</tabstop>
+  <tabstop>accession_number</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>sruQueryButton</tabstop>
   <tabstop>z3950QueryButton</tabstop>

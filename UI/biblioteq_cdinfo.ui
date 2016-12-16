@@ -33,7 +33,7 @@
          <x>0</x>
          <y>0</y>
          <width>1022</width>
-         <height>1147</height>
+         <height>1148</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -489,6 +489,30 @@
             <string>General Information</string>
            </property>
            <layout class="QGridLayout">
+            <item row="5" column="1">
+             <layout class="QHBoxLayout">
+              <item>
+               <widget class="QComboBox" name="language">
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
@@ -617,30 +641,6 @@
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
-             <layout class="QHBoxLayout">
-              <item>
-               <widget class="QComboBox" name="language">
-                <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
             <item row="6" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
@@ -755,13 +755,6 @@
               </item>
              </layout>
             </item>
-            <item row="9" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Abstract</string>
-              </property>
-             </widget>
-            </item>
             <item row="9" column="1">
              <widget class="QTextEdit" name="description">
               <property name="tabChangesFocus">
@@ -769,6 +762,13 @@
               </property>
               <property name="acceptRichText">
                <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Abstract</string>
               </property>
              </widget>
             </item>
@@ -810,6 +810,16 @@
                <bool>false</bool>
               </property>
              </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QLabel" name="label_19">
+              <property name="text">
+               <string>Accession Number</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="1">
+             <widget class="QLineEdit" name="accession_number"/>
             </item>
            </layout>
           </widget>
@@ -986,6 +996,7 @@
   <tabstop>location</tabstop>
   <tabstop>description</tabstop>
   <tabstop>keyword</tabstop>
+  <tabstop>accession_number</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>queryButton</tabstop>
   <tabstop>resetButton</tabstop>
