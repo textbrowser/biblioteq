@@ -1182,7 +1182,7 @@ GRANT SELECT (item_oid, type) ON item_borrower_vw TO biblioteq_guest;
 
 GRANT SELECT, UPDATE, USAGE ON grey_literature_myoid_seq TO biblioteq_librarian;
 
-/* Release 2017.01.01 */
+/* Release 2016.12.16 */
 
 ALTER TABLE book ADD accession_number TEXT;
 ALTER TABLE cd ADD accession_number TEXT;
