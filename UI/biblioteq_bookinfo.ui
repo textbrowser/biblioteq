@@ -98,6 +98,9 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="toolTip">
+                 <string>Download the book's front cover image from Amazon.</string>
+                </property>
                 <property name="text">
                  <string>&amp;Download</string>
                 </property>
@@ -174,6 +177,9 @@
                   <width>105</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="toolTip">
+                 <string>Download the book's back cover image from Amazon.</string>
                 </property>
                 <property name="text">
                  <string>&amp;Download</string>
