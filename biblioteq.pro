@@ -6,7 +6,7 @@ purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
 DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-                   BIBLIOTEQ_LINK_WITH_POPPLER
+                   BIBLIOTEQ_LINKED_WITH_POPPLER
 LANGUAGE	= C++
 QT		-= webkit
 QT              += network sql
