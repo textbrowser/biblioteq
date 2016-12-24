@@ -114,6 +114,11 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   id.setupUi(this);
   id.files->setColumnHidden(id.files->columnCount() - 1, true); // myoid
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
+#ifndef BIBLIOTEQ_LINK_WITH_POPPLER
+  id.view_pdf->setEnabled(false);
+  id.view_pdf->setToolTip
+    (tr("BiblioteQ was not created with Poppler support."));
+#endif
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);

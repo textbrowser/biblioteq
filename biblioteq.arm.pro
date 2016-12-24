@@ -21,7 +21,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual -Wpointer-arith \
 			  -Wstrict-overflow=5 \
 			  -Wstack-protector -fPIE -fstack-protector-all \
-			  -fwrapv -mtune=native -pie
+                          -fwrapv -mtune=native -pie
 QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {

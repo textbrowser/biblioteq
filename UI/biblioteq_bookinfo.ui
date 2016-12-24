@@ -1026,6 +1026,13 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="view_pdf">
+                  <property name="text">
+                   <string>&amp;View PDF</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_2">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
@@ -1256,6 +1263,7 @@
   <tabstop>attach_files</tabstop>
   <tabstop>delete_files</tabstop>
   <tabstop>export_files</tabstop>
+  <tabstop>view_pdf</tabstop>
   <tabstop>accession_number</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>sruQueryButton</tabstop>

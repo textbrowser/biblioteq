@@ -5,7 +5,8 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+                   BIBLIOTEQ_LINK_WITH_POPPLER
 LANGUAGE	= C++
 QT		-= webkit
 QT              += network sql
@@ -54,6 +55,7 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 		  UI/biblioteq_otheroptions.ui \
 		  UI/biblioteq_password.ui \
                   UI/biblioteq_passwordPrompt.ui \
+                  UI/biblioteq_pdfreader.ui \
                   UI/biblioteq_photograph.ui \
                   UI/biblioteq_photographinfo.ui \
                   UI/biblioteq_photographview.ui \
@@ -81,7 +83,8 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_magazine.h \
 		  Source/biblioteq_main_table.h \
                   Source/biblioteq_myqstring.h \
-		  Source/biblioteq_otheroptions.h \
+                  Source/biblioteq_otheroptions.h \
+                  Source/biblioteq_pdfreader.h \
 		  Source/biblioteq_photographcollection.h \
 		  Source/biblioteq_sruResults.h \
 		  Source/biblioteq_videogame.h \
@@ -110,7 +113,8 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_misc_functions.cc \
                   Source/biblioteq_myqstring.cc \
                   Source/biblioteq_numeric_table_item.cc \
-		  Source/biblioteq_otheroptions.cc \
+                  Source/biblioteq_otheroptions.cc \
+                  Source/biblioteq_pdfreader.cc \
                   Source/biblioteq_photographcollection.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \
