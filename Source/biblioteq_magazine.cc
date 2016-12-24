@@ -27,6 +27,7 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_magazine.h"
 #include "biblioteq_marc.h"
+#include "biblioteq_pdfreader.h"
 #include "biblioteq_sruResults.h"
 
 extern biblioteq *qmain;
@@ -101,6 +102,16 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));
+#ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
+  ma.view_pdf->setEnabled(false);
+  ma.view_pdf->setToolTip
+    (tr("BiblioteQ was not assembled with Poppler support."));
+#else
+  connect(ma.view_pdf,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowPDF(void)));
+#endif
   connect(ma.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -3892,4 +3903,42 @@ void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
 
   if(query.exec())
     item1->setText(text);
+}
+
+/*
+** -- slotShowPDF() --
+*/
+
+void biblioteq_magazine::slotShowPDF(void)
+{
+  QModelIndexList list(ma.files->selectionModel()->
+		       selectedRows(ma.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QByteArray data;
+  QSqlQuery query(qmain->getDB());
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+
+  query.setForwardOnly(true);
+
+  if(m_subType == "Journal")
+    query.prepare
+      ("SELECT file FROM journal_files WHERE item_oid = ? AND myoid = ?");
+  else
+    query.prepare
+      ("SELECT file FROM magazine_files WHERE item_oid = ? AND myoid = ?");
+
+  query.bindValue(0, m_oid);
+  query.bindValue(1, list.takeFirst().data());
+
+  if(query.exec() && query.next())
+    data = qUncompress(query.value(0).toByteArray());
+
+  reader->load(data);
+  reader->show();
+  QApplication::restoreOverrideCursor();
 }

@@ -105,6 +105,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 #endif
   void slotSRUReadyRead(void);
   void slotSelectImage(void);
+  void slotShowPDF(void);
   void slotShowUsers(void);
   void slotZ3950Query(void);
 };

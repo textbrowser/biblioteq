@@ -154,10 +154,15 @@ void biblioteq_pdfreader::slotShowPage(int index)
   if(!m_document)
     return;
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
   Poppler::Page *page = m_document->page(index);
 
   if(!page)
-    return;
+    {
+      QApplication::restoreOverrideCursor();
+      return;
+    }
 
   m_ui.page->setToolTip(tr("Page %1 of %2.").
 			arg(index + 1).
@@ -167,6 +172,7 @@ void biblioteq_pdfreader::slotShowPage(int index)
 
   m_ui.label->setPixmap(QPixmap::fromImage(image));
   delete page;
+  QApplication::restoreOverrideCursor();
 #else
   Q_UNUSED(index);
 #endif
