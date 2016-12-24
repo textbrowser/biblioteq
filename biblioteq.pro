@@ -34,6 +34,16 @@ QMAKE_EXTRA_TARGETS = purge
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
 LIBS		+= -lsqlite3 -lyaz
+
+lessThan(QT_MAJOR_VERSION, 5) {
+INCLUDEPATH     += /usr/include/poppler/qt4
+LIBS            += -lpoppler-qt4
+}
+else {
+INCLUDEPATH     += /usr/include/poppler/qt5
+LIBS            += -lpoppler-qt5
+}
+
 RESOURCES	= Icons/icons.qrc
 
 FORMS           = UI/biblioteq_adminsetup.ui \

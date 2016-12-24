@@ -21,7 +21,11 @@
    <layout class="QVBoxLayout">
     <item>
      <widget class="QFrame" name="frame">
-      <layout class="QVBoxLayout"/>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="label"/>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>

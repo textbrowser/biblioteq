@@ -17,6 +17,9 @@
 biblioteq_pdfreader::biblioteq_pdfreader(void):QMainWindow()
 {
   m_ui.setupUi(this);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLE
+  m_document = 0;
+#endif
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
@@ -77,6 +80,20 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
     close();
 
   QMainWindow::keyPressEvent(event);
+}
+
+/*
+** -- load() --
+*/
+
+void biblioteq_pdfreader::load(const QByteArray &data)
+{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLE
+  delete m_document;
+  m_document = Poppler::Document::loadFromData(data);
+#else
+  Q_UNUSED(data);
+#endif
 }
 
 /*

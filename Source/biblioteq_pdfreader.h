@@ -8,6 +8,18 @@
 #include <QMainWindow>
 
 /*
+** -- Poppler Includes --
+*/
+
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#if QT_VERSION < 0x050000
+#include <poppler-qt4.h>
+#else
+#include <poppler-qt5.h>
+#endif
+#endif
+
+/*
 ** -- Local Includes --
 */
 
@@ -20,8 +32,12 @@ class biblioteq_pdfreader: public QMainWindow
  public:
   biblioteq_pdfreader(void);
   ~biblioteq_pdfreader();
+  void load(const QByteArray &data);
 
  private:
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLE
+  Poppler::Document *m_document;
+#endif
   Ui_pdfreader m_ui;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
