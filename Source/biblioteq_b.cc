@@ -3658,7 +3658,17 @@ int biblioteq::populateTable(const int search_type_arg,
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);
   else if(ui.table->rowCount() < limit)
-    ui.nextPageButton->setEnabled(false);
+    {
+      if(progress.wasCanceled())
+	/*
+	** Allow viewing of the next potential page if the user
+	** canceled the query.
+	*/
+
+	ui.nextPageButton->setEnabled(true);
+      else
+	ui.nextPageButton->setEnabled(false);
+    }
   else
     ui.nextPageButton->setEnabled(true);
 
