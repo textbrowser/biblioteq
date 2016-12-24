@@ -22,6 +22,7 @@
 #include "biblioteq_book.h"
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_marc.h"
+#include "biblioteq_pdfreader.h"
 
 extern biblioteq *qmain;
 
@@ -118,6 +119,11 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   id.view_pdf->setEnabled(false);
   id.view_pdf->setToolTip
     (tr("BiblioteQ was not assembled with Poppler support."));
+#else
+  connect(id.view_pdf,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotShowPDF(void)));
 #endif
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -4024,4 +4030,36 @@ void biblioteq_book::slotPrintCallDewey(void)
       document.setHtml(html);
       document.print(&printer);
     }
+}
+
+/*
+** -- slotShowPDF() --
+*/
+
+void biblioteq_book::slotShowPDF(void)
+{
+  QModelIndexList list(id.files->selectionModel()->
+		       selectedRows(id.files->columnCount() - 1)); // myoid
+
+  if(list.isEmpty())
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  QByteArray data;
+  QSqlQuery query(qmain->getDB());
+  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
+
+  query.setForwardOnly(true);
+  query.prepare("SELECT file FROM book_files "
+		"WHERE item_oid = ? AND myoid = ?");
+  query.bindValue(0, m_oid);
+  query.bindValue(1, list.takeFirst().data());
+
+  if(query.exec() && query.next())
+    data = qUncompress(query.value(0).toByteArray());
+
+  reader->load(data);
+  reader->show();
+  QApplication::restoreOverrideCursor();
 }

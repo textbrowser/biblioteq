@@ -120,6 +120,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
 #endif
   void slotSRUReadyRead(void);
   void slotSRUSslErrors(const QList<QSslError> &list);
+  void slotShowPDF(void);
   void slotSelectImage(void);
   void slotShowUsers(void);
   void slotZ3950Query(void);
