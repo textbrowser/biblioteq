@@ -3895,13 +3895,18 @@ void biblioteq_magazine::slotEditFileDescription(QTableWidgetItem *item)
   if(!item2)
     return;
 
-  QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
+  bool ok = true;
   QString text
     (QInputDialog::getText(this,
 			   tr("BiblioteQ: File Description"),
 			   tr("Description"), QLineEdit::Normal,
-			   description).trimmed());
+			   description, &ok).trimmed());
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
 
   if(m_subType == "Journal")
     query.prepare("UPDATE journal_files SET description = ? "

@@ -3956,13 +3956,18 @@ void biblioteq_book::slotEditFileDescription(QTableWidgetItem *item)
   if(!item2)
     return;
 
-  QSqlQuery query(qmain->getDB());
-  QString myoid(item2->text());
+  bool ok = true;
   QString text
     (QInputDialog::getText(this,
 			   tr("BiblioteQ: File Description"),
 			   tr("Description"), QLineEdit::Normal,
-			   description).trimmed());
+			   description, &ok).trimmed());
+
+  if(!ok)
+    return;
+
+  QSqlQuery query(qmain->getDB());
+  QString myoid(item2->text());
 
   query.prepare("UPDATE book_files SET description = ? "
 		"WHERE item_oid = ? AND myoid = ?");
