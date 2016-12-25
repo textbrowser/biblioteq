@@ -4,6 +4,7 @@
 
 #include <QFileDialog>
 #include <QKeyEvent>
+#include <QResizeEvent>
 #include <QScrollBar>
 
 /*
@@ -24,8 +25,9 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_document = 0;
 #else
   m_ui.action_Save_As->setEnabled(false);
-  m_ui.label->setText(tr("BiblioteQ was assembled without Poppler support."));
   m_ui.page->setEnabled(false);
+  m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
+  m_ui.page_2->setText(m_ui.page_1->text());
 #endif
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -48,6 +50,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(valueChanged(int)),
 	  this,
 	  SLOT(slotSliderValueChanged(int)));
+  connect(m_ui.view_size,
+	  SIGNAL(currentIndexChanged(int)),
+	  this,
+	  SLOT(slotChangePageViewSize(int)));
   biblioteq_misc_functions::center(this, qobject_cast<QMainWindow *> (parent));
 }
 
@@ -118,8 +124,9 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
   if(!m_document)
     {
       m_ui.action_Save_As->setEnabled(false);
-      m_ui.label->setText(tr("The PDF data could not be processed."));
       m_ui.page->setMaximum(1);
+      m_ui.page_1->setText(tr("The PDF data could not be processed."));
+      m_ui.page_2->setText(m_ui.page_1->text());
       return;
     }
 
@@ -142,6 +149,18 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 }
 
 /*
+** -- resizeEvent() --
+*/
+
+void biblioteq_pdfreader::resizeEvent(QResizeEvent *event)
+{
+  if(m_ui.view_size->currentIndex() != 0)
+    slotShowPage(m_ui.page->value());
+
+  QMainWindow::resizeEvent(event);
+}
+
+/*
 ** -- setGlobalFonts() --
 */
 
@@ -160,6 +179,16 @@ void biblioteq_pdfreader::setGlobalFonts(const QFont &font)
 void biblioteq_pdfreader::showNormal(void)
 {
   QMainWindow::showNormal();
+}
+
+/*
+** -- slotChangePageViewSize() --
+*/
+
+void biblioteq_pdfreader::slotChangePageViewSize(int value)
+{
+  Q_UNUSED(value);
+  slotShowPage(m_ui.page->value());
 }
 
 /*
@@ -237,6 +266,8 @@ void biblioteq_pdfreader::slotShowPage(int value)
 
   if(!page)
     {
+      m_ui.page_1->setText(tr("The PDF data could not be processed."));
+      m_ui.page_2->setText(m_ui.page_1->text());
       QApplication::restoreOverrideCursor();
       return;
     }
@@ -245,10 +276,39 @@ void biblioteq_pdfreader::slotShowPage(int value)
 			arg(value).
 			arg(m_ui.page->maximum()));
 
-  QImage image = page->renderToImage(100, 100);
+  QImage image;
+  int pX = qMax(72, m_ui.page_1->physicalDpiX());
+  int pY = qMax(72, m_ui.page_1->physicalDpiY());
+  int resolution = qMin
+    ((m_ui.scrollArea->width() / 2.0) / (page->pageSizeF().width() / pX),
+     (m_ui.scrollArea->height() - (height() - m_ui.scrollArea->height())) /
+      (page->pageSizeF().height() / pY));
 
-  m_ui.label->setPixmap(QPixmap::fromImage(image));
-  m_ui.label->setFocus();
+  resolution = qMin(qMin(pX, pY), resolution);
+
+  if(m_ui.view_size->currentIndex() == 0)
+    image = page->renderToImage(pX, pY);
+  else
+    image = page->renderToImage(resolution, resolution);
+
+  m_ui.page_1->setPixmap(QPixmap::fromImage(image));
+  m_ui.page_1->setFocus();
+  delete page;
+
+  page = m_document->page(value);
+
+  if(!page)
+    m_ui.page_2->setText(tr("The PDF data could not be processed."));
+  else
+    {
+      if(m_ui.view_size->currentIndex() == 0)
+	image = page->renderToImage(pX, pY);
+      else
+	image = page->renderToImage(resolution, resolution);
+
+      m_ui.page_2->setPixmap(QPixmap::fromImage(image));
+    }
+
   delete page;
   QApplication::restoreOverrideCursor();
 #else

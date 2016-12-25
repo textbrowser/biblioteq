@@ -43,9 +43,11 @@ class biblioteq_pdfreader: public QMainWindow
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
+  void resizeEvent(QResizeEvent *event);
   void setGlobalFonts(const QFont &font);
 
  private slots:
+  void slotChangePageViewSize(int value);
   void slotClose(void);
   void slotSaveAs(void);
   void slotShowPage(int value);
