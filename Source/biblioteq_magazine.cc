@@ -1291,7 +1291,9 @@ void biblioteq_magazine::updateWindow(const int state)
       disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       ma.attach_files->setVisible(false);
-      ma.view_pdf->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      ma.view_pdf->setEnabled(true);
+#endif
       ma.delete_files->setVisible(false);
       ma.export_files->setEnabled(true);
       ma.issnAvailableCheckBox->setCheckable(false);
@@ -1396,7 +1398,7 @@ void biblioteq_magazine::modify(const int state)
 
       m_engWindowTitle = "Modify";
       ma.attach_files->setVisible(false);
-      ma.view_pdf->setVisible(false);
+      ma.view_pdf->setVisible(true);
       ma.delete_files->setVisible(false);
       ma.export_files->setVisible(true);
       ma.issnAvailableCheckBox->setCheckable(false);

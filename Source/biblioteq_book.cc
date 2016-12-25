@@ -1400,7 +1400,9 @@ void biblioteq_book::updateWindow(const int state)
       disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.attach_files->setVisible(false);
-      id.view_pdf->setVisible(false);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+      id.view_pdf->setEnabled(true);
+#endif
       id.isbnAvailableCheckBox->setCheckable(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
@@ -1498,7 +1500,7 @@ void biblioteq_book::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";
       id.attach_files->setVisible(false);
-      id.view_pdf->setVisible(false);
+      id.view_pdf->setVisible(true);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
       id.export_files->setVisible(true);
