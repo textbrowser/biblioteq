@@ -22,6 +22,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
   m_ui.setupUi(this);
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   m_document = 0;
+#else
+  m_ui.action_Save_As->setEnabled(false);
+  m_ui.label->setText(tr("BiblioteQ was assembled without Poppler support."));
+  m_ui.page->setEnabled(false);
 #endif
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -105,8 +109,7 @@ void biblioteq_pdfreader::keyPressEvent(QKeyEvent *event)
 ** -- load() --
 */
 
-void biblioteq_pdfreader::load(const QByteArray &data,
-			       const QString &fileName)
+void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 {
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   delete m_document;
@@ -115,7 +118,7 @@ void biblioteq_pdfreader::load(const QByteArray &data,
   if(!m_document)
     {
       m_ui.action_Save_As->setEnabled(false);
-      m_ui.label->setText(tr("The PDF file could not be loaded."));
+      m_ui.label->setText(tr("The PDF data could not be processed."));
       m_ui.page->setMaximum(1);
       return;
     }
@@ -173,6 +176,7 @@ void biblioteq_pdfreader::slotClose(void)
 
 void biblioteq_pdfreader::slotSaveAs(void)
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   if(!m_document)
     return;
 
@@ -211,6 +215,7 @@ void biblioteq_pdfreader::slotSaveAs(void)
       delete converter;
       QApplication::restoreOverrideCursor();
     }
+#endif
 }
 
 /*
