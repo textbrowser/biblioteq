@@ -113,7 +113,12 @@ void biblioteq_pdfreader::load(const QByteArray &data,
   m_document = Poppler::Document::loadFromData(data);
 
   if(!m_document)
-    return;
+    {
+      m_ui.action_Save_As->setEnabled(false);
+      m_ui.label->setText(tr("The PDF file could not be loaded."));
+      m_ui.page->setMaximum(1);
+      return;
+    }
 
   m_document->setRenderHint(Poppler::Document::Antialiasing, true);
   m_document->setRenderHint(Poppler::Document::TextAntialiasing, true);
