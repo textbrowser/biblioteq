@@ -1159,6 +1159,7 @@ void biblioteq_magazine::slotGo(void)
 void biblioteq_magazine::search(const QString &field, const QString &value)
 {
   ma.attach_files->setVisible(false);
+  ma.view_pdf->setVisible(false);
   ma.coverImages->setVisible(false);
   ma.delete_files->setVisible(false);
   ma.export_files->setVisible(false);
@@ -1251,6 +1252,7 @@ void biblioteq_magazine::updateWindow(const int state)
 	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
 	      Qt::UniqueConnection);
       ma.attach_files->setEnabled(true);
+      ma.view_pdf->setEnabled(true);
       ma.copiesButton->setEnabled(true);
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
@@ -1287,6 +1289,7 @@ void biblioteq_magazine::updateWindow(const int state)
       disconnect(ma.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       ma.attach_files->setVisible(false);
+      ma.view_pdf->setVisible(false);
       ma.delete_files->setVisible(false);
       ma.export_files->setEnabled(true);
       ma.issnAvailableCheckBox->setCheckable(false);
@@ -1349,6 +1352,7 @@ void biblioteq_magazine::modify(const int state)
 
       m_engWindowTitle = "Modify";
       ma.attach_files->setEnabled(true);
+      ma.view_pdf->setEnabled(true);
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
       ma.showUserButton->setEnabled(true);
@@ -1388,6 +1392,7 @@ void biblioteq_magazine::modify(const int state)
 
       m_engWindowTitle = "Modify";
       ma.attach_files->setVisible(false);
+      ma.view_pdf->setVisible(false);
       ma.delete_files->setVisible(false);
       ma.export_files->setVisible(true);
       ma.issnAvailableCheckBox->setCheckable(false);
@@ -1675,6 +1680,7 @@ void biblioteq_magazine::insert(void)
 {
   slotReset();
   ma.attach_files->setEnabled(false);
+  ma.view_pdf->setEnabled(false);
   ma.id->clear();
   ma.lcnum->clear();
   ma.callnum->clear();
@@ -2799,6 +2805,7 @@ void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
   m_duplicate = true;
   modify(state); // Initial population.
   ma.attach_files->setEnabled(false);
+  ma.view_pdf->setEnabled(false);
   ma.delete_files->setEnabled(false);
   ma.export_files->setEnabled(false);
   ma.copiesButton->setEnabled(false);
