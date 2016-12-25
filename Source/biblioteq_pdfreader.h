@@ -32,12 +32,13 @@ class biblioteq_pdfreader: public QMainWindow
  public:
   biblioteq_pdfreader(QWidget *parent);
   ~biblioteq_pdfreader();
-  void load(const QByteArray &data);
+  void load(const QByteArray &data, const QString &fileName);
 
  private:
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   Poppler::Document *m_document;
 #endif
+  QString m_fileName;
   Ui_pdfreader m_ui;
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
@@ -46,7 +47,8 @@ class biblioteq_pdfreader: public QMainWindow
 
  private slots:
   void slotClose(void);
-  void slotShowPage(int index);
+  void slotSaveAs(void);
+  void slotShowPage(int value);
   void slotSliderValueChanged(int value);
 
  public slots:

@@ -3934,10 +3934,12 @@ void biblioteq_magazine::slotShowPDF(void)
 
   if(m_subType == "Journal")
     query.prepare
-      ("SELECT file FROM journal_files WHERE item_oid = ? AND myoid = ?");
+      ("SELECT file, file_name FROM journal_files "
+       "WHERE item_oid = ? AND myoid = ?");
   else
     query.prepare
-      ("SELECT file FROM magazine_files WHERE item_oid = ? AND myoid = ?");
+      ("SELECT file, file_name FROM magazine_files "
+       "WHERE item_oid = ? AND myoid = ?");
 
   query.bindValue(0, m_oid);
   query.bindValue(1, list.takeFirst().data());
@@ -3945,7 +3947,7 @@ void biblioteq_magazine::slotShowPDF(void)
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
 
-  reader->load(data);
+  reader->load(data, query.value(1).toString());
   reader->show();
   QApplication::restoreOverrideCursor();
 }

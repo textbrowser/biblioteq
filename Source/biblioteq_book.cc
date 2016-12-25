@@ -4058,7 +4058,7 @@ void biblioteq_book::slotShowPDF(void)
   biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
   query.setForwardOnly(true);
-  query.prepare("SELECT file FROM book_files "
+  query.prepare("SELECT file, file_name FROM book_files "
 		"WHERE item_oid = ? AND myoid = ?");
   query.bindValue(0, m_oid);
   query.bindValue(1, list.takeFirst().data());
@@ -4066,7 +4066,7 @@ void biblioteq_book::slotShowPDF(void)
   if(query.exec() && query.next())
     data = qUncompress(query.value(0).toByteArray());
 
-  reader->load(data);
+  reader->load(data, query.value(1).toString());
   reader->show();
   QApplication::restoreOverrideCursor();
 }
