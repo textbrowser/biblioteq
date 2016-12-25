@@ -1252,7 +1252,9 @@ void biblioteq_magazine::updateWindow(const int state)
 	      this, SLOT(slotEditFileDescription(QTableWidgetItem *)),
 	      Qt::UniqueConnection);
       ma.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       ma.view_pdf->setEnabled(true);
+#endif
       ma.copiesButton->setEnabled(true);
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
@@ -1352,7 +1354,9 @@ void biblioteq_magazine::modify(const int state)
 
       m_engWindowTitle = "Modify";
       ma.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       ma.view_pdf->setEnabled(true);
+#endif
       ma.delete_files->setEnabled(true);
       ma.export_files->setEnabled(true);
       ma.showUserButton->setEnabled(true);

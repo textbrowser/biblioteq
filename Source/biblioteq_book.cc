@@ -1366,7 +1366,9 @@ void biblioteq_book::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       id.view_pdf->setEnabled(true);
+#endif
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
@@ -1453,7 +1455,9 @@ void biblioteq_book::modify(const int state)
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
       id.view_pdf->setEnabled(true);
+#endif
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
