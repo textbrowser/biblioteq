@@ -1277,6 +1277,7 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.coverImages->setVisible(false);
   id.delete_files->setVisible(false);
   id.export_files->setVisible(false);
+  id.view_pdf->setVisible(false);
   id.id->clear();
   id.category->clear();
   id.isbn13->clear();
@@ -1365,6 +1366,7 @@ void biblioteq_book::updateWindow(const int state)
   if(state == biblioteq::EDITABLE)
     {
       id.attach_files->setEnabled(true);
+      id.view_pdf->setEnabled(true);
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
@@ -1396,6 +1398,7 @@ void biblioteq_book::updateWindow(const int state)
       disconnect(id.files, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
 		 this, SLOT(slotEditFileDescription(QTableWidgetItem *)));
       id.attach_files->setVisible(false);
+      id.view_pdf->setVisible(false);
       id.isbnAvailableCheckBox->setCheckable(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
@@ -1450,6 +1453,7 @@ void biblioteq_book::modify(const int state)
       setWindowTitle(tr("BiblioteQ: Modify Book Entry"));
       m_engWindowTitle = "Modify";
       id.attach_files->setEnabled(true);
+      id.view_pdf->setEnabled(true);
       id.copiesButton->setEnabled(true);
       id.delete_files->setEnabled(true);
       id.export_files->setEnabled(true);
@@ -1490,6 +1494,7 @@ void biblioteq_book::modify(const int state)
       setWindowTitle(tr("BiblioteQ: View Book Details"));
       m_engWindowTitle = "View";
       id.attach_files->setVisible(false);
+      id.view_pdf->setVisible(false);
       id.copiesButton->setVisible(false);
       id.delete_files->setVisible(false);
       id.export_files->setVisible(true);
@@ -1747,6 +1752,7 @@ void biblioteq_book::insert(void)
 {
   slotReset();
   id.attach_files->setEnabled(false);
+  id.view_pdf->setEnabled(false);
   id.id->clear();
   id.isbn13->clear();
   id.category->setPlainText("N/A");
@@ -3228,6 +3234,7 @@ void biblioteq_book::duplicate(const QString &p_oid, const int state)
   m_duplicate = true;
   modify(state); // Initial population.
   id.attach_files->setEnabled(false);
+  id.view_pdf->setEnabled(false);
   id.copiesButton->setEnabled(false);
   id.delete_files->setEnabled(false);
   id.export_files->setEnabled(false);

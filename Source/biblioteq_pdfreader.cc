@@ -3,6 +3,7 @@
 */
 
 #include <QKeyEvent>
+#include <QScrollBar>
 
 /*
 ** -- Local Includes --
@@ -34,6 +35,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(valueChanged(int)),
 	  this,
 	  SLOT(slotShowPage(int)));
+  connect(m_ui.scrollArea->verticalScrollBar(),
+	  SIGNAL(valueChanged(int)),
+	  this,
+	  SLOT(slotSliderValueChanged(int)));
   biblioteq_misc_functions::center(this, qobject_cast<QMainWindow *> (parent));
 }
 
@@ -153,6 +158,8 @@ void biblioteq_pdfreader::slotShowPage(int index)
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   if(!m_document)
     return;
+  else if(index < 0 || index >= m_document->numPages())
+    return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -171,9 +178,28 @@ void biblioteq_pdfreader::slotShowPage(int index)
   QImage image = page->renderToImage(100, 100);
 
   m_ui.label->setPixmap(QPixmap::fromImage(image));
+  m_ui.label->setFocus();
   delete page;
   QApplication::restoreOverrideCursor();
 #else
   Q_UNUSED(index);
 #endif
+}
+
+/*
+** -- slotSliderValueChanged() --
+*/
+
+void biblioteq_pdfreader::slotSliderValueChanged(int value)
+{
+  if(value == m_ui.scrollArea->verticalScrollBar()->minimum())
+    {
+      m_ui.page->setValue(m_ui.page->value() - 1);
+      m_ui.scrollArea->verticalScrollBar()->setValue(value + 1);
+    }
+  else if(value == m_ui.scrollArea->verticalScrollBar()->maximum())
+    {
+      m_ui.page->setValue(m_ui.page->value() + 1);
+      m_ui.scrollArea->verticalScrollBar()->setValue(value - 1);
+    }
 }
