@@ -5,7 +5,8 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+                   BIBLIOTEQ_LINKED_WITH_POPPLER
 
 lessThan(QT_MAJOR_VERSION, 5) {
 DEFINES         += BIBLIOTEQ_WA_MACMETALSTYLE=1
@@ -49,8 +50,13 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Source temp /usr/local/include
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-LIBS            += -framework Cocoa
+lessThan(QT_MAJOR_VERSION, 5) {
+INCLUDEPATH     += /usr/include/poppler/qt4
+LIBS            += -lpoppler-qt4
+}
+else {
+INCLUDEPATH     += /usr/include/poppler/qt5
+LIBS            += -framework Cocoa -lpoppler-qt5
 }
 
 LIBS		+= -lsqlite3 -L/usr/local/lib -lpq -lyaz
@@ -74,7 +80,8 @@ FORMS           = UI/biblioteq_adminsetup.ui \
 		  UI/biblioteq_members_browser.ui \
 		  UI/biblioteq_otheroptions.ui \
 		  UI/biblioteq_password.ui \
-		  UI/biblioteq_passwordPrompt.ui \
+                  UI/biblioteq_passwordPrompt.ui \
+                  UI/biblioteq_pdfreader.ui \
 		  UI/biblioteq_photograph.ui \
 		  UI/biblioteq_photographinfo.ui \
 		  UI/biblioteq_photographview.ui \
@@ -102,7 +109,8 @@ HEADERS		= Source/biblioteq.h \
 		  Source/biblioteq_magazine.h \
 		  Source/biblioteq_main_table.h \
                   Source/biblioteq_myqstring.h \
-		  Source/biblioteq_otheroptions.h \
+                  Source/biblioteq_otheroptions.h \
+                  Source/biblioteq_pdfreader.h \
 		  Source/biblioteq_photographcollection.h \
 		  Source/biblioteq_sruResults.h \
 		  Source/biblioteq_videogame.h \
@@ -131,7 +139,8 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_misc_functions.cc \
                   Source/biblioteq_myqstring.cc \
                   Source/biblioteq_numeric_table_item.cc \
-		  Source/biblioteq_otheroptions.cc \
+                  Source/biblioteq_otheroptions.cc \
+                  Source/biblioteq_pdfreader.cc \
                   Source/biblioteq_photographcollection.cc \
                   Source/biblioteq_sruResults.cc \
                   Source/biblioteq_videogame.cc \
