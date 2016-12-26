@@ -301,6 +301,12 @@ void biblioteq_pdfreader::slotPrint(void)
 
       for(int i = start; i <= end; i++)
 	{
+#ifndef Q_OS_MAC
+	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+
 	  Poppler::Page *page = m_document->page(i - 1);
 
 	  if(!page)
@@ -320,14 +326,11 @@ void biblioteq_pdfreader::slotPrint(void)
 	  if(i == end)
 	    break;
 
-#ifndef Q_OS_MAC
-	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
-	  progress.repaint();
-	  QApplication::processEvents();
-#endif
-
 	  if(progress.wasCanceled())
-	    break;
+	    {
+	      printer.abort();
+	      break;
+	    }
 
 	  printer.newPage();
 	}
