@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QProgressDialog>
 #include <QResizeEvent>
 #include <QScrollBar>
 
@@ -262,6 +263,7 @@ void biblioteq_pdfreader::slotPrint(void)
   dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+  dialog.setMinMax(1, m_document->numPages());
   printer.setColorMode(QPrinter::Color);
   printer.setDuplex(QPrinter::DuplexAuto);
   printer.setFromTo(1, m_document->numPages());
@@ -269,11 +271,35 @@ void biblioteq_pdfreader::slotPrint(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      QApplication::setOverrideCursor(Qt::WaitCursor);
+      QProgressDialog progress(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+      progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+      progress.setLabelText(tr("Printing PDF..."));
+      progress.setMaximum(0);
+      progress.setMinimum(0);
+      progress.setModal(true);
+      progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+      progress.show();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
 
       QPainter painter(&printer);
+      int end = printer.toPage();
+      int start = printer.fromPage();
 
-      for(int i = printer.fromPage(); i <= printer.toPage(); i++)
+      if(printer.fromPage() == 0 && printer.toPage() == 0)
+	{
+	  end = m_document->numPages();
+	  start = 1;
+	}
+
+      for(int i = start; i <= end; i++)
 	{
 	  Poppler::Page *page = m_document->page(i - 1);
 
@@ -289,10 +315,16 @@ void biblioteq_pdfreader::slotPrint(void)
 	    break;
 
 	  printer.newPage();
+#ifndef Q_OS_MAC
+	  progress.repaint();
+	  QApplication::processEvents();
+#endif
+
+	  if(progress.wasCanceled())
+	    break;
 	}
 
       painter.end();
-      QApplication::restoreOverrideCursor();
     }
 #endif
 }
