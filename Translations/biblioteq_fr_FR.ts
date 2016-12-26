@@ -1741,6 +1741,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Unable to open a database connection with the provided information. Please review the Error Log.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ: Open PDF File</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_book</name>
@@ -2266,6 +2270,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Accession Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ was not assembled with Poppler support.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4239,6 +4247,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Accession Number:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>BiblioteQ was not assembled with Poppler support.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
@@ -4503,6 +4515,45 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to allocate memory for &quot;comboBox&quot; or &quot;item&quot;. This is a serious problem!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>biblioteq_pdfreader</name>
+    <message>
+        <source>BiblioteQ was assembled without Poppler support.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PDF data could not be processed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page 1 of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: PDF Reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: PDF Reader (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Printing PDF...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Printing PDF... Page %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Save PDF As</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page %1 of %2.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7054,6 +7105,18 @@ minmal de jours.</translation>
         <source>Accession Number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Download the book&apos;s front cover image from Amazon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download the book&apos;s back cover image from Amazon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View PDF...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>magDialog</name>
@@ -7259,6 +7322,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View PDF...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7852,6 +7919,10 @@ minmal de jours.</translation>
         <source>Other &amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Open PDF File...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>main_table</name>
@@ -8404,6 +8475,45 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>Accession Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>pdfreader</name>
+    <message>
+        <source>BiblioteQ: PDF Reader</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished">&amp;Affichage</translation>
+    </message>
+    <message>
+        <source>Actual Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Fit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;Fichier</translation>
+    </message>
+    <message>
+        <source>&amp;Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
