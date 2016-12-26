@@ -317,7 +317,7 @@ void biblioteq_pdfreader::slotPrint(void)
 	  painter.drawImage(QPoint(0, 0), image);
 	  delete page;
 
-	  if(i == printer.toPage())
+	  if(i == end)
 	    break;
 
 #ifndef Q_OS_MAC
