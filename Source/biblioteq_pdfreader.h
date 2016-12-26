@@ -33,6 +33,7 @@ class biblioteq_pdfreader: public QMainWindow
   biblioteq_pdfreader(QWidget *parent);
   ~biblioteq_pdfreader();
   void load(const QByteArray &data, const QString &fileName);
+  void load(const QString &fileName);
 
  private:
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER

@@ -395,6 +395,8 @@
     <addaction name="actionRefreshTable"/>
     <addaction name="separator"/>
     <addaction name="action_Upgrade_SQLite_Schema"/>
+    <addaction name="separator"/>
+    <addaction name="action_Open_PDF_File"/>
    </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
@@ -1239,6 +1241,11 @@
   <action name="actionOther_Options">
    <property name="text">
     <string>Other &amp;Options...</string>
+   </property>
+  </action>
+  <action name="action_Open_PDF_File">
+   <property name="text">
+    <string>&amp;Open PDF File...</string>
    </property>
   </action>
  </widget>

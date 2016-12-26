@@ -354,10 +354,17 @@ biblioteq::biblioteq(void):QMainWindow()
   setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
+#ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
+  ui.action_Open_PDF_File->setEnabled(false);
+#endif
   connect(ui.action_Book,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotInsertBook(void)));
+  connect(ui.action_Open_PDF_File,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotOpenPDFFile(void)));
   connect(ui.actionOther_Options,
 	  SIGNAL(triggered(void)),
 	  this,

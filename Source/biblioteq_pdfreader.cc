@@ -157,6 +157,42 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 }
 
 /*
+** -- load() --
+*/
+
+void biblioteq_pdfreader::load(const QString &fileName)
+{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  delete m_document;
+  m_document = Poppler::Document::load(fileName);
+
+  if(!m_document)
+    {
+      m_ui.action_Save_As->setEnabled(false);
+      m_ui.page->setMaximum(1);
+      m_ui.page_1->setText(tr("The PDF data could not be processed."));
+      m_ui.page_2->setText(m_ui.page_1->text());
+      return;
+    }
+
+  m_document->setRenderHint(Poppler::Document::Antialiasing, true);
+  m_document->setRenderHint(Poppler::Document::TextAntialiasing, true);
+  m_fileName = fileName.trimmed();
+  m_ui.page->setMaximum(m_document->numPages());
+  m_ui.page->setToolTip(tr("Page 1 of %1.").arg(m_ui.page->maximum()));
+
+  if(fileName.trimmed().isEmpty())
+    setWindowTitle(tr("BiblioteQ: PDF Reader"));
+  else
+    setWindowTitle(tr("BiblioteQ: PDF Reader (%1)").arg(fileName.trimmed()));
+
+  slotShowPage(1);
+#else
+  Q_UNUSED(data);
+#endif
+}
+
+/*
 ** -- resizeEvent() --
 */
 

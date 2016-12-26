@@ -11,6 +11,7 @@
 #include "biblioteq.h"
 #include "biblioteq_book.h"
 #include "biblioteq_otheroptions.h"
+#include "biblioteq_pdfreader.h"
 
 /*
 ** -- slotShowOtherOptions() --
@@ -100,4 +101,37 @@ void biblioteq::slotOtherOptionsSaved(void)
 	(m_otheroptions->publicationDateFormat("videogames"));
 
   QApplication::restoreOverrideCursor();
+}
+
+/*
+** -- slotOpenPDFFile() --
+*/
+
+void biblioteq::slotOpenPDFFile(void)
+{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  QFileDialog dialog(this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::ExistingFile);
+  dialog.setNameFilter("PDF File (*.pdf)");
+  dialog.setWindowTitle(tr("BiblioteQ: Open PDF File"));
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      biblioteq_pdfreader *reader = new (std::nothrow) biblioteq_pdfreader(0);
+
+      if(reader)
+	{
+	  reader->load(dialog.selectedFiles().value(0));
+	  biblioteq_misc_functions::center(reader, this);
+	  reader->show();
+	}
+    }
+#endif
 }

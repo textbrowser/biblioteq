@@ -4062,11 +4062,15 @@ void biblioteq_book::slotShowPDF(void)
   if(list.isEmpty())
     return;
 
+  biblioteq_pdfreader *reader = new (std::nothrow) biblioteq_pdfreader(this);
+
+  if(!reader)
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QByteArray data;
   QSqlQuery query(qmain->getDB());
-  biblioteq_pdfreader *reader = new biblioteq_pdfreader(this);
 
   query.setForwardOnly(true);
   query.prepare("SELECT file, file_name FROM book_files "
