@@ -5,8 +5,7 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-                   BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 
 lessThan(QT_MAJOR_VERSION, 5) {
 DEFINES         += BIBLIOTEQ_WA_MACMETALSTYLE=1
@@ -50,13 +49,8 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Source temp /usr/local/include
 
-lessThan(QT_MAJOR_VERSION, 5) {
-INCLUDEPATH     += /usr/include/poppler/qt4
-LIBS            += -lpoppler-qt4
-}
-else {
-INCLUDEPATH     += /usr/include/poppler/qt5
-LIBS            += -framework Cocoa -lpoppler-qt5
+greaterThan(QT_MAJOR_VERSION, 4) {
+LIBS            += -framework Cocoa
 }
 
 LIBS		+= -lsqlite3 -L/usr/local/lib -lpq -lyaz
