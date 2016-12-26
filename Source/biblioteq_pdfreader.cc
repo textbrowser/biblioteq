@@ -250,6 +250,7 @@ void biblioteq_pdfreader::slotClose(void)
 
 void biblioteq_pdfreader::slotPrint(void)
 {
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   if(!m_document)
     return;
 
@@ -293,6 +294,7 @@ void biblioteq_pdfreader::slotPrint(void)
       painter.end();
       QApplication::restoreOverrideCursor();
     }
+#endif
 }
 
 /*
