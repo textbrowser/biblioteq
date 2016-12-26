@@ -189,6 +189,7 @@ void biblioteq_pdfreader::load(const QString &fileName)
   slotShowPage(1);
 #else
   Q_UNUSED(data);
+  Q_UNUSED(fileName);
 #endif
 }
 
