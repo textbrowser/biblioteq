@@ -306,15 +306,20 @@ void biblioteq_pdfreader::slotPrint(void)
 	  if(!page)
 	    break;
 
-	  QImage image = page->renderToImage(96, 96);
+	  QImage image
+	    (page->renderToImage(printer.resolution(), printer.resolution()));
+	  QRect rect(painter.viewport());
+	  QSize size(image.size());
 
+	  size.scale(rect.size(), Qt::KeepAspectRatio);
+	  painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+	  painter.setWindow(image.rect());
 	  painter.drawImage(QPoint(0, 0), image);
 	  delete page;
 
 	  if(i == printer.toPage())
 	    break;
 
-	  printer.newPage();
 #ifndef Q_OS_MAC
 	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
 	  progress.repaint();
@@ -323,6 +328,8 @@ void biblioteq_pdfreader::slotPrint(void)
 
 	  if(progress.wasCanceled())
 	    break;
+
+	  printer.newPage();
 	}
 
       painter.end();
