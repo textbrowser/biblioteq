@@ -316,6 +316,7 @@ void biblioteq_pdfreader::slotPrint(void)
 
 	  printer.newPage();
 #ifndef Q_OS_MAC
+	  progress.setLabelText(tr("Printing PDF... Page %1...").arg(i));
 	  progress.repaint();
 	  QApplication::processEvents();
 #endif
