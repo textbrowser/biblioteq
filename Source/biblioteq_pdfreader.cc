@@ -293,7 +293,7 @@ void biblioteq_pdfreader::slotPrint(void)
       int end = printer.toPage();
       int start = printer.fromPage();
 
-      if(printer.fromPage() == 0 && printer.toPage() == 0)
+      if(end == 0 && start == 0)
 	{
 	  end = m_document->numPages();
 	  start = 1;
