@@ -49,6 +49,7 @@ class biblioteq_pdfreader: public QMainWindow
  private slots:
   void slotChangePageViewSize(int value);
   void slotClose(void);
+  void slotPrint(void);
   void slotSaveAs(void);
   void slotShowPage(int value);
   void slotSliderValueChanged(int value);

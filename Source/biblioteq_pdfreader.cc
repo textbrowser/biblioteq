@@ -4,6 +4,9 @@
 
 #include <QFileDialog>
 #include <QKeyEvent>
+#include <QPainter>
+#include <QPrintDialog>
+#include <QPrinter>
 #include <QResizeEvent>
 #include <QScrollBar>
 
@@ -24,6 +27,7 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   m_document = 0;
 #else
+  m_ui.action_Print->setEnabled(false);
   m_ui.action_Save_As->setEnabled(false);
   m_ui.page->setEnabled(false);
   m_ui.page_1->setText(tr("BiblioteQ was assembled without Poppler support."));
@@ -38,6 +42,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.action_Print,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotPrint(void)));
   connect(m_ui.action_Save_As,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -198,6 +206,57 @@ void biblioteq_pdfreader::slotChangePageViewSize(int value)
 void biblioteq_pdfreader::slotClose(void)
 {
   close();
+}
+
+/*
+** -- slotPrint() --
+*/
+
+void biblioteq_pdfreader::slotPrint(void)
+{
+  if(!m_document)
+    return;
+
+  QPrinter printer;
+  QPrintDialog dialog(&printer, this);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  dialog.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  printer.setColorMode(QPrinter::Color);
+  printer.setDuplex(QPrinter::DuplexAuto);
+  printer.setFromTo(1, m_document->numPages());
+  printer.setPageSize(QPrinter::Letter);
+
+  if(dialog.exec() == QDialog::Accepted)
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      QPainter painter(&printer);
+
+      for(int i = printer.fromPage(); i <= printer.toPage(); i++)
+	{
+	  Poppler::Page *page = m_document->page(i - 1);
+
+	  if(!page)
+	    break;
+
+	  QImage image = page->renderToImage(96, 96);
+
+	  painter.drawImage(QPoint(0, 0), image);
+	  delete page;
+
+	  if(i == printer.toPage())
+	    break;
+
+	  printer.newPage();
+	}
+
+      painter.end();
+      QApplication::restoreOverrideCursor();
+    }
 }
 
 /*
