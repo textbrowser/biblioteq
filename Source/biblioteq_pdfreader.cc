@@ -464,12 +464,12 @@ void biblioteq_pdfreader::slotSliderValueChanged(int value)
 {
   if(value == m_ui.scrollArea->verticalScrollBar()->minimum())
     {
-      m_ui.page->setValue(m_ui.page->value() - 1);
+      m_ui.page->setValue(m_ui.page->value() - 2);
       m_ui.scrollArea->verticalScrollBar()->setValue(value + 1);
     }
   else if(value == m_ui.scrollArea->verticalScrollBar()->maximum())
     {
-      m_ui.page->setValue(m_ui.page->value() + 1);
+      m_ui.page->setValue(m_ui.page->value() + 2);
       m_ui.scrollArea->verticalScrollBar()->setValue(value - 1);
     }
 }
