@@ -132,6 +132,7 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
 
   if(!m_document)
     {
+      m_ui.action_Print->setEnabled(false);
       m_ui.action_Save_As->setEnabled(false);
       m_ui.page->setMaximum(1);
       m_ui.page_1->setText(tr("The PDF data could not be processed."));
@@ -169,6 +170,7 @@ void biblioteq_pdfreader::load(const QString &fileName)
 
   if(!m_document)
     {
+      m_ui.action_Print->setEnabled(false);
       m_ui.action_Save_As->setEnabled(false);
       m_ui.page->setMaximum(1);
       m_ui.page_1->setText(tr("The PDF data could not be processed."));
