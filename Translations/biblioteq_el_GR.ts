@@ -4572,6 +4572,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Page %1 of %2.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Page %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_photographcollection</name>
@@ -8879,6 +8883,10 @@ URL</source>
     </message>
     <message>
         <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
