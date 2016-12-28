@@ -622,7 +622,12 @@ void biblioteq_borrowers_editor::setGlobalFonts(const QFont &font)
   setFont(font);
 
   foreach(QWidget *widget, findChildren<QWidget *> ())
-    widget->setFont(font);
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  update();
 }
 
 /*

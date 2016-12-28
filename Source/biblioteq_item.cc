@@ -123,7 +123,12 @@ void biblioteq_item::updateFont(const QFont &font, QWidget *window)
   window->setFont(font);
 
   foreach(QWidget *widget, window->findChildren<QWidget *> ())
-    widget->setFont(font);
+    {
+      widget->setFont(font);
+      widget->update();
+    }
+
+  window->update();
 }
 
 /*

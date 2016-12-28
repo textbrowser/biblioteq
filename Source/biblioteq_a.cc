@@ -6916,6 +6916,8 @@ void biblioteq::setGlobalFonts(const QFont &font)
       if(!(qobject_cast<QDialog *> (widget) ||
 	   qobject_cast<QMainWindow *> (widget)))
 	widget->adjustSize();
+
+      widget->update();
     }
 
   QMenuBar *mb = menuBar();
@@ -6926,7 +6928,9 @@ void biblioteq::setGlobalFonts(const QFont &font)
 
       foreach(QMenu *menu, mb->findChildren<QMenu *> ())
 	foreach(QAction *action, menu->actions())
-	action->setFont(font);
+	  action->setFont(font);
+
+      mb->update();
     }
 
   QApplication::restoreOverrideCursor();
