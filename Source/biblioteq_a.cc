@@ -1284,9 +1284,8 @@ void biblioteq::slotAbout(void)
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText
-    (QString("<html>BiblioteQ Version %1<br><br>"
-	     "In times of uncertainty, critical thinking is required. "
-	     "Explore, read, think, and discuss.<br><br>"
+    (QString("<html>BiblioteQ Version %1<br>"
+	     "Purple Smoke<br>"
 	     "Copyright (c) 2005 - present, guess who?<br>"
 	     "Compiled on %2, %3.<br>"
 	     "Icons copyright (c) Matthieu James.<br>"
