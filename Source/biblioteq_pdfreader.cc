@@ -28,6 +28,7 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   m_document = 0;
 #else
+  m_ui.action_Contents->setEnabled(false);
   m_ui.action_Print->setEnabled(false);
   m_ui.action_Save_As->setEnabled(false);
   m_ui.page->setEnabled(false);
@@ -43,6 +44,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotClose(void)));
+  connect(m_ui.action_Contents,
+	  SIGNAL(triggered(bool)),
+	  this,
+	  SLOT(slotShowContents(bool)));
   connect(m_ui.action_Print,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -51,6 +56,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotSaveAs(void)));
+  connect(m_ui.contents,
+	  SIGNAL(itemDoubleClicked(QListWidgetItem *)),
+	  this,
+	  SLOT(slotContentsDoubleClicked(QListWidgetItem *)));
   connect(m_ui.page,
 	  SIGNAL(valueChanged(int)),
 	  this,
@@ -64,6 +73,7 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 	  this,
 	  SLOT(slotChangePageViewSize(int)));
   biblioteq_misc_functions::center(this, qobject_cast<QMainWindow *> (parent));
+  m_ui.contents->setVisible(false);
 }
 
 /*
@@ -140,6 +150,7 @@ void biblioteq_pdfreader::load(const QByteArray &data, const QString &fileName)
       return;
     }
 
+  prepareContents();
   m_document->setRenderHint(Poppler::Document::Antialiasing, true);
   m_document->setRenderHint(Poppler::Document::TextAntialiasing, true);
   m_fileName = fileName.trimmed();
@@ -178,6 +189,7 @@ void biblioteq_pdfreader::load(const QString &fileName)
       return;
     }
 
+  prepareContents();
   m_document->setRenderHint(Poppler::Document::Antialiasing, true);
   m_document->setRenderHint(Poppler::Document::TextAntialiasing, true);
   m_fileName = fileName.trimmed();
@@ -192,6 +204,28 @@ void biblioteq_pdfreader::load(const QString &fileName)
   slotShowPage(1);
 #else
   Q_UNUSED(fileName);
+#endif
+}
+
+/*
+** -- prepareContents() --
+*/
+
+void biblioteq_pdfreader::prepareContents(void)
+{
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+  if(!m_document)
+    return;
+
+  m_ui.contents->clear();
+
+  for(int i = 1; i <= m_document->numPages(); i++)
+    {
+      QListWidgetItem *item = new QListWidgetItem(tr("Page %1").arg(i));
+
+      item->setData(Qt::UserRole, i);
+      m_ui.contents->addItem(item);
+    }
 #endif
 }
 
@@ -245,6 +279,16 @@ void biblioteq_pdfreader::slotChangePageViewSize(int value)
 void biblioteq_pdfreader::slotClose(void)
 {
   close();
+}
+
+/*
+** -- slotContentsDoubleClicked() --
+*/
+
+void biblioteq_pdfreader::slotContentsDoubleClicked(QListWidgetItem *item)
+{
+  if(item)
+    m_ui.page->setValue(item->data(Qt::UserRole).toInt());
 }
 
 /*
@@ -388,6 +432,15 @@ void biblioteq_pdfreader::slotSaveAs(void)
       QApplication::restoreOverrideCursor();
     }
 #endif
+}
+
+/*
+** -- slotShowContents() --
+*/
+
+void biblioteq_pdfreader::slotShowContents(bool state)
+{
+  m_ui.contents->setVisible(state);
 }
 
 /*

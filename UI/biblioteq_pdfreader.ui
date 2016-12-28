@@ -87,15 +87,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QListWidget" name="contents">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="maximumSize">
          <size>
-          <width>150</width>
+          <width>125</width>
           <height>16777215</height>
          </size>
         </property>
@@ -120,7 +114,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>404</width>
+           <width>429</width>
            <height>729</height>
           </rect>
          </property>
