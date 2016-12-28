@@ -3605,6 +3605,10 @@ int biblioteq::populateTable(const int search_type_arg,
 #endif
     }
 
+  bool wasCanceled = progress.wasCanceled(); /*
+					     ** QProgressDialog::close()!
+					     */
+
   progress.close();
   ui.table->setSortingEnabled(true);
 
@@ -3659,7 +3663,7 @@ int biblioteq::populateTable(const int search_type_arg,
     ui.nextPageButton->setEnabled(false);
   else if(ui.table->rowCount() < limit)
     {
-      if(progress.wasCanceled())
+      if(wasCanceled)
 	/*
 	** Allow viewing of the next potential page if the user
 	** canceled the query.

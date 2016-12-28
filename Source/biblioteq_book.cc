@@ -2530,10 +2530,9 @@ void biblioteq_book::slotZ3950Query(void)
 	  m_thread->msleep(100);
 	}
 
+      bool canceled = working.wasCanceled(); // QProgressDialog::close()!
+
       working.close();
-
-      bool canceled = working.wasCanceled();
-
       working.reset(); // Qt 5.5.x adjustment.
 
       if(canceled)
