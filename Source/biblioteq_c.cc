@@ -128,9 +128,11 @@ void biblioteq::slotOpenPDFFile(void)
 
       if(reader)
 	{
+	  QApplication::setOverrideCursor(Qt::WaitCursor);
 	  reader->load(dialog.selectedFiles().value(0));
 	  biblioteq_misc_functions::center(reader, this);
 	  reader->show();
+	  QApplication::restoreOverrideCursor();
 	}
     }
 #endif
