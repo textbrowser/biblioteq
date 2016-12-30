@@ -211,6 +211,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QGraphicsView" name="graphicsView">
+              <property name="renderHints">
+               <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+              </property>
               <property name="viewportUpdateMode">
                <enum>QGraphicsView::FullViewportUpdate</enum>
               </property>
