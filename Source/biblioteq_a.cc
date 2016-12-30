@@ -1658,20 +1658,20 @@ void biblioteq::slotModify(void)
 
 void biblioteq::slotViewDetails(void)
 {
-  int i = 0;
-  bool error = false;
+  QModelIndex index;
+  QModelIndexList list = ui.table->selectionModel()->selectedRows();
   QString oid = "";
   QString type = "";
+  biblioteq_book *book = 0;
   biblioteq_cd *cd = 0;
   biblioteq_dvd *dvd = 0;
-  QModelIndex index;
-  biblioteq_book *book = 0;
-  biblioteq_main_table *table = ui.table;
   biblioteq_journal *journal = 0;
   biblioteq_magazine *magazine = 0;
-  QModelIndexList list = table->selectionModel()->selectedRows();
-  biblioteq_videogame *videogame = 0;
+  biblioteq_main_table *table = ui.table;
   biblioteq_photographcollection *photograph = 0;
+  biblioteq_videogame *videogame = 0;
+  bool error = false;
+  int i = 0;
 
   if(list.isEmpty())
     {
@@ -1702,13 +1702,13 @@ void biblioteq::slotViewDetails(void)
 	(table, i, table->columnNumber("MYOID"));
       type = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("Type"));
+      book = 0;
       cd = 0;
       dvd = 0;
-      book = 0;
       journal = 0;
       magazine = 0;
-      videogame = 0;
       photograph = 0;
+      videogame = 0;
 
       if(type.toLower() == "cd")
 	{
@@ -6834,7 +6834,7 @@ void biblioteq::slotShowMenu(void)
 
       connect(menu.addAction(tr("Add &Book...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertBook(void)));
-      // menu.addAction(tr("Add &Cassette Tape"));
+      // menu.addAction(tr("Add &Cassette Tape..."));
       connect(menu.addAction(tr("Add &DVD...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertDVD(void)));
       connect(menu.addAction(tr("Add &Journal...")),
@@ -6843,13 +6843,13 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertMag(void)));
       connect(menu.addAction(tr("Add Music &CD...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertCD(void)));
-      // menu.addAction(tr("Add &Newspaper"));
+      // menu.addAction(tr("Add &Newspaper..."));
       connect(menu.addAction(tr("Add &Photograph Collection...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertPhotograph(void)));
       connect(menu.addAction(tr("Add &Video Game...")),
 	      SIGNAL(triggered(void)), this, SLOT(slotInsertVideoGame(void)));
-      // menu.addAction(tr("Add &VHS"));
-      // menu.addAction(tr("Add &Vinyl Record"));
+      // menu.addAction(tr("Add &VHS..."));
+      // menu.addAction(tr("Add &Vinyl Record..."));
       menu.exec(QCursor::pos());
     }
   else if(sender() == ui.searchTool)
