@@ -9993,8 +9993,8 @@ URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="311"/>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1225"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="314"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1228"/>
         <source>1</source>
         <translation>1</translation>
     </message>
@@ -10059,222 +10059,222 @@ URL</source>
         <translation type="obsolete">16</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="291"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="294"/>
         <source>Previous Page</source>
         <translation>Vorherige Seite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="324"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="327"/>
         <source>Next Page</source>
         <translation>Nächste Seite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="380"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="383"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="389"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="392"/>
         <source>&amp;Tools</source>
         <translation>&amp;Werkzeuge</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="403"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="406"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="407"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="410"/>
         <source>&amp;Recent SQLite Files</source>
         <translation>Letzte SQLite Dateien</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="425"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="428"/>
         <source>&amp;Edit</source>
         <translation>&amp;Eingabe</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="429"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="432"/>
         <source>&amp;Add Item</source>
         <translation type="unfinished">Füge Objekt hinzu</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="453"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="456"/>
         <source>&amp;View</source>
         <translation>&amp;Ansicht</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="466"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="469"/>
         <source>&amp;Options</source>
         <translation>&amp;Optionen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="470"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="473"/>
         <source>E&amp;ntries per Page</source>
         <translation type="unfinished">Einträge pro Seite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="475"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="478"/>
         <source>Preferred &amp;Z39.50 Site</source>
         <translation>Bevorzugte &amp;Z39.50 Seite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="480"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="483"/>
         <source>&amp;Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="485"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="488"/>
         <source>Preferred &amp;SRU Site</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="490"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="493"/>
         <source>P&amp;hotographs per Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="527"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="530"/>
         <source>Connect Toobar</source>
         <translation>Verbinde Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="549"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="552"/>
         <source>Edit Toolbar</source>
         <translation>Ediere Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="572"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="575"/>
         <source>Reservations Toolbar</source>
         <translation type="unfinished">Werkzeugleiste Reservierungen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="593"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="596"/>
         <source>Search Toolbar</source>
         <translation type="unfinished">Werkzeugleiste Suche</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="613"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="616"/>
         <source>Configurations Toolbar</source>
         <translation type="unfinished">Werkzeugleiste Konfiguration</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="631"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="634"/>
         <source>Exit Toolbar</source>
         <translation type="unfinished">Exit Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="653"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="656"/>
         <source>&amp;About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="693"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="696"/>
         <source>&amp;Populate View on Connect</source>
         <translation type="unfinished">Fülle die Ansicht bei Verbindung</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="702"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="705"/>
         <source>View Error &amp;Log...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="722"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="725"/>
         <source>&amp;Connect...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="746"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="749"/>
         <source>Exit Bibliote&amp;Q</source>
         <translation type="unfinished">Schließe BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="749"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="752"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="770"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="773"/>
         <source>&amp;Modify Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="782"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="785"/>
         <source>&amp;Members Browser...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="794"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="797"/>
         <source>&amp;Database Search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="812"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="815"/>
         <source>&amp;Refresh View</source>
         <translation type="unfinished">Ansicht Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1033"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1036"/>
         <source>Populate &amp;Members Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1041"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1044"/>
         <source>Populate &amp;Administrator Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1103"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1106"/>
         <source>D&amp;uplicate Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1111"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1114"/>
         <source>&amp;Book...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1116"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1119"/>
         <source>&amp;DVD...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1121"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1124"/>
         <source>&amp;Journal...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1126"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1129"/>
         <source>&amp;Magazine...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1131"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1134"/>
         <source>Music &amp;CD...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1136"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1139"/>
         <source>&amp;Video Game...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1210"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1213"/>
         <source>&amp;Photograph Collection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1238"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1241"/>
         <source>Reload &amp;biblioteq.conf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1243"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1246"/>
         <source>Other &amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1248"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1251"/>
         <source>&amp;Open PDF File...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10283,17 +10283,17 @@ URL</source>
         <translation type="obsolete">Wähle Globale Schriftart</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="847"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="850"/>
         <source>Populate View on Item &amp;Creation</source>
         <translation type="unfinished">Fülle die Ansicht bei Objekterstellung</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="910"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="913"/>
         <source>Print Current View</source>
         <translation type="unfinished">Drucke derzeitige Ansicht</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="999"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1002"/>
         <source>Preserve Main &amp;Window&apos;s Geometry</source>
         <translation type="unfinished">Behalte die Größe des Hauptfensters immer bei</translation>
     </message>
@@ -10302,113 +10302,113 @@ URL</source>
         <translation type="obsolete">Erstelle neue SQLite Datenbank</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1053"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1056"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1062"/>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1065"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1068"/>
         <source>Database Enumerations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1073"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1076"/>
         <source>Populate Database En&amp;umerations Browser on Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1106"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1109"/>
         <source>Ctrl+U</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1144"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1147"/>
         <source>&amp;Czech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1152"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1155"/>
         <source>&amp;English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1160"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1163"/>
         <source>&amp;German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1168"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1171"/>
         <source>G&amp;reek</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1176"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1179"/>
         <source>&amp;French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1184"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1187"/>
         <source>&amp;Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1189"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1192"/>
         <source>&amp;Dutch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1197"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1200"/>
         <source>Dutch (&amp;Belgium)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1205"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1208"/>
         <source>Dutch (&amp;Netherlands)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1215"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1218"/>
         <source>&amp;Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1220"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1223"/>
         <source>&amp;Upgrade SQLite Schema</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1233"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1236"/>
         <source>Automatically &amp;Resize Column Widths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1091"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1094"/>
         <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="824"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="827"/>
         <source>&amp;Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="836"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="839"/>
         <source>Select &amp;Global Font...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1050"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1053"/>
         <source>&amp;New SQLite Database...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1082"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1085"/>
         <source>&amp;Export Table View as CSV...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1094"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1097"/>
         <source>Duplicate Selected Item(s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10441,27 +10441,27 @@ URL</source>
         <translation type="obsolete">&amp;Über BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="661"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="664"/>
         <source>&amp;Display Table Grid</source>
         <translation type="unfinished">&amp;Zeige Tabellenraster</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="670"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="673"/>
         <source>&amp;Resize Columns to Contents</source>
         <translation type="unfinished">&amp;Passe die Spalten an den Inhalt an</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="815"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="818"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="679"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="682"/>
         <source>&amp;Save Settings</source>
         <translation type="unfinished">&amp;Speichere die Einstellungen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="682"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="685"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
@@ -10482,12 +10482,12 @@ URL</source>
         <translation type="obsolete">Sehe Fehler- und &amp;Log-Aufzeichnung</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="705"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="708"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="713"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="716"/>
         <source>Reset &amp;Error Log on Disconnect</source>
         <translation type="unfinished">Lösche &amp;Fehler- und Log-Dateien beim Verbindungsabbruch</translation>
     </message>
@@ -10496,17 +10496,17 @@ URL</source>
         <translation type="obsolete">&amp;Verbinde</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="725"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="728"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="734"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="737"/>
         <source>&amp;Disconnect</source>
         <translation type="unfinished">&amp;Verbindungsabbruch</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="737"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="740"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
@@ -10519,12 +10519,12 @@ URL</source>
         <translation type="obsolete">Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="758"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="761"/>
         <source>&amp;Delete Selected Item(s)</source>
         <translation type="unfinished">&amp;Lösche ausgewählte Ausleihen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="761"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="764"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
@@ -10533,8 +10533,8 @@ URL</source>
         <translation type="obsolete">&amp;Verändere ausgewählte Ausleihen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="773"/>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="827"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="776"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="830"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
@@ -10543,7 +10543,7 @@ URL</source>
         <translation type="obsolete">&amp;Browser der Nutzerinnen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="785"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="788"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
@@ -10552,14 +10552,14 @@ URL</source>
         <translation type="obsolete">&amp;Datenbank-Suche</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="797"/>
         <location filename="../UI/biblioteq_mainwindow.ui" line="800"/>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="937"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="803"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="940"/>
         <source>Database Search</source>
         <translation type="unfinished">Datenbank Suche</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="803"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="806"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
@@ -10580,7 +10580,7 @@ URL</source>
         <translation type="obsolete">Wähle die globale &amp;Schriftart</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="839"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="842"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
@@ -10589,32 +10589,32 @@ URL</source>
         <translation type="obsolete">&amp;Fülle die Tabelle bei Erstellung der Ausleihe</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="856"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="859"/>
         <source>Connect</source>
         <translation type="unfinished">Verbinde</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="865"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="868"/>
         <source>Disconnect</source>
         <translation type="unfinished">Unterbreche die Verbindung</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="874"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="877"/>
         <source>View Selected Item(s)</source>
         <translation type="unfinished">Zeige ausgewählte Ausleihe(n) an</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="883"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="886"/>
         <source>Add Item</source>
         <translation type="unfinished">Füge Ausleihe hinzu</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="892"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="895"/>
         <source>Delete Selected Item(s)</source>
         <translation type="unfinished">Lösche ausgewählte Ausleihe(n)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="901"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="904"/>
         <source>Modify Selected Item(s)</source>
         <translation type="unfinished">Verändere ausgewählte Ausleihe(n)</translation>
     </message>
@@ -10623,42 +10623,42 @@ URL</source>
         <translation type="obsolete">Drucke ausgewählte Ausleihe(n)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="919"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="922"/>
         <source>Reserve Selected Item</source>
         <translation type="unfinished">Reserviere ausgewählte Ausleihen</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="928"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="931"/>
         <source>Display Members Browser</source>
         <translation type="unfinished">Zeige den Nutzerinnen Browser</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="946"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="949"/>
         <source>Custom Database Query</source>
         <translation type="unfinished">Individuelle Datenbankabfrage</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="955"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="958"/>
         <source>Refresh Table</source>
         <translation type="unfinished">Aktualisiere die Tabelle</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="964"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="967"/>
         <source>Select Viewable Columns</source>
         <translation type="unfinished">Wähle anzuzeigende Spalten aus</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="973"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="976"/>
         <source>Exit BiblioteQ</source>
         <translation type="unfinished">Schließe BiblioteQ</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="982"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="985"/>
         <source>View Member&apos;s Reservation History</source>
         <translation type="unfinished">Zeige die Ausleihhistorie der Nutzerin</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="991"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="994"/>
         <source>Change Password</source>
         <translation type="unfinished">Wechel das Passwort</translation>
     </message>
@@ -10671,17 +10671,17 @@ URL</source>
         <translation type="obsolete">Erinnere die Maße des Hauptfensters</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1007"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1010"/>
         <source>Automatically Save Settings on E&amp;xit</source>
         <translation type="unfinished">Speichere die Einstellungen automatisch beim &amp;Schließen des Programms</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1016"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1019"/>
         <source>Configure Administrator Privileges</source>
         <translation type="unfinished">Stelle die Privilegien der Administratorin ein</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_mainwindow.ui" line="1025"/>
+        <location filename="../UI/biblioteq_mainwindow.ui" line="1028"/>
         <source>Item Requests</source>
         <translation type="unfinished">Ausleih Anfragen</translation>
     </message>

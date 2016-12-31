@@ -9702,7 +9702,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+204"/>
+        <location line="+207"/>
         <source>Previous Page</source>
         <translation>Előző Oldal</translation>
     </message>
