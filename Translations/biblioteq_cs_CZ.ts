@@ -1586,7 +1586,7 @@
     </message>
     <message>
         <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation type="unfinished">Nemohu načíst data do hlavní tabulky.</translation>
+        <translation type="obsolete">Nemohu načíst data do hlavní tabulky.</translation>
     </message>
     <message>
         <source> %1 </source>
@@ -1731,6 +1731,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Open PDF File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to retrieve the data required for populating the main views.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Populating the views...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

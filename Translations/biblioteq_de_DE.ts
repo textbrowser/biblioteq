@@ -868,7 +868,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="758"/>
-        <location filename="../Source/biblioteq_b.cc" line="4138"/>
+        <location filename="../Source/biblioteq_b.cc" line="4127"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -979,8 +979,8 @@
         <location filename="../Source/biblioteq_a.cc" line="5450"/>
         <location filename="../Source/biblioteq_a.cc" line="9624"/>
         <location filename="../Source/biblioteq_b.cc" line="32"/>
-        <location filename="../Source/biblioteq_b.cc" line="3712"/>
-        <location filename="../Source/biblioteq_b.cc" line="3749"/>
+        <location filename="../Source/biblioteq_b.cc" line="3701"/>
+        <location filename="../Source/biblioteq_b.cc" line="3738"/>
         <source>0 Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1072,8 +1072,8 @@
         <location filename="../Source/biblioteq_a.cc" line="9168"/>
         <location filename="../Source/biblioteq_a.cc" line="9175"/>
         <location filename="../Source/biblioteq_b.cc" line="3271"/>
-        <location filename="../Source/biblioteq_b.cc" line="3807"/>
-        <location filename="../Source/biblioteq_b.cc" line="3820"/>
+        <location filename="../Source/biblioteq_b.cc" line="3796"/>
+        <location filename="../Source/biblioteq_b.cc" line="3809"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1174,7 +1174,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8678"/>
         <location filename="../Source/biblioteq_a.cc" line="9213"/>
         <location filename="../Source/biblioteq_a.cc" line="9426"/>
-        <location filename="../Source/biblioteq_b.cc" line="3836"/>
+        <location filename="../Source/biblioteq_b.cc" line="3825"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1282,7 +1282,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8788"/>
         <location filename="../Source/biblioteq_a.cc" line="9256"/>
         <location filename="../Source/biblioteq_b.cc" line="3275"/>
-        <location filename="../Source/biblioteq_b.cc" line="4102"/>
+        <location filename="../Source/biblioteq_b.cc" line="4091"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1315,7 +1315,7 @@
         <location filename="../Source/biblioteq_a.cc" line="8212"/>
         <location filename="../Source/biblioteq_a.cc" line="8428"/>
         <location filename="../Source/biblioteq_a.cc" line="8691"/>
-        <location filename="../Source/biblioteq_b.cc" line="3403"/>
+        <location filename="../Source/biblioteq_b.cc" line="3406"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1449,7 +1449,7 @@
         <location filename="../Source/biblioteq_a.cc" line="2747"/>
         <location filename="../Source/biblioteq_a.cc" line="8598"/>
         <location filename="../Source/biblioteq_a.cc" line="9628"/>
-        <location filename="../Source/biblioteq_b.cc" line="4107"/>
+        <location filename="../Source/biblioteq_b.cc" line="4096"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
@@ -1709,7 +1709,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="4776"/>
         <location filename="../Source/biblioteq_a.cc" line="7660"/>
         <location filename="../Source/biblioteq_a.cc" line="8213"/>
-        <location filename="../Source/biblioteq_b.cc" line="3404"/>
         <source>Populating the table...</source>
         <translation type="unfinished">Erstelle die Tabelle...</translation>
     </message>
@@ -1723,7 +1722,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8246"/>
         <location filename="../Source/biblioteq_a.cc" line="8267"/>
         <location filename="../Source/biblioteq_a.cc" line="8274"/>
-        <location filename="../Source/biblioteq_b.cc" line="3580"/>
+        <location filename="../Source/biblioteq_b.cc" line="3570"/>
         <source>Memory Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1733,7 +1732,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_a.cc" line="8067"/>
         <location filename="../Source/biblioteq_a.cc" line="8247"/>
         <location filename="../Source/biblioteq_a.cc" line="8275"/>
-        <location filename="../Source/biblioteq_b.cc" line="3581"/>
+        <location filename="../Source/biblioteq_b.cc" line="3571"/>
         <source>Unable to allocate memory for the &quot;item&quot; object. This is a serious problem!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2424,16 +2423,20 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../Source/biblioteq_b.cc" line="3247"/>
-        <location filename="../Source/biblioteq_b.cc" line="3563"/>
-        <location filename="../Source/biblioteq_b.cc" line="3659"/>
+        <location filename="../Source/biblioteq_b.cc" line="3553"/>
+        <location filename="../Source/biblioteq_b.cc" line="3648"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Unable to retrieve the data required for populating the main table.</source>
+        <translation type="obsolete">Kann die benötigten Daten für die Übersichtstabelle nicht erhalten.</translation>
+    </message>
+    <message>
         <location filename="../Source/biblioteq_b.cc" line="3272"/>
         <location filename="../Source/biblioteq_b.cc" line="3276"/>
-        <source>Unable to retrieve the data required for populating the main table.</source>
-        <translation type="unfinished">Kann die benötigten Daten für die Übersichtstabelle nicht erhalten.</translation>
+        <source>Unable to retrieve the data required for populating the main views.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_b.cc" line="3343"/>
@@ -2469,27 +2472,32 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3808"/>
+        <location filename="../Source/biblioteq_b.cc" line="3402"/>
+        <source>Populating the views...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_b.cc" line="3797"/>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3821"/>
+        <location filename="../Source/biblioteq_b.cc" line="3810"/>
         <source>Unable to update member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="3837"/>
+        <location filename="../Source/biblioteq_b.cc" line="3826"/>
         <source>You are about to upgrade the legacy SQLite database %1. Please verify that you have made a copy of this database. Are you sure that you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4108"/>
+        <location filename="../Source/biblioteq_b.cc" line="4097"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="4136"/>
+        <location filename="../Source/biblioteq_b.cc" line="4125"/>
         <source>&amp;Unlimited</source>
         <translation type="unfinished"></translation>
     </message>

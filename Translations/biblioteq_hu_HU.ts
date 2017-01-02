@@ -846,7 +846,7 @@
     </message>
     <message>
         <location line="+2"/>
-        <location filename="../Source/biblioteq_b.cc" line="+829"/>
+        <location filename="../Source/biblioteq_b.cc" line="+818"/>
         <source>&amp;%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -956,8 +956,8 @@
         <location line="+3350"/>
         <location line="+953"/>
         <location line="+4174"/>
-        <location filename="../Source/biblioteq_b.cc" line="-4106"/>
-        <location line="+3680"/>
+        <location filename="../Source/biblioteq_b.cc" line="-4095"/>
+        <location line="+3669"/>
         <location line="+37"/>
         <source>0 Results</source>
         <translation type="unfinished">0 Eredmény</translation>
@@ -1049,8 +1049,8 @@
         <location line="+4"/>
         <location line="+415"/>
         <location line="+7"/>
-        <location filename="../Source/biblioteq_b.cc" line="-478"/>
-        <location line="+536"/>
+        <location filename="../Source/biblioteq_b.cc" line="-467"/>
+        <location line="+525"/>
         <location line="+13"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
@@ -1259,8 +1259,8 @@
         <location line="+167"/>
         <location line="+6"/>
         <location line="+468"/>
-        <location filename="../Source/biblioteq_b.cc" line="-561"/>
-        <location line="+827"/>
+        <location filename="../Source/biblioteq_b.cc" line="-550"/>
+        <location line="+816"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1293,7 +1293,7 @@
         <location line="+553"/>
         <location line="+216"/>
         <location line="+263"/>
-        <location filename="../Source/biblioteq_b.cc" line="-699"/>
+        <location filename="../Source/biblioteq_b.cc" line="-685"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
@@ -1427,7 +1427,7 @@
         <location line="+99"/>
         <location line="+5851"/>
         <location line="+1030"/>
-        <location filename="../Source/biblioteq_b.cc" line="+704"/>
+        <location filename="../Source/biblioteq_b.cc" line="+690"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Információ</translation>
     </message>
@@ -1688,7 +1688,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+19"/>
         <location line="+2884"/>
         <location line="+553"/>
-        <location filename="../Source/biblioteq_b.cc" line="-703"/>
         <source>Populating the table...</source>
         <translation type="unfinished">Táblázat kitöltése...</translation>
     </message>
@@ -1702,7 +1701,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+171"/>
         <location line="+21"/>
         <location line="+7"/>
-        <location filename="../Source/biblioteq_b.cc" line="+176"/>
+        <location filename="../Source/biblioteq_b.cc" line="-526"/>
         <source>Memory Error</source>
         <translation type="unfinished">Memória Hiba</translation>
     </message>
@@ -2438,16 +2437,16 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">Ha megváltoztatta a nyelvet, mentse el a beállításait és indítsa ujra a BiblioteQ-et a váltáshoz.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="-334"/>
-        <location line="+316"/>
-        <location line="+96"/>
+        <location filename="../Source/biblioteq_b.cc" line="-324"/>
+        <location line="+306"/>
+        <location line="+95"/>
         <source>%1 Result(s)</source>
         <translation type="unfinished">%1 Eredmény</translation>
     </message>
     <message>
-        <location line="-387"/>
+        <location line="-376"/>
         <location line="+4"/>
-        <source>Unable to retrieve the data required for populating the main table.</source>
+        <source>Unable to retrieve the data required for populating the main views.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2484,7 +2483,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+437"/>
+        <location line="+31"/>
+        <source>Populating the views...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+395"/>
         <source>Unable to insert into member_history_dnt for member %1.</source>
         <translation type="unfinished"></translation>
     </message>
