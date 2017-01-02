@@ -3399,21 +3399,11 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
+  progress.setLabelText(tr("Populating the table..."));
+  progress.setMaximum(0);
+  progress.setMinimum(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
-  progress.setLabelText(tr("Populating the table..."));
-
-  if(limit == -1)
-    {
-      progress.setMaximum(0);
-      progress.setMinimum(0);
-    }
-  else
-    {
-      progress.setMinimum(0);
-      progress.setMaximum(limit);
-    }
-
   raise();
   progress.show();
   progress.update();
@@ -3596,12 +3586,11 @@ int biblioteq::populateTable(const int search_type_arg,
 		pixmapItem->setData(1, query.value(ii));
 	    }
 
-      if(i + 1 <= progress.maximum())
-	progress.setValue(i + 1);
-
 #ifndef Q_OS_MAC
       progress.repaint();
       QApplication::processEvents();
+#else
+      progress.setValue(0);
 #endif
     }
 
