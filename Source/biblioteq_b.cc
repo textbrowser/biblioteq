@@ -3270,11 +3270,11 @@ int biblioteq::populateTable(const int search_type_arg,
 
       addError(QString(tr("Database Error")),
 	       QString(tr("Unable to retrieve the data required for "
-			  "populating the main table.")),
+			  "populating the main views.")),
 	       query.lastError().text(), __FILE__, __LINE__);
       QMessageBox::critical(this, tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the data required for "
-			       "populating the main table."));
+			       "populating the main views."));
       return 1;
     }
 
@@ -3399,7 +3399,7 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
-  progress.setLabelText(tr("Populating the table..."));
+  progress.setLabelText(tr("Populating the views..."));
   progress.setMaximum(0);
   progress.setMinimum(0);
   progress.setModal(true);
