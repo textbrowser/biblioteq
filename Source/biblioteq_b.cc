@@ -3407,6 +3407,10 @@ int biblioteq::populateTable(const int search_type_arg,
   raise();
   progress.show();
   progress.update();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
 
   biblioteq_graphicsitempixmap *pixmapItem = 0;
   int iconTableColumnIdx = 0;

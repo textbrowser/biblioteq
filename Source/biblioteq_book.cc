@@ -2251,6 +2251,10 @@ void biblioteq_book::slotSRUQuery(void)
   m_sruWorking->setMinimum(0);
   m_sruWorking->show();
   m_sruWorking->update();
+#ifndef Q_OS_MAC
+  m_sruWorking->repaint();
+  QApplication::processEvents();
+#endif
 
   QString name("");
   bool found = false;
@@ -2474,6 +2478,10 @@ void biblioteq_book::slotZ3950Query(void)
       working.setMinimum(0);
       working.show();
       working.update();
+#ifndef Q_OS_MAC
+      working.repaint();
+      QApplication::processEvents();
+#endif
 
       QString recordSyntax("MARC21");
       QStringList isbns;
@@ -3078,6 +3086,10 @@ void biblioteq_book::slotDownloadImage(void)
   m_httpProgress->setMaximum(0);
   m_httpProgress->setMinimum(0);
   m_httpProgress->show();
+#ifndef Q_OS_MAC
+  m_httpProgress->repaint();
+  QApplication::processEvents();
+#endif
 
   if(pb == id.dwnldFront)
     {

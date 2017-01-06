@@ -2080,6 +2080,10 @@ void biblioteq_magazine::slotZ3950Query(void)
       working.setMinimum(0);
       working.show();
       working.update();
+#ifndef Q_OS_MAC
+      working.repaint();
+      QApplication::processEvents();
+#endif
 
       QString recordSyntax("MARC21");
       bool found = false;
@@ -3209,6 +3213,10 @@ void biblioteq_magazine::slotSRUQuery(void)
   m_sruWorking->setMinimum(0);
   m_sruWorking->show();
   m_sruWorking->update();
+#ifndef Q_OS_MAC
+  m_sruWorking->repaint();
+  QApplication::processEvents();
+#endif
 
   bool found = false;
   QString name("");

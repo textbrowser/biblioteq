@@ -1815,6 +1815,10 @@ void biblioteq_cd::slotSaveTracks(void)
       progress.setMinimum(0);
       progress.show();
       progress.update();
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
 
       for(i = 0; i < trd.table->rowCount(); i++)
 	{
