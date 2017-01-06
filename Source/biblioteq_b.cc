@@ -3,6 +3,7 @@
 */
 
 #include <QSettings>
+#include <QSqlDriver>
 #include <QSqlRecord>
 #include <QtDebug>
 
@@ -3400,7 +3401,12 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.table->setSortingEnabled(false);
   progress.setLabelText(tr("Populating the views..."));
-  progress.setMaximum(0);
+
+  if(limit == -1)
+    progress.setMaximum(0);
+  else
+    progress.setMaximum(limit);
+
   progress.setMinimum(0);
   progress.setModal(true);
   progress.setWindowTitle(tr("BiblioteQ: Progress Dialog"));
@@ -3435,6 +3441,9 @@ int biblioteq::populateTable(const int search_type_arg,
 				      5 * 150,
 				      std::numeric_limits<int>::max());
     }
+
+  if(limit != -1 && m_db.driver()->hasFeature(QSqlDriver::QuerySize))
+    progress.setMaximum(query.size());
 
   i = -1;
 
@@ -3590,13 +3599,17 @@ int biblioteq::populateTable(const int search_type_arg,
 		pixmapItem->setData(1, query.value(ii));
 	    }
 
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
 #ifndef Q_OS_MAC
       progress.repaint();
       QApplication::processEvents();
-#else
-      progress.setValue(0);
 #endif
     }
+
+  if(limit != -1 && !m_db.driver()->hasFeature(QSqlDriver::QuerySize))
+    progress.setValue(limit);
 
   bool wasCanceled = progress.wasCanceled(); /*
 					     ** QProgressDialog::close()!
