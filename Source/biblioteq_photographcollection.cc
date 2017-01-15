@@ -133,6 +133,8 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(menu2->addAction(tr("&Current Page...")),
 	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
+  connect(menu2->addAction(tr("&Selected...")),
+	  SIGNAL(triggered(void)), this, SLOT(slotExportPhotographs(void)));
   connect(pc.page, SIGNAL(currentIndexChanged(const QString &)),
 	  this, SLOT(slotPageChanged(const QString &)));
   connect(pc.exportPhotographsToolButton,
@@ -142,6 +144,9 @@ biblioteq_photographcollection::biblioteq_photographcollection
 	  this, SLOT(slotViewPhotograph(void)));
   pc.resetButton->setMenu(menu1);
   pc.exportPhotographsToolButton->setMenu(menu2);
+
+  if(menu2->actions().size() >= 3)
+    menu2->actions()[2]->setEnabled(false);
 
   QString errorstr("");
 
@@ -1628,6 +1633,12 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
   if(items.isEmpty())
     {
       m_itemOid.clear();
+
+      if(pc.exportPhotographsToolButton->menu() &&
+	 pc.exportPhotographsToolButton->menu()->actions().size() >= 3)
+	pc.exportPhotographsToolButton->menu()->actions()[2]->
+	  setEnabled(false);
+
       pc.thumbnail_item->clear();
       pc.id_item->clear();
       pc.title_item->clear();
@@ -1648,6 +1659,11 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(pc.exportPhotographsToolButton->menu() &&
+     pc.exportPhotographsToolButton->menu()->actions().size() >= 3)
+    pc.exportPhotographsToolButton->menu()->actions()[2]->
+      setEnabled(true);
 
   QGraphicsPixmapItem *item = 0;
 
@@ -2152,13 +2168,39 @@ void biblioteq_photographcollection::slotExportPhotographs(void)
 
       if(!action ||
 	 action == pc.exportPhotographsToolButton->menu()->actions().value(0))
+	/*
+	** Export all photographs.
+	*/
+
 	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(), m_oid, -1,
-	   dialog.selectedFiles().value(0), this);
+	  (qmain->getDB(),
+	   m_oid,
+	   -1,
+	   dialog.selectedFiles().value(0),
+	   this);
+      else if(action ==
+	      pc.exportPhotographsToolButton->menu()->actions().value(1))
+	/*
+	** Export the current page.
+	*/
+
+	biblioteq_misc_functions::exportPhotographs
+	  (qmain->getDB(),
+	   m_oid,
+	   pc.page->currentText().toInt(),
+	   dialog.selectedFiles().value(0),
+	   this);
       else
+	/*
+	** Export the selected photograp(s).
+	*/
+
 	biblioteq_misc_functions::exportPhotographs
-	  (qmain->getDB(), m_oid, pc.page->currentText().toInt(),
-	   dialog.selectedFiles().value(0), this);
+	  (qmain->getDB(),
+	   m_oid,
+	   dialog.selectedFiles().value(0),
+	   pc.graphicsView->scene()->selectedItems(),
+	   this);
     }
 }
 

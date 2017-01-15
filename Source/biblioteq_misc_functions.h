@@ -11,6 +11,7 @@
 ** -- Qt Includes --
 */
 
+#include <QGraphicsItem>
 #include <QPair>
 #include <QSqlDatabase>
 #include <QSqlError>
@@ -91,6 +92,11 @@ class biblioteq_misc_functions
   static void createInitialCopies(QString const &, const int,
 				  const QSqlDatabase &, const QString &,
 				  QString &);
+  static void exportPhotographs(const QSqlDatabase &,
+				const QString &,
+				const QString &,
+				QList<QGraphicsItem *> items,
+				QWidget *parent);
   static void exportPhotographs(const QSqlDatabase &, const QString &,
 				const int, const QString &,
 				QWidget *parent);

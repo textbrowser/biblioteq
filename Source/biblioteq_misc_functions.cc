@@ -2011,6 +2011,85 @@ bool biblioteq_misc_functions::isGnome(void)
 void biblioteq_misc_functions::exportPhotographs
 (const QSqlDatabase &db,
  const QString &collectionOid,
+ const QString &destinationPath,
+ QList<QGraphicsItem *> items,
+ QWidget *parent)
+{
+  QProgressDialog progress(parent);
+
+#ifdef Q_OS_MAC
+#if QT_VERSION < 0x050000
+  progress.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
+#endif
+#endif
+  progress.setLabelText(QObject::tr("Exporting image(s)..."));
+  progress.setMaximum(items.size());
+  progress.setMinimum(0);
+  progress.setModal(true);
+  progress.setWindowTitle(QObject::tr("BiblioteQ: Progress Dialog"));
+  progress.show();
+#ifndef Q_OS_MAC
+  progress.repaint();
+  QApplication::processEvents();
+#endif
+
+  QSqlQuery query(db);
+
+  query.setForwardOnly(true);
+  query.prepare("SELECT image FROM photograph WHERE "
+		"collection_oid = ? AND image IS NOT NULL AND myoid = ?");
+  query.bindValue(0, collectionOid);
+
+  for(int i = 0; i < items.size(); i++)
+    {
+      QGraphicsItem *item = items.at(i);
+
+      if(!item)
+	continue;
+
+      if(i + 1 <= progress.maximum())
+	progress.setValue(i + 1);
+
+      query.bindValue(1, item->data(0).toString());
+#ifndef Q_OS_MAC
+      progress.repaint();
+      QApplication::processEvents();
+#endif
+
+      if(progress.wasCanceled())
+	break;
+
+      if(query.exec() && query.next())
+	{
+#if QT_VERSION >= 0x040700
+	  qint64 id = QDateTime::currentMSecsSinceEpoch();
+#else
+	  QDateTime dateTime(QDateTime::currentDateTime());
+	  qint64 id = static_cast<qint64> (dateTime.toTime_t());
+#endif
+	  QByteArray bytes
+	    (QByteArray::fromBase64(query.value(0).toByteArray()));
+	  QImage image;
+	  QString format(imageFormatGuess(bytes));
+
+	  image.loadFromData(bytes, format.toLatin1().constData());
+
+	  if(!image.isNull())
+	    image.save
+	      (destinationPath + QDir::separator() +
+	       QString("%1_%2.%3").arg(id).arg(i + 1).arg(format).toLower(),
+	       format.toLatin1().constData(), 100);
+	}
+    }
+}
+
+/*
+** -- exportPhotographs() --
+*/
+
+void biblioteq_misc_functions::exportPhotographs
+(const QSqlDatabase &db,
+ const QString &collectionOid,
  const int pageOffset,
  const QString &destinationPath,
  QWidget *parent)
