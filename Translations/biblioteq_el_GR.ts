@@ -4903,6 +4903,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Accession Number:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Selected...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_sruresults</name>

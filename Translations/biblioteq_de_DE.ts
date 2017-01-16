@@ -56,6 +56,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_misc_functions.cc" line="2025"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2104"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -68,7 +69,8 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3907"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3836"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2028"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2029"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2107"/>
         <location filename="../Source/biblioteq_pdfreader.cc" line="336"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
@@ -6540,412 +6542,417 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="157"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="247"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="344"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="355"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="366"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="446"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="478"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="710"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1438"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1537"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1548"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1559"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1610"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1862"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1947"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1958"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1994"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2640"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2647"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="136"/>
+        <source>&amp;Selected...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="162"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="252"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="349"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="360"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="371"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="451"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="483"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="715"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1443"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1542"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1553"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1564"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1615"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1878"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1963"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1974"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2010"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2682"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2689"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="158"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="163"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="165"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="166"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="763"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="170"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="171"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="768"/>
         <source>UNKNOWN</source>
         <translation type="unfinished">UNBEKANNT</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="216"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="228"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1352"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1364"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1376"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1388"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1400"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1412"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="221"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="233"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1357"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1369"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1381"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1393"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1405"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1417"/>
         <source>BiblioteQ: User Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="217"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="222"/>
         <source>Please complete the collection&apos;s ID field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="229"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="234"/>
         <source>Please complete the collection&apos;s Title field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="248"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="252"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1439"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1442"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1863"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1866"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="253"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="257"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1444"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1447"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1879"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1882"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="251"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="450"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="482"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="714"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1441"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1614"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1865"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1998"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="256"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="455"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="487"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="719"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1446"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1619"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1881"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2014"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="345"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1538"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2641"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="350"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1543"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2683"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished">Kann einen einheitlichen Interger nicht erstellen.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="356"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1549"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1948"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="361"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1554"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1964"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished">Kann den Eintrag nicht erstellen oder aktualisieren.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="367"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1560"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1959"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="372"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1565"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1975"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="378"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="601"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="738"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="383"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="606"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="743"/>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="380"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="602"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="620"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="740"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="747"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="385"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="607"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="625"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="745"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="752"/>
         <source>)</source>
         <translation type="unfinished">)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="447"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="451"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="452"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="456"/>
         <source>Unable to retrieve the photograph collection&apos;s OID.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="478"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1610"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1994"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="483"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1615"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2010"/>
         <source>Rollback failure.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="483"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="488"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="564"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="569"/>
         <source>Any</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="577"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="582"/>
         <source>BiblioteQ: Database Photograph Collection Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="579"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="584"/>
         <source>&amp;Search</source>
         <translation type="unfinished">&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="619"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="745"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="624"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="750"/>
         <source>BiblioteQ: View Photograph Collection Details (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="652"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="657"/>
         <source>BiblioteQ: Modify Photograph Collection Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="672"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="677"/>
         <source>BiblioteQ: View Photograph Collection Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="704"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="842"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="709"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="847"/>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="711"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="715"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="716"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="720"/>
         <source>Unable to retrieve the selected photograph collection&apos;s data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="852"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="857"/>
         <source>BiblioteQ: Create Photograph Collection Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="943"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2016"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="948"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2032"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="944"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="949"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="981"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="986"/>
         <source>Collection ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="983"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="988"/>
         <source>Collection Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="985"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="990"/>
         <source>Collection Location:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="987"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="992"/>
         <source>Collection About:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="989"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="994"/>
         <source>Collection Notes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="991"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="996"/>
         <source>Item ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="993"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="998"/>
         <source>Item Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="995"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1000"/>
         <source>Item Creator(s):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="997"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1002"/>
         <source>Item Publication Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="999"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1004"/>
         <source>Item Copies:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1001"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1006"/>
         <source>Item Medium:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1003"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1008"/>
         <source>Item Reproduction Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1005"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1010"/>
         <source>Item Copyright:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1007"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1012"/>
         <source>Item Call Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1009"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1014"/>
         <source>Item Other Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1011"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1016"/>
         <source>Item Notes:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1013"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1018"/>
         <source>Item Subjects:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1015"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1020"/>
         <source>Item Format:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1017"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1022"/>
         <source>Accession Number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1041"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1046"/>
         <source>BiblioteQ: Photograph Collection Image Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1044"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1049"/>
         <source>BiblioteQ: Photograph Collection Item Image Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1109"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1114"/>
         <source>BiblioteQ: Duplicate Photograph Collection Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1147"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1152"/>
         <source>Loading image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1150"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2034"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2526"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1155"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2050"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2568"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1353"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1358"/>
         <source>Please complete the item&apos;s ID field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1365"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1370"/>
         <source>Please complete the item&apos;s Title field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1377"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1382"/>
         <source>Please complete the item&apos;s Creator(s) field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1389"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1394"/>
         <source>Please complete the item&apos;s Medium field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1401"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1406"/>
         <source>Please complete the item&apos;s Reproduction Number field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1413"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1418"/>
         <source>Please complete the item&apos;s Copyright field.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1615"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="1620"/>
         <source>Unable to create the item. Please verify that the item does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="1999"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2015"/>
         <source>Unable to update the item. Please verify that the item does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2017"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2033"/>
         <source>Are you sure that you wish to permanently delete the selected %1 item(s)?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2035"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2051"/>
         <source>Deleting the selected item(s)...</source>
         <translation type="unfinished">Lösche die ausgewählten Ausleihen...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2138"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2154"/>
         <source>BiblioteQ: Photograph Collection Photographs Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2180"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2222"/>
         <source>&amp;Modify Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2187"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2229"/>
         <source>&amp;View Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2494"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2536"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2522"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2564"/>
         <source>Importing image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2648"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2690"/>
         <source>Unable to import photograph.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2693"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2735"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Information</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2694"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2736"/>
         <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2849"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2891"/>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>

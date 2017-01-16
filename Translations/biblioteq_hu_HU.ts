@@ -52,6 +52,7 @@
     </message>
     <message>
         <location line="+659"/>
+        <location line="+79"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -64,7 +65,8 @@
     <message>
         <location line="+4"/>
         <location filename="../Source/biblioteq_magazine.cc" line="+4"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="+3"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="-75"/>
+        <location line="+78"/>
         <location filename="../Source/biblioteq_pdfreader.cc" line="+336"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
@@ -6559,7 +6561,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+2"/>
+        <source>&amp;Selected...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+26"/>
         <location line="+90"/>
         <location line="+97"/>
         <location line="+11"/>
@@ -6572,17 +6579,17 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+11"/>
         <location line="+11"/>
         <location line="+51"/>
-        <location line="+252"/>
+        <location line="+263"/>
         <location line="+85"/>
         <location line="+11"/>
         <location line="+36"/>
-        <location line="+646"/>
+        <location line="+672"/>
         <location line="+7"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2489"/>
+        <location line="-2526"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6620,46 +6627,46 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+4"/>
         <location line="+1187"/>
         <location line="+3"/>
-        <location line="+421"/>
+        <location line="+432"/>
         <location line="+3"/>
         <source>Unable to create a database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1615"/>
+        <location line="-1626"/>
         <location line="+199"/>
         <location line="+32"/>
         <location line="+232"/>
         <location line="+727"/>
         <location line="+173"/>
-        <location line="+251"/>
+        <location line="+262"/>
         <location line="+133"/>
         <source>BiblioteQ: Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1653"/>
+        <location line="-1664"/>
         <location line="+1193"/>
-        <location line="+1103"/>
+        <location line="+1140"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2285"/>
+        <location line="-2322"/>
         <location line="+1193"/>
-        <location line="+399"/>
+        <location line="+410"/>
         <source>Unable to create or update the entry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1581"/>
+        <location line="-1592"/>
         <location line="+1193"/>
-        <location line="+399"/>
+        <location line="+410"/>
         <source>Unable to commit the current database transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1581"/>
+        <location line="-1592"/>
         <location line="+223"/>
         <location line="+137"/>
         <source>BiblioteQ: Modify Photograph Collection Entry (</source>
@@ -6683,12 +6690,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+27"/>
         <location line="+1132"/>
-        <location line="+384"/>
+        <location line="+395"/>
         <source>Rollback failure.</source>
         <translation type="unfinished">Rollback failure. (visszavonás sikertelen)</translation>
     </message>
     <message>
-        <location line="-1511"/>
+        <location line="-1522"/>
         <source>Unable to create or update the entry. Please verify that the entry does not already exist.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6742,12 +6749,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+91"/>
-        <location line="+1073"/>
+        <location line="+1084"/>
         <source>BiblioteQ: Question</source>
         <translation type="unfinished">BiblioteQ:Kérdés</translation>
     </message>
     <message>
-        <location line="-1072"/>
+        <location line="-1083"/>
         <source>Your changes have not been saved. Continue closing?</source>
         <translation type="unfinished">A változtatásai nem voltak elmentve. Biztosan bezárja?</translation>
     </message>
@@ -6868,13 +6875,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+3"/>
-        <location line="+884"/>
-        <location line="+492"/>
+        <location line="+895"/>
+        <location line="+518"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-1173"/>
+        <location line="-1210"/>
         <source>Please complete the item&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
     </message>
@@ -6909,7 +6916,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">A cikk létrehozása sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
     <message>
-        <location line="+384"/>
+        <location line="+395"/>
         <source>Unable to update the item. Please verify that the item does not already exist.</source>
         <translation type="unfinished">A cikk frissítése sikertelen. Ellenőrizze hogy nem létezik e már a bejegyzés.</translation>
     </message>
@@ -6929,7 +6936,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Fénykép Gyüjtemény Képek Exportálása</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+68"/>
         <source>&amp;Modify Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
