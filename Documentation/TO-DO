@@ -383,3 +383,4 @@
 204. item_borrower and item_request privacy. (TBD)
 205. Can BiblioteQ benefit from EXISTS()? Replaced most COUNT()
      instances. (Done)
+206. Include Poppler and YAZ version information in the About dialog.
