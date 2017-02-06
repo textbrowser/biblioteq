@@ -102,7 +102,6 @@ void biblioteq_borrowers_editor::showUsers(void)
   progress2.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
-  m_bd.table->clear();
   m_bd.table->setCurrentItem(0);
   m_bd.table->setColumnCount(0);
   m_bd.table->setRowCount(0);

@@ -1475,7 +1475,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
   for(i = 1; i <= cd.no_of_discs->value(); i++)
     comboBoxList.append(QString::number(i));
 
-  trd.table->clear();
   trd.table->setCurrentItem(0);
   trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
@@ -1624,8 +1623,8 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 
 void biblioteq_cd::slotCloseTracksBrowser(void)
 {
-  trd.table->clear();
   trd.table->setCurrentItem(0);
+  trd.table->setColumnCount(0);
   trd.table->setRowCount(0);
   m_tracks_diag->close();
 }

@@ -4552,7 +4552,6 @@ void biblioteq::resetAdminBrowser(void)
 {
   QStringList list;
 
-  ab.table->clear();
   ab.table->setCurrentItem(0);
   ab.table->setColumnCount(0);
   ab.table->setRowCount(0);
@@ -4583,7 +4582,6 @@ void biblioteq::resetMembersBrowser(void)
 {
   QStringList list;
 
-  bb.table->clear();
   bb.table->setCurrentItem(0);
   bb.table->setColumnCount(0);
   bb.table->setRowCount(0);
@@ -5640,7 +5638,6 @@ void biblioteq::slotResetErrorLog(void)
   list.append(tr("Full Description"));
   list.append(tr("File"));
   list.append(tr("Line Number"));
-  er.table->clear();
   er.table->setCurrentItem(0);
   er.table->setColumnCount(0);
   er.table->setRowCount(0);
@@ -7607,7 +7604,6 @@ void biblioteq::slotShowHistory(void)
     }
 
   QApplication::restoreOverrideCursor();
-  history.table->clear();
   history.table->setCurrentItem(0);
   history.table->setColumnCount(0);
   history.table->setRowCount(0);
