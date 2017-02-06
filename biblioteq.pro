@@ -5,11 +5,25 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
-                   BIBLIOTEQ_LINKED_WITH_POPPLER
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
 LANGUAGE	= C++
 QT		-= webkit
 QT              += network sql
+
+lessThan(QT_MAJOR_VERSION, 5) {
+exists(/usr/include/poppler/qt4) {
+DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH     += /usr/include/poppler/qt4
+LIBS    +=      -lpoppler-qt4
+}
+}
+else {
+exists(/usr/include/poppler/qt5) {
+DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
+INCLUDEPATH     += /usr/include/poppler/qt5
+LIBS    +=      -lpoppler-qt5
+}
+}
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 QT              += printsupport widgets
@@ -34,15 +48,6 @@ QMAKE_EXTRA_TARGETS = purge
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
 LIBS		+= -lsqlite3 -lyaz
-
-lessThan(QT_MAJOR_VERSION, 5) {
-INCLUDEPATH     += /usr/include/poppler/qt4
-LIBS            += -lpoppler-qt4
-}
-else {
-INCLUDEPATH     += /usr/include/poppler/qt5
-LIBS            += -lpoppler-qt5
-}
 
 RESOURCES	= Icons/icons.qrc
 

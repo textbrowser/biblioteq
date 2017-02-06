@@ -209,7 +209,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   progress2.setAttribute(Qt::WA_MacMetalStyle, BIBLIOTEQ_WA_MACMETALSTYLE);
 #endif
 #endif
-  m_cb.table->clear();
   m_cb.table->setColumnCount(0);
   m_cb.table->setRowCount(0);
   list.append(tr("Title"));
