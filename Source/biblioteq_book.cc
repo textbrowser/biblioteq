@@ -3758,7 +3758,6 @@ void biblioteq_book::createFile(const QByteArray &digest,
 
 void biblioteq_book::populateFiles(void)
 {
-  id.files->clearContents();
   id.files->setRowCount(0);
   id.files->setSortingEnabled(false);
 

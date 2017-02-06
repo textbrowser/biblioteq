@@ -3671,7 +3671,6 @@ void biblioteq_magazine::createFile(const QByteArray &digest,
 
 void biblioteq_magazine::populateFiles(void)
 {
-  ma.files->clearContents();
   ma.files->setRowCount(0);
   ma.files->setSortingEnabled(false);
 

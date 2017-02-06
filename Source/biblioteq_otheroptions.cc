@@ -123,7 +123,7 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
 void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.publication_date->clearContents();
+  m_ui.publication_date->setRowCount(0);
 
   QSettings settings;
   QStringList list1;

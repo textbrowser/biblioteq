@@ -428,19 +428,14 @@ void biblioteq_main_table::resetTable(const QString &username,
 				      const QString &roles)
 {
   if(qmain && qmain->setting("automatically_resize_column_widths").toBool())
-    {
-      clear();
-      setColumnCount(0);
-    }
+    setColumnCount(0);
   else
     {
       if(m_lastType == type)
-	clearContents();
-      else
 	{
-	  clear();
-	  setColumnCount(0);
 	}
+      else
+	setColumnCount(0);
     }
 
   setRowCount(0);
