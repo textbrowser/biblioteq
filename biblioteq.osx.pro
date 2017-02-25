@@ -145,7 +145,8 @@ OBJECTIVE_HEADERS += Source/CocoaInitializer.h
 OBJECTIVE_SOURCES += Source/CocoaInitializer.mm
 }
 
-TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
+TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
+		  Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_de_DE.ts \
 		  Translations/biblioteq_el_GR.ts \
 		  Translations/biblioteq_fr_FR.ts \

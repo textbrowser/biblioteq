@@ -119,7 +119,8 @@ SOURCES		= Source/biblioteq_a.cc \
                   Source/biblioteq_videogame.cc \
                   Source/biblioteq_z3950results.cc
 
-TRANSLATIONS    = Translations/biblioteq_cs_CZ.ts \
+TRANSLATIONS    = Translations/biblioteq_ar_JO.ts \
+		  Translations/biblioteq_cs_CZ.ts \
 		  Translations/biblioteq_de_DE.ts \
 		  Translations/biblioteq_el_GR.ts \
 		  Translations/biblioteq_fr_FR.ts \
