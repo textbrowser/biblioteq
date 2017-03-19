@@ -1,5 +1,5 @@
 /* This file is part of the YAZ toolkit.
- * Copyright (C) 1995-2015 Index Data.
+ * Copyright (C) Index Data.
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -24,41 +24,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * \file yaz-version.h
- * \brief Defines YAZ version.
- */
-#ifndef YAZ_VERSION
+
+/** \file xml_get.h
+    \brief XML node getter/creation utilities
+*/
+
+#ifndef YAZ_XML_GET_H
+#define YAZ_XML_GET_H
 
 #include <yaz/yconfig.h>
-
-/** \brief YAZ version as string */
-#define YAZ_VERSION "5.20.1"
-
-/** \brief YAZ version as integer (for comparison purposes) */
-#define YAZ_VERSIONL 0x51401
-
-/** \brief YAZ file version for YAZ DLL (resource) */
-#define YAZ_FILEVERSION 5,20,1,1
-
-/** \brief SHA1 ID for YAZ (Git) */
-#define YAZ_VERSION_SHA1 "1a7b520d4b3fbd9c5ac012d83a8a1ed22b186629"
+#include <yaz/xmltypes.h>
 
 YAZ_BEGIN_CDECL
 
-/** \brief returns YAZ version
-    \param version_str holds version upon completion (YAZ_VERSION)
-    \param sha1_str holds SHA1 (Git) upon completion (YAZ_VERSION_SHA1)
-    \returns long version value (YAZ_VERSIONL)
+#if YAZ_HAVE_XML2
 
-    The version_str may be NULL in which case version is not returned.
-    When not-null, version_str, should point to a buffer of at least 20
-    charcters in size (including "\0").
-    The sha1_str may be NULL in which case the SHA1 is not returnd.
-    When not-null, sha1_str whould point to a buffer of at least 41 characters
-    in size (including "\0"). 
-  */
-YAZ_EXPORT unsigned long yaz_version(char *version_str, char *sha1_str);
+YAZ_EXPORT const char *yaz_xml_get_prop(const xmlNode *n, const char *fmt, ...);
+
+#endif
 
 YAZ_END_CDECL
 
@@ -67,6 +50,7 @@ YAZ_END_CDECL
 /*
  * Local variables:
  * c-basic-offset: 4
+ * c-file-style: "Stroustrup"
  * indent-tabs-mode: nil
  * End:
  * vim: shiftwidth=4 tabstop=8 expandtab

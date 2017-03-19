@@ -201,6 +201,14 @@ YAZ_EXPORT void nmem_destroy(NMEM n);
  */
 YAZ_EXPORT void *nmem_malloc(NMEM n, size_t size);
 
+/** \brief returns memory status for NMEM - as XML
+    \param dst buffer for result
+    \param l size of buffer (200 should suffice)
+    \returns 0 if OK
+    \returns -1 on failure
+ */
+YAZ_EXPORT int nmem_get_status(char *dst, size_t l);
+
 YAZ_END_CDECL
 
 #endif

@@ -146,6 +146,7 @@ YAZ_EXPORT void cs_print_session_info(COMSTACK cs);
 YAZ_EXPORT int cs_parse_host(const char *uri, const char **host,
                              CS_TYPE *t, enum oid_proto *proto,
                              char **connect_host);
+YAZ_EXPORT int cs_set_head_only(COMSTACK cs, int head_only);
 
 /*
  * error management.
