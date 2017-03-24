@@ -2,6 +2,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
 }
 
+doxygeg.commands = doxygen biblioteq.doxygen
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
@@ -43,7 +44,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 }
 
-QMAKE_EXTRA_TARGETS = purge
+QMAKE_EXTRA_TARGETS = doxygen purge
 
 ICON		= Icons/book.png
 INCLUDEPATH	+= Source temp
