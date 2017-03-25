@@ -1,0 +1,80 @@
+\hypertarget{classbiblioteq__marc}{}\section{biblioteq\+\_\+marc Class Reference}
+\label{classbiblioteq__marc}\index{biblioteq\+\_\+marc@{biblioteq\+\_\+marc}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries I\+T\+E\+M\+\_\+\+T\+Y\+PE} \{ {\bfseries B\+O\+OK} = 0, 
+{\bfseries M\+A\+G\+A\+Z\+I\+NE}
+ \}\hypertarget{classbiblioteq__marc_aef55c45eeca365be310533f0c318c877}{}\label{classbiblioteq__marc_aef55c45eeca365be310533f0c318c877}
+
+\item 
+enum {\bfseries P\+R\+O\+T\+O\+C\+OL} \{ {\bfseries S\+RU} = 0, 
+{\bfseries Z3950}
+ \}\hypertarget{classbiblioteq__marc_ae2e5c435b3e42f74d9a58ce2a17907ef}{}\label{classbiblioteq__marc_ae2e5c435b3e42f74d9a58ce2a17907ef}
+
+\item 
+enum {\bfseries R\+E\+C\+O\+R\+D\+\_\+\+S\+Y\+N\+T\+AX} \{ {\bfseries M\+A\+R\+C21} = 0, 
+{\bfseries U\+N\+I\+M\+A\+RC}
+ \}\hypertarget{classbiblioteq__marc_af1bcc8df3efe413864deb128541b8264}{}\label{classbiblioteq__marc_af1bcc8df3efe413864deb128541b8264}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries biblioteq\+\_\+marc} (const I\+T\+E\+M\+\_\+\+T\+Y\+PE item\+Type, const P\+R\+O\+T\+O\+C\+OL protocol, const R\+E\+C\+O\+R\+D\+\_\+\+S\+Y\+N\+T\+AX record\+Syntax)\hypertarget{classbiblioteq__marc_a9af2fe59b8c6715c7438a0f5c9e9d7b8}{}\label{classbiblioteq__marc_a9af2fe59b8c6715c7438a0f5c9e9d7b8}
+
+\item 
+Q\+Date {\bfseries publication\+Date} (void) const \hypertarget{classbiblioteq__marc_a5bc0e01eae71c6eb77b1d1516bf7ade9}{}\label{classbiblioteq__marc_a5bc0e01eae71c6eb77b1d1516bf7ade9}
+
+\item 
+Q\+String {\bfseries author} (void) const \hypertarget{classbiblioteq__marc_a513bbd4bf74fbcacf8cd6eabed82e556}{}\label{classbiblioteq__marc_a513bbd4bf74fbcacf8cd6eabed82e556}
+
+\item 
+Q\+String {\bfseries binding} (void) const \hypertarget{classbiblioteq__marc_a0bb5f29df73050b74ae5d853ebb7f373}{}\label{classbiblioteq__marc_a0bb5f29df73050b74ae5d853ebb7f373}
+
+\item 
+Q\+String {\bfseries callnum} (void) const \hypertarget{classbiblioteq__marc_a93b1be6807a22034a32581a33b4a178a}{}\label{classbiblioteq__marc_a93b1be6807a22034a32581a33b4a178a}
+
+\item 
+Q\+String {\bfseries category} (void) const \hypertarget{classbiblioteq__marc_aa04736480490504e95693a132946bf11}{}\label{classbiblioteq__marc_aa04736480490504e95693a132946bf11}
+
+\item 
+Q\+String {\bfseries description} (void) const \hypertarget{classbiblioteq__marc_a02d6d536aecd29b0e48d56c69c0d31d6}{}\label{classbiblioteq__marc_a02d6d536aecd29b0e48d56c69c0d31d6}
+
+\item 
+Q\+String {\bfseries deweynum} (void) const \hypertarget{classbiblioteq__marc_a2c8b68a507b7af55785d9d72e6f32fdd}{}\label{classbiblioteq__marc_a2c8b68a507b7af55785d9d72e6f32fdd}
+
+\item 
+Q\+String {\bfseries edition} (void) const \hypertarget{classbiblioteq__marc_aed042ffdaeb233582f955d93cc4ce05c}{}\label{classbiblioteq__marc_aed042ffdaeb233582f955d93cc4ce05c}
+
+\item 
+Q\+String {\bfseries isbn10} (void) const \hypertarget{classbiblioteq__marc_a8d7e7db6b16a8508cd19bb47dd9506bd}{}\label{classbiblioteq__marc_a8d7e7db6b16a8508cd19bb47dd9506bd}
+
+\item 
+Q\+String {\bfseries isbn13} (void) const \hypertarget{classbiblioteq__marc_ae76d61f22d5530001f061f76fde49d56}{}\label{classbiblioteq__marc_ae76d61f22d5530001f061f76fde49d56}
+
+\item 
+Q\+String {\bfseries lcnum} (void) const \hypertarget{classbiblioteq__marc_a89d5f7c48f824cdd895e8cee666cb55f}{}\label{classbiblioteq__marc_a89d5f7c48f824cdd895e8cee666cb55f}
+
+\item 
+Q\+String {\bfseries place} (void) const \hypertarget{classbiblioteq__marc_a4fbb891caebe264bfb7d67daec29126c}{}\label{classbiblioteq__marc_a4fbb891caebe264bfb7d67daec29126c}
+
+\item 
+Q\+String {\bfseries publisher} (void) const \hypertarget{classbiblioteq__marc_a9bea2245077af2dfcf637aaef65904c3}{}\label{classbiblioteq__marc_a9bea2245077af2dfcf637aaef65904c3}
+
+\item 
+Q\+String {\bfseries title} (void) const \hypertarget{classbiblioteq__marc_a204d826222b9de455ba72663ffd3e818}{}\label{classbiblioteq__marc_a204d826222b9de455ba72663ffd3e818}
+
+\item 
+void {\bfseries initialize} (const I\+T\+E\+M\+\_\+\+T\+Y\+PE item\+Type, const P\+R\+O\+T\+O\+C\+OL protocol, const R\+E\+C\+O\+R\+D\+\_\+\+S\+Y\+N\+T\+AX record\+Syntax)\hypertarget{classbiblioteq__marc_a4ef0032f2b603e4c9a48f6c7359a7b6e}{}\label{classbiblioteq__marc_a4ef0032f2b603e4c9a48f6c7359a7b6e}
+
+\item 
+void {\bfseries set\+Data} (const Q\+String \&data)\hypertarget{classbiblioteq__marc_ae53d113de9c4794a0e479519dcc8292a}{}\label{classbiblioteq__marc_ae53d113de9c4794a0e479519dcc8292a}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/biblioteq\+\_\+marc.\+h\item 
+Source/biblioteq\+\_\+marc.\+cc\end{DoxyCompactItemize}
