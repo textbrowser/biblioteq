@@ -2,7 +2,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 cache()
 }
 
-doxygeg.commands = doxygen biblioteq.doxygen
+doxygen.commands = doxygen biblioteq.doxygen
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
