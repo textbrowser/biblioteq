@@ -54,7 +54,7 @@
 
 #include <limits>
 
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 #include <poppler-version.h>
 #endif
 
@@ -1296,7 +1296,7 @@ void biblioteq::slotAbout(void)
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Architecture %4.<br>"
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
 	     "Poppler version %5.<br>"
 #else
 	     "%5"
@@ -1313,7 +1313,7 @@ void biblioteq::slotAbout(void)
      arg(__DATE__).
      arg(__TIME__).
      arg(BIBLIOTEQ_ARCHITECTURE_STR).
-#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#ifdef BIBLIOTEQ_POPPLER_VERSION_DEFINED
      arg(POPPLER_VERSION).
 #else
      arg("").
