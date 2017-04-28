@@ -27,10 +27,11 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_CXX       = clang++
 }
 
+QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_CXXFLAGS_RELEASE += -Wall -Wcast-align -Wcast-qual -Werror -Wextra \
 			  -Wformat=2 -Woverloaded-virtual \
 			  -Wpointer-arith -Wstrict-overflow=5 \
-			  -Wstack-protector -fPIE -fstack-protector-all \
+			  -Wstack-protector -O3 -fPIE -fstack-protector-all \
 			  -fwrapv -mtune=generic
 
 lessThan(QT_MAJOR_VERSION, 5) {
