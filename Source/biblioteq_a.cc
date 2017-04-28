@@ -54,6 +54,10 @@
 
 #include <limits>
 
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+#include <poppler-version.h>
+#endif
+
 /*
 ** -- C Includes --
 */
@@ -66,6 +70,7 @@ extern "C"
 #else
 #include <sqlite3.h>
 #endif
+#include <yaz/yaz-version.h>
 }
 
 /*
@@ -1291,7 +1296,13 @@ void biblioteq::slotAbout(void)
 	     "Icons copyright (c) Matthieu James.<br>"
 	     "Library icon copyright (c) pngimg.com.<br>"
 	     "Architecture %4.<br>"
-	     "Qt version %5."
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+	     "Poppler version %5.<br>"
+#else
+	     "%5"
+#endif
+	     "Qt version %6.<br>"
+	     "YAZ version %7."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> or "
@@ -1302,7 +1313,13 @@ void biblioteq::slotAbout(void)
      arg(__DATE__).
      arg(__TIME__).
      arg(BIBLIOTEQ_ARCHITECTURE_STR).
-     arg(QT_VERSION_STR));
+#ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
+     arg(POPPLER_VERSION).
+#else
+     arg("").
+#endif
+     arg(QT_VERSION_STR).
+     arg(YAZ_VERSION));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
     (QPixmap(":/book.png").scaled(QSize(128, 128),

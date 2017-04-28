@@ -14,14 +14,14 @@ QT              += network sql
 lessThan(QT_MAJOR_VERSION, 5) {
 exists(/usr/include/poppler/qt4) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt4
+INCLUDEPATH     += /usr/include/poppler/cpp /usr/include/poppler/qt4
 LIBS    +=      -lpoppler-qt4
 }
 }
 else {
 exists(/usr/include/poppler/qt5) {
 DEFINES +=      BIBLIOTEQ_LINKED_WITH_POPPLER
-INCLUDEPATH     += /usr/include/poppler/qt5
+INCLUDEPATH     += /usr/include/poppler/cpp /usr/include/poppler/qt5
 LIBS    +=      -lpoppler-qt5
 }
 }
