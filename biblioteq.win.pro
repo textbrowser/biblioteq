@@ -5,7 +5,8 @@ cache()
 purge.commands = del *~ && del *\\*~
 
 CONFIG		+= qt release thread warn_on windows
-DEFINES		+=
+DEFINES		+= BIBLIOTEQ_LINKED_WITH_POPPLER \
+                   BIBLIOTEQ_POPPLER_VERSION_DEFINED
 LANGUAGE	= C++
 QT		-= webkit
 QT		+= network sql
@@ -32,10 +33,13 @@ QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
 QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
-INCLUDEPATH	+= Source Include.win32 temp
+INCLUDEPATH	+= Source Include.win32 Include.win32\\poppler\\cpp \
+                   Include.win32\\poppler\\cpp temp
 LIBS		+= -L"." \
+                   -L"Libraries.win32\\poppler.d" \
 		   -L"Libraries.win32\\sqlite3.d" \
-		   -L"Libraries.win32\\yaz.d" -lsqlite3 -lyaz5
+                   -L"Libraries.win32\\yaz.d" \
+                   -lpoppler -lpoppler-qt5 -lsqlite3 -lyaz5
 RC_FILE		= biblioteq.win.rc
 RESOURCES	= Icons\\icons.qrc
 
