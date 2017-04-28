@@ -34,7 +34,7 @@ QMAKE_EXTRA_TARGETS = purge
 
 ICON		= Icons\\book.png
 INCLUDEPATH	+= Source Include.win32 Include.win32\\poppler\\cpp \
-                   Include.win32\\poppler\\cpp temp
+                   Include.win32\\poppler\\qt5 temp
 LIBS		+= -L"." \
                    -L"Libraries.win32\\poppler.d" \
 		   -L"Libraries.win32\\sqlite3.d" \
