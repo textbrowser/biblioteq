@@ -26,10 +26,12 @@ LIBS    +=      -lpoppler-qt5
 }
 }
 
-exists(/usr/include/poppler/cpp)
-{
+exists(/usr/include/poppler/cpp) {
 DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
+}
+else {
+message("The directory /usr/include/poppler/cpp does not exist. Poppler version will not be available.")
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
