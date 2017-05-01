@@ -159,7 +159,8 @@ int main(int argc, char *argv[])
 
   biblioteq::s_locale = settings.value("locale").toString();
 
-  if(!(biblioteq::s_locale == "cs_CZ" ||
+  if(!(biblioteq::s_locale == "ar_JO" ||
+       biblioteq::s_locale == "cs_CZ" ||
        biblioteq::s_locale == "de_DE" ||
        biblioteq::s_locale == "el_GR" ||
        biblioteq::s_locale == "en_US" ||
@@ -815,6 +816,9 @@ biblioteq::biblioteq(void):QMainWindow()
     biblioteq::quit("Memory allocation failure", __FILE__, __LINE__);
 
   group3->setExclusive(true);
+  (action = group3->addAction(tr("&Arabic")))->setCheckable(true);
+  action->setData("ar_JO");
+  ui.menu_Language->addAction(action);
   (action = group3->addAction(tr("&Czech")))->setCheckable(true);
   action->setData("cs_CZ");
   ui.menu_Language->addAction(action);
