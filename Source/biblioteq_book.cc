@@ -2286,12 +2286,10 @@ void biblioteq_book::slotSRUQuery(void)
     searchstr.replace("%2", id.id->text().trimmed());
 
   QNetworkProxy proxy;
-  QString type("");
+  QString type("none");
   QUrl url(QUrl::fromUserInput(searchstr));
 
   if(hash.contains("proxy_type"))
-    type = hash.value("proxy_type").toLower().trimmed();
-  else if(hash.contains("proxy_type"))
     type = hash.value("proxy_type").toLower().trimmed();
 
   if(type == "none")
