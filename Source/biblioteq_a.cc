@@ -1188,7 +1188,10 @@ void biblioteq::showMain(void)
     }
 
   if(ui.menuPreferredSRUSite->actions().isEmpty())
-    ui.menuPreferredSRUSite->addAction(tr("None"));
+    {
+      group1->deleteLater();
+      ui.menuPreferredSRUSite->addAction(tr("None"));
+    }
 
   QActionGroup *group2 = 0;
 
@@ -1212,7 +1215,10 @@ void biblioteq::showMain(void)
     }
 
   if(ui.menuPreferredZ3950Server->actions().isEmpty())
-    ui.menuPreferredZ3950Server->addAction(tr("None"));
+    {
+      group2->deleteLater();
+      ui.menuPreferredZ3950Server->addAction(tr("None"));
+    }
 
   /*
   ** Initial update.
@@ -6252,9 +6258,12 @@ void biblioteq::slotBookSearch(void)
 	book->search();
     }
 
-  book->showNormal();
-  book->activateWindow();
-  book->raise();
+  if(book)
+    {
+      book->showNormal();
+      book->activateWindow();
+      book->raise();
+    }
 }
 
 /*
@@ -6299,9 +6308,12 @@ void biblioteq::slotCDSearch(void)
 	cd->search();
     }
 
-  cd->showNormal();
-  cd->activateWindow();
-  cd->raise();
+  if(cd)
+    {
+      cd->showNormal();
+      cd->activateWindow();
+      cd->raise();
+    }
 }
 
 /*
@@ -6346,9 +6358,12 @@ void biblioteq::slotDVDSearch(void)
 	dvd->search();
     }
 
-  dvd->showNormal();
-  dvd->activateWindow();
-  dvd->raise();
+  if(dvd)
+    {
+      dvd->showNormal();
+      dvd->activateWindow();
+      dvd->raise();
+    }
 }
 
 /*
@@ -6394,9 +6409,12 @@ void biblioteq::slotJournSearch(void)
 	journal->search();
     }
 
-  journal->showNormal();
-  journal->activateWindow();
-  journal->raise();
+  if(journal)
+    {
+      journal->showNormal();
+      journal->activateWindow();
+      journal->raise();
+    }
 }
 
 /*
@@ -6448,9 +6466,12 @@ void biblioteq::slotMagSearch(void)
 	magazine->search();
     }
 
-  magazine->showNormal();
-  magazine->activateWindow();
-  magazine->raise();
+  if(magazine)
+    {
+      magazine->showNormal();
+      magazine->activateWindow();
+      magazine->raise();
+    }
 }
 
 /*
@@ -6498,9 +6519,12 @@ void biblioteq::slotPhotographSearch(void)
 	photograph->search();
     }
 
-  photograph->showNormal();
-  photograph->activateWindow();
-  photograph->raise();
+  if(photograph)
+    {
+      photograph->showNormal();
+      photograph->activateWindow();
+      photograph->raise();
+    }
 }
 
 /*
@@ -6547,9 +6571,12 @@ void biblioteq::slotVideoGameSearch(void)
 	videogame->search();
     }
 
-  videogame->showNormal();
-  videogame->activateWindow();
-  videogame->raise();
+  if(videogame)
+    {
+      videogame->showNormal();
+      videogame->activateWindow();
+      videogame->raise();
+    }
 }
 
 /*

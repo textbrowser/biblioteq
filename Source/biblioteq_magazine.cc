@@ -307,7 +307,10 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     }
 
   if(ma.sruQueryButton->actions().isEmpty())
-    ma.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+    {
+      actionGroup1->deleteLater();
+      ma.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+    }
   else if(!found)
     ma.sruQueryButton->actions()[0]->setChecked(true);
 
@@ -333,7 +336,10 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
     }
 
   if(ma.z3950QueryButton->actions().isEmpty())
-    ma.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
+    {
+      actionGroup2->deleteLater();
+      ma.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
+    }
   else if(!found)
     ma.z3950QueryButton->actions()[0]->setChecked(true);
 
@@ -3439,7 +3445,7 @@ void biblioteq_magazine::sruDownloadFinished(void)
   else if(list.size() > 1)
     {
       /*
-      ** Display a selection dialog.
+      ** Display a selection dialog. Destroyed on close.
       */
 
       if((new(std::nothrow) biblioteq_sruresults

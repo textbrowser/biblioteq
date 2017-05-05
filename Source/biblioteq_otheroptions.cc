@@ -175,6 +175,12 @@ void biblioteq_otheroptions::prepareSettings(void)
 
       if(!comboBox || !item)
 	{
+	  if(comboBox)
+	    comboBox->deleteLater();
+
+	  if(item)
+	    delete item;
+
 	  qmain->addError(QString(tr("Memory Error")),
 			  QString(tr("Unable to allocate memory for "
 				     "\"comboBox\" or \"item\". "

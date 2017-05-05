@@ -352,7 +352,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     }
 
   if(id.sruQueryButton->actions().isEmpty())
-    id.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+    {
+      actionGroup1->deleteLater();
+      id.sruQueryButton->setPopupMode(QToolButton::DelayedPopup);
+    }
   else if(!found)
     id.sruQueryButton->actions()[0]->setChecked(true);
 
@@ -405,7 +408,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
     }
 
   if(id.z3950QueryButton->actions().isEmpty())
-    id.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
+    {
+      actionGroup2->deleteLater();
+      id.z3950QueryButton->setPopupMode(QToolButton::DelayedPopup);
+    }
   else if(!found)
     id.z3950QueryButton->actions()[0]->setChecked(true);
 
