@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL">
+<TS version="2.1" language="nl_NL">
 <context>
     <name>QObject</name>
     <message>
@@ -1755,6 +1755,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Populating the views...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Arabic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
