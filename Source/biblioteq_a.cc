@@ -1292,6 +1292,16 @@ void biblioteq::slotExit(void)
 void biblioteq::slotAbout(void)
 {
   QMessageBox mb(this);
+  QString qversion("");
+  const char *tmp = qVersion();
+
+  if(tmp)
+    qversion = tmp;
+
+  qversion = qversion.trimmed();
+
+  if(qversion.isEmpty())
+    qversion = "unknown";
 
 #ifndef Q_OS_MAC
   mb.setFont(QApplication::font());
@@ -1311,8 +1321,8 @@ void biblioteq::slotAbout(void)
 #else
 	     "%5"
 #endif
-	     "Qt version %6.<br>"
-	     "YAZ version %7."
+	     "Qt version %6 (runtime %7).<br>"
+	     "YAZ version %8."
 	     "<hr>"
 	     "Please visit <a href=\"http://biblioteq.sourceforge.net\">"
 	     "http://biblioteq.sourceforge.net</a> or "
@@ -1329,6 +1339,7 @@ void biblioteq::slotAbout(void)
      arg("").
 #endif
      arg(QT_VERSION_STR).
+     arg(qversion).
      arg(YAZ_VERSION));
   mb.setStandardButtons(QMessageBox::Ok);
   mb.setIconPixmap
