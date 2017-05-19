@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>QObject</name>
     <message>
@@ -731,7 +731,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2438"/>
+        <location line="+2449"/>
         <location line="+525"/>
         <location line="+14"/>
         <location line="+778"/>
@@ -754,18 +754,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8380"/>
+        <location line="-8391"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+100"/>
-        <location line="+4222"/>
+        <location line="+4233"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4220"/>
+        <location line="-4231"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -831,7 +831,7 @@
     </message>
     <message>
         <location line="+387"/>
-        <location line="+3631"/>
+        <location line="+3642"/>
         <location line="+4490"/>
         <location line="+27"/>
         <location line="+28"/>
@@ -842,7 +842,7 @@
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-8181"/>
+        <location line="-8192"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -929,33 +929,33 @@
     </message>
     <message>
         <location line="+71"/>
-        <location line="+3389"/>
+        <location line="+3400"/>
         <location line="+942"/>
         <location line="+34"/>
         <source>Item Requests</source>
         <translation type="unfinished">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-4299"/>
-        <location line="+3371"/>
+        <location line="-4310"/>
+        <location line="+3382"/>
         <source>Disconnected</source>
         <translation type="unfinished">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3364"/>
-        <location line="+3370"/>
+        <location line="-3375"/>
+        <location line="+3381"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3358"/>
-        <location line="+4533"/>
+        <location line="-3369"/>
+        <location line="+4544"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Üres Hiba Napló</translation>
     </message>
     <message>
-        <location line="-4529"/>
-        <location line="+3368"/>
+        <location line="-4540"/>
+        <location line="+3379"/>
         <location line="+951"/>
         <location line="+4193"/>
         <location filename="../Source/biblioteq_b.cc" line="-4111"/>
@@ -965,7 +965,7 @@
         <translation type="unfinished">0 Eredmény</translation>
     </message>
     <message>
-        <location line="-8475"/>
+        <location line="-8486"/>
         <location line="+27"/>
         <source>None</source>
         <translation type="unfinished">Semelyik</translation>
@@ -991,12 +991,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+49"/>
         <source>BiblioteQ: About</source>
         <translation type="unfinished">BiblioteQ: A Programról</translation>
     </message>
     <message>
-        <location line="+99"/>
+        <location line="+100"/>
         <location line="+12"/>
         <location line="+13"/>
         <location line="+548"/>
@@ -1171,8 +1171,8 @@
         <translation type="unfinished"> kijelölt cikket? BiblioteQ kilép ha nem tud elegendő erőforráshoz jutni.</translation>
     </message>
     <message>
-        <location line="-8211"/>
-        <location line="+414"/>
+        <location line="-8222"/>
+        <location line="+425"/>
         <location line="+215"/>
         <location line="+65"/>
         <location line="+7604"/>
@@ -1180,12 +1180,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-8742"/>
+        <location line="-8753"/>
         <source>&amp;Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+859"/>
+        <location line="+870"/>
         <location line="+215"/>
         <location line="+3460"/>
         <location line="+4209"/>
