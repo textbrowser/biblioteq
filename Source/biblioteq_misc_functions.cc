@@ -1857,23 +1857,26 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
     return value;
 
   QSqlQuery query(db);
-  QString querystr("");
 
   errorstr = "";
-  querystr = "INSERT INTO sequence VALUES (NULL)";
-  query.setForwardOnly(true);
 
-  if(query.exec(querystr))
+  if(query.exec("INSERT INTO sequence VALUES (NULL)"))
     {
-      querystr = "SELECT MAX(value) FROM sequence";
+      QVariant variant(query.lastInsertId());
 
-      if(query.exec(querystr))
-	if(query.next())
-	  value = query.value(0).toLongLong();
+      if(variant.isValid())
+	{
+	  value = variant.toLongLong();
+	  query.exec
+	    (QString("DELETE FROM sequence WHERE value < %1").arg(value));
+	}
+      else
+	errorstr = "Invalid variant.";
     }
-
-  if(query.lastError().isValid())
+  else if(query.lastError().isValid())
     errorstr = query.lastError().text();
+  else
+    errorstr = "Query failure.";
 
   return value;
 }
