@@ -125,17 +125,17 @@
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="100"/>
         <source>First Name</source>
-        <translation>اسم أول</translation>
+        <translation>الاسم الأول ...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="114"/>
         <source>Last Name</source>
-        <translation>اسم العائلة أو الكنية</translation>
+        <translation>اسم العائلة أو الكنية ...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="128"/>
         <source>Middle Initial</source>
-        <translation>أب</translation>
+        <translation>الأب ...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_userinfo.ui" line="171"/>
@@ -1183,7 +1183,8 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="819"/>
         <source>&amp;Arabic</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>العربية ـ الأردن ـ</translatorcomment>
+        <translation>العربية</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1689"/>
