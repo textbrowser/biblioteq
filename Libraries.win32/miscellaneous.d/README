@@ -1,8 +1,0 @@
-The following files were downloaded from https://www.microsoft.com/en-us/download/details.aspx?id=48145:
-
-api-ms-win-crt-runtime-l1-1-0.dll
-vcruntime140.dll
-
-Windows XP users, please consider installing vc_redist.x86.exe if you encounter problems with
-api-ms-win-crt-runtime-l1-1-0.dll. The file is also available at
-https://www.microsoft.com/en-us/download/details.aspx?id=48145.
