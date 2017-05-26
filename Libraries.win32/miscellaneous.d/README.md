@@ -23,4 +23,4 @@ Windows XP is not supported.  Microsoft stopped supporting Windows XP several ye
 
 If BiblioteQ works on Windows XP, that's great, but it may break at any time in the future, and likely will not be repaired.  Be mindful of that.
 
-One way to recognize an OS dependency is when an OS specific DLL file such as `KERNEL23.dll` is mentioned in an error.
+One way to recognize an OS dependency is when an OS specific DLL file such as `KERNEL32.dll` is mentioned in an error.
