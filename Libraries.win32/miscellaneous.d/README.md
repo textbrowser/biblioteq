@@ -19,4 +19,4 @@ If the above doesn't seem to work, try this instead: [Update for Universal C Run
 
 # Unsupported
 
-Windows XP is not supported.  Microsoft stopped supporting Windows XP several years ago.  Qt - the application framework that BiblioteQ is built with, stopped supporting Windows XP.  The author of BiblioteQ has likewise abandonned Windows XP development.  If BiblioteQ works on Windows XP, that's great, but it may break at any time in the future, and likely will not be repaired.  Be mindful of that.
+Windows XP is not supported.  Microsoft stopped supporting Windows XP several years ago.  Qt - the application framework used to build BiblioteQ - stopped supporting Windows XP.  The author of BiblioteQ has likewise abandonned Windows XP development.  If BiblioteQ works on Windows XP, that's great, but it may break at any time in the future, and likely will not be repaired.  Be mindful of that.
