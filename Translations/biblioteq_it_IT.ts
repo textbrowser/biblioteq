@@ -12,8 +12,8 @@
     <message>
         <location filename="../Source/biblioteq_book.cc" line="3910"/>
         <location filename="../Source/biblioteq_magazine.cc" line="3839"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2029"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2107"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2032"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2110"/>
         <location filename="../Source/biblioteq_pdfreader.cc" line="336"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished"></translation>
@@ -87,8 +87,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2025"/>
-        <location filename="../Source/biblioteq_misc_functions.cc" line="2104"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2028"/>
+        <location filename="../Source/biblioteq_misc_functions.cc" line="2107"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
     </message>

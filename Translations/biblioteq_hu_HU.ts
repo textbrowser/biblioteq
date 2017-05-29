@@ -51,7 +51,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+659"/>
+        <location line="+662"/>
         <location line="+79"/>
         <source>Exporting image(s)...</source>
         <translation type="unfinished"></translation>
