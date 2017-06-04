@@ -6525,8 +6525,8 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location filename="../Source/biblioteq_photographcollection.cc" line="1963"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1974"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2010"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2682"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2689"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2696"/>
         <source>Database Error</source>
         <translation>خطأ في قاعدة البيانات</translation>
     </message>
@@ -6589,7 +6589,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="350"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1543"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2683"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2690"/>
         <source>Unable to generate a unique integer.</source>
         <translation>غير قادر على توليد عدد صحيح مميز.</translation>
     </message>
@@ -6819,7 +6819,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="1155"/>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2050"/>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2568"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2575"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>ببليوتيك: مربع حوار عملية التقدم</translation>
     </message>
@@ -6880,41 +6880,46 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2222"/>
+        <source>&amp;Delete Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2229"/>
         <source>&amp;Modify Photograph...</source>
         <translation>تعديل الصورة...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2229"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2236"/>
         <source>&amp;View Photograph...</source>
         <translation>عرض الصورة...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2536"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2543"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation>ببليوتيك: استيراد مجموعة صور</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2564"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2571"/>
         <source>Importing image(s)...</source>
         <translation>يتم استيراد الصور..</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2690"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2697"/>
         <source>Unable to import photograph.</source>
         <translation>غير قادر على استيراد الصورة.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2735"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2742"/>
         <source>BiblioteQ: Information</source>
         <translation>ببليوماتيك: المعلومات</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2736"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2743"/>
         <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
         <translation>مجموع الصور التي تمّ استيرادها %1 . الدليل %2 يحتوي على الصور %3 .</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2891"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2898"/>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation>ببليوتيك: تصدير صور مجموعات الصور</translation>
     </message>

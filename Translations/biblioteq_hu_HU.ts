@@ -6588,13 +6588,13 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+85"/>
         <location line="+11"/>
         <location line="+36"/>
-        <location line="+672"/>
+        <location line="+679"/>
         <location line="+7"/>
         <source>Database Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2526"/>
+        <location line="-2533"/>
         <source>Unable to retrieve the photograph collection locations.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6652,12 +6652,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="-1664"/>
         <location line="+1193"/>
-        <location line="+1140"/>
+        <location line="+1147"/>
         <source>Unable to generate a unique integer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2322"/>
+        <location line="-2329"/>
         <location line="+1193"/>
         <location line="+410"/>
         <source>Unable to create or update the entry.</source>
@@ -6881,12 +6881,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <message>
         <location line="+3"/>
         <location line="+895"/>
-        <location line="+518"/>
+        <location line="+525"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>
     <message>
-        <location line="-1210"/>
+        <location line="-1217"/>
         <source>Please complete the item&apos;s ID field.</source>
         <translation type="unfinished">Töltse ki a cikk Azonosító Szám mezőjét!</translation>
     </message>
@@ -6942,6 +6942,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location line="+68"/>
+        <source>&amp;Delete Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
         <source>&amp;Modify Photograph...</source>
         <translation type="unfinished"></translation>
     </message>
