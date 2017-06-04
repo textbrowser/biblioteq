@@ -2219,6 +2219,13 @@ void biblioteq_photographcollection::slotViewContextMenu(const QPoint &pos)
       QMenu menu(this);
 
       item->setSelected(true);
+      action = menu.addAction(tr("&Delete Photograph"),
+			      this,
+			      SLOT(slotDeleteItem(void)));
+
+      if(m_engWindowTitle != "Modify")
+	action->setEnabled(false);
+
       action = menu.addAction(tr("&Modify Photograph..."),
 			      this,
 			      SLOT(slotModifyItem(void)));
