@@ -2532,6 +2532,9 @@ void biblioteq_photographcollection::slotViewPreviousPhotograph(void)
 void biblioteq_photographcollection::slotImportItems(void)
 {
   QFileDialog dialog(this);
+  QStringList list;
+
+  list << "*" << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
 
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -2539,7 +2542,8 @@ void biblioteq_photographcollection::slotImportItems(void)
 #endif
 #endif
   dialog.setDirectory(QDir::homePath());
-  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setFileMode(QFileDialog::ExistingFiles);
+  dialog.setNameFilters(list);
   dialog.setWindowTitle(tr("BiblioteQ: Photograph Collection Import"));
   dialog.exec();
 
@@ -2552,11 +2556,7 @@ void biblioteq_photographcollection::slotImportItems(void)
   QApplication::processEvents();
 #endif
 
-  QStringList list;
-
-  list << "*.bmp" << "*.jpg" << "*.jpeg" << "*.png";
-
-  QFileInfoList files(dialog.directory().entryInfoList(list));
+  QStringList files(dialog.selectedFiles());
 
   if(files.isEmpty())
     return;
@@ -2596,7 +2596,7 @@ void biblioteq_photographcollection::slotImportItems(void)
 	break;
 
       QByteArray bytes1;
-      QFile file(files.at(i).absoluteFilePath());
+      QFile file(files.at(i));
 
       if(!file.open(QIODevice::ReadOnly))
 	continue;
@@ -2740,11 +2740,10 @@ void biblioteq_photographcollection::slotImportItems(void)
   showPhotographs(1);
   QMessageBox::information(this,
 			   tr("BiblioteQ: Information"),
-			   tr("A total of %1 image(s) were imported. "
-			      "The directory %2 contains %3 image(s).").
+			   tr("A total of %1 image(s) were imported from "
+			      "the directory %2.").
 			   arg(imported).
-			   arg(dialog.directory().absolutePath()).
-			   arg(files.size()));
+			   arg(dialog.directory().absolutePath()));
 }
 
 /*
