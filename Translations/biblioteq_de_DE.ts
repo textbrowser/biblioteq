@@ -6937,7 +6937,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2543"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2547"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6958,11 +6958,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="2743"/>
-        <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
+        <source>A total of %1 image(s) were imported from the directory %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_photographcollection.cc" line="2898"/>
+        <location filename="../Source/biblioteq_photographcollection.cc" line="2897"/>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>

@@ -6956,16 +6956,21 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location line="+507"/>
+        <source>A total of %1 image(s) were imported from the directory %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;View Photograph</source>
         <translation type="obsolete">Fénykép Megtekintése</translation>
     </message>
     <message>
-        <location line="+307"/>
+        <location line="-196"/>
         <source>BiblioteQ: Photograph Collection Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+24"/>
         <source>Importing image(s)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6978,11 +6983,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <location line="+45"/>
         <source>BiblioteQ: Information</source>
         <translation type="unfinished">BiblioteQ: Információ</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+155"/>

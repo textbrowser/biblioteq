@@ -4832,10 +4832,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">BiblioteQ: Informatie</translation>
     </message>
     <message>
-        <source>A total of %1 image(s) were imported. The directory %2 contains %3 image(s).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>BiblioteQ: Photograph Collection Photograph Export</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4869,6 +4865,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Delete Photograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A total of %1 image(s) were imported from the directory %2.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
