@@ -7,7 +7,8 @@ as the postgres user.
 pg_dump -U postgres --clean --file=xbook_db.sql xbook_db
 pg_dumpall -U postgres --clean --globals-only --file=globals.sql
 
-Importing a database copy is simple.
+Importing a database copy is simple. Before executing the following
+commands, please create and prepare the xbook_db database.
 
 psql -U postgres < globals.sql
 psql -U postgres < xbook_db.sql
