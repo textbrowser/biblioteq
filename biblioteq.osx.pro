@@ -5,7 +5,8 @@ cache()
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= app_bundle qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+                   QT_DEPRECATED_WARNINGS
 
 lessThan(QT_MAJOR_VERSION, 5) {
 DEFINES         += BIBLIOTEQ_WA_MACMETALSTYLE=1
@@ -43,9 +44,11 @@ QMAKE_DISTCLEAN += -r temp
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 QMAKE_DISTCLEAN += .qmake.cache .qmake.stash
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 }
-
+else {
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
+}
 
 ICON		= Icons/book.icns
 INCLUDEPATH	+= Source temp /usr/local/include

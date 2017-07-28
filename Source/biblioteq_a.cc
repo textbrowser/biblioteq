@@ -1516,7 +1516,7 @@ void biblioteq::slotModify(void)
 	return;
       }
 
-  qStableSort(list.begin(), list.end());
+  std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
     {
@@ -1731,7 +1731,7 @@ void biblioteq::slotViewDetails(void)
 	return;
       }
 
-  qStableSort(list.begin(), list.end());
+  std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
     {
@@ -9494,7 +9494,7 @@ void biblioteq::slotDuplicate(void)
 
   QString id("");
 
-  qStableSort(list.begin(), list.end());
+  std::stable_sort(list.begin(), list.end());
 
   foreach(index, list)
     {
