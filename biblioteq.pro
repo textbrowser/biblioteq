@@ -6,7 +6,8 @@ doxygen.commands = doxygen biblioteq.doxygen
 purge.commands = rm -f *~ && rm -f */*~
 
 CONFIG		+= copy_dir_files qt release thread warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'"
+DEFINES		+= BIBLIOTEQ_CONFIGFILE="'\"biblioteq.conf\"'" \
+                   QT_DEPRECATED_WARNINGS
 LANGUAGE	= C++
 QT		-= webkit
 QT              += network sql
@@ -31,7 +32,7 @@ DEFINES +=     BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
 }
 else {
-message("The directory /usr/include/poppler/cpp does not exist. Poppler version will not be available.")
+message("The directory /usr/include/poppler/cpp does not exist. Poppler version information will not be available.")
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {
