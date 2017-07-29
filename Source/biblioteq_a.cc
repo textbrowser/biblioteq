@@ -1306,6 +1306,7 @@ void biblioteq::slotAbout(void)
 #ifndef Q_OS_MAC
   mb.setFont(QApplication::font());
 #endif
+  mb.setWindowIcon(windowIcon());
   mb.setWindowTitle(tr("BiblioteQ: About"));
   mb.setTextFormat(Qt::RichText);
   mb.setText
