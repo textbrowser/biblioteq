@@ -365,6 +365,7 @@ class biblioteq: public QMainWindow
   void slotExecuteCustomQuery(void);
   void slotExit(void);
   void slotExportAsCSV(void);
+  void slotGeneralSearchPublicationDateEnabled(bool state);
   void slotGrantPrivileges(void);
   void slotInsertBook(void);
   void slotInsertCD(void);

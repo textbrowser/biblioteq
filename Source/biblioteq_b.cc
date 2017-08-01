@@ -2595,8 +2595,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		  {
 		    str.append(" AND ");
 
-		    if(al.publication_date->date().toString
-		       ("MM/yyyy") != "01/7999")
+		    if(al.publication_date_enabled->isChecked())
 		      str.append
 			("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			 al.publication_date->date().toString
@@ -3766,6 +3765,7 @@ void biblioteq::slotResetGeneralSearch(void)
   foreach(QWidget *widget, m_all_diag->findChildren<QWidget *> ())
     widget->setEnabled(true);
 
+  al.publication_date_enabled->setChecked(false);
   al.reset->setVisible(false);
   slotSearch();
 }

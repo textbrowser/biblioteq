@@ -137,3 +137,16 @@ void biblioteq::slotOpenPDFFile(void)
     }
 #endif
 }
+
+/*
+** -- slotGeneralSearchPublicationDateEnabled() --
+*/
+
+void biblioteq::slotGeneralSearchPublicationDateEnabled(bool state)
+{
+  al.publication_date->setEnabled(state);
+
+  if(!state)
+    al.publication_date->setDate
+      (QDate::fromString("01/7999", "MM/yyyy"));
+}

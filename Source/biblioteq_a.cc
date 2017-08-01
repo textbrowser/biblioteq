@@ -452,6 +452,10 @@ biblioteq::biblioteq(void):QMainWindow()
   m_pass_diag->setModal(true);
   userinfo_diag->setModal(true);
   m_branch_diag->setModal(true);
+  connect(al.publication_date_enabled,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotGeneralSearchPublicationDateEnabled(bool)));
   connect(al.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -673,6 +677,8 @@ biblioteq::biblioteq(void):QMainWindow()
   er.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
   history.table->verticalHeader()->setResizeMode(QHeaderView::Fixed);
 #endif
+  al.publication_date->setEnabled(false);
+  al.publication_date_enabled->setChecked(false);
   al.resetButton->setMenu(menu4);
   ui.previousPageButton->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
@@ -1381,6 +1387,7 @@ void biblioteq::slotSearch(void)
   al.category->clear();
   al.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
+  al.publication_date_enabled->setChecked(false);
   al.price->setMinimum(-0.01);
   al.price->setValue(-0.01);
   al.quantity->setMinimum(0);
@@ -5520,7 +5527,8 @@ void biblioteq::slotReset(void)
 	    {
 	      al.publication_date->setDate
 		(QDate::fromString("01/7999", "MM/yyyy"));
-	      al.publication_date->setFocus();
+	      al.publication_date_enabled->setChecked(false);
+	      al.idnumber->setFocus();
 	    }
 	  else if(action == actions[3])
 	    {
