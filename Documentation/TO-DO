@@ -386,3 +386,4 @@
 206. Include Poppler and YAZ version information in the About dialog. (Done)
 207. biblioteq_misc_functions::getSqliteUniqueId() should return the
      lastInsertId() instead of using an additional query. (Done)
+208. Retranslate the Language menu. (TBD)
