@@ -114,7 +114,7 @@
           <x>0</x>
           <y>0</y>
           <width>200</width>
-          <height>273</height>
+          <height>285</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -375,7 +375,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -982,7 +982,10 @@
      <normaloff>:/32x32/history.png</normaloff>:/32x32/history.png</iconset>
    </property>
    <property name="text">
-    <string>View Member's Reservation History</string>
+    <string>View Member's Reservation History (Patrons Only)</string>
+   </property>
+   <property name="toolTip">
+    <string>View Member's Reservation History (Patrons Only)</string>
    </property>
   </action>
   <action name="actionChangePassword">
