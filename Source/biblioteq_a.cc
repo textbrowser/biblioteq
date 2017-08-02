@@ -982,7 +982,12 @@ void biblioteq::adminSetup(void)
   bb.printButton->setEnabled(true);
   bb.checkoutButton->setEnabled(true);
   bb.overdueButton->setEnabled(true);
-  ui.actionChangePassword->setEnabled(true);
+
+  if(m_db.driverName() == "QSQLITE")
+    ui.actionChangePassword->setEnabled(false);
+  else
+    ui.actionChangePassword->setEnabled(true);
+
   ui.detailsTool->setEnabled(true);
   ui.actionViewDetails->setEnabled(true);
 
