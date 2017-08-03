@@ -115,6 +115,7 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   id.setupUi(this);
   id.files->setColumnHidden(id.files->columnCount() - 1, true); // myoid
   id.publication_date->setDisplayFormat(qmain->publicationDateFormat("books"));
+  id.publication_date_enabled->setVisible(false);
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   id.view_pdf->setEnabled(false);
   id.view_pdf->setToolTip
@@ -161,6 +162,10 @@ biblioteq_book::biblioteq_book(QMainWindow *parentArg,
   connect(id.isbn13to10, SIGNAL(clicked(void)), this,
 	  SLOT(slotConvertISBN13to10(void)));
   connect(id.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(id.publication_date_enabled,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotPublicationDateEnabled(bool)));
   connect(id.isbnAvailableCheckBox,
 	  SIGNAL(toggled(bool)),
 	  id.dwnldFront,
@@ -1181,7 +1186,7 @@ void biblioteq_book::slotGo(void)
 		       escape(id.author->toPlainText().
 			      trimmed()) + "%' AND ");
 
-      if(id.publication_date->date().toString("MM/yyyy") != "01/7999")
+      if(id.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			 id.publication_date->date().toString
 			 ("MM/yyyy") +
@@ -1304,6 +1309,9 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.okButton->setText(tr("&Search"));
   id.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
+  id.publication_date->setEnabled(false);
+  id.publication_date_enabled->setEnabled(true);
+  id.publication_date_enabled->setVisible(true);
   id.price->setMinimum(-0.01);
   id.price->setValue(-0.01);
   id.quantity->setMinimum(0);
@@ -1904,8 +1912,12 @@ void biblioteq_book::slotReset(void)
       else if(action == actions[11])
 	{
 	  if(m_engWindowTitle.contains("Search"))
-	    id.publication_date->setDate
-	      (QDate::fromString("01/7999", "MM/yyyy"));
+	    {
+	      id.id->setFocus();
+	      id.publication_date->setDate
+		(QDate::fromString("01/7999", "MM/yyyy"));
+	      id.publication_date_enabled->setChecked(false);
+	    }
 	  else
 	    id.publication_date->setDate
 	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -2041,8 +2053,11 @@ void biblioteq_book::slotReset(void)
 	id.category->clear();
 
       if(m_engWindowTitle.contains("Search"))
-	id.publication_date->setDate(QDate::fromString("01/7999",
-						       "MM/yyyy"));
+	{
+	  id.publication_date->setDate(QDate::fromString("01/7999",
+							 "MM/yyyy"));
+	  id.publication_date_enabled->setChecked(false);
+	}
       else
 	id.publication_date->setDate(QDate::fromString("01/01/2000",
 						       "MM/dd/yyyy"));
@@ -4098,4 +4113,17 @@ void biblioteq_book::slotShowPDF(void)
   reader->load(data, query.value(1).toString());
   reader->show();
   QApplication::restoreOverrideCursor();
+}
+
+/*
+** -- slotPublicationDateEnabled() --
+*/
+
+void biblioteq_book::slotPublicationDateEnabled(bool state)
+{
+  id.publication_date->setEnabled(state);
+
+  if(!state)
+    id.publication_date->setDate
+      (QDate::fromString("01/7999", "MM/yyyy"));
 }

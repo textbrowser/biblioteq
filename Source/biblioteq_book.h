@@ -106,6 +106,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotPrintCallDewey(void);
   void slotProxyAuthenticationRequired
     (const QNetworkProxy &proxy, QAuthenticator *authenticator);
+  void slotPublicationDateEnabled(bool state);
 #if QT_VERSION < 0x050000
   void slotReadyRead(const QHttpResponseHeader &resp);
 #endif
