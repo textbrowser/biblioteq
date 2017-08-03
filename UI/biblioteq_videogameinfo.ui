@@ -33,23 +33,14 @@
          <x>0</x>
          <y>0</y>
          <width>1017</width>
-         <height>1348</height>
+         <height>1340</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -387,6 +378,13 @@
                 </property>
                 <property name="calendarPopup">
                  <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="publication_date_enabled">
+                <property name="text">
+                 <string/>
                 </property>
                </widget>
               </item>
@@ -844,6 +842,7 @@
   <tabstop>mode</tabstop>
   <tabstop>title</tabstop>
   <tabstop>release_date</tabstop>
+  <tabstop>publication_date_enabled</tabstop>
   <tabstop>publisher</tabstop>
   <tabstop>place</tabstop>
   <tabstop>genre</tabstop>

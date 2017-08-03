@@ -33,23 +33,14 @@
          <x>0</x>
          <y>0</y>
          <width>1022</width>
-         <height>1148</height>
+         <height>1140</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
@@ -555,6 +546,13 @@
                </widget>
               </item>
               <item>
+               <widget class="QCheckBox" name="publication_date_enabled">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -985,6 +983,7 @@
   <tabstop>tracksButton</tabstop>
   <tabstop>title</tabstop>
   <tabstop>release_date</tabstop>
+  <tabstop>publication_date_enabled</tabstop>
   <tabstop>recording_label</tabstop>
   <tabstop>category</tabstop>
   <tabstop>price</tabstop>
