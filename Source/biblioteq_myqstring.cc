@@ -27,13 +27,12 @@ QString biblioteq_myqstring::prepConfigString
 {
   QString mystr = str;
 
-  if(mystr.startsWith("#"))
+  if(mystr.trimmed().startsWith("#"))
     return mystr.trimmed();
   else if(mystr.contains("#") && !ignore_embedded_comments)
     mystr.resize(mystr.indexOf('#'));
 
-  mystr = mystr.trimmed();
-  return mystr;
+  return mystr.trimmed();
 }
 
 /*
