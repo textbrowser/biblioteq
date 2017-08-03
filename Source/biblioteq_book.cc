@@ -1310,7 +1310,6 @@ void biblioteq_book::search(const QString &field, const QString &value)
   id.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
   id.publication_date->setEnabled(false);
-  id.publication_date_enabled->setEnabled(true);
   id.publication_date_enabled->setVisible(true);
   id.price->setMinimum(-0.01);
   id.price->setValue(-0.01);
@@ -1919,11 +1918,13 @@ void biblioteq_book::slotReset(void)
 	      id.publication_date_enabled->setChecked(false);
 	    }
 	  else
-	    id.publication_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	    {
+	      id.publication_date->setDate
+		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      id.publication_date->setFocus();
+	    }
 
 	  id.publication_date->setStyleSheet(m_dt_orig_ss);
-	  id.publication_date->setFocus();
 	}
       else if(action == actions[12])
 	{
@@ -4124,6 +4125,5 @@ void biblioteq_book::slotPublicationDateEnabled(bool state)
   id.publication_date->setEnabled(state);
 
   if(!state)
-    id.publication_date->setDate
-      (QDate::fromString("01/7999", "MM/yyyy"));
+    id.publication_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
 }
