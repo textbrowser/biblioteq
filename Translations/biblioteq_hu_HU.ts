@@ -67,7 +67,7 @@
         <location filename="../Source/biblioteq_magazine.cc" line="+4"/>
         <location filename="../Source/biblioteq_misc_functions.cc" line="-75"/>
         <location line="+78"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="+336"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="+340"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation type="unfinished">BiblioteQ: Folyamat</translation>
     </message>

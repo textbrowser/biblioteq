@@ -14,7 +14,7 @@
         <location filename="../Source/biblioteq_magazine.cc" line="3854"/>
         <location filename="../Source/biblioteq_misc_functions.cc" line="2032"/>
         <location filename="../Source/biblioteq_misc_functions.cc" line="2110"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="336"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="340"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>ببليوتيك:مربع حوار المعالجة</translation>
     </message>
@@ -6404,58 +6404,58 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
 <context>
     <name>biblioteq_pdfreader</name>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="35"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="39"/>
         <source>BiblioteQ was assembled without Poppler support.</source>
         <translation>لم يتم تجميع نظام ببليوتيك مع دعم بوببلير.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="148"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="187"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="469"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="501"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="152"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="191"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="473"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="505"/>
         <source>The PDF data could not be processed.</source>
         <translation>بيانات PDF لم يتم مُعالجتها.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="158"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="197"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="162"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="201"/>
         <source>Page 1 of %1.</source>
         <translation>الصفحة 1 من %1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="161"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="200"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="165"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="204"/>
         <source>BiblioteQ: PDF Reader</source>
         <translation>ببليوتيك: قاريء PDF</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="163"/>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="202"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="167"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="206"/>
         <source>BiblioteQ: PDF Reader (%1)</source>
         <translation>ببليوتيك قاريء PDF  (%1)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="224"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="228"/>
         <source>Page %1</source>
         <translation>الصفحة %1</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="332"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="336"/>
         <source>Printing PDF...</source>
         <translation>طباعة PDF</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="356"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="360"/>
         <source>Printing PDF... Page %1...</source>
         <translation>&apos;طباعة PDF... الصفحة %1</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="414"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="418"/>
         <source>BiblioteQ: Save PDF As</source>
         <translation>ببليوتيك: حفظ PDF باسم </translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_pdfreader.cc" line="475"/>
+        <location filename="../Source/biblioteq_pdfreader.cc" line="479"/>
         <source>Page %1 of %2.</source>
         <translation>الصفحة %1 من %2.</translation>
     </message>

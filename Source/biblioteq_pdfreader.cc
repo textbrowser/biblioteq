@@ -25,6 +25,10 @@
 biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
+
+  if(menuBar())
+    menuBar()->setNativeMenuBar(true);
+
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
   m_document = 0;
 #else
