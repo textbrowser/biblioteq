@@ -736,7 +736,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2462"/>
+        <location line="+2467"/>
         <location line="+525"/>
         <location line="+14"/>
         <location line="+778"/>
@@ -759,18 +759,18 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8405"/>
+        <location line="-8410"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+100"/>
-        <location line="+4246"/>
+        <location line="+4251"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
     </message>
     <message>
-        <location line="-4244"/>
+        <location line="-4249"/>
         <source>Reset &amp;ID Number</source>
         <translation type="unfinished">Azonosító Szám Visszaállítása</translation>
     </message>
@@ -836,7 +836,7 @@
     </message>
     <message>
         <location line="+393"/>
-        <location line="+3649"/>
+        <location line="+3654"/>
         <location line="+4491"/>
         <location line="+27"/>
         <location line="+28"/>
@@ -847,7 +847,7 @@
         <translation type="unfinished">Minden</translation>
     </message>
     <message>
-        <location line="-8200"/>
+        <location line="-8205"/>
         <source>&amp;Unlimited Entries per Page</source>
         <translation type="unfinished">Oldalanként Végtelen Bejegyzés</translation>
     </message>
@@ -934,27 +934,27 @@
     </message>
     <message>
         <location line="+71"/>
-        <location line="+3402"/>
+        <location line="+3407"/>
         <location line="+942"/>
         <location line="+34"/>
         <source>Item Requests</source>
         <translation type="unfinished">Cikk Lefoglalások</translation>
     </message>
     <message>
-        <location line="-4312"/>
-        <location line="+3384"/>
+        <location line="-4317"/>
+        <location line="+3389"/>
         <source>Disconnected</source>
         <translation type="unfinished">Nincs Kapcsolódva</translation>
     </message>
     <message>
-        <location line="-3377"/>
-        <location line="+3383"/>
+        <location line="-3382"/>
+        <location line="+3388"/>
         <source>Standard User Mode</source>
         <translation type="unfinished">Átlagfelhasználó Mód</translation>
     </message>
     <message>
-        <location line="-3371"/>
-        <location line="+4547"/>
+        <location line="-3376"/>
+        <location line="+4552"/>
         <source>Empty Error Log</source>
         <translation type="unfinished">Üres Hiba Napló</translation>
     </message>
@@ -1185,12 +1185,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-8761"/>
+        <location line="-8766"/>
         <source>&amp;Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+877"/>
+        <location line="+882"/>
         <location line="+215"/>
         <location line="+3460"/>
         <location line="+4210"/>

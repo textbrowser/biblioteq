@@ -1162,6 +1162,11 @@ void biblioteq::showMain(void)
       m_error_bar_label->setIcon(QIcon(":/16x16/ok.png"));
       m_error_bar_label->setToolTip(tr("Empty Error Log"));
       statusBar()->addPermanentWidget(m_error_bar_label);
+#ifdef Q_OS_MAC
+      m_error_bar_label->setStyleSheet
+	("QToolButton {border: none;}"
+	 "QToolButton::menu-button {border: none;}");
+#endif
     }
 
   ui.itemsCountLabel->setText(tr("0 Results"));
