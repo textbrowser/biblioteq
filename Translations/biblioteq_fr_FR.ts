@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR" sourcelanguage="fr">
+<TS version="2.1" language="fr_FR" sourcelanguage="fr">
 <context>
     <name>QObject</name>
     <message>
@@ -562,6 +562,10 @@
     </message>
     <message>
         <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7637,7 +7641,7 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation>Afficher l&apos;historique de réservation du membre</translation>
+        <translation type="vanished">Afficher l&apos;historique de réservation du membre</translation>
     </message>
     <message>
         <source>Previous Page</source>
@@ -7945,6 +7949,10 @@ minmal de jours.</translation>
     </message>
     <message>
         <source>&amp;Open PDF File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Member&apos;s Reservation History (Patrons Only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

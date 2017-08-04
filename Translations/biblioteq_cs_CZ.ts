@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>QObject</name>
     <message>
@@ -578,6 +578,10 @@
     </message>
     <message>
         <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7675,7 +7679,7 @@ webová adresa</translation>
     </message>
     <message>
         <source>View Member&apos;s Reservation History</source>
-        <translation>Historie zápůjček</translation>
+        <translation type="vanished">Historie zápůjček</translation>
     </message>
     <message>
         <source>Change Password</source>
@@ -8023,6 +8027,10 @@ webová adresa</translation>
     </message>
     <message>
         <source>&amp;Open PDF File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View Member&apos;s Reservation History (Patrons Only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
