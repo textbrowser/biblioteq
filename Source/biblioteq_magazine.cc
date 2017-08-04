@@ -102,6 +102,7 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   ma.files->setColumnHidden(ma.files->columnCount() - 1, true); // myoid
   ma.publication_date->setDisplayFormat
     (qmain->publicationDateFormat("magazines"));
+  ma.publication_date_enabled->setVisible(false);
 #ifndef BIBLIOTEQ_LINKED_WITH_POPPLER
   ma.view_pdf->setEnabled(false);
   ma.view_pdf->setToolTip
@@ -144,6 +145,10 @@ biblioteq_magazine::biblioteq_magazine(QMainWindow *parentArg,
   connect(ma.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(ma.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
+  connect(ma.publication_date_enabled,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotPublicationDateEnabled(bool)));
   connect(menu->addAction(tr("Reset &Front Cover Image")),
 	  SIGNAL(triggered(void)), this, SLOT(slotReset(void)));
   connect(menu->addAction(tr("Reset &Back Cover Image")),
@@ -1082,8 +1087,7 @@ void biblioteq_magazine::slotGo(void)
 		       (ma.title->text().trimmed()) +
 		       "%' AND ");
 
-      if(ma.publication_date->date().toString
-	 ("MM/yyyy") != "01/7999")
+      if(ma.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
 			 ma.publication_date->date().toString
 			 ("MM/yyyy") +
@@ -1187,6 +1191,8 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.okButton->setText(tr("&Search"));
   ma.publication_date->setDate(QDate::fromString("01/7999",
 						 "MM/yyyy"));
+  ma.publication_date->setEnabled(false);
+  ma.publication_date_enabled->setVisible(true);
   ma.id->setCursorPosition(0);
   ma.price->setMinimum(-0.01);
   ma.price->setValue(-0.01);
@@ -1815,14 +1821,20 @@ void biblioteq_magazine::slotReset(void)
       else if(action == actions[9])
 	{
 	  if(m_engWindowTitle.contains("Search"))
-	    ma.publication_date->setDate
-	      (QDate::fromString("01/7999", "MM/yyyy"));
+	    {
+	      ma.id->setFocus();
+	      ma.publication_date->setDate
+		(QDate::fromString("01/7999", "MM/yyyy"));
+	      ma.publication_date_enabled->setChecked(false);
+	    }
 	  else
-	    ma.publication_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	    {
+	      ma.publication_date->setDate
+		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      ma.publication_date->setFocus();
+	    }
 
 	  ma.publication_date->setStyleSheet(m_dt_orig_ss);
-	  ma.publication_date->setFocus();
 	}
       else if(action == actions[10])
 	{
@@ -1945,8 +1957,11 @@ void biblioteq_magazine::slotReset(void)
       ma.price->setValue(ma.price->minimum());
 
       if(m_engWindowTitle.contains("Search"))
-	ma.publication_date->setDate
-	  (QDate::fromString("01/7999", "MM/yyyy"));
+	{
+	  ma.publication_date->setDate
+	    (QDate::fromString("01/7999", "MM/yyyy"));
+	  ma.publication_date_enabled->setChecked(false);
+	}
       else
 	ma.publication_date->setDate
 	  (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
@@ -3975,4 +3990,16 @@ void biblioteq_magazine::slotShowPDF(void)
   reader->load(data, query.value(1).toString());
   reader->show();
   QApplication::restoreOverrideCursor();
+}
+
+/*
+** -- slotPublicationDateEnabled() --
+*/
+
+void biblioteq_magazine::slotPublicationDateEnabled(bool state)
+{
+  ma.publication_date->setEnabled(state);
+
+  if(!state)
+    ma.publication_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
 }

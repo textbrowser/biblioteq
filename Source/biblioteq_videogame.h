@@ -55,6 +55,7 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   void slotGo(void);
   void slotPopulateCopiesEditor(void);
   void slotPrint(void);
+  void slotPublicationDateEnabled(bool state);
   void slotQuery(void);
   void slotReset(void);
   void slotSelectImage(void);

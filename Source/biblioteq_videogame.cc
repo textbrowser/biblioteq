@@ -55,6 +55,7 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
     (qmain->getUI().table, m_row,
      qmain->getUI().table->columnNumber("Quantity")).toInt();
   vg.setupUi(this);
+  vg.publication_date_enabled->setVisible(false);
   vg.release_date->setDisplayFormat(qmain->publicationDateFormat("videogames"));
 #ifdef Q_OS_MAC
 #if QT_VERSION < 0x050000
@@ -71,6 +72,10 @@ biblioteq_videogame::biblioteq_videogame(QMainWindow *parentArg,
 	  SLOT(slotCancel(void)));
   connect(vg.copiesButton, SIGNAL(clicked()), this,
 	  SLOT(slotPopulateCopiesEditor(void)));
+  connect(vg.publication_date_enabled,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotPublicationDateEnabled(bool)));
   connect(vg.resetButton, SIGNAL(clicked(void)), this,
 	  SLOT(slotReset(void)));
   connect(vg.printButton, SIGNAL(clicked(void)), this, SLOT(slotPrint(void)));
@@ -815,7 +820,7 @@ void biblioteq_videogame::slotGo(void)
 						   trimmed()) + "%' "
 		       "AND ");
 
-      if(vg.release_date->date().toString("MM/yyyy") != "01/7999")
+      if(vg.publication_date_enabled->isChecked())
 	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
 			 vg.release_date->date().toString
 			 ("MM/yyyy") +
@@ -911,8 +916,10 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.showUserButton->setVisible(false);
   vg.queryButton->setVisible(false);
   vg.okButton->setText(tr("&Search"));
+  vg.publication_date_enabled->setVisible(true);
   vg.release_date->setDate(QDate::fromString("01/7999",
 					     "MM/yyyy"));
+  vg.release_date->setEnabled(false);
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
   vg.quantity->setMinimum(0);
@@ -1371,13 +1378,18 @@ void biblioteq_videogame::slotReset(void)
       else if(action == actions[8])
 	{
 	  if(m_engWindowTitle.contains("Search"))
-	    vg.release_date->setDate
-	      (QDate::fromString("01/7999", "MM/yyyy"));
+	    {
+	      vg.id->setFocus();
+	      vg.publication_date_enabled->setChecked(false);
+	      vg.release_date->setDate
+		(QDate::fromString("01/7999", "MM/yyyy"));
+	    }
 	  else
-	    vg.release_date->setDate
-	      (QDate::fromString("01/01/2000", "MM/dd/yyyy"));
-
-	  vg.release_date->setFocus();
+	    {
+	      vg.release_date->setDate
+		(QDate::fromString("01/01/2000", "MM/dd/yyyy"));
+	      vg.release_date->setFocus();
+	    }
 	}
       else if(action == actions[9])
 	{
@@ -1488,8 +1500,11 @@ void biblioteq_videogame::slotReset(void)
 	vg.description->setPlainText("N/A");
 
       if(m_engWindowTitle.contains("Search"))
-	vg.release_date->setDate(QDate::fromString("01/7999",
-						   "MM/yyyy"));
+	{
+	  vg.publication_date_enabled->setChecked(false);
+	  vg.release_date->setDate(QDate::fromString("01/7999",
+						     "MM/yyyy"));
+	}
       else
 	vg.release_date->setDate(QDate::fromString("01/01/2000",
 						   "MM/dd/yyyy"));
@@ -1740,4 +1755,16 @@ void biblioteq_videogame::changeEvent(QEvent *event)
       }
 
   QMainWindow::changeEvent(event);
+}
+
+/*
+** -- slotPublicationDateEnabled() --
+*/
+
+void biblioteq_videogame::slotPublicationDateEnabled(bool state)
+{
+  vg.release_date->setEnabled(state);
+
+  if(!state)
+    vg.release_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
 }
