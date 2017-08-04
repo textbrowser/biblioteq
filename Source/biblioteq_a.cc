@@ -275,6 +275,10 @@ biblioteq::biblioteq(void):QMainWindow()
   QMenu *menu4 = 0;
 
   ui.setupUi(this);
+
+  if(menuBar())
+    menuBar()->setNativeMenuBar(false);
+
   m_connected_bar_label = 0;
   m_error_bar_label = 0;
   m_idCt = 0;

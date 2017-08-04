@@ -736,7 +736,7 @@
     <message>
         <location line="-3"/>
         <location line="+4"/>
-        <location line="+2467"/>
+        <location line="+2471"/>
         <location line="+525"/>
         <location line="+14"/>
         <location line="+778"/>
@@ -759,12 +759,12 @@
         <translation type="unfinished">.</translation>
     </message>
     <message>
-        <location line="-8410"/>
+        <location line="-8414"/>
         <source>An unknown error occurred in file </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+104"/>
         <location line="+4251"/>
         <source>BiblioteQ</source>
         <translation type="unfinished">BiblioteQ</translation>
