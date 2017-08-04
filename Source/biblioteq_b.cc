@@ -2596,10 +2596,9 @@ int biblioteq::populateTable(const int search_type_arg,
 		    str.append(" AND ");
 
 		    if(al.publication_date_enabled->isChecked())
-		      str.append
-			("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
-			 al.publication_date->date().toString
-			 ("MM/yyyy") + "' AND ");
+		      str.append("SUBSTR(pdate, 7) = '" +
+				 al.publication_date->date().
+				 toString("yyyy") + "' AND ");
 
 		    if(caseinsensitive)
 		      str.append("LOWER(category) LIKE " + E + "'%" +

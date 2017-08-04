@@ -1399,8 +1399,7 @@ void biblioteq::slotSearch(void)
   al.title->clear();
   al.publisher->clear();
   al.category->clear();
-  al.publication_date->setDate(QDate::fromString("01/7999",
-						 "MM/yyyy"));
+  al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
   al.publication_date_enabled->setChecked(false);
   al.price->setMinimum(-0.01);
   al.price->setValue(-0.01);
@@ -5539,8 +5538,7 @@ void biblioteq::slotReset(void)
 	    }
 	  else if(action == actions[2])
 	    {
-	      al.publication_date->setDate
-		(QDate::fromString("01/7999", "MM/yyyy"));
+	      al.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	      al.publication_date_enabled->setChecked(false);
 	      al.idnumber->setFocus();
 	    }

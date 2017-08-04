@@ -103,7 +103,7 @@
                 </sizepolicy>
                </property>
                <property name="displayFormat">
-                <string>yyyy-MM-dd</string>
+                <string>yyyy</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
