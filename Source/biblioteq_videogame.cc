@@ -821,9 +821,8 @@ void biblioteq_videogame::slotGo(void)
 		       "AND ");
 
       if(vg.publication_date_enabled->isChecked())
-	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
-			 vg.release_date->date().toString
-			 ("MM/yyyy") +
+	searchstr.append("SUBSTR(rdate, 7) = '" +
+			 vg.release_date->date().toString("yyyy") +
 			 "' AND ");
 
       searchstr.append("publisher LIKE " + E + "'%" +
@@ -917,8 +916,8 @@ void biblioteq_videogame::search(const QString &field, const QString &value)
   vg.queryButton->setVisible(false);
   vg.okButton->setText(tr("&Search"));
   vg.publication_date_enabled->setVisible(true);
-  vg.release_date->setDate(QDate::fromString("01/7999",
-					     "MM/yyyy"));
+  vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  vg.release_date->setDisplayFormat("yyyy");
   vg.release_date->setEnabled(false);
   vg.price->setMinimum(-0.01);
   vg.price->setValue(-0.01);
@@ -1381,8 +1380,7 @@ void biblioteq_videogame::slotReset(void)
 	    {
 	      vg.id->setFocus();
 	      vg.publication_date_enabled->setChecked(false);
-	      vg.release_date->setDate
-		(QDate::fromString("01/7999", "MM/yyyy"));
+	      vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
 	    {
@@ -1502,8 +1500,7 @@ void biblioteq_videogame::slotReset(void)
       if(m_engWindowTitle.contains("Search"))
 	{
 	  vg.publication_date_enabled->setChecked(false);
-	  vg.release_date->setDate(QDate::fromString("01/7999",
-						     "MM/yyyy"));
+	  vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	}
       else
 	vg.release_date->setDate(QDate::fromString("01/01/2000",
@@ -1766,5 +1763,5 @@ void biblioteq_videogame::slotPublicationDateEnabled(bool state)
   vg.release_date->setEnabled(state);
 
   if(!state)
-    vg.release_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
+    vg.release_date->setDate(QDate::fromString("2001", "yyyy"));
 }
