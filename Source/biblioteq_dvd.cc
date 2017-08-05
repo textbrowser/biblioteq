@@ -941,9 +941,8 @@ void biblioteq_dvd::slotGo(void)
 	 (dvd.title->text().trimmed())).append("%' AND ");
 
       if(dvd.publication_date_enabled->isChecked())
-	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
-			 dvd.release_date->date().toString
-			 ("MM/yyyy") +
+	searchstr.append("SUBSTR(rdate, 7) = '" +
+			 dvd.release_date->date().toString("yyyy") +
 			 "' AND ");
 
       searchstr.append("studio LIKE " + E + "'%" +
@@ -1025,8 +1024,8 @@ void biblioteq_dvd::search(const QString &field, const QString &value)
   dvd.showUserButton->setVisible(false);
   dvd.okButton->setText(tr("&Search"));
   dvd.publication_date_enabled->setVisible(true);
-  dvd.release_date->setDate(QDate::fromString("01/7999",
-					      "MM/yyyy"));
+  dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  dvd.release_date->setDisplayFormat("yyyy");
   dvd.release_date->setEnabled(false);
   dvd.runtime->setTime(QTime(0, 0, 0));
   dvd.runtime->setMinimumTime(QTime(0, 0, 0));
@@ -1558,8 +1557,7 @@ void biblioteq_dvd::slotReset(void)
 	    {
 	      dvd.id->setFocus();
 	      dvd.publication_date_enabled->setChecked(false);
-	      dvd.release_date->setDate
-		(QDate::fromString("01/7999", "MM/yyyy"));
+	      dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
 	    {
@@ -1674,8 +1672,7 @@ void biblioteq_dvd::slotReset(void)
       if(m_engWindowTitle.contains("Search"))
 	{
 	  dvd.publication_date_enabled->setChecked(false);
-	  dvd.release_date->setDate(QDate::fromString("01/7999",
-						      "MM/yyyy"));
+	  dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	  dvd.runtime->setTime(QTime(0, 0, 0));
 	}
       else
@@ -1949,5 +1946,5 @@ void biblioteq_dvd::slotPublicationDateEnabled(bool state)
   dvd.release_date->setEnabled(state);
 
   if(!state)
-    dvd.release_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
+    dvd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 }
