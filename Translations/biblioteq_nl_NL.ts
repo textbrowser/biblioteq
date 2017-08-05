@@ -545,10 +545,6 @@
         <translation>Beschikbaar</translation>
     </message>
     <message>
-        <source>yyyy-MM-dd</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Case-Insensitive</source>
         <translation type="unfinished"></translation>
     </message>
@@ -562,6 +558,10 @@
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abstract, Categories, Copies, Keywords, Language, Location, Monetary Units, Price, Publication Date, and Publisher will be ignored for Photograph Collections.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yyyy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
