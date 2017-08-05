@@ -906,8 +906,8 @@ void biblioteq_cd::slotGo(void)
 	 escape(cd.title->text().trimmed())).append("%' AND ");
 
       if(cd.publication_date_enabled->isChecked())
-	searchstr.append("SUBSTR(rdate, 1, 3) || SUBSTR(rdate, 7) = '" +
-			 cd.release_date->date().toString("MM/yyyy") +"' AND ");
+	searchstr.append("SUBSTR(rdate, 7) = '" +
+			 cd.release_date->date().toString("yyyy") +"' AND ");
 
       searchstr.append("recording_label LIKE " + E + "'%" +
 		       biblioteq_myqstring::
@@ -992,8 +992,8 @@ void biblioteq_cd::search(const QString &field, const QString &value)
   cd.tracks_lbl->setVisible(false);
   cd.okButton->setText(tr("&Search"));
   cd.publication_date_enabled->setVisible(true);
-  cd.release_date->setDate(QDate::fromString("01/7999",
-					     "MM/yyyy"));
+  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
+  cd.release_date->setDisplayFormat("yyyy");
   cd.release_date->setEnabled(false);
   cd.runtime->setTime(QTime(0, 0, 0));
   cd.runtime->setMinimumTime(QTime(0, 0, 0));
@@ -1990,8 +1990,7 @@ void biblioteq_cd::slotReset(void)
 	    {
 	      cd.id->setFocus();
 	      cd.publication_date_enabled->setChecked(false);
-	      cd.release_date->setDate
-		(QDate::fromString("01/7999", "MM/yyyy"));
+	      cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	    }
 	  else
 	    {
@@ -2097,8 +2096,7 @@ void biblioteq_cd::slotReset(void)
 	{
 	  cd.publication_date_enabled->setChecked(false);
 	  cd.runtime->setTime(QTime(0, 0, 0));
-	  cd.release_date->setDate(QDate::fromString("01/7999",
-						     "MM/yyyy"));
+	  cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 	}
       else
 	{
@@ -2404,5 +2402,5 @@ void biblioteq_cd::slotPublicationDateEnabled(bool state)
   cd.release_date->setEnabled(state);
 
   if(!state)
-    cd.release_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
+    cd.release_date->setDate(QDate::fromString("2001", "yyyy"));
 }
