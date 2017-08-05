@@ -1088,9 +1088,8 @@ void biblioteq_magazine::slotGo(void)
 		       "%' AND ");
 
       if(ma.publication_date_enabled->isChecked())
-	searchstr.append("SUBSTR(pdate, 1, 3) || SUBSTR(pdate, 7) = '" +
-			 ma.publication_date->date().toString
-			 ("MM/yyyy") +
+	searchstr.append("SUBSTR(pdate, 7) = '" +
+			 ma.publication_date->date().toString("yyyy") +
 			 "' AND ");
 
       searchstr.append("publisher LIKE " + E+ "'%" +
@@ -1189,8 +1188,8 @@ void biblioteq_magazine::search(const QString &field, const QString &value)
   ma.sruQueryButton->setVisible(false);
   ma.z3950QueryButton->setVisible(false);
   ma.okButton->setText(tr("&Search"));
-  ma.publication_date->setDate(QDate::fromString("01/7999",
-						 "MM/yyyy"));
+  ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
+  ma.publication_date->setDisplayFormat("yyyy");
   ma.publication_date->setEnabled(false);
   ma.publication_date_enabled->setVisible(true);
   ma.id->setCursorPosition(0);
@@ -1823,8 +1822,7 @@ void biblioteq_magazine::slotReset(void)
 	  if(m_engWindowTitle.contains("Search"))
 	    {
 	      ma.id->setFocus();
-	      ma.publication_date->setDate
-		(QDate::fromString("01/7999", "MM/yyyy"));
+	      ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	      ma.publication_date_enabled->setChecked(false);
 	    }
 	  else
@@ -1958,8 +1956,7 @@ void biblioteq_magazine::slotReset(void)
 
       if(m_engWindowTitle.contains("Search"))
 	{
-	  ma.publication_date->setDate
-	    (QDate::fromString("01/7999", "MM/yyyy"));
+	  ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 	  ma.publication_date_enabled->setChecked(false);
 	}
       else
@@ -4001,5 +3998,5 @@ void biblioteq_magazine::slotPublicationDateEnabled(bool state)
   ma.publication_date->setEnabled(state);
 
   if(!state)
-    ma.publication_date->setDate(QDate::fromString("01/7999", "MM/yyyy"));
+    ma.publication_date->setDate(QDate::fromString("2001", "yyyy"));
 }
